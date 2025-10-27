@@ -25,6 +25,8 @@ class LanguageSelectionPageState extends State<LanguageSelectionPage> {
   LanguageModel? _selectedLanguage;
   LanguageModel? _baseLanguage;
 
+  final TextEditingController _searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -32,6 +34,12 @@ class LanguageSelectionPageState extends State<LanguageSelectionPage> {
         MatrixState.pangeaController.languageController.systemLanguage;
 
     _setFromCache();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   // The user may set their target language initally, then return to this page
@@ -106,45 +114,71 @@ class LanguageSelectionPageState extends State<LanguageSelectionPage> {
             child: Column(
               spacing: 24.0,
               children: [
+                TextField(
+                  controller: _searchController,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.search),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                ),
                 Expanded(
                   child: Stack(
                     children: [
-                      SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            left: 16.0,
-                            right: 16.0,
-                            bottom: 60.0,
-                          ),
-                          child: Wrap(
-                            spacing: 8.0,
-                            runSpacing: 8.0,
-                            alignment: WrapAlignment.center,
-                            children: languages
-                                .map(
-                                  (l) => FilterChip(
-                                    selected: _selectedLanguage == l,
-                                    backgroundColor: _selectedLanguage == l
-                                        ? theme.colorScheme.primary
-                                        : theme.colorScheme.surface,
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0,
-                                      vertical: 4.0,
-                                    ),
-                                    label: Text(
-                                      l.getDisplayName(context) ??
-                                          l.displayName,
-                                      style: theme.textTheme.bodyMedium,
-                                    ),
-                                    onSelected: (selected) {
-                                      _setSelectedLanguage(
-                                        selected ? l : null,
-                                      );
-                                    },
-                                  ),
-                                )
-                                .toList(),
-                          ),
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: ValueListenableBuilder(
+                          valueListenable: _searchController,
+                          builder: (context, val, __) {
+                            return SingleChildScrollView(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 16.0,
+                                  right: 16.0,
+                                  bottom: 60.0,
+                                ),
+                                child: Wrap(
+                                  spacing: 8.0,
+                                  runSpacing: 8.0,
+                                  alignment: WrapAlignment.center,
+                                  children: languages
+                                      .where(
+                                        (l) => l.displayName
+                                            .toLowerCase()
+                                            .contains(
+                                              _searchController.text
+                                                  .toLowerCase(),
+                                            ),
+                                      )
+                                      .map(
+                                        (l) => FilterChip(
+                                          selected: _selectedLanguage == l,
+                                          backgroundColor:
+                                              _selectedLanguage == l
+                                                  ? theme.colorScheme.primary
+                                                  : theme.colorScheme.surface,
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 8.0,
+                                            vertical: 4.0,
+                                          ),
+                                          label: Text(
+                                            l.getDisplayName(context) ??
+                                                l.displayName,
+                                            style: theme.textTheme.bodyMedium,
+                                          ),
+                                          onSelected: (selected) {
+                                            _setSelectedLanguage(
+                                              selected ? l : null,
+                                            );
+                                          },
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
+                              ),
+                            );
+                          },
                         ),
                       ),
                       Align(
