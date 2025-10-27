@@ -87,6 +87,19 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   late String currentClientSecret;
   RequestTokenResponse? currentThreepidCreds;
+  void setActiveClientWithUserId(String userId) {
+    final i = widget.clients.indexWhere((c) => c.userID == userId);
+    if (i != -1) {
+      if (_activeClient == i) {
+        return;
+      }
+      _activeClient = i;
+      // TODO: Multi-client VoiP support
+      createVoipPlugin();
+    } else {
+      Logs().w('Tried to set an unknown user $userId as active');
+    }
+  }
 
   void setActiveClient(Client? cl) {
     final i = widget.clients.indexWhere((c) => c == cl);
@@ -168,7 +181,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
               _loginClientCandidate!.clientName,
               store,
             );
-            _registerSubs(_loginClientCandidate!.clientName);
+            _registerSubs(
+              _loginClientCandidate!.clientName,
+              _loginClientCandidate!.userID,
+            );
             _loginClientCandidate = null;
             FluffyChatApp.router.go('/rooms');
           });
@@ -221,7 +237,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     initMatrix();
   }
 
-  void _registerSubs(String name) {
+  void _registerSubs(String name, String? userId) {
     final c = getClientByName(name);
     if (c == null) {
       Logs().w(
@@ -290,8 +306,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
       c.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
-        onNotification[name] ??=
-            c.onNotification.stream.listen(showLocalNotification);
+        onNotification[name] ??= c.onNotification.stream
+            .listen((data) => showLocalNotification(data, userId));
       });
     }
   }
@@ -309,7 +325,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   void initMatrix() {
     for (final c in widget.clients) {
-      _registerSubs(c.clientName);
+      _registerSubs(c.clientName, c.userID);
     }
 
     if (kIsWeb) {
