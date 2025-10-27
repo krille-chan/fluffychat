@@ -3207,5 +3207,9 @@
     "notificationRuleRoomOneToOneDescription": "Varsler brukeren om meldinger i én-til-én-rom.",
     "@notificationRuleRoomOneToOneDescription": {},
     "notificationRuleJitsiDescription": "Varsler brukeren om hendelser i Jitsi-widgeten.",
-    "@notificationRuleJitsiDescription": {}
+    "@notificationRuleJitsiDescription": {},
+    "customReaction": "Egendefinert reaksjon",
+    "@customReaction": {},
+    "pause": "Pause",
+    "@pause": {}
 }
