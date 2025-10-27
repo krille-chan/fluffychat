@@ -11785,7 +11785,6 @@
   "newMessageInPangeaChat": "🗨️ Nuovo messaggio in Pangea Chat",
   "shareCourse": "Condividi corso",
   "addCourse": "Aggiungi un corso",
-  "joinCourseWithCode": "Unisciti al corso con il codice",
   "joinPublicCourse": "Unisciti al corso pubblico",
   "vocabLevelsDesc": "Qui andranno le parole di vocabolario una volta che le avrai potenziate!",
   "highlightVocabTooltip": "Evidenzia le parole di vocabolario target di seguito inviandole o praticandole nella chat",
@@ -11806,10 +11805,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

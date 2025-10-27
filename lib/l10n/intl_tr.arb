@@ -12004,7 +12004,6 @@
   "newMessageInPangeaChat": "🗨️ Pangea Sohbetinde yeni mesaj",
   "shareCourse": "Kursu paylaş",
   "addCourse": "Bir kurs ekle",
-  "joinCourseWithCode": "Kod ile kursa katıl",
   "joinPublicCourse": "Herkese açık kursa katıl",
   "vocabLevelsDesc": "Kelime seviyelerini yükselttiğinizde buraya kelimeler gelir!",
   "highlightVocabTooltip": "Hedef kelimeleri aşağıda vurgula, onları göndererek veya sohbetle pratik yaparak",
@@ -12025,10 +12024,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

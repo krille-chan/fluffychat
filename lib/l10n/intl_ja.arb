@@ -12572,7 +12572,6 @@
   "newMessageInPangeaChat": "📩 Pangeaチャットに新しいメッセージ",
   "shareCourse": "コースを共有",
   "addCourse": "コースを追加",
-  "joinCourseWithCode": "コードでコースに参加",
   "joinPublicCourse": "公開コースに参加",
   "vocabLevelsDesc": "これが語彙をレベルアップしたら表示される場所です！",
   "highlightVocabTooltip": "チャットで送信したり練習したりして、ターゲット語彙をハイライトしてください",
@@ -12593,10 +12592,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

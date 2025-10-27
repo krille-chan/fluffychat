@@ -12844,7 +12844,6 @@
   "newMessageInPangeaChat": "💬 Ny besked i Pangea Chat",
   "shareCourse": "Del kursus",
   "addCourse": "Tilføj et kursus",
-  "joinCourseWithCode": "Deltag i kursus med kode",
   "joinPublicCourse": "Deltag i offentligt kursus",
   "vocabLevelsDesc": "Her vil ordforrådsord blive placeret, når du har opgraderet dem!",
   "highlightVocabTooltip": "Fremhæv målordene nedenfor ved at sende dem eller øve med dem i chatten",
@@ -12865,10 +12864,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

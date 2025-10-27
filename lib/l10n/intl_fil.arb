@@ -12758,7 +12758,6 @@
   "newMessageInPangeaChat": "🗨️ Bagong mensahe sa Pangea Chat",
   "shareCourse": "Ibahagi ang kurso",
   "addCourse": "Magdagdag ng kurso",
-  "joinCourseWithCode": "Sumali sa kurso gamit ang code",
   "joinPublicCourse": "Sumali sa pampublikong kurso",
   "vocabLevelsDesc": "Dito mapupunta ang mga salita sa bokabularyo kapag na-level up mo na sila!",
   "highlightVocabTooltip": "I-highlight ang mga target na salita sa bokabularyo sa ibaba sa pamamagitan ng pagpapadala ng mga ito o pagsasanay gamit ang mga ito sa chat",
@@ -12779,10 +12778,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

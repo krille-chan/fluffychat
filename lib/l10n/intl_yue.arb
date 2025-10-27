@@ -12873,7 +12873,6 @@
   "newMessageInPangeaChat": "📩 Pangea 聊天有新訊息",
   "shareCourse": "分享課程",
   "addCourse": "加入課程",
-  "joinCourseWithCode": "用代碼加入課程",
   "joinPublicCourse": "加入公開課程",
   "vocabLevelsDesc": "呢度會放你升級後嘅詞彙！",
   "highlightVocabTooltip": "通過發送或喺聊天中練習，突出顯示以下目標詞彙",
@@ -12894,10 +12893,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

@@ -11780,7 +11780,6 @@
   "newMessageInPangeaChat": "🔊 Teachtaireacht nua i gComhrá Pangea",
   "shareCourse": "Comhroinn cúrsa",
   "addCourse": "Cuir cúrsa leis",
-  "joinCourseWithCode": "Cláraigh i gcúrsa le cód",
   "joinPublicCourse": "Cláraigh i gcúrsa poiblí",
   "vocabLevelsDesc": "Seo áit a dtéann focail fhocail a bhfuil leibhéal acu nuair a dhéantar iad a leibhéalú!",
   "highlightVocabTooltip": "Bain úsáid as an téacs thíos chun focail fhocail spriocdhírithe a shoiléiriú trí iad a sheoladh nó trí chleachtadh leo sa chomhrá",
@@ -11801,10 +11800,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

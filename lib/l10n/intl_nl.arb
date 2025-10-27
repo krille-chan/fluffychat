@@ -11782,7 +11782,6 @@
   "newMessageInPangeaChat": "📩 Nieuw bericht in Pangea Chat",
   "shareCourse": "Deel cursus",
   "addCourse": "Voeg een cursus toe",
-  "joinCourseWithCode": "Deelname cursus met code",
   "joinPublicCourse": "Deelname openbare cursus",
   "vocabLevelsDesc": "Hier komen de vocabulaire woorden zodra je ze hebt opgewaardeerd!",
   "highlightVocabTooltip": "Markeer doelvocabulaire woorden hieronder door ze te sturen of ermee te oefenen in de chat",
@@ -11803,10 +11802,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

@@ -12860,7 +12860,6 @@
   "newMessageInPangeaChat": "🗨️ Novy message in Pangea Chat",
   "shareCourse": "Partagear curso",
   "addCourse": "Adder un curso",
-  "joinCourseWithCode": "Joiner curso con codice",
   "joinPublicCourse": "Joiner curso publice",
   "vocabLevelsDesc": "Isto es le loco ubi le vocabularies va in post una vice que tu ha levelate los!",
   "highlightVocabTooltip": "Highlight le vocabularies target ci sotto per los inviar o practicar con los in le chat",
@@ -12881,10 +12880,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

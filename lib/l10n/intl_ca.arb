@@ -11806,7 +11806,6 @@
   "newMessageInPangeaChat": "📝 Nou missatge a Pangea Chat",
   "shareCourse": "Comparteix el curs",
   "addCourse": "Afegeix un curs",
-  "joinCourseWithCode": "Uneix-te al curs amb un codi",
   "joinPublicCourse": "Uneix-te al curs públic",
   "vocabLevelsDesc": "Aquí és on aniran les paraules de vocabulari un cop les hagis pujat de nivell!",
   "highlightVocabTooltip": "Destaca les paraules de vocabulari objectiu a continuació enviant-les o practicant amb elles al xat",
@@ -11827,10 +11826,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

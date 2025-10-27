@@ -12049,7 +12049,6 @@
   "newMessageInPangeaChat": "🗨️ Uus sõnum Pangea vestluses",
   "shareCourse": "Jaga kursust",
   "addCourse": "Lisa kursus",
-  "joinCourseWithCode": "Liitu kursusega koodiga",
   "joinPublicCourse": "Liitu avaliku kursusega",
   "vocabLevelsDesc": "Siia lähevad sõnad, kui oled need tasemele tõstnud!",
   "highlightVocabTooltip": "Tõsta sihitud sõnad allpool esile, saates need või harjutades nendega vestluses",
@@ -12074,10 +12073,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

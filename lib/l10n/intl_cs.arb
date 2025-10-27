@@ -12389,7 +12389,6 @@
   "newMessageInPangeaChat": "📝 Nová zpráva v chatu Pangea",
   "shareCourse": "Sdílet kurz",
   "addCourse": "Přidat kurz",
-  "joinCourseWithCode": "Připojit se ke kurzu s kódem",
   "joinPublicCourse": "Připojit se k veřejnému kurzu",
   "vocabLevelsDesc": "Zde se objeví slovíčka, jakmile je vylepšíte na vyšší úroveň!",
   "highlightVocabTooltip": "Zvýrazněte cílová slovíčka níže jejich odesláním nebo procvičováním v chatu",
@@ -12410,10 +12409,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

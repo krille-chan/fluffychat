@@ -11783,7 +11783,6 @@
   "newMessageInPangeaChat": "💬 Új üzenet a Pangea Csevegésben",
   "shareCourse": "Kurzus megosztása",
   "addCourse": "Kurzus hozzáadása",
-  "joinCourseWithCode": "Csatlakozás kurzushoz kóddal",
   "joinPublicCourse": "Csatlakozás nyilvános kurzushoz",
   "vocabLevelsDesc": "Itt jelennek meg a szókincs szavai, amint szintet lépnek!",
   "highlightVocabTooltip": "Emelje ki a cél szókincs szavait az alábbiakban azzal, hogy elküldi vagy gyakorolja őket a csevegésben",
@@ -11804,10 +11803,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

@@ -12871,7 +12871,6 @@
   "newMessageInPangeaChat": "🗨️ Nova mesaĝo en Pangea Babilejo",
   "shareCourse": "Dividi kurson",
   "addCourse": "Aldoni kurson",
-  "joinCourseWithCode": "Aliĝi al kurso kun kodo",
   "joinPublicCourse": "Aliĝi al publika kurso",
   "vocabLevelsDesc": "Jen kie vortoj de vortprovizo iros post kiam vi ilin plibonigos!",
   "highlightVocabTooltip": "Emfazu la celvortojn sube per sendado aŭ praktiko kun ili en la babilejo",
@@ -12892,10 +12891,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

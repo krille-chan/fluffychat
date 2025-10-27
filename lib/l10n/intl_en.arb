@@ -5303,7 +5303,6 @@
     "placeholders": {}
   },
   "addCourse": "Add a course",
-  "joinCourseWithCode": "Join course with code",
   "joinPublicCourse": "Join public course",
   "vocabLevelsDesc": "This is where vocab words will go once you’ve leveled them up!",
   "highlightVocabTooltip": "Highlight target vocab words below by sending them or practicing with them in the chat",

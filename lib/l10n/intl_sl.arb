@@ -12863,7 +12863,6 @@
   "newMessageInPangeaChat": "🗨️ Nova sporočilo v klepetu Pangea",
   "shareCourse": "Deli tečaj",
   "addCourse": "Dodaj tečaj",
-  "joinCourseWithCode": "Pridruži se tečaju z geslom",
   "joinPublicCourse": "Pridruži se javnemu tečaju",
   "vocabLevelsDesc": "Tukaj bodo šle besede za besednjak, ko jih boste nadgradili!",
   "highlightVocabTooltip": "Označi ciljne besede v besednjaku spodaj tako, da jih pošlješ ali vadiš z njimi v klepetu",
@@ -12884,10 +12883,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

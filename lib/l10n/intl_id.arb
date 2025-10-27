@@ -11773,7 +11773,6 @@
   "newMessageInPangeaChat": "📝 Pesan baru di Pangea Chat",
   "shareCourse": "Bagikan kursus",
   "addCourse": "Tambahkan kursus",
-  "joinCourseWithCode": "Gabung kursus dengan kode",
   "joinPublicCourse": "Gabung kursus publik",
   "vocabLevelsDesc": "Di sinilah kata-kata kosakata akan ditempatkan setelah Anda meningkatkannya!",
   "highlightVocabTooltip": "Sorot kata kosakata target di bawah dengan mengirimkannya atau berlatih dengannya di obrolan",
@@ -11794,10 +11793,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

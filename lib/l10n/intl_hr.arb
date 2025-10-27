@@ -12154,7 +12154,6 @@
   "newMessageInPangeaChat": "💬 Nova poruka u Pangea chatu",
   "shareCourse": "Podijeli tečaj",
   "addCourse": "Dodaj tečaj",
-  "joinCourseWithCode": "Pridruži se tečaju s kodom",
   "joinPublicCourse": "Pridruži se javnom tečaju",
   "vocabLevelsDesc": "Ovdje će ići riječi vokabulara nakon što ih podignete na višu razinu!",
   "highlightVocabTooltip": "Istakni ciljne riječi vokabulara ispod tako što ćeš ih poslati ili vježbati s njima u chatu",
@@ -12175,10 +12174,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

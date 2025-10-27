@@ -5719,7 +5719,6 @@
   "newMessageInPangeaChat": "🔊 Tin nhắn mới trong Pangea Chat",
   "shareCourse": "Chia sẻ khóa học",
   "addCourse": "Thêm khóa học",
-  "joinCourseWithCode": "Tham gia khóa học bằng mã",
   "joinPublicCourse": "Tham gia khóa học công khai",
   "vocabLevelsDesc": "Đây là nơi các từ vựng sẽ xuất hiện sau khi bạn nâng cấp chúng!",
   "highlightVocabTooltip": "Nổi bật các từ vựng mục tiêu bên dưới bằng cách gửi chúng hoặc luyện tập với chúng trong trò chuyện",
@@ -5744,10 +5743,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

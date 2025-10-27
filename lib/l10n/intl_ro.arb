@@ -12517,7 +12517,6 @@
   "newMessageInPangeaChat": "📝 Mesaj nou în Pangea Chat",
   "shareCourse": "Partajează cursul",
   "addCourse": "Adaugă un curs",
-  "joinCourseWithCode": "Alătură-te cursului cu cod",
   "joinPublicCourse": "Alătură-te cursului public",
   "vocabLevelsDesc": "Aici vor fi plasate cuvintele de vocabular odată ce le-ai nivelat!",
   "highlightVocabTooltip": " Evidențiază cuvintele țintă de vocabular de mai jos trimițându-le sau exersându-le în chat",
@@ -12538,10 +12537,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

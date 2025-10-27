@@ -11782,7 +11782,6 @@
   "newMessageInPangeaChat": "💬 Pangea Txat-ean mezu berria",
   "shareCourse": "Partekatu ikastaroa",
   "addCourse": "Gehitu ikastaroa",
-  "joinCourseWithCode": "Hasi ikastaroa kodearekin",
   "joinPublicCourse": "Hasi ikastaro publikoa",
   "vocabLevelsDesc": "Hemen daude hitz-berriak mailakatzen dituzunean!",
   "highlightVocabTooltip": "Azpimarratu behean dauden target hitz-berriak mezuak bidaliz edo praktikatuz txatean",
@@ -11803,10 +11802,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

@@ -11768,7 +11768,6 @@
   "newMessageInPangeaChat": "💬 Jauna ziņa Pangea Čatā",
   "shareCourse": "Dalīties ar kursu",
   "addCourse": "Pievienot kursu",
-  "joinCourseWithCode": "Pievienoties kursam ar kodu",
   "joinPublicCourse": "Pievienoties publiskajam kursam",
   "vocabLevelsDesc": "Šeit ietilps vārdu krājuma vārdi, kad jūs tos uzlabosiet līmenī!",
   "highlightVocabTooltip": "Izcel mērķa vārdu zemāk, nosūtot tos vai praktizējoties ar tiem čatā",
@@ -11789,10 +11788,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

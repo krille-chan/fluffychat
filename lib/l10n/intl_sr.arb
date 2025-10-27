@@ -12884,7 +12884,6 @@
   "newMessageInPangeaChat": "🗨️ Novi poruka u Pangea Četu",
   "shareCourse": "Podeli kurs",
   "addCourse": "Dodaj kurs",
-  "joinCourseWithCode": "Pridruži se kursu sa kodom",
   "joinPublicCourse": "Pridruži se javnom kursu",
   "vocabLevelsDesc": "Ovde će ići reči vokabulara nakon što ih podignete na viši nivo!",
   "highlightVocabTooltip": "Istakni ciljne reči vokabulara ispod tako što ćeš ih poslati ili vežbati sa njima u chatu",
@@ -12905,10 +12904,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

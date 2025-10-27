@@ -3,10 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:async/async.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -19,7 +17,6 @@ import 'package:fluffychat/pangea/course_plans/courses/course_plan_model.dart';
 import 'package:fluffychat/pangea/course_plans/courses/course_plans_repo.dart';
 import 'package:fluffychat/pangea/course_plans/courses/get_localized_courses_response.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
-import 'package:fluffychat/pangea/login/pages/add_course_page.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -183,25 +180,10 @@ class NewCoursePageState extends State<NewCoursePage> {
     final spaceId = widget.spaceId;
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          spacing: 10.0,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            SvgPicture.network(
-              "${AppConfig.assetsBaseURL}/${AddCoursePage.mapStartFileName}",
-              width: 24.0,
-              height: 24.0,
-              colorFilter: ColorFilter.mode(
-                theme.colorScheme.onSurface,
-                BlendMode.srcIn,
-              ),
-            ),
-            Text(
-              spaceId != null
-                  ? L10n.of(context).addCoursePlan
-                  : L10n.of(context).startOwn,
-            ),
-          ],
+        title: Text(
+          spaceId != null
+              ? L10n.of(context).addCoursePlan
+              : L10n.of(context).startOwn,
         ),
       ),
       body: SafeArea(

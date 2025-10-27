@@ -12260,7 +12260,6 @@
   "newMessageInPangeaChat": "📩 Nytt meddelande i Pangea Chat",
   "shareCourse": "Dela kurs",
   "addCourse": "Lägg till en kurs",
-  "joinCourseWithCode": "Gå med i kurs med kod",
   "joinPublicCourse": "Gå med i offentlig kurs",
   "vocabLevelsDesc": "Det här är platsen där vokabulärord kommer att hamna när du har nivåer upp dem!",
   "highlightVocabTooltip": "Markera målord i vokabulär nedan genom att skicka dem eller öva med dem i chatten",
@@ -12281,10 +12280,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

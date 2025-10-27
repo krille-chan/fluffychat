@@ -12831,7 +12831,6 @@
   "newMessageInPangeaChat": "📩 הודעה חדשה בצ'אט פאנגיאה",
   "shareCourse": "שתף קורס",
   "addCourse": "הוסף קורס",
-  "joinCourseWithCode": "הצטרף לקורס עם קוד",
   "joinPublicCourse": "הצטרף לקורס ציבורי",
   "vocabLevelsDesc": "זה המקום שבו מילות אוצר המילים יופיעו לאחר שהעלית את רמתן!",
   "highlightVocabTooltip": "הדגש את מילות אוצר המילים היעדיות למטה על ידי שליחתן או תרגול איתן בצ'אט",
@@ -12852,10 +12851,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

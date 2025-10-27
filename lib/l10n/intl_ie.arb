@@ -12756,7 +12756,6 @@
   "newMessageInPangeaChat": "📝 Nov messadi in Pangea Chat",
   "shareCourse": "Partagiar corsa",
   "addCourse": "Zontar un corsa",
-  "joinCourseWithCode": "Kumencar corsa cun còde",
   "joinPublicCourse": "Kumencar corsa publice",
   "vocabLevelsDesc": "Chest è il loc dove i parôls di vocabulari a saran miss in plance une volte che tu o i às nivellâts!",
   "highlightVocabTooltip": "Meti in evidenze i parôls di vocabulari cible sot a mandâli o praticâl in te chat",
@@ -12777,10 +12776,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

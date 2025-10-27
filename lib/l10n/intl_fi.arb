@@ -12427,7 +12427,6 @@
   "newMessageInPangeaChat": "💬 Uusi viesti Pangea-chatissa",
   "shareCourse": "Jaa kurssi",
   "addCourse": "Lisää kurssi",
-  "joinCourseWithCode": "Liity kurssille koodilla",
   "joinPublicCourse": "Liity julkiseen kurssiin",
   "vocabLevelsDesc": "Tässä kohtaa sanat menevät, kun olet nostanut niiden tasoa!",
   "highlightVocabTooltip": "Korosta alla olevat kohdesanat lähettämällä ne tai harjoittelemalla niiden kanssa chatissa",
@@ -12448,10 +12447,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

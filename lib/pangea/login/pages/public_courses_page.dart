@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -150,15 +149,8 @@ class PublicCoursesPageState extends State<PublicCoursesPage> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          spacing: 10.0,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Icon(
-              Symbols.map_search,
-            ),
-            Text(L10n.of(context).joinPublicCourse),
-          ],
+        title: Text(
+          L10n.of(context).joinPublicCourse,
         ),
       ),
       body: SafeArea(

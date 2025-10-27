@@ -12840,7 +12840,6 @@
   "newMessageInPangeaChat": "🔊 Νέο μήνυμα στο Pangea Chat",
   "shareCourse": "Μοιράσου το μάθημα",
   "addCourse": "Πρόσθεσε ένα μάθημα",
-  "joinCourseWithCode": "Συνδεθείτε με κωδικό μαθήματος",
   "joinPublicCourse": "Συνδεθείτε σε δημόσιο μάθημα",
   "vocabLevelsDesc": "Εδώ θα προστεθούν οι λέξεις λεξιλογίου μόλις τις αναβαθμίσετε!",
   "highlightVocabTooltip": "Επισημάνετε τις στόχους λέξεις λεξιλογίου παρακάτω στέλνοντάς τες ή εξασκώντας με αυτές στη συνομιλία",
@@ -12861,10 +12860,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

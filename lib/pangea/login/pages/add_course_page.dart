@@ -74,7 +74,7 @@ class AddCoursePage extends StatelessWidget {
                           ),
                           Flexible(
                             child: Text(
-                              L10n.of(context).joinCourseWithCode,
+                              L10n.of(context).joinWithCode,
                               textAlign: TextAlign.center,
                             ),
                           ),

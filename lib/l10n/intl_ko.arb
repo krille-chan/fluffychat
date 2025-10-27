@@ -11890,7 +11890,6 @@
   "newMessageInPangeaChat": "💬 Pangea 채팅에 새 메시지",
   "shareCourse": "강좌 공유",
   "addCourse": "강좌 추가",
-  "joinCourseWithCode": "코드로 강좌 참여",
   "joinPublicCourse": "공개 강좌 참여",
   "vocabLevelsDesc": "단어를 레벨업하면 여기에 단어가 표시됩니다!",
   "highlightVocabTooltip": "아래 대상 어휘를 채팅에서 보내거나 연습하여 강조 표시하세요",
@@ -11911,10 +11910,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },

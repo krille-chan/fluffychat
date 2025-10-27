@@ -12587,7 +12587,6 @@
   "newMessageInPangeaChat": "📩 Naujiena žinutė Pangea pokalbyje",
   "shareCourse": "Pasidalinti kursu",
   "addCourse": "Pridėti kursą",
-  "joinCourseWithCode": "Prisijungti prie kurso su kodu",
   "joinPublicCourse": "Prisijungti prie viešo kurso",
   "vocabLevelsDesc": "Čia pateks žodžiai, kai juos pakelsite į aukštesnį lygį!",
   "highlightVocabTooltip": "Pažymėkite žemiau esančius tikslinius žodžius siųsdami juos arba praktikuodamiesi su jais pokalbyje",
@@ -12608,10 +12607,6 @@
     "placeholders": {}
   },
   "@addCourse": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@joinCourseWithCode": {
     "type": "String",
     "placeholders": {}
   },
