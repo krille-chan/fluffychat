@@ -69,7 +69,9 @@ class RecordingViewModelState extends State<RecordingViewModel> {
           // which does not play on iOS right now. So we use wav for now:
           ? AudioEncoder.wav
           // Everywhere else we use opus if supported by the platform:
-          : await audioRecorder.isEncoderSupported(AudioEncoder.opus)
+          : !PlatformInfos
+                      .isIOS && // Blocked by https://github.com/llfbandit/record/issues/560
+                  await audioRecorder.isEncoderSupported(AudioEncoder.opus)
               ? AudioEncoder.opus
               : AudioEncoder.aacLc;
       fileName =
