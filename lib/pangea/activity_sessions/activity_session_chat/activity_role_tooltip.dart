@@ -46,23 +46,17 @@ class ActivityRoleTooltipState extends State<ActivityRoleTooltip> {
       return const SizedBox();
     }
 
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          top: BorderSide(
-            color: Theme.of(context).colorScheme.outline,
-            width: 0.1,
-          ),
-        ),
-      ),
-      child: InlineTooltip(
-        message: room.ownRole!.goal!,
-        isClosed: room.hasDismissedGoalTooltip,
-        onClose: () async {
-          await room.dismissGoalTooltip();
-          if (mounted) setState(() {});
-        },
-        padding: const EdgeInsets.all(16.0),
+    return InlineTooltip(
+      message: room.ownRole!.goal!,
+      isClosed: room.hasDismissedGoalTooltip,
+      onClose: () async {
+        await room.dismissGoalTooltip();
+        if (mounted) setState(() {});
+      },
+      padding: const EdgeInsets.only(
+        left: 16.0,
+        top: 16.0,
+        right: 16.0,
       ),
     );
   }

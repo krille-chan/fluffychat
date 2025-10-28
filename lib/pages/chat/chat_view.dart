@@ -461,8 +461,7 @@ class ChatView extends StatelessWidget {
                               AnimatedSize(
                                 duration: const Duration(milliseconds: 200),
                                 child: SizedBox(
-                                  height: controller.inputBarHeight +
-                                      bottomSheetPadding,
+                                  height: controller.inputBarHeight,
                                 ),
                               ),
                             if (controller.room.isActivityFinished)
@@ -487,18 +486,29 @@ class ChatView extends StatelessWidget {
                           Positioned(
                             left: 0,
                             right: 0,
-                            bottom: 16,
+                            bottom: 0,
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 ChatInputBarHeader(
                                   controller: controller,
                                   padding: bottomSheetPadding,
                                 ),
-                                ChatInputBar(
-                                  controller: controller,
-                                  padding: bottomSheetPadding,
+                                if (controller.showScrollDownButton)
+                                  Divider(
+                                    height: 1,
+                                    color: Theme.of(context).dividerColor,
+                                  ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        Theme.of(context).colorScheme.surface,
+                                  ),
+                                  child: ChatInputBar(
+                                    controller: controller,
+                                    padding: bottomSheetPadding,
+                                  ),
                                 ),
                               ],
                             ),

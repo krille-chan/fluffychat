@@ -66,10 +66,8 @@ class ChatInputBarState extends State<ChatInputBar> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(
-                bottom: widget.padding,
-                left: widget.padding,
-                right: widget.padding,
+              padding: EdgeInsets.all(
+                widget.padding,
               ),
               constraints: const BoxConstraints(
                 maxWidth: FluffyThemes.maxTimelineWidth,
