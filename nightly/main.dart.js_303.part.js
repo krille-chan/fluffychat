@@ -633,7 +633,7 @@ gph(){return"More events"},
 glP(){return"Avsl\xe5 invitasjon"},
 gps(){return"Ingen meldinger enda"},
 gpi(){return"New sub space"},
-gpr(){return"Move to different space"},
+gpr(){return"Flytt til et annet omr\xe5de"},
 gpv(){return"Chatten blir fjernet fra omr\xe5det, men vises fortsatt i chatlisten din."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FM,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FM":{"aF":[]}}'))};
-(a=>{a["GXNUlGTYzlWxl3ytBAQPdDkobuM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["pWNPiu9YYy80SO/3o1sOugEK+o4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map
