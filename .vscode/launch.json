@@ -7,65 +7,7 @@
         {
             "name": "pangea-chat",
             "request": "launch",
-            "type": "dart",
-            // "args": [
-            //     "-d",
-            //     "chrome",
-            //     "--web-port",
-            //     "49632"
-            // ],
-        },
-        {
-            "name": "pangea-chat (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "pangea-chat (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "pangea_choreographer",
-            "cwd": "pangea_packages\\pangea_choreographer",
-            "request": "launch",
             "type": "dart"
-        },
-        {
-            "name": "pangea_choreographer (profile mode)",
-            "cwd": "pangea_packages\\pangea_choreographer",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "pangea_choreographer (release mode)",
-            "cwd": "pangea_packages\\pangea_choreographer",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        },
-        {
-            "name": "pangea_language",
-            "cwd": "pangea_packages\\pangea_language",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "pangea_language (profile mode)",
-            "cwd": "pangea_packages\\pangea_language",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "pangea_language (release mode)",
-            "cwd": "pangea_packages\\pangea_language",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
         }
     ]
 }

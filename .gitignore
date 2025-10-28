@@ -48,6 +48,9 @@ venv/
 /builds/
 .fvm/
 .fvmrc
+
+# copilot-instructions.md
+.github/copilot-instructions.md
 # Web related
 docs/tailwind.css
 
