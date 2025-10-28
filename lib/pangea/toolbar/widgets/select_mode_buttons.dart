@@ -535,14 +535,12 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
             ? Icons.pause_outlined
             : Icons.volume_up,
         size: 20,
-        color: mode == _selectedMode ? Colors.white : null,
       );
     }
 
     return Icon(
       mode.icon,
       size: 20,
-      color: mode == _selectedMode ? Colors.white : null,
     );
   }
 

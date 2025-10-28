@@ -49,7 +49,6 @@ class ToolbarButton extends StatelessWidget {
           child: Icon(
             mode.icon,
             size: 20,
-            color: mode == overlayController.toolbarMode ? Colors.white : null,
           ),
         ),
       ),
