@@ -42,7 +42,11 @@ void main() async {
   /// Then where ever you need language functions simply call PangeaLanguage pangeaLanguage = PangeaLanguage()
   /// pangeaLanguage.getList or whatever function you need
   ///
-  await GetStorage.init();
+  final List<Future> initFutures = [
+    GetStorage.init(),
+    GetStorage.init("subscription_storage"),
+  ];
+  await Future.wait(initFutures);
   // Pangea#
 
   // Our background push shared isolate accesses flutter-internal things very early in the startup proccess

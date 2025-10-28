@@ -50,15 +50,8 @@ class PangeaTextController extends TextEditingController {
             SubscriptionStatus.shouldShowPaywall &&
         !choreographer.isFetching &&
         text.isNotEmpty) {
-      OverlayUtil.showPositionedCard(
-        context: context,
-        cardToShow: PaywallCard(
-          chatController: choreographer.chatController,
-        ),
-        maxHeight: 325,
-        maxWidth: 325,
-        transformTargetId: choreographer.inputTransformTargetKey,
-      );
+      PaywallCard.show(context, choreographer.chatController);
+      return;
     }
 
     // if there is no igc text data, then don't do anything

@@ -7,7 +7,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/choreographer/enums/assistance_state_enum.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/paywall_card.dart';
-import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import '../../../pages/chat/chat.dart';
 
@@ -81,16 +80,7 @@ class StartIGCButtonState extends State<StartIGCButton>
   Future<void> _onTap() async {
     switch (assistanceState) {
       case AssistanceState.noSub:
-        OverlayUtil.showPositionedCard(
-          context: context,
-          cardToShow: PaywallCard(
-            chatController: widget.controller,
-          ),
-          maxHeight: 325,
-          maxWidth: 325,
-          transformTargetId:
-              widget.controller.choreographer.inputTransformTargetKey,
-        );
+        await PaywallCard.show(context, widget.controller);
         return;
       case AssistanceState.noMessage:
         showDialog(

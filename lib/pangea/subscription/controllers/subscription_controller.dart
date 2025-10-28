@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -13,7 +12,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
-import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/network/requests.dart';
@@ -23,6 +21,7 @@ import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/subscription/models/base_subscription_info.dart';
 import 'package:fluffychat/pangea/subscription/models/mobile_subscriptions.dart';
 import 'package:fluffychat/pangea/subscription/models/web_subscriptions.dart';
+import 'package:fluffychat/pangea/subscription/repo/subscription_management_repo.dart';
 import 'package:fluffychat/pangea/subscription/repo/subscription_repo.dart';
 import 'package:fluffychat/pangea/subscription/utils/subscription_app_id.dart';
 import 'package:fluffychat/pangea/subscription/widgets/subscription_paywall.dart';
@@ -37,7 +36,6 @@ enum SubscriptionStatus {
 }
 
 class SubscriptionController extends BaseController {
-  static final GetStorage subscriptionBox = GetStorage("subscription_storage");
   late PangeaController _pangeaController;
 
   CurrentSubscriptionInfo? currentSubscriptionInfo;
@@ -129,12 +127,8 @@ class SubscriptionController extends BaseController {
           },
         );
       } else {
-        final bool? beganWebPayment =
-            subscriptionBox.read(PLocalKey.beganWebPayment);
-        if (beganWebPayment ?? false) {
-          await subscriptionBox.remove(
-            PLocalKey.beganWebPayment,
-          );
+        if (SubscriptionManagementRepo.getBeganWebPayment()) {
+          await SubscriptionManagementRepo.removeBeganWebPayment();
           if (isSubscribed != null && isSubscribed!) {
             subscriptionStream.add(true);
           }
@@ -202,10 +196,7 @@ class SubscriptionController extends BaseController {
           selectedSubscription.duration!,
           isPromo: isPromo,
         );
-        await subscriptionBox.write(
-          PLocalKey.beganWebPayment,
-          true,
-        );
+        await SubscriptionManagementRepo.setBeganWebPayment();
         setState(null);
         launchUrlString(
           paymentLink,
@@ -255,54 +246,16 @@ class SubscriptionController extends BaseController {
 
     return isSubscribed!
         ? SubscriptionStatus.subscribed
-        : _shouldShowPaywall
+        : shouldShowPaywall
             ? SubscriptionStatus.shouldShowPaywall
             : SubscriptionStatus.dimissedPaywall;
   }
 
-  DateTime? get _lastDismissedPaywall {
-    final lastDismissed = subscriptionBox.read(
-      PLocalKey.dismissedPaywall,
-    );
-    if (lastDismissed == null) return null;
-    return DateTime.tryParse(lastDismissed);
-  }
-
-  int? get _paywallBackoff {
-    final backoff = subscriptionBox.read(
-      PLocalKey.paywallBackoff,
-    );
-    if (backoff == null) return null;
-    return backoff;
-  }
-
   /// whether or not the paywall should be shown
-  bool get _shouldShowPaywall {
+  bool get shouldShowPaywall {
     return initCompleter.isCompleted &&
-        isSubscribed != null &&
-        !isSubscribed! &&
-        (_lastDismissedPaywall == null ||
-            DateTime.now().difference(_lastDismissedPaywall!).inHours >
-                (1 * (_paywallBackoff ?? 1)));
-  }
-
-  void dismissPaywall() async {
-    await subscriptionBox.write(
-      PLocalKey.dismissedPaywall,
-      DateTime.now().toString(),
-    );
-
-    if (_paywallBackoff == null) {
-      await subscriptionBox.write(
-        PLocalKey.paywallBackoff,
-        1,
-      );
-    } else {
-      await subscriptionBox.write(
-        PLocalKey.paywallBackoff,
-        _paywallBackoff! + 1,
-      );
-    }
+        isSubscribed == false &&
+        !SubscriptionManagementRepo.getDismissedPaywall();
   }
 
   Future<void> showPaywall(BuildContext context) async {
@@ -330,7 +283,7 @@ class SubscriptionController extends BaseController {
           );
         },
       );
-      dismissPaywall();
+      await SubscriptionManagementRepo.setDismissedPaywall();
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,
@@ -369,37 +322,6 @@ class SubscriptionController extends BaseController {
   String? get defaultManagementURL =>
       currentSubscriptionInfo?.currentSubscription
           ?.defaultManagementURL(availableSubscriptionInfo?.appIds);
-
-  Future<void> setCachedSubscriptionInfo(
-    AvailableSubscriptionsInfo info,
-  ) =>
-      subscriptionBox.write(
-        PLocalKey.availableSubscriptionInfo,
-        info.toJson(),
-      );
-
-  Future<AvailableSubscriptionsInfo?> getCachedSubscriptionInfo() async {
-    final entry = subscriptionBox.read(
-      PLocalKey.availableSubscriptionInfo,
-    );
-    if (entry is! Map<String, dynamic>) {
-      return null;
-    }
-
-    try {
-      final resp = AvailableSubscriptionsInfo.fromJson(entry);
-      return resp.lastUpdated == null ? null : resp;
-    } catch (e, s) {
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          "entry": entry,
-        },
-      );
-      return null;
-    }
-  }
 }
 
 enum SubscriptionDuration {

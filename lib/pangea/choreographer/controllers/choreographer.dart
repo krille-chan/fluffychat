@@ -19,7 +19,6 @@ import 'package:fluffychat/pangea/choreographer/widgets/igc/paywall_card.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/events/repo/token_api_models.dart';
@@ -107,15 +106,7 @@ class Choreographer {
       // show the paywall if applicable or just send the message
       final status = pangeaController.subscriptionController.subscriptionStatus;
       status == SubscriptionStatus.shouldShowPaywall
-          ? OverlayUtil.showPositionedCard(
-              context: context,
-              cardToShow: PaywallCard(
-                chatController: chatController,
-              ),
-              maxHeight: 325,
-              maxWidth: 325,
-              transformTargetId: inputTransformTargetKey,
-            )
+          ? PaywallCard.show(context, chatController)
           : chatController.send(
               message: chatController.sendController.text,
             );
