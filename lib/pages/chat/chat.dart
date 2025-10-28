@@ -1162,6 +1162,10 @@ class ChatController extends State<ChatPageWithRoom>
               'duration': result.duration,
               'waveform': result.waveform,
             },
+            // #Pangea
+            'speaker_l1': pangeaController.languageController.activeL1Code(),
+            'speaker_l2': pangeaController.languageController.activeL2Code(),
+            // Pangea#
           },
           // #Pangea
         )
