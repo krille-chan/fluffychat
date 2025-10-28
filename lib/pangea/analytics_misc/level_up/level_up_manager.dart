@@ -75,8 +75,8 @@ class LevelUpManager {
         prevVocab = lastSummary.levelVocabConstructs!;
         prevGrammar = lastSummary.levelGrammarConstructs!;
       } else {
-        prevGrammar = (nextGrammar / prevLevel).round();
-        prevVocab = (nextVocab / prevLevel).round();
+        prevGrammar = nextGrammar - (nextGrammar / prevLevel).round();
+        prevVocab = nextVocab - (nextVocab / prevLevel).round();
       }
     }
   }
