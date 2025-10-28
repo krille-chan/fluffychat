@@ -53,14 +53,18 @@ extension LocalNotificationsExtension on MatrixState {
         const size = 128;
         const thumbnailMethod = ThumbnailMethod.crop;
         // Pre-cache so that we can later just set the thumbnail uri as icon:
-        await client.downloadMxcCached(
-          avatarUrl,
-          width: size,
-          height: size,
-          thumbnailMethod: thumbnailMethod,
-          isThumbnail: true,
-          rounded: true,
-        );
+        try {
+          await client.downloadMxcCached(
+            avatarUrl,
+            width: size,
+            height: size,
+            thumbnailMethod: thumbnailMethod,
+            isThumbnail: true,
+            rounded: true,
+          );
+        } catch (e, s) {
+          Logs().d('Unable to pre-download avatar for web notification', e, s);
+        }
 
         thumbnailUri =
             await event.senderFromMemoryOrFallback.avatarUrl?.getThumbnailUri(
