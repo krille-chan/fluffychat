@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/semantics.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -74,6 +75,9 @@ Future<void> startGui(List<Client> clients, SharedPreferences store) async {
   await firstClient?.accountDataLoading;
 
   runApp(FluffyChatApp(clients: clients, pincode: pin, store: store));
+  if (const String.fromEnvironment('WITH_SEMANTICS') == 'true') {
+    SemanticsBinding.instance.ensureSemantics();
+  }
 }
 
 /// Watches the lifecycle changes to start the application when it
