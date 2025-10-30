@@ -64,7 +64,7 @@ class ActivityParticipantIndicator extends StatelessWidget {
                     borderRadius: borderRadius ?? BorderRadius.circular(8.0),
                     color: (hovered || selected) && selectable
                         ? theme.colorScheme.surfaceContainerHighest
-                        : Colors.transparent,
+                        : theme.colorScheme.surface.withAlpha(130),
                   ),
                   constraints: const BoxConstraints(maxWidth: 200.0),
                   child: Column(
