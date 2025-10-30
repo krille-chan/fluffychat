@@ -192,7 +192,7 @@ Same as `s.appendRight(...)`, except that the inserted content will go _before_ 
 
 ### s.replace( regexpOrString, substitution )
 
-String replacement with RegExp or string. When using a RegExp, replacer function is also supported. Returns `this`.
+String replacement with RegExp or string. The `substitution` parameter supports strings and functions. Returns `this`.
 
 ```ts
 import MagicString from 'magic-string';
@@ -200,6 +200,7 @@ import MagicString from 'magic-string';
 const s = new MagicString(source);
 
 s.replace('foo', 'bar');
+s.replace('foo', (str, index, s) => str + '-' + index);
 s.replace(/foo/g, 'bar');
 s.replace(/(\w)(\d+)/g, (_, $1, $2) => $1.toUpperCase() + $2);
 ```

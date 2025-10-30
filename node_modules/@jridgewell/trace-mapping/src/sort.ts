@@ -1,6 +1,6 @@
 import { COLUMN } from './sourcemap-segment';
 
-import type { SourceMapSegment } from './sourcemap-segment';
+import type { ReverseSegment, SourceMapSegment } from './sourcemap-segment';
 
 export default function maybeSort(
   mappings: SourceMapSegment[][],
@@ -40,6 +40,6 @@ function sortSegments(line: SourceMapSegment[], owned: boolean): SourceMapSegmen
   return line.sort(sortComparator);
 }
 
-function sortComparator(a: SourceMapSegment, b: SourceMapSegment): number {
+export function sortComparator<T extends SourceMapSegment | ReverseSegment>(a: T, b: T): number {
   return a[COLUMN] - b[COLUMN];
 }

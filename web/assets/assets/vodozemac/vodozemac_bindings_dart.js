@@ -27,7 +27,7 @@ let wasm_bindgen;
     let cachedUint8ArrayMemory0 = null;
 
     function getUint8ArrayMemory0() {
-        if (cachedUint8ArrayMemory0 === null || cachedUint8ArrayMemory0.buffer !== wasm.memory.buffer) {
+        if (cachedUint8ArrayMemory0 === null || cachedUint8ArrayMemory0.byteLength === 0) {
             cachedUint8ArrayMemory0 = new Uint8Array(wasm.memory.buffer);
         }
         return cachedUint8ArrayMemory0;
@@ -35,14 +35,18 @@ let wasm_bindgen;
 
     const cachedTextEncoder = (typeof TextEncoder !== 'undefined' ? new TextEncoder('utf-8') : { encode: () => { throw Error('TextEncoder not available') } } );
 
-    const encodeString = function (arg, view) {
+    const encodeString = (typeof cachedTextEncoder.encodeInto === 'function'
+        ? function (arg, view) {
+        return cachedTextEncoder.encodeInto(arg, view);
+    }
+        : function (arg, view) {
         const buf = cachedTextEncoder.encode(arg);
         view.set(buf);
         return {
             read: arg.length,
             written: buf.length
         };
-    };
+    });
 
     function passStringToWasm0(arg, malloc, realloc) {
 
@@ -86,7 +90,7 @@ let wasm_bindgen;
     let cachedDataViewMemory0 = null;
 
     function getDataViewMemory0() {
-        if (cachedDataViewMemory0 === null || cachedDataViewMemory0.buffer !== wasm.memory.buffer) {
+        if (cachedDataViewMemory0 === null || cachedDataViewMemory0.buffer.detached === true || (cachedDataViewMemory0.buffer.detached === undefined && cachedDataViewMemory0.buffer !== wasm.memory.buffer)) {
             cachedDataViewMemory0 = new DataView(wasm.memory.buffer);
         }
         return cachedDataViewMemory0;
@@ -98,7 +102,7 @@ let wasm_bindgen;
 
     function getStringFromWasm0(ptr, len) {
         ptr = ptr >>> 0;
-        return cachedTextDecoder.decode(getUint8ArrayMemory0().slice(ptr, ptr + len));
+        return cachedTextDecoder.decode(getUint8ArrayMemory0().subarray(ptr, ptr + len));
     }
 
     function isLikeNone(x) {
@@ -108,7 +112,7 @@ let wasm_bindgen;
     const CLOSURE_DTORS = (typeof FinalizationRegistry === 'undefined')
         ? { register: () => {}, unregister: () => {} }
         : new FinalizationRegistry(state => {
-        wasm.__wbindgen_export_7.get(state.dtor)(state.a, state.b)
+        wasm.__wbindgen_export_6.get(state.dtor)(state.a, state.b)
     });
 
     function makeMutClosure(arg0, arg1, dtor, f) {
@@ -124,7 +128,7 @@ let wasm_bindgen;
                 return f(a, state.b, ...args);
             } finally {
                 if (--state.cnt === 0) {
-                    wasm.__wbindgen_export_7.get(state.dtor)(a, state.b);
+                    wasm.__wbindgen_export_6.get(state.dtor)(a, state.b);
                     CLOSURE_DTORS.unregister(state);
                 } else {
                     state.a = a;
@@ -208,16 +212,13 @@ let wasm_bindgen;
         return ptr;
     }
     /**
-     * @param {string} pickle
-     * @param {Uint8Array} pickle_key
+     * @param {Uint8Array} input
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_session_from_pickle_encrypted = function(pickle, pickle_key) {
-        const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    __exports.wire__crate__bindings__sha256 = function(input) {
+        const ptr0 = passArray8ToWasm0(input, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
-        const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
-        const len1 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_session_from_pickle_encrypted(ptr0, len0, ptr1, len1);
+        const ret = wasm.wire__crate__bindings__sha256(ptr0, len0);
         return ret;
     };
 
@@ -225,53 +226,26 @@ let wasm_bindgen;
      * @param {any} that
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_account_max_number_of_one_time_keys = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_account_max_number_of_one_time_keys(that);
+    __exports.wire__crate__bindings__VodozemacSas_public_key = function(that) {
+        const ret = wasm.wire__crate__bindings__VodozemacSas_public_key(that);
         return ret;
     };
 
     /**
-     * @param {any} that
+     * @param {Uint8Array} bytes
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_ed_25519_public_key_as_bytes = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_public_key_as_bytes(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_group_session_message_index = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_group_session_message_index(that);
+    __exports.wire__crate__bindings__vodozemac_curve_25519_public_key_from_slice = function(bytes) {
+        const ptr0 = passArray8ToWasm0(bytes, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_curve_25519_public_key_from_slice(ptr0, len0);
         return ret;
     };
 
     /**
      * @param {number} ptr
      */
-    __exports.rust_arc_increment_strong_count_RustOpaque_Ed25519Signature = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @param {string} message
-     * @param {any} signature
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_ed_25519_public_key_verify = function(that, message, signature) {
-        const ptr0 = passStringToWasm0(message, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_public_key_verify(that, ptr0, len0, signature);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_PkDecryption = function(ptr) {
+    __exports.rust_arc_increment_strong_count_RustOpaque_OlmSessionConfig = function(ptr) {
         wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
     };
 
@@ -287,6 +261,446 @@ let wasm_bindgen;
     };
 
     /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_decrement_strong_count_RustOpaque_stdsyncRwLockAccount = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_stdsyncRwLockAccount(ptr);
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_megolm_session_config_version = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_megolm_session_config_version(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {any} count
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_generate_one_time_keys = function(that, count) {
+        const ret = wasm.wire__crate__bindings__vodozemac_account_generate_one_time_keys(that, count);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {Uint8Array} pickle_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_pk_decryption_to_libolm_pickle = function(that, pickle_key) {
+        const ptr0 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_to_libolm_pickle(that, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {string} base64_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_ed_25519_public_key_from_base64 = function(base64_key) {
+        const ptr0 = passStringToWasm0(base64_key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_public_key_from_base64(ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {string} public_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_remove_one_time_key = function(that, public_key) {
+        const ptr0 = passStringToWasm0(public_key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_account_remove_one_time_key(that, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_decrement_strong_count_RustOpaque_Curve25519PublicKey = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_increment_strong_count_RustOpaque_RwLockSession = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {string} pickle
+     * @param {Uint8Array} pickle_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_from_olm_pickle_encrypted = function(pickle, pickle_key) {
+        const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_account_from_olm_pickle_encrypted(ptr0, len0, ptr1, len1);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_pk_decryption_public_key = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_public_key(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {Uint8Array} pickle_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_pickle_encrypted = function(that, pickle_key) {
+        const ptr0 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_account_pickle_encrypted(that, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_increment_strong_count_RustOpaque_PkDecryption = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_megolm_session_config_version_2 = function() {
+        const ret = wasm.wire__crate__bindings__vodozemac_megolm_session_config_version_2();
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_decrement_strong_count_RustOpaque_PkEncryption = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_PkEncryption(ptr);
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_decrement_strong_count_RustOpaque_OlmSessionConfig = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_OlmSessionConfig(ptr);
+    };
+
+    /**
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_olm_session_config_version_1 = function() {
+        const ret = wasm.wire__crate__bindings__vodozemac_olm_session_config_version_1();
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_ed25519_key = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_account_ed25519_key(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_ed_25519_public_key_as_bytes = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_public_key_as_bytes(that);
+        return ret;
+    };
+
+    /**
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_new = function() {
+        const ret = wasm.wire__crate__bindings__vodozemac_account_new();
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_decrement_strong_count_RustOpaque_PkDecryption = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_PkDecryption(ptr);
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_session_session_id = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_session_session_id(that);
+        return ret;
+    };
+
+    /**
+     * @param {Uint8Array} passphrase
+     * @param {Uint8Array} salt
+     * @param {number} iterations
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__pbkdf2 = function(passphrase, salt, iterations) {
+        const ptr0 = passArray8ToWasm0(passphrase, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passArray8ToWasm0(salt, wasm.__wbindgen_malloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__pbkdf2(ptr0, len0, ptr1, len1, iterations);
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_increment_strong_count_RustOpaque_EstablishedSas = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {number} call_id
+     * @param {any} ptr_
+     * @param {number} rust_vec_len_
+     * @param {number} data_len_
+     */
+    __exports.frb_dart_fn_deliver_output = function(call_id, ptr_, rust_vec_len_, data_len_) {
+        wasm.frb_dart_fn_deliver_output(call_id, ptr_, rust_vec_len_, data_len_);
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_increment_strong_count_RustOpaque_RwLockInboundGroupSession = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {string} pickle
+     * @param {Uint8Array} pickle_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_group_session_from_olm_pickle_encrypted = function(pickle, pickle_key) {
+        const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_group_session_from_olm_pickle_encrypted(ptr0, len0, ptr1, len1);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {string} encrypted
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_inbound_group_session_decrypt = function(that, encrypted) {
+        const ptr0 = passStringToWasm0(encrypted, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_decrypt(that, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPkSigning = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPkSigning(ptr);
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_group_session_message_index = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_group_session_message_index(that);
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_increment_strong_count_RustOpaque_OlmMessage = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {string} session_key
+     * @param {any} config
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_inbound_group_session_new = function(session_key, config) {
+        const ptr0 = passStringToWasm0(session_key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_new(ptr0, len0, config);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {string} plaintext
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_group_session_encrypt = function(that, plaintext) {
+        const ptr0 = passStringToWasm0(plaintext, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_group_session_encrypt(that, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {string} key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__PkSigning_from_secret_key = function(key) {
+        const ptr0 = passStringToWasm0(key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__PkSigning_from_secret_key(ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {string} pickle
+     * @param {Uint8Array} pickle_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_inbound_group_session_from_olm_pickle_encrypted = function(pickle, pickle_key) {
+        const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_from_olm_pickle_encrypted(ptr0, len0, ptr1, len1);
+        return ret;
+    };
+
+    /**
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_pk_decryption_new = function() {
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_new();
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_ed_25519_signature_to_bytes = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_signature_to_bytes(that);
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_increment_strong_count_RustOpaque_Ed25519PublicKey = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {any} that
+     * @param {string} message
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_sign = function(that, message) {
+        const ptr0 = passStringToWasm0(message, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_account_sign(that, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {any} their_identity_key
+     * @param {string} pre_key_message_base64
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_create_inbound_session = function(that, their_identity_key, pre_key_message_base64) {
+        const ptr0 = passStringToWasm0(pre_key_message_base64, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_account_create_inbound_session(that, their_identity_key, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_increment_strong_count_RustOpaque_MegolmSessionConfig = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {any} config
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_group_session_new = function(config) {
+        const ret = wasm.wire__crate__bindings__vodozemac_group_session_new(config);
+        return ret;
+    };
+
+    /**
+     * @param {number} func_id
+     * @param {any} ptr_
+     * @param {number} rust_vec_len_
+     * @param {number} data_len_
+     * @returns {any}
+     */
+    __exports.frb_pde_ffi_dispatcher_sync = function(func_id, ptr_, rust_vec_len_, data_len_) {
+        const ret = wasm.frb_pde_ffi_dispatcher_sync(func_id, ptr_, rust_vec_len_, data_len_);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_pk_decryption_private_key = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_private_key(that);
+        return ret;
+    };
+
+    /**
+     * @param {string} exported_session_key
+     * @param {any} config
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_inbound_group_session_import = function(exported_session_key, config) {
+        const ptr0 = passStringToWasm0(exported_session_key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_import(ptr0, len0, config);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_curve_25519_public_key_to_base64 = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_curve_25519_public_key_to_base64(that);
+        return ret;
+    };
+
+    /**
      * @param {any} that
      * @returns {any}
      */
@@ -296,11 +710,44 @@ let wasm_bindgen;
     };
 
     /**
+     * @param {Uint8Array} input
      * @returns {any}
      */
-    __exports.wire__crate__bindings__VodozemacSas_new = function() {
-        const ret = wasm.wire__crate__bindings__VodozemacSas_new();
+    __exports.wire__crate__bindings__sha512 = function(input) {
+        const ptr0 = passArray8ToWasm0(input, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__sha512(ptr0, len0);
         return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {Uint8Array} pickle_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_group_session_pickle_encrypted = function(that, pickle_key) {
+        const ptr0 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_group_session_pickle_encrypted(that, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {number} func_id
+     * @param {any} port_
+     * @param {any} ptr_
+     * @param {number} rust_vec_len_
+     * @param {number} data_len_
+     */
+    __exports.frb_pde_ffi_dispatcher_primary = function(func_id, port_, ptr_, rust_vec_len_, data_len_) {
+        wasm.frb_pde_ffi_dispatcher_primary(func_id, port_, ptr_, rust_vec_len_, data_len_);
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_decrement_strong_count_RustOpaque_EstablishedSas = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_EstablishedSas(ptr);
     };
 
     /**
@@ -315,52 +762,310 @@ let wasm_bindgen;
     };
 
     /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPkSigning = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_decrement_strong_count_RustOpaque_RwLockSession = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_RwLockSession(ptr);
+    };
+
+    /**
+     * @param {any} that
+     * @param {string} plaintext
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_session_encrypt = function(that, plaintext) {
+        const ptr0 = passStringToWasm0(plaintext, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_session_encrypt(that, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_inbound_group_session_session_id = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_session_id(that);
+        return ret;
+    };
+
+    /**
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__VodozemacSas_new = function() {
+        const ret = wasm.wire__crate__bindings__VodozemacSas_new();
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_decrement_strong_count_RustOpaque_OlmMessage = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_OlmMessage(ptr);
+    };
+
+    /**
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_olm_session_config_def = function() {
+        const ret = wasm.wire__crate__bindings__vodozemac_olm_session_config_def();
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {string} message
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__PkSigning_sign = function(that, message) {
+        const ptr0 = passStringToWasm0(message, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__PkSigning_sign(that, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_pk_message_to_base64 = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_message_to_base64(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_group_session_session_config = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_group_session_session_config(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {any} message
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_session_decrypt = function(that, message) {
+        const ret = wasm.wire__crate__bindings__vodozemac_session_decrypt(that, message);
+        return ret;
+    };
+
+    /**
      * @param {string} pickle
      * @param {Uint8Array} pickle_key
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_inbound_group_session_from_pickle_encrypted = function(pickle, pickle_key) {
+    __exports.wire__crate__bindings__vodozemac_session_from_pickle_encrypted = function(pickle, pickle_key) {
         const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
         const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
         const len1 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_from_pickle_encrypted(ptr0, len0, ptr1, len1);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_session_has_received_message = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_session_has_received_message(that);
+        const ret = wasm.wire__crate__bindings__vodozemac_session_from_pickle_encrypted(ptr0, len0, ptr1, len1);
         return ret;
     };
 
     /**
      * @param {number} ptr
      */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_MegolmSessionConfig = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_MegolmSessionConfig(ptr);
+    __exports.rust_arc_decrement_strong_count_RustOpaque_RwLockInboundGroupSession = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_RwLockInboundGroupSession(ptr);
     };
 
     /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_EstablishedSas = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_EstablishedSas(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @param {any} their_identity_key
-     * @param {string} pre_key_message_base64
+     * @param {Uint8Array} key
+     * @param {Uint8Array} input
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_account_create_inbound_session = function(that, their_identity_key, pre_key_message_base64) {
-        const ptr0 = passStringToWasm0(pre_key_message_base64, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    __exports.wire__crate__bindings__hmac = function(key, input) {
+        const ptr0 = passArray8ToWasm0(key, wasm.__wbindgen_malloc);
         const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_account_create_inbound_session(that, their_identity_key, ptr0, len0);
+        const ptr1 = passArray8ToWasm0(input, wasm.__wbindgen_malloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__hmac(ptr0, len0, ptr1, len1);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_ed_25519_signature_to_base64 = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_signature_to_base64(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_session_session_config = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_session_session_config(that);
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerVodozemacSas = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerVodozemacSas(ptr);
+    };
+
+    /**
+     * @param {string} pickle
+     * @param {Uint8Array} pickle_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_pk_decryption_from_libolm_pickle = function(pickle, pickle_key) {
+        const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_from_libolm_pickle(ptr0, len0, ptr1, len1);
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_decrement_strong_count_RustOpaque_RwLockGroupSession = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_RwLockGroupSession(ptr);
+    };
+
+    /**
+     * @param {any} that
+     * @param {string} input
+     * @param {string} info
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_established_sas_calculate_mac_deprecated = function(that, input, info) {
+        const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passStringToWasm0(info, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_established_sas_calculate_mac_deprecated(that, ptr0, len0, ptr1, len1);
+        return ret;
+    };
+
+    /**
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_megolm_session_config_version_1 = function() {
+        const ret = wasm.wire__crate__bindings__vodozemac_megolm_session_config_version_1();
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_curve25519_key = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_account_curve25519_key(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {Uint8Array} pickle_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_session_pickle_encrypted = function(that, pickle_key) {
+        const ptr0 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_session_pickle_encrypted(that, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__PkSigning_new = function() {
+        const ret = wasm.wire__crate__bindings__PkSigning_new();
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_mark_keys_as_published = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_account_mark_keys_as_published(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_ed_25519_public_key_to_base64 = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_public_key_to_base64(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_generate_fallback_key = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_account_generate_fallback_key(that);
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerVodozemacSas = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {any} that
+     * @param {Uint8Array} pickle_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_inbound_group_session_pickle_encrypted = function(that, pickle_key) {
+        const ptr0 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_pickle_encrypted(that, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_olm_session_config_version_2 = function() {
+        const ret = wasm.wire__crate__bindings__vodozemac_olm_session_config_version_2();
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {string} other_public_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__VodozemacSas_establish_sas_secret = function(that, other_public_key) {
+        const ptr0 = passStringToWasm0(other_public_key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__VodozemacSas_establish_sas_secret(that, ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {Uint8Array} bytes
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_ed_25519_public_key_from_slice = function(bytes) {
+        const ptr0 = passArray8ToWasm0(bytes, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_public_key_from_slice(ptr0, len0);
         return ret;
     };
 
@@ -383,318 +1088,40 @@ let wasm_bindgen;
     };
 
     /**
-     * @param {Uint8Array} bytes
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_curve_25519_public_key_from_slice = function(bytes) {
-        const ptr0 = passArray8ToWasm0(bytes, wasm.__wbindgen_malloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_curve_25519_public_key_from_slice(ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_account_ed25519_key = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_account_ed25519_key(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_account_fallback_key = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_account_fallback_key(that);
-        return ret;
-    };
-
-    /**
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_pk_decryption_new = function() {
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_new();
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__PkSigning_public_key = function(that) {
-        const ret = wasm.wire__crate__bindings__PkSigning_public_key(that);
-        return ret;
-    };
-
-    /**
      * @param {number} ptr
      */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPkSigning = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPkSigning(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @param {Uint8Array} pickle_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_pk_decryption_to_libolm_pickle = function(that, pickle_key) {
-        const ptr0 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_to_libolm_pickle(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_session_session_id = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_session_session_id(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @param {string} other_public_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__VodozemacSas_establish_sas_secret = function(that, other_public_key) {
-        const ptr0 = passStringToWasm0(other_public_key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__VodozemacSas_establish_sas_secret(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {any} config
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_group_session_new = function(config) {
-        const ret = wasm.wire__crate__bindings__vodozemac_group_session_new(config);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_RwLockSession = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_RwLockSession(ptr);
-    };
-
-    /**
-     * @returns {number}
-     */
-    __exports.frb_get_rust_content_hash = function() {
-        const ret = wasm.frb_get_rust_content_hash();
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerVodozemacSas = function(ptr) {
+    __exports.rust_arc_increment_strong_count_RustOpaque_Ed25519Signature = function(ptr) {
         wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
     };
 
     /**
-     * @param {any} that
-     * @param {string} encrypted
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_inbound_group_session_decrypt = function(that, encrypted) {
-        const ptr0 = passStringToWasm0(encrypted, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_decrypt(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
      * @param {number} ptr
      */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_Ed25519Signature = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_Ed25519Signature(ptr);
+    __exports.rust_arc_decrement_strong_count_RustOpaque_MegolmSessionConfig = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_MegolmSessionConfig(ptr);
     };
 
     /**
      * @param {any} that
-     * @param {number} index
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_inbound_group_session_export_at = function(that, index) {
-        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_export_at(that, index);
+    __exports.wire__crate__bindings__vodozemac_group_session_to_inbound = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_group_session_to_inbound(that);
         return ret;
     };
 
     /**
      * @param {any} that
-     * @param {string} public_key
+     * @param {string} input
+     * @param {string} info
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_account_remove_one_time_key = function(that, public_key) {
-        const ptr0 = passStringToWasm0(public_key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    __exports.wire__crate__bindings__vodozemac_established_sas_calculate_mac = function(that, input, info) {
+        const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_account_remove_one_time_key(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {number} func_id
-     * @param {any} ptr_
-     * @param {number} rust_vec_len_
-     * @param {number} data_len_
-     * @returns {any}
-     */
-    __exports.frb_pde_ffi_dispatcher_sync = function(func_id, ptr_, rust_vec_len_, data_len_) {
-        const ret = wasm.frb_pde_ffi_dispatcher_sync(func_id, ptr_, rust_vec_len_, data_len_);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_ed_25519_signature_to_bytes = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_signature_to_bytes(that);
-        return ret;
-    };
-
-    /**
-     * @param {string} pickle
-     * @param {Uint8Array} pickle_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_inbound_group_session_from_olm_pickle_encrypted = function(pickle, pickle_key) {
-        const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
+        const ptr1 = passStringToWasm0(info, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len1 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_from_olm_pickle_encrypted(ptr0, len0, ptr1, len1);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_group_session_session_key = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_group_session_session_key(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @param {string} message
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_account_sign = function(that, message) {
-        const ptr0 = passStringToWasm0(message, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_account_sign(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_OlmSessionConfig = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {string} pickle
-     * @param {Uint8Array} pickle_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_group_session_from_pickle_encrypted = function(pickle, pickle_key) {
-        const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
-        const len1 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_group_session_from_pickle_encrypted(ptr0, len0, ptr1, len1);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_olm_session_config_version = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_olm_session_config_version(that);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_PkEncryption = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_account_forget_fallback_key = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_account_forget_fallback_key(that);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_Curve25519PublicKey = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__PkSigning_secret_key = function(that) {
-        const ret = wasm.wire__crate__bindings__PkSigning_secret_key(that);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPkSigning = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @param {string} message
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__PkSigning_sign = function(that, message) {
-        const ptr0 = passStringToWasm0(message, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__PkSigning_sign(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {any} message_type
-     * @param {string} ciphertext
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_olm_message_from_parts = function(message_type, ciphertext) {
-        const ptr0 = passStringToWasm0(ciphertext, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_olm_message_from_parts(message_type, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {any} public_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_pk_encryption_from_key = function(public_key) {
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_encryption_from_key(public_key);
+        const ret = wasm.wire__crate__bindings__vodozemac_established_sas_calculate_mac(that, ptr0, len0, ptr1, len1);
         return ret;
     };
 
@@ -708,45 +1135,77 @@ let wasm_bindgen;
     };
 
     /**
+     * @param {Uint8Array} input
+     * @param {Uint8Array} key
+     * @param {Uint8Array} iv
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__aes_ctr = function(input, key, iv) {
+        const ptr0 = passArray8ToWasm0(input, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passArray8ToWasm0(key, wasm.__wbindgen_malloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ptr2 = passArray8ToWasm0(iv, wasm.__wbindgen_malloc);
+        const len2 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__aes_ctr(ptr0, len0, ptr1, len1, ptr2, len2);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_olm_message_message = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_olm_message_message(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_one_time_keys = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_account_one_time_keys(that);
+        return ret;
+    };
+
+    /**
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_megolm_session_config_def = function() {
+        const ret = wasm.wire__crate__bindings__vodozemac_megolm_session_config_def();
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_session_has_received_message = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_session_has_received_message(that);
+        return ret;
+    };
+
+    /**
      * @param {number} ptr
      */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_RwLockGroupSession = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_RwLockGroupSession(ptr);
+    __exports.rust_arc_increment_strong_count_RustOpaque_RwLockGroupSession = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_decrement_strong_count_RustOpaque_Ed25519Signature = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_Ed25519Signature(ptr);
     };
 
     /**
      * @param {any} that
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_curve_25519_public_key_to_base64 = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_curve_25519_public_key_to_base64(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_account_generate_fallback_key = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_account_generate_fallback_key(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_pk_decryption_public_key = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_public_key(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_inbound_group_session_session_id = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_session_id(that);
+    __exports.wire__crate__bindings__vodozemac_account_identity_keys = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_account_identity_keys(that);
         return ret;
     };
 
@@ -761,32 +1220,11 @@ let wasm_bindgen;
 
     /**
      * @param {any} that
-     * @param {Uint8Array} pickle_key
+     * @param {any} message
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_account_pickle_encrypted = function(that, pickle_key) {
-        const ptr0 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_account_pickle_encrypted(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_megolm_session_config_version_1 = function() {
-        const ret = wasm.wire__crate__bindings__vodozemac_megolm_session_config_version_1();
-        return ret;
-    };
-
-    /**
-     * @param {Uint8Array} bytes
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_ed_25519_public_key_from_slice = function(bytes) {
-        const ptr0 = passArray8ToWasm0(bytes, wasm.__wbindgen_malloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_public_key_from_slice(ptr0, len0);
+    __exports.wire__crate__bindings__vodozemac_pk_decryption_decrypt = function(that, message) {
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_decrypt(that, message);
         return ret;
     };
 
@@ -801,207 +1239,35 @@ let wasm_bindgen;
      * @param {any} that
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_account_identity_keys = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_account_identity_keys(that);
+    __exports.wire__crate__bindings__vodozemac_account_forget_fallback_key = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_account_forget_fallback_key(that);
         return ret;
     };
 
     /**
      * @param {any} that
-     * @param {any} config
-     * @param {any} identity_key
-     * @param {any} one_time_key
+     * @param {number} index
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_account_create_outbound_session = function(that, config, identity_key, one_time_key) {
-        const ret = wasm.wire__crate__bindings__vodozemac_account_create_outbound_session(that, config, identity_key, one_time_key);
+    __exports.wire__crate__bindings__vodozemac_inbound_group_session_export_at = function(that, index) {
+        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_export_at(that, index);
         return ret;
     };
 
     /**
-     * @param {string} base64_key
-     * @returns {any}
+     * @returns {number}
      */
-    __exports.wire__crate__bindings__vodozemac_ed_25519_public_key_from_base64 = function(base64_key) {
-        const ptr0 = passStringToWasm0(base64_key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_public_key_from_base64(ptr0, len0);
+    __exports.frb_get_rust_content_hash = function() {
+        const ret = wasm.frb_get_rust_content_hash();
         return ret;
     };
 
     /**
-     * @param {any} that
-     * @param {string} message
+     * @param {any} public_key
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_pk_encryption_encrypt = function(that, message) {
-        const ptr0 = passStringToWasm0(message, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_encryption_encrypt(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_account_new = function() {
-        const ret = wasm.wire__crate__bindings__vodozemac_account_new();
-        return ret;
-    };
-
-    /**
-     * @param {string} exported_session_key
-     * @param {any} config
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_inbound_group_session_import = function(exported_session_key, config) {
-        const ptr0 = passStringToWasm0(exported_session_key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_import(ptr0, len0, config);
-        return ret;
-    };
-
-    /**
-     * @param {number} func_id
-     * @param {any} port_
-     * @param {any} ptr_
-     * @param {number} rust_vec_len_
-     * @param {number} data_len_
-     */
-    __exports.frb_pde_ffi_dispatcher_primary = function(func_id, port_, ptr_, rust_vec_len_, data_len_) {
-        wasm.frb_pde_ffi_dispatcher_primary(func_id, port_, ptr_, rust_vec_len_, data_len_);
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_Ed25519PublicKey = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_pk_decryption_private_key = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_private_key(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @param {Uint8Array} pickle_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_group_session_pickle_encrypted = function(that, pickle_key) {
-        const ptr0 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_group_session_pickle_encrypted(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @param {string} input
-     * @param {string} info
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_established_sas_calculate_mac_deprecated = function(that, input, info) {
-        const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ptr1 = passStringToWasm0(info, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len1 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_established_sas_calculate_mac_deprecated(that, ptr0, len0, ptr1, len1);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_account_mark_keys_as_published = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_account_mark_keys_as_published(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @param {Uint8Array} pickle_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_inbound_group_session_pickle_encrypted = function(that, pickle_key) {
-        const ptr0 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_pickle_encrypted(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_stdsyncRwLockAccount = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {string} pickle
-     * @param {Uint8Array} pickle_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_pk_decryption_from_libolm_pickle = function(pickle, pickle_key) {
-        const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
-        const len1 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_from_libolm_pickle(ptr0, len0, ptr1, len1);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_RwLockGroupSession = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_megolm_session_config_version = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_megolm_session_config_version(that);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerVodozemacSas = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerVodozemacSas(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_ed_25519_public_key_to_base64 = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_public_key_to_base64(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_pk_message_to_base64 = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_message_to_base64(that);
+    __exports.wire__crate__bindings__vodozemac_pk_encryption_from_key = function(public_key) {
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_encryption_from_key(public_key);
         return ret;
     };
 
@@ -1021,22 +1287,121 @@ let wasm_bindgen;
     };
 
     /**
-     * @param {any} that
+     * @param {string} pickle
+     * @param {Uint8Array} pickle_key
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_ed_25519_signature_to_base64 = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_signature_to_base64(that);
+    __exports.wire__crate__bindings__vodozemac_group_session_from_pickle_encrypted = function(pickle, pickle_key) {
+        const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_group_session_from_pickle_encrypted(ptr0, len0, ptr1, len1);
         return ret;
     };
 
     /**
-     * @param {number} call_id
-     * @param {any} ptr_
-     * @param {number} rust_vec_len_
-     * @param {number} data_len_
+     * @param {string} signature
+     * @returns {any}
      */
-    __exports.frb_dart_fn_deliver_output = function(call_id, ptr_, rust_vec_len_, data_len_) {
-        wasm.frb_dart_fn_deliver_output(call_id, ptr_, rust_vec_len_, data_len_);
+    __exports.wire__crate__bindings__vodozemac_ed_25519_signature_from_base64 = function(signature) {
+        const ptr0 = passStringToWasm0(signature, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_signature_from_base64(ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__PkSigning_secret_key = function(that) {
+        const ret = wasm.wire__crate__bindings__PkSigning_secret_key(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {any} config
+     * @param {any} identity_key
+     * @param {any} one_time_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_create_outbound_session = function(that, config, identity_key, one_time_key) {
+        const ret = wasm.wire__crate__bindings__vodozemac_account_create_outbound_session(that, config, identity_key, one_time_key);
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_increment_strong_count_RustOpaque_stdsyncRwLockAccount = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {any} that
+     * @param {string} info
+     * @param {number} length
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_established_sas_generate_bytes = function(that, info, length) {
+        const ptr0 = passStringToWasm0(info, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_established_sas_generate_bytes(that, ptr0, len0, length);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_group_session_session_key = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_group_session_session_key(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_olm_message_message_type = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_olm_message_message_type(that);
+        return ret;
+    };
+
+    /**
+     * @param {number} ptr
+     */
+    __exports.rust_arc_increment_strong_count_RustOpaque_PkEncryption = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_inbound_group_session_first_known_index = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_first_known_index(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_account_max_number_of_one_time_keys = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_account_max_number_of_one_time_keys(that);
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__PkSigning_public_key = function(that) {
+        const ret = wasm.wire__crate__bindings__PkSigning_public_key(that);
+        return ret;
     };
 
     /**
@@ -1057,362 +1422,16 @@ let wasm_bindgen;
     };
 
     /**
-     * @param {any} that
-     * @param {string} info
-     * @param {number} length
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_established_sas_generate_bytes = function(that, info, length) {
-        const ptr0 = passStringToWasm0(info, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_established_sas_generate_bytes(that, ptr0, len0, length);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_stdsyncRwLockAccount = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_stdsyncRwLockAccount(ptr);
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_RwLockInboundGroupSession = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @param {string} plaintext
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_group_session_encrypt = function(that, plaintext) {
-        const ptr0 = passStringToWasm0(plaintext, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_group_session_encrypt(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @param {any} message
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_session_decrypt = function(that, message) {
-        const ret = wasm.wire__crate__bindings__vodozemac_session_decrypt(that, message);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_RwLockInboundGroupSession = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_RwLockInboundGroupSession(ptr);
-    };
-
-    /**
      * @param {string} pickle
      * @param {Uint8Array} pickle_key
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_group_session_from_olm_pickle_encrypted = function(pickle, pickle_key) {
+    __exports.wire__crate__bindings__vodozemac_inbound_group_session_from_pickle_encrypted = function(pickle, pickle_key) {
         const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
         const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
         const len1 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_group_session_from_olm_pickle_encrypted(ptr0, len0, ptr1, len1);
-        return ret;
-    };
-
-    /**
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_megolm_session_config_version_2 = function() {
-        const ret = wasm.wire__crate__bindings__vodozemac_megolm_session_config_version_2();
-        return ret;
-    };
-
-    /**
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_megolm_session_config_def = function() {
-        const ret = wasm.wire__crate__bindings__vodozemac_megolm_session_config_def();
-        return ret;
-    };
-
-    /**
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_olm_session_config_version_2 = function() {
-        const ret = wasm.wire__crate__bindings__vodozemac_olm_session_config_version_2();
-        return ret;
-    };
-
-    /**
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_olm_session_config_def = function() {
-        const ret = wasm.wire__crate__bindings__vodozemac_olm_session_config_def();
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_olm_message_message_type = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_olm_message_message_type(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_group_session_to_inbound = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_group_session_to_inbound(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @param {any} message
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_pk_decryption_decrypt = function(that, message) {
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_decrypt(that, message);
-        return ret;
-    };
-
-    /**
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_olm_session_config_version_1 = function() {
-        const ret = wasm.wire__crate__bindings__vodozemac_olm_session_config_version_1();
-        return ret;
-    };
-
-    /**
-     * @param {string} key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__PkSigning_from_secret_key = function(key) {
-        const ptr0 = passStringToWasm0(key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__PkSigning_from_secret_key(ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_olm_message_message = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_olm_message_message(that);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_RwLockSession = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @param {Uint8Array} pickle_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_session_pickle_encrypted = function(that, pickle_key) {
-        const ptr0 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_session_pickle_encrypted(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {Uint8Array} secret_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_pk_decryption_from_key = function(secret_key) {
-        const ptr0 = passArray8ToWasm0(secret_key, wasm.__wbindgen_malloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_from_key(ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__PkSigning_new = function() {
-        const ret = wasm.wire__crate__bindings__PkSigning_new();
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_OlmSessionConfig = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_OlmSessionConfig(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__VodozemacSas_public_key = function(that) {
-        const ret = wasm.wire__crate__bindings__VodozemacSas_public_key(that);
-        return ret;
-    };
-
-    /**
-     * @param {string} session_key
-     * @param {any} config
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_inbound_group_session_new = function(session_key, config) {
-        const ptr0 = passStringToWasm0(session_key, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_new(ptr0, len0, config);
-        return ret;
-    };
-
-    /**
-     * @param {string} pickle
-     * @param {Uint8Array} pickle_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_session_from_olm_pickle_encrypted = function(pickle, pickle_key) {
-        const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
-        const len1 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_session_from_olm_pickle_encrypted(ptr0, len0, ptr1, len1);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_PkDecryption = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_PkDecryption(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_session_session_config = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_session_session_config(that);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_PkEncryption = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_PkEncryption(ptr);
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_MegolmSessionConfig = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_account_curve25519_key = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_account_curve25519_key(that);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_account_one_time_keys = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_account_one_time_keys(that);
-        return ret;
-    };
-
-    /**
-     * @param {string} pickle
-     * @param {Uint8Array} pickle_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_account_from_olm_pickle_encrypted = function(pickle, pickle_key) {
-        const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
-        const len1 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_account_from_olm_pickle_encrypted(ptr0, len0, ptr1, len1);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @param {any} count
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_account_generate_one_time_keys = function(that, count) {
-        const ret = wasm.wire__crate__bindings__vodozemac_account_generate_one_time_keys(that, count);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @param {string} input
-     * @param {string} info
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_established_sas_calculate_mac = function(that, input, info) {
-        const ptr0 = passStringToWasm0(input, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ptr1 = passStringToWasm0(info, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len1 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_established_sas_calculate_mac(that, ptr0, len0, ptr1, len1);
-        return ret;
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_OlmMessage = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_OlmMessage(ptr);
-    };
-
-    /**
-     * @param {number} ptr
-     */
-    __exports.rust_arc_increment_strong_count_RustOpaque_OlmMessage = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
-    };
-
-    /**
-     * @param {any} that
-     * @param {string} plaintext
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_session_encrypt = function(that, plaintext) {
-        const ptr0 = passStringToWasm0(plaintext, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_session_encrypt(that, ptr0, len0);
-        return ret;
-    };
-
-    /**
-     * @param {any} that
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_inbound_group_session_first_known_index = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_first_known_index(that);
+        const ret = wasm.wire__crate__bindings__vodozemac_inbound_group_session_from_pickle_encrypted(ptr0, len0, ptr1, len1);
         return ret;
     };
 
@@ -1431,20 +1450,27 @@ let wasm_bindgen;
     };
 
     /**
-     * @param {number} ptr
+     * @param {any} that
+     * @param {string} message
+     * @returns {any}
      */
-    __exports.rust_arc_increment_strong_count_RustOpaque_EstablishedSas = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    __exports.wire__crate__bindings__vodozemac_pk_encryption_encrypt = function(that, message) {
+        const ptr0 = passStringToWasm0(message, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_encryption_encrypt(that, ptr0, len0);
+        return ret;
     };
 
     /**
-     * @param {string} signature
+     * @param {any} that
+     * @param {string} message
+     * @param {any} signature
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_ed_25519_signature_from_base64 = function(signature) {
-        const ptr0 = passStringToWasm0(signature, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+    __exports.wire__crate__bindings__vodozemac_ed_25519_public_key_verify = function(that, message, signature) {
+        const ptr0 = passStringToWasm0(message, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_signature_from_base64(ptr0, len0);
+        const ret = wasm.wire__crate__bindings__vodozemac_ed_25519_public_key_verify(that, ptr0, len0, signature);
         return ret;
     };
 
@@ -1452,24 +1478,54 @@ let wasm_bindgen;
      * @param {any} that
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_group_session_session_config = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_group_session_session_config(that);
+    __exports.wire__crate__bindings__vodozemac_account_fallback_key = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_account_fallback_key(that);
         return ret;
     };
 
     /**
-     * @param {number} ptr
+     * @param {any} message_type
+     * @param {string} ciphertext
+     * @returns {any}
      */
-    __exports.frb_dart_opaque_drop_thread_box_persistent_handle = function(ptr) {
-        wasm.frb_dart_opaque_drop_thread_box_persistent_handle(ptr);
+    __exports.wire__crate__bindings__vodozemac_olm_message_from_parts = function(message_type, ciphertext) {
+        const ptr0 = passStringToWasm0(ciphertext, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_olm_message_from_parts(message_type, ptr0, len0);
+        return ret;
     };
 
     /**
-     * @param {number} ptr
+     * @param {any} that
      * @returns {any}
      */
-    __exports.frb_dart_opaque_rust2dart_decode = function(ptr) {
-        const ret = wasm.frb_dart_opaque_rust2dart_decode(ptr);
+    __exports.wire__crate__bindings__vodozemac_olm_session_config_version = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_olm_session_config_version(that);
+        return ret;
+    };
+
+    /**
+     * @param {Uint8Array} secret_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_pk_decryption_from_key = function(secret_key) {
+        const ptr0 = passArray8ToWasm0(secret_key, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_from_key(ptr0, len0);
+        return ret;
+    };
+
+    /**
+     * @param {string} pickle
+     * @param {Uint8Array} pickle_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_session_from_olm_pickle_encrypted = function(pickle, pickle_key) {
+        const ptr0 = passStringToWasm0(pickle, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ptr1 = passArray8ToWasm0(pickle_key, wasm.__wbindgen_malloc);
+        const len1 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_session_from_olm_pickle_encrypted(ptr0, len0, ptr1, len1);
         return ret;
     };
 
@@ -1486,15 +1542,14 @@ let wasm_bindgen;
         return ret >>> 0;
     };
 
-    __exports.wasm_start_callback = function() {
-        wasm.wasm_start_callback();
+    /**
+     * @param {number} ptr
+     * @returns {any}
+     */
+    __exports.frb_dart_opaque_rust2dart_decode = function(ptr) {
+        const ret = wasm.frb_dart_opaque_rust2dart_decode(ptr);
+        return ret;
     };
-
-    function takeFromExternrefTable0(idx) {
-        const value = wasm.__wbindgen_export_2.get(idx);
-        wasm.__externref_table_dealloc(idx);
-        return value;
-    }
 
     function passArrayJsValueToWasm0(array, malloc) {
         const ptr = malloc(array.length * 4, 4) >>> 0;
@@ -1504,6 +1559,12 @@ let wasm_bindgen;
         }
         WASM_VECTOR_LEN = array.length;
         return ptr;
+    }
+
+    function takeFromExternrefTable0(idx) {
+        const value = wasm.__wbindgen_export_2.get(idx);
+        wasm.__externref_table_dealloc(idx);
+        return value;
     }
     /**
      * ## Safety
@@ -1523,8 +1584,19 @@ let wasm_bindgen;
         }
     };
 
+    /**
+     * @param {number} ptr
+     */
+    __exports.frb_dart_opaque_drop_thread_box_persistent_handle = function(ptr) {
+        wasm.frb_dart_opaque_drop_thread_box_persistent_handle(ptr);
+    };
+
+    __exports.wasm_start_callback = function() {
+        wasm.wasm_start_callback();
+    };
+
     function __wbg_adapter_40(arg0, arg1, arg2) {
-        wasm.closure605_externref_shim(arg0, arg1, arg2);
+        wasm.closure565_externref_shim(arg0, arg1, arg2);
     }
 
     const WorkerPoolFinalization = (typeof FinalizationRegistry === 'undefined')
@@ -1661,6 +1733,9 @@ let wasm_bindgen;
             const ret = arg0.data;
             return ret;
         };
+        imports.wbg.__wbg_error_076d4beefd7cfd14 = function(arg0, arg1) {
+            console.error(getStringFromWasm0(arg0, arg1));
+        };
         imports.wbg.__wbg_error_7534b8e9a36f1ab4 = function(arg0, arg1) {
             let deferred0_0;
             let deferred0_1;
@@ -1671,9 +1746,6 @@ let wasm_bindgen;
             } finally {
                 wasm.__wbindgen_free(deferred0_0, deferred0_1, 1);
             }
-        };
-        imports.wbg.__wbg_error_8699a8afb74ac4af = function(arg0, arg1) {
-            console.error(getStringFromWasm0(arg0, arg1));
         };
         imports.wbg.__wbg_eval_e10dc02e9547f640 = function() { return handleError(function (arg0, arg1) {
             const ret = eval(getStringFromWasm0(arg0, arg1));
@@ -1794,13 +1866,13 @@ let wasm_bindgen;
             const ret = arg0.node;
             return ret;
         };
+        imports.wbg.__wbg_postMessage_33814d4dc32c2dcf = function() { return handleError(function (arg0, arg1) {
+            arg0.postMessage(arg1);
+        }, arguments) };
         imports.wbg.__wbg_postMessage_6edafa8f7b9c2f52 = function() { return handleError(function (arg0, arg1) {
             arg0.postMessage(arg1);
         }, arguments) };
         imports.wbg.__wbg_postMessage_83a8d58d3fcb6c13 = function() { return handleError(function (arg0, arg1) {
-            arg0.postMessage(arg1);
-        }, arguments) };
-        imports.wbg.__wbg_postMessage_b6580510688d0bce = function() { return handleError(function (arg0, arg1) {
             arg0.postMessage(arg1);
         }, arguments) };
         imports.wbg.__wbg_process_5c1d670bc53614b8 = function(arg0) {
@@ -1884,8 +1956,8 @@ let wasm_bindgen;
             const ret = false;
             return ret;
         };
-        imports.wbg.__wbindgen_closure_wrapper1772 = function(arg0, arg1, arg2) {
-            const ret = makeMutClosure(arg0, arg1, 606, __wbg_adapter_40);
+        imports.wbg.__wbindgen_closure_wrapper1717 = function(arg0, arg1, arg2) {
+            const ret = makeMutClosure(arg0, arg1, 566, __wbg_adapter_40);
             return ret;
         };
         imports.wbg.__wbindgen_debug_string = function(arg0, arg1) {
@@ -1964,27 +2036,27 @@ let wasm_bindgen;
     }
 
     function __wbg_init_memory(imports, memory) {
-        imports.wbg.memory = memory || new WebAssembly.Memory({initial:19,maximum:16384,shared:true});
+
     }
 
-    function __wbg_finalize_init(instance, module, thread_stack_size) {
+    function __wbg_finalize_init(instance, module) {
         wasm = instance.exports;
         __wbg_init.__wbindgen_wasm_module = module;
         cachedDataViewMemory0 = null;
         cachedUint8ArrayMemory0 = null;
 
-        if (typeof thread_stack_size !== 'undefined' && (typeof thread_stack_size !== 'number' || thread_stack_size === 0 || thread_stack_size % 65536 !== 0)) { throw 'invalid stack size' }
-        wasm.__wbindgen_start(thread_stack_size);
+
+        wasm.__wbindgen_start();
         return wasm;
     }
 
-    function initSync(module, memory) {
+    function initSync(module) {
         if (wasm !== undefined) return wasm;
 
-        let thread_stack_size
+
         if (typeof module !== 'undefined') {
             if (Object.getPrototypeOf(module) === Object.prototype) {
-                ({module, memory, thread_stack_size} = module)
+                ({module} = module)
             } else {
                 console.warn('using deprecated parameters for `initSync()`; pass a single object instead')
             }
@@ -1992,7 +2064,7 @@ let wasm_bindgen;
 
         const imports = __wbg_get_imports();
 
-        __wbg_init_memory(imports, memory);
+        __wbg_init_memory(imports);
 
         if (!(module instanceof WebAssembly.Module)) {
             module = new WebAssembly.Module(module);
@@ -2000,16 +2072,16 @@ let wasm_bindgen;
 
         const instance = new WebAssembly.Instance(module, imports);
 
-        return __wbg_finalize_init(instance, module, thread_stack_size);
+        return __wbg_finalize_init(instance, module);
     }
 
-    async function __wbg_init(module_or_path, memory) {
+    async function __wbg_init(module_or_path) {
         if (wasm !== undefined) return wasm;
 
-        let thread_stack_size
+
         if (typeof module_or_path !== 'undefined') {
             if (Object.getPrototypeOf(module_or_path) === Object.prototype) {
-                ({module_or_path, memory, thread_stack_size} = module_or_path)
+                ({module_or_path} = module_or_path)
             } else {
                 console.warn('using deprecated parameters for the initialization function; pass a single object instead')
             }
@@ -2024,11 +2096,11 @@ let wasm_bindgen;
             module_or_path = fetch(module_or_path);
         }
 
-        __wbg_init_memory(imports, memory);
+        __wbg_init_memory(imports);
 
         const { instance, module } = await __wbg_load(await module_or_path, imports);
 
-        return __wbg_finalize_init(instance, module, thread_stack_size);
+        return __wbg_finalize_init(instance, module);
     }
 
     wasm_bindgen = Object.assign(__wbg_init, { initSync }, __exports);

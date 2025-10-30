@@ -484,15 +484,13 @@ function generatedPosition(
   if (sourceIndex === -1) sourceIndex = resolvedSources.indexOf(source);
   if (sourceIndex === -1) return all ? [] : GMapping(null, null);
 
-  const generated = (cast(map)._bySources ||= buildBySources(
-    decodedMappings(map),
-    (cast(map)._bySourceMemos = sources.map(memoizedState)),
-  ));
+  const bySourceMemos = (cast(map)._bySourceMemos ||= sources.map(memoizedState));
+  const generated = (cast(map)._bySources ||= buildBySources(decodedMappings(map), bySourceMemos));
 
   const segments = generated[sourceIndex][line];
   if (segments == null) return all ? [] : GMapping(null, null);
 
-  const memo = cast(map)._bySourceMemos![sourceIndex];
+  const memo = bySourceMemos[sourceIndex];
 
   if (all) return sliceGeneratedPositions(segments, memo, line, column, bias);
 

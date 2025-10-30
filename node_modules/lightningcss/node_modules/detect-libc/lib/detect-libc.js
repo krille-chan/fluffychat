@@ -5,8 +5,10 @@
 
 const childProcess = require('child_process');
 const { isLinux, getReport } = require('./process');
-const { LDD_PATH, readFile, readFileSync } = require('./filesystem');
+const { LDD_PATH, SELF_PATH, readFile, readFileSync } = require('./filesystem');
+const { interpreterPath } = require('./elf');
 
+let cachedFamilyInterpreter;
 let cachedFamilyFilesystem;
 let cachedVersionFilesystem;
 
@@ -82,7 +84,19 @@ const familyFromCommand = (out) => {
   return null;
 };
 
+const familyFromInterpreterPath = (path) => {
+  if (path) {
+    if (path.includes('/ld-musl-')) {
+      return MUSL;
+    } else if (path.includes('/ld-linux-')) {
+      return GLIBC;
+    }
+  }
+  return null;
+};
+
 const getFamilyFromLddContent = (content) => {
+  content = content.toString();
   if (content.includes('musl')) {
     return MUSL;
   }
@@ -116,6 +130,32 @@ const familyFromFilesystemSync = () => {
   return cachedFamilyFilesystem;
 };
 
+const familyFromInterpreter = async () => {
+  if (cachedFamilyInterpreter !== undefined) {
+    return cachedFamilyInterpreter;
+  }
+  cachedFamilyInterpreter = null;
+  try {
+    const selfContent = await readFile(SELF_PATH);
+    const path = interpreterPath(selfContent);
+    cachedFamilyInterpreter = familyFromInterpreterPath(path);
+  } catch (e) {}
+  return cachedFamilyInterpreter;
+};
+
+const familyFromInterpreterSync = () => {
+  if (cachedFamilyInterpreter !== undefined) {
+    return cachedFamilyInterpreter;
+  }
+  cachedFamilyInterpreter = null;
+  try {
+    const selfContent = readFileSync(SELF_PATH);
+    const path = interpreterPath(selfContent);
+    cachedFamilyInterpreter = familyFromInterpreterPath(path);
+  } catch (e) {}
+  return cachedFamilyInterpreter;
+};
+
 /**
  * Resolves with the libc family when it can be determined, `null` otherwise.
  * @returns {Promise<?string>}
@@ -123,13 +163,16 @@ const familyFromFilesystemSync = () => {
 const family = async () => {
   let family = null;
   if (isLinux()) {
-    family = await familyFromFilesystem();
+    family = await familyFromInterpreter();
     if (!family) {
-      family = familyFromReport();
-    }
-    if (!family) {
-      const out = await safeCommand();
-      family = familyFromCommand(out);
+      family = await familyFromFilesystem();
+      if (!family) {
+        family = familyFromReport();
+      }
+      if (!family) {
+        const out = await safeCommand();
+        family = familyFromCommand(out);
+      }
     }
   }
   return family;
@@ -142,13 +185,16 @@ const family = async () => {
 const familySync = () => {
   let family = null;
   if (isLinux()) {
-    family = familyFromFilesystemSync();
+    family = familyFromInterpreterSync();
     if (!family) {
-      family = familyFromReport();
-    }
-    if (!family) {
-      const out = safeCommandSync();
-      family = familyFromCommand(out);
+      family = familyFromFilesystemSync();
+      if (!family) {
+        family = familyFromReport();
+      }
+      if (!family) {
+        const out = safeCommandSync();
+        family = familyFromCommand(out);
+      }
     }
   }
   return family;

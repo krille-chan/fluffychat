@@ -12,12 +12,18 @@ class RecorderProcessor extends AudioWorkletProcessor {
         defaultValue: 48000,
         minValue: 8000,
         maxValue: 96000
+      },
+      {
+        name: 'streamBufferSize',
+        defaultValue: 2048,
+        minValue: 256,
+        maxValue: 8192
       }
     ];
   }
 
   // Buffer size compromise between size and process call frequency
-  _bufferSize = 4096
+  _bufferSize = 2048
   // The current buffer fill level
   _bytesWritten = 0
   // Buffer per channel
@@ -33,6 +39,7 @@ class RecorderProcessor extends AudioWorkletProcessor {
 
     this._numChannels = options.parameterData.numChannels
     this._sampleRate = options.parameterData.sampleRate
+    this._bufferSize = options.parameterData.streamBufferSize
 
     // Resampler(current context sample rate, desired sample rate, num channels, buffer size)
     // num channels is always 1 since we resample after interleaving channels
@@ -83,7 +90,7 @@ class RecorderProcessor extends AudioWorkletProcessor {
     for (let channel = 0; channel < this._numChannels; channel++) {
       // Push a copy of the array.
       // The underlying implementation may reuse it which will break the recording.
-      this._buffers[channel].push([...input[channel]])
+      this._buffers[channel].push([...input[channel % input.length]])
     }
 
     this._bytesWritten += input[0].length

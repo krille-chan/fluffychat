@@ -1,6 +1,5 @@
 const { createRequire } = require("node:module");
 const _createJiti = require("../dist/jiti.cjs");
-const transform = require("../dist/babel.cjs");
 
 function onError(err) {
   throw err; /* ↓ Check stack trace ↓ */
@@ -8,9 +7,17 @@ function onError(err) {
 
 const nativeImport = (id) => import(id);
 
+let _transform;
+function lazyTransform(...args) {
+  if (!_transform) {
+    _transform = require("../dist/babel.cjs");
+  }
+  return _transform(...args);
+}
+
 function createJiti(id, opts = {}) {
   if (!opts.transform) {
-    opts = { ...opts, transform };
+    opts = { ...opts, transform: lazyTransform };
   }
   return _createJiti(id, opts, {
     onError,
