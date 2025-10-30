@@ -123,9 +123,20 @@ class ChatView extends StatelessWidget {
     //       ),
     //   ];
     // } else
-    // Pangea#
-    if (!controller.room.isArchived) {
-      // #Pangea
+    // if (!controller.room.isArchived) {
+    // return [
+    //   if (AppConfig.experimentalVoip &&
+    //       Matrix.of(context).voipPlugin != null &&
+    //       controller.room.isDirectChat)
+    //     IconButton(
+    //       onPressed: controller.onPhoneButtonTap,
+    //       icon: const Icon(Icons.call_outlined),
+    //       tooltip: L10n.of(context).placeCall,
+    //     ),
+    //   EncryptionButton(controller.room),
+    //   ChatSettingsPopupMenu(controller.room, true),
+    // ];
+    if (!(controller.room.isArchived || controller.room.hasArchivedActivity)) {
       return [
         if (controller.room.activityPlan == null ||
             !controller.room.showActivityChatUI)
@@ -148,18 +159,6 @@ class ChatView extends StatelessWidget {
           },
         ),
       ];
-      // return [
-      //   if (AppConfig.experimentalVoip &&
-      //       Matrix.of(context).voipPlugin != null &&
-      //       controller.room.isDirectChat)
-      //     IconButton(
-      //       onPressed: controller.onPhoneButtonTap,
-      //       icon: const Icon(Icons.call_outlined),
-      //       tooltip: L10n.of(context).placeCall,
-      //     ),
-      //   EncryptionButton(controller.room),
-      //   ChatSettingsPopupMenu(controller.room, true),
-      // ];
       // Pangea#
     }
     return [];

@@ -596,7 +596,19 @@ class GetAnalyticsController extends BaseController {
     final Room? analyticsRoom = _client.analyticsRoomLocal(_l2!);
     if (analyticsRoom == null) return [];
     final ids = analyticsRoom.activityRoomIds;
-    return ids.map((id) => _client.getRoomById(id)).whereType<Room>().toList();
+    return ids
+        .map((id) => _client.getRoomById(id))
+        .whereType<Room>()
+        .where(
+          (room) =>
+              room.membership != Membership.leave &&
+              room.membership != Membership.ban,
+        )
+        .toList();
+  }
+
+  int get archivedActivitiesCount {
+    return archivedActivities.length;
   }
 }
 
