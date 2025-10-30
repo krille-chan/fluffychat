@@ -24,6 +24,8 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>AppGroupId</key>
+	<string>group.im.fluffychat.app</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
