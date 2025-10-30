@@ -95,11 +95,11 @@ class NewCoursePageState extends State<NewCoursePage> {
     }
   }
 
-  Future<void> _onSelect(CoursePlanModel course) async {
+  Future<void> _onSelect(CoursePlanModel course, bool isAddingPlan) async {
     final existingRoom =
         Matrix.of(context).client.getRoomByCourseId(course.uuid);
 
-    if (existingRoom == null) {
+    if (existingRoom == null || isAddingPlan) {
       context.go(
         widget.spaceId != null
             ? '/rooms/spaces/${widget.spaceId}/addcourse/${course.uuid}'
@@ -286,7 +286,7 @@ class NewCoursePageState extends State<NewCoursePage> {
                           return Material(
                             type: MaterialType.transparency,
                             child: InkWell(
-                              onTap: () => _onSelect(course),
+                              onTap: () => _onSelect(course, spaceId != null),
                               borderRadius: BorderRadius.circular(12.0),
                               child: Container(
                                 padding: const EdgeInsets.all(12.0),
