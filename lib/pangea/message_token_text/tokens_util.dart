@@ -74,7 +74,9 @@ class TokensUtil {
   static List<PangeaTokenText> getNewTokens(
     PangeaMessageEvent event,
   ) {
-    if (!event.eventId.isValidMatrixId) {
+    if (!event.eventId.isValidMatrixId ||
+        (MatrixState.pangeaController.subscriptionController.isSubscribed ==
+            false)) {
       return [];
     }
 
