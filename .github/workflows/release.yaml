@@ -60,7 +60,7 @@ jobs:
           echo "$WEB_APP_ENV" > .env
           echo "$WEB_APP_ENV" > assets/.env
       - name: Build Release Web
-        run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
+        run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps
       - name: Create archive
         run: tar -czf pangeachat-web.tar.gz build/web/
       - name: Upload Web Build
