@@ -1426,10 +1426,10 @@ packages:
     dependency: "direct main"
     description:
       name: qr_code_scanner_plus
-      sha256: "41f4a834a48d670d25e3917cb9f1dbb4742298a0b4ab60d82416b295b73931e1"
+      sha256: b764e5004251c58d9dee0c295e6006e05bd8d249e78ac3383abdb5afe0a996cd
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.13"
+    version: "2.0.14"
   qr_image:
     dependency: "direct main"
     description:
