@@ -129,14 +129,18 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
     }
   }
 
-  Future<void> _updateLanguageSettings() async {
-    final targetLangCode = await _targetLangCode;
-    final baseLangCode = await _baseLangCode;
+  Future<void> _updateLanguageSettings(String target, String? base) async {
+    final profile = MatrixState.pangeaController.userController.profile;
+    if (profile.userSettings.targetLanguage == target &&
+        profile.userSettings.sourceLanguage == base) {
+      return;
+    }
+
     await MatrixState.pangeaController.userController.updateProfile(
       (profile) {
-        profile.userSettings.targetLanguage = targetLangCode;
-        if (baseLangCode != null) {
-          profile.userSettings.sourceLanguage = baseLangCode;
+        profile.userSettings.targetLanguage = target;
+        if (base != null) {
+          profile.userSettings.sourceLanguage = base;
         }
         return profile;
       },
@@ -146,16 +150,21 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
 
   Future<void> _createUserInPangea() async {
     final l2Set = await MatrixState.pangeaController.userController.isUserL2Set;
+    final baseLangCode = await _baseLangCode;
+    final targetLangCode = await _targetLangCode;
+
     if (l2Set) {
-      await _updateLanguageSettings();
+      if (targetLangCode == null) {
+        context.go('/registration/course');
+        return;
+      }
+
+      await _updateLanguageSettings(targetLangCode, baseLangCode);
       _onProfileCreated();
       return;
     }
 
     try {
-      final baseLangCode = await _baseLangCode;
-      final targetLangCode = await _targetLangCode;
-
       // User's L2 is not set and they niether have a target language in their
       // local storage nor can they get it from a course they plan to join.
       // Redirect back to language selection.
