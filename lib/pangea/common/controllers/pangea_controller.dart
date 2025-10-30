@@ -233,7 +233,23 @@ class PangeaController {
   }
 
   Future<void> _onLanguageUpdate(LanguageUpdate update) async {
-    clearCache(exclude: ["analytics_storage"]);
+    final exclude = [
+      'analytics_storage',
+      'course_location_media_storage',
+      'course_location_storage',
+      'course_media_storage',
+    ];
+
+    // only clear course data if the base language has changed
+    if (update.prevBaseLang == update.baseLang) {
+      exclude.addAll([
+        'course_storage',
+        'course_topic_storage',
+        'course_activity_storage',
+      ]);
+    }
+
+    clearCache(exclude: exclude);
     _updateBotOptions();
   }
 

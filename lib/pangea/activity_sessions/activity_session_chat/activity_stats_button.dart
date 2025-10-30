@@ -78,8 +78,10 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
     // if someone has finished the activity, enable the tooltip
     final activityRoles =
         widget.controller.room.activityRoles?.roles.values.toList() ?? [];
-    if (activityRoles.any((r) => r.isFinished)) {
-      return true;
+    final finishedRoles = activityRoles.where((r) => r.isFinished).toList();
+
+    if (finishedRoles.isNotEmpty) {
+      return !finishedRoles.any((r) => r.userId == _client.userID);
     }
 
     // otherwise, if no one has finished, only show if the user has sent >= 3 messages

@@ -76,6 +76,10 @@ Future<void> showInviteDialog(Room room, BuildContext context) async {
   );
   if (joinResult.error != null) return;
 
+  if (room.membership != Membership.join) {
+    await room.client.waitForRoomInSync(room.id, join: true);
+  }
+
   context.go(
     room.isSpace ? "/rooms/spaces/${room.id}/details" : "/rooms/${room.id}",
   );

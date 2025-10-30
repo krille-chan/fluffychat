@@ -196,7 +196,7 @@ class ActivityStatsMenuState extends State<ActivityStatsMenu> {
                           ),
                         ],
                       ),
-                      if (!room.hasArchivedActivity)
+                      if (!userComplete) ...[
                         Text(
                           L10n.of(context).activityDropdownDesc,
                           textAlign: TextAlign.center,
@@ -205,7 +205,6 @@ class ActivityStatsMenuState extends State<ActivityStatsMenu> {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                      if (!userComplete) ...[
                         if (shouldShowEndForAll)
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(

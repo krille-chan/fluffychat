@@ -271,6 +271,7 @@ void chatContextMenuAction(
           context.go("/rooms");
         }
       } else {
+        final parentSpaceId = room.courseParent?.id;
         final confirmed = await showOkCancelAlertDialog(
           context: context,
           title: l10n.areYouSure,
@@ -286,8 +287,8 @@ void chatContextMenuAction(
         );
         if (!resp.isError) {
           outerContext.go(
-            room.courseParent != null
-                ? "/rooms/spaces/${room.courseParent!.id}/details"
+            parentSpaceId != null
+                ? "/rooms/spaces/$parentSpaceId/details"
                 : "/rooms",
           );
         }
