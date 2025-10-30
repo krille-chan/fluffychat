@@ -25,7 +25,8 @@ class HomeserverPickerView extends StatelessWidget {
     final theme = Theme.of(context);
 
     return LoginScaffold(
-      enforceMobileMode: Matrix.of(context).client.isLogged(),
+      enforceMobileMode:
+          Matrix.of(context).widget.clients.any((client) => client.isLogged()),
       appBar: AppBar(
         centerTitle: true,
         title: Text(

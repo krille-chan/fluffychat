@@ -11,14 +11,15 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/message_token_text/message_token_button.dart';
-import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
+import 'package:fluffychat/pangea/message_token_text/token_emoji_button.dart';
+import 'package:fluffychat/pangea/message_token_text/token_practice_button.dart';
+import 'package:fluffychat/pangea/message_token_text/tokens_util.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/utils/token_rendering_util.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/select_mode_buttons.dart';
 import 'package:fluffychat/utils/event_checkbox_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -46,8 +47,6 @@ class HtmlMessage extends StatelessWidget {
   final Event? prevEvent;
   final bool isTransitionAnimation;
   final ReadingAssistanceMode? readingAssistanceMode;
-
-  final bool Function(PangeaToken)? isSelected;
   final void Function(PangeaToken)? onClick;
   // Pangea#
 
@@ -69,7 +68,6 @@ class HtmlMessage extends StatelessWidget {
     required this.controller,
     this.nextEvent,
     this.prevEvent,
-    this.isSelected,
     this.onClick,
     this.isTransitionAnimation = false,
     this.readingAssistanceMode,
@@ -127,6 +125,7 @@ class HtmlMessage extends StatelessWidget {
     'tg-forward',
     // #Pangea
     'token',
+    'nontoken',
     // Pangea#
   };
 
@@ -156,7 +155,12 @@ class HtmlMessage extends StatelessWidget {
   // #Pangea
   List<PangeaToken>? get tokens =>
       pangeaMessageEvent?.messageDisplayRepresentation?.tokens
-          ?.where((t) => t.pos != "PUNCT")
+          ?.where(
+            (t) =>
+                !["SYM"].contains(t.pos) &&
+                !t.lemma.text.contains(RegExp(r'[0-9]')) &&
+                t.lemma.text.length <= 50,
+          )
           .toList();
 
   PangeaToken? getToken(
@@ -204,19 +208,34 @@ class HtmlMessage extends StatelessWidget {
       }
     }
 
-    for (final PangeaToken token in tokens ?? []) {
-      final String tokenText = token.text.content;
+    int position = 0;
+    final tokenPositions = tokens != null
+        ? TokensUtil.getAdjacentTokenPositions(event.eventId, tokens!)
+        : [];
+
+    for (final TokenPosition tokenPosition in tokenPositions) {
+      String tokenSpanText = tokens!
+          .sublist(tokenPosition.startIndex, tokenPosition.endIndex + 1)
+          .map((t) => t.text.content)
+          .join();
+
       final substringIndex = result.indexWhere(
         (string) =>
-            string.contains(tokenText) &&
+            string.contains(tokenSpanText) &&
             !(string.startsWith('<') && string.endsWith('>')),
+        position,
       );
 
       if (substringIndex == -1) continue;
-      final int tokenIndex = result[substringIndex].indexOf(tokenText);
+      int tokenIndex = result[substringIndex].indexOf(tokenSpanText);
       if (tokenIndex == -1) continue;
 
-      final int tokenLength = tokenText.characters.length;
+      final beforeSubstring = result[substringIndex].substring(0, tokenIndex);
+      if (beforeSubstring.length != beforeSubstring.characters.length) {
+        tokenIndex = beforeSubstring.characters.length;
+      }
+
+      final int tokenLength = tokenSpanText.characters.length;
       final before =
           result[substringIndex].characters.take(tokenIndex).toString();
       final after = result[substringIndex]
@@ -224,14 +243,85 @@ class HtmlMessage extends StatelessWidget {
           .skip(tokenIndex + tokenLength)
           .toString();
 
+      if (after.startsWith('\n')) {
+        after.replaceFirst('\n', '');
+        tokenSpanText += '\n';
+      }
+
       result.replaceRange(substringIndex, substringIndex + 1, [
         if (before.isNotEmpty) before,
-        '<token offset="${token.text.offset}" length="${token.text.length}">$tokenText</token>',
+        '<token offset="${tokenPosition.token!.text.offset}" length="${tokenPosition.token!.text.length}">$tokenSpanText</token>',
         if (after.isNotEmpty) after,
       ]);
+
+      position = substringIndex;
     }
 
-    return result.join();
+    for (int i = 0; i < result.length; i++) {
+      if (!result[i].startsWith('<') && !result[i].endsWith('>')) {
+        result[i] = '<nontoken>${result[i]}</nontoken>';
+      }
+    }
+
+    if (pangeaMessageEvent?.textDirection == TextDirection.rtl) {
+      for (int i = 0; i < result.length; i++) {
+        final tag = result[i];
+        if (blockHtmlTags.contains(tag.htmlTagName) ||
+            fullLineHtmlTag.contains(tag.htmlTagName)) {
+          if (i > 0 && result[i - 1] == ", ") {
+            result[i - 1] = "";
+          }
+          result[i] = ", ";
+        }
+      }
+      result.removeWhere((element) => element == "");
+      if (result[0] == ", ") result[0] = "";
+      if (result.last == ", ") result.last = "";
+      final inverted = _invertTags(result);
+      return inverted.join().trim();
+    }
+
+    return result.join().trim();
+  }
+
+  List<String> _invertTags(List<String> tags) {
+    final List<(String, int)> stack = [];
+    final List<(int, int)> invertedTags = [];
+    for (int i = 0; i < tags.length; i++) {
+      final tag = tags[i];
+      if (!tag.contains('<') || tag.contains("<token")) {
+        continue;
+      }
+
+      int match = -1;
+      if (tag.contains("</")) {
+        match = stack.indexWhere(
+          (element) =>
+              element.$1.htmlTagName == tag.htmlTagName &&
+              !element.$1.contains("</"),
+        );
+      }
+
+      if (match != -1) {
+        // If the tag is already in the stack, we remove it
+        final (matchTag, matchIndex) = stack.removeAt(match);
+        invertedTags.add((matchIndex, i));
+      } else {
+        // If the tag is not in the stack, we add it
+        stack.insert(0, (tag, i));
+      }
+    }
+
+    for (final (start, end) in invertedTags) {
+      final startTag = tags[start];
+      final endTag = tags[end];
+
+      tags[start] = endTag;
+      tags[end] = startTag;
+    }
+
+    final inverted = tags.reversed.toList();
+    return inverted;
   }
   // Pangea#
 
@@ -313,6 +403,10 @@ class HtmlMessage extends StatelessWidget {
     );
 
     final fontSize = renderer.fontSize(context) ?? this.fontSize;
+    final newTokens =
+        pangeaMessageEvent != null && !pangeaMessageEvent!.ownMessage
+            ? TokensUtil.getNewTokens(pangeaMessageEvent!)
+            : [];
     // Pangea#
 
     switch (node.localName) {
@@ -324,86 +418,105 @@ class HtmlMessage extends StatelessWidget {
           int.tryParse(node.attributes['length'] ?? '') ?? 0,
         );
 
-        final selected = token != null && isSelected != null
-            ? isSelected!.call(token)
+        final selected = token != null && overlayController != null
+            ? overlayController!.isTokenSelected(token)
             : false;
 
+        final highlighted = token != null && overlayController != null
+            ? overlayController!.isTokenHighlighted(token)
+            : false;
+
+        final isNew = token != null && newTokens.contains(token.text);
         final tokenWidth = renderer.tokenTextWidthForContainer(
           context,
           node.text,
         );
 
-        return WidgetSpan(
-          child: CompositedTransformTarget(
-            link: token != null && renderer.assignTokenKey
-                ? MatrixState.pAnyState
-                    .layerLinkAndKey(token.text.uniqueKey)
-                    .link
-                : LayerLinkAndKey(token.hashCode.toString()).link,
-            child: Column(
-              key: token != null && renderer.assignTokenKey
-                  ? MatrixState.pAnyState
-                      .layerLinkAndKey(token.text.uniqueKey)
-                      .key
-                  : null,
-              children: [
-                if (renderer.showCenterStyling && token != null)
-                  MessageTokenButton(
-                    token: token,
-                    overlayController: overlayController,
-                    textStyle: renderer.style(
-                      context,
-                      color: renderer.backgroundColor(
+        return TextSpan(
+          children: [
+            WidgetSpan(
+              alignment:
+                  readingAssistanceMode == ReadingAssistanceMode.practiceMode
+                      ? PlaceholderAlignment.bottom
+                      : PlaceholderAlignment.middle,
+              child: Column(
+                children: [
+                  if (token != null &&
+                      overlayController?.selectedMode == SelectMode.emoji)
+                    TokenEmojiButton(
+                      token: token,
+                      eventId: event.eventId,
+                      targetId: overlayController!.tokenEmojiPopupKey(token),
+                      onSelect: () =>
+                          overlayController!.showTokenEmojiPopup(token),
+                    ),
+                  if (renderer.showCenterStyling && token != null)
+                    TokenPracticeButton(
+                      token: token,
+                      overlayController: overlayController,
+                      textStyle: renderer.style(
                         context,
-                        selected,
+                        color: renderer.backgroundColor(
+                          context,
+                          selected,
+                          highlighted,
+                          isNew,
+                          readingAssistanceMode ==
+                              ReadingAssistanceMode.practiceMode,
+                        ),
                       ),
+                      width: tokenWidth,
+                      animateIn: isTransitionAnimation,
+                      textColor: textColor,
                     ),
-                    width: tokenWidth,
-                    animateIn: isTransitionAnimation,
-                    practiceTargetForToken:
-                        overlayController?.toolbarMode.associatedActivityType !=
-                                null
-                            ? overlayController?.practiceSelection
-                                ?.activities(
-                                  overlayController!
-                                      .toolbarMode.associatedActivityType!,
-                                )
-                                .firstWhereOrNull(
-                                  (a) => a.tokens.contains(token),
-                                )
+                  CompositedTransformTarget(
+                    link: token != null
+                        ? MatrixState.pAnyState
+                            .layerLinkAndKey(
+                              "message-token-${token.text.uniqueKey}-${event.eventId}",
+                            )
+                            .link
+                        : LayerLink(),
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: onClick != null && token != null
+                            ? () => onClick?.call(token)
                             : null,
-                  ),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: onClick != null && token != null
-                        ? () => onClick?.call(token)
-                        : null,
-                    child: RichText(
-                      text: TextSpan(
-                        children: [
-                          LinkifySpan(
-                            text: node.text,
-                            style: renderer.style(
-                              context,
-                              color: renderer.backgroundColor(
-                                context,
-                                selected,
+                        child: RichText(
+                          textDirection: pangeaMessageEvent?.textDirection,
+                          text: TextSpan(
+                            children: [
+                              LinkifySpan(
+                                text: node.text.trim(),
+                                style: renderer.style(
+                                  context,
+                                  color: renderer.backgroundColor(
+                                    context,
+                                    selected,
+                                    highlighted,
+                                    isNew,
+                                    readingAssistanceMode ==
+                                        ReadingAssistanceMode.practiceMode,
+                                  ),
+                                ),
+                                linkStyle: linkStyle,
+                                onOpen: (url) =>
+                                    UrlLauncher(context, url.url).launchUrl(),
                               ),
-                            ),
-                            linkStyle: linkStyle,
-                            onOpen: (url) =>
-                                UrlLauncher(context, url.url).launchUrl(),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+                // ),
+              ),
             ),
-          ),
+            if (node.text.endsWith('\n')) const TextSpan(text: '\n'),
+          ],
         );
       // Pangea#
       case 'br':
@@ -526,6 +639,9 @@ class HtmlMessage extends StatelessWidget {
                         color: renderer.backgroundColor(
                           context,
                           false,
+                          false,
+                          false,
+                          false,
                         ),
                       ),
                     ),
@@ -540,6 +656,9 @@ class HtmlMessage extends StatelessWidget {
                         context,
                         color: renderer.backgroundColor(
                           context,
+                          false,
+                          false,
+                          false,
                           false,
                         ),
                       ),
@@ -817,48 +936,74 @@ class HtmlMessage extends StatelessWidget {
           'sub' => const TextStyle(fontFeatures: [FontFeature.subscripts()]),
           _ => null,
         };
-        // Pangea#
-        return TextSpan(
-          style: switch (node.localName) {
-            'body' => TextStyle(
-                fontSize: fontSize,
-                color: textColor,
+        return WidgetSpan(
+          alignment: readingAssistanceMode == ReadingAssistanceMode.practiceMode
+              ? PlaceholderAlignment.bottom
+              : PlaceholderAlignment.middle,
+          child: Column(
+            children: [
+              if (node.localName == 'nontoken' &&
+                  overlayController?.selectedMode == SelectMode.emoji)
+                TokenEmojiButton(
+                  token: null,
+                  eventId: event.eventId,
+                ),
+              RichText(
+                text: TextSpan(
+                  style: textStyle.merge(style),
+                  children: _renderWithLineBreaks(
+                    node.nodes,
+                    context,
+                    textStyle.merge(style ?? const TextStyle()),
+                    depth: depth,
+                  ),
+                ),
               ),
-            'a' => linkStyle,
-            'strong' => const TextStyle(fontWeight: FontWeight.bold),
-            'em' || 'i' => const TextStyle(fontStyle: FontStyle.italic),
-            'del' ||
-            's' ||
-            'strikethrough' =>
-              const TextStyle(decoration: TextDecoration.lineThrough),
-            'u' => const TextStyle(decoration: TextDecoration.underline),
-            'h1' => TextStyle(fontSize: fontSize * 1.6, height: 2),
-            'h2' => TextStyle(fontSize: fontSize * 1.5, height: 2),
-            'h3' => TextStyle(fontSize: fontSize * 1.4, height: 2),
-            'h4' => TextStyle(fontSize: fontSize * 1.3, height: 1.75),
-            'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
-            'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
-            'span' => TextStyle(
-                color: node.attributes['color']?.hexToColor ??
-                    node.attributes['data-mx-color']?.hexToColor ??
-                    textColor,
-                backgroundColor:
-                    node.attributes['data-mx-bg-color']?.hexToColor,
-              ),
-            'sup' =>
-              const TextStyle(fontFeatures: [FontFeature.superscripts()]),
-            'sub' => const TextStyle(fontFeatures: [FontFeature.subscripts()]),
-            _ => null,
-          },
-          children: _renderWithLineBreaks(
-            node.nodes,
-            context,
-            // #Pangea
-            textStyle.merge(style ?? const TextStyle()),
-            // Pangea#
-            depth: depth,
+            ],
           ),
         );
+      // return TextSpan(
+      //   style: switch (node.localName) {
+      //     'body' => TextStyle(
+      //         fontSize: fontSize,
+      //         color: textColor,
+      //       ),
+      //     'a' => linkStyle,
+      //     'strong' => const TextStyle(fontWeight: FontWeight.bold),
+      //     'em' || 'i' => const TextStyle(fontStyle: FontStyle.italic),
+      //     'del' ||
+      //     's' ||
+      //     'strikethrough' =>
+      //       const TextStyle(decoration: TextDecoration.lineThrough),
+      //     'u' => const TextStyle(decoration: TextDecoration.underline),
+      //     'h1' => TextStyle(fontSize: fontSize * 1.6, height: 2),
+      //     'h2' => TextStyle(fontSize: fontSize * 1.5, height: 2),
+      //     'h3' => TextStyle(fontSize: fontSize * 1.4, height: 2),
+      //     'h4' => TextStyle(fontSize: fontSize * 1.3, height: 1.75),
+      //     'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
+      //     'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
+      //     'span' => TextStyle(
+      //         color: node.attributes['color']?.hexToColor ??
+      //             node.attributes['data-mx-color']?.hexToColor ??
+      //             textColor,
+      //         backgroundColor:
+      //             node.attributes['data-mx-bg-color']?.hexToColor,
+      //       ),
+      //     'sup' => const TextStyle(
+      //         fontFeatures: [FontFeature.superscripts()],
+      //       ),
+      //     'sub' => const TextStyle(
+      //         fontFeatures: [FontFeature.subscripts()],
+      //       ),
+      //     _ => null,
+      //   },
+      //   children: _renderWithLineBreaks(
+      //     node.nodes,
+      //     context,
+      //     depth: depth,
+      //   ),
+      // );
+      // Pangea#
     }
   }
 
@@ -1005,4 +1150,9 @@ extension on String {
 
 extension on dom.Element {
   dom.Element get rootElement => parent?.rootElement ?? this;
+}
+
+extension on String {
+  String get htmlTagName =>
+      replaceAll('<', '').replaceAll('>', '').replaceAll('/', '').split(' ')[0];
 }

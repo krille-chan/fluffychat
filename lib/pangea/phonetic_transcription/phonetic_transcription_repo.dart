@@ -18,12 +18,12 @@ class PhoneticTranscriptionRepo {
   static final GetStorage _storage =
       GetStorage('phonetic_transcription_storage');
 
-  static void set(
+  static Future<void> set(
     PhoneticTranscriptionRequest request,
     PhoneticTranscriptionResponse response,
-  ) {
+  ) async {
     response.expireAt ??= DateTime.now().add(const Duration(days: 100));
-    _storage.write(request.storageKey, response.toJson());
+    await _storage.write(request.storageKey, response.toJson());
   }
 
   static Future<PhoneticTranscriptionResponse> _fetch(

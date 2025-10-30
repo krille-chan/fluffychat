@@ -8,14 +8,12 @@ import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart
 class ToolbarButton extends StatelessWidget {
   final MessageMode mode;
   final MessageOverlayController overlayController;
-  final void Function(MessageMode) onPressed;
   final double buttonSize;
 
   const ToolbarButton({
     required this.mode,
     required this.overlayController,
     required this.buttonSize,
-    required this.onPressed,
     super.key,
   });
 
@@ -36,7 +34,7 @@ class ToolbarButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         depressed: mode == overlayController.toolbarMode,
         color: color(context),
-        onPressed: () => onPressed(mode),
+        onPressed: () => overlayController.updateToolbarMode(mode),
         playSound: true,
         colorFactor:
             Theme.of(context).brightness == Brightness.light ? 0.55 : 0.3,

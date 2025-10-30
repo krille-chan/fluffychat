@@ -3,22 +3,45 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:matrix/matrix.dart' as matrix;
+import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'package:fluffychat/pangea/analytics_misc/client_analytics_extension.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
-import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
-import 'package:fluffychat/pangea/user/models/profile_model.dart';
+import 'package:fluffychat/pangea/user/models/activities_profile_model.dart';
+import 'package:fluffychat/pangea/user/models/analytics_profile_model.dart';
 import '../models/user_model.dart';
 
+class LanguageUpdate {
+  final LanguageModel? prevBaseLang;
+  final LanguageModel? prevTargetLang;
+  final LanguageModel baseLang;
+  final LanguageModel targetLang;
+
+  LanguageUpdate({
+    required this.baseLang,
+    required this.targetLang,
+    this.prevBaseLang,
+    this.prevTargetLang,
+  });
+}
+
 /// Controller that manages saving and reading of user/profile information
-class UserController extends BaseController {
+class UserController {
   late PangeaController _pangeaController;
+
+  final StreamController<LanguageUpdate> languageStream =
+      StreamController.broadcast();
+  final StreamController settingsUpdateStream =
+      StreamController<Profile>.broadcast();
+
   UserController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
   }
@@ -32,13 +55,14 @@ class UserController extends BaseController {
   /// to be read in from client's account data each time it is accessed.
   Profile? _cachedProfile;
 
-  PublicProfileModel? publicProfile;
+  AnalyticsProfileModel? analyticsProfile;
+  ActivitiesProfileModel? activitiesProfile;
 
   /// Listens for account updates and updates the cached profile
   StreamSubscription? _profileListener;
 
   /// Listen for updates to account data in syncs and update the cached profile
-  void addProfileListener() {
+  void _addProfileListener() {
     _profileListener ??= client.onSync.stream
         .where((sync) => sync.accountData != null)
         .listen((sync) {
@@ -82,25 +106,32 @@ class UserController extends BaseController {
     Profile Function(Profile) update, {
     waitForDataInSync = false,
   }) async {
+    await initialize();
     final prevTargetLang = _pangeaController.languageController.userL2;
     final prevBaseLang = _pangeaController.languageController.userL1;
+    final prevHash = profile.hashCode;
 
     final Profile updatedProfile = update(profile);
+    if (updatedProfile.hashCode == prevHash) {
+      // no changes were made, so don't save
+      return;
+    }
+
     await updatedProfile.saveProfileData(waitForDataInSync: waitForDataInSync);
 
-    Map<String, dynamic>? profileUpdate;
-
-    if (prevTargetLang != _pangeaController.languageController.userL2) {
-      profileUpdate ??= {};
-      profileUpdate['prev_target_lang'] = prevTargetLang;
+    if ((prevTargetLang != _pangeaController.languageController.userL2) ||
+        (prevBaseLang != _pangeaController.languageController.userL1)) {
+      languageStream.add(
+        LanguageUpdate(
+          baseLang: _pangeaController.languageController.userL1!,
+          targetLang: _pangeaController.languageController.userL2!,
+          prevBaseLang: prevBaseLang,
+          prevTargetLang: prevTargetLang,
+        ),
+      );
+    } else {
+      settingsUpdateStream.add(updatedProfile);
     }
-
-    if (prevBaseLang != _pangeaController.languageController.userL1) {
-      profileUpdate ??= {};
-      profileUpdate['prev_base_lang'] = prevBaseLang;
-    }
-
-    setState(profileUpdate);
   }
 
   /// A completer for the profile model of a user.
@@ -119,13 +150,14 @@ class UserController extends BaseController {
 
     try {
       await _initialize();
-      addProfileListener();
+      _addProfileListener();
+      _addAnalyticsRoomIdsToPublicProfile();
+
       if (profile.userSettings.targetLanguage != null &&
           profile.userSettings.targetLanguage!.isNotEmpty &&
           _pangeaController.languageController.userL2 == null) {
         // update the language list and send an update to refresh analytics summary
         await PLanguageStore.initialize(forceRefresh: true);
-        setState(null);
       }
     } catch (err, s) {
       ErrorHandler.logError(
@@ -155,22 +187,37 @@ class UserController extends BaseController {
     if (client.userID == null) return;
     try {
       final resp = await client.getUserProfile(client.userID!);
-      publicProfile = PublicProfileModel.fromJson(resp.additionalProperties);
+      analyticsProfile =
+          AnalyticsProfileModel.fromJson(resp.additionalProperties);
+      activitiesProfile =
+          ActivitiesProfileModel.fromJson(resp.additionalProperties);
     } catch (e) {
       // getting a 404 error for some users without pre-existing profile
       // still want to set other properties, so catch this error
-      publicProfile = PublicProfileModel();
+      analyticsProfile = AnalyticsProfileModel();
+      activitiesProfile = ActivitiesProfileModel.empty;
     }
 
     // Do not await. This function pulls level from analytics,
     // so it waits for analytics to finish initializing. Analytics waits for user controller to
     // finish initializing, so this would cause a deadlock.
-    if (publicProfile!.isEmpty) {
+    if (analyticsProfile!.isEmpty) {
       _pangeaController.getAnalytics.initCompleter.future
           .timeout(const Duration(seconds: 10))
           .then((_) {
-        updatePublicProfile(
+        updateAnalyticsProfile(
           level: _pangeaController.getAnalytics.constructListModel.level,
+        );
+      }).catchError((e, s) {
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          data: {
+            "publicProfile": analyticsProfile?.toJson(),
+            "userId": client.userID,
+          },
+          level:
+              e is TimeoutException ? SentryLevel.warning : SentryLevel.error,
         );
       });
     }
@@ -180,6 +227,8 @@ class UserController extends BaseController {
     _initializing = false;
     initCompleter = Completer<void>();
     _cachedProfile = null;
+    _profileListener?.cancel();
+    _profileListener = null;
   }
 
   /// Reinitializes the user's profile
@@ -188,41 +237,6 @@ class UserController extends BaseController {
     clear();
     await initialize();
   }
-
-  Future<void> updatePublicProfile({
-    required int level,
-    LanguageModel? baseLanguage,
-    LanguageModel? targetLanguage,
-  }) async {
-    targetLanguage ??= _pangeaController.languageController.userL2;
-    baseLanguage ??= _pangeaController.languageController.userL1;
-    if (targetLanguage == null || publicProfile == null) return;
-
-    if (publicProfile!.targetLanguage == targetLanguage &&
-        publicProfile!.baseLanguage == baseLanguage &&
-        publicProfile!.languageAnalytics?[targetLanguage]?.level == level) {
-      return;
-    }
-
-    publicProfile!.baseLanguage = baseLanguage;
-    publicProfile!.targetLanguage = targetLanguage;
-    publicProfile!.setLevel(targetLanguage, level);
-    await _savePublicProfile();
-  }
-
-  Future<void> addXPOffset(int offset) async {
-    final targetLanguage = _pangeaController.languageController.userL2;
-    if (targetLanguage == null || publicProfile == null) return;
-
-    publicProfile!.addXPOffset(targetLanguage, offset);
-    await _savePublicProfile();
-  }
-
-  Future<void> _savePublicProfile() async => client.setUserProfile(
-        client.userID!,
-        PangeaEventTypes.profileAnalytics,
-        publicProfile!.toJson(),
-      );
 
   /// Returns a boolean value indicating whether a new JWT (JSON Web Token) is needed.
   bool needNewJWT(String token) => Jwt.isExpired(token);
@@ -252,7 +266,7 @@ class UserController extends BaseController {
   }
 
   /// Checks if user data is available and the user's l2 is set.
-  Future<bool> get isUserDataAvailableAndL2Set async {
+  Future<bool> get isUserL2Set async {
     try {
       // the function fetchUserModel() uses a completer, so it shouldn't
       // re-call the endpoint if it has already been called
@@ -335,14 +349,171 @@ class UserController extends BaseController {
     return email?.address;
   }
 
-  Future<PublicProfileModel> getPublicProfile(String userId) async {
+  Future<void> _savePublicProfileUpdate(
+    String type,
+    Map<String, dynamic> content,
+  ) async =>
+      client.setUserProfile(
+        client.userID!,
+        type,
+        content,
+      );
+
+  Future<void> updateAnalyticsProfile({
+    required int level,
+    LanguageModel? baseLanguage,
+    LanguageModel? targetLanguage,
+  }) async {
+    targetLanguage ??= _pangeaController.languageController.userL2;
+    baseLanguage ??= _pangeaController.languageController.userL1;
+    if (targetLanguage == null || analyticsProfile == null) return;
+
+    final analyticsRoom =
+        _pangeaController.matrixState.client.analyticsRoomLocal(targetLanguage);
+
+    if (analyticsProfile!.targetLanguage == targetLanguage &&
+        analyticsProfile!.baseLanguage == baseLanguage &&
+        analyticsProfile!.languageAnalytics?[targetLanguage]?.level == level &&
+        analyticsProfile!.analyticsRoomIdByLanguage(targetLanguage) ==
+            analyticsRoom?.id) {
+      return;
+    }
+
+    analyticsProfile!.baseLanguage = baseLanguage;
+    analyticsProfile!.targetLanguage = targetLanguage;
+    analyticsProfile!.setLanguageInfo(
+      targetLanguage,
+      level,
+      analyticsRoom?.id,
+    );
+    await _savePublicProfileUpdate(
+      PangeaEventTypes.profileAnalytics,
+      analyticsProfile!.toJson(),
+    );
+  }
+
+  Future<void> _addAnalyticsRoomIdsToPublicProfile() async {
+    if (analyticsProfile?.languageAnalytics == null) return;
+    final analyticsRooms =
+        _pangeaController.matrixState.client.allMyAnalyticsRooms;
+
+    if (analyticsRooms.isEmpty) return;
+    for (final analyticsRoom in analyticsRooms) {
+      final lang = analyticsRoom.madeForLang?.split("-").first;
+      if (lang == null || analyticsProfile?.languageAnalytics == null) continue;
+      final langKey =
+          analyticsProfile!.languageAnalytics!.keys.firstWhereOrNull(
+        (l) => l.langCodeShort == lang,
+      );
+
+      if (langKey == null) continue;
+      if (analyticsProfile!.languageAnalytics![langKey]!.analyticsRoomId ==
+          analyticsRoom.id) {
+        continue;
+      }
+
+      analyticsProfile!.setLanguageInfo(
+        langKey,
+        analyticsProfile!.languageAnalytics![langKey]!.level,
+        analyticsRoom.id,
+      );
+    }
+
+    await _savePublicProfileUpdate(
+      PangeaEventTypes.profileAnalytics,
+      analyticsProfile!.toJson(),
+    );
+  }
+
+  Future<void> addXPOffset(int offset) async {
+    final targetLanguage = _pangeaController.languageController.userL2;
+    if (targetLanguage == null || analyticsProfile == null) return;
+
+    analyticsProfile!.addXPOffset(
+      targetLanguage,
+      offset,
+      _pangeaController.matrixState.client
+          .analyticsRoomLocal(targetLanguage)
+          ?.id,
+    );
+    await _savePublicProfileUpdate(
+      PangeaEventTypes.profileAnalytics,
+      analyticsProfile!.toJson(),
+    );
+  }
+
+  Future<void> addBookmarkedActivity({
+    required String activityId,
+  }) async {
+    if (activitiesProfile == null) {
+      throw Exception("Activities profile is not initialized");
+    }
+
+    activitiesProfile!.addBookmark(activityId);
+    await _savePublicProfileUpdate(
+      PangeaEventTypes.profileActivities,
+      activitiesProfile!.toJson(),
+    );
+  }
+
+  // Future<List<ActivityPlanModel>> getBookmarkedActivities() async {
+  //   if (activitiesProfile == null) {
+  //     throw Exception("Activities profile is not initialized");
+  //   }
+
+  //   return activitiesProfile!.getBookmarkedActivities();
+  // }
+
+  // List<ActivityPlanModel> getBookmarkedActivitiesSync() {
+  //   if (activitiesProfile == null) {
+  //     throw Exception("Activities profile is not initialized");
+  //   }
+
+  //   return activitiesProfile!.getBookmarkedActivitiesSync();
+  // }
+
+  Future<void> updateBookmarkedActivity({
+    required String activityId,
+    required String newActivityId,
+  }) async {
+    if (activitiesProfile == null) {
+      throw Exception("Activities profile is not initialized");
+    }
+
+    activitiesProfile!.removeBookmark(activityId);
+    activitiesProfile!.addBookmark(newActivityId);
+    await _savePublicProfileUpdate(
+      PangeaEventTypes.profileActivities,
+      activitiesProfile!.toJson(),
+    );
+  }
+
+  Future<void> removeBookmarkedActivity({
+    required String activityId,
+  }) async {
+    if (activitiesProfile == null) {
+      throw Exception("Activities profile is not initialized");
+    }
+
+    activitiesProfile!.removeBookmark(activityId);
+    await _savePublicProfileUpdate(
+      PangeaEventTypes.profileActivities,
+      activitiesProfile!.toJson(),
+    );
+  }
+
+  bool isBookmarked(String id) => activitiesProfile?.isBookmarked(id) ?? false;
+
+  Future<AnalyticsProfileModel> getPublicAnalyticsProfile(
+    String userId,
+  ) async {
     try {
       if (userId == BotName.byEnvironment) {
-        return PublicProfileModel();
+        return AnalyticsProfileModel();
       }
 
       final resp = await client.getUserProfile(userId);
-      return PublicProfileModel.fromJson(resp.additionalProperties);
+      return AnalyticsProfileModel.fromJson(resp.additionalProperties);
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,
@@ -351,7 +522,7 @@ class UserController extends BaseController {
           userId: userId,
         },
       );
-      return PublicProfileModel();
+      return AnalyticsProfileModel();
     }
   }
 }

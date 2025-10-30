@@ -1,243 +1,244 @@
 import 'package:flutter/material.dart';
 
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
+import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
-import 'package:fluffychat/pangea/lemmas/construct_xp_widget.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_reaction_picker.dart';
 import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_widget.dart';
-import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/token_info_feedback/token_info_feedback_button.dart';
+import 'package:fluffychat/pangea/token_info_feedback/token_info_feedback_request.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_builder.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/new_word_overlay.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class WordZoomWidget extends StatelessWidget {
-  final PangeaToken token;
-  final PangeaMessageEvent messageEvent;
-  final MessageOverlayController overlayController;
+  final PangeaTokenText token;
+  final ConstructIdentifier construct;
+
+  final String langCode;
+  final VoidCallback? onClose;
+
+  final bool wordIsNew;
+  final VoidCallback? onDismissNewWordOverlay;
+  final Event? event;
+
+  final TokenInfoFeedbackRequestData? requestData;
+  final PangeaMessageEvent? pangeaMessageEvent;
 
   const WordZoomWidget({
     super.key,
     required this.token,
-    required this.messageEvent,
-    required this.overlayController,
+    required this.construct,
+    required this.langCode,
+    this.onClose,
+    this.wordIsNew = false,
+    this.onDismissNewWordOverlay,
+    this.event,
+    this.requestData,
+    this.pangeaMessageEvent,
   });
 
-  PangeaToken get _selectedToken => overlayController.selectedToken!;
+  String get transformTargetId => "word-zoom-card-${token.uniqueKey}";
 
-  bool get hasEmojiActivity =>
-      overlayController.practiceSelection?.hasActiveActivityByToken(
-            ActivityTypeEnum.emoji,
-            _selectedToken,
-          ) ==
-          true &&
-      overlayController.hideWordCardContent;
+  LayerLink get layerLink =>
+      MatrixState.pAnyState.layerLinkAndKey(transformTargetId).link;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(12.0),
-      constraints: const BoxConstraints(
-        minHeight: AppConfig.toolbarMinHeight - 8,
-        maxHeight: AppConfig.toolbarMaxHeight - 8,
-        maxWidth: AppConfig.toolbarMinWidth,
-      ),
-      child: SingleChildScrollView(
-        child: Column(
-          spacing: 12.0,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: 24.0,
-                  height: 24.0,
-                  child: MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () => overlayController.updateSelectedSpan(
-                        token.text,
-                      ),
-                      child: const Icon(
-                        Icons.close,
-                        size: 16.0,
-                      ),
-                    ),
-                  ),
-                ),
-                Flexible(
-                  child: Text(
-                    token.text.content,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 32.0,
-                      fontWeight: FontWeight.w600,
-                      height: 1.2,
-                      color: Theme.of(context).brightness == Brightness.light
-                          ? AppConfig.yellowDark
-                          : AppConfig.yellowLight,
-                    ),
-                  ),
-                ),
-                ConstructXpWidget(
-                  id: token.vocabConstructID,
-                  onTap: () => showDialog<AnalyticsPopupWrapper>(
-                    context: context,
-                    builder: (context) => AnalyticsPopupWrapper(
-                      constructZoom: token.vocabConstructID,
-                      view: ConstructTypeEnum.vocab,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            LemmaMeaningBuilder(
-              langCode: messageEvent.messageDisplayLangCode,
-              constructId: token.vocabConstructID,
-              builder: (context, controller) {
-                if (controller.editMode) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(
-                          token.vocabConstructID.lemma,
-                          token.vocabConstructID.category,
-                        )}",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontStyle: FontStyle.italic),
-                      ),
-                      const SizedBox(height: 10),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: TextField(
-                          minLines: 1,
-                          maxLines: 3,
-                          controller: controller.controller,
-                          decoration: InputDecoration(
-                            hintText: controller.lemmaInfo?.meaning,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () => controller.toggleEditMode(false),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                            ),
-                            child: Text(L10n.of(context).cancel),
-                          ),
-                          const SizedBox(width: 10),
-                          ElevatedButton(
-                            onPressed: () => controller.controller.text !=
-                                        controller.lemmaInfo?.meaning &&
-                                    controller.controller.text.isNotEmpty
-                                ? controller.editLemmaMeaning(
-                                    controller.controller.text,
-                                  )
-                                : null,
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                            ),
-                            child: Text(L10n.of(context).saveChanges),
-                          ),
-                        ],
-                      ),
-                    ],
-                  );
-                }
+    final bool? subscribed =
+        MatrixState.pangeaController.subscriptionController.isSubscribed;
+    final overlayColor = Theme.of(context).scaffoldBackgroundColor;
 
-                return Column(
-                  spacing: 12.0,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (MatrixState
-                        .pangeaController.languageController.showTrancription)
-                      PhoneticTranscriptionWidget(
-                        text: token.text.content,
-                        textLanguage: PLanguageStore.byLangCode(
-                              messageEvent.messageDisplayLangCode,
-                            ) ??
-                            LanguageModel.unknown,
-                        style: const TextStyle(fontSize: 14.0),
-                        iconSize: 24.0,
-                      )
-                    else
-                      WordAudioButton(
-                        text: token.text.content,
-                        uniqueID: "lemma-content-${token.text.content}",
-                        langCode: messageEvent.messageDisplayLangCode,
-                        iconSize: 24.0,
-                      ),
-                    LemmaReactionPicker(
-                      cId: _selectedToken.vocabConstructID,
-                      controller: overlayController.widget.chatController,
-                    ),
-                    if (controller.error != null)
-                      Text(
-                        L10n.of(context).oopsSomethingWentWrong,
-                        textAlign: TextAlign.center,
-                      )
-                    else if (controller.isLoading ||
-                        controller.lemmaInfo == null)
-                      const CircularProgressIndicator.adaptive()
-                    else
-                      GestureDetector(
-                        onLongPress: () => controller.toggleEditMode(true),
-                        onDoubleTap: () => controller.toggleEditMode(true),
-                        child: token.lemma.text == token.text.content
-                            ? Text(
-                                controller.lemmaInfo!.meaning,
-                                style: const TextStyle(fontSize: 14.0),
-                                textAlign: TextAlign.center,
-                              )
-                            : RichText(
-                                text: TextSpan(
-                                  style: DefaultTextStyle.of(context)
-                                      .style
-                                      .copyWith(
-                                        fontSize: 14.0,
-                                      ),
-                                  children: [
-                                    TextSpan(text: token.lemma.text),
-                                    const WidgetSpan(
-                                      child: SizedBox(width: 8.0),
-                                    ),
-                                    const TextSpan(text: ":"),
-                                    const WidgetSpan(
-                                      child: SizedBox(width: 8.0),
-                                    ),
-                                    TextSpan(
-                                      text: controller.lemmaInfo!.meaning,
-                                    ),
-                                  ],
+    final Widget content = subscribed != null && !subscribed
+        ? const MessageUnsubscribedCard()
+        : Stack(
+            children: [
+              Container(
+                height: AppConfig.toolbarMaxHeight - 8,
+                padding: const EdgeInsets.all(12.0),
+                constraints: const BoxConstraints(
+                  maxWidth: AppConfig.toolbarMinWidth,
+                ),
+                child: CompositedTransformTarget(
+                  link: layerLink,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      spacing: 12.0,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            onClose != null
+                                ? IconButton(
+                                    icon: const Icon(Icons.close),
+                                    onPressed: onClose,
+                                  )
+                                : const SizedBox(
+                                    width: 40.0,
+                                    height: 40.0,
+                                  ),
+                            Flexible(
+                              child: Container(
+                                constraints: const BoxConstraints(
+                                  minHeight: 40.0,
+                                ),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  token.content,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 28.0,
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.2,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? AppConfig.yellowDark
+                                        : AppConfig.yellowLight,
+                                  ),
                                 ),
                               ),
-                      ),
-                  ],
-                );
-              },
+                            ),
+                            requestData != null && pangeaMessageEvent != null
+                                ? TokenInfoFeedbackButton(
+                                    requestData: requestData!,
+                                    langCode: langCode,
+                                    event: pangeaMessageEvent!,
+                                    onUpdate: () {
+                                      // close the zoom when updating
+                                      if (onClose != null) {
+                                        onClose!();
+                                      }
+                                    },
+                                  )
+                                : const SizedBox(
+                                    width: 40.0,
+                                    height: 40.0,
+                                  ),
+                          ],
+                        ),
+                        LemmaMeaningBuilder(
+                          langCode: langCode,
+                          constructId: construct,
+                          builder: (context, controller) {
+                            return Column(
+                              spacing: 12.0,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                if (MatrixState.pangeaController
+                                    .languageController.showTranscription)
+                                  PhoneticTranscriptionWidget(
+                                    text: token.content,
+                                    textLanguage: PLanguageStore.byLangCode(
+                                          langCode,
+                                        ) ??
+                                        LanguageModel.unknown,
+                                    style: const TextStyle(fontSize: 14.0),
+                                    iconSize: 24.0,
+                                  )
+                                else
+                                  WordAudioButton(
+                                    text: token.content,
+                                    uniqueID: "lemma-content-${token.content}",
+                                    langCode: langCode,
+                                    iconSize: 24.0,
+                                  ),
+                                LemmaReactionPicker(
+                                  emojis: controller.lemmaInfo?.emoji ?? [],
+                                  loading: controller.isLoading,
+                                  event: event,
+                                ),
+                                if (controller.error != null)
+                                  ErrorIndicator(
+                                    message: L10n.of(context)
+                                        .errorFetchingDefinition,
+                                    style: const TextStyle(fontSize: 14.0),
+                                  )
+                                else if (controller.isLoading ||
+                                    controller.lemmaInfo == null)
+                                  const CircularProgressIndicator.adaptive()
+                                else
+                                  construct.lemma.toLowerCase() ==
+                                          token.content.toLowerCase()
+                                      ? Text(
+                                          controller.lemmaInfo!.meaning,
+                                          style:
+                                              const TextStyle(fontSize: 14.0),
+                                          textAlign: TextAlign.center,
+                                        )
+                                      : RichText(
+                                          text: TextSpan(
+                                            style: DefaultTextStyle.of(context)
+                                                .style
+                                                .copyWith(
+                                                  fontSize: 14.0,
+                                                ),
+                                            children: [
+                                              TextSpan(text: construct.lemma),
+                                              const WidgetSpan(
+                                                child: SizedBox(width: 8.0),
+                                              ),
+                                              const TextSpan(text: ":"),
+                                              const WidgetSpan(
+                                                child: SizedBox(width: 8.0),
+                                              ),
+                                              TextSpan(
+                                                text: controller
+                                                    .lemmaInfo!.meaning,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                              ],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              wordIsNew
+                  ? NewWordOverlay(
+                      key: ValueKey(transformTargetId),
+                      overlayColor: overlayColor,
+                      transformTargetId: transformTargetId,
+                      onDismiss: onDismissNewWordOverlay,
+                    )
+                  : const SizedBox.shrink(),
+            ],
+          );
+
+    return Material(
+      type: MaterialType.transparency,
+      child: SelectionArea(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            border: Border.all(
+              color: Theme.of(context).colorScheme.primary,
+              width: 4.0,
             ),
-          ],
+            borderRadius: const BorderRadius.all(
+              Radius.circular(AppConfig.borderRadius),
+            ),
+          ),
+          height: AppConfig.toolbarMaxHeight,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              content,
+            ],
+          ),
         ),
       ),
     );

@@ -10,7 +10,7 @@ extension EventsRoomExtension on Room {
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;
       final Room? room = client.getRoomById(child.roomId!);
-      if (room == null || room.isAnalyticsRoom) continue;
+      if (room == null || room.isHiddenRoom) continue;
       try {
         await room.leave();
       } catch (e, s) {
@@ -44,7 +44,7 @@ extension EventsRoomExtension on Room {
   }) async {
     try {
       Sentry.addBreadcrumb(Breadcrumb(data: content));
-      if (parentEventId.contains("web")) {
+      if (parentEventId.contains("Pangea Chat")) {
         debugger(when: kDebugMode);
         Sentry.addBreadcrumb(
           Breadcrumb(
@@ -205,13 +205,17 @@ extension EventsRoomExtension on Room {
     String? tempEventId,
   }) {
     // if (parseCommands) {
-    //   return client.parseAndRunCommand(this, message,
-    //       inReplyTo: inReplyTo,
-    //       editEventId: editEventId,
-    //       txid: txid,
-    //       threadRootEventId: threadRootEventId,
-    //       threadLastEventId: threadLastEventId);
+    //   return client.parseAndRunCommand(
+    //     this,
+    //     message,
+    //     inReplyTo: inReplyTo,
+    //     editEventId: editEventId,
+    //     txid: txid,
+    //     threadRootEventId: threadRootEventId,
+    //     threadLastEventId: threadLastEventId,
+    //   );
     // }
+
     final event = <String, dynamic>{
       'msgtype': msgtype,
       'body': message,
@@ -243,6 +247,7 @@ extension EventsRoomExtension on Room {
         event['body'],
         getEmotePacks: () => getImagePacksFlat(ImagePackUsage.emoticon),
         getMention: getMention,
+        convertLinebreaks: client.convertLinebreaksInFormatting,
       );
       // if the decoded html is the same as the body, there is no need in sending a formatted message
       if (HtmlUnescape().convert(html.replaceAll(RegExp(r'<br />\n?'), '\n')) !=
@@ -268,78 +273,6 @@ extension EventsRoomExtension on Room {
       threadRootEventId: threadRootEventId,
       threadLastEventId: threadLastEventId,
     );
-  }
-
-  Future<void> sendActivityPlan(
-    ActivityPlanModel activity, {
-    Uint8List? avatar,
-    String? filename,
-  }) async {
-    BookmarkedActivitiesRepo.save(activity);
-
-    String? imageURL = activity.imageURL;
-    final eventId = await pangeaSendTextEvent(
-      activity.markdown,
-      messageTag: ModelKey.messageTagActivityPlan,
-    );
-
-    Uint8List? bytes = avatar;
-    if (imageURL != null && bytes == null) {
-      try {
-        final resp = await http
-            .get(Uri.parse(imageURL))
-            .timeout(const Duration(seconds: 5));
-        bytes = resp.bodyBytes;
-      } catch (e, s) {
-        ErrorHandler.logError(
-          e: e,
-          s: s,
-          data: {
-            "avatarURL": imageURL,
-          },
-        );
-      }
-    }
-
-    if (bytes != null && imageURL == null) {
-      final url = await client.uploadContent(
-        bytes,
-        filename: filename,
-      );
-      imageURL = url.toString();
-    }
-
-    MatrixFile? file;
-    if (filename != null && bytes != null) {
-      file = MatrixFile(
-        bytes: bytes,
-        name: filename,
-      );
-    }
-
-    if (file != null) {
-      final content = <String, dynamic>{
-        'msgtype': file.msgType,
-        'body': file.name,
-        'filename': file.name,
-        'url': imageURL,
-        ModelKey.messageTags: ModelKey.messageTagActivityPlan,
-      };
-      await sendEvent(content);
-    }
-
-    if (canChangeStateEvent(PangeaEventTypes.activityPlan)) {
-      await client.setRoomStateWithKey(
-        id,
-        PangeaEventTypes.activityPlan,
-        "",
-        activity.toJson(),
-      );
-
-      if (eventId != null && canChangeStateEvent(EventTypes.RoomPinnedEvents)) {
-        await setPinnedEvents([eventId]);
-      }
-    }
   }
 
   /// Get a list of events in the room that are of type [PangeaEventTypes.construct]
@@ -388,5 +321,68 @@ extension EventsRoomExtension on Room {
     }
 
     return resp.chunk.map((e) => Event.fromMatrixEvent(e, this)).toList();
+  }
+
+  Future<List<Event>> getAllEvents({String? since}) async {
+    final GetRoomEventsResponse initalResp =
+        await client.getRoomEvents(id, Direction.b);
+
+    if (initalResp.end == null) return [];
+    String? nextStartToken = initalResp.end;
+    List<MatrixEvent> allMatrixEvents = initalResp.chunk;
+    while (nextStartToken != null) {
+      final GetRoomEventsResponse resp = await client.getRoomEvents(
+        id,
+        Direction.b,
+        from: nextStartToken,
+      );
+      final chunkMessages = resp.chunk;
+      allMatrixEvents.addAll(chunkMessages);
+      resp.end != nextStartToken
+          ? nextStartToken = resp.end
+          : nextStartToken = null;
+
+      if (since != null && chunkMessages.any((e) => e.eventId == since)) {
+        break;
+      }
+    }
+
+    allMatrixEvents = allMatrixEvents.reversed.toList();
+    if (since != null) {
+      final index = allMatrixEvents.indexWhere((e) => e.eventId == since);
+      if (index != -1) {
+        allMatrixEvents = allMatrixEvents.sublist(index + 1);
+      }
+    }
+
+    final List<Event> allEvents = allMatrixEvents
+        .map((MatrixEvent message) => Event.fromMatrixEvent(message, this))
+        .toList();
+
+    return allEvents;
+  }
+
+  List<PangeaMessageEvent> getPangeaMessageEvents(
+    List<Event> events,
+    Timeline timeline, {
+    List<String> msgtypes = const [MessageTypes.Text],
+  }) {
+    final List<PangeaMessageEvent> allPangeaMessages = events
+        .where(
+          (Event event) =>
+              event.type == EventTypes.Message &&
+              msgtypes.contains(event.content['msgtype']),
+        )
+        .map(
+          (Event message) => PangeaMessageEvent(
+            event: message,
+            timeline: timeline,
+            ownMessage: client.userID == message.senderId,
+          ),
+        )
+        .cast<PangeaMessageEvent>()
+        .toList();
+
+    return allPangeaMessages;
   }
 }

@@ -11,6 +11,8 @@ import 'package:fluffychat/widgets/matrix.dart';
 class ConstructSummary {
   final int upperLevel;
   final int lowerLevel;
+  int? levelVocabConstructs;
+  int? levelGrammarConstructs;
   final String language;
   final String textSummary;
   final int writingConstructScore;
@@ -21,6 +23,8 @@ class ConstructSummary {
   ConstructSummary({
     required this.upperLevel,
     required this.lowerLevel,
+    this.levelVocabConstructs,
+    this.levelGrammarConstructs,
     required this.language,
     required this.textSummary,
     required this.writingConstructScore,
@@ -33,6 +37,8 @@ class ConstructSummary {
     return {
       'upper_level': upperLevel,
       'lower_level': lowerLevel,
+      'level_grammar_constructs': levelGrammarConstructs,
+      'level_vocab_constructs': levelVocabConstructs,
       'language': language,
       'text_summary': textSummary,
       'writing_construct_score': writingConstructScore,
@@ -46,6 +52,8 @@ class ConstructSummary {
     return ConstructSummary(
       upperLevel: json['upper_level'],
       lowerLevel: json['lower_level'],
+      levelGrammarConstructs: json['level_grammar_constructs'],
+      levelVocabConstructs: json['level_vocab_constructs'],
       language: json['language'],
       textSummary: json['text_summary'],
       writingConstructScore: json['writing_construct_score'],
@@ -58,15 +66,17 @@ class ConstructSummary {
 
 class ConstructSummaryRequest {
   final List<OneConstructUse> constructs;
-  final List<String?>? constructUseMessageContentBodies;
-  final String language;
+  final List<Map<String, dynamic>> messages;
+  final String userL1;
+  final String userL2;
   final int upperLevel;
   final int lowerLevel;
 
   ConstructSummaryRequest({
     required this.constructs,
-    this.constructUseMessageContentBodies,
-    required this.language,
+    required this.messages,
+    required this.userL1,
+    required this.userL2,
     required this.upperLevel,
     required this.lowerLevel,
   });
@@ -74,24 +84,13 @@ class ConstructSummaryRequest {
   Map<String, dynamic> toJson() {
     return {
       'constructs': constructs.map((construct) => construct.toJson()).toList(),
-      'construct_use_message_content_bodies': constructUseMessageContentBodies,
-      'language': language,
+      'msgs': messages,
+      'user_l1': userL1,
+      'user_l2': userL2,
+      'language': userL1,
       'upper_level': upperLevel,
       'lower_level': lowerLevel,
     };
-  }
-
-  factory ConstructSummaryRequest.fromJson(Map<String, dynamic> json) {
-    return ConstructSummaryRequest(
-      constructs: (json['constructs'] as List)
-          .map((construct) => OneConstructUse.fromJson(construct))
-          .toList(),
-      constructUseMessageContentBodies:
-          List<String>.from(json['construct_use_message_content_bodies']),
-      language: json['language'],
-      upperLevel: json['upper_level'],
-      lowerLevel: json['lower_level'],
-    );
   }
 }
 

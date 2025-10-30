@@ -24,7 +24,7 @@ class ArchiveController extends State<Archive> {
     // #Pangea
     //return archive = await Matrix.of(context).client.loadArchive();
     return archive = (await Matrix.of(context).client.loadArchive())
-        .where((e) => (!e.isSpace && !e.isAnalyticsRoom))
+        .where((e) => (!e.isSpace && !e.isHiddenRoom))
         .toList();
     // Pangea#
   }

@@ -42,6 +42,9 @@ enum SpaceAnalyticsSummaryEnum {
 
   // list morph > 500 XP
   listMorphHugeXP,
+
+  /// Number of completed activities
+  numCompletedActivities,
 }
 
 extension AnalyticsSummaryEnumExtension on SpaceAnalyticsSummaryEnum {
@@ -95,6 +98,8 @@ extension AnalyticsSummaryEnumExtension on SpaceAnalyticsSummaryEnum {
         return l10n.numCorrectChoices;
       case SpaceAnalyticsSummaryEnum.numChoicesIncorrect:
         return l10n.numIncorrectChoices;
+      case SpaceAnalyticsSummaryEnum.numCompletedActivities:
+        return l10n.numCompletedActivities;
     }
   }
 }

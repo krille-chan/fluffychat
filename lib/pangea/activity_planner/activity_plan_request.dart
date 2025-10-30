@@ -1,4 +1,4 @@
-import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
+import 'package:fluffychat/pangea/activity_generator/media_enum.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 
@@ -6,6 +6,7 @@ class ActivityPlanRequest {
   final String topic;
   final String mode;
   final String objective;
+  final String location;
   final MediaEnum media;
   LanguageLevelTypeEnum cefrLevel;
   final String languageOfInstructions;
@@ -21,6 +22,7 @@ class ActivityPlanRequest {
     required this.cefrLevel,
     required this.languageOfInstructions,
     required this.targetLanguage,
+    this.location = "any",
     this.count = 3,
     required this.numberOfParticipants,
   });
@@ -36,6 +38,7 @@ class ActivityPlanRequest {
       ModelKey.activityRequestTargetLanguage: targetLanguage,
       ModelKey.activityRequestCount: count,
       ModelKey.activityRequestNumberOfParticipants: numberOfParticipants,
+      ModelKey.activityPlanLocation: location,
     };
   }
 
@@ -56,6 +59,7 @@ class ActivityPlanRequest {
         count: json[ModelKey.activityRequestCount],
         numberOfParticipants:
             json[ModelKey.activityRequestNumberOfParticipants],
+        location: json[ModelKey.activityPlanLocation] ?? "any",
       );
 
   String get storageKey =>
@@ -73,6 +77,7 @@ class ActivityPlanRequest {
         other.cefrLevel == cefrLevel &&
         other.languageOfInstructions == languageOfInstructions &&
         other.targetLanguage == targetLanguage &&
+        other.location == location &&
         other.count == count &&
         other.numberOfParticipants == numberOfParticipants;
   }
@@ -87,5 +92,6 @@ class ActivityPlanRequest {
       languageOfInstructions.hashCode ^
       targetLanguage.hashCode ^
       count.hashCode ^
+      location.hashCode ^
       numberOfParticipants.hashCode;
 }

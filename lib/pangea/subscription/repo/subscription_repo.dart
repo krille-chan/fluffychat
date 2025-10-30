@@ -91,7 +91,6 @@ class SubscriptionRepo {
   }
 
   static Future<RCSubscriptionResponseModel> getCurrentSubscriptionInfo(
-    String? userId,
     List<SubscriptionDetails>? allProducts,
   ) async {
     final Requests req = Requests(

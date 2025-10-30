@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:csv/csv.dart';
 import 'package:excel/excel.dart';
+import 'package:intl/intl.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -13,9 +15,11 @@ import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
-import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
+import 'package:fluffychat/pangea/download/download_file_util.dart';
+import 'package:fluffychat/pangea/download/download_type_enum.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
@@ -49,6 +53,9 @@ class AnalyticsDownloadDialogState extends State<AnalyticsDownloadDialog> {
   }
 
   Future<void> _downloadAnalytics() async {
+    List<AnalyticsSummaryModel> vocabSummary;
+    List<AnalyticsSummaryModel> morphSummary;
+
     try {
       setState(() {
         _downloading = true;
@@ -56,22 +63,8 @@ class AnalyticsDownloadDialogState extends State<AnalyticsDownloadDialog> {
         _error = null;
       });
 
-      final vocabSummary = await _getVocabAnalytics();
-      final morphSummary = await _getMorphAnalytics();
-
-      final content = _getExcelFileContent({
-        ConstructTypeEnum.vocab: vocabSummary,
-        ConstructTypeEnum.morph: morphSummary,
-      });
-
-      final fileName =
-          "analytics_${MatrixState.pangeaController.matrixState.client.userID?.localpart}_${DateTime.now().toIso8601String()}.${_downloadType == DownloadType.xlsx ? 'xlsx' : 'csv'}";
-
-      await downloadFile(
-        content,
-        fileName,
-        _downloadType,
-      );
+      vocabSummary = await _getVocabAnalytics();
+      morphSummary = await _getMorphAnalytics();
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,
@@ -80,12 +73,75 @@ class AnalyticsDownloadDialogState extends State<AnalyticsDownloadDialog> {
           "downloadType": _downloadType,
         },
       );
-      _error = e.toString();
+
+      if (mounted) {
+        setState(() {
+          _downloading = false;
+          _error = L10n.of(context).errorProcessAnalytics;
+        });
+      }
+      return;
+    }
+
+    try {
+      if (_downloadType == DownloadType.csv) {
+        final vocabContent = _getCSVFileContent(
+          ConstructTypeEnum.vocab,
+          vocabSummary,
+        );
+
+        final morphContent = _getCSVFileContent(
+          ConstructTypeEnum.morph,
+          morphSummary,
+        );
+
+        final vocabFileName =
+            "analytics_vocab_${MatrixState.pangeaController.matrixState.client.userID?.localpart}_${DateFormat('yyyy-MM-dd-hh:mm:ss').format(DateTime.now())}.csv";
+
+        final morphFileName =
+            "analytics_morph_${MatrixState.pangeaController.matrixState.client.userID?.localpart}_${DateFormat('yyyy-MM-dd-hh:mm:ss').format(DateTime.now())}.csv";
+
+        final futures = [
+          DownloadUtil.downloadFile(
+            vocabContent,
+            vocabFileName,
+            _downloadType,
+          ),
+          DownloadUtil.downloadFile(
+            morphContent,
+            morphFileName,
+            _downloadType,
+          ),
+        ];
+
+        await Future.wait(futures);
+      } else {
+        final content = _getExcelFileContent({
+          ConstructTypeEnum.vocab: vocabSummary,
+          ConstructTypeEnum.morph: morphSummary,
+        });
+
+        final fileName =
+            "analytics_${MatrixState.pangeaController.matrixState.client.userID?.localpart}_${DateFormat('yyyy-MM-dd-hh:mm:ss').format(DateTime.now())}.xlsx'}";
+
+        await DownloadUtil.downloadFile(
+          content,
+          fileName,
+          _downloadType,
+        );
+      }
+      _downloaded = true;
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "downloadType": _downloadType,
+        },
+      );
+      _error = L10n.of(context).errorDownloading;
     } finally {
-      setState(() {
-        _downloading = false;
-        _downloaded = true;
-      });
+      if (mounted) setState(() => _downloading = false);
     }
   }
 
@@ -292,6 +348,37 @@ class AnalyticsDownloadDialogState extends State<AnalyticsDownloadDialog> {
     return excel.encode() ?? [];
   }
 
+  String _getCSVFileContent(
+    ConstructTypeEnum type,
+    List<AnalyticsSummaryModel> summaries,
+  ) {
+    final values = type == ConstructTypeEnum.vocab
+        ? AnalyticsSummaryEnum.vocabValues
+        : AnalyticsSummaryEnum.morphValues;
+
+    final List<List<dynamic>> rows = [];
+    final headerRow = [];
+    for (final key in values) {
+      headerRow.add(key.header(context));
+    }
+
+    rows.add(headerRow);
+    for (final summary in summaries) {
+      final List<dynamic> row = [];
+      for (int i = 0; i < values.length; i++) {
+        final key = values[i];
+        final value = summary.getValue(key);
+        row.add(
+          value is List<String> ? value.map((v) => "\"$v\"").join(", ") : value,
+        );
+      }
+      rows.add(row);
+    }
+
+    final String fileString = const ListToCsvConverter().convert(rows);
+    return fileString;
+  }
+
   List<CellValue> _formatExcelRow(
     AnalyticsSummaryModel summary,
     ConstructTypeEnum type,
@@ -376,7 +463,9 @@ class AnalyticsDownloadDialogState extends State<AnalyticsDownloadDialog> {
               child: _error != null
                   ? Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(L10n.of(context).oopsSomethingWentWrong),
+                      child: ErrorIndicator(
+                        message: _error!,
+                      ),
                     )
                   : const SizedBox(),
             ),

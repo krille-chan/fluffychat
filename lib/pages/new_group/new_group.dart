@@ -8,10 +8,10 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
+import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/spaces/utils/client_spaces_extension.dart';
 import 'package:fluffychat/utils/file_selector.dart';
@@ -40,10 +40,6 @@ class NewGroupController extends State<NewGroup> {
   // #Pangea
   // bool publicGroup = false;
   // bool groupCanBeFound = false;
-  ActivityPlanModel? selectedActivity;
-  Uint8List? selectedActivityImage;
-  String? selectedActivityImageFilename;
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final FocusNode focusNode = FocusNode();
 
@@ -69,22 +65,6 @@ class NewGroupController extends State<NewGroup> {
   // #Pangea
   // void setPublicGroup(bool b) =>
   //     setState(() => publicGroup = groupCanBeFound = b);
-
-  void setSelectedActivity(
-    ActivityPlanModel? activity,
-    Uint8List? image,
-    String? imageFilename,
-  ) {
-    setState(() {
-      selectedActivity = activity;
-      selectedActivityImage = image;
-      selectedActivityImageFilename = imageFilename;
-      if (avatar == null) {
-        avatar = image;
-        avatarUrl = null;
-      }
-    });
-  }
 
   @override
   void initState() {
@@ -142,19 +122,21 @@ class NewGroupController extends State<NewGroup> {
             RoomDefaults.defaultPowerLevels(
               Matrix.of(context).client.userID!,
             ),
-            if (widget.spaceId != null)
-              StateEvent(
-                type: EventTypes.RoomJoinRules,
-                content: {
-                  'join_rule': 'knock_restricted',
-                  'allow': [
-                    {
-                      "type": "m.room_membership",
-                      "room_id": widget.spaceId,
-                    }
-                  ],
-                },
-              ),
+            await Matrix.of(context).client.pangeaJoinRules(
+                  widget.spaceId != null
+                      ? 'knock_restricted'
+                      : JoinRules.public
+                          .toString()
+                          .replaceAll('JoinRules.', ''),
+                  allow: widget.spaceId != null
+                      ? [
+                          {
+                            "type": "m.room_membership",
+                            "room_id": widget.spaceId,
+                          }
+                        ]
+                      : null,
+                ),
             // Pangea#
           ],
           // #Pangea
@@ -175,25 +157,13 @@ class NewGroupController extends State<NewGroup> {
       try {
         final space = client.getRoomById(widget.spaceId!);
         await space?.addToSpace(room.id);
+        if (room.pangeaSpaceParents.isEmpty) {
+          await client.waitForRoomInSync(roomId);
+        }
       } catch (err) {
         ErrorHandler.logError(
           e: "Failed to add room to space",
           data: {"spaceId": widget.spaceId, "error": err},
-        );
-      }
-    }
-
-    if (selectedActivity != null) {
-      try {
-        await room.sendActivityPlan(
-          selectedActivity!,
-          avatar: selectedActivityImage,
-          filename: selectedActivityImageFilename,
-        );
-      } catch (err) {
-        ErrorHandler.logError(
-          e: "Failed to send activity plan",
-          data: {"roomId": roomId, "error": err},
         );
       }
     }
@@ -231,8 +201,7 @@ class NewGroupController extends State<NewGroup> {
           announcementsChatName: L10n.of(context).announcements,
           visibility: sdk.Visibility.private,
           joinRules: sdk.JoinRules.knock,
-          avatar: avatar,
-          avatarUrl: avatarUrl,
+          avatarUrl: avatarUrl.toString(),
         );
 
     if (!mounted) return;
@@ -244,7 +213,7 @@ class NewGroupController extends State<NewGroup> {
       GoogleAnalytics.createClass(room.name, spaceCode);
     }
 
-    context.go("/rooms?spaceId=$spaceId");
+    context.go("/rooms/spaces/$spaceId/details");
     // Pangea#
   }
 

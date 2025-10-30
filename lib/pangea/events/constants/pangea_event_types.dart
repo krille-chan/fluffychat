@@ -26,6 +26,8 @@ class PangeaEventTypes {
   static const capacity = "pangea.capacity";
 
   static const activityPlan = "pangea.activity_plan";
+  static const activityRole = "pangea.activity_roles";
+  static const activitySummary = "pangea.activity_summary";
 
   static const userAge = "pangea.user_age";
 
@@ -44,4 +46,10 @@ class PangeaEventTypes {
 
   /// Profile information related to a user's analytics
   static const profileAnalytics = "pangea.analytics_profile";
+  static const profileActivities = "pangea.activities_profile";
+  static const activityRoomIds = "pangea.activity_room_ids";
+
+  /// Relates to course plans
+  static const coursePlan = "pangea.course_plan";
+  static const courseUser = "p.course_user";
 }

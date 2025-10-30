@@ -9,6 +9,7 @@ import 'package:matrix/matrix.dart';
 import 'package:matrix/src/utils/markdown.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/choreographer/event_wrappers/pangea_choreo_event.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
@@ -76,15 +77,7 @@ class RepresentationEvent {
 
   List<PangeaToken>? get tokens {
     if (_tokens != null) return _tokens!.tokens;
-
-    if (_event == null) {
-      // debugger(when: kDebugMode);
-      // ErrorHandler.logError(
-      //   m: '_event and _tokens both null',
-      //   s: StackTrace.current,
-      // );
-      return null;
-    }
+    if (_event == null) return null;
 
     final Set<Event> tokenEvents = _event?.aggregatedEvents(
           timeline,
@@ -93,54 +86,7 @@ class RepresentationEvent {
         {};
 
     if (tokenEvents.isEmpty) return null;
-
-    if (tokenEvents.length > 1) {
-      // debugger(when: kDebugMode);
-      Sentry.addBreadcrumb(
-        Breadcrumb(
-          message:
-              'should not have more than one tokenEvent per representation ${_event?.eventId}',
-          data: {
-            "eventID": _event?.eventId,
-            "content": tokenEvents.map((e) => e.content).toString(),
-            "type": tokenEvents.map((e) => e.type).toString(),
-          },
-        ),
-      );
-    }
-
-    PangeaMessageTokens? storedTokens;
-    for (final tokenEvent in tokenEvents) {
-      final tokenPangeaEvent =
-          tokenEvent.getPangeaContent<PangeaMessageTokens>();
-      if (PangeaToken.reconstructText(tokenPangeaEvent.tokens) != text) {
-        Sentry.addBreadcrumb(
-          Breadcrumb(
-            message: 'Stored tokens do not match text for representation',
-            data: {
-              'text': text,
-              'tokens': tokenPangeaEvent.tokens,
-            },
-          ),
-        );
-        continue;
-      }
-      storedTokens = tokenPangeaEvent;
-      break;
-    }
-
-    if (storedTokens == null) {
-      ErrorHandler.logError(
-        e: "No tokens found for representation",
-        data: {
-          "event": _event?.toJson(),
-        },
-      );
-      return null;
-    }
-
-    _tokens = storedTokens;
-
+    _tokens = tokenEvents.last.getPangeaContent<PangeaMessageTokens>();
     return _tokens?.tokens;
   }
 
@@ -390,5 +336,23 @@ class RepresentationEvent {
             .cast<String>()
             .toList() ??
         [];
+  }
+
+  List<OneConstructUse> vocabAndMorphUses() {
+    if (tokens == null || tokens!.isEmpty) {
+      return [];
+    }
+
+    final metadata = ConstructUseMetaData(
+      roomId: parentMessageEvent.room.id,
+      timeStamp: parentMessageEvent.originServerTs,
+      eventId: parentMessageEvent.eventId,
+    );
+
+    return content.vocabAndMorphUses(
+      tokens: tokens!,
+      metadata: metadata,
+      choreo: choreo,
+    );
   }
 }

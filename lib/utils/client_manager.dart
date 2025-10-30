@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_vodozemac/flutter_vodozemac.dart' as vod;
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
@@ -29,25 +30,32 @@ abstract class ClientManager {
     bool initialize = true,
     required SharedPreferences store,
   }) async {
+    Logs().i('Getting clients from store');
+
     if (PlatformInfos.isLinux) {
       Hive.init((await getApplicationSupportDirectory()).path);
     } else {
       await Hive.initFlutter();
     }
+
     final clientNames = <String>{};
     try {
       final clientNamesList = store.getStringList(clientNamespace) ?? [];
+      Logs().i('Found client names in store: $clientNamesList');
       clientNames.addAll(clientNamesList);
     } catch (e, s) {
       Logs().w('Client names in store are corrupted', e, s);
       await store.remove(clientNamespace);
     }
     if (clientNames.isEmpty) {
+      Logs().i(
+        'No client names found, adding default client name ${PlatformInfos.clientName}',
+      );
       clientNames.add(PlatformInfos.clientName);
       await store.setStringList(clientNamespace, clientNames.toList());
     }
     final clients =
-        clientNames.map((name) => createClient(name, store)).toList();
+        await Future.wait(clientNames.map((name) => createClient(name, store)));
     if (initialize) {
       await Future.wait(
         clients.map(
@@ -85,6 +93,7 @@ abstract class ClientManager {
     String clientName,
     SharedPreferences store,
   ) async {
+    Logs().i('Adding client name $clientName to store');
     final clientNamesList = store.getStringList(clientNamespace) ?? [];
     clientNamesList.add(clientName);
     await store.setStringList(clientNamespace, clientNamesList);
@@ -101,9 +110,15 @@ abstract class ClientManager {
 
   static NativeImplementations get nativeImplementations => kIsWeb
       ? const NativeImplementationsDummy()
-      : NativeImplementationsIsolate(compute);
+      : NativeImplementationsIsolate(
+          compute,
+          vodozemacInit: () => vod.init(wasmPath: './assets/assets/vodozemac/'),
+        );
 
-  static Client createClient(String clientName, SharedPreferences store) {
+  static Future<Client> createClient(
+    String clientName,
+    SharedPreferences store,
+  ) async {
     final shareKeysWith = AppSettings.shareKeysWith.getItem(store);
     final enableSoftLogout = AppSettings.enableSoftLogout.getItem(store);
 
@@ -122,17 +137,23 @@ abstract class ClientManager {
         // #Pangea
         // The things in this list will be loaded in the first sync, without having
         // to postLoad to confirm that these state events are completely loaded
+        EventTypes.RoomPowerLevels,
+        EventTypes.RoomJoinRules,
         PangeaEventTypes.rules,
         PangeaEventTypes.botOptions,
         PangeaEventTypes.capacity,
-        EventTypes.RoomPowerLevels,
         PangeaEventTypes.userSetLemmaInfo,
-        EventTypes.RoomJoinRules,
         PangeaEventTypes.activityPlan,
+        PangeaEventTypes.activityRole,
+        PangeaEventTypes.activitySummary,
+        PangeaEventTypes.constructSummary,
+        PangeaEventTypes.activityRoomIds,
+        PangeaEventTypes.coursePlan,
+        PangeaEventTypes.courseUser,
         // Pangea#
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
-      databaseBuilder: flutterMatrixSdkDatabaseBuilder,
+      database: await flutterMatrixSdkDatabaseBuilder(clientName),
       supportedLoginTypes: {
         AuthenticationTypes.password,
         AuthenticationTypes.sso,
@@ -195,7 +216,10 @@ abstract class ClientManager {
 
     await flutterLocalNotificationsPlugin.initialize(
       const InitializationSettings(
-        android: AndroidInitializationSettings('notifications_icon'),
+        // #Pangea
+        // android: AndroidInitializationSettings('notifications_icon'),
+        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+        // Pangea#
         iOS: DarwinInitializationSettings(),
       ),
     );

@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'package:scroll_to_index/scroll_to_index.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_plan_message.dart';
-import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_user_summaries_widget.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -92,57 +90,47 @@ class ChatEventList extends StatelessWidget {
             }
 
             // Request history button or progress indicator:
-            if (i == events.length + 1) {
+            // #Pangea
+            // if (i == events.length + 1) {
+            if (i == events.length + 2) {
+              // Pangea#
               if (timeline.isRequestingHistory) {
-                // #Pangea
-                // return const Center(
-                //   child: CircularProgressIndicator.adaptive(strokeWidth: 2),
-                // );
-                return const Column(
-                  children: [
-                    SizedBox(height: AppConfig.toolbarMaxHeight),
-                    Center(
-                      child: CircularProgressIndicator.adaptive(strokeWidth: 2),
-                    ),
-                  ],
+                return const Center(
+                  child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                 );
-                // Pangea#
               }
               if (timeline.canRequestHistory) {
                 return Builder(
                   builder: (context) {
                     // #Pangea
-                    WidgetsBinding.instance
-                        .addPostFrameCallback((_) => controller.requestHistory);
-                    return Column(
-                      children: [
-                        const SizedBox(height: AppConfig.toolbarMaxHeight),
-                        Center(
-                          child: IconButton(
-                            onPressed: controller.requestHistory,
-                            icon: const Icon(Icons.refresh_outlined),
-                          ),
-                        ),
-                      ],
-                    );
                     // WidgetsBinding.instance
                     //     .addPostFrameCallback(controller.requestHistory);
-                    // return Center(
-                    //   child: IconButton(
-                    //     onPressed: controller.requestHistory,
-                    //     icon: const Icon(Icons.refresh_outlined),
-                    //   ),
-                    // );
+                    WidgetsBinding.instance.addPostFrameCallback(
+                      (_) => controller.requestHistory(),
+                    );
                     // Pangea#
+                    return Center(
+                      child: IconButton(
+                        onPressed: controller.requestHistory,
+                        icon: const Icon(Icons.refresh_outlined),
+                      ),
+                    );
                   },
                 );
               }
-              // #Pangea
-              // return const SizedBox.shrink();
-              return const SizedBox(height: AppConfig.toolbarMaxHeight);
-              // Pangea#
+              return const SizedBox.shrink();
             }
-            i--;
+
+            // #Pangea
+            if (i == 1) {
+              return ActivityUserSummaries(controller: controller);
+            }
+            // Pangea#
+
+            // #Pangea
+            // i--;
+            i = i - 2;
+            // Pangea#
 
             // The message at this index:
             final event = events[i];
@@ -154,66 +142,53 @@ class ChatEventList extends StatelessWidget {
               key: ValueKey(event.eventId),
               index: i,
               controller: controller.scrollController,
-              child:
-                  // #Pangea
-                  event.isActivityMessage
-                      ? ActivityPlanMessage(
-                          event,
-                          controller: controller,
-                          timeline: timeline,
-                          animateIn: animateIn,
-                          resetAnimateIn: () {
-                            controller.animateInEventIndex = null;
-                          },
-                          highlightMarker:
-                              controller.scrollToEventIdMarker == event.eventId,
-                          selected: controller.selectedEvents
-                              .any((e) => e.eventId == event.eventId),
-                        )
-                      :
-                      // Pangea#
-                      Message(
-                          event,
-                          animateIn: animateIn,
-                          resetAnimateIn: () {
-                            controller.animateInEventIndex = null;
-                          },
-                          onSwipe: () => controller.replyAction(replyTo: event),
-                          // #Pangea
-                          onInfoTab: (_) => {},
-                          // onInfoTab: controller.showEventInfo,
-                          // Pangea#
-                          onMention: () => controller.sendController.text +=
-                              '${event.senderFromMemoryOrFallback.mention} ',
-                          highlightMarker:
-                              controller.scrollToEventIdMarker == event.eventId,
-                          // #Pangea
-                          // onSelect: controller.onSelectMessage,
-                          onSelect: (_) {},
-                          // Pangea#
-                          scrollToEventId: (String eventId) =>
-                              controller.scrollToEventId(eventId),
-                          longPressSelect: controller.selectedEvents.isNotEmpty,
-                          // #Pangea
-                          immersionMode: controller.choreographer.immersionMode,
-                          controller: controller,
-                          isButton: event.eventId == controller.buttonEventID,
-                          // Pangea#
-                          selected: controller.selectedEvents
-                              .any((e) => e.eventId == event.eventId),
-                          timeline: timeline,
-                          displayReadMarker: i > 0 &&
-                              controller.readMarkerEventId == event.eventId,
-                          nextEvent:
-                              i + 1 < events.length ? events[i + 1] : null,
-                          previousEvent: i > 0 ? events[i - 1] : null,
-                          wallpaperMode: hasWallpaper,
-                          scrollController: controller.scrollController,
-                          colors: colors,
-                        ),
+              child: Message(
+                event,
+                animateIn: animateIn,
+                resetAnimateIn: () {
+                  controller.animateInEventIndex = null;
+                },
+                onSwipe: () => controller.replyAction(replyTo: event),
+                // #Pangea
+                onInfoTab: (_) => {},
+                // onInfoTab: controller.showEventInfo,
+                // Pangea#
+                onMention: () => controller.sendController.text +=
+                    '${event.senderFromMemoryOrFallback.mention} ',
+                highlightMarker:
+                    controller.scrollToEventIdMarker == event.eventId,
+                // #Pangea
+                // onSelect: controller.onSelectMessage,
+                onSelect: (_) {},
+                // Pangea#
+                scrollToEventId: (String eventId) =>
+                    controller.scrollToEventId(eventId),
+                longPressSelect: controller.selectedEvents.isNotEmpty,
+                // #Pangea
+                controller: controller,
+                isButton: event.eventId == controller.buttonEventID,
+                // Pangea#
+                selected: controller.selectedEvents
+                    .any((e) => e.eventId == event.eventId),
+                singleSelected:
+                    controller.selectedEvents.singleOrNull?.eventId ==
+                        event.eventId,
+                onEdit: () => controller.editSelectedEventAction(),
+                timeline: timeline,
+                displayReadMarker:
+                    i > 0 && controller.readMarkerEventId == event.eventId,
+                nextEvent: i + 1 < events.length ? events[i + 1] : null,
+                previousEvent: i > 0 ? events[i - 1] : null,
+                wallpaperMode: hasWallpaper,
+                scrollController: controller.scrollController,
+                colors: colors,
+              ),
             );
           },
-          childCount: events.length + 2,
+          // #Pangea
+          // childCount: events.length + 2,
+          childCount: events.length + 3,
+          // Pangea#
           findChildIndexCallback: (key) =>
               controller.findChildIndexCallback(key, thisEventsKeyMap),
         ),

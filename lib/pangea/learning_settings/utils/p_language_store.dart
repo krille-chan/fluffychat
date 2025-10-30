@@ -21,6 +21,12 @@ class PLanguageStore {
   List<LanguageModel> get targetOptions =>
       _langList.where((element) => element.l2).toList();
 
+  List<LanguageModel> get unlocalizedTargetOptions => _langList
+      .where(
+        (element) => element.l2 && element.langCode == element.langCodeShort,
+      )
+      .toList();
+
   List<LanguageModel> get baseOptions => _langList.toList();
 
   static Future<void> initialize({forceRefresh = false}) async {
@@ -42,7 +48,6 @@ class PLanguageStore {
       _langList = _langList.toSet().toList();
 
       _langList.sort((a, b) => a.displayName.compareTo(b.displayName));
-      _langList.insert(0, LanguageModel.multiLingual());
     } catch (err, stack) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -107,4 +112,19 @@ class PLanguageStore {
     }
     return null;
   }
+
+  static final List<String> rtlLanguageCodes = [
+    'ar',
+    'arc',
+    'dv',
+    'fa',
+    'ha',
+    'he',
+    'khw',
+    'ks',
+    'ku',
+    'ps',
+    'ur',
+    'yi',
+  ];
 }

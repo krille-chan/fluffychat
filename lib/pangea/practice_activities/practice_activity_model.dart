@@ -205,16 +205,19 @@ class PracticeActivityModel {
               xp: constructUseType.pointValue,
             ),
           ],
-          targetID: token.text.uniqueKey,
+          targetID: "message-token-${token.text.uniqueKey}-${event?.eventId}",
         ),
       );
     }
     if (isCorrect) {
       if (activityType == ActivityTypeEnum.emoji) {
-        // final allEmojis = ;
-
         choice.form.cId
-            .setUserLemmaInfo(UserSetLemmaInfo(emojis: [choice.choiceContent]))
+            .setEmojiWithXP(
+          emoji: choice.choiceContent,
+          isFromCorrectAnswer: true,
+          eventId: event?.eventId,
+          roomId: event?.room.id,
+        )
             .then((value) {
           callback();
         });

@@ -12,7 +12,7 @@ class LemmaEmojiChoiceItem extends StatefulWidget {
   });
 
   final String content;
-  final Function onTap;
+  final VoidCallback? onTap;
 
   @override
   LemmaEmojiChoiceItemState createState() => LemmaEmojiChoiceItemState();
@@ -45,12 +45,7 @@ class LemmaEmojiChoiceItemState extends State<LemmaEmojiChoiceItem> {
       child: InkWell(
         onHover: (isHovered) => setState(() => _isHovered = isHovered),
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-        onTap: () {
-          if (!mounted) {
-            return;
-          }
-          widget.onTap();
-        },
+        onTap: widget.onTap,
         child: Text(
           widget.content,
           style: Theme.of(context).textTheme.headlineSmall,

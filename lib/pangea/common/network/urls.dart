@@ -9,84 +9,84 @@ import 'package:fluffychat/pangea/common/config/environment.dart';
 ///
 /// https://api.staging.pangea.chat/api/v1/
 class PApiUrls {
-  static String choreoPrefix = "/choreo";
-  static String subscriptionPrefix = "/subscription";
-  static String accountPrefix = "/account";
+  static const String _choreoPrefix = "/choreo";
+  static const String _subscriptionPrefix = "/subscription";
 
-  static String get choreoEndpoint =>
-      "${Environment.choreoApi}${PApiUrls.choreoPrefix}";
-  static String get subscriptionEndpoint =>
-      "${Environment.choreoApi}${PApiUrls.subscriptionPrefix}";
-  static String get accountEndpoint =>
-      "${Environment.choreoApi}${PApiUrls.accountPrefix}";
+  static String get _choreoEndpoint =>
+      "${Environment.choreoApi}${PApiUrls._choreoPrefix}";
+  static String get _subscriptionEndpoint =>
+      "${Environment.choreoApi}${PApiUrls._subscriptionPrefix}";
 
   ///  ---------------------- Util --------------------------------------
-  static String appVersion = "${PApiUrls.choreoEndpoint}/version";
+  static String appVersion = "${PApiUrls._choreoEndpoint}/version";
 
   ///   ---------------------- Languages --------------------------------------
-  static String getLanguages = "${PApiUrls.choreoEndpoint}/languages_v2";
+  static String getLanguages = "${PApiUrls._choreoEndpoint}/languages_v2";
 
   ///   ---------------------- Users --------------------------------------
-  static String paymentLink = "${PApiUrls.subscriptionEndpoint}/payment_link";
-
-  ///   ---------------------- Conversation Partner -------------------------
-  /// PTODO: Migrate or remove
-  static String searchUserProfiles = "${PApiUrls.accountEndpoint}/search";
-
-  ///-------------------------------- choreo --------------------------
-  static String igc = "${PApiUrls.choreoEndpoint}/grammar";
+  static String paymentLink = "${PApiUrls._subscriptionEndpoint}/payment_link";
 
   static String languageDetection =
-      "${PApiUrls.choreoEndpoint}/language_detection";
+      "${PApiUrls._choreoEndpoint}/language_detection";
 
-  static String igcLite = "${PApiUrls.choreoEndpoint}/grammar_lite";
-  static String spanDetails = "${PApiUrls.choreoEndpoint}/span_details";
+  static String igcLite = "${PApiUrls._choreoEndpoint}/grammar_lite";
+  static String spanDetails = "${PApiUrls._choreoEndpoint}/span_details";
 
-  static String wordNet = "${PApiUrls.choreoEndpoint}/wordnet";
-  static String contextualizedTranslation =
-      "${PApiUrls.choreoEndpoint}/translation/contextual";
   static String simpleTranslation =
-      "${PApiUrls.choreoEndpoint}/translation/direct";
-  static String tokenize = "${PApiUrls.choreoEndpoint}/tokenize";
+      "${PApiUrls._choreoEndpoint}/translation/direct";
+  static String tokenize = "${PApiUrls._choreoEndpoint}/tokenize";
   static String contextualDefinition =
-      "${PApiUrls.choreoEndpoint}/contextual_definition";
-  static String similarity = "${PApiUrls.choreoEndpoint}/similarity";
-  static String topicInfo = "${PApiUrls.choreoEndpoint}/vocab_list";
+      "${PApiUrls._choreoEndpoint}/contextual_definition";
 
-  static String itFeedback = "${PApiUrls.choreoEndpoint}/translation/feedback";
+  static String firstStep = "${PApiUrls._choreoEndpoint}/it_initialstep";
 
-  static String firstStep = "${PApiUrls.choreoEndpoint}/it_initialstep";
-  static String subseqStep = "${PApiUrls.choreoEndpoint}/it_step";
-
-  static String textToSpeech = "${PApiUrls.choreoEndpoint}/text_to_speech";
-  static String speechToText = "${PApiUrls.choreoEndpoint}/speech_to_text";
+  static String textToSpeech = "${PApiUrls._choreoEndpoint}/text_to_speech";
+  static String speechToText = "${PApiUrls._choreoEndpoint}/speech_to_text";
+  static String phoneticTranscription =
+      "${PApiUrls._choreoEndpoint}/phonetic_transcription";
 
   static String messageActivityGeneration =
-      "${PApiUrls.choreoEndpoint}/practice";
+      "${PApiUrls._choreoEndpoint}/practice";
 
-  static String lemmaDictionary = "${PApiUrls.choreoEndpoint}/lemma_definition";
-  static String morphDictionary = "${PApiUrls.choreoEndpoint}/morph_meaning";
+  static String lemmaDictionary =
+      "${PApiUrls._choreoEndpoint}/lemma_definition";
+  static String morphDictionary = "${PApiUrls._choreoEndpoint}/morph_meaning";
 
-  static String activityPlanGeneration =
-      "${PApiUrls.choreoEndpoint}/activity_plan";
-  static String activityModeList = "${PApiUrls.choreoEndpoint}/modes";
-  static String objectiveList = "${PApiUrls.choreoEndpoint}/objectives";
-  static String topicList = "${PApiUrls.choreoEndpoint}/topics";
-  static String activityPlanSearch =
-      "${PApiUrls.choreoEndpoint}/activity_plan/search";
+  // static String activityPlan = "${PApiUrls._choreoEndpoint}/activity_plan";
+  // static String activityPlanGeneration =
+  //     "${PApiUrls._choreoEndpoint}/activity_plan/generate";
+  // static String activityPlanSearch =
+  //     "${PApiUrls._choreoEndpoint}/activity_plan/search";
+  // static String activityModeList = "${PApiUrls._choreoEndpoint}/modes";
+  // static String objectiveList = "${PApiUrls._choreoEndpoint}/objectives";
+  // static String topicList = "${PApiUrls._choreoEndpoint}/topics";
 
-  static String morphFeaturesAndTags = "${PApiUrls.choreoEndpoint}/morphs";
+  static String activitySummary =
+      "${PApiUrls._choreoEndpoint}/activity_summary";
+
+  static String activityFeedback =
+      "${PApiUrls._choreoEndpoint}/activity_plan/feedback";
+
+  static String tokenFeedback = "${PApiUrls._choreoEndpoint}/token/feedback";
+
+  static String morphFeaturesAndTags = "${PApiUrls._choreoEndpoint}/morphs";
   static String constructSummary =
-      "${PApiUrls.choreoEndpoint}/construct_summary";
+      "${PApiUrls._choreoEndpoint}/construct_summary";
+
+  ///--------------------------- course translations ---------------------------
+  static String getLocalizedCourse =
+      "${PApiUrls._choreoEndpoint}/course_plans/localize";
+  static String getLocalizedTopic =
+      "${PApiUrls._choreoEndpoint}/topics/localize";
+  static String getLocalizedActivity =
+      "${PApiUrls._choreoEndpoint}/activity_plan/localize";
 
   ///-------------------------------- revenue cat --------------------------
-  static String rcAppsChoreo = "${PApiUrls.subscriptionEndpoint}/app_ids";
+  static String rcAppsChoreo = "${PApiUrls._subscriptionEndpoint}/app_ids";
   static String rcProductsChoreo =
-      "${PApiUrls.subscriptionEndpoint}/all_products";
-  static String rcProductsTrial = "${PApiUrls.subscriptionEndpoint}/free_trial";
+      "${PApiUrls._subscriptionEndpoint}/all_products";
+  static String rcProductsTrial =
+      "${PApiUrls._subscriptionEndpoint}/free_trial";
 
-  static String rcSubscription = PApiUrls.subscriptionEndpoint;
-
-  static String phoneticTranscription =
-      "${PApiUrls.choreoEndpoint}/phonetic_transcription";
+  static String rcSubscription = PApiUrls._subscriptionEndpoint;
 }

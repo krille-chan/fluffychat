@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/status_msg_list.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
@@ -45,11 +44,11 @@ class LeaderboardParticipantListState
     return StreamBuilder(
       stream: client.onSync.stream.rateLimit(const Duration(seconds: 3)),
       builder: (context, snapshot) {
-        return LoadParticipantsUtil(
-          space: widget.space,
-          builder: (participantsLoader) {
-            final participants = participantsLoader
-                .filteredParticipants("")
+        return LoadParticipantsBuilder(
+          room: widget.space,
+          loadProfiles: true,
+          builder: (context, participantsLoader) {
+            final participants = participantsLoader.sortedParticipants
                 .where((p) => p.membership == Membership.join)
                 .toList();
 
@@ -72,7 +71,8 @@ class LeaderboardParticipantListState
                     itemCount: participants.length,
                     itemBuilder: (context, i) {
                       final user = participants[i];
-                      final publicProfile = participantsLoader.getPublicProfile(
+                      final publicProfile =
+                          participantsLoader.getAnalyticsProfile(
                         user.id,
                       );
 
@@ -148,30 +148,6 @@ class LeaderboardParticipantListState
           },
         );
       },
-    );
-  }
-}
-
-extension LeaderboardGradient on int {
-  LinearGradient? get leaderboardGradient {
-    final Color? color = this == 0
-        ? AppConfig.gold
-        : this == 1
-            ? Colors.grey[400]!
-            : this == 2
-                ? Colors.brown[400]!
-                : null;
-
-    if (color == null) return null;
-
-    return LinearGradient(
-      colors: [
-        color,
-        Colors.white,
-        color,
-      ],
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
     );
   }
 }

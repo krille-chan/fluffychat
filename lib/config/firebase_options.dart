@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
     projectId: 'pangea-chat-936ee',
     authDomain: 'pangea-chat-936ee.firebaseapp.com',
     databaseURL: 'https://pangea-chat-936ee-default-rtdb.firebaseio.com',
-    storageBucket: 'pangea-chat-936ee.appspot.com',
+    storageBucket: 'pangea-chat-936ee.firebasestorage.com',
     measurementId: 'G-FKP13VDEBX',
   );
 
@@ -62,7 +62,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '545984292675',
     projectId: 'pangea-chat-936ee',
     databaseURL: 'https://pangea-chat-936ee-default-rtdb.firebaseio.com',
-    storageBucket: 'pangea-chat-936ee.appspot.com',
+    storageBucket: 'pangea-chat-936ee.firebasestorage.com',
     androidClientId:
         '545984292675-2amsnoan1mt6lec1fld1a7eagu6gej7o.apps.googleusercontent.com',
   );
@@ -73,7 +73,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '545984292675',
     projectId: 'pangea-chat-936ee',
     databaseURL: 'https://pangea-chat-936ee-default-rtdb.firebaseio.com',
-    storageBucket: 'pangea-chat-936ee.appspot.com',
+    storageBucket: 'pangea-chat-936ee.firebasestorage.com',
     iosClientId:
         '545984292675-f5p76l3h9sibsonrct7a8l9ca3c69at0.apps.googleusercontent.com',
     iosBundleId: 'com.talktolearn.chat',
@@ -85,7 +85,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '545984292675',
     projectId: 'pangea-chat-936ee',
     databaseURL: 'https://pangea-chat-936ee-default-rtdb.firebaseio.com',
-    storageBucket: 'pangea-chat-936ee.appspot.com',
+    storageBucket: 'pangea-chat-936ee.firebasestorage.com',
     iosClientId:
         '545984292675-f5p76l3h9sibsonrct7a8l9ca3c69at0.apps.googleusercontent.com',
     iosBundleId: 'com.talktolearn.chat',

@@ -2,16 +2,20 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
+import 'package:go_router/go_router.dart';
+
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pangea/analytics_misc/client_analytics_extension.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_list_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/analytics_summary/learning_progress_bar.dart';
 import 'package:fluffychat/pangea/analytics_summary/learning_progress_indicator_button.dart';
-import 'package:fluffychat/pangea/analytics_summary/level_bar_popup.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicator.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
+import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 /// A summary of "My Analytics" shown at the top of the chat list
@@ -19,7 +23,14 @@ import 'package:fluffychat/widgets/matrix.dart';
 /// messages sent,  words used, and error types, which can
 /// be clicked to access more fine-grained analytics data.
 class LearningProgressIndicators extends StatefulWidget {
-  const LearningProgressIndicators({super.key});
+  final ProgressIndicatorEnum? selected;
+  final bool canSelect;
+
+  const LearningProgressIndicators({
+    super.key,
+    this.selected,
+    this.canSelect = true,
+  });
 
   @override
   State<LearningProgressIndicators> createState() =>
@@ -49,8 +60,9 @@ class LearningProgressIndicatorsState
         .listen(updateData);
 
     // rebuild when target language changes
-    _languageSubscription =
-        MatrixState.pangeaController.userController.stateStream.listen((_) {
+    _languageSubscription = MatrixState
+        .pangeaController.userController.languageStream.stream
+        .listen((_) {
       if (mounted) setState(() {});
     });
   }
@@ -72,9 +84,9 @@ class LearningProgressIndicatorsState
   int uniqueLemmas(ProgressIndicatorEnum indicator) {
     switch (indicator) {
       case ProgressIndicatorEnum.morphsUsed:
-        return _constructsModel.grammarLemmas;
+        return _constructsModel.numConstructs(ConstructTypeEnum.morph);
       case ProgressIndicatorEnum.wordsUsed:
-        return _constructsModel.vocabLemmas;
+        return _constructsModel.numConstructs(ConstructTypeEnum.vocab);
       default:
         return 0;
     }
@@ -90,6 +102,8 @@ class LearningProgressIndicatorsState
     final userL1 = MatrixState.pangeaController.languageController.userL1;
     final userL2 = MatrixState.pangeaController.languageController.userL2;
 
+    final isColumnMode = FluffyThemes.isColumnMode(context);
+
     return Row(
       children: [
         Expanded(
@@ -102,26 +116,57 @@ class LearningProgressIndicatorsState
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Row(
-                      spacing: 16.0,
-                      children: ConstructTypeEnum.values
-                          .map(
-                            (c) => HoverButton(
-                              onPressed: () {
-                                showDialog<AnalyticsPopupWrapper>(
-                                  context: context,
-                                  builder: (context) => AnalyticsPopupWrapper(
-                                    view: c,
-                                  ),
-                                );
-                              },
-                              child: ProgressIndicatorBadge(
-                                indicator: c.indicator,
-                                loading: _loading,
-                                points: uniqueLemmas(c.indicator),
-                              ),
+                      spacing: isColumnMode ? 16.0 : 4.0,
+                      children: [
+                        ...ConstructTypeEnum.values.map(
+                          (c) => HoverButton(
+                            selected: widget.selected == c.indicator,
+                            onPressed: () {
+                              context.go(
+                                "/rooms/analytics/${c.string}",
+                              );
+                            },
+                            child: ProgressIndicatorBadge(
+                              indicator: c.indicator,
+                              loading: _loading,
+                              points: uniqueLemmas(c.indicator),
                             ),
-                          )
-                          .toList(),
+                          ),
+                        ),
+                        HoverButton(
+                          selected: widget.selected ==
+                              ProgressIndicatorEnum.activities,
+                          onPressed: () {
+                            context.go(
+                              "/rooms/analytics/activities",
+                            );
+                          },
+                          child: Tooltip(
+                            message: ProgressIndicatorEnum.activities
+                                .tooltip(context),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  size: 18,
+                                  Icons.radar,
+                                  color: Theme.of(context).colorScheme.primary,
+                                  weight: 1000,
+                                ),
+                                const SizedBox(width: 6.0),
+                                AnimatedFloatingNumber(
+                                  number: Matrix.of(context)
+                                          .client
+                                          .analyticsRoomLocal()
+                                          ?.activityRoomIds
+                                          .length ??
+                                      0,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   HoverButton(
@@ -164,38 +209,62 @@ class LearningProgressIndicatorsState
               const SizedBox(height: 6),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () {
-                      showDialog<LevelBarPopup>(
-                        context: context,
-                        builder: (c) => const LevelBarPopup(),
-                      );
-                    },
-                    child: Row(
-                      spacing: 8.0,
-                      children: [
-                        Expanded(
-                          child: LearningProgressBar(
-                            level: _constructsModel.level,
-                            totalXP: _constructsModel.totalXP,
-                            height: 24.0,
+                child: HoverBuilder(
+                  builder: (context, hovered) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: hovered && widget.canSelect
+                            ? Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withAlpha((0.2 * 255).round())
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(36.0),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 2.0,
+                        horizontal: 4.0,
+                      ),
+                      child: MouseRegion(
+                        cursor: widget.canSelect
+                            ? SystemMouseCursors.click
+                            : MouseCursor.defer,
+                        child: GestureDetector(
+                          onTap: widget.canSelect
+                              ? () {
+                                  context.go("/rooms/analytics/level");
+                                }
+                              : null,
+                          child: Row(
+                            spacing: 8.0,
+                            children: [
+                              Expanded(
+                                child: LearningProgressBar(
+                                  level: _constructsModel.level,
+                                  totalXP: _constructsModel.totalXP,
+                                  height: 24.0,
+                                  loading: _loading,
+                                ),
+                              ),
+                              if (!_loading)
+                                Text(
+                                  "⭐ ${_constructsModel.level}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                ),
+                            ],
                           ),
                         ),
-                        Text(
-                          "⭐ ${_constructsModel.level}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
-                              ?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                        ),
-                      ],
-                    ),
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: 16.0),

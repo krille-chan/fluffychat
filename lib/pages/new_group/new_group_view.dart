@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
-import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_carousel.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 
@@ -31,8 +30,9 @@ class NewGroupView extends StatelessWidget {
         ),
         title: Text(
           controller.createGroupType == CreateGroupType.space
-              ? L10n.of(context).newSpace
               // #Pangea
+              // ? L10n.of(context).newSpace
+              ? L10n.of(context).newCourse
               // : L10n.of(context).createGroup,
               : L10n.of(context).newChat,
           // Pangea#
@@ -106,8 +106,9 @@ class NewGroupView extends StatelessWidget {
                     prefixIcon: const Icon(Icons.people_outlined),
                     labelText:
                         controller.createGroupType == CreateGroupType.space
-                            ? L10n.of(context).spaceName
                             // #Pangea
+                            // ? L10n.of(context).spaceName
+                            ? L10n.of(context).courseName
                             // : L10n.of(context).groupName,
                             : L10n.of(context).chatName,
                     // Pangea#
@@ -175,16 +176,6 @@ class NewGroupView extends StatelessWidget {
             //           onChanged: null,
             //         ),
             // ),
-            if (controller.createGroupType == CreateGroupType.group)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: ActivitySuggestionCarousel(
-                  onActivitySelected: controller.setSelectedActivity,
-                  enabled: controller.nameController.text.isNotEmpty,
-                  selectedActivity: controller.selectedActivity,
-                  selectedActivityImage: controller.selectedActivityImage,
-                ),
-              ),
             // Pangea#
             AnimatedSize(
               duration: FluffyThemes.animationDuration,
@@ -216,8 +207,9 @@ class NewGroupView extends StatelessWidget {
                       ? const LinearProgressIndicator()
                       : Text(
                           controller.createGroupType == CreateGroupType.space
-                              ? L10n.of(context).createNewSpace
                               // #Pangea
+                              // ? L10n.of(context).createNewSpace
+                              ? L10n.of(context).createNewCourse
                               // : L10n.of(context).createGroupAndInviteUsers,
                               : L10n.of(context).createChatAndInviteUsers,
                           // Pangea#

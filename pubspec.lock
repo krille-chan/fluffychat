@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: "16e298750b6d0af7ce8a3ba7c18c69c3785d11b15ec83f6dcd0ad2a0009b3cab"
+      sha256: "0b2f2bd91ba804e53a61d757b986f89f1f9eaed5b11e4b2f5a2468d86d6c9fc7"
       url: "https://pub.dev"
     source: hosted
-    version: "76.0.0"
+    version: "67.0.0"
   _flutterfire_internals:
     dependency: transitive
     description:
@@ -17,19 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.55"
-  _macros:
-    dependency: transitive
-    description: dart
-    source: sdk
-    version: "0.3.3"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
-      sha256: "1f14db053a8c23e260789e9b0980fa27f2680dd640932cae5e1137cce0e46e1e"
+      sha256: "37577842a27e4338429a1cbc32679d508836510b056f1eedf0c8d20e39c1383d"
       url: "https://pub.dev"
     source: hosted
-    version: "6.11.0"
+    version: "6.4.1"
   android_intent_plus:
     dependency: "direct main"
     description:
@@ -38,6 +33,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.3.0"
+  animated_flip_counter:
+    dependency: "direct main"
+    description:
+      name: animated_flip_counter
+      sha256: "73f852d84c461c3e4c1ddf320bee334dde8dba89441922ab11a8013be0b2fad1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.4"
   animations:
     dependency: "direct main"
     description:
@@ -222,6 +225,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  build_cli_annotations:
+    dependency: transitive
+    description:
+      name: build_cli_annotations
+      sha256: b59d2769769efd6c9ff6d4c4cede0be115a566afc591705c2040b707534b1172
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   cached_network_image:
     dependency: "direct main"
     description:
@@ -334,6 +345,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  confetti:
+    dependency: "direct main"
+    description:
+      name: confetti
+      sha256: "79376a99648efbc3f23582f5784ced0fe239922bd1a0fb41f582051eba750751"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.0"
   console:
     dependency: transitive
     description:
@@ -519,7 +538,7 @@ packages:
     source: hosted
     version: "1.3.3"
   fcm_shared_isolate:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
       path: "pangea_packages/fcm_shared_isolate"
       relative: true
@@ -735,6 +754,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.1"
+  flutter_html:
+    dependency: "direct main"
+    description:
+      name: flutter_html
+      sha256: "38a2fd702ffdf3243fb7441ab58aa1bc7e6922d95a50db76534de8260638558d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   flutter_keyboard_visibility:
     dependency: transitive
     description:
@@ -852,14 +879,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  flutter_olm:
-    dependency: "direct main"
-    description:
-      name: flutter_olm
-      sha256: "5e6211af8cba1abf7d1f92e543f6d573dfe6017fe4742e0d04ba84beab47f940"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   flutter_openssl_crypto:
     dependency: "direct main"
     description:
@@ -876,6 +895,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.28"
+  flutter_rust_bridge:
+    dependency: transitive
+    description:
+      name: flutter_rust_bridge
+      sha256: b416ff56002789e636244fb4cc449f587656eff995e5a7169457eb0593fcaddb
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.10.0"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -963,6 +990,14 @@ packages:
       url: "https://github.com/famedly/flutter_typeahead.git"
     source: git
     version: "5.2.0"
+  flutter_vodozemac:
+    dependency: "direct main"
+    description:
+      name: flutter_vodozemac
+      sha256: "2405ca121b84d1cd83200a14021022e1691b123a23bcefc36adc7740cefbc1f9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.2"
   flutter_web_auth_2:
     dependency: "direct main"
     description:
@@ -1399,26 +1434,26 @@ packages:
     dependency: transitive
     description:
       name: leak_tracker
-      sha256: "6bb818ecbdffe216e81182c2f0714a2e62b593f4a4f13098713ff1685dfb6ab0"
+      sha256: "33e2e26bdd85a0112ec15400c8cbffea70d0f9c3407491f672a2fad47915e2de"
       url: "https://pub.dev"
     source: hosted
-    version: "10.0.9"
+    version: "11.0.2"
   leak_tracker_flutter_testing:
     dependency: transitive
     description:
       name: leak_tracker_flutter_testing
-      sha256: f8b613e7e6a13ec79cfdc0e97638fddb3ab848452eff057653abd3edba760573
+      sha256: "1dbc140bb5a23c75ea9c4811222756104fbcd1a27173f0c34ca01e16bea473c1"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.9"
+    version: "3.0.10"
   leak_tracker_testing:
     dependency: transitive
     description:
       name: leak_tracker_testing
-      sha256: "6ba465d5d76e67ddf503e1161d1f4a6bc42306f9d66ca1e8f079a47290fb06d3"
+      sha256: "8d5a2d49f4a66b49744b23b018848400d23e54caf9463f4eb20df3eb8acb2eb1"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "3.0.2"
   license_checker:
     dependency: "direct dev"
     description:
@@ -1443,6 +1478,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  list_counter:
+    dependency: transitive
+    description:
+      name: list_counter
+      sha256: c447ae3dfcd1c55f0152867090e67e219d42fe6d4f2807db4bbe8b8d69912237
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   lists:
     dependency: transitive
     description:
@@ -1467,14 +1510,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.0"
-  macros:
-    dependency: transitive
-    description:
-      name: macros
-      sha256: "1d9e801cd66f7ea3663c45fc708450db1fa57f988142c64289142c9b7ee80656"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.3-main.0"
   markdown:
     dependency: transitive
     description:
@@ -1511,11 +1546,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: main
-      resolved-ref: "9e47d07f6c78c72b7ee7269497622ba1fce5c94a"
+      ref: merge-upstream
+      resolved-ref: "1e5975c8dae6af46444f07868bb2ddf5689c3cbe"
       url: "https://github.com/pangeachat/matrix-dart-sdk.git"
     source: git
-    version: "0.40.2"
+    version: "1.0.1"
   meta:
     dependency: transitive
     description:
@@ -1580,14 +1615,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
-  olm:
-    dependency: transitive
-    description:
-      name: olm
-      sha256: "6a3fe1e5170b954dd9e4ba3b27513e6aa9b7591eb7bb0d7f6f32140b7f140c6f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.0"
   open_file:
     dependency: "direct main"
     description:
@@ -2453,59 +2480,26 @@ packages:
     dependency: transitive
     description:
       name: test
-      sha256: "301b213cd241ca982e9ba50266bd3f5bd1ea33f1455554c5abb85d1be0e2d87e"
+      sha256: "65e29d831719be0591f7b3b1a32a3cda258ec98c58c7b25f7b84241bc31215bb"
       url: "https://pub.dev"
     source: hosted
-    version: "1.25.15"
+    version: "1.26.2"
   test_api:
     dependency: transitive
     description:
       name: test_api
-      sha256: fb31f383e2ee25fbbfe06b40fe21e1e458d14080e3c67e7ba0acfde4df4e0bbd
+      sha256: "522f00f556e73044315fa4585ec3270f1808a4b186c936e612cab0b565ff1e00"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.4"
+    version: "0.7.6"
   test_core:
     dependency: transitive
     description:
       name: test_core
-      sha256: "84d17c3486c8dfdbe5e12a50c8ae176d15e2a771b96909a9442b40173649ccaa"
+      sha256: "80bf5a02b60af04b09e14f6fe68b921aad119493e26e490deaca5993fef1b05a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.8"
-  text_to_speech:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "23c2405aad7fc2408c090c4c98721fd1025fbadf"
-      url: "https://github.com/pangeachat/text_to_speech.git"
-    source: git
-    version: "0.2.3"
-  text_to_speech_macos:
-    dependency: transitive
-    description:
-      name: text_to_speech_macos
-      sha256: "11d1b7d4eff579743b04d371e86d17bebd599f7d998b9fa4cf07a5821cda3b6d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.1"
-  text_to_speech_platform_interface:
-    dependency: transitive
-    description:
-      name: text_to_speech_platform_interface
-      sha256: "9d637f0ae36e296f42a0e555bd65ba4c64a28a7c26a2752fdae62f6d78b6c2d0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.3"
-  text_to_speech_web:
-    dependency: transitive
-    description:
-      name: text_to_speech_web
-      sha256: "47d006c0a377c9eb3f6bcca4d92b3ece2c67f5eb31b9416727cc81b92c36d6d1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.2"
+    version: "0.6.11"
   timezone:
     dependency: transitive
     description:
@@ -2710,10 +2704,10 @@ packages:
     dependency: transitive
     description:
       name: vector_math
-      sha256: "80b3257d1492ce4d091729e3a67a60407d227c27241d6927be0130c98e741803"
+      sha256: d530bd74fea330e6e364cda7a85019c434070188383e1cd8d9777ee586914c5b
       url: "https://pub.dev"
     source: hosted
-    version: "2.1.4"
+    version: "2.2.0"
   video_compress:
     dependency: "direct main"
     description:
@@ -2770,6 +2764,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "15.0.0"
+  vodozemac:
+    dependency: transitive
+    description:
+      name: vodozemac
+      sha256: dba14017e042748fb22d270e8ab1d3e46965b89788dd3857dba938ec07571968
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   wakelock_plus:
     dependency: "direct main"
     description:
@@ -2899,5 +2901,5 @@ packages:
     source: hosted
     version: "3.1.3"
 sdks:
-  dart: ">=3.7.0 <4.0.0"
+  dart: ">=3.8.0-0 <4.0.0"
   flutter: ">=3.29.0"

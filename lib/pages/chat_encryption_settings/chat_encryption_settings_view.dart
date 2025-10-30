@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -52,13 +53,11 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                 value: room.encrypted,
                 onChanged: controller.enableEncryption,
               ),
-              // #Pangea
-              // Icon(
-              //   CupertinoIcons.lock_shield,
-              //   size: 128,
-              //   color: theme.colorScheme.onInverseSurface,
-              // ),
-              // Pangea#
+              Icon(
+                CupertinoIcons.lock_shield,
+                size: 128,
+                color: theme.colorScheme.onInverseSurface,
+              ),
               const Divider(),
               if (room.isDirectChat)
                 Padding(
@@ -111,7 +110,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                         itemBuilder: (BuildContext context, int i) =>
                             SwitchListTile(
                           value: !deviceKeys[i].blocked,
-                          activeColor: deviceKeys[i].verified
+                          activeThumbColor: deviceKeys[i].verified
                               ? Colors.green
                               : Colors.orange,
                           onChanged: (_) =>

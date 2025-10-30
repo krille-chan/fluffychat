@@ -172,17 +172,12 @@ class PressableButtonState extends State<PressableButton>
                           bottom: !_depressed
                               ? widget.buttonHeight - _tweenAnimation.value
                               : 0,
-                          right: !_depressed
-                              ? (widget.buttonHeight - _tweenAnimation.value) /
-                                  2
-                              : 0,
                         ),
                         child: child,
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: _tweenAnimation.value / 2),
               ],
             );
           },

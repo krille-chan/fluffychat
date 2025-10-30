@@ -76,10 +76,17 @@ class AppVersionUtil {
 
     // convert the version number string into a list of ints
     // and the build number string into an int
-    final currentVersionParts =
-        currentVersion.split(".").map((e) => int.parse(e)).toList();
-    final remoteVersionParts =
-        remoteVersion.split(".").map((e) => int.parse(e)).toList();
+    final currentVersionParts = currentVersion
+        .replaceAll(RegExp(r'[^0-9.]'), '')
+        .split(".")
+        .map((e) => int.parse(e))
+        .toList();
+    final remoteVersionParts = remoteVersion
+        .replaceAll(RegExp(r'[^0-9.]'), '')
+        .split(".")
+        .map((e) => int.parse(e))
+        .toList();
+
     final currentBuildNumberInt = int.parse(currentBuildNumber);
     final remoteBuildNumberInt = int.parse(remoteBuildNumber);
 

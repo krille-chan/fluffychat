@@ -48,14 +48,17 @@ class Choreographer {
   final int msBeforeIGCStart = 10000;
 
   Timer? debounceTimer;
-  ChoreoRecord choreoRecord = ChoreoRecord.newRecord;
+  ChoreoRecord? choreoRecord;
   // last checked by IGC or translation
   String? _lastChecked;
   ChoreoMode choreoMode = ChoreoMode.igc;
 
   final StreamController stateStream = StreamController.broadcast();
   StreamSubscription? _languageStream;
+  StreamSubscription? _settingsUpdateStream;
   late AssistanceState _currentAssistanceState;
+
+  String? translatedText;
 
   Choreographer(this.pangeaController, this.chatController) {
     _initialize();
@@ -68,14 +71,13 @@ class Choreographer {
     errorService = ErrorService(this);
     _textController.addListener(_onChangeListener);
     _languageStream =
-        pangeaController.userController.stateStream.listen((update) {
-      if (update is Map<String, dynamic> &&
-          update['prev_target_lang'] is LanguageModel) {
-        clear();
-      }
+        pangeaController.userController.languageStream.stream.listen((update) {
+      clear();
+      setState();
+    });
 
-      // refresh on any profile update, to account
-      // for changes like enabling autocorrect
+    _settingsUpdateStream =
+        pangeaController.userController.settingsUpdateStream.stream.listen((_) {
       setState();
     });
     _currentAssistanceState = assistanceState;
@@ -120,6 +122,11 @@ class Choreographer {
       return;
     }
 
+    if (chatController.shouldShowLanguageMismatchPopup) {
+      chatController.showLanguageMismatchPopup();
+      return;
+    }
+
     if (!igc.hasRelevantIGCTextData && !itController.dismissed) {
       getLanguageHelp().then((value) => _sendWithIGC(context));
     } else {
@@ -144,10 +151,10 @@ class Choreographer {
     final message = chatController.sendController.text;
     final fakeEventId = chatController.sendFakeMessage();
     final PangeaRepresentation? originalWritten =
-        choreoRecord.includedIT && itController.sourceText != null
+        choreoRecord?.includedIT == true && translatedText != null
             ? PangeaRepresentation(
                 langCode: l1LangCode ?? LanguageKeys.unknownLanguage,
-                text: itController.sourceText!,
+                text: translatedText!,
                 originalWritten: true,
                 originalSent: false,
               )
@@ -193,13 +200,15 @@ class Choreographer {
           "currentText": message,
           "l1LangCode": l1LangCode,
           "l2LangCode": l2LangCode,
-          "choreoRecord": choreoRecord.toJson(),
+          "choreoRecord": choreoRecord?.toJson(),
         },
+        level: e is TimeoutException ? SentryLevel.warning : SentryLevel.error,
       );
     } finally {
       chatController.send(
         message: message,
         originalSent: originalSent,
+        originalWritten: originalWritten,
         tokensSent: tokensSent,
         choreo: choreoRecord,
         tempEventId: fakeEventId,
@@ -215,6 +224,14 @@ class Choreographer {
     }
   }
 
+  void _initChoreoRecord() {
+    choreoRecord ??= ChoreoRecord(
+      originalText: textController.text,
+      choreoSteps: [],
+      openMatches: [],
+    );
+  }
+
   void onITStart(PangeaMatch itMatch) {
     if (!itMatch.isITStart) {
       throw Exception("this isn't an itStart match!");
@@ -224,14 +241,16 @@ class Choreographer {
       ITStartData(_textController.text, null),
     );
     itMatch.status = PangeaMatchStatus.accepted;
-
-    choreoRecord.addRecord(_textController.text, match: itMatch);
+    translatedText = _textController.text;
 
     //PTODO - if totally in L1, save tokens, that's good stuff
 
     igc.clear();
 
     _textController.setSystemText("", EditType.itStart);
+
+    _initChoreoRecord();
+    choreoRecord!.addRecord(_textController.text, match: itMatch);
   }
 
   /// Handles any changes to the text input
@@ -246,9 +265,10 @@ class Choreographer {
       return;
     }
 
+    _lastChecked = _textController.text;
+
     if (_textController.editType == EditType.igc ||
         _textController.editType == EditType.itDismissed) {
-      _lastChecked = _textController.text;
       _textController.editType = EditType.keyboard;
       return;
     }
@@ -263,6 +283,13 @@ class Choreographer {
     igc.clear();
 
     _resetDebounceTimer();
+
+    // we store translated text in the choreographer to save at the original written
+    // text, but if the user edits the text after the translation, reset it, since the
+    // sent text may not be an exact translation of the original text
+    if (_textController.editType == EditType.keyboard) {
+      translatedText = null;
+    }
 
     if (editTypeIsKeyboard) {
       debounceTimer ??= Timer(
@@ -300,6 +327,7 @@ class Choreographer {
       }
 
       startLoading();
+      _initChoreoRecord();
 
       // if getting language assistance after finishing IT,
       // reset the itController
@@ -331,7 +359,6 @@ class Choreographer {
   }
 
   void onITChoiceSelect(ITStep step) {
-    choreoRecord.addRecord(_textController.text, step: step);
     _textController.setSystemText(
       _textController.text + step.continuances[step.chosen!].text,
       step.continuances[step.chosen!].gold
@@ -340,6 +367,10 @@ class Choreographer {
     );
     _textController.selection =
         TextSelection.collapsed(offset: _textController.text.length);
+
+    _initChoreoRecord();
+    choreoRecord!.addRecord(_textController.text, step: step);
+
     giveInputFocus();
   }
 
@@ -389,14 +420,8 @@ class Choreographer {
       final isNormalizationError =
           igc.spanDataController.isNormalizationError(matchIndex);
 
-      //if it's the right choice, replace in text
-      if (!isNormalizationError) {
-        choreoRecord.addRecord(
-          _textController.text,
-          match: igc.igcTextData!.matches[matchIndex].copyWith
-            ..status = PangeaMatchStatus.accepted,
-        );
-      }
+      final match = igc.igcTextData!.matches[matchIndex].copyWith
+        ..status = PangeaMatchStatus.accepted;
 
       igc.igcTextData!.acceptReplacement(
         matchIndex,
@@ -407,6 +432,15 @@ class Choreographer {
         igc.igcTextData!.originalInput,
         EditType.igc,
       );
+
+      //if it's the right choice, replace in text
+      if (!isNormalizationError) {
+        _initChoreoRecord();
+        choreoRecord!.addRecord(
+          _textController.text,
+          match: match,
+        );
+      }
 
       MatrixState.pAnyState.closeOverlay();
       setState();
@@ -431,7 +465,7 @@ class Choreographer {
     try {
       igc.igcTextData?.undoReplacement(match);
 
-      choreoRecord.choreoSteps.removeWhere(
+      choreoRecord?.choreoSteps.removeWhere(
         (step) => step.acceptedOrIgnoredMatch == match,
       );
 
@@ -455,15 +489,26 @@ class Choreographer {
   }
 
   void acceptNormalizationMatches() {
+    final List<int> indices = [];
     for (int i = 0; i < igc.igcTextData!.matches.length; i++) {
       final isNormalizationError =
           igc.spanDataController.isNormalizationError(i);
+      if (isNormalizationError) indices.add(i);
+    }
 
-      if (!isNormalizationError) continue;
-      final match = igc.igcTextData!.matches[i];
+    if (indices.isEmpty) return;
 
+    _initChoreoRecord();
+    final matches = igc.igcTextData!.matches
+        .where(
+          (match) => indices.contains(igc.igcTextData!.matches.indexOf(match)),
+        )
+        .toList();
+
+    for (final match in matches) {
+      final index = igc.igcTextData!.matches.indexOf(match);
       igc.igcTextData!.acceptReplacement(
-        i,
+        index,
         match.match.choices!.indexWhere(
           (c) => c.isBestCorrection,
         ),
@@ -477,19 +522,19 @@ class Choreographer {
           .characters
           .length;
 
-      choreoRecord.addRecord(
-        _textController.text,
-        match: newMatch,
-      );
-
       _textController.setSystemText(
         igc.igcTextData!.originalInput,
         EditType.igc,
       );
+
+      choreoRecord!.addRecord(
+        currentText,
+        match: newMatch,
+      );
     }
   }
 
-  void onIgnoreMatch({required int cursorOffset}) {
+  void onIgnoreMatch({required int matchIndex}) {
     try {
       if (igc.igcTextData == null) {
         debugger(when: kDebugMode);
@@ -500,10 +545,6 @@ class Choreographer {
         );
         return;
       }
-
-      final int matchIndex = igc.igcTextData!.getTopMatchIndexForOffset(
-        cursorOffset,
-      );
 
       if (matchIndex == -1) {
         debugger(when: kDebugMode);
@@ -517,7 +558,8 @@ class Choreographer {
           igc.spanDataController.isNormalizationError(matchIndex);
 
       if (!isNormalizationError) {
-        choreoRecord.addRecord(
+        _initChoreoRecord();
+        choreoRecord!.addRecord(
           _textController.text,
           match: igc.igcTextData!.matches[matchIndex],
         );
@@ -530,7 +572,7 @@ class Choreographer {
         Breadcrumb(
           data: {
             "igcTextData": igc.igcTextData?.toJson(),
-            "offset": cursorOffset,
+            "matchIndex": matchIndex,
           },
         ),
       );
@@ -564,19 +606,22 @@ class Choreographer {
     _lastChecked = null;
     _timesClicked = 0;
     isFetching = false;
-    choreoRecord = ChoreoRecord.newRecord;
+    choreoRecord = null;
+    translatedText = null;
     itController.clear();
     igc.dispose();
     _resetDebounceTimer();
   }
 
   Future<void> onPaste(value) async {
-    choreoRecord.pastedStrings.add(value);
+    _initChoreoRecord();
+    choreoRecord!.pastedStrings.add(value);
   }
 
   dispose() {
     _textController.dispose();
     _languageStream?.cancel();
+    _settingsUpdateStream?.cancel();
     stateStream.close();
     TtsController.stop();
   }
@@ -662,12 +707,6 @@ class Choreographer {
 
   bool get itEnabled => pangeaController.permissionsController.isToolEnabled(
         ToolSetting.interactiveTranslator,
-        chatController.room,
-      );
-
-  bool get immersionMode =>
-      pangeaController.permissionsController.isToolEnabled(
-        ToolSetting.immersionMode,
         chatController.room,
       );
 

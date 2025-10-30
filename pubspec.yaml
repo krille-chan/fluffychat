@@ -6,7 +6,7 @@ description: Learn a language while texting your friends.
 # Pangea#
 publish_to: none
 # On version bump also increase the build number for F-Droid
-version: 4.1.12+1
+version: 4.1.14+1
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -21,6 +21,7 @@ dependencies:
   chewie: ^1.11.3
   collection: ^1.18.0
   cross_file: ^0.3.4+2
+  confetti: ^0.8.0
   cupertino_icons: any
   # #Pangea
   # desktop_drop: ^0.4.4
@@ -31,7 +32,6 @@ dependencies:
   dynamic_color: ^1.7.0
   emoji_picker_flutter: ^3.1.0
   emojis: ^0.9.9
-  #fcm_shared_isolate: ^0.2.0
   file_picker: ^8.1.2
   file_selector: ^1.0.3
   flutter:
@@ -45,7 +45,6 @@ dependencies:
     sdk: flutter
   flutter_map: ^6.1.0
   flutter_new_badger: ^1.1.1
-  flutter_olm: 2.0.0
   flutter_openssl_crypto: ^0.5.0
   flutter_secure_storage: ^9.2.4
   flutter_shortcuts_new: ^2.0.0
@@ -53,6 +52,7 @@ dependencies:
     git:
       url: https://github.com/famedly/flutter_typeahead.git
       ref: main
+  flutter_vodozemac: ^0.2.2
   flutter_web_auth_2: ^3.1.1 # Version 4 blocked by https://github.com/MixinNetwork/flutter-plugins/issues/379
   flutter_webrtc: ^0.12.9
   geolocator: ^13.0.1
@@ -72,8 +72,8 @@ dependencies:
   matrix:
     git:
       url: https://github.com/pangeachat/matrix-dart-sdk.git # repo
-      ref: main
-  # matrix: ^0.40.2
+      ref: merge-upstream
+  # matrix: ^1.0.1
   # Pangea#
   mime: ^1.0.6
   native_imaging: ^0.2.0
@@ -120,8 +120,7 @@ dependencies:
   firebase_core: ^3.1.0
   firebase_messaging: ^15.1.5
   flutter_dotenv: ^5.1.0
-  fcm_shared_isolate:
-    path: pangea_packages/fcm_shared_isolate
+  flutter_html: ^3.0.0
   flutter_svg: ^2.0.10+1
   get_storage: ^2.1.1
   in_app_purchase: ^3.2.1
@@ -132,9 +131,8 @@ dependencies:
   sentry_flutter: ^8.13.2
   shimmer: ^3.0.0
   rive: 0.11.11
-  text_to_speech:
-    git: https://github.com/pangeachat/text_to_speech.git
   flutter_tts: ^4.2.0
+  animated_flip_counter: ^0.3.4
   # Pangea#
 
 dev_dependencies:
@@ -174,19 +172,7 @@ flutter:
     - assets/pangea/bot_faces/
     # Pangea#
     - assets/sounds/
-    - assets/js/
-    - assets/js/package/
-
-  # #Pangea
-  fonts:
-    - family: Inconsolata
-      fonts:
-        - asset: fonts/Inconsolata/Inconsolata-Regular.ttf
-        - asset: fonts/Inconsolata/Inconsolata-Light.ttf
-          style: italic
-        - asset: fonts/Inconsolata/Inconsolata-Bold.ttf
-          weight: 700
-    # Pangea#
+    - assets/vodozemac/
 
 msix_config:
   display_name: FluffyChat
@@ -205,6 +191,8 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
+  fcm_shared_isolate:
+    path: pangea_packages/fcm_shared_isolate
   # https://github.com/juliansteenbakker/flutter_secure_storage/issues/920
   flutter_secure_storage_linux:
     git:

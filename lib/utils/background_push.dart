@@ -24,8 +24,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
@@ -44,7 +42,7 @@ import '../config/setting_keys.dart';
 import '../widgets/matrix.dart';
 import 'platform_infos.dart';
 
-//import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+//<GOOGLE_SERVICES>import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 
 class NoTokenException implements Exception {
   String get cause => 'Cannot get firebase token';
@@ -69,11 +67,7 @@ class BackgroundPush {
 
   final pendingTests = <String, Completer<void>>{};
 
-  // final dynamic firebase = null; //FcmSharedIsolate();
-  // #Pangea
-  // uncommented to enable notifications on IOS
-  final FcmSharedIsolate? firebase = FcmSharedIsolate();
-  // Pangea#
+  //<GOOGLE_SERVICES>final firebase = FcmSharedIsolate();
 
   DateTime? lastReceivedPush;
 
@@ -82,31 +76,56 @@ class BackgroundPush {
   void _init() async {
     try {
       // #Pangea
+      // Handle notifications when app is opened from terminated/background state
       FirebaseMessaging.instance.getInitialMessage().then(_onOpenNotification);
       FirebaseMessaging.onMessageOpenedApp.listen(_onOpenNotification);
       // Pangea#
       await _flutterLocalNotificationsPlugin.initialize(
         const InitializationSettings(
-          android: AndroidInitializationSettings('notifications_icon'),
+          // #Pangea
+          // android: AndroidInitializationSettings('notifications_icon'),
+          android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+          // Pangea#
           iOS: DarwinInitializationSettings(),
         ),
         onDidReceiveNotificationResponse: goToRoom,
       );
-      Logs().v('Flutter Local Notifications initialized');
-      firebase?.setListeners(
-        onMessage: (message) => pushHelper(
-          PushNotification.fromJson(
-            Map<String, dynamic>.from(message['data'] ?? message),
-          ),
+
+      // #Pangea
+      // Handle notifications when app is in foreground
+      // Pass additionalData to preserve activity session info for local notifications
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        pushHelper(
+          PushNotification.fromJson(message.data),
           client: client,
           l10n: l10n,
           activeRoomId: matrix?.activeRoomId,
           flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
-        ),
-        // #Pangea
-        onNewToken: _newFcmToken,
-        // Pangea#
-      );
+          additionalData: message.data,
+        );
+      });
+      // Pangea#
+
+      Logs().v('Flutter Local Notifications initialized');
+      //<GOOGLE_SERVICES>firebase.setListeners(
+      //<GOOGLE_SERVICES>  onMessage: (message) => pushHelper(
+      //<GOOGLE_SERVICES>    PushNotification.fromJson(
+      //<GOOGLE_SERVICES>      Map<String, dynamic>.from(message['data'] ?? message),
+      //<GOOGLE_SERVICES>    ),
+      //<GOOGLE_SERVICES>    client: client,
+      //<GOOGLE_SERVICES>    l10n: l10n,
+      //<GOOGLE_SERVICES>    activeRoomId: matrix?.activeRoomId,
+      //<GOOGLE_SERVICES>    flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
+      //<GOOGLE_SERVICES>  ),
+      //<GOOGLE_SERVICES>  // #Pangea
+      //<GOOGLE_SERVICES>  onNewToken: (token) {
+      //<GOOGLE_SERVICES>     _fcmToken = token;
+      //<GOOGLE_SERVICES>     debugPrint('Fcm token $_fcmToken');
+      //<GOOGLE_SERVICES>     setupPush();
+      //<GOOGLE_SERVICES>   },
+      //<GOOGLE_SERVICES>  // Pangea#
+      //<GOOGLE_SERVICES>);
+
       if (Platform.isAndroid) {
         await UnifiedPush.initialize(
           onNewEndpoint: _newUpEndpoint,
@@ -125,37 +144,76 @@ class BackgroundPush {
   }
 
   // #Pangea
-  Future<void> _onOpenNotification(RemoteMessage? message) async {
-    if (message == null ||
-        !message.data.containsKey('room_id') ||
-        message.data['room_id'] == null ||
-        message.data['room_id'].isEmpty) {
-      return;
+  // Helper to ensure a room is loaded or synced.
+  Future<Room?> _ensureRoomLoaded(String id) async {
+    await client.roomsLoading;
+    await client.accountDataLoading;
+
+    var room = client.getRoomById(id);
+    if (room == null) {
+      await client.waitForRoomInSync(id).timeout(const Duration(seconds: 30));
+      room = client.getRoomById(id);
+    }
+    return room;
+  }
+
+  // Navigate to activity session or fallback to room
+  Future<void> _navigateToActivityOrRoom({
+    required String roomId,
+    String? sessionRoomId,
+    String? activityId,
+  }) async {
+    // Handle session room if provided.
+    if (sessionRoomId != null &&
+        sessionRoomId.isNotEmpty &&
+        activityId != null &&
+        activityId.isNotEmpty) {
+      try {
+        final course = await _ensureRoomLoaded(roomId);
+        if (course == null) return;
+
+        final session = client.getRoomById(sessionRoomId);
+        if (session?.membership == Membership.join) {
+          FluffyChatApp.router.go('/rooms/$sessionRoomId');
+          return;
+        }
+
+        FluffyChatApp.router.go(
+          '/rooms/spaces/$roomId/activity/$activityId?roomid=$sessionRoomId',
+        );
+        return;
+      } catch (err, s) {
+        ErrorHandler.logError(e: err, s: s, data: {"roomId": sessionRoomId});
+      }
     }
 
+    // Fallback: just open the original room.
     try {
-      final roomId = message.data['room_id'];
-      await client.roomsLoading;
-      await client.accountDataLoading;
-      if (client.getRoomById(roomId) == null) {
-        await client
-            .waitForRoomInSync(roomId)
-            .timeout(const Duration(seconds: 30));
-      }
+      final room = await _ensureRoomLoaded(roomId);
       FluffyChatApp.router.go(
-        client.getRoomById(roomId)?.membership == Membership.invite
-            ? '/rooms'
-            : '/rooms/$roomId',
+        room?.membership == Membership.invite ? '/rooms' : '/rooms/$roomId',
       );
     } catch (err, s) {
-      ErrorHandler.logError(
-        e: err,
-        s: s,
-        data: {
-          "roomId": message.data['room_id'],
-        },
-      );
+      ErrorHandler.logError(e: err, s: s, data: {"roomId": roomId});
     }
+  }
+
+  Future<void> _onOpenNotification(RemoteMessage? message) async {
+    const sessionIdKey = "content_pangea.activity.session_room_id";
+    const activityIdKey = "content_pangea.activity.id";
+
+    // Early return if no room_id.
+    final roomId = message?.data['room_id'];
+    if (roomId is! String || roomId.isEmpty) return;
+
+    final sessionRoomId = message?.data[sessionIdKey] as String?;
+    final activityId = message?.data[activityIdKey] as String?;
+
+    await _navigateToActivityOrRoom(
+      roomId: roomId,
+      sessionRoomId: sessionRoomId,
+      activityId: activityId,
+    );
   }
   // Pangea#
 
@@ -183,13 +241,6 @@ class BackgroundPush {
   void handleLoginStateChanged(_) => setupPush();
 
   StreamSubscription<LoginState>? onLogin;
-
-  void _newFcmToken(String token) {
-    _fcmToken = token;
-    debugPrint('Fcm foken $_fcmToken');
-    setupPush();
-  }
-  // Pangea#
 
   Future<void> cancelNotification(String roomId) async {
     Logs().v('Cancel notification for room', roomId);
@@ -227,7 +278,7 @@ class BackgroundPush {
     try {
       // Pangea#
       if (PlatformInfos.isIOS) {
-        await firebase?.requestPermission();
+        //<GOOGLE_SERVICES>await firebase?.requestPermission();
       }
       if (PlatformInfos.isAndroid) {
         _flutterLocalNotificationsPlugin
@@ -277,8 +328,11 @@ class BackgroundPush {
           // Pangea#
           currentPushers.first.data.url.toString() == gatewayUrl &&
           currentPushers.first.data.format ==
-              AppSettings.pushNotificationsPusherFormat
-                  .getItem(matrix!.store) &&
+              // #Pangea
+              // AppSettings.pushNotificationsPusherFormat
+              //     .getItem(matrix!.store) &&
+              null &&
+          // Pangea#
           mapEquals(
             currentPushers.single.data.additionalProperties,
             {"data_message": pusherDataMessageFormat},
@@ -321,8 +375,10 @@ class BackgroundPush {
             // Pangea#
             data: PusherData(
               url: Uri.parse(gatewayUrl!),
-              format: AppSettings.pushNotificationsPusherFormat
-                  .getItem(matrix!.store),
+              // #Pangea
+              // format: AppSettings.pushNotificationsPusherFormat
+              //     .getItem(matrix!.store),
+              // Pangea#
               additionalProperties: {"data_message": pusherDataMessageFormat},
             ),
             kind: 'http',
@@ -409,10 +465,7 @@ class BackgroundPush {
     Logs().v('Setup firebase');
     if (_fcmToken?.isEmpty ?? true) {
       try {
-        // #Pangea
-        // _fcmToken = await firebase?.getToken();
-        _fcmToken = await _getToken();
-        // Pangea#
+        //<GOOGLE_SERVICES>_fcmToken = await firebase.getToken();
         if (_fcmToken == null) throw ('PushToken is null');
       } catch (e, s) {
         Logs().w('[Push] cannot get token', e, e is String ? null : s);
@@ -429,23 +482,38 @@ class BackgroundPush {
 
   Future<void> goToRoom(NotificationResponse? response) async {
     try {
-      final roomId = response?.payload;
-      Logs().v('[Push] Attempting to go to room $roomId...');
-      if (roomId == null) {
+      final payload = response?.payload;
+      Logs().v('[Push] Attempting to go to room with payload: $payload');
+      if (payload == null) {
         return;
       }
-      await client.roomsLoading;
-      await client.accountDataLoading;
-      if (client.getRoomById(roomId) == null) {
-        await client
-            .waitForRoomInSync(roomId)
-            .timeout(const Duration(seconds: 30));
+
+      // #Pangea - Handle activity session data if present
+      String? roomId;
+      String? sessionRoomId;
+      String? activityId;
+
+      try {
+        final payloadData = jsonDecode(payload) as Map<String, dynamic>;
+        roomId = payloadData['room_id'] as String?;
+        sessionRoomId =
+            payloadData['content_pangea.activity.session_room_id'] as String?;
+        activityId = payloadData['content_pangea.activity.id'] as String?;
+      } catch (_) {
+        // If payload is not JSON, treat it as a simple room ID
+        roomId = payload;
       }
-      FluffyChatApp.router.go(
-        client.getRoomById(roomId)?.membership == Membership.invite
-            ? '/rooms'
-            : '/rooms/$roomId',
+
+      if (roomId == null || roomId.isEmpty) {
+        return;
+      }
+
+      await _navigateToActivityOrRoom(
+        roomId: roomId,
+        sessionRoomId: sessionRoomId,
+        activityId: activityId,
       );
+      // Pangea#
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
       // #Pangea
@@ -497,11 +565,8 @@ class BackgroundPush {
     Logs().i('[Push] UnifiedPush using endpoint $endpoint');
     final oldTokens = <String?>{};
     try {
-      // #Pangea
-      // final fcmToken = await firebase?.getToken();
-      final fcmToken = await _getToken();
-      // Pangea#
-      oldTokens.add(fcmToken);
+      //<GOOGLE_SERVICES>final fcmToken = await firebase.getToken();
+      //<GOOGLE_SERVICES>oldTokens.add(fcmToken);
     } catch (_) {}
     await setupPusher(
       gatewayUrl: endpoint,
@@ -543,18 +608,6 @@ class BackgroundPush {
       flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
     );
   }
-
-  // #Pangea
-  Future<String?> _getToken() async {
-    if (Platform.isAndroid) {
-      await Firebase.initializeApp(
-          // options: DefaultFirebaseOptions.currentPlatform,
-          );
-      return (await FirebaseMessaging.instance.getToken());
-    }
-    return await firebase?.getToken();
-  }
-  // Pangea#
 }
 
 class UPFunctions extends UnifiedPushFunctions {

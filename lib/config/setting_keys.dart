@@ -34,6 +34,9 @@ abstract class SettingKeys {
   static const String showPresences = 'chat.fluffy.show_presences';
   static const String displayNavigationRail =
       'chat.fluffy.display_navigation_rail';
+  // #Pangea
+  static const String volume = 'pangea.volume';
+  // Pangea#
 }
 
 enum AppSettings<T> {
@@ -53,10 +56,12 @@ enum AppSettings<T> {
     'https://sygnal.pangea.chat/_matrix/push/v1/notify',
     // Pangea#
   ),
-  pushNotificationsPusherFormat<String>(
-    'pushNotificationsPusherFormat',
-    'event_id_only',
-  ),
+  // #Pangea
+  // pushNotificationsPusherFormat<String>(
+  //   'pushNotificationsPusherFormat',
+  //   'event_id_only',
+  // ),
+  // Pangea#
   shareKeysWith<String>('chat.fluffy.share_keys_with_2', 'all'),
   noEncryptionWarningShown<bool>(
     'chat.fluffy.no_encryption_warning_shown',

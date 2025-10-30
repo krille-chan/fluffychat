@@ -8,11 +8,13 @@ class FullWidthDialog extends StatelessWidget {
   final Widget dialogContent;
   final double maxWidth;
   final double maxHeight;
+  final Color? backgroundColor;
 
   const FullWidthDialog({
     required this.dialogContent,
     required this.maxWidth,
     required this.maxHeight,
+    this.backgroundColor,
     super.key,
   });
 
@@ -42,8 +44,14 @@ class FullWidthDialog extends StatelessWidget {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
       child: isColumnMode
-          ? Dialog(child: content)
-          : Dialog.fullscreen(child: content),
+          ? Dialog(
+              backgroundColor: backgroundColor,
+              child: content,
+            )
+          : Dialog.fullscreen(
+              backgroundColor: backgroundColor,
+              child: content,
+            ),
     );
   }
 }

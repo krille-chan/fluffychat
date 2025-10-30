@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -13,6 +14,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class SignupPage extends StatefulWidget {
   final bool withEmail;
+
   const SignupPage({
     this.withEmail = false,
     super.key,
@@ -154,7 +156,7 @@ class SignupPageController extends State<SignupPage> {
     if (!valid) return;
     setState(() => loadingSignup = true);
 
-    await showFutureLoadingDialog(
+    final resp = await showFutureLoadingDialog(
       context: context,
       future: _signupFuture,
       onError: (e, s) {
@@ -163,15 +165,22 @@ class SignupPageController extends State<SignupPage> {
           loadingAppleSSO = false;
           loadingGoogleSSO = false;
         });
+        if (e.toString().contains("Request has been canceled")) {
+          Navigator.of(context).pop();
+          return null;
+        }
+
         return e is MatrixException
             ? e.errorMessage
             : L10n.of(context).oopsSomethingWentWrong;
       },
     );
+
+    if (!resp.isError) context.go('/registration/create');
   }
 
   Future<void> _signupFuture() async {
-    final client = Matrix.of(context).getLoginClient();
+    final client = await Matrix.of(context).getLoginClient();
     final email = emailController.text;
     if (email.isNotEmpty) {
       Matrix.of(context).currentClientSecret =
@@ -195,6 +204,10 @@ class SignupPageController extends State<SignupPage> {
         auth: auth,
       ),
     );
+
+    if (!client.isLogged()) {
+      throw Exception(L10n.of(context).oopsSomethingWentWrong);
+    }
 
     GoogleAnalytics.login("pangea", registerRes?.userId);
 

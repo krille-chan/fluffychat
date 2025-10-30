@@ -34,8 +34,6 @@ class ConstructXpWidgetState extends State<ConstructXpWidget>
   bool didChange = false;
 
   late AnimationController _controller;
-  late Animation<Offset> _offsetAnimation;
-  late Animation<double> _fadeAnimation;
 
   StreamSubscription<AnalyticsStreamUpdate>? _sub;
 
@@ -48,26 +46,6 @@ class ConstructXpWidgetState extends State<ConstructXpWidget>
       vsync: this,
     );
 
-    _offsetAnimation = Tween<Offset>(
-      begin: Offset.zero,
-      end: const Offset(0.0, -1.0),
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOut,
-      ),
-    );
-
-    _fadeAnimation = Tween<double>(
-      begin: 1.0,
-      end: 0.0,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOut,
-      ),
-    );
-
     setState(() => constructLemmaCategory = constructUse?.lemmaCategory);
 
     debugPrint('constructLemmaCategory: $constructLemmaCategory');
@@ -77,8 +55,8 @@ class ConstructXpWidgetState extends State<ConstructXpWidget>
         setState(() {
           constructLemmaCategory = constructUse?.lemmaCategory;
           didChange = true;
-          _controller.reset();
-          _controller.forward();
+          //_controller.reset();
+          //_controller.forward();
         });
       }
     });
@@ -113,18 +91,20 @@ class ConstructXpWidgetState extends State<ConstructXpWidget>
           child: Stack(
             alignment: Alignment.center,
             children: [
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 1000),
-                child: svg,
-              ),
-              if (didChange)
-                SlideTransition(
-                  position: _offsetAnimation,
-                  child: FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: svg,
-                  ),
-                ),
+              //replaces rise animation, remove 116 and uncomment everything to revert
+              svg != null ? svg! : const SizedBox.shrink(),
+              // AnimatedSwitcher(
+              //   duration: const Duration(milliseconds: 1000),
+              //   child: svg,
+              // ),
+              // if (didChange)
+              //   SlideTransition(
+              //     position: _offsetAnimation,
+              //     child: FadeTransition(
+              //       opacity: _fadeAnimation,
+              //       child: svg,
+              //     ),
+              //   ),
             ],
           ),
         ),

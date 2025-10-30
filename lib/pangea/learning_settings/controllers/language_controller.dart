@@ -113,7 +113,7 @@ class LanguageController {
     // return model;
   }
 
-  bool get showTrancription =>
+  bool get showTranscription =>
       (_pangeaController.languageController.userL1 != null &&
           _pangeaController.languageController.userL2 != null &&
           _pangeaController.languageController.userL1?.script !=

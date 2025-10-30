@@ -25,6 +25,9 @@ class ChatListItem extends StatelessWidget {
   final void Function()? onForget;
   final void Function() onTap;
   final String? filter;
+  // #Pangea
+  final BorderRadius? borderRadius;
+  // Pangea#
 
   const ChatListItem(
     this.room, {
@@ -35,6 +38,9 @@ class ChatListItem extends StatelessWidget {
     this.filter,
     this.space,
     super.key,
+    // #Pangea
+    this.borderRadius,
+    // Pangea#
   });
 
   Future<bool> archiveAction(BuildContext context) async {
@@ -174,11 +180,19 @@ class ChatListItem extends StatelessWidget {
                                     color: backgroundColor ??
                                         theme.colorScheme.surface,
                                   ),
-                            borderRadius: room.isSpace
-                                ? BorderRadius.circular(
-                                    AppConfig.borderRadius / 4,
-                                  )
-                                : null,
+                            // #Pangea
+                            // borderRadius: room.isSpace
+                            //     ? BorderRadius.circular(
+                            //         AppConfig.borderRadius / 4,
+                            //       )
+                            //     : null,
+                            borderRadius: borderRadius ??
+                                (room.isSpace
+                                    ? BorderRadius.circular(
+                                        AppConfig.borderRadius / 4,
+                                      )
+                                    : null),
+                            // Pangea#
                             mxContent: room.avatar,
                             size: space != null
                                 ? Avatar.defaultSize * 0.75
@@ -314,7 +328,7 @@ class ChatListItem extends StatelessWidget {
                             // #Pangea
                             : room.lastEvent != null
                                 ? ChatListItemSubtitle(
-                                    event: room.lastEvent,
+                                    room: room,
                                     style: TextStyle(
                                       fontWeight: unread || room.hasNewMessages
                                           ? FontWeight.bold

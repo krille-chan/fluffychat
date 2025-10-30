@@ -15,7 +15,7 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-enum AnalyticsUpdateType { server, local }
+enum AnalyticsUpdateType { server, local, activities }
 
 /// handles the processing of analytics for
 /// 1) messages sent by the user and
@@ -24,6 +24,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
   late PangeaController _pangeaController;
   StreamController<AnalyticsUpdate> analyticsUpdateStream =
       StreamController.broadcast();
+
   StreamSubscription<AnalyticsStream>? _analyticsStream;
   StreamSubscription? _languageStream;
   Timer? _updateTimer;
@@ -59,12 +60,8 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
 
     // Listen for changes to the user's language settings
     _languageStream ??=
-        _pangeaController.userController.stateStream.listen((update) {
-      if (update is Map<String, dynamic> &&
-          update['prev_target_lang'] is LanguageModel) {
-        final LanguageModel previousL2 = update['prev_target_lang'];
-        _onUpdateLanguages(previousL2);
-      }
+        _pangeaController.userController.languageStream.stream.listen((update) {
+      _onUpdateLanguages(update.prevTargetLang);
     });
 
     _refreshAnalyticsIfOutdated();
@@ -80,7 +77,6 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     _analyticsStream = null;
     _languageStream?.cancel();
     _languageStream = null;
-    _refreshAnalyticsIfOutdated();
     clearMessagesSinceUpdate();
   }
 
@@ -155,7 +151,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     );
     _pangeaController.resetAnalytics().then((_) {
       final level = _pangeaController.getAnalytics.constructListModel.level;
-      _pangeaController.userController.updatePublicProfile(level: level);
+      _pangeaController.userController.updateAnalyticsProfile(level: level);
     });
   }
 
@@ -417,6 +413,41 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     // and send cached analytics data to the room
     await analyticsRoom?.sendConstructsEvent(
       _pangeaController.getAnalytics.locallyCachedSentConstructs,
+    );
+  }
+
+  Future<void> sendActivityAnalytics(String roomId) async {
+    if (_pangeaController.matrixState.client.userID == null) return;
+    if (_pangeaController.languageController.userL2 == null) return;
+
+    final Room? analyticsRoom = await _client.getMyAnalyticsRoom(
+      _pangeaController.languageController.userL2!,
+    );
+    if (analyticsRoom == null) return;
+    await analyticsRoom.addActivityRoomId(roomId);
+
+    analyticsUpdateStream.add(
+      AnalyticsUpdate(
+        AnalyticsUpdateType.activities,
+        [],
+      ),
+    );
+  }
+
+  Future<void> removeActivityAnalytics(String roomId) async {
+    if (_pangeaController.matrixState.client.userID == null) return;
+    if (_pangeaController.languageController.userL2 == null) return;
+
+    final Room? analyticsRoom = await _client.getMyAnalyticsRoom(
+      _pangeaController.languageController.userL2!,
+    );
+    if (analyticsRoom == null) return;
+    await analyticsRoom.removeActivityRoomId(roomId);
+    analyticsUpdateStream.add(
+      AnalyticsUpdate(
+        AnalyticsUpdateType.activities,
+        [],
+      ),
     );
   }
 }

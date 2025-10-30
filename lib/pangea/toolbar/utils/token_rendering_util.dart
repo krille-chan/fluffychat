@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -24,7 +25,7 @@ class TokenRenderingUtil {
   bool get showCenterStyling {
     if (overlayController == null) return false;
     if (!isTransitionAnimation) return true;
-    return readingAssistanceMode == ReadingAssistanceMode.transitionMode;
+    return readingAssistanceMode == ReadingAssistanceMode.practiceMode;
   }
 
   double? fontSize(BuildContext context) => showCenterStyling
@@ -85,9 +86,20 @@ class TokenRenderingUtil {
     }
   }
 
-  Color backgroundColor(BuildContext context, bool selected) {
+  Color backgroundColor(
+    BuildContext context,
+    bool selected,
+    bool highlighted,
+    bool isNew,
+    bool practiceMode,
+  ) {
+    if (practiceMode) return Colors.white.withAlpha(0);
+    if (highlighted) {
+      return Theme.of(context).colorScheme.primary.withAlpha(200);
+    }
+    if (isNew) return AppConfig.success.withAlpha(200);
     return selected
-        ? Theme.of(context).colorScheme.primary
+        ? Theme.of(context).colorScheme.primary.withAlpha(200)
         : Colors.white.withAlpha(0);
   }
 }

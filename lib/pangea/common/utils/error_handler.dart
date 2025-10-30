@@ -90,13 +90,20 @@ class ErrorCopy {
   late String body;
   int? errorCode;
 
-  ErrorCopy(this.context, this.error) {
-    setCopy();
+  ErrorCopy(
+    this.context, {
+    this.error,
+    String? title,
+    String? body,
+  }) {
+    if (title != null) this.title = title;
+    if (body != null) this.body = body;
+    if (title == null || body == null) setCopy();
   }
 
   void _setDefaults() {
-    title = "Unexpected error.";
-    body = "Please reload and try again.";
+    title = L10n.of(context).unexpectedError;
+    body = L10n.of(context).pleaseReload;
     errorCode = 400;
   }
 
@@ -105,11 +112,6 @@ class ErrorCopy {
       if (error is http.Response) {
         errorCode = (error as http.Response).statusCode;
       } else {
-        ErrorHandler.logError(
-          e: error,
-          s: StackTrace.current,
-          data: {},
-        );
         errorCode = null;
       }
       final L10n l10n = L10n.of(context);

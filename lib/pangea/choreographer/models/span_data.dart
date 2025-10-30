@@ -65,6 +65,12 @@ class SpanData {
         'type': type.toJson(),
         'rule': rule?.toJson(),
       };
+
+  SpanChoice? get bestChoice {
+    return choices?.firstWhereOrNull(
+      (choice) => choice.isBestCorrection,
+    );
+  }
 }
 
 class SpanChoice {

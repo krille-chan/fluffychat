@@ -55,25 +55,8 @@ class SettingsLearningController extends State<SettingsLearning> {
     super.dispose();
   }
 
-  // compare settings in _profile with the settings in the userController
-  // if they are different, return true, else return false
-  bool get haveSettingsBeenChanged {
-    for (final setting in _profile.userSettings.toJson().entries) {
-      if (setting.value !=
-          pangeaController.userController.profile.userSettings
-              .toJson()[setting.key]) {
-        return true;
-      }
-    }
-    for (final setting in _profile.toolSettings.toJson().entries) {
-      if (setting.value !=
-          pangeaController.userController.profile.toolSettings
-              .toJson()[setting.key]) {
-        return true;
-      }
-    }
-    return false;
-  }
+  bool get haveSettingsBeenChanged =>
+      pangeaController.userController.profile != _profile;
 
   // if the settings have been changed, show a dialog the user wants to exit without saving
   // if the settings have not been changed, just close the settings page
@@ -275,7 +258,7 @@ class SettingsLearningController extends State<SettingsLearning> {
   LanguageModel? get userL1 => pangeaController.languageController.userL1;
   LanguageModel? get userL2 => pangeaController.languageController.userL2;
 
-  bool get publicProfile => _profile.userSettings.publicProfile ?? true;
+  bool get publicProfile => _profile.userSettings.publicProfile ?? false;
 
   LanguageLevelTypeEnum get cefrLevel => _profile.userSettings.cefrLevel;
 

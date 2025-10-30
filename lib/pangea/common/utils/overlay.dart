@@ -1,12 +1,12 @@
 import 'dart:developer';
-import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
+import 'package:fluffychat/pangea/common/widgets/anchored_overlay_widget.dart';
 import 'package:fluffychat/pangea/common/widgets/overlay_container.dart';
+import 'package:fluffychat/pangea/common/widgets/transparent_backdrop.dart';
 import '../../../config/themes.dart';
 import '../../../widgets/matrix.dart';
 import 'error_handler.dart';
@@ -18,12 +18,12 @@ enum OverlayPositionEnum {
 }
 
 class OverlayUtil {
-  static showOverlay({
+  static bool showOverlay({
     required BuildContext context,
     required Widget child,
-    required String transformTargetId,
-    backDropToDismiss = true,
-    blurBackground = false,
+    String? transformTargetId,
+    bool backDropToDismiss = true,
+    bool blurBackground = false,
     Color? borderColor,
     Color? backgroundColor,
     bool closePrevOverlay = true,
@@ -35,8 +35,16 @@ class OverlayUtil {
     Alignment? followerAnchor,
     bool ignorePointer = false,
     bool canPop = true,
+    bool rootOverlay = false,
   }) {
     try {
+      if (position == OverlayPositionEnum.transform) {
+        assert(
+          transformTargetId != null,
+          "transformTargetId must be provided when position is OverlayPositionEnum.transform",
+        );
+      }
+
       if (closePrevOverlay) {
         MatrixState.pAnyState.closeOverlay();
       }
@@ -77,7 +85,7 @@ class OverlayUtil {
                         followerAnchor:
                             followerAnchor ?? Alignment.bottomCenter,
                         link: MatrixState.pAnyState
-                            .layerLinkAndKey(transformTargetId)
+                            .layerLinkAndKey(transformTargetId!)
                             .link,
                         showWhenUnlinked: false,
                         offset: offset ?? Offset.zero,
@@ -89,11 +97,12 @@ class OverlayUtil {
         ),
       );
 
-      MatrixState.pAnyState.openOverlay(
+      return MatrixState.pAnyState.openOverlay(
         entry,
         context,
         overlayKey: overlayKey,
         canPop: canPop,
+        rootOverlay: rootOverlay,
       );
     } catch (err, stack) {
       debugger(when: kDebugMode);
@@ -102,6 +111,7 @@ class OverlayUtil {
         s: stack,
         data: {},
       );
+      return false;
     }
   }
 
@@ -111,7 +121,7 @@ class OverlayUtil {
     required String transformTargetId,
     required double maxHeight,
     required double maxWidth,
-    backDropToDismiss = true,
+    bool backDropToDismiss = true,
     Color? borderColor,
     bool closePrevOverlay = true,
     String? overlayKey,
@@ -207,107 +217,37 @@ class OverlayUtil {
     }
   }
 
-  static bool get isOverlayOpen => MatrixState.pAnyState.entries.isNotEmpty;
-}
-
-class TransparentBackdrop extends StatefulWidget {
-  final Color? backgroundColor;
-  final VoidCallback? onDismiss;
-  final bool blurBackground;
-
-  const TransparentBackdrop({
-    super.key,
-    this.onDismiss,
-    this.backgroundColor,
-    this.blurBackground = false,
-  });
-
-  @override
-  TransparentBackdropState createState() => TransparentBackdropState();
-}
-
-class TransparentBackdropState extends State<TransparentBackdrop>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _opacityTween;
-  late Animation<double> _blurTween;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration:
-          const Duration(milliseconds: AppConfig.overlayAnimationDuration),
-      vsync: this,
-    );
-    _opacityTween = Tween<double>(begin: 0.0, end: 0.8).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: FluffyThemes.animationCurve,
-      ),
-    );
-    _blurTween = Tween<double>(begin: 0.0, end: 3.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: FluffyThemes.animationCurve,
-      ),
-    );
-
-    Future.delayed(const Duration(milliseconds: 100), () {
-      if (mounted) _controller.forward();
-    });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _opacityTween,
-      builder: (context, _) {
-        return Material(
-          borderOnForeground: false,
-          color: widget.backgroundColor
-                  ?.withAlpha((_opacityTween.value * 255).round()) ??
-              Colors.transparent,
-          clipBehavior: Clip.antiAlias,
-          child: InkWell(
-            hoverColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () {
-              if (widget.onDismiss != null) {
-                widget.onDismiss!();
-              }
-              MatrixState.pAnyState.closeOverlay();
-            },
-            child: AnimatedBuilder(
-              animation: _blurTween,
-              builder: (context, _) {
-                return BackdropFilter(
-                  filter: widget.blurBackground
-                      ? ImageFilter.blur(
-                          sigmaX: _blurTween.value,
-                          sigmaY: _blurTween.value,
-                        )
-                      : ImageFilter.blur(sigmaX: 0, sigmaY: 0),
-                  child: Container(
-                    height: double.infinity,
-                    width: double.infinity,
-                    color: Colors.transparent,
-                  ),
-                );
-              },
-            ),
-          ),
-          // ),
+  static void showTutorialOverlay(
+    BuildContext context, {
+    required Widget overlayContent,
+    required String overlayKey,
+    required Rect anchorRect,
+    double? borderRadius,
+    double? padding,
+    final VoidCallback? onClick,
+  }) {
+    // force close all overlays to prevent showing
+    // constuct / level up notification on top of tutorial
+    MatrixState.pAnyState.closeAllOverlays(force: true);
+    final entry = OverlayEntry(
+      builder: (context) {
+        return AnchoredOverlayWidget(
+          anchorRect: anchorRect,
+          borderRadius: borderRadius,
+          padding: padding,
+          onClick: onClick,
+          overlayKey: overlayKey,
+          child: overlayContent,
         );
       },
+    );
+    MatrixState.pAnyState.openOverlay(
+      entry,
+      context,
+      rootOverlay: true,
+      overlayKey: overlayKey,
+      canPop: false,
+      blockOverlay: true,
     );
   }
 }

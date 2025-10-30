@@ -121,6 +121,7 @@ class FullWidthTextField extends StatelessWidget {
   final String? labelText;
   final List<String>? autofillHints;
   final bool autoFocus;
+  final Widget? suffix;
 
   const FullWidthTextField({
     required this.hintText,
@@ -134,6 +135,7 @@ class FullWidthTextField extends StatelessWidget {
     this.labelText,
     this.autofillHints,
     this.autoFocus = false,
+    this.suffix,
     super.key,
   });
 
@@ -159,6 +161,7 @@ class FullWidthTextField extends StatelessWidget {
             vertical: 8.0,
           ),
           isDense: true,
+          suffixIcon: suffix,
         ),
         validator: validator,
         onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),

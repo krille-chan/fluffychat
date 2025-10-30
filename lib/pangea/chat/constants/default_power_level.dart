@@ -13,6 +13,8 @@ class RoomDefaults {
           "redact": 50,
           "events": {
             PangeaEventTypes.activityPlan: 0,
+            PangeaEventTypes.activityRole: 0,
+            PangeaEventTypes.activitySummary: 0,
             "m.room.power_levels": 100,
             "m.room.pinned_events": 50,
           },
@@ -38,6 +40,8 @@ class RoomDefaults {
           "redact": 50,
           "events": {
             PangeaEventTypes.activityPlan: 50,
+            PangeaEventTypes.activityRole: 0,
+            PangeaEventTypes.activitySummary: 0,
             "m.room.power_levels": 100,
             "m.room.pinned_events": 50,
           },
@@ -53,7 +57,11 @@ class RoomDefaults {
         },
       );
 
-  static StateEvent defaultSpacePowerLevels(String userID) => StateEvent(
+  static StateEvent defaultSpacePowerLevels(
+    String userID, {
+    int spaceChild = 50,
+  }) =>
+      StateEvent(
         type: EventTypes.RoomPowerLevels,
         stateKey: '',
         content: {
@@ -62,9 +70,10 @@ class RoomDefaults {
           "invite": 50,
           "redact": 50,
           "events": {
+            PangeaEventTypes.courseUser: 0,
             "m.room.power_levels": 100,
             "m.room.join_rules": 100,
-            "m.space.child": 50,
+            "m.space.child": spaceChild,
           },
           "events_default": 0,
           "state_default": 50,

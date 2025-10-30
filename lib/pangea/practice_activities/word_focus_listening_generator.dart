@@ -1,13 +1,10 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/message_activity_request.dart';
-import 'package:fluffychat/pangea/practice_activities/multiple_choice_activity_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_match.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -15,40 +12,18 @@ import 'package:fluffychat/widgets/matrix.dart';
 class WordFocusListeningGenerator {
   Future<MessageActivityResponse> get(
     MessageActivityRequest req,
-    BuildContext context,
   ) async {
-    if (req.targetTokens.length == 1) {
-      return _multipleChoiceActivity(req, context);
-    } else {
-      return _matchActivity(req, context);
+    if (req.targetTokens.length <= 1) {
+      throw Exception(
+        "Word focus listening activity requires at least 2 tokens",
+      );
     }
-  }
 
-  Future<MessageActivityResponse> _multipleChoiceActivity(
-    MessageActivityRequest req,
-    BuildContext context,
-  ) async {
-    final token = req.targetTokens.first;
-    final List<String> choices = await lemmaActivityDistractors(token);
-
-    return MessageActivityResponse(
-      activity: PracticeActivityModel(
-        activityType: ActivityTypeEnum.wordFocusListening,
-        targetTokens: [token],
-        langCode: req.userL2,
-        multipleChoiceContent: MultipleChoiceActivity(
-          question: L10n.of(context).wordFocusListeningMultipleChoice,
-          choices: choices,
-          answers: [token.lemma.text],
-          spanDisplayDetails: null,
-        ),
-      ),
-    );
+    return _matchActivity(req);
   }
 
   Future<MessageActivityResponse> _matchActivity(
     MessageActivityRequest req,
-    BuildContext context,
   ) async {
     return MessageActivityResponse(
       activity: PracticeActivityModel(

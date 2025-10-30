@@ -18,7 +18,6 @@ final MorphFeaturesAndTags defaultMorphMapping = MorphFeaturesAndTags.fromJson({
         "NUM",
         "PART",
         "PRON",
-        "PROPN",
         "PUNCT",
         "SCONJ",
         "SPACE",

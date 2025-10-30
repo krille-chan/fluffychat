@@ -4,17 +4,18 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
-import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/icon_rain.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ConstructNotificationUtil {
@@ -32,12 +33,13 @@ class ConstructNotificationUtil {
     }
   }
 
+  static final Set<String> _closedOverlays = {};
+
   static void onClose(ConstructIdentifier construct) {
     final overlayKey = "${construct.string}_snackbar";
+    if (_closedOverlays.contains(overlayKey)) return;
+    _closedOverlays.add(overlayKey);
     MatrixState.pAnyState.closeOverlay(overlayKey);
-
-    MatrixState.pAnyState.activeOverlays.remove(overlayKey);
-
     unlockedConstructs.remove(construct);
     closeCompleter?.complete();
     closeCompleter = null;
@@ -55,7 +57,7 @@ class ConstructNotificationUtil {
         );
         closeCompleter = Completer();
 
-        OverlayUtil.showOverlay(
+        final bool result = OverlayUtil.showOverlay(
           overlayKey: "${construct.string}_snackbar",
           context: context,
           child: ConstructNotificationOverlay(
@@ -69,13 +71,14 @@ class ConstructNotificationUtil {
           canPop: false,
         );
 
-        MatrixState.pAnyState.activeOverlays
-            .add("${construct.string}_snackbar");
+        // if the overlay could not be shown, break the loop
+        if (!result) {
+          showingNotification = false;
+          break;
+        }
 
         await closeCompleter!.future;
       } catch (e) {
-        MatrixState.pAnyState.activeOverlays
-            .remove("${construct.string}_snackbar");
         showingNotification = false;
         break;
       }
@@ -124,10 +127,15 @@ class ConstructNotificationOverlayState
         followerAnchor: Alignment.topCenter,
         targetAnchor: Alignment.topCenter,
         context: context,
-        child: PointsGainedAnimation(
-          points: 50,
-          targetID: "${widget.construct.string}_notification",
-          invert: true,
+        child: IconRain(
+          addStars: true,
+          icon: MorphIcon(
+            size: const Size(8, 8),
+            morphFeature: MorphFeaturesEnumExtension.fromString(
+              widget.construct.category,
+            ),
+            morphTag: widget.construct.lemma,
+          ),
         ),
         transformTargetId: "${widget.construct.string}_notification",
         closePrevOverlay: false,
@@ -142,27 +150,25 @@ class ConstructNotificationOverlayState
 
   @override
   void dispose() {
+    ConstructNotificationUtil.onClose(widget.construct);
     _controller?.dispose();
     super.dispose();
   }
 
   void _close() {
-    _controller?.reverse().then((_) {
+    if (_controller?.status == AnimationStatus.completed) {
+      //only animate closed if still mounted, not if navigating away
+      _controller?.reverse().then((_) {
+        ConstructNotificationUtil.onClose(widget.construct);
+      });
+    } else {
       ConstructNotificationUtil.onClose(widget.construct);
-    });
+    }
   }
 
   void _showDetails() {
-    showDialog<AnalyticsPopupWrapper>(
-      context: context,
-      builder: (context) => AnalyticsPopupWrapper(
-        constructZoom: widget.construct,
-        view: ConstructTypeEnum.morph,
-        backButtonOverride: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-      ),
+    context.go(
+      "/rooms/analytics/${ConstructTypeEnum.morph.string}/${widget.construct.string}",
     );
   }
 
@@ -227,7 +233,7 @@ class ConstructNotificationOverlayState
                                   widget.copy ?? widget.construct.lemma,
                                   style: TextStyle(
                                     fontSize: FluffyThemes.isColumnMode(context)
-                                        ? 32.0
+                                        ? 22.0
                                         : 16.0,
                                     color: AppConfig.gold,
                                     fontWeight: FontWeight.bold,
@@ -237,7 +243,7 @@ class ConstructNotificationOverlayState
                                 MorphIcon(
                                   size: isColumnMode
                                       ? null
-                                      : const Size(24.0, 24.0),
+                                      : const Size(22.0, 22.0),
                                   morphFeature:
                                       MorphFeaturesEnumExtension.fromString(
                                     widget.construct.category,

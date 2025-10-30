@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
@@ -17,7 +18,6 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../common/utils/error_handler.dart';
 import '../../common/utils/overlay.dart';
-import '../models/span_card_model.dart';
 
 class _IGCTextDataCacheItem {
   Future<IGCTextData> data;
@@ -109,7 +109,8 @@ class IgcController {
               .timeout((const Duration(seconds: 10)));
 
       // this will happen when the user changes the input while igc is fetching results
-      if (igcTextDataResponse.originalInput != choreographer.currentText) {
+      if (igcTextDataResponse.originalInput.trim() !=
+          choreographer.currentText.trim()) {
         return;
       }
       // get ignored matches from the original igcTextData
@@ -155,7 +156,7 @@ class IgcController {
     } catch (err, stack) {
       debugger(when: kDebugMode);
       choreographer.errorService.setError(
-        ChoreoError(type: ChoreoErrorType.unknown, raw: err),
+        ChoreoError(raw: err),
       );
       ErrorHandler.logError(
         e: err,
@@ -168,6 +169,8 @@ class IgcController {
           "itEnabled": choreographer.itEnabled,
           "matches": igcTextData?.matches.map((e) => e.toJson()),
         },
+        level:
+            err is TimeoutException ? SentryLevel.warning : SentryLevel.error,
       );
       clear();
     }
@@ -211,27 +214,15 @@ class IgcController {
       overlayKey: "span_card_overlay_$firstMatchIndex",
       context: context,
       cardToShow: SpanCard(
-        scm: SpanCardModel(
-          matchIndex: firstMatchIndex,
-          onReplacementSelect: choreographer.onReplacementSelect,
-          onSentenceRewrite: (value) async {},
-          onIgnore: () => choreographer.onIgnoreMatch(
-            cursorOffset: match.match.offset,
-          ),
-          onITStart: () {
-            if (choreographer.itEnabled && igcTextData != null) {
-              choreographer.onITStart(igcTextData!.matches[firstMatchIndex]);
-            }
-          },
-          choreographer: choreographer,
-        ),
-        roomId: choreographer.roomId,
+        matchIndex: firstMatchIndex,
+        choreographer: choreographer,
       ),
-      maxHeight: match.isITStart ? 260 : 350,
-      maxWidth: 350,
+      maxHeight: 325,
+      maxWidth: 325,
       transformTargetId: choreographer.inputTransformTargetKey,
       onDismiss: () => choreographer.setState(),
       ignorePointer: true,
+      isScrollable: false,
     );
   }
 

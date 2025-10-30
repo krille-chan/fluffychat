@@ -66,6 +66,9 @@ enum ConstructUseTypeEnum {
   incMM,
   ignMM,
 
+  /// lemma collected by clicking on it
+  click,
+
   /// not defined, likely a new construct introduced by choreo and not yet classified by an old version of the client
   nan
 }
@@ -135,6 +138,8 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
         return L10n.of(context).constructUseIncMmDesc;
       case ConstructUseTypeEnum.ignMM:
         return L10n.of(context).constructUseIgnMmDesc;
+      case ConstructUseTypeEnum.click:
+        return L10n.of(context).constructUseCollected;
       case ConstructUseTypeEnum.nan:
         return L10n.of(context).constructUseNanDesc;
     }
@@ -185,6 +190,8 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.nan:
         return Icons.help;
+      case ConstructUseTypeEnum.click:
+        return Icons.format_color_text;
     }
   }
 
@@ -211,6 +218,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
 
       case ConstructUseTypeEnum.corIGC:
       case ConstructUseTypeEnum.corL:
+      case ConstructUseTypeEnum.click:
         return 2;
 
       case ConstructUseTypeEnum.corIt:
@@ -279,6 +287,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.incMM:
       case ConstructUseTypeEnum.ignMM:
       case ConstructUseTypeEnum.em:
+      case ConstructUseTypeEnum.click:
       case ConstructUseTypeEnum.nan:
         return false;
     }
@@ -318,6 +327,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.incMM:
       case ConstructUseTypeEnum.ignMM:
       case ConstructUseTypeEnum.em:
+      case ConstructUseTypeEnum.click:
         return LearningSkillsEnum.reading;
       case ConstructUseTypeEnum.pvm:
         return LearningSkillsEnum.speaking;
@@ -364,6 +374,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.ignL:
       case ConstructUseTypeEnum.ignM:
       case ConstructUseTypeEnum.ignMM:
+      case ConstructUseTypeEnum.click:
       case ConstructUseTypeEnum.nan:
         return null;
     }

@@ -9,7 +9,6 @@ import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/toolbar/models/speech_to_text_models.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 /// this class is contained within a [RepresentationEvent]
 /// this event is the child of a [EventTypes.Message]
@@ -105,8 +104,6 @@ class PangeaRepresentation {
     ChoreoRecord? choreo,
   }) {
     final List<OneConstructUse> uses = [];
-    final l2 = MatrixState.pangeaController.languageController.userL2;
-    if (langCode.split("-")[0] != l2?.langCodeShort) return uses;
 
     // missing vital info so return
     if (event?.roomId == null && metadata?.roomId == null) {

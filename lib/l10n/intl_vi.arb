@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2025-05-23 14:49:00.786183",
+  "@@last_modified": "2025-10-16 13:32:28.677939",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -1739,8 +1739,6 @@
   "yellowFeedback": "Bạn có thể thử từ đó! Nhấn lại để dùng.",
   "redFeedback": "Tôi nghĩ không đúng lắm...",
   "customInputFeedbackChoice": "Bạn tự viết. Hay đấy!",
-  "itInstructionsTitle": "Tôi có thể giúp bạn dịch!",
-  "itInstructionsBody": "Bạn có thể nhấn và giữ lựa chọn để xem giải thích chi tiết.",
   "toggleLanguages": "Chuyển ngôn ngữ của tin nhắn đã chọn.",
   "classWelcomeChat": "Phòng chào mừng",
   "deleteSpace": "Xóa Không gian",
@@ -1767,7 +1765,6 @@
   "interactiveTranslatorAllowedDesc": "Học viên có thể chọn bật/tắt hỗ trợ dịch trong nhóm tại Menu chính > Cài đặt học tập.",
   "interactiveTranslatorRequiredDesc": "Học viên không thể tắt hỗ trợ dịch. Họ vẫn có thể từ chối gợi ý. Không áp dụng cho quản trị viên hoặc cuộc trò chuyện riêng.",
   "notYetSet": "Chưa thiết lập",
-  "multiLingualSpace": "Không gian đa ngôn ngữ",
   "allClasses": "Tất cả Lớp",
   "myLearning": "Phân tích của tôi",
   "allChatsAndClasses": "Tất cả trò chuyện và không gian",
@@ -1782,11 +1779,9 @@
   "spaceAnalyticsDesc": "Thông tin về mức độ tương tác và sử dụng ngôn ngữ",
   "addStudents": "Mời bằng liên kết hoặc mã",
   "copyClassLink": "Sao chép liên kết mời",
-  "copyClassLinkDesc": "Nhấn liên kết này đưa người dùng đến ứng dụng, yêu cầu họ đăng ký và tự động tham gia không gian.",
   "copyClassCode": "Sao chép mã mời",
   "inviteStudentByUserName": "Mời người dùng qua tên",
   "languageSettings": "Cài đặt ngôn ngữ",
-  "languageSettingsDesc": "Chỉnh sửa ngôn ngữ của không gian và trình độ.",
   "selectSpaceDominantLanguage": "Ngôn ngữ chính của không gian?",
   "selectSpaceTargetLanguage": "Ngôn ngữ đích của không gian?",
   "whatIsYourSpaceLanguageLevel": "Trình độ chung của không gian?",
@@ -1818,10 +1813,7 @@
   "getStarted": "Bắt đầu",
   "mustBe13": "Bạn phải ít nhất 13 tuổi",
   "yourBirthdayPleaseShort": "Vui lòng chọn nhóm tuổi của bạn",
-  "joinWithClassCode": "Tham gia không gian",
-  "joinWithClassCodeDesc": "Nhập mã mời 6 ký tự mà quản trị viên cung cấp.",
   "joinWithClassCodeHint": "Nhập mã mời",
-  "unableToFindClass": "Không có không gian nào với mã này. Vui lòng thử lại.",
   "languageLevelPreA1": "Hoàn toàn mới (Pre A1)",
   "languageLevelA1": "Sơ cấp (A1)",
   "languageLevelA2": "Căn bản (A2)",
@@ -1880,9 +1872,6 @@
   "errorDisableITUserDesc": "Nhấn vào đây để cập nhật cài đặt hỗ trợ dịch",
   "errorDisableIGCUserDesc": "Nhấn vào đây để cập nhật cài đặt hỗ trợ ngữ pháp",
   "errorDisableLanguageAssistanceUserDesc": "Nhấn vào đây để cập nhật cài đặt hỗ trợ dịch và ngữ pháp",
-  "errorDisableITClassDesc": "Hỗ trợ dịch đã bị tắt cho không gian chứa cuộc trò chuyện này.",
-  "errorDisableIGCClassDesc": "Hỗ trợ ngữ pháp đã bị tắt cho không gian chứa cuộc trò chuyện này.",
-  "errorDisableLanguageAssistanceClassDesc": "Hỗ trợ dịch và ngữ pháp đã bị tắt cho không gian chứa cuộc trò chuyện này.",
   "itIsDisabled": "Trình Dịch Tương Tác đang bị tắt",
   "igcIsDisabled": "Trình Kiểm Tra Ngữ Pháp Tương Tác đang bị tắt",
   "goToLearningSettings": "Đi tới Cài đặt Học tập",
@@ -1897,13 +1886,11 @@
   "error404Title": "Lỗi dịch!",
   "error404Desc": "Pangea Bot chưa biết cách dịch điều này...",
   "errorPleaseRefresh": "Chúng tôi sẽ kiểm tra! Vui lòng tải lại và thử lại.",
-  "findAClass": "Tìm lớp (sắp ra mắt)",
   "toggleIT": "Dịch Tương Tác",
   "toggleIGC": "Ngữ Pháp Tương Tác",
   "toggleToolSettingsDescription": "Tại đây, bạn có thể bật/tắt các công cụ ngôn ngữ cá nhân.",
   "connectedToStaging": "Bạn đang kết nối với máy chủ thử nghiệm (staging).",
   "learningSettings": "Cài đặt học tập",
-  "classNameRequired": "Vui lòng nhập tên không gian",
   "sendVoiceNotes": "Gửi ghi âm",
   "sendVoiceNotesDesc": "Bật để cho phép học viên gửi ghi âm trong trò chuyện.",
   "chatTopic": "Chủ đề trò chuyện",
@@ -1959,9 +1946,6 @@
   "toggleImmersionModeDesc": "Khi bật, tất cả tin nhắn sẽ được hiển thị trong ngôn ngữ đích. Phù hợp cho trao đổi ngôn ngữ.",
   "itToggleDescription": "Công cụ ngôn ngữ này sẽ phát hiện từ trong ngôn ngữ gốc của bạn và giúp dịch sang ngôn ngữ đích. Đôi lúc AI có thể sai sót.",
   "igcToggleDescription": "Công cụ ngôn ngữ này sẽ phát hiện và gợi ý chỉnh sửa lỗi chính tả, ngữ pháp. Đôi khi AI cũng có thể mắc lỗi.",
-  "sendOnEnterDescription": "Tắt để chèn dòng mới khi nhấn Enter. (Trên trình duyệt: Shift+Enter. Trên di động: Enter -> dòng mới.)",
-  "alreadyInClass": "Bạn đã ở trong không gian này.",
-  "pleaseLoginFirst": "Hãy đăng nhập hoặc đăng ký trước, sau đó bạn sẽ được thêm vào không gian.",
   "originalMessage": "Tin nhắn gốc",
   "sentMessage": "Tin nhắn đã gửi",
   "useType": "Kiểu sử dụng",
@@ -1972,12 +1956,10 @@
   "definitionsToolDescription": "Khi bật, từ gạch chân màu xanh có thể được nhấn để xem định nghĩa.",
   "translationsToolDescrption": "Khi bật, nhấn tin nhắn và chọn biểu tượng dịch để xem ở ngôn ngữ gốc.",
   "welcomeBack": "Chào mừng trở lại! Nếu bạn đã tham gia chương trình thử nghiệm 2023-2024, hãy liên hệ để nhận gói đặc biệt. Nếu bạn là giáo viên hoặc trường đã mua bản quyền, cũng hãy liên hệ với chúng tôi.",
-  "createNewClass": "Không gian lớp mới",
   "kickAllStudents": "Đá tất cả học viên",
   "kickAllStudentsConfirmation": "Bạn có chắc muốn đá tất cả học viên không?",
   "inviteAllStudents": "Mời tất cả học viên",
   "inviteAllStudentsConfirmation": "Bạn có chắc muốn mời tất cả học viên không?",
-  "inviteStudentsFromOtherClasses": "Mời học viên từ không gian khác",
   "inviteUsersFromPangea": "Thêm quản trị viên",
   "redeemPromoCode": "Nhập mã khuyến mại",
   "enterPromoCode": "Nhập mã khuyến mại",
@@ -1993,7 +1975,6 @@
     }
   },
   "oneWeekTrial": "Dùng thử 1 tuần",
-  "creatingSpacePleaseWait": "Đang tạo không gian. Vui lòng chờ...",
   "downloadXLSXFile": "Tải tệp Excel",
   "abDisplayName": "Tiếng Abkhaz",
   "aaDisplayName": "Tiếng Afar",
@@ -2438,46 +2419,9 @@
   "pay": "Thanh toán",
   "allPrivateChats": "Trò chuyện riêng",
   "unknownPrivateChat": "Cuộc trò chuyện riêng chưa xác định",
-  "copyClassCodeDesc": "Người dùng đã có tài khoản có thể 'Tham gia không gian' trong menu chính.",
-  "addToSpaceDesc": "Thêm cuộc trò chuyện vào không gian sẽ hiển thị nó trong không gian, cho phép thành viên truy cập.",
-  "invitedToSpace": "{user} đã mời bạn tham gia không gian: {space}! Bạn có chấp nhận không?",
-  "@invitedToSpace": {
-    "placeholders": {
-      "space": {
-        "type": "String"
-      },
-      "user": {
-        "type": "String"
-      }
-    }
-  },
   "declinedInvitation": "Đã từ chối lời mời",
   "acceptedInvitation": "Đã chấp nhận lời mời",
   "youreInvited": "📩 Bạn được mời!",
-  "studentPermissionsDesc": "Thiết lập quyền cho người học trong không gian này. Chỉ áp dụng cho không gian. Có thể ghi đè cài đặt cá nhân.",
-  "noEligibleSpaces": "Không có không gian đủ điều kiện.",
-  "youAddedToSpace": "Bạn đã thêm {child} vào {space}",
-  "@youAddedToSpace": {
-    "placeholders": {
-      "child": {
-        "type": "String"
-      },
-      "space": {
-        "type": "String"
-      }
-    }
-  },
-  "youRemovedFromSpace": "Bạn đã gỡ {child} khỏi {space}",
-  "@youRemovedFromSpace": {
-    "placeholders": {
-      "child": {
-        "type": "String"
-      },
-      "space": {
-        "type": "String"
-      }
-    }
-  },
   "invitedToChat": "{user} đã mời bạn tham gia trò chuyện: {name}! Bạn muốn chấp nhận không?",
   "@invitedToChat": {
     "placeholders": {
@@ -2505,10 +2449,6 @@
     }
   },
   "emptyChatNameWarning": "Vui lòng nhập tên cho cuộc trò chuyện này",
-  "emptyClassNameWarning": "Vui lòng nhập tên cho lớp này",
-  "emptySpaceNameWarning": "Vui lòng nhập tên cho không gian này",
-  "blurMeansTranslateTitle": "Tại sao tin nhắn bị làm mờ?",
-  "blurMeansTranslateBody": "Khi Chế độ Nhập vai bật, tin nhắn bằng ngôn ngữ gốc sẽ bị làm mờ trong lúc Pangea Bot dịch sang ngôn ngữ đích. Bạn có thể tắt chế độ này trong cài đặt không gian.",
   "someErrorTitle": "Hmm, có gì đó không đúng",
   "someErrorBody": "Có thể đây là lỗi hoặc nội dung bằng ngôn ngữ khác.",
   "bestCorrectionFeedback": "Đúng rồi!",
@@ -2518,11 +2458,8 @@
   "practiceDefaultPrompt": "Câu trả lời tốt nhất là gì?",
   "correctionDefaultPrompt": "Phương án thay thế tốt nhất là gì?",
   "itStartDefaultPrompt": "Bạn cần hỗ trợ dịch không?",
-  "languageLevelWarning": "Hãy chọn trình độ ngôn ngữ cho không gian này",
   "lockedChatWarning": "🔒 Cuộc trò chuyện này đã bị khóa",
-  "lockSpace": "Khóa không gian",
   "lockChat": "Khóa trò chuyện",
-  "archiveSpace": "Lưu trữ không gian",
   "suggestToChat": "Đề xuất trò chuyện này",
   "suggestToChatDesc": "Những trò chuyện được đề xuất sẽ hiện trong danh sách trò chuyện",
   "acceptSelection": "Chấp nhận chỉnh sửa",
@@ -2570,7 +2507,6 @@
     }
   },
   "searchChatsRooms": "Tìm kiếm #cuộc_trò_chuyện, @người_dùng...",
-  "createClass": "Tạo lớp",
   "viewArchive": "Xem lưu trữ",
   "trialExpiration": "Bản dùng thử của bạn sẽ hết hạn vào {expiration}",
   "@trialExpiration": {
@@ -2582,10 +2518,8 @@
   },
   "freeTrialDesc": "Người dùng mới được dùng thử Pangea Chat trong 1 tuần",
   "activateTrial": "Dùng thử miễn phí 7 ngày",
-  "inNoSpaces": "Bạn chưa tham gia bất kỳ không gian nào",
   "successfullySubscribed": "Bạn đã đăng ký thành công!",
   "clickToManageSubscription": "Nhấp vào đây để quản lý gói đăng ký.",
-  "emptyInviteWarning": "Thêm cuộc trò chuyện này vào một không gian để mời người khác.",
   "errorGettingAudio": "Lỗi khi lấy tệp âm thanh. Hãy tải lại và thử tiếp.",
   "nothingFound": "Không tìm thấy gì...",
   "groupName": "Tên nhóm",
@@ -2693,8 +2627,6 @@
   },
   "noEmailWarning": "Vui lòng nhập địa chỉ email hợp lệ. Nếu không, bạn sẽ không thể đặt lại mật khẩu. Hoặc chạm lại nút để tiếp tục mà không cần.",
   "pleaseEnterValidEmail": "Vui lòng nhập địa chỉ email hợp lệ.",
-  "noAddToSpacePermissions": "Bạn không thể thêm cuộc trò chuyện vào không gian này",
-  "alreadyInSpace": "Cuộc trò chuyện đã có trong không gian này",
   "pleaseChooseAUsername": "Vui lòng chọn tên người dùng",
   "chooseAUsername": "Chọn tên người dùng",
   "define": "Định nghĩa",
@@ -2862,24 +2794,13 @@
   "runGrammarCorrection": "Kiểm tra ngữ pháp",
   "grammarCorrectionFailed": "Có vấn đề cần sửa",
   "grammarCorrectionComplete": "Có vẻ ổn!",
-  "tooltipInstructionsTitle": "Chưa rõ tính năng này?",
-  "tooltipInstructionsMobileBody": "Giữ lâu để xem giải thích.",
-  "tooltipInstructionsBrowserBody": "Di chuột để xem giải thích.",
-  "addSpaceToSpaceDescription": "Chọn một không gian con để thêm vào",
   "chatCapacity": "Giới hạn thành viên trò chuyện",
-  "spaceCapacity": "Giới hạn thành viên không gian",
   "roomFull": "Phòng đã đạt giới hạn.",
   "topicNotSet": "Chưa đặt chủ đề.",
   "chatCapacityNotSet": "Chưa giới hạn số thành viên trong trò chuyện.",
-  "spaceCapacityNotSet": "Chưa giới hạn số thành viên trong không gian.",
   "chatCapacityHasBeenChanged": "Giới hạn thành viên trò chuyện đã thay đổi",
-  "spaceCapacityHasBeenChanged": "Giới hạn thành viên không gian đã thay đổi",
-  "chatCapacitySetTooLow": "Không thể đặt giới hạn thành viên thấp hơn số thành viên không phải quản trị hiện tại.",
-  "spaceCapacitySetTooLow": "Không thể đặt giới hạn thành viên thấp hơn số thành viên không phải quản trị hiện tại.",
   "chatCapacityExplanation": "Hạn chế số lượng người dùng thường (không phải quản trị viên) có thể tham gia cuộc trò chuyện.",
-  "spaceCapacityExplanation": "Hạn chế số lượng người dùng thường (không phải quản trị viên) có thể tham gia không gian.",
   "chatExceedsCapacity": "Cuộc trò chuyện vượt quá giới hạn thành viên.",
-  "spaceExceedsCapacity": "Không gian vượt quá giới hạn thành viên.",
   "tooManyRequest": "Quá nhiều yêu cầu, vui lòng thử lại sau.",
   "enterNumber": "Vui lòng nhập một số nguyên lớn hơn 0.",
   "buildTranslation": "Xây dựng bản dịch của bạn từ các lựa chọn trên",
@@ -2887,15 +2808,8 @@
   "thereAreCountUsersBlocked": "Hiện có {count} người dùng bị chặn.",
   "knockRestricted": "Hạn chế gõ yêu cầu",
   "nonexistentSelection": "Không còn tồn tại lựa chọn này.",
-  "cantAddSpaceChild": "Bạn không có quyền thêm không gian con vào không gian này.",
-  "roomAddedToSpace": "Phòng đã được thêm vào không gian được chọn.",
   "createNewSpace": "Tạo không gian mới",
-  "addChatToSpaceDesc": "Thêm cuộc trò chuyện vào không gian này sẽ hiển thị trong danh sách, cho phép thành viên truy cập.",
-  "addSpaceToSpaceDesc": "Thêm một không gian con vào không gian này sẽ giúp không gian con xuất hiện trong danh sách phòng của không gian chính.",
-  "spaceAnalytics": "Phân tích không gian",
   "changeAnalyticsLanguage": "Thay đổi ngôn ngữ phân tích",
-  "suggestToSpace": "Đề xuất không gian này",
-  "suggestToSpaceDesc": "Các không gian con được đề xuất sẽ hiển thị trong danh sách không gian chính",
   "practice": "Luyện tập",
   "noLanguagesSet": "Chưa thiết lập ngôn ngữ",
   "noActivitiesFound": "Tạm đủ cho lần này! Hãy quay lại sau để có thêm hoạt động.",
@@ -2937,8 +2851,6 @@
   "deleteSubscriptionWarningTitle": "Bạn đang có gói đăng ký hoạt động",
   "deleteSubscriptionWarningBody": "Việc xóa tài khoản sẽ không hủy gói đăng ký của bạn.",
   "manageSubscription": "Quản lý gói đăng ký",
-  "createSpace": "Tạo không gian",
-  "createChat": "Tạo cuộc trò chuyện",
   "error520Title": "Hãy thử lại.",
   "error520Desc": "Xin lỗi, chúng tôi không thể hiểu tin nhắn của bạn...",
   "wordsUsed": "Từ đã dùng",
@@ -3008,13 +2920,10 @@
   "feedback": "Phản hồi (tùy chọn)",
   "reportContentIssueDescription": "Ôi không! AI hỗ trợ cá nhân hóa nhưng đôi khi vẫn nhầm lẫn. Hãy cho chúng tôi biết phản hồi của bạn hoặc ta sẽ thử lại.",
   "changeContent": "Bạn muốn thay đổi nội dung như thế nào?",
-  "clickTheWordAgainToDeselect": "Nhấn lại vào từ đã chọn để bỏ chọn.",
   "l2SupportNa": "Không khả dụng",
   "l2SupportAlpha": "Bản Alpha",
   "l2SupportBeta": "Bản Beta",
   "l2SupportFull": "Hoàn chỉnh",
-  "missingVoiceTitle": "Thiếu giọng đọc",
-  "voiceNotAvailable": "Bạn chưa cài đặt giọng đọc cho ngôn ngữ này.",
   "openVoiceSettings": "Mở cài đặt giọng nói",
   "playAudio": "Phát",
   "stop": "Dừng",
@@ -3303,18 +3212,14 @@
     }
   },
   "botModeValidation": "Vui lòng chọn một chế độ trò chuyện",
-  "clickBestOption": "Chọn phương án tốt nhất để dịch tin nhắn của bạn!",
   "botSettingsSubtitle": "Mời bot kiểm duyệt hoặc khởi tạo hoạt động trò chuyện",
   "invitePeople": "Mời người dùng",
   "invitePeopleChatSubtitle": "Mời người dùng hoặc quản trị viên đến cuộc trò chuyện này",
   "invitePeopleSpaceSubtitle": "Mời người dùng hoặc quản trị viên đến không gian này",
   "noCapacityLimit": "Không giới hạn sức chứa",
   "downloadGroupText": "Tải nội dung nhóm",
-  "spaceDescription": "Mô tả không gian",
-  "addSpaceDescription": "Thêm mô tả không gian",
   "notificationsOn": "Bật thông báo",
   "notificationsOff": "Tắt thông báo",
-  "spaceCanBeFoundViaSearch": "Không gian có thể được tìm thấy qua tìm kiếm",
   "chatCanBeFoundViaSearch": "Cuộc trò chuyện có thể được tìm thấy qua tìm kiếm",
   "calculatingFileSize": "Đang tính kích thước tệp...",
   "prepareSendingAttachment": "Chuẩn bị gửi tệp đính kèm...",
@@ -3346,8 +3251,6 @@
   "noticeChatBackupDeviceVerification": "Lưu ý: Khi bạn thêm tất cả thiết bị vào sao lưu trò chuyện, chúng sẽ tự động được xác minh.",
   "requireCodeToJoin": "Yêu cầu mã để tham gia",
   "canFindInSearch": "Có thể tìm thấy qua tìm kiếm",
-  "addSubspaceWarning": "Khi bạn thêm không gian con, nó sẽ không hiển thị trong kết quả tìm kiếm công khai và mọi thành viên của không gian cha đều có thể thấy.",
-  "nestedSpaceError": "Không gian con không được thêm tiếp vào một không gian con khác",
   "addChatToSpace": "Thêm trò chuyện vào không gian",
   "welcomeText": "Chào bạn 👋 Đây là FluffyChat. Bạn có thể đăng nhập vào bất kỳ máy chủ nào tương thích với https://matrix.org, và trò chuyện với mọi người. Đây là một mạng nhắn tin phi tập trung!",
   "blur": "Mờ:",
@@ -3371,7 +3274,6 @@
   "addLink": "Thêm liên kết",
   "unableToJoinChat": "Không thể tham gia cuộc trò chuyện. Có thể người kia đã đóng phiên.",
   "createChatAndInviteUsers": "Tạo cuộc trò chuyện và mời người dùng",
-  "updatedNewSpaceDescription": "Không gian giúp bạn quản lý nhiều cuộc trò chuyện và xây dựng cộng đồng riêng hoặc công khai.",
   "joinWithCode": "Tham gia bằng mã",
   "enterCodeToJoin": "Nhập mã để tham gia",
   "updateNow": "Cập nhật ngay",
@@ -3475,7 +3377,6 @@
   "numWordsTyped": "Số từ đã gõ trong tin nhắn gốc",
   "numCorrectChoices": "Số từ đã chọn chính xác từ gợi ý hệ thống",
   "numIncorrectChoices": "Số từ đã chọn sai từ gợi ý hệ thống",
-  "downloadSpaceAnalytics": "Tải phân tích không gian",
   "commaSeparatedFile": "CSV",
   "excelFile": "Excel",
   "fileType": "Loại tệp",
@@ -3535,8 +3436,6 @@
       }
     }
   },
-  "notInClass": "Không thuộc lớp!",
-  "noClassCode": "Không có mã lớp!",
   "otherPartyNotLoggedIn": "Bên kia hiện không đăng nhập, không thể nhận tin!",
   "chooseCorrectLabel": "Chọn nhãn đúng.",
   "levelPopupTitle": "Chúc mừng, bạn đã đạt cấp {level}",
@@ -3551,7 +3450,6 @@
   "activityPlannerTitle": "Trình lập hoạt động",
   "topicLabel": "Chủ đề",
   "topicPlaceholder": "Chọn một chủ đề...",
-  "modeLabel": "Chế độ",
   "modePlaceholder": "Chọn một chế độ...",
   "learningObjectiveLabel": "Mục tiêu học tập",
   "learningObjectivePlaceholder": "Chọn một mục tiêu học tập...",
@@ -3559,18 +3457,14 @@
   "languageOfInstructionsLabel": "Ngôn ngữ hướng dẫn hoạt động",
   "targetLanguageLabel": "Ngôn ngữ đích",
   "cefrLevelLabel": "Trình độ CEFR",
-  "generateActivitiesButton": "Tạo hoạt động",
   "launchActivityButton": "Khởi chạy hoạt động",
   "image": "Hình ảnh",
   "video": "Video",
   "nan": "Không áp dụng",
   "activityPlannerOverviewInstructionsBody": "Chọn chủ đề, chế độ, mục tiêu học tập và tạo hoạt động cho cuộc trò chuyện!",
-  "myBookmarkedActivities": "Hoạt động đã đánh dấu",
-  "noBookmarkedActivities": "Chưa có hoạt động nào được đánh dấu",
   "activityTitle": "Tiêu đề hoạt động",
   "addVocabulary": "Thêm từ vựng",
   "instructions": "Hướng dẫn",
-  "bookmark": "Đánh dấu hoạt động",
   "numberOfLearners": "Số lượng người học",
   "mustBeInteger": "Phải là số nguyên, ví dụ: 1, 2, 3...",
   "noLemmasFound": "Chưa có từ vựng với hơn {xp} XP. Hãy luyện tập thêm!",
@@ -3699,8 +3593,6 @@
   "enableAutocorrectDescription": "Sử dụng tính năng tự động sửa tích hợp của bàn phím khi gõ tin nhắn",
   "ttsDisbledTitle": "Tính năng chuyển văn bản thành giọng nói đã bị tắt",
   "ttsDisabledBody": "Bạn có thể bật tính năng chuyển văn bản thành giọng nói trong cài đặt học tập của bạn",
-  "leaveSpaceDescription": "Bằng cách rời khỏi không gian, bạn sẽ rời tất cả các cuộc trò chuyện bên trong nó. Những người dùng khác sẽ thấy rằng bạn đã rời khỏi không gian.",
-  "noSpaceDescriptionYet": "Chưa tạo mô tả không gian nào.",
   "tooLargeToSend": "Tin nhắn này quá lớn để gửi",
   "exitWithoutSaving": "Bạn có chắc chắn muốn rời đi mà không lưu không?",
   "enableAutocorrectPopupTitle": "Thêm bàn phím ngôn ngữ mục tiêu của bạn bằng cách vào:",
@@ -3743,9 +3635,7 @@
   "pleaseUpdateApp": "Vui lòng cập nhật ứng dụng để tiếp tục.",
   "chooseEmojiInstructionsBody": "Chọn một biểu tượng cảm xúc cho từ này! Không có câu trả lời sai và bạn có thể chuyển đổi bất cứ lúc nào! 😄",
   "pickAnEmojiFor": "Chọn một biểu tượng cảm xúc cho ${lemma}",
-  "knockSpaceSuccess": "Bạn đã yêu cầu tham gia không gian này! Một quản trị viên sẽ phản hồi yêu cầu của bạn khi họ nhận được nó 😄",
   "joinByCode": "Tham gia bằng mã",
-  "createASpace": "Tạo một không gian",
   "@@locale": "vi",
   "@takeAPhoto": {
     "type": "String",
@@ -3779,15 +3669,7 @@
       }
     }
   },
-  "@knockSpaceSuccess": {
-    "type": "String",
-    "placeholders": {}
-  },
   "@joinByCode": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@createASpace": {
     "type": "String",
     "placeholders": {}
   },
@@ -3834,14 +3716,11 @@
   "exploreMore": "Khám phá thêm",
   "randomize": "Ngẫu nhiên hóa",
   "clear": "Xóa",
-  "makeYourOwnActivity": "Tạo hoạt động của riêng bạn",
   "featuredActivities": "Nổi bật",
-  "yourBookmarks": "Đã đánh dấu",
   "goToChat": "Đi đến trò chuyện",
   "save": "Lưu",
   "selectActivity": "Chọn hoạt động",
   "wordFocusListeningMultipleChoice": "Âm thanh nào phù hợp với từ?",
-  "createActivity": "Tạo hoạt động",
   "startChat": "Bắt đầu trò chuyện",
   "translationProblem": "Vấn đề dịch thuật",
   "perfectTranslation": "Dịch thuật hoàn hảo!",
@@ -3850,13 +3729,11 @@
   "makingProgress": "Bạn đang tiến bộ!",
   "keepPracticing": "Tiếp tục luyện tập!",
   "niceJob": "Làm tốt lắm!",
-  "publicSpacesTitle": "Cộng đồng học tập",
   "askToJoin": "Yêu cầu tham gia",
   "emptyChatWarningTitle": "Trò chuyện trống",
   "emptyChatWarningDesc": "Bạn chưa mời ai vào trò chuyện của mình. Đi đến cài đặt trò chuyện để mời danh bạ hoặc Bot của bạn. Bạn cũng có thể làm điều này sau.",
   "areYouLikeMe": "Bạn có giống tôi không?",
   "tryAgainLater": "Đã thực hiện quá nhiều lần. Vui lòng thử lại sau 5 phút.",
-  "enterSpaceCode": "Nhập mã không gian",
   "shareSpaceLink": "Chia sẻ liên kết",
   "byUsingPangeaChat": "Bằng cách sử dụng Pangea Chat, tôi đồng ý với ",
   "details": "Chi tiết",
@@ -3872,7 +3749,6 @@
   "congratulationsOnReaching": "Bạn đã đạt đến Cấp độ {level}!",
   "seeDetails": "Xem chi tiết",
   "choosePracticeMode": "Nhấp vào một trong các nút ở trên để bắt đầu một hoạt động thực hành",
-  "userWouldLikeToChangeTheSpace": "{user} muốn tham gia không gian.",
   "ban": "Cấm",
   "unban": "Bỏ cấm",
   "kick": "Đá",
@@ -3886,11 +3762,9 @@
   "exampleMessages": "Tin nhắn ví dụ",
   "timesUsedIndependently": "Số lần sử dụng độc lập",
   "timesUsedWithAssistance": "Số lần sử dụng với sự trợ giúp",
-  "goToSpaceButton": "Đi đến không gian",
   "shareInviteCode": "Chia sẻ mã mời: {code}",
   "leaderboard": "Bảng xếp hạng",
   "welcomeUser": "Chào mừng {user}",
-  "joinSpaceOnboardingDesc": "Bạn có mã mời hoặc liên kết đến một cộng đồng học tập không?",
   "skipForNow": "Bỏ qua tạm thời",
   "@setCustomPermissionLevel": {
     "type": "String",
@@ -4032,10 +3906,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "@yourBookmarks": {
-    "type": "String",
-    "placeholders": {}
-  },
   "@goToChat": {
     "type": "String",
     "placeholders": {}
@@ -4088,10 +3958,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "@publicSpacesTitle": {
-    "type": "String",
-    "placeholders": {}
-  },
   "@askToJoin": {
     "type": "String",
     "placeholders": {}
@@ -4109,10 +3975,6 @@
     "placeholders": {}
   },
   "@tryAgainLater": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@enterSpaceCode": {
     "type": "String",
     "placeholders": {}
   },
@@ -4180,14 +4042,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "@userWouldLikeToChangeTheSpace": {
-    "type": "String",
-    "placeholders": {
-      "user": {
-        "type": "String"
-      }
-    }
-  },
   "@ban": {
     "type": "String",
     "placeholders": {}
@@ -4240,10 +4094,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "@goToSpaceButton": {
-    "type": "String",
-    "placeholders": {}
-  },
   "@shareInviteCode": {
     "type": "String",
     "placeholders": {
@@ -4264,41 +4114,29 @@
       }
     }
   },
-  "@joinSpaceOnboardingDesc": {
-    "type": "String",
-    "placeholders": {}
-  },
   "@skipForNow": {
     "type": "String",
     "placeholders": {}
   },
   "permissions": "Quyền hạn",
-  "spaceChildPermission": "Ai có thể thêm trò chuyện và không gian con vào không gian này",
   "addEnvironmentOverride": "Thêm ghi đè môi trường",
   "defaultOption": "Mặc định",
   "chatWithActivities": "Trò chuyện với các hoạt động",
-  "findYourPeople": "Tìm người của bạn",
   "launch": "Khởi động",
   "launchActivityToChats": "Khởi động hoạt động đến các trò chuyện",
   "searchChats": "Tìm kiếm cuộc trò chuyện",
   "selectChats": "Chọn cuộc trò chuyện",
   "selectChatToStart": "Hoàn tất! Chọn một trò chuyện để bắt đầu",
-  "configureSpace": "Cấu hình không gian",
   "pinMessages": "Ghim tin nhắn",
   "setJoinRules": "Đặt quy tắc tham gia",
   "displayNavigationRail": "Hiển thị thanh điều hướng trên di động",
   "changeGeneralSettings": "Thay đổi cài đặt chung",
   "inviteOtherUsersToRoom": "Mời người dùng khác",
-  "changeTheNameOfTheSpace": "Thay đổi tên của không gian",
   "changeTheDescription": "Thay đổi mô tả",
   "changeThePermissions": "Thay đổi quyền hạn",
   "introductions": "Giới thiệu",
   "announcements": "Thông báo",
   "@permissions": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@spaceChildPermission": {
     "type": "String",
     "placeholders": {}
   },
@@ -4338,10 +4176,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "@configureSpace": {
-    "type": "String",
-    "placeholders": {}
-  },
   "@pinMessages": {
     "type": "String",
     "placeholders": {}
@@ -4362,10 +4196,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "@changeTheNameOfTheSpace": {
-    "type": "String",
-    "placeholders": {}
-  },
   "@changeTheDescription": {
     "type": "String",
     "placeholders": {}
@@ -4379,6 +4209,1557 @@
     "placeholders": {}
   },
   "@announcements": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "checkList": "Danh sách kiểm tra",
+  "countInvited": "{count} người được mời",
+  "sentVoiceMessage": "🎙️ {duration} - Tin nhắn thoại từ {sender}",
+  "commandHint_logout": "Đăng xuất khỏi thiết bị hiện tại của bạn",
+  "commandHint_logoutall": "Đăng xuất khỏi tất cả các thiết bị đang hoạt động",
+  "customReaction": "Phản ứng tùy chỉnh",
+  "grammarCopyVERBFORMshrt": "Ngắn",
+  "constructUseCollected": "Được thu thập trong trò chuyện",
+  "modeLabel": "Loại hoạt động",
+  "makeYourOwnActivity": "Tạo hoạt động của riêng bạn",
+  "deleteChatDesc": "Bạn có chắc chắn muốn xóa trò chuyện này không? Nó sẽ bị xóa cho tất cả người tham gia và tất cả tin nhắn trong trò chuyện sẽ không còn khả dụng cho việc thực hành hoặc phân tích học tập.",
+  "maxFifty": "Tối đa 50",
+  "activities": "Hoạt động",
+  "access": "Truy cập",
+  "botSettings": "Cài đặt bot",
+  "activitySuggestionTimeoutMessage": "Chúng tôi đang làm việc chăm chỉ để tạo ra các hoạt động cho bạn, vui lòng quay lại sau một phút",
+  "accessSettingsWarning": "Ôi! Có vẻ như bạn không có quyền thiết lập các quy tắc Truy cập của phòng này. Bạn nên kiểm tra những điều này để đảm bảo chúng là những gì bạn cần và nói chuyện với quản trị viên phòng nếu bạn cần thay đổi chúng",
+  "private": "Riêng tư",
+  "cannotBeFoundInSearch": "Không thể tìm thấy trong tìm kiếm",
+  "public": "Công khai",
+  "canBeFoundVia": "Có thể tìm thấy qua:",
+  "canBeFoundViaInvitation": "• lời mời",
+  "canBeFoundViaCodeOrLink": "• mã hoặc liên kết",
+  "canBeFoundViaKnock": "• yêu cầu tham gia và sự chấp thuận của quản trị viên",
+  "youHaveLeveledUp": "Bạn đã nâng cấp!",
+  "sendActivities": "Gửi hoạt động",
+  "getStartedBotChatDesc": "Trò chuyện với AI là một nơi tuyệt vời để bắt đầu và các công cụ đọc, viết, nghe và nói của Pangea giúp điều đó dễ dàng!",
+  "getStartedCommunitiesDesc": "Học tập với một cộng đồng là nơi Pangea Chat tỏa sáng!\nBạn có thể tham gia lớp học của mình, tìm một trường học, hoặc thậm chí tạo riêng cho mình!",
+  "getStartedFriendsDesc": "Bạn có một người bạn muốn học cùng bạn không?",
+  "getStartedBotChatComplete": "Tuyệt vời! Bạn đang trò chuyện với bot!",
+  "getStartedComplete": "Bạn đã hoàn thành phần này!\nTiếp tục khám phá các tính năng tuyệt vời của chúng tôi bằng cách trò chuyện với bạn bè!",
+  "getStartedFriendsComplete": "Woohoo! Bạn đã có bạn bè! 😉",
+  "getStartedBotChatButton": "Bắt đầu trò chuyện!",
+  "getStartedFriendsButton": "Trò chuyện với một người bạn",
+  "groupChat": "Nhóm trò chuyện",
+  "directMessage": "Tin nhắn trực tiếp",
+  "newDirectMessage": "Tin nhắn trực tiếp mới",
+  "speakingExercisesTooltip": "Nói",
+  "noChatsFoundHereYet": "Chưa tìm thấy trò chuyện nào ở đây",
+  "duration": "Thời gian",
+  "transcriptionFailed": "Không thể chuyển đổi âm thanh",
+  "failedToFetchTranscription": "Không thể lấy bản chuyển đổi",
+  "regenerate": "Tạo lại",
+  "mySavedActivities": "Các hoạt động đã lưu của tôi",
+  "noSavedActivities": "Không có hoạt động nào đã lưu",
+  "saveActivity": "Lưu hoạt động này",
+  "yourSavedActivities": "Các hoạt động đã lưu",
+  "failedToPlayVideo": "Không thể phát video",
+  "done": "Xong",
+  "myContacts": "Danh bạ của tôi",
+  "numKnocking": "{count} gõ cửa",
+  "numInvited": "{count} đã được mời",
+  "saved": "Đã lưu",
+  "@checkList": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      },
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "@commandHint_logout": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@commandHint_logoutall": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@customReaction": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@grammarCopyVERBFORMshrt": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@constructUseCollected": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@modeLabel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@deleteChatDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@maxFifty": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@access": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@botSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activitySuggestionTimeoutMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@accessSettingsWarning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@private": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@cannotBeFoundInSearch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@public": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@canBeFoundVia": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@canBeFoundViaInvitation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@canBeFoundViaCodeOrLink": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@canBeFoundViaKnock": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@youHaveLeveledUp": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sendActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedBotChatDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedCommunitiesDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedFriendsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedBotChatComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedFriendsComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedBotChatButton": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedFriendsButton": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@groupChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@directMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newDirectMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@speakingExercisesTooltip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noChatsFoundHereYet": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@duration": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@transcriptionFailed": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@failedToFetchTranscription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@regenerate": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@mySavedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noSavedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@saveActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@yourSavedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@failedToPlayVideo": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@done": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@myContacts": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@numKnocking": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@numInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@saved": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chatCapacitySetTooLow": "Dung lượng trò chuyện phải ít nhất là {count}.",
+  "spaceCapacitySetTooLow": "Dung lượng không gian phải ít nhất là {count}.",
+  "reset": "Đặt lại",
+  "errorGenerateActivityMessage": "Không thể tạo hoạt động",
+  "errorRegenerateActivityMessage": "Không thể tái tạo hoạt động",
+  "errorFetchingActivitiesMessage": "Không thể lấy hoạt động",
+  "errorFetchingDefinition": "Không thể lấy định nghĩa",
+  "errorProcessAnalytics": "Không thể xử lý phân tích",
+  "errorDownloading": "Tải xuống thất bại",
+  "errorFetchingLevelSummary": "Không thể lấy tóm tắt cấp độ",
+  "errorLoadingSpaceChildren": "Không thể tải trò chuyện trong không gian này",
+  "unexpectedError": "Lỗi không mong đợi.",
+  "pleaseReload": "Vui lòng tải lại và thử lại.",
+  "translationError": "Lỗi dịch thuật",
+  "errorFetchingTranslation": "Không thể lấy bản dịch",
+  "errorFetchingActivity": "Không thể lấy hoạt động",
+  "check": "Kiểm tra",
+  "unableToFindRoom": "Không tìm thấy trò chuyện hoặc không gian nào với mã đó. Vui lòng thử lại.",
+  "@chatCapacitySetTooLow": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@spaceCapacitySetTooLow": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@reset": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorGenerateActivityMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorRegenerateActivityMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingActivitiesMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingDefinition": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorProcessAnalytics": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorDownloading": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingLevelSummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorLoadingSpaceChildren": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unexpectedError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@pleaseReload": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@translationError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingTranslation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@check": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unableToFindRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "joinWithClassCode": "Tham gia khóa học",
+  "errorDisableITClassDesc": "Hỗ trợ dịch thuật đã tắt cho khóa học mà cuộc trò chuyện này đang diễn ra.",
+  "errorDisableIGCClassDesc": "Hỗ trợ ngữ pháp đã tắt cho khóa học mà cuộc trò chuyện này đang diễn ra.",
+  "participants": "Tham gia",
+  "invitedToSpace": "{user} đã mời bạn tham gia một khóa học: {space}! Bạn có muốn chấp nhận không?",
+  "blurMeansTranslateBody": "Trong khi Chế độ Ngâm mình đang bật, các tin nhắn gửi bằng ngôn ngữ chính của bạn sẽ bị mờ đi trong khi Pangea Bot dịch chúng sang ngôn ngữ mục tiêu của bạn. Chế độ Ngâm mình có thể bật tắt trong cài đặt cá nhân và khóa học.",
+  "updatedNewSpaceDescription": "Các khóa học cho phép bạn hợp nhất các cuộc trò chuyện của mình và xây dựng cộng đồng riêng tư hoặc công cộng.",
+  "generateActivitiesButton": "Tạo hoạt động",
+  "leaveSpaceDescription": "Bằng cách rời khỏi khóa học, bạn sẽ rời khỏi tất cả các cuộc trò chuyện trong đó. Các người dùng khác sẽ thấy rằng bạn đã rời khỏi khóa học.",
+  "noSpaceDescriptionYet": "Chưa tạo mô tả khóa học nào.",
+  "knockSpaceSuccess": "Bạn đã yêu cầu tham gia khóa học này! Quản trị viên sẽ phản hồi yêu cầu của bạn khi họ nhận được 😀",
+  "enterSpaceCode": "Nhập mã khóa học",
+  "joinSpaceOnboardingDesc": "Bạn có mã mời hoặc liên kết đến một khóa học công khai không?",
+  "spaceChildPermission": "Ai có thể thêm cuộc trò chuyện mới vào khóa học này",
+  "deleteSpaceDesc": "Khóa học và bất kỳ cuộc trò chuyện nào đã chọn sẽ bị xóa cho tất cả các thành viên và tất cả các tin nhắn trong cuộc trò chuyện sẽ không còn khả dụng để thực hành hoặc phân tích học tập. Hành động này không thể hoàn tác.",
+  "configureSpace": "Cấu hình khóa học",
+  "changeTheNameOfTheSpace": "Thay đổi tên của khóa học",
+  "howSpaceCanBeFound": "Khóa học này có thể được tìm thấy như thế nào",
+  "visibleToCommunity": "Hiển thị cho cộng đồng Chat Pangea rộng hơn qua \"Tìm khóa học\"",
+  "howSpaceCanBeJoined": "Khóa học này có thể được tham gia như thế nào",
+  "getStartedCommunitiesComplete": "Tuyệt vời, bạn đã tham gia một khóa học!",
+  "aUserIsKnocking": "Có 1 người dùng đang yêu cầu tham gia khóa học của bạn",
+  "usersAreKnocking": "{users} người dùng đang yêu cầu tham gia khóa học của bạn",
+  "deleteEmptySpaceDesc": "Khóa học sẽ bị xóa cho tất cả các thành viên. Hành động này không thể hoàn tác.",
+  "inThisSpace": "Trong khóa học này",
+  "inviteAllInSpace": "Mời tất cả trong khóa học này",
+  "spaceParticipantsHaveBeenInvitedToTheChat": "Tất cả thành viên trong khóa học đã được mời vào trò chuyện",
+  "errorLaunchActivityMessage": "Không thể khởi chạy hoạt động",
+  "numCompletedActivities": "Số hoạt động đã hoàn thành",
+  "viewingAnalytics": "Đang xem {visible}/{users} Thống kê",
+  "request": "Yêu cầu",
+  "requestAll": "Yêu cầu tất cả",
+  "confirmMessageUnpin": "Bạn có chắc chắn muốn bỏ ghim tin nhắn này không?",
+  "createActivityPlan": "Tạo kế hoạch hoạt động mới",
+  "saveAndLaunch": "Lưu và khởi chạy",
+  "launchToSpace": "Khởi chạy vào khóa học",
+  "numberOfActivities": "Số buổi hoạt động",
+  "maximumActivityParticipants": "Mỗi hoạt động có tối đa {count} người tham gia.",
+  "pending": "Đang chờ",
+  "inactive": "Không hoạt động",
+  "unjoinedActivityMessage": "Bạn có muốn tham gia không? Chọn vai trò mở!\nHoặc tụ tập và xem chương trình!",
+  "fullActivityMessage": "Thoải mái xem chương trình! Trong khi không có vai trò mở để tham gia, bạn có thể xem cuộc trò chuyện!",
+  "confirmRole": "Xác nhận vai trò",
+  "openRoleLabel": "MỞ",
+  "joinedTheActivity": "👋 {username} đã tham gia với vai trò {role}",
+  "finishedTheActivity": "🎯 {username} đã kết thúc hoạt động này",
+  "endActivityTitle": "Tôi đã xong",
+  "endActivityDesc": "Bạn đã hoàn thành các mục tiêu chưa?\nĐây là xác nhận của bạn rằng bạn đang rút lui khỏi việc nhắn tin. Nhưng đừng lo, niềm vui vẫn tiếp tục trong cuộc trò chuyện! Hãy thoải mái tụ tập và thưởng thức chương trình cho đến khi mọi người nhấn 'Xong'.",
+  "archiveToAnalytics": "Thêm vào các hoạt động đã hoàn thành của tôi",
+  "activitySummaryError": "Không thể lấy tóm tắt hoạt động",
+  "requestSummaries": "Yêu cầu tóm tắt",
+  "loadingActivitySummary": "Đang tải tóm tắt hoạt động...",
+  "generatingNewActivities": "Bạn là người dùng đầu tiên của cặp ngôn ngữ này! Vui lòng chờ một phút, chúng tôi đang chuẩn bị hoạt động dành riêng cho bạn.",
+  "requestAccessTitle": "Yêu cầu quyền truy cập xem phân tích?",
+  "requestAccessDesc": "Bạn có muốn yêu cầu quyền truy cập để xem phân tích người tham gia?\n\nNếu các người tham gia đồng ý, quản trị viên của khóa học này sẽ có thể xem:\n    • tổng số từ vựng\n    • tổng số khái niệm ngữ pháp\n    • tổng số phiên hoạt động đã hoàn thành\n    • các khái niệm ngữ pháp cụ thể đã sử dụng, đúng và sai\n\nHọ sẽ không thể xem:\n    • tin nhắn trong các cuộc trò chuyện ngoài khóa học\n    • danh sách từ vựng",
+  "requestAccess": "Yêu cầu quyền truy cập ({count})",
+  "analyticsInactiveTitle": "Không thể gửi yêu cầu tới người dùng không hoạt động",
+  "analyticsInactiveDesc": "Người dùng không hoạt động kể từ khi tính năng này được giới thiệu sẽ không thấy yêu cầu của bạn.\n\nNút Yêu cầu sẽ xuất hiện khi họ trở lại. Bạn có thể gửi lại yêu cầu sau bằng cách nhấn nút Yêu cầu dưới tên của họ khi nó khả dụng.",
+  "accessRequestedTitle": "Yêu cầu truy cập phân tích",
+  "accessRequestedDesc": "Quản trị viên của “{space}” đang yêu cầu xem phân tích học tập của bạn.\n\nNếu bạn đồng ý, quản trị viên của khóa học này sẽ có thể xem:\n    • tổng số từ vựng\n    • tổng số khái niệm ngữ pháp\n    • tổng số phiên hoạt động đã hoàn thành\n    • các khái niệm ngữ pháp cụ thể đã sử dụng, đúng và sai\n\nHọ sẽ không thể xem:\n    • tin nhắn trong các cuộc trò chuyện ngoài khóa học\n    • danh sách từ vựng",
+  "allowAccess": "Cho phép truy cập",
+  "denyAccess": "Từ chối truy cập",
+  "adminRequestedAccess": "Quản trị viên yêu cầu xem phân tích của bạn.",
+  "lastUpdated": "Cập nhật\n{time}",
+  "activityFinishedMessage": "Hoàn tất!",
+  "endForAll": "Kết thúc cho tất cả",
+  "newCourse": "Khóa học mới",
+  "newCourseSubtitle": "Bạn muốn sử dụng kế hoạch khóa học nào?",
+  "failedToLoadCourses": "Không thể tải khóa học",
+  "numModules": "{num} mô-đun",
+  "numActivityPlans": "{num} kế hoạch hoạt động",
+  "coursePlan": "Kế hoạch khóa học",
+  "editCourseLater": "Bạn có thể chỉnh sửa tiêu đề mẫu, mô tả và hình ảnh khóa học sau.",
+  "newCourseAccess": "Theo mặc định, các khóa học là riêng tư và yêu cầu sự chấp thuận của quản trị viên để tham gia. Bạn có thể chỉnh sửa các cài đặt này bất cứ lúc nào.",
+  "createCourse": "Tạo khóa học",
+  "stats": "Thống kê",
+  "createGroupChat": "Tạo nhóm trò chuyện",
+  "editCourse": "Chỉnh sửa khóa học",
+  "inviteDesc": "Bằng tên người dùng, mã hoặc liên kết",
+  "editCourseDesc": "Tại đây bạn có thể chỉnh sửa tiêu đề, mô tả của khóa học, v.v.",
+  "permissionsDesc": "Thiết lập quyền như ai có thể mời người dùng, gửi tin nhắn, tạo cuộc trò chuyện, v.v.",
+  "accessDesc": "Bạn có thể làm cho khóa học của mình mở cho thế giới! Hoặc, làm cho khóa học của bạn riêng tư và an toàn.",
+  "createGroupChatDesc": "Trong khi các phiên hoạt động bắt đầu và kết thúc, nhóm trò chuyện sẽ luôn mở để giao tiếp định kỳ.",
+  "deleteDesc": "Chỉ quản trị viên mới có thể xóa khóa học. Đây là hành động phá hủy, sẽ xóa tất cả người dùng và tất cả các cuộc trò chuyện đã chọn trong khóa học. Hãy cẩn thận khi thực hiện.",
+  "failedToLoadCourseInfo": "Không thể tải thông tin khóa học",
+  "noCourseFound": "Ôi, khóa học này cần có kế hoạch!\n\nKế hoạch khóa học là một chuỗi các chủ đề và hoạt động trò chuyện.",
+  "additionalParticipants": "+ {num} người khác",
+  "activityNotFoundForCourse": "Hoạt động này không được tìm thấy trong khóa học",
+  "courseChats": "Các cuộc trò chuyện của khóa học",
+  "myActivitySessions": "Các phiên hoạt động của tôi",
+  "directMessages": "Tin nhắn trực tiếp",
+  "whatNow": "Bây giờ làm gì?",
+  "chooseNextActivity": "Chọn hoạt động tiếp theo của bạn!",
+  "seeInstructions": "Xem hướng dẫn",
+  "hideInstructions": "Ẩn hướng dẫn",
+  "letsGo": "Đi nào",
+  "chooseRole": "Chọn vai trò!",
+  "chooseRoleToParticipate": "Chọn vai trò để tham gia!",
+  "waitingToFillRole": "Đang chờ điền {num} vai trò...",
+  "pingParticipants": "Thông báo cho các thành viên trong khóa học",
+  "playWithBot": "Chơi với Pangea Bot",
+  "inviteFriends": "Mời bạn bè",
+  "waitNotDone": "Chờ tôi chưa xong!",
+  "waitingForOthersToFinish": "Đang chờ những người khác hoàn thành...",
+  "saveToCompletedActivities": "Lưu vào hoạt động đã hoàn thành",
+  "generatingSummary": "Phân tích cuộc trò chuyện và tạo kết quả",
+  "instructionsLanguage": "Ngôn ngữ hướng dẫn",
+  "findCourse": "Tìm khóa học",
+  "activityCompletedDesc": "Hoạt động đã hoàn thành của bạn đã được thêm vào phân tích để bạn có thể xem lại và luyện tập ngôn ngữ đã sử dụng.",
+  "pingParticipantsNotification": "{user} đang tìm kiếm người dùng để tham gia phiên hoạt động trong {room}",
+  "course": "Khóa học",
+  "courses": "Các khóa học",
+  "courseName": "Tên khóa học",
+  "createNewCourse": "Khóa học mới",
+  "publicCourses": "Các khóa học công khai",
+  "goToCourse": "Đi tới khóa học: {course}",
+  "activityComplete": "Hoạt động này đã hoàn thành. Tóm tắt hoạt động sẽ có sẵn bên dưới.",
+  "haventChattedMuch": "Có vẻ bạn chưa trò chuyện nhiều, hãy thử sử dụng nhiều từ vựng hơn! Nếu bạn cảm thấy đã hoàn thành mục tiêu, bạn có thể kết thúc hoạt động bên dưới.",
+  "haveChatted": "Có vẻ bạn đã trò chuyện một thời gian rồi! Nếu bạn cảm thấy đã hoàn thành mục tiêu, hãy kết thúc để hoàn tất hoạt động và chúng tôi sẽ tạo cho bạn một bản tóm tắt trong cuộc trò chuyện!",
+  "userDoneAndWaiting": "{num1}/{num2} người tham gia đã kết thúc. Chờ mọi người hoàn thành, chúng tôi sẽ tạo cho bạn một bản tóm tắt trong cuộc trò chuyện! \n\nNếu bạn muốn tham gia lại cuộc trò chuyện, nhấn nút tiếp tục trong cuộc trò chuyện.",
+  "othersDoneAndWaiting": "{num1}/{num2} đã hoàn thành. Bạn đã hoàn thành mục tiêu của mình chưa?",
+  "startNewSession": "Bắt đầu phiên mới",
+  "joinOpenSession": "Tham gia phiên mở",
+  "less": "ít hơn",
+  "activityNotFound": "Hoạt động không tìm thấy",
+  "levelUp": "Lên cấp",
+  "myActivities": "Hoạt động của tôi",
+  "openToJoin": "Mở để tham gia",
+  "results": "Kết quả",
+  "activityDone": "Hoạt động hoàn thành!",
+  "moreLabel": "xem thêm",
+  "promoCodeInfo": "Mã khuyến mãi có thể nhập ở trang tiếp theo",
+  "editsComingSoon": "Khả năng chỉnh sửa thành phố và hoạt động sẽ sớm ra mắt.",
+  "editing": "Đang chỉnh sửa",
+  "activityNeedsOneMember": "Ôi! Hoạt động này cần thêm 1 người nữa.",
+  "activityNeedsMembers": "Ôi! Hoạt động này cần thêm {num} người nữa.",
+  "inviteFriendsToCourse": "Mời bạn bè tham gia khóa học của tôi",
+  "subscribeToUnlockActivitySummaries": "Đăng ký để mở khóa tóm tắt hoạt động",
+  "subscribeToUnlockDefinitions": "Đăng ký để mở khóa định nghĩa",
+  "subscribeToUnlockTranscriptions": "Đăng ký để mở khóa bản chép",
+  "pingSent": "🔴 Đã gửi ping khóa học! 🔴",
+  "courseTitle": "Tiêu đề khóa học",
+  "courseDesc": "Mô tả khóa học",
+  "courseSavedSuccessfully": "Lưu khóa học thành công",
+  "addCoursePlan": "Thêm kế hoạch khóa học",
+  "activityStatsButtonInstruction": "Nhấn vào đây để xem thống kê hoạt động của bạn và đóng hoạt động khi hoàn thành",
+  "readingAnalyticsDesc": "Nhấn luyện tập trên từng tin nhắn để thực hiện các hoạt động đọc.",
+  "speakingAnalyticsDesc": "Ghi âm tin nhắn thoại để luyện nói.",
+  "audioAnalyticsDesc": "Nhấn luyện tập trên từng tin nhắn để thực hiện các hoạt động nghe.",
+  "loginToAccount": "Đăng nhập vào tài khoản của tôi",
+  "appDescription": "Học một ngôn ngữ\ntrong khi nhắn tin với bạn bè.",
+  "languages": "Ngôn ngữ",
+  "chooseLanguage": "Chọn một ngôn ngữ.",
+  "planTrip": "Lập kế hoạch chuyến đi",
+  "howAreYouTraveling": "Bạn đi du lịch bằng phương tiện gì?",
+  "unlockPrivateTrip": "Mở khóa chuyến đi riêng tư",
+  "joinPublicTrip": "Tham gia chuyến đi công cộng",
+  "startOwnTrip": "Bắt đầu chuyến đi của tôi",
+  "tripPlanDesc": "Các chuyến đi là các khóa học. Mỗi khóa có 8-10 chủ đề theo trình tự với nhiều hoạt động học ngôn ngữ dựa trên nhiệm vụ.",
+  "unlockPrivateTripTitle": "Mở khóa chuyến đi riêng tư",
+  "browsePublicTrips": "Duyệt các chuyến đi công cộng",
+  "startOwnTripTitle": "Bắt đầu chuyến đi của riêng tôi",
+  "courseCode": "Mật khẩu bí mật là gì?",
+  "courseCodeHint": "Mã chuyến đi hoặc liên kết",
+  "unlockMyTrip": "Mở khóa chuyến đi của tôi",
+  "anyLevel": "Bất kỳ trình độ nào",
+  "signupOption": "Bạn muốn đăng ký như thế nào?",
+  "withApple": "Với Apple",
+  "withGoogle": "Với Google",
+  "withEmail": "Với Email",
+  "createAccount": "Tạo tài khoản",
+  "noCoursesFound": "Không tìm thấy khóa học",
+  "loginWithEmail": "Đăng nhập bằng email",
+  "usernameOrEmail": "Tên người dùng hoặc email",
+  "email": "Email",
+  "forgotPassword": "Quên mật khẩu?",
+  "writingAnalyticsDesc": "Gửi tin nhắn để luyện viết.",
+  "endActivity": "Kết thúc hoạt động",
+  "allLanguages": "Tất cả các ngôn ngữ",
+  "allCefrLevels": "Tất cả các trình độ CEFR",
+  "chatListTooltip": "Bạn sẽ tìm thấy tin nhắn trực tiếp của mình ở đây! Nhấp vào ảnh đại diện của bất kỳ người dùng nào và chọn “bắt đầu cuộc trò chuyện” để gửi tin nhắn trực tiếp.",
+  "directMessageBotTitle": "Tin nhắn trực tiếp với Pangea Bot",
+  "feedbackTitle": "Phản hồi hoạt động",
+  "feedbackDesc": "Hoạt động nên được cải thiện như thế nào? Nếu bạn có thể cung cấp một số chi tiết, chúng tôi sẽ thực hiện thay đổi!",
+  "feedbackHint": "Phản hồi của bạn",
+  "feedbackButton": "Gửi phản hồi",
+  "directMessageBotDesc": "Nói chuyện với con người thì vui hơn nhưng... AI luôn sẵn sàng!",
+  "inviteYourFriends": "Mời bạn bè của bạn",
+  "playWithAI": "Chơi với AI trong thời gian này",
+  "courseStartDesc": "Pangea Bot sẵn sàng hoạt động bất cứ lúc nào!\n\n...nhưng học tập tốt hơn khi có bạn bè!",
+  "@joinWithClassCode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorDisableITClassDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorDisableIGCClassDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@participants": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@invitedToSpace": {
+    "type": "String",
+    "placeholders": {
+      "user": {
+        "type": "String"
+      },
+      "space": {
+        "type": "String"
+      }
+    }
+  },
+  "@blurMeansTranslateBody": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@updatedNewSpaceDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@generateActivitiesButton": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@leaveSpaceDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noSpaceDescriptionYet": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@knockSpaceSuccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@enterSpaceCode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinSpaceOnboardingDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@spaceChildPermission": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@deleteSpaceDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@configureSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@changeTheNameOfTheSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@howSpaceCanBeFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@visibleToCommunity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@howSpaceCanBeJoined": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedCommunitiesComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@aUserIsKnocking": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@usersAreKnocking": {
+    "type": "int",
+    "placeholders": {
+      "users": {
+        "type": "int"
+      }
+    }
+  },
+  "@deleteEmptySpaceDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inThisSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteAllInSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@spaceParticipantsHaveBeenInvitedToTheChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorLaunchActivityMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@numCompletedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@viewingAnalytics": {
+    "type": "String",
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "users": {
+        "type": "int"
+      }
+    }
+  },
+  "@request": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@requestAll": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@confirmMessageUnpin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@saveAndLaunch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@launchToSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@numberOfActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@maximumActivityParticipants": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@pending": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inactive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unjoinedActivityMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@fullActivityMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@confirmRole": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@openRoleLabel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinedTheActivity": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "@finishedTheActivity": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@endActivityTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@endActivityDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@archiveToAnalytics": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activitySummaryError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@requestSummaries": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@loadingActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@generatingNewActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@requestAccessTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@requestAccessDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@requestAccess": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analyticsInactiveTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@analyticsInactiveDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@accessRequestedTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@accessRequestedDesc": {
+    "type": "String",
+    "placeholders": {
+      "space": {
+        "type": "String"
+      }
+    }
+  },
+  "@allowAccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyAccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@adminRequestedAccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@lastUpdated": {
+    "type": "String",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@activityFinishedMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@endForAll": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newCourseSubtitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@failedToLoadCourses": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@numModules": {
+    "type": "int",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "@numActivityPlans": {
+    "type": "int",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "@coursePlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@editCourseLater": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newCourseAccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@stats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createGroupChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@editCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@editCourseDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@permissionsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@accessDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createGroupChatDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@deleteDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@failedToLoadCourseInfo": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noCourseFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@additionalParticipants": {
+    "type": "int",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "@activityNotFoundForCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseChats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@myActivitySessions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@directMessages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@whatNow": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chooseNextActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@seeInstructions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@hideInstructions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@letsGo": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chooseRole": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chooseRoleToParticipate": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@waitingToFillRole": {
+    "type": "int",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "@pingParticipants": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playWithBot": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteFriends": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@waitNotDone": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@waitingForOthersToFinish": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@saveToCompletedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@generatingSummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@instructionsLanguage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@findCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityCompletedDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@pingParticipantsNotification": {
+    "type": "String",
+    "placeholders": {
+      "user": {
+        "type": "String"
+      },
+      "room": {
+        "type": "String"
+      }
+    }
+  },
+  "@course": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courses": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseName": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createNewCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@publicCourses": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@goToCourse": {
+    "type": "String",
+    "placeholders": {
+      "course": {}
+    }
+  },
+  "@activityComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@haventChattedMuch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@haveChatted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userDoneAndWaiting": {
+    "type": "String",
+    "placeholders": {
+      "num1": {
+        "type": "int"
+      },
+      "num2": {
+        "type": "int"
+      }
+    }
+  },
+  "@othersDoneAndWaiting": {
+    "type": "String",
+    "placeholders": {
+      "num1": {
+        "type": "int"
+      },
+      "num2": {
+        "type": "int"
+      }
+    }
+  },
+  "@startNewSession": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinOpenSession": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@less": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityNotFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@levelUp": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@myActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@openToJoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@results": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityDone": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@moreLabel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@promoCodeInfo": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@editsComingSoon": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@editing": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityNeedsOneMember": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityNeedsMembers": {
+    "type": "String",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "@inviteFriendsToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@subscribeToUnlockActivitySummaries": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@subscribeToUnlockDefinitions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@subscribeToUnlockTranscriptions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@pingSent": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseSavedSuccessfully": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@addCoursePlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityStatsButtonInstruction": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@readingAnalyticsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@speakingAnalyticsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@audioAnalyticsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@loginToAccount": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@appDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chooseLanguage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@planTrip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@howAreYouTraveling": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unlockPrivateTrip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinPublicTrip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@startOwnTrip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@tripPlanDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unlockPrivateTripTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@browsePublicTrips": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@startOwnTripTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseCode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseCodeHint": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unlockMyTrip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@anyLevel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@signupOption": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@withApple": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@withGoogle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@withEmail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createAccount": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noCoursesFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@loginWithEmail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@usernameOrEmail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@email": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@forgotPassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writingAnalyticsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@endActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@allLanguages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@allCefrLevels": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chatListTooltip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@directMessageBotTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@feedbackTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@feedbackDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@feedbackHint": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@feedbackButton": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@directMessageBotDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteYourFriends": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playWithAI": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseStartDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "inviteFriendsToActivity": "Mời bạn bè tham gia hoạt động",
+  "inviteFriendsToActivityCourse": "Mời bạn bè tham gia hoạt động và khóa học",
+  "feedbackRespDesc": "Kiểm tra lại vào ngày mai để cập nhật hoạt động.",
+  "activityDropdownDesc": "Khi bạn hoàn thành hoạt động này, nhấn vào bên dưới",
+  "activityAnalyticsListBody": "Đây là các hoạt động bạn đã hoàn thành! Sau khi hoàn thành các hoạt động, bạn có thể xem chúng tại đây.",
+  "languageMismatchTitle": "Không khớp ngôn ngữ",
+  "languageMismatchDesc": "Ngôn ngữ mục tiêu của bạn không khớp với ngôn ngữ của hoạt động này. Cập nhật ngôn ngữ mục tiêu của bạn?",
+  "reportWordIssueTooltip": "Báo cáo vấn đề về thông tin từ",
+  "tokenInfoFeedbackDialogTitle": "Phản hồi Thông tin Từ",
+  "tokenInfoFeedbackDialogDesc": "AI có thể mắc lỗi. Vui lòng mô tả bất kỳ vấn đề nào bạn gặp phải với thông tin trên.",
+  "noPublicCoursesFound": "Không tìm thấy khóa học công khai. Bạn có muốn tạo một khóa học không?",
+  "noCourseTemplatesFound": "Chúng tôi không thể tìm thấy bất kỳ khóa học nào phù hợp với ngôn ngữ mục tiêu của bạn. Trong thời gian chờ, bạn có thể trò chuyện với Pangea Bot và quay lại sau để xem thêm các khóa học.",
+  "botActivityJoinFailMessage": "Pangea Bot đang phản hồi chậm. Vui lòng thử lại sau hoặc mời bạn bè tham gia.",
+  "unsubscribedResponseError": "Tính năng này yêu cầu đăng ký",
+  "leaveDesc": "Rời khỏi không gian này và tất cả các cuộc trò chuyện trong đó",
+  "selectAll": "Chọn tất cả",
+  "deselectAll": "Bỏ chọn tất cả",
+  "@inviteFriendsToActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteFriendsToActivityCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@feedbackRespDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityDropdownDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityAnalyticsListBody": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageMismatchTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageMismatchDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@reportWordIssueTooltip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@tokenInfoFeedbackDialogTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@tokenInfoFeedbackDialogDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noPublicCoursesFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noCourseTemplatesFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@botActivityJoinFailMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unsubscribedResponseError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@leaveDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@selectAll": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@deselectAll": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "clickBestOption": "Chọn các tùy chọn tốt nhất để dịch tin nhắn của bạn! Nhấn và giữ các tùy chọn để xem gợi ý.",
+  "startOwn": "Bắt đầu của riêng tôi",
+  "joinCourseDesc": "Mỗi khóa học có 8-10 chủ đề theo trình tự với nhiều hoạt động học ngôn ngữ dựa trên nhiệm vụ.",
+  "newMessageInPangeaChat": "🔊 Tin nhắn mới trong Pangea Chat",
+  "shareCourse": "Chia sẻ khóa học",
+  "addCourse": "Thêm khóa học",
+  "joinCourseWithCode": "Tham gia khóa học bằng mã",
+  "joinPublicCourse": "Tham gia khóa học công khai",
+  "vocabLevelsDesc": "Đây là nơi các từ vựng sẽ xuất hiện sau khi bạn nâng cấp chúng!",
+  "highlightVocabTooltip": "Nổi bật các từ vựng mục tiêu bên dưới bằng cách gửi chúng hoặc luyện tập với chúng trong trò chuyện",
+  "@clickBestOption": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@startOwn": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinCourseDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newMessageInPangeaChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@shareCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@addCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinCourseWithCode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinPublicCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@vocabLevelsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@highlightVocabTooltip": {
     "type": "String",
     "placeholders": {}
   }

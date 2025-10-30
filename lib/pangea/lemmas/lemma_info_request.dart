@@ -9,14 +9,14 @@ class LemmaInfoRequest {
   final String lemmaLang;
   final String userL1;
 
-  ContentFeedback<LemmaInfoResponse>? feedback;
+  List<ContentFeedback<LemmaInfoResponse>> feedback;
 
   LemmaInfoRequest({
     required String partOfSpeech,
     required String lemmaLang,
     required this.userL1,
     required this.lemma,
-    this.feedback,
+    this.feedback = const [],
   })  : partOfSpeech = partOfSpeech.toLowerCase(),
         lemmaLang = lemmaLang.toLowerCase();
 
@@ -26,7 +26,7 @@ class LemmaInfoRequest {
       'part_of_speech': partOfSpeech,
       'lemma_lang': lemmaLang,
       'user_l1': userL1,
-      'feedback': feedback?.toJson(),
+      'feedback': feedback.map((e) => e.toJson()).toList(),
     };
   }
 

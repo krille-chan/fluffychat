@@ -12,17 +12,20 @@ import 'package:fluffychat/pangea/analytics_downloads/space_analytics_summary_mo
 import 'package:fluffychat/pangea/analytics_misc/construct_list_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
-import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
-import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
+import 'package:fluffychat/pangea/download/download_file_util.dart';
+import 'package:fluffychat/pangea/download/download_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class DownloadAnalyticsDialog extends StatefulWidget {
   final Room space;
+  final List<Room> analyticsRooms;
   const DownloadAnalyticsDialog({
     required this.space,
+    required this.analyticsRooms,
     super.key,
   });
 
@@ -37,7 +40,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
 
   bool get _loading => _downloading || !_initialized;
 
-  String? _error;
+  Object? _error;
 
   Map<String, int> _downloadStatuses = {};
 
@@ -48,26 +51,10 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
   }
 
   Future<void> _initialize() async {
-    try {
-      await widget.space.requestParticipants(
-        [Membership.join],
-        false,
-        true,
-      );
-    } catch (e, s) {
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          "spaceID": widget.space.id,
-        },
-      );
-    } finally {
-      _downloadStatuses = Map.fromEntries(
-        _usersToDownload.map((user) => MapEntry(user.id, 0)),
-      );
-      if (mounted) setState(() => _initialized = true);
-    }
+    _downloadStatuses = Map.fromEntries(
+      widget.analyticsRooms.map((room) => MapEntry(room.creatorId!, 0)),
+    );
+    if (mounted) setState(() => _initialized = true);
   }
 
   DownloadType _downloadType = DownloadType.csv;
@@ -82,18 +69,9 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
     _downloading = false;
     _downloaded = false;
     _downloadStatuses = Map.fromEntries(
-      _usersToDownload.map((user) => MapEntry(user.id, 0)),
+      widget.analyticsRooms.map((room) => MapEntry(room.creatorId!, 0)),
     );
   }
-
-  List<User> get _usersToDownload => widget.space
-      .getParticipants()
-      .where(
-        (member) =>
-            member.id != BotName.byEnvironment &&
-            member.membership == Membership.join,
-      )
-      .toList();
 
   Color _downloadStatusColor(String userID) {
     final status = _downloadStatuses[userID];
@@ -121,15 +99,11 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
       });
 
       final List<SpaceAnalyticsSummaryModel> summaries = [];
-      await for (final batch
-          in widget.space.getNextAnalyticsRoomBatch(userL2!)) {
-        if (batch.isEmpty) continue;
-        final List<SpaceAnalyticsSummaryModel?> batchSummaries =
-            await Future.wait(
-          batch.map((r) => _getAnalyticsModel(r)),
-        );
-        summaries
-            .addAll(batchSummaries.whereType<SpaceAnalyticsSummaryModel>());
+      for (final room in widget.analyticsRooms) {
+        final summary = await _getAnalyticsModel(room);
+        if (summary != null) {
+          summaries.add(summary);
+        }
       }
 
       for (final userID in _downloadStatuses.keys) {
@@ -151,13 +125,11 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
       ErrorHandler.logError(
         e: e,
         s: s,
-        data: {
-          "spaceID": widget.space.id,
-        },
+        data: {},
       );
 
       _clean();
-      _error = e.toString();
+      _error = e;
       if (mounted) setState(() {});
     }
   }
@@ -172,7 +144,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
     final fileName =
         "analytics_${widget.space.name}_${DateTime.now().toIso8601String()}.${_downloadType == DownloadType.xlsx ? 'xlsx' : 'csv'}";
 
-    await downloadFile(
+    await DownloadUtil.downloadFile(
       content,
       fileName,
       DownloadType.csv,
@@ -208,6 +180,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
       summary = SpaceAnalyticsSummaryModel.fromConstructListModel(
         userID,
         constructs,
+        0,
         getCopy,
         context,
       );
@@ -217,27 +190,12 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
         e: e,
         s: s,
         data: {
-          "spaceID": widget.space.id,
           "userID": userID,
         },
       );
       if (mounted) setState(() => _downloadStatuses[userID] = -2);
-    } finally {
-      if (userID != widget.space.client.userID) {
-        try {
-          await analyticsRoom.leave();
-        } catch (e, s) {
-          ErrorHandler.logError(
-            e: e,
-            s: s,
-            data: {
-              "spaceID": widget.space.id,
-              "userID": userID,
-            },
-          );
-        }
-      }
     }
+
     return summary;
   }
 
@@ -367,14 +325,14 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
                 ),
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: _usersToDownload.length,
+                  itemCount: widget.analyticsRooms.length,
                   itemBuilder: (context, index) {
-                    final user = _usersToDownload[index];
+                    final userId = widget.analyticsRooms[index].creatorId;
 
                     String tooltip = "";
-                    if (_downloadStatuses[user.id] == -1) {
+                    if (_downloadStatuses[userId] == -1) {
                       tooltip = L10n.of(context).analyticsNotAvailable;
-                    } else if (_downloadStatuses[user.id] == -2) {
+                    } else if (_downloadStatuses[userId] == -2) {
                       tooltip = L10n.of(context).failedFetchUserAnalytics;
                     }
 
@@ -382,14 +340,13 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
                       padding: const EdgeInsets.all(4.0),
                       child: AnimatedOpacity(
                         duration: FluffyThemes.animationDuration,
-                        opacity:
-                            (_downloadStatuses[user.id] ?? 0) > 0 ? 1 : 0.5,
+                        opacity: (_downloadStatuses[userId] ?? 0) > 0 ? 1 : 0.5,
                         child: Row(
                           children: [
                             SizedBox(
                               width: 40,
                               height: 30,
-                              child: (_downloadStatuses[user.id] ?? 0) < 0
+                              child: (_downloadStatuses[userId] ?? 0) < 0
                                   ? const Icon(
                                       Icons.error_outline,
                                       size: 16,
@@ -401,7 +358,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
                                         height: 12,
                                         width: 12,
                                         decoration: BoxDecoration(
-                                          color: _downloadStatusColor(user.id),
+                                          color: _downloadStatusColor(userId!),
                                           borderRadius:
                                               BorderRadius.circular(100),
                                         ),
@@ -412,7 +369,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(user.displayName ?? user.id),
+                                  Text(userId!),
                                   if (tooltip.isNotEmpty)
                                     Text(
                                       tooltip,
@@ -460,7 +417,9 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
               child: _error != null
                   ? Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(L10n.of(context).oopsSomethingWentWrong),
+                      child: ErrorIndicator(
+                        message: L10n.of(context).errorDownloading,
+                      ),
                     )
                   : const SizedBox(),
             ),

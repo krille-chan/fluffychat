@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/widgets/customized_svg.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
-import 'package:fluffychat/pangea/morphs/get_svg_link.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/utils/color_value.dart';
 
@@ -19,6 +19,13 @@ class MorphIcon extends StatelessWidget {
   final String? morphTag;
   final bool showTooltip;
   final Size? size;
+
+  String getMorphSvgLink({
+    required String morphFeature,
+    String? morphTag,
+    required BuildContext context,
+  }) =>
+      "${AppConfig.assetsBaseURL}/${morphFeature.toLowerCase()}_${morphTag?.toLowerCase() ?? ''}.svg";
 
   @override
   Widget build(BuildContext context) {

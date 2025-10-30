@@ -27,12 +27,9 @@ class LemmaMeaningBuilder extends StatefulWidget {
 }
 
 class LemmaMeaningBuilderState extends State<LemmaMeaningBuilder> {
-  bool editMode = false;
   LemmaInfoResponse? lemmaInfo;
   bool isLoading = true;
-  String? error;
-
-  TextEditingController controller = TextEditingController();
+  Object? error;
 
   @override
   void initState() {
@@ -47,12 +44,6 @@ class LemmaMeaningBuilderState extends State<LemmaMeaningBuilder> {
         oldWidget.langCode != widget.langCode) {
       _fetchLemmaMeaning();
     }
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
   }
 
   LemmaInfoRequest get _request => LemmaInfoRequest(
@@ -73,27 +64,10 @@ class LemmaMeaningBuilderState extends State<LemmaMeaningBuilder> {
     try {
       final resp = await LemmaInfoRepo.get(_request);
       lemmaInfo = resp;
-      controller.text = resp.meaning;
     } catch (e) {
-      error = e.toString();
+      error = e;
     } finally {
       if (mounted) setState(() => isLoading = false);
-    }
-  }
-
-  void toggleEditMode(bool value) => setState(() => editMode = value);
-
-  Future<void> editLemmaMeaning(String userEdit) async {
-    final originalMeaning = lemmaInfo;
-
-    if (originalMeaning != null) {
-      LemmaInfoRepo.set(
-        _request,
-        LemmaInfoResponse(emoji: originalMeaning.emoji, meaning: userEdit),
-      );
-
-      toggleEditMode(false);
-      _fetchLemmaMeaning();
     }
   }
 

@@ -198,6 +198,19 @@ class ChangeSubscription extends StatelessWidget {
               ),
           ],
         ),
+        if (kIsWeb)
+          Row(
+            spacing: 8.0,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.info_outlined),
+              Flexible(
+                child: Text(
+                  L10n.of(context).promoCodeInfo,
+                ),
+              ),
+            ],
+          ),
         const SizedBox(height: 20.0),
       ],
     );

@@ -22,6 +22,7 @@ Future<Result<T>> showFutureLoadingDialog<T>({
   ExceptionContext? exceptionContext,
   bool ignoreError = false,
   // #Pangea
+  bool Function(Object)? showError,
   Object? Function(Object, StackTrace?)? onError,
   String? Function()? onSuccess,
   VoidCallback? onDismiss,
@@ -55,6 +56,7 @@ Future<Result<T>> showFutureLoadingDialog<T>({
         backLabel: backLabel,
         exceptionContext: exceptionContext,
         // #Pangea
+        showError: showError,
         onError: onError,
         onDismiss: onDismiss,
         onSuccess: onSuccess,
@@ -82,6 +84,7 @@ class LoadingDialog<T> extends StatefulWidget {
   final Future<T> future;
   final ExceptionContext? exceptionContext;
   // #Pangea
+  final bool Function(Object)? showError;
   final Object? Function(Object, StackTrace?)? onError;
   final String? Function()? onSuccess;
   final VoidCallback? onDismiss;
@@ -94,6 +97,7 @@ class LoadingDialog<T> extends StatefulWidget {
     this.backLabel,
     this.exceptionContext,
     // #Pangea
+    this.showError,
     this.onError,
     this.onSuccess,
     this.onDismiss,
@@ -135,6 +139,13 @@ class LoadingDialogState<T> extends State<LoadingDialog> {
           }
         },
         onError: (e, s) {
+          if (widget.showError != null && !widget.showError!(e)) {
+            if (mounted && Navigator.of(context).canPop()) {
+              Navigator.of(context).pop<Result<T>>(Result.error(e, s));
+            }
+            return;
+          }
+
           if (mounted) {
             setState(() {
               exception = widget.onError?.call(e, s) ?? e;

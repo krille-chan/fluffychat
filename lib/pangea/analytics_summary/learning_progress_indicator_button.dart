@@ -7,6 +7,7 @@ class HoverButton extends StatelessWidget {
   final Widget child;
   final BorderRadius? borderRadius;
   final double hoverOpacity;
+  final bool selected;
 
   const HoverButton({
     super.key,
@@ -14,6 +15,7 @@ class HoverButton extends StatelessWidget {
     required this.child,
     this.borderRadius,
     this.hoverOpacity = 0.2,
+    this.selected = false,
   });
 
   @override
@@ -26,7 +28,7 @@ class HoverButton extends StatelessWidget {
             onTap: onPressed,
             child: Container(
               decoration: BoxDecoration(
-                color: hovered
+                color: hovered || selected
                     ? Theme.of(context)
                         .colorScheme
                         .primary

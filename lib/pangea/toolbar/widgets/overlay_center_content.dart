@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pages/chat/events/message_reactions.dart';
-import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pages/chat/events/pangea_message_reactions.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/measure_render_box.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/overlay_message.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 class OverlayCenterContent extends StatelessWidget {
   final Event event;
   final Event? nextEvent;
   final Event? prevEvent;
-  final PangeaMessageEvent? pangeaMessageEvent;
 
   final MessageOverlayController overlayController;
   final ChatController chatController;
@@ -25,23 +23,20 @@ class OverlayCenterContent extends StatelessWidget {
 
   final double? messageHeight;
   final double? messageWidth;
-  final double maxWidth;
-  final double maxHeight;
 
   final bool hasReactions;
 
   final bool isTransitionAnimation;
   final ReadingAssistanceMode? readingAssistanceMode;
 
+  final LabeledGlobalKey? overlayKey;
+
   const OverlayCenterContent({
     required this.event,
-    required this.messageHeight,
-    required this.messageWidth,
-    required this.maxWidth,
-    required this.maxHeight,
+    this.messageHeight,
+    this.messageWidth,
     required this.overlayController,
     required this.chatController,
-    required this.pangeaMessageEvent,
     required this.nextEvent,
     required this.prevEvent,
     required this.hasReactions,
@@ -49,16 +44,20 @@ class OverlayCenterContent extends StatelessWidget {
     this.sizeAnimation,
     this.isTransitionAnimation = false,
     this.readingAssistanceMode,
+    this.overlayKey,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
+    final ownMessage = event.senderId == event.room.client.userID;
     return IgnorePointer(
       ignoring: !isTransitionAnimation &&
           readingAssistanceMode != ReadingAssistanceMode.practiceMode,
       child: Container(
-        constraints: BoxConstraints(maxWidth: maxWidth),
+        constraints: const BoxConstraints(
+          maxWidth: FluffyThemes.maxTimelineWidth,
+        ),
         child: Material(
           type: MaterialType.transparency,
           child: Column(
@@ -70,14 +69,8 @@ class OverlayCenterContent extends StatelessWidget {
               MeasureRenderBox(
                 onChange: onChangeMessageSize,
                 child: OverlayMessage(
-                  key: isTransitionAnimation
-                      ? MatrixState.pAnyState
-                          .layerLinkAndKey('overlay_message_${event.eventId}')
-                          .key
-                      : null,
+                  key: overlayKey,
                   event,
-                  pangeaMessageEvent: pangeaMessageEvent,
-                  immersionMode: chatController.choreographer.immersionMode,
                   controller: chatController,
                   overlayController: overlayController,
                   nextEvent: nextEvent,
@@ -86,29 +79,24 @@ class OverlayCenterContent extends StatelessWidget {
                   sizeAnimation: sizeAnimation,
                   // there's a split seconds between when the transition animation starts and
                   // when the sizeAnimation is set when the original dimensions need to be enforced
-                  messageWidth: (sizeAnimation == null && isTransitionAnimation)
-                      ? messageWidth
-                      : null,
-                  messageHeight:
-                      (sizeAnimation == null && isTransitionAnimation)
-                          ? messageHeight
-                          : null,
-                  maxHeight: maxHeight,
+                  messageWidth: messageWidth,
+                  messageHeight: messageHeight,
                   isTransitionAnimation: isTransitionAnimation,
                   readingAssistanceMode: readingAssistanceMode,
                 ),
               ),
-              if (hasReactions)
-                Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: SizedBox(
-                    height: 20,
-                    child: MessageReactions(
-                      event,
-                      chatController.timeline!,
-                    ),
-                  ),
+              Padding(
+                padding: EdgeInsets.only(
+                  top: 4.0,
+                  left: 4.0,
+                  right: ownMessage ? 0 : 12.0,
                 ),
+                child: PangeaMessageReactions(
+                  event,
+                  chatController.timeline!,
+                  chatController,
+                ),
+              ),
             ],
           ),
         ),

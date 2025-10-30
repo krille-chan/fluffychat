@@ -20,7 +20,13 @@ class ChatEncryptionSettings extends StatefulWidget {
 }
 
 class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
-  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
+  // #Pangea
+  // String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
+  String? get roomId {
+    final pathParameters = GoRouterState.of(context).pathParameters;
+    return pathParameters['roomid'] ?? pathParameters['spaceid'];
+  }
+  // Pangea#
 
   Room get room => Matrix.of(context).client.getRoomById(roomId!)!;
 

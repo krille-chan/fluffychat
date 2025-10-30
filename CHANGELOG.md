@@ -1,3 +1,24 @@
+## v2.0.0
+
+This version migrates to Vodozemac and Matrix Dart SDK 1.0.0. This is a breaking
+change. The user should not notice the migration at all but downgrading from
+v2.0.0 to a previous version is not possible without losing the session.
+
+- fix: Do not set read markers for sending events (Christian Kußowski)
+- fix: fix compile error related to MxcImage (gilice)
+- fix: Forward last version of events when forwarding (Christian Kußowski)
+- fix: Ban button displayed for already banned users (Christian Kußowski)
+- fix: Route back to room list after leaving a chat (Christian Kußowski)
+- build: Switch to matrix sdk 1.0.0 (Christian Kußowski)
+- build: Upgrade flutter to 3.32.2 (krille-chan)
+- build: Update to flutter 3.32.4 (Christian Kußowski)
+- chore: Add missing mounted check (Christian Kußowski)
+- chore: highlight select mode actions (Christian Kußowski)
+- refactor: sdk 1.0 (Christian Kußowski)
+- refactor: New message context menu (Christian Kußowski)
+- refactor: Nicer popupmenus (Christian Kußowski)
+- Translated using Weblate (Spanish) (Kimby)
+
 ## v1.27.0
 - feat: Add confirmation dialog before accepting invite (krille-chan)
 - feat: Add feature flag for refresh tokens (Christian Kußowski)

@@ -63,7 +63,7 @@ Future<void> _loginFuture({
     identifier = AuthenticationUserIdentifier(user: username);
   }
 
-  final client = matrix.getLoginClient();
+  final client = await matrix.getLoginClient();
 
   final redirect = client.onLoginStateChanged.stream
       .where((state) => state == LoginState.loggedIn)
@@ -87,11 +87,6 @@ Future<void> _loginFuture({
         : null,
     password: controller.passwordController.text.trim(),
     initialDeviceDisplayName: PlatformInfos.clientName,
-    onInitStateChanged: (state) {
-      if (state == InitState.settingUpEncryption) {
-        context.go("/rooms");
-      }
-    },
   );
 
   if (client.onLoginStateChanged.value == LoginState.loggedIn) {

@@ -50,6 +50,8 @@ class SpaceAnalyticsSummaryModel {
   int? numChoicesCorrect;
   int? numChoicesIncorrect;
 
+  int numCompletedActivities;
+
   SpaceAnalyticsSummaryModel({
     required this.username,
     required this.dataAvailable,
@@ -75,6 +77,7 @@ class SpaceAnalyticsSummaryModel {
     this.numWordsTyped,
     this.numChoicesCorrect,
     this.numChoicesIncorrect,
+    this.numCompletedActivities = 0,
   });
 
   static SpaceAnalyticsSummaryModel emptyModel(String userID) {
@@ -87,6 +90,7 @@ class SpaceAnalyticsSummaryModel {
   static SpaceAnalyticsSummaryModel fromConstructListModel(
     String userID,
     ConstructListModel? model,
+    int numCompletedActivities,
     String Function(ConstructUses) getCopy,
     BuildContext context,
   ) {
@@ -168,7 +172,7 @@ class SpaceAnalyticsSummaryModel {
       dataAvailable: model != null,
       level: model?.level,
       totalXP: model?.totalXP,
-      numLemmas: model?.vocabLemmas,
+      numLemmas: model?.numConstructs(ConstructTypeEnum.vocab),
       numLemmasUsedCorrectly: vocabLemmasCorrect?.over.length,
       numLemmasUsedIncorrectly: vocabLemmasCorrect?.under.length,
       numLemmasSmallXP:
@@ -176,7 +180,7 @@ class SpaceAnalyticsSummaryModel {
       numLemmasMediumXP:
           vocabLemmas?.thresholdedLemmas(start: 31, end: 200).length,
       numLemmasLargeXP: vocabLemmas?.thresholdedLemmas(start: 201).length,
-      numMorphConstructs: model?.grammarLemmas,
+      numMorphConstructs: model?.numConstructs(ConstructTypeEnum.morph),
       listMorphConstructs: morphLemmas?.lemmasToUses.entries
           .map((entry) => getCopy(entry.value.first))
           .toList(),
@@ -207,6 +211,7 @@ class SpaceAnalyticsSummaryModel {
       numWordsTyped: numWordsTyped,
       numChoicesCorrect: numChoicesCorrect,
       numChoicesIncorrect: numChoicesIncorrect,
+      numCompletedActivities: numCompletedActivities,
     );
   }
 
@@ -262,6 +267,8 @@ class SpaceAnalyticsSummaryModel {
         return numChoicesCorrect;
       case SpaceAnalyticsSummaryEnum.numChoicesIncorrect:
         return numChoicesIncorrect;
+      case SpaceAnalyticsSummaryEnum.numCompletedActivities:
+        return numCompletedActivities;
     }
   }
 
@@ -290,6 +297,7 @@ class SpaceAnalyticsSummaryModel {
       'numWordsWithoutAssistance': numWordsTyped,
       'numChoicesCorrect': numChoicesCorrect,
       'numChoicesIncorrect': numChoicesIncorrect,
+      'numCompletedActivities': numCompletedActivities,
     };
   }
 }

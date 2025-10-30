@@ -87,44 +87,24 @@ extension AnalyticsClientExtension on Client {
   }
 
   /// Get all my analytics rooms
-  List<Room> get _allMyAnalyticsRooms => rooms
+  List<Room> get allMyAnalyticsRooms => rooms
       .where(
         (e) => e.isAnalyticsRoomOfUser(userID!),
       )
       .toList();
 
-  /// Update the visibility of all analytics rooms to private (do they don't show in search
-  /// results) and set the join rules to public (so they come through in space hierarchy response)
-  Future<void> updateAnalyticsRoomVisibility() async {
+  /// Update the join rules of all analytics rooms to 'knock'.
+  Future<void> updateAnalyticsRoomJoinRules() async {
+    if (prevBatch == null) await onSync.stream.first;
     if (userID == null || userID == BotName.byEnvironment) return;
     final Random random = Random();
 
-    for (final analyticsRoom in _allMyAnalyticsRooms) {
-      if (userID == null) return;
-      final visibility = await getRoomVisibilityOnDirectory(analyticsRoom.id);
+    for (final analyticsRoom in allMyAnalyticsRooms) {
+      if (!isLogged()) return;
+      if (analyticsRoom.joinRules == JoinRules.knock) continue;
 
-      // if making a call to the server (either to update visibility or join rules)
-      // add a delay at the end of this interaction to prevent overloading the server
-      int delay = 0;
-      if (visibility != Visibility.private ||
-          analyticsRoom.joinRules != JoinRules.public) {
-        delay = random.nextInt(10);
-      }
-
-      // don't show in search results
-      if (visibility != Visibility.private) {
-        await setRoomVisibilityOnDirectory(
-          analyticsRoom.id,
-          visibility: Visibility.private,
-        );
-      }
-
-      // do show in space hierarchy
-      if (analyticsRoom.joinRules != JoinRules.public) {
-        await analyticsRoom.setJoinRules(JoinRules.public);
-      }
-
-      await Future.delayed(Duration(seconds: delay));
+      await analyticsRoom.setJoinRules(JoinRules.knock);
+      await Future.delayed(Duration(seconds: random.nextInt(10)));
     }
   }
 
@@ -141,7 +121,7 @@ extension AnalyticsClientExtension on Client {
     final Random random = Random();
     for (final space in spaces) {
       if (userID == null || !space.canSendEvent(EventTypes.SpaceChild)) return;
-      final List<Room> roomsNotAdded = _allMyAnalyticsRooms.where((room) {
+      final List<Room> roomsNotAdded = allMyAnalyticsRooms.where((room) {
         return !space.spaceChildren.any((child) => child.roomId == room.id);
       }).toList();
 

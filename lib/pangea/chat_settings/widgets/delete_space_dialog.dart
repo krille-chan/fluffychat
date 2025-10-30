@@ -4,8 +4,10 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 
 class DeleteSpaceDialog extends StatefulWidget {
@@ -32,7 +34,9 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
   @override
   void initState() {
     super.initState();
-    _getSpaceChildrenToDelete();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => _getSpaceChildrenToDelete(),
+    );
   }
 
   Future<void> _getSpaceChildrenToDelete() async {
@@ -44,7 +48,7 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
     try {
       _rooms = await widget.space.getSpaceChildrenToDelete();
     } catch (e, s) {
-      _roomLoadError = L10n.of(context).oopsSomethingWentWrong;
+      _roomLoadError = L10n.of(context).errorLoadingSpaceChildren;
       ErrorHandler.logError(
         e: e,
         s: s,
@@ -74,6 +78,27 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
     });
   }
 
+  void _toggleSelectAll() {
+    setState(() {
+      if (_roomsToDelete.length == _selectableRooms.length) {
+        _roomsToDelete.clear();
+      } else {
+        _roomsToDelete
+          ..clear()
+          ..addAll(_selectableRooms);
+      }
+    });
+  }
+
+  List<SpaceRoomsChunk> get _selectableRooms {
+    return _rooms.where((chunk) {
+      final room = widget.space.client.getRoomById(chunk.roomId);
+      return room != null &&
+          room.membership == Membership.join &&
+          room.isRoomAdmin;
+    }).toList();
+  }
+
   Future<void> _deleteSpace() async {
     setState(() {
       _deleting = true;
@@ -81,14 +106,22 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
     });
 
     try {
-      final List<Future<void>> deleteFutures = [];
+      final List<Future<void>> futures = [];
       for (final room in _roomsToDelete) {
         final roomInstance = widget.space.client.getRoomById(room.roomId);
         if (roomInstance != null) {
-          deleteFutures.add(roomInstance.delete());
+          // Niether delete not leave activities the user has archived,
+          // since they're hidden in the main chat UI.
+          if (roomInstance.isActivitySession) {
+            if (!roomInstance.hasArchivedActivity) {
+              futures.add(roomInstance.leave());
+            }
+          } else {
+            futures.add(roomInstance.delete());
+          }
         }
       }
-      await Future.wait(deleteFutures);
+      await Future.wait(futures);
       await widget.space.delete();
       Navigator.of(context).pop(true);
     } catch (e, s) {
@@ -146,72 +179,82 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
             ),
-            Flexible(
-              child: SingleChildScrollView(
-                child: Builder(
-                  builder: (context) {
-                    if (_loadingRooms) {
-                      return const Center(
-                        child: SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator.adaptive(),
-                        ),
-                      );
-                    }
+            Builder(
+              builder: (context) {
+                if (_loadingRooms) {
+                  return const Center(
+                    child: SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator.adaptive(),
+                    ),
+                  );
+                }
 
-                    if (_roomLoadError != null) {
-                      return Center(
-                        child: Column(
-                          spacing: 8.0,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.error_outline,
-                              color: Theme.of(context).colorScheme.error,
-                            ),
-                            Text(L10n.of(context).oopsSomethingWentWrong),
-                          ],
-                        ),
-                      );
-                    }
-
-                    return Padding(
+                if (_roomLoadError != null) {
+                  return Center(
+                    child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: _rooms.length,
-                        itemBuilder: (context, index) {
-                          final chunk = _rooms[index];
+                      child: ErrorIndicator(message: _roomLoadError!),
+                    ),
+                  );
+                }
 
-                          final room =
-                              widget.space.client.getRoomById(chunk.roomId);
-                          final isMember = room != null &&
-                              room.membership == Membership.join &&
-                              room.isRoomAdmin;
-
-                          final displayname = chunk.name ??
-                              chunk.canonicalAlias ??
-                              L10n.of(context).emptyChat;
-
-                          return AnimatedOpacity(
-                            duration: FluffyThemes.animationDuration,
-                            opacity: isMember ? 1 : 0.5,
-                            child: CheckboxListTile(
-                              value: _roomsToDelete.contains(chunk),
-                              onChanged: isMember
-                                  ? (value) => _onRoomSelected(value, chunk)
-                                  : null,
-                              title: Text(displayname),
-                              controlAffinity: ListTileControlAffinity.leading,
+                return Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (_selectableRooms.length > 1)
+                          CheckboxListTile(
+                            value: _roomsToDelete.length ==
+                                _selectableRooms.length,
+                            onChanged: (_) => _toggleSelectAll(),
+                            title: Text(
+                              _roomsToDelete.length == _selectableRooms.length
+                                  ? L10n.of(context).deselectAll
+                                  : L10n.of(context).selectAll,
                             ),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
-              ),
+                            controlAffinity: ListTileControlAffinity.leading,
+                          ),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: _rooms.length,
+                            itemBuilder: (context, index) {
+                              final chunk = _rooms[index];
+
+                              final room =
+                                  widget.space.client.getRoomById(chunk.roomId);
+                              final isMember = room != null &&
+                                  room.membership == Membership.join &&
+                                  room.isRoomAdmin;
+
+                              final displayname = chunk.name ??
+                                  chunk.canonicalAlias ??
+                                  L10n.of(context).emptyChat;
+
+                              return AnimatedOpacity(
+                                duration: FluffyThemes.animationDuration,
+                                opacity: isMember ? 1 : 0.5,
+                                child: CheckboxListTile(
+                                  value: _roomsToDelete.contains(chunk),
+                                  onChanged: isMember
+                                      ? (value) => _onRoomSelected(value, chunk)
+                                      : null,
+                                  title: Text(displayname),
+                                  controlAffinity:
+                                      ListTileControlAffinity.leading,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 8.0),
@@ -219,6 +262,10 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
                 spacing: 8.0,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  OutlinedButton(
+                    onPressed: Navigator.of(context).pop,
+                    child: Text(L10n.of(context).cancel),
+                  ),
                   AnimatedSize(
                     duration: FluffyThemes.animationDuration,
                     child: OutlinedButton(
@@ -240,10 +287,6 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
                           : Text(L10n.of(context).delete),
                     ),
                   ),
-                  OutlinedButton(
-                    onPressed: Navigator.of(context).pop,
-                    child: Text(L10n.of(context).cancel),
-                  ),
                 ],
               ),
             ),
@@ -252,7 +295,7 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
               child: _deleteError != null
                   ? Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(L10n.of(context).oopsSomethingWentWrong),
+                      child: Text(_deleteError!),
                     )
                   : const SizedBox(),
             ),

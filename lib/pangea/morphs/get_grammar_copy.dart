@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 
@@ -491,6 +493,8 @@ String? getGrammarCopy({
       return L10n.of(context).grammarCopyVOICErcpVoice;
     case "grammarCopyCASEaccdat":
       return L10n.of(context).grammarCopyCASEaccdat;
+    case 'grammarCopyVERBFORMshrt':
+      return L10n.of(context).grammarCopyVERBFORMshrt;
     // Handle empty tag
     case '':
       ErrorHandler.logError(
@@ -509,6 +513,7 @@ String? getGrammarCopy({
           'tag': key,
           'context': context,
         },
+        level: SentryLevel.warning,
       );
       return lemma; // Fallback to the lemma itself if no match is found
   }

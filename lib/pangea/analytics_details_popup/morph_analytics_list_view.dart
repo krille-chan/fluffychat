@@ -1,9 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
+import 'package:fluffychat/pangea/analytics_downloads/analytics_download_button.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
@@ -17,7 +20,7 @@ import 'package:fluffychat/pangea/morphs/morph_icon.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class MorphAnalyticsListView extends StatelessWidget {
-  final AnalyticsPopupWrapperState controller;
+  final ConstructAnalyticsViewState controller;
 
   const MorphAnalyticsListView({
     required this.controller,
@@ -26,40 +29,58 @@ class MorphAnalyticsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 16.0,
-        children: [
-          // Add your text widget here
-          const InstructionsInlineTooltip(
-            instructionsEnum: InstructionsEnum.morphAnalyticsList,
-          ),
-          Expanded(
-            child: ListView.builder(
-              key: const PageStorageKey<String>('morph-analytics'),
-              itemCount: controller.features.length,
-              itemBuilder: (context, index) {
-                final feature = controller.features[index];
-                return feature.displayTags.isNotEmpty
-                    ? Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: MorphFeatureBox(
-                          morphFeature: feature.feature,
-                          allTags: controller.morphs
-                              .getDisplayTags(feature.feature)
-                              .map((tag) => tag.toLowerCase())
-                              .toSet(),
-                          onConstructZoom: controller.setConstructZoom,
-                        ),
-                      )
-                    : const SizedBox.shrink();
-              },
+    const padding = EdgeInsets.symmetric(vertical: 10.0);
+
+    return Column(
+      children: [
+        if (kIsWeb)
+          const Padding(
+            padding: padding,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                DownloadAnalyticsButton(),
+              ],
             ),
           ),
-        ],
-      ),
+        Expanded(
+          child: CustomScrollView(
+            key: const PageStorageKey<String>('morph-analytics'),
+            slivers: [
+              const SliverToBoxAdapter(
+                child: InstructionsInlineTooltip(
+                  instructionsEnum: InstructionsEnum.morphAnalyticsList,
+                ),
+              ),
+
+              if (!InstructionsEnum.morphAnalyticsList.isToggledOff)
+                const SliverToBoxAdapter(child: SizedBox(height: 16.0)),
+
+              // Morph feature boxes
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final feature = controller.features[index];
+                    return feature.displayTags.isNotEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: MorphFeatureBox(
+                              morphFeature: feature.feature,
+                              allTags: controller.morphs
+                                  .getDisplayTags(feature.feature)
+                                  .map((tag) => tag.toLowerCase())
+                                  .toSet(),
+                            ),
+                          )
+                        : const SizedBox.shrink();
+                  },
+                  childCount: controller.features.length,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
@@ -67,13 +88,11 @@ class MorphAnalyticsListView extends StatelessWidget {
 class MorphFeatureBox extends StatelessWidget {
   final String morphFeature;
   final Set<String> allTags;
-  final void Function(ConstructIdentifier) onConstructZoom;
 
   const MorphFeatureBox({
     super.key,
     required this.morphFeature,
     required this.allTags,
-    required this.onConstructZoom,
   });
 
   MorphFeaturesEnum get feature =>
@@ -144,7 +163,9 @@ class MorphFeatureBox extends StatelessWidget {
                             morphFeature: morphFeature,
                             morphTag: morphTag,
                             constructAnalytics: analytics,
-                            onTap: () => onConstructZoom(id),
+                            onTap: () => context.go(
+                              "/rooms/analytics/${id.type.string}/${id.string}",
+                            ),
                           );
                         },
                       )
@@ -199,8 +220,8 @@ class MorphTagChip extends StatelessWidget {
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                     colors: <Color>[
-                      Colors.transparent,
                       constructAnalytics.lemmaCategory.color(context),
+                      Colors.transparent,
                     ],
                   )
                 : null,
@@ -218,27 +239,38 @@ class MorphTagChip extends StatelessWidget {
                 width: 28.0,
                 height: 28.0,
                 child: unlocked
-                    ? MorphIcon(
-                        morphFeature: feature,
-                        morphTag: morphTag,
+                    ? Container(
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.surface.withAlpha(180),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        padding: const EdgeInsets.all(4),
+                        child: MorphIcon(
+                          morphFeature: feature,
+                          morphTag: morphTag,
+                        ),
                       )
                     : const Icon(
                         Icons.lock,
                         color: Colors.white,
                       ),
               ),
-              Text(
-                getGrammarCopy(
-                      category: morphFeature,
-                      lemma: morphTag,
-                      context: context,
-                    ) ??
-                    morphTag,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: theme.brightness == Brightness.dark
-                      ? Colors.white
-                      : Colors.black,
+              Flexible(
+                child: Text(
+                  getGrammarCopy(
+                        category: morphFeature,
+                        lemma: morphTag,
+                        context: context,
+                      ) ??
+                      morphTag,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: theme.brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],

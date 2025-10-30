@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
-import 'package:fluffychat/pangea/login/pages/pangea_login_scaffold.dart';
+import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
 import 'package:fluffychat/pangea/login/widgets/app_config_dialog.dart';
-import 'package:fluffychat/pangea/login/widgets/full_width_button.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class LoginOrSignupView extends StatefulWidget {
   const LoginOrSignupView({super.key});
@@ -23,6 +24,9 @@ class LoginOrSignupViewState extends State<LoginOrSignupView> {
     super.initState();
     _loadOverrides();
   }
+
+  String? get _cachedSpaceCode =>
+      MatrixState.pangeaController.spaceCodeController.cachedSpaceCode;
 
   Future<void> _loadOverrides() async {
     final overrides = await Environment.getAppConfigOverrides();
@@ -45,25 +49,92 @@ class LoginOrSignupViewState extends State<LoginOrSignupView> {
 
   @override
   Widget build(BuildContext context) {
-    return PangeaLoginScaffold(
-      actions: Environment.isStagingEnvironment && _overrides.isNotEmpty
-          ? [
-              IconButton(
-                icon: const Icon(Icons.settings_outlined),
-                onPressed: _setEnvironment,
-              ),
-            ]
-          : null,
-      children: [
-        FullWidthButton(
-          title: L10n.of(context).createAnAccount,
-          onPressed: () => context.go('/home/signup'),
+    final theme = Theme.of(context);
+    return Scaffold(
+      appBar: AppBar(
+        actions: Environment.isStagingEnvironment && _overrides.isNotEmpty
+            ? [
+                IconButton(
+                  icon: const Icon(Icons.settings_outlined),
+                  onPressed: _setEnvironment,
+                ),
+              ]
+            : null,
+      ),
+      body: SafeArea(
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: 300,
+            ),
+            child: Column(
+              spacing: 50.0,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Column(
+                  spacing: 12.0,
+                  children: [
+                    PangeaLogoSvg(
+                      width: 50.0,
+                      forceColor: theme.colorScheme.onSurface,
+                    ),
+                    Text(
+                      AppConfig.applicationName,
+                      style: theme.textTheme.headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Text(
+                  L10n.of(context).appDescription,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Column(
+                  spacing: 16.0,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ElevatedButton(
+                      // push instead of go so the app bar back button doesn't go to the language selection page
+                      // https://github.com/pangeachat/client/issues/4421
+                      onPressed: () => context.push(
+                        _cachedSpaceCode != null
+                            ? '/home/language/signup'
+                            : '/home/language',
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: theme.colorScheme.primaryContainer,
+                        foregroundColor: theme.colorScheme.onPrimaryContainer,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(L10n.of(context).start),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () => context.go('/home/login'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: theme.colorScheme.primaryContainer,
+                        foregroundColor: theme.colorScheme.onPrimaryContainer,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(L10n.of(context).loginToAccount),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
-        FullWidthButton(
-          title: L10n.of(context).signIn,
-          onPressed: () => context.go('/home/login'),
-        ),
-      ],
+      ),
     );
   }
 }

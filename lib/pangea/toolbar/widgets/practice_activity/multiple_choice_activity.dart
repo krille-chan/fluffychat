@@ -3,8 +3,6 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
@@ -23,7 +21,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 class MultipleChoiceActivity extends StatefulWidget {
   final PracticeActivityCardState practiceCardController;
   final PracticeActivityModel currentActivity;
-  final Event event;
   final VoidCallback? onError;
   final MessageOverlayController overlayController;
   final String? initialSelectedChoice;
@@ -33,7 +30,6 @@ class MultipleChoiceActivity extends StatefulWidget {
     super.key,
     required this.practiceCardController,
     required this.currentActivity,
-    required this.event,
     required this.overlayController,
     this.initialSelectedChoice,
     this.clearResponsesOnUpdate = false,
@@ -119,9 +115,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     MatrixState.pangeaController.putAnalytics.setState(
       AnalyticsStream(
         // note - this maybe should be the activity event id
-        eventId:
-            widget.practiceCardController.widget.pangeaMessageEvent.eventId,
-        roomId: widget.practiceCardController.widget.pangeaMessageEvent.room.id,
+        eventId: widget.overlayController.event.eventId,
+        roomId: widget.overlayController.event.room.id,
         constructs: currentRecordModel!.latestResponse!.toUses(
           widget.practiceCardController.currentActivity!,
           widget.practiceCardController.metadata,
@@ -216,7 +211,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
             question,
             textAlign: TextAlign.center,
             style: AppConfig.messageTextStyle(
-              widget.event,
+              widget.overlayController.event,
               Theme.of(context).colorScheme.primary,
             ).merge(const TextStyle(fontStyle: FontStyle.italic)),
           ),
@@ -226,15 +221,14 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
             ActivityTypeEnum.wordFocusListening)
           WordAudioButton(
             text: practiceActivity.multipleChoiceContent!.answers.first,
-            uniqueID: "audio-activity-${widget.event.eventId}",
+            uniqueID:
+                "audio-activity-${widget.overlayController.event.eventId}",
             langCode: widget
-                .overlayController.pangeaMessageEvent!.messageDisplayLangCode,
+                .overlayController.pangeaMessageEvent.messageDisplayLangCode,
           ),
         if (practiceActivity.activityType ==
             ActivityTypeEnum.hiddenWordListening)
           MessageAudioCard(
-            messageEvent:
-                widget.practiceCardController.widget.pangeaMessageEvent,
             overlayController: widget.overlayController,
             onError: widget.onError,
           ),
@@ -258,15 +252,12 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
 
     return ConstrainedBox(
       constraints: const BoxConstraints(
-        // see https://github.com/pangeachat/client/issues/1422
         maxWidth: AppConfig.toolbarMinWidth,
         maxHeight: AppConfig.toolbarMaxHeight,
       ),
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: content,
-        ),
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: content,
       ),
     );
   }

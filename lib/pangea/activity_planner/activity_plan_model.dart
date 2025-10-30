@@ -1,58 +1,85 @@
 import 'package:flutter/foundation.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 
 class ActivityPlanModel {
-  final String bookmarkId;
+  final String activityId;
+
   final ActivityPlanRequest req;
   final String title;
+  final String description;
   final String learningObjective;
   final String instructions;
   final List<Vocab> vocab;
-  final String? imageURL;
+  final String? _imageURL;
   final DateTime? endAt;
   final Duration? duration;
+  final Map<String, ActivityRole>? _roles;
 
   ActivityPlanModel({
     required this.req,
     required this.title,
+    // TODO: when we bring back user's being able to make their own activity,
+    // then this should be required
+    String? description,
     required this.learningObjective,
     required this.instructions,
     required this.vocab,
-    this.imageURL,
+    required this.activityId,
+    Map<String, ActivityRole>? roles,
+    String? imageURL,
     this.endAt,
     this.duration,
-  }) : bookmarkId =
-            "${title.hashCode ^ learningObjective.hashCode ^ instructions.hashCode ^ imageURL.hashCode ^ vocab.map((v) => v.hashCode).reduce((a, b) => a ^ b)}";
+  })  : description = (description == null || description.isEmpty)
+            ? learningObjective
+            : description,
+        _roles = roles,
+        _imageURL = imageURL;
 
-  ActivityPlanModel copyWith({
-    String? title,
-    String? learningObjective,
-    String? instructions,
-    List<Vocab>? vocab,
-    String? imageURL,
-    DateTime? endAt,
-    Duration? duration,
-  }) {
-    return ActivityPlanModel(
-      req: req,
-      title: title ?? this.title,
-      learningObjective: learningObjective ?? this.learningObjective,
-      instructions: instructions ?? this.instructions,
-      vocab: vocab ?? this.vocab,
-      imageURL: imageURL ?? this.imageURL,
-      endAt: endAt ?? this.endAt,
-      duration: duration ?? this.duration,
-    );
+  String? get imageURL =>
+      _imageURL != null ? "${Environment.cmsApi}$_imageURL" : null;
+
+  Map<String, ActivityRole> get roles {
+    if (_roles != null) return _roles!;
+    final defaultRoles = <String, ActivityRole>{};
+    for (int i = 0; i < req.numberOfParticipants; i++) {
+      defaultRoles['role_$i'] = ActivityRole(
+        id: 'role_$i',
+        name: 'Participant',
+        goal: learningObjective,
+        avatarUrl: null,
+      );
+    }
+    return defaultRoles;
   }
 
   factory ActivityPlanModel.fromJson(Map<String, dynamic> json) {
+    final req =
+        ActivityPlanRequest.fromJson(json[ModelKey.activityPlanRequest]);
+
+    Map<String, ActivityRole>? roles;
+    final roleContent = json['roles'];
+    if (roleContent is Map<String, dynamic>) {
+      roles = Map<String, ActivityRole>.from(
+        json['roles'].map(
+          (key, value) => MapEntry(
+            key,
+            ActivityRole.fromJson(value),
+          ),
+        ),
+      );
+    }
+
+    final activityId = json[ModelKey.activityId] ?? json["bookmark_id"];
     return ActivityPlanModel(
       imageURL: json[ModelKey.activityPlanImageURL],
       instructions: json[ModelKey.activityPlanInstructions],
-      req: ActivityPlanRequest.fromJson(json[ModelKey.activityPlanRequest]),
+      req: req,
       title: json[ModelKey.activityPlanTitle],
+      description: json[ModelKey.activityPlanDescription] ??
+          json[ModelKey.activityPlanLearningObjective],
       learningObjective: json[ModelKey.activityPlanLearningObjective],
       vocab: List<Vocab>.from(
         json[ModelKey.activityPlanVocab].map((vocab) => Vocab.fromJson(vocab)),
@@ -67,16 +94,19 @@ class ActivityPlanModel {
               minutes: json[ModelKey.activityPlanDuration]['minutes'] ?? 0,
             )
           : null,
+      roles: roles,
+      activityId: activityId,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      ModelKey.activityPlanBookmarkId: bookmarkId,
-      ModelKey.activityPlanImageURL: imageURL,
+      ModelKey.activityId: activityId,
+      ModelKey.activityPlanImageURL: _imageURL,
       ModelKey.activityPlanInstructions: instructions,
       ModelKey.activityPlanRequest: req.toJson(),
       ModelKey.activityPlanTitle: title,
+      ModelKey.activityPlanDescription: description,
       ModelKey.activityPlanLearningObjective: learningObjective,
       ModelKey.activityPlanVocab: vocab.map((vocab) => vocab.toJson()).toList(),
       ModelKey.activityPlanEndAt: endAt?.toIso8601String(),
@@ -85,15 +115,15 @@ class ActivityPlanModel {
         'hours': duration?.inHours.remainder(24) ?? 0,
         'minutes': duration?.inMinutes.remainder(60) ?? 0,
       },
+      'roles': _roles?.map(
+        (key, value) => MapEntry(key, value.toJson()),
+      ),
     };
   }
 
-  /// activity content displayed nicely in markdown
-  /// use target emoji for learning objective
-  /// use step emoji for instructions
-  String get markdown {
-    String markdown =
-        ''' **$title** \n🎯 $learningObjective \n🪜 $instructions \n\n📖 ''';
+  String get vocabString {
+    final List<String> vocabList = [];
+    String vocabString = "";
     // cycle through vocab with index
     for (var i = 0; i < vocab.length; i++) {
       // if the lemma appears more than once in the vocab list, show the pos
@@ -101,10 +131,11 @@ class ActivityPlanModel {
       final v = vocab[i];
       final bool showPos =
           vocab.where((vocab) => vocab.lemma == v.lemma).length > 1;
-      markdown +=
+      vocabString +=
           '${v.lemma}${showPos ? ' (${v.pos})' : ''}${i + 1 < vocab.length ? ', ' : ''}';
+      vocabList.add("${v.lemma}${showPos ? ' (${v.pos})' : ''}");
     }
-    return markdown;
+    return vocabString;
   }
 
   @override
@@ -116,8 +147,9 @@ class ActivityPlanModel {
         other.title == title &&
         other.learningObjective == learningObjective &&
         other.instructions == instructions &&
+        other.description == description &&
         listEquals(other.vocab, vocab) &&
-        other.imageURL == imageURL;
+        other._imageURL == _imageURL;
   }
 
   @override
@@ -125,9 +157,10 @@ class ActivityPlanModel {
       req.hashCode ^
       title.hashCode ^
       learningObjective.hashCode ^
+      description.hashCode ^
       instructions.hashCode ^
       Object.hashAll(vocab) ^
-      imageURL.hashCode;
+      _imageURL.hashCode;
 }
 
 class Vocab {
@@ -162,4 +195,42 @@ class Vocab {
 
   @override
   int get hashCode => lemma.hashCode ^ pos.hashCode;
+}
+
+class ActivityRole {
+  final String id;
+  final String name;
+  final String? goal;
+  final String? avatarUrl;
+
+  ActivityRole({
+    required this.id,
+    required this.name,
+    required this.goal,
+    this.avatarUrl,
+  });
+
+  factory ActivityRole.fromJson(Map<String, dynamic> json) {
+    final urlContent = json['avatar_url'] as String?;
+    String? avatarUrl;
+    if (urlContent != null && urlContent.isNotEmpty) {
+      avatarUrl = urlContent;
+    }
+
+    return ActivityRole(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      goal: json['goal'] as String?,
+      avatarUrl: avatarUrl,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'goal': goal,
+      'avatar_url': avatarUrl,
+    };
+  }
 }

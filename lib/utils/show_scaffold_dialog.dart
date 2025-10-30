@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 
-Future<void> showScaffoldDialog({
+Future<T?> showScaffoldDialog<T>({
   required BuildContext context,
   Color? barrierColor,
   Color? containerColor,
@@ -11,7 +11,7 @@ Future<void> showScaffoldDialog({
   double maxHeight = 720,
   required Widget Function(BuildContext context) builder,
 }) =>
-    showDialog(
+    showDialog<T>(
       context: context,
       useSafeArea: false,
       builder: FluffyThemes.isColumnMode(context)

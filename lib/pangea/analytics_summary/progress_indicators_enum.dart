@@ -9,6 +9,22 @@ enum ProgressIndicatorEnum {
   level,
   wordsUsed,
   morphsUsed,
+  activities;
+
+  static ProgressIndicatorEnum? fromString(String value) {
+    switch (value) {
+      case 'vocab':
+        return ProgressIndicatorEnum.wordsUsed;
+      case 'morph':
+        return ProgressIndicatorEnum.morphsUsed;
+      case 'level':
+        return ProgressIndicatorEnum.level;
+      case 'activities':
+        return ProgressIndicatorEnum.activities;
+      default:
+        return null;
+    }
+  }
 }
 
 extension ProgressIndicatorsExtension on ProgressIndicatorEnum {
@@ -20,6 +36,8 @@ extension ProgressIndicatorsExtension on ProgressIndicatorEnum {
         return Symbols.toys_and_games;
       case ProgressIndicatorEnum.level:
         return Icons.star;
+      case ProgressIndicatorEnum.activities:
+        return Icons.radar;
     }
   }
 
@@ -38,6 +56,8 @@ extension ProgressIndicatorsExtension on ProgressIndicatorEnum {
         return L10n.of(context).level;
       case ProgressIndicatorEnum.morphsUsed:
         return L10n.of(context).grammar;
+      case ProgressIndicatorEnum.activities:
+        return L10n.of(context).activities;
     }
   }
 

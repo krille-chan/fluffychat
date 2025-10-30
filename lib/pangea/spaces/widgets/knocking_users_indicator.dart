@@ -35,7 +35,12 @@ class KnockingUsersIndicatorState extends State<KnockingUsersIndicator> {
         .where(_isMemberUpdate)
         .rateLimit(const Duration(seconds: 1))
         .listen((_) => _setKnockingUsers());
-    _setKnockingUsers();
+
+    widget.room.requestParticipants(
+      [Membership.join, Membership.invite, Membership.knock],
+      false,
+      true,
+    ).then((_) => _setKnockingUsers());
   }
 
   bool _isMemberUpdate(({String roomId, StrippedStateEvent state}) event) =>
@@ -48,64 +53,60 @@ class KnockingUsersIndicatorState extends State<KnockingUsersIndicator> {
     super.dispose();
   }
 
-  Future<void> _setKnockingUsers({bool loadParticipants = false}) async {
-    _knockingUsers = loadParticipants
-        ? await widget.room.requestParticipants([Membership.knock])
-        : widget.room.getParticipants([Membership.knock]);
-    if (mounted) setState(() {});
+  void _setKnockingUsers() {
+    if (mounted) {
+      setState(() {
+        _knockingUsers = widget.room.getParticipants([Membership.knock]);
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return SliverList.builder(
-      itemCount: 1,
-      itemBuilder: (context, i) {
-        return AnimatedSize(
-          duration: FluffyThemes.animationDuration,
-          child: _knockingUsers.isEmpty || !widget.room.isRoomAdmin
-              ? const SizedBox()
-              : Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 4,
-                    vertical: 1,
+    return AnimatedSize(
+      duration: FluffyThemes.animationDuration,
+      child: _knockingUsers.isEmpty || !widget.room.isRoomAdmin
+          ? const SizedBox()
+          : Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 4,
+                vertical: 1,
+              ),
+              child: Material(
+                borderRadius: BorderRadius.circular(
+                  AppConfig.borderRadius,
+                ),
+                clipBehavior: Clip.hardEdge,
+                child: ListTile(
+                  minVerticalPadding: 0,
+                  trailing: Icon(
+                    Icons.adaptive.arrow_forward_outlined,
+                    size: 16,
                   ),
-                  child: Material(
-                    borderRadius: BorderRadius.circular(
-                      AppConfig.borderRadius,
-                    ),
-                    clipBehavior: Clip.hardEdge,
-                    child: ListTile(
-                      minVerticalPadding: 0,
-                      trailing: Icon(
-                        Icons.adaptive.arrow_forward_outlined,
-                        size: 16,
+                  title: Row(
+                    spacing: 8.0,
+                    children: [
+                      Icon(
+                        Icons.notifications_outlined,
+                        color: Theme.of(context).colorScheme.error,
                       ),
-                      title: Row(
-                        spacing: 8.0,
-                        children: [
-                          Icon(
-                            Icons.notifications_outlined,
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                          Expanded(
-                            child: Text(
-                              _knockingUsers.length == 1
-                                  ? L10n.of(context).aUserIsKnocking
-                                  : L10n.of(context)
-                                      .usersAreKnocking(_knockingUsers.length),
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ),
-                        ],
+                      Expanded(
+                        child: Text(
+                          _knockingUsers.length == 1
+                              ? L10n.of(context).aUserIsKnocking
+                              : L10n.of(context)
+                                  .usersAreKnocking(_knockingUsers.length),
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                       ),
-                      onTap: () => context.push(
-                        "/rooms/${widget.room.id}/details/members?filter=knock",
-                      ),
-                    ),
+                    ],
+                  ),
+                  onTap: () => context.push(
+                    "/rooms/spaces/${widget.room.id}/details/members?filter=knock",
                   ),
                 ),
-        );
-      },
+              ),
+            ),
     );
   }
 }

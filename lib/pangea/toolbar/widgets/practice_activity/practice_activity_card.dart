@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
@@ -28,13 +29,11 @@ import 'package:fluffychat/widgets/matrix.dart';
 /// Handles the activities associated with a message,
 /// their navigation, and the management of completion records
 class PracticeActivityCard extends StatefulWidget {
-  final PangeaMessageEvent pangeaMessageEvent;
   final PracticeTarget targetTokensAndActivityType;
   final MessageOverlayController overlayController;
 
   const PracticeActivityCard({
     super.key,
-    required this.pangeaMessageEvent,
     required this.targetTokensAndActivityType,
     required this.overlayController,
   });
@@ -44,7 +43,7 @@ class PracticeActivityCard extends StatefulWidget {
 }
 
 class PracticeActivityCardState extends State<PracticeActivityCard> {
-  bool fetchingActivity = false;
+  bool fetchingActivity = true;
   bool savoringTheJoy = false;
 
   Completer<PracticeActivityEvent?>? currentActivityCompleter;
@@ -59,10 +58,15 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
   PracticeRecord? get currentCompletionRecord => currentActivity?.record;
 
+  PangeaMessageEvent? get pangeaMessageEvent =>
+      widget.overlayController.pangeaMessageEvent;
+
   @override
   void initState() {
-    _fetchActivity();
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => _fetchActivity(),
+    );
   }
 
   @override
@@ -139,7 +143,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     debugPrint(
       "fetching activity model of type: ${widget.targetTokensAndActivityType.activityType}",
     );
-    debugger(when: kDebugMode);
+    if (pangeaMessageEvent == null) return null;
     // check if we already have an activity matching the specs
     final tokens = widget.targetTokensAndActivityType.tokens;
     final type = widget.targetTokensAndActivityType.activityType;
@@ -164,9 +168,9 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     final req = MessageActivityRequest(
       userL1: MatrixState.pangeaController.languageController.userL1!.langCode,
       userL2: MatrixState.pangeaController.languageController.userL2!.langCode,
-      messageText: widget.pangeaMessageEvent.messageDisplayText,
+      messageText: pangeaMessageEvent!.messageDisplayText,
       messageTokens:
-          widget.pangeaMessageEvent.messageDisplayRepresentation?.tokens ?? [],
+          pangeaMessageEvent?.messageDisplayRepresentation?.tokens ?? [],
       activityQualityFeedback: activityFeedback,
       targetTokens: tokens,
       targetType: type,
@@ -176,7 +180,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     final PracticeActivityModelResponse activityResponse =
         await practiceGenerationController.getPracticeActivity(
       req,
-      widget.pangeaMessageEvent,
+      pangeaMessageEvent,
       context,
     );
 
@@ -188,8 +192,8 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   }
 
   ConstructUseMetaData get metadata => ConstructUseMetaData(
-        eventId: widget.pangeaMessageEvent.eventId,
-        roomId: widget.pangeaMessageEvent.room.id,
+        eventId: widget.overlayController.event.eventId,
+        roomId: widget.overlayController.event.room.id,
         timeStamp: DateTime.now(),
       );
 
@@ -266,16 +270,13 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         return MessageMorphInputBarContent(
           overlayController: widget.overlayController,
           activity: currentActivity!,
-          pangeaMessageEvent: widget.overlayController.pangeaMessageEvent!,
         );
       }
       return MultipleChoiceActivity(
         practiceCardController: this,
         currentActivity: currentActivity!,
-        event: widget.pangeaMessageEvent.event,
         onError: _onError,
         overlayController: widget.overlayController,
-        // initialSelectedChoice: selectedChoice,
         initialSelectedChoice: null,
         clearResponsesOnUpdate:
             currentActivity?.activityType == ActivityTypeEnum.emoji,
@@ -293,19 +294,10 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
   @override
   Widget build(BuildContext context) {
-    if (_error != null) {
+    if (_error != null || (!fetchingActivity && currentActivity == null)) {
       debugger(when: kDebugMode);
       return CardErrorWidget(
-        error: _error!,
-        maxWidth: 500,
-      );
-    }
-
-    if (!fetchingActivity && currentActivity == null) {
-      debugPrint("don't think we should be here");
-      debugger(when: kDebugMode);
-      return CardErrorWidget(
-        error: _error!,
+        error: L10n.of(context).errorFetchingActivity,
         maxWidth: 500,
       );
     }

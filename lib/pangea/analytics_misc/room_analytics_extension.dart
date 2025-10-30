@@ -16,7 +16,7 @@ extension AnalyticsRoomExtension on Room {
   ///
   /// Yield this list of rooms.
   /// Once analytics have been retrieved, leave analytics rooms not created by self.
-  Stream<List<Room>> getNextAnalyticsRoomBatch(String userL2) async* {
+  Stream<List<Room>> getNextAnalyticsRoomBatch(String langCode) async* {
     final List<SpaceRoomsChunk> rooms = [];
     String? nextBatch;
     int spaceHierarchyCalls = 0;
@@ -50,8 +50,8 @@ extension AnalyticsRoomExtension on Room {
         );
 
         final (analyticsRoom, calls) = matchingRoom != null
-            ? await _handleJoinedAnalyticsRoom(matchingRoom, userL2)
-            : await _handleUnjoinedAnalyticsRoom(nextRoomChunk, userL2);
+            ? await _handleJoinedAnalyticsRoom(matchingRoom, langCode)
+            : await _handleUnjoinedAnalyticsRoom(nextRoomChunk, langCode);
 
         callsToServer += calls;
         if (analyticsRoom == null) continue;
@@ -266,6 +266,89 @@ extension AnalyticsRoomExtension on Room {
         constructsModel.toJson(),
         type: PangeaEventTypes.construct,
       );
+    }
+  }
+
+  UserSetLemmaInfo? getUserSetLemmaInfo(ConstructIdentifier cId) {
+    final state = getState(PangeaEventTypes.userSetLemmaInfo, cId.string);
+    if (state == null) return null;
+    try {
+      return UserSetLemmaInfo.fromJson(state.content);
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "roomID": id,
+          "stateContent": state.content,
+          "stateKey": state.stateKey,
+        },
+      );
+      return null;
+    }
+  }
+
+  Future<void> setUserSetLemmaInfo(
+    ConstructIdentifier cId,
+    UserSetLemmaInfo info,
+  ) async {
+    final syncFuture = client.onRoomState.stream.firstWhere((event) {
+      return event.roomId == id &&
+          event.state.type == PangeaEventTypes.userSetLemmaInfo;
+    });
+    client.setRoomStateWithKey(
+      id,
+      PangeaEventTypes.userSetLemmaInfo,
+      cId.string,
+      info.toJson(),
+    );
+    await syncFuture.timeout(const Duration(seconds: 10));
+  }
+
+  List<String> get activityRoomIds {
+    final state = getState(PangeaEventTypes.activityRoomIds);
+    if (state?.content[ModelKey.roomIds] is List) {
+      return List<String>.from(state!.content[ModelKey.roomIds] as List);
+    }
+    return [];
+  }
+
+  Future<void> addActivityRoomId(String roomId) async {
+    final List<String> ids = List.from(activityRoomIds);
+    if (ids.contains(roomId)) return;
+
+    final prevLength = ids.length;
+    ids.add(roomId);
+
+    final syncFuture = client.waitForRoomInSync(id, join: true);
+    await client.setRoomStateWithKey(
+      id,
+      PangeaEventTypes.activityRoomIds,
+      "",
+      {ModelKey.roomIds: ids},
+    );
+    final newLength = activityRoomIds.length;
+    if (newLength == prevLength) {
+      await syncFuture;
+    }
+  }
+
+  Future<void> removeActivityRoomId(String roomId) async {
+    final List<String> ids = List.from(activityRoomIds);
+    if (!ids.contains(roomId)) return;
+    final prevLength = ids.length;
+    ids.remove(roomId);
+
+    final syncFuture = client.waitForRoomInSync(id, join: true);
+    await client.setRoomStateWithKey(
+      id,
+      PangeaEventTypes.activityRoomIds,
+      "",
+      {ModelKey.roomIds: ids},
+    );
+    final newLength = activityRoomIds.length;
+    if (newLength == prevLength) {
+      await syncFuture;
     }
   }
 }

@@ -65,6 +65,13 @@ class SubscriptionController extends BaseController {
   Completer<void> initCompleter = Completer<void>();
 
   Future<void> initialize() async {
+    if (_userID == null || !_pangeaController.matrixState.client.isLogged()) {
+      debugPrint(
+        "Attempted to initalize subscription information with null userId",
+      );
+      return;
+    }
+
     if (initCompleter.isCompleted) return;
     if (_isInitializing) {
       await initCompleter.future;
@@ -73,7 +80,9 @@ class SubscriptionController extends BaseController {
     _isInitializing = true;
     await _initialize();
     _isInitializing = false;
-    initCompleter.complete();
+    if (!initCompleter.isCompleted) {
+      initCompleter.complete();
+    }
   }
 
   Future<void> reinitialize() async {
@@ -84,31 +93,19 @@ class SubscriptionController extends BaseController {
 
   Future<void> _initialize() async {
     try {
-      if (_userID == null) {
-        debugPrint(
-          "Attempted to initalize subscription information with null userId",
-        );
-        return;
-      }
-
       await _pangeaController.userController.initCompleter.future;
 
       availableSubscriptionInfo = AvailableSubscriptionsInfo();
       await availableSubscriptionInfo!.setAvailableSubscriptions();
 
-      final subs =
-          await SubscriptionRepo.getCurrentSubscriptionInfo(null, null);
-
       currentSubscriptionInfo = kIsWeb
           ? WebSubscriptionInfo(
               userID: _userID!,
               availableSubscriptionInfo: availableSubscriptionInfo!,
-              history: subs.allSubscriptions,
             )
           : MobileSubscriptionInfo(
               userID: _userID!,
               availableSubscriptionInfo: availableSubscriptionInfo!,
-              history: subs.allSubscriptions,
             );
 
       await currentSubscriptionInfo!.configure();
@@ -162,13 +159,11 @@ class SubscriptionController extends BaseController {
                 userID: _userID!,
                 availableSubscriptionInfo:
                     availableSubscriptionInfo ?? AvailableSubscriptionsInfo(),
-                history: {},
               )
             : MobileSubscriptionInfo(
                 userID: _userID!,
                 availableSubscriptionInfo:
                     availableSubscriptionInfo ?? AvailableSubscriptionsInfo(),
-                history: {},
               );
 
         currentSubscriptionInfo!.currentSubscriptionId =

@@ -4,6 +4,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
+import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
@@ -24,6 +25,9 @@ class Avatar extends StatelessWidget {
   final bool useRive;
   final bool showPresence;
   final String? userId;
+
+  final double? presenceSize;
+  final Offset? presenceOffset;
   // Pangea#
 
   const Avatar({
@@ -41,6 +45,8 @@ class Avatar extends StatelessWidget {
     this.useRive = false,
     this.showPresence = true,
     this.userId,
+    this.presenceSize,
+    this.presenceOffset,
     // Pangea#
     super.key,
   });
@@ -97,22 +103,37 @@ class Avatar extends StatelessWidget {
                           ),
                         ),
                       )
-                    : MxcImage(
-                        client: client,
-                        key: ValueKey(mxContent.toString()),
-                        cacheKey: '${mxContent}_$size',
-                        uri: mxContent,
-                        fit: BoxFit.cover,
-                        width: size,
-                        height: size,
-                        placeholder: (_) => Center(
-                          child: Icon(
-                            Icons.person_2,
-                            color: theme.colorScheme.tertiary,
-                            size: size / 1.5,
+                    // #Pangea
+                    : !(mxContent.toString().startsWith('mxc://'))
+                        ? ImageByUrl(
+                            imageUrl: mxContent.toString(),
+                            width: size,
+                            replacement: Center(
+                              child: Icon(
+                                icon ?? Icons.person_2,
+                                color: theme.colorScheme.tertiary,
+                                size: size / 1.5,
+                              ),
+                            ),
+                            borderRadius: borderRadius,
+                          )
+                        // Pangea#
+                        : MxcImage(
+                            client: client,
+                            key: ValueKey(mxContent.toString()),
+                            cacheKey: '${mxContent}_$size',
+                            uri: mxContent,
+                            fit: BoxFit.cover,
+                            width: size,
+                            height: size,
+                            placeholder: (_) => Center(
+                              child: Icon(
+                                Icons.person_2,
+                                color: theme.colorScheme.tertiary,
+                                size: size / 1.5,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
           ),
         ),
         // #Pangea
@@ -134,19 +155,31 @@ class Avatar extends StatelessWidget {
                       ? Colors.orange
                       : Colors.grey;
               return Positioned(
-                bottom: -3,
-                right: -3,
+                // #Pangea
+                // bottom: -3,
+                // right: -3,
+                bottom: presenceOffset?.dy ?? -3,
+                right: presenceOffset?.dx ?? -3,
+                // Pangea#
                 child: Container(
-                  width: 16,
-                  height: 16,
+                  // #Pangea
+                  // width: 16,
+                  // height: 16,
+                  width: (presenceSize ?? 10) + 6,
+                  height: (presenceSize ?? 10) + 6,
+                  // Pangea#
                   decoration: BoxDecoration(
                     color: presenceBackgroundColor ?? theme.colorScheme.surface,
                     borderRadius: BorderRadius.circular(32),
                   ),
                   alignment: Alignment.center,
                   child: Container(
-                    width: 10,
-                    height: 10,
+                    // #Pangea
+                    // width: 10,
+                    // height: 10,
+                    width: (presenceSize ?? 10),
+                    height: (presenceSize ?? 10),
+                    // Pangea#
                     decoration: BoxDecoration(
                       color: dotColor,
                       borderRadius: BorderRadius.circular(16),

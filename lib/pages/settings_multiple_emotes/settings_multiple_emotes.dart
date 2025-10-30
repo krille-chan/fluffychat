@@ -13,7 +13,14 @@ class MultipleEmotesSettings extends StatefulWidget {
 }
 
 class MultipleEmotesSettingsController extends State<MultipleEmotesSettings> {
-  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
+  // #Pangea
+  // String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
+  String? get roomId {
+    final pathParameters = GoRouterState.of(context).pathParameters;
+    return pathParameters['roomid'] ?? pathParameters['spaceid'];
+  }
+  // Pangea#
+
   @override
   Widget build(BuildContext context) => MultipleEmotesSettingsView(this);
 }

@@ -6,10 +6,8 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/extensions/pangea_rooms_chunk_extension.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
-import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -40,7 +38,7 @@ class PublicRoomBottomSheet extends StatefulWidget {
         .getRoomById(chunk!.roomId);
 
     if (room != null && room.membership == Membership.join) {
-      context.go("/rooms?spaceId=${room.id}");
+      context.go("/rooms/spaces/${room.id}/details");
       return null;
     }
 
@@ -85,13 +83,13 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
   bool get _isKnockRoom => widget.chunk?.joinRule == 'knock';
 
   Future<void> _joinWithCode() async {
-    final resp =
-        await MatrixState.pangeaController.classController.joinClasswithCode(
+    final resp = await MatrixState.pangeaController.spaceCodeController
+        .joinSpaceWithCode(
       context,
       _codeController.text,
       notFoundError: L10n.of(context).notTheCodeError,
     );
-    if (!resp.isError) {
+    if (resp != null) {
       Navigator.of(context).pop(true);
     }
   }
@@ -100,7 +98,7 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
     if (chunk?.roomType != 'm.space' && !client.getRoomById(roomID)!.isSpace) {
       outerContext.go("/rooms/$roomID");
     } else {
-      context.go('/rooms?spaceId=$roomID');
+      context.go('/rooms/spaces/$roomID/details');
     }
   }
 
@@ -332,32 +330,6 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                                 ],
                               ),
                             ),
-                            if (roomAlias != null)
-                              ElevatedButton(
-                                onPressed: () {
-                                  FluffyShare.share(
-                                    "${Environment.frontendURL}/#/join_with_alias?alias=${Uri.encodeComponent(roomAlias)}",
-                                    context,
-                                  );
-                                  Navigator.of(context).pop();
-                                },
-                                child: Row(
-                                  spacing: 8.0,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.share_outlined,
-                                      size: 20.0,
-                                    ),
-                                    Flexible(
-                                      child: Text(
-                                        L10n.of(context).shareSpaceLink,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
                           ]
                         : [
                             ElevatedButton(
@@ -374,32 +346,6 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                                 ],
                               ),
                             ),
-                            if (roomAlias != null)
-                              ElevatedButton(
-                                onPressed: () {
-                                  FluffyShare.share(
-                                    "${Environment.frontendURL}/#/join_with_alias?alias=${Uri.encodeComponent(roomAlias)}",
-                                    context,
-                                  );
-                                  Navigator.of(context).pop();
-                                },
-                                child: Row(
-                                  spacing: 8.0,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.share_outlined,
-                                      size: 20.0,
-                                    ),
-                                    Flexible(
-                                      child: Text(
-                                        L10n.of(context).shareSpaceLink,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
                           ],
                   ),
                 ],

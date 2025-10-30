@@ -154,17 +154,21 @@ class ModelKey {
   static const String analytics = "analytics";
   static const String level = "level";
   static const String xpOffset = "xp_offset";
+  static const String analyticsRoomId = "analytics_room_id";
 
   // activity plan
   static const String activityPlanRequest = "req";
   static const String activityPlanTitle = "title";
+  static const String activityPlanDescription = "description";
+  static const String activityPlanLocation = "location";
   static const String activityPlanLearningObjective = "learning_objective";
   static const String activityPlanInstructions = "instructions";
   static const String activityPlanVocab = "vocab";
   static const String activityPlanImageURL = "image_url";
-  static const String activityPlanBookmarkId = "bookmark_id";
+  static const String activityId = "activity_id";
   static const String activityPlanEndAt = "end_at";
   static const String activityPlanDuration = "duration";
+  static const String activityPlanTopicId = "topic_id";
 
   static const String activityRequestTopic = "topic";
   static const String activityRequestMode = "mode";
@@ -177,4 +181,9 @@ class ModelKey {
   static const String activityRequestCount = "count";
   static const String activityRequestNumberOfParticipants =
       "number_of_participants";
+
+  static const String autoIGC = "auto_igc";
+  static const String roomIds = "room_ids";
+
+  static const String bookmarkedActivities = "bookmarked_activities";
 }

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_notifications/push_rule_extensions.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -191,6 +192,20 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
         return;
     }
   }
+
+  // #Pangea
+  final ValueNotifier<double> volumeNotifier =
+      ValueNotifier<double>(AppConfig.volume);
+
+  void updateVolume(double value) {
+    volumeNotifier.value = value;
+    AppConfig.volume = value;
+    Matrix.of(context).store.setDouble(
+          SettingKeys.volume,
+          value,
+        );
+  }
+  // Pangea#
 
   @override
   Widget build(BuildContext context) => SettingsNotificationsView(this);

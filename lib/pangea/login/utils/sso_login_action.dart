@@ -16,12 +16,10 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 Future<void> pangeaSSOLoginAction(
   IdentityProvider provider,
-  Client client,
   BuildContext context,
 ) async {
   final bool isDefaultPlatform =
       (PlatformInfos.isMobile || PlatformInfos.isWeb || PlatformInfos.isMacOS);
-
   final redirectUrl = kIsWeb
       ? Uri.parse(html.window.location.href)
           .resolveUri(
@@ -31,8 +29,8 @@ Future<void> pangeaSSOLoginAction(
       : isDefaultPlatform
           ? '${AppConfig.appOpenUrlScheme.toLowerCase()}://login'
           : 'http://localhost:3001//login';
-
-  final url = Matrix.of(context).getLoginClient().homeserver!.replace(
+  final client = await Matrix.of(context).getLoginClient();
+  final url = client.homeserver!.replace(
     path: '/_matrix/client/v3/login/sso/redirect/${provider.id ?? ''}',
     queryParameters: {'redirectUrl': redirectUrl},
   );
@@ -40,7 +38,6 @@ Future<void> pangeaSSOLoginAction(
   final urlScheme = isDefaultPlatform
       ? Uri.parse(redirectUrl).scheme
       : "http://localhost:3001";
-
   String result;
   try {
     result = await FlutterWebAuth2.authenticate(
@@ -54,7 +51,6 @@ Future<void> pangeaSSOLoginAction(
     }
     rethrow;
   }
-
   final token = Uri.parse(result).queryParameters['loginToken'];
   if (token?.isEmpty ?? false) return;
 
@@ -64,8 +60,9 @@ Future<void> pangeaSSOLoginAction(
       .then(
     (_) {
       final route = FluffyChatApp.router.state.fullPath;
-      if (route == null || !route.contains("/rooms")) {
-        context.go("/rooms");
+      if (route == null ||
+          (!route.contains("/rooms") && !route.contains('registration'))) {
+        context.go('/rooms');
       }
     },
   ).timeout(const Duration(seconds: 30));
@@ -74,17 +71,13 @@ Future<void> pangeaSSOLoginAction(
     LoginType.mLoginToken,
     token: token,
     initialDeviceDisplayName: PlatformInfos.clientName,
-    onInitStateChanged: (state) {
-      if (state == InitState.settingUpEncryption) {
-        context.go("/rooms");
-      }
-    },
   );
 
   if (client.onLoginStateChanged.value == LoginState.loggedIn) {
     final route = FluffyChatApp.router.state.fullPath;
-    if (route == null || !route.contains("/rooms")) {
-      context.go("/rooms");
+    if (route == null ||
+        (!route.contains("/rooms") && !route.contains('registration'))) {
+      context.go('/rooms');
     }
   } else {
     await redirect;
