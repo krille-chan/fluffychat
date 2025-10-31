@@ -67,7 +67,8 @@ class PublicCoursesPageState extends State<PublicCoursesPage> {
                         r.id == c.room.roomId &&
                         r.membership == Membership.join,
                   ) &&
-              coursePlans.containsKey(c.courseId),
+              coursePlans.containsKey(c.courseId) &&
+              c.room.joinRule == 'public',
         )
         .toList();
 
