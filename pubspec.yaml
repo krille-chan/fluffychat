@@ -38,7 +38,7 @@ dependencies:
   flutter_new_badger: ^1.1.1
   flutter_secure_storage: ^9.2.4
   flutter_shortcuts_new: ^2.0.0
-  flutter_vodozemac: ^0.3.0
+  flutter_vodozemac: ^0.4.1
   flutter_web_auth_2: ^3.1.1 # Version 4 blocked by https://github.com/MixinNetwork/flutter-plugins/issues/379
   flutter_webrtc: ^1.2.0
   geolocator: ^14.0.2
@@ -52,7 +52,10 @@ dependencies:
   just_audio: ^0.10.5
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix: ^3.0.1
+  matrix: #^3.0.1
+    git:
+      url: https://github.com/famedly/matrix-dart-sdk.git
+      ref: krille/refactor-update-user-device-keys
   mime: ^2.0.0
   native_imaging: ^0.2.0
   opus_caf_converter_dart: ^1.0.1

@@ -658,10 +658,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_vodozemac
-      sha256: "54cd3790b6dfdc1afce928f8c46f7eeea9e4f8326f077400894935926f202057"
+      sha256: "16d4b44dd338689441fe42a80d0184e5c864e9563823de9e7e6371620d2c0590"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.1"
   flutter_web_auth_2:
     dependency: "direct main"
     description:
@@ -1113,11 +1113,12 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      sha256: "84354dd61f47b297631a3fe5eeebb5c1e0725f872b8fae75851a49cd5689c4f1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.1"
+      path: "."
+      ref: "krille/refactor-update-user-device-keys"
+      resolved-ref: d35d78f3b7c38671888e87b9aa80d2a93c811b82
+      url: "https://github.com/famedly/matrix-dart-sdk.git"
+    source: git
+    version: "3.0.2"
   meta:
     dependency: transitive
     description:
@@ -2143,10 +2144,10 @@ packages:
     dependency: transitive
     description:
       name: vodozemac
-      sha256: "95cac62ffab94db99e134c8f9aac198f8131a4eed0bed76a6cfc9c72add229b9"
+      sha256: "39144e20740807731871c9248d811ed5a037b21d0aa9ffcfa630954de74139d9"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.0"
   wakelock_plus:
     dependency: "direct main"
     description:
