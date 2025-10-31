@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFa(){return new A.FW(B.dg("sv"))},
+cFd(){return new A.FW(B.dh("sv"))},
 FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -264,7 +264,7 @@ gjL(){return"Ta bort fr\xe5n paket"},
 gf2(){return"Paketnamn"},
 giG(){return"(BETA) Aktivera multi-konton p\xe5 denna enhet"},
 gjr(){return"\xd6ppna i karta"},
-gdH(){return"L\xe4nk"},
+gdI(){return"L\xe4nk"},
 gh1(){return"Servern beh\xf6ver validera din e-postadress f\xf6r registrering."},
 gjs(){return"Eller"},
 gjt(){return"Deltagare"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FW,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FW":{"aF":[]}}'))};
-(a=>{a["C1UDbX+cYsZVtzehmcQ2enRBwJA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["tG1klV5NzoHD/bRbPgQ5BiN4kYU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

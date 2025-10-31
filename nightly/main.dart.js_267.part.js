@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEI(){return new A.Fu(B.dg("fi"))},
+cEL(){return new A.Fu(B.dh("fi"))},
 Fu:function Fu(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -264,7 +264,7 @@ gjL(){return"Poista t\xe4st\xe4 k\xe4\xe4reest\xe4"},
 gf2(){return"K\xe4\xe4reen nimi"},
 giG(){return"(BETA) Ota k\xe4ytt\xf6\xf6n tuki usealle tilille t\xe4ll\xe4 laitteella"},
 gjr(){return"Avaa kartoissa"},
-gdH(){return"Linkki"},
+gdI(){return"Linkki"},
 gh1(){return"T\xe4m\xe4n palvelimen t\xe4ytyy tarkistaa s\xe4hk\xf6posti-osoitteesi rekister\xf6itymist\xe4 varten."},
 gjs(){return"Tai"},
 gjt(){return"Osallistuja"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fu,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fu":{"aF":[]}}'))};
-(a=>{a["5DgfjoyYoeDq0feLRN6/JVZvgu8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["qAtFUL+koGV84bFPYjispaamXlo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_267.part.js.map

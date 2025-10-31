@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cF0(){return new A.FN(B.dg("nl"))},
+cF3(){return new A.FN(B.dh("nl"))},
 FN:function FN(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -264,7 +264,7 @@ gjL(){return"Van bundel verwijderen"},
 gf2(){return"Bundelnaam"},
 giG(){return"(BETA) Multi-accounts inschakelen op dit apparaat"},
 gjr(){return"In kaarten openen"},
-gdH(){return"Link"},
+gdI(){return"Link"},
 gh1(){return"Deze server wil je email laten bevestigen bij de registratie."},
 gjs(){return"Of"},
 gjt(){return"Personen"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FN,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FN":{"aF":[]}}'))};
-(a=>{a["Tn4VZRYlibv58iHiXpc2veEaJRc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["RfFNOfWTI4Y1srlwCGGB8SJgxug="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

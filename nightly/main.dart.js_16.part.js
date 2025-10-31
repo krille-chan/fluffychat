@@ -1,8 +1,8 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cF2(d){return new A.AK(B.dg(d))},
-cF3(){return new A.FP(B.dg("pt_BR"))},
-cF4(){return new A.FQ(B.dg("pt_PT"))},
+cF5(d){return new A.AK(B.dh(d))},
+cF6(){return new A.FP(B.dh("pt_BR"))},
+cF7(){return new A.FQ(B.dh("pt_PT"))},
 AK:function AK(d){this.a=d},
 FP:function FP(d){this.a=d},
 FQ:function FQ(d){this.a=d}},C
@@ -268,7 +268,7 @@ gjL(){return"Remove from this bundle"},
 gf2(){return"Bundle name"},
 giG(){return"(BETA) Enable multi accounts on this device"},
 gjr(){return"Open in maps"},
-gdH(){return"Link"},
+gdI(){return"Link"},
 gh1(){return"This server needs to validate your email address for registration."},
 gjs(){return"Or"},
 gjt(){return"Participant"},
@@ -903,7 +903,7 @@ gjL(){return"Remover desta cole\xe7\xe3o"},
 gf2(){return"Nome da cole\xe7\xe3o"},
 giG(){return y.a},
 gjr(){return"Abrir no mapa"},
-gdH(){return"Link"},
+gdI(){return"Link"},
 gh1(){return"Este servidor precisa validar seu e-mail para efetuar o cadastro."},
 gjs(){return"Ou"},
 gjt(){return"Participante"},
@@ -1471,7 +1471,7 @@ gjL(){return"Remover deste pacote"},
 gf2(){return"Nome do pacote"},
 giG(){return y.a},
 gjr(){return"Abrir nos mapas"},
-gdH(){return"Liga\xe7\xe3o"},
+gdI(){return"Liga\xe7\xe3o"},
 gh1(){return"Este servidor precisa de validar o teu endere\xe7o de correio eletr\xf3nico para o registo."},
 gjs(){return"Ou"},
 gjt(){return"Participante"},
@@ -1524,5 +1524,5 @@ x(A.AK,C.aF)
 w(A.AK,[A.FP,A.FQ])})()
 B.dV(b.typeUniverse,JSON.parse('{"AK":{"aF":[]},"FP":{"aF":[]},"FQ":{"aF":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["xx8ZxPyFUl9ztWCyN19ZAHZxIXw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["92GgnF1z6WaqK9dT2ugtWTEFBaM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_16.part.js.map

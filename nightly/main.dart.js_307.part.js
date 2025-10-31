@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cF5(){return new A.FR(B.dg("ro"))},
+cF8(){return new A.FR(B.dh("ro"))},
 FR:function FR(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -264,7 +264,7 @@ gjL(){return"Sterge\u021bi din acest pachet"},
 gf2(){return"Numele pachetului"},
 giG(){return"(BETA) Activa\u021bi multiple conturi pe acest dispozitiv"},
 gjr(){return"Deschide\u021bi pe hart\u0103"},
-gdH(){return"Link"},
+gdI(){return"Link"},
 gh1(){return"Acest server trebuie s\u0103 valideze emailul vostru pentru \xeenregistrare."},
 gjs(){return"Sau"},
 gjt(){return"Participant"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FR,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FR":{"aF":[]}}'))};
-(a=>{a["nJ+VzhAc/PMKnKfBiZhIuT0IWtY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["txSS7XQOy06L7xAIuSfol3cF634="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_307.part.js.map

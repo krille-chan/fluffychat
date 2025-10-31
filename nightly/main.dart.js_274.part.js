@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEM(){return new A.Fy(B.dg("gl"))},
+cEP(){return new A.Fy(B.dh("gl"))},
 Fy:function Fy(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -264,7 +264,7 @@ gjL(){return"Eliminar deste feixe"},
 gf2(){return"Nome do feixe"},
 giG(){return"(BETA) Activar varias contas neste dispositivo"},
 gjr(){return"Abrir en mapas"},
-gdH(){return"Ligaz\xf3n"},
+gdI(){return"Ligaz\xf3n"},
 gh1(){return"O servidor precisa validar o teu enderezo de email para rexistrarte."},
 gjs(){return"Ou"},
 gjt(){return"Participante"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fy,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fy":{"aF":[]}}'))};
-(a=>{a["tn1u3GPZMN/WI/fV+W7JEAFEPSM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["5KxOEje5vOVfDQ16X737cE+5+xA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_274.part.js.map

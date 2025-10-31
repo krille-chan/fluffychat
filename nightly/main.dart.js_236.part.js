@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEy(){return new A.Fk(B.dg("cs"))},
+cEB(){return new A.Fk(B.dh("cs"))},
 Fk:function Fk(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -264,7 +264,7 @@ gjL(){return"Odstranit z tohoto bal\xed\u010dku"},
 gf2(){return"N\xe1zev bal\xed\u010dku"},
 giG(){return"(BETA) Na tomto za\u0159\xedzen\xed povolte v\xedce \xfa\u010dt\u016f"},
 gjr(){return"Otev\u0159\xedt v map\xe1ch"},
-gdH(){return"Odkaz"},
+gdI(){return"Odkaz"},
 gh1(){return"Tento server pot\u0159ebuje k registraci ov\u011b\u0159it va\u0161i e -mailovou adresu."},
 gjs(){return"Nebo"},
 gjt(){return"\xda\u010dastn\xedk"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fk,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fk":{"aF":[]}}'))};
-(a=>{a["0SeRPY8QMIQQoCi1Qan8uWgdPxM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3dqRAXzYVGo88WCQEz4xG48Dlr8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_236.part.js.map

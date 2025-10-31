@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEF(){return new A.Fr(B.dg("et"))},
+cEI(){return new A.Fr(B.dh("et"))},
 Fr:function Fr(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -264,7 +264,7 @@ gjL(){return"Eemalda sellest k\xf6itest"},
 gf2(){return"K\xf6ite nimi"},
 giG(){return"(KATSELINE) Pruugi selles seadmes mitut Matrix'i kasutajakontot"},
 gjr(){return"Ava kaardirakendusega"},
-gdH(){return"Link"},
+gdI(){return"Link"},
 gh1(){return"See koduserver eeldab registreerimisel kasutatava e-postiaadressi kinnitamist."},
 gjs(){return"v\xf5i"},
 gjt(){return"Osaleja"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fr,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fr":{"aF":[]}}'))};
-(a=>{a["1p/I9UFkupqQvq5y51ruHYTgoH4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["6atkom470+iwBIzzZY8g2R5Szm8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_261.part.js.map

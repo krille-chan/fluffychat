@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEP(){return new A.FB(B.dg("hr"))},
+cES(){return new A.FB(B.dh("hr"))},
 FB:function FB(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -264,7 +264,7 @@ gjL(){return"Ukloni iz ovog paketa"},
 gf2(){return"Ime paketa"},
 giG(){return"(BETA) Omogu\u0107i kori\u0161tenje vi\u0161e ra\u010duna na ovom ure\u0111aju"},
 gjr(){return"Otvori u kartama"},
-gdH(){return"Poveznica"},
+gdI(){return"Poveznica"},
 gh1(){return"Za registraciju ovaj poslu\u017eitelj mora potvrditi tvoju e-mail adresu."},
 gjs(){return"Ili"},
 gjt(){return"Sudionik"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FB,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FB":{"aF":[]}}'))};
-(a=>{a["ac12tAbyzqj2l/D6YfQWILNvsNI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["6zlDt+80H48WlO/6Ic27fKlMwoI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_279.part.js.map

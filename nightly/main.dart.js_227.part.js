@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEx(){return new A.Fj(B.dg("ca"))},
+cEA(){return new A.Fj(B.dh("ca"))},
 Fj:function Fj(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -264,7 +264,7 @@ gjL(){return"Esborra del paquet"},
 gf2(){return"Nom del paquet"},
 giG(){return"(Beta) Activa multi-compte en aquest dispositiu"},
 gjr(){return"Obre als mapes"},
-gdH(){return"Enlla\xe7"},
+gdI(){return"Enlla\xe7"},
 gh1(){return"Aquest servidor necessita validar la teva adre\xe7a per registrar-t'hi."},
 gjs(){return"O"},
 gjt(){return"Participant"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fj,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))};
-(a=>{a["NFRXgrgmHa/iwyvqDO2afH+SvgU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["drWYO2Noq7ijGeHolgXPa5yNBSg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_227.part.js.map

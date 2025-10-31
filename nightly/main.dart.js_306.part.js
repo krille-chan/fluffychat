@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cF1(){return new A.FO(B.dg("pl"))},
+cF4(){return new A.FO(B.dh("pl"))},
 FO:function FO(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -264,7 +264,7 @@ gjL(){return"Usu\u0144 z tego pakietu"},
 gf2(){return"Nazwa pakietu"},
 giG(){return"(BETA) W\u0142\u0105cza obs\u0142ug\u0119 wielu kont na tym urz\u0105dzeniu"},
 gjr(){return"Otw\xf3rz w mapach"},
-gdH(){return"Link"},
+gdI(){return"Link"},
 gh1(){return"Ten serwer wymaga potwierdzenia Twojego adresu email w celu rejestracji."},
 gjs(){return"Lub"},
 gjt(){return"Uczestnik"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FO,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FO":{"aF":[]}}'))};
-(a=>{a["SdSGAsYv3rWq8iq7JlFiQ0uUQo8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["oM4/swx/dH7MW+stU+ZmGux0mjg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map
