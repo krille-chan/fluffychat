@@ -2084,7 +2084,7 @@
   "yeCountryDisplayName": "იემენი",
   "zmCountryDisplayName": "ზამბია",
   "zwCountryDisplayName": "ზიმბაბვე",
-  "pay": "გადახდა",
+  "pay": "Checkout",
   "allPrivateChats": "მხოლოდ პირადი ჩეთები",
   "unknownPrivateChat": "უცნობი პირადი ჩათი",
   "invitedToSpace": "{user} გეპატიჟება გაერთო კურსში: {space}! გსურთ მიიღოთ?",
