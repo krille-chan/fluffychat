@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEG(){return new A.Fp(B.dh("eo"))},
+cEH(){return new A.Fp(B.dh("eo"))},
 Fp:function Fp(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -136,7 +136,7 @@ gil(){return"Malhela"},
 im(d,e){return d+", "+e},
 gio(){return"\u0108i tio malaktivigos vian konton de uzanto. Ne eblas tion malfari! \u0108u certe vi certas?"},
 gip(){return"Norma nivelo de permesoj"},
-gdv(d){return"Forigi"},
+gdw(d){return"Forigi"},
 git(){return"Forigi konton"},
 giu(){return"Forigi mesa\u011don"},
 gey(){return"Aparatoj"},
@@ -215,7 +215,7 @@ gj2(){return"Ali\u011di al \u0109ambro"},
 j3(d,e){return d+" forpelis uzanton "+e},
 gfp(){return"Forpeli de babilo"},
 eK(d){return"Lastafoje aktiva: "+d},
-gdl(){return"Foriri"},
+gdm(){return"Foriri"},
 gfs(){return"Foriris de la \u0109ambro"},
 gj5(){return"Hela"},
 j6(d){return"Enlegi "+d+" pliajn partoprenantojn"},
@@ -255,7 +255,7 @@ gjm(){return"Akirante lokon\u2026"},
 gjn(){return"Ofenda"},
 gcB(){return"bone"},
 gjp(){return"Enreta savkopiado de \u015dlosiloj estas \u015daltita"},
-gdB(){return"Oj! Io misokazis\u2026"},
+gdC(){return"Oj! Io misokazis\u2026"},
 gjo(){return"One of your clients has been logged out"},
 geu(){return"Add account"},
 gix(){return"Edit bundles for this account"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fp,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fp":{"aF":[]}}'))};
-(a=>{a["0qW3+7A0d9ojtx1y2QtCIA48I50="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["m2NbH0IKrCRj9MtzUxr14iZU4o4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_255.part.js.map

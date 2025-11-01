@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEJ(){return new A.Fs(B.dh("eu"))},
+cEK(){return new A.Fs(B.dh("eu"))},
 Fs:function Fs(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -136,7 +136,7 @@ gil(){return"Iluna"},
 im(d,e){return d+", "+e},
 gio(){return"Honek zure kontua desaktibatuko du. Ezin da desegin! Ziur zaude?"},
 gip(){return"Erabiltzaile berrien defektuzko botere-maila"},
-gdv(d){return"Ezabatu"},
+gdw(d){return"Ezabatu"},
 git(){return"Ezabatu kontua"},
 giu(){return"Mezuak ezabatu"},
 gey(){return"Gailuak"},
@@ -215,7 +215,7 @@ gj2(){return"Batu gelara"},
 j3(d,e){return"\ud83d\udc5e "+d+"(e)k "+e+" kanporatu du"},
 gfp(){return"Txatetik kanporatu"},
 eK(d){return"Azkenekoz aktibo: "+d},
-gdl(){return"Irten"},
+gdm(){return"Irten"},
 gfs(){return"Txatetik irten da"},
 gj5(){return"Argia"},
 j6(d){return"Kargatu "+d+" partaide gehiago"},
@@ -255,7 +255,7 @@ gjm(){return"Kokapena atzitzen\u2026"},
 gjn(){return"Iraingarria"},
 gcB(){return"Ados"},
 gjp(){return"Gakoen online babeskopia gaituta dago"},
-gdB(){return"Hara, zerbaitek huts egin du\u2026"},
+gdC(){return"Hara, zerbaitek huts egin du\u2026"},
 gjo(){return"Zure gailuetako batek saioa amaitu du"},
 geu(){return"Gehitu kontua"},
 gix(){return"Editatu kontu honetarako sortak"},
@@ -644,5 +644,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fs,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fs":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["HBYXZPLN03rq/9O3MhegTSks0Mo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["xwluxGvOBl8r1KlC8CFzfHTQAEU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_263.part.js.map

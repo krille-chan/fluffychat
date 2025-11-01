@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFb(){return new A.FU(B.dh("sl"))},
+cFc(){return new A.FU(B.dh("sl"))},
 FU:function FU(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -136,7 +136,7 @@ gil(){return"Temno"},
 im(d,e){return d+", "+e},
 gio(){return"S tem boste deaktivirali va\u0161 uporabni\u0161ki ra\u010dun. Tega ni mogo\u010de razveljaviti! Ali si prepri\u010dan?"},
 gip(){return"Privzeta raven dovoljenja"},
-gdv(d){return"Delete"},
+gdw(d){return"Delete"},
 git(){return"Delete account"},
 giu(){return"Delete message"},
 gey(){return"Devices"},
@@ -215,7 +215,7 @@ gj2(){return"Join room"},
 j3(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfp(){return"Kick from chat"},
 eK(d){return"Last active: "+d},
-gdl(){return"Leave"},
+gdm(){return"Leave"},
 gfs(){return"Left the chat"},
 gj5(){return"Light"},
 j6(d){return"Load "+d+" more participants"},
@@ -255,7 +255,7 @@ gjm(){return"Obtaining location\u2026"},
 gjn(){return"Offensive"},
 gcB(){return"Ok"},
 gjp(){return"Online Key Backup is enabled"},
-gdB(){return"Oops, something went wrong\u2026"},
+gdC(){return"Oops, something went wrong\u2026"},
 gjo(){return"One of your clients has been logged out"},
 geu(){return"Add account"},
 gix(){return"Edit bundles for this account"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FU,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FU":{"aF":[]}}'))};
-(a=>{a["CiXd80BC5lbJz6bPBkYRe2uBXn8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jMbuYSrsMwqZ9I9j7eRBG9OKKm4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

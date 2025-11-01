@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cET(){return new A.FC(B.dh("hu"))},
+cEU(){return new A.FC(B.dh("hu"))},
 FC:function FC(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -136,7 +136,7 @@ gil(){return"S\xf6t\xe9t"},
 im(d,e){return d+", "+e},
 gio(){return"Ez deaktiv\xe1lja a felhaszn\xe1l\xf3i fi\xf3kj\xe1t. Ez nem vonhat\xf3 vissza! Biztos benne?"},
 gip(){return"Alap\xe9rtelmezett hozz\xe1f\xe9r\xe9si szint \xfaj felhaszn\xe1l\xf3kn\xe1l"},
-gdv(d){return"T\xf6rl\xe9s"},
+gdw(d){return"T\xf6rl\xe9s"},
 git(){return"Fi\xf3k t\xf6rl\xe9se"},
 giu(){return"\xdczenet t\xf6rl\xe9se"},
 gey(){return"Eszk\xf6z\xf6k"},
@@ -215,7 +215,7 @@ gj2(){return"Csatlakoz\xe1s a szob\xe1hoz"},
 j3(d,e){return"\ud83d\udc5e "+d+" kir\xfagta "+e+"-t"},
 gfp(){return"Kir\xfag\xe1s a cseveg\xe9sb\u0151l"},
 eK(d){return"Utolj\xe1ra akt\xedv: "+d},
-gdl(){return"Elhagy"},
+gdm(){return"Elhagy"},
 gfs(){return"Elhagyta a cseveg\xe9st"},
 gj5(){return"Vil\xe1gos"},
 j6(d){return"Tov\xe1bbi "+d+" r\xe9sztvev\u0151 bet\xf6lt\xe9se"},
@@ -255,7 +255,7 @@ gjm(){return"Tart\xf3zkod\xe1si hely lek\xe9r\xe9se\u2026"},
 gjn(){return"S\xe9rt\u0151"},
 gcB(){return"Ok"},
 gjp(){return"Online kulcsment\xe9s enged\xe9lyezve"},
-gdB(){return"Hopp\xe1, valami hiba l\xe9pett fel\u2026"},
+gdC(){return"Hopp\xe1, valami hiba l\xe9pett fel\u2026"},
 gjo(){return"Az egyik kliense kijelentkezett"},
 geu(){return"Fi\xf3k hozz\xe1ad\xe1sa"},
 gix(){return"Fi\xf3kcsoportok szerkeszt\xe9se ehhez a fi\xf3khoz"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FC,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FC":{"aF":[]}}'))};
-(a=>{a["9I5yX00AAeueKnnLP2MQ/BcjkZM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["pKm6+ItJVjjiwEMZv/avMKVwIRU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_285.part.js.map

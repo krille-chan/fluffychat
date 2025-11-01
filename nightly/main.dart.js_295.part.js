@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEX(){return new A.FG(B.dh("it"))},
+cEY(){return new A.FG(B.dh("it"))},
 FG:function FG(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -136,7 +136,7 @@ gil(){return"Scuro"},
 im(d,e){return d+", "+e},
 gio(){return"Disabiliter\xe0 il tuo account. Non puoi tornare indietro! Sei sicuro/a?"},
 gip(){return"Livello di autorizzazione predefinito per i nuovi utenti"},
-gdv(d){return"Cancella"},
+gdw(d){return"Cancella"},
 git(){return"Elimina l'account"},
 giu(){return"Elimina il messaggio"},
 gey(){return"Dispositivi"},
@@ -215,7 +215,7 @@ gj2(){return"Unisciti alla stanza"},
 j3(d,e){return"\ud83d\udc5e "+d+" ha espulso "+e},
 gfp(){return"Espelli dalla chat"},
 eK(d){return"Ultima attivit\xe0: "+d},
-gdl(){return"Abbandona"},
+gdm(){return"Abbandona"},
 gfs(){return"Ha lasciato la chat"},
 gj5(){return"Chiaro"},
 j6(d){return"Carica altri "+d+" partecipanti"},
@@ -255,7 +255,7 @@ gjm(){return"Ottengo la posizione\u2026"},
 gjn(){return"Offensivo"},
 gcB(){return"Ok"},
 gjp(){return"Il backup delle chiavi in linea \xe8 abilitato"},
-gdB(){return"Ops, qualcosa \xe8 andato storto\u2026"},
+gdC(){return"Ops, qualcosa \xe8 andato storto\u2026"},
 gjo(){return"Uno dei tuoi client \xe8 stato disconnesso"},
 geu(){return"Aggiungi account"},
 gix(){return"Modifica i bundle per questo account"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FG,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FG":{"aF":[]}}'))};
-(a=>{a["OxhrhjxuXH1nXxoyr53wYT9Zmqw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["2B2NCUrKaj2nO3COmlZOj1Ifp0U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEB(){return new A.Fk(B.dh("cs"))},
+cEC(){return new A.Fk(B.dh("cs"))},
 Fk:function Fk(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -136,7 +136,7 @@ gil(){return"Tmav\xe9"},
 im(d,e){return d+", "+e},
 gio(){return"T\xedmto krokem se deaktivuje v\xe1\u0161 u\u017eivatelsk\xfd \xfa\u010det. Akci nelze vr\xe1tit zp\u011bt! Jste si jist\xed?"},
 gip(){return"V\xfdchoz\xed \xfarove\u0148 opr\xe1vn\u011bn\xed nov\xfdch u\u017eivatel\u016f"},
-gdv(d){return"Smazat"},
+gdw(d){return"Smazat"},
 git(){return"Smazat \xfa\u010det"},
 giu(){return"Smazat zpr\xe1vu"},
 gey(){return"Za\u0159\xedzen\xed"},
@@ -215,7 +215,7 @@ gj2(){return"P\u0159ipojte se k m\xedstnosti"},
 j3(d,e){return"\ud83d\udc5e "+d+" vyhodil/a "+e},
 gfp(){return"Vyhodit z chatu"},
 eK(d){return"Naposledy aktivn\xed: "+d},
-gdl(){return"Opustit"},
+gdm(){return"Opustit"},
 gfs(){return"Opustil chat"},
 gj5(){return"Sv\u011btl\xe9"},
 j6(d){return"Na\u010d\xedst dal\u0161\xedch "+d+" \xfa\u010dastn\xedk\u016f"},
@@ -255,7 +255,7 @@ gjm(){return"Z\xedsk\xe1v\xe1n\xed polohy\u2026"},
 gjn(){return"Ur\xe1\u017eliv\xe9"},
 gcB(){return"Ok"},
 gjp(){return"Online z\xe1loha k\xed\u010d\u016f je zapnuta"},
-gdB(){return"Jejda, n\u011bco se pokazilo\u2026"},
+gdC(){return"Jejda, n\u011bco se pokazilo\u2026"},
 gjo(){return"Jeden z va\u0161ich klient\u016f byl odhl\xe1\u0161en"},
 geu(){return"P\u0159idat \xfa\u010det"},
 gix(){return"Upravit bal\xed\u010dky pro tento \xfa\u010det"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fk,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fk":{"aF":[]}}'))};
-(a=>{a["3dqRAXzYVGo88WCQEz4xG48Dlr8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["x9PJ1VAvBd4SGE4HEa3+8AydYtc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_236.part.js.map

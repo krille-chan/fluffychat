@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cF4(){return new A.FO(B.dh("pl"))},
+cF5(){return new A.FO(B.dh("pl"))},
 FO:function FO(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -136,7 +136,7 @@ gil(){return"Ciemny"},
 im(d,e){return d+" "+e},
 gio(){return"To zdezaktywuje twoje konto. To jest nieodwracalne! Na pewno chcesz to zrobi\u0107?"},
 gip(){return"Domy\u015blny poziom uprawnie\u0144 dla nowych u\u017cytkownik\xf3w"},
-gdv(d){return"Usu\u0144"},
+gdw(d){return"Usu\u0144"},
 git(){return"Usu\u0144 konto"},
 giu(){return"Usu\u0144 wiadomo\u015b\u0107"},
 gey(){return"Urz\u0105dzenia"},
@@ -215,7 +215,7 @@ gj2(){return"Do\u0142\u0105cz do pokoju"},
 j3(d,e){return"\ud83d\udc5e "+d+" wyrzuci\u0142/-a "+e},
 gfp(){return"Wyrzu\u0107 z czatu"},
 eK(d){return"Ostatnio widziano "+d},
-gdl(){return"Opu\u015b\u0107"},
+gdm(){return"Opu\u015b\u0107"},
 gfs(){return"Opu\u015bci\u0142/-a czat"},
 gj5(){return"Jasny"},
 j6(d){return"Za\u0142aduj jeszcze "+d+" uczestnik\xf3w"},
@@ -255,7 +255,7 @@ gjm(){return"Uzyskiwanie lokalizacji\u2026"},
 gjn(){return"Obra\u017aliwe"},
 gcB(){return"Ok"},
 gjp(){return"Kopia zapasowa kluczy online jest w\u0142\u0105czona"},
-gdB(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
+gdC(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
 gjo(){return"Jedno z twoich urz\u0105dze\u0144 zosta\u0142o wylogowane"},
 geu(){return"Dodaj konto"},
 gix(){return"Edytuj pakiety dla tego konta"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FO,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FO":{"aF":[]}}'))};
-(a=>{a["oM4/swx/dH7MW+stU+ZmGux0mjg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["B7xO65zO9/5T0i9y4Sno4JgbHJc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

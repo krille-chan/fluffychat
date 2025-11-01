@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cES(){return new A.FB(B.dh("hr"))},
+cET(){return new A.FB(B.dh("hr"))},
 FB:function FB(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -136,7 +136,7 @@ gil(){return"Tamna"},
 im(d,e){return d+", "+e},
 gio(){return"Ovo \u0107e nepovratno deaktivirati tvoj korisni\u010dki ra\u010dun. Stvarno to \u017eeli\u0161?"},
 gip(){return"Standardna razina dozvole za nove korisnike"},
-gdv(d){return"Izbri\u0161i"},
+gdw(d){return"Izbri\u0161i"},
 git(){return"Izbri\u0161i ra\u010dun"},
 giu(){return"Izbri\u0161i poruku"},
 gey(){return"Ure\u0111aji"},
@@ -215,7 +215,7 @@ gj2(){return"Pridru\u017ei se sobi"},
 j3(d,e){return"\ud83d\udc5e "+d+" je izbacio/la "+e},
 gfp(){return"Izbaci iz razgovora"},
 eK(d){return"Zadnja aktivnost: "+d},
-gdl(){return"Napusti"},
+gdm(){return"Napusti"},
 gfs(){return"Napustio/la je razgovor"},
 gj5(){return"Svijetla"},
 j6(d){return"U\u010ditaj jo\u0161 "+d+" sudionika"},
@@ -255,7 +255,7 @@ gjm(){return"Dohva\u0107anje lokacije \u2026"},
 gjn(){return"Uvredljiv"},
 gcB(){return"U redu"},
 gjp(){return"Internetski klju\u010d sigurnosnih kopija je aktiviran"},
-gdB(){return"Ups, dogodila se gre\u0161ka \u2026"},
+gdC(){return"Ups, dogodila se gre\u0161ka \u2026"},
 gjo(){return"Jedan od tvojih klijenata je odjavljen"},
 geu(){return"Dodaj ra\u010dun"},
 gix(){return"Uredi pakete za ovaj ra\u010dun"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FB,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FB":{"aF":[]}}'))};
-(a=>{a["6zlDt+80H48WlO/6Ic27fKlMwoI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["AtnmRcKqMPydxZEWX+eNnSKPOuU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_279.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEI(){return new A.Fr(B.dh("et"))},
+cEJ(){return new A.Fr(B.dh("et"))},
 Fr:function Fr(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -136,7 +136,7 @@ gil(){return"Tume"},
 im(d,e){return d+", "+e},
 gio(){return"J\xe4rgnevaga eemaldatakse sinu konto kasutusest. Seda tegevust ei saa tagasi p\xf6\xf6rata! Kas sa ikka oled kindel?"},
 gip(){return"Vaikimisi \xf5igused uutele kasutajatele"},
-gdv(d){return"Kustuta"},
+gdw(d){return"Kustuta"},
 git(){return"Kustuta kasutajakonto"},
 giu(){return"Kustuta s\xf5num"},
 gey(){return"Seadmed"},
@@ -215,7 +215,7 @@ gj2(){return"Liitu jututoaga"},
 j3(d,e){return"\ud83d\udc5e "+d+" m\xfcksas kasutaja "+e+" v\xe4lja"},
 gfp(){return"M\xfcksa vestlusest v\xe4lja"},
 eK(d){return"Viimati n\xe4htud: "+d},
-gdl(){return"Lahku"},
+gdm(){return"Lahku"},
 gfs(){return"Lahkus vestlusest"},
 gj5(){return"Hele"},
 j6(d){return"Lisa veel "+d+" osalejat"},
@@ -255,7 +255,7 @@ gjm(){return"Tuvastan asukohta\u2026"},
 gjn(){return"Solvav"},
 gcB(){return"Sobib"},
 gjp(){return"Kr\xfcptov\xf5tmete veebip\xf5hine varundus on kasutusel"},
-gdB(){return"Hopsti! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
+gdC(){return"Hopsti! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
 gjo(){return"\xdcks sinu klientrakendustest on Matrix'i v\xf5rgust v\xe4lja loginud"},
 geu(){return"Lisa kasutajakonto"},
 gix(){return"Muuda selle kasutajakonto k\xf6iteid"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fr,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fr":{"aF":[]}}'))};
-(a=>{a["6atkom470+iwBIzzZY8g2R5Szm8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["izr2MFh7iXj6pATmksNQZIliC1s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_261.part.js.map

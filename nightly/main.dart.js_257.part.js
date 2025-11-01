@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEH(){return new A.Fq(B.dh("es"))},
+cEI(){return new A.Fq(B.dh("es"))},
 Fq:function Fq(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -136,7 +136,7 @@ gil(){return"Oscuro"},
 im(d,e){return d+", "+e},
 gio(){return"Se desactivar\xe1 su cuenta de usuario. \xa1La operaci\xf3n no se puede cancelar! \xbfEst\xe1 seguro?"},
 gip(){return"Nivel de permiso predeterminado para nuevo usuarios"},
-gdv(d){return"Eliminar"},
+gdw(d){return"Eliminar"},
 git(){return"Cancelar cuenta"},
 giu(){return"Eliminar mensaje"},
 gey(){return"Dispositivos"},
@@ -215,7 +215,7 @@ gj2(){return"Unirse a la sala"},
 j3(d,e){return"\ud83d\udc5e"+d+" ech\xf3 a "+e},
 gfp(){return"Echar del chat"},
 eK(d){return"\xdaltima vez activo: "+d},
-gdl(){return"Abandonar"},
+gdm(){return"Abandonar"},
 gfs(){return"Abandon\xf3 el chat"},
 gj5(){return"Claro"},
 j6(d){return"Mostrar "+d+" participantes m\xe1s"},
@@ -255,7 +255,7 @@ gjm(){return"Obteniendo ubicaci\xf3n\u2026"},
 gjn(){return"Ofensiva"},
 gcB(){return"Ok"},
 gjp(){return"La copia de seguridad de la clave en l\xednea est\xe1 habilitada"},
-gdB(){return"Ups, algo sali\xf3 mal\u2026"},
+gdC(){return"Ups, algo sali\xf3 mal\u2026"},
 gjo(){return"Se ha cerrado en la sesi\xf3n de uno de sus clientes"},
 geu(){return"A\xf1adir cuenta"},
 gix(){return"Editar paquetes para esta cuenta"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fq,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fq":{"aF":[]}}'))};
-(a=>{a["aotlAJMDP0LzkOyo5IjgZfjmR6M="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mqFcFCfGgANWcJklzdwLVXZ+lPQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_257.part.js.map

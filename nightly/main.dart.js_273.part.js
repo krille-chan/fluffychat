@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEO(){return new A.Fx(B.dh("ga"))},
+cEP(){return new A.Fx(B.dh("ga"))},
 Fx:function Fx(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -136,7 +136,7 @@ gil(){return"Dorcha"},
 im(d,e){return d+", "+e},
 gio(){return"D\xedghn\xedomhachtaeoidh s\xe9 seo do chuntas \xfas\xe1ideora. N\xed f\xe9idir \xe9 seo a cheal\xfa! An bhfuil t\xfa cinnte?"},
 gip(){return"Leibh\xe9al ceada r\xe9amhshocraithe d'\xfas\xe1ideoir\xed nua"},
-gdv(d){return"Scrios"},
+gdw(d){return"Scrios"},
 git(){return"Scrios an cuntas"},
 giu(){return"Scrios an teachtaireacht"},
 gey(){return"Gl\xe9asanna"},
@@ -215,7 +215,7 @@ gj2(){return"T\xe9igh isteach sa seomra"},
 j3(d,e){return"\ud83d\udc5e chice\xe1il "+d+" "+e},
 gfp(){return"Caith \xe9 amach as an comhr\xe1"},
 eK(d){return"Gn\xedomhach deireanach: "+d},
-gdl(){return"F\xe1g"},
+gdm(){return"F\xe1g"},
 gfs(){return"F\xe1gadh an comhr\xe1"},
 gj5(){return"Solas"},
 j6(d){return"L\xf3d\xe1il "+d+" n\xedos m\xf3 rannph\xe1irtithe"},
@@ -255,7 +255,7 @@ gjm(){return"ag Aimsi\xfa an su\xedomh\u2026"},
 gjn(){return"Maslach"},
 gcB(){return"Ceart go leor"},
 gjp(){return"T\xe1 C\xfaltaca Eochair Ar L\xedne cumasaithe"},
-gdB(){return"\xdaps, chuaigh rud \xe9igin m\xedcheart \u2026"},
+gdC(){return"\xdaps, chuaigh rud \xe9igin m\xedcheart \u2026"},
 gjo(){return"T\xe1 duine de do chliaint log\xe1ilte amach"},
 geu(){return"Breisigh cuntas"},
 gix(){return"Cuir cuachta in eagar don chuntas seo"},
@@ -644,5 +644,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fx,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fx":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["zuhRKVhW3sqs2W98qht6JsREUrE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["OM5ysof6oSHD53qW1m6QzvSRQ5s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_273.part.js.map
