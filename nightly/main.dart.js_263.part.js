@@ -632,17 +632,17 @@ glM(){return"Erreakzio pertsonalizatua"},
 gph(){return"Gertaera gehiago"},
 glP(){return"Uko egin gonbidapenari"},
 gps(){return"Mezurik ez oraingoz"},
-gpi(){return"New sub space"},
-gpr(){return"Move to different space"},
-gpv(){return"The chat will be removed from the space but still appear in your chat list."},
-pn(d){return""+d+" chats"},
-pl(d){return"Space member of "+d},
-pm(d){return"Space member of "+d+" can knock"},
-gpo(){return"Donate"},
+gpi(){return"Azpi-gune berria"},
+gpr(){return"Beste gune batera mugitu"},
+gpv(){return"Txata gunetik kenduko da, baina txaten zerrendan mantenduko da."},
+pn(d){return""+d+" txat"},
+pl(d){return d+" guneko kidea"},
+pm(d){return d+" guneko kideak sartzeko baimena eska dezake"},
+gpo(){return"Egin dohaintza"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fs,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fs":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["xwluxGvOBl8r1KlC8CFzfHTQAEU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["97NiJYXStYUp+7MpbMZmP72LdXY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_263.part.js.map
