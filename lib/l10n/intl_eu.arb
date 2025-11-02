@@ -3393,5 +3393,44 @@
     "pause": "Gelditu",
     "@pause": {},
     "resume": "Jarraitu",
-    "@resume": {}
+    "@resume": {},
+    "moveToDifferentSpace": "Beste gune batera mugitu",
+    "@moveToDifferentSpace": {},
+    "moveUp": "Eraman gora",
+    "@moveUp": {},
+    "moveDown": "Eraman behera",
+    "@moveDown": {},
+    "removeFromSpaceDescription": "Txata gunetik kenduko da, baina txaten zerrendan mantenduko da.",
+    "@removeFromSpaceDescription": {},
+    "countChats": "{chats} txat",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "donate": "Egin dohaintza",
+    "@donate": {},
+    "newSubSpace": "Azpi-gune berria",
+    "@newSubSpace": {},
+    "spaceMemberOf": "{spaces} guneko kidea",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "{spaces} guneko kideak sartzeko baimena eska dezake",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    }
 }
