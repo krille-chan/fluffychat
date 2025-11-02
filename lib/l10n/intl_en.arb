@@ -3411,5 +3411,6 @@
       }
     }
   },
-  "donate": "Donate"
+  "donate": "Donate",
+  "accountsAndSettings": "Accounts and settings"
 }
