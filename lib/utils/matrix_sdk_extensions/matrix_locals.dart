@@ -363,4 +363,10 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String get refreshingLastEvent => l10n.loadingPleaseWait;
+
+  @override
+  String startedAPoll(String senderName) => '$senderName started a poll';
+
+  @override
+  String get pollHasBeenEnded => l10n.pollHasBeenEnded;
 }

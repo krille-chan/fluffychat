@@ -83,6 +83,7 @@ class Message extends StatelessWidget {
       EventTypes.Sticker,
       EventTypes.Encrypted,
       EventTypes.CallInvite,
+      PollEventContent.startType,
     }.contains(event.type)) {
       if (event.type.startsWith('m.call.')) {
         return const SizedBox.shrink();

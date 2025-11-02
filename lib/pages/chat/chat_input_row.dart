@@ -132,16 +132,15 @@ class ChatInputRow extends StatelessWidget {
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(),
                     clipBehavior: Clip.hardEdge,
-                    child: PopupMenuButton<String>(
+                    child: PopupMenuButton<AddPopupMenuActions>(
                       useRootNavigator: true,
                       icon: const Icon(Icons.add_circle_outline),
                       iconColor: theme.colorScheme.onPrimaryContainer,
                       onSelected: controller.onAddPopupMenuButtonSelected,
-                      itemBuilder: (BuildContext context) =>
-                          <PopupMenuEntry<String>>[
+                      itemBuilder: (BuildContext context) => [
                         if (PlatformInfos.isMobile)
-                          PopupMenuItem<String>(
-                            value: 'location',
+                          PopupMenuItem(
+                            value: AddPopupMenuActions.location,
                             child: ListTile(
                               leading: CircleAvatar(
                                 backgroundColor:
@@ -154,8 +153,22 @@ class ChatInputRow extends StatelessWidget {
                               contentPadding: const EdgeInsets.all(0),
                             ),
                           ),
-                        PopupMenuItem<String>(
-                          value: 'image',
+                        PopupMenuItem(
+                          value: AddPopupMenuActions.poll,
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  theme.colorScheme.onPrimaryContainer,
+                              foregroundColor:
+                                  theme.colorScheme.primaryContainer,
+                              child: const Icon(Icons.poll_outlined),
+                            ),
+                            title: Text(L10n.of(context).startPoll),
+                            contentPadding: const EdgeInsets.all(0),
+                          ),
+                        ),
+                        PopupMenuItem(
+                          value: AddPopupMenuActions.image,
                           child: ListTile(
                             leading: CircleAvatar(
                               backgroundColor:
@@ -168,8 +181,8 @@ class ChatInputRow extends StatelessWidget {
                             contentPadding: const EdgeInsets.all(0),
                           ),
                         ),
-                        PopupMenuItem<String>(
-                          value: 'video',
+                        PopupMenuItem(
+                          value: AddPopupMenuActions.video,
                           child: ListTile(
                             leading: CircleAvatar(
                               backgroundColor:
@@ -183,8 +196,8 @@ class ChatInputRow extends StatelessWidget {
                             contentPadding: const EdgeInsets.all(0),
                           ),
                         ),
-                        PopupMenuItem<String>(
-                          value: 'file',
+                        PopupMenuItem(
+                          value: AddPopupMenuActions.file,
                           child: ListTile(
                             leading: CircleAvatar(
                               backgroundColor:
@@ -217,8 +230,8 @@ class ChatInputRow extends StatelessWidget {
                         onSelected: controller.onAddPopupMenuButtonSelected,
                         iconColor: theme.colorScheme.onPrimaryContainer,
                         itemBuilder: (context) => [
-                          PopupMenuItem<String>(
-                            value: 'camera-video',
+                          PopupMenuItem(
+                            value: AddPopupMenuActions.videoCamera,
                             child: ListTile(
                               leading: CircleAvatar(
                                 backgroundColor:
@@ -231,8 +244,8 @@ class ChatInputRow extends StatelessWidget {
                               contentPadding: const EdgeInsets.all(0),
                             ),
                           ),
-                          PopupMenuItem<String>(
-                            value: 'camera',
+                          PopupMenuItem(
+                            value: AddPopupMenuActions.photoCamera,
                             child: ListTile(
                               leading: CircleAvatar(
                                 backgroundColor:
@@ -394,7 +407,7 @@ class _ChatAccountPicker extends StatelessWidget {
           onSelected: (mxid) => _popupMenuButtonSelected(mxid, context),
           itemBuilder: (BuildContext context) => clients
               .map(
-                (client) => PopupMenuItem<String>(
+                (client) => PopupMenuItem(
                   value: client!.userID,
                   child: FutureBuilder<Profile>(
                     future: client.fetchOwnProfile(),
