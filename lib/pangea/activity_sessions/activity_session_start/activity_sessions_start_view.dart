@@ -254,12 +254,8 @@ class ActivitySessionStartView extends StatelessWidget {
                                                       MainAxisAlignment.center,
                                                   children: [
                                                     Text(
-                                                      controller.courseParent !=
-                                                              null
-                                                          ? L10n.of(context)
-                                                              .inviteFriendsToActivityCourse
-                                                          : L10n.of(context)
-                                                              .inviteFriendsToActivity,
+                                                      L10n.of(context)
+                                                          .inviteFriends,
                                                     ),
                                                   ],
                                                 ),
