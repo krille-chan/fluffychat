@@ -123,9 +123,10 @@ class ButtonControlledCarouselView extends StatelessWidget {
                 margin: const EdgeInsets.only(right: 5.0),
                 padding: const EdgeInsets.all(12.0),
                 decoration: ShapeDecoration(
-                  color: Theme.of(context).brightness == Brightness.light
-                      ? AppConfig.yellowLight
-                      : Color.lerp(AppConfig.gold, Colors.black, 0.3),
+                  color: Color.alphaBlend(
+                    Theme.of(context).colorScheme.surface.withAlpha(70),
+                    AppConfig.gold,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
