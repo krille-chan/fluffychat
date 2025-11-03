@@ -88,169 +88,176 @@ class ActivitySummary extends StatelessWidget {
               isSelected: isParticipantSelected,
               getOpacity: getParticipantOpacity,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8.0,
+            DecoratedBox(
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surface.withAlpha(220),
+                borderRadius: BorderRadius.circular(12.0),
               ),
-              child: Column(
-                spacing: 4.0,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  InkWell(
-                    onTap: toggleInstructions,
-                    child: Column(
-                      spacing: 4.0,
-                      children: [
-                        Text(
-                          activity.description,
-                          style: theme.textTheme.bodyMedium,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 4.0,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                ),
+                child: Column(
+                  spacing: 4.0,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    InkWell(
+                      hoverColor: theme.colorScheme.surfaceTint.withAlpha(200),
+                      onTap: toggleInstructions,
+                      child: Column(
+                        spacing: 4.0,
+                        children: [
+                          Text(
+                            activity.description,
+                            style: theme.textTheme.bodyMedium,
                           ),
-                          child: Row(
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 4.0,
+                            ),
+                            child: Row(
+                              spacing: 4.0,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  L10n.of(context).details,
+                                  style: theme.textTheme.bodyMedium,
+                                ),
+                                Icon(
+                                  showInstructions
+                                      ? Icons.arrow_drop_up
+                                      : Icons.arrow_drop_down,
+                                  size: 22.0,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (showInstructions) ...[
+                      Row(
+                        spacing: 8.0,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            activity.req.mode,
+                            style: theme.textTheme.bodyMedium,
+                          ),
+                          Row(
                             spacing: 4.0,
                             mainAxisSize: MainAxisSize.min,
                             children: [
+                              const Icon(Icons.school, size: 12.0),
                               Text(
-                                L10n.of(context).details,
+                                activity.req.cefrLevel.string,
                                 style: theme.textTheme.bodyMedium,
-                              ),
-                              Icon(
-                                showInstructions
-                                    ? Icons.arrow_drop_up
-                                    : Icons.arrow_drop_down,
-                                size: 20.0,
                               ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  if (showInstructions) ...[
-                    Row(
-                      spacing: 8.0,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          activity.req.mode,
+                        ],
+                      ),
+                      ActivitySessionDetailsRow(
+                        icon: Symbols.target,
+                        iconSize: 16.0,
+                        child: Text(
+                          activity.learningObjective,
                           style: theme.textTheme.bodyMedium,
                         ),
-                        Row(
-                          spacing: 4.0,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(Icons.school, size: 12.0),
-                            Text(
-                              activity.req.cefrLevel.string,
-                              style: theme.textTheme.bodyMedium,
+                      ),
+                      ActivitySessionDetailsRow(
+                        icon: Symbols.steps,
+                        iconSize: 16.0,
+                        child: Html(
+                          data: markdown(activity.instructions),
+                          style: {
+                            "body": Style(
+                              margin: Margins.all(0),
+                              padding: HtmlPaddings.all(0),
+                              fontSize: FontSize(
+                                theme.textTheme.bodyMedium!.fontSize!,
+                              ),
                             ),
-                          ],
+                          },
                         ),
-                      ],
-                    ),
-                    ActivitySessionDetailsRow(
-                      icon: Symbols.target,
-                      iconSize: 16.0,
-                      child: Text(
-                        activity.learningObjective,
-                        style: theme.textTheme.bodyMedium,
                       ),
-                    ),
-                    ActivitySessionDetailsRow(
-                      icon: Symbols.steps,
-                      iconSize: 16.0,
-                      child: Html(
-                        data: markdown(activity.instructions),
-                        style: {
-                          "body": Style(
-                            margin: Margins.all(0),
-                            padding: HtmlPaddings.all(0),
-                            fontSize: FontSize(
-                              theme.textTheme.bodyMedium!.fontSize!,
-                            ),
-                          ),
-                        },
-                      ),
-                    ),
-                    ActivitySessionDetailsRow(
-                      icon: Symbols.dictionary,
-                      iconSize: 16.0,
-                      child: Wrap(
-                        spacing: 4.0,
-                        runSpacing: 4.0,
-                        children: activity.vocab.map((vocab) {
-                          return CompositedTransformTarget(
-                            link: MatrixState.pAnyState
-                                .layerLinkAndKey(
-                                  "activity-summary-vocab-${vocab.lemma}",
-                                )
-                                .link,
-                            child: InkWell(
-                              key: MatrixState.pAnyState
+                      ActivitySessionDetailsRow(
+                        icon: Symbols.dictionary,
+                        iconSize: 16.0,
+                        child: Wrap(
+                          spacing: 4.0,
+                          runSpacing: 4.0,
+                          children: activity.vocab.map((vocab) {
+                            return CompositedTransformTarget(
+                              link: MatrixState.pAnyState
                                   .layerLinkAndKey(
                                     "activity-summary-vocab-${vocab.lemma}",
                                   )
-                                  .key,
-                              borderRadius: BorderRadius.circular(
-                                24.0,
-                              ),
-                              onTap: () {
-                                OverlayUtil.showPositionedCard(
-                                  overlayKey:
+                                  .link,
+                              child: InkWell(
+                                key: MatrixState.pAnyState
+                                    .layerLinkAndKey(
                                       "activity-summary-vocab-${vocab.lemma}",
-                                  context: context,
-                                  cardToShow: WordZoomWidget(
-                                    token: PangeaTokenText(
-                                      content: vocab.lemma,
-                                      length: vocab.lemma.characters.length,
-                                      offset: 0,
-                                    ),
-                                    construct: ConstructIdentifier(
-                                      lemma: vocab.lemma,
-                                      type: ConstructTypeEnum.vocab,
-                                      category: vocab.pos,
-                                    ),
-                                    langCode: activity.req.targetLanguage,
-                                    onClose: () {
-                                      MatrixState.pAnyState.closeOverlay(
+                                    )
+                                    .key,
+                                borderRadius: BorderRadius.circular(
+                                  24.0,
+                                ),
+                                onTap: () {
+                                  OverlayUtil.showPositionedCard(
+                                    overlayKey:
                                         "activity-summary-vocab-${vocab.lemma}",
-                                      );
-                                    },
+                                    context: context,
+                                    cardToShow: WordZoomWidget(
+                                      token: PangeaTokenText(
+                                        content: vocab.lemma,
+                                        length: vocab.lemma.characters.length,
+                                        offset: 0,
+                                      ),
+                                      construct: ConstructIdentifier(
+                                        lemma: vocab.lemma,
+                                        type: ConstructTypeEnum.vocab,
+                                        category: vocab.pos,
+                                      ),
+                                      langCode: activity.req.targetLanguage,
+                                      onClose: () {
+                                        MatrixState.pAnyState.closeOverlay(
+                                          "activity-summary-vocab-${vocab.lemma}",
+                                        );
+                                      },
+                                    ),
+                                    transformTargetId:
+                                        "activity-summary-vocab-${vocab.lemma}",
+                                    closePrevOverlay: false,
+                                    addBorder: false,
+                                    maxWidth: AppConfig.toolbarMinWidth,
+                                    maxHeight: AppConfig.toolbarMaxHeight,
+                                  );
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8.0,
+                                    vertical: 4.0,
                                   ),
-                                  transformTargetId:
-                                      "activity-summary-vocab-${vocab.lemma}",
-                                  closePrevOverlay: false,
-                                  addBorder: false,
-                                  maxWidth: AppConfig.toolbarMinWidth,
-                                  maxHeight: AppConfig.toolbarMaxHeight,
-                                );
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0,
-                                  vertical: 4.0,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: theme.colorScheme.primary.withAlpha(
-                                    20,
+                                  decoration: BoxDecoration(
+                                    color: theme.colorScheme.primary.withAlpha(
+                                      20,
+                                    ),
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Text(
-                                  vocab.lemma,
-                                  style: theme.textTheme.bodyMedium,
+                                  child: Text(
+                                    vocab.lemma,
+                                    style: theme.textTheme.bodyMedium,
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        }).toList(),
+                            );
+                          }).toList(),
+                        ),
                       ),
-                    ),
+                    ],
                   ],
-                ],
+                ),
               ),
             ),
           ],
