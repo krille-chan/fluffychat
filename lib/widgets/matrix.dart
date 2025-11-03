@@ -385,14 +385,14 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         }
       } else {
         // #Pangea
-        final isL2Set = await pangeaController.userController.isUserL2Set;
-        FluffyChatApp.router.go(
-          state == LoginState.loggedIn
-              ? isL2Set
-                  ? '/rooms'
-                  : '/registration/create'
-              : '/home',
-        );
+        if (state == LoginState.loggedIn) {
+          final isL2Set = await pangeaController.userController.isUserL2Set;
+          FluffyChatApp.router.go(
+            isL2Set ? '/rooms' : '/registration/create',
+          );
+        } else {
+          FluffyChatApp.router.go('/home');
+        }
         // FluffyChatApp.router
         //     .go(state == LoginState.loggedIn ? '/rooms' : '/home');
         // Pangea#
