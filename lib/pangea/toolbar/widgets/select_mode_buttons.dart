@@ -432,13 +432,14 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
       widget.overlayController.setTranscription(resp!);
       _transcriptionCompleter?.complete(resp.transcript.text);
-    } catch (err) {
+    } catch (err, s) {
       widget.overlayController.setTranscriptionError(
         err.toString(),
       );
       _transcriptionCompleter?.completeError(err);
       ErrorHandler.logError(
         e: err,
+        s: s,
         data: {},
       );
     }

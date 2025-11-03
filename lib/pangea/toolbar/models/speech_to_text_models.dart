@@ -222,12 +222,17 @@ class SpeechToTextModel {
 
   String get langCode => results.first.transcripts.first.langCode;
 
-  factory SpeechToTextModel.fromJson(Map<String, dynamic> json) =>
-      SpeechToTextModel(
-        results: (json['results'] as List)
-            .map((e) => SpeechToTextResult.fromJson(e))
-            .toList(),
-      );
+  factory SpeechToTextModel.fromJson(Map<String, dynamic> json) {
+    final results = json['results'] as List;
+    if (results.isEmpty) {
+      throw Exception('SpeechToTextModel.fromJson: results is empty');
+    }
+    return SpeechToTextModel(
+      results: (json['results'] as List)
+          .map((e) => SpeechToTextResult.fromJson(e))
+          .toList(),
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "results": results.map((e) => e.toJson()).toList(),

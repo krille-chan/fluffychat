@@ -75,7 +75,9 @@ class LemmaReactionPicker extends StatelessWidget {
 
     return LemmaEmojiPicker(
       emojis: emojis,
-      onSelect: event != null ? (emoji) => setEmoji(emoji, context) : null,
+      onSelect: event?.room.timeline != null
+          ? (emoji) => setEmoji(emoji, context)
+          : null,
       disabled: (emoji) => sentReactions.contains(emoji),
       loading: loading,
     );

@@ -235,9 +235,21 @@ class PangeaMessageEvent {
         event.content.tryGetMap(ModelKey.botTranscription);
 
     if (rawBotTranscription != null) {
-      return SpeechToTextModel.fromJson(
-        Map<String, dynamic>.from(rawBotTranscription),
-      );
+      try {
+        return SpeechToTextModel.fromJson(
+          Map<String, dynamic>.from(rawBotTranscription),
+        );
+      } catch (err, s) {
+        ErrorHandler.logError(
+          e: err,
+          s: s,
+          data: {
+            "event": _event.toJson(),
+          },
+          m: "error parsing botTranscription",
+        );
+        return null;
+      }
     }
 
     return representations
@@ -270,9 +282,22 @@ class PangeaMessageEvent {
     final rawBotTranscription =
         event.content.tryGetMap(ModelKey.botTranscription);
     if (rawBotTranscription != null) {
-      final botTranscription = SpeechToTextModel.fromJson(
-        Map<String, dynamic>.from(rawBotTranscription),
-      );
+      SpeechToTextModel botTranscription;
+      try {
+        botTranscription = SpeechToTextModel.fromJson(
+          Map<String, dynamic>.from(rawBotTranscription),
+        );
+      } catch (err, s) {
+        ErrorHandler.logError(
+          e: err,
+          s: s,
+          data: {
+            "event": _event.toJson(),
+          },
+          m: "error parsing botTranscription",
+        );
+        return null;
+      }
 
       _representations ??= [];
       _representations!.add(
