@@ -3946,7 +3946,7 @@
   "yeCountryDisplayName": "เยเมน",
   "zmCountryDisplayName": "แซมเบีย",
   "zwCountryDisplayName": "ซิมบับเว",
-  "pay": "ชำระเงิน",
+  "pay": "Checkout",
   "allPrivateChats": "แชทส่วนตัวทั้งหมด",
   "unknownPrivateChat": "แชทส่วนตัวที่ไม่รู้จัก",
   "invitedToSpace": "{user} ได้เชิญคุณเข้าร่วมคอร์ส: {space}! คุณต้องการยอมรับไหม?",

@@ -3993,7 +3993,7 @@
   "yeCountryDisplayName": "ইয়েমেন",
   "zmCountryDisplayName": "জাম্বিয়া",
   "zwCountryDisplayName": "জিম্বাবোয়ে",
-  "pay": "পরিশোধ করুন",
+  "pay": "Checkout",
   "allPrivateChats": "প্রতক্ষ্য চ্যাট",
   "unknownPrivateChat": "অজানা ব্যক্তিগত চ্যাট",
   "invitedToSpace": "{user} আপনাকে একটি কোর্সে যোগ দেওয়ার জন্য আমন্ত্রণ জানিয়েছেন: {space}! আপনি কি গ্রহণ করতে চান?",
