@@ -99,7 +99,7 @@ class NewCoursePageState extends State<NewCoursePage> {
     final existingRoom =
         Matrix.of(context).client.getRoomByCourseId(course.uuid);
 
-    if (existingRoom == null) {
+    if (existingRoom == null || widget.spaceId != null) {
       context.go(
         widget.spaceId != null
             ? '/rooms/spaces/${widget.spaceId}/addcourse/${course.uuid}'
