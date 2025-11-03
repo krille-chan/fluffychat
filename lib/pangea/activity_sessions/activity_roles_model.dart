@@ -38,11 +38,11 @@ class ActivityRolesModel {
   }
 
   static ActivityRolesModel fromJson(Map<String, dynamic> json) {
-    final roles = (json['roles'] as Map<String, dynamic>)
-        .map((id, value) => MapEntry(id, ActivityRoleModel.fromJson(value)));
+    final roles = (json['roles'] as Map<String, dynamic>?)
+        ?.map((id, value) => MapEntry(id, ActivityRoleModel.fromJson(value)));
 
     return ActivityRolesModel(
-      roles,
+      roles ?? {},
     );
   }
 }
