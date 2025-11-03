@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
-
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
+import 'package:flutter/foundation.dart';
 
 class ActivityPlanModel {
   final String activityId;
@@ -17,6 +16,7 @@ class ActivityPlanModel {
   final DateTime? endAt;
   final Duration? duration;
   final Map<String, ActivityRole>? _roles;
+  final bool isDeprecatedModel;
 
   ActivityPlanModel({
     required this.req,
@@ -32,6 +32,7 @@ class ActivityPlanModel {
     String? imageURL,
     this.endAt,
     this.duration,
+    this.isDeprecatedModel = false,
   })  : description = (description == null || description.isEmpty)
             ? learningObjective
             : description,
@@ -96,6 +97,7 @@ class ActivityPlanModel {
           : null,
       roles: roles,
       activityId: activityId,
+      isDeprecatedModel: json["bookmark_id"] != null,
     );
   }
 
