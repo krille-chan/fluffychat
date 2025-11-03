@@ -77,48 +77,51 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: controller.room.isActivityFinished
                   ? [
-                      if (summary?.isLoading ?? false) ...[
-                        Text(
-                          L10n.of(context).generatingSummary,
-                          style: const TextStyle(
-                            fontStyle: FontStyle.italic,
+                      if (summary?.summary == null) ...[
+                        if (summary?.isLoading ?? false) ...[
+                          Text(
+                            L10n.of(context).generatingSummary,
+                            style: const TextStyle(
+                              fontStyle: FontStyle.italic,
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 36.0,
-                          width: 36.0,
-                          child: CircularProgressIndicator(),
-                        ),
-                      ] else if (isSubscribed == false)
-                        ErrorIndicator(
-                          message: L10n.of(context)
-                              .subscribeToUnlockActivitySummaries,
-                          onTap: () {
-                            MatrixState.pangeaController.subscriptionController
-                                .showPaywall(context);
-                          },
-                        )
-                      else if (summary?.hasError ?? false) ...[
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              Icons.school_outlined,
-                              size: 24.0,
-                            ),
-                            const SizedBox(width: 8),
-                            Flexible(
-                              child: Text(
-                                L10n.of(context).activitySummaryError,
-                                textAlign: TextAlign.center,
+                          const SizedBox(
+                            height: 36.0,
+                            width: 36.0,
+                            child: CircularProgressIndicator(),
+                          ),
+                        ] else if (isSubscribed == false)
+                          ErrorIndicator(
+                            message: L10n.of(context)
+                                .subscribeToUnlockActivitySummaries,
+                            onTap: () {
+                              MatrixState
+                                  .pangeaController.subscriptionController
+                                  .showPaywall(context);
+                            },
+                          )
+                        else if (summary?.hasError ?? false) ...[
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.school_outlined,
+                                size: 24.0,
                               ),
-                            ),
-                          ],
-                        ),
-                        TextButton(
-                          onPressed: () => controller.room.fetchSummaries(),
-                          child: Text(L10n.of(context).requestSummaries),
-                        ),
+                              const SizedBox(width: 8),
+                              Flexible(
+                                child: Text(
+                                  L10n.of(context).activitySummaryError,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                          TextButton(
+                            onPressed: () => controller.room.fetchSummaries(),
+                            child: Text(L10n.of(context).requestSummaries),
+                          ),
+                        ],
                       ],
                       if (!controller.room.hasArchivedActivity) ...[
                         Text(
