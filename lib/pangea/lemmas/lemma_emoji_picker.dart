@@ -4,7 +4,7 @@ import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/lemma_emo
 
 class LemmaEmojiPicker extends StatelessWidget {
   final List<String> emojis;
-  final Function(String) onSelect;
+  final Function(String)? onSelect;
 
   final bool loading;
   final Function(String)? disabled;
@@ -36,7 +36,9 @@ class LemmaEmojiPicker extends StatelessWidget {
                   opacity: isDisabled ? 0.33 : 1,
                   child: LemmaEmojiChoiceItem(
                     content: emoji,
-                    onTap: isDisabled ? null : () => onSelect(emoji),
+                    onTap: isDisabled || onSelect == null
+                        ? null
+                        : () => onSelect!(emoji),
                   ),
                 );
               }).toList(),
