@@ -157,7 +157,7 @@ gkf(){return"Globale chat ID"},
 ghc(){return"Toegang en zichtbaarheid"},
 gkZ(){return"Wie mag toetreden tot deze chat en hoe de chat ontdekt kan worden."},
 gld(){return"Gesprekken"},
-gff(){return"Aangepaste emoticons en stickers"},
+gff(){return"Aangepaste emoji's en stickers"},
 glM(){return"Voeg toe of deel aangepaste emoji's of stickers die gebruikt kunnen worden in elke chat."},
 geB(){return"Emoticon korte code"},
 giD(){return"Je moet een emoticon korte code en afbeelding kiezen!"},
@@ -654,5 +654,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FQ,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FQ":{"aF":[]}}'))};
-(a=>{a["KRJ+nBW/AhwUSOwpQPGto5Kvo7o="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["vYuY2TvrMpdx3esMAIhHt8hnkBQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map
