@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFt(){return new A.Fu(B.dh("et"))},
-Fu:function Fu(d){this.a=d}}
+cFx(){return new A.Fv(B.di("et"))},
+Fv:function Fv(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[17],A)
-A.Fu.prototype={
+A.Fv.prototype={
 gl2(){return"false"},
 gjO(){return"Korda salas\xf5na"},
 gmR(){return"See pole pildifail."},
@@ -631,28 +631,33 @@ gpf(){return"N\xe4ita mobiilis k\xfclgmist t\xf6\xf6riistariba"},
 glN(){return"Kohandatud reaktsioon"},
 gpj(){return"Veel s\xfcndmusi"},
 glQ(){return"Keeldu kutsest"},
-gpD(){return"Pole veel \xfchtegi s\xf5numit"},
+gpF(){return"Pole veel \xfchtegi s\xf5numit"},
 gpk(){return"Uus alamkogukond"},
-gpC(){return"T\xf5sta teise kogukonda"},
-gpH(){return"See vestlus eemaldatakse n\xfc\xfcd kogukonnast, kuid on j\xe4tkuvalt n\xe4htav sinu vestluste loendis."},
-pw(d){return""+d+" vestlust"},
+gpE(){return"T\xf5sta teise kogukonda"},
+gpJ(){return"See vestlus eemaldatakse n\xfc\xfcd kogukonnast, kuid on j\xe4tkuvalt n\xe4htav sinu vestluste loendis."},
+px(d){return""+d+" vestlust"},
 po(d){return"Kogukonna liige: "+d},
 pp(d){return d+" kogukonna liige v\xf5ib uksele koputada"},
-gpy(){return"Toeta meid rahaliselt"},
+gpA(){return"Toeta meid rahaliselt"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var y=null
+return B.bI(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var y=null
+return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fu,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fu":{"aF":[]}}'))};
-(a=>{a["USwJiSrH+DRSkJFKw+qx4L0erlQ="]=a.current})($__dart_deferred_initializers__);
+y(A.Fv,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Fv":{"aF":[]}}'))};
+(a=>{a["83jcWZx/gx6/gdMifRM8NTMkazA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_262.part.js.map

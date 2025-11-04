@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFP(){return new A.FQ(B.dh("nl"))},
-FQ:function FQ(d){this.a=d}}
+cFT(){return new A.FR(B.di("nl"))},
+FR:function FR(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[39],A)
-A.FQ.prototype={
+A.FR.prototype={
 gl2(){return"true"},
 gjO(){return"Wachtwoord herhalen"},
 gmR(){return"Geen afbeeldingsbestand."},
@@ -631,28 +631,33 @@ gpf(){return"Navigatiebalk op mobiel tonen"},
 glN(){return"Aangepaste reactie"},
 gpj(){return"Meer gebeurtenissen"},
 glQ(){return"Uitnodiging afwijzen"},
-gpD(){return"Nog geen berichten"},
+gpF(){return"Nog geen berichten"},
 gpk(){return"Nieuwe sub-space"},
-gpC(){return"Naar andere space verplaatsen"},
-gpH(){return"De chat zal worden verwijderd uit de space, maar blijft in je chats."},
-pw(d){return""+d+" chats"},
+gpE(){return"Naar andere space verplaatsen"},
+gpJ(){return"De chat zal worden verwijderd uit de space, maar blijft in je chats."},
+px(d){return""+d+" chats"},
 po(d){return d+" personen in space"},
 pp(d){return d+" personen in space kunnen kloppen"},
-gpy(){return"Doneer"},
+gpA(){return"Doneer"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var y=null
+return B.bI(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var y=null
+return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FQ,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FQ":{"aF":[]}}'))};
-(a=>{a["vYuY2TvrMpdx3esMAIhHt8hnkBQ="]=a.current})($__dart_deferred_initializers__);
+y(A.FR,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"FR":{"aF":[]}}'))};
+(a=>{a["52WvsOjouEtRqNG9CnxBQZNn2uY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

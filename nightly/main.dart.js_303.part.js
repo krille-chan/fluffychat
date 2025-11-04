@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFN(){return new A.FO(B.dh("lv"))},
-FO:function FO(d){this.a=d}}
+cFR(){return new A.FP(B.di("lv"))},
+FP:function FP(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[37],A)
-A.FO.prototype={
+A.FP.prototype={
 gl2(){return"n\u0113"},
 gjO(){return"Atk\u0101rtot paroli"},
 gmR(){return"Nav att\u0113la datne."},
@@ -631,28 +631,33 @@ gpf(){return"R\u0101d\u012bt p\u0101rvieto\u0161an\u0101s sliedi viedier\u012bc\
 glN(){return"Piel\u0101gota reakcija"},
 gpj(){return"Vair\u0101k notikumu"},
 glQ(){return"Noraid\u012bt uzaicin\u0101jumu"},
-gpD(){return"V\u0113l nav zi\u0146u"},
+gpF(){return"V\u0113l nav zi\u0146u"},
 gpk(){return"Jauna apak\u0161vieta"},
-gpC(){return"P\u0101rvietot uz citu vietu"},
-gpH(){return"T\u0113rz\u0113\u0161ana tiks no\u0146emta no vietas, bet t\u0101 joproj\u0101m b\u016bs redzama t\u0113rz\u0113\u0161anu sarakst\u0101."},
-pw(d){return""+d+" t\u0113rz\u0113\u0161anas"},
+gpE(){return"P\u0101rvietot uz citu vietu"},
+gpJ(){return"T\u0113rz\u0113\u0161ana tiks no\u0146emta no vietas, bet t\u0101 joproj\u0101m b\u016bs redzama t\u0113rz\u0113\u0161anu sarakst\u0101."},
+px(d){return""+d+" t\u0113rz\u0113\u0161anas"},
 po(d){return d+" dal\u012bbnieks"},
 pp(d){return d+" dal\u012bbnieks var pieklauv\u0113t"},
-gpy(){return"Ziedot"},
+gpA(){return"Ziedot"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var y=null
+return B.bI(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var y=null
+return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FO,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FO":{"aF":[]}}'))};
-(a=>{a["q/MgsshwVLbSXycLrGOikdFmkuI="]=a.current})($__dart_deferred_initializers__);
+y(A.FP,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"FP":{"aF":[]}}'))};
+(a=>{a["W9e9AddG7C66s8PkGnyJDw4HbT4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map

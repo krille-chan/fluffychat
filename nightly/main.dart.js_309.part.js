@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFV(){return new A.FV(B.dh("ru"))},
-FV:function FV(d){this.a=d}}
+cFZ(){return new A.FW(B.di("ru"))},
+FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[42],A)
-A.FV.prototype={
+A.FW.prototype={
 gl2(){return"true"},
 gjO(){return"\u041f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u043f\u0430\u0440\u043e\u043b\u044c"},
 gmR(){return"\u042d\u0442\u043e \u043d\u0435 \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0430."},
@@ -631,28 +631,33 @@ gpf(){return"Show navigation rail on mobile"},
 glN(){return"Custom reaction"},
 gpj(){return"More events"},
 glQ(){return"Decline invitation"},
-gpD(){return"No messages yet"},
+gpF(){return"No messages yet"},
 gpk(){return"New sub space"},
-gpC(){return"Move to different space"},
-gpH(){return"The chat will be removed from the space but still appear in your chat list."},
-pw(d){return""+d+" chats"},
+gpE(){return"Move to different space"},
+gpJ(){return"The chat will be removed from the space but still appear in your chat list."},
+px(d){return""+d+" chats"},
 po(d){return"Space member of "+d},
 pp(d){return"Space member of "+d+" can knock"},
-gpy(){return"Donate"},
+gpA(){return"Donate"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var y=null
+return B.bI(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var y=null
+return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FV,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FV":{"aF":[]}}'))};
-(a=>{a["d1EUDcSO13QBu9OJNuQ+IOYytK8="]=a.current})($__dart_deferred_initializers__);
+y(A.FW,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"FW":{"aF":[]}}'))};
+(a=>{a["v2rwdhP2CQNYtWetzO+hPGGgpLo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_309.part.js.map

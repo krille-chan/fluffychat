@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cG2(){return new A.G2(B.dh("tr"))},
-G2:function G2(d){this.a=d}}
+cG6(){return new A.G3(B.di("tr"))},
+G3:function G3(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[50],A)
-A.G2.prototype={
+A.G3.prototype={
 gl2(){return"false"},
 gjO(){return"Parolay\u0131 tekrarlay\u0131n"},
 gmR(){return"Bir resim dosyas\u0131 de\u011fil."},
@@ -631,29 +631,34 @@ gpf(){return"Show navigation rail on mobile"},
 glN(){return"Custom reaction"},
 gpj(){return"More events"},
 glQ(){return"Decline invitation"},
-gpD(){return"No messages yet"},
+gpF(){return"No messages yet"},
 gpk(){return"New sub space"},
-gpC(){return"Move to different space"},
-gpH(){return"The chat will be removed from the space but still appear in your chat list."},
-pw(d){return""+d+" chats"},
+gpE(){return"Move to different space"},
+gpJ(){return"The chat will be removed from the space but still appear in your chat list."},
+px(d){return""+d+" chats"},
 po(d){return"Space member of "+d},
 pp(d){return"Space member of "+d+" can knock"},
-gpy(){return"Donate"},
+gpA(){return"Donate"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var x=null
+return B.bI(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var x=null
+return B.bI(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.G2,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"G2":{"aF":[]}}'))
+x(A.G3,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"G3":{"aF":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["wDL3pp3ftqkjw3n/n92PGaQL1dY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["bYNX01rG2j0BejsFS7JjM1xFS84="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map

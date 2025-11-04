@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFz(){return new A.FA(B.dh("ga"))},
-FA:function FA(d){this.a=d}}
+cFD(){return new A.FB(B.di("ga"))},
+FB:function FB(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[23],A)
-A.FA.prototype={
+A.FB.prototype={
 gl2(){return"br\xe9agach"},
 gjO(){return"Scr\xedobh an pasfhocal ar\xeds"},
 gmR(){return"N\xed comhad \xedomh\xe1 \xe9."},
@@ -631,29 +631,34 @@ gpf(){return"Taispe\xe1in r\xe1ille nasclean\xfana ar fh\xf3in ph\xf3ca"},
 glN(){return"Imoibri\xfa saincheaptha"},
 gpj(){return"Tuilleadh imeachta\xed"},
 glQ(){return"Di\xfaltaigh don chuireadh"},
-gpD(){return"Gan aon teachtaireachta\xed f\xf3s"},
+gpF(){return"Gan aon teachtaireachta\xed f\xf3s"},
 gpk(){return"Fo-sp\xe1s nua"},
-gpC(){return"Bog go sp\xe1s difri\xfail"},
-gpH(){return"Bainfear an comhr\xe1 as an sp\xe1s ach beidh s\xe9 f\xf3s le feice\xe1il i do liosta comhr\xe1."},
-pw(d){return"comhr\xe1ite "+d},
+gpE(){return"Bog go sp\xe1s difri\xfail"},
+gpJ(){return"Bainfear an comhr\xe1 as an sp\xe1s ach beidh s\xe9 f\xf3s le feice\xe1il i do liosta comhr\xe1."},
+px(d){return"comhr\xe1ite "+d},
 po(d){return"Ball sp\xe1is de "+d},
 pp(d){return"Is f\xe9idir le ball sp\xe1is de "+d+" cnagadh"},
-gpy(){return"Tabhair S\xednti\xfas"},
+gpA(){return"Tabhair S\xednti\xfas"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var x=null
+return B.bI(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var x=null
+return B.bI(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FA,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FA":{"aF":[]}}'))
+x(A.FB,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"FB":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["IrbjfBbtO39MDrJdU+7m6+7+Ipw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Rf0LQQmApcWGU10Ak14jpf3RP7w="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_274.part.js.map

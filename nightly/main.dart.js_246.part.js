@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFo(){return new A.Fp(B.dh("de"))},
-Fp:function Fp(d){this.a=d}}
+cFs(){return new A.Fq(B.di("de"))},
+Fq:function Fq(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[12],A)
-A.Fp.prototype={
+A.Fq.prototype={
 gl2(){return"true"},
 gjO(){return"Passwort wiederholen"},
 gmR(){return"Keine Bilddatei."},
@@ -631,29 +631,34 @@ gpf(){return"Navigationsleiste auf dem Smartphone anzeigen"},
 glN(){return"Benutzerdefinierte Reaktion"},
 gpj(){return"Weitere Ereignisse"},
 glQ(){return"Einladung ablehnen"},
-gpD(){return"Noch keine Nachrichten"},
+gpF(){return"Noch keine Nachrichten"},
 gpk(){return"Neuer Sub-Space"},
-gpC(){return"In einen anderen space wechseln"},
-gpH(){return"Der Chat wird aus dem Space entfernt, erscheint aber weiterhin in Ihrer Chatliste."},
-pw(d){return""+d+" Chats"},
+gpE(){return"In einen anderen space wechseln"},
+gpJ(){return"Der Chat wird aus dem Space entfernt, erscheint aber weiterhin in Ihrer Chatliste."},
+px(d){return""+d+" Chats"},
 po(d){return"Space-Mitglieder von "+d},
 pp(d){return"Space-Mitglieder von "+d+" kann klopfen"},
-gpy(){return"Spenden"},
+gpA(){return"Spenden"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var x=null
+return B.bI(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var x=null
+return B.bI(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Fp,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fp":{"aF":[]}}'))
+x(A.Fq,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Fq":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["U41jpWwapskv6KTcD5QCT9JFRHQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zso9hAu1eNAGGZ9Y0J97amuIIys="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_246.part.js.map

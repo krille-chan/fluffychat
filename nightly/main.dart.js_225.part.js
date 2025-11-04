@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFk(){return new A.Fl(B.dh("bo"))},
-Fl:function Fl(d){this.a=d}}
+cFo(){return new A.Fm(B.di("bo"))},
+Fm:function Fm(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[8],A)
-A.Fl.prototype={
+A.Fm.prototype={
 gl2(){return"false"},
 gjO(){return"Repeat password"},
 gmR(){return"Not an image file."},
@@ -631,28 +631,33 @@ gpf(){return"Show navigation rail on mobile"},
 glN(){return"Custom reaction"},
 gpj(){return"More events"},
 glQ(){return"Decline invitation"},
-gpD(){return"No messages yet"},
+gpF(){return"No messages yet"},
 gpk(){return"New sub space"},
-gpC(){return"Move to different space"},
-gpH(){return"The chat will be removed from the space but still appear in your chat list."},
-pw(d){return""+d+" chats"},
+gpE(){return"Move to different space"},
+gpJ(){return"The chat will be removed from the space but still appear in your chat list."},
+px(d){return""+d+" chats"},
 po(d){return"Space member of "+d},
 pp(d){return"Space member of "+d+" can knock"},
-gpy(){return"Donate"},
+gpA(){return"Donate"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var y=null
+return B.bI(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var y=null
+return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fl,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fl":{"aF":[]}}'))};
-(a=>{a["4kk0p1r5PL0isnilCMjJaE1P22Q="]=a.current})($__dart_deferred_initializers__);
+y(A.Fm,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Fm":{"aF":[]}}'))};
+(a=>{a["lhXl2xMyfrzFfFfNjX0yaYOBHE8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_225.part.js.map

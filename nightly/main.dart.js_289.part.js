@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFG(){return new A.FH(B.dh("id"))},
-FH:function FH(d){this.a=d}}
+cFK(){return new A.FI(B.di("id"))},
+FI:function FI(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[30],A)
-A.FH.prototype={
+A.FI.prototype={
 gl2(){return"tidak"},
 gjO(){return"Ulangi kata sandi"},
 gmR(){return"Bukan berkas gambar."},
@@ -631,29 +631,34 @@ gpf(){return"Tampilkan jalur navigasi pada ponsel"},
 glN(){return"Reaksi khusus"},
 gpj(){return"Peristiwa tambahan"},
 glQ(){return"Tolak undangan"},
-gpD(){return"Belum ada pesan"},
+gpF(){return"Belum ada pesan"},
 gpk(){return"New sub space"},
-gpC(){return"Move to different space"},
-gpH(){return"The chat will be removed from the space but still appear in your chat list."},
-pw(d){return""+d+" chats"},
+gpE(){return"Move to different space"},
+gpJ(){return"The chat will be removed from the space but still appear in your chat list."},
+px(d){return""+d+" chats"},
 po(d){return"Space member of "+d},
 pp(d){return"Space member of "+d+" can knock"},
-gpy(){return"Donate"},
+gpA(){return"Donate"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var x=null
+return B.bI(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var x=null
+return B.bI(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FH,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FH":{"aF":[]}}'))
+x(A.FI,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"FI":{"aF":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["mcTuP/iF2wDAakTvfpHy7xHxG30="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["hc37YQRXGZSAmkz2qpREcG+JD4Q="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_289.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cG5(){return new A.G5(B.dh("yue"))},
-G5:function G5(d){this.a=d}}
+cG9(){return new A.G6(B.di("yue"))},
+G6:function G6(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[53],A)
-A.G5.prototype={
+A.G6.prototype={
 gl2(){return"false"},
 gjO(){return"\u8f38\u5165\u591a\u4e00\u6b21\u5bc6\u78bc"},
 gmR(){return"\u5514\u4fc2\u5716\u6a94\u3002"},
@@ -631,28 +631,33 @@ gpf(){return"Show navigation rail on mobile"},
 glN(){return"Custom reaction"},
 gpj(){return"More events"},
 glQ(){return"Decline invitation"},
-gpD(){return"No messages yet"},
+gpF(){return"No messages yet"},
 gpk(){return"New sub space"},
-gpC(){return"Move to different space"},
-gpH(){return"The chat will be removed from the space but still appear in your chat list."},
-pw(d){return""+d+" chats"},
+gpE(){return"Move to different space"},
+gpJ(){return"The chat will be removed from the space but still appear in your chat list."},
+px(d){return""+d+" chats"},
 po(d){return"Space member of "+d},
 pp(d){return"Space member of "+d+" can knock"},
-gpy(){return"Donate"},
+gpA(){return"Donate"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var y=null
+return B.bI(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var y=null
+return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G5,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"G5":{"aF":[]}}'))};
-(a=>{a["2jwkPfy6LGITAlOE+iujCE/iib4="]=a.current})($__dart_deferred_initializers__);
+y(A.G6,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"G6":{"aF":[]}}'))};
+(a=>{a["msjadys0xbG6SiywmyQe3DJGrHc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_324.part.js.map

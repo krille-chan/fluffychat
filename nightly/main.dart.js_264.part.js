@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFu(){return new A.Fv(B.dh("eu"))},
-Fv:function Fv(d){this.a=d}}
+cFy(){return new A.Fw(B.di("eu"))},
+Fw:function Fw(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[18],A)
-A.Fv.prototype={
+A.Fw.prototype={
 gl2(){return"false"},
 gjO(){return"Idatzi berriro pasahitza"},
 gmR(){return"Ez da irudi-fitxategia."},
@@ -631,29 +631,34 @@ gpf(){return"Erakutsi nabigazio-barra mugikorrean"},
 glN(){return"Erreakzio pertsonalizatua"},
 gpj(){return"Gertaera gehiago"},
 glQ(){return"Uko egin gonbidapenari"},
-gpD(){return"Mezurik ez oraingoz"},
+gpF(){return"Mezurik ez oraingoz"},
 gpk(){return"Azpi-gune berria"},
-gpC(){return"Beste gune batera mugitu"},
-gpH(){return"Txata gunetik kenduko da, baina txaten zerrendan mantenduko da."},
-pw(d){return""+d+" txat"},
+gpE(){return"Beste gune batera mugitu"},
+gpJ(){return"Txata gunetik kenduko da, baina txaten zerrendan mantenduko da."},
+px(d){return""+d+" txat"},
 po(d){return d+" guneko kidea"},
 pp(d){return d+" guneko kideak sartzeko baimena eska dezake"},
-gpy(){return"Egin dohaintza"},
+gpA(){return"Egin dohaintza"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var x=null
+return B.bI(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var x=null
+return B.bI(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Fv,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fv":{"aF":[]}}'))
+x(A.Fw,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Fw":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["u5vUni8uIct2Y+zAw99fjFCc0zY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["GATnI/c7dD+jxYqmJl95TzdSrmA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_264.part.js.map

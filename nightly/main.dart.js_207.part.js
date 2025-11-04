@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFi(){return new A.Fj(B.dh("be"))},
-Fj:function Fj(d){this.a=d}}
+cFm(){return new A.Fk(B.di("be"))},
+Fk:function Fk(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[6],A)
-A.Fj.prototype={
+A.Fk.prototype={
 gl2(){return"\u0430\u0434\u043a\u043b\u044e\u0447\u0430\u043d\u0430"},
 gjO(){return"\u041f\u0430\u045e\u0442\u0430\u0440\u044b\u0446\u0435 \u043f\u0430\u0440\u043e\u043b\u044c"},
 gmR(){return"\u041d\u0435 \u0444\u0430\u0439\u043b \u0432\u044b\u044f\u0432\u044b."},
@@ -631,28 +631,33 @@ gpf(){return"\u041f\u0430\u043a\u0430\u0437\u0432\u0430\u0446\u044c \u043d\u0430
 glN(){return"\u041a\u0430\u0440\u044b\u0441\u0442\u0430\u043b\u044c\u043d\u0456\u0446\u043a\u0430\u044f \u0440\u044d\u0430\u043a\u0446\u044b\u044f"},
 gpj(){return"\u0411\u043e\u043b\u044c\u0448 \u043f\u0430\u0434\u0437\u0435\u0439"},
 glQ(){return"\u0421\u043a\u0430\u0441\u0430\u0432\u0430\u0446\u044c \u0437\u0430\u043f\u0440\u0430\u0448\u044d\u043d\u043d\u0435"},
-gpD(){return"\u041f\u0430\u0432\u0435\u0434\u0430\u043c\u043b\u0435\u043d\u043d\u044f\u045e \u043f\u0430\u043a\u0443\u043b\u044c \u0448\u0442\u043e \u043d\u044f\u043c\u0430"},
+gpF(){return"\u041f\u0430\u0432\u0435\u0434\u0430\u043c\u043b\u0435\u043d\u043d\u044f\u045e \u043f\u0430\u043a\u0443\u043b\u044c \u0448\u0442\u043e \u043d\u044f\u043c\u0430"},
 gpk(){return"\u041d\u043e\u0432\u0430\u044f \u043f\u0430\u0434-\u043f\u0440\u0430\u0441\u0442\u043e\u0440\u0430"},
-gpC(){return"\u041f\u0435\u0440\u0430\u043c\u044f\u0441\u0446\u0456\u0446\u0446\u0430 \u045e \u0456\u043d\u0448\u0443\u044e \u043f\u0440\u0430\u0441\u0442\u043e\u0440\u0443"},
-gpH(){return"\u0413\u044d\u0442\u044b \u0447\u0430\u0442 \u0431\u0443\u0434\u0437\u0435 \u0432\u044b\u0434\u0430\u043b\u0435\u043d\u044b \u0437 \u043f\u0440\u0430\u0441\u0442\u043e\u0440\u044b, \u0430\u043b\u0435 \u0437'\u044f\u0432\u0456\u0446\u0446\u0430 \u045e \u0432\u0430\u0448\u044b\u043c \u0441\u043f\u0456\u0441\u0435 \u0447\u0430\u0442\u0430\u045e."},
-pw(d){return""+d+" \u0447\u0430\u0442\u0430\u045e"},
+gpE(){return"\u041f\u0435\u0440\u0430\u043c\u044f\u0441\u0446\u0456\u0446\u0446\u0430 \u045e \u0456\u043d\u0448\u0443\u044e \u043f\u0440\u0430\u0441\u0442\u043e\u0440\u0443"},
+gpJ(){return"\u0413\u044d\u0442\u044b \u0447\u0430\u0442 \u0431\u0443\u0434\u0437\u0435 \u0432\u044b\u0434\u0430\u043b\u0435\u043d\u044b \u0437 \u043f\u0440\u0430\u0441\u0442\u043e\u0440\u044b, \u0430\u043b\u0435 \u0437'\u044f\u0432\u0456\u0446\u0446\u0430 \u045e \u0432\u0430\u0448\u044b\u043c \u0441\u043f\u0456\u0441\u0435 \u0447\u0430\u0442\u0430\u045e."},
+px(d){return""+d+" \u0447\u0430\u0442\u0430\u045e"},
 po(d){return"\u0423\u0434\u0437\u0435\u043b\u044c\u043d\u0456\u043a \u043f\u0440\u0430\u0441\u0442\u043e\u0440\u044b "+d},
 pp(d){return"\u0423\u0434\u0437\u0435\u043b\u044c\u043d\u0456\u043a\u0456 \u043f\u0440\u0430\u0441\u0442\u043e\u0440\u044b \u0437 "+d+" \u043c\u043e\u0433\u0443\u0446\u044c \u0433\u0440\u0443\u043a\u0430\u0446\u0446\u0430"},
-gpy(){return"\u0414\u0430\u0446\u044c \u0433\u0440\u043e\u0448\u044b"},
+gpA(){return"\u0414\u0430\u0446\u044c \u0433\u0440\u043e\u0448\u044b"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var y=null
+return B.bI(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var y=null
+return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fj,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))};
-(a=>{a["0W/R1+GApbXl/sWHWz1lRoKnqE4="]=a.current})($__dart_deferred_initializers__);
+y(A.Fk,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Fk":{"aF":[]}}'))};
+(a=>{a["JgC5ZaA0JpeJujsphx/Ob3/urlY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_207.part.js.map

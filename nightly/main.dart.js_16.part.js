@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cFR(d){return new A.AN(B.dh(d))},
-cFS(){return new A.FS(B.dh("pt_BR"))},
-cFT(){return new A.FT(B.dh("pt_PT"))},
-AN:function AN(d){this.a=d},
-FS:function FS(d){this.a=d},
-FT:function FT(d){this.a=d}},C
+cFV(d){return new A.AO(B.di(d))},
+cFW(){return new A.FT(B.di("pt_BR"))},
+cFX(){return new A.FU(B.di("pt_PT"))},
+AO:function AO(d){this.a=d},
+FT:function FT(d){this.a=d},
+FU:function FU(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[54]
-A.AN.prototype={
+A.AO.prototype={
 gl2(){return"true"},
 gjO(){return"Repita a senha"},
 gmR(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -635,27 +635,32 @@ gpf(){return"Show navigation rail on mobile"},
 glN(){return"Custom reaction"},
 gpj(){return"More events"},
 glQ(){return"Decline invitation"},
-gpD(){return"No messages yet"},
+gpF(){return"No messages yet"},
 gpk(){return"New sub space"},
-gpC(){return"Move to different space"},
-gpH(){return"The chat will be removed from the space but still appear in your chat list."},
-pw(d){return""+d+" chats"},
+gpE(){return"Move to different space"},
+gpJ(){return"The chat will be removed from the space but still appear in your chat list."},
+px(d){return""+d+" chats"},
 po(d){return"Space member of "+d},
 pp(d){return"Space member of "+d+" can knock"},
-gpy(){return"Donate"},
+gpA(){return"Donate"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var x=null
+return B.bI(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var x=null
+return B.bI(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
-A.FS.prototype={
+A.FT.prototype={
 gl2(){return"true"},
 gjO(){return"Repita a senha"},
 gmR(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1282,7 +1287,7 @@ glN(){return"Rea\xe7\xe3o personalizada"},
 gpj(){return"Mais eventos"},
 glQ(){return"Rejeitar convite"},
 A(d,e){return this.gbd(this).$1(e)}}
-A.FT.prototype={
+A.FU.prototype={
 gjO(){return"Repete a palavra-passe"},
 gbd(d){return"Remover"},
 ges(){return"Acerca de"},
@@ -1531,9 +1536,9 @@ eT(d){return d+" enviou um autocolante"},
 h_(d){return d+" enviou um v\xeddeo"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.AN,C.aF)
-w(A.AN,[A.FS,A.FT])})()
-B.dV(b.typeUniverse,JSON.parse('{"AN":{"aF":[]},"FS":{"aF":[]},"FT":{"aF":[]}}'))
+x(A.AO,C.aF)
+w(A.AO,[A.FT,A.FU])})()
+B.dW(b.typeUniverse,JSON.parse('{"AO":{"aF":[]},"FT":{"aF":[]},"FU":{"aF":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["L5Sq23d85bAGKcpnNjSKMT2nmbU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["UhblHcUfs/1UXMDQAahvQqz0L5w="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_16.part.js.map

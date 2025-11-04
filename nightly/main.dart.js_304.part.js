@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFO(){return new A.FP(B.dh("nb"))},
-FP:function FP(d){this.a=d}}
+cFS(){return new A.FQ(B.di("nb"))},
+FQ:function FQ(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[38],A)
-A.FP.prototype={
+A.FQ.prototype={
 gl2(){return"false"},
 gjO(){return"Gjenta passord"},
 gmR(){return"Ikke en bildefil."},
@@ -631,28 +631,33 @@ gpf(){return"Show navigation rail on mobile"},
 glN(){return"Egendefinert reaksjon"},
 gpj(){return"More events"},
 glQ(){return"Avsl\xe5 invitasjon"},
-gpD(){return"Ingen meldinger enda"},
+gpF(){return"Ingen meldinger enda"},
 gpk(){return"New sub space"},
-gpC(){return"Flytt til et annet omr\xe5de"},
-gpH(){return"Chatten blir fjernet fra omr\xe5det, men vises fortsatt i chatlisten din."},
-pw(d){return""+d+" chats"},
+gpE(){return"Flytt til et annet omr\xe5de"},
+gpJ(){return"Chatten blir fjernet fra omr\xe5det, men vises fortsatt i chatlisten din."},
+px(d){return""+d+" chats"},
 po(d){return"Space member of "+d},
 pp(d){return"Space member of "+d+" can knock"},
-gpy(){return"Doner"},
+gpA(){return"Doner"},
 gkN(){return"Start poll"},
-gpz(){return"End poll"},
+gpB(){return"End poll"},
 gpu(){return"Answers visible"},
 gpt(){return"Answers hidden"},
-gpF(){return"Poll question"},
+gpH(){return"Poll question"},
 gps(){return"Answer option"},
 gpq(){return"Add answer option"},
 gpr(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-px(d){return""+d+" votes"},
+pz(d){var y=null
+return B.bI(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gpv(){return"Answers will be visible when poll has ended"},
+gpK(){return"Reply in thread"},
+py(d){var y=null
+return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+gpw(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FP,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FP":{"aF":[]}}'))};
-(a=>{a["rUqogIdhdFE520qlacjPW0T1BVY="]=a.current})($__dart_deferred_initializers__);
+y(A.FQ,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"FQ":{"aF":[]}}'))};
+(a=>{a["w2Fjpf2T3IAE0adzWvkCy5NytO4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map
