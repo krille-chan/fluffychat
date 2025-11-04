@@ -3432,5 +3432,45 @@
         }
     },
     "donate": "捐赠",
-    "@donate": {}
+    "@donate": {},
+    "startedAPoll": "{username} 启动了投票。",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "投票",
+    "@poll": {},
+    "startPoll": "启动投票",
+    "@startPoll": {},
+    "endPoll": "结束投票",
+    "@endPoll": {},
+    "answersVisible": "答复可见",
+    "@answersVisible": {},
+    "answersHidden": "答复隐藏",
+    "@answersHidden": {},
+    "pollQuestion": "投票问题",
+    "@pollQuestion": {},
+    "answerOption": "答复选项",
+    "@answerOption": {},
+    "addAnswerOption": "添加答复选项",
+    "@addAnswerOption": {},
+    "allowMultipleAnswers": "允许多个答复",
+    "@allowMultipleAnswers": {},
+    "pollHasBeenEnded": "投票已结束",
+    "@pollHasBeenEnded": {},
+    "countVotes": "{count} 票",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "answersWillBeVisibleWhenPollHasEnded": "投票结束后将显示答复",
+    "@answersWillBeVisibleWhenPollHasEnded": {}
 }
