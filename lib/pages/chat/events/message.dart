@@ -878,7 +878,7 @@ class Message extends StatelessWidget {
                   child: threadChildren.isEmpty
                       ? const SizedBox.shrink()
                       : Padding(
-                          padding: const EdgeInsets.only(top: 2.0, bottom: 4.0),
+                          padding: const EdgeInsets.only(top: 1.0, bottom: 4.0),
                           child: ConstrainedBox(
                             constraints: const BoxConstraints(
                               maxWidth: 400,
@@ -891,7 +891,7 @@ class Message extends StatelessWidget {
                               onPressed: () => enterThread(event.eventId),
                               icon: const Icon(Icons.message),
                               label: Text(
-                                '${L10n.of(context).countReplies(threadChildren.length)} | ${threadChildren.last.calcLocalizedBodyFallback(
+                                '${L10n.of(context).countReplies(threadChildren.length)} | ${threadChildren.first.calcLocalizedBodyFallback(
                                   MatrixLocals(L10n.of(context)),
                                   withSenderNamePrefix: true,
                                 )}',
