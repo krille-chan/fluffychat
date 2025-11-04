@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2025-10-16 13:32:28.677939",
+  "@@last_modified": "2025-11-04 13:34:54.956294",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -1814,13 +1814,13 @@
   "mustBe13": "Bạn phải ít nhất 13 tuổi",
   "yourBirthdayPleaseShort": "Vui lòng chọn nhóm tuổi của bạn",
   "joinWithClassCodeHint": "Nhập mã mời",
-  "languageLevelPreA1": "Hoàn toàn mới (Pre A1)",
-  "languageLevelA1": "Sơ cấp (A1)",
-  "languageLevelA2": "Căn bản (A2)",
-  "languageLevelB1": "Trung cấp (B1)",
-  "languageLevelB2": "Trung cấp cao (B2)",
-  "languageLevelC1": "Nâng cao (C1)",
-  "languageLevelC2": "Thành thạo (C2)",
+  "languageLevelPreA1": "Người mới bắt đầu Thấp (Pre A1)",
+  "languageLevelA1": "Người mới giữa (A1)",
+  "languageLevelA2": "Người mới cao (A2)",
+  "languageLevelB1": "Trung cấp trung bình (B1)",
+  "languageLevelB2": "Cao cấp thấp (B2)",
+  "languageLevelC1": "Cao cấp trung bình (C1)",
+  "languageLevelC2": "Cao cấp (C2)",
   "changeTheNameOfTheClass": "Đổi tên",
   "changeTheNameOfTheChat": "Đổi tên trò chuyện",
   "welcomeToYourNewClass": "Chào mừng! 🙂",
@@ -5755,6 +5755,34 @@
     "placeholders": {}
   },
   "@highlightVocabTooltip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelPreA1": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelA1": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelA2": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelB1": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelB2": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelC1": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelC2": {
     "type": "String",
     "placeholders": {}
   }

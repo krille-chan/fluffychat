@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "@@last_modified": "2025-10-16 13:30:49.638463",
+  "@@last_modified": "2025-11-04 13:33:35.588794",
   "about": "Acerca de",
   "@about": {
     "type": "String",
@@ -3619,13 +3619,13 @@
   "addDescription": "Añadir descripción",
   "pleaseEnterSecurityKeyDescription": "Para desbloquear el respaldo de tu chat, por favor ingresa tu clave de seguridad que ha sido generada en una sesión previa. Tu clave de seguridad NO es tu contraseña.",
   "updateLanguage": "Cambiar mis idiomas",
-  "languageLevelPreA1": "Principiante absoluto (Pre A1)",
-  "languageLevelA1": "Principiante elemental (A1)",
-  "languageLevelA2": "Principiante básico (A2)",
-  "languageLevelB1": "Intermedio (B1)",
-  "languageLevelB2": "Intermedio alto (B2)",
-  "languageLevelC1": "Avanzado (C1)",
-  "languageLevelC2": "Maestría (C2)",
+  "languageLevelPreA1": "Novato Bajo (Pre A1)",
+  "languageLevelA1": "Novato Medio (A1)",
+  "languageLevelA2": "Principiante Alto (A2)",
+  "languageLevelB1": "Intermedio Medio (B1)",
+  "languageLevelB2": "Avanzado Bajo (B2)",
+  "languageLevelC1": "Avanzado Medio (C1)",
+  "languageLevelC2": "Superior (C2)",
   "reportAnIssue": "Ayuda",
   "whatLanguageYouWantToLearn": "¿Qué idioma quiere aprender?",
   "whatIsYourBaseLanguage": "¿Cuál es su idioma base? \n\n Actualmente, la traducción interactiva solo está disponible cuando su idioma base es inglés y español. La asistencia gramatical está disponible para todos los idiomas base.",
@@ -7425,6 +7425,34 @@
     "placeholders": {}
   },
   "@highlightVocabTooltip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelPreA1": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelA1": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelA2": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelB1": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelB2": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelC1": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelC2": {
     "type": "String",
     "placeholders": {}
   }

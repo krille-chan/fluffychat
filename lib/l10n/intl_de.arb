@@ -1,6 +1,6 @@
 {
   "@@locale": "de",
-  "@@last_modified": "2025-10-16 13:30:41.915934",
+  "@@last_modified": "2025-11-04 13:34:11.760779",
   "alwaysUse24HourFormat": "true",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
@@ -3438,13 +3438,13 @@
   "iWantALanguagePartnerWhoIsLearning": "Lernt:",
   "joinWithClassCode": "Kurs beitreten",
   "joinWithClassCodeHint": "Einladungscode eingeben",
-  "languageLevelPreA1": "Wahrer Anfänger (Pre A1)",
-  "languageLevelA1": "Anfänger (A1)",
-  "languageLevelA2": "Grundstufe (A2)",
+  "languageLevelPreA1": "Anfänger Niedrig (Pre A1)",
+  "languageLevelA1": "Novize Mitte (A1)",
+  "languageLevelA2": "Anfänger Hoch (A2)",
   "languageLevelB1": "Mittelstufe (B1)",
-  "languageLevelB2": "Obere Mittelstufe (B2)",
-  "languageLevelC1": "Fortgeschritten (C1)",
-  "languageLevelC2": "Meisterschaft (C2)",
+  "languageLevelB2": "Fortgeschritten Niedrig (B2)",
+  "languageLevelC1": "Fortgeschritten Mittel (C1)",
+  "languageLevelC2": "Überlegen (C2)",
   "changeTheNameOfTheClass": "Namen ändern",
   "changeTheNameOfTheChat": "Den Namen des Chats ändern",
   "askPangeaBot": "Fragen Sie Pangea Bot nach einer kontextbezogenen Definition.",

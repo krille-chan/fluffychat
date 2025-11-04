@@ -1,0 +1,9 @@
+# Example keys file for translate_keys.py
+# Lines starting with # are comments and will be ignored
+# One key per line
+
+languageLevelA2
+languageLevelB1
+languageLevelB2
+languageLevelC1
+languageLevelC2
