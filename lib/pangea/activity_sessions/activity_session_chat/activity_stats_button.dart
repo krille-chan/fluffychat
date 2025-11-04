@@ -203,9 +203,10 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
       ),
       borderRadius: BorderRadius.circular(12),
       color: enabled
-          ? (theme.brightness == Brightness.light
-              ? AppConfig.yellowLight
-              : Color.lerp(AppConfig.gold, Colors.black, 0.3)!)
+          ? Color.alphaBlend(
+              Theme.of(context).colorScheme.surface.withAlpha(70),
+              AppConfig.gold,
+            )
           : theme.colorScheme.surface,
       depressed: !enabled || widget.controller.showActivityDropdown,
       child: AnimatedContainer(
@@ -214,9 +215,10 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
         height: 40,
         decoration: BoxDecoration(
           color: enabled
-              ? theme.brightness == Brightness.light
-                  ? AppConfig.yellowLight
-                  : Color.lerp(AppConfig.gold, Colors.black, 0.3)!
+              ? Color.alphaBlend(
+                  Theme.of(context).colorScheme.surface.withAlpha(70),
+                  AppConfig.gold,
+                )
               : theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(12),
         ),

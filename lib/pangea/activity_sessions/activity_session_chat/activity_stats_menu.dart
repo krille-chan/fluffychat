@@ -287,8 +287,12 @@ class VocabTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color =
-        isUsed ? AppConfig.goldLight.withAlpha(100) : Colors.transparent;
+    final color = isUsed
+        ? Color.alphaBlend(
+            Theme.of(context).colorScheme.surface.withAlpha(150),
+            AppConfig.gold,
+          )
+        : Colors.transparent;
     return CompositedTransformTarget(
       link: MatrixState.pAnyState
           .layerLinkAndKey(
