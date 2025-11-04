@@ -3411,5 +3411,34 @@
       }
     }
   },
-  "donate": "Donate"
+  "donate": "Donate",
+  "startedAPoll": "{username} started a poll.",
+  "@startedAPoll": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "poll": "Poll",
+  "startPoll": "Start poll",
+  "endPoll": "End poll",
+  "answersVisible": "Answers visible",
+  "answersHidden": "Answers hidden",
+  "pollQuestion": "Poll question",
+  "answerOption": "Answer option",
+  "addAnswerOption": "Add answer option",
+  "allowMultipleAnswers": "Allow multiple answers",
+  "pollHasBeenEnded": "Poll has been ended",
+  "countVotes": "{count} votes",
+  "@countVotes": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "answersWillBeVisibleWhenPollHasEnded": "Answers will be visible when poll has ended"
 }
