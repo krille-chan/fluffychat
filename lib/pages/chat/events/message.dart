@@ -14,6 +14,7 @@ import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -35,6 +36,7 @@ class Message extends StatelessWidget {
   final void Function() onSwipe;
   final void Function() onMention;
   final void Function() onEdit;
+  final void Function(String eventId)? enterThread;
   final bool longPressSelect;
   final bool selected;
   final bool singleSelected;
@@ -70,6 +72,7 @@ class Message extends StatelessWidget {
     required this.scrollController,
     required this.colors,
     this.onExpand,
+    required this.enterThread,
     this.isCollapsed = false,
     super.key,
   });
@@ -194,8 +197,13 @@ class Message extends StatelessWidget {
     final showReceiptsRow =
         event.hasAggregatedEvents(timeline, RelationshipTypes.reaction);
 
+    final threadChildren =
+        event.aggregatedEvents(timeline, RelationshipTypes.thread);
+
     final showReactionPicker =
         singleSelected && event.room.canSendDefaultMessages;
+
+    final enterThread = this.enterThread;
 
     return Center(
       child: Swipeable(
@@ -490,15 +498,10 @@ class Message extends StatelessWidget {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: <Widget>[
-                                                        if ({
-                                                          RelationshipTypes
-                                                              .reply,
-                                                          RelationshipTypes
-                                                              .thread,
-                                                        }.contains(
-                                                          event
-                                                              .relationshipType,
-                                                        ))
+                                                        if (RelationshipTypes
+                                                                .reply ==
+                                                            event
+                                                                .relationshipType)
                                                           FutureBuilder<Event?>(
                                                             future: event
                                                                 .getReplyEvent(
@@ -867,6 +870,38 @@ class Message extends StatelessWidget {
                         child: MessageReactions(event, timeline),
                       ),
               ),
+              if (enterThread != null)
+                AnimatedSize(
+                  duration: FluffyThemes.animationDuration,
+                  curve: FluffyThemes.animationCurve,
+                  alignment: Alignment.bottomCenter,
+                  child: threadChildren.isEmpty
+                      ? const SizedBox.shrink()
+                      : Padding(
+                          padding: const EdgeInsets.only(top: 2.0, bottom: 4.0),
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              maxWidth: 400,
+                            ),
+                            child: TextButton.icon(
+                              style: TextButton.styleFrom(
+                                backgroundColor:
+                                    theme.colorScheme.surfaceContainerHighest,
+                              ),
+                              onPressed: () => enterThread(event.eventId),
+                              icon: const Icon(Icons.message),
+                              label: Text(
+                                '${L10n.of(context).countReplies(threadChildren.length)} | ${threadChildren.last.calcLocalizedBodyFallback(
+                                  MatrixLocals(L10n.of(context)),
+                                  withSenderNamePrefix: true,
+                                )}',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ),
+                        ),
+                ),
               if (displayReadMarker)
                 Row(
                   children: [

@@ -5,9 +5,21 @@ import 'package:fluffychat/config/setting_keys.dart';
 extension VisibleInGuiExtension on List<Event> {
   List<Event> filterByVisibleInGui({
     String? exceptionEventId,
+    String? threadId,
   }) =>
       where(
-        (event) => event.isVisibleInGui || event.eventId == exceptionEventId,
+        (event) {
+          if (threadId != null) {
+            if ((event.relationshipType != RelationshipTypes.thread ||
+                    event.relationshipEventId != threadId) &&
+                event.eventId != threadId) {
+              return false;
+            }
+          } else if (event.relationshipType == RelationshipTypes.thread) {
+            return false;
+          }
+          return event.isVisibleInGui || event.eventId == exceptionEventId;
+        },
       ).toList();
 }
 

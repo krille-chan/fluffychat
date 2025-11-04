@@ -43,11 +43,15 @@ class ChatView extends StatelessWidget {
             tooltip: L10n.of(context).edit,
             onPressed: controller.editSelectedEventAction,
           ),
-        IconButton(
-          icon: const Icon(Icons.copy_outlined),
-          tooltip: L10n.of(context).copy,
-          onPressed: controller.copyEventsAction,
-        ),
+        if (controller.selectedEvents.length == 1 &&
+            controller.activeThreadId == null &&
+            controller.room.canSendDefaultMessages)
+          IconButton(
+            icon: const Icon(Icons.message_outlined),
+            tooltip: L10n.of(context).replyInThread,
+            onPressed: () => controller
+                .enterThread(controller.selectedEvents.single.eventId),
+          ),
         if (controller.canPinSelectedEvents)
           IconButton(
             icon: const Icon(Icons.push_pin_outlined),
@@ -75,6 +79,18 @@ class ChatView extends StatelessWidget {
               }
             },
             itemBuilder: (context) => [
+              PopupMenuItem(
+                onTap: controller.copyEventsAction,
+                value: null,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.copy_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context).copy),
+                  ],
+                ),
+              ),
               if (controller.canSaveSelectedEvent)
                 PopupMenuItem(
                   onTap: () => controller.saveSelectedEvent(context),
@@ -157,6 +173,8 @@ class ChatView extends StatelessWidget {
           controller.clearSelectedEvents();
         } else if (controller.showEmojiPicker) {
           controller.emojiPickerAction();
+        } else if (controller.activeThreadId != null) {
+          controller.closeThread();
         }
       },
       child: StreamBuilder(
@@ -167,6 +185,10 @@ class ChatView extends StatelessWidget {
           future: controller.loadTimelineFuture,
           builder: (BuildContext context, snapshot) {
             var appbarBottomHeight = 0.0;
+            final activeThreadId = controller.activeThreadId;
+            if (activeThreadId != null) {
+              appbarBottomHeight += ChatAppBarListTile.fixedHeight;
+            }
             if (controller.room.pinnedEventIds.isNotEmpty) {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
@@ -181,7 +203,9 @@ class ChatView extends StatelessWidget {
                       : theme.colorScheme.onTertiaryContainer,
                 ),
                 backgroundColor: controller.selectedEvents.isEmpty
-                    ? null
+                    ? controller.activeThreadId != null
+                        ? theme.colorScheme.secondaryContainer
+                        : null
                     : theme.colorScheme.tertiaryContainer,
                 automaticallyImplyLeading: false,
                 leading: controller.selectMode
@@ -213,6 +237,17 @@ class ChatView extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      if (activeThreadId != null)
+                        SizedBox(
+                          height: ChatAppBarListTile.fixedHeight,
+                          child: Center(
+                            child: TextButton.icon(
+                              onPressed: controller.closeThread,
+                              label: Text(L10n.of(context).backToMainChat),
+                              icon: const Icon(Icons.message),
+                            ),
+                          ),
+                        ),
                       PinnedEvents(controller),
                       if (scrollUpBannerEventId != null)
                         ChatAppBarListTile(
