@@ -102,6 +102,8 @@ class ChatController extends State<ChatPageWithRoom>
 
   Timeline? timeline;
 
+  String? activeThreadId;
+
   late final String readMarkerEventId;
 
   String get roomId => widget.room.id;
@@ -130,6 +132,8 @@ class ChatController extends State<ChatPageWithRoom>
         files: details.files,
         room: room,
         outerContext: context,
+        threadRootEventId: activeThreadId,
+        threadLastEventId: threadLastEventId,
       ),
     );
   }
@@ -166,6 +170,25 @@ class ChatController extends State<ChatPageWithRoom>
   String pendingText = '';
 
   bool showEmojiPicker = false;
+
+  String? get threadLastEventId {
+    final threadId = activeThreadId;
+    if (threadId == null) return null;
+    return timeline?.events
+        .filterByVisibleInGui(threadId: threadId)
+        .firstOrNull
+        ?.eventId;
+  }
+
+  void enterThread(String eventId) => setState(() {
+        activeThreadId = eventId;
+        selectedEvents.clear();
+      });
+
+  void closeThread() => setState(() {
+        activeThreadId = null;
+        selectedEvents.clear();
+      });
 
   void recreateChat() async {
     final room = this.room;
@@ -267,6 +290,8 @@ class ChatController extends State<ChatPageWithRoom>
         files: files,
         room: room,
         outerContext: context,
+        threadRootEventId: activeThreadId,
+        threadLastEventId: threadLastEventId,
       ),
     );
   }
@@ -340,7 +365,9 @@ class ChatController extends State<ChatPageWithRoom>
   final Set<String> expandedEventIds = {};
 
   void expandEventsFrom(Event event, bool expand) {
-    final events = timeline!.events.filterByVisibleInGui();
+    final events = timeline!.events.filterByVisibleInGui(
+      threadId: activeThreadId,
+    );
     final start = events.indexOf(event);
     setState(() {
       for (var i = start; i < events.length; i++) {
@@ -367,6 +394,7 @@ class ChatController extends State<ChatPageWithRoom>
           : timeline!.events
               .filterByVisibleInGui(
                 exceptionEventId: readMarkerEventId,
+                threadId: activeThreadId,
               )
               .indexWhere((e) => e.eventId == readMarkerEventId);
 
@@ -377,6 +405,7 @@ class ChatController extends State<ChatPageWithRoom>
         readMarkerEventIndex = timeline!.events
             .filterByVisibleInGui(
               exceptionEventId: readMarkerEventId,
+              threadId: activeThreadId,
             )
             .indexWhere((e) => e.eventId == readMarkerEventId);
       }
@@ -571,6 +600,7 @@ class ChatController extends State<ChatPageWithRoom>
       inReplyTo: replyEvent,
       editEventId: editEvent?.eventId,
       parseCommands: parseCommands,
+      threadRootEventId: activeThreadId,
     );
     sendController.value = TextEditingValue(
       text: pendingText,
@@ -599,6 +629,8 @@ class ChatController extends State<ChatPageWithRoom>
         files: files,
         room: room,
         outerContext: context,
+        threadRootEventId: activeThreadId,
+        threadLastEventId: threadLastEventId,
       ),
     );
   }
@@ -611,6 +643,8 @@ class ChatController extends State<ChatPageWithRoom>
         files: [XFile.fromData(image)],
         room: room,
         outerContext: context,
+        threadRootEventId: activeThreadId,
+        threadLastEventId: threadLastEventId,
       ),
     );
   }
@@ -627,6 +661,8 @@ class ChatController extends State<ChatPageWithRoom>
         files: [file],
         room: room,
         outerContext: context,
+        threadRootEventId: activeThreadId,
+        threadLastEventId: threadLastEventId,
       ),
     );
   }
@@ -646,6 +682,8 @@ class ChatController extends State<ChatPageWithRoom>
         files: [file],
         room: room,
         outerContext: context,
+        threadRootEventId: activeThreadId,
+        threadLastEventId: threadLastEventId,
       ),
     );
   }
@@ -677,6 +715,7 @@ class ChatController extends State<ChatPageWithRoom>
     room.sendFileEvent(
       file,
       inReplyTo: replyEvent,
+      threadRootEventId: activeThreadId,
       extraContent: {
         'info': {
           ...file.info,
@@ -966,6 +1005,7 @@ class ChatController extends State<ChatPageWithRoom>
         : timeline!.events
             .filterByVisibleInGui(
               exceptionEventId: eventId,
+              threadId: activeThreadId,
             )
             .indexOf(foundEvent);
 
