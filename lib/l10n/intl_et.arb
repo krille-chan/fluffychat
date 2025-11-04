@@ -3432,5 +3432,45 @@
         }
     },
     "donate": "Toeta meid rahaliselt",
-    "@donate": {}
+    "@donate": {},
+    "startedAPoll": "{username} koostas küsitluse.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "Küsitlus",
+    "@poll": {},
+    "startPoll": "Koosta küsitlus",
+    "@startPoll": {},
+    "endPoll": "Lõpeta küsitlus",
+    "@endPoll": {},
+    "answersVisible": "Vastused on näha",
+    "@answersVisible": {},
+    "answersHidden": "Vastused on peidetud",
+    "@answersHidden": {},
+    "pollQuestion": "Küsitluse küsimus",
+    "@pollQuestion": {},
+    "answerOption": "Valikvastus",
+    "@answerOption": {},
+    "addAnswerOption": "Lisa valikvastus",
+    "@addAnswerOption": {},
+    "allowMultipleAnswers": "Luba mitu vastusevalikut",
+    "@allowMultipleAnswers": {},
+    "pollHasBeenEnded": "Küsitlus on lõppenud",
+    "@pollHasBeenEnded": {},
+    "countVotes": "{count} häält",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "answersWillBeVisibleWhenPollHasEnded": "Vastused on näha küsitluse lõppedes",
+    "@answersWillBeVisibleWhenPollHasEnded": {}
 }
