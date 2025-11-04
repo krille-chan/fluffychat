@@ -410,6 +410,7 @@ extension ActivityRoomExtension on Room {
   }
 
   bool get isActivityStarted =>
+      isActivityFinished ||
       (activityPlan?.roles.length ?? 0) - (assignedRoles?.length ?? 0) <= 0;
 
   bool get isActivityFinished {
