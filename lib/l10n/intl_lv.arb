@@ -3415,5 +3415,60 @@
         }
     },
     "donate": "Ziedot",
-    "@donate": {}
+    "@donate": {},
+    "startedAPoll": "{username} uzsāka aptauju.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "Aptauja",
+    "@poll": {},
+    "startPoll": "Sākt aptauju",
+    "@startPoll": {},
+    "endPoll": "Noslēgt aptauju",
+    "@endPoll": {},
+    "answersVisible": "Atbildes ir redzamas",
+    "@answersVisible": {},
+    "answersHidden": "Atbildes ir paslēptas",
+    "@answersHidden": {},
+    "pollQuestion": "Aptaujas jautājums",
+    "@pollQuestion": {},
+    "answerOption": "Atbildes iespēja",
+    "@answerOption": {},
+    "addAnswerOption": "Pievienot atbildes iespēju",
+    "@addAnswerOption": {},
+    "allowMultipleAnswers": "Atļaut vairākas atbildes",
+    "@allowMultipleAnswers": {},
+    "pollHasBeenEnded": "Aptauja ir noslēgusies",
+    "@pollHasBeenEnded": {},
+    "countVotes": "{count, plural, =0{{count} balsu} =1{{count} balss} other{{count} balsis}}",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "answersWillBeVisibleWhenPollHasEnded": "Atbildes būs redzams, kad aptauja noslēgsies",
+    "@answersWillBeVisibleWhenPollHasEnded": {},
+    "replyInThread": "Atbildēt pavedienā",
+    "@replyInThread": {},
+    "countReplies": "{count, plural, =0{{count} atbilžu} =1{{count} atbilde} other{{count} atbildes}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "thread": "Pavediens",
+    "@thread": {},
+    "backToMainChat": "Atgriezties galvenajā tērzēšanā",
+    "@backToMainChat": {}
 }
