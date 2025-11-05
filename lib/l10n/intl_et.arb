@@ -3462,7 +3462,7 @@
     "@allowMultipleAnswers": {},
     "pollHasBeenEnded": "Küsitlus on lõppenud",
     "@pollHasBeenEnded": {},
-    "countVotes": "{count} häält",
+    "countVotes": "{count, plural, =1{Üks hääl} other{{count} häält}}",
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -3472,5 +3472,20 @@
         }
     },
     "answersWillBeVisibleWhenPollHasEnded": "Vastused on näha küsitluse lõppedes",
-    "@answersWillBeVisibleWhenPollHasEnded": {}
+    "@answersWillBeVisibleWhenPollHasEnded": {},
+    "replyInThread": "Vasta jutulõngas",
+    "@replyInThread": {},
+    "countReplies": "{count, plural, =1{Üks vastus} other{{count} vastust}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "thread": "Jutulõng",
+    "@thread": {},
+    "backToMainChat": "Tagasi põhivestlusesse",
+    "@backToMainChat": {}
 }
