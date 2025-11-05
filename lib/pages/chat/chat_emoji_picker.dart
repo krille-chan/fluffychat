@@ -77,6 +77,8 @@ class ChatEmojiPicker extends StatelessWidget {
                                 'url': sticker.url.toString(),
                               },
                               type: EventTypes.Sticker,
+                              threadRootEventId: controller.activeThreadId,
+                              threadLastEventId: controller.threadLastEventId,
                             );
                             controller.hideEmojiPicker();
                           },

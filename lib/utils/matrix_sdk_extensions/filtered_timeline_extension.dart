@@ -9,7 +9,8 @@ extension VisibleInGuiExtension on List<Event> {
   }) =>
       where(
         (event) {
-          if (threadId != null) {
+          if (threadId != null &&
+              event.relationshipType != RelationshipTypes.reaction) {
             if ((event.relationshipType != RelationshipTypes.thread ||
                     event.relationshipEventId != threadId) &&
                 event.eventId != threadId) {

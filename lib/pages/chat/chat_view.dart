@@ -166,7 +166,9 @@ class ChatView extends StatelessWidget {
     final accountConfig = Matrix.of(context).client.applicationAccountConfig;
 
     return PopScope(
-      canPop: controller.selectedEvents.isEmpty && !controller.showEmojiPicker,
+      canPop: controller.selectedEvents.isEmpty &&
+          !controller.showEmojiPicker &&
+          controller.activeThreadId == null,
       onPopInvokedWithResult: (pop, _) async {
         if (pop) return;
         if (controller.selectedEvents.isNotEmpty) {
@@ -215,20 +217,30 @@ class ChatView extends StatelessWidget {
                         tooltip: L10n.of(context).close,
                         color: theme.colorScheme.onTertiaryContainer,
                       )
-                    : FluffyThemes.isColumnMode(context)
-                        ? null
-                        : StreamBuilder<Object>(
-                            stream:
-                                Matrix.of(context).client.onSync.stream.where(
+                    : activeThreadId != null
+                        ? IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: controller.closeThread,
+                            tooltip: L10n.of(context).backToMainChat,
+                            color: theme.colorScheme.onSecondaryContainer,
+                          )
+                        : FluffyThemes.isColumnMode(context)
+                            ? null
+                            : StreamBuilder<Object>(
+                                stream: Matrix.of(context)
+                                    .client
+                                    .onSync
+                                    .stream
+                                    .where(
                                       (syncUpdate) => syncUpdate.hasRoomUpdate,
                                     ),
-                            builder: (context, _) => UnreadRoomsBadge(
-                              filter: (r) => r.id != controller.roomId,
-                              badgePosition:
-                                  BadgePosition.topEnd(end: 8, top: 4),
-                              child: const Center(child: BackButton()),
-                            ),
-                          ),
+                                builder: (context, _) => UnreadRoomsBadge(
+                                  filter: (r) => r.id != controller.roomId,
+                                  badgePosition:
+                                      BadgePosition.topEnd(end: 8, top: 4),
+                                  child: const Center(child: BackButton()),
+                                ),
+                              ),
                 titleSpacing: FluffyThemes.isColumnMode(context) ? 24 : 0,
                 title: ChatAppBarTitle(controller),
                 actions: _appBarActions(context),
@@ -242,9 +254,10 @@ class ChatView extends StatelessWidget {
                           height: ChatAppBarListTile.fixedHeight,
                           child: Center(
                             child: TextButton.icon(
-                              onPressed: controller.closeThread,
-                              label: Text(L10n.of(context).backToMainChat),
+                              onPressed: () =>
+                                  controller.scrollToEventId(activeThreadId),
                               icon: const Icon(Icons.message),
+                              label: Text(L10n.of(context).replyInThread),
                             ),
                           ),
                         ),
