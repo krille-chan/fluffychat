@@ -639,25 +639,25 @@ py(d){return""+d+" t\u0113rz\u0113\u0161anas"},
 pp(d){return d+" dal\u012bbnieks"},
 pq(d){return d+" dal\u012bbnieks var pieklauv\u0113t"},
 gpB(){return"Ziedot"},
-gkN(){return"Start poll"},
-gpC(){return"End poll"},
-gpv(){return"Answers visible"},
-gpu(){return"Answers hidden"},
-gpI(){return"Poll question"},
-gpt(){return"Answer option"},
-gpr(){return"Add answer option"},
-gps(){return"Allow multiple answers"},
-gpm(){return"Poll has been ended"},
-pA(d){var y=null
-return B.bI(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
-gpw(){return"Answers will be visible when poll has ended"},
-gpn(){return"Reply in thread"},
-pz(d){var y=null
-return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
-gpx(){return"Back to main chat"},
+gkN(){return"S\u0101kt aptauju"},
+gpC(){return"Nosl\u0113gt aptauju"},
+gpv(){return"Atbildes ir redzamas"},
+gpu(){return"Atbildes ir pasl\u0113ptas"},
+gpI(){return"Aptaujas jaut\u0101jums"},
+gpt(){return"Atbildes iesp\u0113ja"},
+gpr(){return"Pievienot atbildes iesp\u0113ju"},
+gps(){return"At\u013caut vair\u0101kas atbildes"},
+gpm(){return"Aptauja ir nosl\u0113gusies"},
+pA(d){var y=""+d
+return B.bI(d,null,this.a,null,y+" balss",y+" balsis",null,y+" balsu")},
+gpw(){return"Atbildes b\u016bs redzams, kad aptauja nosl\u0113gsies"},
+gpn(){return"Atbild\u0113t pavedien\u0101"},
+pz(d){var y=""+d
+return B.bI(d,null,this.a,null,y+" atbilde",y+" atbildes",null,y+" atbil\u017eu")},
+gpx(){return"Atgriezties galvenaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FP,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"FP":{"aF":[]}}'))};
-(a=>{a["oRigxkN4/0ijeQyEQdLoJ8LilJc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["kHn/M/Q77WIQD8e/BRplXouSZdU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_311.part.js.map
