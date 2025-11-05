@@ -639,26 +639,26 @@ py(d){return"comhr\xe1ite "+d},
 pp(d){return"Ball sp\xe1is de "+d},
 pq(d){return"Is f\xe9idir le ball sp\xe1is de "+d+" cnagadh"},
 gpB(){return"Tabhair S\xednti\xfas"},
-gkN(){return"Start poll"},
-gpC(){return"End poll"},
-gpv(){return"Answers visible"},
-gpu(){return"Answers hidden"},
-gpI(){return"Poll question"},
-gpt(){return"Answer option"},
-gpr(){return"Add answer option"},
-gps(){return"Allow multiple answers"},
-gpm(){return"Poll has been ended"},
+gkN(){return"Tosaigh pobalbhreith"},
+gpC(){return"Deireadh leis an pobalbhreith"},
+gpv(){return"Freagra\xed le feice\xe1il"},
+gpu(){return"Freagra\xed i bhfolach"},
+gpI(){return"Ceist pobalbhreithe"},
+gpt(){return"Rogha freagartha"},
+gpr(){return"Cuir rogha freagra leis"},
+gps(){return"Ceadaigh freagra\xed iolracha"},
+gpm(){return"T\xe1 deireadh leis an pobalbhreith"},
 pA(d){var x=null
-return B.bI(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
-gpw(){return"Answers will be visible when poll has ended"},
-gpn(){return"Reply in thread"},
+return B.bI(d,x,this.a,x,"V\xf3ta amh\xe1in",""+d+" v\xf3ta\xed",x,x)},
+gpw(){return"Beidh freagra\xed le feice\xe1il nuair a bheidh an pobalbhreith thart"},
+gpn(){return"Freagra sa sn\xe1ithe"},
 pz(d){var x=null
-return B.bI(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
-gpx(){return"Back to main chat"},
+return B.bI(d,x,this.a,x,"Freagra amh\xe1in",""+d+" freagra\xed",x,x)},
+gpx(){return"Ar ais chuig an bpr\xedomhchomhr\xe1"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FB,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"FB":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["k9wdKc1wbG5PHL5jZ9DUzLcMk58="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mtaQp/AIBZtWdFwWK8dulp9fDSE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_282.part.js.map
