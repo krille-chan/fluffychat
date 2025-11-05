@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cG3(){return new A.G0(B.di("ta"))},
+cG4(){return new A.G0(B.di("ta"))},
 G0:function G0(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -631,34 +631,34 @@ gpf(){return"\u0bae\u0bca\u0baa\u0bc8\u0bb2\u0bbf\u0bb2\u0bcd \u0bb5\u0bb4\u0bbf
 glN(){return"\u0ba4\u0ba9\u0bbf\u0baa\u0bcd\u0baa\u0baf\u0ba9\u0bcd \u0b8e\u0ba4\u0bbf\u0bb0\u0bcd\u0bb5\u0bbf\u0ba9\u0bc8"},
 gpj(){return"\u0bae\u0bc7\u0bb2\u0bc1\u0bae\u0bcd \u0ba8\u0bbf\u0b95\u0bb4\u0bcd\u0bb5\u0bc1\u0b95\u0bb3\u0bcd"},
 glQ(){return"\u0b85\u0bb4\u0bc8\u0baa\u0bcd\u0baa\u0bc8 \u0ba8\u0bbf\u0bb0\u0bbe\u0b95\u0bb0\u0bbf\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd"},
-gpF(){return"No messages yet"},
+gpG(){return"No messages yet"},
 gpk(){return"New sub space"},
-gpE(){return"Move to different space"},
-gpJ(){return"The chat will be removed from the space but still appear in your chat list."},
-px(d){return""+d+" chats"},
-po(d){return"Space member of "+d},
-pp(d){return"Space member of "+d+" can knock"},
-gpA(){return"Donate"},
+gpF(){return"Move to different space"},
+gpK(){return"The chat will be removed from the space but still appear in your chat list."},
+py(d){return""+d+" chats"},
+pp(d){return"Space member of "+d},
+pq(d){return"Space member of "+d+" can knock"},
+gpB(){return"Donate"},
 gkN(){return"Start poll"},
-gpB(){return"End poll"},
-gpu(){return"Answers visible"},
-gpt(){return"Answers hidden"},
-gpH(){return"Poll question"},
-gps(){return"Answer option"},
-gpq(){return"Add answer option"},
-gpr(){return"Allow multiple answers"},
+gpC(){return"End poll"},
+gpv(){return"Answers visible"},
+gpu(){return"Answers hidden"},
+gpI(){return"Poll question"},
+gpt(){return"Answer option"},
+gpr(){return"Add answer option"},
+gps(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-pz(d){var x=null
+pA(d){var x=null
 return B.bI(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
-gpv(){return"Answers will be visible when poll has ended"},
-gpK(){return"Reply in thread"},
-py(d){var x=null
+gpw(){return"Answers will be visible when poll has ended"},
+gpn(){return"Reply in thread"},
+pz(d){var x=null
 return B.bI(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
-gpw(){return"Back to main chat"},
+gpx(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G0,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"G0":{"aF":[]}}'))
 var y={d:" \u0b87\u0bb2\u0bcd \u0b9f\u0bc6\u0bb5\u0bb2\u0baa\u0bcd\u0baa\u0bb0\u0bcd\u0b95\u0bb3\u0bbf\u0b9f\u0bae\u0bcd \u0b87\u0ba8\u0bcd\u0ba4\u0baa\u0bcd \u0baa\u0bbf\u0bb4\u0bc8\u0baf\u0bc8\u0baa\u0bcd \u0baa\u0bc1\u0b95\u0bbe\u0bb0\u0bb3\u0bbf\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd. \u0baa\u0bbf\u0bb4\u0bc8 \u0b9a\u0bc6\u0baf\u0bcd\u0ba4\u0bbf: "}};
-(a=>{a["HTGkTNbptzSb7Y6ZMlW/1GXNTMA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3PxPMJG7r1RdCR8NG8fMxlVjWxc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map

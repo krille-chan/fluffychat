@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFS(){return new A.FQ(B.di("nb"))},
+cFT(){return new A.FQ(B.di("nb"))},
 FQ:function FQ(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -631,33 +631,33 @@ gpf(){return"Show navigation rail on mobile"},
 glN(){return"Egendefinert reaksjon"},
 gpj(){return"More events"},
 glQ(){return"Avsl\xe5 invitasjon"},
-gpF(){return"Ingen meldinger enda"},
+gpG(){return"Ingen meldinger enda"},
 gpk(){return"New sub space"},
-gpE(){return"Flytt til et annet omr\xe5de"},
-gpJ(){return"Chatten blir fjernet fra omr\xe5det, men vises fortsatt i chatlisten din."},
-px(d){return""+d+" chats"},
-po(d){return"Space member of "+d},
-pp(d){return"Space member of "+d+" can knock"},
-gpA(){return"Doner"},
+gpF(){return"Flytt til et annet omr\xe5de"},
+gpK(){return"Chatten blir fjernet fra omr\xe5det, men vises fortsatt i chatlisten din."},
+py(d){return""+d+" chats"},
+pp(d){return"Space member of "+d},
+pq(d){return"Space member of "+d+" can knock"},
+gpB(){return"Doner"},
 gkN(){return"Start poll"},
-gpB(){return"End poll"},
-gpu(){return"Answers visible"},
-gpt(){return"Answers hidden"},
-gpH(){return"Poll question"},
-gps(){return"Answer option"},
-gpq(){return"Add answer option"},
-gpr(){return"Allow multiple answers"},
+gpC(){return"End poll"},
+gpv(){return"Answers visible"},
+gpu(){return"Answers hidden"},
+gpI(){return"Poll question"},
+gpt(){return"Answer option"},
+gpr(){return"Add answer option"},
+gps(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-pz(d){var y=null
+pA(d){var y=null
 return B.bI(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
-gpv(){return"Answers will be visible when poll has ended"},
-gpK(){return"Reply in thread"},
-py(d){var y=null
+gpw(){return"Answers will be visible when poll has ended"},
+gpn(){return"Reply in thread"},
+pz(d){var y=null
 return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
-gpw(){return"Back to main chat"},
+gpx(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FQ,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"FQ":{"aF":[]}}'))};
-(a=>{a["w2Fjpf2T3IAE0adzWvkCy5NytO4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["fhR8lN+1w8zxxVA40AFVDDJcSxY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map

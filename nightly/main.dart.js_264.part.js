@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFy(){return new A.Fw(B.di("eu"))},
+cFz(){return new A.Fw(B.di("eu"))},
 Fw:function Fw(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -631,34 +631,34 @@ gpf(){return"Erakutsi nabigazio-barra mugikorrean"},
 glN(){return"Erreakzio pertsonalizatua"},
 gpj(){return"Gertaera gehiago"},
 glQ(){return"Uko egin gonbidapenari"},
-gpF(){return"Mezurik ez oraingoz"},
+gpG(){return"Mezurik ez oraingoz"},
 gpk(){return"Azpi-gune berria"},
-gpE(){return"Beste gune batera mugitu"},
-gpJ(){return"Txata gunetik kenduko da, baina txaten zerrendan mantenduko da."},
-px(d){return""+d+" txat"},
-po(d){return d+" guneko kidea"},
-pp(d){return d+" guneko kideak sartzeko baimena eska dezake"},
-gpA(){return"Egin dohaintza"},
+gpF(){return"Beste gune batera mugitu"},
+gpK(){return"Txata gunetik kenduko da, baina txaten zerrendan mantenduko da."},
+py(d){return""+d+" txat"},
+pp(d){return d+" guneko kidea"},
+pq(d){return d+" guneko kideak sartzeko baimena eska dezake"},
+gpB(){return"Egin dohaintza"},
 gkN(){return"Start poll"},
-gpB(){return"End poll"},
-gpu(){return"Answers visible"},
-gpt(){return"Answers hidden"},
-gpH(){return"Poll question"},
-gps(){return"Answer option"},
-gpq(){return"Add answer option"},
-gpr(){return"Allow multiple answers"},
+gpC(){return"End poll"},
+gpv(){return"Answers visible"},
+gpu(){return"Answers hidden"},
+gpI(){return"Poll question"},
+gpt(){return"Answer option"},
+gpr(){return"Add answer option"},
+gps(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-pz(d){var x=null
+pA(d){var x=null
 return B.bI(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
-gpv(){return"Answers will be visible when poll has ended"},
-gpK(){return"Reply in thread"},
-py(d){var x=null
+gpw(){return"Answers will be visible when poll has ended"},
+gpn(){return"Reply in thread"},
+pz(d){var x=null
 return B.bI(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
-gpw(){return"Back to main chat"},
+gpx(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fw,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"Fw":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["GATnI/c7dD+jxYqmJl95TzdSrmA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PmQOqEMsq6hDksgxrkmViegXNjE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_264.part.js.map

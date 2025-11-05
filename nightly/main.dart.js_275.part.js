@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFE(){return new A.FC(B.di("gl"))},
+cFF(){return new A.FC(B.di("gl"))},
 FC:function FC(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -631,33 +631,33 @@ gpf(){return"Mostrar carril de navegaci\xf3n nos m\xf3biles"},
 glN(){return"Reacci\xf3n personalizada"},
 gpj(){return"M\xe1is eventos"},
 glQ(){return"Rexeitar o convite"},
-gpF(){return"A\xednda non hai mensaxes"},
+gpG(){return"A\xednda non hai mensaxes"},
 gpk(){return"Novo sub espazo"},
-gpE(){return"Mover a outro espazo"},
-gpJ(){return"Vaise quitar a conversa do espazo pero seguir\xe1 aparecendo na t\xfaa lista de conversas."},
-px(d){return""+d+" conversas"},
-po(d){return"Space member of "+d},
-pp(d){return"Space member of "+d+" can knock"},
-gpA(){return"Doar"},
+gpF(){return"Mover a outro espazo"},
+gpK(){return"Vaise quitar a conversa do espazo pero seguir\xe1 aparecendo na t\xfaa lista de conversas."},
+py(d){return""+d+" conversas"},
+pp(d){return"Space member of "+d},
+pq(d){return"Space member of "+d+" can knock"},
+gpB(){return"Doar"},
 gkN(){return"Start poll"},
-gpB(){return"End poll"},
-gpu(){return"Answers visible"},
-gpt(){return"Answers hidden"},
-gpH(){return"Poll question"},
-gps(){return"Answer option"},
-gpq(){return"Add answer option"},
-gpr(){return"Allow multiple answers"},
+gpC(){return"End poll"},
+gpv(){return"Answers visible"},
+gpu(){return"Answers hidden"},
+gpI(){return"Poll question"},
+gpt(){return"Answer option"},
+gpr(){return"Add answer option"},
+gps(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-pz(d){var y=null
+pA(d){var y=null
 return B.bI(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
-gpv(){return"Answers will be visible when poll has ended"},
-gpK(){return"Reply in thread"},
-py(d){var y=null
+gpw(){return"Answers will be visible when poll has ended"},
+gpn(){return"Reply in thread"},
+pz(d){var y=null
 return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
-gpw(){return"Back to main chat"},
+gpx(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FC,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"FC":{"aF":[]}}'))};
-(a=>{a["I8pjuLV5f7LPB04vGG5n2ciLldo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["bMxLtUwSq64Sd2an98oxXXcWT0g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_275.part.js.map

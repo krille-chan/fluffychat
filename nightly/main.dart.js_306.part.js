@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFT(){return new A.FR(B.di("nl"))},
+cFU(){return new A.FR(B.di("nl"))},
 FR:function FR(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -631,33 +631,33 @@ gpf(){return"Navigatiebalk op mobiel tonen"},
 glN(){return"Aangepaste reactie"},
 gpj(){return"Meer gebeurtenissen"},
 glQ(){return"Uitnodiging afwijzen"},
-gpF(){return"Nog geen berichten"},
+gpG(){return"Nog geen berichten"},
 gpk(){return"Nieuwe sub-space"},
-gpE(){return"Naar andere space verplaatsen"},
-gpJ(){return"De chat zal worden verwijderd uit de space, maar blijft in je chats."},
-px(d){return""+d+" chats"},
-po(d){return d+" personen in space"},
-pp(d){return d+" personen in space kunnen kloppen"},
-gpA(){return"Doneer"},
+gpF(){return"Naar andere space verplaatsen"},
+gpK(){return"De chat zal worden verwijderd uit de space, maar blijft in je chats."},
+py(d){return""+d+" chats"},
+pp(d){return d+" personen in space"},
+pq(d){return d+" personen in space kunnen kloppen"},
+gpB(){return"Doneer"},
 gkN(){return"Start poll"},
-gpB(){return"End poll"},
-gpu(){return"Answers visible"},
-gpt(){return"Answers hidden"},
-gpH(){return"Poll question"},
-gps(){return"Answer option"},
-gpq(){return"Add answer option"},
-gpr(){return"Allow multiple answers"},
+gpC(){return"End poll"},
+gpv(){return"Answers visible"},
+gpu(){return"Answers hidden"},
+gpI(){return"Poll question"},
+gpt(){return"Answer option"},
+gpr(){return"Add answer option"},
+gps(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-pz(d){var y=null
+pA(d){var y=null
 return B.bI(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
-gpv(){return"Answers will be visible when poll has ended"},
-gpK(){return"Reply in thread"},
-py(d){var y=null
+gpw(){return"Answers will be visible when poll has ended"},
+gpn(){return"Reply in thread"},
+pz(d){var y=null
 return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
-gpw(){return"Back to main chat"},
+gpx(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FR,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"FR":{"aF":[]}}'))};
-(a=>{a["52WvsOjouEtRqNG9CnxBQZNn2uY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["7zJz9Ks8cdLj/oe3Bqr119t3b3A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

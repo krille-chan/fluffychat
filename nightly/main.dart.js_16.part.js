@@ -1,8 +1,8 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cFV(d){return new A.AO(B.di(d))},
-cFW(){return new A.FT(B.di("pt_BR"))},
-cFX(){return new A.FU(B.di("pt_PT"))},
+cFW(d){return new A.AO(B.di(d))},
+cFX(){return new A.FT(B.di("pt_BR"))},
+cFY(){return new A.FU(B.di("pt_PT"))},
 AO:function AO(d){this.a=d},
 FT:function FT(d){this.a=d},
 FU:function FU(d){this.a=d}},C
@@ -635,30 +635,30 @@ gpf(){return"Show navigation rail on mobile"},
 glN(){return"Custom reaction"},
 gpj(){return"More events"},
 glQ(){return"Decline invitation"},
-gpF(){return"No messages yet"},
+gpG(){return"No messages yet"},
 gpk(){return"New sub space"},
-gpE(){return"Move to different space"},
-gpJ(){return"The chat will be removed from the space but still appear in your chat list."},
-px(d){return""+d+" chats"},
-po(d){return"Space member of "+d},
-pp(d){return"Space member of "+d+" can knock"},
-gpA(){return"Donate"},
+gpF(){return"Move to different space"},
+gpK(){return"The chat will be removed from the space but still appear in your chat list."},
+py(d){return""+d+" chats"},
+pp(d){return"Space member of "+d},
+pq(d){return"Space member of "+d+" can knock"},
+gpB(){return"Donate"},
 gkN(){return"Start poll"},
-gpB(){return"End poll"},
-gpu(){return"Answers visible"},
-gpt(){return"Answers hidden"},
-gpH(){return"Poll question"},
-gps(){return"Answer option"},
-gpq(){return"Add answer option"},
-gpr(){return"Allow multiple answers"},
+gpC(){return"End poll"},
+gpv(){return"Answers visible"},
+gpu(){return"Answers hidden"},
+gpI(){return"Poll question"},
+gpt(){return"Answer option"},
+gpr(){return"Add answer option"},
+gps(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-pz(d){var x=null
+pA(d){var x=null
 return B.bI(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
-gpv(){return"Answers will be visible when poll has ended"},
-gpK(){return"Reply in thread"},
-py(d){var x=null
+gpw(){return"Answers will be visible when poll has ended"},
+gpn(){return"Reply in thread"},
+pz(d){var x=null
 return B.bI(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
-gpw(){return"Back to main chat"},
+gpx(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 A.FT.prototype={
 gl2(){return"true"},
@@ -1540,5 +1540,5 @@ x(A.AO,C.aF)
 w(A.AO,[A.FT,A.FU])})()
 B.dW(b.typeUniverse,JSON.parse('{"AO":{"aF":[]},"FT":{"aF":[]},"FU":{"aF":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["UhblHcUfs/1UXMDQAahvQqz0L5w="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zUJfbzYubL8iPToNNe4PhVE4fPQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_16.part.js.map

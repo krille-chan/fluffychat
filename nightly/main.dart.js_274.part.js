@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFD(){return new A.FB(B.di("ga"))},
+cFE(){return new A.FB(B.di("ga"))},
 FB:function FB(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -631,34 +631,34 @@ gpf(){return"Taispe\xe1in r\xe1ille nasclean\xfana ar fh\xf3in ph\xf3ca"},
 glN(){return"Imoibri\xfa saincheaptha"},
 gpj(){return"Tuilleadh imeachta\xed"},
 glQ(){return"Di\xfaltaigh don chuireadh"},
-gpF(){return"Gan aon teachtaireachta\xed f\xf3s"},
+gpG(){return"Gan aon teachtaireachta\xed f\xf3s"},
 gpk(){return"Fo-sp\xe1s nua"},
-gpE(){return"Bog go sp\xe1s difri\xfail"},
-gpJ(){return"Bainfear an comhr\xe1 as an sp\xe1s ach beidh s\xe9 f\xf3s le feice\xe1il i do liosta comhr\xe1."},
-px(d){return"comhr\xe1ite "+d},
-po(d){return"Ball sp\xe1is de "+d},
-pp(d){return"Is f\xe9idir le ball sp\xe1is de "+d+" cnagadh"},
-gpA(){return"Tabhair S\xednti\xfas"},
+gpF(){return"Bog go sp\xe1s difri\xfail"},
+gpK(){return"Bainfear an comhr\xe1 as an sp\xe1s ach beidh s\xe9 f\xf3s le feice\xe1il i do liosta comhr\xe1."},
+py(d){return"comhr\xe1ite "+d},
+pp(d){return"Ball sp\xe1is de "+d},
+pq(d){return"Is f\xe9idir le ball sp\xe1is de "+d+" cnagadh"},
+gpB(){return"Tabhair S\xednti\xfas"},
 gkN(){return"Start poll"},
-gpB(){return"End poll"},
-gpu(){return"Answers visible"},
-gpt(){return"Answers hidden"},
-gpH(){return"Poll question"},
-gps(){return"Answer option"},
-gpq(){return"Add answer option"},
-gpr(){return"Allow multiple answers"},
+gpC(){return"End poll"},
+gpv(){return"Answers visible"},
+gpu(){return"Answers hidden"},
+gpI(){return"Poll question"},
+gpt(){return"Answer option"},
+gpr(){return"Add answer option"},
+gps(){return"Allow multiple answers"},
 gpm(){return"Poll has been ended"},
-pz(d){var x=null
+pA(d){var x=null
 return B.bI(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
-gpv(){return"Answers will be visible when poll has ended"},
-gpK(){return"Reply in thread"},
-py(d){var x=null
+gpw(){return"Answers will be visible when poll has ended"},
+gpn(){return"Reply in thread"},
+pz(d){var x=null
 return B.bI(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
-gpw(){return"Back to main chat"},
+gpx(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FB,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"FB":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["Rf0LQQmApcWGU10Ak14jpf3RP7w="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["k9wdKc1wbG5PHL5jZ9DUzLcMk58="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_274.part.js.map
