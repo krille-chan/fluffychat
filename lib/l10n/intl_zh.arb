@@ -3462,7 +3462,7 @@
     "@allowMultipleAnswers": {},
     "pollHasBeenEnded": "投票已结束",
     "@pollHasBeenEnded": {},
-    "countVotes": "{count, plural, =1{1 票} other{{count} 票}}",
+    "countVotes": "{count, plural, =1{票} other{{count} 票}}",
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -3477,7 +3477,7 @@
     "@thread": {},
     "replyInThread": "在嘟文串中回复",
     "@replyInThread": {},
-    "countReplies": "{count, plural, =1{1 则回复} other{{count} 则回复}}",
+    "countReplies": "{count, plural, =1{则回复} other{{count} 则回复}}",
     "@countReplies": {
         "type": "int",
         "placeholders": {
