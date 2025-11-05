@@ -3116,5 +3116,52 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "homeserverDescription": "Toutes vos données sont stockées sur le serveur de votre fournisseur matrix, comme chez un fournisseur d'e-mails. Vous pouvez choisir le serveur que vous souhaitez utiliser, tout en pouvant communiquer avec tout le monde. Pour en savoir plus, rendez-vous sur https://matrix.org.",
+    "@homeserverDescription": {},
+    "calculatingFileSize": "Calcul en cours...",
+    "@calculatingFileSize": {},
+    "prepareSendingAttachment": "Préparation à l'envoi...",
+    "@prepareSendingAttachment": {},
+    "sendingAttachment": "Envoi en cours...",
+    "@sendingAttachment": {},
+    "generatingVideoThumbnail": "Génération de la vignette...",
+    "@generatingVideoThumbnail": {},
+    "compressVideo": "Compression de la vidéo...",
+    "@compressVideo": {},
+    "sendingAttachmentCountOfCount": "Envoi {index} sur {length}...",
+    "@sendingAttachmentCountOfCount": {
+        "type": "integer",
+        "placeholders": {
+            "index": {
+                "type": "int"
+            },
+            "length": {
+                "type": "int"
+            }
+        }
+    },
+    "serverLimitReached": "Nombre de tentatives dépassé! Patientez {seconds} secondes...",
+    "@serverLimitReached": {
+        "type": "integer",
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "oneOfYourDevicesIsNotVerified": "Un de vos appareils n'est pas vérifié",
+    "@oneOfYourDevicesIsNotVerified": {},
+    "customReaction": "Réaction",
+    "@customReaction": {},
+    "declineInvitation": "Refuser l'invitation",
+    "@declineInvitation": {},
+    "invalidUrl": "Adresse incorrecte",
+    "@invalidUrl": {},
+    "addAnswerOption": "Ajouter une réponse",
+    "@addAnswerOption": {},
+    "addLink": "Ajouter un lien",
+    "@addLink": {},
+    "allowMultipleAnswers": "Autoriser plusieurs réponses",
+    "@allowMultipleAnswers": {}
 }
