@@ -40,6 +40,7 @@ Future<T?> showAdaptiveBottomSheet<T>({
 
   return showModalBottomSheet<T>(
     context: context,
+    useSafeArea: true,
     builder: (context) => Padding(
       padding: EdgeInsets.zero,
       child: ClipRRect(
