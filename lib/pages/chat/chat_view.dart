@@ -191,10 +191,11 @@ class ChatView extends StatelessWidget {
             if (activeThreadId != null) {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
-            if (controller.room.pinnedEventIds.isNotEmpty) {
+            if (controller.room.pinnedEventIds.isNotEmpty &&
+                activeThreadId == null) {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
-            if (scrollUpBannerEventId != null) {
+            if (scrollUpBannerEventId != null && activeThreadId == null) {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
             return Scaffold(
@@ -269,7 +270,8 @@ class ChatView extends StatelessWidget {
                             ),
                           ),
                         ),
-                      if (scrollUpBannerEventId != null)
+                      if (scrollUpBannerEventId != null &&
+                          activeThreadId == null)
                         ChatAppBarListTile(
                           leading: IconButton(
                             color: theme.colorScheme.onSurfaceVariant,

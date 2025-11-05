@@ -59,7 +59,7 @@ class PinnedEvents extends StatelessWidget {
 
     final pinnedEventIds = controller.room.pinnedEventIds;
 
-    if (pinnedEventIds.isEmpty) {
+    if (pinnedEventIds.isEmpty || controller.activeThreadId != null) {
       return const SizedBox.shrink();
     }
 
