@@ -934,7 +934,8 @@ class ChatController extends State<ChatPageWithRoom>
     if (isArchived ||
         !room.canChangeStateEvent(EventTypes.RoomPinnedEvents) ||
         selectedEvents.length != 1 ||
-        !selectedEvents.single.status.isSent) {
+        !selectedEvents.single.status.isSent ||
+        activeThreadId != null) {
       return false;
     }
     return true;
