@@ -1361,7 +1361,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "pin": "Klammerda",
+    "pin": "Tõsta esile",
     "@pin": {
         "type": "String",
         "placeholders": {}
@@ -1874,7 +1874,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "unpin": "Eemalda klammerdus",
+    "unpin": "Eemalda esiletõstmine",
     "@unpin": {
         "type": "String",
         "placeholders": {}
@@ -2185,9 +2185,9 @@
     "@unsupportedAndroidVersion": {},
     "voiceCall": "Häälkõne",
     "@voiceCall": {},
-    "confirmEventUnpin": "Kas sa oled kindel, et tahad klammerdatud sündmuse eemaldada?",
+    "confirmEventUnpin": "Kas sa oled kindel, et tahad esiletõstetud sündmuse jäädavalt eemaldada?",
     "@confirmEventUnpin": {},
-    "pinMessage": "Klammerda sõnum jututuppa",
+    "pinMessage": "Tõsta sõnum jututoas esile",
     "@pinMessage": {},
     "videoCallsBetaWarning": "Palun arvesta, et videokõned on veel beetajärgus. Nad ei pruugi veel toimida kõikidel platvormidel korrektselt.",
     "@videoCallsBetaWarning": {},
