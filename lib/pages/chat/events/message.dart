@@ -878,15 +878,24 @@ class Message extends StatelessWidget {
                   child: threadChildren.isEmpty
                       ? const SizedBox.shrink()
                       : Padding(
-                          padding: const EdgeInsets.only(top: 1.0, bottom: 4.0),
+                          padding: const EdgeInsets.only(
+                            top: 4.0,
+                            bottom: 8.0,
+                            left: Avatar.defaultSize + 8,
+                          ),
                           child: ConstrainedBox(
                             constraints: const BoxConstraints(
-                              maxWidth: 400,
+                              maxWidth: FluffyThemes.columnWidth * 1.5,
                             ),
                             child: TextButton.icon(
                               style: TextButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                foregroundColor:
+                                    theme.colorScheme.onSecondaryContainer,
                                 backgroundColor:
-                                    theme.colorScheme.surfaceContainerHighest,
+                                    theme.colorScheme.secondaryContainer,
                               ),
                               onPressed: () => enterThread(event.eventId),
                               icon: const Icon(Icons.message),

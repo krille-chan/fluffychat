@@ -249,6 +249,7 @@ class ChatView extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      PinnedEvents(controller),
                       if (activeThreadId != null)
                         SizedBox(
                           height: ChatAppBarListTile.fixedHeight,
@@ -258,10 +259,16 @@ class ChatView extends StatelessWidget {
                                   controller.scrollToEventId(activeThreadId),
                               icon: const Icon(Icons.message),
                               label: Text(L10n.of(context).replyInThread),
+                              style: TextButton.styleFrom(
+                                foregroundColor:
+                                    theme.colorScheme.onSecondaryContainer,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      PinnedEvents(controller),
                       if (scrollUpBannerEventId != null)
                         ChatAppBarListTile(
                           leading: IconButton(
