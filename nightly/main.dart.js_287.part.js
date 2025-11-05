@@ -1,33 +1,33 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cFK(){return new A.FH(B.di("ia"))},
-FH:function FH(d){this.a=d}}
+cFH(){return new A.FE(B.di("hi"))},
+FE:function FE(d){this.a=d}}
 B=c[0]
 C=c[54]
-A=a.updateHolder(c[29],A)
-A.FH.prototype={
+A=a.updateHolder(c[26],A)
+A.FE.prototype={
 gl2(){return"false"},
-gjO(){return"Repeter le contrasigno"},
-gmR(){return"Non es un file de imagine."},
+gjO(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
+gmR(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
 gkD(){return"Set custom permission level"},
 gkE(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
 gmi(){return"Ignore user"},
 gmQ(){return"Normal user"},
-gbd(d){return"Remover"},
-gml(){return"Importar ora"},
-gmj(){return"Importar emojis"},
-gmk(){return"Importar ab un file .zip"},
-gm2(){return"Exportar pacchetto de emotes como un .zip"},
-gnZ(d){return"Reimplaciar"},
-ges(){return"A proposito de"},
+gbd(d){return"\u0928\u093f\u0915\u093e\u0932\u0928\u093e"},
+gml(){return"\u0905\u092d\u0940 \u0906\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
+gmj(){return"\u0907\u092e\u094b\u091c\u0940 \u0906\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
+gmk(){return".zip \u092b\u093c\u093e\u0907\u0932 \u0938\u0947 \u0906\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
+gm2(){return"\u0907\u092e\u094b\u091f \u092a\u0948\u0915 \u0915\u094b .zip \u0915\u0947 \u0930\u0942\u092a \u092e\u0947\u0902 \u0928\u093f\u0930\u094d\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
+gnZ(d){return"Replace"},
+ges(){return"About"},
 h9(d){return"About "+d},
-gha(d){return"Acceptar"},
-hb(d){return"\ud83d\udc4d "+d+" acceptava tu invitation"},
-ghd(){return"Conto"},
+gha(d){return"Accept"},
+hb(d){return"\ud83d\udc4d "+d+" accepted the invitation"},
+ghd(){return"Account"},
 he(d){return"\ud83d\udd10 "+d+" activated end to end encryption"},
-ghf(){return"Adder email"},
+ghf(){return"Add email"},
 glB(){return"Please confirm your Matrix ID in order to delete your account."},
-kU(d){return"Isto deberea esser "+d},
+kU(d){return"This should be "+d},
 ghh(){return"Add to space"},
 geX(){return"Admin"},
 ghj(){return"alias"},
@@ -657,7 +657,7 @@ return B.bI(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpx(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FH,C.aF)})()
-B.dW(b.typeUniverse,JSON.parse('{"FH":{"aF":[]}}'))};
-(a=>{a["Xjy9Zf/5K3EQrALBZ7tUo6wD+4U="]=a.current})($__dart_deferred_initializers__);
+y(A.FE,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"FE":{"aF":[]}}'))};
+(a=>{a["jXFo5FRV/tLmcSQ8Wl1MdOIA3Y4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_287.part.js.map
