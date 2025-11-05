@@ -276,7 +276,7 @@ gnE(){return"\xdclevaade"},
 gnG(){return"Salas\xf5na taastamise seadistused"},
 gjw(){return"Salas\xf5na taastamine"},
 gjy(){return"Vali pilt"},
-gfF(){return"Klammerda"},
+gfF(){return"T\xf5sta esile"},
 gjz(){return"Palun vali"},
 gfG(){return"J\xe4tkamiseks palun kl\xf5psi sulle saadetud e-kirjas leiduvat linki."},
 gek(){return"Palun sisesta oma salas\xf5na"},
@@ -351,7 +351,7 @@ gjV(){return"Tundmatu seade"},
 gjW(){return"Tundmatu kr\xfcptoalgoritm"},
 oh(d){return"Tundmatu s\xfcndmuse t\xfc\xfcp '"+d+"'"},
 gjX(){return"L\xf5peta vestluse vaigistamine"},
-geN(){return"Eemalda klammerdus"},
+geN(){return"Eemalda esilet\xf5stmine"},
 on(d,e){return d+" ja "+e+" muud kirjutavad\u2026"},
 oo(d,e){return d+" ja "+e+" kirjutavad\u2026"},
 op(d){return d+" kirjutab\u2026"},
@@ -391,8 +391,8 @@ gnM(){return"Vanade s\xf5numite lugemiseks palun siseta oma varasemas sessioonis
 gmB(){return"M\xe4rgi loetuks"},
 go0(){return"Teata kasutajast"},
 nT(d,e){return d+" reageeris nii "+e},
-gnI(){return"Klammerda s\xf5num jututuppa"},
-glA(){return"Kas sa oled kindel, et tahad klammerdatud s\xfcndmuse eemaldada?"},
+gnI(){return"T\xf5sta s\xf5num jututoas esile"},
+glA(){return"Kas sa oled kindel, et tahad esilet\xf5stetud s\xfcndmuse j\xe4\xe4davalt eemaldada?"},
 giA(){return"Emotikonid"},
 gnJ(){return"Helista"},
 goF(){return"H\xe4\xe4lk\xf5ne"},
@@ -659,5 +659,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fv,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"Fv":{"aF":[]}}'))};
-(a=>{a["9ywGVbb3BXeg2b45KNgK3N7moSM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["wacibKgqZkNX9ni3tsW1xZxb+j8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_269.part.js.map
