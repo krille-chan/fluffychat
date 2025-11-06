@@ -3215,5 +3215,13 @@
     "moveToDifferentSpace": "Flytt til et annet område",
     "@moveToDifferentSpace": {},
     "moveUp": "Flytt opp",
-    "@moveUp": {}
+    "@moveUp": {},
+    "storeInSecureStorageDescription": "Oppbevar gjenopprettingsnøkkelen på en sikker lagringsplass på denne enheten.",
+    "@storeInSecureStorageDescription": {},
+    "foregroundServiceRunning": "Denne varslingen vises når forgrunnstjenesten kjører.",
+    "@foregroundServiceRunning": {},
+    "callingAccount": "Ringekonto",
+    "@callingAccount": {},
+    "appearOnTopDetails": "Lar appen vises øverst (ikke nødvendig hvis du allerede har Fluffychat konfigurert som en ringekonto)",
+    "@appearOnTopDetails": {}
 }
