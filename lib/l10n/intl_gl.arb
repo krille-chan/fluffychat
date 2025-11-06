@@ -3414,5 +3414,78 @@
         }
     },
     "donate": "Doar",
-    "@donate": {}
+    "@donate": {},
+    "spaceMemberOf": "Participa no espazo {spaces}",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "Os membros de {spaces} poden petar á porta",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "startedAPoll": "{username} publicou unha enquisa.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "Enquisa",
+    "@poll": {},
+    "startPoll": "Publicar enquisa",
+    "@startPoll": {},
+    "endPoll": "Finalizar enquisa",
+    "@endPoll": {},
+    "answersVisible": "Resultados visibles",
+    "@answersVisible": {},
+    "answersHidden": "Non se ven os resultados",
+    "@answersHidden": {},
+    "pollQuestion": "Pregunta da enquisa",
+    "@pollQuestion": {},
+    "answerOption": "Opción de resposta",
+    "@answerOption": {},
+    "addAnswerOption": "Engadir opción",
+    "@addAnswerOption": {},
+    "allowMultipleAnswers": "Permitir varias respostas",
+    "@allowMultipleAnswers": {},
+    "pollHasBeenEnded": "Rematou a enquisa",
+    "@pollHasBeenEnded": {},
+    "countVotes": "{count, plural, =1{Un voto} other{{count} votos}}",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "answersWillBeVisibleWhenPollHasEnded": "As respostas son visibles ao finalizar a enquisa",
+    "@answersWillBeVisibleWhenPollHasEnded": {},
+    "replyInThread": "Responder ao fío",
+    "@replyInThread": {},
+    "countReplies": "{count, plural, =1{Unha resposta} other{{count} respostas}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "thread": "Fío",
+    "@thread": {},
+    "backToMainChat": "Volver á conversa principal",
+    "@backToMainChat": {}
 }
