@@ -3431,5 +3431,60 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "startedAPoll": "{username} is een peiling begonnen.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "Peiling",
+    "@poll": {},
+    "startPoll": "Peiling starten",
+    "@startPoll": {},
+    "endPoll": "Peiling beëindigen",
+    "@endPoll": {},
+    "answersVisible": "Zichtbaar invullen",
+    "@answersVisible": {},
+    "answersHidden": "Antwoorden verborgen",
+    "@answersHidden": {},
+    "pollQuestion": "Peiling vraag",
+    "@pollQuestion": {},
+    "answerOption": "Antwoord optie",
+    "@answerOption": {},
+    "addAnswerOption": "Antwoord optie toevoegen",
+    "@addAnswerOption": {},
+    "allowMultipleAnswers": "Meerdere antwoorden toestaan",
+    "@allowMultipleAnswers": {},
+    "pollHasBeenEnded": "Peiling is geëindigd",
+    "@pollHasBeenEnded": {},
+    "countVotes": "{count, plural, =1{Één stem} other{{count} stemmen}}",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "answersWillBeVisibleWhenPollHasEnded": "Antwoorden zullen zichtbaar zijn wanneer de peiling is geëindigd",
+    "@answersWillBeVisibleWhenPollHasEnded": {},
+    "replyInThread": "Antwoord in draad",
+    "@replyInThread": {},
+    "countReplies": "{count, plural, =1{Één antwoord} other{{count} antwoorden}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "thread": "Draad",
+    "@thread": {},
+    "backToMainChat": "Terug naar hoofdchat",
+    "@backToMainChat": {}
 }
