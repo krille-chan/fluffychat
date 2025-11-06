@@ -1,1 +1,6 @@
-{}
+{
+    "repeatPassword": "Parolni takrorlang",
+    "@repeatPassword": {},
+    "normalUser": "Odatiy foydalanuvchi",
+    "@normalUser": {}
+}
