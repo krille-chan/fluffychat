@@ -226,18 +226,53 @@ class ChatListItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                   ],
-                  AnimatedContainer(
-                    width: typingText.isEmpty ? 0 : 18,
+                  AnimatedSize(
                     clipBehavior: Clip.hardEdge,
-                    decoration: const BoxDecoration(),
                     duration: FluffyThemes.animationDuration,
                     curve: FluffyThemes.animationCurve,
-                    padding: const EdgeInsets.only(right: 4),
-                    child: Icon(
-                      Icons.edit_outlined,
-                      color: theme.colorScheme.secondary,
-                      size: 14,
-                    ),
+                    child: typingText.isNotEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.only(right: 4.0),
+                            child: Icon(
+                              Icons.edit_outlined,
+                              color: theme.colorScheme.secondary,
+                              size: 16,
+                            ),
+                          )
+                        : room.lastEvent?.relationshipType ==
+                                RelationshipTypes.thread
+                            ? Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: theme.colorScheme.outline,
+                                  ),
+                                  borderRadius: BorderRadius.circular(
+                                    AppConfig.borderRadius,
+                                  ),
+                                ),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                margin: const EdgeInsets.only(right: 4.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.message_outlined,
+                                      size: 12,
+                                      color: theme.colorScheme.outline,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      L10n.of(context).thread,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: theme.colorScheme.outline,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : const SizedBox.shrink(),
                   ),
                   Expanded(
                     child: room.isSpace && room.membership == Membership.join
