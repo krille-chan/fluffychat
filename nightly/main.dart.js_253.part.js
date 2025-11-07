@@ -654,11 +654,12 @@ gpq(){return"Answers will be visible when poll has ended"},
 gpg(){return"Reply in thread"},
 pu(d){var x=null
 return B.bD(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+gpH(){return"Thread"},
 gpr(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fq,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fq":{"aE":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["pmPoeL2O8+aUTt9b/ghmPuUdIyg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ZJh4+FG3IhGecYpEPkmJFUhozkg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_253.part.js.map

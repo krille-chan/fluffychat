@@ -658,6 +658,7 @@ gpq(){return"Answers will be visible when poll has ended"},
 gpg(){return"Reply in thread"},
 pu(d){var x=null
 return B.bD(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+gpH(){return"Thread"},
 gpr(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 A.FT.prototype={
@@ -1540,5 +1541,5 @@ x(A.AO,C.aE)
 w(A.AO,[A.FT,A.FU])})()
 B.dQ(b.typeUniverse,JSON.parse('{"AO":{"aE":[]},"FT":{"aE":[]},"FU":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["+ik5DHS96ueROPlKusplAPzZdRQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ZCX1XpvBNYmOXg1t6LmALCCqC0s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_16.part.js.map

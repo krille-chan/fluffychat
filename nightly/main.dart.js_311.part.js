@@ -654,10 +654,11 @@ gpq(){return"Atbildes b\u016bs redzams, kad aptauja nosl\u0113gsies"},
 gpg(){return"Atbild\u0113t pavedien\u0101"},
 pu(d){var y=""+d
 return B.bD(d,null,this.a,null,y+" atbilde",y+" atbildes",null,y+" atbil\u017eu")},
+gpH(){return"Pavediens"},
 gpr(){return"Atgriezties galvenaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FP,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FP":{"aE":[]}}'))};
-(a=>{a["ZgwLNfmPyFdYRGRxb4azH6Wptgc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["sjCZ6gEQ2J3b0dUaQUqpROBDW5k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_311.part.js.map

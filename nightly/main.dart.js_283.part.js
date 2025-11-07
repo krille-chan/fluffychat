@@ -654,10 +654,11 @@ gpq(){return"As respostas son visibles ao finalizar a enquisa"},
 gpg(){return"Responder ao f\xedo"},
 pu(d){var y=null
 return B.bD(d,y,this.a,y,"Unha resposta",""+d+" respostas",y,y)},
+gpH(){return"F\xedo"},
 gpr(){return"Volver \xe1 conversa principal"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FC,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FC":{"aE":[]}}'))};
-(a=>{a["f5y7R6yf3HEq/7dciztoYj7OUoU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["KET081B3HtNBtLkdg07t/6kOAH0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_283.part.js.map

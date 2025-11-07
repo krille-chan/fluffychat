@@ -654,10 +654,11 @@ gpq(){return"Answers will be visible when poll has ended"},
 gpg(){return"Reply in thread"},
 pu(d){var y=null
 return B.bD(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+gpH(){return"Thread"},
 gpr(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FK,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FK":{"aE":[]}}'))};
-(a=>{a["1b2UYKQxAkI9ndv/41zcnqXVzvc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["gph4UoFAdjSSlPF6lr9SR6aaD9w="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map

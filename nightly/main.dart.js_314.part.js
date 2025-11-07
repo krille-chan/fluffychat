@@ -654,10 +654,11 @@ gpq(){return"Antwoorden zullen zichtbaar zijn wanneer de peiling is ge\xebindigd
 gpg(){return"Antwoord in draad"},
 pu(d){var y=null
 return B.bD(d,y,this.a,y,"\xc9\xe9n antwoord",""+d+" antwoorden",y,y)},
+gpH(){return"Draad"},
 gpr(){return"Terug naar hoofdchat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FR,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FR":{"aE":[]}}'))};
-(a=>{a["nElO+uQES2ihxOQb2xYZDCX+bWw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Y/6a9EsBy2Mb4X+V6s5Lr9RDaHY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

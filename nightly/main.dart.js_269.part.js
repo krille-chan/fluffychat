@@ -654,10 +654,11 @@ gpq(){return"Vastused on n\xe4ha k\xfcsitluse l\xf5ppedes"},
 gpg(){return"Vasta jutul\xf5ngas"},
 pu(d){var y=null
 return B.bD(d,y,this.a,y,"\xdcks vastus",""+d+" vastust",y,y)},
+gpH(){return"Jutul\xf5ng"},
 gpr(){return"Tagasi p\xf5hivestlusesse"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fv,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fv":{"aE":[]}}'))};
-(a=>{a["RTMQgAYAtT8ZsnzLjsbOd86fVL4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["5W0m1kbXSCgbUsD1NNGtHvRWeqE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_269.part.js.map

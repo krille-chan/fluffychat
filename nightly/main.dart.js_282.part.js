@@ -654,11 +654,12 @@ gpq(){return"Beidh freagra\xed le feice\xe1il nuair a bheidh an pobalbhreith tha
 gpg(){return"Freagra sa sn\xe1ithe"},
 pu(d){var x=null
 return B.bD(d,x,this.a,x,"Freagra amh\xe1in",""+d+" freagra\xed",x,x)},
+gpH(){return"Sn\xe1ithe"},
 gpr(){return"Ar ais chuig an bpr\xedomhchomhr\xe1"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FB,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FB":{"aE":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["gxsdoK5NW/945GKkyy66xDuyHcU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["MiJH2aoQb3b3r5aiDjKhcwfSpZ8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_282.part.js.map

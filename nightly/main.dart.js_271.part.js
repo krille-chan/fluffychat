@@ -654,11 +654,12 @@ gpq(){return"Answers will be visible when poll has ended"},
 gpg(){return"Reply in thread"},
 pu(d){var x=null
 return B.bD(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+gpH(){return"Thread"},
 gpr(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fw,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fw":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["hKmvNKrLBNY6RuOWJmZZfDaajsk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["x5SWYGLVlsYFedzciM1xLTNWSR8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_271.part.js.map
