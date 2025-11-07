@@ -50,6 +50,7 @@
     <locale android:name="th"/>
     <locale android:name="tr"/>
     <locale android:name="uk"/>
+    <locale android:name="uz"/>
     <locale android:name="vi"/>
     <locale android:name="yue"/>
     <locale android:name="zh"/>
