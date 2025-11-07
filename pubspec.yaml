@@ -41,7 +41,7 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   flutter_shortcuts_new: ^2.0.0
   flutter_vodozemac: ^0.4.1
-  flutter_web_auth_2: ^3.1.1 # Version 4 blocked by https://github.com/MixinNetwork/flutter-plugins/issues/379
+  flutter_web_auth_2: ^4.1.0
   flutter_webrtc: ^1.2.0
   geolocator: ^14.0.2
   go_router: ^17.0.0
@@ -123,9 +123,3 @@ flutter:
 # 2. Always link an (upstream?) issue
 # 3. Explain how and when this can be removed (overrides must be temporarily)
 dependency_overrides:
-  # https://github.com/ThexXTURBOXx/flutter_web_auth_2/issues/155
-  flutter_web_auth_2:
-    git:
-      url: https://github.com/ThexXTURBOXx/flutter_web_auth_2.git
-      ref: 3.x-without-v1
-      path: flutter_web_auth_2
