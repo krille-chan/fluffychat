@@ -13,93 +13,107 @@ import 'package:fluffychat/widgets/avatar.dart';
 class ChatSearchMessageTab extends StatelessWidget {
   final String searchQuery;
   final Room room;
-  final Stream<(List<Event>, String?)>? searchStream;
-  final void Function({String? prevBatch, List<Event>? previousSearchResult})
-  startSearch;
+  final List<Event> events;
+  final void Function() onStartSearch;
+  final bool endReached, isLoading;
+  final DateTime? searchedUntil;
 
   const ChatSearchMessageTab({
     required this.searchQuery,
     required this.room,
-    required this.searchStream,
-    required this.startSearch,
+    required this.onStartSearch,
+    required this.events,
+    required this.searchedUntil,
+    required this.endReached,
+    required this.isLoading,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      key: ValueKey(searchQuery),
-      stream: searchStream,
-      builder: (context, snapshot) {
-        final theme = Theme.of(context);
-        if (searchStream == null) {
-          return Column(
-            mainAxisAlignment: .center,
-            children: [
-              const Icon(Icons.search_outlined, size: 64),
-              const SizedBox(height: 8),
-              Text(
-                L10n.of(context).searchIn(
-                  room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
-                ),
+    final theme = Theme.of(context);
+    if (events.isEmpty) {
+      if (isLoading) {
+        return const Center(child: CircularProgressIndicator.adaptive());
+      }
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.search_outlined, size: 64),
+          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: Text(
+              L10n.of(context).searchIn(
+                room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
               ),
-            ],
-          );
-        }
-        final events = snapshot.data?.$1 ?? [];
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      );
+    }
 
-        return SelectionArea(
-          child: ListView.separated(
-            itemCount: events.length + 1,
-            separatorBuilder: (context, _) =>
-                Divider(color: theme.dividerColor, height: 1),
-            itemBuilder: (context, i) {
-              if (i == events.length) {
-                if (snapshot.connectionState != ConnectionState.done) {
-                  return const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Center(
-                      child: CircularProgressIndicator.adaptive(strokeWidth: 2),
-                    ),
-                  );
-                }
-                final nextBatch = snapshot.data?.$2;
-                if (nextBatch == null) {
-                  return const SizedBox.shrink();
-                }
-                return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: TextButton.icon(
+    final searchedUntil = this.searchedUntil;
+
+    return SelectionArea(
+      child: ListView.separated(
+        itemCount: events.length + 1,
+        separatorBuilder: (context, _) =>
+            Divider(color: theme.dividerColor, height: 1),
+        itemBuilder: (context, i) {
+          if (i == events.length) {
+            if (endReached) {
+              return const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text('Keine weiteren Nachrichten gefunden.'),
+                ),
+              );
+            }
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisSize: .min,
+                  children: [
+                    if (searchedUntil != null)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Text(
+                          'Nachrichten durchsucht bis ${searchedUntil.localizedTime(context)}',
+                          style: TextStyle(fontSize: 10.5),
+                        ),
+                      ),
+                    TextButton.icon(
                       style: TextButton.styleFrom(
                         backgroundColor: theme.colorScheme.secondaryContainer,
                         foregroundColor: theme.colorScheme.onSecondaryContainer,
                       ),
-                      onPressed: () => startSearch(
-                        prevBatch: nextBatch,
-                        previousSearchResult: events,
-                      ),
-                      icon: const Icon(Icons.arrow_downward_outlined),
+                      onPressed: isLoading ? null : onStartSearch,
+                      icon: isLoading
+                          ? const CircularProgressIndicator.adaptive()
+                          : const Icon(Icons.arrow_downward_outlined),
                       label: Text(L10n.of(context).searchMore),
                     ),
-                  ),
-                );
-              }
-              final event = events[i];
-              final sender = event.senderFromMemoryOrFallback;
-              final displayname = sender.calcDisplayname(
-                i18n: MatrixLocals(L10n.of(context)),
-              );
-              return _MessageSearchResultListTile(
-                sender: sender,
-                displayname: displayname,
-                event: event,
-                room: room,
-              );
-            },
-          ),
-        );
-      },
+                  ],
+                ),
+              ),
+            );
+          }
+          final event = events[i];
+          final sender = event.senderFromMemoryOrFallback;
+          final displayname = sender.calcDisplayname(
+            i18n: MatrixLocals(L10n.of(context)),
+          );
+          return _MessageSearchResultListTile(
+            sender: sender,
+            displayname: displayname,
+            event: event,
+            room: room,
+          );
+        },
+      ),
     );
   }
 }
