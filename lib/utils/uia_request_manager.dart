@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+
 import 'package:matrix/matrix.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -80,24 +82,38 @@ extension UiaRequestManager on MatrixState {
             ),
           );
         default:
-          final url = Uri.parse(
-            '${client.homeserver}/_matrix/client/r0/auth/$stage/fallback/web?session=${uiaRequest.session}',
+          final stageUrl = uiaRequest.params
+              .tryGetMap<String, Object?>(stage)
+              ?.tryGet<String>('url');
+          final fallbackUrl = client.homeserver!.replace(
+            path: '/_matrix/client/r0/auth/$stage/fallback/web',
+            queryParameters: {
+              'session': uiaRequest.session,
+            },
           );
-          launchUrlString(url.toString());
-          if (OkCancelResult.ok ==
-              await showOkCancelAlertDialog(
-                useRootNavigator: false,
-                title: l10n.pleaseFollowInstructionsOnWeb,
-                context: navigatorContext,
-                okLabel: l10n.next,
-                cancelLabel: l10n.cancel,
-              )) {
-            return uiaRequest.completeStage(
-              AuthenticationData(session: uiaRequest.session),
-            );
-          } else {
-            return uiaRequest.cancel();
-          }
+          final url = stageUrl != null
+              ? (Uri.tryParse(stageUrl) ?? fallbackUrl)
+              : fallbackUrl;
+
+          final consent = await showOkCancelAlertDialog(
+            useRootNavigator: false,
+            title: l10n.pleaseFollowInstructionsOnWeb,
+            context: navigatorContext,
+            okLabel: l10n.open,
+            cancelLabel: l10n.cancel,
+          );
+          if (consent != OkCancelResult.ok) return uiaRequest.cancel();
+
+          launchUrl(url, mode: LaunchMode.inAppBrowserView);
+          final completer = Completer();
+          final listener =
+              AppLifecycleListener(onResume: () => completer.complete());
+          await completer.future;
+          listener.dispose();
+
+          return uiaRequest.completeStage(
+            AuthenticationData(session: uiaRequest.session),
+          );
       }
     } catch (e, s) {
       Logs().e('Error while background UIA', e, s);
