@@ -57,7 +57,7 @@ dependencies:
   matrix: #^3.0.1
     git:
       url: https://github.com/famedly/matrix-dart-sdk.git
-      ref: main
+      ref: krille/matrix-native-oidc
   mime: ^2.0.0
   native_imaging: ^0.2.0
   opus_caf_converter_dart: ^1.0.1

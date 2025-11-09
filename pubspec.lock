@@ -1120,8 +1120,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: main
-      resolved-ref: "9e26e5087a5811bcba5384e377a1b09a26badb89"
+      ref: "krille/matrix-native-oidc"
+      resolved-ref: "3f7345509c958dd389c4678902c98859e69f4e4b"
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "3.0.2"
