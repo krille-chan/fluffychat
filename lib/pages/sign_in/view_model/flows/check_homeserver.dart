@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/sign_in/view_model/flows/oidc_login.dart';
 import 'package:fluffychat/pages/sign_in/view_model/flows/sso_login.dart';
 import 'package:fluffychat/pages/sign_in/view_model/model/public_homeserver_data.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -27,16 +28,33 @@ void connectToHomeserverFlow(
     }
     final l10n = L10n.of(context);
     final client = await Matrix.of(context).getLoginClient();
-    final (_, _, loginFlows, _) = await client.checkHomeserver(homeserver);
+    final (_, _, loginFlows, authMetadata) = await client.checkHomeserver(
+      homeserver,
+      fetchAuthMetadata: true,
+    );
 
+    final regLink = homeserverData.regLink;
     final supportsSso = loginFlows.any((flow) => flow.type == 'm.login.sso');
 
-    if (!supportsSso) {
-      final regLink = homeserverData.regLink;
+    if ((kIsWeb || PlatformInfos.isLinux) &&
+        (supportsSso || authMetadata != null || (signUp && regLink != null))) {
+      final consent = await showOkCancelAlertDialog(
+        context: context,
+        title: l10n.appWantsToUseForLogin(homeserverInput),
+        message: l10n.appWantsToUseForLoginDescription,
+        okLabel: l10n.continueText,
+      );
+      if (consent != OkCancelResult.ok) return;
+    }
+
+    if (authMetadata != null) {
+      await oidcLoginFlow(client, context, signUp);
+    } else if (supportsSso) {
+      await ssoLoginFlow(client, context, signUp);
+    } else {
       if (signUp && regLink != null) {
         await launchUrlString(regLink);
       }
-
       final pathSegments = List.of(
         GoRouter.of(context).routeInformationProvider.value.uri.pathSegments,
       );
@@ -46,18 +64,10 @@ void connectToHomeserverFlow(
       setState(AsyncSnapshot.withData(ConnectionState.done, true));
       return;
     }
-    if (kIsWeb || PlatformInfos.isLinux) {
-      final consent = await showOkCancelAlertDialog(
-        context: context,
-        title: l10n.appWantsToUseForLogin(homeserverInput),
-        message: l10n.appWantsToUseForLoginDescription,
-        okLabel: l10n.continueText,
-      );
-      if (consent != OkCancelResult.ok) return;
-    }
-    await ssoLoginFlow(client, context, signUp);
 
-    setState(AsyncSnapshot.withData(ConnectionState.done, true));
+    if (context.mounted) {
+      setState(AsyncSnapshot.withData(ConnectionState.done, true));
+    }
   } catch (e, s) {
     setState(AsyncSnapshot.withError(ConnectionState.done, e, s));
     if (!context.mounted) return;
