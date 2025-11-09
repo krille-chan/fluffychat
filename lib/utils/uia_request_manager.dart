@@ -86,7 +86,7 @@ extension UiaRequestManager on MatrixState {
               .tryGetMap<String, Object?>(stage)
               ?.tryGet<String>('url');
           final fallbackUrl = client.homeserver!.replace(
-            path: '/_matrix/client/r0/auth/$stage/fallback/web',
+            path: '/_matrix/client/v3/auth/$stage/fallback/web',
             queryParameters: {
               'session': uiaRequest.session,
             },
