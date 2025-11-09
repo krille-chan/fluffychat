@@ -57,6 +57,8 @@ class SignInPage extends StatelessWidget {
                           state.publicHomeservers.connectionState ==
                           ConnectionState.waiting,
                       controller: viewModel.filterTextController,
+                      autocorrect: false,
+                      keyboardType: TextInputType.url,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: theme.colorScheme.secondaryContainer,
@@ -91,37 +93,27 @@ class SignInPage extends StatelessWidget {
                           final server = publicHomeservers[i];
                           return RadioListTile.adaptive(
                             value: server,
-                            radioScaleFactor: 2,
-                            secondary: IconButton(
-                              icon: const Icon(Icons.link_outlined),
-                              onPressed: () => launchUrlString(
-                                server.homepage ?? 'https://${server.name}',
-                              ),
-                            ),
+                            radioScaleFactor:
+                                FluffyThemes.isColumnMode(context) ||
+                                    {
+                                      TargetPlatform.iOS,
+                                      TargetPlatform.macOS,
+                                    }.contains(theme.platform)
+                                ? 2
+                                : 1,
                             title: Row(
-                              spacing: 4,
                               children: [
                                 Expanded(child: Text(server.name ?? 'Unknown')),
-                                ...?server.languages?.map(
-                                  (language) => Material(
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius,
+                                SizedBox.square(
+                                  dimension: 32,
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      Icons.open_in_new_outlined,
+                                      size: 16,
                                     ),
-                                    color: theme.colorScheme.tertiaryContainer,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 6.0,
-                                        vertical: 3.0,
-                                      ),
-                                      child: Text(
-                                        language,
-                                        style: TextStyle(
-                                          fontSize: 10,
-                                          color: theme
-                                              .colorScheme
-                                              .onTertiaryContainer,
-                                        ),
-                                      ),
+                                    onPressed: () => launchUrlString(
+                                      server.homepage ??
+                                          'https://${server.name}',
                                     ),
                                   ),
                                 ),
@@ -133,36 +125,61 @@ class SignInPage extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 if (server.features?.isNotEmpty == true)
-                                  Row(
+                                  Wrap(
                                     spacing: 4.0,
-                                    children: server.features!
-                                        .map(
-                                          (feature) => Material(
-                                            borderRadius: BorderRadius.circular(
-                                              AppConfig.borderRadius,
+                                    runSpacing: 4.0,
+                                    children: [
+                                      ...?server.languages?.map(
+                                        (language) => Material(
+                                          borderRadius: BorderRadius.circular(
+                                            AppConfig.borderRadius,
+                                          ),
+                                          color: theme
+                                              .colorScheme
+                                              .tertiaryContainer,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 6.0,
+                                              vertical: 3.0,
                                             ),
-                                            color: theme
-                                                .colorScheme
-                                                .secondaryContainer,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                    horizontal: 6.0,
-                                                    vertical: 3.0,
-                                                  ),
-                                              child: Text(
-                                                feature,
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: theme
-                                                      .colorScheme
-                                                      .onSecondaryContainer,
-                                                ),
+                                            child: Text(
+                                              language,
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                                color: theme
+                                                    .colorScheme
+                                                    .onTertiaryContainer,
                                               ),
                                             ),
                                           ),
-                                        )
-                                        .toList(),
+                                        ),
+                                      ),
+                                      ...server.features!.map(
+                                        (feature) => Material(
+                                          borderRadius: BorderRadius.circular(
+                                            AppConfig.borderRadius,
+                                          ),
+                                          color: theme
+                                              .colorScheme
+                                              .secondaryContainer,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 6.0,
+                                              vertical: 3.0,
+                                            ),
+                                            child: Text(
+                                              feature,
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                                color: theme
+                                                    .colorScheme
+                                                    .onSecondaryContainer,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 Text(
                                   server.description ?? 'A matrix homeserver',
@@ -188,22 +205,24 @@ class SignInPage extends StatelessWidget {
                     shadowColor: theme.appBarTheme.shadowColor,
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: ElevatedButton(
-                        onPressed:
-                            state.loginLoading.connectionState ==
-                                ConnectionState.waiting
-                            ? null
-                            : () => connectToHomeserverFlow(
-                                selectedHomserver,
-                                context,
-                                viewModel.setLoginLoading,
-                                signUp,
-                              ),
-                        child:
-                            state.loginLoading.connectionState ==
-                                ConnectionState.waiting
-                            ? const CircularProgressIndicator.adaptive()
-                            : Text(L10n.of(context).continueText),
+                      child: SafeArea(
+                        child: ElevatedButton(
+                          onPressed:
+                              state.loginLoading.connectionState ==
+                                  ConnectionState.waiting
+                              ? null
+                              : () => connectToHomeserverFlow(
+                                  selectedHomserver,
+                                  context,
+                                  viewModel.setLoginLoading,
+                                  signUp,
+                                ),
+                          child:
+                              state.loginLoading.connectionState ==
+                                  ConnectionState.waiting
+                              ? const CircularProgressIndicator.adaptive()
+                              : Text(L10n.of(context).continueText),
+                        ),
                       ),
                     ),
                   ),
