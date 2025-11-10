@@ -639,26 +639,26 @@ pt(d){return""+d+" \u0447\u0430\u0442\u0430\u045e"},
 pj(d){return"\u0423\u0434\u0437\u0435\u043b\u044c\u043d\u0456\u043a \u043f\u0440\u0430\u0441\u0442\u043e\u0440\u044b "+d},
 pk(d){return"\u0423\u0434\u0437\u0435\u043b\u044c\u043d\u0456\u043a\u0456 \u043f\u0440\u0430\u0441\u0442\u043e\u0440\u044b \u0437 "+d+" \u043c\u043e\u0433\u0443\u0446\u044c \u0433\u0440\u0443\u043a\u0430\u0446\u0446\u0430"},
 gpw(){return"\u0414\u0430\u0446\u044c \u0433\u0440\u043e\u0448\u044b"},
-gkK(){return"Start poll"},
-gpx(){return"End poll"},
-gpp(){return"Answers visible"},
-gpo(){return"Answers hidden"},
-gpE(){return"Poll question"},
-gpn(){return"Answer option"},
-gpl(){return"Add answer option"},
-gpm(){return"Allow multiple answers"},
-gpf(){return"Poll has been ended"},
+gkK(){return"\u041f\u0430\u0447\u0430\u0446\u044c \u0430\u043f\u044b\u0442\u0430\u043d\u043d\u0435"},
+gpx(){return"\u0421\u043a\u043e\u043d\u0447\u044b\u0446\u044c \u0430\u043f\u044b\u0442\u0430\u043d\u043d\u0435"},
+gpp(){return"\u0410\u0434\u043a\u0430\u0437\u044b \u0431\u0430\u0447\u043d\u044b"},
+gpo(){return"\u0410\u0434\u043a\u0430\u0437\u044b \u0441\u0445\u0430\u0432\u0430\u043d\u044b"},
+gpE(){return"\u041f\u044b\u0442\u0430\u043d\u043d\u0435 \u0430\u043f\u044b\u0442\u0430\u043d\u043d\u044f"},
+gpn(){return"\u0412\u0430\u0440\u044b\u044f\u043d\u0442 \u0430\u0434\u043a\u0430\u0437\u0443"},
+gpl(){return"\u0414\u0430\u0434\u0430\u0446\u044c \u0432\u0430\u0440\u044b\u044f\u043d\u0442 \u0430\u0434\u043a\u0430\u0437\u0443"},
+gpm(){return"\u0414\u0430\u0437\u0432\u043e\u043b\u0456\u0446\u044c \u043d\u0435\u043a\u0430\u043b\u044c\u043a\u0456 \u0430\u0434\u043a\u0430\u0437\u0430\u045e"},
+gpf(){return"\u0410\u043f\u044b\u0442\u0430\u043d\u043d\u0435 \u0431\u044b\u043b\u043e \u0441\u043a\u043e\u043d\u0447\u0430\u043d\u0430"},
 pv(d){var y=null
-return B.bD(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
-gpq(){return"Answers will be visible when poll has ended"},
-gpg(){return"Reply in thread"},
+return B.bD(d,y,this.a,y,"\u0410\u0434\u0437\u0456\u043d \u0433\u043e\u043b\u0430\u0441",""+d+" \u0433\u0430\u043b\u0430\u0441\u044b(-\u043e\u045e)",y,y)},
+gpq(){return"\u0412\u044b\u043d\u0456\u043a\u0456 \u0431\u0443\u0434\u0443\u0446\u044c \u0431\u0430\u0447\u043d\u044b, \u043a\u0430\u043b\u0456 \u0430\u043f\u044b\u0442\u0430\u043d\u043d\u0435 \u0441\u043a\u043e\u043d\u0447\u044b\u0446\u0446\u0430"},
+gpg(){return"\u0410\u0434\u043a\u0430\u0437\u0430\u0446\u044c \u0443 \u0433\u0443\u0442\u0430\u0440\u043a\u0443"},
 pu(d){var y=null
-return B.bD(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
-gpH(){return"Thread"},
-gpr(){return"Back to main chat"},
+return B.bD(d,y,this.a,y,"\u0410\u0434\u0437\u0456\u043d \u0430\u0434\u043a\u0430\u0437",""+d+" \u0430\u0434\u043a\u0430\u0437\u0430(-\u045e)",y,y)},
+gpH(){return"\u0413\u0443\u0442\u0430\u0440\u043a\u0430"},
+gpr(){return"\u0412\u044f\u0440\u043d\u0443\u0446\u0446\u0430 \u045e \u0433\u0430\u043b\u043e\u045e\u043d\u044b \u0447\u0430\u0442"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fl,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fl":{"aE":[]}}'))};
-(a=>{a["w/Dc0kPxJ2qVHioBy0PLqScEOdY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["GRtMVZARwsuyXQ6xcfzIoHVOIGM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_214.part.js.map

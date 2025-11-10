@@ -639,27 +639,27 @@ pt(d){return""+d+" txat"},
 pj(d){return d+" guneko kidea"},
 pk(d){return d+" guneko kideak sartzeko baimena eska dezake"},
 gpw(){return"Egin dohaintza"},
-gkK(){return"Start poll"},
-gpx(){return"End poll"},
-gpp(){return"Answers visible"},
-gpo(){return"Answers hidden"},
-gpE(){return"Poll question"},
-gpn(){return"Answer option"},
-gpl(){return"Add answer option"},
-gpm(){return"Allow multiple answers"},
-gpf(){return"Poll has been ended"},
+gkK(){return"Hasi bozketa"},
+gpx(){return"Amaitu bozketa"},
+gpp(){return"Erakutsi emaitzak"},
+gpo(){return"Ezkutatu emaitzak"},
+gpE(){return"Bozketako galdera"},
+gpn(){return"Erantzun-aukera"},
+gpl(){return"Gehitu erantzun-aukera"},
+gpm(){return"Baimendu erantzun bat baino gehiago"},
+gpf(){return"Bozketa amaitu da"},
 pv(d){var x=null
-return B.bD(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
-gpq(){return"Answers will be visible when poll has ended"},
-gpg(){return"Reply in thread"},
+return B.bD(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
+gpq(){return"Emaitzak bozketak amaitu duenean egongo dira ikusgai"},
+gpg(){return"Erantzun harian"},
 pu(d){var x=null
-return B.bD(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
-gpH(){return"Thread"},
-gpr(){return"Back to main chat"},
+return B.bD(d,x,this.a,x,"Erantzun bat",""+d+" erantzun",x,x)},
+gpH(){return"Haria"},
+gpr(){return"Joan txat nagusira"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fx,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fx":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["M+wje/1NL83EIfZYBlda0t0KbWo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["TEJQvqZbxvppfF+QT50YDU/gao4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_271.part.js.map
