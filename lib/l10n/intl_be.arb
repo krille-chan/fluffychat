@@ -3419,5 +3419,60 @@
         }
     },
     "donate": "Даць грошы",
-    "@donate": {}
+    "@donate": {},
+    "startedAPoll": "{username} пачаў апытанне.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "Апытанне",
+    "@poll": {},
+    "startPoll": "Пачаць апытанне",
+    "@startPoll": {},
+    "endPoll": "Скончыць апытанне",
+    "@endPoll": {},
+    "answersVisible": "Адказы бачны",
+    "@answersVisible": {},
+    "answersHidden": "Адказы схаваны",
+    "@answersHidden": {},
+    "pollQuestion": "Пытанне апытання",
+    "@pollQuestion": {},
+    "answerOption": "Варыянт адказу",
+    "@answerOption": {},
+    "addAnswerOption": "Дадаць варыянт адказу",
+    "@addAnswerOption": {},
+    "allowMultipleAnswers": "Дазволіць некалькі адказаў",
+    "@allowMultipleAnswers": {},
+    "pollHasBeenEnded": "Апытанне было скончана",
+    "@pollHasBeenEnded": {},
+    "countVotes": "{count, plural, =1{Адзін голас} other{{count} галасы(-оў)}}",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "answersWillBeVisibleWhenPollHasEnded": "Вынікі будуць бачны, калі апытанне скончыцца",
+    "@answersWillBeVisibleWhenPollHasEnded": {},
+    "replyInThread": "Адказаць у гутарку",
+    "@replyInThread": {},
+    "countReplies": "{count, plural, =1{Адзін адказ} other{{count} адказа(-ў)}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "thread": "Гутарка",
+    "@thread": {},
+    "backToMainChat": "Вярнуцца ў галоўны чат",
+    "@backToMainChat": {}
 }
