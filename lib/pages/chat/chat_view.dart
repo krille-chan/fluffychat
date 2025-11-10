@@ -238,7 +238,7 @@ class ChatView extends StatelessWidget {
                                 builder: (context, _) => UnreadRoomsBadge(
                                   filter: (r) => r.id != controller.roomId,
                                   badgePosition:
-                                      BadgePosition.topEnd(end: 8, top: 4),
+                                      BadgePosition.topEnd(end: 8, top: 9),
                                   child: const Center(child: BackButton()),
                                 ),
                               ),

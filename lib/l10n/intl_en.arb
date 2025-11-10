@@ -3452,5 +3452,6 @@
     }
   },
   "thread": "Thread",
-  "backToMainChat": "Back to main chat"
+  "backToMainChat": "Back to main chat",
+  "unreadPlus": "99+"
 }
