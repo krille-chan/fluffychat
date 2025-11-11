@@ -3,16 +3,20 @@ import 'dart:ui';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_vodozemac/flutter_vodozemac.dart' as vod;
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
+import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
+
+bool _vodInitialized = false;
 
 extension NotificationResponseJson on NotificationResponse {
   String toJsonString() => jsonEncode({
@@ -45,9 +49,35 @@ void notificationTapBackground(
   Logs().i('Notification tap in background');
 
   final sendPort = IsolateNameServer.lookupPortByName('background_tab_port');
-  if (sendPort == null) throw Exception('Main isolate not up!');
-  sendPort.send(notificationResponse.toJsonString());
-  Logs().wtf('Send notification tap intent to main isolate!');
+  if (sendPort != null) {
+    sendPort.send(notificationResponse.toJsonString());
+    return;
+  }
+
+  if (!_vodInitialized) {
+    await vod.init();
+    _vodInitialized = true;
+  }
+  final store = await AppSettings.init();
+  final client = (await ClientManager.getClients(
+    initialize: false,
+    store: store,
+  ))
+      .first;
+  await client.abortSync();
+  await client.init(
+    waitForFirstSync: false,
+    waitUntilLoadCompletedLoaded: false,
+  );
+
+  if (!client.isLogged()) {
+    throw Exception('Notification tab in background but not logged in!');
+  }
+  try {
+    await notificationTap(notificationResponse, client: client);
+  } finally {
+    await client.dispose(closeDatabase: false);
+  }
   return;
 }
 
