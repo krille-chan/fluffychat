@@ -1,3 +1,6 @@
+import 'dart:isolate';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -12,11 +15,21 @@ import 'config/setting_keys.dart';
 import 'utils/background_push.dart';
 import 'widgets/fluffy_chat_app.dart';
 
+ReceivePort? mainIsolateReceivePort;
+
 void main() async {
   // Our background push shared isolate accesses flutter-internal things very early in the startup proccess
   // To make sure that the parts of flutter needed are started up already, we need to ensure that the
   // widget bindings are initialized already.
   WidgetsFlutterBinding.ensureInitialized();
+
+  if (PlatformInfos.isAndroid) {
+    final port = mainIsolateReceivePort = ReceivePort();
+    IsolateNameServer.registerPortWithName(
+      port.sendPort,
+      'main_isolate',
+    );
+  }
 
   final store = await AppSettings.init();
   Logs().i('Welcome to ${AppSettings.applicationName.value} <3');

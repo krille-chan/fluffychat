@@ -48,7 +48,7 @@ void notificationTapBackground(
 ) async {
   Logs().i('Notification tap in background');
 
-  final sendPort = IsolateNameServer.lookupPortByName('background_tab_port');
+  final sendPort = IsolateNameServer.lookupPortByName('main_isolate');
   if (sendPort != null) {
     sendPort.send(notificationResponse.toJsonString());
     return;
