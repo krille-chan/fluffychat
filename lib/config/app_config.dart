@@ -28,7 +28,7 @@ abstract class AppConfig {
   static const String startChatTutorial =
       'https://fluffy.chat/faq/#how_do_i_find_other_users';
   static const String appId = 'im.fluffychat.FluffyChat';
-  static const String appOpenUrlScheme = 'im.fluffychat';
+  static const String appOpenUrlScheme = 'chat.fluffy';
 
   static const String sourceCodeUrl =
       'https://github.com/krille-chan/fluffychat';
