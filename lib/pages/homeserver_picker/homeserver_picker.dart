@@ -79,7 +79,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         homeserver = Uri.https(homeserverInput, '');
       }
       final client = await Matrix.of(context).getLoginClient();
-      final (_, _, loginFlows) = await client.checkHomeserver(homeserver);
+      final (_, _, loginFlows, _) = await client.checkHomeserver(homeserver);
       this.loginFlows = loginFlows;
       if (supportsSso && !legacyPasswordLogin) {
         if (!PlatformInfos.isMobile) {
