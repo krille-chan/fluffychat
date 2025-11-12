@@ -2429,6 +2429,7 @@ POSSIBILITY OF SUCH DAMAGE.
 animations
 cross_file
 go_router
+video_player
 
 Copyright 2013 The Flutter Authors
 
@@ -8139,7 +8140,6 @@ url_launcher_linux
 url_launcher_macos
 url_launcher_platform_interface
 url_launcher_windows
-video_player
 video_player_android
 video_player_avfoundation
 video_player_platform_interface
