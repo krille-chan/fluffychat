@@ -56,4 +56,7 @@ abstract class AppConfig {
     host: 'fluffy.chat',
     path: '/en/privacy',
   );
+
+  static const String mainIsolatePortName = 'main_isolate';
+  static const String pushIsolatePortName = 'push_isolate';
 }

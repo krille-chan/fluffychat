@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
@@ -42,11 +43,20 @@ extension NotificationResponseJson on NotificationResponse {
   }
 }
 
+Future<void> waitForPushIsolateDone() async {
+  if (IsolateNameServer.lookupPortByName(AppConfig.pushIsolatePortName) !=
+      null) {
+    Logs().i('Wait for Push Isolate to be done...');
+    await Future.delayed(const Duration(milliseconds: 300));
+  }
+}
+
 @pragma('vm:entry-point')
 void notificationTapBackground(
   NotificationResponse notificationResponse,
 ) async {
-  final sendPort = IsolateNameServer.lookupPortByName('main_isolate');
+  final sendPort =
+      IsolateNameServer.lookupPortByName(AppConfig.mainIsolatePortName);
   if (sendPort != null) {
     sendPort.send(notificationResponse.toJsonString());
     Logs().i('Notification tap sent to main isolate!');
@@ -54,6 +64,12 @@ void notificationTapBackground(
   }
   Logs().i(
     'Main isolate no up - Create temporary client for notification tap intend!',
+  );
+
+  final pushIsolateReceivePort = ReceivePort();
+  IsolateNameServer.registerPortWithName(
+    pushIsolateReceivePort.sendPort,
+    AppConfig.pushIsolatePortName,
   );
 
   if (!_vodInitialized) {
@@ -79,6 +95,8 @@ void notificationTapBackground(
     await notificationTap(notificationResponse, client: client);
   } finally {
     await client.dispose(closeDatabase: false);
+    pushIsolateReceivePort.sendPort.send('DONE');
+    IsolateNameServer.removePortNameMapping(AppConfig.pushIsolatePortName);
   }
   return;
 }
