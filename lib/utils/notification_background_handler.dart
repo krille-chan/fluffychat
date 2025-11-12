@@ -46,13 +46,15 @@ extension NotificationResponseJson on NotificationResponse {
 void notificationTapBackground(
   NotificationResponse notificationResponse,
 ) async {
-  Logs().i('Notification tap in background');
-
   final sendPort = IsolateNameServer.lookupPortByName('main_isolate');
   if (sendPort != null) {
     sendPort.send(notificationResponse.toJsonString());
+    Logs().i('Notification tap sent to main isolate!');
     return;
   }
+  Logs().i(
+    'Main isolate no up - Create temporary client for notification tap intend!',
+  );
 
   if (!_vodInitialized) {
     await vod.init();

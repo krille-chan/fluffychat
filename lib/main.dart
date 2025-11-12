@@ -20,6 +20,7 @@ ReceivePort? mainIsolateReceivePort;
 void main() async {
   if (PlatformInfos.isAndroid) {
     final port = mainIsolateReceivePort = ReceivePort();
+    IsolateNameServer.removePortNameMapping('main_isolate');
     IsolateNameServer.registerPortWithName(
       port.sendPort,
       'main_isolate',
