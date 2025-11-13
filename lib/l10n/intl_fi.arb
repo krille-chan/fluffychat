@@ -2732,5 +2732,16 @@
     "space": "Tila",
     "@space": {},
     "spaces": "Tilat",
-    "@spaces": {}
+    "@spaces": {},
+    "checkList": "Tarkistuslista",
+    "@checkList": {},
+    "countInvited": "{count} kutsuttu",
+    "@countInvited": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    }
 }
