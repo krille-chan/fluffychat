@@ -1,10 +1,18 @@
 {
     "repeatPassword": "Parolni takrorlang",
     "@repeatPassword": {},
-    "normalUser": "Odatiy foydalanuvchi",
+    "normalUser": "Oddiy foydalanuvchi",
     "@normalUser": {},
     "alwaysUse24HourFormat": "true",
     "@alwaysUse24HourFormat": {
         "description": "Set to true to always display time of day in 24 hour format."
-    }
+    },
+    "notAnImage": "Rasm fayli emas.",
+    "@notAnImage": {},
+    "setCustomPermissionLevel": "Maxsus ruxsatlar darajasini sozlash",
+    "@setCustomPermissionLevel": {},
+    "setPermissionsLevelDescription": "Quyidagi oldindan belgilangan rolni tanlang yoki 0-100 orasidagi maxsus ruxsatlar darajasini kiriting.",
+    "@setPermissionsLevelDescription": {},
+    "ignoreUser": "Foydalanuvchini e’tiborsiz qoldirish",
+    "@ignoreUser": {}
 }
