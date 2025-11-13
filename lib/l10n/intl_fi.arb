@@ -2745,5 +2745,169 @@
         }
     },
     "globalChatId": "Yleisesti pätevä keskustelutunnus",
-    "@globalChatId": {}
+    "@globalChatId": {},
+    "accessAndVisibilityDescription": "Kuka voi liittyä tähän pikakeskusteluun ja miten pikakeskustelun voi löytää.",
+    "@accessAndVisibilityDescription": {},
+    "calls": "Puhelut",
+    "@calls": {},
+    "customEmojisAndStickers": "Mukautetut emojit ja tarrat",
+    "@customEmojisAndStickers": {},
+    "customEmojisAndStickersBody": "Lisää tai jaa mukautettuja emojeja tai tarroja, joita voidaan käyttää missä tahansa pikakeskustelussa.",
+    "@customEmojisAndStickersBody": {},
+    "hideInvalidOrUnknownMessageFormats": "Piilota virheelliset tai tuntemattomat viestimuodot",
+    "@hideInvalidOrUnknownMessageFormats": {},
+    "block": "Estä",
+    "@block": {},
+    "blockedUsers": "Estetyt käyttäjät",
+    "@blockedUsers": {},
+    "blockListDescription": "Voit estää sinua häiritsevät käyttäjät. Et voi vastaanottaa viestejä tai huonekutsuja henkilökohtaisella estolistallasi olevilta käyttäjiltä.",
+    "@blockListDescription": {},
+    "hideMemberChangesInPublicChats": "Piilota jäsenten muutokset julkisissa pikakeskusteluissa",
+    "@hideMemberChangesInPublicChats": {},
+    "hideMemberChangesInPublicChatsBody": "Älä näytä pikakeskustelun aikajanalla, jos joku liittyy julkiseen pikakeskusteluun tai poistuu siitä luettavuuden parantamiseksi.",
+    "@hideMemberChangesInPublicChatsBody": {},
+    "blockUsername": "Jätä käyttäjänimi huomiotta",
+    "@blockUsername": {},
+    "overview": "Yleiskatsaus",
+    "@overview": {},
+    "notifyMeFor": "Ilmoita minulle",
+    "@notifyMeFor": {},
+    "passwordRecoverySettings": "Salasanan palautusasetukset",
+    "@passwordRecoverySettings": {},
+    "sendImages": "Lähetä {count} kuva",
+    "@sendImages": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "presenceStyle": "Läsnäolo:",
+    "@presenceStyle": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "presencesToggle": "Näytä muiden käyttäjien tilaviestit",
+    "@presencesToggle": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "synchronizingPleaseWaitCounter": " Synkronoidaan… ({percentage} %)",
+    "@synchronizingPleaseWaitCounter": {
+        "type": "String",
+        "placeholders": {
+            "percentage": {
+                "type": "String"
+            }
+        }
+    },
+    "youInvitedToBy": "📩 Sinut on kutsuttu linkin kautta kohteeseen:\n{alias}",
+    "@youInvitedToBy": {
+        "placeholders": {
+            "alias": {
+                "type": "String"
+            }
+        }
+    },
+    "invitedBy": "📩 Kutsujana {user}",
+    "@invitedBy": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "usersMustKnock": "Käyttäjien on koputettava",
+    "@usersMustKnock": {},
+    "noOneCanJoin": "Kukaan ei voi liittyä",
+    "@noOneCanJoin": {},
+    "userWouldLikeToChangeTheChat": "{user} haluaa liittyä pikakeskusteluun.",
+    "@userWouldLikeToChangeTheChat": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "noPublicLinkHasBeenCreatedYet": "Julkista linkkiä ei ole vielä luotu",
+    "@noPublicLinkHasBeenCreatedYet": {},
+    "knock": "Koputa",
+    "@knock": {},
+    "hidePresences": "Piilotetaanko tilaluettelo?",
+    "@hidePresences": {},
+    "removeDevicesDescription": "Sinut kirjataan ulos tästä laitteesta, etkä voi enää vastaanottaa viestejä.",
+    "@removeDevicesDescription": {},
+    "banUserDescription": "Käyttäjä kielletään pikakeskustelusta, eikä hän voi liittyä pikakeskusteluun uudelleen ennen kuin kielto kumotetaan.",
+    "@banUserDescription": {},
+    "unbanUserDescription": "Käyttäjä voi liittyä pikakeskusteluun uudelleen, jos hän yrittää.",
+    "@unbanUserDescription": {},
+    "kickUserDescription": "Käyttäjä potkitaan ulos pikakeskustelusta, mutta häntä ei porttikieltoa saada. Julkisissa pikakeskusteluissa käyttäjä voi liittyä takaisin milloin tahansa.",
+    "@kickUserDescription": {},
+    "makeAdminDescription": "Kun olet tehnyt tästä käyttäjästä järjestelmänvalvojan, et ehkä voi perua tätä, koska hänellä on siitä hetkestä lähtien samat oikeudet kuin sinulla.",
+    "@makeAdminDescription": {},
+    "pushNotificationsNotAvailable": "Työntöilmoitukset ei saatavilla",
+    "@pushNotificationsNotAvailable": {},
+    "learnMore": "Opi lisää",
+    "@learnMore": {},
+    "yourGlobalUserIdIs": "Yleisesti pätevä käyttäjätunnuksesi on: ",
+    "@yourGlobalUserIdIs": {},
+    "noUsersFoundWithQuery": "Valitettavasti käyttäjää ei löytynyt haulla \"{query}\". Tarkistathan, onko kirjoitusvirhe.",
+    "@noUsersFoundWithQuery": {
+        "type": "String",
+        "placeholders": {
+            "query": {
+                "type": "String"
+            }
+        }
+    },
+    "knocking": "Koputetaan",
+    "@knocking": {},
+    "chatCanBeDiscoveredViaSearchOnServer": "Pikakeskustelu löytyy haulla {server}:lta",
+    "@chatCanBeDiscoveredViaSearchOnServer": {
+        "type": "String",
+        "placeholders": {
+            "server": {
+                "type": "String"
+            }
+        }
+    },
+    "searchChatsRooms": "Hae #pikakeskustelut, @käyttäjät...",
+    "@searchChatsRooms": {},
+    "nothingFound": "Mitään ei löytynyt...",
+    "@nothingFound": {},
+    "groupName": "Ryhmän nimi",
+    "@groupName": {},
+    "createGroupAndInviteUsers": "Luo ryhmä ja kutsu käyttäjiä",
+    "@createGroupAndInviteUsers": {},
+    "groupCanBeFoundViaSearch": "Ryhmä löytyy haun kautta",
+    "@groupCanBeFoundViaSearch": {},
+    "wrongRecoveryKey": "Pahoittelut... tämä ei vaikuta olevan oikea palautusavain.",
+    "@wrongRecoveryKey": {},
+    "startConversation": "Aloita keskustelu",
+    "@startConversation": {},
+    "commandHint_sendraw": "Lähetä raaka JSON",
+    "@commandHint_sendraw": {},
+    "databaseMigrationTitle": "Tietokanta on optimoitu",
+    "@databaseMigrationTitle": {},
+    "databaseMigrationBody": "Odotathan hetki. Tämä voi kestää hetken.",
+    "@databaseMigrationBody": {},
+    "leaveEmptyToClearStatus": "Jätä tyhjäksi tyhjentääksesi tilasi.",
+    "@leaveEmptyToClearStatus": {},
+    "publicLink": "Julkinen linkki",
+    "@publicLink": {},
+    "publicChatAddresses": "Julkiset keskusteluosoitteet",
+    "@publicChatAddresses": {},
+    "createNewAddress": "Luo uusi osoite",
+    "@createNewAddress": {},
+    "joinSpace": "Liity tilaan",
+    "@joinSpace": {},
+    "publicSpaces": "Julkiset tilat",
+    "@publicSpaces": {},
+    "addChatOrSubSpace": "Lisää pikakeskustelu tai alitila",
+    "@addChatOrSubSpace": {},
+    "subspace": "Alitila",
+    "@subspace": {},
+    "decline": "Hylkää",
+    "@decline": {}
 }
