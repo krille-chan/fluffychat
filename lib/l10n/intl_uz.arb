@@ -198,5 +198,14 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "autoplayImages": "Animatsiyali stikerlar va emojilarni avtomatik ijro etish",
+    "@autoplayImages": {
+        "type": "String",
+        "placeholder": {}
+    },
+    "sendTypingNotifications": "Yozish bildirishnomalarini yuborish",
+    "@sendTypingNotifications": {},
+    "swipeRightToLeftToReply": "Javob berish uchun o‘ngdan chapga suring",
+    "@swipeRightToLeftToReply": {}
 }
