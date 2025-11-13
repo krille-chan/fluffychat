@@ -2708,5 +2708,42 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "commandHint_roomupgrade": "Päivitä tämä huone annettuun huoneversioon",
+    "@commandHint_roomupgrade": {},
+    "appLockDescription": "Lukitse sovellus kun sitä ei käytetä PIN-koodin kanssa",
+    "@appLockDescription": {},
+    "countChatsAndCountParticipants": "{chats} pikakeskustelut ja {participants} osallistujat",
+    "@countChatsAndCountParticipants": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            },
+            "participants": {
+                "type": "int"
+            }
+        }
+    },
+    "noChatsFoundHere": "Täältä ei löytynyt vielä pikakeskusteluja. Aloita uusi pikakeskustelu jonkun kanssa alla olevalla painikkeella. ⤵️",
+    "@noChatsFoundHere": {},
+    "joinedChats": "Liittyneet pikakeskustelut",
+    "@joinedChats": {},
+    "space": "Tila",
+    "@space": {},
+    "spaces": "Tilat",
+    "@spaces": {},
+    "checkList": "Tarkistuslista",
+    "@checkList": {},
+    "countInvited": "{count} kutsuttu",
+    "@countInvited": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "globalChatId": "Yleisesti pätevä keskustelutunnus",
+    "@globalChatId": {}
 }
