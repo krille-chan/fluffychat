@@ -521,7 +521,7 @@ class Message extends StatelessWidget {
                                                                           .data!
                                                                       : Event(
                                                                           eventId:
-                                                                              event.relationshipEventId!,
+                                                                              event.inReplyToEventId() ?? '\$fake_event_id',
                                                                           content: {
                                                                             'msgtype':
                                                                                 'm.text',
