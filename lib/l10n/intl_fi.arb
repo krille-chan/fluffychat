@@ -2691,5 +2691,22 @@
     "moveDown": "Siirrä alas",
     "@moveDown": {},
     "poll": "Kysely",
-    "@poll": {}
+    "@poll": {},
+    "setCustomPermissionLevel": "Aseta mukautettu lupataso",
+    "@setCustomPermissionLevel": {},
+    "setPermissionsLevelDescription": "Valitse alla oleva ennalta määritetty rooli tai anna mukautettu lupataso väliltä 0–100.",
+    "@setPermissionsLevelDescription": {},
+    "ignoreUser": "Jätä huomiotta",
+    "@ignoreUser": {},
+    "normalUser": "Peruskäyttäjä",
+    "@normalUser": {},
+    "aboutHomeserver": "Tietoja {homeserver}:sta",
+    "@aboutHomeserver": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    }
 }
