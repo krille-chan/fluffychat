@@ -1,3 +1,39 @@
+## v2.3.0
+
+FluffyChat v2.3.0 fixes a possible database corruption bug on Android, also fixes a
+major performance leak and introduces polls and threads.
+
+- feat: Implement polls (Christian Kußowski)
+- feat: Implement threads (krille-chan)
+- fix: Database corruption because notification tab isolate starts too late (Christian Kußowski)
+- refactor: Improved UIA support for OIDC and SSO (Christian Kußowski)
+- refactor: Invite users when upgrading private room (Christian Kußowski)
+- build: (deps): bump cross_file from 0.3.4+2 to 0.3.5 (dependabot[bot])
+- build: (deps): bump file_picker from 10.3.3 to 10.3.6 (dependabot[bot])
+- build: (deps): bump go_router from 16.3.0 to 17.0.0 (dependabot[bot])
+- build: (deps): bump http from 1.5.0 to 1.6.0 (dependabot[bot])
+- build: (deps): bump image_picker from 1.2.0 to 1.2.1 (dependabot[bot])
+- build: (deps): bump qr_code_scanner_plus from 2.0.13 to 2.0.14 (dependabot[bot])
+- build: (deps): bump video_player from 2.10.0 to 2.10.1 (dependabot[bot])
+- build: Switch back to stable web auth package (krille-chan)
+- build: Use matrix sdk 4.0.0 (Christian Kußowski)
+- build: Use secure storage from pub.dev again (krille-chan)
+- chore(translations): Added translation using Weblate (Uzbek) (bahrom04)
+- chore(translations): Translated using Weblate (Basque) (xabirequejo)
+- chore(translations): Translated using Weblate (Belarusian) (Alex Katon)
+- chore(translations): Translated using Weblate (Chinese (Simplified Han script)) (大王叫我来巡山)
+- chore(translations): Translated using Weblate (Dutch) (Jelv)
+- chore(translations): Translated using Weblate (Estonian) (Priit Jõerüüt)
+- chore(translations): Translated using Weblate (Finnish) (Priit Jõerüüt)
+- chore(translations): Translated using Weblate (Finnish) (Ricky Tigg)
+- chore(translations): Translated using Weblate (French) (luneth)
+- chore(translations): Translated using Weblate (Galician) (josé m.)
+- chore(translations): Translated using Weblate (Irish) (Aindriú Mac Giolla Eoin)
+- chore(translations): Translated using Weblate (Latvian) (Edgars Andersons)
+- chore(translations): Translated using Weblate (Norwegian Bokmål) (Frank Paul Silye)
+- chore(translations): Translated using Weblate (Uzbek) (bahrom04)
+- chore(translations): Translated using Weblate (Uzbek) (BeMeritus)
+
 ## v2.2.0
 
 FluffyChat 2.2.0 introduces a new UX for spaces and adds support for restricted
