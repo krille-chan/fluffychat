@@ -14,5 +14,107 @@
     "setPermissionsLevelDescription": "Quyidagi oldindan belgilangan rolni tanlang yoki 0-100 orasidagi maxsus ruxsatlar darajasini kiriting.",
     "@setPermissionsLevelDescription": {},
     "ignoreUser": "Foydalanuvchini e’tiborsiz qoldirish",
-    "@ignoreUser": {}
+    "@ignoreUser": {},
+    "remove": "O‘chirish",
+    "@remove": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "importNow": "Hozir import qilish",
+    "@importNow": {},
+    "importEmojis": "Emojilarni import qilish",
+    "@importEmojis": {},
+    "importFromZipFile": ".zip faylidan import qilish",
+    "@importFromZipFile": {},
+    "exportEmotePack": "Emotsiyalar to‘plamini .zip fayl ko‘rinishida eksport qilish",
+    "@exportEmotePack": {},
+    "replace": "Almashtirmoq",
+    "@replace": {},
+    "about": "Biz haqimizda",
+    "@about": {},
+    "aboutHomeserver": "{homeserver} haqida",
+    "@aboutHomeserver": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    },
+    "accept": "Qabul qilmoq",
+    "@accept": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "acceptedTheInvitation": "👍 {username} taklifni qabul qildi",
+    "@acceptedTheInvitation": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "account": "Hisob",
+    "@account": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "activatedEndToEndEncryption": "🔐 {username} shifrlashni yakunlash uchun faollashtirdi",
+    "@activatedEndToEndEncryption": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "addEmail": "Email qo‘shish",
+    "@addEmail": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "confirmMatrixId": "Hisobingizni o‘chirish uchun Matrix ID hisobingizni tasdiqlang.",
+    "@confirmMatrixId": {},
+    "supposedMxid": "Bu {mxid} bo‘lishi kerak",
+    "@supposedMxid": {
+        "type": "String",
+        "placeholders": {
+            "mxid": {
+                "type": "String"
+            }
+        }
+    },
+    "addChatDescription": "Chat tavsifini kiriting...",
+    "@addChatDescription": {},
+    "addToSpace": "Maydonga qo‘shish",
+    "@addToSpace": {},
+    "admin": "Admin",
+    "@admin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "alias": "taxallus",
+    "@alias": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "all": "Hammasi",
+    "@all": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "allChats": "Hamma chatlar",
+    "@allChats": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "commandHint_roomupgrade": "Bu guruhni berilgan guruh versiyasiga yangilang",
+    "@commandHint_roomupgrade": {},
+    "commandHint_googly": "G‘ilay ko‘zlarini yuboring",
+    "@commandHint_googly": {},
+    "commandHint_cuddle": "Erkalash yuborish",
+    "@commandHint_cuddle": {},
+    "commandHint_hug": "Quchoqlash yuborish",
+    "@commandHint_hug": {}
 }
