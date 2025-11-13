@@ -116,5 +116,87 @@
     "commandHint_cuddle": "Erkalash yuborish",
     "@commandHint_cuddle": {},
     "commandHint_hug": "Quchoqlash yuborish",
-    "@commandHint_hug": {}
+    "@commandHint_hug": {},
+    "googlyEyesContent": "{senderName} sizga gʻilay ko‘zlarini yubormoqda",
+    "@googlyEyesContent": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "cuddleContent": "{senderName} sizni erkalamoqda",
+    "@cuddleContent": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "hugContent": "{senderName} sizni quchoqlamoqda",
+    "@hugContent": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "answeredTheCall": "{senderName} chaqiruvga javob berdi",
+    "@answeredTheCall": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "anyoneCanJoin": "Har kim qo‘shilishi mumkin",
+    "@anyoneCanJoin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "appLock": "Ilova qulfi",
+    "@appLock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "appLockDescription": "PIN kod ishlatilmayotganida ilovani qulflash",
+    "@appLockDescription": {},
+    "archive": "Arxiv",
+    "@archive": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "areGuestsAllowedToJoin": "Mehmon foydalanuvchilarga qo‘shilishga ruxsat berilganmi",
+    "@areGuestsAllowedToJoin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "areYouSure": "Ishonchingiz komilmi?",
+    "@areYouSure": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "areYouSureYouWantToLogout": "Haqiqatan ham hisobingizdan chiqamoqchimisiz?",
+    "@areYouSureYouWantToLogout": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "askSSSSSign": "Narigi foydalanuvchini imzolash uchun xavfsiz do‘kon parol iborasi yoki tiklash kalitini kiriting.",
+    "@askSSSSSign": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "askVerificationRequest": "{username}dan ushbu tasdiqlash so‘rovi qabul qilinsinmi?",
+    "@askVerificationRequest": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    }
 }
