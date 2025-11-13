@@ -1,8 +1,2 @@
-FluffyChat 2.2.0 introduces a new UX for spaces and adds support for restricted
-join rules.
-The app also now has a new design for recording voice messages including a
-pause button.
-You also now see the progress when downloading files.
-Also FluffyChat now supports notification actions (reply and mark as read) and
-also now supports Android Auto integration. Please do not cause an accident when using
-the app while driving!
+FluffyChat 2.3.0 fixes a possible database corruption bug, also fixes a
+major performance leak and introduces polls and threads.
