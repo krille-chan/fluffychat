@@ -9,10 +9,10 @@ A.FA.prototype={
 gl_(){return"v\xe4\xe4r\xe4"},
 gjK(){return"Salasana uudelleen"},
 gmP(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
-gkA(){return"Set custom permission level"},
-gkB(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
-gmg(){return"Ignore user"},
-gmO(){return"Normal user"},
+gkA(){return"Aseta mukautettu lupataso"},
+gkB(){return"Valitse alla oleva ennalta m\xe4\xe4ritetty rooli tai anna mukautettu lupataso v\xe4lilt\xe4 0\u2013100."},
+gmg(){return"J\xe4t\xe4 huomiotta"},
+gmO(){return"Perusk\xe4ytt\xe4j\xe4"},
 gbd(d){return"Poista"},
 gmj(){return"Tuo nyt"},
 gmh(){return"Tuo emojit"},
@@ -20,7 +20,7 @@ gmi(){return"Tuo .zip -tiedostosta"},
 gm0(){return"Vie emotepaketti .zip-tiedostona"},
 gnW(d){return"Korvaa"},
 ges(){return"Tietoa FluffyChatista"},
-h_(d){return"About "+d},
+h_(d){return"Tietoja "+d+":sta"},
 gh0(d){return"Hyv\xe4ksy"},
 h1(d){return d+" hyv\xe4ksyi kutsun"},
 gh3(){return"Tili"},
@@ -660,5 +660,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FA,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FA":{"aE":[]}}'))};
-(a=>{a["Dsz6yC615FMCbWCA8U1vLDDC9NE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["0+pVAHkaVSrqSfu0dCaEzZTnnAY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_275.part.js.map
