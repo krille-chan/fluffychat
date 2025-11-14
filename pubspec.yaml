@@ -10,7 +10,7 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  animations: ^2.1.0
+  animations: ^2.1.1
   app_links: ^6.4.1
   archive: ^4.0.7
   async: ^2.11.0
