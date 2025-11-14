@@ -276,26 +276,16 @@ class EmotesSettingsController extends State<EmotesSettings> {
   }
 
   Future<void> importEmojiZip() async {
-    final result = await showFutureLoadingDialog<Archive?>(
-      context: context,
-      future: () async {
-        final result = await selectFiles(
-          context,
-          type: FileSelectorType.zip,
-        );
-
-        if (result.isEmpty) return null;
-
-        final buffer = InputMemoryStream(await result.first.readAsBytes());
-
-        final archive = ZipDecoder().decodeStream(buffer);
-
-        return archive;
-      },
+    final result = await selectFiles(
+      context,
+      type: FileSelectorType.zip,
     );
 
-    final archive = result.result;
-    if (archive == null) return;
+    if (result.isEmpty) return;
+
+    final buffer = InputMemoryStream(await result.single.readAsBytes());
+
+    final archive = ZipDecoder().decodeStream(buffer);
 
     await showDialog(
       context: context,
