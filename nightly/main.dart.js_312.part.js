@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cGe(){return new A.FR(B.dj("lv"))},
-FR:function FR(d){this.a=d}}
+cGd(){return new A.FQ(B.dj("lv"))},
+FQ:function FQ(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[37],A)
-A.FR.prototype={
+A.FQ.prototype={
 gl_(){return"n\u0113"},
 gjK(){return"Atk\u0101rtot paroli"},
 gmP(){return"Nav att\u0113la datne."},
@@ -658,7 +658,7 @@ gpG(){return"Pavediens"},
 gpq(){return"Atgriezties galvenaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FR,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FR":{"aE":[]}}'))};
-(a=>{a["VWoc1vt6RjpVhKiGnjkOAJfR+LY="]=a.current})($__dart_deferred_initializers__);
+y(A.FQ,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FQ":{"aE":[]}}'))};
+(a=>{a["1JtXX/I6+JskkO8Gcyt/dMEwOew="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

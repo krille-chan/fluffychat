@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cGg(){return new A.FT(B.dj("nl"))},
-FT:function FT(d){this.a=d}}
+cGf(){return new A.FS(B.dj("nl"))},
+FS:function FS(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[39],A)
-A.FT.prototype={
+A.FS.prototype={
 gl_(){return"true"},
 gjK(){return"Wachtwoord herhalen"},
 gmP(){return"Geen afbeeldingsbestand."},
@@ -658,7 +658,7 @@ gpG(){return"Draad"},
 gpq(){return"Terug naar hoofdchat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FT,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FT":{"aE":[]}}'))};
-(a=>{a["lnGiWQdc5YTQ8ljzF+zHUt4icfE="]=a.current})($__dart_deferred_initializers__);
+y(A.FS,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FS":{"aE":[]}}'))};
+(a=>{a["EQxhiyD876Da8fUQb55TUkk5esA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_315.part.js.map

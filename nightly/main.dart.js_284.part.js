@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cG1(){return new A.FE(B.dj("gl"))},
-FE:function FE(d){this.a=d}}
+cG0(){return new A.FD(B.dj("gl"))},
+FD:function FD(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[24],A)
-A.FE.prototype={
+A.FD.prototype={
 gl_(){return"falso"},
 gjK(){return"Repite o contrasinal"},
 gmP(){return"Non \xe9 un ficheiro de imaxe."},
@@ -658,7 +658,7 @@ gpG(){return"F\xedo"},
 gpq(){return"Volver \xe1 conversa principal"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FE,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FE":{"aE":[]}}'))};
-(a=>{a["B61Hwat2W2BHFHrx8eMomAHNFvU="]=a.current})($__dart_deferred_initializers__);
+y(A.FD,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FD":{"aE":[]}}'))};
+(a=>{a["vpTGeGpWBAKDp7cPLpH171QXQeA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_284.part.js.map

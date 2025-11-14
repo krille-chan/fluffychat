@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cGv(){return new A.G6(B.dj("uk"))},
-G6:function G6(d){this.a=d}}
+cGu(){return new A.G5(B.dj("uk"))},
+G5:function G5(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[51],A)
-A.G6.prototype={
+A.G5.prototype={
 gl_(){return"false"},
 gjK(){return"\u041f\u043e\u0432\u0442\u043e\u0440\u0456\u0442\u044c \u043f\u0430\u0440\u043e\u043b\u044c"},
 gmP(){return"\u041d\u0435 \u0444\u0430\u0439\u043b \u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u043d\u044f."},
@@ -658,7 +658,7 @@ gpG(){return"Thread"},
 gpq(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G6,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"G6":{"aE":[]}}'))};
-(a=>{a["b9bvK2dpQzjyD1HINTfwTfZWiQc="]=a.current})($__dart_deferred_initializers__);
+y(A.G5,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"G5":{"aE":[]}}'))};
+(a=>{a["Vnm4necqCZCSsSicJUCFURP4nko="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map

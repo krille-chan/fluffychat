@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cGw(){return new A.G7(B.dj("uz"))},
-G7:function G7(d){this.a=d}}
+cGv(){return new A.G6(B.dj("uz"))},
+G6:function G6(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[52],A)
-A.G7.prototype={
+A.G6.prototype={
 gl_(){return"true"},
 gjK(){return"Parolni takrorlang"},
 gmP(){return"Rasm fayli emas."},
@@ -658,7 +658,7 @@ gpG(){return"Thread"},
 gpq(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G7,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"G7":{"aE":[]}}'))};
-(a=>{a["guNR8Q/6BKA0J2Is+Rkg5RzMvYs="]=a.current})($__dart_deferred_initializers__);
+y(A.G6,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"G6":{"aE":[]}}'))};
+(a=>{a["TnkScxUIf7YIqcG639l+bsQVlEw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_332.part.js.map
