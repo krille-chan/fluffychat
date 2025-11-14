@@ -639,27 +639,27 @@ ps(d){return""+d+" Chats"},
 pi(d){return"Space-Mitglieder von "+d},
 pj(d){return"Space-Mitglieder von "+d+" kann klopfen"},
 gpv(){return"Spenden"},
-gkK(){return"Start poll"},
-gpw(){return"End poll"},
-gpo(){return"Answers visible"},
-gpn(){return"Answers hidden"},
-gpD(){return"Poll question"},
-gpm(){return"Answer option"},
-gpk(){return"Add answer option"},
-gpl(){return"Allow multiple answers"},
-gpe(){return"Poll has been ended"},
+gkK(){return"Umfrage starten"},
+gpw(){return"Umfrage beenden"},
+gpo(){return"Antworten sichtbar"},
+gpn(){return"Antworten sind verborgen"},
+gpD(){return"Frage"},
+gpm(){return"Antwortm\xf6glichkeit"},
+gpk(){return"Antwortoption hinzuf\xfcgen"},
+gpl(){return"Mehrere Antworten zulassen"},
+gpe(){return"Umfrage ist beendet"},
 pu(d){var x=null
-return B.bz(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
-gpp(){return"Answers will be visible when poll has ended"},
-gpf(){return"Reply in thread"},
+return B.bz(d,x,this.a,x,"Eine Stimme",""+d+" Stimmen",x,x)},
+gpp(){return"Die Antworten werden nach Ende der Umfrage sichtbar sein"},
+gpf(){return"Im Thread antworten"},
 pt(d){var x=null
-return B.bz(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+return B.bz(d,x,this.a,x,"Eine Antwort",""+d+" Antworten",x,x)},
 gpG(){return"Thread"},
-gpq(){return"Back to main chat"},
+gpq(){return"Zur\xfcck zum Hauptchat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fr,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fr":{"aE":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["SHLMtWEKIcXLJ0NEM+weXOqBTbY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["GJmb2jtltiEHMU0GNub+t4NXULQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_252.part.js.map
