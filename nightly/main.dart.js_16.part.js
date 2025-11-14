@@ -653,11 +653,11 @@ gpk(){return"Add answer option"},
 gpl(){return"Allow multiple answers"},
 gpe(){return"Poll has been ended"},
 pu(d){var x=null
-return B.bF(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
+return B.bz(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 gpp(){return"Answers will be visible when poll has ended"},
 gpf(){return"Reply in thread"},
 pt(d){var x=null
-return B.bF(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+return B.bz(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
 gpG(){return"Thread"},
 gpq(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
@@ -1541,5 +1541,5 @@ x(A.AN,C.aE)
 w(A.AN,[A.FU,A.FV])})()
 B.dQ(b.typeUniverse,JSON.parse('{"AN":{"aE":[]},"FU":{"aE":[]},"FV":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["XqAu5gPL7Okd2coPl5S5xMYKn3A="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["CKEwSJ/VdZ35u79MWgfZ+Mgrp8A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_16.part.js.map

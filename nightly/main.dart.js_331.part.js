@@ -649,16 +649,16 @@ gpk(){return"Add answer option"},
 gpl(){return"Allow multiple answers"},
 gpe(){return"Poll has been ended"},
 pu(d){var y=null
-return B.bF(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return B.bz(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gpp(){return"Answers will be visible when poll has ended"},
 gpf(){return"Reply in thread"},
 pt(d){var y=null
-return B.bF(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return B.bz(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpG(){return"Thread"},
 gpq(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G5,C.aE)})()
 B.dQ(b.typeUniverse,JSON.parse('{"G5":{"aE":[]}}'))};
-(a=>{a["Vnm4necqCZCSsSicJUCFURP4nko="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["smeLpN8gdTfSFWrE2BoWaS1LsAw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map
