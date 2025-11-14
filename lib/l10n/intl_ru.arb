@@ -1888,7 +1888,7 @@
             }
         }
     },
-    "userAndOthersAreTyping": "{username} и ещё {count, plural, =1{один участник} =2{двое} =3{трое} =4{четверо} =5{пятеро} =6{шестеро} =7{семеро} one{# участник} few{# участника} other{# участников}} печатают…",
+    "userAndOthersAreTyping": "{username} и еще {count} печатают…",
     "@userAndOthersAreTyping": {
         "type": "String",
         "placeholders": {
@@ -3167,7 +3167,7 @@
     "@version": {},
     "website": "Сайт",
     "@website": {},
-    "sendImages": "Отправить {count, plural, =1{изображение} one{# изображение} few{# изображения} other{# изображений}}",
+    "sendImages": "Отправить {count} изображение",
     "@sendImages": {
         "type": "String",
         "placeholders": {
@@ -3304,7 +3304,7 @@
     },
     "checkList": "Контрольный список",
     "@checkList": {},
-    "countVotes": "{count, plural, =1{Один голос} one{# голос} few{# голоса} other{# голосов}}",
+    "countVotes": "{count, plural, =1{Один голос} other{{count} голосов}}",
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -3313,7 +3313,7 @@
             }
         }
     },
-    "countReplies": "{count, plural, =1{Один ответ} one{# ответ} few{# ответа} other{# ответов}}",
+    "countReplies": "{count, plural, =1{Один ответ} other{{count} ответов}}",
     "@countReplies": {
         "type": "int",
         "placeholders": {
