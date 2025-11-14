@@ -10,7 +10,6 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../config/themes.dart';
 import 'homeserver_picker.dart';
 
 class HomeserverPickerView extends StatelessWidget {
@@ -85,30 +84,6 @@ class HomeserverPickerView extends StatelessWidget {
               child: IntrinsicHeight(
                 child: Column(
                   children: [
-                    // display a prominent banner to import session for TOR browser
-                    // users. This feature is just some UX sugar as TOR users are
-                    // usually forced to logout as TOR browser is non-persistent
-                    AnimatedContainer(
-                      height: controller.isTorBrowser ? 64 : 0,
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
-                      clipBehavior: Clip.hardEdge,
-                      decoration: const BoxDecoration(),
-                      child: Material(
-                        clipBehavior: Clip.hardEdge,
-                        borderRadius: const BorderRadius.vertical(
-                          bottom: Radius.circular(8),
-                        ),
-                        color: theme.colorScheme.surface,
-                        child: ListTile(
-                          leading: const Icon(Icons.vpn_key),
-                          title: Text(L10n.of(context).hydrateTor),
-                          subtitle: Text(L10n.of(context).hydrateTorLong),
-                          trailing: const Icon(Icons.chevron_right_outlined),
-                          onTap: controller.restoreBackup,
-                        ),
-                      ),
-                    ),
                     Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
