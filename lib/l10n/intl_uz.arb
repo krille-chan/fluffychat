@@ -376,5 +376,68 @@
                 "type": "String"
             }
         }
+    },
+    "changedTheGuestAccessRulesTo": "{username} mehmon kirish qoidalarini: {rules}ga oʻzgartirdi",
+    "@changedTheGuestAccessRulesTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "rules": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheHistoryVisibility": "{username} tarix koʻrinishini oʻzgartirdi",
+    "@changedTheHistoryVisibility": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheHistoryVisibilityTo": "{username} tarix koʻrinishini: {rules}ga oʻzgartirdi",
+    "@changedTheHistoryVisibilityTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "rules": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheJoinRules": "{username} qoʻshilish qoidalarini oʻzgartirdi",
+    "@changedTheJoinRules": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheJoinRulesTo": "{username} qoʻshilish qoidalarini: {joinRules}ga oʻzgartirdi",
+    "@changedTheJoinRulesTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "joinRules": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheProfileAvatar": "{username} avatarini oʻzgartirdi",
+    "@changedTheProfileAvatar": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
     }
 }
