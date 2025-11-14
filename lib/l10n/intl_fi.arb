@@ -2909,5 +2909,221 @@
     "subspace": "Alitila",
     "@subspace": {},
     "decline": "Hylkää",
-    "@decline": {}
+    "@decline": {},
+    "initAppError": "Sovelluksen alustamisessa tapahtui virhe",
+    "@initAppError": {},
+    "userRole": "Käyttäjärooli",
+    "@userRole": {},
+    "minimumPowerLevel": "{level} on pienin tehotaso.",
+    "@minimumPowerLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "String"
+            }
+        }
+    },
+    "searchIn": "Hae keskustelusta \"{chat}\"...",
+    "@searchIn": {
+        "type": "String",
+        "placeholders": {
+            "chat": {
+                "type": "String"
+            }
+        }
+    },
+    "searchMore": "Hae lisää...",
+    "@searchMore": {},
+    "databaseBuildErrorBody": "SQlite-tietokantaa ei voida rakentaa. Sovellus yrittää toistaiseksi käyttää vanhaa tietokantaa. Ilmoita tästä virheestä kehittäjille osoitteessa {url}. Virheviesti on: {error}",
+    "@databaseBuildErrorBody": {
+        "type": "String",
+        "placeholders": {
+            "url": {
+                "type": "String"
+            },
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "sessionLostBody": "Istuntosi on menetetty. Ilmoita tästä virheestä kehittäjille osoitteessa {url}. Virheviesti on: {error}",
+    "@sessionLostBody": {
+        "type": "String",
+        "placeholders": {
+            "url": {
+                "type": "String"
+            },
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "restoreSessionBody": "Sovellus yrittää nyt palauttaa istuntosi varmuuskopiosta. Ilmoita tästä virheestä kehittäjille osoitteessa {url}. Virheviesti on: {error}",
+    "@restoreSessionBody": {
+        "type": "String",
+        "placeholders": {
+            "url": {
+                "type": "String"
+            },
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "forwardMessageTo": "Lähetätkö viestin edelleen kohteeseen {roomName}?",
+    "@forwardMessageTo": {
+        "type": "String",
+        "placeholders": {
+            "roomName": {
+                "type": "String"
+            }
+        }
+    },
+    "sendReadReceipts": "Lähetä lukukuittaukset",
+    "@sendReadReceipts": {},
+    "sendTypingNotificationsDescription": "Muut keskustelun osallistujat näkevät, milloin olet kirjoittamassa uutta viestiä.",
+    "@sendTypingNotificationsDescription": {},
+    "sendReadReceiptsDescription": "Muut keskustelun osallistujat näkevät, milloin olet lukenut viestin.",
+    "@sendReadReceiptsDescription": {},
+    "formattedMessages": "Muotoillut viestit",
+    "@formattedMessages": {},
+    "formattedMessagesDescription": "Näytä rikasta viestisisältöä, kuten lihavoitua tekstiä, käyttämällä Markdownia.",
+    "@formattedMessagesDescription": {},
+    "verifyOtherUser": "🔐 Vahvista toinen käyttäjä",
+    "@verifyOtherUser": {},
+    "verifyOtherUserDescription": "Jos vahvistat toisen käyttäjän, voit olla varma, että tiedät kenelle todella kirjoitat. 💪\n\nKun aloitat vahvistuksen, sinä ja toinen käyttäjä näette sovelluksessa ponnahdusikkunan. Siellä näette sitten sarjan emojeja tai numeroita, joita teidän on verrattava toisiinsa.\n\nParas tapa tehdä tämä on tavata heidät tai aloittaa videopuhelu. 👭",
+    "@verifyOtherUserDescription": {},
+    "verifyOtherDevice": "🔐 Vahvista toinen laite",
+    "@verifyOtherDevice": {},
+    "verifyOtherDeviceDescription": "Kun vahvistat toisen laitteen, kyseiset laitteet voivat vaihtaa avaimia, mikä lisää yleistä turvallisuuttasi. 💪 Kun aloitat vahvistuksen, molempien laitteiden sovellukseen ilmestyy ponnahdusikkuna. Siellä näet sitten sarjan emojeja tai numeroita, joita sinun on verrattava toisiinsa. On parasta pitää molemmat laitteet käsillä ennen vahvistuksen aloittamista. 🤳",
+    "@verifyOtherDeviceDescription": {},
+    "acceptedKeyVerification": "{sender} hyväksyi avaimen vahvistuksen",
+    "@acceptedKeyVerification": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            }
+        }
+    },
+    "canceledKeyVerification": "{sender} peruutti avaimen vahvistuksen",
+    "@canceledKeyVerification": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            }
+        }
+    },
+    "completedKeyVerification": "{sender} suoritti avaimen vahvistuksen",
+    "@completedKeyVerification": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            }
+        }
+    },
+    "isReadyForKeyVerification": "{sender} on valmis avaimen vahvistukseen",
+    "@isReadyForKeyVerification": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            }
+        }
+    },
+    "requestedKeyVerification": "{sender} pyysi avaimen vahvistusta",
+    "@requestedKeyVerification": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            }
+        }
+    },
+    "startedKeyVerification": "{sender} aloitti avaimen vahvistuksen",
+    "@startedKeyVerification": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            }
+        }
+    },
+    "transparent": "Läpinäkyvä",
+    "@transparent": {},
+    "incomingMessages": "Saapuvat viestit",
+    "@incomingMessages": {},
+    "stickers": "Tarrat",
+    "@stickers": {},
+    "discover": "Tutustu",
+    "@discover": {},
+    "commandHint_ignore": "Jätä huomiotta annettu matrix-tunnus",
+    "@commandHint_ignore": {},
+    "commandHint_unignore": "Kumoa annetun matrix-tunnuksen huomiottajätäminen",
+    "@commandHint_unignore": {},
+    "unreadChatsInApp": "{appname}: {unread} lukematonta keskustelua",
+    "@unreadChatsInApp": {
+        "type": "String",
+        "placeholders": {
+            "appname": {
+                "type": "String"
+            },
+            "unread": {
+                "type": "String"
+            }
+        }
+    },
+    "noDatabaseEncryption": "Tietokannan salausta ei tueta tällä alustalla",
+    "@noDatabaseEncryption": {},
+    "thereAreCountUsersBlocked": "Tällä hetkellä {count} käyttäjää on estetty.",
+    "@thereAreCountUsersBlocked": {
+        "type": "String",
+        "count": {}
+    },
+    "restricted": "Rajoitettu",
+    "@restricted": {},
+    "knockRestricted": "Koputus rajoitettu",
+    "@knockRestricted": {},
+    "goToSpace": "Siirry tilaan: {space}",
+    "@goToSpace": {
+        "type": "String",
+        "space": {}
+    },
+    "markAsUnread": "Merkitse lukemattomaksi",
+    "@markAsUnread": {},
+    "userLevel": "{level} - Käyttäjä",
+    "@userLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "moderatorLevel": "{level} - Valvoja",
+    "@moderatorLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "adminLevel": "{level} - Järjestelmänvalvoja",
+    "@adminLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "changeGeneralChatSettings": "Muuta yleisiä keskusteluasetuksia",
+    "@changeGeneralChatSettings": {},
+    "inviteOtherUsers": "Kutsu muita käyttäjiä tähän pikakeskusteluun",
+    "@inviteOtherUsers": {},
+    "changeTheChatPermissions": "Muuta keskustelulupia",
+    "@changeTheChatPermissions": {}
 }

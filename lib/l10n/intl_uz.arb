@@ -14,5 +14,430 @@
     "setPermissionsLevelDescription": "Quyidagi oldindan belgilangan rolni tanlang yoki 0-100 orasidagi maxsus ruxsatlar darajasini kiriting.",
     "@setPermissionsLevelDescription": {},
     "ignoreUser": "Foydalanuvchini e’tiborsiz qoldirish",
-    "@ignoreUser": {}
+    "@ignoreUser": {},
+    "remove": "O‘chirish",
+    "@remove": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "importNow": "Hozir import qilish",
+    "@importNow": {},
+    "importEmojis": "Emojilarni import qilish",
+    "@importEmojis": {},
+    "importFromZipFile": ".zip faylidan import qilish",
+    "@importFromZipFile": {},
+    "exportEmotePack": "Emotsiyalar to‘plamini .zip fayl ko‘rinishida eksport qilish",
+    "@exportEmotePack": {},
+    "replace": "Almashtirmoq",
+    "@replace": {},
+    "about": "Biz haqimizda",
+    "@about": {},
+    "aboutHomeserver": "{homeserver} haqida",
+    "@aboutHomeserver": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    },
+    "accept": "Qabul qilmoq",
+    "@accept": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "acceptedTheInvitation": "👍 {username} taklifni qabul qildi",
+    "@acceptedTheInvitation": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "account": "Hisob",
+    "@account": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "activatedEndToEndEncryption": "🔐 {username} shifrlashni yakunlash uchun faollashtirdi",
+    "@activatedEndToEndEncryption": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "addEmail": "Email qo‘shish",
+    "@addEmail": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "confirmMatrixId": "Hisobingizni o‘chirish uchun Matrix ID hisobingizni tasdiqlang.",
+    "@confirmMatrixId": {},
+    "supposedMxid": "Bu {mxid} bo‘lishi kerak",
+    "@supposedMxid": {
+        "type": "String",
+        "placeholders": {
+            "mxid": {
+                "type": "String"
+            }
+        }
+    },
+    "addChatDescription": "Chat tavsifini kiriting...",
+    "@addChatDescription": {},
+    "addToSpace": "Maydonga qo‘shish",
+    "@addToSpace": {},
+    "admin": "Admin",
+    "@admin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "alias": "taxallus",
+    "@alias": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "all": "Hammasi",
+    "@all": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "allChats": "Hamma chatlar",
+    "@allChats": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "commandHint_roomupgrade": "Bu guruhni berilgan guruh versiyasiga yangilang",
+    "@commandHint_roomupgrade": {},
+    "commandHint_googly": "G‘ilay ko‘zlarini yuboring",
+    "@commandHint_googly": {},
+    "commandHint_cuddle": "Erkalash yuborish",
+    "@commandHint_cuddle": {},
+    "commandHint_hug": "Quchoqlash yuborish",
+    "@commandHint_hug": {},
+    "googlyEyesContent": "{senderName} sizga gʻilay ko‘zlarini yubormoqda",
+    "@googlyEyesContent": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "cuddleContent": "{senderName} sizni erkalamoqda",
+    "@cuddleContent": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "hugContent": "{senderName} sizni quchoqlamoqda",
+    "@hugContent": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "answeredTheCall": "{senderName} chaqiruvga javob berdi",
+    "@answeredTheCall": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "anyoneCanJoin": "Har kim qo‘shilishi mumkin",
+    "@anyoneCanJoin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "appLock": "Ilova qulfi",
+    "@appLock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "appLockDescription": "PIN kod ishlatilmayotganida ilovani qulflash",
+    "@appLockDescription": {},
+    "archive": "Arxiv",
+    "@archive": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "areGuestsAllowedToJoin": "Mehmon foydalanuvchilarga qo‘shilishga ruxsat berilganmi",
+    "@areGuestsAllowedToJoin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "areYouSure": "Ishonchingiz komilmi?",
+    "@areYouSure": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "areYouSureYouWantToLogout": "Haqiqatan ham hisobingizdan chiqamoqchimisiz?",
+    "@areYouSureYouWantToLogout": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "askSSSSSign": "Narigi foydalanuvchini imzolash uchun xavfsiz do‘kon parol iborasi yoki tiklash kalitini kiriting.",
+    "@askSSSSSign": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "askVerificationRequest": "{username}dan ushbu tasdiqlash so‘rovi qabul qilinsinmi?",
+    "@askVerificationRequest": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "autoplayImages": "Animatsiyali stikerlar va emojilarni avtomatik ijro etish",
+    "@autoplayImages": {
+        "type": "String",
+        "placeholder": {}
+    },
+    "sendTypingNotifications": "Yozish bildirishnomalarini yuborish",
+    "@sendTypingNotifications": {},
+    "swipeRightToLeftToReply": "Javob berish uchun o‘ngdan chapga suring",
+    "@swipeRightToLeftToReply": {},
+    "badServerLoginTypesException": "Homeserver quyidagi kirish turlarini qo'llab-quvvatlaydi:\n{serverVersions}\nLekin bu ilova faqat quyidagi turlarni qo'llab-quvvatlaydi:\n{supportedVersions}",
+    "@badServerLoginTypesException": {
+        "type": "String",
+        "placeholders": {
+            "serverVersions": {
+                "type": "String"
+            },
+            "supportedVersions": {
+                "type": "String"
+            }
+        }
+    },
+    "sendOnEnter": "Enterda yuborish",
+    "@sendOnEnter": {},
+    "badServerVersionsException": "Homeserver quyidagi Spec versiyalarini qo'llab-quvvatlaydi:\n{serverVersions}\nLekin bu ilova faqat {supportedVersions} versiyalarini qo'llab-quvvatlaydi",
+    "@badServerVersionsException": {
+        "type": "String",
+        "placeholders": {
+            "serverVersions": {
+                "type": "String"
+            },
+            "supportedVersions": {
+                "type": "String"
+            }
+        }
+    },
+    "countChatsAndCountParticipants": "{chats} chatlar va {participants} ishtirokchilar",
+    "@countChatsAndCountParticipants": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            },
+            "participants": {
+                "type": "int"
+            }
+        }
+    },
+    "noMoreChatsFound": "Boshqa chatlar topilmadi...",
+    "@noMoreChatsFound": {},
+    "noChatsFoundHere": "Bu yerda hali chat topilmadi. Quyidagi tugmadan foydalanib, kimdir bilan yangi chat boshlang. ⤵️",
+    "@noChatsFoundHere": {},
+    "joinedChats": "Qo'shilgan chatlar",
+    "@joinedChats": {},
+    "unread": "Oʻqilmagan",
+    "@unread": {},
+    "space": "Boʻshliq",
+    "@space": {},
+    "spaces": "Boʻshliqlar",
+    "@spaces": {},
+    "banFromChat": "Chatdan taqiqlash",
+    "@banFromChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "banned": "Taqiqlangan",
+    "@banned": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "bannedUser": "{username} taqiqladi {targetName}(ni)",
+    "@bannedUser": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "blockDevice": "Qurilmani bloklash",
+    "@blockDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "blocked": "Bloklandi",
+    "@blocked": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "botMessages": "Bot xabarlari",
+    "@botMessages": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "cancel": "Bekor qilish",
+    "@cancel": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "cantOpenUri": "{uri} URIni ochib boʻlmadi",
+    "@cantOpenUri": {
+        "type": "String",
+        "placeholders": {
+            "uri": {
+                "type": "String"
+            }
+        }
+    },
+    "changeDeviceName": "Qurilma nomini oʻzgartirish",
+    "@changeDeviceName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changedTheChatAvatar": "{username} chat avatarini oʻzgartirdi",
+    "@changedTheChatAvatar": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheChatDescriptionTo": "{username} chat tavsifini '{description}'ga oʻzgartirdi",
+    "@changedTheChatDescriptionTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "description": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheChatNameTo": "{username} chat nomini: '{chatname}'ga oʻzgartirdi",
+    "@changedTheChatNameTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "chatname": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheChatPermissions": "{username} chat ruxsatnomalarini oʻzgartirdi",
+    "@changedTheChatPermissions": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheDisplaynameTo": "{username} oʻzining nomini '{displayname}'ga oʻzgartirdi",
+    "@changedTheDisplaynameTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "displayname": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheGuestAccessRules": "{username} mehmon kirish qoidalarini oʻzgartirdi",
+    "@changedTheGuestAccessRules": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheGuestAccessRulesTo": "{username} mehmon kirish qoidalarini: {rules}ga oʻzgartirdi",
+    "@changedTheGuestAccessRulesTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "rules": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheHistoryVisibility": "{username} tarix koʻrinishini oʻzgartirdi",
+    "@changedTheHistoryVisibility": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheHistoryVisibilityTo": "{username} tarix koʻrinishini: {rules}ga oʻzgartirdi",
+    "@changedTheHistoryVisibilityTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "rules": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheJoinRules": "{username} qoʻshilish qoidalarini oʻzgartirdi",
+    "@changedTheJoinRules": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheJoinRulesTo": "{username} qoʻshilish qoidalarini: {joinRules}ga oʻzgartirdi",
+    "@changedTheJoinRulesTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "joinRules": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheProfileAvatar": "{username} avatarini oʻzgartirdi",
+    "@changedTheProfileAvatar": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    }
 }

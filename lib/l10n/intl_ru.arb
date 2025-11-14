@@ -1087,7 +1087,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "loadCountMoreParticipants": "",
+    "loadCountMoreParticipants": "{count, plural, one{Загрузить еще # участника} few{Загрузить еще # участников} other{Загрузить еще # участников}}",
     "@loadCountMoreParticipants": {
         "type": "String",
         "placeholders": {
@@ -1888,7 +1888,7 @@
             }
         }
     },
-    "userAndOthersAreTyping": "",
+    "userAndOthersAreTyping": "{username} и еще {count} печатают…",
     "@userAndOthersAreTyping": {
         "type": "String",
         "placeholders": {
@@ -2328,7 +2328,7 @@
     "@storeInAndroidKeystore": {},
     "storeInAppleKeyChain": "Сохранить в Apple KeyChain",
     "@storeInAppleKeyChain": {},
-    "countFiles": "",
+    "countFiles": "{count, plural, one{# файл} few{# файла} other{# файлов}}",
     "@countFiles": {
         "placeholders": {
             "count": {
@@ -2946,7 +2946,7 @@
             }
         }
     },
-    "thereAreCountUsersBlocked": "",
+    "thereAreCountUsersBlocked": "Сейчас {count, plural, one{заблокирован # пользователь} few{заблокированы # пользователя} other{заблокированы # пользователей}}.",
     "@thereAreCountUsersBlocked": {
         "type": "String",
         "count": {}
@@ -3167,7 +3167,7 @@
     "@version": {},
     "website": "Сайт",
     "@website": {},
-    "sendImages": "",
+    "sendImages": "Отправить {count} изображение",
     "@sendImages": {
         "type": "String",
         "placeholders": {
@@ -3284,7 +3284,7 @@
     "@commandHint_roomupgrade": {},
     "notificationRuleInviteForMeDescription": "Уведомляет пользователя, когда его приглашают в комнату.",
     "@notificationRuleInviteForMeDescription": {},
-    "countInvited": "",
+    "countInvited": "{count, plural, one{Приглашён # участник} few{Приглашены # участника} other{Приглашены # участников}}",
     "@countInvited": {
         "type": "String",
         "placeholders": {
@@ -3303,5 +3303,23 @@
         }
     },
     "checkList": "Контрольный список",
-    "@checkList": {}
+    "@checkList": {},
+    "countVotes": "{count, plural, =1{Один голос} other{{count} голосов}}",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "countReplies": "{count, plural, =1{Один ответ} other{{count} ответов}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    }
 }
