@@ -346,5 +346,35 @@
                 "type": "String"
             }
         }
+    },
+    "changedTheChatPermissions": "{username} chat ruxsatnomalarini oʻzgartirdi",
+    "@changedTheChatPermissions": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheDisplaynameTo": "{username} oʻzining nomini '{displayname}'ga oʻzgartirdi",
+    "@changedTheDisplaynameTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "displayname": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheGuestAccessRules": "{username} mehmon kirish qoidalarini oʻzgartirdi",
+    "@changedTheGuestAccessRules": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
     }
 }
