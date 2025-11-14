@@ -50,7 +50,7 @@
           serviceWorkerVersion: {{flutter_service_worker_version}},
         },
       onEntrypointLoaded: function (engineInitializer) {
-        engineInitializer.initializeEngine({ useColorEmoji: true }).then(function (appRunner) {
+        engineInitializer.initializeEngine({ useColorEmoji: true, fontFallbackBaseUrl: '' }).then(function (appRunner) {
           appRunner.runApp();
         });
       }
