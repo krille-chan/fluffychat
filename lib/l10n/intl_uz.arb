@@ -207,5 +207,144 @@
     "sendTypingNotifications": "Yozish bildirishnomalarini yuborish",
     "@sendTypingNotifications": {},
     "swipeRightToLeftToReply": "Javob berish uchun o‘ngdan chapga suring",
-    "@swipeRightToLeftToReply": {}
+    "@swipeRightToLeftToReply": {},
+    "badServerLoginTypesException": "Homeserver quyidagi kirish turlarini qo'llab-quvvatlaydi:\n{serverVersions}\nLekin bu ilova faqat quyidagi turlarni qo'llab-quvvatlaydi:\n{supportedVersions}",
+    "@badServerLoginTypesException": {
+        "type": "String",
+        "placeholders": {
+            "serverVersions": {
+                "type": "String"
+            },
+            "supportedVersions": {
+                "type": "String"
+            }
+        }
+    },
+    "sendOnEnter": "Enterda yuborish",
+    "@sendOnEnter": {},
+    "badServerVersionsException": "Homeserver quyidagi Spec versiyalarini qo'llab-quvvatlaydi:\n{serverVersions}\nLekin bu ilova faqat {supportedVersions} versiyalarini qo'llab-quvvatlaydi",
+    "@badServerVersionsException": {
+        "type": "String",
+        "placeholders": {
+            "serverVersions": {
+                "type": "String"
+            },
+            "supportedVersions": {
+                "type": "String"
+            }
+        }
+    },
+    "countChatsAndCountParticipants": "{chats} chatlar va {participants} ishtirokchilar",
+    "@countChatsAndCountParticipants": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            },
+            "participants": {
+                "type": "int"
+            }
+        }
+    },
+    "noMoreChatsFound": "Boshqa chatlar topilmadi...",
+    "@noMoreChatsFound": {},
+    "noChatsFoundHere": "Bu yerda hali chat topilmadi. Quyidagi tugmadan foydalanib, kimdir bilan yangi chat boshlang. ⤵️",
+    "@noChatsFoundHere": {},
+    "joinedChats": "Qo'shilgan chatlar",
+    "@joinedChats": {},
+    "unread": "Oʻqilmagan",
+    "@unread": {},
+    "space": "Boʻshliq",
+    "@space": {},
+    "spaces": "Boʻshliqlar",
+    "@spaces": {},
+    "banFromChat": "Chatdan taqiqlash",
+    "@banFromChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "banned": "Taqiqlangan",
+    "@banned": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "bannedUser": "{username} taqiqladi {targetName}(ni)",
+    "@bannedUser": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "blockDevice": "Qurilmani bloklash",
+    "@blockDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "blocked": "Bloklandi",
+    "@blocked": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "botMessages": "Bot xabarlari",
+    "@botMessages": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "cancel": "Bekor qilish",
+    "@cancel": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "cantOpenUri": "{uri} URIni ochib boʻlmadi",
+    "@cantOpenUri": {
+        "type": "String",
+        "placeholders": {
+            "uri": {
+                "type": "String"
+            }
+        }
+    },
+    "changeDeviceName": "Qurilma nomini oʻzgartirish",
+    "@changeDeviceName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changedTheChatAvatar": "{username} chat avatarini oʻzgartirdi",
+    "@changedTheChatAvatar": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheChatDescriptionTo": "{username} chat tavsifini '{description}'ga oʻzgartirdi",
+    "@changedTheChatDescriptionTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "description": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheChatNameTo": "{username} chat nomini: '{chatname}'ga oʻzgartirdi",
+    "@changedTheChatNameTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "chatname": {
+                "type": "String"
+            }
+        }
+    }
 }
