@@ -3223,5 +3223,26 @@
     "callingAccount": "Ringekonto",
     "@callingAccount": {},
     "appearOnTopDetails": "Lar appen vises øverst (ikke nødvendig hvis du allerede har Fluffychat konfigurert som en ringekonto)",
-    "@appearOnTopDetails": {}
+    "@appearOnTopDetails": {},
+    "longPressToRecordVoiceMessage": "Langt trykk for å spille inn talemelding.",
+    "@longPressToRecordVoiceMessage": {},
+    "startedAPoll": "{username} startet en avstemning.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "Avstemning",
+    "@poll": {},
+    "startPoll": "Start avstemning",
+    "@startPoll": {},
+    "endPoll": "Avslutt avstemning",
+    "@endPoll": {},
+    "answersVisible": "Svar synlige",
+    "@answersVisible": {},
+    "answersHidden": "Svar skjult",
+    "@answersHidden": {}
 }
