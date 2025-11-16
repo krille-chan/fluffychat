@@ -53,6 +53,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+      - name: Limit Rust Jobs
+        run: echo "export CARGO_BUILD_JOBS=1" >> $GITHUB_ENV
       - uses: moonrepo/setup-rust@v1
       - name: Install Fastlane
         run: gem install fastlane -NV
