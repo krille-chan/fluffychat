@@ -94,7 +94,7 @@ jobs:
           FDROID_KEY_PASS: ${{ secrets.FDROID_KEY_PASS }}
           PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
         run: ./scripts/prepare-android-release.sh
-      - run: flutter build apk --release
+      - run: flutter build apk --release --target-platform android-arm,android-arm64
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
@@ -167,7 +167,7 @@ jobs:
           PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
         run: ./scripts/prepare-android-release.sh
       - name: Build Android Release
-        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+        run: flutter build appbundle --target-platform android-arm,android-arm64
       - name: Get Tag Name
         id: tag_name
         run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
