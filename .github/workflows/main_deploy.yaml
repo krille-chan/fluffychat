@@ -53,8 +53,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
-      - name: Limit Rust Jobs
-        run: echo "export CARGO_BUILD_JOBS=1" >> $GITHUB_ENV
       - uses: moonrepo/setup-rust@v1
       - name: Install Fastlane
         run: gem install fastlane -NV
@@ -70,7 +68,7 @@ jobs:
           PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
         run: ./scripts/prepare-android-release.sh
       - name: Build Android Release
-        run: flutter build appbundle --target-platform android-arm,android-arm64
+        run: flutter build appbundle --target-platform android-arm64
       - name: Set changelog
         working-directory: android/fastlane/metadata/android/en-US/changelogs
         run: git log --no-merges -1 --pretty=%B > default.txt
