@@ -53,7 +53,7 @@ platforms:
 parts:
   flutter-git:
     source: https://github.com/flutter/flutter.git
-    source-tag: 3.35.7
+    source-tag: 3.38.1
     source-depth: 1
     plugin: nil
     override-build: |
