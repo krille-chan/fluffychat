@@ -3125,5 +3125,67 @@
     "inviteOtherUsers": "Kutsu muita käyttäjiä tähän pikakeskusteluun",
     "@inviteOtherUsers": {},
     "changeTheChatPermissions": "Muuta keskustelulupia",
-    "@changeTheChatPermissions": {}
+    "@changeTheChatPermissions": {},
+    "changeTheVisibilityOfChatHistory": "Muuta pikakeskusteluhistorian näkyvyyttä",
+    "@changeTheVisibilityOfChatHistory": {},
+    "changeTheCanonicalRoomAlias": "Vaihda julkisen pikakeskustelun pääosoite",
+    "@changeTheCanonicalRoomAlias": {},
+    "sendRoomNotifications": "Lähetä @room-ilmoituksia",
+    "@sendRoomNotifications": {},
+    "changeTheDescriptionOfTheGroup": "Muuta keskustelun kuvausta",
+    "@changeTheDescriptionOfTheGroup": {},
+    "chatPermissionsDescription": "Määritä tarvittava tehotaso tietyille toiminnoille tässä pikakeskustelussa. Tehotasot 0, 50 ja 100 edustavat yleensä käyttäjiä, valvoja ja ylläpitäjiä, mutta mikä tahansa porrastus on mahdollinen.",
+    "@chatPermissionsDescription": {},
+    "updateInstalled": "🎉 Päivitys {version} asennettu!",
+    "@updateInstalled": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "sendCanceled": "Lähetys peruttu",
+    "@sendCanceled": {},
+    "loginWithMatrixId": "Kirjaudu sisään Matrix-tunnuksella",
+    "@loginWithMatrixId": {},
+    "discoverHomeservers": "Tutustu kotipalvelimiin",
+    "@discoverHomeservers": {},
+    "whatIsAHomeserver": "Mikä on kotipalvelin?",
+    "@whatIsAHomeserver": {},
+    "homeserverDescription": "Kaikki tietosi tallennetaan kotipalvelimelle, aivan kuten sähköpostipalveluntarjoaja. Voit valita, mitä kotipalvelinta haluat käyttää, ja silti kommunikoida kaikkien kanssa. Lisätietoja osoitteessa https://matrix.org.",
+    "@homeserverDescription": {},
+    "doesNotSeemToBeAValidHomeserver": "Ei näytä olevan yhteensopiva kotipalvelin. Väärä URL-osoite?",
+    "@doesNotSeemToBeAValidHomeserver": {},
+    "calculatingFileSize": "Lasketaan tiedoston kokoa...",
+    "@calculatingFileSize": {},
+    "prepareSendingAttachment": "Valmistele lähetettävä liite...",
+    "@prepareSendingAttachment": {},
+    "sendingAttachment": "Lähetetään liitettä...",
+    "@sendingAttachment": {},
+    "generatingVideoThumbnail": "Videon pikkukuvan luominen...",
+    "@generatingVideoThumbnail": {},
+    "compressVideo": "Pakataan videota...",
+    "@compressVideo": {},
+    "sendingAttachmentCountOfCount": "Lähetetään {length} pituista liitettä {index}...",
+    "@sendingAttachmentCountOfCount": {
+        "type": "integer",
+        "placeholders": {
+            "index": {
+                "type": "int"
+            },
+            "length": {
+                "type": "int"
+            }
+        }
+    },
+    "serverLimitReached": "Palvelinraja saavutettu! Odotetaan {seconds} sekuntia...",
+    "@serverLimitReached": {
+        "type": "integer",
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    }
 }
