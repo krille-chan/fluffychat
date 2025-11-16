@@ -39,7 +39,6 @@ jobs:
   deploy_playstore_internal:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/free_up_space.yaml
       - uses: actions/checkout@v5
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v5
@@ -54,6 +53,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+      - uses: ./.github/actions/free_up_space.yaml
       - uses: moonrepo/setup-rust@v1
       - name: Install Fastlane
         run: gem install fastlane -NV
