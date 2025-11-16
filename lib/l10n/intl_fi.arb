@@ -3187,5 +3187,7 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "oneOfYourDevicesIsNotVerified": "Yhtä laitteistasi ei ole vahvistettu",
+    "@oneOfYourDevicesIsNotVerified": {}
 }
