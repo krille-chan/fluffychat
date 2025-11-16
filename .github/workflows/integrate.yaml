@@ -43,6 +43,7 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
+      - uses: ./.github/actions/free_up_space
       - uses: moonrepo/setup-rust@v1
       - run: flutter pub get
       - run: flutter build apk --debug --target-platform android-arm64

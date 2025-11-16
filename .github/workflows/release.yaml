@@ -86,6 +86,7 @@ jobs:
         run: |
           echo '${{secrets.GOOGLE_SERVICES_JSON}}' | base64 -d > android/app/google-services.json
           ./scripts/add-firebase-messaging.sh
+      - uses: ./.github/actions/free_up_space
       - uses: moonrepo/setup-rust@v1
       - run: flutter pub get
       - name: Prepare Android Release Build
@@ -151,6 +152,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+      - uses: ./.github/actions/free_up_space
       - uses: moonrepo/setup-rust@v1
       - name: Install Fastlane
         working-directory: android
