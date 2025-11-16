@@ -39,7 +39,7 @@ jobs:
   deploy_playstore_internal:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/actions/free_up_space
+      - uses: ./.github/actions/free_up_space.yaml
       - uses: actions/checkout@v5
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v5
