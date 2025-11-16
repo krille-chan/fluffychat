@@ -76,7 +76,6 @@ dependencies:
   sqflite_common_ffi: ^2.3.6
   sqlcipher_flutter_libs: ^0.6.8
   swipe_to_action: ^0.3.0
-  tor_detector_web: ^1.1.0
   unifiedpush: ^6.2.0
   unifiedpush_ui: ^0.2.0
   universal_html: ^2.2.4
