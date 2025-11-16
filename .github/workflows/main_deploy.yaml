@@ -53,7 +53,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
-      - uses: ./.github/actions/free_up_space.yaml
+      - uses: ./.github/actions/free_up_space
       - uses: moonrepo/setup-rust@v1
       - name: Install Fastlane
         run: gem install fastlane -NV
