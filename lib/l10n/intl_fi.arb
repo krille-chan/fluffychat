@@ -3314,5 +3314,60 @@
     "notificationRuleEncryptedRoomOneToOneDescription": "Ilmoittaa käyttäjälle kahdenkeskisissä salatuissa huoneissa olevista viesteistä.",
     "@notificationRuleEncryptedRoomOneToOneDescription": {},
     "notificationRuleRoomOneToOne": "Kahdenkeskinen huone",
-    "@notificationRuleRoomOneToOne": {}
+    "@notificationRuleRoomOneToOne": {},
+    "notificationRuleRoomOneToOneDescription": "Ilmoittaa käyttäjälle kahdenkeskisissä huoneissa olevista viesteistä.",
+    "@notificationRuleRoomOneToOneDescription": {},
+    "notificationRuleMessage": "Viesti",
+    "@notificationRuleMessage": {},
+    "notificationRuleMessageDescription": "Ilmoittaa käyttäjälle yleisistä viesteistä.",
+    "@notificationRuleMessageDescription": {},
+    "notificationRuleEncrypted": "Salattu",
+    "@notificationRuleEncrypted": {},
+    "notificationRuleEncryptedDescription": "Ilmoittaa käyttäjälle salatuissa huoneissa olevista viesteistä.",
+    "@notificationRuleEncryptedDescription": {},
+    "notificationRuleJitsiDescription": "Ilmoittaa käyttäjälle tapahtumista Jitsi-vimpaimesta.",
+    "@notificationRuleJitsiDescription": {},
+    "notificationRuleServerAcl": "Poista tapahtumat palvelimen pääsyluettelosta",
+    "@notificationRuleServerAcl": {},
+    "notificationRuleServerAclDescription": "Poistaa ilmoitukset palvelimen pääsyluettelosta.",
+    "@notificationRuleServerAclDescription": {},
+    "unknownPushRule": "Tuntematon työntösääntö '{rule}'",
+    "@unknownPushRule": {
+        "type": "String",
+        "placeholders": {
+            "rule": {
+                "type": "String"
+            }
+        }
+    },
+    "sentVoiceMessage": "🎙️ {duration} - Ääniviesti {sender}:lta",
+    "@sentVoiceMessage": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "deletePushRuleCanNotBeUndone": "Jos poistat tämän ilmoitusasetuksen, sitä ei voi kumota.",
+    "@deletePushRuleCanNotBeUndone": {},
+    "shareKeysWith": "Jaa avaimet...",
+    "@shareKeysWith": {},
+    "shareKeysWithDescription": "Mihin laitteisiin tulisi luottaa, jotta ne voivat lukea viestejäsi salatuissa keskusteluissa?",
+    "@shareKeysWithDescription": {},
+    "crossVerifiedDevicesIfEnabled": "Ristiinvahvistetut laitteet, jos otettu käyttöön",
+    "@crossVerifiedDevicesIfEnabled": {},
+    "crossVerifiedDevices": "Ristiinvahvistetut laitteet",
+    "@crossVerifiedDevices": {},
+    "verifiedDevicesOnly": "Vain vahvistetut laitteet",
+    "@verifiedDevicesOnly": {},
+    "takeAPhoto": "Ota valokuva",
+    "@takeAPhoto": {},
+    "optionalMessage": "(Valinnainen) viesti...",
+    "@optionalMessage": {},
+    "notSupportedOnThisDevice": "Ei tuettu tällä laitteella",
+    "@notSupportedOnThisDevice": {}
 }
