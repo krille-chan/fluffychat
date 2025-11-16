@@ -86,6 +86,7 @@ jobs:
         run: |
           echo '${{secrets.GOOGLE_SERVICES_JSON}}' | base64 -d > android/app/google-services.json
           ./scripts/add-firebase-messaging.sh
+      - uses: ./.github/actions/free_up_space
       - uses: moonrepo/setup-rust@v1
       - run: flutter pub get
       - name: Prepare Android Release Build
@@ -94,7 +95,7 @@ jobs:
           FDROID_KEY_PASS: ${{ secrets.FDROID_KEY_PASS }}
           PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
         run: ./scripts/prepare-android-release.sh
-      - run: flutter build apk --release
+      - run: flutter build apk --release --target-platform android-arm,android-arm64
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
@@ -151,6 +152,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+      - uses: ./.github/actions/free_up_space
       - uses: moonrepo/setup-rust@v1
       - name: Install Fastlane
         working-directory: android
@@ -167,7 +169,7 @@ jobs:
           PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
         run: ./scripts/prepare-android-release.sh
       - name: Build Android Release
-        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+        run: flutter build appbundle --target-platform android-arm,android-arm64
       - name: Get Tag Name
         id: tag_name
         run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"

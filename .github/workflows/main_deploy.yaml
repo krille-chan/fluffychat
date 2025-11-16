@@ -53,6 +53,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+      - uses: ./.github/actions/free_up_space
       - uses: moonrepo/setup-rust@v1
       - name: Install Fastlane
         run: gem install fastlane -NV
@@ -68,7 +69,7 @@ jobs:
           PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
         run: ./scripts/prepare-android-release.sh
       - name: Build Android Release
-        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+        run: flutter build appbundle --target-platform android-arm,android-arm64
       - name: Set changelog
         working-directory: android/fastlane/metadata/android/en-US/changelogs
         run: git log --no-merges -1 --pretty=%B > default.txt
