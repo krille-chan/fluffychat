@@ -1788,5 +1788,40 @@
     "@reply": {
         "type": "String",
         "placeholders": {}
+    },
+    "reportMessage": "Xabar berish",
+    "@reportMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "requestPermission": "Ruxsat soʻrash",
+    "@requestPermission": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "roomHasBeenUpgraded": "Xona takomillashtirildi",
+    "@roomHasBeenUpgraded": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "roomVersion": "Guruh versiyasi",
+    "@roomVersion": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveFile": "Fayl saqlash",
+    "@saveFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "search": "Qidiruv",
+    "@search": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "security": "Xavfsizlik",
+    "@security": {
+        "type": "String",
+        "placeholders": {}
     }
 }
