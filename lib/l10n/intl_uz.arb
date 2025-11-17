@@ -1106,5 +1106,107 @@
     "@isTyping": {
         "type": "String",
         "placeholders": {}
+    },
+    "displaynameHasBeenChanged": "Displey nomi o‘zgartirildi",
+    "@displaynameHasBeenChanged": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "downloadFile": "Faylni yuklab olish",
+    "@downloadFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "edit": "Tahrirlash",
+    "@edit": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "editBlockedServers": "Bloklangan serverlarni tahrirlash",
+    "@editBlockedServers": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatPermissions": "Chat ruxsatlari",
+    "@chatPermissions": {},
+    "editDisplayname": "Displey nomini tahrirlash",
+    "@editDisplayname": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "editRoomAliases": "Xona taxalluslarini tahrirlash",
+    "@editRoomAliases": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "editRoomAvatar": "Xona avatarini tahrirlash",
+    "@editRoomAvatar": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteExists": "Emotsiya allaqachon mavjud!",
+    "@emoteExists": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteInvalid": "Noto‘g‘ri emotsiya kodi!",
+    "@emoteInvalid": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteKeyboardNoRecents": "Yaqinda ishlatilgan emotsiyalar shu yerda chiqadi...",
+    "@emoteKeyboardNoRecents": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encryptionNotEnabled": "Shifrlash yoqilmagan",
+    "@encryptionNotEnabled": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "endedTheCall": "{senderName} chaqiruvni tugatdi",
+    "@endedTheCall": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "enterAnEmailAddress": "Email manzilini kiriting",
+    "@enterAnEmailAddress": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "homeserver": "Uy serveri",
+    "@homeserver": {},
+    "enterYourHomeserver": "Uy serveriga kiring",
+    "@enterYourHomeserver": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "errorObtainingLocation": "Joylashuv axboroti olinmadi: {error}",
+    "@errorObtainingLocation": {
+        "type": "String",
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "everythingReady": "Hammasi tayyor!",
+    "@everythingReady": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "extremeOffensive": "O‘ta haqoratomuz",
+    "@extremeOffensive": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fileName": "Fayl nomi",
+    "@fileName": {
+        "type": "String",
+        "placeholders": {}
     }
 }
