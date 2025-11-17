@@ -146,7 +146,6 @@ class _StartPollBottomSheetState extends State<StartPollBottomSheet> {
             ),
             title: Text(L10n.of(context).allowMultipleAnswers),
           ),
-          const SizedBox(height: 8),
           ElevatedButton(
             onPressed: !isLoading && _canCreate ? _createPoll : null,
             child: isLoading

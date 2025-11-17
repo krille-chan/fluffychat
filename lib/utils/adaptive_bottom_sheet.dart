@@ -40,25 +40,13 @@ Future<T?> showAdaptiveBottomSheet<T>({
 
   return showModalBottomSheet<T>(
     context: context,
-    useSafeArea: true,
-    builder: (context) => Padding(
-      padding: EdgeInsets.zero,
-      child: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(AppConfig.borderRadius / 2),
-          topRight: Radius.circular(AppConfig.borderRadius / 2),
-        ),
-        child: builder(context),
-      ),
-    ),
+    builder: builder,
     useRootNavigator: useRootNavigator,
     isDismissible: isDismissible,
     isScrollControlled: isScrollControlled,
     constraints: BoxConstraints(
       maxHeight: min(MediaQuery.sizeOf(context).height - 32, 600),
-      maxWidth: FluffyThemes.columnWidth * 1.25,
     ),
-    backgroundColor: Colors.transparent,
     clipBehavior: Clip.hardEdge,
   );
 }
