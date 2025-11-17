@@ -1921,5 +1921,14 @@
                 "type": "String"
             }
         }
+    },
+    "sentASticker": "😊 {username} stiker yubordi",
+    "@sentASticker": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
     }
 }
