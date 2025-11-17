@@ -2172,7 +2172,7 @@
     "@dismiss": {},
     "emojis": "Hymiöt",
     "@emojis": {},
-    "unsupportedAndroidVersionLong": "Tämä ominaisuus vaatii uudemman Android-version. Tarkista päivitykset tai LineageOS-tuki.",
+    "unsupportedAndroidVersionLong": "Tämä ominaisuus vaatii uudemman Android-version. Tarkistathan päivitykset tai Lineage OS :n tuki.",
     "@unsupportedAndroidVersionLong": {},
     "unsupportedAndroidVersion": "Ei tuettu Android-versio",
     "@unsupportedAndroidVersion": {},
@@ -3428,5 +3428,60 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "donate": "Lahjoita",
+    "@donate": {},
+    "startedAPoll": "{username} aloitti kyselyn.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "startPoll": "Aloita kysely",
+    "@startPoll": {},
+    "endPoll": "Lopeta kysely",
+    "@endPoll": {},
+    "answersVisible": "Vastaukset näkyvissä",
+    "@answersVisible": {},
+    "answersHidden": "Vastaukset piilotettu",
+    "@answersHidden": {},
+    "pollQuestion": "Kyselykysymys",
+    "@pollQuestion": {},
+    "answerOption": "Vastausvaihtoehto",
+    "@answerOption": {},
+    "addAnswerOption": "Lisää vastausvaihtoehto",
+    "@addAnswerOption": {},
+    "allowMultipleAnswers": "Salli useita vastauksia",
+    "@allowMultipleAnswers": {},
+    "pollHasBeenEnded": "Kysely on päättynyt",
+    "@pollHasBeenEnded": {},
+    "answersWillBeVisibleWhenPollHasEnded": "Vastaukset näkyvät, kun kysely on päättynyt",
+    "@answersWillBeVisibleWhenPollHasEnded": {},
+    "replyInThread": "Vastaa ketjussa",
+    "@replyInThread": {},
+    "countVotes": "{count, plural, =1{One vote} other{{count} ääntä}}",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "countReplies": "{count, plural, =1{One reply} other{{count} vastausta}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "thread": "Ketju",
+    "@thread": {},
+    "backToMainChat": "Takaisin pääpikakeskusteluun",
+    "@backToMainChat": {}
 }
