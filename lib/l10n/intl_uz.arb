@@ -681,5 +681,430 @@
     "@chats": {
         "type": "String",
         "placeholders": {}
+    },
+    "copiedToClipboard": "Buferga nusxalandi",
+    "@copiedToClipboard": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "copy": "Nusxalash",
+    "@copy": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "copyToClipboard": "Buferga nusxalash",
+    "@copyToClipboard": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "couldNotDecryptMessage": "Xabarni shifrlab boʻlmadi: {error}",
+    "@couldNotDecryptMessage": {
+        "type": "String",
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "checkList": "Tekshirish roʻyxati",
+    "@checkList": {},
+    "countParticipants": "{count} qatnashuvchilar",
+    "@countParticipants": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "countInvited": "{count} taklif qilindi",
+    "@countInvited": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "create": "Yaratish",
+    "@create": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "createdTheChat": "💬 {username} chat yaratdi",
+    "@createdTheChat": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "createGroup": "Guruh yaratish",
+    "@createGroup": {},
+    "createNewSpace": "Yangi maydon",
+    "@createNewSpace": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "currentlyActive": "Hozirda faol",
+    "@currentlyActive": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "darkTheme": "Qorongʻi",
+    "@darkTheme": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "dateAndTimeOfDay": "{date}, {timeOfDay}",
+    "@dateAndTimeOfDay": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            },
+            "timeOfDay": {
+                "type": "String"
+            }
+        }
+    },
+    "dateWithoutYear": "{month}-{day}",
+    "@dateWithoutYear": {
+        "type": "String",
+        "placeholders": {
+            "month": {
+                "type": "String"
+            },
+            "day": {
+                "type": "String"
+            }
+        }
+    },
+    "dateWithYear": "{year}-{month}-{day}",
+    "@dateWithYear": {
+        "type": "String",
+        "placeholders": {
+            "year": {
+                "type": "String"
+            },
+            "month": {
+                "type": "String"
+            },
+            "day": {
+                "type": "String"
+            }
+        }
+    },
+    "deactivateAccountWarning": "Bu sizning foydalanuvchi hisobingizni oʻchirib qoʻyadi. Buni qaytarib boʻlmaydi! Ishonchingiz komilmi?",
+    "@deactivateAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "defaultPermissionLevel": "Yangi foydalanuvchilar uchun standart ruxsat darajasi",
+    "@defaultPermissionLevel": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "delete": "Oʻchirish",
+    "@delete": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "deleteAccount": "Hisobni oʻchirish",
+    "@deleteAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "deleteMessage": "Xabarni oʻchirish",
+    "@deleteMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "device": "Qurilma",
+    "@device": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "deviceId": "Qurilma IDʼsi",
+    "@deviceId": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "devices": "Qurilmalar",
+    "@devices": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "directChats": "Shaxsiy chatlar",
+    "@directChats": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "allRooms": "Barcha guruh chatlar",
+    "@allRooms": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emotePacks": "Guruh uchun Emote toʻplamlar",
+    "@emotePacks": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteSettings": "Emote Sozlamalari",
+    "@emoteSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "globalChatId": "Global chat IDʼsi",
+    "@globalChatId": {},
+    "accessAndVisibility": "Kirish va koʻrinish",
+    "@accessAndVisibility": {},
+    "accessAndVisibilityDescription": "Bu chatga kim qoʻshilishi mumkin va chatni qanday topish mumkin.",
+    "@accessAndVisibilityDescription": {},
+    "calls": "Qoʻngʻiroqlar",
+    "@calls": {},
+    "customEmojisAndStickers": "Maxsus emojilar va stikerlar",
+    "@customEmojisAndStickers": {},
+    "customEmojisAndStickersBody": "Istalgan chatda ishlatilishi mumkin boʻlgan maxsus emojilar yoki stikerlarni qoʻshing yoki ulashing.",
+    "@customEmojisAndStickersBody": {},
+    "emoteShortcode": "Emote qisqa kodi",
+    "@emoteShortcode": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteWarnNeedToPick": "Siz emote qisqa kodi va rasmni tanlashingiz kerak!",
+    "@emoteWarnNeedToPick": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emptyChat": "Boʻsh chat",
+    "@emptyChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "enableEmotesGlobally": "Emote paketini global miqyosda yoqish",
+    "@enableEmotesGlobally": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "enableEncryption": "Shifrlashni yoqish",
+    "@enableEncryption": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "enableEncryptionWarning": "Siz endi shifrlashni oʻchira olmaysiz. Ishonchingiz komilmi?",
+    "@enableEncryptionWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encrypted": "Shifrlangan",
+    "@encrypted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encryption": "Shifrlash",
+    "@encryption": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fluffychat": "FluffyChat",
+    "@fluffychat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fontSize": "Shrift oʻlchami",
+    "@fontSize": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "forward": "Yuborvorish",
+    "@forward": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fromJoining": "Qoʻshilishdan",
+    "@fromJoining": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fromTheInvitation": "Taklifnomadan",
+    "@fromTheInvitation": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "goToTheNewRoom": "Yangi guruhga oʻtish",
+    "@goToTheNewRoom": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "group": "Guruh",
+    "@group": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatDescription": "Chat tavsifi",
+    "@chatDescription": {},
+    "chatDescriptionHasBeenChanged": "Chat tavsifi oʻzgartirildi",
+    "@chatDescriptionHasBeenChanged": {},
+    "groupIsPublic": "Guruh ommaviy",
+    "@groupIsPublic": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "groups": "Guruhlar",
+    "@groups": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "groupWith": "{displayname} bilan guruh",
+    "@groupWith": {
+        "type": "String",
+        "placeholders": {
+            "displayname": {
+                "type": "String"
+            }
+        }
+    },
+    "guestsAreForbidden": "Mehmonlarga kirish taqiqlangan",
+    "@guestsAreForbidden": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "guestsCanJoin": "Mehmonlar qoʻshila oladi",
+    "@guestsCanJoin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "hasWithdrawnTheInvitationFor": "{username} {targetName} uchun taklifnomani qaytarib oldi",
+    "@hasWithdrawnTheInvitationFor": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "help": "Yordam",
+    "@help": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "hideRedactedEvents": "Tahrirlangan tadbirlarni yashirish",
+    "@hideRedactedEvents": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "hideRedactedMessages": "Oʻchirilgan xabarlarni yashirish",
+    "@hideRedactedMessages": {},
+    "hideRedactedMessagesBody": "Agar kimdir xabarni oʻchirsa, bu xabar endi chatda koʻrinmaydi.",
+    "@hideRedactedMessagesBody": {},
+    "hideInvalidOrUnknownMessageFormats": "Notoʻgʻri yoki nomaʼlum xabar formatlarini yashirish",
+    "@hideInvalidOrUnknownMessageFormats": {},
+    "howOffensiveIsThisContent": "Bu kontent qanchalik haqoratli?",
+    "@howOffensiveIsThisContent": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "id": "ID",
+    "@id": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "block": "Bloklash",
+    "@block": {},
+    "blockedUsers": "Bloklangan foydalanuvchilar",
+    "@blockedUsers": {},
+    "blockListDescription": "Sizni bezovta qilayotgan foydalanuvchilarni bloklashingiz mumkin. Shaxsiy bloklash roʻyxatingizdagi foydalanuvchilardan hech qanday xabar yoki guruhga taklifnomalarni qabul qila olmaysiz.",
+    "@blockListDescription": {},
+    "blockUsername": "Foydalanuvchi nomini eʻtiborsiz qoldirish",
+    "@blockUsername": {},
+    "iHaveClickedOnLink": "Men havolani bosdim",
+    "@iHaveClickedOnLink": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "incorrectPassphraseOrKey": "Notoʻgʻri parol yoki tiklash kaliti",
+    "@incorrectPassphraseOrKey": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "inoffensive": "Zararsiz",
+    "@inoffensive": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "inviteContact": "Kontaktni taklif qilish",
+    "@inviteContact": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "inviteContactToGroupQuestion": "{contact} ni \"{groupName}\" chatiga taklif qilishni istaysizmi?",
+    "@inviteContactToGroupQuestion": {},
+    "inviteContactToGroup": "Kontaktni {groupName} ga taklif qiling",
+    "@inviteContactToGroup": {
+        "type": "String",
+        "placeholders": {
+            "groupName": {
+                "type": "String"
+            }
+        }
+    },
+    "noChatDescriptionYet": "Hali chat tavsifi yaratilmagan.",
+    "@noChatDescriptionYet": {},
+    "tryAgain": "Qayta urinib koʻrish",
+    "@tryAgain": {},
+    "invalidServerName": "Server nomi notoʻgʻri",
+    "@invalidServerName": {},
+    "invited": "Taklif qilindi",
+    "@invited": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "redactMessageDescription": "Xabar ushbu suhbatdagi barcha ishtirokchilar uchun oʻchiriladi. Buni bekor qilib boʻlmaydi.",
+    "@redactMessageDescription": {},
+    "optionalRedactReason": "(Ixtiyoriy) Ushbu xabarni oʻchirish sababi...",
+    "@optionalRedactReason": {},
+    "invitedUser": "📩 {username} {targetName}ni taklif qildi",
+    "@invitedUser": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "invitedUsersOnly": "Faqat taklif qilingan foydalanuvchilar",
+    "@invitedUsersOnly": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "inviteForMe": "Men uchun taklif qilish",
+    "@inviteForMe": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "inviteText": "{username} sizni FluffyChat’ga taklif qildi.\n1. fluffychat.im saytiga tashrif buyuring va ilovani oʻrnating.\n2. Roʻyxatdan oʻting yoki tizimga kiring.\n3. Taklif havolasini oching:\n{link}",
+    "@inviteText": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "link": {
+                "type": "String"
+            }
+        }
+    },
+    "isTyping": "yozmoqda…",
+    "@isTyping": {
+        "type": "String",
+        "placeholders": {}
     }
 }
