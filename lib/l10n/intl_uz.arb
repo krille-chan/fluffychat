@@ -2403,5 +2403,7 @@
     "openGallery": "Ochiq galereya",
     "@openGallery": {},
     "removeFromSpace": "Guruhdan olib tashlash",
-    "@removeFromSpace": {}
+    "@removeFromSpace": {},
+    "addToSpaceDescription": "Bu chatni unga kiritish uchun guruhni tanlang.",
+    "@addToSpaceDescription": {}
 }
