@@ -1783,5 +1783,10 @@
     "@replaceRoomWithNewerVersion": {
         "type": "String",
         "placeholders": {}
+    },
+    "reply": "Javob yozish",
+    "@reply": {
+        "type": "String",
+        "placeholders": {}
     }
 }
