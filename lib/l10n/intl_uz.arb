@@ -676,5 +676,10 @@
     "@contentHasBeenReported": {
         "type": "String",
         "placeholders": {}
+    },
+    "chats": "Chatlar",
+    "@chats": {
+        "type": "String",
+        "placeholders": {}
     }
 }
