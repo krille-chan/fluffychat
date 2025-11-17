@@ -40,13 +40,20 @@ Future<T?> showAdaptiveBottomSheet<T>({
 
   return showModalBottomSheet<T>(
     context: context,
-    builder: builder,
+    builder: (context) => ConstrainedBox(
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.viewInsetsOf(context).bottom +
+            min(
+              MediaQuery.sizeOf(context).height - 32,
+              600,
+            ),
+      ),
+      child: builder(context),
+    ),
+    useSafeArea: true,
     useRootNavigator: useRootNavigator,
     isDismissible: isDismissible,
     isScrollControlled: isScrollControlled,
-    constraints: BoxConstraints(
-      maxHeight: min(MediaQuery.sizeOf(context).height - 32, 600),
-    ),
     clipBehavior: Clip.hardEdge,
   );
 }
