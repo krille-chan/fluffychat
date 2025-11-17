@@ -1818,5 +1818,10 @@
     "@search": {
         "type": "String",
         "placeholders": {}
+    },
+    "security": "Xavfsizlik",
+    "@security": {
+        "type": "String",
+        "placeholders": {}
     }
 }
