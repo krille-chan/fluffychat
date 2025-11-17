@@ -1823,5 +1823,112 @@
     "@security": {
         "type": "String",
         "placeholders": {}
+    },
+    "recoveryKey": "Tiklash kaliti",
+    "@recoveryKey": {},
+    "recoveryKeyLost": "Tiklash kaliti yo‘qolib qoldimi?",
+    "@recoveryKeyLost": {},
+    "seenByUser": "{username} ko‘rgan",
+    "@seenByUser": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "send": "Yuborish",
+    "@send": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendAMessage": "Xabar yuborish",
+    "@sendAMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendAsText": "Matn sifatida yuborish",
+    "@sendAsText": {
+        "type": "String"
+    },
+    "sendAudio": "Audio yuborish",
+    "@sendAudio": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendFile": "Faylni yuborish",
+    "@sendFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendImage": "Rasm yuborish",
+    "@sendImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendImages": "{count} ta rasm yuborish",
+    "@sendImages": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "sendMessages": "Xabarlar yuborish",
+    "@sendMessages": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendOriginal": "Asl nusxani yuborish",
+    "@sendOriginal": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendSticker": "Stiker yuborish",
+    "@sendSticker": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendVideo": "Video yuborish",
+    "@sendVideo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sentAFile": "📁 {username} fayl yubordi",
+    "@sentAFile": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "sentAnAudio": "🎤 {username} audio yubordi",
+    "@sentAnAudio": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "sentAPicture": "️ 🖼️ {username} rasm yubordi",
+    "@sentAPicture": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "sentASticker": "😊 {username} stiker yubordi",
+    "@sentASticker": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
     }
 }
