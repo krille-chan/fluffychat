@@ -5,6 +5,9 @@ extension FileDescriptionExtension on Event {
     if (!{
       MessageTypes.File,
       MessageTypes.Image,
+      MessageTypes.Sticker,
+      MessageTypes.Video,
+      MessageTypes.Audio,
     }.contains(messageType)) {
       return null;
     }
