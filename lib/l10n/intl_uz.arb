@@ -440,7 +440,7 @@
             }
         }
     },
-    "changedTheRoomInvitationLink": "{username} taklif havolasini o‘zgartirdi",
+    "changedTheRoomInvitationLink": "{username} taklif havolasini oʻzgartirdi",
     "@changedTheRoomInvitationLink": {
         "type": "String",
         "placeholders": {
@@ -502,5 +502,179 @@
         "placeholders": {}
     },
     "chatHasBeenAddedToThisSpace": "Chat bu guruhga kiritildi",
-    "@chatHasBeenAddedToThisSpace": {}
+    "@chatHasBeenAddedToThisSpace": {},
+    "changedTheRoomAliases": "{username} xona taxalluslarini oʻzgartirdi",
+    "@changedTheRoomAliases": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "chooseAStrongPassword": "Kuchli parol tanlang",
+    "@chooseAStrongPassword": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clearArchive": "Arxivni tozalash",
+    "@clearArchive": {},
+    "close": "Yopish",
+    "@close": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "commandHint_markasdm": "Matrix identifikatorini berish uchun shaxsiy xabar guruhi sifatida belgilang",
+    "@commandHint_markasdm": {},
+    "commandHint_markasgroup": "Guruh sifatida belgilash",
+    "@commandHint_markasgroup": {},
+    "commandHint_ban": "Bu guruhdan berilgan foydalanuvchini bloklash",
+    "@commandHint_ban": {
+        "type": "String",
+        "description": "Usage hint for the command /ban"
+    },
+    "commandHint_clearcache": "Kesh tozalash",
+    "@commandHint_clearcache": {
+        "type": "String",
+        "description": "Usage hint for the command /clearcache"
+    },
+    "commandHint_create": "Boʻsh guruh chati yarating\nShifrlashni oʻchirish uchun --no-encryption dan foydalaning",
+    "@commandHint_create": {
+        "type": "String",
+        "description": "Usage hint for the command /create"
+    },
+    "commandHint_discardsession": "Seansni bekor qilish",
+    "@commandHint_discardsession": {
+        "type": "String",
+        "description": "Usage hint for the command /discardsession"
+    },
+    "commandHint_dm": "Jonli chatni boshlash\nShifrlashni o‘chirish uchun --no-encryption dan foydalaning",
+    "@commandHint_dm": {
+        "type": "String",
+        "description": "Usage hint for the command /dm"
+    },
+    "commandHint_html": "HTML formatidagi matnni yuborish",
+    "@commandHint_html": {
+        "type": "String",
+        "description": "Usage hint for the command /html"
+    },
+    "commandHint_invite": "Berilgan foydalanuvchini ushbu guruhga taklif qiling",
+    "@commandHint_invite": {
+        "type": "String",
+        "description": "Usage hint for the command /invite"
+    },
+    "commandHint_join": "Berilgan guruhga qoʻshilish",
+    "@commandHint_join": {
+        "type": "String",
+        "description": "Usage hint for the command /join"
+    },
+    "commandHint_kick": "Berilgan foydalanuvchini guruhdan oʻchirish",
+    "@commandHint_kick": {
+        "type": "String",
+        "description": "Usage hint for the command /kick"
+    },
+    "commandHint_leave": "Guruhni tark etish",
+    "@commandHint_leave": {
+        "type": "String",
+        "description": "Usage hint for the command /leave"
+    },
+    "commandHint_me": "Oʻzingizni tariflang",
+    "@commandHint_me": {
+        "type": "String",
+        "description": "Usage hint for the command /me"
+    },
+    "commandHint_myroomavatar": "Bu guruh uchun rasmingizni sozlang (mxc-uri tomonidan)",
+    "@commandHint_myroomavatar": {
+        "type": "String",
+        "description": "Usage hint for the command /myroomavatar"
+    },
+    "commandHint_myroomnick": "Bu guruh uchun displey nomini sozlang",
+    "@commandHint_myroomnick": {
+        "type": "String",
+        "description": "Usage hint for the command /myroomnick"
+    },
+    "commandHint_op": "Berilgan foydalanuvchi quvvat darajasini oʻrnating (standart: 50)",
+    "@commandHint_op": {
+        "type": "String",
+        "description": "Usage hint for the command /op"
+    },
+    "commandHint_plain": "Formatlanmagan matnni yuboring",
+    "@commandHint_plain": {
+        "type": "String",
+        "description": "Usage hint for the command /plain"
+    },
+    "commandHint_react": "Javobni reaksiya sifatida yuboring",
+    "@commandHint_react": {
+        "type": "String",
+        "description": "Usage hint for the command /react"
+    },
+    "commandHint_send": "Matn yuborish",
+    "@commandHint_send": {
+        "type": "String",
+        "description": "Usage hint for the command /send"
+    },
+    "commandHint_unban": "Berilgan foydalanuvchini bu guruhdan blokdan chiqazish",
+    "@commandHint_unban": {
+        "type": "String",
+        "description": "Usage hint for the command /unban"
+    },
+    "commandInvalid": "Buyruq yaroqsiz",
+    "@commandInvalid": {
+        "type": "String"
+    },
+    "commandMissing": "{command} komanda emas.",
+    "@commandMissing": {
+        "type": "String",
+        "placeholders": {
+            "command": {
+                "type": "String"
+            }
+        },
+        "description": "State that {command} is not a valid /command."
+    },
+    "compareEmojiMatch": "Iltimos emojilarni taqqoslang",
+    "@compareEmojiMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "compareNumbersMatch": "Iltimos raqamlarni taqqoslang",
+    "@compareNumbersMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "configureChat": "Chatni sozlash",
+    "@configureChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "confirm": "Tasdiqlash",
+    "@confirm": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "connect": "Ulanish",
+    "@connect": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "contactHasBeenInvitedToTheGroup": "Kontakt guruhga taklif qilindi",
+    "@contactHasBeenInvitedToTheGroup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "containsDisplayName": "Displey nomni oʻz ichiga oladi",
+    "@containsDisplayName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "containsUserName": "Foydalanuvchi nomini oʻz ichiga oladi",
+    "@containsUserName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "contentHasBeenReported": "Kontent server administratorlariga xabar qilindi",
+    "@contentHasBeenReported": {
+        "type": "String",
+        "placeholders": {}
+    }
 }
