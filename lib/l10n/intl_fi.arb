@@ -3369,5 +3369,64 @@
     "optionalMessage": "(Valinnainen) viesti...",
     "@optionalMessage": {},
     "notSupportedOnThisDevice": "Ei tuettu tällä laitteella",
-    "@notSupportedOnThisDevice": {}
+    "@notSupportedOnThisDevice": {},
+    "hideRedactedMessages": "Piilota valvojan toimesta poistetut viestit",
+    "@hideRedactedMessages": {},
+    "hideRedactedMessagesBody": "Jos viesti jonkun toimesta poistetaan, se ei enää näy pikakeskustelussa.",
+    "@hideRedactedMessagesBody": {},
+    "enterNewChat": "Aloita uusi pikakeskustelu",
+    "@enterNewChat": {},
+    "youHaveKnocked": "Olet koputtanut",
+    "@youHaveKnocked": {},
+    "pleaseWaitUntilInvited": "Odotathan nyt, kunnes joku huoneesta kutsuu sinut.",
+    "@pleaseWaitUntilInvited": {},
+    "commandHint_logout": "Kirjaudu ulos nykyinen laitteesi",
+    "@commandHint_logout": {},
+    "commandHint_logoutall": "Kirjaudu ulos kaikki aktiiviset laitteet",
+    "@commandHint_logoutall": {},
+    "displayNavigationRail": "Näytä navigointipalkki mobiililaitteella",
+    "@displayNavigationRail": {},
+    "customReaction": "Mukautettu reagointi",
+    "@customReaction": {},
+    "moreEvents": "Lisää tapahtumia",
+    "@moreEvents": {},
+    "declineInvitation": "Hylkää kutsu",
+    "@declineInvitation": {},
+    "noMessagesYet": "Ei vielä viestejä",
+    "@noMessagesYet": {},
+    "longPressToRecordVoiceMessage": "Pitkä painallus ääniviestin tallentamiseksi.",
+    "@longPressToRecordVoiceMessage": {},
+    "newSubSpace": "Uusi alitila",
+    "@newSubSpace": {},
+    "moveToDifferentSpace": "Siirry eri tilaan",
+    "@moveToDifferentSpace": {},
+    "removeFromSpaceDescription": "Pikakeskustelu poistetaan tilasta, mutta se näkyy edelleen pikakeskusteluluettelossasi.",
+    "@removeFromSpaceDescription": {},
+    "countChats": "{chats} pikakeskustelua",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "spaceMemberOf": "{spaces}:jen tilanjäsen",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "{spaces}:jen tilanjäsen saa koputtaa",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    }
 }
