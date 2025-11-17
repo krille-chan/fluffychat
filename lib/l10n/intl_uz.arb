@@ -2405,5 +2405,7 @@
     "removeFromSpace": "Guruhdan olib tashlash",
     "@removeFromSpace": {},
     "addToSpaceDescription": "Bu chatni unga kiritish uchun guruhni tanlang.",
-    "@addToSpaceDescription": {}
+    "@addToSpaceDescription": {},
+    "start": "Boshlash",
+    "@start": {}
 }
