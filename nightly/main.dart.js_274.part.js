@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cH5(){return new A.FD(B.di("eu"))},
-FD:function FD(d){this.a=d}}
+cH5(){return new A.FC(B.di("eu"))},
+FC:function FC(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[18],A)
-A.FD.prototype={
+A.FC.prototype={
 gkY(){return"false"},
 gjI(){return"Idatzi berriro pasahitza"},
 gmN(){return"Ez da irudi-fitxategia."},
@@ -627,35 +627,34 @@ gp7(){return"Erakutsi nabigazio-barra mugikorrean"},
 glJ(){return"Erreakzio pertsonalizatua"},
 gp8(){return"Gertaera gehiago"},
 glM(){return"Uko egin gonbidapenari"},
-gpx(){return"Mezurik ez oraingoz"},
+gpw(){return"Mezurik ez oraingoz"},
 gp9(){return"Azpi-gune berria"},
-gpw(){return"Beste gune batera mugitu"},
-gpB(){return"Txata gunetik kenduko da, baina txaten zerrendan mantenduko da."},
-pq(d){return""+d+" txat"},
+gpv(){return"Beste gune batera mugitu"},
+gpA(){return"Txata gunetik kenduko da, baina txaten zerrendan mantenduko da."},
+pp(d){return""+d+" txat"},
 pf(d){return d+" guneko kidea"},
 pg(d){return d+" guneko kideak sartzeko baimena eska dezake"},
-gpt(){return"Egin dohaintza"},
+gps(){return"Egin dohaintza"},
 gkI(){return"Hasi bozketa"},
-gpu(){return"Amaitu bozketa"},
-gpm(){return"Erakutsi emaitzak"},
-gpl(){return"Ezkutatu emaitzak"},
-gpz(){return"Bozketako galdera"},
+gpt(){return"Amaitu bozketa"},
+gpl(){return"Erakutsi emaitzak"},
+gpy(){return"Bozketako galdera"},
 gpk(){return"Erantzun-aukera"},
 gpi(){return"Gehitu erantzun-aukera"},
 gpj(){return"Baimendu erantzun bat baino gehiago"},
 gpb(){return"Bozketa amaitu da"},
-ps(d){var x=null
-return B.bB(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
-gpn(){return"Emaitzak bozketak amaitu duenean egongo dira ikusgai"},
-gpc(){return"Erantzun harian"},
 pr(d){var x=null
+return B.bB(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
+gpm(){return"Emaitzak bozketak amaitu duenean egongo dira ikusgai"},
+gpc(){return"Erantzun harian"},
+pq(d){var x=null
 return B.bB(d,x,this.a,x,"Erantzun bat",""+d+" erantzun",x,x)},
-gpD(){return"Haria"},
-gpo(){return"Joan txat nagusira"},
+gpC(){return"Haria"},
+gpn(){return"Joan txat nagusira"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FD,C.aF)})()
-B.dS(b.typeUniverse,JSON.parse('{"FD":{"aF":[]}}'))
+x(A.FC,C.aF)})()
+B.dS(b.typeUniverse,JSON.parse('{"FC":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["ZOag8rapvTiEwaikD7/tUOS1SsM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4fMLu4V3tuwNmm40pHJ14qx6jus="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_274.part.js.map

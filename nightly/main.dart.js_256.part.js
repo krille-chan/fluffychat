@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cH_(){return new A.Fx(B.di("de"))},
-Fx:function Fx(d){this.a=d}}
+cH_(){return new A.Fw(B.di("de"))},
+Fw:function Fw(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[12],A)
-A.Fx.prototype={
+A.Fw.prototype={
 gkY(){return"true"},
 gjI(){return"Passwort wiederholen"},
 gmN(){return"Keine Bilddatei."},
@@ -627,35 +627,34 @@ gp7(){return"Navigationsleiste auf dem Smartphone anzeigen"},
 glJ(){return"Benutzerdefinierte Reaktion"},
 gp8(){return"Weitere Ereignisse"},
 glM(){return"Einladung ablehnen"},
-gpx(){return"Noch keine Nachrichten"},
+gpw(){return"Noch keine Nachrichten"},
 gp9(){return"Neuer Sub-Space"},
-gpw(){return"In einen anderen space wechseln"},
-gpB(){return"Der Chat wird aus dem Space entfernt, erscheint aber weiterhin in Ihrer Chatliste."},
-pq(d){return""+d+" Chats"},
+gpv(){return"In einen anderen space wechseln"},
+gpA(){return"Der Chat wird aus dem Space entfernt, erscheint aber weiterhin in Ihrer Chatliste."},
+pp(d){return""+d+" Chats"},
 pf(d){return"Space-Mitglieder von "+d},
 pg(d){return"Space-Mitglieder von "+d+" kann klopfen"},
-gpt(){return"Spenden"},
+gps(){return"Spenden"},
 gkI(){return"Umfrage starten"},
-gpu(){return"Umfrage beenden"},
-gpm(){return"Antworten sichtbar"},
-gpl(){return"Antworten sind verborgen"},
-gpz(){return"Frage"},
+gpt(){return"Umfrage beenden"},
+gpl(){return"Antworten sichtbar"},
+gpy(){return"Frage"},
 gpk(){return"Antwortm\xf6glichkeit"},
 gpi(){return"Antwortoption hinzuf\xfcgen"},
 gpj(){return"Mehrere Antworten zulassen"},
 gpb(){return"Umfrage ist beendet"},
-ps(d){var x=null
-return B.bB(d,x,this.a,x,"Eine Stimme",""+d+" Stimmen",x,x)},
-gpn(){return"Die Antworten werden nach Ende der Umfrage sichtbar sein"},
-gpc(){return"Im Thread antworten"},
 pr(d){var x=null
+return B.bB(d,x,this.a,x,"Eine Stimme",""+d+" Stimmen",x,x)},
+gpm(){return"Die Antworten werden nach Ende der Umfrage sichtbar sein"},
+gpc(){return"Im Thread antworten"},
+pq(d){var x=null
 return B.bB(d,x,this.a,x,"Eine Antwort",""+d+" Antworten",x,x)},
-gpD(){return"Thread"},
-gpo(){return"Zur\xfcck zum Hauptchat"},
+gpC(){return"Thread"},
+gpn(){return"Zur\xfcck zum Hauptchat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Fx,C.aF)})()
-B.dS(b.typeUniverse,JSON.parse('{"Fx":{"aF":[]}}'))
+x(A.Fw,C.aF)})()
+B.dS(b.typeUniverse,JSON.parse('{"Fw":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["f/CD+2fHgksi5Q8G4FtjmKyUSQA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["IT8SzsLLB5NA8NghenhdbWmPpao="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_256.part.js.map

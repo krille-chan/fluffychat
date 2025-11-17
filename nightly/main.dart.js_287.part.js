@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHb(){return new A.FJ(B.di("gl"))},
-FJ:function FJ(d){this.a=d}}
+cHb(){return new A.FI(B.di("gl"))},
+FI:function FI(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[24],A)
-A.FJ.prototype={
+A.FI.prototype={
 gkY(){return"falso"},
 gjI(){return"Repite o contrasinal"},
 gmN(){return"Non \xe9 un ficheiro de imaxe."},
@@ -627,34 +627,33 @@ gp7(){return"Mostrar carril de navegaci\xf3n nos m\xf3biles"},
 glJ(){return"Reacci\xf3n personalizada"},
 gp8(){return"M\xe1is eventos"},
 glM(){return"Rexeitar o convite"},
-gpx(){return"A\xednda non hai mensaxes"},
+gpw(){return"A\xednda non hai mensaxes"},
 gp9(){return"Novo sub espazo"},
-gpw(){return"Mover a outro espazo"},
-gpB(){return"Vaise quitar a conversa do espazo pero seguir\xe1 aparecendo na t\xfaa lista de conversas."},
-pq(d){return""+d+" conversas"},
+gpv(){return"Mover a outro espazo"},
+gpA(){return"Vaise quitar a conversa do espazo pero seguir\xe1 aparecendo na t\xfaa lista de conversas."},
+pp(d){return""+d+" conversas"},
 pf(d){return"Participa no espazo "+d},
 pg(d){return"Os membros de "+d+" poden petar \xe1 porta"},
-gpt(){return"Doar"},
+gps(){return"Doar"},
 gkI(){return"Publicar enquisa"},
-gpu(){return"Finalizar enquisa"},
-gpm(){return"Resultados visibles"},
-gpl(){return"Non se ven os resultados"},
-gpz(){return"Pregunta da enquisa"},
+gpt(){return"Finalizar enquisa"},
+gpl(){return"Resultados visibles"},
+gpy(){return"Pregunta da enquisa"},
 gpk(){return"Opci\xf3n de resposta"},
 gpi(){return"Engadir opci\xf3n"},
 gpj(){return"Permitir varias respostas"},
 gpb(){return"Rematou a enquisa"},
-ps(d){var y=null
-return B.bB(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
-gpn(){return"As respostas son visibles ao finalizar a enquisa"},
-gpc(){return"Responder ao f\xedo"},
 pr(d){var y=null
+return B.bB(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
+gpm(){return"As respostas son visibles ao finalizar a enquisa"},
+gpc(){return"Responder ao f\xedo"},
+pq(d){var y=null
 return B.bB(d,y,this.a,y,"Unha resposta",""+d+" respostas",y,y)},
-gpD(){return"F\xedo"},
-gpo(){return"Volver \xe1 conversa principal"},
+gpC(){return"F\xedo"},
+gpn(){return"Volver \xe1 conversa principal"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FJ,C.aF)})()
-B.dS(b.typeUniverse,JSON.parse('{"FJ":{"aF":[]}}'))};
-(a=>{a["2r6/I6Q3a9o1/I7tPhS471IYwbM="]=a.current})($__dart_deferred_initializers__);
+y(A.FI,C.aF)})()
+B.dS(b.typeUniverse,JSON.parse('{"FI":{"aF":[]}}'))};
+(a=>{a["YmreMSMKWcXOXTqFgy4/ZY3lhto="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_287.part.js.map

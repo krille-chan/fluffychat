@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHq(){return new A.FY(B.di("nl"))},
-FY:function FY(d){this.a=d}}
+cHq(){return new A.FX(B.di("nl"))},
+FX:function FX(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[39],A)
-A.FY.prototype={
+A.FX.prototype={
 gkY(){return"true"},
 gjI(){return"Wachtwoord herhalen"},
 gmN(){return"Geen afbeeldingsbestand."},
@@ -627,34 +627,33 @@ gp7(){return"Navigatiebalk op mobiel tonen"},
 glJ(){return"Aangepaste reactie"},
 gp8(){return"Meer gebeurtenissen"},
 glM(){return"Uitnodiging afwijzen"},
-gpx(){return"Nog geen berichten"},
+gpw(){return"Nog geen berichten"},
 gp9(){return"Nieuwe sub-space"},
-gpw(){return"Naar andere space verplaatsen"},
-gpB(){return"De chat zal worden verwijderd uit de space, maar blijft in je chats."},
-pq(d){return""+d+" chats"},
+gpv(){return"Naar andere space verplaatsen"},
+gpA(){return"De chat zal worden verwijderd uit de space, maar blijft in je chats."},
+pp(d){return""+d+" chats"},
 pf(d){return d+" personen in space"},
 pg(d){return d+" personen in space kunnen kloppen"},
-gpt(){return"Doneer"},
+gps(){return"Doneer"},
 gkI(){return"Peiling starten"},
-gpu(){return"Peiling be\xebindigen"},
-gpm(){return"Zichtbaar invullen"},
-gpl(){return"Antwoorden verborgen"},
-gpz(){return"Peiling vraag"},
+gpt(){return"Peiling be\xebindigen"},
+gpl(){return"Zichtbaar invullen"},
+gpy(){return"Peiling vraag"},
 gpk(){return"Antwoord optie"},
 gpi(){return"Antwoord optie toevoegen"},
 gpj(){return"Meerdere antwoorden toestaan"},
 gpb(){return"Peiling is ge\xebindigd"},
-ps(d){var y=null
-return B.bB(d,y,this.a,y,"\xc9\xe9n stem",""+d+" stemmen",y,y)},
-gpn(){return"Antwoorden zullen zichtbaar zijn wanneer de peiling is ge\xebindigd"},
-gpc(){return"Antwoord in draad"},
 pr(d){var y=null
+return B.bB(d,y,this.a,y,"\xc9\xe9n stem",""+d+" stemmen",y,y)},
+gpm(){return"Antwoorden zullen zichtbaar zijn wanneer de peiling is ge\xebindigd"},
+gpc(){return"Antwoord in draad"},
+pq(d){var y=null
 return B.bB(d,y,this.a,y,"\xc9\xe9n antwoord",""+d+" antwoorden",y,y)},
-gpD(){return"Draad"},
-gpo(){return"Terug naar hoofdchat"},
+gpC(){return"Draad"},
+gpn(){return"Terug naar hoofdchat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FY,C.aF)})()
-B.dS(b.typeUniverse,JSON.parse('{"FY":{"aF":[]}}'))};
-(a=>{a["LcUIgG4V9Mbgf+jYRP1yKz3fJCQ="]=a.current})($__dart_deferred_initializers__);
+y(A.FX,C.aF)})()
+B.dS(b.typeUniverse,JSON.parse('{"FX":{"aF":[]}}'))};
+(a=>{a["tALA1ZYd+LVWmiV37K/h84j9qbI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map

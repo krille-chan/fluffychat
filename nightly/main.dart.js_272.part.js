@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cH4(){return new A.FC(B.di("et"))},
-FC:function FC(d){this.a=d}}
+cH4(){return new A.FB(B.di("et"))},
+FB:function FB(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[17],A)
-A.FC.prototype={
+A.FB.prototype={
 gkY(){return"false"},
 gjI(){return"Korda salas\xf5na"},
 gmN(){return"See pole pildifail."},
@@ -627,34 +627,33 @@ gp7(){return"N\xe4ita mobiilis k\xfclgmist t\xf6\xf6riistariba"},
 glJ(){return"Kohandatud reaktsioon"},
 gp8(){return"Veel s\xfcndmusi"},
 glM(){return"Keeldu kutsest"},
-gpx(){return"Pole veel \xfchtegi s\xf5numit"},
+gpw(){return"Pole veel \xfchtegi s\xf5numit"},
 gp9(){return"Uus alamkogukond"},
-gpw(){return"T\xf5sta teise kogukonda"},
-gpB(){return"See vestlus eemaldatakse n\xfc\xfcd kogukonnast, kuid on j\xe4tkuvalt n\xe4htav sinu vestluste loendis."},
-pq(d){return""+d+" vestlust"},
+gpv(){return"T\xf5sta teise kogukonda"},
+gpA(){return"See vestlus eemaldatakse n\xfc\xfcd kogukonnast, kuid on j\xe4tkuvalt n\xe4htav sinu vestluste loendis."},
+pp(d){return""+d+" vestlust"},
 pf(d){return"Kogukonna liige: "+d},
 pg(d){return d+" kogukonna liige v\xf5ib uksele koputada"},
-gpt(){return"Toeta meid rahaliselt"},
+gps(){return"Toeta meid rahaliselt"},
 gkI(){return"Koosta k\xfcsitlus"},
-gpu(){return"L\xf5peta k\xfcsitlus"},
-gpm(){return"Vastused on n\xe4ha"},
-gpl(){return"Vastused on peidetud"},
-gpz(){return"K\xfcsitluse k\xfcsimus"},
+gpt(){return"L\xf5peta k\xfcsitlus"},
+gpl(){return"Vastused on n\xe4ha"},
+gpy(){return"K\xfcsitluse k\xfcsimus"},
 gpk(){return"Valikvastus"},
 gpi(){return"Lisa valikvastus"},
 gpj(){return"Luba mitu vastusevalikut"},
 gpb(){return"K\xfcsitlus on l\xf5ppenud"},
-ps(d){var y=null
-return B.bB(d,y,this.a,y,"\xdcks h\xe4\xe4l",""+d+" h\xe4\xe4lt",y,y)},
-gpn(){return"Vastused on n\xe4ha k\xfcsitluse l\xf5ppedes"},
-gpc(){return"Vasta jutul\xf5ngas"},
 pr(d){var y=null
+return B.bB(d,y,this.a,y,"\xdcks h\xe4\xe4l",""+d+" h\xe4\xe4lt",y,y)},
+gpm(){return"Vastused on n\xe4ha k\xfcsitluse l\xf5ppedes"},
+gpc(){return"Vasta jutul\xf5ngas"},
+pq(d){var y=null
 return B.bB(d,y,this.a,y,"\xdcks vastus",""+d+" vastust",y,y)},
-gpD(){return"Jutul\xf5ng"},
-gpo(){return"Tagasi p\xf5hivestlusesse"},
+gpC(){return"Jutul\xf5ng"},
+gpn(){return"Tagasi p\xf5hivestlusesse"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FC,C.aF)})()
-B.dS(b.typeUniverse,JSON.parse('{"FC":{"aF":[]}}'))};
-(a=>{a["dy9Ej4wc3xqCLaf8o0JoG4D+enc="]=a.current})($__dart_deferred_initializers__);
+y(A.FB,C.aF)})()
+B.dS(b.typeUniverse,JSON.parse('{"FB":{"aF":[]}}'))};
+(a=>{a["e2nD5TNNMeamvIVSxrYCs8OvTUM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_272.part.js.map

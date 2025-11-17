@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHa(){return new A.FI(B.di("ga"))},
-FI:function FI(d){this.a=d}}
+cHa(){return new A.FH(B.di("ga"))},
+FH:function FH(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[23],A)
-A.FI.prototype={
+A.FH.prototype={
 gkY(){return"br\xe9agach"},
 gjI(){return"Scr\xedobh an pasfhocal ar\xeds"},
 gmN(){return"N\xed comhad \xedomh\xe1 \xe9."},
@@ -627,35 +627,34 @@ gp7(){return"Taispe\xe1in r\xe1ille nasclean\xfana ar fh\xf3in ph\xf3ca"},
 glJ(){return"Imoibri\xfa saincheaptha"},
 gp8(){return"Tuilleadh imeachta\xed"},
 glM(){return"Di\xfaltaigh don chuireadh"},
-gpx(){return"Gan aon teachtaireachta\xed f\xf3s"},
+gpw(){return"Gan aon teachtaireachta\xed f\xf3s"},
 gp9(){return"Fo-sp\xe1s nua"},
-gpw(){return"Bog go sp\xe1s difri\xfail"},
-gpB(){return"Bainfear an comhr\xe1 as an sp\xe1s ach beidh s\xe9 f\xf3s le feice\xe1il i do liosta comhr\xe1."},
-pq(d){return"comhr\xe1ite "+d},
+gpv(){return"Bog go sp\xe1s difri\xfail"},
+gpA(){return"Bainfear an comhr\xe1 as an sp\xe1s ach beidh s\xe9 f\xf3s le feice\xe1il i do liosta comhr\xe1."},
+pp(d){return"comhr\xe1ite "+d},
 pf(d){return"Ball sp\xe1is de "+d},
 pg(d){return"Is f\xe9idir le ball sp\xe1is de "+d+" cnagadh"},
-gpt(){return"Tabhair S\xednti\xfas"},
+gps(){return"Tabhair S\xednti\xfas"},
 gkI(){return"Tosaigh pobalbhreith"},
-gpu(){return"Deireadh leis an pobalbhreith"},
-gpm(){return"Freagra\xed le feice\xe1il"},
-gpl(){return"Freagra\xed i bhfolach"},
-gpz(){return"Ceist pobalbhreithe"},
+gpt(){return"Deireadh leis an pobalbhreith"},
+gpl(){return"Freagra\xed le feice\xe1il"},
+gpy(){return"Ceist pobalbhreithe"},
 gpk(){return"Rogha freagartha"},
 gpi(){return"Cuir rogha freagra leis"},
 gpj(){return"Ceadaigh freagra\xed iolracha"},
 gpb(){return"T\xe1 deireadh leis an pobalbhreith"},
-ps(d){var x=null
-return B.bB(d,x,this.a,x,"V\xf3ta amh\xe1in",""+d+" v\xf3ta\xed",x,x)},
-gpn(){return"Beidh freagra\xed le feice\xe1il nuair a bheidh an pobalbhreith thart"},
-gpc(){return"Freagra sa sn\xe1ithe"},
 pr(d){var x=null
+return B.bB(d,x,this.a,x,"V\xf3ta amh\xe1in",""+d+" v\xf3ta\xed",x,x)},
+gpm(){return"Beidh freagra\xed le feice\xe1il nuair a bheidh an pobalbhreith thart"},
+gpc(){return"Freagra sa sn\xe1ithe"},
+pq(d){var x=null
 return B.bB(d,x,this.a,x,"Freagra amh\xe1in",""+d+" freagra\xed",x,x)},
-gpD(){return"Sn\xe1ithe"},
-gpo(){return"Ar ais chuig an bpr\xedomhchomhr\xe1"},
+gpC(){return"Sn\xe1ithe"},
+gpn(){return"Ar ais chuig an bpr\xedomhchomhr\xe1"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FI,C.aF)})()
-B.dS(b.typeUniverse,JSON.parse('{"FI":{"aF":[]}}'))
+x(A.FH,C.aF)})()
+B.dS(b.typeUniverse,JSON.parse('{"FH":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["bBIp/WR9GzufpqM6fLoDmnYedpc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/sJlppOq0+TdrNaECVFjSWuDMQQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_286.part.js.map

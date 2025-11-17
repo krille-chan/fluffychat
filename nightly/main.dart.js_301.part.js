@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHh(){return new A.FP(B.di("id"))},
-FP:function FP(d){this.a=d}}
+cHh(){return new A.FO(B.di("id"))},
+FO:function FO(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[30],A)
-A.FP.prototype={
+A.FO.prototype={
 gkY(){return"tidak"},
 gjI(){return"Ulangi kata sandi"},
 gmN(){return"Bukan berkas gambar."},
@@ -627,35 +627,34 @@ gp7(){return"Tampilkan jalur navigasi pada ponsel"},
 glJ(){return"Reaksi khusus"},
 gp8(){return"Peristiwa tambahan"},
 glM(){return"Tolak undangan"},
-gpx(){return"Belum ada pesan"},
+gpw(){return"Belum ada pesan"},
 gp9(){return"New sub space"},
-gpw(){return"Move to different space"},
-gpB(){return"The chat will be removed from the space but still appear in your chat list."},
-pq(d){return""+d+" chats"},
+gpv(){return"Move to different space"},
+gpA(){return"The chat will be removed from the space but still appear in your chat list."},
+pp(d){return""+d+" chats"},
 pf(d){return"Space member of "+d},
 pg(d){return"Space member of "+d+" can knock"},
-gpt(){return"Donate"},
+gps(){return"Donate"},
 gkI(){return"Start poll"},
-gpu(){return"End poll"},
-gpm(){return"Answers visible"},
-gpl(){return"Answers hidden"},
-gpz(){return"Poll question"},
+gpt(){return"End poll"},
+gpl(){return"Answers visible"},
+gpy(){return"Poll question"},
 gpk(){return"Answer option"},
 gpi(){return"Add answer option"},
 gpj(){return"Allow multiple answers"},
 gpb(){return"Poll has been ended"},
-ps(d){var x=null
-return B.bB(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
-gpn(){return"Answers will be visible when poll has ended"},
-gpc(){return"Reply in thread"},
 pr(d){var x=null
+return B.bB(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
+gpm(){return"Answers will be visible when poll has ended"},
+gpc(){return"Reply in thread"},
+pq(d){var x=null
 return B.bB(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
-gpD(){return"Thread"},
-gpo(){return"Back to main chat"},
+gpC(){return"Thread"},
+gpn(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FP,C.aF)})()
-B.dS(b.typeUniverse,JSON.parse('{"FP":{"aF":[]}}'))
+x(A.FO,C.aF)})()
+B.dS(b.typeUniverse,JSON.parse('{"FO":{"aF":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["hik3mxGivvG1Emj08zcDq9r05YM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["TAQ6pXf82zKgeBG1erfauhN/ZOY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHo(){return new A.FW(B.di("lv"))},
-FW:function FW(d){this.a=d}}
+cHo(){return new A.FV(B.di("lv"))},
+FV:function FV(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[37],A)
-A.FW.prototype={
+A.FV.prototype={
 gkY(){return"n\u0113"},
 gjI(){return"Atk\u0101rtot paroli"},
 gmN(){return"Nav att\u0113la datne."},
@@ -627,34 +627,33 @@ gp7(){return"R\u0101d\u012bt p\u0101rvieto\u0161an\u0101s sliedi viedier\u012bc\
 glJ(){return"Piel\u0101gota reakcija"},
 gp8(){return"Vair\u0101k notikumu"},
 glM(){return"Noraid\u012bt uzaicin\u0101jumu"},
-gpx(){return"V\u0113l nav zi\u0146u"},
+gpw(){return"V\u0113l nav zi\u0146u"},
 gp9(){return"Jauna apak\u0161vieta"},
-gpw(){return"P\u0101rvietot uz citu vietu"},
-gpB(){return"T\u0113rz\u0113\u0161ana tiks no\u0146emta no vietas, bet t\u0101 joproj\u0101m b\u016bs redzama t\u0113rz\u0113\u0161anu sarakst\u0101."},
-pq(d){return""+d+" t\u0113rz\u0113\u0161anas"},
+gpv(){return"P\u0101rvietot uz citu vietu"},
+gpA(){return"T\u0113rz\u0113\u0161ana tiks no\u0146emta no vietas, bet t\u0101 joproj\u0101m b\u016bs redzama t\u0113rz\u0113\u0161anu sarakst\u0101."},
+pp(d){return""+d+" t\u0113rz\u0113\u0161anas"},
 pf(d){return d+" dal\u012bbnieks"},
 pg(d){return d+" dal\u012bbnieks var pieklauv\u0113t"},
-gpt(){return"Ziedot"},
+gps(){return"Ziedot"},
 gkI(){return"S\u0101kt aptauju"},
-gpu(){return"Nosl\u0113gt aptauju"},
-gpm(){return"Atbildes ir redzamas"},
-gpl(){return"Atbildes ir pasl\u0113ptas"},
-gpz(){return"Aptaujas jaut\u0101jums"},
+gpt(){return"Nosl\u0113gt aptauju"},
+gpl(){return"Atbildes ir redzamas"},
+gpy(){return"Aptaujas jaut\u0101jums"},
 gpk(){return"Atbildes iesp\u0113ja"},
 gpi(){return"Pievienot atbildes iesp\u0113ju"},
 gpj(){return"At\u013caut vair\u0101kas atbildes"},
 gpb(){return"Aptauja ir nosl\u0113gusies"},
-ps(d){var y=""+d
-return B.bB(d,null,this.a,null,y+" balss",y+" balsis",null,y+" balsu")},
-gpn(){return"Atbildes b\u016bs redzams, kad aptauja nosl\u0113gsies"},
-gpc(){return"Atbild\u0113t pavedien\u0101"},
 pr(d){var y=""+d
+return B.bB(d,null,this.a,null,y+" balss",y+" balsis",null,y+" balsu")},
+gpm(){return"Atbildes b\u016bs redzams, kad aptauja nosl\u0113gsies"},
+gpc(){return"Atbild\u0113t pavedien\u0101"},
+pq(d){var y=""+d
 return B.bB(d,null,this.a,null,y+" atbilde",y+" atbildes",null,y+" atbil\u017eu")},
-gpD(){return"Pavediens"},
-gpo(){return"Atgriezties galvenaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
+gpC(){return"Pavediens"},
+gpn(){return"Atgriezties galvenaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FW,C.aF)})()
-B.dS(b.typeUniverse,JSON.parse('{"FW":{"aF":[]}}'))};
-(a=>{a["6WE8p7JZ+AdprQaDp1wq92de+A4="]=a.current})($__dart_deferred_initializers__);
+y(A.FV,C.aF)})()
+B.dS(b.typeUniverse,JSON.parse('{"FV":{"aF":[]}}'))};
+(a=>{a["W3W/RWDwyezLlPqy7OAdCvuMxTc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_315.part.js.map
