@@ -46,21 +46,16 @@ class ChatPage extends StatelessWidget {
   final String roomId;
   final List<ShareItem>? shareItems;
   final String? eventId;
-  final String? userId;
 
   const ChatPage({
     super.key,
     required this.roomId,
     this.eventId,
     this.shareItems,
-    this.userId,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (userId != null) {
-      Matrix.of(context).setActiveClientWithUserId(userId!);
-    }
     final room = Matrix.of(context).client.getRoomById(roomId);
     if (room == null) {
       return Scaffold(

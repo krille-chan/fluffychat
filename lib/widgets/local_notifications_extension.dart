@@ -148,10 +148,10 @@ extension LocalNotificationsExtension on MatrixState {
             break;
           case DesktopNotificationActions.openChat:
             if (userId != null) {
-              FluffyChatApp.router.go('/rooms/${event.room.id}?userId=$userId');
-            } else {
-              FluffyChatApp.router.go('/rooms/${event.room.id}');
+              Matrix.of(context).setActiveClientWithUserId(userId);
             }
+
+            FluffyChatApp.router.go('/rooms/${event.room.id}');
             break;
         }
       });
