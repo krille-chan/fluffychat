@@ -1,46 +1,26 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:matrix/matrix.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/size_string.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
 extension MatrixFileExtension on MatrixFile {
   void save(BuildContext context) async {
-    if (PlatformInfos.isWeb) {
-      _webDownload();
-      return;
-    }
-
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final l10n = L10n.of(context);
     final downloadPath = await FilePicker.platform.saveFile(
-      dialogTitle: L10n.of(context).saveFile,
+      dialogTitle: l10n.saveFile,
       fileName: name,
       type: filePickerFileType,
       bytes: bytes,
     );
     if (downloadPath == null) return;
 
-    if (PlatformInfos.isDesktop) {
-      final result = await showFutureLoadingDialog(
-        context: context,
-        future: () => File(downloadPath).writeAsBytes(bytes),
-      );
-      if (result.error != null) return;
-    }
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          L10n.of(context).fileHasBeenSavedAt(downloadPath),
-        ),
-      ),
+    scaffoldMessenger.showSnackBar(
+      SnackBar(content: Text(l10n.fileHasBeenSavedAt(downloadPath))),
     );
   }
 
@@ -49,19 +29,6 @@ extension MatrixFileExtension on MatrixFile {
     if (this is MatrixAudioFile) return FileType.audio;
     if (this is MatrixVideoFile) return FileType.video;
     return FileType.any;
-  }
-
-  void _webDownload() {
-    html.AnchorElement(
-      href: html.Url.createObjectUrlFromBlob(
-        html.Blob(
-          [bytes],
-          mimeType,
-        ),
-      ),
-    )
-      ..download = name
-      ..click();
   }
 
   void share(BuildContext context) async {
