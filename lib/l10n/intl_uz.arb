@@ -2684,5 +2684,39 @@
     "addWidget": "Vidjet qoʻshish",
     "@addWidget": {},
     "widgetVideo": "Video",
-    "@widgetVideo": {}
+    "@widgetVideo": {},
+    "sorryThatsNotPossible": "Kechirasiz... bu mumkin emas",
+    "@sorryThatsNotPossible": {},
+    "deviceKeys": "Qurilma kalitlari:",
+    "@deviceKeys": {},
+    "noOtherDevicesFound": "Boshqa qurilma topilmadi",
+    "@noOtherDevicesFound": {},
+    "fileIsTooBigForServer": "Yuborish imkonsiz! Server faqat {max} hajmgacha bo‘lgan ilovalarni qo‘llab-quvvatlaydi.",
+    "@fileIsTooBigForServer": {
+        "type": "String",
+        "placeholders": {
+            "max": {
+                "type": "String"
+            }
+        }
+    },
+    "fileHasBeenSavedAt": "Fayl {path}da saqlandi",
+    "@fileHasBeenSavedAt": {
+        "type": "String",
+        "placeholders": {
+            "path": {
+                "type": "String"
+            }
+        }
+    },
+    "jumpToLastReadMessage": "Oxirgi o‘qilgan xabarga o‘tish",
+    "@jumpToLastReadMessage": {},
+    "readUpToHere": "Bu yerga qadar o‘qish",
+    "@readUpToHere": {},
+    "jump": "Sakrash",
+    "@jump": {},
+    "openLinkInBrowser": "Havolani brauzerda ochish",
+    "@openLinkInBrowser": {},
+    "reportErrorDescription": "😭 Voy yo‘q. Nimadir xato ketdi. Agar xohlasangiz, bu xato haqida dasturchilarga xabar berishingiz mumkin.",
+    "@reportErrorDescription": {}
 }
