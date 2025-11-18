@@ -2651,5 +2651,38 @@
     "pinMessage": "Xonaga mahkamlash",
     "@pinMessage": {},
     "confirmEventUnpin": "Tadbirni butunlay olib tashlashga ishonchingiz komilmi?",
-    "@confirmEventUnpin": {}
+    "@confirmEventUnpin": {},
+    "placeCall": "Qoʻngʻiroq qilish",
+    "@placeCall": {},
+    "voiceCall": "Ovozli qoʻngʻiroq",
+    "@voiceCall": {},
+    "unsupportedAndroidVersion": "Qoʻllab-quvvatlanmaydigan Android versiyasi",
+    "@unsupportedAndroidVersion": {},
+    "unsupportedAndroidVersionLong": "Bu funksiya Androidning yangi versiyasini talab qiladi. Iltimos, yangilanishlar yoki Lineage OS qoʻllab-quvvatlashini tekshiring.",
+    "@unsupportedAndroidVersionLong": {},
+    "videoCallsBetaWarning": "Iltimos, video qoʻngʻiroqlar hozirda beta-versiyada ekanligini unutmang. Ular kutilganidek ishlamasligi yoki barcha platformalarda umuman ishlamasligi mumkin.",
+    "@videoCallsBetaWarning": {},
+    "experimentalVideoCalls": "Tajriba video qoʻngʻiroqlar",
+    "@experimentalVideoCalls": {},
+    "emailOrUsername": "Elektron pochta yoki foydalanuvchi nomi",
+    "@emailOrUsername": {},
+    "indexedDbErrorTitle": "Shaxsiy rejim bilan bogʻliq muammolar",
+    "@indexedDbErrorTitle": {},
+    "switchToAccount": "{number} hisobiga oʻtish",
+    "@switchToAccount": {
+        "type": "number",
+        "placeholders": {
+            "number": {
+                "type": "String"
+            }
+        }
+    },
+    "nextAccount": "Keyingi hisob",
+    "@nextAccount": {},
+    "previousAccount": "Oldingi hisob",
+    "@previousAccount": {},
+    "addWidget": "Vidjet qoʻshish",
+    "@addWidget": {},
+    "widgetVideo": "Video",
+    "@widgetVideo": {}
 }
