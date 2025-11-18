@@ -2651,5 +2651,110 @@
     "pinMessage": "Xonaga mahkamlash",
     "@pinMessage": {},
     "confirmEventUnpin": "Tadbirni butunlay olib tashlashga ishonchingiz komilmi?",
-    "@confirmEventUnpin": {}
+    "@confirmEventUnpin": {},
+    "placeCall": "Qoʻngʻiroq qilish",
+    "@placeCall": {},
+    "voiceCall": "Ovozli qoʻngʻiroq",
+    "@voiceCall": {},
+    "unsupportedAndroidVersion": "Qoʻllab-quvvatlanmaydigan Android versiyasi",
+    "@unsupportedAndroidVersion": {},
+    "unsupportedAndroidVersionLong": "Bu funksiya Androidning yangi versiyasini talab qiladi. Iltimos, yangilanishlar yoki Lineage OS qoʻllab-quvvatlashini tekshiring.",
+    "@unsupportedAndroidVersionLong": {},
+    "videoCallsBetaWarning": "Iltimos, video qoʻngʻiroqlar hozirda beta-versiyada ekanligini unutmang. Ular kutilganidek ishlamasligi yoki barcha platformalarda umuman ishlamasligi mumkin.",
+    "@videoCallsBetaWarning": {},
+    "experimentalVideoCalls": "Tajriba video qoʻngʻiroqlar",
+    "@experimentalVideoCalls": {},
+    "emailOrUsername": "Elektron pochta yoki foydalanuvchi nomi",
+    "@emailOrUsername": {},
+    "indexedDbErrorTitle": "Shaxsiy rejim bilan bogʻliq muammolar",
+    "@indexedDbErrorTitle": {},
+    "switchToAccount": "{number} hisobiga oʻtish",
+    "@switchToAccount": {
+        "type": "number",
+        "placeholders": {
+            "number": {
+                "type": "String"
+            }
+        }
+    },
+    "nextAccount": "Keyingi hisob",
+    "@nextAccount": {},
+    "previousAccount": "Oldingi hisob",
+    "@previousAccount": {},
+    "addWidget": "Vidjet qoʻshish",
+    "@addWidget": {},
+    "widgetVideo": "Video",
+    "@widgetVideo": {},
+    "sorryThatsNotPossible": "Kechirasiz... bu mumkin emas",
+    "@sorryThatsNotPossible": {},
+    "deviceKeys": "Qurilma kalitlari:",
+    "@deviceKeys": {},
+    "noOtherDevicesFound": "Boshqa qurilma topilmadi",
+    "@noOtherDevicesFound": {},
+    "fileIsTooBigForServer": "Yuborish imkonsiz! Server faqat {max} hajmgacha bo‘lgan ilovalarni qo‘llab-quvvatlaydi.",
+    "@fileIsTooBigForServer": {
+        "type": "String",
+        "placeholders": {
+            "max": {
+                "type": "String"
+            }
+        }
+    },
+    "fileHasBeenSavedAt": "Fayl {path}da saqlandi",
+    "@fileHasBeenSavedAt": {
+        "type": "String",
+        "placeholders": {
+            "path": {
+                "type": "String"
+            }
+        }
+    },
+    "jumpToLastReadMessage": "Oxirgi o‘qilgan xabarga o‘tish",
+    "@jumpToLastReadMessage": {},
+    "readUpToHere": "Bu yerga qadar o‘qish",
+    "@readUpToHere": {},
+    "jump": "Sakrash",
+    "@jump": {},
+    "openLinkInBrowser": "Havolani brauzerda ochish",
+    "@openLinkInBrowser": {},
+    "reportErrorDescription": "😭 Voy yo‘q. Nimadir xato ketdi. Agar xohlasangiz, bu xato haqida dasturchilarga xabar berishingiz mumkin.",
+    "@reportErrorDescription": {},
+    "report": "hisobot",
+    "@report": {},
+    "signInWithPassword": "Parol bilan kirish",
+    "@signInWithPassword": {},
+    "pleaseTryAgainLaterOrChooseDifferentServer": "Keyinroq qayta urining yoki boshqa serverni tanlang.",
+    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+    "signInWith": "{provider} bilan kiring",
+    "@signInWith": {
+        "type": "String",
+        "placeholders": {
+            "provider": {
+                "type": "String"
+            }
+        }
+    },
+    "profileNotFound": "Foydalanuvchi serverda topilmadi. Ehtimol, ulanishda muammo bor yoki foydalanuvchi mavjud emas.",
+    "@profileNotFound": {},
+    "setTheme": "Mavzu tanlash:",
+    "@setTheme": {},
+    "setColorTheme": "Rang mavzusini sozlash:",
+    "@setColorTheme": {},
+    "invite": "Taklif qilish",
+    "@invite": {},
+    "invalidInput": "Xato kiritildi!",
+    "@invalidInput": {},
+    "wrongPinEntered": "PIN noto‘g‘ri kiritildi! {seconds} soniyadan keyin qayta urining...",
+    "@wrongPinEntered": {
+        "type": "String",
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "pleaseEnterANumber": "0 dan katta son kiriting",
+    "@pleaseEnterANumber": {},
+    "removeDevicesDescription": "Bu qurilmadan chiqarilasiz va ortiq xabarlarni qabul qila olmaysiz.",
+    "@removeDevicesDescription": {}
 }
