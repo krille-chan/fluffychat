@@ -58,6 +58,7 @@ enum AppSettings<T> {
     'chat.fluffy.color_scheme_seed',
     0xFF5625BA,
   ),
+  emojiSuggestionLocale<String>('emoji_suggestion_locale', ''),
   enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false);
 
   final String key;

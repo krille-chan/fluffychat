@@ -336,7 +336,9 @@ class ChatInputRow extends StatelessWidget {
                         ),
                         onChanged: controller.onInputBarChanged,
                         suggestionEmojis: getDefaultEmojiLocale(
-                          Localizations.localeOf(context),
+                          AppSettings.emojiSuggestionLocale.value.isNotEmpty
+                              ? Locale(AppSettings.emojiSuggestionLocale.value)
+                              : Localizations.localeOf(context),
                         ).fold(
                           [],
                           (emojis, category) => emojis..addAll(category.emoji),
