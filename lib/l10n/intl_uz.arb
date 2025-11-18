@@ -2187,7 +2187,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} ta o‘qilmagan chat}}",
+    "unreadChats": "{unreadCount, plural, =1{1 ta oʻqilmagan suhbat} other{{unreadCount} ta o‘qilmagan chat}}",
     "@unreadChats": {
         "type": "String",
         "placeholders": {
@@ -2229,7 +2229,7 @@
             }
         }
     },
-    "userLeftTheChat": "🚪 {username} chatni tark etdi",
+    "userLeftTheChat": "🚪 {username} suhbatni tark etdi",
     "@userLeftTheChat": {
         "type": "String",
         "placeholders": {
@@ -2287,7 +2287,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "visibilityOfTheChatHistory": "Chat tarixining ko‘rinishi",
+    "visibilityOfTheChatHistory": "Suhbat tarixining ko‘rinishi",
     "@visibilityOfTheChatHistory": {
         "type": "String",
         "placeholders": {}
@@ -2352,7 +2352,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Yangi tiklash kalitini yaratish uchun chat zaxirasi tozalansinmi?",
+    "wipeChatBackup": "Yangi tiklash kalitini yaratish uchun suhbat zaxirasi tozalansinmi?",
     "@wipeChatBackup": {
         "type": "String",
         "placeholders": {}
@@ -2377,12 +2377,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "youAreNoLongerParticipatingInThisChat": "Siz ortiq bu chatda qatnashmayapsiz",
+    "youAreNoLongerParticipatingInThisChat": "Siz ortiq bu suhbatda qatnashmayapsiz",
     "@youAreNoLongerParticipatingInThisChat": {
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Bu chatdan bloklandingiz",
+    "youHaveBeenBannedFromThisChat": "Bu suhbatdan bloklandingiz",
     "@youHaveBeenBannedFromThisChat": {
         "type": "String",
         "placeholders": {}
@@ -2404,7 +2404,7 @@
     "@openGallery": {},
     "removeFromSpace": "Guruhdan olib tashlash",
     "@removeFromSpace": {},
-    "addToSpaceDescription": "Bu chatni unga kiritish uchun guruhni tanlang.",
+    "addToSpaceDescription": "Bu suhbatni unga kiritish uchun guruhni tanlang.",
     "@addToSpaceDescription": {},
     "start": "Boshlash",
     "@start": {},
@@ -2412,7 +2412,7 @@
     "@usersMustKnock": {},
     "noOneCanJoin": "Hech kim qoʻshila olmaydi",
     "@noOneCanJoin": {},
-    "userWouldLikeToChangeTheChat": "{user} chatga qoʻshilmoqchi.",
+    "userWouldLikeToChangeTheChat": "{user} suhbatga qoʻshilmoqchi.",
     "@userWouldLikeToChangeTheChat": {
         "placeholders": {
             "user": {
@@ -2470,7 +2470,7 @@
     "@otherCallingPermissions": {},
     "whyIsThisMessageEncrypted": "Nima uchun bu xabarni oʻqib boʻlmaydi?",
     "@whyIsThisMessageEncrypted": {},
-    "noKeyForThisMessage": "Bu xabar siz ushbu qurilmada hisobingizga kirishdan oldin yuborilgan boʻlsa sodir boʻlishi mumkin.\n\nShuningdek, joʻnatuvchi qurilmangizni bloklagan yoki internet ulanishida biron bir muammo yuzaga kelgan boʻlishi mumkin.\n\nXabarni boshqa sessiyada oʻqiy olasizmi? Keyin xabarni undan uzatishingiz mumkin! Sozlamalar > Qurilmalar boʻlimiga oʻting va qurilmalaringiz bir-birini tasdiqlaganligiga ishonch hosil qiling. Keyingi safar xonani ochganingizda va ikkala sessiya ham oldinda boʻlganda, kalitlar avtomatik ravishda uzatiladi.\n\nTizimdan chiqishda yoki qurilmalarni almashtirishda kalitlarni yoʻqotishni xohlamaysizmi? Sozlamalarda chatning zaxira nusxasini yoqganingizga ishonch hosil qiling.",
+    "noKeyForThisMessage": "Bu xabar siz ushbu qurilmada hisobingizga kirishdan oldin yuborilgan boʻlsa sodir boʻlishi mumkin.\n\nShuningdek, joʻnatuvchi qurilmangizni bloklagan yoki internet ulanishida biron bir muammo yuzaga kelgan boʻlishi mumkin.\n\nXabarni boshqa sessiyada oʻqiy olasizmi? Keyin xabarni undan uzatishingiz mumkin! Sozlamalar > Qurilmalar boʻlimiga oʻting va qurilmalaringiz bir-birini tasdiqlaganligiga ishonch hosil qiling. Keyingi safar xonani ochganingizda va ikkala sessiya ham oldinda boʻlganda, kalitlar avtomatik ravishda uzatiladi.\n\nTizimdan chiqishda yoki qurilmalarni almashtirishda kalitlarni yoʻqotishni xohlamaysizmi? Sozlamalarda suhbatning zaxira nusxasini yoqganingizga ishonch hosil qiling.",
     "@noKeyForThisMessage": {},
     "newGroup": "Yangi guruh",
     "@newGroup": {},
@@ -2482,7 +2482,7 @@
     "@enterRoom": {},
     "allSpaces": "Barcha maydonlar",
     "@allSpaces": {},
-    "numChats": "{number} chatlar",
+    "numChats": "{number} suhbatlar",
     "@numChats": {
         "type": "number",
         "placeholders": {
@@ -2497,7 +2497,7 @@
     "@hidePresences": {},
     "doNotShowAgain": "Qaytib koʻrsatilmasin",
     "@doNotShowAgain": {},
-    "wasDirectChatDisplayName": "Boʻsh chat ({oldDisplayName} edi)",
+    "wasDirectChatDisplayName": "Boʻsh suhbat ({oldDisplayName} edi)",
     "@wasDirectChatDisplayName": {
         "type": "String",
         "placeholders": {
@@ -2506,6 +2506,150 @@
             }
         }
     },
-    "newSpaceDescription": "Maydonlar sizga chatlaringizni birlashtirish va shaxsiy yoki ommaviy hamjamiyatlarni yaratish imkonini beradi.",
-    "@newSpaceDescription": {}
+    "newSpaceDescription": "Maydonlar sizga suhbatlaringizni birlashtirish va shaxsiy yoki ommaviy hamjamiyatlarni yaratish imkonini beradi.",
+    "@newSpaceDescription": {},
+    "openChat": "Suhbatni ochish",
+    "@openChat": {},
+    "indexedDbErrorLong": "Xabarlarni saqlash, afsuski, sukut bo'yicha maxfiy rejimda yoqilmagan.\nIltimos, tashrif buyuring\n- about:config\n- dom.indexedDB.privateBrowsing.enabled ga true berilgan\nAks holda, FluffyChat ni ishga tushirish mumkin emas.",
+    "@indexedDbErrorLong": {},
+    "youJoinedTheChat": "Siz suhbatga qoʻshildingiz",
+    "@youJoinedTheChat": {},
+    "encryptThisChat": "Bu suhbatni shifrlash",
+    "@encryptThisChat": {},
+    "disableEncryptionWarning": "Xavfsizlik nuqtai nazaridan, agar u ilgari yoqilgan boʻlsa, suhbatda shifrlashni oʻchirib qoʻyolmaysiz.",
+    "@disableEncryptionWarning": {},
+    "reopenChat": "Suhbatni qayta ochish",
+    "@reopenChat": {},
+    "noBackupWarning": "Diqqat! Suhbatni zaxiralashni yoqmasangiz, shifrlangan xabarlaringizga kirish huquqini yoʻqotasiz. Tizimdan chiqishdan oldin chatni zaxiralashni yoqishingiz tavsiya etiladi.",
+    "@noBackupWarning": {},
+    "inviteGroupChat": "📨 Guruh suhbatiga taklif",
+    "@inviteGroupChat": {},
+    "invitePrivateChat": "📨 Shaxsiy suhbatga taklif",
+    "@invitePrivateChat": {},
+    "archiveRoomDescription": "Suhbat arxivga koʻchiriladi. Boshqa foydalanuvchilar sizning suhbatdan chiqqaningizni koʻra oladilar.",
+    "@archiveRoomDescription": {},
+    "roomUpgradeDescription": "Keyin suhbat yangi guruh versiyasi bilan qayta yaratiladi. Barcha ishtirokchilarga yangi suhbatga oʻtishlari kerakligi haqida xabar beriladi. Guruh versiyalari haqida koʻproq maʼlumotni https://spec.matrix.org/latest/rooms/ manzilida topishingiz mumkin",
+    "@roomUpgradeDescription": {},
+    "banUserDescription": "Foydalanuvchi suhbatdan bloklanadi va blokdan chiqarilmaguncha suhbatga qayta kira olmaydi.",
+    "@banUserDescription": {},
+    "unbanUserDescription": "Foydalanuvchi qayta suhbatga kira oladi agar ular urinib koʻrishsa.",
+    "@unbanUserDescription": {},
+    "kickUserDescription": "Foydalanuvchi suhbatdan chiqarib yuboriladi, ammo taqiqlanmaydi. Ommaviy chatlarda foydalanuvchi istalgan vaqtda qayta qoʻshilishi mumkin.",
+    "@kickUserDescription": {},
+    "chatCanBeDiscoveredViaSearchOnServer": "Suhbatni {server} saytidagi qidiruv orqali topish mumkin",
+    "@chatCanBeDiscoveredViaSearchOnServer": {
+        "type": "String",
+        "placeholders": {
+            "server": {
+                "type": "String"
+            }
+        }
+    },
+    "searchChatsRooms": "Qidiruv #chats, @users...",
+    "@searchChatsRooms": {},
+    "publicChatAddresses": "Ommaviy suhbat manzillari",
+    "@publicChatAddresses": {},
+    "addChatOrSubSpace": "Suhbat yoki sub-maydon qoʻshing",
+    "@addChatOrSubSpace": {},
+    "searchIn": "Suhbat \"{chat}\"da qidiring...",
+    "@searchIn": {
+        "type": "String",
+        "placeholders": {
+            "chat": {
+                "type": "String"
+            }
+        }
+    },
+    "sendTypingNotificationsDescription": "Suhbatdagi boshqa ishtirokchilar siz yangi xabar yozayotganingizni koʻrishlari mumkin.",
+    "@sendTypingNotificationsDescription": {},
+    "sendReadReceiptsDescription": "Suhbatdagi boshqa ishtirokchilar sizning xabarni qachon oʻqiganingizni koʻrishlari mumkin.",
+    "@sendReadReceiptsDescription": {},
+    "unreadChatsInApp": "{appname}: {unread} ta oʻqilmagan suhbatlar",
+    "@unreadChatsInApp": {
+        "type": "String",
+        "placeholders": {
+            "appname": {
+                "type": "String"
+            },
+            "unread": {
+                "type": "String"
+            }
+        }
+    },
+    "changeGeneralChatSettings": "Umumiy suhbat sozlamalarini oʻzgartirish",
+    "@changeGeneralChatSettings": {},
+    "inviteOtherUsers": "Boshqa foydalanuvchilarni bu suhbatga taklif qilish",
+    "@inviteOtherUsers": {},
+    "changeTheChatPermissions": "Suhbat ruxsatnomalarini oʻzgartirish",
+    "@changeTheChatPermissions": {},
+    "changeTheVisibilityOfChatHistory": "Suhbat tarix koʻrinishini oʻzgartirish",
+    "@changeTheVisibilityOfChatHistory": {},
+    "changeTheCanonicalRoomAlias": "Asosiy umumiy suhbat manzilini oʻzgartirish",
+    "@changeTheCanonicalRoomAlias": {},
+    "changeTheDescriptionOfTheGroup": "Suhbat tavsifini oʻzgartirish",
+    "@changeTheDescriptionOfTheGroup": {},
+    "chatPermissionsDescription": "Ushbu suhbatda muayyan harakatlar uchun qaysi quvvat darajasi zarurligini aniqlang. 0, 50 va 100 quvvat darajalari odatda foydalanuvchilar, moderatorlar va administratorlarni ifodalaydi, ammo har qanday gradatsiya mumkin.",
+    "@chatPermissionsDescription": {},
+    "noticeChatBackupDeviceVerification": "Eslatma: Barcha qurilmalaringizni suhbat zaxira nusxasiga ulaganingizda, ular avtomatik ravishda tasdiqlanadi.",
+    "@noticeChatBackupDeviceVerification": {},
+    "welcomeText": "Hey Hey 👋 Bu FluffyChat. Siz https://matrix.org bilan mos keladigan istalgan uy serveriga kirishingiz mumkin. Va keyin istalgan kishi bilan suhbatlashishingiz mumkin. Bu ulkan markazlashtirilmagan xabar almashish tarmog'i!",
+    "@welcomeText": {},
+    "unableToJoinChat": "Chatga qoʻshilib boʻlmadi. Ehtimol, boshqa tomon suhbatni allaqachon yopib qoʻygan.",
+    "@unableToJoinChat": {},
+    "appIntroduction": "FluffyChat sizga turli messenjerlar orqali doʻstlaringiz bilan suhbatlashish imkonini beradi. Batafsil maʼlumotni https://matrix.org saytida oling yoki shunchaki *Davom etish* tugmasini bosing.",
+    "@appIntroduction": {},
+    "newChatRequest": "📩 Yangi suhbat uchun soʻrov",
+    "@newChatRequest": {},
+    "shareKeysWithDescription": "Shifrlangan suhbatlarda xabarlaringizni oʻqishlari uchun qaysi qurilmalarga ishonish kerak?",
+    "@shareKeysWithDescription": {},
+    "enterNewChat": "Yangi suhbatga kirish",
+    "@enterNewChat": {},
+    "removeFromSpaceDescription": "Suhbat guruhdan olib tashlanadi, ammo suhbat roʻyxatingizda koʻrsatiladi.",
+    "@removeFromSpaceDescription": {},
+    "countChats": "{chats} suhbatlar",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "backToMainChat": "Asosiy suhbatga qaytish",
+    "@backToMainChat": {},
+    "pleaseEnterRecoveryKeyDescription": "Eski xabarlaringizni qulfdan chiqarish uchun, iltimos, avvalgi seansdan yaratilgan tiklash kalitingizni kiriting. Sizning tiklash kalitingiz parolingiz EMAS.",
+    "@pleaseEnterRecoveryKeyDescription": {},
+    "publish": "Nashr qilish",
+    "@publish": {},
+    "videoWithSize": "Video ({size})",
+    "@videoWithSize": {
+        "type": "String",
+        "placeholders": {
+            "size": {
+                "type": "String"
+            }
+        }
+    },
+    "markAsRead": "Oʻqilgan sifatida belgilash",
+    "@markAsRead": {},
+    "reportUser": "Foydalanuvchi haqida xabar berish",
+    "@reportUser": {},
+    "dismiss": "Rad qilmoq",
+    "@dismiss": {},
+    "reactedWith": "{sender} {reaction} bilan reaksiya bildirdi",
+    "@reactedWith": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "reaction": {
+                "type": "String"
+            }
+        }
+    },
+    "pinMessage": "Xonaga mahkamlash",
+    "@pinMessage": {},
+    "confirmEventUnpin": "Tadbirni butunlay olib tashlashga ishonchingiz komilmi?",
+    "@confirmEventUnpin": {}
 }
