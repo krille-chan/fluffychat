@@ -85,7 +85,7 @@
             }
         }
     },
-    "addChatDescription": "Chat tavsifini kiriting...",
+    "addChatDescription": "Suhbat tavsifini kiriting...",
     "@addChatDescription": {},
     "addToSpace": "Maydonga qo‘shish",
     "@addToSpace": {},
@@ -104,7 +104,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "Hamma chatlar",
+    "allChats": "Hamma suhbatlar",
     "@allChats": {
         "type": "String",
         "placeholders": {}
@@ -234,7 +234,7 @@
             }
         }
     },
-    "countChatsAndCountParticipants": "{chats} chatlar va {participants} ishtirokchilar",
+    "countChatsAndCountParticipants": "{chats} suhbatlar va {participants} ishtirokchilar",
     "@countChatsAndCountParticipants": {
         "type": "String",
         "placeholders": {
@@ -248,9 +248,9 @@
     },
     "noMoreChatsFound": "Boshqa chatlar topilmadi...",
     "@noMoreChatsFound": {},
-    "noChatsFoundHere": "Bu yerda hali chat topilmadi. Quyidagi tugmadan foydalanib, kimdir bilan yangi chat boshlang. ⤵️",
+    "noChatsFoundHere": "Bu yerda hali chat topilmadi. Quyidagi tugmadan foydalanib, kimdir bilan yangi suhbat boshlang. ⤵️",
     "@noChatsFoundHere": {},
-    "joinedChats": "Qo'shilgan chatlar",
+    "joinedChats": "Qo'shilgan suhbatlar",
     "@joinedChats": {},
     "unread": "Oʻqilmagan",
     "@unread": {},
@@ -258,7 +258,7 @@
     "@space": {},
     "spaces": "Boʻshliqlar",
     "@spaces": {},
-    "banFromChat": "Chatdan taqiqlash",
+    "banFromChat": "Suhbatdan taqiqlash",
     "@banFromChat": {
         "type": "String",
         "placeholders": {}
@@ -314,7 +314,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "changedTheChatAvatar": "{username} chat avatarini oʻzgartirdi",
+    "changedTheChatAvatar": "{username} suhbat avatarini oʻzgartirdi",
     "@changedTheChatAvatar": {
         "type": "String",
         "placeholders": {
@@ -323,7 +323,7 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} chat tavsifini '{description}'ga oʻzgartirdi",
+    "changedTheChatDescriptionTo": "{username} suhbat tavsifini '{description}'ga oʻzgartirdi",
     "@changedTheChatDescriptionTo": {
         "type": "String",
         "placeholders": {
@@ -335,7 +335,7 @@
             }
         }
     },
-    "changedTheChatNameTo": "{username} chat nomini: '{chatname}'ga oʻzgartirdi",
+    "changedTheChatNameTo": "{username} suhbat nomini: '{chatname}'ga oʻzgartirdi",
     "@changedTheChatNameTo": {
         "type": "String",
         "placeholders": {
@@ -347,7 +347,7 @@
             }
         }
     },
-    "changedTheChatPermissions": "{username} chat ruxsatnomalarini oʻzgartirdi",
+    "changedTheChatPermissions": "{username} suhbat ruxsatnomalarini oʻzgartirdi",
     "@changedTheChatPermissions": {
         "type": "String",
         "placeholders": {
@@ -479,14 +479,14 @@
         "type": "String",
         "placeholders": {}
     },
-    "chat": "Chat",
+    "chat": "Suhbat",
     "@chat": {
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "Chat zaxirangiz sozlandi.",
+    "yourChatBackupHasBeenSetUp": "Suhbat zaxirangiz sozlandi.",
     "@yourChatBackupHasBeenSetUp": {},
-    "chatBackup": "Chat zaxirasi",
+    "chatBackup": "Suhbat zaxirasi",
     "@chatBackup": {
         "type": "String",
         "placeholders": {}
@@ -496,12 +496,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatDetails": "Chat tafsilotlari",
+    "chatDetails": "Suhbat tafsilotlari",
     "@chatDetails": {
         "type": "String",
         "placeholders": {}
     },
-    "chatHasBeenAddedToThisSpace": "Chat bu guruhga kiritildi",
+    "chatHasBeenAddedToThisSpace": "Suhbat bu maydonga kiritildi",
     "@chatHasBeenAddedToThisSpace": {},
     "changedTheRoomAliases": "{username} xona taxalluslarini oʻzgartirdi",
     "@changedTheRoomAliases": {
@@ -538,7 +538,7 @@
         "type": "String",
         "description": "Usage hint for the command /clearcache"
     },
-    "commandHint_create": "Boʻsh guruh chati yarating\nShifrlashni oʻchirish uchun --no-encryption dan foydalaning",
+    "commandHint_create": "Boʻsh guruh suhbati yarating\nShifrlashni oʻchirish uchun --no-encryption dan foydalaning",
     "@commandHint_create": {
         "type": "String",
         "description": "Usage hint for the command /create"
@@ -548,7 +548,7 @@
         "type": "String",
         "description": "Usage hint for the command /discardsession"
     },
-    "commandHint_dm": "Jonli chatni boshlash\nShifrlashni o‘chirish uchun --no-encryption dan foydalaning",
+    "commandHint_dm": "Jonli suhbatni boshlash\nShifrlashni o‘chirish uchun --no-encryption dan foydalaning",
     "@commandHint_dm": {
         "type": "String",
         "description": "Usage hint for the command /dm"
@@ -642,7 +642,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "configureChat": "Chatni sozlash",
+    "configureChat": "Suhbatni sozlash",
     "@configureChat": {
         "type": "String",
         "placeholders": {}
@@ -677,7 +677,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chats": "Chatlar",
+    "chats": "Suhbatlar",
     "@chats": {
         "type": "String",
         "placeholders": {}
@@ -731,7 +731,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "createdTheChat": "💬 {username} chat yaratdi",
+    "createdTheChat": "💬 {username} suhbat yaratdi",
     "@createdTheChat": {
         "type": "String",
         "placeholders": {
@@ -836,12 +836,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "directChats": "Shaxsiy chatlar",
+    "directChats": "Shaxsiy suhbatlar",
     "@directChats": {
         "type": "String",
         "placeholders": {}
     },
-    "allRooms": "Barcha guruh chatlar",
+    "allRooms": "Barcha guruh suhbatlar",
     "@allRooms": {
         "type": "String",
         "placeholders": {}
@@ -856,17 +856,17 @@
         "type": "String",
         "placeholders": {}
     },
-    "globalChatId": "Global chat IDʼsi",
+    "globalChatId": "Ommaviy suhbat IDʼsi",
     "@globalChatId": {},
     "accessAndVisibility": "Kirish va koʻrinish",
     "@accessAndVisibility": {},
-    "accessAndVisibilityDescription": "Bu chatga kim qoʻshilishi mumkin va chatni qanday topish mumkin.",
+    "accessAndVisibilityDescription": "Bu suhbatga kim qoʻshilishi mumkin va suhbatni qanday topish mumkin.",
     "@accessAndVisibilityDescription": {},
     "calls": "Qoʻngʻiroqlar",
     "@calls": {},
     "customEmojisAndStickers": "Maxsus emojilar va stikerlar",
     "@customEmojisAndStickers": {},
-    "customEmojisAndStickersBody": "Istalgan chatda ishlatilishi mumkin boʻlgan maxsus emojilar yoki stikerlarni qoʻshing yoki ulashing.",
+    "customEmojisAndStickersBody": "Istalgan suhbatda ishlatilishi mumkin boʻlgan maxsus emojilar yoki stikerlarni qoʻshing yoki ulashing.",
     "@customEmojisAndStickersBody": {},
     "emoteShortcode": "Emote qisqa kodi",
     "@emoteShortcode": {
@@ -878,7 +878,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "emptyChat": "Boʻsh chat",
+    "emptyChat": "Boʻsh suhbat",
     "@emptyChat": {
         "type": "String",
         "placeholders": {}
@@ -943,9 +943,9 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatDescription": "Chat tavsifi",
+    "chatDescription": "Suhbat tavsifi",
     "@chatDescription": {},
-    "chatDescriptionHasBeenChanged": "Chat tavsifi oʻzgartirildi",
+    "chatDescriptionHasBeenChanged": "Suhbat tavsifi oʻzgartirildi",
     "@chatDescriptionHasBeenChanged": {},
     "groupIsPublic": "Guruh ommaviy",
     "@groupIsPublic": {
@@ -1000,7 +1000,7 @@
     },
     "hideRedactedMessages": "Oʻchirilgan xabarlarni yashirish",
     "@hideRedactedMessages": {},
-    "hideRedactedMessagesBody": "Agar kimdir xabarni oʻchirsa, bu xabar endi chatda koʻrinmaydi.",
+    "hideRedactedMessagesBody": "Agar kimdir xabarni oʻchirsa, bu xabar endi suhbatda koʻrinmaydi.",
     "@hideRedactedMessagesBody": {},
     "hideInvalidOrUnknownMessageFormats": "Notoʻgʻri yoki nomaʼlum xabar formatlarini yashirish",
     "@hideInvalidOrUnknownMessageFormats": {},
@@ -1042,7 +1042,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteContactToGroupQuestion": "{contact} ni \"{groupName}\" chatiga taklif qilishni istaysizmi?",
+    "inviteContactToGroupQuestion": "{contact} ni \"{groupName}\" suhbatiga taklif qilishni istaysizmi?",
     "@inviteContactToGroupQuestion": {},
     "inviteContactToGroup": "Kontaktni {groupName} ga taklif qiling",
     "@inviteContactToGroup": {
@@ -1053,7 +1053,7 @@
             }
         }
     },
-    "noChatDescriptionYet": "Hali chat tavsifi yaratilmagan.",
+    "noChatDescriptionYet": "Hali suhbat tavsifi yaratilmagan.",
     "@noChatDescriptionYet": {},
     "tryAgain": "Qayta urinib koʻrish",
     "@tryAgain": {},
@@ -1127,7 +1127,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatPermissions": "Chat ruxsatlari",
+    "chatPermissions": "Suhbat ruxsatlari",
     "@chatPermissions": {},
     "editDisplayname": "Displey nomini tahrirlash",
     "@editDisplayname": {
@@ -1209,7 +1209,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "joinedTheChat": "👋 {username} chatga qoʻshildi",
+    "joinedTheChat": "👋 {username} suhbatga qoʻshildi",
     "@joinedTheChat": {
         "type": "String",
         "placeholders": {
@@ -1247,7 +1247,7 @@
             }
         }
     },
-    "kickFromChat": "Chatdan tepish",
+    "kickFromChat": "Suhbatdan tepish",
     "@kickFromChat": {
         "type": "String",
         "placeholders": {}
@@ -1266,7 +1266,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "leftTheChat": "Chatni tark etdi",
+    "leftTheChat": "Suhbatni tark etdi",
     "@leftTheChat": {
         "type": "String",
         "placeholders": {}
@@ -1365,7 +1365,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "muteChat": "Ovozsiz chat",
+    "muteChat": "Suhbatni ovozsizlantirish",
     "@muteChat": {
         "type": "String",
         "placeholders": {}
@@ -1375,7 +1375,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "newChat": "Yangi chat",
+    "newChat": "Yangi suhbat",
     "@newChat": {
         "type": "String",
         "placeholders": {}
@@ -1583,9 +1583,9 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideMemberChangesInPublicChats": "Ommaviy chatlarda aʼzolarga oʻzgartirishlarni yashirish",
+    "hideMemberChangesInPublicChats": "Ommaviy suhbatlarda aʼzolarga oʻzgartirishlarni yashirish",
     "@hideMemberChangesInPublicChats": {},
-    "hideMemberChangesInPublicChatsBody": "Oʻqish qulayligini oshirish uchun kimdir ochiq chatga qoʻshilsa yoki undan chiqsa, chat vaqt jadvalida koʻrsatilmasin.",
+    "hideMemberChangesInPublicChatsBody": "Oʻqish qulayligini oshirish uchun kimdir ochiq suhbatga qoʻshilsa yoki undan chiqsa, suhbat vaqt jadvalida koʻrsatilmasin.",
     "@hideMemberChangesInPublicChatsBody": {},
     "overview": "Umumiy ma'lumot",
     "@overview": {},
@@ -1698,7 +1698,7 @@
             }
         }
     },
-    "directChat": "Shaxsiy chat",
+    "directChat": "Shaxsiy suhbat",
     "@directChat": {},
     "redactedByBecause": "{username} tomonidan tahrirlandi, sababi: \"{reason}\"",
     "@redactedByBecause": {
@@ -1769,7 +1769,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "unbanFromChat": "Chatdan blokdan chiqazish",
+    "unbanFromChat": "Suhbat blokidan chiqazish",
     "@unbanFromChat": {
         "type": "String",
         "placeholders": {}
@@ -1949,7 +1949,7 @@
             }
         }
     },
-    "separateChatTypes": "To‘g‘ridan-to‘g‘ri chatlar va guruhlarni alohida ajratish",
+    "separateChatTypes": "To‘g‘ridan-to‘g‘ri suhbatlar va guruhlarni alohida ajratish",
     "@separateChatTypes": {
         "type": "String",
         "placeholders": {}
@@ -1964,7 +1964,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "setChatDescription": "Chat tavsifini sozlash",
+    "setChatDescription": "Suhbat tavsifini sozlash",
     "@setChatDescription": {},
     "setInvitationLink": "Taklif havolasini sozlash",
     "@setInvitationLink": {
@@ -2054,7 +2054,7 @@
             }
         }
     },
-    "startFirstChat": "Birinchi chatni boshlash",
+    "startFirstChat": "Birinchi suhbatni boshlash",
     "@startFirstChat": {},
     "status": "Holati",
     "@status": {
@@ -2177,7 +2177,7 @@
             }
         }
     },
-    "unmuteChat": "Chatni ovozsiz qilish",
+    "unmuteChat": "Suhbatni ovozli qilish",
     "@unmuteChat": {
         "type": "String",
         "placeholders": {}
@@ -2407,5 +2407,105 @@
     "addToSpaceDescription": "Bu chatni unga kiritish uchun guruhni tanlang.",
     "@addToSpaceDescription": {},
     "start": "Boshlash",
-    "@start": {}
+    "@start": {},
+    "usersMustKnock": "Foydalanuvchilar taqillatishi kerak",
+    "@usersMustKnock": {},
+    "noOneCanJoin": "Hech kim qoʻshila olmaydi",
+    "@noOneCanJoin": {},
+    "userWouldLikeToChangeTheChat": "{user} chatga qoʻshilmoqchi.",
+    "@userWouldLikeToChangeTheChat": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "noPublicLinkHasBeenCreatedYet": "Hech qanday ochiq havola yaratilmagan",
+    "@noPublicLinkHasBeenCreatedYet": {},
+    "knock": "Taqillating",
+    "@knock": {},
+    "users": "Foydalanuvchilar",
+    "@users": {},
+    "unlockOldMessages": "Eski xabarlarni qulfdan chiqaring",
+    "@unlockOldMessages": {},
+    "storeInSecureStorageDescription": "Qayta tiklash kalitini ushbu qurilmaning xavfsiz xotirasida saqlang.",
+    "@storeInSecureStorageDescription": {},
+    "saveKeyManuallyDescription": "Tizim ulashish dialog oynasi yoki buferni ishga tushirish orqali ushbu kalitni qoʻlda saqlang.",
+    "@saveKeyManuallyDescription": {},
+    "storeInAndroidKeystore": "Android KeyStoreʼda saqlang",
+    "@storeInAndroidKeystore": {},
+    "storeInAppleKeyChain": "Apple KeyChainʼda saqlang",
+    "@storeInAppleKeyChain": {},
+    "storeSecurlyOnThisDevice": "Ushbu qurilmada xavfsiz saqlang",
+    "@storeSecurlyOnThisDevice": {},
+    "countFiles": "{count} fayllar",
+    "@countFiles": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "user": "Foydalanuvchi",
+    "@user": {},
+    "custom": "Maxsus",
+    "@custom": {},
+    "foregroundServiceRunning": "Bu bildirishnoma old plan xizmati ishlab turgan paytda paydo bo‘ladi.",
+    "@foregroundServiceRunning": {},
+    "screenSharingTitle": "Ekranni ulashish",
+    "@screenSharingTitle": {},
+    "screenSharingDetail": "Siz ekraningizni FuffyChat’da ulashmoqdasiz",
+    "@screenSharingDetail": {},
+    "callingPermissions": "Qoʻngʻiroq qilish ruxsatlar",
+    "@callingPermissions": {},
+    "callingAccount": "Qoʻngʻiroq qilishi hisobi",
+    "@callingAccount": {},
+    "callingAccountDetails": "FluffyChat’ga mahalliy android terish ilovasidan foydalanishga ruxsat beradi.",
+    "@callingAccountDetails": {},
+    "appearOnTop": "Teppada paydo boʻladi",
+    "@appearOnTop": {},
+    "appearOnTopDetails": "Ilovaning yuqori qismida koʻrinishiga ruxsat beradi (agar sizda Fluffychat qoʻngʻiroq qiluvchi hisobi sifatida oʻrnatilgan boʻlsa, kerak emas)",
+    "@appearOnTopDetails": {},
+    "otherCallingPermissions": "Mikrofon, kamera va boshqa FluffyChat ruxsatnomalari",
+    "@otherCallingPermissions": {},
+    "whyIsThisMessageEncrypted": "Nima uchun bu xabarni oʻqib boʻlmaydi?",
+    "@whyIsThisMessageEncrypted": {},
+    "noKeyForThisMessage": "Bu xabar siz ushbu qurilmada hisobingizga kirishdan oldin yuborilgan boʻlsa sodir boʻlishi mumkin.\n\nShuningdek, joʻnatuvchi qurilmangizni bloklagan yoki internet ulanishida biron bir muammo yuzaga kelgan boʻlishi mumkin.\n\nXabarni boshqa sessiyada oʻqiy olasizmi? Keyin xabarni undan uzatishingiz mumkin! Sozlamalar > Qurilmalar boʻlimiga oʻting va qurilmalaringiz bir-birini tasdiqlaganligiga ishonch hosil qiling. Keyingi safar xonani ochganingizda va ikkala sessiya ham oldinda boʻlganda, kalitlar avtomatik ravishda uzatiladi.\n\nTizimdan chiqishda yoki qurilmalarni almashtirishda kalitlarni yoʻqotishni xohlamaysizmi? Sozlamalarda chatning zaxira nusxasini yoqganingizga ishonch hosil qiling.",
+    "@noKeyForThisMessage": {},
+    "newGroup": "Yangi guruh",
+    "@newGroup": {},
+    "newSpace": "Yangi maydon",
+    "@newSpace": {},
+    "enterSpace": "Maydonga kirish",
+    "@enterSpace": {},
+    "enterRoom": "Guruhga kirish",
+    "@enterRoom": {},
+    "allSpaces": "Barcha maydonlar",
+    "@allSpaces": {},
+    "numChats": "{number} chatlar",
+    "@numChats": {
+        "type": "number",
+        "placeholders": {
+            "number": {
+                "type": "String"
+            }
+        }
+    },
+    "hideUnimportantStateEvents": "Muhim boʻlmagan shtat tadbirlarini yashirish",
+    "@hideUnimportantStateEvents": {},
+    "hidePresences": "Holat roʻyxati yashirilsinmi?",
+    "@hidePresences": {},
+    "doNotShowAgain": "Qaytib koʻrsatilmasin",
+    "@doNotShowAgain": {},
+    "wasDirectChatDisplayName": "Boʻsh chat ({oldDisplayName} edi)",
+    "@wasDirectChatDisplayName": {
+        "type": "String",
+        "placeholders": {
+            "oldDisplayName": {
+                "type": "String"
+            }
+        }
+    },
+    "newSpaceDescription": "Maydonlar sizga chatlaringizni birlashtirish va shaxsiy yoki ommaviy hamjamiyatlarni yaratish imkonini beradi.",
+    "@newSpaceDescription": {}
 }
