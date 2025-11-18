@@ -415,6 +415,7 @@ class ChatListController extends State<ChatList>
       );
     });
 
+    Matrix.of(context).setController(this);
     super.initState();
   }
 
@@ -813,6 +814,14 @@ class ChatListController extends State<ChatList>
       Matrix.of(context).setActiveClient(client);
     });
     _clientStream.add(client);
+  }
+
+  void setActiveClientWithUserId(String name) {
+    setState(() {
+      activeFilter = ActiveFilter.allChats;
+      _activeSpaceId = null;
+      Matrix.of(context).setActiveClientWithUserId(name);
+    });
   }
 
   void setActiveBundle(String bundle) {

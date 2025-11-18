@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -70,6 +71,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   bool? loginRegistrationSupported;
 
   BackgroundPush? backgroundPush;
+  ChatListController? controller;
 
   Client get client {
     if (_activeClient < 0 || _activeClient >= widget.clients.length) {
@@ -99,6 +101,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     } else {
       Logs().w('Tried to set an unknown user $userId as active');
     }
+  }
+  void setController(ChatListController controller) {
+    this.controller = controller;
   }
 
   void setActiveClient(Client? cl) {
