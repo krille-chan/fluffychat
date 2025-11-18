@@ -2718,5 +2718,43 @@
     "openLinkInBrowser": "Havolani brauzerda ochish",
     "@openLinkInBrowser": {},
     "reportErrorDescription": "😭 Voy yo‘q. Nimadir xato ketdi. Agar xohlasangiz, bu xato haqida dasturchilarga xabar berishingiz mumkin.",
-    "@reportErrorDescription": {}
+    "@reportErrorDescription": {},
+    "report": "hisobot",
+    "@report": {},
+    "signInWithPassword": "Parol bilan kirish",
+    "@signInWithPassword": {},
+    "pleaseTryAgainLaterOrChooseDifferentServer": "Keyinroq qayta urining yoki boshqa serverni tanlang.",
+    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+    "signInWith": "{provider} bilan kiring",
+    "@signInWith": {
+        "type": "String",
+        "placeholders": {
+            "provider": {
+                "type": "String"
+            }
+        }
+    },
+    "profileNotFound": "Foydalanuvchi serverda topilmadi. Ehtimol, ulanishda muammo bor yoki foydalanuvchi mavjud emas.",
+    "@profileNotFound": {},
+    "setTheme": "Mavzu tanlash:",
+    "@setTheme": {},
+    "setColorTheme": "Rang mavzusini sozlash:",
+    "@setColorTheme": {},
+    "invite": "Taklif qilish",
+    "@invite": {},
+    "invalidInput": "Xato kiritildi!",
+    "@invalidInput": {},
+    "wrongPinEntered": "PIN noto‘g‘ri kiritildi! {seconds} soniyadan keyin qayta urining...",
+    "@wrongPinEntered": {
+        "type": "String",
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "pleaseEnterANumber": "0 dan katta son kiriting",
+    "@pleaseEnterANumber": {},
+    "removeDevicesDescription": "Bu qurilmadan chiqarilasiz va ortiq xabarlarni qabul qila olmaysiz.",
+    "@removeDevicesDescription": {}
 }
