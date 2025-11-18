@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:animations/animations.dart';
+import 'package:emoji_picker_flutter/locales/default_emoji_set_locale.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
@@ -334,6 +335,12 @@ class ChatInputRow extends StatelessWidget {
                           filled: false,
                         ),
                         onChanged: controller.onInputBarChanged,
+                        suggestionEmojis: getDefaultEmojiLocale(
+                          Localizations.localeOf(context),
+                        ).fold(
+                          [],
+                          (emojis, category) => emojis..addAll(category.emoji),
+                        ),
                       ),
                     ),
                   ),

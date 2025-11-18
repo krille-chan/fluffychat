@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:emojis/emoji.dart';
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:matrix/matrix.dart';
 import 'package:slugify/slugify.dart';
 
@@ -28,6 +28,7 @@ class InputBar extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final bool? autofocus;
   final bool readOnly;
+  final List<Emoji> suggestionEmojis;
 
   const InputBar({
     required this.room,
@@ -43,6 +44,7 @@ class InputBar extends StatelessWidget {
     this.autofocus,
     this.textInputAction,
     this.readOnly = false,
+    required this.suggestionEmojis,
     super.key,
   });
 
@@ -115,13 +117,12 @@ class InputBar extends StatelessWidget {
           }
         }
       }
+
       // aside of emote packs, also propose normal (tm) unicode emojis
-      final matchingUnicodeEmojis = Emoji.all()
-          .where(
-            (element) => [element.name, ...element.keywords]
-                .any((element) => element.toLowerCase().contains(emoteSearch)),
-          )
+      final matchingUnicodeEmojis = suggestionEmojis
+          .where((emoji) => emoji.name.toLowerCase().contains(emoteSearch))
           .toList();
+
       // sort by the index of the search term in the name in order to have
       // best matches first
       // (thanks for the hint by github.com/nextcloud/circles devs)
@@ -141,9 +142,8 @@ class InputBar extends StatelessWidget {
       for (final emoji in matchingUnicodeEmojis) {
         ret.add({
           'type': 'emoji',
-          'emoji': emoji.char,
-          // don't include sub-group names, splitting at `:` hence
-          'label': '${emoji.char} - ${emoji.name.split(':').first}',
+          'emoji': emoji.emoji,
+          'label': emoji.name,
           'current_word': ':$emoteSearch',
         });
         if (ret.length > maxResults) {
@@ -249,7 +249,18 @@ class InputBar extends StatelessWidget {
         waitDuration: const Duration(days: 1), // don't show on hover
         child: ListTile(
           onTap: () => onSelected(suggestion),
-          title: Text(label, style: const TextStyle(fontFamily: 'RobotoMono')),
+          leading: SizedBox.square(
+            dimension: size,
+            child: Text(
+              suggestion['emoji']!,
+              style: const TextStyle(fontSize: 16),
+            ),
+          ),
+          title: Text(
+            label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
       );
     }
