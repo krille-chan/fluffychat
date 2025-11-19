@@ -391,7 +391,10 @@ class HtmlMessage extends StatelessWidget {
                       controller: controller,
                       scrollDirection: Axis.horizontal,
                       child: Padding(
-                        padding: const EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8.0,
+                          vertical: 4.0,
+                        ),
                         child: Text.rich(
                           TextSpan(
                             children: [_renderCodeBlockNode(element)],
