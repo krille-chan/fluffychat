@@ -17,7 +17,6 @@ import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
@@ -71,7 +70,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   bool? loginRegistrationSupported;
 
   BackgroundPush? backgroundPush;
-  ChatListController? controller;
 
   Client get client {
     if (_activeClient < 0 || _activeClient >= widget.clients.length) {
@@ -89,23 +87,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   late String currentClientSecret;
   RequestTokenResponse? currentThreepidCreds;
-  void setActiveClientWithUserId(String userId) {
-    final i = widget.clients.indexWhere((c) => c.userID == userId);
-    if (i != -1) {
-      if (_activeClient == i) {
-        return;
-      }
-      _activeClient = i;
-      // TODO: Multi-client VoiP support
-      createVoipPlugin();
-    } else {
-      Logs().w('Tried to set an unknown user $userId as active');
-    }
-  }
-
-  void setController(ChatListController controller) {
-    this.controller = controller;
-  }
 
   void setActiveClient(Client? cl) {
     final i = widget.clients.indexWhere((c) => c == cl);
