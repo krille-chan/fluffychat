@@ -168,10 +168,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
               _loginClientCandidate!.clientName,
               store,
             );
-            _registerSubs(
-              _loginClientCandidate!.clientName,
-              _loginClientCandidate!.userID,
-            );
+            _registerSubs(_loginClientCandidate!.clientName);
             _loginClientCandidate = null;
             FluffyChatApp.router.go('/rooms');
           });
@@ -224,7 +221,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     initMatrix();
   }
 
-  void _registerSubs(String name, String? userId) {
+  void _registerSubs(String name) {
     final c = getClientByName(name);
     if (c == null) {
       Logs().w(
@@ -293,8 +290,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
       c.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
-        onNotification[name] ??= c.onNotification.stream
-            .listen((data) => showLocalNotification(data, userId));
+        onNotification[name] ??=
+            c.onNotification.stream.listen(showLocalNotification);
       });
     }
   }
@@ -312,7 +309,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   void initMatrix() {
     for (final c in widget.clients) {
-      _registerSubs(c.clientName, c.userID);
+      _registerSubs(c.clientName);
     }
 
     if (kIsWeb) {
