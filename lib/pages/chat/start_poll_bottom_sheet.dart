@@ -81,9 +81,9 @@ class _StartPollBottomSheetState extends State<StartPollBottomSheet> {
         children: [
           TextField(
             controller: _bodyController,
-            minLines: 1,
+            minLines: 2,
             maxLines: 4,
-            maxLength: 512,
+            maxLength: 1024,
             onChanged: _updateCanCreate,
             decoration: InputDecoration(
               hintText: L10n.of(context).pollQuestion,
