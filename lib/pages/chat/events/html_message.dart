@@ -369,28 +369,20 @@ class HtmlMessage extends StatelessWidget {
               side: const BorderSide(color: hightlightTextColor),
               borderRadius: BorderRadius.circular(4),
             ),
-            child: isInline
-                ? Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    child: Text.rich(
-                      TextSpan(
-                        children: [_renderCodeBlockNode(element)],
-                      ),
-                      selectionColor: hightlightTextColor.withAlpha(128),
-                    ),
-                  )
-                : Padding(
-                    padding: const EdgeInsets.symmetric(
+            child: Padding(
+              padding: isInline
+                  ? const EdgeInsets.symmetric(horizontal: 4.0)
+                  : const EdgeInsets.symmetric(
                       horizontal: 8.0,
                       vertical: 4.0,
                     ),
-                    child: Text.rich(
-                      TextSpan(
-                        children: [_renderCodeBlockNode(element)],
-                      ),
-                      selectionColor: hightlightTextColor.withAlpha(212),
-                    ),
-                  ),
+              child: Text.rich(
+                TextSpan(
+                  children: [_renderCodeBlockNode(element)],
+                ),
+                selectionColor: hightlightTextColor.withAlpha(128),
+              ),
+            ),
           ),
         );
       case 'img':
