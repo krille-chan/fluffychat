@@ -10,6 +10,7 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -46,6 +47,7 @@ class Message extends StatelessWidget {
   final void Function()? resetAnimateIn;
   final bool wallpaperMode;
   final ScrollController scrollController;
+  final ChatController controller;
   final List<Color> colors;
   final void Function()? onExpand;
   final bool isCollapsed;
@@ -70,6 +72,7 @@ class Message extends StatelessWidget {
     this.wallpaperMode = false,
     required this.onMention,
     required this.scrollController,
+    required this.controller,
     required this.colors,
     this.onExpand,
     required this.enterThread,
@@ -862,7 +865,8 @@ class Message extends StatelessWidget {
               AnimatedSize(
                 duration: FluffyThemes.animationDuration,
                 curve: FluffyThemes.animationCurve,
-                alignment: Alignment.bottomCenter,
+                alignment:
+                    ownMessage ? Alignment.bottomRight : Alignment.bottomLeft,
                 child: !showReceiptsRow
                     ? const SizedBox.shrink()
                     : Padding(
@@ -871,7 +875,7 @@ class Message extends StatelessWidget {
                           left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
                           right: ownMessage ? 0 : 12.0,
                         ),
-                        child: MessageReactions(event, timeline),
+                        child: MessageReactions(event, timeline, controller),
                       ),
               ),
               if (enterThread != null)
