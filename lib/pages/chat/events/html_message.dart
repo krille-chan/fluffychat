@@ -361,7 +361,6 @@ class HtmlMessage extends StatelessWidget {
         if (element == null) {
           return const TextSpan(text: 'Unable to render code block!');
         }
-        final controller = isInline ? null : ScrollController();
 
         return WidgetSpan(
           child: Material(
@@ -380,28 +379,16 @@ class HtmlMessage extends StatelessWidget {
                       selectionColor: hightlightTextColor.withAlpha(128),
                     ),
                   )
-                : RawScrollbar(
-                    thumbVisibility: true,
-                    trackVisibility: true,
-                    controller: controller,
-                    thumbColor: hightlightTextColor,
-                    trackColor: hightlightTextColor.withAlpha(128),
-                    thickness: 8,
-                    child: SingleChildScrollView(
-                      controller: controller,
-                      scrollDirection: Axis.horizontal,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0,
-                          vertical: 4.0,
-                        ),
-                        child: Text.rich(
-                          TextSpan(
-                            children: [_renderCodeBlockNode(element)],
-                          ),
-                          selectionColor: hightlightTextColor.withAlpha(212),
-                        ),
+                : Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0,
+                      vertical: 4.0,
+                    ),
+                    child: Text.rich(
+                      TextSpan(
+                        children: [_renderCodeBlockNode(element)],
                       ),
+                      selectionColor: hightlightTextColor.withAlpha(212),
                     ),
                   ),
           ),
