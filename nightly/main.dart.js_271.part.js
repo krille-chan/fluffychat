@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cH0(){return new A.Fy(B.dg("es"))},
-Fy:function Fy(d){this.a=d}}
+cH3(){return new A.Fz(B.dg("es"))},
+Fz:function Fz(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[16],A)
-A.Fy.prototype={
+A.Fz.prototype={
 gkZ(){return"true"},
 gjJ(){return"Repite la contrase\xf1a"},
 gmP(){return"El archivo no es una imagen."},
@@ -374,7 +374,7 @@ gk5(){return"\xbfPor qu\xe9 quieres denunciar esto?"},
 goL(){return"\xbfLimpiar la copia de seguridad de tu chat para crear una nueva clave de recuperaci\xf3n?"},
 goM(){return"Con esta direcci\xf3n puede recuperar su contrase\xf1a."},
 goN(){return"Escribe un mensaje\u2026"},
-gdM(){return"S\xed"},
+gdN(){return"S\xed"},
 goP(){return"T\xfa"},
 gel(){return"Ya no est\xe1s participando en este chat"},
 goS(){return"Has sido vetado de este chat"},
@@ -413,7 +413,7 @@ goo(){return"Usuarios"},
 gof(){return"Desbloquear mensajes viejos"},
 gkf(){return"Compartir esta clave manualmente usando el di\xe1logo de compartir del sistema o el portapapeles."},
 lC(d){return""+d+" archivos"},
-gdL(){return"Usuario"},
+gdM(){return"Usuario"},
 gie(){return"Personalizado"},
 goK(){return"\xbfPor qu\xe9 no se puede leer este mensaje?"},
 gmK(){return"Esto puede ocurrir si el mensaje se envi\xf3 antes de que entraras en tu cuenta en este dispositivo.\n\nTambi\xe9n puede que el remitente haya bloqueado tu dispositivo o haya fallado algo en la conexi\xf3n a Internet.\n\n\xbfPuedes leer el mensaje en otra sesi\xf3n? Entonces, \xa1puedes transferir el mensaje desde all\xed! Ve a Ajustes > Dispositivos y aseg\xfarate de que tus dispositivos se han verificado mutuamente. Cuando abras la sala la pr\xf3xima vez y ambas sesiones est\xe9n en primer plano, las claves se transmitir\xe1n autom\xe1ticamente.\n\n\xbfNo quieres perder las claves al salir o al cambiar de dispositivo? Aseg\xfarate de que has habilitado la copia de seguridad del chat en los ajustes."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fy,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fy":{"aE":[]}}'))};
-(a=>{a["erla3ZWjtwvd8/zfAtaO9MVzyWM="]=a.current})($__dart_deferred_initializers__);
+y(A.Fz,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fz":{"aE":[]}}'))};
+(a=>{a["0+k2Z6otPyschlgeq79qC6FI6a0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_271.part.js.map

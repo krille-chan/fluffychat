@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHo(){return new A.FW(B.dg("pl"))},
-FW:function FW(d){this.a=d}}
+cHr(){return new A.FX(B.dg("pl"))},
+FX:function FX(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[40],A)
-A.FW.prototype={
+A.FX.prototype={
 gkZ(){return"false"},
 gjJ(){return"Powt\xf3rz has\u0142o"},
 gmP(){return"To nie jest plik obrazu."},
@@ -374,7 +374,7 @@ gk5(){return"Dlaczego chcesz to zg\u0142osi\u0107?"},
 goL(){return"Wymaza\u0107 kopi\u0119 zapasow\u0105 czatu, aby utworzy\u0107 nowy klucz odzyskiwania?"},
 goM(){return"Dzi\u0119ki tym adresom mo\u017cesz odzyska\u0107 swoje has\u0142o."},
 goN(){return"Napisz wiadomo\u015b\u0107\u2026"},
-gdM(){return"Tak"},
+gdN(){return"Tak"},
 goP(){return"Ty"},
 gel(){return"Nie uczestniczysz ju\u017c w tym czacie"},
 goS(){return"Zosta\u0142e\u015b/-a\u015b zbanowany/-a w tym czacie"},
@@ -413,7 +413,7 @@ goo(){return"U\u017cytkownicy"},
 gof(){return"Odblokuj stare wiadomo\u015bci"},
 gkf(){return"Zapisz ten klucz r\u0119cznie, uruchamiaj\u0105c systemowe okno dialogowe udost\u0119pniania lub schowek."},
 lC(d){return""+d+" plik\xf3w"},
-gdL(){return"U\u017cytkownik"},
+gdM(){return"U\u017cytkownik"},
 gie(){return"W\u0142asne"},
 goK(){return"Dlaczego nie mo\u017cna odczyta\u0107 tej wiadomo\u015bci?"},
 gmK(){return"Mo\u017ce si\u0119 to zdarzy\u0107, je\u015bli wiadomo\u015b\u0107 zosta\u0142a wys\u0142ana przed zalogowaniem si\u0119 na to konto na tym urz\u0105dzeniu.\n\nMo\u017cliwe jest r\xf3wnie\u017c, \u017ce nadawca zablokowa\u0142 Twoje urz\u0105dzenie lub co\u015b posz\u0142o nie tak z po\u0142\u0105czeniem internetowym.\n\nJeste\u015b w stanie odczyta\u0107 wiadomo\u015b\u0107 na innej sesji? W takim razie mo\u017cesz przenie\u015b\u0107 z niej wiadomo\u015b\u0107! Wejd\u017a w Ustawienia > Urz\u0105dzenia i upewnij si\u0119, \u017ce Twoje urz\u0105dzenia zweryfikowa\u0142y si\u0119 wzajemnie. Gdy nast\u0119pnym razem otworzysz pok\xf3j i obie sesje b\u0119d\u0105 w\u0142\u0105czone, klucze zostan\u0105 przekazane automatycznie.\n\nNie chcesz straci\u0107 kluczy podczas wylogowania lub prze\u0142\u0105czania urz\u0105dze\u0144? Upewnij si\u0119, \u017ce w ustawieniach masz w\u0142\u0105czon\u0105 kopi\u0119 zapasow\u0105 czatu."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FW,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FW":{"aE":[]}}'))};
-(a=>{a["8eSqVdwOrqZJRSVr41qYef0VPr4="]=a.current})($__dart_deferred_initializers__);
+y(A.FX,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FX":{"aE":[]}}'))};
+(a=>{a["Ucl6OtP5FvLB6TtKnlvixazURJg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_322.part.js.map

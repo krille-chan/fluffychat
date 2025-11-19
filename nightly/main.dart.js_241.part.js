@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cGU(){return new A.Fr(B.dg("ca"))},
-Fr:function Fr(d){this.a=d}}
+cGX(){return new A.Fs(B.dg("ca"))},
+Fs:function Fs(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[9],A)
-A.Fr.prototype={
+A.Fs.prototype={
 gkZ(){return"true"},
 gjJ(){return"Repetiu la contrasenya"},
 gmP(){return"No \xe9s un arxiu d'image."},
@@ -374,7 +374,7 @@ gk5(){return"Per qu\xe8 voleu denunciar aix\xf2?"},
 goL(){return"Voleu suprimir la c\xf2pia de seguretat dels xats per a crear una clau de recuperaci\xf3 nova?"},
 goM(){return"Amb aquestes adreces, si ho necessiteu, podeu recuperar la vostra contrasenya."},
 goN(){return"Escriviu un missatge\u2026"},
-gdM(){return"S\xed"},
+gdN(){return"S\xed"},
 goP(){return"V\xf3s"},
 gel(){return"Ja no participeu en aquest xat"},
 goS(){return"T'han vetat en aquest xat"},
@@ -413,7 +413,7 @@ goo(){return"Usu\xe0r\xefis"},
 gof(){return"Desbloqueja els missatges antics"},
 gkf(){return"Per desar aquesta clau manualment, pica l'eina de compartir o copia-la al porta-retalls."},
 lC(d){return""+d+" arxius"},
-gdL(){return"Usu\xe0r\xefi"},
+gdM(){return"Usu\xe0r\xefi"},
 gie(){return"Personalitzat"},
 goK(){return"Per qu\xe8 no es pot llegir aquest missatge?"},
 gmK(){return"Aix\xf2 pot passar si el missatge es va enviar abans que haguessis iniciat sessi\xf3 al teu compte des d'aquest dispositiu.\n\nTamb\xe9 pot ser que l'emissor hagi bloquejat el teu dispositiu o que la connexi\xf3 a internet an\xe9s malament.\n\nQue pots llegir el missatge des d'una altra sessi\xf3? Si \xe9s aix\xed, llavors pots transferir-lo! Ves a Par\xe0metres \u2192 Dispositius i assegura't que els teus dispositius s'ha verificat m\xfatuament. Quan obris la sala la propera vegada i totes dues sessions estiguin executant-se, en primer pla, llavors les claus es trasnsmetran autom\xe0ticament.\n\nVols evitar perdre les claus en tancar la sessi\xf3 o en canviar de dispositiu? Llavors assegura't que has activat la c\xf2pia de seguretat del xat als par\xe0metres."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fr,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fr":{"aE":[]}}'))};
-(a=>{a["yiaCVkEHQkKVsS/Kmau+sNuOXj4="]=a.current})($__dart_deferred_initializers__);
+y(A.Fs,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fs":{"aE":[]}}'))};
+(a=>{a["OaI4Rl1ZR4zFRb0qd7yvO303H1w="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_241.part.js.map

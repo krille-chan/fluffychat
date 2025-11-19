@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cH7(){return new A.FF(B.dg("ga"))},
-FF:function FF(d){this.a=d}}
+cHa(){return new A.FG(B.dg("ga"))},
+FG:function FG(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[23],A)
-A.FF.prototype={
+A.FG.prototype={
 gkZ(){return"br\xe9agach"},
 gjJ(){return"Scr\xedobh an pasfhocal ar\xeds"},
 gmP(){return"N\xed comhad \xedomh\xe1 \xe9."},
@@ -374,7 +374,7 @@ gk5(){return"C\xe9n f\xe1th ar mhaith leat \xe9 seo a thuairisci\xfa?"},
 goL(){return"An bhfuil fonn ort c\xfaltaca do chomhr\xe1 a scriosadh chun eochair athshl\xe1naithe nua a chruth\xfa?"},
 goM(){return"Leis na seolta\xed seo is f\xe9idir leat do phasfhocal a athshl\xe1n\xfa."},
 goN(){return"Scr\xedobh teachtaireacht\u2026"},
-gdM(){return"T\xe1"},
+gdN(){return"T\xe1"},
 goP(){return"T\xfa"},
 gel(){return"N\xedl t\xfa ag glacadh p\xe1irte sa chomhr\xe1 seo a thuilleadh"},
 goS(){return"Cuireadh cosc ort \xf3n gcomhr\xe1 seo"},
@@ -413,7 +413,7 @@ goo(){return"\xdas\xe1ideoir\xed"},
 gof(){return"D\xedghlas\xe1il seanteachtaireachta\xed"},
 gkf(){return"S\xe1bh\xe1il an eochair seo de l\xe1imh tr\xed dial\xf3g n\xf3 gearrthaisce comhroinnte an ch\xf3rais a spreagadh."},
 lC(d){return"Comhaid "+d},
-gdL(){return"\xdas\xe1ideoir"},
+gdM(){return"\xdas\xe1ideoir"},
 gie(){return"Saincheaptha"},
 goK(){return"C\xe9n f\xe1th nach f\xe9idir an teachtaireacht seo a l\xe9amh?"},
 gmK(){return"F\xe9adfaidh s\xe9 seo tarl\xfa m\xe1 seoladh an teachtaireacht sular sh\xednigh t\xfa isteach ar do chuntas ag an ngl\xe9as seo.\n\nIs f\xe9idir freisin gur chuir an seolt\xf3ir bac ar do ghl\xe9as n\xf3 go ndeachaigh rud \xe9igin m\xedcheart leis an nasc idirl\xedn.\n\nAn bhfuil t\xfa in ann an teachtaireacht a l\xe9amh ar sheisi\xfan eile? Ansin is f\xe9idir leat an teachtaireacht a aistri\xfa uaidh! T\xe9igh go Socruithe > Gl\xe9asanna agus cinntigh go bhfuil do ghl\xe9asanna f\xedoraithe a ch\xe9ile. Nuair a oscla\xedonn t\xfa an seomra an ch\xe9ad uair eile agus an d\xe1 sheisi\xfan sa tulra, d\xe9anfar na heochracha a tharchur go huathoibr\xedoch.\n\nN\xe1r mhaith leat na heochracha a chailleadh agus t\xfa ag log\xe1il amach n\xf3 ag aistri\xfa gl\xe9asanna? D\xe9an cinnte go bhfuil an c\xfaltaca comhr\xe1 cumasaithe agat sna socruithe."},
@@ -655,8 +655,8 @@ gpE(){return"Sn\xe1ithe"},
 gpp(){return"Ar ais chuig an bpr\xedomhchomhr\xe1"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FF,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FF":{"aE":[]}}'))
+x(A.FG,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FG":{"aE":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["+TBIRuQxl4P0g0O1Qeyrtn9ZLgo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["znJQiqkTLc357zEsQhK0Zp3sHkU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_289.part.js.map

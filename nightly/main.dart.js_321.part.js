@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHn(){return new A.FV(B.dg("nl"))},
-FV:function FV(d){this.a=d}}
+cHq(){return new A.FW(B.dg("nl"))},
+FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[39],A)
-A.FV.prototype={
+A.FW.prototype={
 gkZ(){return"true"},
 gjJ(){return"Wachtwoord herhalen"},
 gmP(){return"Geen afbeeldingsbestand."},
@@ -374,7 +374,7 @@ gk5(){return"Waarom wil je dit rapporteren?"},
 goL(){return"Wil je de chatback-up wissen om een nieuwe herstelsleutel te kunnen maken?"},
 goM(){return"Met deze adressen kun je je wachtwoord herstellen."},
 goN(){return"Schrijf een bericht\u2026"},
-gdM(){return"Ja"},
+gdN(){return"Ja"},
 goP(){return"Jij"},
 gel(){return"Je neemt niet langer deel aan deze chat"},
 goS(){return"Je bent verbannen uit deze chat"},
@@ -413,7 +413,7 @@ goo(){return"Personen"},
 gof(){return"Oude berichten ontgrendelen"},
 gkf(){return"Sla deze sleutel handmatig op via delen of het klembord."},
 lC(d){return""+d+" bestanden"},
-gdL(){return"Persoon"},
+gdM(){return"Persoon"},
 gie(){return"Aangepast"},
 goK(){return"Waarom is dit bericht onleesbaar?"},
 gmK(){return"Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen in een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de chat de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chatback-up hebt aangezet in de instellingen."},
@@ -655,7 +655,7 @@ gpE(){return"Draad"},
 gpp(){return"Terug naar hoofdchat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FV,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FV":{"aE":[]}}'))};
-(a=>{a["bkR1n4ycAEPz9mf3lC/kdS24LJw="]=a.current})($__dart_deferred_initializers__);
+y(A.FW,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FW":{"aE":[]}}'))};
+(a=>{a["DX2iAcNwcDgH4dKXDVS4o8Ls7Js="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHD(){return new A.G9(B.dg("uz"))},
-G9:function G9(d){this.a=d}}
+cHG(){return new A.Ga(B.dg("uz"))},
+Ga:function Ga(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[52],A)
-A.G9.prototype={
+A.Ga.prototype={
 gkZ(){return"true"},
 gjJ(){return"Parolni takrorlang"},
 gmP(){return"Rasm fayli emas."},
@@ -374,7 +374,7 @@ gk5(){return"Nima uchun bu haqda xabar bermoqchisiz?"},
 goL(){return"Yangi tiklash kalitini yaratish uchun suhbat zaxirasi tozalansinmi?"},
 goM(){return"Ushbu manzillar yordamida parolingizni tiklashingiz mumkin."},
 goN(){return"Xabar yozish\u2026"},
-gdM(){return"Ha"},
+gdN(){return"Ha"},
 goP(){return"Siz"},
 gel(){return"Siz ortiq bu suhbatda qatnashmayapsiz"},
 goS(){return"Bu suhbatdan bloklandingiz"},
@@ -413,7 +413,7 @@ goo(){return"Foydalanuvchilar"},
 gof(){return"Eski xabarlarni qulfdan chiqaring"},
 gkf(){return"Tizim ulashish dialog oynasi yoki buferni ishga tushirish orqali ushbu kalitni qo\u02bblda saqlang."},
 lC(d){return""+d+" fayllar"},
-gdL(){return"Foydalanuvchi"},
+gdM(){return"Foydalanuvchi"},
 gie(){return"Maxsus"},
 goK(){return"Nima uchun bu xabarni o\u02bbqib bo\u02bblmaydi?"},
 gmK(){return"Bu xabar siz ushbu qurilmada hisobingizga kirishdan oldin yuborilgan bo\u02bblsa sodir bo\u02bblishi mumkin.\n\nShuningdek, jo\u02bbnatuvchi qurilmangizni bloklagan yoki internet ulanishida biron bir muammo yuzaga kelgan bo\u02bblishi mumkin.\n\nXabarni boshqa sessiyada o\u02bbqiy olasizmi? Keyin xabarni undan uzatishingiz mumkin! Sozlamalar > Qurilmalar bo\u02bblimiga o\u02bbting va qurilmalaringiz bir-birini tasdiqlaganligiga ishonch hosil qiling. Keyingi safar xonani ochganingizda va ikkala sessiya ham oldinda bo\u02bblganda, kalitlar avtomatik ravishda uzatiladi.\n\nTizimdan chiqishda yoki qurilmalarni almashtirishda kalitlarni yo\u02bbqotishni xohlamaysizmi? Sozlamalarda suhbatning zaxira nusxasini yoqganingizga ishonch hosil qiling."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Asosiy suhbatga qaytish"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G9,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"G9":{"aE":[]}}'))};
-(a=>{a["lRdIx7yLbAkoVqV1vn0MSxr4I/Y="]=a.current})($__dart_deferred_initializers__);
+y(A.Ga,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Ga":{"aE":[]}}'))};
+(a=>{a["jm5aZFwrs12FEiD7qX+Gl0ikfMo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_339.part.js.map

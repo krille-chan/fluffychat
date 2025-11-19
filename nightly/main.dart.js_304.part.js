@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHe(){return new A.FM(B.dg("id"))},
-FM:function FM(d){this.a=d}}
+cHh(){return new A.FN(B.dg("id"))},
+FN:function FN(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[30],A)
-A.FM.prototype={
+A.FN.prototype={
 gkZ(){return"tidak"},
 gjJ(){return"Ulangi kata sandi"},
 gmP(){return"Bukan berkas gambar."},
@@ -374,7 +374,7 @@ gk5(){return"Kenapa kamu ingin melaporkannya?"},
 goL(){return"Hapus cadangan obrolan untuk membuat kunci pemulihan baru?"},
 goM(){return"Dengan alamat ini kamu bisa memulihkan kata sandimu."},
 goN(){return"Tulis pesan\u2026"},
-gdM(){return"Ya"},
+gdN(){return"Ya"},
 goP(){return"Kamu"},
 gel(){return"Kamu tidak berpartisipasi lagi di obrolan ini"},
 goS(){return"Kamu telah dicekal dari obrolan ini"},
@@ -413,7 +413,7 @@ goo(){return"Pengguna"},
 gof(){return"Akses pesan lama"},
 gkf(){return"Simpan kunci ini secara manual dengan memicu dialog pembagian atau papan klip sistem."},
 lC(d){return""+d+" file"},
-gdL(){return"Pengguna"},
+gdM(){return"Pengguna"},
 gie(){return"Kustom"},
 goK(){return"Mengapa pesan ini tidak bisa dibaca?"},
 gmK(){return"Hal ini bisa terjadi jika pesan dikirim sebelum kamu masuk ke akunmu di perangkat ini.\n\nMungkin juga pengirim telah memblokir perangkatmu atau ada yang tidak beres dengan koneksi internet.\n\nApakah kamu bisa membaca pesan pada sesi lain? Maka kamu bisa mentransfer pesan dari sesi tersebut! Buka Pengaturan > Perangkat dan pastikan bahwa perangkat Anda telah ditandatangani secara silang. Ketika kamu membuka ruangan di lain waktu dan kedua sesi berada di latar depan, kunci akan ditransmisikan secara otomatis.\n\nApakah kamu tidak mau kehilangan kunci saat keluar atau berpindah perangkat? Pastikan bahwa kamu telah mengaktifkan cadangan obrolan dalam pengaturan."},
@@ -655,8 +655,8 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FM,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FM":{"aE":[]}}'))
+x(A.FN,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FN":{"aE":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["ns6iHarERabObSwp/97/wir1jWA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9Q7KICpFyhCLmng6j0HMC+06GM0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map

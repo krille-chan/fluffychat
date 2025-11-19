@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHs(){return new A.FZ(B.dg("ro"))},
-FZ:function FZ(d){this.a=d}}
+cHv(){return new A.G_(B.dg("ro"))},
+G_:function G_(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[41],A)
-A.FZ.prototype={
+A.G_.prototype={
 gkZ(){return"false"},
 gjJ(){return"Repeta\u021bi parola"},
 gmP(){return"Not an image file."},
@@ -374,7 +374,7 @@ gk5(){return"De ce dori\u021bi s\u0103 reporta\u021bi acest con\u021binut?"},
 goL(){return"\u0218terge\u021bi backup-ul vostru de chat s\u0103 crea\u021bi o nou\u0103 cheie de recuperare?"},
 goM(){return"Cu acestea adrese pute\u021bi s\u0103 v\u0103 recupera\u021bi parola."},
 goN(){return"Scrie\u021bi un mesaj\u2026"},
-gdM(){return"Da"},
+gdN(){return"Da"},
 goP(){return"Voi"},
 gel(){return"Nu mai participa\u021bi \xeen acest chat"},
 goS(){return"A\u021bi fost interzis din acest chat"},
@@ -413,7 +413,7 @@ goo(){return"Utilizatori"},
 gof(){return"Debloca\u021bi mesajele vechi"},
 gkf(){return"Activa\u021bi dialogul de partajare sistemului sau folosi\u021bi clipboard-ul s\u0103 salva\u021bi manual aceast\u0103 cheie."},
 lC(d){return""+d+" fi\u0219iere"},
-gdL(){return"Utilizator"},
+gdM(){return"Utilizator"},
 gie(){return"Personalizat"},
 goK(){return"De ce este acest mesaj ilizibil?"},
 gmK(){return"Aceast\u0103 chestie poate s\u0103 se \xeent\xe2mple c\xe2nd mesajul a fost trimis \xeenainte s\u0103 v\u0103 conecta\u021bi contul cu acest dispozitiv.\n\nO alt\u0103 explica\u021bie ar fi dac\u0103 trimi\u021b\u0103torul a blocat dispozitivul vostru sau ceva s-a \xeent\xe2mplat cu conexiunea la internet\n\nPute\u021bi s\u0103 citi\u021bi mesajul \xeen o alt\u0103 se\u0219iune? Atunci pute\u021bi s\u0103 transfera\u021bi mesajul de acolo! Merge\u021bi la Configur\u0103ri > Dispozitive \u0219i verifica\u021bi c\u0103 dispozitivele s-au verificat. C\xe2nd deschide\u021bi camera \xeen viitor \u0219i ambele se\u0219iune sunt \xeen foreground, cheile va fi transmise automat. \n\nDori\u021bi s\u0103 \xee\u021bi p\u0103stra\u021bi cheile c\xe2nd deconecta\u021bi sau schimba\u021bi dispozitive? Fi\u021bi aten\u021bi s\u0103 activa\u021bi backup de chat \xeen configur\u0103ri."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FZ,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FZ":{"aE":[]}}'))};
-(a=>{a["/pzneA6CuU5dzrfF72Hir4QSYjk="]=a.current})($__dart_deferred_initializers__);
+y(A.G_,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"G_":{"aE":[]}}'))};
+(a=>{a["5cbVTjhBechPSzTDpaYLS0Mrt50="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_323.part.js.map

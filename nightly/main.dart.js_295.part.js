@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHb(){return new A.FJ(B.dg("hr"))},
-FJ:function FJ(d){this.a=d}}
+cHe(){return new A.FK(B.dg("hr"))},
+FK:function FK(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[27],A)
-A.FJ.prototype={
+A.FK.prototype={
 gkZ(){return"true"},
 gjJ(){return"Ponovi lozinku"},
 gmP(){return"Nije slikovna datoteka."},
@@ -374,7 +374,7 @@ gk5(){return"Za\u0161to \u017eeli\u0161 ovo prijaviti?"},
 goL(){return"Izbrisati sigurnosnu kopiju razgovora za stvaranje novog sigurnosnog klju\u010da za obnavljanje?"},
 goM(){return"Lozinku mo\u017ee\u0161 obnoviti pomo\u0107u ovih adresa."},
 goN(){return"Napi\u0161i poruku \u2026"},
-gdM(){return"Da"},
+gdN(){return"Da"},
 goP(){return"Ti"},
 gel(){return"Vi\u0161e ne sudjeluje\u0161 u ovom razgovoru"},
 goS(){return"Isklju\u010den/a si iz ovog razgovora"},
@@ -413,7 +413,7 @@ goo(){return"Korisnici"},
 gof(){return"Otklju\u010daj stare poruke"},
 gkf(){return"Spremi ovaj klju\u010d ru\u010dno pokretanjem dijaloga za dijeljenje sustava ili me\u0111uspremnika."},
 lC(d){return"Broj datoteka: "+d},
-gdL(){return"Korisnik"},
+gdM(){return"Korisnik"},
 gie(){return"Prilago\u0111eno"},
 goK(){return"Za\u0161to nije mogu\u0107e \u010ditati ovu poruku?"},
 gmK(){return"To se mo\u017ee dogoditi ako je poruka poslana prije prijave na tvoj ra\u010dun na ovom ure\u0111aju.\n\nTako\u0111er je mogu\u0107e da je po\u0161iljatelj blokirao tvoj ure\u0111aj ili je do\u0161lo do gre\u0161ke s internetskom vezom.\n\nMo\u017ee\u0161 li pro\u010ditati poruku na jednoj drugoj sesiji? U tom slu\u010daju mo\u017ee\u0161 prenijeti poruku iz nje! Idi na Postavke > Ure\u0111aji i uvjeri se da su se tvoji ure\u0111aji me\u0111usobno provjerili. Kada sljede\u0107i put otvori\u0161 sobu i obje sesije su u prednjem planu, klju\u010devi \u0107e se automatski prenijeti.\n\nNe \u017eeli\u0161 izgubiti klju\u010deve kada se odjavi\u0161 ili zamijeni\u0161 ure\u0111aje? Aktiviraj spremanje sigurnosne kopije razgovora u postavkama."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FJ,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FJ":{"aE":[]}}'))};
-(a=>{a["CXPbSY8327cb0IrAEqfJ13Wy4c0="]=a.current})($__dart_deferred_initializers__);
+y(A.FK,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FK":{"aE":[]}}'))};
+(a=>{a["v0a6V0fS1XTJSl4fJtWTSZ197Cg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

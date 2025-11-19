@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHk(){return new A.FS(B.dg("lt"))},
-FS:function FS(d){this.a=d}}
+cHn(){return new A.FT(B.dg("lt"))},
+FT:function FT(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[36],A)
-A.FS.prototype={
+A.FT.prototype={
 gkZ(){return"false"},
 gjJ(){return"Pakartokite slapta\u017eod\u012f"},
 gmP(){return"Not an image file."},
@@ -374,7 +374,7 @@ gk5(){return"Kod\u0117l norite apie tai prane\u0161ti?"},
 goL(){return"I\u0161trinti atsargin\u0119 pokalbi\u0173 kopij\u0105, kad sukurti nauj\u0105 atk\u016brimo rakt\u0105?"},
 goM(){return"Naudodami \u0161iuos adresus galite atkurti savo slapta\u017eod\u012f."},
 goN(){return"Ra\u0161yti \u017einut\u0119\u2026"},
-gdM(){return"Taip"},
+gdN(){return"Taip"},
 goP(){return"J\u016bs"},
 gel(){return"J\u016bs nebedalyvaujate \u0161iame pokalbyje"},
 goS(){return"Jums buvo u\u017edrausta dalyvauti \u0161iame pokalbyje"},
@@ -413,7 +413,7 @@ goo(){return"Vartotojai"},
 gof(){return"Atrakinti senas \u017einutes"},
 gkf(){return"\u012era\u0161ykite \u0161\u012f rakt\u0105 rankiniu b\u016bdu, \u012fjung\u0119 sistemos bendrinimo dialogo lang\u0105 arba i\u0161karpin\u0119."},
 lC(d){return""+d+" failai"},
-gdL(){return"Vartotojas"},
+gdM(){return"Vartotojas"},
 gie(){return"Pasirinktinis"},
 goK(){return"Kod\u0117l \u0161i \u017einut\u0117 neperskaitoma?"},
 gmK(){return"Taip gali atsitikti, jei \u017einut\u0117 buvo i\u0161si\u0173sta prie\u0161 prisijungiant prie paskyros \u0161iame prietaise.\n\nTaip pat gali b\u016bti, kad siunt\u0117jas u\u017eblokavo j\u016bs\u0173 prietais\u0105 arba ka\u017ekas sutriko su interneto ry\u0161iu.\n\nAr galite perskaityti \u017einut\u0119 kitoje sesijoje? Tada galite perkelti \u017einut\u0119 i\u0161 jos! Eikite \u012f Nustatymai > Prietaisai ir \u012fsitikinkite, kad j\u016bs\u0173 prietaisai patvirtino vienas kit\u0105. Kai kit\u0105 kart\u0105 atidarysite kambar\u012f ir abi sesijos bus pirmame plane, raktai bus perduoti automati\u0161kai.\n\nNenorite prarasti rakt\u0173 atsijungdami arba keisdami \u012frenginius? \u012esitikinkite, kad nustatymuose \u012fjung\u0117te pokalbi\u0173 atsargin\u0119 kopij\u0105."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FS,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FS":{"aE":[]}}'))};
-(a=>{a["nSt7ObtKHmsbTf1x1CqAKOklfyc="]=a.current})($__dart_deferred_initializers__);
+y(A.FT,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FT":{"aE":[]}}'))};
+(a=>{a["hwo47gP+7oDm90WwKhvv4DsaYYo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

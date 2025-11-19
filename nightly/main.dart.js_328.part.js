@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHu(){return new A.G0(B.dg("sk"))},
-G0:function G0(d){this.a=d}}
+cHx(){return new A.G1(B.dg("sk"))},
+G1:function G1(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[43],A)
-A.G0.prototype={
+A.G1.prototype={
 gkZ(){return"false"},
 gjJ(){return"Zopakujte heslo"},
 gmP(){return"Not an image file."},
@@ -374,7 +374,7 @@ gk5(){return"Why do you want to report this?"},
 goL(){return"Wipe your chat backup to create a new recovery key?"},
 goM(){return"With these addresses you can recover your password."},
 goN(){return"Nap\xedsa\u0165 spr\xe1vu\u2026"},
-gdM(){return"\xc1no"},
+gdN(){return"\xc1no"},
 goP(){return"Vy"},
 gel(){return"U\u017e sa nez\xfa\u010dast\u0148ujete tohto chatu"},
 goS(){return"M\xe1te zablokovan\xfd pr\xedstup k tomuto chatu"},
@@ -413,7 +413,7 @@ goo(){return"Users"},
 gof(){return"Unlock old messages"},
 gkf(){return"Save this key manually by triggering the system share dialog or clipboard."},
 lC(d){return""+d+" files"},
-gdL(){return"User"},
+gdM(){return"User"},
 gie(){return"Custom"},
 goK(){return"Why is this message unreadable?"},
 gmK(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G0,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"G0":{"aE":[]}}'))};
-(a=>{a["JUeN9nWOQGQmXRvvD6z8jxcO0L0="]=a.current})($__dart_deferred_initializers__);
+y(A.G1,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"G1":{"aE":[]}}'))};
+(a=>{a["kpi9lbFlwZYUkpnv7CwEbiXF1GY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_328.part.js.map

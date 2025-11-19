@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cH2(){return new A.FA(B.dg("eu"))},
-FA:function FA(d){this.a=d}}
+cH5(){return new A.FB(B.dg("eu"))},
+FB:function FB(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[18],A)
-A.FA.prototype={
+A.FB.prototype={
 gkZ(){return"false"},
 gjJ(){return"Idatzi berriro pasahitza"},
 gmP(){return"Ez da irudi-fitxategia."},
@@ -374,7 +374,7 @@ gk5(){return"Zergatik salatu nahi duzu?"},
 goL(){return"Ezabatu txataren babeskopia berreskuratze-gako berria sortzeko?"},
 goM(){return"Helbide hauekin pasahitza berreskuratu dezakezu."},
 goN(){return"Idatzi mezua\u2026"},
-gdM(){return"Bai"},
+gdN(){return"Bai"},
 goP(){return"Zeu"},
 gel(){return"Ez duzu txat honetan parte hartzen honezkero"},
 goS(){return"Txat honetan debekua ezarri dizute"},
@@ -413,7 +413,7 @@ goo(){return"Erabiltzaileak"},
 gof(){return"Desblokeatu mezu zaharrak"},
 gkf(){return"Gorde eskuz gako hau gailuko partekatze-menua edo arbela erabiliz."},
 lC(d){return""+d+" fitxategi"},
-gdL(){return"Erabiltzailea"},
+gdM(){return"Erabiltzailea"},
 gie(){return"Neurrira egindakoa"},
 goK(){return"Zergatik ezin da mezu hau irakurri?"},
 gmK(){return"Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irekiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula."},
@@ -655,8 +655,8 @@ gpE(){return"Haria"},
 gpp(){return"Joan txat nagusira"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FA,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FA":{"aE":[]}}'))
+x(A.FB,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FB":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["7y0zsT0OVdZp4o1OQnTzSvWJwVc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["wA1zhhzHNAjEsP8cmbF9VfLXVwA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_277.part.js.map

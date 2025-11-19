@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cGX(){return new A.Fu(B.dg("de"))},
-Fu:function Fu(d){this.a=d}}
+cH_(){return new A.Fv(B.dg("de"))},
+Fv:function Fv(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[12],A)
-A.Fu.prototype={
+A.Fv.prototype={
 gkZ(){return"true"},
 gjJ(){return"Passwort wiederholen"},
 gmP(){return"Keine Bilddatei."},
@@ -374,7 +374,7 @@ gk5(){return"Warum willst du dies melden?"},
 goL(){return"Den Chat-Backup l\xf6schen, um einen neuen Wiederherstellungsschl\xfcssel zu erstellen?"},
 goM(){return"Mit diesen Adressen kannst du dein Passwort wiederherstellen, wenn du es vergessen hast."},
 goN(){return"Schreibe eine Nachricht \u2026"},
-gdM(){return"Ja"},
+gdN(){return"Ja"},
 goP(){return"Du"},
 gel(){return"Du bist kein Mitglied mehr in diesem Chat"},
 goS(){return"Du wurdest aus dem Chat verbannt"},
@@ -413,7 +413,7 @@ goo(){return"Benutzer"},
 gof(){return"Entsperre alte Nachrichten"},
 gkf(){return"Speicher diesen Schl\xfcssel manuell, indem du den Systemfreigabedialog oder die Zwischenablage ausl\xf6st."},
 lC(d){return""+d+" Dateien"},
-gdL(){return"Benutzer"},
+gdM(){return"Benutzer"},
 gie(){return"Benutzerdefiniert"},
 goK(){return"Warum ist diese Nachricht nicht lesbar?"},
 gmK(){return"Dies kann passieren, wenn die Nachricht gesendet wurde, bevor du dich auf diesem Ger\xe4t bei deinem Konto angemeldet hast.\n\nEs ist auch m\xf6glich, dass der Absender dein Ger\xe4t blockiert hat oder etwas mit der Internetverbindung schief gelaufen ist.\n\nKannst du die Nachricht in einer anderen Sitzung lesen? Dann kannst du die Nachricht davon \xfcbertragen! Gehe zu den Einstellungen > Ger\xe4te und vergewissere dich, dass sich deine Ger\xe4te gegenseitig verifiziert haben. Wenn du den Raum das n\xe4chste Mal \xf6ffnest und beide Sitzungen im Vordergrund sind, werden die Schl\xfcssel automatisch \xfcbertragen.\n\nDu m\xf6chtest die Schl\xfcssel beim Abmelden oder Ger\xe4tewechsel nicht verlieren? Stelle sicher, dass du das Chat-Backup in den Einstellungen aktiviert hast."},
@@ -655,8 +655,8 @@ gpE(){return"Thread"},
 gpp(){return"Zur\xfcck zum Hauptchat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Fu,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fu":{"aE":[]}}'))
+x(A.Fv,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fv":{"aE":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["+HL8IkUF5Qlv5aqDl8wqpt22Lq8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["p19GzwjywWuCiuvceMkR9ucNf5Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_259.part.js.map

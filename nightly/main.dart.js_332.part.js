@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHx(){return new A.G3(B.dg("sv"))},
-G3:function G3(d){this.a=d}}
+cHA(){return new A.G4(B.dg("sv"))},
+G4:function G4(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[46],A)
-A.G3.prototype={
+A.G4.prototype={
 gkZ(){return"false"},
 gjJ(){return"Upprepa l\xf6senord"},
 gmP(){return"Inte en bildfil."},
@@ -374,7 +374,7 @@ gk5(){return"Varf\xf6r vill du rapportera detta?"},
 goL(){return"Radera din chatt-backup f\xf6r att skapa en ny \xe5terst\xe4llningsnyckel?"},
 goM(){return"Med dessa addresser kan du \xe5terst\xe4lla ditt l\xf6senord."},
 goN(){return"Skriv ett meddelande\u2026"},
-gdM(){return"Ja"},
+gdN(){return"Ja"},
 goP(){return"Du"},
 gel(){return"Du deltar inte l\xe4ngre i denna chatt"},
 goS(){return"Du har blivit bannad fr\xe5n denna chatt"},
@@ -413,7 +413,7 @@ goo(){return"Anv\xe4ndare"},
 gof(){return"L\xe5s upp \xe4ldre meddelanden"},
 gkf(){return"Spara nyckeln manuellt genom att aktivera dela-funktionen eller urklippshanteraren p\xe5 enheten."},
 lC(d){return""+d+" filer"},
-gdL(){return"Anv\xe4ndare"},
+gdM(){return"Anv\xe4ndare"},
 gie(){return"Anpassad"},
 goK(){return"Varf\xf6r kan inte detta meddelande l\xe4sas?"},
 gmK(){return"Detta kan h\xe4nda om meddelandet skickades innan du loggade in p\xe5 ditt konto i den h\xe4r enheten.\n\nDet kan ocks\xe5 vara s\xe5 att avs\xe4ndaren har blockerat din enhet eller att n\xe5got gick fel med internetanslutningen.\n\nKan du l\xe4sa meddelandet i en annan session? I s\xe5dana fall kan du \xf6verf\xf6ra meddelandet fr\xe5n den sessionen! G\xe5 till Inst\xe4llningar > Enhet och s\xe4kerst\xe4ll att dina enheter har verifierat varandra. N\xe4r du \xf6ppnar rummet n\xe4sta g\xe5ng och b\xe5da sessionerna \xe4r i f\xf6rgrunden, s\xe5 kommer nycklarna att \xf6verf\xf6ras automatiskt.\n\nVill du inte f\xf6rlora nycklarna vid utloggning eller n\xe4r du byter enhet? S\xe4kerst\xe4ll att du har aktiverat s\xe4kerhetskopiering f\xf6r chatten i inst\xe4llningarna."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G3,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"G3":{"aE":[]}}'))};
-(a=>{a["ERREsXvbUwTzzstvBzyMfjwy7WE="]=a.current})($__dart_deferred_initializers__);
+y(A.G4,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"G4":{"aE":[]}}'))};
+(a=>{a["psWv8WwlpARYSK6cjfPC6Fb8ZUg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_332.part.js.map

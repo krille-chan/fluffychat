@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHB(){return new A.G7(B.dg("tr"))},
-G7:function G7(d){this.a=d}}
+cHE(){return new A.G8(B.dg("tr"))},
+G8:function G8(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[50],A)
-A.G7.prototype={
+A.G8.prototype={
 gkZ(){return"false"},
 gjJ(){return"Parolay\u0131 tekrarlay\u0131n"},
 gmP(){return"Bir resim dosyas\u0131 de\u011fil."},
@@ -374,7 +374,7 @@ gk5(){return"Bunu neden bildirmek istiyorsunuz?"},
 goL(){return"Yeni bir kurtarma anahtar\u0131 olu\u015fturmak i\xe7in sohbet yede\u011finiz silinsin mi?"},
 goM(){return"Bu adresler ile parolan\u0131z\u0131 kurtarabilirsiniz."},
 goN(){return"Bir mesaj yaz\u2026"},
-gdM(){return"Evet"},
+gdN(){return"Evet"},
 goP(){return"Sen"},
 gel(){return"Art\u0131k bu sohbette kat\u0131l\u0131mc\u0131 de\u011filsiniz"},
 goS(){return"Bu sohbetten engellendiniz"},
@@ -413,7 +413,7 @@ goo(){return"Kullan\u0131c\u0131lar"},
 gof(){return"Eski mesajlar\u0131n kilidini a\xe7"},
 gkf(){return"Sistem payla\u015f\u0131m\u0131 ileti\u015fim kutusunu veya panoyu tetikleyerek bu anahtar\u0131 elle kaydedin."},
 lC(d){return""+d+" dosya"},
-gdL(){return"Kullan\u0131c\u0131"},
+gdM(){return"Kullan\u0131c\u0131"},
 gie(){return"\xd6zel"},
 goK(){return"Bu mesaj neden okunam\u0131yor?"},
 gmK(){return"Bu durum, mesaj siz bu ayg\u0131tta hesab\u0131n\u0131zda oturum a\xe7madan \xf6nce g\xf6nderildiyse meydana gelebilir.\n\nG\xf6nderenin ayg\u0131t\u0131n\u0131z\u0131 engellemi\u015f olmas\u0131 veya internet ba\u011flant\u0131s\u0131nda bir sorun olmas\u0131 da m\xfcmk\xfcnd\xfcr.\n\nMesaj\u0131 ba\u015fka bir oturumda okuyabiliyor musunuz? O zaman mesaj\u0131 oradan aktarabilirsiniz! Ayarlar > Ayg\u0131tlar b\xf6l\xfcm\xfcne gidin ve ayg\u0131tlar\u0131n\u0131z\u0131n birbirini do\u011frulad\u0131\u011f\u0131ndan emin olun. Oday\u0131 bir sonraki sefer a\xe7t\u0131\u011f\u0131n\u0131zda ve her iki oturum da \xf6n planda oldu\u011funda, anahtarlar otomatik olarak iletilecektir.\n\nOturumu kapat\u0131rken veya ayg\u0131t de\u011fi\u015ftirirken anahtarlar\u0131 kaybetmek istemiyor musunuz? Ayarlarda sohbet yedeklemesini etkinle\u015ftirdi\u011finizden emin olun."},
@@ -655,8 +655,8 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.G7,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"G7":{"aE":[]}}'))
+x(A.G8,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"G8":{"aE":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["zT3kgI5sAOsXShWTNETdZRmq0Is="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["dz6FN2viEIG2IZCivAkO8LGl5SQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_336.part.js.map

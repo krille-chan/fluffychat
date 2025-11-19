@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHc(){return new A.FK(B.dg("hu"))},
-FK:function FK(d){this.a=d}}
+cHf(){return new A.FL(B.dg("hu"))},
+FL:function FL(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[28],A)
-A.FK.prototype={
+A.FL.prototype={
 gkZ(){return""},
 gjJ(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gmP(){return"Nem k\xe9p f\xe1jl."},
@@ -374,7 +374,7 @@ gk5(){return"Mi\xe9rt k\xedv\xe1nja ezt bejelenteni?"},
 goL(){return"Le k\xedv\xe1nja t\xf6r\xf6lni a chat ment\xe9s\xe9t, hogy l\xe9trehozhasson egy \xfaj vissza\xe1ll\xedt\xe1si kulcsot?"},
 goM(){return"Ezekkel a c\xedmekkel vissza tudja \xe1ll\xedtani a jelszav\xe1t."},
 goN(){return"\xcdrjon egy \xfczenetet\u2026"},
-gdM(){return"Igen"},
+gdN(){return"Igen"},
 goP(){return"\xd6n"},
 gel(){return"Imm\xe1ron nem vesz r\xe9szt ebben a cseveg\xe9sben"},
 goS(){return"Kitiltott\xe1k ebb\u0151l a cseveg\xe9sb\u0151l"},
@@ -413,7 +413,7 @@ goo(){return"Felhaszn\xe1l\xf3k"},
 gof(){return"R\xe9gi \xfczenetek felold\xe1sa"},
 gkf(){return"A kulcs manu\xe1lis ment\xe9se rendszer megoszt\xe1s vagy v\xe1g\xf3lap m\xe1sol\xe1s seg\xedts\xe9g\xe9vel."},
 lC(d){return""+d+" f\xe1jl"},
-gdL(){return"Felhaszn\xe1l\xf3"},
+gdM(){return"Felhaszn\xe1l\xf3"},
 gie(){return"Egyedi"},
 goK(){return"Mi\xe9rt olvashatatlan ez az \xfczenet?"},
 gmK(){return"Akkor fordulhat el\u0151, ha az \xfczenet az eszk\xf6zre val\xf3 bejelentkez\xe9s el\u0151tt ker\xfclt k\xfcld\xe9sre.\n\nAz is elk\xe9pzelhet\u0151, hogy a k\xfcld\u0151 blokkolta az eszk\xf6z\xe9t, vagy valami probl\xe9ma l\xe9pett fel az internet kapcsolatban.\n\nM\xe1s helyen l\xe1tja az \xfczenetet? Akkor \xe1t tudja m\xe1solni ide is! Menjen a Be\xe1ll\xedt\xe1sok > Eszk\xf6z\xf6k r\xe9szbe, \xe9s gy\u0151z\u0151dj\xf6n meg r\xf3la, hogy az eszk\xf6zei meger\u0151s\xedtett\xe9k egym\xe1st. Legk\xf6zelebb amikor ezt a szob\xe1t megnyitja, \xe9s mind a k\xe9t kliens az el\u0151t\xe9rben van, akkor szikroniz\xe1l\xf3dni fognak.\n\nNem akarja elvesz\xedteni a kulcsokat amikor kijelentkezik, vagy eszk\xf6zt cser\xe9l? Gy\u0151z\u0151dj\xf6n meg r\xf3la, hogy bekapcsolta a chat ment\xe9st a be\xe1ll\xedt\xe1sokban."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FK,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FK":{"aE":[]}}'))};
-(a=>{a["nVtKai7LSPzCq9b/1HNkimChpOc="]=a.current})($__dart_deferred_initializers__);
+y(A.FL,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FL":{"aE":[]}}'))};
+(a=>{a["xVUlxgYHQojYkfl4h2fGABwOQAc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map

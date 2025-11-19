@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHm(){return new A.FU(B.dg("nb"))},
-FU:function FU(d){this.a=d}}
+cHp(){return new A.FV(B.dg("nb"))},
+FV:function FV(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[38],A)
-A.FU.prototype={
+A.FV.prototype={
 gkZ(){return"false"},
 gjJ(){return"Gjenta passord"},
 gmP(){return"Ikke en bildefil."},
@@ -374,7 +374,7 @@ gk5(){return"Hvorfor \xf8nsker du \xe5 rapportere dette?"},
 goL(){return"Vil du slette sikkerhetskopien av chatten din for \xe5 opprette en ny gjenopprettingsn\xf8kkel?"},
 goM(){return"Med disse adressene kan du gjenopprette passordet ditt hvis du trenger det."},
 goN(){return"Skriv en melding \u2026"},
-gdM(){return"Ja"},
+gdN(){return"Ja"},
 goP(){return"Deg"},
 gel(){return"Du deltar ikke lenger i denne sludringen"},
 goS(){return"Du har blitt bannlyst fra denne sludringen"},
@@ -413,7 +413,7 @@ goo(){return"Brukere"},
 gof(){return"L\xe5s opp gamle meldinger"},
 gkf(){return"Save this key manually by triggering the system share dialog or clipboard."},
 lC(d){return""+d+" filer"},
-gdL(){return"Bruker"},
+gdM(){return"Bruker"},
 gie(){return"Egendefinert"},
 goK(){return"Hvorfor er denne meldingen uleselig?"},
 gmK(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FU,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FU":{"aE":[]}}'))};
-(a=>{a["wA1xMFadTCVbWqtsJqqZQNvnPpQ="]=a.current})($__dart_deferred_initializers__);
+y(A.FV,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FV":{"aE":[]}}'))};
+(a=>{a["e4RkRQr/p6U9N2xi0l9RgQBRfB0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_319.part.js.map

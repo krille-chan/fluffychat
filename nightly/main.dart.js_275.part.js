@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cH1(){return new A.Fz(B.dg("et"))},
-Fz:function Fz(d){this.a=d}}
+cH4(){return new A.FA(B.dg("et"))},
+FA:function FA(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[17],A)
-A.Fz.prototype={
+A.FA.prototype={
 gkZ(){return"false"},
 gjJ(){return"Korda salas\xf5na"},
 gmP(){return"See pole pildifail."},
@@ -374,7 +374,7 @@ gk5(){return"Miks sa soovid sellest teatada?"},
 goL(){return"Kas kustutame sinu vestluste varukoopia ja loome uue taastamiseks m\xf5eldud kr\xfcptov\xf5tme?"},
 goM(){return"Nende e-posti aadresside abil saad taastada oma salas\xf5na."},
 goN(){return"Kirjuta \xfcks s\xf5num\u2026"},
-gdM(){return"Jah"},
+gdN(){return"Jah"},
 goP(){return"Sina"},
 gel(){return"Sa enam ei osale selles vestluses"},
 goS(){return"Sinule on selles vestluses seatud suhtluskeeld"},
@@ -413,7 +413,7 @@ goo(){return"Kasutajad"},
 gof(){return"Muuda vanad s\xf5numid loetavaks"},
 gkf(){return"Salvesta see kr\xfcptov\xf5ti kasutades selle s\xfcsteemi jagamisvalikuid v\xf5i l\xf5ikelauda."},
 lC(d){return""+d+" faili"},
-gdL(){return"Kasutaja"},
+gdM(){return"Kasutaja"},
 gie(){return"Kohandatud"},
 goK(){return"Miks see s\xf5num pole loetav?"},
 gmK(){return"See v\xf5ib juhtuda, kui s\xf5num oli saadetud enne, kui siin seadmes oma kontoga sisse logisid.\n\nSamuti v\xf5ib juhtuda siis, kui saatja on lugemises selles seadmes blokeerinud v\xf5i on tekkinud t\xf5rkeid veebi\xfchenduses.\n\nAga m\xf5nes teises seadmes saad seda s\xf5numit lugeda? Siis sa v\xf5id s\xf5numi sealt \xfcle t\xf5sta. Ava Seadistused -> Seadmed ning kontrolli, et k\xf5ik sinu seadmed on omavahel verifitseeritud. Kui avad selle vestluse v\xf5i jututoa ning m\xf5lemad sessioonid on avatud, siis vajalikud kr\xfcptov\xf5tmed saadetakse automaatset.\n\nKas sa soovid v\xe4ltida kr\xfcptov\xf5tmete kadumist v\xe4ljalogimisel ja seadmete vahetusel? Siis palun kontrolli, et seadistuses on kr\xfcptov\xf5tmete varundus sisse l\xfclitatud."},
@@ -655,7 +655,7 @@ gpE(){return"Jutul\xf5ng"},
 gpp(){return"Tagasi p\xf5hivestlusesse"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fz,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fz":{"aE":[]}}'))};
-(a=>{a["T3C7DORIiW6ng/fbI+2IYdF7JhQ="]=a.current})($__dart_deferred_initializers__);
+y(A.FA,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FA":{"aE":[]}}'))};
+(a=>{a["BzPzOUaug0/XQ0jJaeUpkSisxd4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_275.part.js.map

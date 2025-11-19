@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHw(){return new A.G2(B.dg("sr"))},
-G2:function G2(d){this.a=d}}
+cHz(){return new A.G3(B.dg("sr"))},
+G3:function G3(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[45],A)
-A.G2.prototype={
+A.G3.prototype={
 gkZ(){return"false"},
 gjJ(){return"Repeat password"},
 gmP(){return"Not an image file."},
@@ -374,7 +374,7 @@ gk5(){return"\u0417\u0430\u0448\u0442\u043e \u0436\u0435\u043b\u0438\u0442\u0435
 goL(){return"\u0414\u0430 \u043e\u0431\u0440\u0438\u0448\u0435\u043c \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u0443 \u043a\u043e\u043f\u0438\u0458\u0443 \u043a\u0430\u043a\u043e \u0431\u0438 \u043d\u0430\u043f\u0440\u0430\u0432\u0438\u043e \u043d\u043e\u0432\u0438 \u0441\u0438\u0433\u0443\u0440\u043d\u043e\u0441\u043d\u0438 \u043a\u0459\u0443\u0447?"},
 goM(){return"\u0421\u0430 \u043e\u0432\u0438\u043c \u0430\u0434\u0440\u0435\u0441\u0430\u043c\u0430 \u043c\u043e\u0436\u0435\u0442\u0435 \u043e\u043f\u043e\u0440\u0430\u0432\u0438\u0442\u0438 \u0441\u0432\u043e\u0458\u0443 \u043b\u043e\u0437\u0438\u043d\u043a\u0443."},
 goN(){return"\u043d\u0430\u043f\u0438\u0448\u0438\u0442\u0435 \u043f\u043e\u0440\u0443\u043a\u0443\u2026"},
-gdM(){return"\u0414\u0430"},
+gdN(){return"\u0414\u0430"},
 goP(){return"\u0412\u0438"},
 gel(){return"\u0412\u0438\u0448\u0435 \u043d\u0435 \u0443\u0447\u0435\u0441\u0442\u0432\u0443\u0458\u0435\u0442\u0435 \u0443 \u043e\u0432\u043e\u043c \u045b\u0430\u0441\u043a\u0430\u045a\u0443"},
 goS(){return"\u0417\u0430\u0431\u0440\u0430\u045a\u0435\u043d\u043e \u0432\u0430\u043c \u0458\u0435 \u043e\u0432\u043e \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
@@ -413,7 +413,7 @@ goo(){return"Users"},
 gof(){return"Unlock old messages"},
 gkf(){return"Save this key manually by triggering the system share dialog or clipboard."},
 lC(d){return""+d+" files"},
-gdL(){return"User"},
+gdM(){return"User"},
 gie(){return"Custom"},
 goK(){return"Why is this message unreadable?"},
 gmK(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G2,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"G2":{"aE":[]}}'))};
-(a=>{a["CC0Kb+dhaxWs13qY+190lwI+UZQ="]=a.current})($__dart_deferred_initializers__);
+y(A.G3,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"G3":{"aE":[]}}'))};
+(a=>{a["iLvbcqpofg1lcUkuDjZzAchm9oA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_330.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHl(){return new A.FT(B.dg("lv"))},
-FT:function FT(d){this.a=d}}
+cHo(){return new A.FU(B.dg("lv"))},
+FU:function FU(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[37],A)
-A.FT.prototype={
+A.FU.prototype={
 gkZ(){return"n\u0113"},
 gjJ(){return"Atk\u0101rtot paroli"},
 gmP(){return"Nav att\u0113la datne."},
@@ -374,7 +374,7 @@ gk5(){return"K\u0101d\u0113\u013c v\u0113lies zi\u0146ot par \u0161o?"},
 goL(){return"Not\u012br\u012bt t\u0113rz\u0113\u0161anu rezerves kopiju, lai izveidotu jaunu atkopes atsl\u0113gu?"},
 goM(){return"Ar \u0161\u012bm adres\u0113m var atjaunot savu paroli."},
 goN(){return"Rakst\u012bt zi\u0146u\u2026"},
-gdM(){return"J\u0101"},
+gdN(){return"J\u0101"},
 goP(){return"Tu"},
 gel(){return"Tu vairs nepiedalies \u0161aj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 goS(){return"Tev tika liegta piek\u013cuve \u0161ai t\u0113rz\u0113\u0161anai"},
@@ -413,7 +413,7 @@ goo(){return"Lietot\u0101ji"},
 gof(){return"Atsl\u0113gt vec\u0101s zi\u0146as"},
 gkf(){return"\u0160o atsl\u0113gu var pa\u0161roc\u012bgi saglab\u0101t ar sist\u0113mas kop\u012bgo\u0161anas dialogloga vai starpliktuves izsauk\u0161anu."},
 lC(d){return""+d+" datnes"},
-gdL(){return"Lietot\u0101js"},
+gdM(){return"Lietot\u0101js"},
 gie(){return"Piel\u0101gots"},
 goK(){return"K\u0101d\u0113\u013c \u0161\u012b zi\u0146a ir nelas\u0101ma?"},
 gmK(){return"T\u0101 var notikt, ja zi\u0146a tika nos\u016bt\u012bta, pirms pieteicies sav\u0101 kont\u0101 \u0161aj\u0101 ier\u012bc\u0113.\n\nIr ar\u012b iesp\u0113jams, ka s\u016bt\u012bt\u0101js noliedza Tavu ier\u012bci vai kaut kas nog\u0101ja greizi ar interneta savienojumu.\n\nVai zi\u0146as ir las\u0101mas cit\u0101 sesij\u0101? Tad Tu vari p\u0101rs\u016bt\u012bt zi\u0146u no t\u0101s. J\u0101dodas uz Iestat\u012bjumi > Ier\u012bces un j\u0101p\u0101rliecin\u0101s, ka ier\u012bces viena otru ir apliecin\u0101ju\u0161as. Kad n\u0101kamreiz atv\u0113rsi istabu un abas sesijas b\u016bs priek\u0161pl\u0101n\u0101, atsl\u0113gas tiks autom\u0101tiski p\u0101rs\u016bt\u012btas.\n\nVai nev\u0113lies zaud\u0113t atsl\u0113gas, kad atsakies vai maini ier\u012bces? J\u0101p\u0101rliecin\u0101s, ka iestat\u012bjumos ir iesp\u0113jota t\u0113rz\u0113\u0161anu rezerves kopija."},
@@ -655,7 +655,7 @@ gpE(){return"Pavediens"},
 gpp(){return"Atgriezties galvenaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FT,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FT":{"aE":[]}}'))};
-(a=>{a["n2vgcgXyyTW8Qvnt9SuaD8QqDCU="]=a.current})($__dart_deferred_initializers__);
+y(A.FU,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FU":{"aE":[]}}'))};
+(a=>{a["xMHw+GK4j+q+gX6ybv8J54qph7Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map

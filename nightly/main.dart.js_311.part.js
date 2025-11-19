@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHg(){return new A.FO(B.dg("it"))},
-FO:function FO(d){this.a=d}}
+cHj(){return new A.FP(B.dg("it"))},
+FP:function FP(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[32],A)
-A.FO.prototype={
+A.FP.prototype={
 gkZ(){return"disattivato"},
 gjJ(){return"Ripeti password"},
 gmP(){return"Non \xe8 un file immagine."},
@@ -374,7 +374,7 @@ gk5(){return"Perch\xe9 vuoi segnalarlo?"},
 goL(){return"Cancellare il backup della discussione per creare una nuova chiave di ripristino?"},
 goM(){return"Con questi indirizzi puoi recuperare la tua password se necessario."},
 goN(){return"Scrivi un messaggio\u2026"},
-gdM(){return"S\xec"},
+gdN(){return"S\xec"},
 goP(){return"Tu"},
 gel(){return"Non stai pi\xf9 partecipando a questa chat"},
 goS(){return"Sei stato/a bandito/a da questa chat"},
@@ -413,7 +413,7 @@ goo(){return"Utenti"},
 gof(){return"Sblocca i vecchi messaggi"},
 gkf(){return"Salva questa chiave manualmente attivando la finestra di condivisione o gli appunti."},
 lC(d){return""+d+" file"},
-gdL(){return"Utente"},
+gdM(){return"Utente"},
 gie(){return"Personalizzato"},
 goK(){return"Perch\xe9 questo messaggio \xe8 illeggibile?"},
 gmK(){return"Questo pu\xf2 accadere se il messaggio \xe8 stato inviato prima che hai fatto l'accesso in questo dispositivo.\n\n\xc8 anche possibile che il mittente abbia bloccato il tuo dispositivo o che qualcosa sia andato storto con la tua connessione ad internet.\n\nSei in grado di leggere il messaggio su altre sessioni? Allora puoi trasferire il messaggio da l\xec! Vai su Impostazioni > Dispositivi e verifica che i tuoi dispositivi siano verificati l'un l'altro. Quando aprirai la stanza la prossima volta ed entrambe le sessioni sono in primo piano, le chiavi saranno trasmesse automaticamente.\n\nNon vuoi perdere le chiavi quando ti disconnetti o cambi dispositivo? Assicurati di aver attivato il backup delle chat nelle impostazioni."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FO,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FO":{"aE":[]}}'))};
-(a=>{a["zlq2otc8V92TJGsNEnkOPfm33PE="]=a.current})($__dart_deferred_initializers__);
+y(A.FP,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FP":{"aE":[]}}'))};
+(a=>{a["44KlvBjrERDRxmPwHrOKbRlunl4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_311.part.js.map

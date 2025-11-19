@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cGV(){return new A.Fs(B.dg("cs"))},
-Fs:function Fs(d){this.a=d}}
+cGY(){return new A.Ft(B.dg("cs"))},
+Ft:function Ft(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[10],A)
-A.Fs.prototype={
+A.Ft.prototype={
 gkZ(){return""},
 gjJ(){return"Zopakujte heslo"},
 gmP(){return"Nen\xed obr\xe1zek."},
@@ -374,7 +374,7 @@ gk5(){return"Pro\u010d to chcete nahl\xe1sit?"},
 goL(){return"Chcete vymazat z\xe1lohu chatu a vytvo\u0159it nov\xfd bezpe\u010dnostn\xed kl\xed\u010d?"},
 goM(){return"S t\u011bmito adresami m\u016f\u017eete obnovit sv\xe9 heslo."},
 goN(){return"Napi\u0161te zpr\xe1vu\u2026"},
-gdM(){return"Ano"},
+gdN(){return"Ano"},
 goP(){return"Vy"},
 gel(){return"Tohoto chatu se nad\xe1le ne\xfa\u010dastn\xedte"},
 goS(){return"Byl v\xe1m zablokov\xe1n p\u0159\xedstup k tomuto chatu"},
@@ -413,7 +413,7 @@ goo(){return"U\u017eivatel\xe9"},
 gof(){return"Odemknout star\xe9 zpr\xe1vy"},
 gkf(){return"Ulo\u017ete tento kl\xed\u010d manu\xe1ln\u011b pomoc\xed syst\xe9mov\xe9ho dialogu sd\xedlen\xed nebo zkop\xedrov\xe1n\xedm do schr\xe1nky."},
 lC(d){return""+d+" soubor\u016f"},
-gdL(){return"U\u017eivatel"},
+gdM(){return"U\u017eivatel"},
 gie(){return"Vlastn\xed"},
 goK(){return"Pro\u010d nelze p\u0159e\u010d\xedst tuto zpr\xe1vu?"},
 gmK(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fs,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fs":{"aE":[]}}'))};
-(a=>{a["21p/39Df4m+L9cKRzPmq8RLxGrQ="]=a.current})($__dart_deferred_initializers__);
+y(A.Ft,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Ft":{"aE":[]}}'))};
+(a=>{a["Vj6Gzb+plt642jsthm5OsJkfgj0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_250.part.js.map

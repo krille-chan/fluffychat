@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cH9(){return new A.FH(B.dg("he"))},
-FH:function FH(d){this.a=d}}
+cHc(){return new A.FI(B.dg("he"))},
+FI:function FI(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[25],A)
-A.FH.prototype={
+A.FI.prototype={
 gkZ(){return""},
 gjJ(){return"\u05db\u05ea\u05d5\u05d1 \u05e9\u05d5\u05d1 \u05d0\u05ea \u05d4\u05e1\u05d9\u05e1\u05de\u05d4"},
 gmP(){return"\u05d4\u05e7\u05d5\u05d1\u05e5 \u05d0\u05d9\u05e0\u05d5 \u05ea\u05de\u05d5\u05e0\u05d4."},
@@ -374,7 +374,7 @@ gk5(){return"Why do you want to report this?"},
 goL(){return"Wipe your chat backup to create a new recovery key?"},
 goM(){return"With these addresses you can recover your password."},
 goN(){return"Write a message\u2026"},
-gdM(){return"Yes"},
+gdN(){return"Yes"},
 goP(){return"You"},
 gel(){return"You are no longer participating in this chat"},
 goS(){return"You have been banned from this chat"},
@@ -413,7 +413,7 @@ goo(){return"Users"},
 gof(){return"Unlock old messages"},
 gkf(){return"Save this key manually by triggering the system share dialog or clipboard."},
 lC(d){return""+d+" files"},
-gdL(){return"User"},
+gdM(){return"User"},
 gie(){return"Custom"},
 goK(){return"Why is this message unreadable?"},
 gmK(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -655,7 +655,7 @@ gpE(){return"Thread"},
 gpp(){return"Back to main chat"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FH,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FH":{"aE":[]}}'))};
-(a=>{a["jDzSPDC8hMVaiZj4sy64XWkxvuM="]=a.current})($__dart_deferred_initializers__);
+y(A.FI,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FI":{"aE":[]}}'))};
+(a=>{a["oMyjIk3fhH8f68i4mBTeJDSad9g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_293.part.js.map

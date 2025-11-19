@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cH8(){return new A.FG(B.dg("gl"))},
-FG:function FG(d){this.a=d}}
+cHb(){return new A.FH(B.dg("gl"))},
+FH:function FH(d){this.a=d}}
 B=c[0]
 C=c[55]
 A=a.updateHolder(c[24],A)
-A.FG.prototype={
+A.FH.prototype={
 gkZ(){return"falso"},
 gjJ(){return"Repite o contrasinal"},
 gmP(){return"Non \xe9 un ficheiro de imaxe."},
@@ -374,7 +374,7 @@ gk5(){return"Por que queres denunciar esto?"},
 goL(){return"Queres eliminar a copia de apoio da conversa e crear unha nova chave de recuperaci\xf3n?"},
 goM(){return"Con estos enderezos podes recuperar o contrasinal."},
 goN(){return"Escribe unha mensaxe\u2026"},
-gdM(){return"Si"},
+gdN(){return"Si"},
 goP(){return"Ti"},
 gel(){return"Xa non participas desta conversa"},
 goS(){return"Foches vetada nesta conversa"},
@@ -413,7 +413,7 @@ goo(){return"Usuarias"},
 gof(){return"Desbloquear mensaxes antigas"},
 gkf(){return"Garda esta chave manualmente usando o sistema para compartir do dispositivo ou portapapeis."},
 lC(d){return""+d+" ficheiros"},
-gdL(){return"Usuaria"},
+gdM(){return"Usuaria"},
 gie(){return"Personal"},
 goK(){return"Por que non podo ler esta mensaxe?"},
 gmK(){return"Pode ser que a mensaxe fose enviada antes de que ti accedeses \xe1 t\xfaa conta neste dispositivo.\n\nTam\xe9n \xe9 posible que a remitente non validase o teu dispositivo ou tam\xe9n que algo fallase na conexi\xf3n a internet.\n\nPodes ler a mensaxe noutro dispositivo? Ent\xf3n podes transferila desde el! Vai a Axustes > Dispositivos e comproba que tes t\xf3dolos dispositivos verificados. Ent\xf3n cando abras a sala a pr\xf3xima vez a sincronizaci\xf3n realizarase e as chaves transmitiranse autom\xe1ticamente.\n\nNon desexas perder as chaves cando pechas sesi\xf3n ou cambias de dispositivo? Comproba nos axustes que activaches a copia de apoio das conversas."},
@@ -655,7 +655,7 @@ gpE(){return"F\xedo"},
 gpp(){return"Volver \xe1 conversa principal"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FG,C.aE)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FG":{"aE":[]}}'))};
-(a=>{a["o/Xlp/+eyldYCzQ9rERD8SdoJKA="]=a.current})($__dart_deferred_initializers__);
+y(A.FH,C.aE)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FH":{"aE":[]}}'))};
+(a=>{a["oFHDp8YfCoiVyBf3Uh+8TmQU/Ss="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_290.part.js.map
