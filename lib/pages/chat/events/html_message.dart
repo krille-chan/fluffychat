@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_highlighter/flutter_highlighter.dart';
-import 'package:flutter_highlighter/themes/shades-of-purple.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:highlight/highlight.dart' show highlight;
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/utils/code_highlight_theme.dart';
 import 'package:fluffychat/utils/event_checkbox_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -135,6 +135,19 @@ class HtmlMessage extends StatelessWidget {
         ],
       ],
     ];
+  }
+
+  InlineSpan _renderCodeBlockNode(dom.Node node) {
+    if (node is! dom.Element) {
+      return TextSpan(text: node.text);
+    }
+    final style = atomOneDarkTheme[node.className.split('-').last] ??
+        atomOneDarkTheme['root'];
+
+    return TextSpan(
+      children: node.nodes.map(_renderCodeBlockNode).toList(),
+      style: style,
+    );
   }
 
   /// Transforms a Node to an InlineSpan.
@@ -334,33 +347,60 @@ class HtmlMessage extends StatelessWidget {
         );
       case 'code':
         final isInline = node.parent?.localName != 'pre';
+        final lang = node.className
+                .split(' ')
+                .singleWhereOrNull(
+                  (className) => className.startsWith('language-'),
+                )
+                ?.split('language-')
+                .last ??
+            'md';
+        final highlightedHtml =
+            highlight.parse(node.text, language: lang).toHtml();
+        final element = parser.parse(highlightedHtml).body;
+        if (element == null) {
+          return const TextSpan(text: 'Unable to render code block!');
+        }
+        final controller = isInline ? null : ScrollController();
+
         return WidgetSpan(
           child: Material(
-            clipBehavior: Clip.hardEdge,
-            borderRadius: BorderRadius.circular(4),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: HighlightView(
-                node.text,
-                language: node.className
-                        .split(' ')
-                        .singleWhereOrNull(
-                          (className) => className.startsWith('language-'),
-                        )
-                        ?.split('language-')
-                        .last ??
-                    'md',
-                theme: shadesOfPurpleTheme,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: isInline ? 0 : 8,
-                ),
-                textStyle: TextStyle(
-                  fontSize: fontSize,
-                  fontFamily: 'RobotoMono',
-                ),
-              ),
+            color: atomOneBackgroundColor,
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(color: hightlightTextColor),
+              borderRadius: BorderRadius.circular(4),
             ),
+            child: isInline
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    child: Text.rich(
+                      TextSpan(
+                        children: [_renderCodeBlockNode(element)],
+                      ),
+                      selectionColor: hightlightTextColor.withAlpha(128),
+                    ),
+                  )
+                : RawScrollbar(
+                    thumbVisibility: true,
+                    trackVisibility: true,
+                    controller: controller,
+                    thumbColor: hightlightTextColor,
+                    trackColor: hightlightTextColor.withAlpha(128),
+                    thickness: 8,
+                    child: SingleChildScrollView(
+                      controller: controller,
+                      scrollDirection: Axis.horizontal,
+                      child: Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Text.rich(
+                          TextSpan(
+                            children: [_renderCodeBlockNode(element)],
+                          ),
+                          selectionColor: hightlightTextColor.withAlpha(212),
+                        ),
+                      ),
+                    ),
+                  ),
           ),
         );
       case 'img':

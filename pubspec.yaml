@@ -30,7 +30,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_foreground_task: ^9.1.0
-  flutter_highlighter: ^0.1.1
   flutter_linkify: ^6.0.0
   flutter_local_notifications: ^19.5.0
   flutter_localizations:
@@ -45,6 +44,7 @@ dependencies:
   geolocator: ^14.0.2
   go_router: ^17.0.0
   handy_window: ^0.4.0
+  highlight: ^0.7.0
   html: ^0.15.4
   http: ^1.6.0
   image: ^4.1.7
