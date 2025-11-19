@@ -16,7 +16,8 @@ jobs:
       - uses: actions/checkout@v5
       - name: Check duplicates
         run: |
-          issues=$(gh issue list --search '${{ env.title }}' --json number,title,url)
+          title=$(printf %q "${{ env.title }}")
+          issues=$(gh issue list --search '${{ title }}' --json number,title,url)
           number=${{ env.number }}
           issues_filtered=$(echo "$issues" | jq --arg num "$number" 'map(select(.number != ($num | tonumber)))')
           if [ "$(echo "$issues_filtered" | jq length)" -eq 0 ]; then
