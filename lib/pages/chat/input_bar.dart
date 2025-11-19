@@ -71,8 +71,10 @@ class InputBar extends StatelessWidget {
         if (ret.length > maxResults) return ret;
       }
     }
-    final emojiMatch =
-        RegExp(r'(?:\s|^):(?:([-\w]+)~)?([-\w]+)$').firstMatch(searchText);
+    final emojiMatch = RegExp(
+      r'(?:\s|^):(?:([\p{L}\p{N}_-]+)~)?([\p{L}\p{N}_-]+)$',
+      unicode: true,
+    ).firstMatch(searchText);
     if (emojiMatch != null) {
       final packSearch = emojiMatch[1];
       final emoteSearch = emojiMatch[2]!.toLowerCase();
