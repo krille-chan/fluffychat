@@ -38,6 +38,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
 
   bool showSave = false;
   TextEditingController newImageCodeController = TextEditingController();
+
   ValueNotifier<ImagePackImageContent?> newImageController =
       ValueNotifier<ImagePackImageContent?>(null);
 
@@ -69,25 +70,25 @@ class EmotesSettingsController extends State<EmotesSettings> {
       return;
     }
     final client = Matrix.of(context).client;
-    if (room != null) {
-      await showFutureLoadingDialog(
-        context: context,
-        future: () => client.setRoomStateWithKey(
-          room!.id,
-          'im.ponies.room_emotes',
-          stateKey ?? '',
-          pack!.toJson(),
-        ),
-      );
-    } else {
-      await showFutureLoadingDialog(
-        context: context,
-        future: () => client.setAccountData(
-          client.userID!,
-          'im.ponies.user_emotes',
-          pack!.toJson(),
-        ),
-      );
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () => room != null
+          ? client.setRoomStateWithKey(
+              room!.id,
+              'im.ponies.room_emotes',
+              stateKey ?? '',
+              pack!.toJson(),
+            )
+          : client.setAccountData(
+              client.userID!,
+              'im.ponies.user_emotes',
+              pack!.toJson(),
+            ),
+    );
+    if (!result.isError) {
+      setState(() {
+        showSave = false;
+      });
     }
   }
 
@@ -172,6 +173,13 @@ class EmotesSettingsController extends State<EmotesSettings> {
   bool get readonly =>
       room == null ? false : !(room!.canSendEvent('im.ponies.room_emotes'));
 
+  void resetAction() {
+    setState(() {
+      _pack = _getPack();
+      showSave = false;
+    });
+  }
+
   void saveAction() async {
     await save(context);
     setState(() {
@@ -227,24 +235,25 @@ class EmotesSettingsController extends State<EmotesSettings> {
     );
     final pickedFile = result.firstOrNull;
     if (pickedFile == null) return;
+
     var file = MatrixImageFile(
       bytes: await pickedFile.readAsBytes(),
       name: pickedFile.name,
     );
-    try {
-      file = (await file.generateThumbnail(
-        nativeImplementations: ClientManager.nativeImplementations,
-      ))!;
-    } catch (e, s) {
-      Logs().w('Unable to create thumbnail', e, s);
-    }
+
     final uploadResp = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.uploadContent(
-            file.bytes,
-            filename: file.name,
-            contentType: file.mimeType,
-          ),
+      future: () async {
+        file = await file.generateThumbnail(
+              nativeImplementations: ClientManager.nativeImplementations,
+            ) ??
+            file;
+        return Matrix.of(context).client.uploadContent(
+              file.bytes,
+              filename: file.name,
+              contentType: file.mimeType,
+            );
+      },
     );
     if (uploadResp.error == null) {
       setState(() {
@@ -266,6 +275,9 @@ class EmotesSettingsController extends State<EmotesSettings> {
           'url': uploadResp.result.toString(),
           'info': info,
         });
+        if (newImageCodeController.text.isEmpty) {
+          newImageCodeController.text = pickedFile.name.split('.').first;
+        }
       });
     }
   }

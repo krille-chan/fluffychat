@@ -25,91 +25,92 @@ class EmotesSettingsView extends StatelessWidget {
     final imageKeys = controller.pack!.images.keys.toList();
     return Scaffold(
       appBar: AppBar(
-        leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context).customEmojisAndStickers),
+        automaticallyImplyLeading: !controller.showSave,
+        title: controller.showSave
+            ? TextButton(
+                onPressed: controller.resetAction,
+                child: Text(L10n.of(context).cancel),
+              )
+            : Text(L10n.of(context).customEmojisAndStickers),
         actions: [
-          PopupMenuButton<PopupMenuEmojiActions>(
-            useRootNavigator: true,
-            onSelected: (value) {
-              switch (value) {
-                case PopupMenuEmojiActions.export:
-                  controller.exportAsZip();
-                  break;
-                case PopupMenuEmojiActions.import:
-                  controller.importEmojiZip();
-                  break;
-              }
-            },
-            enabled: !controller.readonly,
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: PopupMenuEmojiActions.import,
-                child: Text(L10n.of(context).importFromZipFile),
+          if (controller.showSave)
+            ElevatedButton(
+              onPressed: () => controller.save(context),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: theme.colorScheme.primary,
+                foregroundColor: theme.colorScheme.onPrimary,
               ),
-              PopupMenuItem(
-                value: PopupMenuEmojiActions.export,
-                child: Text(L10n.of(context).exportEmotePack),
-              ),
-            ],
-          ),
+              child: Text(L10n.of(context).saveChanges),
+            )
+          else
+            PopupMenuButton<PopupMenuEmojiActions>(
+              useRootNavigator: true,
+              onSelected: (value) {
+                switch (value) {
+                  case PopupMenuEmojiActions.export:
+                    controller.exportAsZip();
+                    break;
+                  case PopupMenuEmojiActions.import:
+                    controller.importEmojiZip();
+                    break;
+                }
+              },
+              enabled: !controller.readonly,
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: PopupMenuEmojiActions.import,
+                  child: Text(L10n.of(context).importFromZipFile),
+                ),
+                PopupMenuItem(
+                  value: PopupMenuEmojiActions.export,
+                  child: Text(L10n.of(context).exportEmotePack),
+                ),
+              ],
+            ),
         ],
       ),
-      floatingActionButton: controller.showSave
-          ? FloatingActionButton(
-              onPressed: controller.saveAction,
-              child: const Icon(Icons.save_outlined, color: Colors.white),
-            )
-          : null,
       body: MaxWidthBody(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             if (!controller.readonly)
-              Container(
+              Padding(
                 padding: const EdgeInsets.symmetric(
                   vertical: 8.0,
                 ),
                 child: ListTile(
-                  leading: Container(
-                    width: 180.0,
-                    height: 38,
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(10)),
-                      color: theme.secondaryHeaderColor,
-                    ),
-                    child: TextField(
-                      controller: controller.newImageCodeController,
-                      autocorrect: false,
-                      minLines: 1,
-                      maxLines: 1,
-                      decoration: InputDecoration(
-                        hintText: L10n.of(context).emoteShortcode,
-                        prefixText: ': ',
-                        suffixText: ':',
-                        prefixStyle: TextStyle(
-                          color: theme.colorScheme.secondary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        suffixStyle: TextStyle(
-                          color: theme.colorScheme.secondary,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        border: InputBorder.none,
+                  title: TextField(
+                    controller: controller.newImageCodeController,
+                    autocorrect: false,
+                    minLines: 1,
+                    maxLines: 1,
+                    readOnly: controller.showSave,
+                    decoration: InputDecoration(
+                      hintText: L10n.of(context).newSticker,
+                      prefixText: ': ',
+                      suffixText: ':',
+                      prefixStyle: TextStyle(
+                        color: theme.colorScheme.secondary,
+                        fontWeight: FontWeight.bold,
                       ),
+                      suffixStyle: TextStyle(
+                        color: theme.colorScheme.secondary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      border: InputBorder.none,
                     ),
                   ),
-                  title: _ImagePicker(
+                  leading: _ImagePicker(
+                    readOnly: controller.showSave,
                     controller: controller.newImageController,
                     onPressed: controller.imagePickerAction,
                   ),
-                  trailing: InkWell(
-                    onTap: controller.addImageAction,
-                    child: const Icon(
-                      Icons.add_outlined,
-                      color: Colors.green,
-                      size: 32.0,
-                    ),
+                  trailing: TextButton(
+                    onPressed: controller.showSave ||
+                            controller.newImageController.value == null
+                        ? null
+                        : controller.addImageAction,
+                    child: Text(L10n.of(context).add),
                   ),
                 ),
               ),
@@ -148,80 +149,65 @@ class EmotesSettingsView extends StatelessWidget {
                       final useShortCuts =
                           (PlatformInfos.isWeb || PlatformInfos.isDesktop);
                       return ListTile(
-                        leading: Container(
-                          width: 180.0,
-                          height: 38,
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10)),
-                            color: theme.secondaryHeaderColor,
-                          ),
-                          child: Shortcuts(
-                            shortcuts: !useShortCuts
+                        title: Shortcuts(
+                          shortcuts: !useShortCuts
+                              ? {}
+                              : {
+                                  LogicalKeySet(LogicalKeyboardKey.enter):
+                                      SubmitLineIntent(),
+                                },
+                          child: Actions(
+                            actions: !useShortCuts
                                 ? {}
                                 : {
-                                    LogicalKeySet(LogicalKeyboardKey.enter):
-                                        SubmitLineIntent(),
+                                    SubmitLineIntent: CallbackAction(
+                                      onInvoke: (i) {
+                                        controller.submitImageAction(
+                                          imageCode,
+                                          textEditingController.text,
+                                          image,
+                                          textEditingController,
+                                        );
+                                        return null;
+                                      },
+                                    ),
                                   },
-                            child: Actions(
-                              actions: !useShortCuts
-                                  ? {}
-                                  : {
-                                      SubmitLineIntent: CallbackAction(
-                                        onInvoke: (i) {
-                                          controller.submitImageAction(
-                                            imageCode,
-                                            textEditingController.text,
-                                            image,
-                                            textEditingController,
-                                          );
-                                          return null;
-                                        },
-                                      ),
-                                    },
-                              child: TextField(
-                                readOnly: controller.readonly,
-                                controller: textEditingController,
-                                autocorrect: false,
-                                minLines: 1,
-                                maxLines: 1,
-                                decoration: InputDecoration(
-                                  hintText: L10n.of(context).emoteShortcode,
-                                  prefixText: ': ',
-                                  suffixText: ':',
-                                  prefixStyle: TextStyle(
-                                    color: theme.colorScheme.secondary,
-                                    fontWeight: FontWeight.bold,
+                            child: TextField(
+                              readOnly: controller.readonly,
+                              controller: textEditingController,
+                              autocorrect: false,
+                              minLines: 1,
+                              maxLines: 1,
+                              maxLength: 128,
+                              decoration: InputDecoration(
+                                hintText: L10n.of(context).emoteShortcode,
+                                prefixText: ': ',
+                                suffixText: ':',
+                                counter: const SizedBox.shrink(),
+                                filled: false,
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
                                   ),
-                                  suffixStyle: TextStyle(
-                                    color: theme.colorScheme.secondary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  border: InputBorder.none,
                                 ),
-                                onSubmitted: (s) =>
-                                    controller.submitImageAction(
-                                  imageCode,
-                                  s,
-                                  image,
-                                  textEditingController,
-                                ),
+                              ),
+                              onSubmitted: (s) => controller.submitImageAction(
+                                imageCode,
+                                s,
+                                image,
+                                textEditingController,
                               ),
                             ),
                           ),
                         ),
-                        title: _EmoteImage(image.url),
+                        leading: _EmoteImage(image.url),
                         trailing: controller.readonly
                             ? null
-                            : InkWell(
-                                onTap: () =>
+                            : IconButton(
+                                tooltip: L10n.of(context).delete,
+                                onPressed: () =>
                                     controller.removeImageAction(imageCode),
-                                child: const Icon(
-                                  Icons.delete_outlined,
-                                  color: Colors.red,
-                                  size: 32.0,
-                                ),
+                                icon: const Icon(Icons.delete_outlined),
                               ),
                       );
                     },
@@ -256,10 +242,15 @@ class _EmoteImage extends StatelessWidget {
 
 class _ImagePicker extends StatefulWidget {
   final ValueNotifier<ImagePackImageContent?> controller;
+  final bool readOnly;
 
   final void Function(ValueNotifier<ImagePackImageContent?>) onPressed;
 
-  const _ImagePicker({required this.controller, required this.onPressed});
+  const _ImagePicker({
+    required this.controller,
+    this.readOnly = false,
+    required this.onPressed,
+  });
 
   @override
   _ImagePickerState createState() => _ImagePickerState();
@@ -269,9 +260,11 @@ class _ImagePickerState extends State<_ImagePicker> {
   @override
   Widget build(BuildContext context) {
     if (widget.controller.value == null) {
-      return ElevatedButton(
-        onPressed: () => widget.onPressed(widget.controller),
-        child: Text(L10n.of(context).pickImage),
+      return IconButton(
+        tooltip: L10n.of(context).select,
+        onPressed:
+            widget.readOnly ? null : () => widget.onPressed(widget.controller),
+        icon: const Icon(Icons.upload_outlined),
       );
     } else {
       return _EmoteImage(widget.controller.value!.url);

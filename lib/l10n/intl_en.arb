@@ -3452,5 +3452,8 @@
     }
   },
   "thread": "Thread",
-  "backToMainChat": "Back to main chat"
+  "backToMainChat": "Back to main chat",
+  "saveChanges": "Save changes",
+  "add": "Add",
+  "newSticker": "New sticker"
 }
