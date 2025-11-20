@@ -3454,6 +3454,5 @@
   "thread": "Thread",
   "backToMainChat": "Back to main chat",
   "saveChanges": "Save changes",
-  "add": "Add",
-  "newSticker": "New sticker"
+  "createSticker": "Create sticker or emoji"
 }

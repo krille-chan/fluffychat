@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -72,46 +70,15 @@ class EmotesSettingsView extends StatelessWidget {
       body: MaxWidthBody(
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             if (!controller.readonly)
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                ),
-                child: ListTile(
-                  title: TextField(
-                    controller: controller.newImageCodeController,
-                    autocorrect: false,
-                    minLines: 1,
-                    maxLines: 1,
-                    readOnly: controller.showSave,
-                    decoration: InputDecoration(
-                      hintText: L10n.of(context).newSticker,
-                      prefixText: ': ',
-                      suffixText: ':',
-                      prefixStyle: TextStyle(
-                        color: theme.colorScheme.secondary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      suffixStyle: TextStyle(
-                        color: theme.colorScheme.secondary,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      border: InputBorder.none,
-                    ),
-                  ),
-                  leading: _ImagePicker(
-                    readOnly: controller.showSave,
-                    controller: controller.newImageController,
-                    onPressed: controller.imagePickerAction,
-                  ),
-                  trailing: TextButton(
-                    onPressed: controller.showSave ||
-                            controller.newImageController.value == null
-                        ? null
-                        : controller.addImageAction,
-                    child: Text(L10n.of(context).add),
-                  ),
+                padding: const EdgeInsets.all(16.0),
+                child: ElevatedButton.icon(
+                  onPressed: controller.createStickers,
+                  icon: const Icon(Icons.upload_outlined),
+                  label: Text(L10n.of(context).createSticker),
                 ),
               ),
             if (controller.room != null)
@@ -237,38 +204,6 @@ class _EmoteImage extends StatelessWidget {
         isThumbnail: false,
       ),
     );
-  }
-}
-
-class _ImagePicker extends StatefulWidget {
-  final ValueNotifier<ImagePackImageContent?> controller;
-  final bool readOnly;
-
-  final void Function(ValueNotifier<ImagePackImageContent?>) onPressed;
-
-  const _ImagePicker({
-    required this.controller,
-    this.readOnly = false,
-    required this.onPressed,
-  });
-
-  @override
-  _ImagePickerState createState() => _ImagePickerState();
-}
-
-class _ImagePickerState extends State<_ImagePicker> {
-  @override
-  Widget build(BuildContext context) {
-    if (widget.controller.value == null) {
-      return IconButton(
-        tooltip: L10n.of(context).select,
-        onPressed:
-            widget.readOnly ? null : () => widget.onPressed(widget.controller),
-        icon: const Icon(Icons.upload_outlined),
-      );
-    } else {
-      return _EmoteImage(widget.controller.value!.url);
-    }
   }
 }
 

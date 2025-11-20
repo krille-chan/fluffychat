@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' hide Client;
 import 'package:matrix/matrix.dart';
@@ -37,10 +36,6 @@ class EmotesSettingsController extends State<EmotesSettings> {
   String? get stateKey => GoRouterState.of(context).pathParameters['state_key'];
 
   bool showSave = false;
-  TextEditingController newImageCodeController = TextEditingController();
-
-  ValueNotifier<ImagePackImageContent?> newImageController =
-      ValueNotifier<ImagePackImageContent?>(null);
 
   ImagePackContent _getPack() {
     final client = Matrix.of(context).client;
@@ -135,6 +130,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
     ImagePackImageContent image,
     TextEditingController controller,
   ) {
+    controller.text = controller.text.trim().replaceAll(' ', '-');
     if (pack!.images.keys.any((k) => k == imageCode && k != oldImageCode)) {
       controller.text = oldImageCode;
       showOkAlertDialog(
@@ -187,99 +183,63 @@ class EmotesSettingsController extends State<EmotesSettings> {
     });
   }
 
-  void addImageAction() async {
-    if (newImageCodeController.text.isEmpty ||
-        newImageController.value == null) {
-      await showOkAlertDialog(
-        useRootNavigator: false,
-        context: context,
-        title: L10n.of(context).emoteWarnNeedToPick,
-        okLabel: L10n.of(context).ok,
-      );
-      return;
-    }
-    final imageCode = newImageCodeController.text;
-    if (pack!.images.containsKey(imageCode)) {
-      await showOkAlertDialog(
-        useRootNavigator: false,
-        context: context,
-        title: L10n.of(context).emoteExists,
-        okLabel: L10n.of(context).ok,
-      );
-      return;
-    }
-    if (!RegExp(r'^[-\w]+$').hasMatch(imageCode)) {
-      await showOkAlertDialog(
-        useRootNavigator: false,
-        context: context,
-        title: L10n.of(context).emoteInvalid,
-        okLabel: L10n.of(context).ok,
-      );
-      return;
-    }
-    pack!.images[imageCode] = newImageController.value!;
-    await save(context);
-    setState(() {
-      newImageCodeController.text = '';
-      newImageController.value = null;
-      showSave = false;
-    });
-  }
-
-  void imagePickerAction(
-    ValueNotifier<ImagePackImageContent?> controller,
-  ) async {
-    final result = await selectFiles(
+  void createStickers() async {
+    final pickedFiles = await selectFiles(
       context,
       type: FileSelectorType.images,
+      allowMultiple: true,
     );
-    final pickedFile = result.firstOrNull;
-    if (pickedFile == null) return;
+    if (pickedFiles.isEmpty) return;
+    if (!mounted) return;
 
-    var file = MatrixImageFile(
-      bytes: await pickedFile.readAsBytes(),
-      name: pickedFile.name,
-    );
-
-    final uploadResp = await showFutureLoadingDialog(
+    await showFutureLoadingDialog(
       context: context,
-      future: () async {
-        file = await file.generateThumbnail(
-              nativeImplementations: ClientManager.nativeImplementations,
-            ) ??
-            file;
-        return Matrix.of(context).client.uploadContent(
-              file.bytes,
-              filename: file.name,
-              contentType: file.mimeType,
-            );
+      futureWithProgress: (setProgress) async {
+        for (final (i, pickedFile) in pickedFiles.indexed) {
+          setProgress(i / pickedFiles.length);
+          var file = MatrixImageFile(
+            bytes: await pickedFile.readAsBytes(),
+            name: pickedFile.name,
+          );
+          file = await file.generateThumbnail(
+                nativeImplementations: ClientManager.nativeImplementations,
+              ) ??
+              file;
+          final uri = await Matrix.of(context).client.uploadContent(
+                file.bytes,
+                filename: file.name,
+                contentType: file.mimeType,
+              );
+
+          setState(() {
+            final info = <String, dynamic>{
+              ...file.info,
+            };
+            // normalize width / height to 256, required for stickers
+            if (info['w'] is int && info['h'] is int) {
+              final ratio = info['w'] / info['h'];
+              if (info['w'] > info['h']) {
+                info['w'] = 256;
+                info['h'] = (256.0 / ratio).round();
+              } else {
+                info['h'] = 256;
+                info['w'] = (ratio * 256.0).round();
+              }
+            }
+            final imageCode = pickedFile.name.split('.').first;
+            pack!.images[imageCode] =
+                ImagePackImageContent.fromJson(<String, dynamic>{
+              'url': uri.toString(),
+              'info': info,
+            });
+          });
+        }
       },
     );
-    if (uploadResp.error == null) {
-      setState(() {
-        final info = <String, dynamic>{
-          ...file.info,
-        };
-        // normalize width / height to 256, required for stickers
-        if (info['w'] is int && info['h'] is int) {
-          final ratio = info['w'] / info['h'];
-          if (info['w'] > info['h']) {
-            info['w'] = 256;
-            info['h'] = (256.0 / ratio).round();
-          } else {
-            info['h'] = 256;
-            info['w'] = (ratio * 256.0).round();
-          }
-        }
-        controller.value = ImagePackImageContent.fromJson(<String, dynamic>{
-          'url': uploadResp.result.toString(),
-          'info': info,
-        });
-        if (newImageCodeController.text.isEmpty) {
-          newImageCodeController.text = pickedFile.name.split('.').first;
-        }
-      });
-    }
+
+    setState(() {
+      showSave = true;
+    });
   }
 
   @override
