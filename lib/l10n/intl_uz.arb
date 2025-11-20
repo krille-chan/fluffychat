@@ -2168,7 +2168,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "unknownEvent": "Noma’lum shifrlash algoritmi",
+    "unknownEvent": "Noma’lum hodisa ’{type}’",
     "@unknownEvent": {
         "type": "String",
         "placeholders": {
