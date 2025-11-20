@@ -135,11 +135,12 @@ class EmotesSettingsController extends State<EmotesSettings> {
 
   void submitImageAction(
     String oldImageCode,
-    String imageCode,
     ImagePackImageContent image,
     TextEditingController controller,
   ) {
     controller.text = controller.text.trim().replaceAll(' ', '-');
+    final imageCode = controller.text;
+    if (imageCode == oldImageCode) return;
     if (pack!.images.keys.any((k) => k == imageCode && k != oldImageCode)) {
       controller.text = oldImageCode;
       showOkAlertDialog(

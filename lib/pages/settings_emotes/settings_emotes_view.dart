@@ -135,7 +135,6 @@ class EmotesSettingsView extends StatelessWidget {
                                             onInvoke: (i) {
                                               controller.submitImageAction(
                                                 imageCode,
-                                                textEditingController.text,
                                                 image,
                                                 textEditingController,
                                               );
@@ -165,7 +164,6 @@ class EmotesSettingsView extends StatelessWidget {
                                     onSubmitted: (s) =>
                                         controller.submitImageAction(
                                       imageCode,
-                                      s,
                                       image,
                                       textEditingController,
                                     ),
