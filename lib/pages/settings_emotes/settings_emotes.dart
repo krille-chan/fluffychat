@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' hide Client;
 import 'package:matrix/matrix.dart';
 
@@ -21,19 +20,38 @@ import 'package:archive/archive.dart'
     if (dart.library.io) 'package:archive/archive_io.dart';
 
 class EmotesSettings extends StatefulWidget {
-  const EmotesSettings({super.key});
+  final String? roomId;
+  const EmotesSettings({required this.roomId, super.key});
 
   @override
   EmotesSettingsController createState() => EmotesSettingsController();
 }
 
 class EmotesSettingsController extends State<EmotesSettings> {
-  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
+  Room? get room => widget.roomId != null
+      ? Matrix.of(context).client.getRoomById(widget.roomId!)
+      : null;
 
-  Room? get room =>
-      roomId != null ? Matrix.of(context).client.getRoomById(roomId!) : null;
+  String? stateKey;
 
-  String? get stateKey => GoRouterState.of(context).pathParameters['state_key'];
+  List<String>? get packKeys {
+    final room = this.room;
+    if (room == null) return null;
+    final keys = room.states['im.ponies.room_emotes']?.keys.toList() ?? [];
+    keys.sort();
+    return keys;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    stateKey = packKeys?.first;
+  }
+
+  void setStateKey(String key) {
+    stateKey = key;
+    resetAction();
+  }
 
   bool showSave = false;
 

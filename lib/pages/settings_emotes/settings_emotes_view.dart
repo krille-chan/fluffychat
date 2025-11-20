@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:matrix/matrix_api_lite/model/events/image_pack_content.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -24,6 +24,7 @@ class EmotesSettingsView extends StatelessWidget {
 
     final client = Matrix.of(context).client;
     final imageKeys = controller.pack!.images.keys.toList();
+    final packKeys = controller.packKeys;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: !controller.showSave,
@@ -70,6 +71,45 @@ class EmotesSettingsView extends StatelessWidget {
               ],
             ),
         ],
+        bottom: packKeys == null
+            ? null
+            : PreferredSize(
+                preferredSize: const Size.fromHeight(48),
+                child: Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: SizedBox(
+                    height: 40,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: packKeys.length,
+                      itemBuilder: (context, i) {
+                        final key = packKeys[i];
+                        final event = controller.room
+                            ?.getState('im.ponies.room_emotes', packKeys[i]);
+
+                        final eventPack =
+                            event?.content.tryGetMap<String, Object?>('pack');
+                        final packName =
+                            eventPack?.tryGet<String>('displayname') ??
+                                eventPack?.tryGet<String>('name') ??
+                                (key.isNotEmpty ? key : 'Default');
+
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 4.0,
+                          ),
+                          child: FilterChip(
+                            label: Text(packName),
+                            selected: controller.stateKey == packKeys[i],
+                            onSelected: (_) =>
+                                controller.setStateKey(packKeys[i]),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
       ),
       body: MaxWidthBody(
         child: Column(
@@ -240,6 +280,7 @@ class _EmoteImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const size = 44.0;
+    final key = 'sticker_preview_$mxc';
     return InkWell(
       borderRadius: BorderRadius.circular(4),
       onTap: () => showDialog(
@@ -247,6 +288,8 @@ class _EmoteImage extends StatelessWidget {
         builder: (_) => MxcImageViewer(mxc),
       ),
       child: MxcImage(
+        key: ValueKey(key),
+        cacheKey: key,
         uri: mxc,
         fit: BoxFit.contain,
         width: size,
