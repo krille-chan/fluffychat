@@ -152,6 +152,35 @@ class EmotesSettingsView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            if (controller.room != null) ...[
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: TextField(
+                  maxLength: 256,
+                  controller: controller.packDisplayNameController,
+                  readOnly: true, //controller.readonly,
+                  decoration: InputDecoration(
+                    counter: const SizedBox.shrink(),
+                    hintText: controller.stateKey,
+                    labelText: L10n.of(context).stickerPackName,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: TextField(
+                  maxLength: 256,
+                  controller: controller.packAttributionController,
+                  readOnly: true, //controller.readonly,
+                  decoration: InputDecoration(
+                    counter: const SizedBox.shrink(),
+                    labelText: L10n.of(context).attribution,
+                  ),
+                ),
+              ),
+            ],
             if (!controller.readonly) ...[
               Padding(
                 padding: const EdgeInsets.all(16.0),

@@ -47,12 +47,24 @@ class EmotesSettingsController extends State<EmotesSettings> {
     room = widget.roomId != null
         ? Matrix.of(context).client.getRoomById(widget.roomId!)
         : null;
-    stateKey = packKeys?.firstOrNull;
+    setStateKey(packKeys?.firstOrNull, reset: false);
   }
 
-  void setStateKey(String key) {
+  void setStateKey(String? key, {reset = true}) {
     stateKey = key;
-    resetAction();
+
+    final event = key == null
+        ? null
+        : room?.getState(
+            'im.ponies.room_emotes',
+            key,
+          );
+    final eventPack = event?.content.tryGetMap<String, Object?>('pack');
+    packDisplayNameController.text =
+        eventPack?.tryGet<String>('display_name') ?? '';
+    packAttributionController.text =
+        eventPack?.tryGet<String>('attribution') ?? '';
+    if (reset) resetAction();
   }
 
   bool showSave = false;
@@ -138,6 +150,12 @@ class EmotesSettingsController extends State<EmotesSettings> {
     );
     setState(() {});
   }
+
+  final TextEditingController packDisplayNameController =
+      TextEditingController();
+
+  final TextEditingController packAttributionController =
+      TextEditingController();
 
   void removeImageAction(String oldImageCode) => setState(() {
         pack!.images.remove(oldImageCode);

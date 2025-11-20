@@ -3458,5 +3458,7 @@
   "useAsSticker": "Use as sticker",
   "useAsEmoji": "Use as emoji",
   "stickerPackNameAlreadyExists": "Sticker pack name already exists",
-  "newStickerPack": "New sticker pack"
+  "newStickerPack": "New sticker pack",
+  "stickerPackName": "Sticker pack name",
+  "attribution": "Attribution"
 }
