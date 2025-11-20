@@ -61,10 +61,11 @@ class EmotesSettingsView extends StatelessWidget {
                   value: PopupMenuEmojiActions.import,
                   child: Text(L10n.of(context).importFromZipFile),
                 ),
-                PopupMenuItem(
-                  value: PopupMenuEmojiActions.export,
-                  child: Text(L10n.of(context).exportEmotePack),
-                ),
+                if (imageKeys.isNotEmpty)
+                  PopupMenuItem(
+                    value: PopupMenuEmojiActions.export,
+                    child: Text(L10n.of(context).exportEmotePack),
+                  ),
               ],
             ),
         ],
@@ -83,14 +84,14 @@ class EmotesSettingsView extends StatelessWidget {
                   label: Text(L10n.of(context).createSticker),
                 ),
               ),
-            if (controller.room != null)
+            if (!controller.readonly || controller.room != null)
+              const Divider(),
+            if (controller.room != null && imageKeys.isNotEmpty)
               SwitchListTile.adaptive(
                 title: Text(L10n.of(context).enableEmotesGlobally),
                 value: controller.isGloballyActive(client),
                 onChanged: controller.setIsGloballyActive,
               ),
-            if (!controller.readonly || controller.room != null)
-              const Divider(),
             imageKeys.isEmpty
                 ? Center(
                     child: Padding(
