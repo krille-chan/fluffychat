@@ -7,6 +7,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:fluffychat/widgets/mxc_image_viewer.dart';
 import '../../widgets/matrix.dart';
 import 'settings_emotes.dart';
 
@@ -242,15 +243,19 @@ class _EmoteImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const size = 38.0;
-    return SizedBox.square(
-      dimension: size,
+    const size = 44.0;
+    return InkWell(
+      borderRadius: BorderRadius.circular(4),
+      onTap: () => showDialog(
+        context: context,
+        builder: (_) => MxcImageViewer(mxc),
+      ),
       child: MxcImage(
         uri: mxc,
         fit: BoxFit.contain,
         width: size,
         height: size,
-        isThumbnail: false,
+        isThumbnail: true,
       ),
     );
   }
