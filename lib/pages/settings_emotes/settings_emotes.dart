@@ -45,7 +45,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
   @override
   void initState() {
     super.initState();
-    stateKey = packKeys?.first;
+    stateKey = packKeys?.firstOrNull;
   }
 
   void setStateKey(String key) {

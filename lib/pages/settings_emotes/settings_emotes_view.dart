@@ -71,7 +71,7 @@ class EmotesSettingsView extends StatelessWidget {
               ],
             ),
         ],
-        bottom: packKeys == null
+        bottom: packKeys == null || packKeys.isEmpty
             ? null
             : PreferredSize(
                 preferredSize: const Size.fromHeight(48),
