@@ -76,7 +76,7 @@ class EmotesSettingsView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            if (!controller.readonly)
+            if (!controller.readonly) ...[
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton.icon(
@@ -85,8 +85,8 @@ class EmotesSettingsView extends StatelessWidget {
                   label: Text(L10n.of(context).createSticker),
                 ),
               ),
-            if (!controller.readonly || controller.room != null)
               const Divider(),
+            ],
             if (controller.room != null && imageKeys.isNotEmpty)
               SwitchListTile.adaptive(
                 title: Text(L10n.of(context).enableEmotesGlobally),
@@ -108,11 +108,8 @@ class EmotesSettingsView extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     separatorBuilder: (BuildContext context, int i) =>
                         const SizedBox.shrink(),
-                    itemCount: imageKeys.length + 1,
+                    itemCount: imageKeys.length,
                     itemBuilder: (BuildContext context, int i) {
-                      if (i >= imageKeys.length) {
-                        return Container(height: 70);
-                      }
                       final imageCode = imageKeys[i];
                       final image = controller.pack!.images[imageCode]!;
                       final textEditingController = TextEditingController();
@@ -176,45 +173,46 @@ class EmotesSettingsView extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            PopupMenuButton<ImagePackUsage>(
-                              onSelected: (usage) => controller.toggleUsage(
-                                imageCode,
-                                usage,
+                            if (!controller.readonly)
+                              PopupMenuButton<ImagePackUsage>(
+                                onSelected: (usage) => controller.toggleUsage(
+                                  imageCode,
+                                  usage,
+                                ),
+                                itemBuilder: (context) => [
+                                  PopupMenuItem(
+                                    value: ImagePackUsage.sticker,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        if (image.usage?.contains(
+                                              ImagePackUsage.sticker,
+                                            ) ??
+                                            true)
+                                          const Icon(Icons.check_outlined),
+                                        const SizedBox(width: 12),
+                                        Text(L10n.of(context).useAsSticker),
+                                      ],
+                                    ),
+                                  ),
+                                  PopupMenuItem(
+                                    value: ImagePackUsage.emoticon,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        if (image.usage?.contains(
+                                              ImagePackUsage.emoticon,
+                                            ) ??
+                                            true)
+                                          const Icon(Icons.check_outlined),
+                                        const SizedBox(width: 12),
+                                        Text(L10n.of(context).useAsEmoji),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                                icon: const Icon(Icons.edit_outlined),
                               ),
-                              itemBuilder: (context) => [
-                                PopupMenuItem(
-                                  value: ImagePackUsage.sticker,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      if (image.usage?.contains(
-                                            ImagePackUsage.sticker,
-                                          ) ??
-                                          true)
-                                        const Icon(Icons.check_outlined),
-                                      const SizedBox(width: 12),
-                                      Text(L10n.of(context).useAsSticker),
-                                    ],
-                                  ),
-                                ),
-                                PopupMenuItem(
-                                  value: ImagePackUsage.emoticon,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      if (image.usage?.contains(
-                                            ImagePackUsage.emoticon,
-                                          ) ??
-                                          true)
-                                        const Icon(Icons.check_outlined),
-                                      const SizedBox(width: 12),
-                                      Text(L10n.of(context).useAsEmoji),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                              icon: const Icon(Icons.edit_outlined),
-                            ),
                           ],
                         ),
                         leading: _EmoteImage(image.url),

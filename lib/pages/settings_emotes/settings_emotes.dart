@@ -175,8 +175,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
               ?.tryGetMap<String, Object?>(stateKey ?? '') !=
           null;
 
-  bool get readonly =>
-      room == null ? false : !(room!.canSendEvent('im.ponies.room_emotes'));
+  bool get readonly => room?.canSendEvent('im.ponies.room_emotes') ?? false;
 
   void resetAction() {
     setState(() {
