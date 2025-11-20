@@ -3456,5 +3456,7 @@
   "saveChanges": "Save changes",
   "createSticker": "Create sticker or emoji",
   "useAsSticker": "Use as sticker",
-  "useAsEmoji": "Use as emoji"
+  "useAsEmoji": "Use as emoji",
+  "stickerPackNameAlreadyExists": "Sticker pack name already exists",
+  "newStickerPack": "New sticker pack"
 }

@@ -20,11 +20,25 @@ class EmotesSettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (controller.widget.roomId != null && controller.room == null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text(L10n.of(context).oopsSomethingWentWrong),
+        ),
+        body: Center(
+          child: Text(L10n.of(context).youAreNoLongerParticipatingInThisChat),
+        ),
+      );
+    }
     final theme = Theme.of(context);
 
     final client = Matrix.of(context).client;
     final imageKeys = controller.pack!.images.keys.toList();
     final packKeys = controller.packKeys;
+    if (packKeys != null && packKeys.isEmpty) {
+      packKeys.add('');
+    }
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: !controller.showSave,
@@ -71,7 +85,7 @@ class EmotesSettingsView extends StatelessWidget {
               ],
             ),
         ],
-        bottom: packKeys == null || packKeys.isEmpty
+        bottom: packKeys == null
             ? null
             : PreferredSize(
                 preferredSize: const Size.fromHeight(48),
@@ -81,8 +95,28 @@ class EmotesSettingsView extends StatelessWidget {
                     height: 40,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: packKeys.length,
+                      itemCount: packKeys.length + 1,
                       itemBuilder: (context, i) {
+                        if (i == 0) {
+                          if (controller.readonly) {
+                            return const SizedBox.shrink();
+                          }
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 4.0,
+                            ),
+                            child: FilterChip(
+                              label: const Icon(
+                                Icons.add_outlined,
+                                size: 20,
+                              ),
+                              onSelected: controller.showSave
+                                  ? null
+                                  : (_) => controller.createImagePack(),
+                            ),
+                          );
+                        }
+                        i--;
                         final key = packKeys[i];
                         final event = controller.room
                             ?.getState('im.ponies.room_emotes', packKeys[i]);
@@ -90,7 +124,7 @@ class EmotesSettingsView extends StatelessWidget {
                         final eventPack =
                             event?.content.tryGetMap<String, Object?>('pack');
                         final packName =
-                            eventPack?.tryGet<String>('displayname') ??
+                            eventPack?.tryGet<String>('display_name') ??
                                 eventPack?.tryGet<String>('name') ??
                                 (key.isNotEmpty ? key : 'Default');
 
@@ -100,9 +134,11 @@ class EmotesSettingsView extends StatelessWidget {
                           ),
                           child: FilterChip(
                             label: Text(packName),
-                            selected: controller.stateKey == packKeys[i],
-                            onSelected: (_) =>
-                                controller.setStateKey(packKeys[i]),
+                            selected: controller.stateKey == key ||
+                                (controller.stateKey == null && key.isEmpty),
+                            onSelected: controller.showSave
+                                ? null
+                                : (_) => controller.setStateKey(key),
                           ),
                         );
                       },

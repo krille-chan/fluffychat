@@ -11,6 +11,7 @@ import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../../widgets/matrix.dart';
 import 'import_archive_dialog.dart';
@@ -28,9 +29,7 @@ class EmotesSettings extends StatefulWidget {
 }
 
 class EmotesSettingsController extends State<EmotesSettings> {
-  Room? get room => widget.roomId != null
-      ? Matrix.of(context).client.getRoomById(widget.roomId!)
-      : null;
+  late final Room? room;
 
   String? stateKey;
 
@@ -45,6 +44,9 @@ class EmotesSettingsController extends State<EmotesSettings> {
   @override
   void initState() {
     super.initState();
+    room = widget.roomId != null
+        ? Matrix.of(context).client.getRoomById(widget.roomId!)
+        : null;
     stateKey = packKeys?.firstOrNull;
   }
 
@@ -194,13 +196,59 @@ class EmotesSettingsController extends State<EmotesSettings> {
               ?.tryGetMap<String, Object?>(stateKey ?? '') !=
           null;
 
-  bool get readonly => room?.canSendEvent('im.ponies.room_emotes') ?? false;
+  bool get readonly => room == null
+      ? false
+      : room?.canChangeStateEvent('im.ponies.room_emotes') == false;
 
   void resetAction() {
     setState(() {
       _pack = _getPack();
       showSave = false;
     });
+  }
+
+  void createImagePack() async {
+    final room = this.room;
+    if (room == null) throw Exception('Cannot create image pack without room');
+
+    final input = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).newStickerPack,
+      hintText: L10n.of(context).name,
+      okLabel: L10n.of(context).create,
+    );
+    final name = input?.trim();
+    if (name == null || name.isEmpty) return;
+    if (!mounted) return;
+
+    final keyName = name.toLowerCase().replaceAll(' ', '_');
+
+    if (packKeys?.contains(name) ?? false) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(L10n.of(context).stickerPackNameAlreadyExists),
+        ),
+      );
+      return;
+    }
+
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => room.client.setRoomStateWithKey(
+        room.id,
+        'im.ponies.room_emotes',
+        keyName,
+        {
+          'images': {},
+          'pack': {'display_name': name},
+        },
+      ),
+    );
+    if (!mounted) return;
+    setState(() {});
+    await room.client.oneShotSync();
+    if (!mounted) return;
+    setState(() {});
   }
 
   void saveAction() async {
