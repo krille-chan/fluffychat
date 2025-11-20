@@ -171,6 +171,28 @@ class EmotesSettingsController extends State<EmotesSettings> {
     });
   }
 
+  void submitDisplaynameAction() {
+    if (readonly) return;
+    packDisplayNameController.text = packDisplayNameController.text.trim();
+    final input = packDisplayNameController.text;
+
+    setState(() {
+      pack!.pack.displayName = input;
+      showSave = true;
+    });
+  }
+
+  void submitAttributionAction() {
+    if (readonly) return;
+    packAttributionController.text = packAttributionController.text.trim();
+    final input = packAttributionController.text;
+
+    setState(() {
+      pack!.pack.attribution = input;
+      showSave = true;
+    });
+  }
+
   void submitImageAction(
     String oldImageCode,
     ImagePackImageContent image,

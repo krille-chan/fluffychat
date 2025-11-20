@@ -159,7 +159,8 @@ class EmotesSettingsView extends StatelessWidget {
                 child: TextField(
                   maxLength: 256,
                   controller: controller.packDisplayNameController,
-                  readOnly: true, //controller.readonly,
+                  readOnly: controller.readonly,
+                  onSubmitted: (_) => controller.submitDisplaynameAction(),
                   decoration: InputDecoration(
                     counter: const SizedBox.shrink(),
                     hintText: controller.stateKey,
@@ -173,7 +174,8 @@ class EmotesSettingsView extends StatelessWidget {
                 child: TextField(
                   maxLength: 256,
                   controller: controller.packAttributionController,
-                  readOnly: true, //controller.readonly,
+                  readOnly: controller.readonly,
+                  onSubmitted: (_) => controller.submitAttributionAction(),
                   decoration: InputDecoration(
                     counter: const SizedBox.shrink(),
                     labelText: L10n.of(context).attribution,
@@ -360,6 +362,7 @@ class _EmoteImage extends StatelessWidget {
         width: size,
         height: size,
         isThumbnail: true,
+        animated: true,
       ),
     );
   }
