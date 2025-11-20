@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:matrix/matrix_api_lite/model/events/image_pack_content.dart';
+
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -116,56 +118,102 @@ class EmotesSettingsView extends StatelessWidget {
                       final useShortCuts =
                           (PlatformInfos.isWeb || PlatformInfos.isDesktop);
                       return ListTile(
-                        title: Shortcuts(
-                          shortcuts: !useShortCuts
-                              ? {}
-                              : {
-                                  LogicalKeySet(LogicalKeyboardKey.enter):
-                                      SubmitLineIntent(),
-                                },
-                          child: Actions(
-                            actions: !useShortCuts
-                                ? {}
-                                : {
-                                    SubmitLineIntent: CallbackAction(
-                                      onInvoke: (i) {
-                                        controller.submitImageAction(
-                                          imageCode,
-                                          textEditingController.text,
-                                          image,
-                                          textEditingController,
-                                        );
-                                        return null;
+                        title: Row(
+                          children: [
+                            Expanded(
+                              child: Shortcuts(
+                                shortcuts: !useShortCuts
+                                    ? {}
+                                    : {
+                                        LogicalKeySet(LogicalKeyboardKey.enter):
+                                            SubmitLineIntent(),
                                       },
+                                child: Actions(
+                                  actions: !useShortCuts
+                                      ? {}
+                                      : {
+                                          SubmitLineIntent: CallbackAction(
+                                            onInvoke: (i) {
+                                              controller.submitImageAction(
+                                                imageCode,
+                                                textEditingController.text,
+                                                image,
+                                                textEditingController,
+                                              );
+                                              return null;
+                                            },
+                                          ),
+                                        },
+                                  child: TextField(
+                                    readOnly: controller.readonly,
+                                    controller: textEditingController,
+                                    autocorrect: false,
+                                    minLines: 1,
+                                    maxLines: 1,
+                                    maxLength: 128,
+                                    decoration: InputDecoration(
+                                      hintText: L10n.of(context).emoteShortcode,
+                                      prefixText: ': ',
+                                      suffixText: ':',
+                                      counter: const SizedBox.shrink(),
+                                      filled: false,
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                        ),
+                                      ),
                                     ),
-                                  },
-                            child: TextField(
-                              readOnly: controller.readonly,
-                              controller: textEditingController,
-                              autocorrect: false,
-                              minLines: 1,
-                              maxLines: 1,
-                              maxLength: 128,
-                              decoration: InputDecoration(
-                                hintText: L10n.of(context).emoteShortcode,
-                                prefixText: ': ',
-                                suffixText: ':',
-                                counter: const SizedBox.shrink(),
-                                filled: false,
-                                enabledBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
+                                    onSubmitted: (s) =>
+                                        controller.submitImageAction(
+                                      imageCode,
+                                      s,
+                                      image,
+                                      textEditingController,
+                                    ),
                                   ),
                                 ),
                               ),
-                              onSubmitted: (s) => controller.submitImageAction(
-                                imageCode,
-                                s,
-                                image,
-                                textEditingController,
-                              ),
                             ),
-                          ),
+                            PopupMenuButton<ImagePackUsage>(
+                              onSelected: (usage) => controller.toggleUsage(
+                                imageCode,
+                                usage,
+                              ),
+                              itemBuilder: (context) => [
+                                PopupMenuItem(
+                                  value: ImagePackUsage.sticker,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      if (image.usage?.contains(
+                                            ImagePackUsage.sticker,
+                                          ) ??
+                                          true)
+                                        const Icon(Icons.check_outlined),
+                                      const SizedBox(width: 12),
+                                      Text(L10n.of(context).useAsSticker),
+                                    ],
+                                  ),
+                                ),
+                                PopupMenuItem(
+                                  value: ImagePackUsage.emoticon,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      if (image.usage?.contains(
+                                            ImagePackUsage.emoticon,
+                                          ) ??
+                                          true)
+                                        const Icon(Icons.check_outlined),
+                                      const SizedBox(width: 12),
+                                      Text(L10n.of(context).useAsEmoji),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                              icon: const Icon(Icons.edit_outlined),
+                            ),
+                          ],
                         ),
                         leading: _EmoteImage(image.url),
                         trailing: controller.readonly

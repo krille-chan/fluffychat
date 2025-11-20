@@ -124,6 +124,15 @@ class EmotesSettingsController extends State<EmotesSettings> {
         showSave = true;
       });
 
+  void toggleUsage(String imageCode, ImagePackUsage usage) {
+    setState(() {
+      final usages =
+          pack!.images[imageCode]!.usage ??= List.from(ImagePackUsage.values);
+      if (!usages.remove(usage)) usages.add(usage);
+      showSave = true;
+    });
+  }
+
   void submitImageAction(
     String oldImageCode,
     String imageCode,
