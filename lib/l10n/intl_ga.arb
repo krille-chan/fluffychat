@@ -3492,5 +3492,21 @@
     "thread": "Snáithe",
     "@thread": {},
     "backToMainChat": "Ar ais chuig an bpríomhchomhrá",
-    "@backToMainChat": {}
+    "@backToMainChat": {},
+    "saveChanges": "Sábháil athruithe",
+    "@saveChanges": {},
+    "createSticker": "Cruthaigh greamán nó emoji",
+    "@createSticker": {},
+    "useAsSticker": "Úsáid mar ghreamán",
+    "@useAsSticker": {},
+    "useAsEmoji": "Úsáid mar emoji",
+    "@useAsEmoji": {},
+    "stickerPackNameAlreadyExists": "Tá ainm an phacáiste greamán ann cheana féin",
+    "@stickerPackNameAlreadyExists": {},
+    "newStickerPack": "Pacáiste greamán nua",
+    "@newStickerPack": {},
+    "stickerPackName": "Ainm an phacáiste greamán",
+    "@stickerPackName": {},
+    "attribution": "Atribution",
+    "@attribution": {}
 }
