@@ -2168,7 +2168,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "unknownEvent": "Noma’lum shifrlash algoritmi",
+    "unknownEvent": "Noma’lum hodisa '{type}'",
     "@unknownEvent": {
         "type": "String",
         "placeholders": {
@@ -2604,7 +2604,7 @@
     "@shareKeysWithDescription": {},
     "enterNewChat": "Yangi suhbatga kirish",
     "@enterNewChat": {},
-    "removeFromSpaceDescription": "Chat maydondan olib tashlanadi, lekin hali ham chatlar ro‘yxatida chiqadi.",
+    "removeFromSpaceDescription": "Suhbat maydondan olib tashlanadi, lekin hali ham suhbatlarlar ro‘yxatida chiqadi.",
     "@removeFromSpaceDescription": {},
     "countChats": "{chats} suhbatlar",
     "@countChats": {
@@ -3467,5 +3467,12 @@
     "yourGlobalUserIdIs": "Global foydalanuvchi ID raqamingiz: ",
     "@yourGlobalUserIdIs": {},
     "notificationRuleTombstone": "Qabrtosh",
-    "@notificationRuleTombstone": {}
+    "@notificationRuleTombstone": {},
+    "identity": "Shaxs",
+    "@identity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emojis": "Emojilar",
+    "@emojis": {}
 }
