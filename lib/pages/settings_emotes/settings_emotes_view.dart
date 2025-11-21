@@ -71,12 +71,12 @@ class EmotesSettingsView extends StatelessWidget {
                     break;
                 }
               },
-              enabled: !controller.readonly,
               itemBuilder: (context) => [
-                PopupMenuItem(
-                  value: PopupMenuEmojiActions.import,
-                  child: Text(L10n.of(context).importFromZipFile),
-                ),
+                if (!controller.readonly)
+                  PopupMenuItem(
+                    value: PopupMenuEmojiActions.import,
+                    child: Text(L10n.of(context).importFromZipFile),
+                  ),
                 if (imageKeys.isNotEmpty)
                   PopupMenuItem(
                     value: PopupMenuEmojiActions.export,
