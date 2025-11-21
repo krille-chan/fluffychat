@@ -3487,5 +3487,21 @@
         }
     },
     "backToMainChat": "返回主聊天",
-    "@backToMainChat": {}
+    "@backToMainChat": {},
+    "saveChanges": "保存更改",
+    "@saveChanges": {},
+    "createSticker": "创建贴纸或表情图片",
+    "@createSticker": {},
+    "useAsSticker": "用作贴纸",
+    "@useAsSticker": {},
+    "useAsEmoji": "用作表情图片",
+    "@useAsEmoji": {},
+    "stickerPackNameAlreadyExists": "贴纸包名已存在",
+    "@stickerPackNameAlreadyExists": {},
+    "newStickerPack": "新建贴纸包",
+    "@newStickerPack": {},
+    "stickerPackName": "贴纸包名",
+    "@stickerPackName": {},
+    "attribution": "作者",
+    "@attribution": {}
 }
