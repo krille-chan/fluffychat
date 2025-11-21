@@ -5,6 +5,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/mxc_image_viewer.dart';
@@ -38,6 +39,9 @@ class EmotesSettingsView extends StatelessWidget {
     if (packKeys != null && packKeys.isEmpty) {
       packKeys.add('');
     }
+    final attributionUrl = Uri.tryParse(
+      controller.packAttributionController.text,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -175,10 +179,19 @@ class EmotesSettingsView extends StatelessWidget {
                   maxLength: 256,
                   controller: controller.packAttributionController,
                   readOnly: controller.readonly,
+                  keyboardType: TextInputType.url,
                   onSubmitted: (_) => controller.submitAttributionAction(),
                   decoration: InputDecoration(
                     counter: const SizedBox.shrink(),
                     labelText: L10n.of(context).attribution,
+                    suffixIcon: attributionUrl == null
+                        ? null
+                        : IconButton(
+                            icon: const Icon(Icons.link_outlined),
+                            onPressed: () =>
+                                UrlLauncher(context, attributionUrl.toString())
+                                    .launchUrl(),
+                          ),
                   ),
                 ),
               ),
