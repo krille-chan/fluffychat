@@ -52,12 +52,11 @@ class ChatView extends StatelessWidget {
             onPressed: () => controller
                 .enterThread(controller.selectedEvents.single.eventId),
           ),
-        if (controller.canPinSelectedEvents)
-          IconButton(
-            icon: const Icon(Icons.push_pin_outlined),
-            onPressed: controller.pinEvent,
-            tooltip: L10n.of(context).pinMessage,
-          ),
+        IconButton(
+          icon: const Icon(Icons.copy_outlined),
+          tooltip: L10n.of(context).copyToClipboard,
+          onPressed: controller.copyEventsAction,
+        ),
         if (controller.canRedactSelectedEvents)
           IconButton(
             icon: const Icon(Icons.delete_outlined),
@@ -79,18 +78,19 @@ class ChatView extends StatelessWidget {
               }
             },
             itemBuilder: (context) => [
-              PopupMenuItem(
-                onTap: controller.copyEventsAction,
-                value: null,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.copy_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context).copy),
-                  ],
+              if (controller.canPinSelectedEvents)
+                PopupMenuItem(
+                  onTap: controller.pinEvent,
+                  value: null,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.push_pin_outlined),
+                      const SizedBox(width: 12),
+                      Text(L10n.of(context).pinMessage),
+                    ],
+                  ),
                 ),
-              ),
               if (controller.canSaveSelectedEvent)
                 PopupMenuItem(
                   onTap: () => controller.saveSelectedEvent(context),
