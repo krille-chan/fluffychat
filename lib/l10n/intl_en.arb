@@ -3016,6 +3016,8 @@
   "@incomingMessages": {},
   "stickers": "Stickers",
   "@stickers": {},
+  "gifs": "GIFs",
+  "@gifs": {},
   "discover": "Discover",
   "@discover": {},
   "commandHint_ignore": "Ignore the given matrix ID",
