@@ -343,7 +343,7 @@ o9(d,e){return d+" "+e+"ni blokdan chiqardi"},
 goa(){return"Qurilmani blokdan chiqarish"},
 gjP(){return"Notanish qurilma"},
 gjQ(){return"Noma\u2019lum shifrlash algoritmi"},
-ob(d){return"Noma\u2019lum shifrlash algoritmi"},
+ob(d){return"Noma\u2019lum hodisa '"+d+"'"},
 gjR(){return"Suhbatni ovozli qilish"},
 geH(){return"Olib tashlash"},
 og(d,e){return d+" va yana "+e+" kishi yozmoqda\u2026"},
@@ -387,7 +387,7 @@ gnW(){return"Foydalanuvchi haqida xabar berish"},
 nO(d,e){return d+" "+e+" bilan reaksiya bildirdi"},
 gnD(){return"Xonaga mahkamlash"},
 glv(){return"Tadbirni butunlay olib tashlashga ishonchingiz komilmi?"},
-git(){return"Emojis"},
+git(){return"Emojilar"},
 gnE(){return"Qo\u02bbng\u02bbiroq qilish"},
 goz(){return"Ovozli qo\u02bbng\u02bbiroq"},
 gov(){return"Iltimos, video qo\u02bbng\u02bbiroqlar hozirda beta-versiyada ekanligini unutmang. Ular kutilganidek ishlamasligi yoki barcha platformalarda umuman ishlamasligi mumkin."},
@@ -629,7 +629,7 @@ glL(){return"Taklifni rad etish"},
 gpB(){return"Hozircha xabarlar yo\u2018q"},
 gp9(){return"Yangi quyi maydon"},
 gpz(){return"Boshqa maydonga o\u2018tish"},
-gpF(){return"Chat maydondan olib tashlanadi, lekin hali ham chatlar ro\u2018yxatida chiqadi."},
+gpF(){return"Suhbat maydondan olib tashlanadi, lekin hali ham suhbatlarlar ro\u2018yxatida chiqadi."},
 ps(d){return""+d+" suhbatlar"},
 pf(d){return d+" maydoni a\u2019zosi"},
 pg(d){return d+" maydoni a\u2019zosi eshikni taqillatishi mumkin"},
@@ -663,5 +663,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G9,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"G9":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["8l6Smy2fNlR+numjEQQ1WcnGIpk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["6oSQQAWN/9CjglW9N94lvt24QuY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_323.part.js.map
