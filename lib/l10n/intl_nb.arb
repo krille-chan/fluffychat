@@ -3244,5 +3244,13 @@
     "answersVisible": "Svar synlige",
     "@answersVisible": {},
     "answersHidden": "Svar skjult",
-    "@answersHidden": {}
+    "@answersHidden": {},
+    "addAnswerOption": "Legg til svaralternativ",
+    "@addAnswerOption": {},
+    "answerOption": "Svaralternativ",
+    "@answerOption": {},
+    "allowMultipleAnswers": "Tillat flere svar",
+    "@allowMultipleAnswers": {},
+    "pollHasBeenEnded": "Avstemningen er avsluttet",
+    "@pollHasBeenEnded": {}
 }
