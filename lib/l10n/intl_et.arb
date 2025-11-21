@@ -3487,5 +3487,21 @@
     "thread": "Jutulõng",
     "@thread": {},
     "backToMainChat": "Tagasi põhivestlusesse",
-    "@backToMainChat": {}
+    "@backToMainChat": {},
+    "saveChanges": "Salvesta muudatused",
+    "@saveChanges": {},
+    "createSticker": "Loo kleeps või emoji",
+    "@createSticker": {},
+    "useAsSticker": "Kasuta kleepsuna",
+    "@useAsSticker": {},
+    "useAsEmoji": "Kasuta emojina",
+    "@useAsEmoji": {},
+    "stickerPackNameAlreadyExists": "Selline kleepsupaki nimi on juba olemas",
+    "@stickerPackNameAlreadyExists": {},
+    "newStickerPack": "Uus kleepsupakk",
+    "@newStickerPack": {},
+    "stickerPackName": "Kleepsupaki nimi",
+    "@stickerPackName": {},
+    "attribution": "Autoriõigused",
+    "@attribution": {}
 }
