@@ -13,7 +13,7 @@ jobs:
         number: ${{ github.event.issue.number }}
         GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Check duplicates
         run: |
           title=$(printf %q "${{ env.title }}")
