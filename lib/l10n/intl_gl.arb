@@ -3487,5 +3487,21 @@
     "thread": "Fío",
     "@thread": {},
     "backToMainChat": "Volver á conversa principal",
-    "@backToMainChat": {}
+    "@backToMainChat": {},
+    "attribution": "Atribución",
+    "@attribution": {},
+    "saveChanges": "Gardar cambios",
+    "@saveChanges": {},
+    "createSticker": "Crear adhesivo ou emoji",
+    "@createSticker": {},
+    "useAsSticker": "Usar como adhesivo",
+    "@useAsSticker": {},
+    "useAsEmoji": "Usar como emoji",
+    "@useAsEmoji": {},
+    "stickerPackNameAlreadyExists": "Xa existe ese nome de paquete de adhesivos",
+    "@stickerPackNameAlreadyExists": {},
+    "newStickerPack": "Novo paquete de adhesivos",
+    "@newStickerPack": {},
+    "stickerPackName": "Nome do paquete de adhesivos",
+    "@stickerPackName": {}
 }
