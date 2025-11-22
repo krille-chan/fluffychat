@@ -144,7 +144,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                       OutlinedButton.icon(
                         onPressed: () => UrlLauncher(
                           context,
-                          'https://matrix.to/#/#fluffychat-stickers:janian.de',
+                          AppConfig.howDoIGetStickersTutorial,
                         ).launchUrl(),
                         icon: const Icon(Icons.explore_outlined),
                         label: Text(L10n.of(context).discover),

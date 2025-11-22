@@ -27,6 +27,8 @@ abstract class AppConfig {
       'https://fluffy.chat/faq/#how_to_use_end_to_end_encryption';
   static const String startChatTutorial =
       'https://fluffy.chat/faq/#how_do_i_find_other_users';
+  static const String howDoIGetStickersTutorial =
+      'https://fluffy.chat/faq/#how_do_i_get_stickers';
   static const String appId = 'im.fluffychat.FluffyChat';
   static const String appOpenUrlScheme = 'im.fluffychat';
 
