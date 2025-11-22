@@ -3470,5 +3470,21 @@
     "thread": "Pavediens",
     "@thread": {},
     "backToMainChat": "Atgriezties galvenajā tērzēšanā",
-    "@backToMainChat": {}
+    "@backToMainChat": {},
+    "saveChanges": "Saglabāt izmaiņas",
+    "@saveChanges": {},
+    "createSticker": "Izveidot uzlīmi vai emocijzīmi",
+    "@createSticker": {},
+    "useAsSticker": "Izmantot kā uzlīmi",
+    "@useAsSticker": {},
+    "useAsEmoji": "Izmantot kā emocijzīmi",
+    "@useAsEmoji": {},
+    "stickerPackNameAlreadyExists": "Uzlīmju pakas nosaukums jau pastāv",
+    "@stickerPackNameAlreadyExists": {},
+    "newStickerPack": "Jauna uzlīmju paka",
+    "@newStickerPack": {},
+    "stickerPackName": "Uzlīmju pakas nosaukums",
+    "@stickerPackName": {},
+    "attribution": "Piedēvējums",
+    "@attribution": {}
 }
