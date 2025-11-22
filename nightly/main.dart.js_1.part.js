@@ -652,14 +652,14 @@ pt(d){var y=null
 return B.bA(d,y,this.a,y,"\u5219\u56de\u590d",""+d+" \u5219\u56de\u590d",y,y)},
 gpH(){return"\u561f\u6587\u4e32"},
 gpq(){return"\u8fd4\u56de\u4e3b\u804a\u5929"},
-gpe(){return"Save changes"},
-gpv(){return"Create sticker or emoji"},
-gpJ(){return"Use as sticker"},
-gpI(){return"Use as emoji"},
-gpi(){return"Sticker pack name already exists"},
-gpA(){return"New sticker pack"},
-gph(){return"Sticker pack name"},
-gpp(d){return"Attribution"},
+gpe(){return"\u4fdd\u5b58\u66f4\u6539"},
+gpv(){return"\u521b\u5efa\u8d34\u7eb8\u6216\u8868\u60c5\u56fe\u7247"},
+gpJ(){return"\u7528\u4f5c\u8d34\u7eb8"},
+gpI(){return"\u7528\u4f5c\u8868\u60c5\u56fe\u7247"},
+gpi(){return"\u8d34\u7eb8\u5305\u540d\u5df2\u5b58\u5728"},
+gpA(){return"\u65b0\u5efa\u8d34\u7eb8\u5305"},
+gph(){return"\u8d34\u7eb8\u5305\u540d"},
+gpp(d){return"\u4f5c\u8005"},
 A(d,e){return this.gbc(this).$1(e)}}
 A.Gc.prototype={
 gkX(){return"false"},
@@ -1279,5 +1279,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.AV,C.aE)
 y(A.Gc,A.AV)})()
 B.dP(b.typeUniverse,JSON.parse('{"AV":{"aE":[]},"Gc":{"aE":[]}}'))};
-(a=>{a["tvVbRwMfFmWwzEOFwu6QAC4JK5E="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["JVtBmfNUoJyJPaWVPz3G/WHHT4o="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
