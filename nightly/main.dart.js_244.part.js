@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cH2(){return new A.Fu(B.dg("de"))},
+cH6(){return new A.Fu(B.dg("de"))},
 Fu:function Fu(d){this.a=d}}
 B=c[0]
 C=c[55]
@@ -661,7 +661,7 @@ gpp(d){return"Attribution"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fu,C.aE)})()
-B.dP(b.typeUniverse,JSON.parse('{"Fu":{"aE":[]}}'))
+B.dQ(b.typeUniverse,JSON.parse('{"Fu":{"aE":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["oHlAv5u/m8Ep4SbKfmVdiCnuTK8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/Q2BBKm8AJPFKWIqlFGZd4WFyxE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_244.part.js.map

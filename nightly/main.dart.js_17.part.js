@@ -1,8 +1,8 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cHv(d){return new A.AU(B.dg(d))},
-cHw(){return new A.FX(B.dg("pt_BR"))},
-cHx(){return new A.FY(B.dg("pt_PT"))},
+cHz(d){return new A.AU(B.dg(d))},
+cHA(){return new A.FX(B.dg("pt_BR"))},
+cHB(){return new A.FY(B.dg("pt_PT"))},
 AU:function AU(d){this.a=d},
 FX:function FX(d){this.a=d},
 FY:function FY(d){this.a=d}},C
@@ -1530,7 +1530,7 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.AU,C.aE)
 w(A.AU,[A.FX,A.FY])})()
-B.dP(b.typeUniverse,JSON.parse('{"AU":{"aE":[]},"FX":{"aE":[]},"FY":{"aE":[]}}'))
+B.dQ(b.typeUniverse,JSON.parse('{"AU":{"aE":[]},"FX":{"aE":[]},"FY":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["FBUSlLk4n0CP236g5uzcwhdi3zI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["lQlh6NzzSsylSzwthRxqsc90cqo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_17.part.js.map
