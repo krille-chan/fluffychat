@@ -15,6 +15,7 @@ analyzer:
   errors:
     todo: ignore
     use_build_context_synchronously: ignore
+    deprecated_member_use: ignore
   exclude:
     - lib/generated_plugin_registrant.dart
     - lib/l10n/*.dart
