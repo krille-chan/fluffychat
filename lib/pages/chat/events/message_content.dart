@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
@@ -17,7 +18,6 @@ import '../../../config/app_config.dart';
 import '../../../utils/event_checkbox_extension.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
-import '../../bootstrap/bootstrap_dialog.dart';
 import 'audio_player.dart';
 import 'cute_events.dart';
 import 'html_message.dart';
@@ -59,9 +59,7 @@ class MessageContent extends StatelessWidget {
     }
     final client = Matrix.of(context).client;
     if (client.isUnknownSession && client.encryption!.crossSigning.enabled) {
-      final success = await BootstrapDialog(
-        client: Matrix.of(context).client,
-      ).show(context);
+      final success = await context.push('/backup');
       if (success != true) return;
     }
     event.requestKey();

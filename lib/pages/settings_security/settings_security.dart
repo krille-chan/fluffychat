@@ -9,7 +9,6 @@ import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart'
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../bootstrap/bootstrap_dialog.dart';
 import 'settings_security_view.dart';
 
 class SettingsSecurity extends StatefulWidget {
@@ -99,12 +98,6 @@ class SettingsSecurityController extends State<SettingsSecurity> {
             ),
           ),
     );
-  }
-
-  void showBootstrapDialog(BuildContext context) async {
-    await BootstrapDialog(
-      client: Matrix.of(context).client,
-    ).show(context);
   }
 
   Future<void> dehydrateAction() => Matrix.of(context).dehydrateAction(context);

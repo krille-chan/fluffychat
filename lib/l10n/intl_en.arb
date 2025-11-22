@@ -502,7 +502,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "chatBackupDescription": "Your old messages are secured with a recovery key. Please make sure you don't lose it.",
+  "chatBackupDescription": "Your messages are secured with a recovery key. Please make sure you don't lose it.",
   "@chatBackupDescription": {
     "type": "String",
     "placeholders": {}
@@ -3460,5 +3460,9 @@
   "stickerPackNameAlreadyExists": "Sticker pack name already exists",
   "newStickerPack": "New sticker pack",
   "stickerPackName": "Sticker pack name",
-  "attribution": "Attribution"
+  "attribution": "Attribution",
+  "skipChatBackup": "Skip chat backup",
+  "skipChatBackupWarning": "Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device.",
+  "loadingMessages": "Loading messages",
+  "setupChatBackup": "Set up chat backup"
 }
