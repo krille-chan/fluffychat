@@ -362,7 +362,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "你的旧消息受恢复密钥保护。请确保你不会丢失它。",
+    "chatBackupDescription": "你的消息受恢复密钥保护。请确保你不会丢失它。",
     "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
@@ -3503,5 +3503,13 @@
     "stickerPackName": "贴纸包名",
     "@stickerPackName": {},
     "attribution": "作者",
-    "@attribution": {}
+    "@attribution": {},
+    "skipChatBackup": "跳过聊天备份",
+    "@skipChatBackup": {},
+    "skipChatBackupWarning": "确定吗？不开启聊天备份，如果切换设备可能无法访问消息。",
+    "@skipChatBackupWarning": {},
+    "loadingMessages": "加载消息中",
+    "@loadingMessages": {},
+    "setupChatBackup": "设置聊天备份",
+    "@setupChatBackup": {}
 }
