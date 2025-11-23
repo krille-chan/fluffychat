@@ -54,7 +54,7 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>Share calendar dates with your contacts in FluffyChat.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Open the camera and take a picture to share them with your contacts on FluffyChat.</string>
+	<string>Take pictures, videos and make video calls with your contacts on FluffyChat.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>Share contacts with your contacts in FluffyChat.</string>
 	<key>NSFaceIDUsageDescription</key>
@@ -66,7 +66,7 @@
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Share your location with your contacts in FluffyChat.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Record voice message and share them with your contacts on FluffyChat.</string>
+	<string>Record voice messages and make voice/video calls with your contacts on FluffyChat.</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Share motions with your contacts in FluffyChat.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -79,6 +79,7 @@
 		<string>fetch</string>
 		<string>processing</string>
 		<string>remote-notification</string>
+		<string>voip</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

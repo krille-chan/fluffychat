@@ -17,12 +17,13 @@ import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/callkit/callkit_service.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/callkit/call_store.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
-import 'package:fluffychat/utils/voip_plugin.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -78,8 +79,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     return widget.clients[_activeClient];
   }
 
-  VoipPlugin? voipPlugin;
-
   bool get isMultiAccount => widget.clients.length > 1;
 
   int getClientIndexByMatrixId(String matrixId) =>
@@ -92,8 +91,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     final i = widget.clients.indexWhere((c) => c == cl);
     if (i != -1) {
       _activeClient = i;
-      // TODO: Multi-client VoiP support
-      createVoipPlugin();
     } else {
       Logs().w('Tried to set an unknown client ${cl!.userID} as active');
     }
@@ -308,6 +305,20 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   void initMatrix() {
+    // Initialize CallKit service
+    if (PlatformInfos.isMobile) {
+      CallKitService.instance.initialize();
+
+      // Set up call accepted callback
+      CallKitService.instance.onCallAccepted = (roomId, callUuid) async {
+        Logs().i(
+          '[Matrix] CallKit call accepted: roomId=$roomId, uuid=$callUuid',
+        );
+        // Navigate to call screen
+        FluffyChatApp.router.go('/rooms/$roomId/call');
+      };
+    }
+
     for (final c in widget.clients) {
       _registerSubs(c.clientName);
     }
@@ -343,16 +354,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         },
       );
     }
-
-    createVoipPlugin();
-  }
-
-  void createVoipPlugin() async {
-    if (AppSettings.experimentalVoip.value) {
-      voipPlugin = null;
-      return;
-    }
-    voipPlugin = VoipPlugin(this);
   }
 
   @override
@@ -383,6 +384,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onBlurSub?.cancel();
 
     linuxNotifications?.close();
+
+    // Dispose CallKit services
+    if (PlatformInfos.isMobile) {
+      CallKitService.instance.dispose();
+    }
 
     super.dispose();
   }

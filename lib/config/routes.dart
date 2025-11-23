@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fluffychat/pages/call/call_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -467,6 +468,16 @@ abstract class AppRoutes {
                     ),
                   ],
                   redirect: loggedOutRedirect,
+                ),
+                GoRoute(
+                  path: '/call',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    CallScreen(
+                      roomId: state.pathParameters['roomid']!,
+                    ),
+                  ),
                 ),
               ],
             ),

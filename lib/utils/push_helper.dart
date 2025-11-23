@@ -12,6 +12,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/callkit/callkit_service.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -19,6 +20,9 @@ import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
 const notificationAvatarDimension = 128;
+
+// De-duplication tracking for call notifications
+final Map<String, DateTime> _seenCalls = {}; // roomId -> timestamp
 
 Future<void> pushHelper(
   PushNotification notification, {
@@ -119,6 +123,100 @@ Future<void> _tryPushHelper(
     return;
   }
   Logs().v('Push helper got notification event of type ${event.type}.');
+
+  // Handle Element Call (org.matrix.msc3401.call.member) with CallKit
+  if (event.type == 'org.matrix.msc3401.call.member' &&
+      PlatformInfos.isMobile) {
+    client.backgroundSync = true;
+    Logs().i('Push helper: Element Call member event detected');
+    try {
+      // Check if this is a new call (not empty content = call ended)
+      final content = event.content;
+      if (content.isEmpty) {
+        Logs().v('Call member removed - call ended');
+        return;
+      }
+
+      // Skip if it's our own device
+      final stateKey = event.stateKey;
+      final userId = client.userID;
+      final deviceId = client.deviceID;
+      if (stateKey != null &&
+          userId != null &&
+          stateKey.contains(userId) &&
+          deviceId != null &&
+          stateKey.contains(deviceId)) {
+        Logs().v('Skipping own call.member event');
+        return;
+      }
+
+      // Extract call details
+      final callId = content['call_id'] as String?;
+      final expiresTs = content['expires_ts'] as int?;
+
+      if (callId == null || expiresTs == null) {
+        Logs().w('Invalid call.member event: missing call_id or expires_ts');
+        return;
+      }
+
+      // Check if call is expired
+      final now = DateTime.now().millisecondsSinceEpoch;
+      if (expiresTs < now) {
+        Logs().v('Ignoring expired call');
+        return;
+      }
+
+      // Get room
+      final roomId = notification.roomId;
+      if (roomId == null) {
+        Logs().w('No room ID in call event');
+        return;
+      }
+
+      // Check if we've already seen this call recently (de-duplication)
+      final lastSeen = _seenCalls[roomId];
+      if (lastSeen != null &&
+          DateTime.now().difference(lastSeen).inSeconds < 5) {
+        Logs().v('Already processed call notification: roomId=$roomId');
+        return;
+      }
+
+      // Mark as seen
+      _seenCalls[roomId] = DateTime.now();
+
+      // Clean up old seen calls (older than 1 minute)
+      _seenCalls.removeWhere((key, value) {
+        return DateTime.now().difference(value).inMinutes > 1;
+      });
+
+      final room = client.getRoomById(roomId);
+      if (room == null) {
+        Logs().w('Room not found: $roomId');
+        return;
+      }
+
+      // Get caller details
+      final senderId = event.senderId;
+      final caller = room.getState('m.room.member', senderId);
+      final callerName = caller?.content['displayname'] as String?;
+      final callerAvatarUrl = caller?.content['avatar_url'] as String?;
+      final callerAvatar =
+          callerAvatarUrl != null ? Uri.tryParse(callerAvatarUrl) : null;
+
+      // Show CallKit UI instead of regular notification
+      await CallKitService.instance.showIncomingCall(
+        room: room,
+        callerName: callerName,
+        callerAvatar: callerAvatar,
+      );
+
+      Logs().i('CallKit incoming call displayed for room: $roomId');
+      return; // Don't show regular notification
+    } catch (e, s) {
+      Logs().e('Failed to show CallKit for call event', e, s);
+      // Fall through to show regular notification on error
+    }
+  }
 
   if (event.type.startsWith('m.call')) {
     // make sure bg sync is on (needed to update hold, unhold events)

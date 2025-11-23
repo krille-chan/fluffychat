@@ -6,7 +6,6 @@ import 'package:badges/badges.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -135,14 +134,11 @@ class ChatView extends StatelessWidget {
       ];
     } else if (!controller.room.isArchived) {
       return [
-        if (AppSettings.experimentalVoip.value &&
-            Matrix.of(context).voipPlugin != null &&
-            controller.room.isDirectChat)
-          IconButton(
-            onPressed: controller.onPhoneButtonTap,
-            icon: const Icon(Icons.call_outlined),
-            tooltip: L10n.of(context).placeCall,
-          ),
+        IconButton(
+          onPressed: controller.onPhoneButtonTap,
+          icon: Icon(controller.hasActiveCall ? Icons.call : Icons.call_outlined),
+          tooltip: L10n.of(context).placeCall,
+        ),
         EncryptionButton(controller.room),
         ChatSettingsPopupMenu(controller.room, true),
       ];
