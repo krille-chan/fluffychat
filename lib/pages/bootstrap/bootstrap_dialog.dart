@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -419,8 +421,33 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                 },
                               );
                               if (req.error != null) return;
-                              await KeyVerificationDialog(request: req.result!)
-                                  .show(context);
+                              final success = await KeyVerificationDialog(
+                                request: req.result!,
+                              ).show(context);
+                              if (success != true) return;
+                              if (!mounted) return;
+
+                              final waitForSecret = Completer();
+                              final secretsSub = client
+                                  .encryption!.ssss.onSecretStored.stream
+                                  .listen((
+                                event,
+                              ) async {
+                                if (await client.encryption!.keyManager
+                                        .isCached() &&
+                                    await client.encryption!.crossSigning
+                                        .isCached()) {
+                                  waitForSecret.complete();
+                                }
+                              });
+
+                              final result = await showFutureLoadingDialog(
+                                context: context,
+                                future: () => waitForSecret.future,
+                              );
+                              await secretsSub.cancel();
+                              if (!mounted) return;
+                              if (!result.isError) _goBackAction(true);
                             },
                     ),
                     const SizedBox(height: 16),

@@ -14,7 +14,7 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
 class KeyVerificationDialog extends StatefulWidget {
-  Future<void> show(BuildContext context) => showAdaptiveDialog(
+  Future<bool?> show(BuildContext context) => showAdaptiveDialog<bool>(
         context: context,
         builder: (context) => this,
         barrierDismissible: false,
@@ -186,9 +186,9 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         );
         buttons.add(
           AdaptiveDialogAction(
-            onPressed: () => widget.request
-                .rejectVerification()
-                .then((_) => Navigator.of(context, rootNavigator: false).pop()),
+            onPressed: () => widget.request.rejectVerification().then(
+                  (_) => Navigator.of(context, rootNavigator: false).pop(false),
+                ),
             child: Text(
               L10n.of(context).reject,
               style: TextStyle(color: theme.colorScheme.error),
@@ -318,7 +318,8 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
             child: Text(
               L10n.of(context).close,
             ),
-            onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
+            onPressed: () =>
+                Navigator.of(context, rootNavigator: false).pop(true),
           ),
         );
         break;
@@ -342,7 +343,8 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
             child: Text(
               L10n.of(context).close,
             ),
-            onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
+            onPressed: () =>
+                Navigator.of(context, rootNavigator: false).pop(false),
           ),
         );
         break;
