@@ -89,8 +89,31 @@ class BootstrapDialogState extends State<BootstrapDialog> {
     _goBackAction(false);
   }
 
-  void _goBackAction(bool success) =>
-      context.canPop() ? context.pop(success) : context.go('/rooms');
+  void _goBackAction(bool success) {
+    if (success) _decryptLastEvents();
+
+    context.canPop() ? context.pop(success) : context.go('/rooms');
+  }
+
+  void _decryptLastEvents() async {
+    for (final room in client.rooms) {
+      final event = room.lastEvent;
+      if (event != null &&
+          event.type == EventTypes.Encrypted &&
+          event.messageType == MessageTypes.BadEncrypted &&
+          event.content['can_request_session'] == true) {
+        final sessionId = event.content.tryGet<String>('session_id');
+        final senderKey = event.content.tryGet<String>('sender_key');
+        if (sessionId != null && senderKey != null) {
+          room.client.encryption?.keyManager.maybeAutoRequest(
+            room.id,
+            sessionId,
+            senderKey,
+          );
+        }
+      }
+    }
+  }
 
   void _createBootstrap(bool wipe) async {
     await client.roomsLoading;
@@ -536,7 +559,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
           );
           buttons.add(
             ElevatedButton(
-              onPressed: () => _goBackAction(false),
+              onPressed: () => _goBackAction(true),
               child: Text(L10n.of(context).close),
             ),
           );
