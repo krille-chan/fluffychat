@@ -3503,5 +3503,13 @@
     "stickerPackName": "Kleepsupaki nimi",
     "@stickerPackName": {},
     "attribution": "Autoriõigused",
-    "@attribution": {}
+    "@attribution": {},
+    "skipChatBackup": "Jäta vestluse varundamine vahele",
+    "@skipChatBackup": {},
+    "skipChatBackupWarning": "Kas oled kindel? Kui sa pole lülitanud sisse vestluste krüptovõtmete varundust, siis võid oma seadme vahetamisel kaotada ligipääsu oma senistele sõnumitele.",
+    "@skipChatBackupWarning": {},
+    "loadingMessages": "Laadin sõnumeid",
+    "@loadingMessages": {},
+    "setupChatBackup": "Võta kasutusele vestluste varundus",
+    "@setupChatBackup": {}
 }
