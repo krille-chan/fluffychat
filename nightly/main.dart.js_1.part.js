@@ -89,7 +89,7 @@ ghJ(){return"\u52a0\u5bc6\u5df2\u88ab\u7834\u574f"},
 ger(){return"\u804a\u5929"},
 gk6(){return"\u4f60\u7684\u804a\u5929\u8bb0\u5f55\u5907\u4efd\u5df2\u8bbe\u7f6e\u3002"},
 ges(){return"\u804a\u5929\u8bb0\u5f55\u5907\u4efd"},
-ghK(){return"\u4f60\u7684\u65e7\u6d88\u606f\u53d7\u6062\u590d\u5bc6\u94a5\u4fdd\u62a4\u3002\u8bf7\u786e\u4fdd\u4f60\u4e0d\u4f1a\u4e22\u5931\u5b83\u3002"},
+ghK(){return"\u4f60\u7684\u6d88\u606f\u53d7\u6062\u590d\u5bc6\u94a5\u4fdd\u62a4\u3002\u8bf7\u786e\u4fdd\u4f60\u4e0d\u4f1a\u4e22\u5931\u5b83\u3002"},
 gf4(){return"\u804a\u5929\u8be6\u60c5"},
 gf5(){return"\u804a\u5929"},
 ghL(){return"\u8f93\u5165\u4e00\u4e2a\u5f3a\u5bc6\u7801"},
@@ -660,10 +660,10 @@ gpl(){return"\u8d34\u7eb8\u5305\u540d\u5df2\u5b58\u5728"},
 gpE(){return"\u65b0\u5efa\u8d34\u7eb8\u5305"},
 gpk(){return"\u8d34\u7eb8\u5305\u540d"},
 gps(d){return"\u4f5c\u8005"},
-gpg(){return"Skip chat backup"},
-gph(){return"Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device."},
-gpC(){return"Loading messages"},
-gpf(){return"Set up chat backup"},
+gpg(){return"\u8df3\u8fc7\u804a\u5929\u5907\u4efd"},
+gph(){return"\u786e\u5b9a\u5417\uff1f\u4e0d\u5f00\u542f\u804a\u5929\u5907\u4efd\uff0c\u5982\u679c\u5207\u6362\u8bbe\u5907\u53ef\u80fd\u65e0\u6cd5\u8bbf\u95ee\u6d88\u606f\u3002"},
+gpC(){return"\u52a0\u8f7d\u6d88\u606f\u4e2d"},
+gpf(){return"\u8bbe\u7f6e\u804a\u5929\u5907\u4efd"},
 A(d,e){return this.gbc(this).$1(e)}}
 A.Gd.prototype={
 gkX(){return"false"},
@@ -1283,5 +1283,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.AW,C.aE)
 y(A.Gd,A.AW)})()
 B.dP(b.typeUniverse,JSON.parse('{"AW":{"aE":[]},"Gd":{"aE":[]}}'))};
-(a=>{a["8SJ+Bu53GzPeytc9PXCEOD2UZlI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["De5TbNPWXd5L2bHKTMzBsRcQpjA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
