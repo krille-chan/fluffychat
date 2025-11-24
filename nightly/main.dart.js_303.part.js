@@ -650,14 +650,14 @@ pw(d){var y=""+d
 return B.bA(d,null,this.a,null,y+" atbilde",y+" atbildes",null,y+" atbil\u017eu")},
 gpL(){return"Pavediens"},
 gpt(){return"Atgriezties galvenaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
-gpe(){return"Save changes"},
-gpy(){return"Create sticker or emoji"},
-gpN(){return"Use as sticker"},
-gpM(){return"Use as emoji"},
-gpl(){return"Sticker pack name already exists"},
-gpE(){return"New sticker pack"},
-gpk(){return"Sticker pack name"},
-gps(d){return"Attribution"},
+gpe(){return"Saglab\u0101t izmai\u0146as"},
+gpy(){return"Izveidot uzl\u012bmi vai emocijz\u012bmi"},
+gpN(){return"Izmantot k\u0101 uzl\u012bmi"},
+gpM(){return"Izmantot k\u0101 emocijz\u012bmi"},
+gpl(){return"Uzl\u012bmju pakas nosaukums jau past\u0101v"},
+gpE(){return"Jauna uzl\u012bmju paka"},
+gpk(){return"Uzl\u012bmju pakas nosaukums"},
+gps(d){return"Pied\u0113v\u0113jums"},
 gpg(){return"Skip chat backup"},
 gph(){return"Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device."},
 gpC(){return"Loading messages"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FU,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"FU":{"aE":[]}}'))};
-(a=>{a["uSbKbNPRiRUpa1MOsHR8YPY/6Y0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["setaTK+ZyJIFV1YACpgMUfyvpc0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map
