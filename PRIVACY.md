@@ -26,7 +26,7 @@ More information is available at: [https://pub.dev/packages/sqflite](https://pub
 ## <a id="encryption" href="#encryption">#</a> Encryption
 All communication of substantive content between Fluffychat and any server is done in secure way, using transport encryption to protect it.
 
-FluffyChat also uses End-To-End-Encryption by using [libolm](https://gitlab.matrix.org/matrix-org/olm) and enables it by default for private chats.
+FluffyChat also uses End-To-End-Encryption by using [Vodozemac](https://github.com/matrix-org/vodozemac) and enables it by default for private chats.
 
 ## <a id="app-permissions" href="#app-permissions">#</a> App Permissions
 
@@ -59,7 +59,7 @@ FluffyChat uses the Firebase Cloud Messaging service for push notifications on A
 4. The device receives the push notification from Firebase Cloud Messaging and displays it as a notification
 
 The source code of the push gateway can be viewed here:
-[https://gitlab.com/famedly/services/famedly-push-gateway](https://gitlab.com/famedly/services/famedly-push-gateway)
+[https://github.com/krille-chan/fluffygate](https://github.com/krille-chan/fluffygate)
 
 `event_id_only` is used as the format for the push notification. A typical push notification therefore only contains:
 - Event ID
