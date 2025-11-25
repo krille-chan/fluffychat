@@ -1,8 +1,8 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cHB(d){return new A.AV(B.dg(d))},
-cHC(){return new A.FY(B.dg("pt_BR"))},
-cHD(){return new A.FZ(B.dg("pt_PT"))},
+cHC(d){return new A.AV(B.dg(d))},
+cHD(){return new A.FY(B.dg("pt_BR"))},
+cHE(){return new A.FZ(B.dg("pt_PT"))},
 AV:function AV(d){this.a=d},
 FY:function FY(d){this.a=d},
 FZ:function FZ(d){this.a=d}},C
@@ -1536,5 +1536,5 @@ x(A.AV,C.aE)
 w(A.AV,[A.FY,A.FZ])})()
 B.dP(b.typeUniverse,JSON.parse('{"AV":{"aE":[]},"FY":{"aE":[]},"FZ":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["dRE5SyKhB1Zbodzyy+eIYG4gkrk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["lITadoicY/rmDez4J3KCdh3evnU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_17.part.js.map
