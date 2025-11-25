@@ -21,6 +21,7 @@ class _LockScreenState extends State<LockScreen> {
   final TextEditingController _textEditingController = TextEditingController();
 
   void tryUnlock(String text) async {
+    text = text.trim();
     setState(() {
       _errorText = null;
     });
@@ -35,7 +36,7 @@ class _LockScreenState extends State<LockScreen> {
       return;
     }
 
-    if (AppLock.of(context).unlock(enteredPin.toString())) {
+    if (AppLock.of(context).unlock(text)) {
       setState(() {
         _inputBlocked = false;
         _errorText = null;
@@ -60,57 +61,59 @@ class _LockScreenState extends State<LockScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(L10n.of(context).pleaseEnterYourPin),
-        centerTitle: true,
-      ),
-      extendBodyBehindAppBar: true,
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: FluffyThemes.columnWidth,
-            ),
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                Center(
-                  child: Image.asset(
-                    'assets/info-logo.png',
-                    width: 256,
-                  ),
-                ),
-                TextField(
-                  controller: _textEditingController,
-                  textInputAction: TextInputAction.done,
-                  keyboardType: TextInputType.number,
-                  obscureText: true,
-                  autofocus: true,
-                  textAlign: TextAlign.center,
-                  readOnly: _inputBlocked,
-                  onChanged: tryUnlock,
-                  onSubmitted: tryUnlock,
-                  style: const TextStyle(fontSize: 40),
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(4),
-                  ],
-                  decoration: InputDecoration(
-                    errorText: _errorText,
-                    hintText: '****',
-                    suffix: IconButton(
-                      icon: const Icon(Icons.lock_open_outlined),
-                      onPressed: () => tryUnlock(_textEditingController.text),
+    return ScaffoldMessenger(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(L10n.of(context).pleaseEnterYourPin),
+          centerTitle: true,
+        ),
+        extendBodyBehindAppBar: true,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: FluffyThemes.columnWidth,
+              ),
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  Center(
+                    child: Image.asset(
+                      'assets/info-logo.png',
+                      width: 256,
                     ),
                   ),
-                ),
-                if (_inputBlocked)
-                  const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: LinearProgressIndicator(),
+                  TextField(
+                    controller: _textEditingController,
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.number,
+                    obscureText: true,
+                    autofocus: true,
+                    textAlign: TextAlign.center,
+                    readOnly: _inputBlocked,
+                    onChanged: tryUnlock,
+                    onSubmitted: tryUnlock,
+                    style: const TextStyle(fontSize: 40),
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(4),
+                    ],
+                    decoration: InputDecoration(
+                      errorText: _errorText,
+                      hintText: '****',
+                      suffix: IconButton(
+                        icon: const Icon(Icons.lock_open_outlined),
+                        onPressed: () => tryUnlock(_textEditingController.text),
+                      ),
+                    ),
                   ),
-              ],
+                  if (_inputBlocked)
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: LinearProgressIndicator(),
+                    ),
+                ],
+              ),
             ),
           ),
         ),
