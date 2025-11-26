@@ -68,16 +68,18 @@ class _EditContent extends StatelessWidget {
           color: theme.colorScheme.primary,
         ),
         Container(width: 15.0),
-        Text(
-          event.calcLocalizedBodyFallback(
-            MatrixLocals(L10n.of(context)),
-            withSenderNamePrefix: false,
-            hideReply: true,
-          ),
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-          style: TextStyle(
-            color: theme.textTheme.bodyMedium!.color,
+        Flexible(
+          child: Text(
+            event.calcLocalizedBodyFallback(
+              MatrixLocals(L10n.of(context)),
+              withSenderNamePrefix: false,
+              hideReply: true,
+            ),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: TextStyle(
+              color: theme.textTheme.bodyMedium!.color,
+            ),
           ),
         ),
       ],
