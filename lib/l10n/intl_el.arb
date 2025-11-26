@@ -431,5 +431,73 @@
                 "type": "String"
             }
         }
+    },
+    "changedTheProfileAvatar": "Ο χρήστης {username} άλλαξε την εικόνα προφίλ του",
+    "@changedTheProfileAvatar": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changePassword": "Αλλαγή κωδικού πρόσβασης",
+    "@changePassword": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changeTheme": "Άλλαξε το στυλ σου",
+    "@changeTheme": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changeYourAvatar": "Αλλαγή εικόνας προφιλ",
+    "@changeYourAvatar": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "joinedChats": "Συνδεδεμένες συνομιλίες",
+    "@joinedChats": {},
+    "chatBackup": "Αντίγραφο ασφαλείας συνομιλίας",
+    "@chatBackup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatDetails": "Λεπτομέρειες συνομιλίας",
+    "@chatDetails": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatHasBeenAddedToThisSpace": "Η συνομιλία προστέθηκε στο δωμάτιο",
+    "@chatHasBeenAddedToThisSpace": {},
+    "chats": "Συνομιλίες",
+    "@chats": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chooseAStrongPassword": "Εισάγετε ένα δυνατό κωδικό πρόσβασης",
+    "@chooseAStrongPassword": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "close": "Κλείσιμο",
+    "@close": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "commandHint_ban": "Αποκλεισμός χρήστη από το δωμάτιο",
+    "@commandHint_ban": {
+        "type": "String",
+        "description": "Usage hint for the command /ban"
+    },
+    "commandHint_clearcache": "Εκκαθάριση προσωρινής μνήμης",
+    "@commandHint_clearcache": {
+        "type": "String",
+        "description": "Usage hint for the command /clearcache"
+    },
+    "commandHint_invite": "Πρόσκληση αυτού του χρήστη στο δωμάτιο",
+    "@commandHint_invite": {
+        "type": "String",
+        "description": "Usage hint for the command /invite"
     }
 }

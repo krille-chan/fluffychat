@@ -382,7 +382,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Je oude berichten zijn beveiligd met een herstelsleutel. Zorg ervoor dat je deze niet verliest.",
+    "chatBackupDescription": "Je berichten zijn beveiligd met een herstelsleutel. Zorg ervoor dat je deze niet verliest.",
     "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
@@ -1163,7 +1163,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Houd er rekening mee dat je voorlopig Pantalaimon nodig hebt om eind-tot-eindversleuteling te gebruiken.",
+    "needPantalaimonWarning": "Houd er rekening mee dat je voorlopig Pantalaimon nodig hebt om eind-tot-eind versleuteling te gebruiken.",
     "@needPantalaimonWarning": {
         "type": "String",
         "placeholders": {}
@@ -2654,7 +2654,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "searchChatsRooms": "Zoek naar #chats, @personen...",
+    "searchChatsRooms": "Zoek #chats, @personen...",
     "@searchChatsRooms": {},
     "swipeRightToLeftToReply": "Veeg van rechts naar links om te reageren",
     "@swipeRightToLeftToReply": {},
@@ -2756,7 +2756,7 @@
     "@changeGeneralChatSettings": {},
     "restricted": "Beperkt",
     "@restricted": {},
-    "searchForUsers": "Zoek naar @personen...",
+    "searchForUsers": "Zoek @personen...",
     "@searchForUsers": {},
     "searchMore": "Zoek meer...",
     "@searchMore": {},
@@ -3486,5 +3486,29 @@
     "thread": "Draad",
     "@thread": {},
     "backToMainChat": "Terug naar hoofdchat",
-    "@backToMainChat": {}
+    "@backToMainChat": {},
+    "saveChanges": "Wijzigingen opslaan",
+    "@saveChanges": {},
+    "createSticker": "Sticker of emoji maken",
+    "@createSticker": {},
+    "useAsSticker": "Gebruik als sticker",
+    "@useAsSticker": {},
+    "useAsEmoji": "Gebruik als emoji",
+    "@useAsEmoji": {},
+    "stickerPackNameAlreadyExists": "Stickerpakketnaam bestaat al",
+    "@stickerPackNameAlreadyExists": {},
+    "newStickerPack": "Nieuw stickerpakket",
+    "@newStickerPack": {},
+    "stickerPackName": "Stickerpakketnaam",
+    "@stickerPackName": {},
+    "attribution": "Toeschrijving",
+    "@attribution": {},
+    "skipChatBackup": "Chatback-up overslaan",
+    "@skipChatBackup": {},
+    "skipChatBackupWarning": "Weet je het zeker? Zonder chat back-up verlies je toegang tot je berichten als je van apparaat wisselt.",
+    "@skipChatBackupWarning": {},
+    "loadingMessages": "Berichten laden",
+    "@loadingMessages": {},
+    "setupChatBackup": "Chatback-up instellen",
+    "@setupChatBackup": {}
 }
