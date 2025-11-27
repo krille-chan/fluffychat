@@ -93,7 +93,7 @@ gf5(){return"Chats"},
 ghL(){return"Kies een sterk wachtwoord"},
 gf6(){return"Archief wissen"},
 gck(d){return"Sluiten"},
-gln(){return"Markeer als priv\xe9berichtenkamer voor Matrix ID"},
+gln(){return"Markeer als priv\xe9berichtenkamer voor Matrix-ID"},
 glo(){return"Markeer als groep"},
 ghN(){return"Persoon uit deze chat verbannen"},
 ghO(){return"Cache wissen"},
@@ -447,7 +447,7 @@ gl1(){return"De persoon zal worden verbannen van de chat en kan niet meer toetre
 go8(){return"De persoon zal weer in staat zijn om de chat te betreden als ze het proberen."},
 gmr(){return"De persoon is verwijderd uit de chat, maar is niet verbannen. In openbare chats kan de persoon op elk moment opnieuw deelnemen."},
 gmv(){return"Wanneer je deze persoon beheerder maakt kun je dit niet ongedaan maken als jullie dezelfde rechten hebben."},
-goY(){return"Je Matrix ID is: "},
+goY(){return"Je Matrix-ID is: "},
 mL(d){return'Helaas kan er geen persoon gevonden worden met "'+d+'". Controleer of je een typfout hebt gemaakt.'},
 giX(){return"Kloppen"},
 lf(d){return"Chat kan worden gevonden via een zoekopdracht op "+d},
@@ -499,8 +499,8 @@ nX(d){return d+" vraagt een sleutelverificatie"},
 kI(d){return d+" start een sleutelverificatie"},
 gkK(){return"Stickers"},
 glQ(){return"Ontdek"},
-glm(){return"Negeer de gegeven Matrix ID"},
-glr(){return"Herstel de negeerde Matrix ID"},
+glm(){return"Negeer de gegeven Matrix-ID"},
+glr(){return"Herstel de negeerde Matrix-ID"},
 o0(d){return"Momenteel zijn er "+d+" personen geblokkeerd."},
 ka(d){return"Ga naar space: "+d},
 gmy(){return"Als ongelezen markeren"},
@@ -518,7 +518,7 @@ gli(){return"Stel het gewenste rechten-niveau in voor bepaalde acties in deze ch
 of(d){return"\ud83c\udf89 Update "+d+" ge\xefnstalleerd!"},
 gle(){return"Wijzigingengeschiedenis"},
 gkh(){return"Versturen geannuleerd"},
-gmu(){return"Inloggen met Matrix ID"},
+gmu(){return"Inloggen met Matrix-ID"},
 glR(){return"Ontdek servers"},
 goF(){return"Wat is een server?"},
 gmc(){return"Al je data is opgeslagen op de server, net als bij een email-leverancier. Je kan kiezen welke server je gebruikt en toch communiceren met iedereen. Lees meer op https://matrix.org."},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FW,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"FW":{"aE":[]}}'))};
-(a=>{a["Ogv1NhEAIyn777zzVnuP38ePw84="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["2UVOQ/dw0omkkEjM5ShJfOWljtQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map
