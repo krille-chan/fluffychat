@@ -1962,5 +1962,9 @@
     "@yourPublicKey": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "repeatPassword": "Ponovite lozinku",
+    "@repeatPassword": {},
+    "commandHint_cuddle": "Pošalji zagrljaj",
+    "@commandHint_cuddle": {}
 }
