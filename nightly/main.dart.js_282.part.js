@@ -87,7 +87,7 @@ ghJ(){return"A cifraxe est\xe1 estragada"},
 ges(){return"Conversa"},
 gk6(){return"Configurouse a copia de apoio da charla."},
 geu(){return"Copia de apoio"},
-ghK(){return"As mensaxes antigas est\xe1n protexidas cunha chave de recuperaci\xf3n. Pon coidado e non a perdas."},
+ghK(){return"As mensaxes est\xe1n protexidas cunha clave de recuperaci\xf3n. Pon coidado e non a perdas."},
 gf4(){return"Detalles da conversa"},
 gf5(){return"Conversas"},
 ghL(){return"Escolle un contrasinal forte"},
@@ -658,13 +658,13 @@ gpl(){return"Xa existe ese nome de paquete de adhesivos"},
 gpE(){return"Novo paquete de adhesivos"},
 gpk(){return"Nome do paquete de adhesivos"},
 gps(d){return"Atribuci\xf3n"},
-gpg(){return"Skip chat backup"},
-gph(){return"Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device."},
-gpC(){return"Loading messages"},
-gpf(){return"Set up chat backup"},
+gpg(){return"Omitir copia da conversa"},
+gph(){return"Tes certeza? A non activar a copia de apoio da conversa poder\xedas perder o acceso \xe1s mensaxes se cambias de dispositivo."},
+gpC(){return"Cargando mensaxes"},
+gpf(){return"Configurar copia de apoio"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FH,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"FH":{"aE":[]}}'))};
-(a=>{a["p5xrAyyyxfmtkVuqT9Mb49jcqB4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["VPBvQMzts7swBa4zTq1JgGoKnHU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_282.part.js.map

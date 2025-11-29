@@ -7,7 +7,7 @@ C=c[55]
 A=a.updateHolder(c[45],A)
 A.G3.prototype={
 gkX(){return"false"},
-gjH(){return"Repeat password"},
+gjH(){return"Ponovite lozinku"},
 gmN(){return"Not an image file."},
 gkx(){return"Set custom permission level"},
 gky(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
@@ -34,7 +34,7 @@ ghg(){return"\u0430\u043b\u0438\u0458\u0430\u0441"},
 ghh(){return"\u0421\u0432\u0438"},
 glp(){return"Upgrade this room to the given room version"},
 glk(){return"Send some googly eyes"},
-glj(){return"Send a cuddle"},
+glj(){return"Po\u0161alji zagrljaj"},
 gll(){return"Send a hug"},
 kb(d){return d+" sends you googly eyes"},
 lG(d){return d+" cuddles you"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G3,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"G3":{"aE":[]}}'))};
-(a=>{a["eZz0ynm998zB8blfyWwImfzk+Yo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+SVa8+HahrS+Dna8npyth2W5GA4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_322.part.js.map
