@@ -381,7 +381,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "As mensaxes antigas están protexidas cunha chave de recuperación. Pon coidado e non a perdas.",
+    "chatBackupDescription": "As mensaxes están protexidas cunha clave de recuperación. Pon coidado e non a perdas.",
     "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
@@ -3503,5 +3503,13 @@
     "newStickerPack": "Novo paquete de adhesivos",
     "@newStickerPack": {},
     "stickerPackName": "Nome do paquete de adhesivos",
-    "@stickerPackName": {}
+    "@stickerPackName": {},
+    "skipChatBackup": "Omitir copia da conversa",
+    "@skipChatBackup": {},
+    "skipChatBackupWarning": "Tes certeza? A non activar a copia de apoio da conversa poderías perder o acceso ás mensaxes se cambias de dispositivo.",
+    "@skipChatBackupWarning": {},
+    "loadingMessages": "Cargando mensaxes",
+    "@loadingMessages": {},
+    "setupChatBackup": "Configurar copia de apoio",
+    "@setupChatBackup": {}
 }
