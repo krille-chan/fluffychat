@@ -42,8 +42,10 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   /// well-known information and forwards to the login page depending on the
   /// login type.
   Future<void> checkHomeserverAction({bool legacyPasswordLogin = false}) async {
-    final homeserverInput =
-        homeserverController.text.trim().toLowerCase().replaceAll(' ', '-');
+    final homeserverInput = homeserverController.text
+        .trim()
+        .toLowerCase()
+        .replaceAll(' ', '-');
 
     if (homeserverInput.isEmpty) {
       final client = await Matrix.of(context).getLoginClient();
@@ -113,14 +115,12 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   void ssoLoginAction() async {
     final redirectUrl = kIsWeb
-        ? Uri.parse(html.window.location.href)
-            .resolveUri(
-              Uri(pathSegments: ['auth.html']),
-            )
-            .toString()
+        ? Uri.parse(
+            html.window.location.href,
+          ).resolveUri(Uri(pathSegments: ['auth.html'])).toString()
         : isDefaultPlatform
-            ? '${AppConfig.appOpenUrlScheme.toLowerCase()}://login'
-            : 'http://localhost:3001//login';
+        ? '${AppConfig.appOpenUrlScheme.toLowerCase()}://login'
+        : 'http://localhost:3001//login';
     final client = await Matrix.of(context).getLoginClient();
     final url = client.homeserver!.replace(
       path: '/_matrix/client/v3/login/sso/redirect',

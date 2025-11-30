@@ -8,19 +8,11 @@ extension ApplicationAccountConfigExtension on Client {
         accountData[accountDataKey]?.content ?? {},
       );
 
-  Future<void> setApplicationAccountConfig(
-    ApplicationAccountConfig config,
-  ) =>
-      setAccountData(
-        userID!,
-        accountDataKey,
-        config.toJson(),
-      );
+  Future<void> setApplicationAccountConfig(ApplicationAccountConfig config) =>
+      setAccountData(userID!, accountDataKey, config.toJson());
 
   /// Only updates the specified values in ApplicationAccountConfig
-  Future<void> updateApplicationAccountConfig(
-    ApplicationAccountConfig config,
-  ) {
+  Future<void> updateApplicationAccountConfig(ApplicationAccountConfig config) {
     final currentConfig = applicationAccountConfig;
     return setAccountData(
       userID!,
@@ -57,14 +49,15 @@ class ApplicationAccountConfig {
         wallpaperUrl: json['wallpaper_url'] is String
             ? Uri.tryParse(json['wallpaper_url'])
             : null,
-        wallpaperOpacity:
-            _sanitizedOpacity(json.tryGet<double>('wallpaper_opacity')),
+        wallpaperOpacity: _sanitizedOpacity(
+          json.tryGet<double>('wallpaper_opacity'),
+        ),
         wallpaperBlur: json.tryGet<double>('wallpaper_blur'),
       );
 
   Map<String, dynamic> toJson() => {
-        'wallpaper_url': wallpaperUrl?.toString(),
-        'wallpaper_opacity': wallpaperOpacity,
-        'wallpaper_blur': wallpaperBlur,
-      };
+    'wallpaper_url': wallpaperUrl?.toString(),
+    'wallpaper_opacity': wallpaperOpacity,
+    'wallpaper_blur': wallpaperBlur,
+  };
 }

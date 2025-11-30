@@ -23,9 +23,7 @@ class EmotesSettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     if (controller.widget.roomId != null && controller.room == null) {
       return Scaffold(
-        appBar: AppBar(
-          title: Text(L10n.of(context).oopsSomethingWentWrong),
-        ),
+        appBar: AppBar(title: Text(L10n.of(context).oopsSomethingWentWrong)),
         body: Center(
           child: Text(L10n.of(context).youAreNoLongerParticipatingInThisChat),
         ),
@@ -110,10 +108,7 @@ class EmotesSettingsView extends StatelessWidget {
                               horizontal: 4.0,
                             ),
                             child: FilterChip(
-                              label: const Icon(
-                                Icons.add_outlined,
-                                size: 20,
-                              ),
+                              label: const Icon(Icons.add_outlined, size: 20),
                               onSelected: controller.showSave
                                   ? null
                                   : (_) => controller.createImagePack(),
@@ -122,23 +117,24 @@ class EmotesSettingsView extends StatelessWidget {
                         }
                         i--;
                         final key = packKeys[i];
-                        final event = controller.room
-                            ?.getState('im.ponies.room_emotes', packKeys[i]);
+                        final event = controller.room?.getState(
+                          'im.ponies.room_emotes',
+                          packKeys[i],
+                        );
 
-                        final eventPack =
-                            event?.content.tryGetMap<String, Object?>('pack');
+                        final eventPack = event?.content
+                            .tryGetMap<String, Object?>('pack');
                         final packName =
                             eventPack?.tryGet<String>('display_name') ??
-                                eventPack?.tryGet<String>('name') ??
-                                (key.isNotEmpty ? key : 'Default');
+                            eventPack?.tryGet<String>('name') ??
+                            (key.isNotEmpty ? key : 'Default');
 
                         return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 4.0,
-                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
                           child: FilterChip(
                             label: Text(packName),
-                            selected: controller.stateKey == key ||
+                            selected:
+                                controller.stateKey == key ||
                                 (controller.stateKey == null && key.isEmpty),
                             onSelected: controller.showSave
                                 ? null
@@ -153,8 +149,8 @@ class EmotesSettingsView extends StatelessWidget {
       ),
       body: MaxWidthBody(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: .min,
+          crossAxisAlignment: .stretch,
           children: <Widget>[
             if (controller.room != null) ...[
               const SizedBox(height: 16),
@@ -188,9 +184,10 @@ class EmotesSettingsView extends StatelessWidget {
                         ? null
                         : IconButton(
                             icon: const Icon(Icons.link_outlined),
-                            onPressed: () =>
-                                UrlLauncher(context, attributionUrl.toString())
-                                    .launchUrl(),
+                            onPressed: () => UrlLauncher(
+                              context,
+                              attributionUrl.toString(),
+                            ).launchUrl(),
                           ),
                   ),
                 ),
@@ -283,25 +280,23 @@ class EmotesSettingsView extends StatelessWidget {
                                     ),
                                     onSubmitted: (s) =>
                                         controller.submitImageAction(
-                                      imageCode,
-                                      image,
-                                      textEditingController,
-                                    ),
+                                          imageCode,
+                                          image,
+                                          textEditingController,
+                                        ),
                                   ),
                                 ),
                               ),
                             ),
                             if (!controller.readonly)
                               PopupMenuButton<ImagePackUsage>(
-                                onSelected: (usage) => controller.toggleUsage(
-                                  imageCode,
-                                  usage,
-                                ),
+                                onSelected: (usage) =>
+                                    controller.toggleUsage(imageCode, usage),
                                 itemBuilder: (context) => [
                                   PopupMenuItem(
                                     value: ImagePackUsage.sticker,
                                     child: Row(
-                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisSize: .min,
                                       children: [
                                         if (image.usage?.contains(
                                               ImagePackUsage.sticker,
@@ -316,7 +311,7 @@ class EmotesSettingsView extends StatelessWidget {
                                   PopupMenuItem(
                                     value: ImagePackUsage.emoticon,
                                     child: Row(
-                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisSize: .min,
                                       children: [
                                         if (image.usage?.contains(
                                               ImagePackUsage.emoticon,
@@ -363,10 +358,8 @@ class _EmoteImage extends StatelessWidget {
     final key = 'sticker_preview_$mxc';
     return InkWell(
       borderRadius: BorderRadius.circular(4),
-      onTap: () => showDialog(
-        context: context,
-        builder: (_) => MxcImageViewer(mxc),
-      ),
+      onTap: () =>
+          showDialog(context: context, builder: (_) => MxcImageViewer(mxc)),
       child: MxcImage(
         key: ValueKey(key),
         cacheKey: key,

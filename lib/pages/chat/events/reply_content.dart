@@ -29,21 +29,22 @@ class ReplyContent extends StatelessWidget {
     final theme = Theme.of(context);
 
     final timeline = this.timeline;
-    final displayEvent =
-        timeline != null ? replyEvent.getDisplayEvent(timeline) : replyEvent;
+    final displayEvent = timeline != null
+        ? replyEvent.getDisplayEvent(timeline)
+        : replyEvent;
     final fontSize =
         AppConfig.messageFontSize * AppSettings.fontSizeFactor.value;
     final color = theme.brightness == Brightness.dark
         ? theme.colorScheme.onTertiaryContainer
         : ownMessage
-            ? theme.colorScheme.tertiaryContainer
-            : theme.colorScheme.tertiary;
+        ? theme.colorScheme.tertiaryContainer
+        : theme.colorScheme.tertiary;
 
     return Material(
       color: Colors.transparent,
       borderRadius: borderRadius,
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: <Widget>[
           Container(
             width: 5,
@@ -56,8 +57,8 @@ class ReplyContent extends StatelessWidget {
           const SizedBox(width: 6),
           Flexible(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: .start,
+              mainAxisAlignment: .center,
               children: <Widget>[
                 FutureBuilder<User?>(
                   initialData: displayEvent.senderFromMemoryOrFallback,
@@ -87,8 +88,8 @@ class ReplyContent extends StatelessWidget {
                     color: theme.brightness == Brightness.dark
                         ? theme.colorScheme.onSurface
                         : ownMessage
-                            ? theme.colorScheme.onTertiary
-                            : theme.colorScheme.onSurface,
+                        ? theme.colorScheme.onTertiary
+                        : theme.colorScheme.onSurface,
                     fontSize: fontSize,
                   ),
                 ),

@@ -36,10 +36,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
 
   @override
   Widget build(BuildContext context) {
-    notificationChangeSub ??= Matrix.of(context)
-        .client
-        .onSync
-        .stream
+    notificationChangeSub ??= Matrix.of(context).client.onSync.stream
         .where(
           (syncUpdate) =>
               syncUpdate.accountData?.any(
@@ -47,9 +44,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               ) ??
               false,
         )
-        .listen(
-          (u) => setState(() {}),
-        );
+        .listen((u) => setState(() {}));
     return Stack(
       alignment: Alignment.center,
       children: [

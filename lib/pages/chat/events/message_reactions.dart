@@ -17,8 +17,10 @@ class MessageReactions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final allReactionEvents =
-        event.aggregatedEvents(timeline, RelationshipTypes.reaction);
+    final allReactionEvents = event.aggregatedEvents(
+      timeline,
+      RelationshipTypes.reaction,
+    );
     final reactionMap = <String, _ReactionEntry>{};
     final client = Matrix.of(context).client;
 
@@ -113,7 +115,7 @@ class _Reaction extends StatelessWidget {
     Widget content;
     if (reactionKey.startsWith('mxc://')) {
       content = Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: <Widget>[
           MxcImage(
             uri: Uri.parse(reactionKey),
@@ -190,17 +192,14 @@ class _AdaptableReactorsDialog extends StatelessWidget {
   final Client? client;
   final _ReactionEntry? reactionEntry;
 
-  const _AdaptableReactorsDialog({
-    this.client,
-    this.reactionEntry,
-  });
+  const _AdaptableReactorsDialog({this.client, this.reactionEntry});
 
   Future<bool?> show(BuildContext context) => showAdaptiveDialog(
-        context: context,
-        builder: (context) => this,
-        barrierDismissible: true,
-        useRootNavigator: false,
-      );
+    context: context,
+    builder: (context) => this,
+    barrierDismissible: true,
+    useRootNavigator: false,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -226,9 +225,6 @@ class _AdaptableReactorsDialog extends StatelessWidget {
 
     final title = Center(child: Text(reactionEntry!.key));
 
-    return AlertDialog.adaptive(
-      title: title,
-      content: body,
-    );
+    return AlertDialog.adaptive(title: title, content: body);
   }
 }

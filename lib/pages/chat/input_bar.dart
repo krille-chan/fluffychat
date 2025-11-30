@@ -62,10 +62,7 @@ class InputBar extends StatelessWidget {
       final commandSearch = commandMatch[1]!.toLowerCase();
       for (final command in room.client.commands.keys) {
         if (command.contains(commandSearch)) {
-          ret.add({
-            'type': 'command',
-            'name': command,
-          });
+          ret.add({'type': 'command', 'name': command});
         }
 
         if (ret.length > maxResults) return ret;
@@ -107,8 +104,8 @@ class InputBar extends StatelessWidget {
               'type': 'emote',
               'name': emote.key,
               'pack': packSearch,
-              'pack_avatar_url':
-                  emotePacks[packSearch]!.pack.avatarUrl?.toString(),
+              'pack_avatar_url': emotePacks[packSearch]!.pack.avatarUrl
+                  ?.toString(),
               'pack_display_name':
                   emotePacks[packSearch]!.pack.displayName ?? packSearch,
               'mxc': emote.value.url.toString(),
@@ -159,8 +156,9 @@ class InputBar extends StatelessWidget {
       for (final user in room.getParticipants()) {
         if ((user.displayName != null &&
                 (user.displayName!.toLowerCase().contains(userSearch) ||
-                    slugify(user.displayName!.toLowerCase())
-                        .contains(userSearch))) ||
+                    slugify(
+                      user.displayName!.toLowerCase(),
+                    ).contains(userSearch))) ||
             user.id.split(':')[0].toLowerCase().contains(userSearch)) {
           ret.add({
             'type': 'user',
@@ -258,11 +256,7 @@ class InputBar extends StatelessWidget {
               style: const TextStyle(fontSize: 16),
             ),
           ),
-          title: Text(
-            label,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
+          title: Text(label, maxLines: 1, overflow: TextOverflow.ellipsis),
         ),
       );
     }
@@ -280,7 +274,7 @@ class InputBar extends StatelessWidget {
           isThumbnail: false,
         ),
         title: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: .center,
           children: <Widget>[
             Text(suggestion['name']!),
             Expanded(
@@ -311,7 +305,8 @@ class InputBar extends StatelessWidget {
         onTap: () => onSelected(suggestion),
         leading: Avatar(
           mxContent: url,
-          name: suggestion.tryGet<String>('displayname') ??
+          name:
+              suggestion.tryGet<String>('displayname') ??
               suggestion.tryGet<String>('mxid'),
           size: size,
           client: client,
@@ -323,8 +318,10 @@ class InputBar extends StatelessWidget {
   }
 
   String insertSuggestion(Map<String, String?> suggestion) {
-    final replaceText =
-        controller!.text.substring(0, controller!.selection.baseOffset);
+    final replaceText = controller!.text.substring(
+      0,
+      controller!.selection.baseOffset,
+    );
     var startText = '';
     final afterText = replaceText == controller!.text
         ? ''
@@ -409,10 +406,7 @@ class InputBar extends StatelessWidget {
               bytes: data,
               name: content.uri.split('/').last,
             );
-            room.sendFileEvent(
-              file,
-              shrinkImageMaxDimension: 1600,
-            );
+            room.sendFileEvent(file, shrinkImageMaxDimension: 1600);
           },
         ),
         minLines: minLines,

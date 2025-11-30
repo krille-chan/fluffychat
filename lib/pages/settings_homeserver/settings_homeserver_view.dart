@@ -30,15 +30,16 @@ class SettingsHomeserverView extends StatelessWidget {
         automaticallyImplyLeading: !FluffyThemes.isColumnMode(context),
         centerTitle: FluffyThemes.isColumnMode(context),
         title: Text(
-          L10n.of(context)
-              .aboutHomeserver(client.userID?.domain ?? 'Homeserver'),
+          L10n.of(
+            context,
+          ).aboutHomeserver(client.userID?.domain ?? 'Homeserver'),
         ),
       ),
       body: MaxWidthBody(
         withScrolling: true,
         child: SelectionArea(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: [
               ListTile(
                 title: Text(
@@ -68,9 +69,7 @@ class SettingsHomeserverView extends StatelessWidget {
                   }
                   if (data == null) {
                     return const Center(
-                      child: CircularProgressIndicator.adaptive(
-                        strokeWidth: 2,
-                      ),
+                      child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                     );
                   }
                   final supportPage = data.supportPage;
@@ -85,7 +84,7 @@ class SettingsHomeserverView extends StatelessWidget {
                     );
                   }
                   return Column(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: .min,
                     children: [
                       if (supportPage != null)
                         ListTile(
@@ -93,32 +92,28 @@ class SettingsHomeserverView extends StatelessWidget {
                           subtitle: Text(supportPage.toString()),
                         ),
                       if (contacts != null)
-                        ...contacts.map(
-                          (contact) {
-                            return ListTile(
-                              title: Text(
-                                contact.role.localizedString(
-                                  L10n.of(context),
-                                ),
-                              ),
-                              subtitle: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  if (contact.emailAddress != null)
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: Text(contact.emailAddress!),
-                                    ),
-                                  if (contact.matrixId != null)
-                                    TextButton(
-                                      onPressed: () {},
-                                      child: Text(contact.matrixId!),
-                                    ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
+                        ...contacts.map((contact) {
+                          return ListTile(
+                            title: Text(
+                              contact.role.localizedString(L10n.of(context)),
+                            ),
+                            subtitle: Column(
+                              mainAxisSize: .min,
+                              children: [
+                                if (contact.emailAddress != null)
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(contact.emailAddress!),
+                                  ),
+                                if (contact.matrixId != null)
+                                  TextButton(
+                                    onPressed: () {},
+                                    child: Text(contact.matrixId!),
+                                  ),
+                              ],
+                            ),
+                          );
+                        }),
                     ],
                   );
                 },
@@ -129,7 +124,7 @@ class SettingsHomeserverView extends StatelessWidget {
                   final error = snapshot.error;
                   if (error != null) {
                     return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: .center,
                       children: [
                         Icon(
                           Icons.error_outlined,
@@ -139,9 +134,7 @@ class SettingsHomeserverView extends StatelessWidget {
                         Text(
                           error.toLocalizedString(context),
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: theme.colorScheme.error,
-                          ),
+                          style: TextStyle(color: theme.colorScheme.error),
                         ),
                       ],
                     );
@@ -149,13 +142,11 @@ class SettingsHomeserverView extends StatelessWidget {
                   final data = snapshot.data;
                   if (data == null) {
                     return const Center(
-                      child: CircularProgressIndicator.adaptive(
-                        strokeWidth: 2,
-                      ),
+                      child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                     );
                   }
                   return Column(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: .min,
                     children: [
                       ListTile(
                         title: Text(L10n.of(context).name),
@@ -169,8 +160,9 @@ class SettingsHomeserverView extends StatelessWidget {
                         title: const Text('Federation Base URL'),
                         subtitle: Linkify(
                           text: data.federationBaseUrl.toString(),
-                          textScaleFactor:
-                              MediaQuery.textScalerOf(context).scale(1),
+                          textScaleFactor: MediaQuery.textScalerOf(
+                            context,
+                          ).scale(1),
                           options: const LinkifyOptions(humanize: false),
                           linkStyle: TextStyle(
                             color: theme.colorScheme.primary,
@@ -191,7 +183,7 @@ class SettingsHomeserverView extends StatelessWidget {
                   final error = snapshot.error;
                   if (error != null) {
                     return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: .center,
                       children: [
                         Icon(
                           Icons.error_outlined,
@@ -201,9 +193,7 @@ class SettingsHomeserverView extends StatelessWidget {
                         Text(
                           error.toLocalizedString(context),
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: theme.colorScheme.error,
-                          ),
+                          style: TextStyle(color: theme.colorScheme.error),
                         ),
                       ],
                     );
@@ -211,14 +201,12 @@ class SettingsHomeserverView extends StatelessWidget {
                   final wellKnown = snapshot.data;
                   if (wellKnown == null) {
                     return const Center(
-                      child: CircularProgressIndicator.adaptive(
-                        strokeWidth: 2,
-                      ),
+                      child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                     );
                   }
                   final identityServer = wellKnown.mIdentityServer;
                   return Column(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: .min,
                     children: [
                       ListTile(
                         title: Text(
@@ -233,8 +221,9 @@ class SettingsHomeserverView extends StatelessWidget {
                         title: const Text('Base URL'),
                         subtitle: Linkify(
                           text: wellKnown.mHomeserver.baseUrl.toString(),
-                          textScaleFactor:
-                              MediaQuery.textScalerOf(context).scale(1),
+                          textScaleFactor: MediaQuery.textScalerOf(
+                            context,
+                          ).scale(1),
                           options: const LinkifyOptions(humanize: false),
                           linkStyle: TextStyle(
                             color: theme.colorScheme.primary,
@@ -248,8 +237,9 @@ class SettingsHomeserverView extends StatelessWidget {
                           title: const Text('Identity Server:'),
                           subtitle: Linkify(
                             text: identityServer.baseUrl.toString(),
-                            textScaleFactor:
-                                MediaQuery.textScalerOf(context).scale(1),
+                            textScaleFactor: MediaQuery.textScalerOf(
+                              context,
+                            ).scale(1),
                             options: const LinkifyOptions(humanize: false),
                             linkStyle: TextStyle(
                               color: theme.colorScheme.primary,
@@ -262,15 +252,17 @@ class SettingsHomeserverView extends StatelessWidget {
                         (entry) => ListTile(
                           title: Text(entry.key),
                           subtitle: Material(
-                            borderRadius:
-                                BorderRadius.circular(AppConfig.borderRadius),
+                            borderRadius: BorderRadius.circular(
+                              AppConfig.borderRadius,
+                            ),
                             color: theme.colorScheme.surfaceContainer,
                             child: SingleChildScrollView(
                               padding: const EdgeInsets.all(16),
                               scrollDirection: Axis.horizontal,
                               child: Text(
-                                const JsonEncoder.withIndent('    ')
-                                    .convert(entry.value),
+                                const JsonEncoder.withIndent(
+                                  '    ',
+                                ).convert(entry.value),
                                 style: TextStyle(
                                   color: theme.colorScheme.onSurface,
                                 ),

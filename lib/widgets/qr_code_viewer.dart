@@ -13,10 +13,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dar
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../config/themes.dart';
 
-Future<void> showQrCodeViewer(
-  BuildContext context,
-  String content,
-) =>
+Future<void> showQrCodeViewer(BuildContext context, String content) =>
     showDialog(
       context: context,
       builder: (context) => QrCodeViewer(content: content),
@@ -32,11 +29,7 @@ class QrCodeViewer extends StatelessWidget {
       context: context,
       future: () async {
         final inviteLink = 'https://matrix.to/#/$content';
-        final image = QRImage(
-          inviteLink,
-          size: 256,
-          radius: 1,
-        ).generate();
+        final image = QRImage(inviteLink, size: 256, radius: 1).generate();
         return compute(encodePng, image);
       },
     );
@@ -76,10 +69,7 @@ class QrCodeViewer extends StatelessWidget {
               backgroundColor: Colors.black.withAlpha(128),
             ),
             icon: Icon(Icons.adaptive.share_outlined),
-            onPressed: () => FluffyShare.share(
-              inviteLink,
-              context,
-            ),
+            onPressed: () => FluffyShare.share(inviteLink, context),
             color: Colors.white,
             tooltip: L10n.of(context).share,
           ),
@@ -105,11 +95,12 @@ class QrCodeViewer extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
           ),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: [
               ConstrainedBox(
-                constraints:
-                    const BoxConstraints(maxWidth: FluffyThemes.columnWidth),
+                constraints: const BoxConstraints(
+                  maxWidth: FluffyThemes.columnWidth,
+                ),
                 child: PrettyQrView.data(
                   data: inviteLink,
                   decoration: PrettyQrDecoration(

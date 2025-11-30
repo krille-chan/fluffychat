@@ -54,10 +54,7 @@ Future<Result<T>> showFutureLoadingDialog<T>({
     ),
   );
   return result ??
-      Result.error(
-        Exception('FutureDialog canceled'),
-        StackTrace.current,
-      );
+      Result.error(Exception('FutureDialog canceled'), StackTrace.current);
 }
 
 class LoadingDialog<T> extends StatefulWidget {
@@ -114,15 +111,13 @@ class LoadingDialogState<T> extends State<LoadingDialog> {
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 256),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: .center,
           children: [
             if (exception == null) ...[
               StreamBuilder(
                 stream: widget.onProgressStream,
                 builder: (context, snapshot) =>
-                    CircularProgressIndicator.adaptive(
-                  value: snapshot.data,
-                ),
+                    CircularProgressIndicator.adaptive(value: snapshot.data),
               ),
               const SizedBox(width: 20),
             ],
@@ -141,12 +136,9 @@ class LoadingDialogState<T> extends State<LoadingDialog> {
           ? null
           : [
               AdaptiveDialogAction(
-                onPressed: () => Navigator.of(context).pop<Result<T>>(
-                  Result.error(
-                    exception,
-                    stackTrace,
-                  ),
-                ),
+                onPressed: () => Navigator.of(
+                  context,
+                ).pop<Result<T>>(Result.error(exception, stackTrace)),
                 child: Text(widget.backLabel ?? L10n.of(context).close),
               ),
             ],

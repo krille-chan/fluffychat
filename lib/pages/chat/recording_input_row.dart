@@ -46,8 +46,8 @@ class RecordingInputRow extends StatelessWidget {
             builder: (context, constraints) {
               const width = 4;
               return Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: .min,
+                mainAxisAlignment: .end,
                 children: state.amplitudeTimeline.reversed
                     .take((constraints.maxWidth / (width + 2)).floor())
                     .toList()

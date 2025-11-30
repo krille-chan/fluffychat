@@ -22,15 +22,12 @@ class UserDialog extends StatelessWidget {
     required BuildContext context,
     required Profile profile,
     bool noProfileWarning = false,
-  }) =>
-      showAdaptiveDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (context) => UserDialog(
-          profile,
-          noProfileWarning: noProfileWarning,
-        ),
-      );
+  }) => showAdaptiveDialog(
+    context: context,
+    barrierDismissible: true,
+    builder: (context) =>
+        UserDialog(profile, noProfileWarning: noProfileWarning),
+  );
 
   final Profile profile;
   final bool noProfileWarning;
@@ -41,7 +38,8 @@ class UserDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
     final dmRoomId = client.getDirectChatFromUserId(profile.userId);
-    final displayname = profile.displayName ??
+    final displayname =
+        profile.displayName ??
         profile.userId.localpart ??
         L10n.of(context).user;
     var copied = false;
@@ -64,15 +62,15 @@ class UserDialog extends StatelessWidget {
             final presenceText = presence.currentlyActive == true
                 ? L10n.of(context).currentlyActive
                 : lastActiveTimestamp != null
-                    ? L10n.of(context).lastActiveAgo(
-                        lastActiveTimestamp.localizedTimeShort(context),
-                      )
-                    : null;
+                ? L10n.of(context).lastActiveAgo(
+                    lastActiveTimestamp.localizedTimeShort(context),
+                  )
+                : null;
             return SingleChildScrollView(
               child: Column(
                 spacing: 8,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: .min,
+                crossAxisAlignment: .stretch,
                 children: [
                   Center(
                     child: Avatar(
@@ -81,9 +79,9 @@ class UserDialog extends StatelessWidget {
                       size: Avatar.defaultSize * 2,
                       onTap: avatar != null
                           ? () => showDialog(
-                                context: context,
-                                builder: (_) => MxcImageViewer(avatar),
-                              )
+                              context: context,
+                              builder: (_) => MxcImageViewer(avatar),
+                            )
                           : null,
                     ),
                   ),
@@ -112,8 +110,8 @@ class UserDialog extends StatelessWidget {
                                       scale: hovered
                                           ? 1.33
                                           : copied
-                                              ? 1.25
-                                              : 1.0,
+                                          ? 1.25
+                                          : 1.0,
                                       child: Icon(
                                         copied
                                             ? Icons.check_circle
@@ -126,8 +124,9 @@ class UserDialog extends StatelessWidget {
                                 ),
                                 TextSpan(text: profile.userId),
                               ],
-                              style: theme.textTheme.bodyMedium
-                                  ?.copyWith(fontSize: 10),
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                fontSize: 10,
+                              ),
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -144,8 +143,9 @@ class UserDialog extends StatelessWidget {
                   if (statusMsg != null)
                     SelectableLinkify(
                       text: statusMsg,
-                      textScaleFactor:
-                          MediaQuery.textScalerOf(context).scale(1),
+                      textScaleFactor: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(1),
                       textAlign: TextAlign.center,
                       options: const LinkifyOptions(humanize: false),
                       linkStyle: TextStyle(

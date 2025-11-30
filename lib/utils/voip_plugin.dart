@@ -33,13 +33,15 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState? state) {
-    background = (state == AppLifecycleState.detached ||
+    background =
+        (state == AppLifecycleState.detached ||
         state == AppLifecycleState.paused);
   }
 
   void addCallingOverlay(String callId, CallSession call) {
-    final context =
-        kIsWeb ? ChatList.contextForVoip! : this.context; // web is weird
+    final context = kIsWeb
+        ? ChatList.contextForVoip!
+        : this.context; // web is weird
 
     if (overlayEntry != null) {
       Logs().e('[VOIP] addCallingOverlay: The call session already exists?');
@@ -85,8 +87,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   Future<RTCPeerConnection> createPeerConnection(
     Map<String, dynamic> configuration, [
     Map<String, dynamic> constraints = const {},
-  ]) =>
-      webrtc_impl.createPeerConnection(configuration, constraints);
+  ]) => webrtc_impl.createPeerConnection(configuration, constraints);
 
   Future<bool> get hasCallingAccount async => false;
 

@@ -49,7 +49,8 @@ class AdaptiveDialogAction extends StatelessWidget {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
-                    borderRadius: borderRadius ??
+                    borderRadius:
+                        borderRadius ??
                         BorderRadius.circular(AppConfig.borderRadius),
                   ),
                   backgroundColor: autofocus

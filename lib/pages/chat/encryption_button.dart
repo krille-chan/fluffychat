@@ -15,11 +15,9 @@ class EncryptionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return StreamBuilder<SyncUpdate>(
-      stream: Matrix.of(context)
-          .client
-          .onSync
-          .stream
-          .where((s) => s.deviceLists != null),
+      stream: Matrix.of(
+        context,
+      ).client.onSync.stream.where((s) => s.deviceLists != null),
       builder: (context, snapshot) {
         final shouldBeEncrypted = room.joinRules != JoinRules.public;
         return FutureBuilder<EncryptionHealthState>(

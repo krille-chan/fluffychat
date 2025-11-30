@@ -25,10 +25,7 @@ Future<String?> getDatabaseCipher() async {
       final list = Uint8List(32);
       list.setAll(0, Iterable.generate(list.length, (i) => rng.nextInt(256)));
       final newPassword = base64UrlEncode(list);
-      await secureStorage.write(
-        key: _passwordStorageKey,
-        value: newPassword,
-      );
+      await secureStorage.write(key: _passwordStorageKey, value: newPassword);
     }
     // workaround for if we just wrote to the key and it still doesn't exist
     password = await secureStorage.read(key: _passwordStorageKey);

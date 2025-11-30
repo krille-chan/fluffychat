@@ -36,12 +36,12 @@ class SettingsIgnoreListView extends StatelessWidget {
               return const Center(child: CircularProgressIndicator.adaptive());
             }
             return Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: .min,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: .min,
                     children: [
                       TextField(
                         controller: controller.controller,
@@ -68,9 +68,7 @@ class SettingsIgnoreListView extends StatelessWidget {
                     ],
                   ),
                 ),
-                Divider(
-                  color: theme.dividerColor,
-                ),
+                Divider(color: theme.dividerColor),
                 Expanded(
                   child: ListView.builder(
                     itemCount: client.ignoredUsers.length,

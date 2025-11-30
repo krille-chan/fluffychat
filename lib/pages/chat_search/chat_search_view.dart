@@ -48,9 +48,7 @@ class ChatSearchView extends StatelessWidget {
             if (FluffyThemes.isThreeColumnMode(context))
               const SizedBox(height: 16),
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: TextField(
                 controller: controller.searchController,
                 onSubmitted: (_) => controller.restartSearch(),

@@ -50,14 +50,15 @@ class _StartPollBottomSheetState extends State<StartPollBottomSheet> {
     } catch (e, s) {
       Logs().w('Unable to create poll', e, s);
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.toLocalizedString(context))),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
     }
   }
 
   void _updateCanCreate([dynamic _]) {
-    final newCanCreate = _bodyController.text.trim().isNotEmpty &&
+    final newCanCreate =
+        _bodyController.text.trim().isNotEmpty &&
         !_answers.any((controller) => controller.text.trim().isEmpty);
     if (_canCreate != newCanCreate) {
       setState(() {
@@ -71,9 +72,7 @@ class _StartPollBottomSheetState extends State<StartPollBottomSheet> {
     const maxAnswers = 10;
     return Scaffold(
       appBar: AppBar(
-        leading: CloseButton(
-          onPressed: Navigator.of(context).pop,
-        ),
+        leading: CloseButton(onPressed: Navigator.of(context).pop),
         title: Text(L10n.of(context).startPoll),
       ),
       body: ListView(
@@ -119,8 +118,8 @@ class _StartPollBottomSheetState extends State<StartPollBottomSheet> {
               icon: const Icon(Icons.add_outlined),
               onPressed: _answers.length < maxAnswers
                   ? () => setState(() {
-                        _answers.add(TextEditingController());
-                      })
+                      _answers.add(TextEditingController());
+                    })
                   : null,
               label: Text(L10n.of(context).addAnswerOption),
             ),

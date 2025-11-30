@@ -30,7 +30,7 @@ class RoomCreationStateEvent extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: .min,
                 children: [
                   Avatar(
                     mxContent: event.room.avatar,

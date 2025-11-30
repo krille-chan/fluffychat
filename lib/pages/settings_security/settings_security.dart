@@ -90,13 +90,13 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     await showFutureLoadingDialog(
       context: context,
       future: () => Matrix.of(context).client.deactivateAccount(
-            auth: AuthenticationPassword(
-              password: input,
-              identifier: AuthenticationUserIdentifier(
-                user: Matrix.of(context).client.userID!,
-              ),
-            ),
+        auth: AuthenticationPassword(
+          password: input,
+          identifier: AuthenticationUserIdentifier(
+            user: Matrix.of(context).client.userID!,
           ),
+        ),
+      ),
     );
   }
 
@@ -104,9 +104,7 @@ class SettingsSecurityController extends State<SettingsSecurity> {
 
   void changeShareKeysWith(ShareKeysWith? shareKeysWith) async {
     if (shareKeysWith == null) return;
-    AppSettings.shareKeysWith.setItem(
-      shareKeysWith.name,
-    );
+    AppSettings.shareKeysWith.setItem(shareKeysWith.name);
     Matrix.of(context).client.shareKeysWith = shareKeysWith;
     setState(() {});
   }

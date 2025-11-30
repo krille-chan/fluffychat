@@ -33,11 +33,13 @@ extension LocalNotificationsExtension on MatrixState {
       }
     }
 
-    final title =
-        event.room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)));
+    final title = event.room.getLocalizedDisplayname(
+      MatrixLocals(L10n.of(context)),
+    );
     final body = await event.calcLocalizedBody(
       MatrixLocals(L10n.of(context)),
-      withSenderNamePrefix: !event.room.isDirectChat ||
+      withSenderNamePrefix:
+          !event.room.isDirectChat ||
           event.room.lastEvent?.senderId == client.userID,
       plaintextBody: true,
       hideReply: true,
@@ -66,13 +68,13 @@ extension LocalNotificationsExtension on MatrixState {
           Logs().d('Unable to pre-download avatar for web notification', e, s);
         }
 
-        thumbnailUri =
-            await event.senderFromMemoryOrFallback.avatarUrl?.getThumbnailUri(
-          client,
-          width: size,
-          height: size,
-          method: thumbnailMethod,
-        );
+        thumbnailUri = await event.senderFromMemoryOrFallback.avatarUrl
+            ?.getThumbnailUri(
+              client,
+              width: size,
+              height: size,
+              method: thumbnailMethod,
+            );
       }
 
       _audioPlayer.play();
@@ -133,8 +135,9 @@ extension LocalNotificationsExtension on MatrixState {
         hints: hints,
       );
       notification.action.then((actionStr) {
-        var action = DesktopNotificationActions.values
-            .singleWhereOrNull((a) => a.name == actionStr);
+        var action = DesktopNotificationActions.values.singleWhereOrNull(
+          (a) => a.name == actionStr,
+        );
         if (action == null && actionStr == "default") {
           action = DesktopNotificationActions.openChat;
         }

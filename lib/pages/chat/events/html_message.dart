@@ -141,7 +141,8 @@ class HtmlMessage extends StatelessWidget {
     if (node is! dom.Element) {
       return TextSpan(text: node.text);
     }
-    final style = atomOneDarkTheme[node.className.split('-').last] ??
+    final style =
+        atomOneDarkTheme[node.className.split('-').last] ??
         atomOneDarkTheme['root'];
 
     return TextSpan(
@@ -151,11 +152,7 @@ class HtmlMessage extends StatelessWidget {
   }
 
   /// Transforms a Node to an InlineSpan.
-  InlineSpan _renderHtml(
-    dom.Node node,
-    BuildContext context, {
-    int depth = 1,
-  }) {
+  InlineSpan _renderHtml(dom.Node node, BuildContext context, {int depth = 1}) {
     // We must not render elements nested more than 100 elements deep:
     if (depth >= 100) return const TextSpan();
 
@@ -245,9 +242,9 @@ class HtmlMessage extends StatelessWidget {
         final isCheckbox = node.className == 'task-list-item';
         final checkboxIndex = isCheckbox
             ? node.rootElement
-                    .getElementsByClassName('task-list-item')
-                    .indexOf(node) +
-                1
+                      .getElementsByClassName('task-list-item')
+                      .indexOf(node) +
+                  1
             : null;
         final checkedByReaction = !isCheckbox
             ? null
@@ -283,7 +280,8 @@ class HtmlMessage extends StatelessWidget {
                             activeColor: textColor.withAlpha(64),
                             value:
                                 staticallyChecked || checkedByReaction != null,
-                            onChanged: eventId == null ||
+                            onChanged:
+                                eventId == null ||
                                     checkboxIndex == null ||
                                     staticallyChecked ||
                                     !room.canSendDefaultMessages ||
@@ -292,25 +290,21 @@ class HtmlMessage extends StatelessWidget {
                                             room.client.userID)
                                 ? null
                                 : (_) => showFutureLoadingDialog(
-                                      context: context,
-                                      future: () => checkedByReaction != null
-                                          ? room.redactEvent(
-                                              checkedByReaction.eventId,
-                                            )
-                                          : room.checkCheckbox(
-                                              eventId,
-                                              checkboxIndex,
-                                            ),
-                                    ),
+                                    context: context,
+                                    future: () => checkedByReaction != null
+                                        ? room.redactEvent(
+                                            checkedByReaction.eventId,
+                                          )
+                                        : room.checkCheckbox(
+                                            eventId,
+                                            checkboxIndex,
+                                          ),
+                                  ),
                           ),
                         ),
                       ),
                     ),
-                  ..._renderWithLineBreaks(
-                    node.nodes,
-                    context,
-                    depth: depth,
-                  ),
+                  ..._renderWithLineBreaks(node.nodes, context, depth: depth),
                 ],
                 style: TextStyle(fontSize: fontSize, color: textColor),
               ),
@@ -322,12 +316,7 @@ class HtmlMessage extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.only(left: 8.0),
             decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(
-                  color: textColor,
-                  width: 5,
-                ),
-              ),
+              border: Border(left: BorderSide(color: textColor, width: 5)),
             ),
             child: Text.rich(
               TextSpan(
@@ -347,7 +336,8 @@ class HtmlMessage extends StatelessWidget {
         );
       case 'code':
         final isInline = node.parent?.localName != 'pre';
-        final lang = node.className
+        final lang =
+            node.className
                 .split(' ')
                 .singleWhereOrNull(
                   (className) => className.startsWith('language-'),
@@ -355,8 +345,9 @@ class HtmlMessage extends StatelessWidget {
                 ?.split('language-')
                 .last ??
             'md';
-        final highlightedHtml =
-            highlight.parse(node.text, language: lang).toHtml();
+        final highlightedHtml = highlight
+            .parse(node.text, language: lang)
+            .toHtml();
         final element = parser.parse(highlightedHtml).body;
         if (element == null) {
           return const TextSpan(text: 'Unable to render code block!');
@@ -372,14 +363,9 @@ class HtmlMessage extends StatelessWidget {
             child: Padding(
               padding: isInline
                   ? const EdgeInsets.symmetric(horizontal: 4.0)
-                  : const EdgeInsets.symmetric(
-                      horizontal: 8.0,
-                      vertical: 4.0,
-                    ),
+                  : const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
               child: Text.rich(
-                TextSpan(
-                  children: [_renderCodeBlockNode(element)],
-                ),
+                TextSpan(children: [_renderCodeBlockNode(element)]),
                 selectionColor: hightlightTextColor.withAlpha(128),
               ),
             ),
@@ -448,10 +434,7 @@ class HtmlMessage extends StatelessWidget {
                       ),
                   ],
                 ),
-                style: TextStyle(
-                  fontSize: fontSize,
-                  color: textColor,
-                ),
+                style: TextStyle(fontSize: fontSize, color: textColor),
               ),
             ),
           ),
@@ -489,17 +472,13 @@ class HtmlMessage extends StatelessWidget {
       default:
         return TextSpan(
           style: switch (node.localName) {
-            'body' => TextStyle(
-                fontSize: fontSize,
-                color: textColor,
-              ),
+            'body' => TextStyle(fontSize: fontSize, color: textColor),
             'a' => linkStyle,
             'strong' => const TextStyle(fontWeight: FontWeight.bold),
             'em' || 'i' => const TextStyle(fontStyle: FontStyle.italic),
-            'del' ||
-            's' ||
-            'strikethrough' =>
-              const TextStyle(decoration: TextDecoration.lineThrough),
+            'del' || 's' || 'strikethrough' => const TextStyle(
+              decoration: TextDecoration.lineThrough,
+            ),
             'u' => const TextStyle(decoration: TextDecoration.underline),
             'h1' => TextStyle(fontSize: fontSize * 1.6, height: 2),
             'h2' => TextStyle(fontSize: fontSize * 1.5, height: 2),
@@ -508,22 +487,19 @@ class HtmlMessage extends StatelessWidget {
             'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
             'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
             'span' => TextStyle(
-                color: node.attributes['color']?.hexToColor ??
-                    node.attributes['data-mx-color']?.hexToColor ??
-                    textColor,
-                backgroundColor:
-                    node.attributes['data-mx-bg-color']?.hexToColor,
-              ),
-            'sup' =>
-              const TextStyle(fontFeatures: [FontFeature.superscripts()]),
+              color:
+                  node.attributes['color']?.hexToColor ??
+                  node.attributes['data-mx-color']?.hexToColor ??
+                  textColor,
+              backgroundColor: node.attributes['data-mx-bg-color']?.hexToColor,
+            ),
+            'sup' => const TextStyle(
+              fontFeatures: [FontFeature.superscripts()],
+            ),
             'sub' => const TextStyle(fontFeatures: [FontFeature.subscripts()]),
             _ => null,
           },
-          children: _renderWithLineBreaks(
-            node.nodes,
-            context,
-            depth: depth,
-          ),
+          children: _renderWithLineBreaks(node.nodes, context, depth: depth),
         );
     }
   }
@@ -533,10 +509,7 @@ class HtmlMessage extends StatelessWidget {
     final element = parser.parse(html).body ?? dom.Element.html('');
     return Text.rich(
       _renderHtml(element, context),
-      style: TextStyle(
-        fontSize: fontSize,
-        color: textColor,
-      ),
+      style: TextStyle(fontSize: fontSize, color: textColor),
       maxLines: limitHeight ? 64 : null,
       overflow: TextOverflow.fade,
       selectionColor: textColor.withAlpha(128),
@@ -568,13 +541,9 @@ class MatrixPill extends StatelessWidget {
       splashColor: Colors.transparent,
       onTap: UrlLauncher(outerContext, uri).launchUrl,
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: [
-          Avatar(
-            mxContent: avatar,
-            name: name,
-            size: 16,
-          ),
+          Avatar(mxContent: avatar, name: name, size: 16),
           const SizedBox(width: 6),
           Text(
             name,

@@ -37,10 +37,7 @@ class PublicRoomDialog extends StatelessWidget {
         }
         final roomId = chunk != null && knock
             ? await client.knockRoom(chunk.roomId, via: via)
-            : await client.joinRoom(
-                roomAlias ?? chunk!.roomId,
-                via: via,
-              );
+            : await client.joinRoom(roomAlias ?? chunk!.roomId, via: via);
 
         if (!knock && client.getRoomById(roomId) == null) {
           await client.waitForRoomInSync(roomId);
@@ -78,11 +75,9 @@ class PublicRoomDialog extends StatelessWidget {
     final chunk = this.chunk;
     if (chunk != null) return chunk;
     final query = await Matrix.of(context).client.queryPublicRooms(
-          server: roomAlias!.domain,
-          filter: PublicRoomQueryFilter(
-            genericSearchTerm: roomAlias,
-          ),
-        );
+      server: roomAlias!.domain,
+      filter: PublicRoomQueryFilter(genericSearchTerm: roomAlias),
+    );
     if (!query.chunk.any(_testRoom)) {
       throw (L10n.of(context).noRoomsFound);
     }
@@ -115,8 +110,8 @@ class PublicRoomDialog extends StatelessWidget {
             return SingleChildScrollView(
               child: Column(
                 spacing: 8,
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: .min,
+                crossAxisAlignment: .stretch,
                 children: [
                   if (roomLink != null)
                     HoverBuilder(
@@ -125,9 +120,7 @@ class PublicRoomDialog extends StatelessWidget {
                           cursor: SystemMouseCursors.click,
                           child: GestureDetector(
                             onTap: () {
-                              Clipboard.setData(
-                                ClipboardData(text: roomLink),
-                              );
+                              Clipboard.setData(ClipboardData(text: roomLink));
                               setState(() {
                                 copied = true;
                               });
@@ -137,8 +130,9 @@ class PublicRoomDialog extends StatelessWidget {
                                 children: [
                                   WidgetSpan(
                                     child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 4.0),
+                                      padding: const EdgeInsets.only(
+                                        right: 4.0,
+                                      ),
                                       child: AnimatedScale(
                                         duration:
                                             FluffyThemes.animationDuration,
@@ -146,8 +140,8 @@ class PublicRoomDialog extends StatelessWidget {
                                         scale: hovered
                                             ? 1.33
                                             : copied
-                                                ? 1.25
-                                                : 1.0,
+                                            ? 1.25
+                                            : 1.0,
                                         child: Icon(
                                           copied
                                               ? Icons.check_circle
@@ -160,8 +154,9 @@ class PublicRoomDialog extends StatelessWidget {
                                   ),
                                   TextSpan(text: roomLink),
                                 ],
-                                style: theme.textTheme.bodyMedium
-                                    ?.copyWith(fontSize: 10),
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  fontSize: 10,
+                                ),
                               ),
                               textAlign: TextAlign.center,
                             ),
@@ -176,25 +171,26 @@ class PublicRoomDialog extends StatelessWidget {
                       size: Avatar.defaultSize * 2,
                       onTap: avatar != null
                           ? () => showDialog(
-                                context: context,
-                                builder: (_) => MxcImageViewer(avatar),
-                              )
+                              context: context,
+                              builder: (_) => MxcImageViewer(avatar),
+                            )
                           : null,
                     ),
                   ),
                   if (profile?.numJoinedMembers != null)
                     Text(
-                      L10n.of(context).countParticipants(
-                        profile?.numJoinedMembers ?? 0,
-                      ),
+                      L10n.of(
+                        context,
+                      ).countParticipants(profile?.numJoinedMembers ?? 0),
                       style: const TextStyle(fontSize: 10),
                       textAlign: TextAlign.center,
                     ),
                   if (topic != null && topic.isNotEmpty)
                     SelectableLinkify(
                       text: topic,
-                      textScaleFactor:
-                          MediaQuery.textScalerOf(context).scale(1),
+                      textScaleFactor: MediaQuery.textScalerOf(
+                        context,
+                      ).scale(1),
                       textAlign: TextAlign.center,
                       options: const LinkifyOptions(humanize: false),
                       linkStyle: TextStyle(
@@ -221,8 +217,8 @@ class PublicRoomDialog extends StatelessWidget {
                     Matrix.of(context).client.getRoomById(chunk!.roomId) == null
                 ? L10n.of(context).knock
                 : chunk?.roomType == 'm.space'
-                    ? L10n.of(context).joinSpace
-                    : L10n.of(context).joinRoom,
+                ? L10n.of(context).joinSpace
+                : L10n.of(context).joinRoom,
           ),
         ),
         AdaptiveDialogAction(

@@ -46,8 +46,11 @@ class FluffyChatApp extends StatelessWidget {
         title: AppSettings.applicationName.value,
         themeMode: themeMode,
         theme: FluffyThemes.buildTheme(context, Brightness.light, primaryColor),
-        darkTheme:
-            FluffyThemes.buildTheme(context, Brightness.dark, primaryColor),
+        darkTheme: FluffyThemes.buildTheme(
+          context,
+          Brightness.dark,
+          primaryColor,
+        ),
         scrollBehavior: CustomScrollBehavior(),
         localizationsDelegates: L10n.localizationsDelegates,
         supportedLocales: L10n.supportedLocales,

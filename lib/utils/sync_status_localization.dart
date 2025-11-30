@@ -12,8 +12,9 @@ extension SyncStatusLocalization on SyncStatusUpdate {
       case SyncStatus.waitingForResponse:
         return L10n.of(context).waitingForServer;
       case SyncStatus.error:
-        return ((error?.exception ?? Object()) as Object)
-            .toLocalizedString(context);
+        return ((error?.exception ?? Object()) as Object).toLocalizedString(
+          context,
+        );
       case SyncStatus.processing:
       case SyncStatus.cleaningUp:
       case SyncStatus.finished:

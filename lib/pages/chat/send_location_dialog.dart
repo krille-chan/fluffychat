@@ -14,10 +14,7 @@ import 'package:fluffychat/widgets/future_loading_dialog.dart';
 class SendLocationDialog extends StatefulWidget {
   final Room room;
 
-  const SendLocationDialog({
-    required this.room,
-    super.key,
-  });
+  const SendLocationDialog({required this.room, super.key});
 
   @override
   SendLocationDialogState createState() => SendLocationDialogState();
@@ -102,12 +99,13 @@ class SendLocationDialogState extends State<SendLocationDialog> {
     } else if (denied) {
       contentWidget = Text(L10n.of(context).locationPermissionDeniedNotice);
     } else if (error != null) {
-      contentWidget =
-          Text(L10n.of(context).errorObtainingLocation(error.toString()));
+      contentWidget = Text(
+        L10n.of(context).errorObtainingLocation(error.toString()),
+      );
     } else {
       contentWidget = Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: .min,
+        mainAxisAlignment: .center,
         children: [
           const CupertinoActivityIndicator(),
           const SizedBox(width: 12),

@@ -37,12 +37,12 @@ class SettingsNotificationsView extends StatelessWidget {
       body: MaxWidthBody(
         child: StreamBuilder(
           stream: Matrix.of(context).client.onSync.stream.where(
-                (syncUpdate) =>
-                    syncUpdate.accountData?.any(
-                      (accountData) => accountData.type == 'm.push_rules',
-                    ) ??
-                    false,
-              ),
+            (syncUpdate) =>
+                syncUpdate.accountData?.any(
+                  (accountData) => accountData.type == 'm.push_rules',
+                ) ??
+                false,
+          ),
           builder: (BuildContext context, _) {
             final theme = Theme.of(context);
             return SelectionArea(
@@ -96,14 +96,14 @@ class SettingsNotificationsView extends StatelessWidget {
                             onChanged: controller.isLoading
                                 ? null
                                 : rule.ruleId != '.m.rule.master' &&
-                                        Matrix.of(context)
-                                            .client
-                                            .allPushNotificationsMuted
-                                    ? null
-                                    : (_) => controller.togglePushRule(
-                                          category.kind,
-                                          rule,
-                                        ),
+                                      Matrix.of(
+                                        context,
+                                      ).client.allPushNotificationsMuted
+                                ? null
+                                : (_) => controller.togglePushRule(
+                                    category.kind,
+                                    rule,
+                                  ),
                           ),
                         ),
                       Divider(color: theme.dividerColor),
@@ -118,8 +118,9 @@ class SettingsNotificationsView extends StatelessWidget {
                     ),
                   ),
                   FutureBuilder<List<Pusher>?>(
-                    future: controller.pusherFuture ??=
-                        Matrix.of(context).client.getPushers(),
+                    future: controller.pusherFuture ??= Matrix.of(
+                      context,
+                    ).client.getPushers(),
                     builder: (context, snapshot) {
                       if (snapshot.hasError) {
                         Center(

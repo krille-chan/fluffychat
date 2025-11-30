@@ -28,22 +28,19 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(String clientName) async {
     try {
       // Send error notification:
       final l10n = await lookupL10n(PlatformDispatcher.instance.locale);
-      ClientManager.sendInitNotification(
-        l10n.initAppError,
-        e.toString(),
-      );
+      ClientManager.sendInitNotification(l10n.initAppError, e.toString());
     } catch (e, s) {
       Logs().e('Unable to send error notification', e, s);
     }
 
     // Try to delete database so that it can created again on next init:
     database?.delete().catchError(
-          (e, s) => Logs().wtf(
-            'Unable to delete database, after failed construction',
-            e,
-            s,
-          ),
-        );
+      (e, s) => Logs().wtf(
+        'Unable to delete database, after failed construction',
+        e,
+        s,
+      ),
+    );
 
     // Delete database file:
     if (!kIsWeb) {
@@ -77,8 +74,9 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
   // fix dlopen for old Android
   await applyWorkaroundToOpenSqlCipherOnOldAndroidVersions();
   // import the SQLite / SQLCipher shared objects / dynamic libraries
-  final factory =
-      createDatabaseFactoryFfi(ffiInit: SQfLiteEncryptionHelper.ffiInit);
+  final factory = createDatabaseFactoryFfi(
+    ffiInit: SQfLiteEncryptionHelper.ffiInit,
+  );
 
   // required for [getDatabasesPath]
   databaseFactory = factory;
@@ -90,11 +88,7 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
   // to manage SQLite encryption
   final helper = cipher == null
       ? null
-      : SQfLiteEncryptionHelper(
-          factory: factory,
-          path: path,
-          cipher: cipher,
-        );
+      : SQfLiteEncryptionHelper(factory: factory, path: path, cipher: cipher);
 
   // check whether the DB is already encrypted and otherwise do so
   await helper?.ensureDatabaseFileEncrypted();

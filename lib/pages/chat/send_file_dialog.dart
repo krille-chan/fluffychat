@@ -119,8 +119,9 @@ class SendFileDialogState extends State<SendFileDialog> {
           if (e.error != MatrixError.M_LIMIT_EXCEEDED || retryAfterMs == null) {
             rethrow;
           }
-          final retryAfterDuration =
-              Duration(milliseconds: retryAfterMs + 1000);
+          final retryAfterDuration = Duration(
+            milliseconds: retryAfterMs + 1000,
+          );
 
           scaffoldMessenger.showSnackBar(
             SnackBar(
@@ -164,8 +165,9 @@ class SendFileDialogState extends State<SendFileDialog> {
   }
 
   Future<String> _calcCombinedFileSize() async {
-    final lengths =
-        await Future.wait(widget.files.map((file) => file.length()));
+    final lengths = await Future.wait(
+      widget.files.map((file) => file.length()),
+    );
     return lengths.fold<double>(0, (p, length) => p + length).sizeString;
   }
 
@@ -216,7 +218,7 @@ class SendFileDialogState extends State<SendFileDialog> {
             width: 256,
             child: SingleChildScrollView(
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: .min,
                 children: [
                   const SizedBox(height: 12),
                   if (uniqueFileType == 'image')
@@ -243,8 +245,8 @@ class SendFileDialogState extends State<SendFileDialog> {
                                     final bytes = snapshot.data;
                                     if (bytes == null) {
                                       return const Center(
-                                        child: CircularProgressIndicator
-                                            .adaptive(),
+                                        child:
+                                            CircularProgressIndicator.adaptive(),
                                       );
                                     }
                                     if (snapshot.error != null) {
@@ -272,8 +274,11 @@ class SendFileDialogState extends State<SendFileDialog> {
                                           : null,
                                       fit: BoxFit.contain,
                                       errorBuilder: (context, e, s) {
-                                        Logs()
-                                            .w('Unable to preview image', e, s);
+                                        Logs().w(
+                                          'Unable to preview image',
+                                          e,
+                                          s,
+                                        );
                                         return const Center(
                                           child: SizedBox(
                                             width: 256,
@@ -303,17 +308,17 @@ class SendFileDialogState extends State<SendFileDialog> {
                             uniqueFileType == null
                                 ? Icons.description_outlined
                                 : uniqueFileType == 'video'
-                                    ? Icons.video_file_outlined
-                                    : uniqueFileType == 'audio'
-                                        ? Icons.audio_file_outlined
-                                        : Icons.description_outlined,
+                                ? Icons.video_file_outlined
+                                : uniqueFileType == 'audio'
+                                ? Icons.audio_file_outlined
+                                : Icons.description_outlined,
                             size: 32,
                           ),
                           const SizedBox(width: 8),
                           Expanded(
                             child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: .min,
+                              crossAxisAlignment: .start,
                               children: [
                                 Text(
                                   fileName,
@@ -347,10 +352,12 @@ class SendFileDialogState extends State<SendFileDialog> {
                   // Workaround for SwitchListTile.adaptive crashes in CupertinoDialog
                   if ({'image', 'video'}.contains(uniqueFileType))
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: .center,
                       children: [
-                        if ({TargetPlatform.iOS, TargetPlatform.macOS}
-                            .contains(theme.platform))
+                        if ({
+                          TargetPlatform.iOS,
+                          TargetPlatform.macOS,
+                        }.contains(theme.platform))
                           CupertinoSwitch(
                             value: compressionSupported && compress,
                             onChanged: compressionSupported
@@ -367,11 +374,11 @@ class SendFileDialogState extends State<SendFileDialog> {
                         const SizedBox(width: 16),
                         Expanded(
                           child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: .min,
+                            crossAxisAlignment: .start,
                             children: [
                               Row(
-                                mainAxisSize: MainAxisSize.min,
+                                mainAxisSize: .min,
                                 children: [
                                   Text(
                                     L10n.of(context).compress,
@@ -430,9 +437,7 @@ extension on ScaffoldMessengerState {
             const SizedBox(
               width: 16,
               height: 16,
-              child: CircularProgressIndicator.adaptive(
-                strokeWidth: 2,
-              ),
+              child: CircularProgressIndicator.adaptive(strokeWidth: 2),
             ),
             const SizedBox(width: 16),
             Text(title),

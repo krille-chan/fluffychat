@@ -42,7 +42,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
         ),
         body: MaxWidthBody(
           child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: [
               SwitchListTile(
                 secondary: CircleAvatar(
@@ -76,16 +76,14 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                 ListTile(
                   title: Text(
                     L10n.of(context).deviceKeys,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 StreamBuilder(
-                  stream: room.client.onRoomState.stream
-                      .where((update) => update.roomId == controller.room.id),
-                  builder: (context, snapshot) =>
-                      FutureBuilder<List<DeviceKeys>>(
+                  stream: room.client.onRoomState.stream.where(
+                    (update) => update.roomId == controller.room.id,
+                  ),
+                  builder: (context, snapshot) => FutureBuilder<List<DeviceKeys>>(
                     future: room.getUserDeviceKeys(),
                     builder: (BuildContext context, snapshot) {
                       if (snapshot.hasError) {
@@ -108,20 +106,21 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: deviceKeys.length,
                         itemBuilder: (BuildContext context, int i) => Column(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: .min,
                           children: [
                             if (i == 0 ||
                                 deviceKeys[i].userId !=
                                     deviceKeys[i - 1].userId) ...[
                               const Divider(),
                               FutureBuilder(
-                                future: room.client
-                                    .getUserProfile(deviceKeys[i].userId),
+                                future: room.client.getUserProfile(
+                                  deviceKeys[i].userId,
+                                ),
                                 builder: (context, snapshot) {
                                   final displayname =
                                       snapshot.data?.displayname ??
-                                          deviceKeys[i].userId.localpart ??
-                                          deviceKeys[i].userId;
+                                      deviceKeys[i].userId.localpart ??
+                                      deviceKeys[i].userId;
                                   return ListTile(
                                     leading: Avatar(
                                       name: displayname,
@@ -146,14 +145,14 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                     deviceKeys[i].verified
                                         ? L10n.of(context).verified
                                         : deviceKeys[i].blocked
-                                            ? L10n.of(context).blocked
-                                            : L10n.of(context).unverified,
+                                        ? L10n.of(context).blocked
+                                        : L10n.of(context).unverified,
                                     style: TextStyle(
                                       color: deviceKeys[i].verified
                                           ? Colors.green
                                           : deviceKeys[i].blocked
-                                              ? Colors.red
-                                              : Colors.orange,
+                                          ? Colors.red
+                                          : Colors.orange,
                                     ),
                                   ),
                                   const Text(' | ID: '),
@@ -185,9 +184,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                   child: Center(
                     child: Text(
                       L10n.of(context).encryptionNotEnabled,
-                      style: const TextStyle(
-                        fontStyle: FontStyle.italic,
-                      ),
+                      style: const TextStyle(fontStyle: FontStyle.italic),
                     ),
                   ),
                 ),

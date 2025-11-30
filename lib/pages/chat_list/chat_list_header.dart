@@ -34,19 +34,19 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
       title: StreamBuilder(
         stream: client.onSyncStatus.stream,
         builder: (context, snapshot) {
-          final status = client.onSyncStatus.value ??
+          final status =
+              client.onSyncStatus.value ??
               const SyncStatusUpdate(SyncStatus.waitingForResponse);
-          final hide = client.onSync.value != null &&
+          final hide =
+              client.onSync.value != null &&
               status.status != SyncStatus.error &&
               client.prevBatch != null;
           return TextField(
             controller: controller.searchController,
             focusNode: controller.searchFocusNode,
             textInputAction: TextInputAction.search,
-            onChanged: (text) => controller.onSearchEnter(
-              text,
-              globalSearch: globalSearch,
-            ),
+            onChanged: (text) =>
+                controller.onSearchEnter(text, globalSearch: globalSearch),
             decoration: InputDecoration(
               filled: true,
               fillColor: theme.colorScheme.secondaryContainer,
@@ -66,19 +66,19 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
               ),
               prefixIcon: hide
                   ? controller.isSearchMode
-                      ? IconButton(
-                          tooltip: L10n.of(context).cancel,
-                          icon: const Icon(Icons.close_outlined),
-                          onPressed: controller.cancelSearch,
-                          color: theme.colorScheme.onPrimaryContainer,
-                        )
-                      : IconButton(
-                          onPressed: controller.startSearch,
-                          icon: Icon(
-                            Icons.search_outlined,
+                        ? IconButton(
+                            tooltip: L10n.of(context).cancel,
+                            icon: const Icon(Icons.close_outlined),
+                            onPressed: controller.cancelSearch,
                             color: theme.colorScheme.onPrimaryContainer,
-                          ),
-                        )
+                          )
+                        : IconButton(
+                            onPressed: controller.startSearch,
+                            icon: Icon(
+                              Icons.search_outlined,
+                              color: theme.colorScheme.onPrimaryContainer,
+                            ),
+                          )
                   : Container(
                       margin: const EdgeInsets.all(12),
                       width: 8,
@@ -97,37 +97,34 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                     ),
               suffixIcon: controller.isSearchMode && globalSearch
                   ? controller.isSearching
-                      ? const Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 10.0,
-                            horizontal: 12,
-                          ),
-                          child: SizedBox.square(
-                            dimension: 24,
-                            child: CircularProgressIndicator.adaptive(
-                              strokeWidth: 2,
+                        ? const Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 10.0,
+                              horizontal: 12,
                             ),
-                          ),
-                        )
-                      : TextButton.icon(
-                          onPressed: controller.setServer,
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(99),
+                            child: SizedBox.square(
+                              dimension: 24,
+                              child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 2,
+                              ),
                             ),
-                            textStyle: const TextStyle(fontSize: 12),
-                          ),
-                          icon: const Icon(Icons.edit_outlined, size: 16),
-                          label: Text(
-                            controller.searchServer ??
-                                Matrix.of(context).client.homeserver!.host,
-                            maxLines: 2,
-                          ),
-                        )
-                  : SizedBox(
-                      width: 0,
-                      child: ClientChooserButton(controller),
-                    ),
+                          )
+                        : TextButton.icon(
+                            onPressed: controller.setServer,
+                            style: TextButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(99),
+                              ),
+                              textStyle: const TextStyle(fontSize: 12),
+                            ),
+                            icon: const Icon(Icons.edit_outlined, size: 16),
+                            label: Text(
+                              controller.searchServer ??
+                                  Matrix.of(context).client.homeserver!.host,
+                              maxLines: 2,
+                            ),
+                          )
+                  : SizedBox(width: 0, child: ClientChooserButton(controller)),
             ),
           );
         },

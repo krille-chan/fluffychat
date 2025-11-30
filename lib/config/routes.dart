@@ -43,18 +43,16 @@ abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(
     BuildContext context,
     GoRouterState state,
-  ) =>
-      Matrix.of(context).widget.clients.any((client) => client.isLogged())
-          ? '/rooms'
-          : null;
+  ) => Matrix.of(context).widget.clients.any((client) => client.isLogged())
+      ? '/rooms'
+      : null;
 
   static FutureOr<String?> loggedOutRedirect(
     BuildContext context,
     GoRouterState state,
-  ) =>
-      Matrix.of(context).widget.clients.any((client) => client.isLogged())
-          ? null
-          : '/home';
+  ) => Matrix.of(context).widget.clients.any((client) => client.isLogged())
+      ? null
+      : '/home';
 
   AppRoutes();
 
@@ -63,8 +61,8 @@ abstract class AppRoutes {
       path: '/',
       redirect: (context, state) =>
           Matrix.of(context).widget.clients.any((client) => client.isLogged())
-              ? '/rooms'
-              : '/home',
+          ? '/rooms'
+          : '/home',
     ),
     GoRoute(
       path: '/home',
@@ -88,19 +86,13 @@ abstract class AppRoutes {
     ),
     GoRoute(
       path: '/logs',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        state,
-        const LogViewer(),
-      ),
+      pageBuilder: (context, state) =>
+          defaultPageBuilder(context, state, const LogViewer()),
     ),
     GoRoute(
       path: '/configs',
-      pageBuilder: (context, state) => defaultPageBuilder(
-        context,
-        state,
-        const ConfigViewer(),
-      ),
+      pageBuilder: (context, state) =>
+          defaultPageBuilder(context, state, const ConfigViewer()),
     ),
     GoRoute(
       path: '/backup',
@@ -108,9 +100,7 @@ abstract class AppRoutes {
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
         state,
-        BootstrapDialog(
-          wipe: state.uri.queryParameters['wipe'] == 'true',
-        ),
+        BootstrapDialog(wipe: state.uri.queryParameters['wipe'] == 'true'),
       ),
     ),
     ShellRoute(
@@ -150,11 +140,8 @@ abstract class AppRoutes {
           routes: [
             GoRoute(
               path: 'archive',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const Archive(),
-              ),
+              pageBuilder: (context, state) =>
+                  defaultPageBuilder(context, state, const Archive()),
               routes: [
                 GoRoute(
                   path: ':roomid',
@@ -173,20 +160,14 @@ abstract class AppRoutes {
             ),
             GoRoute(
               path: 'newprivatechat',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const NewPrivateChat(),
-              ),
+              pageBuilder: (context, state) =>
+                  defaultPageBuilder(context, state, const NewPrivateChat()),
               redirect: loggedOutRedirect,
             ),
             GoRoute(
               path: 'newgroup',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const NewGroup(),
-              ),
+              pageBuilder: (context, state) =>
+                  defaultPageBuilder(context, state, const NewGroup()),
               redirect: loggedOutRedirect,
             ),
             GoRoute(
@@ -376,9 +357,7 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    ChatSearchPage(
-                      roomId: state.pathParameters['roomid']!,
-                    ),
+                    ChatSearchPage(roomId: state.pathParameters['roomid']!),
                   ),
                   redirect: loggedOutRedirect,
                 ),
@@ -407,9 +386,7 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    ChatDetails(
-                      roomId: state.pathParameters['roomid']!,
-                    ),
+                    ChatDetails(roomId: state.pathParameters['roomid']!),
                   ),
                   routes: [
                     GoRoute(
@@ -459,9 +436,7 @@ abstract class AppRoutes {
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         state,
-                        EmotesSettings(
-                          roomId: state.pathParameters['roomid'],
-                        ),
+                        EmotesSettings(roomId: state.pathParameters['roomid']),
                       ),
                       redirect: loggedOutRedirect,
                     ),
@@ -480,23 +455,21 @@ abstract class AppRoutes {
     BuildContext context,
     GoRouterState state,
     Widget child,
-  ) =>
-      NoTransitionPage(
-        key: state.pageKey,
-        restorationId: state.pageKey.value,
-        child: child,
-      );
+  ) => NoTransitionPage(
+    key: state.pageKey,
+    restorationId: state.pageKey.value,
+    child: child,
+  );
 
   static Page defaultPageBuilder(
     BuildContext context,
     GoRouterState state,
     Widget child,
-  ) =>
-      FluffyThemes.isColumnMode(context)
-          ? noTransitionPageBuilder(context, state, child)
-          : MaterialPage(
-              key: state.pageKey,
-              restorationId: state.pageKey.value,
-              child: child,
-            );
+  ) => FluffyThemes.isColumnMode(context)
+      ? noTransitionPageBuilder(context, state, child)
+      : MaterialPage(
+          key: state.pageKey,
+          restorationId: state.pageKey.value,
+          child: child,
+        );
 }

@@ -12,7 +12,8 @@ class ThemeBuilder extends StatefulWidget {
     BuildContext context,
     ThemeMode themeMode,
     Color? primaryColor,
-  ) builder;
+  )
+  builder;
 
   final String themeModeSettingsKey;
   final String primaryColorSettingsKey;
@@ -38,28 +39,26 @@ class ThemeController extends State<ThemeBuilder> {
   Color? get primaryColor => _primaryColor;
 
   static ThemeController of(BuildContext context) =>
-      Provider.of<ThemeController>(
-        context,
-        listen: false,
-      );
+      Provider.of<ThemeController>(context, listen: false);
 
   void _loadData(dynamic _) async {
-    final preferences =
-        _sharedPreferences ??= await SharedPreferences.getInstance();
+    final preferences = _sharedPreferences ??=
+        await SharedPreferences.getInstance();
 
     final rawThemeMode = preferences.getString(widget.themeModeSettingsKey);
     final rawColor = preferences.getInt(widget.primaryColorSettingsKey);
 
     setState(() {
-      _themeMode = ThemeMode.values
-          .singleWhereOrNull((value) => value.name == rawThemeMode);
+      _themeMode = ThemeMode.values.singleWhereOrNull(
+        (value) => value.name == rawThemeMode,
+      );
       _primaryColor = rawColor == null ? null : Color(rawColor);
     });
   }
 
   Future<void> setThemeMode(ThemeMode newThemeMode) async {
-    final preferences =
-        _sharedPreferences ??= await SharedPreferences.getInstance();
+    final preferences = _sharedPreferences ??=
+        await SharedPreferences.getInstance();
     await preferences.setString(widget.themeModeSettingsKey, newThemeMode.name);
     setState(() {
       _themeMode = newThemeMode;
@@ -67,8 +66,8 @@ class ThemeController extends State<ThemeBuilder> {
   }
 
   Future<void> setPrimaryColor(Color? newPrimaryColor) async {
-    final preferences =
-        _sharedPreferences ??= await SharedPreferences.getInstance();
+    final preferences = _sharedPreferences ??=
+        await SharedPreferences.getInstance();
     if (newPrimaryColor == null) {
       await preferences.remove(widget.primaryColorSettingsKey);
     } else {
@@ -93,11 +92,8 @@ class ThemeController extends State<ThemeBuilder> {
     return Provider(
       create: (_) => this,
       child: DynamicColorBuilder(
-        builder: (light, _) => widget.builder(
-          context,
-          themeMode,
-          primaryColor ?? light?.primary,
-        ),
+        builder: (light, _) =>
+            widget.builder(context, themeMode, primaryColor ?? light?.primary),
       ),
     );
   }

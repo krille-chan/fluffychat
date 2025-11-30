@@ -13,10 +13,7 @@ import '../../widgets/adaptive_dialogs/user_dialog.dart';
 class StatusMessageList extends StatelessWidget {
   final void Function() onStatusEdit;
 
-  const StatusMessageList({
-    required this.onStatusEdit,
-    super.key,
-  });
+  const StatusMessageList({required this.onStatusEdit, super.key});
 
   static const double height = 116;
 
@@ -24,10 +21,7 @@ class StatusMessageList extends StatelessWidget {
     final client = Matrix.of(context).client;
     if (profile.userId == client.userID) return onStatusEdit();
 
-    UserDialog.show(
-      context: context,
-      profile: profile,
-    );
+    UserDialog.show(context: context, profile: profile);
     return;
   }
 
@@ -56,8 +50,9 @@ class StatusMessageList extends StatelessWidget {
               ),
             ),
             builder: (context, snapshot) {
-              final presences =
-                  snapshot.data?.where(isInterestingPresence).toList();
+              final presences = snapshot.data
+                  ?.where(isInterestingPresence)
+                  .toList();
 
               // If no other presences than the own entry is interesting, we
               // hide the presence header.
@@ -121,7 +116,8 @@ class PresenceAvatar extends StatelessWidget {
         final theme = Theme.of(context);
 
         final profile = snapshot.data;
-        final displayName = profile?.displayName ??
+        final displayName =
+            profile?.displayName ??
             presence.userid.localpart ??
             presence.userid;
         final statusMsg = presence.statusMsg;
@@ -152,8 +148,9 @@ class PresenceAvatar extends StatelessWidget {
                                 padding: const EdgeInsets.all(3),
                                 decoration: BoxDecoration(
                                   gradient: presence.gradient,
-                                  borderRadius:
-                                      BorderRadius.circular(avatarSize),
+                                  borderRadius: BorderRadius.circular(
+                                    avatarSize,
+                                  ),
                                 ),
                                 alignment: Alignment.center,
                                 child: Container(
@@ -161,8 +158,9 @@ class PresenceAvatar extends StatelessWidget {
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     color: theme.colorScheme.surface,
-                                    borderRadius:
-                                        BorderRadius.circular(avatarSize),
+                                    borderRadius: BorderRadius.circular(
+                                      avatarSize,
+                                    ),
                                   ),
                                   padding: const EdgeInsets.all(3.0),
                                   child: Avatar(
@@ -202,9 +200,8 @@ class PresenceAvatar extends StatelessWidget {
                                   right: 8,
                                   child: Column(
                                     spacing: 2,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment: .start,
+                                    mainAxisSize: .min,
                                     children: [
                                       Material(
                                         elevation: statusMsgBubbleElevation,
@@ -230,8 +227,9 @@ class PresenceAvatar extends StatelessWidget {
                                         ),
                                       ),
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 8.0),
+                                        padding: const EdgeInsets.only(
+                                          left: 8.0,
+                                        ),
                                         child: Material(
                                           color: statusMsgBubbleColor,
                                           elevation: statusMsgBubbleElevation,
@@ -246,8 +244,9 @@ class PresenceAvatar extends StatelessWidget {
                                         ),
                                       ),
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 13.0),
+                                        padding: const EdgeInsets.only(
+                                          left: 13.0,
+                                        ),
                                         child: Material(
                                           color: statusMsgBubbleColor,
                                           elevation: statusMsgBubbleElevation,
@@ -280,9 +279,7 @@ class PresenceAvatar extends StatelessWidget {
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 11,
-                    ),
+                    style: const TextStyle(fontSize: 11),
                   ),
                 ),
               ],
@@ -296,10 +293,12 @@ class PresenceAvatar extends StatelessWidget {
 
 extension on Client {
   Set<String> get interestingPresences {
-    final allHeroes = rooms.map((room) => room.summary.mHeroes).fold(
-      <String>{},
-      (previousValue, element) => previousValue..addAll(element ?? {}),
-    );
+    final allHeroes = rooms
+        .map((room) => room.summary.mHeroes)
+        .fold(
+          <String>{},
+          (previousValue, element) => previousValue..addAll(element ?? {}),
+        );
     allHeroes.add(userID!);
     return allHeroes;
   }
@@ -317,31 +316,23 @@ extension on CachedPresence {
 
   LinearGradient get gradient => presence.isOnline == true
       ? LinearGradient(
-          colors: [
-            Colors.green,
-            Colors.green.shade200,
-            Colors.green.shade900,
-          ],
+          colors: [Colors.green, Colors.green.shade200, Colors.green.shade900],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         )
       : presence.isUnavailable
-          ? LinearGradient(
-              colors: [
-                Colors.yellow,
-                Colors.yellow.shade200,
-                Colors.yellow.shade900,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            )
-          : LinearGradient(
-              colors: [
-                Colors.grey,
-                Colors.grey.shade200,
-                Colors.grey.shade900,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            );
+      ? LinearGradient(
+          colors: [
+            Colors.yellow,
+            Colors.yellow.shade200,
+            Colors.yellow.shade900,
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        )
+      : LinearGradient(
+          colors: [Colors.grey, Colors.grey.shade200, Colors.grey.shade900],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        );
 }

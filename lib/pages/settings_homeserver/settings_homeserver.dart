@@ -17,7 +17,7 @@ class SettingsHomeserver extends StatefulWidget {
 
 class SettingsHomeserverController extends State<SettingsHomeserver> {
   Future<({String name, String version, Uri federationBaseUrl})>
-      fetchServerInfo() async {
+  fetchServerInfo() async {
     final client = Matrix.of(context).client;
     final domain = client.userID!.domain!;
     final httpClient = client.httpClient;
@@ -37,15 +37,10 @@ class SettingsHomeserverController extends State<SettingsHomeserver> {
     }
 
     final serverVersionResult = await http.get(
-      federationBaseUrl.resolveUri(
-        Uri(path: '/_matrix/federation/v1/version'),
-      ),
+      federationBaseUrl.resolveUri(Uri(path: '/_matrix/federation/v1/version')),
     );
     final {
-      'server': {
-        'name': String name,
-        'version': String version,
-      },
+      'server': {'name': String name, 'version': String version},
     } = Map<String, Map<String, dynamic>>.from(
       jsonDecode(serverVersionResult.body),
     );

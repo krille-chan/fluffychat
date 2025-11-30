@@ -19,8 +19,9 @@ extension RoomStatusExtension on Room {
     } else if (typingUsers.length == 1) {
       typingText = L10n.of(context).isTyping;
       if (typingUsers.first.id != directChatMatrixID) {
-        typingText =
-            L10n.of(context).userIsTyping(typingUsers.first.calcDisplayname());
+        typingText = L10n.of(
+          context,
+        ).userIsTyping(typingUsers.first.calcDisplayname());
       }
     } else if (typingUsers.length == 2) {
       typingText = L10n.of(context).userAndUserAreTyping(

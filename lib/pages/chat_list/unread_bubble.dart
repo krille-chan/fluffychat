@@ -15,8 +15,8 @@ class UnreadBubble extends StatelessWidget {
     final hasNotifications = room.notificationCount > 0;
     final unreadBubbleSize = unread || room.hasNewMessages
         ? room.notificationCount > 0
-            ? 20.0
-            : 14.0
+              ? 20.0
+              : 14.0
         : 0.0;
     return AnimatedContainer(
       duration: FluffyThemes.animationDuration,
@@ -27,13 +27,13 @@ class UnreadBubble extends StatelessWidget {
       width: !hasNotifications && !unread && !room.hasNewMessages
           ? 0
           : (unreadBubbleSize - 9) * room.notificationCount.toString().length +
-              9,
+                9,
       decoration: BoxDecoration(
         color: room.highlightCount > 0
             ? theme.colorScheme.error
             : hasNotifications || room.markedUnread
-                ? theme.colorScheme.primary
-                : theme.colorScheme.primaryContainer,
+            ? theme.colorScheme.primary
+            : theme.colorScheme.primaryContainer,
         borderRadius: BorderRadius.circular(7),
       ),
       child: hasNotifications
@@ -43,8 +43,8 @@ class UnreadBubble extends StatelessWidget {
                 color: room.highlightCount > 0
                     ? theme.colorScheme.onError
                     : hasNotifications
-                        ? theme.colorScheme.onPrimary
-                        : theme.colorScheme.onPrimaryContainer,
+                    ? theme.colorScheme.onPrimary
+                    : theme.colorScheme.onPrimaryContainer,
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
               ),

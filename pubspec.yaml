@@ -7,7 +7,7 @@ publish_to: none
 version: 2.3.0+3545
 
 environment:
-  sdk: ">=3.0.0 <4.0.0"
+  sdk: ">=3.10.0 <4.0.0"
 
 dependencies:
   animations: ^2.1.1

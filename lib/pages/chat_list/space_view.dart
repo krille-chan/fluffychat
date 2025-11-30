@@ -28,12 +28,7 @@ enum AddRoomType { chat, subspace }
 
 enum SpaceChildAction { edit, moveToSpace, removeFromSpace }
 
-enum SpaceActions {
-  settings,
-  invite,
-  members,
-  leave,
-}
+enum SpaceActions { settings, invite, members, leave }
 
 class SpaceView extends StatefulWidget {
   final String spaceId;
@@ -124,8 +119,9 @@ class _SpaceViewState extends State<SpaceView> {
     } catch (e, s) {
       Logs().w('Unable to load hierarchy', e, s);
       if (!mounted) return;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
       setState(() {
         _isLoading = false;
       });
@@ -141,9 +137,7 @@ class _SpaceViewState extends State<SpaceView> {
       builder: (_) => PublicRoomDialog(
         chunk: item,
         via: space?.spaceChildren
-            .firstWhereOrNull(
-              (child) => child.roomId == item.roomId,
-            )
+            .firstWhereOrNull((child) => child.roomId == item.roomId)
             ?.via,
       ),
     );
@@ -224,8 +218,9 @@ class _SpaceViewState extends State<SpaceView> {
         if (roomType == AddRoomType.subspace) {
           roomId = await client.createSpace(
             name: names,
-            visibility:
-                isPublicSpace ? sdk.Visibility.public : sdk.Visibility.private,
+            visibility: isPublicSpace
+                ? sdk.Visibility.public
+                : sdk.Visibility.private,
           );
         } else {
           roomId = await client.createGroupChat(
@@ -234,8 +229,9 @@ class _SpaceViewState extends State<SpaceView> {
             preset: isPublicSpace
                 ? CreateRoomPreset.publicChat
                 : CreateRoomPreset.privateChat,
-            visibility:
-                isPublicSpace ? sdk.Visibility.public : sdk.Visibility.private,
+            visibility: isPublicSpace
+                ? sdk.Visibility.public
+                : sdk.Visibility.private,
             initialState: isPublicSpace
                 ? null
                 : [
@@ -289,7 +285,7 @@ class _SpaceViewState extends State<SpaceView> {
         PopupMenuItem(
           value: SpaceChildAction.moveToSpace,
           child: Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: [
               const Icon(Icons.move_down_outlined),
               const SizedBox(width: 12),
@@ -300,7 +296,7 @@ class _SpaceViewState extends State<SpaceView> {
         PopupMenuItem(
           value: SpaceChildAction.edit,
           child: Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: [
               const Icon(Icons.edit_outlined),
               const SizedBox(width: 12),
@@ -311,7 +307,7 @@ class _SpaceViewState extends State<SpaceView> {
         PopupMenuItem(
           value: SpaceChildAction.removeFromSpace,
           child: Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: .min,
             children: [
               const Icon(Icons.group_remove_outlined),
               const SizedBox(width: 12),
@@ -344,8 +340,9 @@ class _SpaceViewState extends State<SpaceView> {
               .map(
                 (space) => AdaptiveModalAction(
                   value: space,
-                  label: space
-                      .getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+                  label: space.getLocalizedDisplayname(
+                    MatrixLocals(L10n.of(context)),
+                  ),
                 ),
               )
               .toList(),
@@ -392,19 +389,12 @@ class _SpaceViewState extends State<SpaceView> {
     final displayname =
         room?.getLocalizedDisplayname() ?? L10n.of(context).nothingFound;
     const avatarSize = Avatar.defaultSize / 1.5;
-    final isAdmin = room?.canChangeStateEvent(
-          EventTypes.SpaceChild,
-        ) ==
-        true;
+    final isAdmin = room?.canChangeStateEvent(EventTypes.SpaceChild) == true;
     return Scaffold(
       appBar: AppBar(
         leading: FluffyThemes.isColumnMode(context)
             ? null
-            : Center(
-                child: CloseButton(
-                  onPressed: widget.onBack,
-                ),
-              ),
+            : Center(child: CloseButton(onPressed: widget.onBack)),
         automaticallyImplyLeading: false,
         titleSpacing: FluffyThemes.isColumnMode(context) ? null : 0,
         title: ListTile(
@@ -432,7 +422,7 @@ class _SpaceViewState extends State<SpaceView> {
                 PopupMenuItem(
                   value: AddRoomType.chat,
                   child: Row(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: .min,
                     children: [
                       const Icon(Icons.group_add_outlined),
                       const SizedBox(width: 12),
@@ -443,7 +433,7 @@ class _SpaceViewState extends State<SpaceView> {
                 PopupMenuItem(
                   value: AddRoomType.subspace,
                   child: Row(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: .min,
                     children: [
                       const Icon(Icons.workspaces_outlined),
                       const SizedBox(width: 12),
@@ -460,7 +450,7 @@ class _SpaceViewState extends State<SpaceView> {
               PopupMenuItem(
                 value: SpaceActions.settings,
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   children: [
                     const Icon(Icons.settings_outlined),
                     const SizedBox(width: 12),
@@ -471,7 +461,7 @@ class _SpaceViewState extends State<SpaceView> {
               PopupMenuItem(
                 value: SpaceActions.invite,
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   children: [
                     const Icon(Icons.person_add_outlined),
                     const SizedBox(width: 12),
@@ -482,7 +472,7 @@ class _SpaceViewState extends State<SpaceView> {
               PopupMenuItem(
                 value: SpaceActions.members,
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   children: [
                     const Icon(Icons.group_outlined),
                     const SizedBox(width: 12),
@@ -497,7 +487,7 @@ class _SpaceViewState extends State<SpaceView> {
               PopupMenuItem(
                 value: SpaceActions.leave,
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   children: [
                     const Icon(Icons.delete_outlined),
                     const SizedBox(width: 12),
@@ -510,12 +500,7 @@ class _SpaceViewState extends State<SpaceView> {
         ],
       ),
       body: room == null
-          ? const Center(
-              child: Icon(
-                Icons.search_outlined,
-                size: 80,
-              ),
-            )
+          ? const Center(child: Icon(Icons.search_outlined, size: 80))
           : StreamBuilder(
               stream: room.client.onSync.stream
                   .where((s) => s.hasRoomUpdate)
@@ -573,7 +558,8 @@ class _SpaceViewState extends State<SpaceView> {
                           );
                         }
                         final item = _discoveredChildren[i];
-                        final displayname = item.name ??
+                        final displayname =
+                            item.name ??
                             item.canonicalAlias ??
                             L10n.of(context).emptyChat;
                         if (!displayname.toLowerCase().contains(filter)) {
@@ -589,27 +575,31 @@ class _SpaceViewState extends State<SpaceView> {
                             vertical: 1,
                           ),
                           child: Material(
-                            borderRadius:
-                                BorderRadius.circular(AppConfig.borderRadius),
+                            borderRadius: BorderRadius.circular(
+                              AppConfig.borderRadius,
+                            ),
                             clipBehavior: Clip.hardEdge,
-                            color: joinedRoom != null &&
+                            color:
+                                joinedRoom != null &&
                                     widget.activeChat == joinedRoom.id
                                 ? theme.colorScheme.secondaryContainer
                                 : Colors.transparent,
                             child: HoverBuilder(
                               builder: (context, hovered) => ListTile(
-                                visualDensity:
-                                    const VisualDensity(vertical: -0.5),
-                                contentPadding:
-                                    const EdgeInsets.symmetric(horizontal: 8),
+                                visualDensity: const VisualDensity(
+                                  vertical: -0.5,
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                ),
                                 onTap: joinedRoom != null
                                     ? () => widget.onChatTab(joinedRoom!)
                                     : () => _joinChildRoom(item),
                                 onLongPress: isAdmin
                                     ? () => _showSpaceChildEditMenu(
-                                          context,
-                                          item.roomId,
-                                        )
+                                        context,
+                                        item.roomId,
+                                      )
                                     : null,
                                 leading: hovered && isAdmin
                                     ? SizedBox.square(
@@ -618,16 +608,18 @@ class _SpaceViewState extends State<SpaceView> {
                                           splashRadius: avatarSize,
                                           iconSize: 14,
                                           style: IconButton.styleFrom(
-                                            foregroundColor: theme.colorScheme
+                                            foregroundColor: theme
+                                                .colorScheme
                                                 .onTertiaryContainer,
                                             backgroundColor: theme
-                                                .colorScheme.tertiaryContainer,
+                                                .colorScheme
+                                                .tertiaryContainer,
                                           ),
                                           onPressed: () =>
                                               _showSpaceChildEditMenu(
-                                            context,
-                                            item.roomId,
-                                          ),
+                                                context,
+                                                item.roomId,
+                                              ),
                                           icon: const Icon(Icons.edit_outlined),
                                         ),
                                       )
@@ -637,11 +629,13 @@ class _SpaceViewState extends State<SpaceView> {
                                         name: '#',
                                         backgroundColor:
                                             theme.colorScheme.surfaceContainer,
-                                        textColor: item.name?.darkColor ??
+                                        textColor:
+                                            item.name?.darkColor ??
                                             theme.colorScheme.onSurface,
                                         border: item.roomType == 'm.space'
                                             ? BorderSide(
-                                                color: theme.colorScheme
+                                                color: theme
+                                                    .colorScheme
                                                     .surfaceContainerHighest,
                                               )
                                             : null,

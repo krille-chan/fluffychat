@@ -32,7 +32,8 @@ class ImageViewerController extends State<ImageViewer> {
   @override
   void initState() {
     super.initState();
-    allEvents = widget.timeline?.events
+    allEvents =
+        widget.timeline?.events
             .where(
               (event) => {
                 MessageTypes.Image,
@@ -44,8 +45,9 @@ class ImageViewerController extends State<ImageViewer> {
             .reversed
             .toList() ??
         [widget.event];
-    var index =
-        allEvents.indexWhere((event) => event.eventId == widget.event.eventId);
+    var index = allEvents.indexWhere(
+      (event) => event.eventId == widget.event.eventId,
+    );
     if (index < 0) index = 0;
     pageController = PageController(initialPage: index);
   }
@@ -93,11 +95,10 @@ class ImageViewerController extends State<ImageViewer> {
 
   /// Forward this image to another room.
   void forwardAction() => showScaffoldDialog(
-        context: context,
-        builder: (context) => ShareScaffoldDialog(
-          items: [ContentShareItem(currentEvent.content)],
-        ),
-      );
+    context: context,
+    builder: (context) =>
+        ShareScaffoldDialog(items: [ContentShareItem(currentEvent.content)]),
+  );
 
   /// Save this file with a system call.
   void saveFileAction(BuildContext context) => currentEvent.saveFile(context);

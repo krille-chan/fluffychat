@@ -41,8 +41,9 @@ extension ClientDownloadContentExtension on Client {
 
     final response = await httpClient.get(
       httpUri,
-      headers:
-          accessToken == null ? null : {'authorization': 'Bearer $accessToken'},
+      headers: accessToken == null
+          ? null
+          : {'authorization': 'Bearer $accessToken'},
     );
     if (response.statusCode != 200) {
       throw Exception();

@@ -53,9 +53,7 @@ class _ConfigViewerState extends State<ConfigViewer> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Advanced configurations'),
-        leading: BackButton(
-          onPressed: () => context.go('/'),
-        ),
+        leading: BackButton(onPressed: () => context.go('/')),
       ),
       body: Column(
         children: [
@@ -65,9 +63,7 @@ class _ConfigViewerState extends State<ConfigViewer> {
             color: theme.colorScheme.errorContainer,
             child: Text(
               'Changing configs by hand is untested! Use without any warranty!',
-              style: TextStyle(
-                color: theme.colorScheme.onErrorContainer,
-              ),
+              style: TextStyle(color: theme.colorScheme.onErrorContainer),
             ),
           ),
           Expanded(

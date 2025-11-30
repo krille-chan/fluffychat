@@ -353,13 +353,15 @@ class MatrixLocals extends MatrixLocalizations {
   String get cancelledSend => l10n.sendCanceled;
 
   @override
-  String voiceMessage(String senderName, Duration? duration) =>
-      l10n.sentVoiceMessage(
-        senderName,
-        duration == null
-            ? ''
-            : '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}',
-      );
+  String voiceMessage(
+    String senderName,
+    Duration? duration,
+  ) => l10n.sentVoiceMessage(
+    senderName,
+    duration == null
+        ? ''
+        : '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}',
+  );
 
   @override
   String get refreshingLastEvent => l10n.loadingPleaseWait;

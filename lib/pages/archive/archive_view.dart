@@ -60,8 +60,9 @@ class ArchiveView extends StatelessWidget {
                   itemBuilder: (BuildContext context, int i) => ChatListItem(
                     controller.archive[i],
                     onForget: () => controller.forgetRoomAction(i),
-                    onTap: () => context
-                        .go('/rooms/archive/${controller.archive[i].id}'),
+                    onTap: () => context.go(
+                      '/rooms/archive/${controller.archive[i].id}',
+                    ),
                   ),
                 );
               }

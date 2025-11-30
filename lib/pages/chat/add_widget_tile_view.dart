@@ -19,20 +19,21 @@ class AddWidgetTileView extends StatelessWidget {
         CupertinoSegmentedControl(
           groupValue: controller.widgetType,
           padding: const EdgeInsets.all(8),
-          children: {
-            'm.etherpad': Text(L10n.of(context).widgetEtherpad),
-            'm.jitsi': Text(L10n.of(context).widgetJitsi),
-            'm.video': Text(L10n.of(context).widgetVideo),
-            'm.custom': Text(L10n.of(context).widgetCustom),
-          }.map(
-            (key, value) => MapEntry(
-              key,
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: value,
+          children:
+              {
+                'm.etherpad': Text(L10n.of(context).widgetEtherpad),
+                'm.jitsi': Text(L10n.of(context).widgetJitsi),
+                'm.video': Text(L10n.of(context).widgetVideo),
+                'm.custom': Text(L10n.of(context).widgetCustom),
+              }.map(
+                (key, value) => MapEntry(
+                  key,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                    child: value,
+                  ),
+                ),
               ),
-            ),
-          ),
           onValueChanged: controller.setWidgetType,
         ),
         Padding(

@@ -45,9 +45,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
               children: [
                 ListTile(
                   leading: const Icon(Icons.info_outlined),
-                  subtitle: Text(
-                    L10n.of(context).chatPermissionsDescription,
-                  ),
+                  subtitle: Text(L10n.of(context).chatPermissionsDescription),
                 ),
                 Divider(color: theme.dividerColor),
                 ListTile(
@@ -60,7 +58,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                   ),
                 ),
                 Column(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisSize: .min,
                   children: [
                     for (final entry in powerLevels.entries)
                       PermissionsListTile(
@@ -87,12 +85,14 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                     Builder(
                       builder: (context) {
                         const key = 'rooms';
-                        final value = powerLevelsContent
-                                .containsKey('notifications')
+                        final value =
+                            powerLevelsContent.containsKey('notifications')
                             ? powerLevelsContent
-                                    .tryGetMap<String, Object?>('notifications')
-                                    ?.tryGet<int>('rooms') ??
-                                0
+                                      .tryGetMap<String, Object?>(
+                                        'notifications',
+                                      )
+                                      ?.tryGet<int>('rooms') ??
+                                  0
                             : 0;
                         return PermissionsListTile(
                           permissionKey: key,

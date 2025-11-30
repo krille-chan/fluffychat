@@ -82,8 +82,8 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
   }
 
   void showLockScreen() => setState(() {
-        _isLocked = true;
-      });
+    _isLocked = true;
+  });
 
   Future<T> pauseWhile<T>(Future<T> future) async {
     _paused = true;
@@ -94,20 +94,15 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
     }
   }
 
-  static AppLock of(BuildContext context) => Provider.of<AppLock>(
-        context,
-        listen: false,
-      );
+  static AppLock of(BuildContext context) =>
+      Provider.of<AppLock>(context, listen: false);
 
   @override
   Widget build(BuildContext context) => Provider<AppLock>(
-        create: (_) => this,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            widget.child,
-            if (isLocked) const LockScreen(),
-          ],
-        ),
-      );
+    create: (_) => this,
+    child: Stack(
+      fit: StackFit.expand,
+      children: [widget.child, if (isLocked) const LockScreen()],
+    ),
+  );
 }

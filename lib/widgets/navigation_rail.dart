@@ -27,24 +27,20 @@ class SpacesNavigationRail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
-    final isSettings = GoRouter.of(context)
-        .routeInformationProvider
-        .value
-        .uri
-        .path
-        .startsWith('/rooms/settings');
+    final isSettings = GoRouter.of(
+      context,
+    ).routeInformationProvider.value.uri.path.startsWith('/rooms/settings');
     return Material(
       child: SafeArea(
         child: StreamBuilder(
-          key: ValueKey(
-            client.userID.toString(),
-          ),
+          key: ValueKey(client.userID.toString()),
           stream: client.onSync.stream
               .where((s) => s.hasRoomUpdate)
               .rateLimit(const Duration(seconds: 1)),
           builder: (context, _) {
-            final allSpaces =
-                client.rooms.where((room) => room.isSpace).toList();
+            final allSpaces = client.rooms
+                .where((room) => room.isSpace)
+                .toList();
 
             return SizedBox(
               width: FluffyThemes.isColumnMode(context)
@@ -86,12 +82,13 @@ class SpacesNavigationRail extends StatelessWidget {
                           );
                         }
                         final space = allSpaces[i];
-                        final displayname =
-                            allSpaces[i].getLocalizedDisplayname(
-                          MatrixLocals(L10n.of(context)),
-                        );
-                        final spaceChildrenIds =
-                            space.spaceChildren.map((c) => c.roomId).toSet();
+                        final displayname = allSpaces[i]
+                            .getLocalizedDisplayname(
+                              MatrixLocals(L10n.of(context)),
+                            );
+                        final spaceChildrenIds = space.spaceChildren
+                            .map((c) => c.roomId)
+                            .toSet();
                         return NaviRailItem(
                           toolTip: displayname,
                           isSelected: activeSpaceId == space.id,

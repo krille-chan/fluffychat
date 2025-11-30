@@ -25,8 +25,8 @@ class ClientChooserButton extends StatelessWidget {
         (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
             ? 0
             : a.isValidMatrixId && !b.isValidMatrixId
-                ? -1
-                : 1,
+            ? -1
+            : 1,
       );
     return <PopupMenuEntry<Object>>[
       PopupMenuItem(
@@ -97,8 +97,8 @@ class ClientChooserButton extends StatelessWidget {
           PopupMenuItem(
             value: null,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: .start,
+              mainAxisSize: .min,
               children: [
                 Text(
                   bundle!,
@@ -123,7 +123,8 @@ class ClientChooserButton extends StatelessWidget {
                     children: [
                       Avatar(
                         mxContent: snapshot.data?.avatarUrl,
-                        name: snapshot.data?.displayName ??
+                        name:
+                            snapshot.data?.displayName ??
                             client.userID!.localpart,
                         size: 32,
                       ),
@@ -193,10 +194,7 @@ class ClientChooserButton extends StatelessWidget {
     );
   }
 
-  void _clientSelected(
-    Object object,
-    BuildContext context,
-  ) async {
+  void _clientSelected(Object object, BuildContext context) async {
     if (object is Client) {
       controller.setActiveClient(object);
     } else if (object is String) {

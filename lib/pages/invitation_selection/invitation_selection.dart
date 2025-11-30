@@ -12,10 +12,7 @@ import '../../utils/localized_exception_extension.dart';
 
 class InvitationSelection extends StatefulWidget {
   final String roomId;
-  const InvitationSelection({
-    super.key,
-    required this.roomId,
-  });
+  const InvitationSelection({super.key, required this.roomId});
 
   @override
   InvitationSelectionController createState() =>
@@ -47,8 +44,8 @@ class InvitationSelectionController extends State<InvitationSelection> {
         .toList();
     contacts.sort(
       (a, b) => a.calcDisplayname().toLowerCase().compareTo(
-            b.calcDisplayname().toLowerCase(),
-          ),
+        b.calcDisplayname().toLowerCase(),
+      ),
     );
     return contacts;
   }
@@ -91,9 +88,9 @@ class InvitationSelectionController extends State<InvitationSelection> {
     try {
       response = await matrix.client.searchUserDirectory(text, limit: 10);
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text((e).toLocalizedString(context))),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text((e).toLocalizedString(context))));
       return;
     } finally {
       setState(() => loading = false);

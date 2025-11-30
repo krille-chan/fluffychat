@@ -19,10 +19,7 @@ import '../../widgets/mxc_image.dart';
 class EventVideoPlayer extends StatefulWidget {
   final Event event;
 
-  const EventVideoPlayer(
-    this.event, {
-    super.key,
-  });
+  const EventVideoPlayer(this.event, {super.key});
 
   @override
   EventVideoPlayerState createState() => EventVideoPlayerState();
@@ -54,8 +51,9 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
             : (progress) {
                 final progressPercentage = progress / fileSize;
                 setState(() {
-                  _downloadProgress =
-                      progressPercentage < 1 ? progressPercentage : null;
+                  _downloadProgress = progressPercentage < 1
+                      ? progressPercentage
+                      : null;
                 });
               },
       );
@@ -100,11 +98,9 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
         );
       });
     } on IOException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(e.toLocalizedString(context)),
-        ),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
     } catch (e, s) {
       ErrorReporter(context, 'Unable to play video').onErrorCallback(e, s);
     }
@@ -136,8 +132,10 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
   @override
   Widget build(BuildContext context) {
     final hasThumbnail = widget.event.hasThumbnail;
-    final blurHash = (widget.event.infoMap as Map<String, dynamic>)
-            .tryGet<String>('xyz.amorgan.blurhash') ??
+    final blurHash =
+        (widget.event.infoMap as Map<String, dynamic>).tryGet<String>(
+          'xyz.amorgan.blurhash',
+        ) ??
         fallbackBlurHash;
     final infoMap = widget.event.content.tryGetMap<String, Object?>('info');
     final videoWidth = infoMap?.tryGet<int>('w') ?? 400;

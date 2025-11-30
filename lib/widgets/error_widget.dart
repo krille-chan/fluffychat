@@ -21,10 +21,10 @@ class _FluffyChatErrorWidgetState extends State<FluffyChatErrorWidget> {
     }
     knownExceptions.add(widget.details.exception.toString());
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ErrorReporter(context, 'Error Widget').onErrorCallback(
-        widget.details.exception,
-        widget.details.stack,
-      );
+      ErrorReporter(
+        context,
+        'Error Widget',
+      ).onErrorCallback(widget.details.exception, widget.details.stack);
     });
   }
 

@@ -27,15 +27,15 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
   bool guestAccessLoading = false;
   Room get room => Matrix.of(context).client.getRoomById(widget.roomId)!;
   Set<Room> get knownSpaceParents => {
-        ...room.client.rooms.where(
-          (space) =>
-              space.isSpace &&
-              space.spaceChildren.any((child) => child.roomId == room.id),
-        ),
-        ...room.spaceParents
-            .map((parent) => room.client.getRoomById(parent.roomId ?? ''))
-            .whereType<Room>(),
-      };
+    ...room.client.rooms.where(
+      (space) =>
+          space.isSpace &&
+          space.spaceChildren.any((child) => child.roomId == room.id),
+    ),
+    ...room.spaceParents
+        .map((parent) => room.client.getRoomById(parent.roomId ?? ''))
+        .whereType<Room>(),
+  };
 
   String get roomVersion =>
       room
@@ -87,21 +87,20 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
     try {
       await room.setJoinRules(
         newJoinRules,
-        allowConditionRoomIds: {JoinRules.restricted, JoinRules.knockRestricted}
-                .contains(newJoinRules)
+        allowConditionRoomIds:
+            {
+              JoinRules.restricted,
+              JoinRules.knockRestricted,
+            }.contains(newJoinRules)
             ? knownSpaceParents.map((parent) => parent.id).toList()
             : null,
       );
     } catch (e, s) {
       Logs().w('Unable to change join rules', e, s);
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              e.toLocalizedString(context),
-            ),
-          ),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
       }
     } finally {
       if (mounted) {
@@ -123,13 +122,9 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
     } catch (e, s) {
       Logs().w('Unable to change history visibility', e, s);
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              e.toLocalizedString(context),
-            ),
-          ),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
       }
     } finally {
       if (mounted) {
@@ -151,13 +146,9 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
     } catch (e, s) {
       Logs().w('Unable to change guest access', e, s);
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              e.toLocalizedString(context),
-            ),
-          ),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
       }
     } finally {
       if (mounted) {
@@ -216,8 +207,11 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
           newRoom = room.client.getRoomById(newRoomId);
         }
 
-        if ({JoinRules.invite, JoinRules.knock, JoinRules.knockRestricted}
-            .contains(room.joinRules)) {
+        if ({
+          JoinRules.invite,
+          JoinRules.knock,
+          JoinRules.knockRestricted,
+        }.contains(room.joinRules)) {
           final users = await room.requestParticipants([
             Membership.join,
             Membership.invite,
@@ -282,7 +276,8 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
       cancelLabel: L10n.of(context).no,
     );
 
-    final altAliases = room
+    final altAliases =
+        room
             .getState(EventTypes.RoomCanonicalAlias)
             ?.content
             .tryGetList<String>('alt_aliases')
@@ -298,17 +293,13 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
 
     await showFutureLoadingDialog(
       context: context,
-      future: () => room.client.setRoomStateWithKey(
-        room.id,
-        EventTypes.RoomCanonicalAlias,
-        '',
-        {
-          'alias': canonicalAliasConsent == OkCancelResult.ok
-              ? alias
-              : room.canonicalAlias,
-          if (altAliases.isNotEmpty) 'alt_aliases': altAliases.toList(),
-        },
-      ),
+      future: () => room.client
+          .setRoomStateWithKey(room.id, EventTypes.RoomCanonicalAlias, '', {
+            'alias': canonicalAliasConsent == OkCancelResult.ok
+                ? alias
+                : room.canonicalAlias,
+            if (altAliases.isNotEmpty) 'alt_aliases': altAliases.toList(),
+          }),
     );
   }
 
@@ -335,13 +326,9 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
     } catch (e, s) {
       Logs().w('Unable to change visibility', e, s);
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              e.toLocalizedString(context),
-            ),
-          ),
-        );
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
       }
     } finally {
       if (mounted) {

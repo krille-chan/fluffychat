@@ -25,8 +25,8 @@ class AvatarPageHeader extends StatelessWidget {
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: FluffyThemes.columnWidth),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: .min,
+          crossAxisAlignment: .center,
           spacing: 8.0,
           children: [
             Stack(
@@ -58,7 +58,7 @@ class AvatarPageHeader extends StatelessWidget {
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: .center,
                       children: [
                         ConstrainedBox(
                           constraints: BoxConstraints(
@@ -87,7 +87,7 @@ class AvatarPageHeader extends StatelessWidget {
                 ),
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: .spaceEvenly,
                 children: iconButtons,
               ),
             ),

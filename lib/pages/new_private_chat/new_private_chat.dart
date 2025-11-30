@@ -52,8 +52,9 @@ class NewPrivateChatController extends State<NewPrivateChat> {
   }
 
   Future<List<Profile>> _searchUser(String searchTerm) async {
-    final result =
-        await Matrix.of(context).client.searchUserDirectory(searchTerm);
+    final result = await Matrix.of(
+      context,
+    ).client.searchUserDirectory(searchTerm);
     final profiles = result.results;
 
     if (searchTerm.isValidMatrixId &&
@@ -73,9 +74,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
       if (info.version.sdkInt < 21) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(
-              L10n.of(context).unsupportedAndroidVersionLong,
-            ),
+            content: Text(L10n.of(context).unsupportedAndroidVersionLong),
           ),
         );
         return;
@@ -93,15 +92,13 @@ class NewPrivateChatController extends State<NewPrivateChat> {
     await Clipboard.setData(
       ClipboardData(text: Matrix.of(context).client.userID!),
     );
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(L10n.of(context).copiedToClipboard)));
   }
 
-  void openUserModal(Profile profile) => UserDialog.show(
-        context: context,
-        profile: profile,
-      );
+  void openUserModal(Profile profile) =>
+      UserDialog.show(context: context, profile: profile);
 
   @override
   Widget build(BuildContext context) => NewPrivateChatView(this);

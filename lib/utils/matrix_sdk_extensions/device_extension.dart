@@ -22,8 +22,13 @@ IconData _getIconFromName(String displayname) {
   }.any((s) => name.contains(s))) {
     return Icons.web_outlined;
   }
-  if ({'desktop', 'windows', 'macos', 'linux', 'ubuntu'}
-      .any((s) => name.contains(s))) {
+  if ({
+    'desktop',
+    'windows',
+    'macos',
+    'linux',
+    'ubuntu',
+  }.any((s) => name.contains(s))) {
     return Icons.desktop_mac_outlined;
   }
   return Icons.device_unknown_outlined;

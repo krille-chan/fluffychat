@@ -42,10 +42,12 @@ class Avatar extends StatelessWidget {
     final theme = Theme.of(context);
 
     final name = this.name;
-    final fallbackLetters =
-        name == null || name.isEmpty ? '@' : name.substring(0, 1);
+    final fallbackLetters = name == null || name.isEmpty
+        ? '@'
+        : name.substring(0, 1);
 
-    final noPic = mxContent == null ||
+    final noPic =
+        mxContent == null ||
         mxContent.toString().isEmpty ||
         mxContent.toString() == 'null';
     final borderRadius = this.borderRadius ?? BorderRadius.circular(size / 2);
@@ -113,8 +115,8 @@ class Avatar extends StatelessWidget {
               final dotColor = presence.presence.isOnline
                   ? Colors.green
                   : presence.presence.isUnavailable
-                      ? Colors.orange
-                      : Colors.grey;
+                  ? Colors.orange
+                  : Colors.grey;
               return Positioned(
                 bottom: -3,
                 right: -3,
@@ -147,10 +149,7 @@ class Avatar extends StatelessWidget {
     if (onTap == null) return container;
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: onTap,
-        child: container,
-      ),
+      child: GestureDetector(onTap: onTap, child: container),
     );
   }
 }

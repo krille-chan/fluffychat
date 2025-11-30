@@ -50,8 +50,8 @@ void showMemberActionsPopupMenu({
               presenceBackgroundColor: theme.colorScheme.surfaceContainer,
             ),
             Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: .min,
+              crossAxisAlignment: .start,
               children: [
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 128),
@@ -109,16 +109,16 @@ void showMemberActionsPopupMenu({
             const Icon(Icons.admin_panel_settings_outlined),
             const SizedBox(width: 18),
             Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: .min,
+              crossAxisAlignment: .start,
               children: [
                 Text(L10n.of(context).chatPermissions),
                 Text(
                   user.powerLevel < 50
                       ? L10n.of(context).userLevel(user.powerLevel)
                       : user.powerLevel < 100
-                          ? L10n.of(context).moderatorLevel(user.powerLevel)
-                          : L10n.of(context).adminLevel(user.powerLevel),
+                      ? L10n.of(context).moderatorLevel(user.powerLevel)
+                      : L10n.of(context).adminLevel(user.powerLevel),
                   style: const TextStyle(fontSize: 10),
                 ),
               ],
@@ -267,10 +267,7 @@ void showMemberActionsPopupMenu({
 
       final result = await showFutureLoadingDialog(
         context: context,
-        future: () => user.room.client.reportUser(
-          user.id,
-          reason,
-        ),
+        future: () => user.room.client.reportUser(user.id, reason),
       );
       if (result.error != null) return;
       ScaffoldMessenger.of(context).showSnackBar(

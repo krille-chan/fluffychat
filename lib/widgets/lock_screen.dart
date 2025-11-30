@@ -79,10 +79,7 @@ class _LockScreenState extends State<LockScreen> {
                 shrinkWrap: true,
                 children: [
                   Center(
-                    child: Image.asset(
-                      'assets/info-logo.png',
-                      width: 256,
-                    ),
+                    child: Image.asset('assets/info-logo.png', width: 256),
                   ),
                   TextField(
                     controller: _textEditingController,
@@ -95,9 +92,7 @@ class _LockScreenState extends State<LockScreen> {
                     onChanged: tryUnlock,
                     onSubmitted: tryUnlock,
                     style: const TextStyle(fontSize: 40),
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(4),
-                    ],
+                    inputFormatters: [LengthLimitingTextInputFormatter(4)],
                     decoration: InputDecoration(
                       errorText: _errorText,
                       hintText: '****',

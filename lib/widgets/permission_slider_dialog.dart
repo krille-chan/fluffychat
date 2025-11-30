@@ -18,8 +18,8 @@ Future<int?> showPermissionChooser(
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: .min,
+          crossAxisAlignment: .stretch,
           spacing: 12.0,
           children: [
             Text(L10n.of(context).setPermissionsLevelDescription),

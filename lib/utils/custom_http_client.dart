@@ -33,8 +33,8 @@ class CustomHttpClient {
   }
 
   static http.Client createHTTPClient() => retry.RetryClient(
-        PlatformInfos.isAndroid
-            ? IOClient(customHttpClient(ISRG_X1))
-            : http.Client(),
-      );
+    PlatformInfos.isAndroid
+        ? IOClient(customHttpClient(ISRG_X1))
+        : http.Client(),
+  );
 }

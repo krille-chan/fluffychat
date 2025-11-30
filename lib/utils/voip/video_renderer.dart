@@ -45,8 +45,9 @@ class _VideoRendererState extends State<VideoRenderer> {
 
   @override
   void initState() {
-    _streamChangeSubscription =
-        widget.stream?.onStreamChanged.stream.listen((stream) {
+    _streamChangeSubscription = widget.stream?.onStreamChanged.stream.listen((
+      stream,
+    ) {
       setState(() {
         _renderer?.srcObject = stream;
       });

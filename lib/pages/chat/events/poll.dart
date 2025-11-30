@@ -24,10 +24,8 @@ class PollWidget extends StatelessWidget {
     super.key,
   });
 
-  void _endPoll(BuildContext context) => showFutureLoadingDialog(
-        context: context,
-        future: () => event.endPoll(),
-      );
+  void _endPoll(BuildContext context) =>
+      showFutureLoadingDialog(context: context, future: () => event.endPoll());
 
   void _toggleVote(
     BuildContext context,
@@ -60,20 +58,19 @@ class PollWidget extends StatelessWidget {
     }
     final responses = event.getPollResponses(timeline);
     final pollHasBeenEnded = event.getPollHasBeenEnded(timeline);
-    final canVote = event.room.canSendEvent(PollEventContent.responseType) &&
+    final canVote =
+        event.room.canSendEvent(PollEventContent.responseType) &&
         !pollHasBeenEnded;
     final maxPolls = responses.length;
     final answersVisible =
         eventContent.pollStartContent.kind == PollKind.disclosed ||
-            pollHasBeenEnded;
+        pollHasBeenEnded;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 8,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: .min,
+        crossAxisAlignment: .start,
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -82,13 +79,15 @@ class PollWidget extends StatelessWidget {
               textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
               style: TextStyle(
                 color: textColor,
-                fontSize: AppSettings.fontSizeFactor.value *
+                fontSize:
+                    AppSettings.fontSizeFactor.value *
                     AppConfig.messageFontSize,
               ),
               options: const LinkifyOptions(humanize: false),
               linkStyle: TextStyle(
                 color: linkColor,
-                fontSize: AppSettings.fontSizeFactor.value *
+                fontSize:
+                    AppSettings.fontSizeFactor.value *
                     AppConfig.messageFontSize,
                 decoration: TextDecoration.underline,
                 decorationColor: linkColor,
@@ -97,99 +96,101 @@ class PollWidget extends StatelessWidget {
             ),
           ),
           Divider(color: linkColor.withAlpha(64)),
-          ...eventContent.pollStartContent.answers.map(
-            (answer) {
-              final votedUserIds = responses.entries
-                  .where((entry) => entry.value.contains(answer.id))
-                  .map((entry) => entry.key)
-                  .toSet();
-              return Material(
-                color: Colors.transparent,
-                clipBehavior: Clip.hardEdge,
-                child: CheckboxListTile.adaptive(
-                  value: responses[event.room.client.userID!]
-                          ?.contains(answer.id) ??
-                      false,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-                  checkboxScaleFactor: 1.5,
-                  checkboxShape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32),
+          ...eventContent.pollStartContent.answers.map((answer) {
+            final votedUserIds = responses.entries
+                .where((entry) => entry.value.contains(answer.id))
+                .map((entry) => entry.key)
+                .toSet();
+            return Material(
+              color: Colors.transparent,
+              clipBehavior: Clip.hardEdge,
+              child: CheckboxListTile.adaptive(
+                value:
+                    responses[event.room.client.userID!]?.contains(answer.id) ??
+                    false,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+                checkboxScaleFactor: 1.5,
+                checkboxShape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32),
+                ),
+                onChanged: !canVote
+                    ? null
+                    : (_) => _toggleVote(
+                        context,
+                        answer.id,
+                        eventContent.pollStartContent.maxSelections,
+                      ),
+                title: Text(
+                  answer.mText,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize:
+                        AppConfig.messageFontSize *
+                        AppSettings.fontSizeFactor.value,
                   ),
-                  onChanged: !canVote
-                      ? null
-                      : (_) => _toggleVote(
-                            context,
-                            answer.id,
-                            eventContent.pollStartContent.maxSelections,
-                          ),
-                  title: Text(
-                    answer.mText,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: AppConfig.messageFontSize *
-                          AppSettings.fontSizeFactor.value,
-                    ),
-                  ),
-                  subtitle: answersVisible
-                      ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                children: [
-                                  Text(
-                                    L10n.of(context)
-                                        .countVotes(votedUserIds.length),
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      color: linkColor,
-                                      fontSize:
+                ),
+                subtitle: answersVisible
+                    ? Column(
+                        crossAxisAlignment: .start,
+                        mainAxisSize: .min,
+                        children: [
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                Text(
+                                  L10n.of(
+                                    context,
+                                  ).countVotes(votedUserIds.length),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    color: linkColor,
+                                    fontSize:
+                                        12 * AppSettings.fontSizeFactor.value,
+                                  ),
+                                ),
+                                const SizedBox(width: 2),
+                                ...votedUserIds.map((userId) {
+                                  final user = event.room
+                                      .getState(EventTypes.RoomMember, userId)
+                                      ?.asUser(event.room);
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 2.0,
+                                    ),
+                                    child: Avatar(
+                                      mxContent: user?.avatarUrl,
+                                      name:
+                                          user?.calcDisplayname() ??
+                                          userId.localpart,
+                                      size:
                                           12 * AppSettings.fontSizeFactor.value,
                                     ),
-                                  ),
-                                  const SizedBox(width: 2),
-                                  ...votedUserIds.map((userId) {
-                                    final user = event.room
-                                        .getState(EventTypes.RoomMember, userId)
-                                        ?.asUser(event.room);
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 2.0,
-                                      ),
-                                      child: Avatar(
-                                        mxContent: user?.avatarUrl,
-                                        name: user?.calcDisplayname() ??
-                                            userId.localpart,
-                                        size: 12 *
-                                            AppSettings.fontSizeFactor.value,
-                                      ),
-                                    );
-                                  }),
-                                  const SizedBox(width: 2),
-                                ],
-                              ),
+                                  );
+                                }),
+                                const SizedBox(width: 2),
+                              ],
                             ),
-                            LinearProgressIndicator(
-                              color: linkColor,
-                              backgroundColor: linkColor.withAlpha(128),
-                              borderRadius:
-                                  BorderRadius.circular(AppConfig.borderRadius),
-                              value: maxPolls == 0
-                                  ? 0
-                                  : votedUserIds.length / maxPolls,
+                          ),
+                          LinearProgressIndicator(
+                            color: linkColor,
+                            backgroundColor: linkColor.withAlpha(128),
+                            borderRadius: BorderRadius.circular(
+                              AppConfig.borderRadius,
                             ),
-                          ],
-                        )
-                      : null,
-                ),
-              );
-            },
-          ),
+                            value: maxPolls == 0
+                                ? 0
+                                : votedUserIds.length / maxPolls,
+                          ),
+                        ],
+                      )
+                    : null,
+              ),
+            );
+          }),
           if (!pollHasBeenEnded && event.senderId == event.room.client.userID)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),

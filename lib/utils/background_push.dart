@@ -62,7 +62,8 @@ class BackgroundPush {
   Future<void> loadLocale() async {
     final context = matrix?.context;
     // inspired by _lookupL10n in .dart_tool/flutter_gen/gen_l10n/l10n.dart
-    l10n ??= (context != null ? L10n.of(context) : null) ??
+    l10n ??=
+        (context != null ? L10n.of(context) : null) ??
         (await L10n.delegate.load(PlatformDispatcher.instance.locale));
   }
 
@@ -78,8 +79,26 @@ class BackgroundPush {
   void _init() async {
     //<GOOGLE_SERVICES>firebaseEnabled = true;
     try {
-      mainIsolateReceivePort?.listen(
-        (message) async {
+      mainIsolateReceivePort?.listen((message) async {
+        try {
+          await notificationTap(
+            NotificationResponseJson.fromJsonString(message),
+            client: client,
+            router: FluffyChatApp.router,
+            l10n: l10n,
+          );
+        } catch (e, s) {
+          Logs().wtf('Main Notification Tap crashed', e, s);
+        }
+      });
+      if (PlatformInfos.isAndroid) {
+        final port = ReceivePort();
+        IsolateNameServer.removePortNameMapping('background_tab_port');
+        IsolateNameServer.registerPortWithName(
+          port.sendPort,
+          'background_tab_port',
+        );
+        port.listen((message) async {
           try {
             await notificationTap(
               NotificationResponseJson.fromJsonString(message),
@@ -90,29 +109,7 @@ class BackgroundPush {
           } catch (e, s) {
             Logs().wtf('Main Notification Tap crashed', e, s);
           }
-        },
-      );
-      if (PlatformInfos.isAndroid) {
-        final port = ReceivePort();
-        IsolateNameServer.removePortNameMapping('background_tab_port');
-        IsolateNameServer.registerPortWithName(
-          port.sendPort,
-          'background_tab_port',
-        );
-        port.listen(
-          (message) async {
-            try {
-              await notificationTap(
-                NotificationResponseJson.fromJsonString(message),
-                client: client,
-                router: FluffyChatApp.router,
-                l10n: l10n,
-              );
-            } catch (e, s) {
-              Logs().wtf('Main Notification Tap crashed', e, s);
-            }
-          },
-        );
+        });
       }
       await _flutterLocalNotificationsPlugin.initialize(
         const InitializationSettings(
@@ -201,12 +198,14 @@ class BackgroundPush {
     if (PlatformInfos.isAndroid) {
       _flutterLocalNotificationsPlugin
           .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
+            AndroidFlutterLocalNotificationsPlugin
+          >()
           ?.requestNotificationsPermission();
     }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
-    final pushers = await (client.getPushers().catchError((e) {
+    final pushers =
+        await (client.getPushers().catchError((e) {
           Logs().w('[Push] Unable to request pushers', e);
           return <Pusher>[];
         })) ??
@@ -235,10 +234,9 @@ class BackgroundPush {
           currentPushers.first.data.url.toString() == gatewayUrl &&
           currentPushers.first.data.format ==
               AppSettings.pushNotificationsPusherFormat.value &&
-          mapEquals(
-            currentPushers.single.data.additionalProperties,
-            {"data_message": pusherDataMessageFormat},
-          )) {
+          mapEquals(currentPushers.single.data.additionalProperties, {
+            "data_message": pusherDataMessageFormat,
+          })) {
         Logs().i('[Push] Pusher already set');
       } else {
         Logs().i('Need to set new pusher');
@@ -290,8 +288,8 @@ class BackgroundPush {
   final pusherDataMessageFormat = Platform.isAndroid
       ? 'android'
       : Platform.isIOS
-          ? 'ios'
-          : null;
+      ? 'ios'
+      : null;
 
   static bool _wentToRoomOnStartup = false;
 
@@ -315,9 +313,9 @@ class BackgroundPush {
     }
 
     // ignore: unawaited_futures
-    _flutterLocalNotificationsPlugin
-        .getNotificationAppLaunchDetails()
-        .then((details) {
+    _flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails().then((
+      details,
+    ) {
       if (details == null ||
           !details.didNotificationLaunchApp ||
           _wentToRoomOnStartup) {
@@ -348,9 +346,7 @@ class BackgroundPush {
       if (PlatformInfos.isAndroid) {
         onFcmError?.call(
           l10n!.noGoogleServicesWarning,
-          link: Uri.parse(
-            AppConfig.enablePushTutorial,
-          ),
+          link: Uri.parse(AppConfig.enablePushTutorial),
         );
         return;
       }
@@ -397,15 +393,13 @@ class BackgroundPush {
         'https://matrix.gateway.unifiedpush.org/_matrix/push/v1/notify';
     try {
       final url = Uri.parse(newEndpoint)
-          .replace(
-            path: '/_matrix/push/v1/notify',
-            query: '',
-          )
+          .replace(path: '/_matrix/push/v1/notify', query: '')
           .toString()
           .split('?')
           .first;
-      final res =
-          json.decode(utf8.decode((await http.get(Uri.parse(url))).bodyBytes));
+      final res = json.decode(
+        utf8.decode((await http.get(Uri.parse(url))).bodyBytes),
+      );
       if (res['gateway'] == 'matrix' ||
           (res['unifiedpush'] is Map &&
               res['unifiedpush']['gateway'] == 'matrix')) {
@@ -436,14 +430,13 @@ class BackgroundPush {
     upAction = true;
     Logs().i('[Push] Removing UnifiedPush endpoint...');
     final oldEndpoint = AppSettings.unifiedPushEndpoint.value;
-    await AppSettings.unifiedPushEndpoint
-        .setItem(AppSettings.unifiedPushEndpoint.defaultValue);
+    await AppSettings.unifiedPushEndpoint.setItem(
+      AppSettings.unifiedPushEndpoint.defaultValue,
+    );
     await AppSettings.unifiedPushRegistered.setItem(false);
     if (oldEndpoint.isNotEmpty) {
       // remove the old pusher
-      await setupPusher(
-        oldTokens: {oldEndpoint},
-      );
+      await setupPusher(oldTokens: {oldEndpoint});
     }
   }
 

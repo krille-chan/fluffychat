@@ -39,10 +39,7 @@ extension ResizeImage on XFile {
     try {
       final bytes = await VideoCompress.getByteThumbnail(path);
       if (bytes == null) return null;
-      return MatrixImageFile(
-        bytes: bytes,
-        name: name,
-      );
+      return MatrixImageFile(bytes: bytes, name: name);
     } catch (e, s) {
       Logs().w('Error while compressing video', e, s);
     }

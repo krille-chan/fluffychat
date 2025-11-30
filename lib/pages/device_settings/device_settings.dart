@@ -59,10 +59,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
         .tryGetMap<String, Object?>('org.matrix.msc2965.authentication')
         ?.tryGet<String>('account');
     if (accountManageUrl != null) {
-      launchUrlString(
-        accountManageUrl,
-        mode: LaunchMode.inAppBrowserView,
-      );
+      launchUrlString(accountManageUrl, mode: LaunchMode.inAppBrowserView);
       return;
     }
     if (await showOkCancelAlertDialog(
@@ -86,10 +83,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
       context: context,
       delay: false,
       future: () => matrix.client.uiaRequestBackground(
-        (auth) => matrix.client.deleteDevices(
-          deviceIds,
-          auth: auth,
-        ),
+        (auth) => matrix.client.deleteDevices(deviceIds, auth: auth),
       ),
     );
     reload();
@@ -106,9 +100,9 @@ class DevicesSettingsController extends State<DevicesSettings> {
     if (displayName == null) return;
     final success = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context)
-          .client
-          .updateDevice(device.deviceId, displayName: displayName),
+      future: () => Matrix.of(
+        context,
+      ).client.updateDevice(device.deviceId, displayName: displayName),
     );
     if (success.error == null) {
       reload();
@@ -130,8 +124,10 @@ class DevicesSettingsController extends State<DevicesSettings> {
         .deviceKeys[device.deviceId]!
         .startVerification();
     req.onUpdate = () {
-      if ({KeyVerificationState.error, KeyVerificationState.done}
-          .contains(req.state)) {
+      if ({
+        KeyVerificationState.error,
+        KeyVerificationState.done,
+      }.contains(req.state)) {
         setState(() {});
       }
     };
@@ -162,9 +158,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
   bool _isOwnDevice(Device userDevice) =>
       userDevice.deviceId == Matrix.of(context).client.deviceID;
 
-  Device? get thisDevice => devices!.firstWhereOrNull(
-        _isOwnDevice,
-      );
+  Device? get thisDevice => devices!.firstWhereOrNull(_isOwnDevice);
 
   List<Device> get notThisDevice => List<Device>.from(devices!)
     ..removeWhere(_isOwnDevice)

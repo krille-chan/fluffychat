@@ -55,7 +55,8 @@ Future<MatrixImageFileResizedResponse?> customImageResizer(
       // scale down image for blurhashing to speed it up
       final (blurW, blurH) = _scaleToBox(width, height, boxSize: 100);
       final blurhashImg = nativeImg.resample(
-        blurW, blurH,
+        blurW,
+        blurH,
         // nearest is unsupported...
         native.Transform.bilinear,
       );
@@ -73,8 +74,11 @@ Future<MatrixImageFileResizedResponse?> customImageResizer(
       if (width > max || height > max) {
         (width, height) = _scaleToBox(width, height, boxSize: max);
 
-        final scaledImg =
-            nativeImg.resample(width, height, native.Transform.lanczos);
+        final scaledImg = nativeImg.resample(
+          width,
+          height,
+          native.Transform.lanczos,
+        );
         nativeImg.free();
         nativeImg = scaledImg;
       }

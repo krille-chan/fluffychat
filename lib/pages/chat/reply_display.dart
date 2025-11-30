@@ -23,9 +23,7 @@ class ReplyDisplay extends StatelessWidget {
           ? 56
           : 0,
       clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: theme.colorScheme.onInverseSurface,
-      ),
+      decoration: BoxDecoration(color: theme.colorScheme.onInverseSurface),
       child: Row(
         children: <Widget>[
           IconButton(
@@ -63,10 +61,7 @@ class _EditContent extends StatelessWidget {
     }
     return Row(
       children: <Widget>[
-        Icon(
-          Icons.edit,
-          color: theme.colorScheme.primary,
-        ),
+        Icon(Icons.edit, color: theme.colorScheme.primary),
         Container(width: 15.0),
         Text(
           event.calcLocalizedBodyFallback(
@@ -76,9 +71,7 @@ class _EditContent extends StatelessWidget {
           ),
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
-          style: TextStyle(
-            color: theme.textTheme.bodyMedium!.color,
-          ),
+          style: TextStyle(color: theme.textTheme.bodyMedium!.color),
         ),
       ],
     );

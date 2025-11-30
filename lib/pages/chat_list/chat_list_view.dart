@@ -38,10 +38,7 @@ class ChatListView extends StatelessWidget {
               onGoToChats: controller.clearActiveSpace,
               onGoToSpaceId: controller.setActiveSpace,
             ),
-            Container(
-              color: Theme.of(context).dividerColor,
-              width: 1,
-            ),
+            Container(color: Theme.of(context).dividerColor, width: 1),
           ],
           Expanded(
             child: GestureDetector(
@@ -50,8 +47,8 @@ class ChatListView extends StatelessWidget {
               behavior: HitTestBehavior.translucent,
               child: Scaffold(
                 body: ChatListViewBody(controller),
-                floatingActionButton: !controller.isSearchMode &&
-                        controller.activeSpaceId == null
+                floatingActionButton:
+                    !controller.isSearchMode && controller.activeSpaceId == null
                     ? FloatingActionButton.extended(
                         onPressed: () => context.go('/rooms/newprivatechat'),
                         icon: const Icon(Icons.add_outlined),

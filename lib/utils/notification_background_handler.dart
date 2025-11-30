@@ -21,19 +21,20 @@ bool _vodInitialized = false;
 
 extension NotificationResponseJson on NotificationResponse {
   String toJsonString() => jsonEncode({
-        'type': notificationResponseType.name,
-        'id': id,
-        'actionId': actionId,
-        'input': input,
-        'payload': payload,
-        'data': data,
-      });
+    'type': notificationResponseType.name,
+    'id': id,
+    'actionId': actionId,
+    'input': input,
+    'payload': payload,
+    'data': data,
+  });
 
   static NotificationResponse fromJsonString(String jsonString) {
     final json = jsonDecode(jsonString) as Map<String, Object?>;
     return NotificationResponse(
-      notificationResponseType: NotificationResponseType.values
-          .singleWhere((t) => t.name == json['type']),
+      notificationResponseType: NotificationResponseType.values.singleWhere(
+        (t) => t.name == json['type'],
+      ),
       id: json['id'] as int?,
       actionId: json['actionId'] as String?,
       input: json['input'] as String?,
@@ -55,8 +56,9 @@ Future<void> waitForPushIsolateDone() async {
 void notificationTapBackground(
   NotificationResponse notificationResponse,
 ) async {
-  final sendPort =
-      IsolateNameServer.lookupPortByName(AppConfig.mainIsolatePortName);
+  final sendPort = IsolateNameServer.lookupPortByName(
+    AppConfig.mainIsolatePortName,
+  );
   if (sendPort != null) {
     sendPort.send(notificationResponse.toJsonString());
     Logs().i('Notification tap sent to main isolate!');
@@ -80,8 +82,7 @@ void notificationTapBackground(
   final client = (await ClientManager.getClients(
     initialize: false,
     store: store,
-  ))
-      .first;
+  )).first;
   await client.abortSync();
   await client.init(
     waitForFirstSync: false,
@@ -111,8 +112,9 @@ Future<void> notificationTap(
     'Notification action handler started',
     notificationResponse.notificationResponseType.name,
   );
-  final payload =
-      FluffyChatPushPayload.fromString(notificationResponse.payload ?? '');
+  final payload = FluffyChatPushPayload.fromString(
+    notificationResponse.payload ?? '',
+  );
   switch (notificationResponse.notificationResponseType) {
     case NotificationResponseType.selectedNotification:
       final roomId = payload.roomId;
@@ -182,16 +184,16 @@ Future<void> notificationTap(
             final avatarFile = avatar == null
                 ? null
                 : await client
-                    .downloadMxcCached(
-                      avatar,
-                      thumbnailMethod: ThumbnailMethod.crop,
-                      width: notificationAvatarDimension,
-                      height: notificationAvatarDimension,
-                      animated: false,
-                      isThumbnail: true,
-                      rounded: true,
-                    )
-                    .timeout(const Duration(seconds: 3));
+                      .downloadMxcCached(
+                        avatar,
+                        thumbnailMethod: ThumbnailMethod.crop,
+                        width: notificationAvatarDimension,
+                        height: notificationAvatarDimension,
+                        animated: false,
+                        isThumbnail: true,
+                        rounded: true,
+                      )
+                      .timeout(const Duration(seconds: 3));
             final messagingStyleInformation =
                 await AndroidFlutterLocalNotificationsPlugin()
                     .getActiveNotificationMessagingStyle(room.id.hashCode);

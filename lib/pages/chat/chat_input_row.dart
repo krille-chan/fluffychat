@@ -53,12 +53,13 @@ class ChatInputRow extends StatelessWidget {
           );
         }
         return Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: .end,
+          mainAxisAlignment: .spaceBetween,
           children: controller.selectMode
               ? <Widget>[
-                  if (controller.selectedEvents
-                      .every((event) => event.status == EventStatus.error))
+                  if (controller.selectedEvents.every(
+                    (event) => event.status == EventStatus.error,
+                  ))
                     SizedBox(
                       height: height,
                       child: TextButton(
@@ -90,36 +91,36 @@ class ChatInputRow extends StatelessWidget {
                     ),
                   controller.selectedEvents.length == 1
                       ? controller.selectedEvents.first
-                              .getDisplayEvent(controller.timeline!)
-                              .status
-                              .isSent
-                          ? SizedBox(
-                              height: height,
-                              child: TextButton(
-                                style: selectedTextButtonStyle,
-                                onPressed: controller.replyAction,
-                                child: Row(
-                                  children: <Widget>[
-                                    Text(L10n.of(context).reply),
-                                    const Icon(Icons.keyboard_arrow_right),
-                                  ],
+                                .getDisplayEvent(controller.timeline!)
+                                .status
+                                .isSent
+                            ? SizedBox(
+                                height: height,
+                                child: TextButton(
+                                  style: selectedTextButtonStyle,
+                                  onPressed: controller.replyAction,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Text(L10n.of(context).reply),
+                                      const Icon(Icons.keyboard_arrow_right),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            )
-                          : SizedBox(
-                              height: height,
-                              child: TextButton(
-                                style: selectedTextButtonStyle,
-                                onPressed: controller.sendAgainAction,
-                                child: Row(
-                                  children: <Widget>[
-                                    Text(L10n.of(context).tryToSendAgain),
-                                    const SizedBox(width: 4),
-                                    const Icon(Icons.send_outlined, size: 16),
-                                  ],
+                              )
+                            : SizedBox(
+                                height: height,
+                                child: TextButton(
+                                  style: selectedTextButtonStyle,
+                                  onPressed: controller.sendAgainAction,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Text(L10n.of(context).tryToSendAgain),
+                                      const SizedBox(width: 4),
+                                      const Icon(Icons.send_outlined, size: 16),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            )
+                              )
                       : const SizedBox.shrink(),
                 ]
               : <Widget>[
@@ -127,8 +128,9 @@ class ChatInputRow extends StatelessWidget {
                   AnimatedContainer(
                     duration: FluffyThemes.animationDuration,
                     curve: FluffyThemes.animationCurve,
-                    width:
-                        controller.sendController.text.isNotEmpty ? 0 : height,
+                    width: controller.sendController.text.isNotEmpty
+                        ? 0
+                        : height,
                     height: height,
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(),
@@ -190,8 +192,9 @@ class ChatInputRow extends StatelessWidget {
                                   theme.colorScheme.onPrimaryContainer,
                               foregroundColor:
                                   theme.colorScheme.primaryContainer,
-                              child:
-                                  const Icon(Icons.video_camera_back_outlined),
+                              child: const Icon(
+                                Icons.video_camera_back_outlined,
+                              ),
                             ),
                             title: Text(L10n.of(context).sendVideo),
                             contentPadding: const EdgeInsets.all(0),
@@ -270,19 +273,20 @@ class ChatInputRow extends StatelessWidget {
                       tooltip: L10n.of(context).emojis,
                       color: theme.colorScheme.onPrimaryContainer,
                       icon: PageTransitionSwitcher(
-                        transitionBuilder: (
-                          Widget child,
-                          Animation<double> primaryAnimation,
-                          Animation<double> secondaryAnimation,
-                        ) {
-                          return SharedAxisTransition(
-                            animation: primaryAnimation,
-                            secondaryAnimation: secondaryAnimation,
-                            transitionType: SharedAxisTransitionType.scaled,
-                            fillColor: Colors.transparent,
-                            child: child,
-                          );
-                        },
+                        transitionBuilder:
+                            (
+                              Widget child,
+                              Animation<double> primaryAnimation,
+                              Animation<double> secondaryAnimation,
+                            ) {
+                              return SharedAxisTransition(
+                                animation: primaryAnimation,
+                                secondaryAnimation: secondaryAnimation,
+                                transitionType: SharedAxisTransitionType.scaled,
+                                fillColor: Colors.transparent,
+                                child: child,
+                              );
+                            },
                         child: Icon(
                           controller.showEmojiPicker
                               ? Icons.keyboard
@@ -313,9 +317,9 @@ class ChatInputRow extends StatelessWidget {
                         keyboardType: TextInputType.multiline,
                         textInputAction:
                             AppSettings.sendOnEnter.value == true &&
-                                    PlatformInfos.isMobile
-                                ? TextInputAction.send
-                                : null,
+                                PlatformInfos.isMobile
+                            ? TextInputAction.send
+                            : null,
                         onSubmitted: controller.onInputBarSubmitted,
                         onSubmitImage: controller.sendImageFromClipBoard,
                         focusNode: controller.inputFocus,
@@ -335,14 +339,18 @@ class ChatInputRow extends StatelessWidget {
                           filled: false,
                         ),
                         onChanged: controller.onInputBarChanged,
-                        suggestionEmojis: getDefaultEmojiLocale(
-                          AppSettings.emojiSuggestionLocale.value.isNotEmpty
-                              ? Locale(AppSettings.emojiSuggestionLocale.value)
-                              : Localizations.localeOf(context),
-                        ).fold(
-                          [],
-                          (emojis, category) => emojis..addAll(category.emoji),
-                        ),
+                        suggestionEmojis:
+                            getDefaultEmojiLocale(
+                              AppSettings.emojiSuggestionLocale.value.isNotEmpty
+                                  ? Locale(
+                                      AppSettings.emojiSuggestionLocale.value,
+                                    )
+                                  : Localizations.localeOf(context),
+                            ).fold(
+                              [],
+                              (emojis, category) =>
+                                  emojis..addAll(category.emoji),
+                            ),
                       ),
                     ),
                   ),
@@ -350,19 +358,21 @@ class ChatInputRow extends StatelessWidget {
                     height: height,
                     width: height,
                     alignment: Alignment.center,
-                    child: PlatformInfos.platformCanRecord &&
+                    child:
+                        PlatformInfos.platformCanRecord &&
                             controller.sendController.text.isEmpty
                         ? IconButton(
                             tooltip: L10n.of(context).voiceMessage,
                             onPressed: () =>
                                 ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  L10n.of(context)
-                                      .longPressToRecordVoiceMessage,
+                                  SnackBar(
+                                    content: Text(
+                                      L10n.of(
+                                        context,
+                                      ).longPressToRecordVoiceMessage,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                            ),
                             onLongPress: () => recordingViewModel
                                 .startRecording(controller.room),
                             style: IconButton.styleFrom(
@@ -394,9 +404,9 @@ class _ChatAccountPicker extends StatelessWidget {
   const _ChatAccountPicker(this.controller);
 
   void _popupMenuButtonSelected(String mxid, BuildContext context) {
-    final client = Matrix.of(context)
-        .currentBundle!
-        .firstWhere((cl) => cl!.userID == mxid, orElse: () => null);
+    final client = Matrix.of(
+      context,
+    ).currentBundle!.firstWhere((cl) => cl!.userID == mxid, orElse: () => null);
     if (client == null) {
       Logs().w('Attempted to switch to a non-existing client $mxid');
       return;
@@ -423,7 +433,8 @@ class _ChatAccountPicker extends StatelessWidget {
                     builder: (context, snapshot) => ListTile(
                       leading: Avatar(
                         mxContent: snapshot.data?.avatarUrl,
-                        name: snapshot.data?.displayName ??
+                        name:
+                            snapshot.data?.displayName ??
                             client.userID!.localpart,
                         size: 20,
                       ),
@@ -436,7 +447,8 @@ class _ChatAccountPicker extends StatelessWidget {
               .toList(),
           child: Avatar(
             mxContent: snapshot.data?.avatarUrl,
-            name: snapshot.data?.displayName ??
+            name:
+                snapshot.data?.displayName ??
                 Matrix.of(context).client.userID!.localpart,
             size: 20,
           ),

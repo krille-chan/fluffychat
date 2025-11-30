@@ -25,15 +25,8 @@ class TwoColumnLayout extends StatelessWidget {
               width: FluffyThemes.columnWidth + FluffyThemes.navRailWidth,
               child: mainView,
             ),
-            Container(
-              width: 1.0,
-              color: theme.dividerColor,
-            ),
-            Expanded(
-              child: ClipRRect(
-                child: sideView,
-              ),
-            ),
+            Container(width: 1.0, color: theme.dividerColor),
+            Expanded(child: ClipRRect(child: sideView)),
           ],
         ),
       ),

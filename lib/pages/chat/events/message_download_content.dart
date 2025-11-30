@@ -27,15 +27,15 @@ class MessageDownloadContent extends StatelessWidget {
     final filetype = (filename.contains('.')
         ? filename.split('.').last.toUpperCase()
         : event.content
-                .tryGetMap<String, dynamic>('info')
-                ?.tryGet<String>('mimetype')
-                ?.toUpperCase() ??
-            'UNKNOWN');
+                  .tryGetMap<String, dynamic>('info')
+                  ?.tryGet<String>('mimetype')
+                  ?.toUpperCase() ??
+              'UNKNOWN');
     final sizeString = event.sizeString ?? '?MB';
     final fileDescription = event.fileDescription;
     return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: .min,
+      crossAxisAlignment: .start,
       spacing: 8,
       children: [
         Material(
@@ -47,7 +47,7 @@ class MessageDownloadContent extends StatelessWidget {
               width: 400,
               padding: const EdgeInsets.all(16.0),
               child: Row(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: .min,
                 spacing: 16,
                 children: [
                   CircleAvatar(
@@ -56,8 +56,8 @@ class MessageDownloadContent extends StatelessWidget {
                   ),
                   Flexible(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: .start,
+                      mainAxisSize: .min,
                       children: [
                         Text(
                           filename,
@@ -93,13 +93,15 @@ class MessageDownloadContent extends StatelessWidget {
               textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
               style: TextStyle(
                 color: textColor,
-                fontSize: AppSettings.fontSizeFactor.value *
+                fontSize:
+                    AppSettings.fontSizeFactor.value *
                     AppConfig.messageFontSize,
               ),
               options: const LinkifyOptions(humanize: false),
               linkStyle: TextStyle(
                 color: linkColor,
-                fontSize: AppSettings.fontSizeFactor.value *
+                fontSize:
+                    AppSettings.fontSizeFactor.value *
                     AppConfig.messageFontSize,
                 decoration: TextDecoration.underline,
                 decorationColor: linkColor,

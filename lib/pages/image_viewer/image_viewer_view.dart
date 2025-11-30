@@ -124,7 +124,7 @@ class ImageViewerView extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
+                    mainAxisSize: .min,
                     children: [
                       if (controller.canGoBack)
                         Padding(

@@ -46,8 +46,8 @@ class NaviRailItem extends StatelessWidget {
                 child: AnimatedContainer(
                   width: isSelected
                       ? FluffyThemes.isColumnMode(context)
-                          ? 8
-                          : 4
+                            ? 8
+                            : 4
                       : 0,
                   duration: FluffyThemes.animationDuration,
                   curve: FluffyThemes.animationCurve,

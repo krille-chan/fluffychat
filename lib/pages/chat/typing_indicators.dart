@@ -21,8 +21,9 @@ class TypingIndicators extends StatelessWidget {
     return StreamBuilder<Object>(
       stream: controller.room.client.onSync.stream.where(
         (syncUpdate) =>
-            syncUpdate.rooms?.join?[controller.room.id]?.ephemeral
-                ?.any((ephemeral) => ephemeral.type == 'm.typing') ??
+            syncUpdate.rooms?.join?[controller.room.id]?.ephemeral?.any(
+              (ephemeral) => ephemeral.type == 'm.typing',
+            ) ??
             false,
       ),
       builder: (context, _) {
@@ -33,22 +34,21 @@ class TypingIndicators extends StatelessWidget {
           width: double.infinity,
           alignment: Alignment.center,
           child: AnimatedContainer(
-            constraints:
-                const BoxConstraints(maxWidth: FluffyThemes.maxTimelineWidth),
+            constraints: const BoxConstraints(
+              maxWidth: FluffyThemes.maxTimelineWidth,
+            ),
             height: typingUsers.isEmpty ? 0 : avatarSize + 8,
             duration: FluffyThemes.animationDuration,
             curve: FluffyThemes.animationCurve,
-            alignment: controller.timeline!.events.isNotEmpty &&
+            alignment:
+                controller.timeline!.events.isNotEmpty &&
                     controller.timeline!.events.first.senderId ==
                         Matrix.of(context).client.userID
                 ? Alignment.topRight
                 : Alignment.topLeft,
             clipBehavior: Clip.hardEdge,
             decoration: const BoxDecoration(),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8.0,
-              vertical: 4.0,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Row(
               children: [
                 Container(
@@ -115,17 +115,14 @@ class __TypingDotsState extends State<_TypingDots> {
 
   @override
   void initState() {
-    _timer = Timer.periodic(
-      animationDuration,
-      (_) {
-        if (!mounted) {
-          return;
-        }
-        setState(() {
-          _tick = (_tick + 1) % 4;
-        });
-      },
-    );
+    _timer = Timer.periodic(animationDuration, (_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _tick = (_tick + 1) % 4;
+      });
+    });
     super.initState();
   }
 
@@ -141,7 +138,7 @@ class __TypingDotsState extends State<_TypingDots> {
     const size = 8.0;
 
     return Row(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       children: [
         for (var i = 1; i <= 3; i++)
           AnimatedContainer(

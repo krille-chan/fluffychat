@@ -35,8 +35,10 @@ class NewPrivateChatView extends StatelessWidget {
         backgroundColor: theme.scaffoldBackgroundColor,
         actions: [
           TextButton(
-            onPressed:
-                UrlLauncher(context, AppConfig.startChatTutorial).launchUrl,
+            onPressed: UrlLauncher(
+              context,
+              AppConfig.startChatTutorial,
+            ).launchUrl,
             child: Text(L10n.of(context).help),
           ),
         ],
@@ -105,8 +107,9 @@ class NewPrivateChatView extends StatelessWidget {
                     ? ListView(
                         children: [
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 18.0),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 18.0,
+                            ),
                             child: SelectableText.rich(
                               TextSpan(
                                 children: [
@@ -157,8 +160,9 @@ class NewPrivateChatView extends StatelessWidget {
                                     theme.colorScheme.primaryContainer,
                                 foregroundColor:
                                     theme.colorScheme.onPrimaryContainer,
-                                child:
-                                    const Icon(Icons.qr_code_scanner_outlined),
+                                child: const Icon(
+                                  Icons.qr_code_scanner_outlined,
+                                ),
                               ),
                               title: Text(L10n.of(context).scanQrCode),
                               onTap: controller.openScannerAction,
@@ -185,15 +189,14 @@ class NewPrivateChatView extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(
                                     AppConfig.borderRadius,
                                   ),
-                                  onTap: () => showQrCodeViewer(
-                                    context,
-                                    userId,
-                                  ),
+                                  onTap: () =>
+                                      showQrCodeViewer(context, userId),
                                   child: Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: ConstrainedBox(
-                                      constraints:
-                                          const BoxConstraints(maxWidth: 200),
+                                      constraints: const BoxConstraints(
+                                        maxWidth: 200,
+                                      ),
                                       child: PrettyQrView.data(
                                         data: 'https://matrix.to/#/$userId',
                                         decoration: PrettyQrDecoration(
@@ -218,7 +221,7 @@ class NewPrivateChatView extends StatelessWidget {
                           final error = snapshot.error;
                           if (error != null) {
                             return Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: .center,
                               children: [
                                 Text(
                                   error.toLocalizedString(context),
@@ -243,7 +246,7 @@ class NewPrivateChatView extends StatelessWidget {
                           }
                           if (result.isEmpty) {
                             return Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: .center,
                               children: [
                                 const Icon(Icons.search_outlined, size: 86),
                                 Padding(
@@ -265,7 +268,8 @@ class NewPrivateChatView extends StatelessWidget {
                             itemCount: result.length,
                             itemBuilder: (context, i) {
                               final contact = result[i];
-                              final displayname = contact.displayName ??
+                              final displayname =
+                                  contact.displayName ??
                                   contact.userId.localpart ??
                                   contact.userId;
                               return ListTile(

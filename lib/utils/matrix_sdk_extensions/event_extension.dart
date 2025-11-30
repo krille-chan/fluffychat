@@ -15,8 +15,9 @@ extension LocalizedBody on Event {
       showFutureLoadingDialog(
         context: context,
         futureWithProgress: (onProgress) {
-          final fileSize =
-              infoMap['size'] is int ? infoMap['size'] as int : null;
+          final fileSize = infoMap['size'] is int
+              ? infoMap['size'] as int
+              : null;
           return downloadAndDecryptAttachment(
             onDownloadProgress: fileSize == null
                 ? null
@@ -47,8 +48,11 @@ extension LocalizedBody on Event {
       thumbnailInfoMap['size'] < room.client.database.maxFileSize;
 
   bool get showThumbnail =>
-      [MessageTypes.Image, MessageTypes.Sticker, MessageTypes.Video]
-          .contains(messageType) &&
+      [
+        MessageTypes.Image,
+        MessageTypes.Sticker,
+        MessageTypes.Video,
+      ].contains(messageType) &&
       (kIsWeb ||
           isAttachmentSmallEnough ||
           isThumbnailSmallEnough ||

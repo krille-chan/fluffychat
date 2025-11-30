@@ -64,8 +64,10 @@ Widget markdownContextBuilder(
             if (start == -1) start = 0;
             final end = selection.end;
 
-            final fullLineSelection =
-                TextSelection(baseOffset: start, extentOffset: end);
+            final fullLineSelection = TextSelection(
+              baseOffset: start,
+              extentOffset: end,
+            );
 
             const checkBox = '- [ ]';
 
@@ -78,8 +80,11 @@ Widget markdownContextBuilder(
                       : '$checkBox $line',
                 )
                 .join('\n');
-            controller.text =
-                controller.text.replaceRange(start, end, replacedRange);
+            controller.text = controller.text.replaceRange(
+              start,
+              end,
+              replacedRange,
+            );
             ContextMenuController.removeAny();
           },
         ),

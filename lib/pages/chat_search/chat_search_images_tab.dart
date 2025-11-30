@@ -13,10 +13,8 @@ import 'package:fluffychat/widgets/mxc_image.dart';
 class ChatSearchImagesTab extends StatelessWidget {
   final Room room;
   final Stream<(List<Event>, String?)>? searchStream;
-  final void Function({
-    String? prevBatch,
-    List<Event>? previousSearchResult,
-  }) startSearch;
+  final void Function({String? prevBatch, List<Event>? previousSearchResult})
+  startSearch;
 
   const ChatSearchImagesTab({
     required this.room,
@@ -35,15 +33,13 @@ class ChatSearchImagesTab extends StatelessWidget {
         final events = snapshot.data?.$1;
         if (searchStream == null || events == null) {
           return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: .center,
             children: [
               const CircularProgressIndicator.adaptive(strokeWidth: 2),
               const SizedBox(height: 8),
               Text(
                 L10n.of(context).searchIn(
-                  room.getLocalizedDisplayname(
-                    MatrixLocals(L10n.of(context)),
-                  ),
+                  room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
                 ),
               ),
             ],
@@ -51,7 +47,7 @@ class ChatSearchImagesTab extends StatelessWidget {
         }
         if (events.isEmpty) {
           return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: .center,
             children: [
               const Icon(Icons.photo_outlined, size: 64),
               const SizedBox(height: 8),
@@ -80,9 +76,7 @@ class ChatSearchImagesTab extends StatelessWidget {
                 return const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Center(
-                    child: CircularProgressIndicator.adaptive(
-                      strokeWidth: 2,
-                    ),
+                    child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                   ),
                 );
               }
@@ -102,9 +96,7 @@ class ChatSearchImagesTab extends StatelessWidget {
                       prevBatch: nextBatch,
                       previousSearchResult: events,
                     ),
-                    icon: const Icon(
-                      Icons.arrow_downward_outlined,
-                    ),
+                    icon: const Icon(Icons.arrow_downward_outlined),
                     label: Text(L10n.of(context).searchMore),
                   ),
                 ),
@@ -113,16 +105,13 @@ class ChatSearchImagesTab extends StatelessWidget {
 
             final monthEvents = eventsByMonthList[i].value;
             return Column(
-              mainAxisSize: MainAxisSize.min,
+              mainAxisSize: .min,
               children: [
                 const SizedBox(height: 4),
                 Row(
                   children: [
                     Expanded(
-                      child: Container(
-                        height: 1,
-                        color: theme.dividerColor,
-                      ),
+                      child: Container(height: 1, color: theme.dividerColor),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -135,10 +124,7 @@ class ChatSearchImagesTab extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: Container(
-                        height: 1,
-                        color: theme.dividerColor,
-                      ),
+                      child: Container(height: 1, color: theme.dividerColor),
                     ),
                   ],
                 ),
@@ -150,39 +136,35 @@ class ChatSearchImagesTab extends StatelessWidget {
                   clipBehavior: Clip.hardEdge,
                   padding: const EdgeInsets.all(padding),
                   crossAxisCount: 3,
-                  children: monthEvents.map(
-                    (event) {
-                      if (event.messageType == MessageTypes.Video) {
-                        return Material(
-                          clipBehavior: Clip.hardEdge,
-                          borderRadius: borderRadius,
-                          child: EventVideoPlayer(event),
-                        );
-                      }
-                      return InkWell(
-                        onTap: () => showDialog(
-                          context: context,
-                          builder: (_) => ImageViewer(
-                            event,
-                            outerContext: context,
-                          ),
-                        ),
+                  children: monthEvents.map((event) {
+                    if (event.messageType == MessageTypes.Video) {
+                      return Material(
+                        clipBehavior: Clip.hardEdge,
                         borderRadius: borderRadius,
-                        child: Material(
-                          clipBehavior: Clip.hardEdge,
-                          borderRadius: borderRadius,
-                          child: MxcImage(
-                            event: event,
-                            width: 128,
-                            height: 128,
-                            fit: BoxFit.cover,
-                            animated: true,
-                            isThumbnail: true,
-                          ),
-                        ),
+                        child: EventVideoPlayer(event),
                       );
-                    },
-                  ).toList(),
+                    }
+                    return InkWell(
+                      onTap: () => showDialog(
+                        context: context,
+                        builder: (_) =>
+                            ImageViewer(event, outerContext: context),
+                      ),
+                      borderRadius: borderRadius,
+                      child: Material(
+                        clipBehavior: Clip.hardEdge,
+                        borderRadius: borderRadius,
+                        child: MxcImage(
+                          event: event,
+                          width: 128,
+                          height: 128,
+                          fit: BoxFit.cover,
+                          animated: true,
+                          isThumbnail: true,
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
               ],
             );

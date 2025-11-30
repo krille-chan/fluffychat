@@ -38,22 +38,27 @@ abstract class ClientManager {
       clientNames.add(PlatformInfos.clientName);
       await store.setStringList(clientNamespace, clientNames.toList());
     }
-    final clients =
-        await Future.wait(clientNames.map((name) => createClient(name, store)));
+    final clients = await Future.wait(
+      clientNames.map((name) => createClient(name, store)),
+    );
     if (initialize) {
       await Future.wait(
         clients.map(
-          (client) => client.initWithRestore(
-            onMigration: () async {
-              final l10n = await lookupL10n(PlatformDispatcher.instance.locale);
-              sendInitNotification(
-                l10n.databaseMigrationTitle,
-                l10n.databaseMigrationBody,
-              );
-            },
-          ).catchError(
-            (e, s) => Logs().e('Unable to initialize client', e, s),
-          ),
+          (client) => client
+              .initWithRestore(
+                onMigration: () async {
+                  final l10n = await lookupL10n(
+                    PlatformDispatcher.instance.locale,
+                  );
+                  sendInitNotification(
+                    l10n.databaseMigrationTitle,
+                    l10n.databaseMigrationBody,
+                  );
+                },
+              )
+              .catchError(
+                (e, s) => Logs().e('Unable to initialize client', e, s),
+              ),
         ),
       );
     }
@@ -122,25 +127,26 @@ abstract class ClientManager {
         AuthenticationTypes.sso,
       },
       nativeImplementations: nativeImplementations,
-      customImageResizer:
-          PlatformInfos.isMobile || kIsWeb ? customImageResizer : null,
+      customImageResizer: PlatformInfos.isMobile || kIsWeb
+          ? customImageResizer
+          : null,
       defaultNetworkRequestTimeout: const Duration(minutes: 30),
       enableDehydratedDevices: true,
-      shareKeysWith: ShareKeysWith.values
-              .singleWhereOrNull((share) => share.name == shareKeysWith) ??
+      shareKeysWith:
+          ShareKeysWith.values.singleWhereOrNull(
+            (share) => share.name == shareKeysWith,
+          ) ??
           ShareKeysWith.all,
       convertLinebreaksInFormatting: false,
-      onSoftLogout:
-          enableSoftLogout ? (client) => client.refreshAccessToken() : null,
+      onSoftLogout: enableSoftLogout
+          ? (client) => client.refreshAccessToken()
+          : null,
     );
   }
 
   static void sendInitNotification(String title, String body) async {
     if (kIsWeb) {
-      html.Notification(
-        title,
-        body: body,
-      );
+      html.Notification(title, body: body);
       return;
     }
     if (Platform.isLinux) {
@@ -148,9 +154,7 @@ abstract class ClientManager {
         title,
         body: body,
         appName: AppSettings.applicationName.value,
-        hints: [
-          NotificationHint.soundName('message-new-instant'),
-        ],
+        hints: [NotificationHint.soundName('message-new-instant')],
       );
       return;
     }

@@ -89,8 +89,7 @@ Future<void> _tryPushHelper(
   client ??= (await ClientManager.getClients(
     initialize: false,
     store: await AppSettings.init(),
-  ))
-      .first;
+  )).first;
   final event = await client.getEventByPushNotification(
     notification,
     storeInDatabase: false,
@@ -105,8 +104,8 @@ Future<void> _tryPushHelper(
       // Make sure client is fully loaded and synced before dismiss notifications:
       await client.roomsLoading;
       await client.oneShotSync();
-      final activeNotifications =
-          await flutterLocalNotificationsPlugin.getActiveNotifications();
+      final activeNotifications = await flutterLocalNotificationsPlugin
+          .getActiveNotifications();
       for (final activeNotification in activeNotifications) {
         final room = client.rooms.singleWhereOrNull(
           (room) => room.id.hashCode == activeNotification.id,
@@ -168,16 +167,16 @@ Future<void> _tryPushHelper(
     roomAvatarFile = avatar == null
         ? null
         : await client
-            .downloadMxcCached(
-              avatar,
-              thumbnailMethod: ThumbnailMethod.crop,
-              width: notificationAvatarDimension,
-              height: notificationAvatarDimension,
-              animated: false,
-              isThumbnail: true,
-              rounded: true,
-            )
-            .timeout(const Duration(seconds: 3));
+              .downloadMxcCached(
+                avatar,
+                thumbnailMethod: ThumbnailMethod.crop,
+                width: notificationAvatarDimension,
+                height: notificationAvatarDimension,
+                animated: false,
+                isThumbnail: true,
+                rounded: true,
+              )
+              .timeout(const Duration(seconds: 3));
   } catch (e, s) {
     Logs().e('Unable to get avatar picture', e, s);
   }
@@ -185,18 +184,18 @@ Future<void> _tryPushHelper(
     senderAvatarFile = event.room.isDirectChat
         ? roomAvatarFile
         : senderAvatar == null
-            ? null
-            : await client
-                .downloadMxcCached(
-                  senderAvatar,
-                  thumbnailMethod: ThumbnailMethod.crop,
-                  width: notificationAvatarDimension,
-                  height: notificationAvatarDimension,
-                  animated: false,
-                  isThumbnail: true,
-                  rounded: true,
-                )
-                .timeout(const Duration(seconds: 3));
+        ? null
+        : await client
+              .downloadMxcCached(
+                senderAvatar,
+                thumbnailMethod: ThumbnailMethod.crop,
+                width: notificationAvatarDimension,
+                height: notificationAvatarDimension,
+                animated: false,
+                isThumbnail: true,
+                rounded: true,
+              )
+              .timeout(const Duration(seconds: 3));
   } catch (e, s) {
     Logs().e('Unable to get avatar picture', e, s);
   }
@@ -221,14 +220,15 @@ Future<void> _tryPushHelper(
 
   final messagingStyleInformation = PlatformInfos.isAndroid
       ? await AndroidFlutterLocalNotificationsPlugin()
-          .getActiveNotificationMessagingStyle(id)
+            .getActiveNotificationMessagingStyle(id)
       : null;
   messagingStyleInformation?.messages?.add(newMessage);
 
   final roomName = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
 
-  final notificationGroupId =
-      event.room.isDirectChat ? 'directChats' : 'groupChats';
+  final notificationGroupId = event.room.isDirectChat
+      ? 'directChats'
+      : 'groupChats';
   final groupName = event.room.isDirectChat ? l10n.directChats : l10n.groups;
 
   final messageRooms = AndroidNotificationChannelGroup(
@@ -243,11 +243,13 @@ Future<void> _tryPushHelper(
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
+        AndroidFlutterLocalNotificationsPlugin
+      >()
       ?.createNotificationChannelGroup(messageRooms);
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
+        AndroidFlutterLocalNotificationsPlugin
+      >()
       ?.createNotificationChannel(roomsChannel);
 
   final androidPlatformChannelSpecifics = AndroidNotificationDetails(
@@ -256,7 +258,8 @@ Future<void> _tryPushHelper(
     number: notification.counts?.unread,
     category: AndroidNotificationCategory.message,
     shortcutId: event.room.id,
-    styleInformation: messagingStyleInformation ??
+    styleInformation:
+        messagingStyleInformation ??
         MessagingStyleInformation(
           Person(
             name: senderName,
@@ -288,9 +291,7 @@ Future<void> _tryPushHelper(
               FluffyChatNotificationActions.reply.name,
               l10n.reply,
               inputs: [
-                AndroidNotificationActionInput(
-                  label: l10n.writeAMessage,
-                ),
+                AndroidNotificationActionInput(label: l10n.writeAMessage),
               ],
               cancelNotification: false,
               allowGeneratedReplies: true,
@@ -320,9 +321,11 @@ Future<void> _tryPushHelper(
     title,
     body,
     platformChannelSpecifics,
-    payload:
-        FluffyChatPushPayload(client.clientName, event.room.id, event.eventId)
-            .toString(),
+    payload: FluffyChatPushPayload(
+      client.clientName,
+      event.room.id,
+      event.eventId,
+    ).toString(),
   );
   Logs().v('Push helper has been completed!');
 }
