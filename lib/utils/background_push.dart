@@ -340,7 +340,7 @@ class BackgroundPush {
     if (matrix == null) {
       return;
     }
-    if (!AppSettings.showNoGoogle.value) {
+    if (AppSettings.showNoGoogle.value) {
       return;
     }
     await loadLocale();
