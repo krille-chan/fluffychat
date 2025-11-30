@@ -56,7 +56,7 @@ class _StartPollBottomSheetState extends State<StartPollBottomSheet> {
     }
   }
 
-  void _updateCanCreate([_]) {
+  void _updateCanCreate([dynamic _]) {
     final newCanCreate = _bodyController.text.trim().isNotEmpty &&
         !_answers.any((controller) => controller.text.trim().isEmpty);
     if (_canCreate != newCanCreate) {

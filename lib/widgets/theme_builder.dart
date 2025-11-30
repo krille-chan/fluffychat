@@ -43,7 +43,7 @@ class ThemeController extends State<ThemeBuilder> {
         listen: false,
       );
 
-  void _loadData(_) async {
+  void _loadData(dynamic _) async {
     final preferences =
         _sharedPreferences ??= await SharedPreferences.getInstance();
 

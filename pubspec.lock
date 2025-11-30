@@ -5,18 +5,18 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: "0b2f2bd91ba804e53a61d757b986f89f1f9eaed5b11e4b2f5a2468d86d6c9fc7"
+      sha256: c209688d9f5a5f26b2fb47a188131a6fb9e876ae9e47af3737c0b4f58a93470d
       url: "https://pub.dev"
     source: hosted
-    version: "67.0.0"
+    version: "91.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
-      sha256: "37577842a27e4338429a1cbc32679d508836510b056f1eedf0c8d20e39c1383d"
+      sha256: f51c8499b35f9b26820cfe914828a6a98a94efd5cc78b37bb7d03debae3a1d08
       url: "https://pub.dev"
     source: hosted
-    version: "6.4.1"
+    version: "8.4.1"
   animations:
     dependency: "direct main"
     description:
@@ -495,10 +495,10 @@ packages:
     dependency: "direct dev"
     description:
       name: flutter_lints
-      sha256: "9e8c3858111da373efc5aa341de011d9bd23e2c5c5e0c62bccf32438e192d7b1"
+      sha256: "3105dc8492f6183fb076ccf1f351ac3d60564bff92e20bfc4af9cc1651f4e7e1"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.2"
+    version: "6.0.0"
   flutter_local_notifications:
     dependency: "direct main"
     description:
@@ -1015,10 +1015,11 @@ packages:
   license_checker:
     dependency: "direct dev"
     description:
-      name: license_checker
-      sha256: eea27638e42bc98fd91a6a8187eb57e5617e2c3c8b313a5d51b14bec7a8685e1
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "38a65ff5b4b65db092b11dad999081388f75ece8"
+      url: "https://github.com/krille-chan/license_checker.git"
+    source: git
     version: "1.6.0"
   linkify:
     dependency: "direct main"
@@ -1032,10 +1033,10 @@ packages:
     dependency: transitive
     description:
       name: lints
-      sha256: cbf8d4b858bb0134ef3ef87841abdf8d63bfc255c266b7bf6b39daa1085c4290
+      sha256: a5e2b223cb7c9c8efdc663ef484fdd95bb243bff242ef5b13e26883547fce9a0
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.0"
+    version: "6.0.0"
   lists:
     dependency: transitive
     description:
@@ -1176,10 +1177,10 @@ packages:
     dependency: transitive
     description:
       name: pana
-      sha256: "3fc3fe8e7a9fd4827fa4d625a423eec95d305b2bc3538a3adf7fd6c49217af97"
+      sha256: eb816d35b80d3880335c3f2d139b376e81fd98a9ea273faf39f2c8914c4afba5
       url: "https://pub.dev"
     source: hosted
-    version: "0.21.45"
+    version: "0.23.3"
   path:
     dependency: "direct main"
     description:
@@ -1801,14 +1802,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.1"
-  tar:
-    dependency: transitive
-    description:
-      name: tar
-      sha256: "22f67e2d77b51050436620b2a5de521c58ca6f0b75af1d9ab3c8cae2eae58fcd"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.5"
   term_glyph:
     dependency: transitive
     description:

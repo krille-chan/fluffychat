@@ -111,7 +111,7 @@ class PIPViewState extends State<PIPView> with TickerProviderStateMixin {
     });
   }
 
-  void _onPanEnd(_) {
+  void _onPanEnd(dynamic _) {
     if (!_isDragging) return;
 
     final nearestCorner = _calculateNearestCorner(
@@ -128,7 +128,7 @@ class PIPViewState extends State<PIPView> with TickerProviderStateMixin {
     });
   }
 
-  void _onPanStart(_) {
+  void _onPanStart(dynamic _) {
     if (_isAnimating()) return;
     setState(() {
       _dragOffset = _offsets[_corner]!;

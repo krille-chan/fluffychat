@@ -85,14 +85,16 @@ dependencies:
   webrtc_interface: ^1.3.0
 
 dev_dependencies:
-  flutter_lints: ^3.0.0
+  flutter_lints: ^6.0.0
   flutter_native_splash: ^2.4.7
   flutter_test:
     sdk: flutter
   import_sorter: ^4.6.0
   integration_test:
     sdk: flutter
-  license_checker: ^1.6.0
+  # Waiting for https://github.com/rufman/license_checker/pull/47
+  license_checker:
+    git: https://github.com/krille-chan/license_checker.git
   translations_cleaner: ^0.0.5
 
 import_sorter:

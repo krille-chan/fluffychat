@@ -69,7 +69,7 @@ class _CuteContentState extends State<CuteContent> {
     Overlay.of(context).insert(overlay);
   }
 
-  generateLabel(User? user) {
+  String? generateLabel(User? user) {
     switch (widget.event.content['cute_type']) {
       case 'googly_eyes':
         return L10n.of(context).googlyEyesContent(
@@ -90,6 +90,7 @@ class _CuteContentState extends State<CuteContent> {
               '',
         );
     }
+    return null;
   }
 }
 
