@@ -7,24 +7,16 @@ import 'package:fluffychat/utils/platform_infos.dart';
 
 /// Provides extra functionality for formatting the time.
 extension DateTimeExtension on DateTime {
-  bool operator <(DateTime other) {
-    return millisecondsSinceEpoch < other.millisecondsSinceEpoch;
-  }
+  bool operator <(DateTime other) =>
+      millisecondsSinceEpoch < other.millisecondsSinceEpoch;
+  bool operator >(DateTime other) =>
+      millisecondsSinceEpoch > other.millisecondsSinceEpoch;
+  bool operator >=(DateTime other) =>
+      millisecondsSinceEpoch >= other.millisecondsSinceEpoch;
+  bool operator <=(DateTime other) =>
+      millisecondsSinceEpoch <= other.millisecondsSinceEpoch;
 
-  bool operator >(DateTime other) {
-    return millisecondsSinceEpoch > other.millisecondsSinceEpoch;
-  }
-
-  bool operator >=(DateTime other) {
-    return millisecondsSinceEpoch >= other.millisecondsSinceEpoch;
-  }
-
-  bool operator <=(DateTime other) {
-    return millisecondsSinceEpoch <= other.millisecondsSinceEpoch;
-  }
-
-  /// Checks if two DateTimes are close enough to belong to the same
-  /// environment.
+  /// Checks if two DateTimes are close enough to belong to the same environment.
   bool sameEnvironment(DateTime prevTime) =>
       difference(prevTime) < const Duration(hours: 1);
 
@@ -37,15 +29,12 @@ extension DateTimeExtension on DateTime {
   /// day if the ChatTime is this week and a date string else.
   String localizedTimeShort(BuildContext context) {
     final now = DateTime.now();
-
     final sameYear = now.year == year;
-
     final sameDay = sameYear && now.month == month && now.day == day;
-
     final sameWeek = sameYear &&
         !sameDay &&
         now.millisecondsSinceEpoch - millisecondsSinceEpoch <
-            1000 * 60 * 60 * 24 * 7;
+            const Duration(days: 7).inMilliseconds;
 
     if (sameDay) {
       return localizedTimeOfDay(context);
@@ -62,12 +51,9 @@ extension DateTimeExtension on DateTime {
 
   /// If the DateTime is today, this returns [localizedTimeOfDay()], if not it also
   /// shows the date.
-  /// TODO: Add localization
   String localizedTime(BuildContext context) {
     final now = DateTime.now();
-
     final sameYear = now.year == year;
-
     final sameDay = sameYear && now.month == month && now.day == day;
 
     if (sameDay) return localizedTimeOfDay(context);
@@ -77,19 +63,17 @@ extension DateTimeExtension on DateTime {
     );
   }
 
-  /// Check if time needs to be in 24h format
+  /// Determines if time should be in 24h format.
   bool use24HourFormat(BuildContext context) {
-    final mediaQuery24h = MediaQuery.alwaysUse24HourFormatOf(context);
+    final systemPref = MediaQuery.alwaysUse24HourFormatOf(context);
+    final userPref = L10n.of(context).alwaysUse24HourFormat == 'true';
 
-    final l10n24h = L10n.of(context).alwaysUse24HourFormat == 'true';
-
-    // https://github.com/krille-chan/fluffychat/pull/1457#discussion_r1836817914
-    if (PlatformInfos.isAndroid) {
-      return mediaQuery24h;
-    } else if (PlatformInfos.isIOS) {
-      return mediaQuery24h || l10n24h;
+    // Priority:
+    // 1. Respect system settings (Android/iOS)
+    // 2. If not available, fallback to user preference (L10n)
+    if (PlatformInfos.isAndroid || PlatformInfos.isIOS) {
+      return systemPref;
     }
-
-    return l10n24h;
+    return userPref;
   }
 }
