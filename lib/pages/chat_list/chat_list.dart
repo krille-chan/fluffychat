@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:app_links/app_links.dart';
 import 'package:cross_file/cross_file.dart';
+import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
@@ -406,6 +408,18 @@ class ChatListController extends State<ChatList>
             Matrix.of(context).store.getString(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush();
         UpdateNotifier.showUpdateSnackBar(context);
+
+        if (Platform.isAndroid) {
+          await FlutterCallkitIncoming.requestNotificationPermission(
+            {
+              "title": "Notification permission",
+              "rationaleMessagePermission":
+                  "Notification permission is required, to show notification.",
+              "postNotificationMessageRequired":
+                  "Notification permission is required, Please allow notification permission from setting.",
+            },
+          );
+        }
       }
 
       // Workaround for system UI overlay style not applied on app start

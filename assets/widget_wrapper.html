@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widget Wrapper</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        #widget-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="widget-iframe" allow="microphone; camera; encrypted-media; autoplay; display-capture; clipboard-write; clipboard-read; screen-wake-lock; accelerometer; gyroscope;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-presentation allow-downloads"></iframe>
+
+    <script>
+        const iframe = document.getElementById('widget-iframe');
+        let widgetOrigin = null;
+
+        // Set widget URL (called from Flutter)
+        window.setWidgetUrl = function(url) {
+            try {
+                const urlObj = new URL(url);
+                widgetOrigin = urlObj.origin;
+            } catch (e) {
+                return;
+            }
+
+            iframe.src = url;
+        };
+
+        // Send message to widget (called from Flutter)
+        window.sendToWidget = function(message) {
+            if (!iframe.contentWindow) {
+                return;
+            }
+
+            if (!widgetOrigin) {
+                iframe.contentWindow.postMessage(message, '*');
+                return;
+            }
+
+            iframe.contentWindow.postMessage(message, widgetOrigin);
+        };
+
+        // Listen for messages
+        window.addEventListener('message', function(event) {
+            // Verify message source
+            if (event.source !== iframe.contentWindow) return;
+            if (!event.data) return;
+
+            // Verify origin if set
+            if (widgetOrigin && event.origin !== widgetOrigin) {
+                return;
+            }
+
+            // Forward both widget-initiated messages AND widget responses to host requests
+            const isFromWidget = event.data.api === 'fromWidget';
+            const isWidgetResponse = event.data.response !== undefined;
+
+            if (isFromWidget || isWidgetResponse) {
+                if (window.flutter_inappwebview && window.flutter_inappwebview.callHandler) {
+                    window.flutter_inappwebview.callHandler('matrixWidget', event.data);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

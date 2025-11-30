@@ -1,17 +1,18 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:collection/collection.dart';
 import 'package:desktop_drop/desktop_drop.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -23,13 +24,14 @@ import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/start_poll_bottom_sheet.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
+import 'package:fluffychat/utils/callkit/callkit_service.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/file_selector.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/other_party_can_receive.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/show_scaffold_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -39,6 +41,8 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
+import '../../utils/element_call/call_service.dart';
+import '../call/call_screen.dart';
 import 'send_file_dialog.dart';
 import 'send_location_dialog.dart';
 
@@ -112,11 +116,13 @@ class ChatController extends State<ChatPageWithRoom>
 
   late final FocusNode inputFocus;
   StreamSubscription<html.Event>? onFocusSub;
+  StreamSubscription<SyncUpdate>? _syncSubscription;
 
   Timer? typingCoolDown;
   Timer? typingTimeout;
   bool currentlyTyping = false;
   bool dragging = false;
+  bool hasActiveCall = false;
 
   void onDragEntered(_) => setState(() => dragging = true);
 
@@ -365,6 +371,19 @@ class ChatController extends State<ChatPageWithRoom>
     if (kIsWeb) {
       onFocusSub = html.window.onFocus.listen((_) => setReadMarker());
     }
+
+    // Listen for call state updates
+    _syncSubscription = room.client.onSync.stream.listen((_) {
+      _updateCallState();
+    });
+    _updateCallState();
+  }
+
+  void _updateCallState() {
+    final newState = CallService.hasActiveCall(room);
+    if (newState != hasActiveCall) {
+      setState(() => hasActiveCall = newState);
+    }
   }
 
   final Set<String> expandedEventIds = {};
@@ -550,6 +569,7 @@ class ChatController extends State<ChatPageWithRoom>
     timeline = null;
     inputFocus.removeListener(_inputFocusListener);
     onFocusSub?.cancel();
+    _syncSubscription?.cancel();
     super.dispose();
   }
 
@@ -1314,48 +1334,35 @@ class ChatController extends State<ChatPageWithRoom>
       (event ?? selectedEvents.single).showInfoDialog(context);
 
   void onPhoneButtonTap() async {
-    // VoIP required Android SDK 21
-    if (PlatformInfos.isAndroid) {
-      DeviceInfoPlugin().androidInfo.then((value) {
-        if (value.version.sdkInt < 21) {
-          Navigator.pop(context);
-          showOkAlertDialog(
-            context: context,
-            title: L10n.of(context).unsupportedAndroidVersion,
-            message: L10n.of(context).unsupportedAndroidVersionLong,
-            okLabel: L10n.of(context).close,
-          );
-        }
-      });
-    }
-    final callType = await showModalActionPopup<CallType>(
-      context: context,
-      title: L10n.of(context).warning,
-      message: L10n.of(context).videoCallsBetaWarning,
-      cancelLabel: L10n.of(context).cancel,
-      actions: [
-        AdaptiveModalAction(
-          label: L10n.of(context).voiceCall,
-          icon: const Icon(Icons.phone_outlined),
-          value: CallType.kVoice,
-        ),
-        AdaptiveModalAction(
-          label: L10n.of(context).videoCall,
-          icon: const Icon(Icons.video_call_outlined),
-          value: CallType.kVideo,
-        ),
-      ],
-    );
-    if (callType == null) return;
+    // Request camera and microphone permissions
+    final cameraStatus = await Permission.camera.request();
+    final micStatus = await Permission.microphone.request();
 
-    final voipPlugin = Matrix.of(context).voipPlugin;
-    try {
-      await voipPlugin!.voip.inviteToCall(room, callType);
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.toLocalizedString(context))),
-      );
+    if (!cameraStatus.isGranted || !micStatus.isGranted) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+                'Camera and microphone permissions are required for calls'),
+          ),
+        );
+      }
+      return;
     }
+
+    // Show outgoing CallKit call on mobile
+    if (PlatformInfos.isMobile && !hasActiveCall) {
+      try {
+        await CallKitService.instance.showOutgoingCall(
+          room: room,
+        );
+      } catch (e, s) {
+        Logs().e('[Chat] Failed to show outgoing CallKit call', e, s);
+        // Continue anyway - will still navigate to call screen
+      }
+    }
+
+    FluffyChatApp.router.go('/rooms/$roomId/call');
   }
 
   void cancelReplyEventAction() => setState(() {
