@@ -174,6 +174,7 @@ class ChatEventList extends StatelessWidget {
                 previousEvent: previousEvent,
                 wallpaperMode: hasWallpaper,
                 scrollController: controller.scrollController,
+                controller: controller,
                 colors: colors,
                 isCollapsed: isCollapsed,
                 enterThread: controller.activeThreadId == null
