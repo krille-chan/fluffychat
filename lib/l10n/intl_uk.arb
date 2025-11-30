@@ -782,7 +782,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noEmotesFound": "Емоджі не знайдено. 😕",
+    "noEmotesFound": "Емодзі не знайдено. 😕",
     "@noEmotesFound": {
         "type": "String",
         "placeholders": {}
@@ -1247,7 +1247,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "waitingPartnerEmoji": "Очікування прийняття емоджі партнером…",
+    "waitingPartnerEmoji": "Очікування прийняття емодзі партнером…",
     "@waitingPartnerEmoji": {
         "type": "String",
         "placeholders": {}
@@ -1327,12 +1327,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "enableEmotesGlobally": "Увімкнути пакунок емоджі глобально",
+    "enableEmotesGlobally": "Увімкнути набір емодзі глобально",
     "@enableEmotesGlobally": {
         "type": "String",
         "placeholders": {}
     },
-    "emotePacks": "Набори емоджі для кімнати",
+    "emotePacks": "Набори емодзі для кімнати",
     "@emotePacks": {
         "type": "String",
         "placeholders": {}
@@ -1545,7 +1545,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "setCustomEmotes": "Установити користувацькі емоджі",
+    "setCustomEmotes": "Встановити власні емодзі",
     "@setCustomEmotes": {
         "type": "String",
         "placeholders": {}
@@ -1736,7 +1736,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "autoplayImages": "Автоматично відтворювати анімовані наліпки та емоджі",
+    "autoplayImages": "Автоматично відтворювати анімовані наліпки та емодзі",
     "@autoplayImages": {
         "type": "String",
         "placeholder": {}
@@ -1820,7 +1820,7 @@
     },
     "chatHasBeenAddedToThisSpace": "Бесіду додано до цього простору",
     "@chatHasBeenAddedToThisSpace": {},
-    "chatBackupDescription": "Ваші старі повідомлення захищені ключем відновлення. Переконайтеся, що ви не втратите його.",
+    "chatBackupDescription": "Ваші повідомлення захищені ключем відновлення. Переконайтеся, що ви не втратите його.",
     "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
@@ -2188,11 +2188,11 @@
             }
         }
     },
-    "emojis": "Емоджі",
+    "emojis": "Емодзі",
     "@emojis": {},
     "pinMessage": "Прикріпити в кімнаті",
     "@pinMessage": {},
-    "confirmEventUnpin": "Ви впевнені, що бажаєте назавжди відкріпите подію?",
+    "confirmEventUnpin": "Ви впевнені, що бажаєте назавжди відкріпити подію?",
     "@confirmEventUnpin": {},
     "placeCall": "Здійснити виклик",
     "@placeCall": {},
@@ -2879,9 +2879,9 @@
     "@accessAndVisibilityDescription": {},
     "calls": "Виклики",
     "@calls": {},
-    "customEmojisAndStickers": "Власні емоджі та наліпки",
+    "customEmojisAndStickers": "Власні емодзі та наліпки",
     "@customEmojisAndStickers": {},
-    "customEmojisAndStickersBody": "Додавайте або діліться власними емоджі або наліпками, які можна використовувати в будь-якій бесіді.",
+    "customEmojisAndStickersBody": "Додавайте або діліться власними емодзі або наліпками, які можна використовувати в будь-якій бесіді.",
     "@customEmojisAndStickersBody": {},
     "createNewAddress": "Створити нову адресу",
     "@createNewAddress": {},
@@ -3022,7 +3022,7 @@
     },
     "markAsUnread": "Позначити непрочитаним",
     "@markAsUnread": {},
-    "alwaysUse24HourFormat": "false",
+    "alwaysUse24HourFormat": "вимкнено",
     "@alwaysUse24HourFormat": {
         "description": "Set to true to always display time of day in 24 hour format."
     },
@@ -3248,7 +3248,7 @@
     "@notificationRuleMemberEvent": {},
     "notificationRuleMemberEventDescription": "Забороняє сповіщення про події учасників.",
     "@notificationRuleMemberEventDescription": {},
-    "notificationRuleSuppressNoticesDescription": "Забороняє сповіщення від автоматизованих клієнтів, таких як боти.",
+    "notificationRuleSuppressNoticesDescription": "Забороняє сповіщення від автоматизованих клієнтів, як-от боти.",
     "@notificationRuleSuppressNoticesDescription": {},
     "notificationRuleIsUserMention": "Згадки користувачів",
     "@notificationRuleIsUserMention": {},
@@ -3351,7 +3351,7 @@
     "@approve": {},
     "youHaveKnocked": "Ви постукали",
     "@youHaveKnocked": {},
-    "sentVoiceMessage": "🎙️ {duration} - {sender} - Голосове повідомлення від {sender}",
+    "sentVoiceMessage": "🎙️Голосове повідомлення від {sender} ({duration})",
     "@sentVoiceMessage": {
         "type": "String",
         "placeholders": {
@@ -3385,5 +3385,131 @@
     "moreEvents": "Інші події",
     "@moreEvents": {},
     "declineInvitation": "Відхилити запрошення",
-    "@declineInvitation": {}
+    "@declineInvitation": {},
+    "noMessagesYet": "Поки немає повідомлень",
+    "@noMessagesYet": {},
+    "longPressToRecordVoiceMessage": "Довге натискання, щоби записати голосове повідомлення.",
+    "@longPressToRecordVoiceMessage": {},
+    "pause": "Призупинити",
+    "@pause": {},
+    "resume": "Продовжити",
+    "@resume": {},
+    "newSubSpace": "Новий вкладений простір",
+    "@newSubSpace": {},
+    "moveToDifferentSpace": "Перемістити в інший простір",
+    "@moveToDifferentSpace": {},
+    "moveUp": "Перемістити вище",
+    "@moveUp": {},
+    "moveDown": "Переместити нижче",
+    "@moveDown": {},
+    "removeFromSpaceDescription": "Бесіду буде видалено з простору, та вона залишиться у вашому списку бесід.",
+    "@removeFromSpaceDescription": {},
+    "countChats": "{chats} бесід",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "spaceMemberOf": "Учасник {spaces} просторів",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "Учасник просторів {spaces} може постукати",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "donate": "Задонатити",
+    "@donate": {},
+    "startedAPoll": "Нове опитування від {username}.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "Опитування",
+    "@poll": {},
+    "startPoll": "Розпочати опитування",
+    "@startPoll": {},
+    "endPoll": "Завершити опитування",
+    "@endPoll": {},
+    "answersVisible": "Публічні відповіді",
+    "@answersVisible": {},
+    "answersHidden": "Приховані відповіді",
+    "@answersHidden": {},
+    "pollQuestion": "Запитання",
+    "@pollQuestion": {},
+    "answerOption": "Варіант відповіді",
+    "@answerOption": {},
+    "addAnswerOption": "Додати варіант відповіді",
+    "@addAnswerOption": {},
+    "allowMultipleAnswers": "Дозволити декілька варіантів відповіді",
+    "@allowMultipleAnswers": {},
+    "pollHasBeenEnded": "Опитування завершилось",
+    "@pollHasBeenEnded": {},
+    "skipChatBackupWarning": "Ви впевнені? Без резервного копіювання бесід ви можете втратити доступ до повідомлень, якщо ви зміните пристрій.",
+    "@skipChatBackupWarning": {},
+    "loadingMessages": "Завантажуються повідомлення",
+    "@loadingMessages": {},
+    "setupChatBackup": "Налаштувати резервне копіювання бесід",
+    "@setupChatBackup": {},
+    "replyInThread": "Відповісти у вітці",
+    "@replyInThread": {},
+    "saveChanges": "Зберегти зміни",
+    "@saveChanges": {},
+    "createSticker": "Створити наліпку чи емодзі",
+    "@createSticker": {},
+    "useAsSticker": "Використати як наліпку",
+    "@useAsSticker": {},
+    "useAsEmoji": "Використати як емодзі",
+    "@useAsEmoji": {},
+    "stickerPackNameAlreadyExists": "Набір наліпок з такою назвою вже є",
+    "@stickerPackNameAlreadyExists": {},
+    "newStickerPack": "Новий набір наліпок",
+    "@newStickerPack": {},
+    "stickerPackName": "Назва набору наліпок",
+    "@stickerPackName": {},
+    "attribution": "Атрибуція",
+    "@attribution": {},
+    "skipChatBackup": "Пропустити резервне копіювання бесід",
+    "@skipChatBackup": {},
+    "thread": "Вітка",
+    "@thread": {},
+    "backToMainChat": "Повернутись до основної бесіди",
+    "@backToMainChat": {},
+    "answersWillBeVisibleWhenPollHasEnded": "Відповіді стануть публічними після завершення опитування",
+    "@answersWillBeVisibleWhenPollHasEnded": {},
+    "countVotes": "{count, plural, =1{Один голос} other{{count} голосів}}",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "countReplies": "{count, plural, =1{Одна відповідь} other{{count} відповідей}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    }
 }
