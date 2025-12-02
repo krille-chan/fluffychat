@@ -156,6 +156,11 @@ class HtmlMessage extends StatelessWidget {
     // We must not render elements nested more than 100 elements deep:
     if (depth >= 100) return const TextSpan();
 
+    if (node is dom.Element &&
+        ignoredHtmlTags.contains(node.localName?.toLowerCase())) {
+      return const TextSpan();
+    }
+
     // This is a text node or not permitted node, so we render it as text:
     if (node is! dom.Element || !allowedHtmlTags.contains(node.localName)) {
       var text = node.text ?? '';
@@ -169,8 +174,6 @@ class HtmlMessage extends StatelessWidget {
         onOpen: onOpen,
       );
     }
-
-    if (ignoredHtmlTags.contains(node.localName)) return const TextSpan();
 
     switch (node.localName) {
       case 'br':
@@ -260,13 +263,15 @@ class HtmlMessage extends StatelessWidget {
             child: Text.rich(
               TextSpan(
                 children: [
-                  if (node.parent?.localName == 'ul')
-                    const TextSpan(text: '• '),
-                  if (node.parent?.localName == 'ol')
-                    TextSpan(
-                      text:
-                          '${(node.parent?.nodes.whereType<dom.Element>().toList().indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
-                    ),
+                  if (!isCheckbox) ...[
+                    if (node.parent?.localName == 'ul')
+                      const TextSpan(text: '• '),
+                    if (node.parent?.localName == 'ol')
+                      TextSpan(
+                        text:
+                            '${(node.parent?.nodes.whereType<dom.Element>().toList().indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
+                      ),
+                  ],
                   if (node.className == 'task-list-item')
                     WidgetSpan(
                       child: Padding(
