@@ -1114,19 +1114,29 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void goToNewRoomAction() async {
-    final newRoomId = room
-        .getState(EventTypes.RoomTombstone)!
-        .parsedTombstoneContent
-        .replacementRoom;
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () => room.client.joinRoom(
-        room
-            .getState(EventTypes.RoomTombstone)!
-            .parsedTombstoneContent
-            .replacementRoom,
-        via: [newRoomId.domain!],
-      ),
+      future: () async {
+        final users = await room.requestParticipants(
+          [Membership.join, Membership.leave],
+          true,
+          false,
+        );
+        users.sort((a, b) => a.powerLevel.compareTo(b.powerLevel));
+        final via = users
+            .map((user) => user.id.domain)
+            .whereType<String>()
+            .toSet()
+            .take(10)
+            .toList();
+        return room.client.joinRoom(
+          room
+              .getState(EventTypes.RoomTombstone)!
+              .parsedTombstoneContent
+              .replacementRoom,
+          via: via,
+        );
+      },
     );
     if (result.error != null) return;
     if (!mounted) return;
