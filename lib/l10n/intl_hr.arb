@@ -371,7 +371,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Tvoji su stari razgovori osigurani s ključem za obnavljanje. Pazi da ga ne izgubiš.",
+    "chatBackupDescription": "Tvoje poruke su osigurane s ključem za obnavljanje. Pazi da ga ne izgubiš.",
     "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
@@ -2991,5 +2991,24 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "setCustomPermissionLevel": "Postavi razinu dozvole",
+    "@setCustomPermissionLevel": {},
+    "setPermissionsLevelDescription": "Odaberi unaprijed definiranu ulogu u nastavku ili upiši prilagođenu razinu dozvole između 0 i 100.",
+    "@setPermissionsLevelDescription": {},
+    "ignoreUser": "Zanemari korisnika",
+    "@ignoreUser": {},
+    "normalUser": "Normalni korisnik",
+    "@normalUser": {},
+    "aboutHomeserver": "Informacije o {homeserver}",
+    "@aboutHomeserver": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    },
+    "commandHint_roomupgrade": "Nadogradi ovu sobu na zadanu verziju sobe",
+    "@commandHint_roomupgrade": {}
 }

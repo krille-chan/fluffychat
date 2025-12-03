@@ -2368,7 +2368,7 @@
             }
         }
     },
-    "commandHint_markasdm": "Markeer als privéberichtenkamer voor Matrix-ID",
+    "commandHint_markasdm": "Markeer als privé-chat voor de Matrix-ID",
     "@commandHint_markasdm": {},
     "commandHint_markasgroup": "Markeer als groep",
     "@commandHint_markasgroup": {},
