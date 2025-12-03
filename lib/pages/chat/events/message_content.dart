@@ -241,7 +241,7 @@ class MessageContent extends StatelessWidget {
             }
             var html = AppSettings.renderHtml.value && event.isRichMessage
                 ? event.formattedText
-                : event.body;
+                : event.body.replaceAll('<', '&lt;').replaceAll('>', '&gt;');
             if (event.messageType == MessageTypes.Emote) {
               html = '* $html';
             }

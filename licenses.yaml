@@ -27,6 +27,7 @@ packageLicenseOverride:
   platform_detect: Apache-2.0
   rxdart: Apache-2.0
   flutter_new_badger: MIT
+  sqlcipher_flutter_libs: MIT
 
   # flutter's internal packages
   flutter_driver: BSD-3-Clause

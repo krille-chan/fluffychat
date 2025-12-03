@@ -86,9 +86,9 @@ class HtmlMessage extends StatelessWidget {
     'rt',
     'html',
     'body',
-    // Workaround for https://github.com/krille-chan/fluffychat/issues/507
-    'tg-forward',
   };
+
+  static const Set<String> ignoredHtmlTags = {'mx-reply'};
 
   /// We add line breaks before these tags:
   static const Set<String> blockHtmlTags = {
@@ -156,8 +156,13 @@ class HtmlMessage extends StatelessWidget {
     // We must not render elements nested more than 100 elements deep:
     if (depth >= 100) return const TextSpan();
 
-    // This is a text node, so we render it as text:
-    if (node is! dom.Element) {
+    if (node is dom.Element &&
+        ignoredHtmlTags.contains(node.localName?.toLowerCase())) {
+      return const TextSpan();
+    }
+
+    // This is a text node or not permitted node, so we render it as text:
+    if (node is! dom.Element || !allowedHtmlTags.contains(node.localName)) {
       var text = node.text ?? '';
       // Single linebreak nodes between Elements are ignored:
       if (text == '\n') text = '';
@@ -169,9 +174,6 @@ class HtmlMessage extends StatelessWidget {
         onOpen: onOpen,
       );
     }
-
-    // We must not render tags which are not in the allow list:
-    if (!allowedHtmlTags.contains(node.localName)) return const TextSpan();
 
     switch (node.localName) {
       case 'br':
@@ -261,13 +263,15 @@ class HtmlMessage extends StatelessWidget {
             child: Text.rich(
               TextSpan(
                 children: [
-                  if (node.parent?.localName == 'ul')
-                    const TextSpan(text: '• '),
-                  if (node.parent?.localName == 'ol')
-                    TextSpan(
-                      text:
-                          '${(node.parent?.nodes.whereType<dom.Element>().toList().indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
-                    ),
+                  if (!isCheckbox) ...[
+                    if (node.parent?.localName == 'ul')
+                      const TextSpan(text: '• '),
+                    if (node.parent?.localName == 'ol')
+                      TextSpan(
+                        text:
+                            '${(node.parent?.nodes.whereType<dom.Element>().toList().indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
+                      ),
+                  ],
                   if (node.className == 'task-list-item')
                     WidgetSpan(
                       child: Padding(
