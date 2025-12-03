@@ -140,7 +140,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "თქვენი ძველი შეტყობინებები დაცულია აღდგების გასაღებით. არ დაკარგოთ ის.",
+    "chatBackupDescription": "თქვენი შეტყობინებები დაცულია აღდგენის გასაღებით. არ დაკარგოთ ის.",
     "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
