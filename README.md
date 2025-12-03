@@ -5,7 +5,7 @@
 ### Links:
 
 - 🌐 [[Weblate] Translate FluffyChat into your language](https://hosted.weblate.org/projects/fluffychat/)
-- 🌍 [[m] Join the community](https://matrix.to/#/#fluffychat:matrix.org)
+- 🌍 [[m] Join the community](https://matrix.to/#/#fluffy-space:matrix.org)
 - 📰 [[Mastodon] Get updates on social media](https://troet.cafe/@krille)
 - 🖥️ [[Famedly] Server hosting and professional support](https://famedly.com/kontakt)
 - 💝 [[Liberapay] Support FluffyChat development](https://de.liberapay.com/KrilleChritzelius)
