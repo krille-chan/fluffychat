@@ -92,9 +92,7 @@ dev_dependencies:
   import_sorter: ^4.6.0
   integration_test:
     sdk: flutter
-  # Waiting for https://github.com/rufman/license_checker/pull/47
-  license_checker:
-    git: https://github.com/krille-chan/license_checker.git
+  license_checker: ^1.6.2
   translations_cleaner: ^0.0.5
 
 import_sorter:

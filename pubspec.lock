@@ -1015,12 +1015,11 @@ packages:
   license_checker:
     dependency: "direct dev"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "38a65ff5b4b65db092b11dad999081388f75ece8"
-      url: "https://github.com/krille-chan/license_checker.git"
-    source: git
-    version: "1.6.0"
+      name: license_checker
+      sha256: "8a35b6946e50811e070ac6fe4717ee431cd1a334e080df2116956b54b0bb0d0f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.6.2"
   linkify:
     dependency: "direct main"
     description:
