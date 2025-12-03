@@ -84,9 +84,12 @@ class ChatEventList extends StatelessWidget {
 
             // Request history button or progress indicator:
             if (i == events.length + 1) {
-              if (controller.activeThreadId == null) {
-                return Builder(
-                  builder: (context) {
+              if (controller.activeThreadId != null) {
+                return const SizedBox.shrink();
+              }
+              return Builder(
+                builder: (context) {
+                  if (timeline.canRequestHistory) {
                     final visibleIndex = timeline.events.lastIndexWhere(
                       (event) =>
                           !event.isCollapsedState && event.isVisibleInGui,
@@ -96,23 +99,22 @@ class ChatEventList extends StatelessWidget {
                         controller.requestHistory,
                       );
                     }
-                    return Center(
-                      child: AnimatedSwitcher(
-                        duration: FluffyThemes.animationDuration,
-                        child: timeline.canRequestHistory
-                            ? IconButton(
-                                onPressed: controller.requestHistory,
-                                icon: const Icon(Icons.refresh_outlined),
-                              )
-                            : const CircularProgressIndicator.adaptive(
-                                strokeWidth: 2,
-                              ),
-                      ),
-                    );
-                  },
-                );
-              }
-              return const SizedBox.shrink();
+                  }
+                  return Center(
+                    child: AnimatedSwitcher(
+                      duration: FluffyThemes.animationDuration,
+                      child: timeline.canRequestHistory
+                          ? IconButton(
+                              onPressed: controller.requestHistory,
+                              icon: const Icon(Icons.refresh_outlined),
+                            )
+                          : const CircularProgressIndicator.adaptive(
+                              strokeWidth: 2,
+                            ),
+                    ),
+                  );
+                },
+              );
             }
             i--;
 
