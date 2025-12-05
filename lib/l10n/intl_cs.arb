@@ -2669,5 +2669,36 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "ignoreUser": "Ignorovat uživatele",
+    "@ignoreUser": {},
+    "normalUser": "Normalní uživatel",
+    "@normalUser": {},
+    "countInvited": "{count} pozváno",
+    "@countInvited": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "invitedBy": "📩 Pozván {user}",
+    "@invitedBy": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "hasKnocked": "🚪 {user} zaklepal",
+    "@hasKnocked": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "usersMustKnock": "Uživatelé musí zaklepat",
+    "@usersMustKnock": {}
 }
