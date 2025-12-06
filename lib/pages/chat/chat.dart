@@ -231,6 +231,17 @@ class ChatController extends State<ChatPageWithRoom>
 
     if (mostRecentEvent != null) {
       setReadMarker(eventId: mostRecentEvent.eventId);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final index = timeline.events.filterByVisibleInGui().indexOf(
+          mostRecentEvent,
+        );
+        if (index >= 0) {
+          scrollController.scrollToIndex(
+            index,
+            preferPosition: AutoScrollPosition.begin,
+          );
+        }
+      });
     }
   }
 
@@ -458,7 +469,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void onInsert(int i) {
     // setState will be called by updateView() anyway
-    if (i <= 5) animateInEventIndex = i;
+    if (timeline?.allowNewEvent == true) animateInEventIndex = i;
   }
 
   Future<void> _getTimeline({String? eventContextId}) async {
