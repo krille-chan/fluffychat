@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
@@ -49,7 +50,7 @@ class NewGroupController extends State<NewGroup> {
   void selectPhoto() async {
     final photo = await selectFiles(
       context,
-      type: FileSelectorType.images,
+      type: FileType.image,
       allowMultiple: false,
     );
     final bytes = await photo.singleOrNull?.readAsBytes();

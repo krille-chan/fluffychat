@@ -9,6 +9,7 @@ import 'package:collection/collection.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
@@ -621,7 +622,7 @@ class ChatController extends State<ChatPageWithRoom>
     });
   }
 
-  void sendFileAction({FileSelectorType type = FileSelectorType.any}) async {
+  void sendFileAction({FileType type = FileType.any}) async {
     final files = await selectFiles(context, allowMultiple: true, type: type);
     if (files.isEmpty) return;
     await showAdaptiveDialog(
@@ -1186,10 +1187,10 @@ class ChatController extends State<ChatPageWithRoom>
 
     switch (choice) {
       case AddPopupMenuActions.image:
-        sendFileAction(type: FileSelectorType.images);
+        sendFileAction(type: FileType.image);
         return;
       case AddPopupMenuActions.video:
-        sendFileAction(type: FileSelectorType.videos);
+        sendFileAction(type: FileType.video);
         return;
       case AddPopupMenuActions.file:
         sendFileAction();

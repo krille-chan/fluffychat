@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:file_picker/file_picker.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/account_config.dart';
@@ -26,7 +28,7 @@ class SettingsStyleController extends State<SettingsStyle> {
 
   void setWallpaper() async {
     final client = Matrix.of(context).client;
-    final picked = await selectFiles(context, type: FileSelectorType.images);
+    final picked = await selectFiles(context, type: FileType.image);
     final pickedFile = picked.firstOrNull;
     if (pickedFile == null) return;
 

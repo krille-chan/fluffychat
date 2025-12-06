@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
@@ -134,7 +135,7 @@ class SettingsController extends State<Settings> {
       if (result == null) return;
       file = MatrixFile(bytes: await result.readAsBytes(), name: result.path);
     } else {
-      final result = await selectFiles(context, type: FileSelectorType.images);
+      final result = await selectFiles(context, type: FileType.image);
       final pickedFile = result.firstOrNull;
       if (pickedFile == null) return;
       file = MatrixFile(
