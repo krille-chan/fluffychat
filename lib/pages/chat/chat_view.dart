@@ -289,8 +289,6 @@ class ChatView extends StatelessWidget {
                   ),
                 ),
               ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.miniCenterFloat,
               floatingActionButton:
                   controller.showScrollDownButton &&
                       controller.selectedEvents.isEmpty

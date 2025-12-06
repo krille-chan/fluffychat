@@ -224,9 +224,14 @@ class ChatController extends State<ChatPageWithRoom>
     final timeline = this.timeline;
     if (timeline == null) return;
     Logs().v('Requesting future...');
-    final mostRecentEventId = timeline.events.first.eventId;
+
+    final mostRecentEvent = timeline.events.filterByVisibleInGui().firstOrNull;
+
     await timeline.requestFuture(historyCount: _loadHistoryCount);
-    setReadMarker(eventId: mostRecentEventId);
+
+    if (mostRecentEvent != null) {
+      setReadMarker(eventId: mostRecentEvent.eventId);
+    }
   }
 
   void _updateScrollController() {
@@ -240,11 +245,6 @@ class ChatController extends State<ChatPageWithRoom>
     } else if (scrollController.position.pixels <= 0 && _scrolledUp == true) {
       setState(() => _scrolledUp = false);
       setReadMarker();
-    }
-
-    if (scrollController.position.pixels == 0 ||
-        scrollController.position.pixels == 64) {
-      requestFuture();
     }
   }
 
@@ -458,7 +458,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void onInsert(int i) {
     // setState will be called by updateView() anyway
-    animateInEventIndex = i;
+    if (i <= 5) animateInEventIndex = i;
   }
 
   Future<void> _getTimeline({String? eventContextId}) async {

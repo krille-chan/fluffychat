@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
@@ -63,16 +64,16 @@ class ChatEventList extends StatelessWidget {
           (BuildContext context, int i) {
             // Footer to display typing indicator and read receipts:
             if (i == 0) {
-              if (timeline.isRequestingFuture) {
-                return const Center(
-                  child: CircularProgressIndicator.adaptive(strokeWidth: 2),
-                );
-              }
               if (timeline.canRequestFuture) {
                 return Center(
-                  child: IconButton(
-                    onPressed: controller.requestFuture,
-                    icon: const Icon(Icons.refresh_outlined),
+                  child: TextButton.icon(
+                    onPressed: timeline.isRequestingFuture
+                        ? null
+                        : controller.requestFuture,
+                    icon: timeline.isRequestingFuture
+                        ? CircularProgressIndicator.adaptive(strokeWidth: 2)
+                        : const Icon(Icons.arrow_downward_outlined),
+                    label: Text(L10n.of(context).loadMore),
                   ),
                 );
               }
@@ -101,16 +102,14 @@ class ChatEventList extends StatelessWidget {
                     }
                   }
                   return Center(
-                    child: AnimatedSwitcher(
-                      duration: FluffyThemes.animationDuration,
-                      child: timeline.canRequestHistory
-                          ? IconButton(
-                              onPressed: controller.requestHistory,
-                              icon: const Icon(Icons.refresh_outlined),
-                            )
-                          : const CircularProgressIndicator.adaptive(
-                              strokeWidth: 2,
-                            ),
+                    child: TextButton.icon(
+                      onPressed: timeline.isRequestingHistory
+                          ? null
+                          : controller.requestHistory,
+                      icon: timeline.isRequestingHistory
+                          ? CircularProgressIndicator.adaptive(strokeWidth: 2)
+                          : const Icon(Icons.arrow_upward_outlined),
+                      label: Text(L10n.of(context).loadMore),
                     ),
                   );
                 },
