@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cHD(d){return new A.AV(B.dh(d))},
-cHE(){return new A.FY(B.dh("pt_BR"))},
-cHF(){return new A.FZ(B.dh("pt_PT"))},
-AV:function AV(d){this.a=d},
-FY:function FY(d){this.a=d},
-FZ:function FZ(d){this.a=d}},C
+cHB(d){return new A.AU(B.dh(d))},
+cHC(){return new A.FW(B.dh("pt_BR"))},
+cHD(){return new A.FX(B.dh("pt_PT"))},
+AU:function AU(d){this.a=d},
+FW:function FW(d){this.a=d},
+FX:function FX(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[55]
-A.AV.prototype={
+A.AU.prototype={
 gkX(){return"true"},
 gjI(){return"Repita a senha"},
 gmO(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -667,7 +667,7 @@ gpa(){return"Are you sure? Without enabling the chat backup you may lose access 
 gpw(){return"Loading messages"},
 gp8(){return"Set up chat backup"},
 A(d,e){return this.gbc(this).$1(e)}}
-A.FY.prototype={
+A.FW.prototype={
 gkX(){return"true"},
 gjI(){return"Repita a senha"},
 gmO(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1325,7 +1325,7 @@ gpa(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode p
 gpw(){return"Carregando mensagens"},
 gp8(){return"Configurar backup de conversas"},
 A(d,e){return this.gbc(this).$1(e)}}
-A.FZ.prototype={
+A.FX.prototype={
 gjI(){return"Repete a palavra-passe"},
 gbc(d){return"Remover"},
 geq(){return"Acerca de"},
@@ -1568,9 +1568,9 @@ eO(d){return d+" enviou um autocolante"},
 fY(d){return d+" enviou um v\xeddeo"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.AV,C.aE)
-w(A.AV,[A.FY,A.FZ])})()
-B.dP(b.typeUniverse,JSON.parse('{"AV":{"aE":[]},"FY":{"aE":[]},"FZ":{"aE":[]}}'))
+x(A.AU,C.aE)
+w(A.AU,[A.FW,A.FX])})()
+B.dP(b.typeUniverse,JSON.parse('{"AU":{"aE":[]},"FW":{"aE":[]},"FX":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["YTDW/oolnPu8pPBaGcDZQp2hlys="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["aTYBwA8zPIoyxSNW5B7/lwZdAuk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_17.part.js.map
