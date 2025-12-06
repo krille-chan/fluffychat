@@ -85,21 +85,19 @@ class ChatEventList extends StatelessWidget {
 
             // Request history button or progress indicator:
             if (i == events.length + 1) {
-              if (controller.activeThreadId != null) {
+              if (controller.activeThreadId != null ||
+                  !timeline.canRequestHistory) {
                 return const SizedBox.shrink();
               }
               return Builder(
                 builder: (context) {
-                  if (timeline.canRequestHistory) {
-                    final visibleIndex = timeline.events.lastIndexWhere(
-                      (event) =>
-                          !event.isCollapsedState && event.isVisibleInGui,
+                  final visibleIndex = timeline.events.lastIndexWhere(
+                    (event) => !event.isCollapsedState && event.isVisibleInGui,
+                  );
+                  if (visibleIndex > timeline.events.length - 50) {
+                    WidgetsBinding.instance.addPostFrameCallback(
+                      controller.requestHistory,
                     );
-                    if (visibleIndex > timeline.events.length - 50) {
-                      WidgetsBinding.instance.addPostFrameCallback(
-                        controller.requestHistory,
-                      );
-                    }
                   }
                   return Center(
                     child: TextButton.icon(
