@@ -71,8 +71,8 @@ class ChatListItem extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         color: backgroundColor,
         child: FutureBuilder(
-          future: room.loadHeroUsers(),
-          builder: (context, snapshot) => HoverBuilder(
+          future: room.name.isEmpty ? room.loadHeroUsers() : null,
+          builder: (context, _) => HoverBuilder(
             builder: (context, listTileHovered) => ListTile(
               visualDensity: const VisualDensity(vertical: -0.5),
               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
