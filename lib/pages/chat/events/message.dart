@@ -10,7 +10,6 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
@@ -90,9 +89,6 @@ class Message extends StatelessWidget {
     }.contains(event.type)) {
       if (event.type.startsWith('m.call.')) {
         return const SizedBox.shrink();
-      }
-      if (event.type == EventTypes.RoomCreate) {
-        return RoomCreationStateEvent(event: event);
       }
       return StateMessage(event, onExpand: onExpand, isCollapsed: isCollapsed);
     }

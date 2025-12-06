@@ -325,6 +325,7 @@
       }
     }
   },
+  "changedTheChatDescription": "{username} changed the chat description",
   "changedTheChatDescriptionTo": "{username} changed the chat description to: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "String",
@@ -337,6 +338,7 @@
       }
     }
   },
+  "changedTheChatName": "{username} changed the chat name",
   "changedTheChatNameTo": "{username} changed the chat name to: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "String",

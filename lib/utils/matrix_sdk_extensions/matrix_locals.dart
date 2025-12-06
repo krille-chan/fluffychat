@@ -37,13 +37,13 @@ class MatrixLocals extends MatrixLocalizations {
   }
 
   @override
-  String changedTheChatDescriptionTo(String senderName, String content) {
-    return l10n.changedTheChatDescriptionTo(senderName, content);
+  String changedTheChatDescriptionTo(String senderName, _) {
+    return l10n.changedTheChatDescription(senderName);
   }
 
   @override
-  String changedTheChatNameTo(String senderName, String content) {
-    return l10n.changedTheChatNameTo(senderName, content);
+  String changedTheChatNameTo(String senderName, _) {
+    return l10n.changedTheChatName(senderName);
   }
 
   @override

@@ -52,10 +52,7 @@ class StateMessage extends StatelessWidget {
                               ),
                             ),
                             if (onExpand != null) ...[
-                              const TextSpan(
-                                text: ' + ',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
+                              const TextSpan(text: '\n'),
                               TextSpan(
                                 style: TextStyle(
                                   color: theme.colorScheme.primary,
@@ -70,7 +67,7 @@ class StateMessage extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 12 * AppSettings.fontSizeFactor.value,
+                          fontSize: 11 * AppSettings.fontSizeFactor.value,
                           decoration: event.redacted
                               ? TextDecoration.lineThrough
                               : null,
