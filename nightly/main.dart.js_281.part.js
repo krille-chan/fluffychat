@@ -540,7 +540,7 @@ glv(){return"D\xe9an teagmh\xe1il le admin an fhreastala\xed"},
 glw(){return"D\xe9an teagmh\xe1il le sl\xe1nd\xe1il an fhreastala\xed"},
 gkL(){return"Leathanach taca\xedochta"},
 gks(){return"Eolas freastala\xed:"},
-gbG(d){return"Ainm"},
+gbF(d){return"Ainm"},
 gou(d){return"Leagan"},
 goF(){return"Su\xedomh Gr\xe9as\xe1in"},
 glr(){return"Comhbhr\xfaigh"},
@@ -667,5 +667,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FF,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"FF":{"aE":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["WPvTY10Kl/AIwhJVLnFyGOhAQJo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["qIxvxvVNGyMfSOmuMfs5dfil48s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_281.part.js.map

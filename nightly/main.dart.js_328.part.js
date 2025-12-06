@@ -540,7 +540,7 @@ glv(){return"Sunucu y\xf6neticisiyle ileti\u015fime ge\xe7in"},
 glw(){return"Sunucu g\xfcvenli\u011fiyle ileti\u015fime ge\xe7in"},
 gkL(){return"Destek sayfas\u0131"},
 gks(){return"Sunucu bilgisi:"},
-gbG(d){return"\u0130sim"},
+gbF(d){return"\u0130sim"},
 gou(d){return"Versiyon"},
 goF(){return"Web sitesi"},
 glr(){return"S\u0131k\u0131\u015ft\u0131rma"},
@@ -667,5 +667,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G7,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"G7":{"aE":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["sMiIZLCrW3iftLQfJpmTPH7gKHA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["nsTQzrbY14AGkR/kK0kM5Lf48Wk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_328.part.js.map

@@ -540,7 +540,7 @@ glv(){return"Contact server admin"},
 glw(){return"Contact server security"},
 gkL(){return"Support page"},
 gks(){return"Server information:"},
-gbG(d){return"Name"},
+gbF(d){return"Name"},
 gou(d){return"Version"},
 goF(){return"Website"},
 glr(){return"Compress"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gb,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"Gb":{"aE":[]}}'))};
-(a=>{a["sEU6D+yjj+E2sSjgD0u3yFho5jU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["deyNxgUf4dh6XaXu+o0tYBOkAHg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_333.part.js.map

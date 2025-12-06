@@ -540,7 +540,7 @@ glv(){return"\u0417\u0432\u2019\u044f\u0437\u0430\u0442\u0438\u0441\u044f \u0437
 glw(){return"\u0417\u0432\u2019\u044f\u0437\u0430\u0442\u0438\u0441\u044f \u0437 \u0432\u0456\u0434\u0434\u0456\u043b\u043e\u043c \u0431\u0435\u0437\u043f\u0435\u043a\u0438 \u0441\u0435\u0440\u0432\u0435\u0440\u0430"},
 gkL(){return"\u0421\u0442\u043e\u0440\u0456\u043d\u043a\u0430 \u043f\u0456\u0434\u0442\u0440\u0438\u043c\u043a\u0438"},
 gks(){return"\u0406\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0456\u044f \u043f\u0440\u043e \u0441\u0435\u0440\u0432\u0435\u0440:"},
-gbG(d){return"\u0406\u043c'\u044f"},
+gbF(d){return"\u0406\u043c'\u044f"},
 gou(d){return"\u0412\u0435\u0440\u0441\u0456\u044f"},
 goF(){return"\u0412\u0435\u0431\u0441\u0430\u0439\u0442"},
 glr(){return"\u0421\u0442\u0438\u0441\u043d\u0443\u0442\u0438"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G8,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"G8":{"aE":[]}}'))};
-(a=>{a["L1ZI2hPPV5/SUtxOR5JSjSWMNMA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["XlinXvU1AbIvMouNJ6tkW0GUN+I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_330.part.js.map

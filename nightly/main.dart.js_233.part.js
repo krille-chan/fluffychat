@@ -540,7 +540,7 @@ glv(){return"Contacta l'admin del servidor"},
 glw(){return"Contacta l'equip de seguretat del servidor"},
 gkL(){return"P\xe0gina de suport"},
 gks(){return"Informaci\xf3 del servidor:"},
-gbG(d){return"Nom"},
+gbF(d){return"Nom"},
 gou(d){return"Versi\xf3"},
 goF(){return"Lloc web"},
 glr(){return"Comprimeix"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fr,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fr":{"aE":[]}}'))};
-(a=>{a["IItOaF+Lae3mHqu77R0owOUdXEs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Xi4V+SPFEPbZsHwsFignK1u4ewg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_233.part.js.map

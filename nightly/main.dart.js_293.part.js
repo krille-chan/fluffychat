@@ -540,7 +540,7 @@ glv(){return"Kapcsolatfelv\xe9tel a szerver adminnal"},
 glw(){return"Kapcsolatfelv\xe9tel a szerver biztons\xe1ggal"},
 gkL(){return"T\xe1mogat\xe1si oldal"},
 gks(){return"Szerver inform\xe1ci\xf3:"},
-gbG(d){return"N\xe9v"},
+gbF(d){return"N\xe9v"},
 gou(d){return"Verzi\xf3"},
 goF(){return"Weboldal"},
 glr(){return"T\xf6m\xf6r\xedt\xe9s"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FK,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"FK":{"aE":[]}}'))};
-(a=>{a["FneFkzAqFaFG6p64p5MXW1HOrHU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PjUxwrQERJydQ+xiQ3D1cC3GUJU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_293.part.js.map

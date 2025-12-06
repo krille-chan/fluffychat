@@ -540,7 +540,7 @@ glv(){return"\u062a\u0645\u0627\u0633 \u0628\u0627 \u0645\u062f\u06cc\u0631 \u06
 glw(){return"\u062a\u0645\u0627\u0633 \u0628\u0627 \u0627\u0645\u0646\u06cc\u062a \u0633\u0631\u0648\u0631"},
 gkL(){return"\u0635\u0641\u062d\u0647 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc"},
 gks(){return"\u062f\u0631\u0628\u0627\u0631\u0647 \u0633\u0631\u0648\u0631:"},
-gbG(d){return"\u0646\u0627\u0645"},
+gbF(d){return"\u0646\u0627\u0645"},
 gou(d){return"\u0646\u06af\u0627\u0631\u0634"},
 goF(){return"\u0648\u0628\u06af\u0627\u0647"},
 glr(){return"\u0641\u0634\u0631\u062f\u0647\u200c\u0633\u0627\u0632\u06cc"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FB,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"FB":{"aE":[]}}'))};
-(a=>{a["jvmQU+h0nmn6YPyZeRpAmULwmt8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4SjoxJIZ/nTE2Ppme60jDEMwrhM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_271.part.js.map

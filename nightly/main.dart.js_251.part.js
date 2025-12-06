@@ -540,7 +540,7 @@ glv(){return"Serveradministrator kontaktieren"},
 glw(){return"Server-Sicherheit kontaktieren"},
 gkL(){return"Support-Seite"},
 gks(){return"Server-Informationen:"},
-gbG(d){return"Name"},
+gbF(d){return"Name"},
 gou(d){return"Version"},
 goF(){return"Website"},
 glr(){return"Komprimieren"},
@@ -667,5 +667,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fu,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fu":{"aE":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["n8CdZUopZh0vfFxumh+ofY/hKJI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["MoDM9hr3KiPN7J9/3ssbY7y3I4Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_251.part.js.map

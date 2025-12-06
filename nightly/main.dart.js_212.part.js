@@ -540,7 +540,7 @@ glv(){return"\u0417\u0432\u044f\u0437\u0430\u0446\u0446\u0430 \u0437 \u0430\u043
 glw(){return"\u0417\u0432\u044f\u0437\u0430\u0446\u0446\u0430 \u0437 \u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0430\u0439 \u0431\u044f\u0441\u043f\u0435\u043a\u0430\u0439"},
 gkL(){return"\u041f\u0430\u0434\u0442\u0440\u044b\u043c\u043a\u0430"},
 gks(){return"\u0421\u0435\u0440\u0432\u0435\u0440\u043d\u0430\u044f \u0456\u043d\u0444\u0430\u0440\u043c\u0430\u0446\u044b\u044f:"},
-gbG(d){return"\u0406\u043c\u044f"},
+gbF(d){return"\u0406\u043c\u044f"},
 gou(d){return"\u0412\u0435\u0440\u0441\u0456\u044f"},
 goF(){return"\u0421\u0430\u0439\u0442"},
 glr(){return"\u0421\u0446\u0456\u0441\u043a\u0430\u043d\u043d\u0435"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fo,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fo":{"aE":[]}}'))};
-(a=>{a["k1EkDUkVaS2yED4u7JIrYooOSag="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["HPtSQ2n7dSEg+vX/Zvhgz/awT0E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_212.part.js.map

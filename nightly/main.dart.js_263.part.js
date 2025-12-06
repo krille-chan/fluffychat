@@ -540,7 +540,7 @@ glv(){return"Contactar con el administrador del servidor"},
 glw(){return"Contactar con seguridad del servidor"},
 gkL(){return"P\xe1gina de atenci\xf3n"},
 gks(){return"Informaci\xf3n del servidor:"},
-gbG(d){return"Nombre"},
+gbF(d){return"Nombre"},
 gou(d){return"Versi\xf3n"},
 goF(){return"Web"},
 glr(){return"Comprimir"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fy,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fy":{"aE":[]}}'))};
-(a=>{a["rtrw4qsBp/cJJn8sWSc7/+BXPEo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["cRWEF/Bn/Ywoz8iejHhkbxbvohQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_263.part.js.map

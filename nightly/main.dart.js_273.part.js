@@ -540,7 +540,7 @@ glv(){return"Ota yhteytt\xe4 palvelimen yll\xe4pit\xe4j\xe4\xe4n"},
 glw(){return"Ota yhteytt\xe4 palvelimen tietoturvaosastoon"},
 gkL(){return"Tukisivu"},
 gks(){return"Palvelimen tiedot:"},
-gbG(d){return"Nimi"},
+gbF(d){return"Nimi"},
 gou(d){return"Versio"},
 goF(){return"Verkkosivu"},
 glr(){return"Pakkaa"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FC,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"FC":{"aE":[]}}'))};
-(a=>{a["Hq21UI068sMQU7xXLG+QNthyHcg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Vj4AcSCsWBgvn/YHk57TFjiq9JQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_273.part.js.map

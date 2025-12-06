@@ -540,7 +540,7 @@ glv(){return"Hubungi admin server"},
 glw(){return"Hubungi keamanan server"},
 gkL(){return"Laman dukungan"},
 gks(){return"Informasi server:"},
-gbG(d){return"Nama"},
+gbF(d){return"Nama"},
 gou(d){return"Versi"},
 goF(){return"Situs Web"},
 glr(){return"Kompres"},
@@ -667,5 +667,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FM,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"FM":{"aE":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["RHr/OxztdNDPRtsksWLPOiqK2oA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9REwiu0eIdMxcoollSotxJUt+vg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_296.part.js.map

@@ -540,7 +540,7 @@ glv(){return"V\xf5ta \xfchendust serveri haldajaga"},
 glw(){return"V\xf5ta \xfchendust serveri andmeturbe eest vastutajaga"},
 gkL(){return"Kasutajatugi"},
 gks(){return"Serveri teave:"},
-gbG(d){return"Nimi"},
+gbF(d){return"Nimi"},
 gou(d){return"Versioon"},
 goF(){return"Veebisait"},
 glr(){return"Paki kokku"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fz,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fz":{"aE":[]}}'))};
-(a=>{a["xE04Ue4mkPC/eiDm3YGbf/k6mFY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["XJIOTtMeWSLkKu/zDhDE5wUYmHE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_267.part.js.map

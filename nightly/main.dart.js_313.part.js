@@ -540,7 +540,7 @@ glv(){return"Contact opnemen met serverbeheerder"},
 glw(){return"Contact opnemen met serverbeveiliger"},
 gkL(){return"Supportpagina"},
 gks(){return"Server-informatie:"},
-gbG(d){return"Naam"},
+gbF(d){return"Naam"},
 gou(d){return"Versie"},
 goF(){return"Website"},
 glr(){return"Comprimeren"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FV,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"FV":{"aE":[]}}'))};
-(a=>{a["u9tIEmO86wmmWabAR/isy2x390w="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["A1YgU077VZE4bPQOiI2Ho6CJpUI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

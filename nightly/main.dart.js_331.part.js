@@ -540,7 +540,7 @@ glv(){return"Server administratori bilan bog\u2018lanish"},
 glw(){return"Aloqa serveri xavfsizligi"},
 gkL(){return"Yordam sahifasi"},
 gks(){return"Server haqida ma\u2019lumot:"},
-gbG(d){return"Nomi"},
+gbF(d){return"Nomi"},
 gou(d){return"Versiya"},
 goF(){return"Sayt"},
 glr(){return"Siqmoq"},
@@ -667,5 +667,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G9,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"G9":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["fHrzdf9se3Q7U5pTKzAuUk9lI7k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["oPodFuu4BSIcQBcbf8LUu7+v84k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map

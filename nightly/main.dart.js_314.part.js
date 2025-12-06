@@ -540,7 +540,7 @@ glv(){return"Skontaktuj si\u0119 z administratorem serwera"},
 glw(){return"Skontaktuj si\u0119 z dzia\u0142em bezpiecze\u0144stwa serwera"},
 gkL(){return"Strona obs\u0142ugi u\u017cytkownika"},
 gks(){return"Informacje o serwerze:"},
-gbG(d){return"Nazwa"},
+gbF(d){return"Nazwa"},
 gou(d){return"Wersja"},
 goF(){return"Strona internetowa"},
 glr(){return"Skompresuj"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FW,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"FW":{"aE":[]}}'))};
-(a=>{a["wzS5AzOUu4NzbFnG6C/rreC9zdo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["HkAacRa419Vs8EGVTkz/9+mwnpc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

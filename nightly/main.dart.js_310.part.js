@@ -540,7 +540,7 @@ glv(){return"Sazin\u0101ties ar servera p\u0101rvald\u012bt\u0101ju"},
 glw(){return"Sazin\u0101ties ar servera dro\u0161\u012bbas uztur\u0113t\u0101jiem"},
 gkL(){return"Atbalsta lapa"},
 gks(){return"Inform\u0101cija par serveri:"},
-gbG(d){return"Nosaukums"},
+gbF(d){return"Nosaukums"},
 gou(d){return"Versija"},
 goF(){return"T\u012bmek\u013cvietne"},
 glr(){return"Saspiest"},
@@ -666,5 +666,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FT,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"FT":{"aE":[]}}'))};
-(a=>{a["AG8/2O2COSAHvBPXD1ZyWm8F5rA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mikO5uLW7nhDpnXoqG7omizMzyg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_310.part.js.map

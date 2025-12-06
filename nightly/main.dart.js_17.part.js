@@ -544,7 +544,7 @@ glv(){return"Contact server admin"},
 glw(){return"Contact server security"},
 gkL(){return"Support page"},
 gks(){return"Server information:"},
-gbG(d){return"Name"},
+gbF(d){return"Name"},
 gou(d){return"Version"},
 goF(){return"Website"},
 glr(){return"Compress"},
@@ -1200,7 +1200,7 @@ glv(){return"Contatar o administrador do servidor"},
 glw(){return"Contatar a seguran\xe7a do servidor"},
 gkL(){return"P\xe1gina de ajuda"},
 gks(){return"Informa\xe7\xf5es do servidor:"},
-gbG(d){return"Nome"},
+gbF(d){return"Nome"},
 gou(d){return"Vers\xe3o"},
 goF(){return"Site"},
 glr(){return"Comprimir"},
@@ -1568,5 +1568,5 @@ x(A.AU,C.aE)
 w(A.AU,[A.FX,A.FY])})()
 B.dP(b.typeUniverse,JSON.parse('{"AU":{"aE":[]},"FX":{"aE":[]},"FY":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["607++p34Kr+AnFz/IWKv1qYEzac="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["fxdR16xYFknmbn9oIf7O49CRtNE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_17.part.js.map

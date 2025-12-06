@@ -540,7 +540,7 @@ glv(){return"Jarri harremanetan zerbitzariaren administratzailearekin"},
 glw(){return"Jakinarazi segurtasun arazo bat"},
 gkL(){return"Laguntza orria"},
 gks(){return"Zerbitzariaren informazioa:"},
-gbG(d){return"Izena"},
+gbF(d){return"Izena"},
 gou(d){return"Bertsioa"},
 goF(){return"Webgunea"},
 glr(){return"Konprimatu"},
@@ -667,5 +667,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FA,C.aE)})()
 B.dP(b.typeUniverse,JSON.parse('{"FA":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["WF922q7hYeIVnwVug130lTQ+1SE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["cOKgdI1CvKQQGEh1OKOONKn4Q+g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_269.part.js.map
