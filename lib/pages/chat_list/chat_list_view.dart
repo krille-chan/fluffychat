@@ -49,13 +49,14 @@ class ChatListView extends StatelessWidget {
                 body: ChatListViewBody(controller),
                 floatingActionButton:
                     !controller.isSearchMode && controller.activeSpaceId == null
-                    ? FloatingActionButton.extended(
+                    ? FloatingActionButton(
                         onPressed: () => context.go('/rooms/newprivatechat'),
-                        icon: const Icon(Icons.add_outlined),
-                        label: Text(
-                          L10n.of(context).chat,
-                          overflow: TextOverflow.fade,
-                        ),
+                        tooltip: L10n.of(context).newMessage,
+                        foregroundColor: Theme.of(
+                          context,
+                        ).colorScheme.onPrimary,
+                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        child: const Icon(Icons.edit_square),
                       )
                     : const SizedBox.shrink(),
               ),
