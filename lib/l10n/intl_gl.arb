@@ -3511,5 +3511,9 @@
     "loadingMessages": "Cargando mensaxes",
     "@loadingMessages": {},
     "setupChatBackup": "Configurar copia de apoio",
-    "@setupChatBackup": {}
+    "@setupChatBackup": {},
+    "changedTheChatDescription": "{username} cambiou a descrición da sala",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "{username} cambiou o nome da sala",
+    "@changedTheChatName": {}
 }
