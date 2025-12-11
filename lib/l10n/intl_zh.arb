@@ -3511,5 +3511,9 @@
     "loadingMessages": "加载消息中",
     "@loadingMessages": {},
     "setupChatBackup": "设置聊天备份",
-    "@setupChatBackup": {}
+    "@setupChatBackup": {},
+    "changedTheChatDescription": "{username} 更改了聊天描述",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "{username} 更改了聊天名",
+    "@changedTheChatName": {}
 }

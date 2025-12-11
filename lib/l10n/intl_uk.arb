@@ -3511,5 +3511,9 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "changedTheChatDescription": "{username} змінив(-ла) опис бесіди",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "{username} змінив(-ла) назву бесіди",
+    "@changedTheChatName": {}
 }

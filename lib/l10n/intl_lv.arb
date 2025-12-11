@@ -3494,5 +3494,9 @@
     "loadingMessages": "Ielādē ziņas",
     "@loadingMessages": {},
     "setupChatBackup": "Iestatīt tērzēšanu rezerves kopēšanu",
-    "@setupChatBackup": {}
+    "@setupChatBackup": {},
+    "changedTheChatDescription": "{username} nomainīja tērzēšanas aprakstu",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "{username} nomainīja tērzēšanas nosaukumu",
+    "@changedTheChatName": {}
 }

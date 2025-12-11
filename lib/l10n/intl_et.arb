@@ -3511,5 +3511,9 @@
     "loadingMessages": "Laadin sõnumeid",
     "@loadingMessages": {},
     "setupChatBackup": "Võta kasutusele vestluste varundus",
-    "@setupChatBackup": {}
+    "@setupChatBackup": {},
+    "changedTheChatDescription": "{username} muutis vestluse kirjeldust",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "{username} muutis vestluse nime",
+    "@changedTheChatName": {}
 }
