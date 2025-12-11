@@ -1087,10 +1087,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      sha256: "0660c8f662f53b56eb2c0d7a7019517b735f20218ce35bc20f44de43bc3a9466"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: "krille/search-events-from-room"
+      resolved-ref: "5f5dbd3fcf12d9ea5f6ee724eada831b31b20280"
+      url: "https://github.com/famedly/matrix-dart-sdk.git"
+    source: git
     version: "4.0.0"
   meta:
     dependency: transitive
