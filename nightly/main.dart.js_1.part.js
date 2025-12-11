@@ -67,8 +67,8 @@ gbB(d){return"\u53d6\u6d88"},
 f2(d){return"\u65e0\u6cd5\u6253\u5f00 URI "+d},
 gf3(){return"\u66f4\u6539\u8bbe\u5907\u540d\u79f0"},
 hx(d){return d+" \u66f4\u6539\u4e86\u804a\u5929\u5934\u50cf"},
-pH(d){return d+" changed the chat description"},
-pI(d){return d+" changed the chat name"},
+pH(d){return d+" \u66f4\u6539\u4e86\u804a\u5929\u63cf\u8ff0"},
+pI(d){return d+" \u66f4\u6539\u4e86\u804a\u5929\u540d"},
 hy(d){return d+" \u66f4\u6539\u4e86\u804a\u5929\u6743\u9650"},
 hz(d,e){return d+" \u5c06\u6635\u79f0\u66f4\u6539\u4e3a\uff1a'"+e+"'"},
 hA(d){return d+" \u66f4\u6539\u4e86\u8bbf\u5ba2\u8bbf\u95ee\u89c4\u5219"},
@@ -1281,5 +1281,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.AV,C.aE)
 y(A.Gc,A.AV)})()
 B.dP(b.typeUniverse,JSON.parse('{"AV":{"aE":[]},"Gc":{"aE":[]}}'))};
-(a=>{a["v+AHZ1Fa0JztCWe0dcb4O+PJkIg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["M+IjPckMmWn/oLcNh5ETeMqPyvY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map

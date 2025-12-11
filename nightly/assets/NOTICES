@@ -1736,6 +1736,7 @@ file_selector_linux
 file_selector_macos
 file_selector_platform_interface
 go_router
+shared_preferences
 video_player
 
 Copyright 2013 The Flutter Authors
@@ -7391,7 +7392,6 @@ path_provider_platform_interface
 path_provider_windows
 plugin_platform_interface
 process
-shared_preferences
 shared_preferences_android
 shared_preferences_foundation
 shared_preferences_linux
