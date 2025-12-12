@@ -380,7 +380,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Deine alten Nachrichten sind mit einem Wiederherstellungsschlüssel gesichert. Bitte stellen sicher, dass du ihn nicht verlierst.",
+    "chatBackupDescription": "Deine alten Nachrichten sind mit einem Wiederherstellungsschlüssel gesichert. Bitte stelle sicher, dass du ihn nicht verlierst.",
     "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
