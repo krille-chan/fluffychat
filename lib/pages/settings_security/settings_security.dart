@@ -74,30 +74,21 @@ class SettingsSecurityController extends State<SettingsSecurity> {
     if (mxid == null || mxid.isEmpty || mxid != supposedMxid) {
       return;
     }
-    final input = await showTextInputDialog(
-      useRootNavigator: false,
+    final resp = await showFutureLoadingDialog(
       context: context,
-      title: L10n.of(context).pleaseEnterYourPassword,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      isDestructive: true,
-      obscureText: true,
-      hintText: '******',
-      minLines: 1,
-      maxLines: 1,
-    );
-    if (input == null) return;
-    await showFutureLoadingDialog(
-      context: context,
-      future: () => Matrix.of(context).client.deactivateAccount(
-        auth: AuthenticationPassword(
-          password: input,
-          identifier: AuthenticationUserIdentifier(
-            user: Matrix.of(context).client.userID!,
+      delay: false,
+      future: () =>
+          Matrix.of(context).client.uiaRequestBackground<IdServerUnbindResult?>(
+            (auth) => Matrix.of(context).client.deactivateAccount(auth: auth),
           ),
-        ),
-      ),
     );
+
+    if (!resp.isError) {
+      await showFutureLoadingDialog(
+        context: context,
+        future: () => Matrix.of(context).client.logout(),
+      );
+    }
   }
 
   Future<void> dehydrateAction() => Matrix.of(context).dehydrateAction(context);
