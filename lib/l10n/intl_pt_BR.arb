@@ -3510,5 +3510,9 @@
     "loadingMessages": "Carregando mensagens",
     "@loadingMessages": {},
     "setupChatBackup": "Configurar backup de conversas",
-    "@setupChatBackup": {}
+    "@setupChatBackup": {},
+    "changedTheChatDescription": "{username} alterou a descrição da conversa",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "{username} alterou o nome da conversa",
+    "@changedTheChatName": {}
 }

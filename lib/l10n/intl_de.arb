@@ -380,7 +380,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Deine alten Nachrichten sind mit einem Wiederherstellungsschlüssel gesichert. Bitte stellen sicher, dass du ihn nicht verlierst.",
+    "chatBackupDescription": "Deine Nachrichten sind mit einem Wiederherstellungsschlüssel gesichert. Bitte stelle sicher, dass du ihn nicht verlierst.",
     "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
@@ -462,7 +462,7 @@
         "type": "String",
         "description": "Usage hint for the command /plain"
     },
-    "commandHint_react": "Sende die Antwort als Reaction",
+    "commandHint_react": "Sende die Antwort als Reaktion",
     "@commandHint_react": {
         "type": "String",
         "description": "Usage hint for the command /react"
@@ -3494,5 +3494,19 @@
     "thread": "Thread",
     "@thread": {},
     "backToMainChat": "Zurück zum Hauptchat",
-    "@backToMainChat": {}
+    "@backToMainChat": {},
+    "changedTheChatDescription": "{username} hat die Chatbeschreibung geändert",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "{username} den Chatnamen geändert",
+    "@changedTheChatName": {},
+    "saveChanges": "Änderungen speichern",
+    "@saveChanges": {},
+    "skipChatBackup": "Chatsicherung überspringen",
+    "@skipChatBackup": {},
+    "skipChatBackupWarning": "Bist du sicher? Ohne die Chatsicherung zu aktivieren, kannst du den Zugriff auf deine Nachrichten verlieren, wenn du dein Gerät wechselst.",
+    "@skipChatBackupWarning": {},
+    "loadingMessages": "Nachrichten werden geladen",
+    "@loadingMessages": {},
+    "setupChatBackup": "Chatsicherung einrichten",
+    "@setupChatBackup": {}
 }
