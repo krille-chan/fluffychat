@@ -1216,7 +1216,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "ok": "好",
+    "ok": "确认",
     "@ok": {
         "type": "String",
         "placeholders": {}
