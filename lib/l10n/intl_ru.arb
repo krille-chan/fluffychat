@@ -2405,7 +2405,7 @@
     "@noKeyForThisMessage": {},
     "screenSharingTitle": "общий доступ к экрану",
     "@screenSharingTitle": {},
-    "numChats": "",
+    "numChats": "{number} чатов",
     "@numChats": {
         "type": "number",
         "placeholders": {
@@ -2598,7 +2598,7 @@
     "@inviteGroupChat": {},
     "invalidInput": "Недопустимый ввод!",
     "@invalidInput": {},
-    "wrongPinEntered": "",
+    "wrongPinEntered": "Введён неверный пин-код! Повторите попытку через {seconds, plural, one{# секунду} few{# секунды} other {# секунд}}...",
     "@wrongPinEntered": {
         "type": "String",
         "placeholders": {
@@ -2934,7 +2934,7 @@
     "@commandHint_ignore": {},
     "commandHint_unignore": "Не игнорировать данный matrix ID",
     "@commandHint_unignore": {},
-    "unreadChatsInApp": "",
+    "unreadChatsInApp": "{appname}: {unread, plural, one{# непрочитанный чат} few{# непрочитанных чата} other{# непрочитанных чатов}}",
     "@unreadChatsInApp": {
         "type": "String",
         "placeholders": {
@@ -3009,7 +3009,7 @@
     "@inviteOtherUsers": {},
     "changeTheVisibilityOfChatHistory": "Изменить видимость истории чата",
     "@changeTheVisibilityOfChatHistory": {},
-    "countChatsAndCountParticipants": "",
+    "countChatsAndCountParticipants": "{chats} чатов и {participants} участников",
     "@countChatsAndCountParticipants": {
         "type": "String",
         "placeholders": {
@@ -3136,7 +3136,7 @@
     "@italicText": {},
     "unableToJoinChat": "Невозможно присоединиться к чату. Возможно, другая сторона уже закончила разговор.",
     "@unableToJoinChat": {},
-    "serverLimitReached": "",
+    "serverLimitReached": "Достигнуто ограничение сервера. Ожидаем {seconds, plural, one{# секунду} few{# секунды} other{# секунд}}...",
     "@serverLimitReached": {
         "type": "integer",
         "placeholders": {
@@ -3321,5 +3321,199 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "changedTheChatDescription": "{username} изменил описание чата",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "{username} изменил имя чата",
+    "@changedTheChatName": {},
+    "notificationRuleMemberEvent": "Мероприятие участника",
+    "@notificationRuleMemberEvent": {},
+    "notificationRuleIsUserMentionDescription": "Уведомляет пользователя, когда он упоминается непосредственно в сообщении.",
+    "@notificationRuleIsUserMentionDescription": {},
+    "notificationRuleContainsDisplayNameDescription": "Уведомляет пользователя, когда сообщение содержит его имя отображения.",
+    "@notificationRuleContainsDisplayNameDescription": {},
+    "notificationRuleIsRoomMentionDescription": "Уведомляет пользователя о наличии упоминания о комнате.",
+    "@notificationRuleIsRoomMentionDescription": {},
+    "notificationRuleRoomnotif": "Уведомление о комнате",
+    "@notificationRuleRoomnotif": {},
+    "notificationRuleRoomnotifDescription": "Уведомляет пользователя, когда сообщение содержит '@room'.",
+    "@notificationRuleRoomnotifDescription": {},
+    "notificationRuleTombstone": "Надгробный камень",
+    "@notificationRuleTombstone": {},
+    "notificationRuleTombstoneDescription": "Уведомляет пользователя о сообщениях о деактивации комнаты.",
+    "@notificationRuleTombstoneDescription": {},
+    "notificationRuleRoomServerAcl": "ACL сервера комнаты",
+    "@notificationRuleRoomServerAcl": {},
+    "notificationRuleRoomServerAclDescription": "Удаляет уведомления о списках контроля доступа к серверу комнат (ACL).",
+    "@notificationRuleRoomServerAclDescription": {},
+    "notificationRuleSuppressEdits": "Подавление правки",
+    "@notificationRuleSuppressEdits": {},
+    "notificationRuleRoomOneToOneDescription": "Уведомляет пользователя о сообщениях в разделах один на один.",
+    "@notificationRuleRoomOneToOneDescription": {},
+    "notificationRuleMessageDescription": "Уведомляет пользователя об общих сообщениях.",
+    "@notificationRuleMessageDescription": {},
+    "notificationRuleEncryptedDescription": "Уведомляет пользователя о сообщениях в зашифрованных комнатах.",
+    "@notificationRuleEncryptedDescription": {},
+    "notificationRuleJitsi": "Джици",
+    "@notificationRuleJitsi": {},
+    "notificationRuleJitsiDescription": "Уведомляет пользователя о событиях виджета Jitsi.",
+    "@notificationRuleJitsiDescription": {},
+    "notificationRuleServerAcl": "Запретить события ACL сервера",
+    "@notificationRuleServerAcl": {},
+    "notificationRuleServerAclDescription": "Удаляет уведомления о событиях ACL сервера.",
+    "@notificationRuleServerAclDescription": {},
+    "sentVoiceMessage": "️🎙️ {duration} - Голосовое сообщение от {sender}",
+    "@sentVoiceMessage": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "deletePushRuleCanNotBeUndone": "Если вы удалите эту настройку уведомлений, это невозможно отменить.",
+    "@deletePushRuleCanNotBeUndone": {},
+    "shareKeysWith": "Поделиться ключами с...",
+    "@shareKeysWith": {},
+    "shareKeysWithDescription": "Каким устройствам следует доверять, чтобы они могли читать ваши сообщения в зашифрованных чатах?",
+    "@shareKeysWithDescription": {},
+    "crossVerifiedDevicesIfEnabled": "Если включено, перекрестите проверенные устройства",
+    "@crossVerifiedDevicesIfEnabled": {},
+    "crossVerifiedDevices": "Кросс-верифицированные устройства",
+    "@crossVerifiedDevices": {},
+    "verifiedDevicesOnly": "Только проверенные устройства",
+    "@verifiedDevicesOnly": {},
+    "optionalMessage": "(Необязательно) сообщение...",
+    "@optionalMessage": {},
+    "notSupportedOnThisDevice": "Не поддерживается на этом устройстве",
+    "@notSupportedOnThisDevice": {},
+    "approve": "Утверждать",
+    "@approve": {},
+    "youHaveKnocked": "Вы постучали",
+    "@youHaveKnocked": {},
+    "pleaseWaitUntilInvited": "Пожалуйста, подождите, пока кто-нибудь из комнаты не пригласит вас.",
+    "@pleaseWaitUntilInvited": {},
+    "commandHint_logout": "Выйти из текущего устройства",
+    "@commandHint_logout": {},
+    "commandHint_logoutall": "Выйти из всех активных устройств",
+    "@commandHint_logoutall": {},
+    "displayNavigationRail": "Показать навигационный рельс на мобильном устройстве",
+    "@displayNavigationRail": {},
+    "customReaction": "Пользовательская реакция",
+    "@customReaction": {},
+    "moreEvents": "Больше событий",
+    "@moreEvents": {},
+    "declineInvitation": "Отказаться от приглашения",
+    "@declineInvitation": {},
+    "noMessagesYet": "Пока нет сообщений",
+    "@noMessagesYet": {},
+    "longPressToRecordVoiceMessage": "Нажмите длиннее, чтобы записать голосовое сообщение.",
+    "@longPressToRecordVoiceMessage": {},
+    "pause": "Пауза",
+    "@pause": {},
+    "resume": "Резюмировать",
+    "@resume": {},
+    "newSubSpace": "Новое подпространство",
+    "@newSubSpace": {},
+    "moveToDifferentSpace": "Переместить в другое пространство",
+    "@moveToDifferentSpace": {},
+    "moveUp": "Переместить вверх",
+    "@moveUp": {},
+    "moveDown": "Переместить вниз",
+    "@moveDown": {},
+    "removeFromSpaceDescription": "Чат будет удален из пространства, но все равно появится в вашем списке чатов.",
+    "@removeFromSpaceDescription": {},
+    "countChats": "{chats} чатов",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "spaceMemberOf": "Участник пространства из {spaces}",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "Участник пространства из {spaces} может постучать",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "donate": "Пожертвовать",
+    "@donate": {},
+    "startedAPoll": "{username} начал опрос.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "Опрос",
+    "@poll": {},
+    "startPoll": "Начать опрос",
+    "@startPoll": {},
+    "endPoll": "Завершить опрос",
+    "@endPoll": {},
+    "answersVisible": "Ответы видны",
+    "@answersVisible": {},
+    "answersHidden": "Ответы скрыты",
+    "@answersHidden": {},
+    "pollQuestion": "Вопрос по опросу",
+    "@pollQuestion": {},
+    "answerOption": "Вариант ответа",
+    "@answerOption": {},
+    "addAnswerOption": "Добавить вариант ответа",
+    "@addAnswerOption": {},
+    "allowMultipleAnswers": "Разрешить несколько ответов",
+    "@allowMultipleAnswers": {},
+    "pollHasBeenEnded": "Опрос завершен",
+    "@pollHasBeenEnded": {},
+    "answersWillBeVisibleWhenPollHasEnded": "Ответы будут видны после завершения опроса",
+    "@answersWillBeVisibleWhenPollHasEnded": {},
+    "replyInThread": "Ответить в потоке",
+    "@replyInThread": {},
+    "thread": "Нить",
+    "@thread": {},
+    "backToMainChat": "Вернуться в основной чат",
+    "@backToMainChat": {},
+    "saveChanges": "Сохранить изменения",
+    "@saveChanges": {},
+    "createSticker": "Создать стикер или эмоджи",
+    "@createSticker": {},
+    "useAsSticker": "Использовать как стикер",
+    "@useAsSticker": {},
+    "useAsEmoji": "Использовать в качестве эмоджи",
+    "@useAsEmoji": {},
+    "stickerPackNameAlreadyExists": "Имя набора стикеров уже существует",
+    "@stickerPackNameAlreadyExists": {},
+    "newStickerPack": "Новая упаковка стикеров",
+    "@newStickerPack": {},
+    "stickerPackName": "Имя упаковки стикеров",
+    "@stickerPackName": {},
+    "attribution": "Атрибуция",
+    "@attribution": {},
+    "skipChatBackup": "Пропустить резервную копию чата",
+    "@skipChatBackup": {},
+    "skipChatBackupWarning": "Вы уверены? Без включения резервного копирования чата вы можете потерять доступ к своим сообщениям, если переключите устройство.",
+    "@skipChatBackupWarning": {},
+    "loadingMessages": "Загрузка сообщений",
+    "@loadingMessages": {},
+    "setupChatBackup": "Настроить резервную копию чата",
+    "@setupChatBackup": {}
 }
