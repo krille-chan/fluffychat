@@ -2042,7 +2042,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Queres eliminar a copia de apoio da conversa e crear unha nova chave de recuperación?",
+    "wipeChatBackup": "Queres eliminar a copia de apoio e crear unha nova chave de recuperación?",
     "@wipeChatBackup": {
         "type": "String",
         "placeholders": {}
@@ -3069,7 +3069,7 @@
     },
     "sendCanceled": "Cancelouse o envío",
     "@sendCanceled": {},
-    "noChatsFoundHere": "Sen charlas por aquí. Comeza unha nova conversa con alguén premendo no botón de abaixo. ⤵️",
+    "noChatsFoundHere": "Aínda non hai conversas. Comeza a conversar con alguén premendo no botón de abaixo. ⤵️",
     "@noChatsFoundHere": {},
     "discoverHomeservers": "Atopar servidores",
     "@discoverHomeservers": {},
