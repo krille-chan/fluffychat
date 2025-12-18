@@ -47,7 +47,7 @@ dependencies:
   highlight: ^0.7.0
   html: ^0.15.4
   http: ^1.6.0
-  image: ^4.6.0
+  image: ^4.7.1
   image_picker: ^1.2.1
   intl: any
   just_audio: ^0.10.5
