@@ -3466,5 +3466,15 @@
   "skipChatBackup": "Skip chat backup",
   "skipChatBackupWarning": "Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device.",
   "loadingMessages": "Loading messages",
-  "setupChatBackup": "Set up chat backup"
+  "setupChatBackup": "Set up chat backup",
+  "noMoreResultsFound": "No more results found",
+  "chatSearchedUntil": "Chat searched until {time}",
+  "@chatSearchedUntil": {
+    "type": "String",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  }
 }
