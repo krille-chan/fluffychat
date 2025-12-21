@@ -33,10 +33,7 @@ class ChatSearchMessageTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    if (events.isEmpty) {
-      if (isLoading) {
-        return const Center(child: CircularProgressIndicator.adaptive());
-      }
+    if (events.isEmpty && searchQuery.isEmpty) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

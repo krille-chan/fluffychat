@@ -51,7 +51,12 @@ class SearchFooter extends StatelessWidget {
               ),
               onPressed: isLoading ? null : onStartSearch,
               icon: isLoading
-                  ? const CircularProgressIndicator.adaptive()
+                  ? SizedBox.square(
+                      dimension: 18,
+                      child: const CircularProgressIndicator.adaptive(
+                        strokeWidth: 2,
+                      ),
+                    )
                   : const Icon(Icons.arrow_downward_outlined),
               label: Text(L10n.of(context).searchMore),
             ),

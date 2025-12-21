@@ -4,11 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pages/chat_search/search_footer.dart';
 import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
 class ChatSearchImagesTab extends StatelessWidget {
@@ -32,33 +30,7 @@ class ChatSearchImagesTab extends StatelessWidget {
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(AppConfig.borderRadius / 2);
     final theme = Theme.of(context);
-    if (events.isEmpty) {
-      if (isLoading) {
-        return const Center(child: CircularProgressIndicator.adaptive());
-      }
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const CircularProgressIndicator.adaptive(strokeWidth: 2),
-          const SizedBox(height: 8),
-          Text(
-            L10n.of(context).searchIn(
-              room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
-            ),
-          ),
-        ],
-      );
-    }
-    if (events.isEmpty) {
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Icon(Icons.photo_outlined, size: 64),
-          const SizedBox(height: 8),
-          Text(L10n.of(context).nothingFound),
-        ],
-      );
-    }
+
     final eventsByMonth = <DateTime, List<Event>>{};
     for (final event in events) {
       final month = DateTime(
