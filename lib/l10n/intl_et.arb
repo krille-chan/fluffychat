@@ -2052,7 +2052,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "writeAMessage": "Kirjuta üks sõnum…",
+    "writeAMessage": "Koosta sõnum…",
     "@writeAMessage": {
         "type": "String",
         "placeholders": {}
