@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'app_config.dart';
 
 abstract class FluffyThemes {
@@ -10,6 +11,16 @@ abstract class FluffyThemes {
   static const double maxTimelineWidth = columnWidth * 2;
 
   static const double navRailWidth = 80.0;
+
+  static const fontFallback = [
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji',
+    'EmojiOne Color',
+    'Android Emoji',
+    'sans-serif',
+  ];
 
   static bool isColumnModeByWidth(double width) =>
       width > columnWidth * 2 + navRailWidth;
@@ -46,7 +57,7 @@ abstract class FluffyThemes {
       seedColor: seed ?? Color(AppSettings.colorSchemeSeedInt.value),
     );
     final isColumnMode = FluffyThemes.isColumnMode(context);
-    return ThemeData(
+    final theme = ThemeData(
       visualDensity: VisualDensity.standard,
       useMaterial3: true,
       brightness: brightness,
@@ -135,6 +146,16 @@ abstract class FluffyThemes {
         ),
       ),
     );
+
+    if (PlatformInfos.isLinux) {
+      return theme.copyWith(
+        textTheme: theme.textTheme.apply(
+          fontFamily: 'EmojiPriority',
+          fontFamilyFallback: fontFallback,
+        ),
+      );
+    }
+    return theme;
   }
 }
 

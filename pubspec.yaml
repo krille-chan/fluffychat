@@ -30,13 +30,15 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_foreground_task: ^9.1.0
+  flutter_html: ^3.0.0
+  flutter_layout_grid: ^2.0.8
   flutter_linkify: ^6.0.0
   flutter_local_notifications: ^19.5.0
   flutter_localizations:
     sdk: flutter
   flutter_map: ^8.2.2
   flutter_new_badger: ^1.1.1
-  flutter_secure_storage: ^9.2.4
+  flutter_secure_storage: ^10.0.0
   flutter_shortcuts_new: ^2.0.0
   flutter_vodozemac: ^0.4.1
   flutter_web_auth_2: ^4.1.0
@@ -44,7 +46,6 @@ dependencies:
   geolocator: ^14.0.2
   go_router: ^17.0.1
   handy_window: ^0.4.0
-  highlight: ^0.7.0
   html: ^0.15.4
   http: ^1.6.0
   image: ^4.6.0

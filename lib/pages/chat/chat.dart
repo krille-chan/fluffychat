@@ -472,6 +472,12 @@ class ChatController extends State<ChatPageWithRoom>
     if (timeline?.allowNewEvent == true) animateInEventIndex = i;
   }
 
+  void resetAnimateIn() {
+    setState(() {
+      animateInEventIndex = null;
+    });
+  }
+
   Future<void> _getTimeline({String? eventContextId}) async {
     await Matrix.of(context).client.roomsLoading;
     await Matrix.of(context).client.accountDataLoading;

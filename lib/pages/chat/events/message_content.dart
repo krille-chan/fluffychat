@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/events/poll.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
@@ -107,43 +108,48 @@ class MessageContent extends StatelessWidget {
       case EventTypes.Encrypted:
       case EventTypes.Sticker:
         switch (event.messageType) {
-          case MessageTypes.Image:
-          case MessageTypes.Sticker:
-            if (event.redacted) continue textmessage;
-            final maxSize = event.messageType == MessageTypes.Sticker
-                ? 128.0
-                : 256.0;
-            final w = event.content
-                .tryGetMap<String, Object?>('info')
-                ?.tryGet<int>('w');
-            final h = event.content
-                .tryGetMap<String, Object?>('info')
-                ?.tryGet<int>('h');
-            var width = maxSize;
-            var height = maxSize;
-            var fit = event.messageType == MessageTypes.Sticker
-                ? BoxFit.contain
-                : BoxFit.cover;
-            if (w != null && h != null) {
-              fit = BoxFit.contain;
-              if (w > h) {
-                width = maxSize;
-                height = max(32, maxSize * (h / w));
-              } else {
-                height = maxSize;
-                width = max(32, maxSize * (w / h));
-              }
-            }
-            return ImageBubble(
-              event,
-              width: width,
-              height: height,
-              fit: fit,
-              borderRadius: borderRadius,
-              timeline: timeline,
-              textColor: textColor,
-            );
-          case CuteEventContent.eventType:
+                    case MessageTypes.Image:
+                    case MessageTypes.Sticker:
+                      if (event.redacted) continue textmessage;
+                      final maxSize = event.messageType == MessageTypes.Sticker
+                          ? 128.0
+                          : FluffyThemes.maxTimelineWidth;
+                      final w = event.content
+                          .tryGetMap<String, Object?>('info')
+                          ?.tryGet<int>('w');
+                      final h = event.content
+                          .tryGetMap<String, Object?>('info')
+                          ?.tryGet<int>('h');
+
+                      double? width;
+                      double? height;
+                      double? aspectRatio;
+
+                      if (w != null && h != null) {
+                        aspectRatio = w.toDouble() / h.toDouble();
+                        width = w.toDouble();
+                        height = h.toDouble();
+
+                        // Scale down dimensions for MxcImage fetch hint
+                        if (width > maxSize) {
+                          width = maxSize;
+                          height = width / aspectRatio;
+                        }
+                      }
+
+                      return ConstrainedBox(
+                        constraints: BoxConstraints(maxWidth: maxSize),
+                        child: ImageBubble(
+                          event,
+                          width: width,
+                          height: height,
+                          aspectRatio: aspectRatio,
+                          fit: BoxFit.cover,
+                          borderRadius: borderRadius,
+                          timeline: timeline,
+                          textColor: textColor,
+                        ),
+                      );          case CuteEventContent.eventType:
             return CuteContent(event);
           case MessageTypes.Audio:
             if (PlatformInfos.isMobile ||
@@ -241,7 +247,10 @@ class MessageContent extends StatelessWidget {
             }
             var html = AppSettings.renderHtml.value && event.isRichMessage
                 ? event.formattedText
-                : event.body.replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+                : event.body
+                    .replaceAll('<', '&lt;')
+                    .replaceAll('>', '&gt;')
+                    .replaceAll('\n', '<br>');
             if (event.messageType == MessageTypes.Emote) {
               html = '* $html';
             }
