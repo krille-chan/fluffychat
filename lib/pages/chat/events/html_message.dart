@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:highlight/highlight.dart' show highlight;
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
+import 'package:linkify/linkify.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/code_highlight_theme.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/event_checkbox_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -39,484 +40,499 @@ class HtmlMessage extends StatelessWidget {
     this.limitHeight = true,
   });
 
-  /// Keep in sync with: https://spec.matrix.org/latest/client-server-api/#mroommessage-msgtypes
-  static const Set<String> allowedHtmlTags = {
-    'font',
-    'del',
-    's',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'blockquote',
-    'p',
-    'a',
-    'ul',
-    'ol',
-    'sup',
-    'sub',
-    'li',
-    'b',
-    'i',
-    'u',
-    'strong',
-    'em',
-    'strike',
-    'code',
-    'hr',
-    'br',
-    'div',
-    'table',
-    'thead',
-    'tbody',
-    'tr',
-    'th',
-    'td',
-    'caption',
-    'pre',
-    'span',
-    'img',
-    'details',
-    'summary',
-    // Not in the allowlist of the matrix spec yet but should be harmless:
-    'ruby',
-    'rp',
-    'rt',
-    'html',
-    'body',
-  };
+  String _linkify(String html) {
+    try {
+      final doc = parser.parseFragment(html);
 
-  static const Set<String> ignoredHtmlTags = {'mx-reply'};
-
-  /// We add line breaks before these tags:
-  static const Set<String> blockHtmlTags = {
-    'p',
-    'ul',
-    'ol',
-    'pre',
-    'div',
-    'table',
-    'details',
-    'blockquote',
-  };
-
-  /// We add line breaks before these tags:
-  static const Set<String> fullLineHtmlTag = {
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'li',
-  };
-
-  /// Adding line breaks before block elements.
-  List<InlineSpan> _renderWithLineBreaks(
-    dom.NodeList nodes,
-    BuildContext context, {
-    int depth = 1,
-  }) {
-    final onlyElements = nodes.whereType<dom.Element>().toList();
-    return [
-      for (var i = 0; i < nodes.length; i++) ...[
-        // Actually render the node child:
-        _renderHtml(nodes[i], context, depth: depth + 1),
-        // Add linebreaks between blocks:
-        if (nodes[i] is dom.Element &&
-            onlyElements.indexOf(nodes[i] as dom.Element) <
-                onlyElements.length - 1) ...[
-          if (blockHtmlTags.contains((nodes[i] as dom.Element).localName))
-            const TextSpan(text: '\n\n'),
-          if (fullLineHtmlTag.contains((nodes[i] as dom.Element).localName))
-            const TextSpan(text: '\n'),
-        ],
-      ],
-    ];
-  }
-
-  InlineSpan _renderCodeBlockNode(dom.Node node) {
-    if (node is! dom.Element) {
-      return TextSpan(text: node.text);
-    }
-    final style =
-        atomOneDarkTheme[node.className.split('-').last] ??
-        atomOneDarkTheme['root'];
-
-    return TextSpan(
-      children: node.nodes.map(_renderCodeBlockNode).toList(),
-      style: style,
-    );
-  }
-
-  /// Transforms a Node to an InlineSpan.
-  InlineSpan _renderHtml(dom.Node node, BuildContext context, {int depth = 1}) {
-    // We must not render elements nested more than 100 elements deep:
-    if (depth >= 100) return const TextSpan();
-
-    if (node is dom.Element &&
-        ignoredHtmlTags.contains(node.localName?.toLowerCase())) {
-      return const TextSpan();
-    }
-
-    // This is a text node or not permitted node, so we render it as text:
-    if (node is! dom.Element || !allowedHtmlTags.contains(node.localName)) {
-      var text = node.text ?? '';
-      // Single linebreak nodes between Elements are ignored:
-      if (text == '\n') text = '';
-
-      return LinkifySpan(
-        text: text,
-        options: const LinkifyOptions(humanize: false),
-        linkStyle: linkStyle,
-        onOpen: onOpen,
-      );
-    }
-
-    switch (node.localName) {
-      case 'br':
-        return const TextSpan(text: '\n');
-      case 'a':
-        final href = node.attributes['href'];
-        if (href == null) continue block;
-        final matrixId = node.attributes['href']
-            ?.parseIdentifierIntoParts()
-            ?.primaryIdentifier;
-        if (matrixId != null) {
-          if (matrixId.sigil == '@') {
-            final user = room.unsafeGetUserFromMemoryOrFallback(matrixId);
-            return WidgetSpan(
-              child: MatrixPill(
-                key: Key('user_pill_$matrixId'),
-                name: user.calcDisplayname(),
-                avatar: user.avatarUrl,
-                uri: href,
-                outerContext: context,
-                fontSize: fontSize,
-                color: linkStyle.color,
-              ),
-            );
-          }
-          if (matrixId.sigil == '#' || matrixId.sigil == '!') {
-            final room = matrixId.sigil == '!'
-                ? this.room.client.getRoomById(matrixId)
-                : this.room.client.getRoomByAlias(matrixId);
-            return WidgetSpan(
-              child: MatrixPill(
-                name: room?.getLocalizedDisplayname() ?? matrixId,
-                avatar: room?.avatar,
-                uri: href,
-                outerContext: context,
-                fontSize: fontSize,
-                color: linkStyle.color,
-              ),
-            );
+      void walk(dom.Node node) {
+        if (node is dom.Element) {
+          if (node.localName == 'a' ||
+              node.localName == 'code' ||
+              node.localName == 'pre') {
+            return;
           }
         }
-        return WidgetSpan(
-          child: Tooltip(
-            message: href,
-            child: InkWell(
-              splashColor: Colors.transparent,
-              onTap: () => UrlLauncher(context, href, node.text).launchUrl(),
-              child: Text.rich(
-                TextSpan(
-                  children: _renderWithLineBreaks(
-                    node.nodes,
-                    context,
-                    depth: depth,
-                  ),
-                  style: linkStyle,
-                ),
-                style: const TextStyle(height: 1.25),
-              ),
-            ),
-          ),
-        );
-      case 'li':
-        if (!{'ol', 'ul'}.contains(node.parent?.localName)) {
-          continue block;
+
+        if (node.nodeType == dom.Node.TEXT_NODE && node.text != null) {
+          final text = node.text!;
+          if (text.trim().isEmpty) return;
+
+          final elements = linkify(
+            text,
+            options: const LinkifyOptions(humanize: false),
+            linkifiers: [const UrlLinkifier()],
+          );
+
+          if (elements.length == 1 && elements.first is TextElement) {
+            return;
+          }
+
+          final newNodes = <dom.Node>[];
+          for (final e in elements) {
+            if (e is LinkableElement) {
+              final a = dom.Element.tag('a');
+              a.attributes['href'] = e.url;
+              a.text = e.text;
+              newNodes.add(a);
+            } else {
+              newNodes.add(dom.Text(e.text));
+            }
+          }
+
+          node.replaceWith(dom.DocumentFragment()..nodes.addAll(newNodes));
+        } else {
+          for (final child in List<dom.Node>.from(node.nodes)) {
+            walk(child);
+          }
         }
-        final eventId = this.eventId;
+      }
 
-        final isCheckbox = node.className == 'task-list-item';
-        final checkboxIndex = isCheckbox
-            ? node.rootElement
-                      .getElementsByClassName('task-list-item')
-                      .indexOf(node) +
-                  1
-            : null;
-        final checkedByReaction = !isCheckbox
-            ? null
-            : checkboxCheckedEvents?.firstWhereOrNull(
-                (event) => event.checkedCheckboxId == checkboxIndex,
-              );
-        final staticallyChecked = !isCheckbox
-            ? false
-            : node.children.first.attributes['checked'] == 'true';
-
-        return WidgetSpan(
-          child: Padding(
-            padding: EdgeInsets.only(left: fontSize),
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  if (!isCheckbox) ...[
-                    if (node.parent?.localName == 'ul')
-                      const TextSpan(text: '• '),
-                    if (node.parent?.localName == 'ol')
-                      TextSpan(
-                        text:
-                            '${(node.parent?.nodes.whereType<dom.Element>().toList().indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
-                      ),
-                  ],
-                  if (node.className == 'task-list-item')
-                    WidgetSpan(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                        child: SizedBox.square(
-                          dimension: fontSize + 2,
-                          child: CupertinoCheckbox(
-                            checkColor: textColor,
-                            side: BorderSide(color: textColor),
-                            activeColor: textColor.withAlpha(64),
-                            value:
-                                staticallyChecked || checkedByReaction != null,
-                            onChanged:
-                                eventId == null ||
-                                    checkboxIndex == null ||
-                                    staticallyChecked ||
-                                    !room.canSendDefaultMessages ||
-                                    (checkedByReaction != null &&
-                                        checkedByReaction.senderId !=
-                                            room.client.userID)
-                                ? null
-                                : (_) => showFutureLoadingDialog(
-                                    context: context,
-                                    future: () => checkedByReaction != null
-                                        ? room.redactEvent(
-                                            checkedByReaction.eventId,
-                                          )
-                                        : room.checkCheckbox(
-                                            eventId,
-                                            checkboxIndex,
-                                          ),
-                                  ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ..._renderWithLineBreaks(node.nodes, context, depth: depth),
-                ],
-                style: TextStyle(fontSize: fontSize, color: textColor),
-              ),
-            ),
-          ),
-        );
-      case 'blockquote':
-        return WidgetSpan(
-          child: Container(
-            padding: const EdgeInsets.only(left: 8.0),
-            decoration: BoxDecoration(
-              border: Border(left: BorderSide(color: textColor, width: 5)),
-            ),
-            child: Text.rich(
-              TextSpan(
-                children: _renderWithLineBreaks(
-                  node.nodes,
-                  context,
-                  depth: depth,
-                ),
-              ),
-              style: TextStyle(
-                fontStyle: FontStyle.italic,
-                fontSize: fontSize,
-                color: textColor,
-              ),
-            ),
-          ),
-        );
-      case 'code':
-        final isInline = node.parent?.localName != 'pre';
-        final lang =
-            node.className
-                .split(' ')
-                .singleWhereOrNull(
-                  (className) => className.startsWith('language-'),
-                )
-                ?.split('language-')
-                .last ??
-            'md';
-        final highlightedHtml = highlight
-            .parse(node.text, language: lang)
-            .toHtml();
-        final element = parser.parse(highlightedHtml).body;
-        if (element == null) {
-          return const TextSpan(text: 'Unable to render code block!');
-        }
-
-        return WidgetSpan(
-          child: Material(
-            color: atomOneBackgroundColor,
-            shape: RoundedRectangleBorder(
-              side: const BorderSide(color: hightlightTextColor),
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Padding(
-              padding: isInline
-                  ? const EdgeInsets.symmetric(horizontal: 4.0)
-                  : const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-              child: Text.rich(
-                TextSpan(children: [_renderCodeBlockNode(element)]),
-                selectionColor: hightlightTextColor.withAlpha(128),
-              ),
-            ),
-          ),
-        );
-      case 'img':
-        final mxcUrl = Uri.tryParse(node.attributes['src'] ?? '');
-        if (mxcUrl == null || mxcUrl.scheme != 'mxc') {
-          return TextSpan(text: node.attributes['alt']);
-        }
-
-        final width = double.tryParse(node.attributes['width'] ?? '');
-        final height = double.tryParse(node.attributes['height'] ?? '');
-        const defaultDimension = 64.0;
-        final actualWidth = width ?? height ?? defaultDimension;
-        final actualHeight = height ?? width ?? defaultDimension;
-
-        return WidgetSpan(
-          child: SizedBox(
-            width: actualWidth,
-            height: actualHeight,
-            child: MxcImage(
-              uri: mxcUrl,
-              width: actualWidth,
-              height: actualHeight,
-              isThumbnail: (actualWidth * actualHeight) > (256 * 256),
-            ),
-          ),
-        );
-      case 'hr':
-        return const WidgetSpan(child: Divider());
-      case 'details':
-        var obscure = true;
-        return WidgetSpan(
-          child: StatefulBuilder(
-            builder: (context, setState) => InkWell(
-              splashColor: Colors.transparent,
-              onTap: () => setState(() {
-                obscure = !obscure;
-              }),
-              child: Text.rich(
-                TextSpan(
-                  children: [
-                    WidgetSpan(
-                      child: Icon(
-                        obscure ? Icons.arrow_right : Icons.arrow_drop_down,
-                        size: fontSize * 1.2,
-                        color: textColor,
-                      ),
-                    ),
-                    if (obscure)
-                      ...node.nodes
-                          .where(
-                            (node) =>
-                                node is dom.Element &&
-                                node.localName == 'summary',
-                          )
-                          .map(
-                            (node) => _renderHtml(node, context, depth: depth),
-                          )
-                    else
-                      ..._renderWithLineBreaks(
-                        node.nodes,
-                        context,
-                        depth: depth,
-                      ),
-                  ],
-                ),
-                style: TextStyle(fontSize: fontSize, color: textColor),
-              ),
-            ),
-          ),
-        );
-      case 'span':
-        if (!node.attributes.containsKey('data-mx-spoiler')) {
-          continue block;
-        }
-        var obscure = true;
-        return WidgetSpan(
-          child: StatefulBuilder(
-            builder: (context, setState) => InkWell(
-              splashColor: Colors.transparent,
-              onTap: () => setState(() {
-                obscure = !obscure;
-              }),
-              child: Text.rich(
-                TextSpan(
-                  children: _renderWithLineBreaks(
-                    node.nodes,
-                    context,
-                    depth: depth,
-                  ),
-                ),
-                style: TextStyle(
-                  fontSize: fontSize,
-                  color: textColor,
-                  backgroundColor: obscure ? textColor : null,
-                ),
-              ),
-            ),
-          ),
-        );
-      block:
-      default:
-        return TextSpan(
-          style: switch (node.localName) {
-            'body' => TextStyle(fontSize: fontSize, color: textColor),
-            'a' => linkStyle,
-            'strong' => const TextStyle(fontWeight: FontWeight.bold),
-            'em' || 'i' => const TextStyle(fontStyle: FontStyle.italic),
-            'del' || 's' || 'strikethrough' => const TextStyle(
-              decoration: TextDecoration.lineThrough,
-            ),
-            'u' => const TextStyle(decoration: TextDecoration.underline),
-            'h1' => TextStyle(fontSize: fontSize * 1.6, height: 2),
-            'h2' => TextStyle(fontSize: fontSize * 1.5, height: 2),
-            'h3' => TextStyle(fontSize: fontSize * 1.4, height: 2),
-            'h4' => TextStyle(fontSize: fontSize * 1.3, height: 1.75),
-            'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
-            'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
-            'span' => TextStyle(
-              color:
-                  node.attributes['color']?.hexToColor ??
-                  node.attributes['data-mx-color']?.hexToColor ??
-                  textColor,
-              backgroundColor: node.attributes['data-mx-bg-color']?.hexToColor,
-            ),
-            'sup' => const TextStyle(
-              fontFeatures: [FontFeature.superscripts()],
-            ),
-            'sub' => const TextStyle(fontFeatures: [FontFeature.subscripts()]),
-            _ => null,
-          },
-          children: _renderWithLineBreaks(node.nodes, context, depth: depth),
-        );
+      walk(doc);
+      return doc.outerHtml;
+    } catch (e) {
+      return html;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final element = parser.parse(html).body ?? dom.Element.html('');
-    return Text.rich(
-      _renderHtml(element, context),
-      style: TextStyle(fontSize: fontSize, color: textColor),
-      maxLines: limitHeight ? 64 : null,
-      overflow: TextOverflow.fade,
-      selectionColor: textColor.withAlpha(128),
+    final bodyMedium = Theme.of(context).textTheme.bodyMedium;
+    final fontFamilyFallback = bodyMedium?.fontFamilyFallback;
+
+    return Html(
+      data: _linkify(html),
+      shrinkWrap: true,
+      style: {
+        "body": Style(
+          fontSize: FontSize(fontSize),
+          color: textColor,
+          margin: Margins.zero,
+          padding: HtmlPaddings.zero,
+          fontFamily: bodyMedium?.fontFamily ?? 'sans-serif',
+          fontFamilyFallback: fontFamilyFallback,
+          display: Display.inline,
+        ),
+        "a": Style(
+          color: linkStyle.color,
+          textDecoration: linkStyle.decoration,
+        ),
+        "pre": Style(
+          backgroundColor: Colors.transparent,
+          padding: HtmlPaddings.zero,
+          fontFamilyFallback: fontFamilyFallback,
+          margin: Margins.zero,
+        ),
+        "code": Style(
+          backgroundColor: Theme.of(
+            context,
+          ).colorScheme.surfaceContainerHighest,
+          fontFamily: 'monospace',
+          fontFamilyFallback: fontFamilyFallback,
+        ),
+        "p": Style(margin: Margins.zero, padding: HtmlPaddings.zero),
+        "div": Style(margin: Margins.zero, padding: HtmlPaddings.zero),
+        "ul": Style(margin: Margins.only(left: 10), padding: HtmlPaddings.zero),
+        "ol": Style(margin: Margins.only(left: 10), padding: HtmlPaddings.zero),
+      },
+      onLinkTap: (url, attributes, element) {
+        if (url != null) {
+          onOpen(LinkableElement(url, url));
+        }
+      },
+      extensions: [
+        _MatrixPillExtension(room, context, fontSize, linkStyle),
+        _MxcImageExtension(),
+        _CheckboxExtension(
+          room,
+          context,
+          fontSize,
+          textColor,
+          linkStyle,
+          eventId,
+          checkboxCheckedEvents,
+          onOpen,
+        ),
+        _SpoilerExtension(textColor, fontSize),
+        _DetailsExtension(textColor, fontSize, linkStyle, onOpen),
+      ],
+    );
+  }
+}
+
+class _MatrixPillExtension extends HtmlExtension {
+  final Room room;
+  final BuildContext context;
+  final double fontSize;
+  final TextStyle linkStyle;
+
+  _MatrixPillExtension(this.room, this.context, this.fontSize, this.linkStyle);
+
+  @override
+  Set<String> get supportedTags => {"a"};
+
+  @override
+  bool matches(ExtensionContext extensionContext) {
+    if (extensionContext.elementName != "a") return false;
+    final href = extensionContext.element?.attributes['href'];
+    return href != null &&
+        (href.parseIdentifierIntoParts()?.primaryIdentifier != null);
+  }
+
+  @override
+  InlineSpan build(ExtensionContext extensionContext) {
+    final href = extensionContext.element!.attributes['href']!;
+    final matrixId = href.parseIdentifierIntoParts()!.primaryIdentifier!;
+
+    if (matrixId.sigil == '@') {
+      final user = room.unsafeGetUserFromMemoryOrFallback(matrixId);
+      return WidgetSpan(
+        child: MatrixPill(
+          key: Key('user_pill_$matrixId'),
+          name: user.calcDisplayname(),
+          avatar: user.avatarUrl,
+          uri: href,
+          outerContext: context,
+          fontSize: fontSize,
+          color: linkStyle.color,
+        ),
+      );
+    }
+    if (matrixId.sigil == '#' || matrixId.sigil == '!') {
+      final room = matrixId.sigil == '!'
+          ? this.room.client.getRoomById(matrixId)
+          : this.room.client.getRoomByAlias(matrixId);
+      return WidgetSpan(
+        child: MatrixPill(
+          name: room?.getLocalizedDisplayname() ?? matrixId,
+          avatar: room?.avatar,
+          uri: href,
+          outerContext: context,
+          fontSize: fontSize,
+          color: linkStyle.color,
+        ),
+      );
+    }
+    return TextSpan(text: extensionContext.innerHtml);
+  }
+}
+
+class _MxcImageExtension extends HtmlExtension {
+  @override
+  Set<String> get supportedTags => {"img"};
+
+  @override
+  bool matches(ExtensionContext extensionContext) {
+    if (extensionContext.elementName != "img") return false;
+    final src = extensionContext.element?.attributes['src'];
+    return src != null && Uri.tryParse(src)?.scheme == 'mxc';
+  }
+
+  @override
+  InlineSpan build(ExtensionContext extensionContext) {
+    final element = extensionContext.element!;
+    final mxcUrl = Uri.parse(element.attributes['src']!);
+    final widthAttr = double.tryParse(element.attributes['width'] ?? '');
+    final heightAttr = double.tryParse(element.attributes['height'] ?? '');
+
+    return WidgetSpan(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          double? width = widthAttr;
+          double? height = heightAttr;
+          double maxWidth = constraints.maxWidth;
+          if (maxWidth.isInfinite) maxWidth = FluffyThemes.maxTimelineWidth;
+
+          if (width != null && height != null) {
+            final aspectRatio = width / height;
+            if (width > maxWidth) {
+              width = maxWidth;
+              height = width / aspectRatio;
+            }
+            if (height! > maxWidth) {
+              height = maxWidth;
+              width = height * aspectRatio;
+            }
+          } else if (width != null && width > maxWidth) {
+            width = maxWidth;
+          }
+
+          return MxcImage(
+            uri: mxcUrl,
+            width: width,
+            height: height,
+            fit: BoxFit.contain,
+            isThumbnail: false,
+            cacheKey: mxcUrl.toString(),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _CheckboxExtension extends HtmlExtension {
+  final Room room;
+  final BuildContext context;
+  final double fontSize;
+  final Color textColor;
+  final TextStyle linkStyle;
+  final String? eventId;
+  final Set<Event>? checkboxCheckedEvents;
+  final void Function(LinkableElement) onOpen;
+
+  _CheckboxExtension(
+    this.room,
+    this.context,
+    this.fontSize,
+    this.textColor,
+    this.linkStyle,
+    this.eventId,
+    this.checkboxCheckedEvents,
+    this.onOpen,
+  );
+
+  @override
+  Set<String> get supportedTags => {"li"};
+
+  @override
+  bool matches(ExtensionContext extensionContext) {
+    return extensionContext.elementName == "li" &&
+        extensionContext.element?.classes.contains('task-list-item') == true;
+  }
+
+  @override
+  InlineSpan build(ExtensionContext extensionContext) {
+    final element = extensionContext.element!;
+    final checkboxIndex =
+        element.rootElement
+            .getElementsByClassName('task-list-item')
+            .indexOf(element) +
+        1;
+
+    final checkedByReaction = checkboxCheckedEvents?.firstWhereOrNull(
+      (event) => event.checkedCheckboxId == checkboxIndex,
+    );
+    final staticallyChecked =
+        element.children.isNotEmpty &&
+        element.children.first.attributes['checked'] == 'true';
+
+    var contentHtml = element.innerHtml;
+    contentHtml = contentHtml.replaceFirst(
+      RegExp(r'<input[^>]*type="checkbox"[^>]*>'),
+      '',
+    );
+
+    return WidgetSpan(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: SizedBox.square(
+              dimension: fontSize + 2,
+              child: CupertinoCheckbox(
+                value: staticallyChecked || checkedByReaction != null,
+                onChanged:
+                    eventId == null ||
+                        staticallyChecked ||
+                        !room.canSendDefaultMessages ||
+                        (checkedByReaction != null &&
+                            checkedByReaction.senderId != room.client.userID)
+                    ? null
+                    : (_) => showFutureLoadingDialog(
+                        context: context,
+                        future: () => checkedByReaction != null
+                            ? room.redactEvent(checkedByReaction.eventId)
+                            : room.checkCheckbox(eventId!, checkboxIndex),
+                      ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Html(
+              data: contentHtml,
+              style: {
+                "body": Style(
+                  fontSize: FontSize(fontSize),
+                  color: textColor,
+                  margin: Margins.zero,
+                  padding: HtmlPaddings.zero,
+                  fontFamily:
+                      Theme.of(context).textTheme.bodyMedium?.fontFamily ??
+                      'sans-serif',
+                ),
+                "a": Style(
+                  color: linkStyle.color,
+                  textDecoration: linkStyle.decoration,
+                ),
+              },
+              onLinkTap: (url, attributes, element) {
+                if (url != null) {
+                  onOpen(LinkableElement(url, url));
+                }
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SpoilerExtension extends HtmlExtension {
+  final Color textColor;
+  final double fontSize;
+
+  _SpoilerExtension(this.textColor, this.fontSize);
+
+  @override
+  Set<String> get supportedTags => {"span"};
+
+  @override
+  bool matches(ExtensionContext extensionContext) {
+    return extensionContext.elementName == "span" &&
+        extensionContext.element?.attributes.containsKey('data-mx-spoiler') ==
+            true;
+  }
+
+  @override
+  InlineSpan build(ExtensionContext extensionContext) {
+    return WidgetSpan(
+      child: Builder(
+        builder: (context) {
+          var obscure = true;
+          return StatefulBuilder(
+            builder: (context, setState) => InkWell(
+              splashColor: Colors.transparent,
+              onTap: () => setState(() {
+                obscure = !obscure;
+              }),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: obscure ? textColor : null,
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Html(
+                  data: extensionContext.innerHtml,
+                  style: {
+                    "body": Style(
+                      fontSize: FontSize(fontSize),
+                      color: obscure ? Colors.transparent : textColor,
+                      margin: Margins.zero,
+                      padding: HtmlPaddings.zero,
+                      fontFamily:
+                          Theme.of(context).textTheme.bodyMedium?.fontFamily ??
+                          'sans-serif',
+                    ),
+                  },
+                ),
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _DetailsExtension extends HtmlExtension {
+  final Color textColor;
+  final double fontSize;
+  final TextStyle linkStyle;
+  final void Function(LinkableElement) onOpen;
+
+  _DetailsExtension(this.textColor, this.fontSize, this.linkStyle, this.onOpen);
+
+  @override
+  Set<String> get supportedTags => {"details"};
+
+  @override
+  bool matches(ExtensionContext extensionContext) =>
+      extensionContext.elementName == "details";
+
+  @override
+  InlineSpan build(ExtensionContext extensionContext) {
+    final element = extensionContext.element!;
+    return WidgetSpan(
+      child: Builder(
+        builder: (context) {
+          var obscure = true;
+          final summary = element.children.firstWhereOrNull(
+            (e) => e.localName == 'summary',
+          );
+          final content = element.children
+              .where((e) => e.localName != 'summary')
+              .map((e) => e.outerHtml)
+              .join();
+
+          return StatefulBuilder(
+            builder: (context, setState) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                InkWell(
+                  splashColor: Colors.transparent,
+                  onTap: () => setState(() {
+                    obscure = !obscure;
+                  }),
+                  child: Row(
+                    children: [
+                      Icon(
+                        obscure ? Icons.arrow_right : Icons.arrow_drop_down,
+                        size: fontSize * 1.2,
+                      ),
+                      if (summary != null)
+                        Expanded(
+                          child: Html(
+                            data: summary.innerHtml,
+                            style: {
+                              "body": Style(
+                                fontSize: FontSize(fontSize),
+                                color: textColor,
+                                margin: Margins.zero,
+                                padding: HtmlPaddings.zero,
+                                fontFamily:
+                                    Theme.of(
+                                      context,
+                                    ).textTheme.bodyMedium?.fontFamily ??
+                                    'sans-serif',
+                              ),
+                            },
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+                if (!obscure)
+                  Html(
+                    data: content,
+                    style: {
+                      "body": Style(
+                        fontSize: FontSize(fontSize),
+                        color: textColor,
+                        margin: Margins.zero,
+                        padding: HtmlPaddings.only(left: 10),
+                        fontFamily:
+                            Theme.of(
+                              context,
+                            ).textTheme.bodyMedium?.fontFamily ??
+                            'sans-serif',
+                      ),
+                      "a": Style(
+                        color: linkStyle.color,
+                        textDecoration: linkStyle.decoration,
+                      ),
+                    },
+                    onLinkTap: (url, attributes, element) {
+                      if (url != null) {
+                        onOpen(LinkableElement(url, url));
+                      }
+                    },
+                  ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }

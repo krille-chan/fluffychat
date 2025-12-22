@@ -20,8 +20,9 @@ class ImageBubble extends StatelessWidget {
   final Color? linkColor;
   final bool thumbnailOnly;
   final bool animated;
-  final double width;
-  final double height;
+  final double? width;
+  final double? height;
+  final double? aspectRatio;
   final void Function()? onTap;
   final BorderRadius? borderRadius;
   final Timeline? timeline;
@@ -32,8 +33,9 @@ class ImageBubble extends StatelessWidget {
     this.backgroundColor,
     this.fit = BoxFit.contain,
     this.thumbnailOnly = true,
-    this.width = 400,
-    this.height = 300,
+    this.width,
+    this.height,
+    this.aspectRatio,
     this.animated = false,
     this.onTap,
     this.borderRadius,
@@ -48,16 +50,22 @@ class ImageBubble extends StatelessWidget {
         event.infoMap['xyz.amorgan.blurhash'] is String
         ? event.infoMap['xyz.amorgan.blurhash']
         : 'LEHV6nWB2yk8pyo0adR*.7kCMdnj';
-    return SizedBox(
-      width: width,
-      height: height,
+
+    Widget placeholder = SizedBox(
+      width: width ?? 400,
+      height: height ?? 300,
       child: BlurHash(
         blurhash: blurHashString,
-        width: width,
-        height: height,
+        width: width ?? 400,
+        height: height ?? 300,
         fit: fit,
       ),
     );
+
+    if (aspectRatio != null) {
+      placeholder = AspectRatio(aspectRatio: aspectRatio!, child: placeholder);
+    }
+    return placeholder;
   }
 
   void _onTap(BuildContext context) {
@@ -90,6 +98,23 @@ class ImageBubble extends StatelessWidget {
       );
     }
 
+    Widget image = MxcImage(
+      event: event,
+      width: width,
+      height: height,
+      fit: fit,
+      animated: animated,
+      isThumbnail: thumbnailOnly,
+      cacheKey: event.eventId,
+      placeholder: event.messageType == MessageTypes.Sticker
+          ? null
+          : _buildPlaceholder,
+    );
+
+    if (aspectRatio != null) {
+      image = AspectRatio(aspectRatio: aspectRatio!, child: image);
+    }
+
     return Column(
       mainAxisSize: .min,
       spacing: 8,
@@ -108,20 +133,7 @@ class ImageBubble extends StatelessWidget {
           child: InkWell(
             onTap: () => _onTap(context),
             borderRadius: borderRadius,
-            child: Hero(
-              tag: event.eventId,
-              child: MxcImage(
-                event: event,
-                width: width,
-                height: height,
-                fit: fit,
-                animated: animated,
-                isThumbnail: thumbnailOnly,
-                placeholder: event.messageType == MessageTypes.Sticker
-                    ? null
-                    : _buildPlaceholder,
-              ),
-            ),
+            child: Hero(tag: event.eventId, child: image),
           ),
         ),
         if (fileDescription != null && textColor != null)

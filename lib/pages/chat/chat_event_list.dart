@@ -142,9 +142,7 @@ class ChatEventList extends StatelessWidget {
               child: Message(
                 event,
                 animateIn: animateIn,
-                resetAnimateIn: () {
-                  controller.animateInEventIndex = null;
-                },
+                resetAnimateIn: controller.resetAnimateIn,
                 onSwipe: () => controller.replyAction(replyTo: event),
                 onInfoTab: controller.showEventInfo,
                 onMention: () => controller.sendController.text +=

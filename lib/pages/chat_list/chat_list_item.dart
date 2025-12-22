@@ -151,9 +151,12 @@ class ChatListItem extends StatelessWidget {
                               child: Material(
                                 color: backgroundColor,
                                 borderRadius: BorderRadius.circular(16),
-                                child: const Icon(
+                                child: Icon(
                                   Icons.arrow_drop_down_circle_outlined,
                                   size: 18,
+                                  color: activeChat
+                                      ? theme.colorScheme.onSecondaryContainer
+                                      : theme.colorScheme.onSurface,
                                 ),
                               ),
                             ),
