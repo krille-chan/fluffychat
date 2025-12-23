@@ -365,20 +365,12 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                   Logs().v(
                                     'Cross signing is already enabled. Try to self-sign',
                                   );
-                                  try {
-                                    await bootstrap
-                                        .client
-                                        .encryption!
-                                        .crossSigning
-                                        .selfSign(recoveryKey: key);
-                                    Logs().d('Successful selfsigned');
-                                  } catch (e, s) {
-                                    Logs().e(
-                                      'Unable to self sign with recovery key after successfully open existing SSSS',
-                                      e,
-                                      s,
-                                    );
-                                  }
+                                  await bootstrap
+                                      .client
+                                      .encryption!
+                                      .crossSigning
+                                      .selfSign(recoveryKey: key);
+                                  Logs().d('Successful selfsigned');
                                 }
                               } on InvalidPassphraseException catch (e) {
                                 setState(
