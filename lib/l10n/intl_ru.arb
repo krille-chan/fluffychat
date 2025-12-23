@@ -218,7 +218,7 @@
             }
         }
     },
-    "changedTheChatNameTo": "{username} изменил(а) имя чата на: '{chatname}'",
+    "changedTheChatNameTo": "{username} изменил(а) имя чата на '{chatname}'",
     "@changedTheChatNameTo": {
         "type": "String",
         "placeholders": {
@@ -239,7 +239,7 @@
             }
         }
     },
-    "changedTheDisplaynameTo": "{username} изменил(а) отображаемое имя на: '{displayname}'",
+    "changedTheDisplaynameTo": "{username} изменил(а) отображаемое имя на '{displayname}'",
     "@changedTheDisplaynameTo": {
         "type": "String",
         "placeholders": {
@@ -260,7 +260,7 @@
             }
         }
     },
-    "changedTheGuestAccessRulesTo": "{username} изменил(а) правила гостевого доступа на: {rules}",
+    "changedTheGuestAccessRulesTo": "{username} изменил(а) правила гостевого доступа на {rules}",
     "@changedTheGuestAccessRulesTo": {
         "type": "String",
         "placeholders": {
@@ -281,7 +281,7 @@
             }
         }
     },
-    "changedTheHistoryVisibilityTo": "{username} изменил(а) видимость истории на: {rules}",
+    "changedTheHistoryVisibilityTo": "{username} изменил(а) видимость истории на {rules}",
     "@changedTheHistoryVisibilityTo": {
         "type": "String",
         "placeholders": {
@@ -302,7 +302,7 @@
             }
         }
     },
-    "changedTheJoinRulesTo": "{username} изменил(а) правила присоединения на: {joinRules}",
+    "changedTheJoinRulesTo": "{username} изменил(а) правила присоединения на {joinRules}",
     "@changedTheJoinRulesTo": {
         "type": "String",
         "placeholders": {
@@ -381,7 +381,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Резервная старых сообщений защищена ключом восстановления. Пожалуйста, не потеряйте его.",
+    "chatBackupDescription": "Ваши сообщения защищены ключом восстановления. Пожалуйста, не потеряйте его.",
     "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
@@ -2405,7 +2405,7 @@
     "@noKeyForThisMessage": {},
     "screenSharingTitle": "общий доступ к экрану",
     "@screenSharingTitle": {},
-    "numChats": "{number} чатов",
+    "numChats": "{number, plural, one{# чат} few {# чата} other{# чатов}}",
     "@numChats": {
         "type": "number",
         "placeholders": {
@@ -2437,7 +2437,7 @@
     "@readUpToHere": {},
     "commandHint_hug": "Отправить обнимашки",
     "@commandHint_hug": {},
-    "cuddleContent": "{senderName} улыбнулся(ась) Вам",
+    "cuddleContent": "{senderName} обнимает вас",
     "@cuddleContent": {
         "type": "String",
         "placeholders": {
@@ -3009,7 +3009,7 @@
     "@inviteOtherUsers": {},
     "changeTheVisibilityOfChatHistory": "Изменить видимость истории чата",
     "@changeTheVisibilityOfChatHistory": {},
-    "countChatsAndCountParticipants": "{chats} чатов и {participants} участников",
+    "countChatsAndCountParticipants": "{chats, plural, one{# чат} few{# чата} other{# чатов}} и {participants, plural, one{# участник} few{# участника} other{# участников}}",
     "@countChatsAndCountParticipants": {
         "type": "String",
         "placeholders": {
@@ -3324,7 +3324,7 @@
     },
     "changedTheChatDescription": "{username} изменил описание чата",
     "@changedTheChatDescription": {},
-    "changedTheChatName": "{username} изменил имя чата",
+    "changedTheChatName": "{username} изменил(а) имя чата",
     "@changedTheChatName": {},
     "notificationRuleMemberEvent": "Мероприятие участника",
     "@notificationRuleMemberEvent": {},
