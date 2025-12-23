@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -444,26 +442,25 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                               if (success != true) return;
                               if (!mounted) return;
 
-                              final waitForSecret = Completer();
-                              final secretsSub = client
-                                  .encryption!
-                                  .ssss
-                                  .onSecretStored
-                                  .stream
-                                  .listen((event) async {
-                                    if (await client.encryption!.keyManager
-                                            .isCached() &&
-                                        await client.encryption!.crossSigning
-                                            .isCached()) {
-                                      waitForSecret.complete();
-                                    }
-                                  });
-
                               final result = await showFutureLoadingDialog(
                                 context: context,
-                                future: () => waitForSecret.future,
+                                future: () async {
+                                  final allCached =
+                                      await client.encryption!.keyManager
+                                          .isCached() &&
+                                      await client.encryption!.crossSigning
+                                          .isCached();
+                                  if (!allCached) {
+                                    await client
+                                        .encryption!
+                                        .ssss
+                                        .onSecretStored
+                                        .stream
+                                        .first;
+                                  }
+                                  return;
+                                },
                               );
-                              await secretsSub.cancel();
                               if (!mounted) return;
                               if (!result.isError) _goBackAction(true);
                             },
