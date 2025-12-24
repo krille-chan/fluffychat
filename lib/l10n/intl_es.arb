@@ -3408,5 +3408,37 @@
     "newSubSpace": "Nuevo sub espacio",
     "@newSubSpace": {},
     "moveToDifferentSpace": "Mover a otro espacio",
-    "@moveToDifferentSpace": {}
+    "@moveToDifferentSpace": {},
+    "moveUp": "Mover arriba",
+    "@moveUp": {},
+    "moveDown": "Mover abajo",
+    "@moveDown": {},
+    "removeFromSpaceDescription": "El chat sera removido del espacio pero continuara apareciendo en tu lista de chats.",
+    "@removeFromSpaceDescription": {},
+    "countChats": "{chats} chats",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "startedAPoll": "{username} inició una encuesta.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "Encuesta",
+    "@poll": {},
+    "startPoll": "Iniciar encuesta",
+    "@startPoll": {},
+    "endPoll": "Finalizar encuesta",
+    "@endPoll": {},
+    "answersVisible": "Respuestas visibles",
+    "@answersVisible": {}
 }
