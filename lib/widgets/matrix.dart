@@ -181,8 +181,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   final onNotification = <String, StreamSubscription>{};
   final onLoginStateChanged = <String, StreamSubscription<LoginState>>{};
   final onUiaRequest = <String, StreamSubscription<UiaRequest>>{};
-  StreamSubscription<html.Event>? onFocusSub;
-  StreamSubscription<html.Event>? onBlurSub;
 
   String? _cachedPassword;
   Timer? _cachedPasswordClearTimer;
@@ -313,11 +311,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       _registerSubs(c.clientName);
     }
 
-    if (kIsWeb) {
-      onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);
-      onBlurSub = html.window.onBlur.listen((_) => webHasFocus = false);
-    }
-
     if (PlatformInfos.isMobile) {
       backgroundPush = BackgroundPush(
         this,
@@ -387,8 +380,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onLoginStateChanged.values.map((s) => s.cancel());
     onNotification.values.map((s) => s.cancel());
     client.httpClient.close();
-    onFocusSub?.cancel();
-    onBlurSub?.cancel();
 
     linuxNotifications?.close();
 
