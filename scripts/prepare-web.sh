@@ -11,10 +11,5 @@ rm -f ./assets/vodozemac/vodozemac_bindings_dart*
 mv .vodozemac/dart/web/pkg/vodozemac_bindings_dart* ./assets/vodozemac/
 rm -rf .vodozemac
 
-# Add native imaging:
-cd web/
-curl -L 'https://github.com/famedly/dart_native_imaging/releases/download/v0.2.1/native_imaging.zip' > native_imaging.zip # make sure to sync version with pubspec.yaml
-unzip native_imaging.zip
-mv js/* .
-rmdir js
-rm native_imaging.zip
+flutter pub get
+dart compile js ./web/native_executor.dart -o ./web/native_executor.js -m
