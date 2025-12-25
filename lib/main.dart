@@ -13,6 +13,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:video_player_media_kit/video_player_media_kit.dart';
 import 'config/setting_keys.dart';
 import 'utils/background_push.dart';
 import 'widgets/fluffy_chat_app.dart';
@@ -63,6 +64,14 @@ void main() async {
       '${AppSettings.applicationName.value} started in background-fetch mode. No GUI will be created unless the app is no longer detached.',
     );
     return;
+  }
+
+  // Initialize Media Kit Video Player for Desktop
+  if (PlatformInfos.isLinux || PlatformInfos.isWindows) {
+    VideoPlayerMediaKit.ensureInitialized(
+      linux: true,
+      windows: true,
+    );
   }
 
   // Started in foreground mode.
