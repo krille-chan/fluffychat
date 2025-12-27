@@ -2405,7 +2405,7 @@
     "@noKeyForThisMessage": {},
     "screenSharingTitle": "общий доступ к экрану",
     "@screenSharingTitle": {},
-    "numChats": "{number, plural, one{# чат} few {# чата} other{# чатов}}",
+    "numChats": "{number, plural, one{# чат} few{# чата} other{# чатов}}",
     "@numChats": {
         "type": "number",
         "placeholders": {
@@ -2598,7 +2598,7 @@
     "@inviteGroupChat": {},
     "invalidInput": "Недопустимый ввод!",
     "@invalidInput": {},
-    "wrongPinEntered": "Введён неверный пин-код! Повторите попытку через {seconds, plural, one{# секунду} few{# секунды} other {# секунд}}...",
+    "wrongPinEntered": "Введён неверный пин-код! Повторите попытку через {seconds, plural, one{# секунду} few{# секунды} other{# секунд}}...",
     "@wrongPinEntered": {
         "type": "String",
         "placeholders": {
