@@ -1087,15 +1087,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "loadCountMoreParticipants": "{count, plural, one{Загрузить еще # участника} few{Загрузить еще # участников} other{Загрузить еще # участников}}",
-    "@loadCountMoreParticipants": {
-        "type": "String",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
     "loadingPleaseWait": "Загрузка... Пожалуйста, подождите.",
     "@loadingPleaseWait": {
         "type": "String",
@@ -1879,15 +1870,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unreadChats": "{unreadCount, plural, one{# непрочитанный чат} few{# непрочитанных чата} other{# непрочитанных чатов}}",
-    "@unreadChats": {
-        "type": "String",
-        "placeholders": {
-            "unreadCount": {
-                "type": "int"
-            }
-        }
-    },
     "userAndOthersAreTyping": "{username} и еще {count} печатают…",
     "@userAndOthersAreTyping": {
         "type": "String",
@@ -2328,14 +2310,6 @@
     "@storeInAndroidKeystore": {},
     "storeInAppleKeyChain": "Сохранить в Apple KeyChain",
     "@storeInAppleKeyChain": {},
-    "countFiles": "{count, plural, one{# файл} few{# файла} other{# файлов}}",
-    "@countFiles": {
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
     "user": "Пользователь",
     "@user": {},
     "confirmMatrixId": "Пожалуйста, подтвердите Matrix ID, чтобы удалить свою учётную запись.",
@@ -2934,23 +2908,6 @@
     "@commandHint_ignore": {},
     "commandHint_unignore": "Не игнорировать данный matrix ID",
     "@commandHint_unignore": {},
-    "unreadChatsInApp": "{appname}: {unread, plural, one{# непрочитанный чат} few{# непрочитанных чата} other{# непрочитанных чатов}}",
-    "@unreadChatsInApp": {
-        "type": "String",
-        "placeholders": {
-            "appname": {
-                "type": "String"
-            },
-            "unread": {
-                "type": "String"
-            }
-        }
-    },
-    "thereAreCountUsersBlocked": "Сейчас {count, plural, one{заблокирован # пользователь} few{заблокированы # пользователя} other{заблокированы # пользователей}}.",
-    "@thereAreCountUsersBlocked": {
-        "type": "String",
-        "count": {}
-    },
     "restricted": "Запрещено",
     "@restricted": {},
     "knockRestricted": "Стук запрещен",
@@ -3009,18 +2966,6 @@
     "@inviteOtherUsers": {},
     "changeTheVisibilityOfChatHistory": "Изменить видимость истории чата",
     "@changeTheVisibilityOfChatHistory": {},
-    "countChatsAndCountParticipants": "{chats, plural, one{# чат} few{# чата} other{# чатов}} и {participants, plural, one{# участник} few{# участника} other{# участников}}",
-    "@countChatsAndCountParticipants": {
-        "type": "String",
-        "placeholders": {
-            "chats": {
-                "type": "int"
-            },
-            "participants": {
-                "type": "int"
-            }
-        }
-    },
     "unread": "Непрочитанные",
     "@unread": {},
     "space": "Пространство",
@@ -3136,15 +3081,6 @@
     "@italicText": {},
     "unableToJoinChat": "Невозможно присоединиться к чату. Возможно, другая сторона уже закончила разговор.",
     "@unableToJoinChat": {},
-    "serverLimitReached": "Достигнуто ограничение сервера. Ожидаем {seconds, plural, one{# секунду} few{# секунды} other{# секунд}}...",
-    "@serverLimitReached": {
-        "type": "integer",
-        "placeholders": {
-            "seconds": {
-                "type": "int"
-            }
-        }
-    },
     "continueText": "Продолжить",
     "@continueText": {},
     "blur": "Размытие:",
@@ -3284,15 +3220,6 @@
     "@commandHint_roomupgrade": {},
     "notificationRuleInviteForMeDescription": "Уведомляет пользователя, когда его приглашают в комнату.",
     "@notificationRuleInviteForMeDescription": {},
-    "countInvited": "{count, plural, one{Приглашён # участник} few{Приглашены # участника} other{Приглашены # участников}}",
-    "@countInvited": {
-        "type": "String",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
     "unknownPushRule": "Неизвестное правило оповещения '{rule}'",
     "@unknownPushRule": {
         "type": "String",
@@ -3304,24 +3231,6 @@
     },
     "checkList": "Контрольный список",
     "@checkList": {},
-    "countVotes": "{count, plural, =1{Один голос} other{{count} голосов}}",
-    "@countVotes": {
-        "type": "int",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "countReplies": "{count, plural, =1{Один ответ} other{{count} ответов}}",
-    "@countReplies": {
-        "type": "int",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
     "changedTheChatDescription": "{username} изменил описание чата",
     "@changedTheChatDescription": {},
     "changedTheChatName": "{username} изменил(а) имя чата",
