@@ -647,11 +647,11 @@ gpd(){return"Add answer option"},
 gpe(){return"Allow multiple answers"},
 gnJ(){return"Poll has been ended"},
 pr(d){var x=null
-return B.bw(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
+return B.bD(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 gph(){return"Answers will be visible when poll has ended"},
 gnV(){return"Reply in thread"},
 pq(d){var x=null
-return B.bw(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+return B.bD(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
 gpE(){return"Thread"},
 gpj(){return"Back to main chat"},
 gp0(){return"Save changes"},
@@ -1307,11 +1307,11 @@ gpd(){return"Adicionar op\xe7\xe3o de resposta"},
 gpe(){return"Permitir v\xe1rias respostas"},
 gnJ(){return"A enquete terminou"},
 pr(d){var x=null
-return B.bw(d,x,this.a,x,"Um voto",""+d+" votos",x,x)},
+return B.bD(d,x,this.a,x,"Um voto",""+d+" votos",x,x)},
 gph(){return"As respostas ficar\xe3o vis\xedveis quando a enquete terminar"},
 gnV(){return"Responder no t\xf3pico"},
 pq(d){var x=null
-return B.bw(d,x,this.a,x,"Uma resposta",""+d+" respostas",x,x)},
+return B.bD(d,x,this.a,x,"Uma resposta",""+d+" respostas",x,x)},
 gpE(){return"T\xf3pico"},
 gpj(){return"Voltar \xe0 conversa principal"},
 gp0(){return"Salvar altera\xe7\xf5es"},
@@ -1572,5 +1572,5 @@ x(A.AW,C.aE)
 w(A.AW,[A.FV,A.FW])})()
 B.dM(b.typeUniverse,JSON.parse('{"AW":{"aE":[]},"FV":{"aE":[]},"FW":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["zTSLYTOXLd0xG1r60p+x3OBgCzI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["CXc+sOl9ikJOyt7O1SSSh5veK4A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_17.part.js.map
