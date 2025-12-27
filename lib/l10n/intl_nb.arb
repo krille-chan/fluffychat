@@ -3252,5 +3252,43 @@
     "allowMultipleAnswers": "Tillat flere svar",
     "@allowMultipleAnswers": {},
     "pollHasBeenEnded": "Avstemningen er avsluttet",
-    "@pollHasBeenEnded": {}
+    "@pollHasBeenEnded": {},
+    "roomUpgradeDescription": "Chatten vil deretter bli gjenskapt med den nye romversjonen. Alle deltakere vil bli varslet om at de må bytte til den nye chatten. Du kan finne ut mer om romversjoner på https://spec.matrix.org/latest/rooms/",
+    "@roomUpgradeDescription": {},
+    "groupCanBeFoundViaSearch": "Gruppen kan finnes via søk",
+    "@groupCanBeFoundViaSearch": {},
+    "commandHint_sendraw": "Send raw json",
+    "@commandHint_sendraw": {},
+    "replyInThread": "Svar i tråden",
+    "@replyInThread": {},
+    "sessionLostBody": "Sesjonen din er tapt. Vennligst rapporter denne feilen til utviklerne på {url}. Feilmeldingen er: {error}",
+    "@sessionLostBody": {
+        "type": "String",
+        "placeholders": {
+            "url": {
+                "type": "String"
+            },
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "noticeChatBackupDeviceVerification": "Merk: Når du kobler alle enhetene dine til chat-sikkerhetskopien, blir de automatisk bekreftet.",
+    "@noticeChatBackupDeviceVerification": {},
+    "notificationRuleTombstone": "Gravstein",
+    "@notificationRuleTombstone": {},
+    "answersWillBeVisibleWhenPollHasEnded": "Svarene vil være synlige når avstemningen er avsluttet",
+    "@answersWillBeVisibleWhenPollHasEnded": {},
+    "thread": "Tråd",
+    "@thread": {},
+    "backToMainChat": "Tilbake til hovedchatten",
+    "@backToMainChat": {},
+    "saveChanges": "Lagre endringer",
+    "@saveChanges": {},
+    "skipChatBackup": "Hopp over sikkerhetskopiering av chat",
+    "@skipChatBackup": {},
+    "loadingMessages": "Laster inn meldinger",
+    "@loadingMessages": {},
+    "setupChatBackup": "Konfigurer sikkerhetskopi av chat",
+    "@setupChatBackup": {}
 }

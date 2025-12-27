@@ -342,7 +342,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "La copia de respaldo del chat está protegida por una llave de seguridad. Procure no perderla.",
+    "chatBackupDescription": "Tus mensajes están protegidos por una llave de seguridad. Procura no perderla.",
     "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
@@ -3344,7 +3344,7 @@
     "@enterNewChat": {},
     "pleaseWaitUntilInvited": "Por favor espera, hasta que alguien del chat te invite.",
     "@pleaseWaitUntilInvited": {},
-    "commandHint_roomupgrade": "Actualizar este chat a la versión de chat dada",
+    "commandHint_roomupgrade": "Actualizar este chat a la versión de chat asignada",
     "@commandHint_roomupgrade": {},
     "checkList": "Lista de tareas",
     "@checkList": {},
@@ -3385,12 +3385,60 @@
     "@displayNavigationRail": {},
     "approve": "Aprobar",
     "@approve": {},
-    "youHaveKnocked": "Has sido golpeado",
+    "youHaveKnocked": "Has sido expulsado",
     "@youHaveKnocked": {},
     "customReaction": "Reacción personalizada",
     "@customReaction": {},
     "moreEvents": "Más eventos",
     "@moreEvents": {},
     "declineInvitation": "Rechazar invitación",
-    "@declineInvitation": {}
+    "@declineInvitation": {},
+    "changedTheChatDescription": "{username} ha cambiado la descripción del chat",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "{username} ha cambiado el nombre del chat",
+    "@changedTheChatName": {},
+    "noMessagesYet": "Sin mensajes",
+    "@noMessagesYet": {},
+    "longPressToRecordVoiceMessage": "Deja presionado para grabar un mensaje.",
+    "@longPressToRecordVoiceMessage": {},
+    "pause": "Pausa",
+    "@pause": {},
+    "resume": "Continuar",
+    "@resume": {},
+    "newSubSpace": "Nuevo sub espacio",
+    "@newSubSpace": {},
+    "moveToDifferentSpace": "Mover a otro espacio",
+    "@moveToDifferentSpace": {},
+    "moveUp": "Mover arriba",
+    "@moveUp": {},
+    "moveDown": "Mover abajo",
+    "@moveDown": {},
+    "removeFromSpaceDescription": "El chat sera removido del espacio pero continuara apareciendo en tu lista de chats.",
+    "@removeFromSpaceDescription": {},
+    "countChats": "{chats} chats",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "startedAPoll": "{username} inició una encuesta.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "Encuesta",
+    "@poll": {},
+    "startPoll": "Iniciar encuesta",
+    "@startPoll": {},
+    "endPoll": "Finalizar encuesta",
+    "@endPoll": {},
+    "answersVisible": "Respuestas visibles",
+    "@answersVisible": {}
 }
