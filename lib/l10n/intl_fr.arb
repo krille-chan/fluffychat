@@ -2518,9 +2518,9 @@
     "@tryAgain": {},
     "blockedUsers": "Utilisateurs/trices bloqués",
     "@blockedUsers": {},
-    "redactMessageDescription": "Le message sera modifié pour tous les participants de cette conversation. Il n'est pas possible de revenir en arrière.",
+    "redactMessageDescription": "Le message sera supprimé pour tous les participants de cette conversation. Il n'est pas possible de revenir en arrière.",
     "@redactMessageDescription": {},
-    "redactedBy": "Modifié par {username}",
+    "redactedBy": "Supprimé par {username}",
     "@redactedBy": {
         "type": "String",
         "placeholders": {
@@ -2531,7 +2531,7 @@
     },
     "directChat": "Discussion directe",
     "@directChat": {},
-    "optionalRedactReason": "(Facultatif) Raison de la modification de ce message...",
+    "optionalRedactReason": "(Facultatif) Raison de la suppression de ce message...",
     "@optionalRedactReason": {},
     "subspace": "Sous-espace",
     "@subspace": {},
@@ -2700,7 +2700,7 @@
     "@calls": {},
     "customEmojisAndStickers": "Émoticônes et autocollants personnalisés",
     "@customEmojisAndStickers": {},
-    "hideRedactedMessages": "Cacher les messages édités",
+    "hideRedactedMessages": "Cacher les messages supprimés",
     "@hideRedactedMessages": {},
     "pleaseEnterYourCurrentPassword": "Veuillez saisir votre mot de passe actuel",
     "@pleaseEnterYourCurrentPassword": {},
@@ -2710,7 +2710,7 @@
     "@alwaysUse24HourFormat": {
         "description": "Set to true to always display time of day in 24 hour format."
     },
-    "hideRedactedMessagesBody": "Si quelqu'un modifie un message, celui-ci ne sera plus visible dans la discussion.",
+    "hideRedactedMessagesBody": "Si quelqu'un supprime un message, celui-ci ne sera plus visible dans la discussion.",
     "@hideRedactedMessagesBody": {},
     "customEmojisAndStickersBody": "Ajoutez ou partagez des émoticônes ou autocollants personnalisés qui peuvent être utilisés dans n'importe quelle discussion.",
     "@customEmojisAndStickersBody": {},
@@ -2722,7 +2722,7 @@
     "@hideInvalidOrUnknownMessageFormats": {},
     "messagesStyle": "Messages :",
     "@messagesStyle": {},
-    "redactedByBecause": "Modifié par {username} car : \"{reason}\"",
+    "redactedByBecause": "Supprimé par {username} car : \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
         "placeholders": {
