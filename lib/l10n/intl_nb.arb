@@ -3290,5 +3290,18 @@
     "loadingMessages": "Laster inn meldinger",
     "@loadingMessages": {},
     "setupChatBackup": "Konfigurer sikkerhetskopi av chat",
-    "@setupChatBackup": {}
+    "@setupChatBackup": {},
+    "commandHint_googly": "Send noen stirreøyne",
+    "@commandHint_googly": {},
+    "commandHint_cuddle": "Send en kos",
+    "@commandHint_cuddle": {},
+    "googlyEyesContent": "{senderName} sender deg noen stirreøyner",
+    "@googlyEyesContent": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    }
 }
