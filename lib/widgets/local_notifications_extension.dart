@@ -7,7 +7,7 @@ import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
-import 'package:universal_html/html.dart' as html;
+import 'package:universal_web/web.dart' as html;
 
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
@@ -19,7 +19,7 @@ import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 extension LocalNotificationsExtension on MatrixState {
-  static final html.AudioElement _audioPlayer = html.AudioElement()
+  static final html.HTMLAudioElement _audioPlayer = html.HTMLAudioElement()
     ..src = 'assets/assets/sounds/notification.ogg'
     ..load();
 
@@ -81,9 +81,11 @@ extension LocalNotificationsExtension on MatrixState {
 
       html.Notification(
         title,
-        body: body,
-        icon: thumbnailUri?.toString(),
-        tag: event.room.id,
+        html.NotificationOptions(
+          body: body,
+          icon: thumbnailUri?.toString() ?? '',
+          tag: event.room.id,
+        ),
       );
     } else if (Platform.isLinux) {
       final avatarUrl = event.room.avatar;

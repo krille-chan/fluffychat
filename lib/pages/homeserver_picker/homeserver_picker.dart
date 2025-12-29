@@ -7,7 +7,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:universal_html/html.dart' as html;
+import 'package:universal_web/web.dart' as html;
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:fluffychat/config/app_config.dart';

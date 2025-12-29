@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:universal_html/html.dart' as html;
+import 'package:universal_web/web.dart' as html;
 import 'package:video_player/video_player.dart';
+import 'dart:js_interop';
 
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
@@ -64,8 +65,10 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
 
       // Create the VideoPlayerController from the contents of videoFile.
       if (kIsWeb) {
-        final blob = html.Blob([videoFile.bytes]);
-        final networkUri = Uri.parse(html.Url.createObjectUrlFromBlob(blob));
+        final blob = html.Blob(
+          videoFile.bytes.map((int byte) => byte.toJS).toList().toJS,
+        );
+        final networkUri = Uri.parse(html.URL.createObjectURL(blob));
         videoPlayerController = VideoPlayerController.networkUrl(networkUri);
       } else {
         final tempDir = await getTemporaryDirectory();
