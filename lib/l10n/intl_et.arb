@@ -3515,5 +3515,16 @@
     "changedTheChatDescription": "{username} muutis vestluse kirjeldust",
     "@changedTheChatDescription": {},
     "changedTheChatName": "{username} muutis vestluse nime",
-    "@changedTheChatName": {}
+    "@changedTheChatName": {},
+    "noMoreResultsFound": "Rohkem tulemusi ei leidu",
+    "@noMoreResultsFound": {},
+    "chatSearchedUntil": "Otsing vestlusest kuni {time}",
+    "@chatSearchedUntil": {
+        "type": "String",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    }
 }

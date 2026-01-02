@@ -3508,5 +3508,11 @@
     "loadingMessages": "Nachrichten werden geladen",
     "@loadingMessages": {},
     "setupChatBackup": "Chatsicherung einrichten",
-    "@setupChatBackup": {}
+    "@setupChatBackup": {},
+    "createSticker": "Sticker oder Emoji erstellen",
+    "@createSticker": {},
+    "useAsSticker": "Als Sticker verwenden",
+    "@useAsSticker": {},
+    "useAsEmoji": "Als Emoji verwenden",
+    "@useAsEmoji": {}
 }
