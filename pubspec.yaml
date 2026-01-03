@@ -51,9 +51,12 @@ dependencies:
   image_picker: ^1.2.1
   intl: any
   just_audio: ^0.10.5
+  just_audio_media_kit: ^2.1.0
   latlong2: ^0.9.1
   linkify: ^5.0.0
   matrix: ^4.1.0
+  media_kit_libs_linux: ^1.2.1
+  media_kit_libs_windows_audio: ^1.0.9
   mime: ^2.0.0
   native_imaging: ^0.2.0
   opus_caf_converter_dart: ^1.0.1
