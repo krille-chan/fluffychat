@@ -1087,10 +1087,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      sha256: fb116ee89f6871441f22f76a988db15cfcfb6dfac97e3e2d654c240080015707
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: "krille/matrix-native-oidc-refresh-logout"
+      resolved-ref: "9c7036d92938fe379b6046661d98419873ce8f97"
+      url: "https://github.com/famedly/matrix-dart-sdk.git"
+    source: git
     version: "4.1.0"
   meta:
     dependency: transitive
