@@ -2052,7 +2052,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "writeAMessage": "Kirjuta üks sõnum…",
+    "writeAMessage": "Koosta sõnum…",
     "@writeAMessage": {
         "type": "String",
         "placeholders": {}
@@ -3511,5 +3511,20 @@
     "loadingMessages": "Laadin sõnumeid",
     "@loadingMessages": {},
     "setupChatBackup": "Võta kasutusele vestluste varundus",
-    "@setupChatBackup": {}
+    "@setupChatBackup": {},
+    "changedTheChatDescription": "{username} muutis vestluse kirjeldust",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "{username} muutis vestluse nime",
+    "@changedTheChatName": {},
+    "noMoreResultsFound": "Rohkem tulemusi ei leidu",
+    "@noMoreResultsFound": {},
+    "chatSearchedUntil": "Otsing vestlusest kuni {time}",
+    "@chatSearchedUntil": {
+        "type": "String",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    }
 }

@@ -3516,5 +3516,9 @@
     "loadingMessages": "Ag lódáil teachtaireachtaí",
     "@loadingMessages": {},
     "setupChatBackup": "Socraigh cúltaca comhrá",
-    "@setupChatBackup": {}
+    "@setupChatBackup": {},
+    "changedTheChatDescription": "D'athraigh {username} cur síos an chomhrá",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "D'athraigh {username} ainm an chomhrá",
+    "@changedTheChatName": {}
 }

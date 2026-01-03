@@ -14,7 +14,6 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -112,7 +111,6 @@ class ChatController extends State<ChatPageWithRoom>
   final AutoScrollController scrollController = AutoScrollController();
 
   late final FocusNode inputFocus;
-  StreamSubscription<html.Event>? onFocusSub;
 
   Timer? typingCoolDown;
   Timer? typingTimeout;
@@ -372,9 +370,6 @@ class ChatController extends State<ChatPageWithRoom>
         : '';
     WidgetsBinding.instance.addObserver(this);
     _tryLoadTimeline();
-    if (kIsWeb) {
-      onFocusSub = html.window.onFocus.listen((_) => setReadMarker());
-    }
   }
 
   final Set<String> expandedEventIds = {};
@@ -557,7 +552,6 @@ class ChatController extends State<ChatPageWithRoom>
     timeline?.cancelSubscriptions();
     timeline = null;
     inputFocus.removeListener(_inputFocusListener);
-    onFocusSub?.cancel();
     super.dispose();
   }
 
