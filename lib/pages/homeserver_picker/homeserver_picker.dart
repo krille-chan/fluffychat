@@ -69,8 +69,14 @@ class HomeserverPickerController extends State<HomeserverPicker> {
         homeserver = Uri.https(homeserverInput, '');
       }
       final client = await Matrix.of(context).getLoginClient();
-      final (_, _, loginFlows, _) = await client.checkHomeserver(homeserver);
+      final (_, _, loginFlows, authMetadata) = await client.checkHomeserver(
+        homeserver,
+        fetchAuthMetadata: true,
+      );
       this.loginFlows = loginFlows;
+      if (authMetadata != null) {
+        return oidcLoginAction();
+      }
       if (supportsSso && !legacyPasswordLogin) {
         if (!PlatformInfos.isMobile) {
           final consent = await showOkCancelAlertDialog(
@@ -112,6 +118,87 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       (PlatformInfos.isMobile || PlatformInfos.isWeb || PlatformInfos.isMacOS);
 
   bool get supportsPasswordLogin => _supportsFlow('m.login.password');
+
+  final _oidcClientDataMap = <Uri, OidcClientData>{};
+
+  void oidcLoginAction() async {
+    final redirectUrl = kIsWeb
+        ? Uri.parse(
+            html.window.location.href,
+          ).resolveUri(Uri(pathSegments: ['auth.html']))
+        : isDefaultPlatform
+        ? Uri.parse('${AppConfig.appOpenUrlScheme.toLowerCase()}:/login')
+        : Uri.parse('http://localhost:3001/login');
+
+    final urlScheme = isDefaultPlatform
+        ? redirectUrl.scheme
+        : "http://localhost:3001";
+
+    setState(() {
+      error = null;
+      isLoading = true;
+    });
+
+    try {
+      final client = await Matrix.of(context).getLoginClient();
+
+      final oidcClientData = _oidcClientDataMap[client.homeserver!] ??=
+          await client.registerOidcClient(
+            redirectUris: [redirectUrl],
+            applicationType: kIsWeb
+                ? OidcApplicationType.web
+                : OidcApplicationType.native,
+            clientInformation: OidcClientInformation(
+              clientName: AppSettings.applicationName.value,
+              clientUri: Uri.parse(AppConfig.website),
+              logoUri: Uri.parse('https://fluffy.chat/assets/favicon.png'),
+              tosUri: null,
+              policyUri: AppConfig.privacyUrl,
+            ),
+          );
+      final session = await client.initOidcLoginSession(
+        oidcClientData: oidcClientData,
+        redirectUri: redirectUrl,
+      );
+
+      if (!PlatformInfos.isMobile && !PlatformInfos.isMacOS) {
+        final consent = await showOkCancelAlertDialog(
+          context: context,
+          title: L10n.of(
+            context,
+          ).appWantsToUseForLogin(client.homeserver!.toString()),
+          message: L10n.of(context).appWantsToUseForLoginDescription,
+          okLabel: L10n.of(context).continueText,
+        );
+        if (consent != OkCancelResult.ok) return;
+      }
+      if (!mounted) return;
+
+      final returnUrlString = await FlutterWebAuth2.authenticate(
+        url: session.authenticationUri.toString(),
+        callbackUrlScheme: urlScheme,
+        options: FlutterWebAuth2Options(useWebview: PlatformInfos.isMobile),
+      );
+      final returnUrl = Uri.parse(returnUrlString);
+      final queryParameters = returnUrl.hasFragment
+          ? Uri.parse(returnUrl.fragment).queryParameters
+          : returnUrl.queryParameters;
+      final code = queryParameters['code'] as String;
+      final state = queryParameters['state'] as String;
+
+      await client.oidcLogin(session: session, code: code, state: state);
+    } catch (e) {
+      setState(() {
+        error = e.toLocalizedString(context);
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
+  }
 
   void ssoLoginAction() async {
     final redirectUrl = kIsWeb
