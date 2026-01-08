@@ -206,7 +206,7 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} změnil popis chatu na: „{description}“",
+    "changedTheChatDescriptionTo": "{username} změnil/a popis konverzace na: „{description}“",
     "@changedTheChatDescriptionTo": {
         "type": "String",
         "placeholders": {
@@ -218,7 +218,7 @@
             }
         }
     },
-    "changedTheChatNameTo": "{username} změnil jméno chatu na: „{chatname}“",
+    "changedTheChatNameTo": "{username} změnil/a název konverzace na: „{chatname}“",
     "@changedTheChatNameTo": {
         "type": "String",
         "placeholders": {
@@ -2439,7 +2439,7 @@
     "@allSpaces": {},
     "noOtherDevicesFound": "Žádná ostatní zařízení nebyla nalezena",
     "@noOtherDevicesFound": {},
-    "addChatDescription": "Přidejte popis konverzace",
+    "addChatDescription": "Přidat popis konverzace...",
     "@addChatDescription": {},
     "chatDescription": "Popis konverzace",
     "@chatDescription": {},
@@ -2700,5 +2700,15 @@
         }
     },
     "usersMustKnock": "Uživatelé musí zaklepat",
-    "@usersMustKnock": {}
+    "@usersMustKnock": {},
+    "setCustomPermissionLevel": "Nastavit vlastní úroveň oprávnění",
+    "@setCustomPermissionLevel": {},
+    "changedTheChatDescription": "{username} změnil/a popis konverzace",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "{username} změnil/a název konverzace",
+    "@changedTheChatName": {},
+    "checkList": "Kontrolní seznam",
+    "@checkList": {},
+    "knock": "Zaklepat",
+    "@knock": {}
 }
