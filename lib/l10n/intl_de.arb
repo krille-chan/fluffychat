@@ -3514,5 +3514,22 @@
     "useAsSticker": "Als Sticker verwenden",
     "@useAsSticker": {},
     "useAsEmoji": "Als Emoji verwenden",
-    "@useAsEmoji": {}
+    "@useAsEmoji": {},
+    "stickerPackNameAlreadyExists": "Name des Sticker-Pakets existiert bereits",
+    "@stickerPackNameAlreadyExists": {},
+    "newStickerPack": "Neues Sticker-Paket",
+    "@newStickerPack": {},
+    "stickerPackName": "Name des Sticker-Pakets",
+    "@stickerPackName": {},
+    "noMoreResultsFound": "Keine weiteren Ergebnisse gefunden",
+    "@noMoreResultsFound": {},
+    "chatSearchedUntil": "Chat durchsucht bis {time}",
+    "@chatSearchedUntil": {
+        "type": "String",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    }
 }
