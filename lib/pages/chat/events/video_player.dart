@@ -8,8 +8,6 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/file_description.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/blur_hash.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -33,8 +31,6 @@ class EventVideoPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final supportsVideoPlayer = PlatformInfos.supportsVideoPlayer;
-
     final blurHash =
         (event.infoMap as Map<String, dynamic>).tryGet<String>(
           'xyz.amorgan.blurhash',
@@ -63,16 +59,14 @@ class EventVideoPlayer extends StatelessWidget {
           color: Colors.black,
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
           child: InkWell(
-            onTap: () => supportsVideoPlayer
-                ? showDialog(
-                    context: context,
-                    builder: (_) => ImageViewer(
-                      event,
-                      timeline: timeline,
-                      outerContext: context,
-                    ),
-                  )
-                : event.saveFile(context),
+            onTap: () => showDialog(
+              context: context,
+              builder: (_) => ImageViewer(
+                event,
+                timeline: timeline,
+                outerContext: context,
+              ),
+            ),
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             child: SizedBox(
               width: width,
@@ -104,9 +98,7 @@ class EventVideoPlayer extends StatelessWidget {
                       ),
                     Center(
                       child: CircleAvatar(
-                        child: supportsVideoPlayer
-                            ? const Icon(Icons.play_arrow_outlined)
-                            : const Icon(Icons.file_download_outlined),
+                        child: const Icon(Icons.play_arrow_outlined)
                       ),
                     ),
                     if (duration != null)
