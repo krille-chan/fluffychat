@@ -305,9 +305,13 @@ Future<void> _tryPushHelper(
           ],
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
+  const linuxPlatformChannelSpecifics = LinuxNotificationDetails(
+    icon: LinuxNotificationIcon()
+  );
   final platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
     iOS: iOSPlatformChannelSpecifics,
+    linux: linuxPlatformChannelSpecifics,
   );
 
   final title = event.room.getLocalizedDisplayname(MatrixLocals(l10n));

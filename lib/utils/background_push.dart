@@ -31,6 +31,8 @@ import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
+import 'package:unifiedpush_platform_interface/unifiedpush_platform_interface.dart';
+import 'package:unifiedpush_storage_shared_preferences/storage.dart';
 import 'package:unifiedpush_ui/unifiedpush_ui.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -75,8 +77,10 @@ class BackgroundPush {
   DateTime? lastReceivedPush;
 
   bool upAction = false;
+  Future<void>? _initializing;
 
-  void _init() async {
+  Future<void> _init() async {
+    Logs().d("init");
     //<GOOGLE_SERVICES>firebaseEnabled = true;
     try {
       mainIsolateReceivePort?.listen((message) async {
@@ -115,6 +119,7 @@ class BackgroundPush {
         const InitializationSettings(
           android: AndroidInitializationSettings('notifications_icon'),
           iOS: DarwinInitializationSettings(),
+          linux: LinuxInitializationSettings(defaultActionName: "Open chat"),
         ),
         onDidReceiveNotificationResponse: (response) => notificationTap(
           response,
@@ -136,12 +141,19 @@ class BackgroundPush {
       //<GOOGLE_SERVICES>    flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
       //<GOOGLE_SERVICES>  ),
       //<GOOGLE_SERVICES>);
-      if (Platform.isAndroid) {
+      if (PlatformInfos.usesUnifiedPush) {
+        final linuxOptions = LinuxOptions(
+          dbusName: AppConfig.pushNotificationsAppId,
+          storage: UnifiedPushStorageSharedPreferences(),
+          background: Platform.executableArguments.contains('--unifiedpush-bg'),
+        );
+
         await UnifiedPush.initialize(
           onNewEndpoint: _newUpEndpoint,
           onRegistrationFailed: (_, i) => _upUnregistered(i),
           onUnregistered: _upUnregistered,
           onMessage: _onUpMessage,
+          linuxOptions: linuxOptions,
         );
       }
     } catch (e, s) {
@@ -150,7 +162,7 @@ class BackgroundPush {
   }
 
   BackgroundPush._(this.client) {
-    _init();
+    _initializing ??= _init();
   }
 
   factory BackgroundPush.clientOnly(Client client) {
@@ -296,7 +308,7 @@ class BackgroundPush {
   Future<void> setupPush() async {
     Logs().d("SetupPush");
     if (client.onLoginStateChanged.value != LoginState.loggedIn ||
-        !PlatformInfos.isMobile ||
+        !(PlatformInfos.isMobile || PlatformInfos.usesUnifiedPush) ||
         matrix == null) {
       return;
     }
@@ -305,8 +317,11 @@ class BackgroundPush {
     if (upAction) {
       return;
     }
+    await _initializing;
+
     if (!PlatformInfos.isIOS &&
         (await UnifiedPush.getDistributors()).isNotEmpty) {
+      Logs().d((await UnifiedPush.getDistributors()).join(','));
       await setupUp();
     } else {
       await setupFirebase();
@@ -455,8 +470,8 @@ class BackgroundPush {
       l10n: l10n,
       activeRoomId: matrix?.activeRoomId,
       flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
-      useNotificationActions:
-          false, // Buggy with UP: https://codeberg.org/UnifiedPush/flutter-connector/issues/34
+      useNotificationActions: !PlatformInfos
+          .isAndroid, // Buggy with UP: https://codeberg.org/UnifiedPush/flutter-connector/issues/34
     );
   }
 }
