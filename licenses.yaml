@@ -17,6 +17,7 @@ permittedLicenses:
   - MIT
   - MPL-2.0
   - Zlib
+  - Unlicense
 
 packageLicenseOverride:
   dependency_validator: Apache-2.0
