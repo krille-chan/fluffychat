@@ -75,10 +75,15 @@ class ImageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     var borderRadius =
         this.borderRadius ?? BorderRadius.circular(AppConfig.borderRadius);
+    
+    final imageBorderRadius = BorderRadius.only(
+      topLeft: Radius.circular(AppConfig.borderRadius - 2),
+      topRight: Radius.circular(AppConfig.borderRadius - 2),
+      bottomLeft: Radius.circular(AppConfig.borderRadius / 2),
+      bottomRight: Radius.circular(AppConfig.borderRadius / 2),
+    );
 
     final fileDescription = event.fileDescription;
     final textColor = this.textColor;
@@ -92,34 +97,35 @@ class ImageBubble extends StatelessWidget {
 
     return Column(
       mainAxisSize: .min,
-      spacing: 8,
+      spacing: 6,
       children: [
         Material(
           color: Colors.transparent,
           clipBehavior: Clip.hardEdge,
           shape: RoundedRectangleBorder(
-            borderRadius: borderRadius,
-            side: BorderSide(
-              color: event.messageType == MessageTypes.Sticker
-                  ? Colors.transparent
-                  : theme.dividerColor,
-            ),
+            borderRadius: borderRadius
           ),
           child: InkWell(
             onTap: () => _onTap(context),
             borderRadius: borderRadius,
-            child: Hero(
-              tag: event.eventId,
-              child: MxcImage(
-                event: event,
-                width: width,
-                height: height,
-                fit: fit,
-                animated: animated,
-                isThumbnail: thumbnailOnly,
-                placeholder: event.messageType == MessageTypes.Sticker
-                    ? null
-                    : _buildPlaceholder,
+            child: Padding(
+              padding: const EdgeInsets.all(2.5),
+              child: Hero(
+                tag: event.eventId,
+                child: ClipRRect(
+                  borderRadius: imageBorderRadius,
+                  child: MxcImage(
+                    event: event,
+                    width: width,
+                    height: height,
+                    fit: fit,
+                    animated: animated,
+                    isThumbnail: thumbnailOnly,
+                    placeholder: event.messageType == MessageTypes.Sticker
+                        ? null
+                        : _buildPlaceholder,
+                  ),
+                ),
               ),
             ),
           ),
@@ -128,7 +134,11 @@ class ImageBubble extends StatelessWidget {
           SizedBox(
             width: width,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.only(
+                left: 6,
+                right: 6,
+                bottom: 12,
+              ),
               child: Linkify(
                 text: fileDescription,
                 textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
