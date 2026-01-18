@@ -3515,5 +3515,7 @@
     "changedTheChatDescription": "{username} 更改了聊天描述",
     "@changedTheChatDescription": {},
     "changedTheChatName": "{username} 更改了聊天名",
-    "@changedTheChatName": {}
+    "@changedTheChatName": {},
+    "noMoreResultsFound": "未找到更多结果",
+    "@noMoreResultsFound": {}
 }
