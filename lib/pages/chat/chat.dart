@@ -523,9 +523,7 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     // Do not send read markers when app is not in foreground
-    if (kIsWeb && !Matrix.of(context).webHasFocus) return;
-    if (!kIsWeb &&
-        WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed) {
+    if (WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed) {
       return;
     }
 
