@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:particles_network/particles_network.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -45,33 +46,46 @@ class LoginScaffold extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-      child: Column(
+      child: Stack(
         children: [
-          const SizedBox(height: 16),
-          Expanded(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Material(
-                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                  clipBehavior: Clip.hardEdge,
-                  elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
-                  shadowColor: theme.appBarTheme.shadowColor,
-                  child: ConstrainedBox(
-                    constraints: isMobileMode
-                        ? const BoxConstraints()
-                        : const BoxConstraints(maxWidth: 480, maxHeight: 640),
-                    child: Scaffold(
-                      key: const Key('LoginScaffold'),
-                      appBar: appBar,
-                      body: SafeArea(child: body),
+          ParticleNetwork(
+            particleColor: theme.colorScheme.primary,
+            lineColor: theme.colorScheme.secondary,
+          ),
+          Column(
+            children: [
+              const SizedBox(height: 16),
+              Expanded(
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Material(
+                      borderRadius: BorderRadius.circular(
+                        AppConfig.borderRadius,
+                      ),
+                      clipBehavior: Clip.hardEdge,
+                      elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
+                      shadowColor: theme.appBarTheme.shadowColor,
+                      child: ConstrainedBox(
+                        constraints: isMobileMode
+                            ? const BoxConstraints()
+                            : const BoxConstraints(
+                                maxWidth: 480,
+                                maxHeight: 640,
+                              ),
+                        child: Scaffold(
+                          key: const Key('LoginScaffold'),
+                          appBar: appBar,
+                          body: SafeArea(child: body),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
+              const _PrivacyButtons(mainAxisAlignment: .center),
+            ],
           ),
-          const _PrivacyButtons(mainAxisAlignment: .center),
         ],
       ),
     );
