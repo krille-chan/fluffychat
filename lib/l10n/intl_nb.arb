@@ -1836,7 +1836,7 @@
     "normalUser": "Vanlig bruker",
     "replace": "Erstatt",
     "noMoreChatsFound": "Ingen flere chatter funnet ...",
-    "confirmMatrixId": "Vennligst bekreft din Matrix-ID for å slette kontoen din.",
+    "confirmMatrixId": "Bekreft Matrix-IDen din for å slette kontoen din.",
     "unread": "Ulest",
     "aboutHomeserver": "Om {homeserver}",
     "@aboutHomeserver": {
@@ -2942,9 +2942,9 @@
     "skipChatBackup": "Hopp over sikkerhetskopiering av chat",
     "loadingMessages": "Laster inn meldinger",
     "setupChatBackup": "Konfigurer sikkerhetskopi av chat",
-    "commandHint_googly": "Send noen stirreøyne",
+    "commandHint_googly": "Send noen googly-eyes",
     "commandHint_cuddle": "Send en kos",
-    "googlyEyesContent": "{senderName} sender deg noen stirreøyner",
+    "googlyEyesContent": "{senderName} sender deg googly-eyes",
     "@googlyEyesContent": {
         "type": "String",
         "placeholders": {
