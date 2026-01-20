@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-flutter pub add fcm_shared_isolate
+flutter pub add fcm_shared_isolate:0.2.0
 flutter pub get
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
