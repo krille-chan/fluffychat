@@ -48,10 +48,11 @@ class LoginScaffold extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          ParticleNetwork(
-            particleColor: theme.colorScheme.primary,
-            lineColor: theme.colorScheme.secondary,
-          ),
+          if (!MediaQuery.of(context).disableAnimations)
+            ParticleNetwork(
+              particleColor: theme.colorScheme.primary,
+              lineColor: theme.colorScheme.secondary,
+            ),
           Column(
             children: [
               const SizedBox(height: 16),
