@@ -434,7 +434,6 @@ gmn(){return"Ugr\xe1s"},
 gnu(){return"Hivatkoz\xe1s megnyit\xe1sa b\xf6ng\xe9sz\u0151ben"},
 gnX(){return"\ud83d\ude2d Sajnos, valami f\xe9lresiklott. Ha k\xedv\xe1nja, jelezheti a bugot a fejleszt\u0151knek."},
 gjH(){return"jelent\xe9s"},
-gkC(){return"Bejelentkez\xe9s a null kiszolg\xe1l\xf3val"},
 gku(){return"Sz\xedn s\xe9ma be\xe1ll\xedt\xe1sa:"},
 giN(){return"Megh\xedv\xe1s"},
 gmi(){return"\ud83d\udce8 Megh\xedv\xf3 a csoportba"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Bejelentkez\xe9s a null kiszolg\xe1l\xf3val"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FI,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"FI":{"aE":[]}}'))};
-(a=>{a["fGY2op94qJwuDet/r8AL6cRfWTk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9dnOhUbVGEBgoZXIx9//VdJCPdQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

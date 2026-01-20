@@ -434,7 +434,6 @@ gmn(){return"Sauter"},
 gnu(){return"Ouvrir le lien dans le navigateur"},
 gnX(){return"\ud83d\ude2d Oh non. Quelque chose s'est mal pass\xe9. Si vous le souhaitez, vous pouvez signaler ce bogue aux d\xe9veloppeurs."},
 gjH(){return"signaler"},
-gkC(){return"Se connecter avec null"},
 gku(){return"D\xe9finir la couleur du th\xe8me\u202f:"},
 giN(){return"Inviter"},
 gmi(){return"\ud83d\udce8 Inviter \xe0 une discussion de groupe"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Se connecter avec null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FC,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"FC":{"aE":[]}}'))};
-(a=>{a["Vkj21uKnJfxpgUwzWiG66JxQq78="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["grRfS6dom7NStsOS7M/Cam3YKc4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_289.part.js.map

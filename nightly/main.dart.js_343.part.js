@@ -434,7 +434,6 @@ gmn(){return"Sakrash"},
 gnu(){return"Havolani brauzerda ochish"},
 gnX(){return"\ud83d\ude2d Voy yo\u2018q. Nimadir xato ketdi. Agar xohlasangiz, bu xato haqida dasturchilarga xabar berishingiz mumkin."},
 gjH(){return"hisobot"},
-gkC(){return"null bilan kiring"},
 gku(){return"Rang mavzusini sozlash:"},
 giN(){return"Taklif qilish"},
 gmi(){return"\ud83d\udce8 Guruh suhbatiga taklif"},
@@ -673,10 +672,11 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"null bilan kiring"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G7,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"G7":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["68oYuAp9bLHQlCOFiZaXZOqsgTQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["CngWfkgFusK4Awh2azzM1pt97fQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_343.part.js.map

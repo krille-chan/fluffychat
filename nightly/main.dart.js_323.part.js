@@ -434,7 +434,6 @@ gmn(){return"Hopp"},
 gnu(){return"\xc5pne lenke i nettleser"},
 gnX(){return"\ud83d\ude2d \xc5 nei. Noe gikk galt. Hvis du \xf8nsker det, kan du rapportere denne feilen til utviklerne."},
 gjH(){return"report"},
-gkC(){return"Logg inn med null"},
 gku(){return"Angi fargetema:"},
 giN(){return"Inviter"},
 gmi(){return"\ud83d\udce8 Invitasjon til gruppechat"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Logg inn med null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FS,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"FS":{"aE":[]}}'))};
-(a=>{a["Mn825+TKxLgnLjhRujr8KugYHmU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/OA9lwYbhDOUXK4x8bqhG7SwFBo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_323.part.js.map

@@ -434,7 +434,6 @@ gmn(){return"Przejd\u017a"},
 gnu(){return"Otw\xf3rz link w przegl\u0105darce"},
 gnX(){return"\ud83d\ude2d O nie! Co\u015b posz\u0142o nie tak. Spr\xf3buj ponownie p\xf3\u017aniej. Je\u015bli chcesz, mo\u017cesz zg\u0142osi\u0107 ten b\u0142\u0105d autorom programu."},
 gjH(){return"zg\u0142o\u015b"},
-gkC(){return"Zaloguj si\u0119 z null"},
 gku(){return"Ustal styl kolor\xf3w:"},
 giN(){return"Zaproszenie"},
 gmi(){return"\ud83d\udce8 Zaproszenie do rozmowy grupowej"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Zaloguj si\u0119 z null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FU,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"FU":{"aE":[]}}'))};
-(a=>{a["d3Nn56bIoCKea6xxMTQVcuqs64s="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["j9bM0MIYenFachXXDWHo5652zLQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_326.part.js.map

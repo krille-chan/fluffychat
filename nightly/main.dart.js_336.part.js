@@ -434,7 +434,6 @@ gmn(){return"Hoppa"},
 gnu(){return"\xd6ppna l\xe4nk i webbl\xe4sare"},
 gnX(){return"\ud83d\ude2d \xc5h nej. N\xe5got gick fel. Om du vill ian du rapportera denna bugg till utvecklarna."},
 gjH(){return"rapportera"},
-gkC(){return"Logga in med null"},
 gku(){return"V\xe4lj f\xe4rgtema:"},
 giN(){return"Bjud in"},
 gmi(){return"\ud83d\udce8 Bjud in gruppchatt"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Logga in med null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G1,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"G1":{"aE":[]}}'))};
-(a=>{a["lZ9Dn2qbDfi69VEqSM+Po247nPY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["xmnj2cJm/fVvvq6abD2RFtQNlWk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_336.part.js.map

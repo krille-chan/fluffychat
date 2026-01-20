@@ -434,7 +434,6 @@ gmn(){return"Saltar"},
 gnu(){return"Abrir enlace en navegador"},
 gnX(){return"\ud83d\ude2d Oh, no. Algo ha salido mal. Si quieres, puedes informar de este fallo a los desarrolladores."},
 gjH(){return"informe"},
-gkC(){return"Entrar con null"},
 gku(){return"Poner tema de color:"},
 giN(){return"Invitar"},
 gmi(){return"\ud83d\udce8 Invitar a grupo"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Entrar con null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fw,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Fw":{"aE":[]}}'))};
-(a=>{a["gbM7S/khU1BTJoQU/9+DFJ56sg0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Pg908LnehD2+7TLyAHnwHhdOX34="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_274.part.js.map

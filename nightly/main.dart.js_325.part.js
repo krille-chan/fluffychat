@@ -434,7 +434,6 @@ gmn(){return"Spring"},
 gnu(){return"Link in browser openen"},
 gnX(){return"\ud83d\ude2d Oh nee. Er is iets misgegaan. Probeer het later nog eens. Als je wilt, kun je de bug rapporteren aan de ontwikkelaars."},
 gjH(){return"Rapporteer"},
-gkC(){return"Aanmelden met null"},
 gku(){return"Kleurthema instellen:"},
 giN(){return"Uitnodigen"},
 gmi(){return"\ud83d\udce8 Groeps-chat uitnodiging"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Aanmelden met null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FT,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"FT":{"aE":[]}}'))};
-(a=>{a["UQEjTwEb53CXZKDke805hCHKWDc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BFBH32UkOKZ11djDuE9taSWkb5E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_325.part.js.map

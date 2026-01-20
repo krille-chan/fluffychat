@@ -434,7 +434,6 @@ gmn(){return"Sko\u010di"},
 gnu(){return"Otvori poveznicu u pregledniku"},
 gnX(){return"\ud83d\ude2d Joj! Dogodila se gre\u0161ka. Poku\u0161aj ponovo kasnije. Ako \u017eeli\u0161, gre\u0161ku mo\u017ee\u0161 prijaviti programerima."},
 gjH(){return"prijavi"},
-gkC(){return"Prijavi se pomo\u0107u null"},
 gku(){return"Postavi boju teme:"},
 giN(){return"Pozovi"},
 gmi(){return"\ud83d\udce8 Pozivnica u grupni razgovor"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Prijavi se pomo\u0107u null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FH,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"FH":{"aE":[]}}'))};
-(a=>{a["kfx6uvnnGc80YoPqFm8VKrsLxtI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["b6KVa33toda70HxFqmSOJjRHd38="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

@@ -434,7 +434,6 @@ gmn(){return"Salta"},
 gnu(){return"Apri il collegamento nel browser"},
 gnX(){return"\ud83d\ude2d Oh no. Qualcosa \xe8 andato storto. Se vuoi, puoi segnalare questo bug agli sviluppatori."},
 gjH(){return"segnala"},
-gkC(){return"Accedi con null"},
 gku(){return"Imposta tema colore:"},
 giN(){return"Invitare"},
 gmi(){return"\ud83d\udce8 Invita a una chat di gruppo"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Accedi con null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FM,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"FM":{"aE":[]}}'))};
-(a=>{a["E4hhdS9by/IqwvUp566t+G6atcw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4zq4Vhj9vDP3hP9at0eWDs5nBFU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_315.part.js.map

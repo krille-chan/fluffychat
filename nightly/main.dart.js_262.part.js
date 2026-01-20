@@ -434,7 +434,6 @@ gmn(){return"Springen"},
 gnu(){return"Link im Browser \xf6ffnen"},
 gnX(){return"\ud83d\ude2d Oh nein. Etwas ist schief gelaufen. Wenn du m\xf6chtest, kannst du den Bug bei den Entwicklern melden."},
 gjH(){return"Melden"},
-gkC(){return"Anmelden mit null"},
 gku(){return"Farbdesign einstellen:"},
 giN(){return"Einladen"},
 gmi(){return"\ud83d\udce8 Einladungen zum Gruppenchat"},
@@ -673,10 +672,11 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Anmelden mit null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fs,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Fs":{"aE":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["YIv1z0HI7Oi3ka4FyaVlFsYq3nw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["VQB2eXPpCtef+zyztpoZOclfDxQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_262.part.js.map

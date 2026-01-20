@@ -434,7 +434,6 @@ gmn(){return"L\xe9im"},
 gnu(){return"Oscail nasc sa bhrabhs\xe1la\xed"},
 gnX(){return"\ud83d\ude2d \xd3, a mhac go deo. Chuaigh rud \xe9igin m\xedcheart. M\xe1s mian leat, is f\xe9idir leat an fabht seo a thuairisci\xfa do na forbr\xf3ir\xed."},
 gjH(){return"tuairisc"},
-gkC(){return"S\xednigh isteach le null"},
 gku(){return"Socraigh t\xe9ama datha:"},
 giN(){return"Tabhair cuireadh"},
 gmi(){return"\ud83d\udce8 Cuireadh chuig comhr\xe1 gr\xfapa"},
@@ -673,10 +672,11 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"S\xednigh isteach le null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FD,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"FD":{"aE":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["6g60u7EagjIQUTesOYzZTM+JS1s="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jbteXktVv3EiFkbzGlfkZg7Phjo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_293.part.js.map

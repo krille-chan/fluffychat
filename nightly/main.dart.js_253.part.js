@@ -434,7 +434,6 @@ gmn(){return"Sko\u010dit"},
 gnu(){return"Otev\u0159\xedt odkaz v prohl\xed\u017ee\u010di"},
 gnX(){return"\ud83d\ude2d Ale ne, n\u011bco se porouchalo. Pokud chcete, m\u016f\u017eete tento bug nahl\xe1sit v\xfdvoj\xe1\u0159\u016fm."},
 gjH(){return"hl\xe1\u0161en\xed"},
-gkC(){return"P\u0159ihl\xe1sit se pomoc\xed null"},
 gku(){return"Nastavit barvy:"},
 giN(){return"Pozv\xe1nka"},
 gmi(){return"\ud83d\udce8 Skupinov\xe1 pozv\xe1nka"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"P\u0159ihl\xe1sit se pomoc\xed null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fq,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Fq":{"aE":[]}}'))};
-(a=>{a["Z7jpmqGTD/LMy74AAHdnDNaYyd8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["dawvnPXafxmg5/JrPPrH8objBaU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_253.part.js.map

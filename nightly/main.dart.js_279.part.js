@@ -434,7 +434,6 @@ gmn(){return"H\xfcppa"},
 gnu(){return"Ava link veebibrauseris"},
 gnX(){return"\ud83d\ude2d Oh appike! Midagi l\xe4ks valesti. Kui soovid, v\xf5id sellest veast arendajatele teatada."},
 gjH(){return"teata"},
-gkC(){return"Logi sisse kasutades teenusepakkujat null"},
 gku(){return"Vali v\xe4rviteema:"},
 giN(){return"Kutsu"},
 gmi(){return"\ud83d\udce8 Kutse vestlusr\xfchma"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Logi sisse kasutades teenusepakkujat null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fx,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Fx":{"aE":[]}}'))};
-(a=>{a["d12kayJ2PqGZ0dBqQ54sqWUThAs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["tWxhws6pcnboN2vgKK6Q0t/VMzI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_279.part.js.map

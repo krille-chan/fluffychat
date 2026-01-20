@@ -438,7 +438,6 @@ gmn(){return"Jump"},
 gnu(){return"Open link in browser"},
 gnX(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can report this bug to the developers."},
 gjH(){return"report"},
-gkC(){return"Sign in with:"},
 gku(){return"Set color theme:"},
 giN(){return"Invite"},
 gmi(){return"\ud83d\udce8 Group chat invite"},
@@ -677,6 +676,7 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Sign in with:"},
 A(d,e){return this.gbc(this).$1(e)}}
 A.FV.prototype={
 gkV(){return"true"},
@@ -1107,7 +1107,6 @@ gmn(){return"Pular"},
 gnu(){return"Abrir link no navegador"},
 gnX(){return"\ud83d\ude2d Ah, n\xe3o. Algo deu errado. Se quiser, pode relatar isto aos desenvolvedores."},
 gjH(){return"relatar"},
-gkC(){return"Conectar com null"},
 gku(){return"Aplicar paleta de cor:"},
 giN(){return"Convidar"},
 gmi(){return"\ud83d\udce8 Convite para conversa em grupo"},
@@ -1336,6 +1335,7 @@ gp8(){return"Pular backup de conversas"},
 gp9(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 gpx(){return"Carregando mensagens"},
 gp7(){return"Configurar backup de conversas"},
+gkC(){return"Conectar com null"},
 A(d,e){return this.gbc(this).$1(e)}}
 A.FW.prototype={
 gjF(){return"Repete a palavra-passe"},
@@ -1582,5 +1582,5 @@ x(A.AW,C.aE)
 w(A.AW,[A.FV,A.FW])})()
 B.dM(b.typeUniverse,JSON.parse('{"AW":{"aE":[]},"FV":{"aE":[]},"FW":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["k0wJtbWyrwhc+By8BK+YFpxD00k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["EHXZcrNzpO0nsEAdRaUa9Fo7ndk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

@@ -434,7 +434,6 @@ gmn(){return"Joan"},
 gnu(){return"Ireki esteka nabigatzailean"},
 gnX(){return"\ud83d\ude2d O ez! Zerbaitek huts egin du. Nahi izanez gero, eman garatzaileei errorearen berri."},
 gjH(){return"salatu"},
-gkC(){return"Hasi saioa null(r)ekin"},
 gku(){return"Ezarri kolore-gaia:"},
 giN(){return"Gonbidatu"},
 gmi(){return"\ud83d\udce8 Taldeko txatera gonbidapena"},
@@ -673,10 +672,11 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Hasi saioa null(r)ekin"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fy,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Fy":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["IiCfbeeNQ3Z0KhPGrN0a8CQgp6U="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jHvHOMlQItYSsxMgGcV44d7roqQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_281.part.js.map

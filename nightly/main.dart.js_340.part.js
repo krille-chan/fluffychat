@@ -434,7 +434,6 @@ gmn(){return"Atla"},
 gnu(){return"Ba\u011flant\u0131y\u0131 taray\u0131c\u0131da a\xe7"},
 gnX(){return"\ud83d\ude2d Olamaz. Bir \u015feyler yanl\u0131\u015f gitti. \u0130sterseniz bu hatay\u0131 geli\u015ftiricilere bildirebilirsiniz."},
 gjH(){return"bildir"},
-gkC(){return"null ile oturum a\xe7"},
 gku(){return"Renk temas\u0131n\u0131 ayarla:"},
 giN(){return"Davet et"},
 gmi(){return"\ud83d\udce8 Grup sohbetine davet et"},
@@ -673,10 +672,11 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"null ile oturum a\xe7"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G5,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"G5":{"aE":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["yrHmCm3pi0LK3ys9zVsfQww2Pmw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["MVl0pT55WCFQr6dmCTRcbUHoskU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_340.part.js.map

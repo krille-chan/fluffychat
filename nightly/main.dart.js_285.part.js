@@ -434,7 +434,6 @@ gmn(){return"Hypp\xe4\xe4"},
 gnu(){return"Avaa linkki selaimessa"},
 gnX(){return"\ud83d\ude2d Voi ei. Jokin meni pieleen. Halutessasi voit ilmoittaa ongelman kehitt\xe4jille."},
 gjH(){return"ilmoita"},
-gkC(){return"Kirjaudu sis\xe4\xe4n palvelulla null"},
 gku(){return"Aseta v\xe4riteema:"},
 giN(){return"Kutsu"},
 gmi(){return"\ud83d\udce8 Kutsu ryhm\xe4keskusteluun"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Kirjaudu sis\xe4\xe4n palvelulla null"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FA,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"FA":{"aE":[]}}'))};
-(a=>{a["RL9cKRJP1X6SjnBnLbN3rtcRFMU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ofJX/I9kiswOlwm/D9UiJ+Jq7EM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_285.part.js.map

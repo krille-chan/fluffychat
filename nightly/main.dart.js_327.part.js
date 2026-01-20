@@ -434,7 +434,6 @@ gmn(){return"S\u0103ri\u021bi"},
 gnu(){return"Deschide\u021bi linkul \xeen browser"},
 gnX(){return"Ceva a e\u0219uat. V\u0103 rug\u0103m s\u0103 \xeencerca\u021bi din nou mai t\u0103rziu. Dac\u0103 dori\u021bi, pute\u021bi s\u0103 reporta\u021bi problema la dezvoltatori."},
 gjH(){return"reporta\u021bi"},
-gkC(){return"Sign in with:"},
 gku(){return"Set color theme:"},
 giN(){return"Invite"},
 gmi(){return"\ud83d\udce8 Group chat invite"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"Sign in with:"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FX,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"FX":{"aE":[]}}'))};
-(a=>{a["IiqXxuMvCrh8VnSHuCRXQKjzgy4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["62oNkT6qThJ+0QInKevTpFdk47w="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_327.part.js.map

@@ -434,7 +434,6 @@ gmn(){return"\uc810\ud504"},
 gnu(){return"\ube0c\ub77c\uc6b0\uc800\uc5d0\uc11c \ub9c1\ud06c \uc5f4\uae30"},
 gnX(){return"\ud83d\ude2d \uc774\ub7f0. \ubb34\uc5b8\uac00 \uc798\ubabb\ub418\uc5c8\uc2b5\ub2c8\ub2e4. \uc6d0\ud55c\ub2e4\uba74, \uac1c\ubc1c\uc790\uc5d0\uac8c \ubc84\uadf8\ub97c \uc2e0\uace0\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4."},
 gjH(){return"\uc2e0\uace0"},
-gkC(){return"null\ub85c \ub85c\uadf8\uc778"},
 gku(){return"\uc0c9\uc0c1 \ud14c\ub9c8 \uc124\uc815:"},
 giN(){return"\ucd08\ub300"},
 gmi(){return"\ud83d\udce8 \uadf8\ub8f9 \ucc44\ud305\uc5d0 \ucd08\ub300"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"null\ub85c \ub85c\uadf8\uc778"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FP,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"FP":{"aE":[]}}'))};
-(a=>{a["M0mSQDsQOF+8WW9nzuZF/pc7ZJ4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["V9yuvmN+snoalJdbbWQdFM3+PP8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_320.part.js.map

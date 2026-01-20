@@ -434,7 +434,6 @@ gmn(){return"Jump"},
 gnu(){return"Open link in browser"},
 gnX(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can report this bug to the developers."},
 gjH(){return"report"},
-gkC(){return"null\u3067\u30ed\u30b0\u30a4\u30f3"},
 gku(){return"Set color theme:"},
 giN(){return"Invite"},
 gmi(){return"\ud83d\udce8 Group chat invite"},
@@ -673,9 +672,10 @@ pY(d){return"Version: "+d},
 gpT(){return"Logs"},
 gpK(){return"Advanced Configs"},
 gpL(){return"Advanced configurations"},
+gkC(){return"null\u3067\u30ed\u30b0\u30a4\u30f3"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FN,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"FN":{"aE":[]}}'))};
-(a=>{a["URFDp7fAAc3EelBQAdKXWxjxJfI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ZzbM39mTDYN8N3zh18DY/u4VD/Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map
