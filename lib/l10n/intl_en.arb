@@ -2739,15 +2739,6 @@
   "@signInWithPassword": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Please try again later or choose a different server.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "signInWith": "Sign in with {provider}",
-  "@signInWith": {
-    "type": "String",
-    "placeholders": {
-      "provider": {
-        "type": "String"
-      }
-    }
-  },
   "profileNotFound": "The user could not be found on the server. Maybe there is a connection problem or the user doesn't exist.",
   "@profileNotFound": {},
   "setTheme": "Set theme:",
