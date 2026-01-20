@@ -2512,15 +2512,7 @@
     "@report": {},
     "signInWithPassword": "Anmelden mit Passwort",
     "@signInWithPassword": {},
-    "signInWith": "Anmelden mit {provider}",
-    "@signInWith": {
-        "type": "String",
-        "placeholders": {
-            "provider": {
-                "type": "String"
-            }
-        }
-    },
+    "signInWithLabel": "Anmelden mit",
     "importNow": "Jetzt importieren",
     "@importNow": {},
     "importEmojis": "Emojis importieren",

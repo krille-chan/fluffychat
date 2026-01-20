@@ -134,7 +134,7 @@ class HomeserverPickerView extends StatelessWidget {
                               hintStyle: TextStyle(
                                 color: theme.colorScheme.surfaceTint,
                               ),
-                              labelText: L10n.of(context).signInWith,
+                              labelText: L10n.of(context).signInWithLabel,
                               errorText: controller.error,
                               errorMaxLines: 4,
                               suffixIcon: IconButton(
