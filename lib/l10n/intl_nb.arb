@@ -824,7 +824,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} har invitert deg til FluffyChat. \n1. Installer FluffyChat: https://fluffychat.im \n2. Registrer deg eller logg inn \n3. Åpne invitasjonslenken: {link}",
+    "inviteText": "{username} har invitert deg til FluffyChat. \n1. Installer FluffyChat: https://fluffychat.im \n2. Registrer deg eller logg inn \n3. Åpne invitasjonslenken: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1011,7 +1011,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "Bruk https://microg.org/ for å få Google-tjenester (uten at det går ut over personvernet) for å få push-merknader i FluffyChat:",
+    "noGoogleServicesWarning": "Firebase Cloud Messaging ser ikke ut til å være tilgjengelig på enheten din. For å fortsatt kunne motta push-varsler, anbefaler vi at du installerer ntfy. Med ntfy eller en annen UnifiedPush-leverandør kan du motta push-varsler på en datasikker måte. Du kan laste ned ntfy fra Play Store eller F-Droid.",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
@@ -1525,7 +1525,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "unknownEvent": "Ukjent hendelse «{type}»",
+    "unknownEvent": "Ukjent hendelse '{type}'",
     "@unknownEvent": {
         "type": "String",
         "placeholders": {
@@ -1662,7 +1662,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "wallpaper": "Bakgrunnsbilde",
+    "wallpaper": "Bakgrunnsbilde:",
     "@wallpaper": {
         "type": "String",
         "placeholders": {}
@@ -2970,5 +2970,26 @@
     "changedTheChatDescription": "{username} endret beskrivelsen av chatten",
     "changedTheChatName": "{username} endret navnet på chatten",
     "commandHint_markasdm": "Marker som rom for direktemeldinger for den angitte Matrix-IDen",
-    "indexedDbErrorTitle": "Problemer med privat modus"
+    "indexedDbErrorTitle": "Problemer med privat modus",
+    "recoveryKeyLost": "Mistet gjenopprettingsnøkkel?",
+    "separateChatTypes": "Skille direktemeldinger og grupper",
+    "@separateChatTypes": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setAsCanonicalAlias": "Angi som hovedalias",
+    "@setAsCanonicalAlias": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "spaceIsPublic": "Området er offentlig",
+    "@spaceIsPublic": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "spaceName": "Navn på område",
+    "@spaceName": {
+        "type": "String",
+        "placeholders": {}
+    }
 }
