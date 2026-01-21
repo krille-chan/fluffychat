@@ -1,5 +1,5 @@
 const path = require('path');
-const micromatch = require('micromatch');
+const picomatch = require('picomatch');
 const isGlob = require('is-glob');
 
 function normalizeOptions(dir, opts = {}) {
@@ -14,16 +14,13 @@ function normalizeOptions(dir, opts = {}) {
           opts.ignoreGlobs = [];
         }
 
-        const regex = micromatch.makeRe(value, {
+        const regex = picomatch.makeRe(value, {
           // We set `dot: true` to workaround an issue with the
           // regular expression on Linux where the resulting
           // negative lookahead `(?!(\\/|^)` was never matching
           // in some cases. See also https://bit.ly/3UZlQDm
           dot: true,
-          // C++ does not support lookbehind regex patterns, they
-          // were only added later to JavaScript engines
-          // (https://bit.ly/3V7S6UL)
-          lookbehinds: false
+          windows: process.platform === 'win32',
         });
         opts.ignoreGlobs.push(regex.source);
       } else {

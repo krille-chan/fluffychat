@@ -14,7 +14,7 @@ struct Glob {
   Glob(std::string raw);
 
   bool operator==(const Glob &other) const {
-    return mHash == other.mHash;
+    return mHash == other.mHash && mRaw == other.mRaw;
   }
 
   bool isIgnored(std::string relative_path) const;

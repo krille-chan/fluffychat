@@ -15,30 +15,34 @@ struct WatcherCompare {
   }
 };
 
-static std::unordered_set<WatcherRef , WatcherHash, WatcherCompare> sharedWatchers;
+static std::unordered_set<WatcherRef , WatcherHash, WatcherCompare>& getSharedWatchers() {
+  static std::unordered_set<WatcherRef , WatcherHash, WatcherCompare>* sharedWatchers = 
+    new std::unordered_set<WatcherRef , WatcherHash, WatcherCompare>();
+  return *sharedWatchers;
+}
 
 WatcherRef Watcher::getShared(std::string dir, std::unordered_set<std::string> ignorePaths, std::unordered_set<Glob> ignoreGlobs) {
   WatcherRef watcher = std::make_shared<Watcher>(dir, ignorePaths, ignoreGlobs);
-  auto found = sharedWatchers.find(watcher);
-  if (found != sharedWatchers.end()) {
+  auto found = getSharedWatchers().find(watcher);
+  if (found != getSharedWatchers().end()) {
     return *found;
   }
 
-  sharedWatchers.insert(watcher);
+  getSharedWatchers().insert(watcher);
   return watcher;
 }
 
 void removeShared(Watcher *watcher) {
-  for (auto it = sharedWatchers.begin(); it != sharedWatchers.end(); it++) {
+  for (auto it = getSharedWatchers().begin(); it != getSharedWatchers().end(); it++) {
     if (it->get() == watcher) {
-      sharedWatchers.erase(it);
+      getSharedWatchers().erase(it);
       break;
     }
   }
 
   // Free up memory.
-  if (sharedWatchers.size() == 0) {
-    sharedWatchers.rehash(0);
+  if (getSharedWatchers().size() == 0) {
+    getSharedWatchers().rehash(0);
   }
 }
 
@@ -84,7 +88,7 @@ struct CallbackData {
 Value callbackEventsToJS(const Env &env, std::vector<Event> &events) {
   EscapableHandleScope scope(env);
   Array arr = Array::New(env, events.size());
-  size_t currentEventIndex = 0;
+  uint32_t currentEventIndex = 0;
   for (auto eventIterator = events.begin(); eventIterator != events.end(); eventIterator++) {
     arr.Set(currentEventIndex++, eventIterator->toJS(env));
   }

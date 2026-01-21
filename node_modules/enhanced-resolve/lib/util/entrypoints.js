@@ -520,9 +520,8 @@ function assertImportsFieldRequest(request) {
 	if (request.length === 1) {
 		throw new Error("Request should have at least 2 characters");
 	}
-	if (request.charCodeAt(1) === slashCode) {
-		throw new Error('Request should not start with "#/"');
-	}
+	// Note: #/ patterns are now allowed per Node.js PR #60864
+	// https://github.com/nodejs/node/pull/60864
 	if (request.charCodeAt(request.length - 1) === slashCode) {
 		throw new Error("Only requesting file allowed");
 	}

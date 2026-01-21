@@ -107,7 +107,7 @@ module.exports = class AliasPlugin {
 										prefix.length,
 										innerRequest.length - suffix.length,
 									);
-									newRequestStr = item.alias.toString().replace("*", match);
+									newRequestStr = alias.toString().replace("*", match);
 								}
 
 								if (

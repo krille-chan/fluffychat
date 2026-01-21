@@ -2,7 +2,8 @@ const {createWrapper} = require('./wrapper');
 
 let name = `@parcel/watcher-${process.platform}-${process.arch}`;
 if (process.platform === 'linux') {
-  const { MUSL, family } = require('detect-libc');
+  const { MUSL, familySync } = require('detect-libc');
+  const family = familySync();
   if (family === MUSL) {
     name += '-musl';
   } else {

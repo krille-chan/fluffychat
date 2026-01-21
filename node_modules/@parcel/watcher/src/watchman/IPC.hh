@@ -77,7 +77,7 @@ public:
       bool success = WriteFile(
         mPipe, // pipe handle
         buf.data(), // message
-        buf.size(), // message length
+        static_cast<DWORD>(buf.size()), // message length
         NULL, // bytes written
         &overlapped // overlapped
       );
@@ -125,7 +125,7 @@ public:
       bool success = ReadFile(
         mPipe, // pipe handle
         buf, // buffer to receive reply
-        len, // size of buffer
+        static_cast<DWORD>(len), // size of buffer
         NULL, // number of bytes read
         &overlapped // overlapped
       );

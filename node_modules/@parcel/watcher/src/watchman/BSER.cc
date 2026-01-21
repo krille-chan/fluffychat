@@ -98,7 +98,7 @@ public:
       value.push_back(BSER(iss));
     }
   }
-  
+
   BSER::Array arrayValue() override {
     return value;
   }
@@ -184,7 +184,7 @@ public:
   BSERBoolean(bool value) : Value(value) {}
   bool boolValue() override { return value; }
   void encode(std::ostream &oss) override {
-    int8_t t = value == true ? BSER_BOOL_TRUE : BSER_BOOL_FALSE;
+    int8_t t = value == true ? static_cast<int8_t>(BSER_BOOL_TRUE) : static_cast<int8_t>(BSER_BOOL_FALSE);
     oss.write(reinterpret_cast<char*>(&t), sizeof(t));
   }
 };
@@ -295,7 +295,7 @@ std::string BSER::encode() {
 
   std::ostringstream res(std::ios_base::binary);
   res.write("\x00\x01", 2);
-  
+
   BSERInteger(oss.str().size()).encode(res);
   res << oss.str();
   return res.str();

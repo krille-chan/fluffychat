@@ -1,34 +1,46 @@
 #include "DirTree.hh"
 #include <inttypes.h>
 
-static std::mutex mDirCacheMutex;
-static std::unordered_map<std::string, std::weak_ptr<DirTree>> dirTreeCache;
+// "Meyer's singleton", construction is ordered by use, likewise (reverse) for destruction.
+// https://stackoverflow.com/a/17713799
+// https://laristra.github.io/flecsi/src/developer-guide/patterns/meyers_singleton.html
+static std::mutex& mDirCacheMutex() {
+   static std::mutex mutex;
+   return mutex;
+}
+
+static std::unordered_map<std::string, std::weak_ptr<DirTree>>& dirTreeCache() {
+   static std::unordered_map<std::string, std::weak_ptr<DirTree>> cache;
+   return cache;
+}
 
 struct DirTreeDeleter {
   void operator()(DirTree *tree) {
-    std::lock_guard<std::mutex> lock(mDirCacheMutex);
-    dirTreeCache.erase(tree->root);
+    std::lock_guard<std::mutex> lock(mDirCacheMutex());
+    std::unordered_map<std::string, std::weak_ptr<DirTree>> &cache = dirTreeCache();
+    cache.erase(tree->root);
     delete tree;
 
     // Free up memory.
-    if (dirTreeCache.size() == 0) {
-      dirTreeCache.rehash(0);
+    if (cache.size() == 0) {
+      cache.rehash(0);
     }
   }
 };
 
 std::shared_ptr<DirTree> DirTree::getCached(std::string root) {
-  std::lock_guard<std::mutex> lock(mDirCacheMutex);
+  std::lock_guard<std::mutex> lock(mDirCacheMutex());
+  std::unordered_map<std::string, std::weak_ptr<DirTree>> &cache = dirTreeCache();
 
-  auto found = dirTreeCache.find(root);
+  auto found = cache.find(root);
   std::shared_ptr<DirTree> tree;
 
   // Use cached tree, or create an empty one.
-  if (found != dirTreeCache.end()) {
+  if (found != cache.end()) {
     tree = found->second.lock();
   } else {
     tree = std::shared_ptr<DirTree>(new DirTree(root), DirTreeDeleter());
-    dirTreeCache.emplace(root, tree);
+    cache.emplace(root, tree);
   }
 
   return tree;
@@ -55,7 +67,7 @@ DirEntry *DirTree::_find(std::string path) {
 }
 
 DirEntry *DirTree::add(std::string path, uint64_t mtime, bool isDir) {
-  std::lock_guard<std::mutex> lock(mMutex);
+  std::lock_guard<std::mutex> lock(mDirCacheMutex());
 
   DirEntry entry(path, mtime, isDir);
   auto it = entries.emplace(entry.path, entry);
@@ -63,12 +75,12 @@ DirEntry *DirTree::add(std::string path, uint64_t mtime, bool isDir) {
 }
 
 DirEntry *DirTree::find(std::string path) {
-  std::lock_guard<std::mutex> lock(mMutex);
+  std::lock_guard<std::mutex> lock(mDirCacheMutex());
   return _find(path);
 }
 
 DirEntry *DirTree::update(std::string path, uint64_t mtime) {
-  std::lock_guard<std::mutex> lock(mMutex);
+  std::lock_guard<std::mutex> lock(mDirCacheMutex());
 
   DirEntry *found = _find(path);
   if (found) {
@@ -79,7 +91,7 @@ DirEntry *DirTree::update(std::string path, uint64_t mtime) {
 }
 
 void DirTree::remove(std::string path) {
-  std::lock_guard<std::mutex> lock(mMutex);
+  std::lock_guard<std::mutex> lock(mDirCacheMutex());
 
   DirEntry *found = _find(path);
 
@@ -99,7 +111,7 @@ void DirTree::remove(std::string path) {
 }
 
 void DirTree::write(FILE *f) {
-  std::lock_guard<std::mutex> lock(mMutex);
+  std::lock_guard<std::mutex> lock(mDirCacheMutex());
 
   fprintf(f, "%zu\n", entries.size());
   for (auto it = entries.begin(); it != entries.end(); it++) {
@@ -108,7 +120,7 @@ void DirTree::write(FILE *f) {
 }
 
 void DirTree::getChanges(DirTree *snapshot, EventList &events) {
-  std::lock_guard<std::mutex> lock(mMutex);
+  std::lock_guard<std::mutex> lock(mDirCacheMutex());
   std::lock_guard<std::mutex> snapshotLock(snapshot->mMutex);
 
   for (auto it = entries.begin(); it != entries.end(); it++) {

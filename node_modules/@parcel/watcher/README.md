@@ -103,7 +103,7 @@ You can specify the exact backend you wish to use by passing the `backend` optio
 
 All of the APIs in `@parcel/watcher` support the following options, which are passed as an object as the last function argument.
 
-- `ignore` - an array of paths or glob patterns to ignore. uses [`is-glob`](https://github.com/micromatch/is-glob) to distinguish paths from globs. glob patterns are parsed with [`micromatch`](https://github.com/micromatch/micromatch) (see [features](https://github.com/micromatch/micromatch#matching-features)).
+- `ignore` - an array of paths or glob patterns to ignore. uses [`is-glob`](https://github.com/micromatch/is-glob) to distinguish paths from globs. glob patterns are parsed with [`picomatch`](https://github.com/micromatch/picomatch) (see [features](https://github.com/micromatch/picomatch#globbing-features)).
   - paths can be relative or absolute and can either be files or directories. No events will be emitted about these files or directories or their children.
   - glob patterns match on relative paths from the root that is watched. No events will be emitted for matching paths.
 - `backend` - the name of an explicitly chosen backend to use. Allowed options are `"fs-events"`, `"watchman"`, `"inotify"`, `"kqueue"`, `"windows"`, or `"brute-force"` (only for querying). If the specified backend is not available on the current platform, the default backend will be used instead.
@@ -129,6 +129,7 @@ subscribe(/* ... */);
 - [Gatsby Cloud](https://twitter.com/chatsidhartha/status/1435647412828196867)
 - [Nx](https://nx.dev)
 - [Nuxt](https://nuxt.com)
+- [Meteor](https://github.com/meteor/meteor)
 
 ## License
 

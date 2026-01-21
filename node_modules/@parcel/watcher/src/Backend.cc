@@ -21,7 +21,11 @@
 #include "Backend.hh"
 #include <unordered_map>
 
-static std::unordered_map<std::string, std::shared_ptr<Backend>> sharedBackends;
+static std::unordered_map<std::string, std::shared_ptr<Backend>>& getSharedBackends() {
+  static std::unordered_map<std::string, std::shared_ptr<Backend>>* sharedBackends = 
+    new std::unordered_map<std::string, std::shared_ptr<Backend>>();
+  return *sharedBackends;
+}
 
 std::shared_ptr<Backend> getBackend(std::string backend) {
   // Use FSEvents on macOS by default.
@@ -65,8 +69,8 @@ std::shared_ptr<Backend> getBackend(std::string backend) {
 }
 
 std::shared_ptr<Backend> Backend::getShared(std::string backend) {
-  auto found = sharedBackends.find(backend);
-  if (found != sharedBackends.end()) {
+  auto found = getSharedBackends().find(backend);
+  if (found != getSharedBackends().end()) {
     return found->second;
   }
 
@@ -76,21 +80,21 @@ std::shared_ptr<Backend> Backend::getShared(std::string backend) {
   }
 
   result->run();
-  sharedBackends.emplace(backend, result);
+  getSharedBackends().emplace(backend, result);
   return result;
 }
 
 void removeShared(Backend *backend) {
-  for (auto it = sharedBackends.begin(); it != sharedBackends.end(); it++) {
+  for (auto it = getSharedBackends().begin(); it != getSharedBackends().end(); it++) {
     if (it->second.get() == backend) {
-      sharedBackends.erase(it);
+      getSharedBackends().erase(it);
       break;
     }
   }
 
   // Free up memory.
-  if (sharedBackends.size() == 0) {
-    sharedBackends.rehash(0);
+  if (getSharedBackends().size() == 0) {
+    getSharedBackends().rehash(0);
   }
 }
 
@@ -145,7 +149,7 @@ void Backend::watch(WatcherRef watcher) {
     try {
       this->subscribe(watcher);
       mSubscriptions.insert(watcher);
-    } catch (std::exception &err) {
+    } catch (std::exception&) {
       unref();
       throw;
     }
