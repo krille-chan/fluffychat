@@ -3143,5 +3143,6 @@
     },
     "logs": "Logaí",
     "advancedConfigs": "Cumraíochtaí Ardleibhéil",
-    "advancedConfigurations": "Cumraíochtaí ardleibhéil"
+    "advancedConfigurations": "Cumraíochtaí ardleibhéil",
+    "signInWithLabel": "Sínigh isteach le:"
 }
