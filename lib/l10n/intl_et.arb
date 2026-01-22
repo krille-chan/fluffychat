@@ -3137,5 +3137,6 @@
     },
     "logs": "Logid",
     "advancedConfigs": "Täiendav seadistus",
-    "advancedConfigurations": "Täiendavad seadistused"
+    "advancedConfigurations": "Täiendavad seadistused",
+    "signInWithLabel": "Logi sisse kasutades:"
 }
