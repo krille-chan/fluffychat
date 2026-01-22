@@ -55,7 +55,6 @@ dependencies:
   linkify: ^5.0.0
   matrix: ^4.1.0
   mime: ^2.0.0
-  native_imaging: ^0.2.0
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^8.3.1
   path: ^1.9.0

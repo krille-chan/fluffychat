@@ -1116,14 +1116,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
-  native_imaging:
-    dependency: "direct main"
-    description:
-      name: native_imaging
-      sha256: "93573afdcab070011d78a40fc1f69b61967f1f8485d2b81a7a2ee585a85f4c04"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.0"
   nested:
     dependency: transitive
     description:
