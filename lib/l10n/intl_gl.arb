@@ -3121,5 +3121,22 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "federationBaseUrl": "URL base para federación",
+    "clientWellKnownInformation": "Información Client-Well-Known:",
+    "baseUrl": "URL base",
+    "identityServer": "Servidor de identidade:",
+    "versionWithNumber": "Versión: {version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "logs": "Rexistros",
+    "advancedConfigs": "Axustes avanzados",
+    "advancedConfigurations": "Configuracións avanzadas",
+    "signInWithLabel": "Acceder con:"
 }
