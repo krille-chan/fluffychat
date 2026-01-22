@@ -3121,5 +3121,22 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "federationBaseUrl": "联邦基础 URL",
+    "clientWellKnownInformation": "Client-Well-Known 信息：",
+    "baseUrl": "基础 URL",
+    "identityServer": "身份服务器：",
+    "versionWithNumber": "版本：{version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "logs": "日志",
+    "advancedConfigs": "高级配置",
+    "advancedConfigurations": "高级配置",
+    "signInWithLabel": "登录方式："
 }
