@@ -39,7 +39,7 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   flutter_shortcuts_new: ^2.0.0
   flutter_vodozemac: ^0.4.1
-  flutter_web_auth_2: ^4.1.0
+  flutter_web_auth_2: ^5.0.0
   flutter_webrtc: ^1.2.1
   geolocator: ^14.0.2
   go_router: ^17.0.1
