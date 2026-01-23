@@ -56,7 +56,7 @@ dependencies:
   matrix: ^4.1.0
   mime: ^2.0.0
   opus_caf_converter_dart: ^1.0.1
-  package_info_plus: ^8.3.1
+  package_info_plus: ^9.0.0
   path: ^1.9.0
   path_provider: ^2.1.2
   permission_handler: ^12.0.1
