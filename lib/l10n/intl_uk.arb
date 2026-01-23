@@ -3121,5 +3121,22 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "versionWithNumber": "Версія: {version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "logs": "Журнали",
+    "advancedConfigs": "Розширені налаштування",
+    "advancedConfigurations": "Розширені налаштування",
+    "signInWithLabel": "Увійти через:",
+    "identityServer": "Сервер профілів:",
+    "clientWellKnownInformation": "Дані клієнту із .well-known:",
+    "federationBaseUrl": "Основний URL федерації",
+    "baseUrl": "Основний URL"
 }
