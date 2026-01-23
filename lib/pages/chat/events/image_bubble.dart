@@ -44,10 +44,9 @@ class ImageBubble extends StatelessWidget {
   });
 
   Widget _buildPlaceholder(BuildContext context) {
-    final String blurHashString =
-        event.infoMap['xyz.amorgan.blurhash'] is String
-        ? event.infoMap['xyz.amorgan.blurhash']
-        : 'LEHV6nWB2yk8pyo0adR*.7kCMdnj';
+    final blurHashString =
+        event.infoMap.tryGet<String>('xyz.amorgan.blurhash') ??
+        'LEHV6nWB2yk8pyo0adR*.7kCMdnj';
     return SizedBox(
       width: width,
       height: height,

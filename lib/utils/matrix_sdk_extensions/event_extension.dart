@@ -41,11 +41,11 @@ extension LocalizedBody on Event {
 
   bool get isAttachmentSmallEnough =>
       infoMap['size'] is int &&
-      infoMap['size'] < room.client.database.maxFileSize;
+      (infoMap['size'] as int) < room.client.database.maxFileSize;
 
   bool get isThumbnailSmallEnough =>
       thumbnailInfoMap['size'] is int &&
-      thumbnailInfoMap['size'] < room.client.database.maxFileSize;
+      (thumbnailInfoMap['size'] as int) < room.client.database.maxFileSize;
 
   bool get showThumbnail =>
       [
