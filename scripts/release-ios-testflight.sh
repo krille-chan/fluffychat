@@ -1,5 +1,5 @@
 #!/bin/sh -ve
-flutter pub add fcm_shared_isolate:0.1.0
+flutter pub add fcm_shared_isolate:0.2.0
 sed -i '' 's,//<GOOGLE_SERVICES>,,g' lib/utils/background_push.dart
 flutter clean
 flutter pub get
