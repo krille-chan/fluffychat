@@ -51,6 +51,8 @@ dependencies:
   image_picker: ^1.2.1
   intl: any
   just_audio: ^0.10.5
+  just_audio_media_kit: ^2.1.0
+  media_kit_libs_linux: any
   latlong2: ^0.9.1
   linkify: ^5.0.0
   matrix: ^4.1.0
@@ -75,6 +77,8 @@ dependencies:
   sqlcipher_flutter_libs: ^0.6.8
   swipe_to_action: ^0.3.0
   unifiedpush: ^6.2.0
+  unifiedpush_storage_shared_preferences: ^1.0.0
+  unifiedpush_platform_interface: ^4.0.0
   unifiedpush_ui: ^0.2.0
   universal_html: ^2.3.0
   url_launcher: ^6.3.2

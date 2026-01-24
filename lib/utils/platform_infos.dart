@@ -29,12 +29,12 @@ abstract class PlatformInfos {
   static bool get isDesktop => isLinux || isWindows || isMacOS;
 
   static bool get usesTouchscreen => !isMobile;
+  static bool get usesUnifiedPush => isAndroid || isLinux;
 
-  static bool get supportsVideoPlayer =>
-      !PlatformInfos.isWindows && !PlatformInfos.isLinux;
+  static bool get supportsVideoPlayer => !PlatformInfos.isWindows;
 
   /// Web could also record in theory but currently only wav which is too large
-  static bool get platformCanRecord => (isMobile || isMacOS);
+  static bool get platformCanRecord => (isMobile || isMacOS || isLinux);
 
   static String get clientName =>
       '${AppSettings.applicationName.value} ${isWeb ? 'web' : Platform.operatingSystem}${kReleaseMode ? '' : 'Debug'}';
