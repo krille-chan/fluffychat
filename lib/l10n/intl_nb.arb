@@ -1830,7 +1830,7 @@
             }
         }
     },
-    "appLockDescription": "Lås appen med en PIN-kode når den ikke er i bruk",
+    "appLockDescription": "Lås programmet når programmet brukes uten en PIN-kod",
     "ignoreUser": "Ignorer bruker",
     "setCustomPermissionLevel": "Angi egendefinert tillatelsesnivå",
     "normalUser": "Vanlig bruker",
