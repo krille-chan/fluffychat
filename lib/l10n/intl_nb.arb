@@ -1830,7 +1830,7 @@
             }
         }
     },
-    "appLockDescription": "Lås programmet når programmet brukes uten en PIN-kod",
+    "appLockDescription": "Lås appen med en PIN-kode når den ikke er i bruk",
     "ignoreUser": "Ignorer bruker",
     "setCustomPermissionLevel": "Angi egendefinert tillatelsesnivå",
     "normalUser": "Vanlig bruker",
@@ -2868,7 +2868,7 @@
     "banUserDescription": "Brukeren vil bli utestengt fra chatten og vil ikke kunne delta i chatten igjen før utestengelsen er opphevet.",
     "unbanUserDescription": "Brukeren vil kunne gå inn i chatten igjen hvis vedkommende prøver.",
     "kickUserDescription": "Brukeren blir kastet ut av chatten, men ikke utestengt. I offentlige chatter kan brukeren bli med på nytt når som helst.",
-    "sendTypingNotifications": "Send skrivevarsler",
+    "sendTypingNotifications": "Send varsler ved skriving",
     "swipeRightToLeftToReply": "Sveip fra høyre mot venstre for å svare",
     "startFirstChat": "Start din første chat",
     "unlockOldMessages": "Lås opp gamle meldinger",
@@ -2991,5 +2991,45 @@
     "@spaceName": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "useAsEmoji": "Bruk som emoji",
+    "stickerPackNameAlreadyExists": "Klistremerkepakken finnes allerede",
+    "newStickerPack": "Ny klistremerkepakke",
+    "stickerPackName": "Navn på klistremerkepakke",
+    "signInWithLabel": "Logg inn med:",
+    "enterSpace": "Bli med i området",
+    "enterRoom": "Bli med i rommet",
+    "addToBundle": "Legg til i pakke",
+    "removeFromBundle": "Fjern fra denne pakken",
+    "bundleName": "Navn på pakke",
+    "noBackupWarning": "Advarsel! Hvis du ikke aktiverer sikkerhetskopiering av chatten, vil du miste tilgangen til dine krypterte meldinger. Det anbefales sterkt å aktivere sikkerhetskopiering før du logger ut.",
+    "commandHint_op": "Angi makt-nivå for valgt bruker (standard: 50)",
+    "@commandHint_op": {
+        "type": "String",
+        "description": "Usage hint for the command /op"
+    },
+    "editBundlesForAccount": "Rediger pakker for denne kontoen",
+    "register": "Registrer",
+    "@register": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "errorAddingWidget": "Kunne ikke legge til widget.",
+    "makeAdminDescription": "Når du gjør denne brukeren til administrator, kan du kanskje ikke omgjøre det senere. Brukeren vil da få de samme rettighetene som deg.",
+    "joinSpace": "Bli med i området",
+    "publicSpaces": "Offentlige områder",
+    "databaseBuildErrorBody": "Kunne ikke bygge SQLite-databasen. Appen prøver å bruke den gamle databasen enn så lenge. Vennligst rapporter denne feilen til utviklerne på {url}. Feilmeldingen er: {error}",
+    "@databaseBuildErrorBody": {
+        "type": "String",
+        "placeholders": {
+            "url": {
+                "type": "String"
+            },
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "verifyOtherUserDescription": "Hvis du verifiserer en annen bruker, kan du være trygg på at du vet hvem du faktisk skriver med. 💪\n\nNår du starter en verifisering, vil både du og den andre brukeren se et popup-vindu i appen. Der vil dere se en serie emojier eller tall som dere må sammenligne med hverandre.\n\nDen beste måten å gjøre dette på er å møtes ansikt til ansikt eller starte en videosamtale. 👭",
+    "verifyOtherDeviceDescription": "Når du verifiserer en annen enhet, kan disse enhetene utveksle nøkler, noe som øker den generelle sikkerheten din. 💪 Når du starter en verifisering, vil det dukke opp et popup-vindu i appen på begge enhetene. Der vil du se en serie emojier eller tall som du må sammenligne med hverandre. Det er best å ha begge enhetene forhånden før du starter verifiseringen. 🤳"
 }
