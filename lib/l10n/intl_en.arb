@@ -1389,6 +1389,7 @@
     "type": "String",
     "placeholders": {}
   },
+  "newMessage": "New message",
   "newMessageInFluffyChat": "💬 New message in FluffyChat",
   "@newMessageInFluffyChat": {
     "type": "String",
