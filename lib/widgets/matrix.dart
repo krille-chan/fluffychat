@@ -13,7 +13,7 @@ import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_html/html.dart' as html;
+import 'package:universal_web/web.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
