@@ -3031,5 +3031,33 @@
         }
     },
     "verifyOtherUserDescription": "Hvis du verifiserer en annen bruker, kan du være trygg på at du vet hvem du faktisk skriver med. 💪\n\nNår du starter en verifisering, vil både du og den andre brukeren se et popup-vindu i appen. Der vil dere se en serie emojier eller tall som dere må sammenligne med hverandre.\n\nDen beste måten å gjøre dette på er å møtes ansikt til ansikt eller starte en videosamtale. 👭",
-    "verifyOtherDeviceDescription": "Når du verifiserer en annen enhet, kan disse enhetene utveksle nøkler, noe som øker den generelle sikkerheten din. 💪 Når du starter en verifisering, vil det dukke opp et popup-vindu i appen på begge enhetene. Der vil du se en serie emojier eller tall som du må sammenligne med hverandre. Det er best å ha begge enhetene forhånden før du starter verifiseringen. 🤳"
+    "verifyOtherDeviceDescription": "Når du verifiserer en annen enhet, kan disse enhetene utveksle nøkler, noe som øker den generelle sikkerheten din. 💪 Når du starter en verifisering, vil det dukke opp et popup-vindu i appen på begge enhetene. Der vil du se en serie emojier eller tall som du må sammenligne med hverandre. Det er best å ha begge enhetene forhånden før du starter verifiseringen. 🤳",
+    "clientWellKnownInformation": "Velkjent informasjon om klienten:",
+    "baseUrl": "Base URL",
+    "identityServer": "Identitetsserver:",
+    "versionWithNumber": "Versjon: {version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "logs": "Logger",
+    "advancedConfigs": "Avanserte innstillinger",
+    "advancedConfigurations": "Avanserte innstillinger",
+    "createSticker": "Lag sticker eller emoji",
+    "useAsSticker": "Bruk som sticker",
+    "pollQuestion": "Spørsmål til avstemning",
+    "hasKnocked": "🚪{user} har banket på",
+    "@hasKnocked": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "usersMustKnock": "Brukere må banke på",
+    "knock": "Bank på"
 }
