@@ -44,6 +44,11 @@ jobs:
           flutter build macos --release \
             --dart-define=FLUTTER_BUILD_NAME=unsigned
 
+      - name: Ad-hoc sign the app
+        run: |
+          # Ad-hoc sign so macOS will allow the app to launch
+          codesign --force --deep --sign - "build/macos/Build/Products/Release/FluffyChat.app"
+
       - name: Create DMG
         run: |
           create-dmg \
