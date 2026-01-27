@@ -31,8 +31,18 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      - name: Disable code signing
+        run: |
+          # Disable code signing for unsigned distribution
+          sed -i '' 's/CODE_SIGN_IDENTITY = .*/CODE_SIGN_IDENTITY = "-";/' macos/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/DEVELOPMENT_TEAM = .*/DEVELOPMENT_TEAM = "";/' macos/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/CODE_SIGN_STYLE = .*/CODE_SIGN_STYLE = Manual;/' macos/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/PROVISIONING_PROFILE_SPECIFIER = .*/PROVISIONING_PROFILE_SPECIFIER = "";/' macos/Runner.xcodeproj/project.pbxproj
+
       - name: Build macOS
-        run: flutter build macos --release
+        run: |
+          flutter build macos --release \
+            --dart-define=FLUTTER_BUILD_NAME=unsigned
 
       - name: Create DMG
         run: |
@@ -44,14 +54,25 @@ jobs:
             --icon "FluffyChat.app" 200 190 \
             --hide-extension "FluffyChat.app" \
             --app-drop-link 600 185 \
+            --no-internet-enable \
             "FluffyChat-macOS.dmg" \
-            "build/macos/Build/Products/Release/FluffyChat.app"
+            "build/macos/Build/Products/Release/FluffyChat.app" || true
+
+          # Fallback: if create-dmg fails, just zip the app
+          if [ ! -f "FluffyChat-macOS.dmg" ]; then
+            cd build/macos/Build/Products/Release
+            zip -r ../../../../../FluffyChat-macOS.zip FluffyChat.app
+            cd ../../../../..
+          fi
 
       - name: Upload DMG artifact
         uses: actions/upload-artifact@v5
         with:
           name: FluffyChat-macOS
-          path: FluffyChat-macOS.dmg
+          path: |
+            FluffyChat-macOS.dmg
+            FluffyChat-macOS.zip
+          if-no-files-found: error
 
       - name: Upload to release
         if: github.event_name == 'release'
