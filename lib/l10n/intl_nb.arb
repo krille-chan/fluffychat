@@ -1777,7 +1777,7 @@
         }
     },
     "sendOnEnter": "Trykk på enter for å sende",
-    "badServerVersionsException": "Denne hjemme serveren støtter følgene Spec-versjoner:\n{serverVersions}\nMen denne applikasjonen støtter kun {supportedVersions}",
+    "badServerVersionsException": "Hjemmeserveren støtter følgene Spec-versjoner:\n{serverVersions}\nMen applikasjonen støtter kun {supportedVersions}",
     "@badServerVersionsException": {
         "type": "String",
         "placeholders": {
