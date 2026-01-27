@@ -1,0 +1,65 @@
+name: Build macOS
+
+on:
+  workflow_dispatch:
+  release:
+    types:
+      - created
+
+jobs:
+  build_macos:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Load version config
+        run: cat .github/workflows/versions.env >> $GITHUB_ENV
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - name: Use Xcode 16.4
+        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
+
+      - name: Install dependencies
+        run: brew install sqlcipher create-dmg
+
+      - uses: moonrepo/setup-rust@v1
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Build macOS
+        run: flutter build macos --release
+
+      - name: Create DMG
+        run: |
+          create-dmg \
+            --volname "FluffyChat" \
+            --window-pos 200 120 \
+            --window-size 800 400 \
+            --icon-size 100 \
+            --icon "FluffyChat.app" 200 190 \
+            --hide-extension "FluffyChat.app" \
+            --app-drop-link 600 185 \
+            "FluffyChat-macOS.dmg" \
+            "build/macos/Build/Products/Release/FluffyChat.app"
+
+      - name: Upload DMG artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: FluffyChat-macOS
+          path: FluffyChat-macOS.dmg
+
+      - name: Upload to release
+        if: github.event_name == 'release'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: FluffyChat-macOS.dmg
+          asset_name: FluffyChat-macOS.dmg
+          asset_content_type: application/x-apple-diskimage
