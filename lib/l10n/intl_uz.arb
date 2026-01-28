@@ -2079,7 +2079,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "unknownEvent": "Noma’lum hodisa '{type}'",
+    "unknownEvent": "Noma’lum hodisa {type}",
     "@unknownEvent": {
         "type": "String",
         "placeholders": {
@@ -2795,7 +2795,7 @@
     "loginWithMatrixId": "Matriks-ID bilan kirish",
     "discoverHomeservers": "Uy serverlarini kashf eting",
     "whatIsAHomeserver": "Uy serveri nima?",
-    "homeserverDescription": "Barcha ma’lumotlaringiz xuddi elektron pochta provayderi kabi homeserverda saqlanadi. Siz qaysi uy serveridan foydalanishni tanlashingiz mumkin, shu bilan birga siz hamma bilan muloqot qilishingiz mumkin. Batafsil: https://matrix.org.",
+    "homeserverDescription": "Barcha ma’lumotlaringiz xuddi elektron pochta provayderi kabi uy serverda saqlanadi. Siz qaysi uy serveridan foydalanishni tanlashingiz mumkin, shu bilan birga siz hamma bilan muloqot qilishingiz mumkin. Batafsil: https://matrix.org.",
     "doesNotSeemToBeAValidHomeserver": "Uy serveri mos emasga o‘xshaydi. URL xato kiritilganmi?",
     "calculatingFileSize": "Fayl hajmi hisoblanmoqda...",
     "prepareSendingAttachment": "Yuborish uchun biriktirmani tayyorlang...",
@@ -3098,5 +3098,32 @@
     "skipChatBackup": "Chat zaxirasini tashlab ketish",
     "skipChatBackupWarning": "Ishonchingiz komilmi? Chat zaxirasini yoqmasdan qurilmangizni almashtirsangiz, xabarlaringizga kira olmay qolishingiz mumkin.",
     "loadingMessages": "Xabarlar yuklanmoqda",
-    "setupChatBackup": "Chat zaxirasini sozlash"
+    "setupChatBackup": "Chat zaxirasini sozlash",
+    "noMoreResultsFound": "Boshqa natijalar topilmadi",
+    "chatSearchedUntil": "Chat {time} gacha qidirildi",
+    "@chatSearchedUntil": {
+        "type": "String",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "federationBaseUrl": "Federatsiya bazasi URL manzili",
+    "clientWellKnownInformation": "Mijozlarga yaxshi tanish ma’lumotlar:",
+    "baseUrl": "Asosiy URL",
+    "identityServer": "Identifikatsiya serveri:",
+    "versionWithNumber": "Versiya: {version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "logs": "Jurnallar",
+    "advancedConfigs": "Kengaytirilgan konfiguratsiyalar",
+    "advancedConfigurations": "Kengaytirilgan sozlamalar",
+    "signInWithLabel": "Kirish:"
 }
