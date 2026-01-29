@@ -178,7 +178,6 @@ class SettingsHomeserverView extends StatelessWidget {
               Divider(color: theme.dividerColor),
               FutureBuilder(
                 future: client.getWellknown(),
-                initialData: client.wellKnown,
                 builder: (context, snapshot) {
                   final error = snapshot.error;
                   if (error != null) {
