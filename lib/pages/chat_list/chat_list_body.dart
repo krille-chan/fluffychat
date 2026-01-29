@@ -140,18 +140,17 @@ class ChatListViewBody extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         children:
                             [
-                                  if (AppSettings.separateChatTypes.value)
-                                    ActiveFilter.messages
-                                  else
-                                    ActiveFilter.allChats,
-                                  ActiveFilter.groups,
-                                  ActiveFilter.unread,
+                                  ActiveFilter.allChats,
+
                                   if (spaceDelegateCandidates.isNotEmpty &&
                                       !AppSettings
                                           .displayNavigationRail
                                           .value &&
                                       !FluffyThemes.isColumnMode(context))
                                     ActiveFilter.spaces,
+                                  ActiveFilter.unread,
+                                  ActiveFilter.groups,
+                                  ActiveFilter.messages,
                                 ]
                                 .map(
                                   (filter) => Padding(
