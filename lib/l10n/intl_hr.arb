@@ -107,7 +107,7 @@
             }
         }
     },
-    "badServerLoginTypesException": "Domaći poslužitelj podržava vrste prijave:\n{serverVersions}\nMeđutim ovaj program podržava samo:\n{supportedVersions}",
+    "badServerLoginTypesException": "Domaći server podržava vrste prijave:\n{serverVersions}\nMeđutim ovaj program podržava samo:\n{supportedVersions}",
     "@badServerLoginTypesException": {
         "type": "String",
         "placeholders": {
@@ -119,7 +119,7 @@
             }
         }
     },
-    "badServerVersionsException": "Domaći poslužitelj podržava verzije specifikacije:\n{serverVersions}\nMeđutim ovaj program podržava samo {supportedVersions}",
+    "badServerVersionsException": "Domaći server podržava verzije specifikacije:\n{serverVersions}\nMeđutim ovaj program podržava samo {supportedVersions}",
     "@badServerVersionsException": {
         "type": "String",
         "placeholders": {
@@ -336,7 +336,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "changeTheHomeserver": "Promijeni domaćeg poslužitelja",
+    "changeTheHomeserver": "Promijeni domaći server",
     "@changeTheHomeserver": {
         "type": "String",
         "placeholders": {}
@@ -392,7 +392,6 @@
         "placeholders": {}
     },
     "clearArchive": "Isprazni arhiv",
-    "@clearArchive": {},
     "close": "Zatvori",
     "@close": {
         "type": "String",
@@ -522,7 +521,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "contentHasBeenReported": "Sadržaj je prijavljen administratorima poslužitelja",
+    "contentHasBeenReported": "Sadržaj je prijavljen administratorima servera",
     "@contentHasBeenReported": {
         "type": "String",
         "placeholders": {}
@@ -601,7 +600,7 @@
             }
         }
     },
-    "dateWithoutYear": "{day}. {month}.",
+    "dateWithoutYear": "{day}-{month}",
     "@dateWithoutYear": {
         "type": "String",
         "placeholders": {
@@ -613,7 +612,7 @@
             }
         }
     },
-    "dateWithYear": "{day}. {month}. {year}.",
+    "dateWithYear": "{year}-{month}-{day}",
     "@dateWithYear": {
         "type": "String",
         "placeholders": {
@@ -688,7 +687,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "editBlockedServers": "Uredi blokirane poslužitelje",
+    "editBlockedServers": "Uredi blokirane servere",
     "@editBlockedServers": {
         "type": "String",
         "placeholders": {}
@@ -787,7 +786,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "enterYourHomeserver": "Upiši svoj domaći poslužitelj",
+    "enterYourHomeserver": "Upiši svoj domaći server",
     "@enterYourHomeserver": {
         "type": "String",
         "placeholders": {}
@@ -1022,7 +1021,7 @@
             }
         }
     },
-    "kickedAndBanned": "🙅 {username} je izbacio/la i blokirao/la {targetName}",
+    "kickedAndBanned": "🙅 {username} je izbacio/la i isključio/la {targetName}",
     "@kickedAndBanned": {
         "type": "String",
         "placeholders": {
@@ -1161,7 +1160,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noConnectionToTheServer": "Ne postoji veza s poslužiteljem",
+    "noConnectionToTheServer": "Ne postoji veza sa serverom",
     "@noConnectionToTheServer": {
         "type": "String",
         "placeholders": {}
@@ -2055,7 +2054,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noMatrixServer": "{server1} nije matrix poslužitelj. Da li umjesto njega koristiti {server2}?",
+    "noMatrixServer": "{server1} nije matrix server. Da li umjesto njega koristiti {server2}?",
     "@noMatrixServer": {
         "type": "String",
         "placeholders": {
@@ -2078,55 +2077,30 @@
         "placeholders": {}
     },
     "chatHasBeenAddedToThisSpace": "Razgovor je dodan u ovaj prostor",
-    "@chatHasBeenAddedToThisSpace": {},
     "addToSpace": "Dodaj u prostor",
-    "@addToSpace": {},
-    "serverRequiresEmail": "Za registraciju ovaj poslužitelj mora potvrditi tvoju e-mail adresu.",
-    "@serverRequiresEmail": {},
+    "serverRequiresEmail": "Za registraciju ovaj server mora potvrditi tvoju e-mail adresu.",
     "scanQrCode": "Snimi QR kod",
-    "@scanQrCode": {},
-    "homeserver": "Domaći poslužitelj",
-    "@homeserver": {},
+    "homeserver": "Domaći server",
     "sendOnEnter": "Pošalji pritiskom tipke enter",
-    "@sendOnEnter": {},
     "link": "Poveznica",
-    "@link": {},
     "enableMultiAccounts": "(BETA) Omogući korištenje više računa na ovom uređaju",
-    "@enableMultiAccounts": {},
     "bundleName": "Ime paketa",
-    "@bundleName": {},
     "removeFromBundle": "Ukloni iz ovog paketa",
-    "@removeFromBundle": {},
     "addToBundle": "Dodaj u paket",
-    "@addToBundle": {},
     "editBundlesForAccount": "Uredi pakete za ovaj račun",
-    "@editBundlesForAccount": {},
     "addAccount": "Dodaj račun",
-    "@addAccount": {},
     "oneClientLoggedOut": "Jedan od tvojih klijenata je odjavljen",
-    "@oneClientLoggedOut": {},
     "unverified": "Nepotvrđeno",
-    "@unverified": {},
     "yourChatBackupHasBeenSetUp": "Sigurnosna kopija tvog razgovora je postavljena.",
-    "@yourChatBackupHasBeenSetUp": {},
     "repeatPassword": "Ponovi lozinku",
-    "@repeatPassword": {},
     "messageInfo": "Informacija poruke",
-    "@messageInfo": {},
     "messageType": "Vrsta poruke",
-    "@messageType": {},
     "sender": "Pošiljatelj",
-    "@sender": {},
     "openGallery": "Otvori galeriju",
-    "@openGallery": {},
     "time": "Vrijeme",
-    "@time": {},
     "removeFromSpace": "Ukloni iz prostora",
-    "@removeFromSpace": {},
     "addToSpaceDescription": "Odaberi prostor kojem će se ovaj razgovor dodati.",
-    "@addToSpaceDescription": {},
     "start": "Početak",
-    "@start": {},
     "commandHint_clearcache": "Isprazni predmemoriju",
     "@commandHint_clearcache": {
         "type": "String",
@@ -2162,27 +2136,16 @@
         }
     },
     "publish": "Objavi",
-    "@publish": {},
     "markAsRead": "Označi kao pročitano",
-    "@markAsRead": {},
     "reportUser": "Prijavi korisnika",
-    "@reportUser": {},
     "openChat": "Otvori razgovor",
-    "@openChat": {},
     "dismiss": "Odbaci",
-    "@dismiss": {},
     "unsupportedAndroidVersion": "Nepodržana Android verzija",
-    "@unsupportedAndroidVersion": {},
     "widgetVideo": "Video",
-    "@widgetVideo": {},
     "widgetEtherpad": "Tekstna bilješka",
-    "@widgetEtherpad": {},
     "widgetCustom": "Prilagođeno",
-    "@widgetCustom": {},
     "widgetName": "Ime",
-    "@widgetName": {},
     "widgetUrlError": "Ovo nije valjan URL.",
-    "@widgetUrlError": {},
     "switchToAccount": "Prijeđi na račun {number}",
     "@switchToAccount": {
         "type": "number",
@@ -2193,18 +2156,12 @@
         }
     },
     "nextAccount": "Sljedeći račun",
-    "@nextAccount": {},
     "emailOrUsername": "E-mail ili korisničko ime",
-    "@emailOrUsername": {},
     "unsupportedAndroidVersionLong": "Ova funkcija zahtijeva noviju verziju Androida. Provjeri, postoje li nove verzije ili podrška za Lineage OS.",
-    "@unsupportedAndroidVersionLong": {},
     "previousAccount": "Prethodni račun",
-    "@previousAccount": {},
     "recoveryKey": "Ključ za obnavljanje",
-    "@recoveryKey": {},
     "recoveryKeyLost": "Izgubio/la si ključ za obnavljanje?",
-    "@recoveryKeyLost": {},
-    "youKickedAndBanned": "🙅 Izbacio/la si i blokirao/la korisnika {user}",
+    "youKickedAndBanned": "🙅 Izbacio/la i isključio/la si korisnika {user}",
     "@youKickedAndBanned": {
         "placeholders": {
             "user": {
@@ -2213,17 +2170,11 @@
         }
     },
     "dehydrateWarning": "Ovo je nepovratna radnja. Spremi datoteku sigurnosne kopije na sigurno mjeto.",
-    "@dehydrateWarning": {},
     "hydrateTor": "Korisnici TOR-a: Uzvezite izvoz sesije",
-    "@hydrateTor": {},
     "dehydrateTor": "Korisnici TOR-a: izvezite sesiju",
-    "@dehydrateTor": {},
     "emojis": "Emojiji",
-    "@emojis": {},
     "indexedDbErrorLong": "Spremište poruka nažalost nije standarno uključena u privatnom modusu.\nOtvori stranicu\n - about:config\n - postavi dom.indexedDB.privateBrowsing.enabled na true\nFluffyChat se inače neće moći pokrenuti.",
-    "@indexedDbErrorLong": {},
     "storeSecurlyOnThisDevice": "Spremi sigurno na ovom uređaju",
-    "@storeSecurlyOnThisDevice": {},
     "countFiles": "Broj datoteka: {count}",
     "@countFiles": {
         "placeholders": {
@@ -2245,31 +2196,18 @@
         }
     },
     "pinMessage": "Prikvači na sobu",
-    "@pinMessage": {},
     "confirmEventUnpin": "Stvarno želiš trajno otkvačiti događaj?",
-    "@confirmEventUnpin": {},
     "voiceCall": "Glasovni poziv",
-    "@voiceCall": {},
     "placeCall": "Nazovi",
-    "@placeCall": {},
     "videoCallsBetaWarning": "Napominjemo da se funkcija videopoziva trenutačno nalazi u beta stanju. Možda neće raditi ispravno ili uopće neće raditi na svim platformama.",
-    "@videoCallsBetaWarning": {},
     "experimentalVideoCalls": "Eksperimentalni videopozivi",
-    "@experimentalVideoCalls": {},
     "widgetJitsi": "Jitsi Meet",
-    "@widgetJitsi": {},
     "addWidget": "Dodaj widget",
-    "@addWidget": {},
     "widgetNameError": "Zadaj prikazno ime.",
-    "@widgetNameError": {},
     "youRejectedTheInvitation": "Odbio/la si poziv",
-    "@youRejectedTheInvitation": {},
     "errorAddingWidget": "Greška prilikom dodavanja widgeta.",
-    "@errorAddingWidget": {},
     "youJoinedTheChat": "Pridružio/la si se razgovoru",
-    "@youJoinedTheChat": {},
     "youAcceptedTheInvitation": "👍 Prihvatio/la si poziv",
-    "@youAcceptedTheInvitation": {},
     "youHaveWithdrawnTheInvitationFor": "Povukao/la si poziv za korisnika {user}",
     "@youHaveWithdrawnTheInvitationFor": {
         "placeholders": {
@@ -2311,34 +2249,22 @@
         }
     },
     "dehydrate": "Izvezi sesiju i izbriši uređaj",
-    "@dehydrate": {},
     "unlockOldMessages": "Otključaj stare poruke",
-    "@unlockOldMessages": {},
     "storeInSecureStorageDescription": "Ključ za obnavljanje spremi u sigurno spremište na ovom uređaju.",
-    "@storeInSecureStorageDescription": {},
     "saveKeyManuallyDescription": "Spremi ovaj ključ ručno pokretanjem dijaloga za dijeljenje sustava ili međuspremnika.",
-    "@saveKeyManuallyDescription": {},
     "storeInAndroidKeystore": "Spremi u Android KeyStore",
-    "@storeInAndroidKeystore": {},
     "separateChatTypes": "Odvojeni izravni razgovori, grupe i prostori",
     "@separateChatTypes": {
         "type": "String",
         "placeholders": {}
     },
     "dehydrateTorLong": "Korisnicima TOR-a preporučuje se izvoz sesije prije zatvaranja prozora.",
-    "@dehydrateTorLong": {},
     "hydrateTorLong": "Je li zadnji izvoz sesije bio na TOR-u? Brzo ga uvezi i nastavi razgovarati.",
-    "@hydrateTorLong": {},
     "hydrate": "Obnovi pomoću sigurnosne kopije",
-    "@hydrate": {},
     "pleaseEnterRecoveryKey": "Upiši svoj ključ za obnavljanje:",
-    "@pleaseEnterRecoveryKey": {},
     "users": "Korisnici",
-    "@users": {},
     "pleaseEnterRecoveryKeyDescription": "Za otključavanje starih poruka upiši ključ za obnavljanje koji je generiran u prethodnoj sesiji. Tvoj ključ za obnavljanje NIJE tvoja lozinka.",
-    "@pleaseEnterRecoveryKeyDescription": {},
     "indexedDbErrorTitle": "Problemi u privatnom modusu",
-    "@indexedDbErrorTitle": {},
     "youBannedUser": "Isključio/la si korisnika {user}",
     "@youBannedUser": {
         "placeholders": {
@@ -2348,11 +2274,8 @@
         }
     },
     "storeInAppleKeyChain": "Spremi u Apple KeyChain",
-    "@storeInAppleKeyChain": {},
     "user": "Korisnik",
-    "@user": {},
     "custom": "Prilagođeno",
-    "@custom": {},
     "fileHasBeenSavedAt": "Datoteka je spremljena u {path}",
     "@fileHasBeenSavedAt": {
         "type": "String",
@@ -2371,20 +2294,13 @@
             }
         }
     },
-    "fileIsTooBigForServer": "Neuspjelo slanje! Poslužitelj podržava samo priloge do {max}.",
-    "@fileIsTooBigForServer": {},
+    "fileIsTooBigForServer": "Neuspjelo slanje! Server podržava samo priloge do {max}.",
     "jumpToLastReadMessage": "Skoči na zadnju pročitanu poruku",
-    "@jumpToLastReadMessage": {},
     "commandHint_markasdm": "Označi kao sobu za izravnu razmjenu poruka za zadani Matrix ID",
-    "@commandHint_markasdm": {},
     "commandHint_markasgroup": "Označi kao grupu",
-    "@commandHint_markasgroup": {},
     "hideUnimportantStateEvents": "Sakrij nevažna stanja događaja",
-    "@hideUnimportantStateEvents": {},
     "doNotShowAgain": "Nemoj više prikazivati",
-    "@doNotShowAgain": {},
     "readUpToHere": "Pročitaj do ovdje",
-    "@readUpToHere": {},
     "wasDirectChatDisplayName": "Prazan razgovor (zvao se {oldDisplayName})",
     "@wasDirectChatDisplayName": {
         "type": "String",
@@ -2395,37 +2311,21 @@
         }
     },
     "noBackupWarning": "Upozorenje! Bez aktiviranja spremanja sigurnosne kopije razgovora, izgubit ćeš pristup tvojim šifriranim porukama. Preporučujemo spremanje sigurnosne kopije razgovora prije odjave.",
-    "@noBackupWarning": {},
     "noOtherDevicesFound": "Nijedan drugi uređaj nije pronađen",
-    "@noOtherDevicesFound": {},
     "whyIsThisMessageEncrypted": "Zašto nije moguće čitati ovu poruku?",
-    "@whyIsThisMessageEncrypted": {},
     "jump": "Skoči",
-    "@jump": {},
     "startFirstChat": "Započni svoj prvi razgovor",
-    "@startFirstChat": {},
     "newSpaceDescription": "Prostori omogućuju konsolidiranje tvojih razgovora i izgradnju privatne ili javne zajednice.",
-    "@newSpaceDescription": {},
     "encryptThisChat": "Šifiraj ovaj razgovor",
-    "@encryptThisChat": {},
     "deviceKeys": "Ključevi uređaja:",
-    "@deviceKeys": {},
     "foregroundServiceRunning": "Ova se obavijest pojavljuje kada se pokreće usluga u prvom planu.",
-    "@foregroundServiceRunning": {},
     "callingPermissions": "Dozvole za pozivanje",
-    "@callingPermissions": {},
     "callingAccountDetails": "Omogućuje FluffyChatu korištenje izvorne Android aplikacije za pozivanje.",
-    "@callingAccountDetails": {},
     "callingAccount": "Račun za pozivanje",
-    "@callingAccount": {},
     "commandHint_hug": "Pošalji grljenje",
-    "@commandHint_hug": {},
     "commandHint_googly": "Pošalji kotrljajuće oči",
-    "@commandHint_googly": {},
     "commandHint_cuddle": "Pošalji maženje",
-    "@commandHint_cuddle": {},
     "confirmMatrixId": "Za brisanje tvog računa potvrdi svoj Matrix ID.",
-    "@confirmMatrixId": {},
     "supposedMxid": "Trebao bi biti {mxid}",
     "@supposedMxid": {
         "type": "String",
@@ -2436,29 +2336,17 @@
         }
     },
     "enterRoom": "Uđi u sobu",
-    "@enterRoom": {},
     "screenSharingDetail": "Dijeliš svoj ekran u FuffyChatu",
-    "@screenSharingDetail": {},
     "appearOnTopDetails": "Omogućuje prikaz aplikacije ispred drugih (nije potrebno ako je FluffyChat već postavljen kao račun za pozivanje)",
-    "@appearOnTopDetails": {},
     "appearOnTop": "Prikaz ispred drugih",
-    "@appearOnTop": {},
     "newGroup": "Nova grupa",
-    "@newGroup": {},
     "allSpaces": "Svi prostori",
-    "@allSpaces": {},
     "screenSharingTitle": "dijeljenje ekrana",
-    "@screenSharingTitle": {},
     "otherCallingPermissions": "Mikrofon, kamera i druge FluffyChat dozvole",
-    "@otherCallingPermissions": {},
     "enterSpace": "Uđi u prostor",
-    "@enterSpace": {},
     "newSpace": "Novi prostor",
-    "@newSpace": {},
     "sorryThatsNotPossible": "Žao nam je … to nije moguće",
-    "@sorryThatsNotPossible": {},
     "disableEncryptionWarning": "Iz sigurnosnih razloga ne možeš deaktivirati šifriranje u razgovoru u kojem je prije bilo aktivirano.",
-    "@disableEncryptionWarning": {},
     "googlyEyesContent": "{senderName} ti šalje kotrljajuće oči",
     "@googlyEyesContent": {
         "type": "String",
@@ -2487,24 +2375,17 @@
         }
     },
     "noKeyForThisMessage": "To se može dogoditi ako je poruka poslana prije prijave na tvoj račun na ovom uređaju.\n\nTakođer je moguće da je pošiljatelj blokirao tvoj uređaj ili je došlo do greške s internetskom vezom.\n\nMožeš li pročitati poruku na jednoj drugoj sesiji? U tom slučaju možeš prenijeti poruku iz nje! Idi na Postavke > Uređaji i uvjeri se da su se tvoji uređaji međusobno provjerili. Kada sljedeći put otvoriš sobu i obje sesije su u prednjem planu, ključevi će se automatski prenijeti.\n\nNe želiš izgubiti ključeve kada se odjaviš ili zamijeniš uređaje? Aktiviraj spremanje sigurnosne kopije razgovora u postavkama.",
-    "@noKeyForThisMessage": {},
     "reopenChat": "Ponovo otvori razgovor",
-    "@reopenChat": {},
     "openLinkInBrowser": "Otvori poveznicu u pregledniku",
-    "@openLinkInBrowser": {},
     "report": "prijavi",
-    "@report": {},
     "allRooms": "Svi grupni razgovori",
     "@allRooms": {
         "type": "String",
         "placeholders": {}
     },
     "reportErrorDescription": "😭 Joj! Dogodila se greška. Pokušaj ponovo kasnije. Ako želiš, grešku možeš prijaviti programerima.",
-    "@reportErrorDescription": {},
     "signInWithPassword": "Prijavi se s lozinkom",
-    "@signInWithPassword": {},
-    "pleaseTryAgainLaterOrChooseDifferentServer": "Pokušaj ponovo kasnije ili odaberi jedan drugi poslužitelj.",
-    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+    "pleaseTryAgainLaterOrChooseDifferentServer": "Pokušaj ponovo kasnije ili odaberi jedan drugi server.",
     "signInWith": "Prijavi se pomoću {provider}",
     "@signInWith": {
         "type": "String",
@@ -2515,33 +2396,19 @@
         }
     },
     "notAnImage": "Nije slikovna datoteka.",
-    "@notAnImage": {},
     "importNow": "Uvezi sada",
-    "@importNow": {},
     "importEmojis": "Uvezi emoji slike",
-    "@importEmojis": {},
     "importFromZipFile": "Uvezi iz .zip datoteke",
-    "@importFromZipFile": {},
     "replace": "Zamijeni",
-    "@replace": {},
     "exportEmotePack": "Izvezi paket emotikona kao .zip",
-    "@exportEmotePack": {},
     "sendTypingNotifications": "Pošalji pismene obavijesti",
-    "@sendTypingNotifications": {},
     "setColorTheme": "Postavi boju teme:",
-    "@setColorTheme": {},
     "tryAgain": "Pokušaj ponovo",
-    "@tryAgain": {},
     "messagesStyle": "Poruke:",
-    "@messagesStyle": {},
     "chatDescription": "Opis razgovora",
-    "@chatDescription": {},
     "invalidServerName": "Neispravno ime servera",
-    "@invalidServerName": {},
     "chatPermissions": "Dozvole za razgovor",
-    "@chatPermissions": {},
     "setChatDescription": "Postavi opis rzgovora",
-    "@setChatDescription": {},
     "redactedBy": "Preuređeno od {username}",
     "@redactedBy": {
         "type": "String",
@@ -2552,9 +2419,7 @@
         }
     },
     "optionalRedactReason": "(Opcionalno) Razlog za redigiranje ove poruke …",
-    "@optionalRedactReason": {},
     "inviteContactToGroupQuestion": "Želiš li pozvati {contact} u razgovor grupe „{groupName}”?",
-    "@inviteContactToGroupQuestion": {},
     "redactedByBecause": "Preuređeno od {username} zbog: „{reason}”",
     "@redactedByBecause": {
         "type": "String",
@@ -2568,36 +2433,23 @@
         }
     },
     "redactMessageDescription": "Poruka će se redigirati za sve sudionike u ovom razgovoru. To se ne može poništiti.",
-    "@redactMessageDescription": {},
     "addChatDescription": "Dodaj opis razgovora …",
-    "@addChatDescription": {},
     "directChat": "Izravni razgovor",
-    "@directChat": {},
     "inviteGroupChat": "📨 Pozivnica u grupni razgovor",
-    "@inviteGroupChat": {},
     "invitePrivateChat": "📨 Pozivnica u privatni razgovor",
-    "@invitePrivateChat": {},
     "noChatDescriptionYet": "Opis razgovora još nije stvoren.",
-    "@noChatDescriptionYet": {},
     "chatDescriptionHasBeenChanged": "Opis razgovora je promijenjen",
-    "@chatDescriptionHasBeenChanged": {},
-    "profileNotFound": "Korisnik nije pronađen na poslužitelju. Možda postoji problem s vezom ili korisnik ne postoji.",
-    "@profileNotFound": {},
+    "profileNotFound": "Korisnik nije pronađen na serveru. Možda postoji problem s vezom ili korisnik ne postoji.",
     "shareInviteLink": "Dijeli poveznicu za poziv",
-    "@shareInviteLink": {},
     "emoteKeyboardNoRecents": "Ovdje će se pojaviti nedavno korišteni emotikoni …",
     "@emoteKeyboardNoRecents": {
         "type": "String",
         "placeholders": {}
     },
     "setTheme": "Postavi temu:",
-    "@setTheme": {},
     "createGroup": "Stvori grupu",
-    "@createGroup": {},
     "invite": "Pozovi",
-    "@invite": {},
     "invalidInput": "Neispravan unos!",
-    "@invalidInput": {},
     "wrongPinEntered": "Unesen je pogrešan PIN! Pokušaj ponovo za {seconds} sekunde …",
     "@wrongPinEntered": {
         "type": "String",
@@ -2616,77 +2468,41 @@
         }
     },
     "pleaseEnterANumber": "Upiši broj veći od 0",
-    "@pleaseEnterANumber": {},
     "pushNotificationsNotAvailable": "Automatsko slanje obavijesti nije dostupno",
-    "@pushNotificationsNotAvailable": {},
     "learnMore": "Saznaj više",
-    "@learnMore": {},
     "createGroupAndInviteUsers": "Stvori grupu i pozovi korisnike",
-    "@createGroupAndInviteUsers": {},
     "startConversation": "Pokreni konverzaciju",
-    "@startConversation": {},
     "blockedUsers": "Blokirani korisnici",
-    "@blockedUsers": {},
     "groupCanBeFoundViaSearch": "Grupa se može pronaći putem pretrage",
-    "@groupCanBeFoundViaSearch": {},
     "block": "Blokiraj",
-    "@block": {},
     "yourGlobalUserIdIs": "Tvoj globalni korisnički ID je: ",
-    "@yourGlobalUserIdIs": {},
     "commandHint_sendraw": "Pošalji neobrađeni json",
-    "@commandHint_sendraw": {},
     "wrongRecoveryKey": "Oprosti … čini se da ovo nije ispravan ključ za obnavljanje.",
-    "@wrongRecoveryKey": {},
     "blockUsername": "Zanemari korisničko ime",
-    "@blockUsername": {},
     "groupName": "Ime grupe",
-    "@groupName": {},
     "databaseMigrationTitle": "Baza podataka je optimirana",
-    "@databaseMigrationTitle": {},
     "searchChatsRooms": "Traži #chats, @users …",
-    "@searchChatsRooms": {},
     "databaseMigrationBody": "Pričekaj. Ovo može potrajati.",
-    "@databaseMigrationBody": {},
     "transparent": "Prozirno",
-    "@transparent": {},
     "formattedMessages": "Formatirane poruke",
-    "@formattedMessages": {},
     "incomingMessages": "Dolazne poruke",
-    "@incomingMessages": {},
     "passwordsDoNotMatch": "Lozinke se ne poklapaju",
-    "@passwordsDoNotMatch": {},
     "accessAndVisibility": "Pristup i vidljivost",
-    "@accessAndVisibility": {},
     "calls": "Pozivi",
-    "@calls": {},
     "customEmojisAndStickers": "Prilagođeni emojiji i naljepnice",
-    "@customEmojisAndStickers": {},
     "customEmojisAndStickersBody": "Dodaj ili dijeli prilagođene emojije ili naljepnice koje se mogu koristiti u bilo kojem razgovoru.",
-    "@customEmojisAndStickersBody": {},
     "accessAndVisibilityDescription": "Tko se smije pridružiti ovom razgovoru i kako se razgovor može otkriti.",
-    "@accessAndVisibilityDescription": {},
     "stickers": "Naljepnice",
-    "@stickers": {},
     "discover": "Otkrij",
-    "@discover": {},
     "formattedMessagesDescription": "Prikaži formatirani sadržaj poruke poput podebljanog teksta koristeći markdown.",
-    "@formattedMessagesDescription": {},
     "nothingFound": "Ništa nije pronađeno...",
-    "@nothingFound": {},
     "select": "Odaberi",
-    "@select": {},
     "newPassword": "Nova lozinka",
-    "@newPassword": {},
     "unbanUserDescription": "Korisnik će se ponovo moći pridružiti razgovoru ako pokuša.",
-    "@unbanUserDescription": {},
     "publicSpaces": "Javni prostori",
-    "@publicSpaces": {},
     "subspace": "Podprostori",
-    "@subspace": {},
     "decline": "Odbij",
-    "@decline": {},
     "thisDevice": "Ovaj uređaj:",
-    "@thisDevice": {},
     "presenceStyle": "Prisutnost:",
     "@presenceStyle": {
         "type": "String",
@@ -2698,39 +2514,22 @@
         "placeholders": {}
     },
     "noPublicLinkHasBeenCreatedYet": "Još nije stvorena nijedna javna poveznica",
-    "@noPublicLinkHasBeenCreatedYet": {},
     "hidePresences": "Sakriti popis stanja?",
-    "@hidePresences": {},
     "pleaseEnterYourCurrentPassword": "Upiši svoju trenutačnu lozinku",
-    "@pleaseEnterYourCurrentPassword": {},
     "publicLink": "Javna poveznica",
-    "@publicLink": {},
     "passwordIsWrong": "Tvoja upisana lozinka je kriva",
-    "@passwordIsWrong": {},
     "initAppError": "Dogodila se greška prilikom inicijaliziranja aplikacije",
-    "@initAppError": {},
     "hideRedactedMessagesBody": "Ako netko redigira poruku, ta poruka više neće biti vidljiva u razgovoru.",
-    "@hideRedactedMessagesBody": {},
-    "kickUserDescription": "Korisnik je izbačen iz razgovora, ali nije blokiran. U javnim razgovorima se korisnik može ponovo pridružiti u bilo kojem trenutku.",
-    "@kickUserDescription": {},
+    "kickUserDescription": "Korisnik je izbačen iz razgovora, ali nije isključen. U javnim razgovorima se korisnik može ponovo pridružiti u bilo kojem trenutku.",
     "addChatOrSubSpace": "Dodaj razgovor ili podpodručje",
-    "@addChatOrSubSpace": {},
     "appLockDescription": "Zaključaj aplikaciju kada je ne koristiš s PIN kodom",
-    "@appLockDescription": {},
     "globalChatId": "Globalni ID razgovora",
-    "@globalChatId": {},
     "hideRedactedMessages": "Sakrij redigirane poruke",
-    "@hideRedactedMessages": {},
     "hideInvalidOrUnknownMessageFormats": "Sakrij nevažeće ili nepoznate formate poruka",
-    "@hideInvalidOrUnknownMessageFormats": {},
     "overview": "Pregled",
-    "@overview": {},
     "notifyMeFor": "Obavijesit me za",
-    "@notifyMeFor": {},
     "passwordRecoverySettings": "Postavke za obnavljanje lozinke",
-    "@passwordRecoverySettings": {},
     "hideMemberChangesInPublicChats": "Sakrij promjene članova u javnim razgovorima",
-    "@hideMemberChangesInPublicChats": {},
     "youInvitedToBy": "📩 Pozvan/a si putem poveznice na:\n{alias}",
     "@youInvitedToBy": {
         "placeholders": {
@@ -2740,9 +2539,7 @@
         }
     },
     "usersMustKnock": "Korisnici moraju pokucati",
-    "@usersMustKnock": {},
     "noOneCanJoin": "Nitko se ne može pridružiti",
-    "@noOneCanJoin": {},
     "userWouldLikeToChangeTheChat": "{user} se želi pridružiti razgovoru.",
     "@userWouldLikeToChangeTheChat": {
         "placeholders": {
@@ -2752,9 +2549,7 @@
         }
     },
     "knock": "Pokucaj",
-    "@knock": {},
     "knocking": "Kucanje",
-    "@knocking": {},
     "chatCanBeDiscoveredViaSearchOnServer": "Razgovor se može otkriti pretraživanjem servera {server}",
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",
@@ -2765,23 +2560,14 @@
         }
     },
     "searchForUsers": "Traži @users...",
-    "@searchForUsers": {},
     "pleaseChooseAStrongPassword": "Odaberi snažnu lozinku",
-    "@pleaseChooseAStrongPassword": {},
     "joinSpace": "Pridruži se prostoru",
-    "@joinSpace": {},
     "publicChatAddresses": "Adrese javnih razgovora",
-    "@publicChatAddresses": {},
     "createNewAddress": "Stvori novu adresu",
-    "@createNewAddress": {},
     "userRole": "Korisnička uloga",
-    "@userRole": {},
     "verifyOtherUser": "🔐 Potvrdi drugog korisnika",
-    "@verifyOtherUser": {},
     "sendTypingNotificationsDescription": "Drugi sudionici u razgovoru mogu vidjeti kada pišeš novu poruku.",
-    "@sendTypingNotificationsDescription": {},
     "sendReadReceiptsDescription": "Drugi sudionici u raygovoru mogu vidjeti kada pročitaš poruku.",
-    "@sendReadReceiptsDescription": {},
     "searchIn": "Traži u razgovoru „{chat}”...",
     "@searchIn": {
         "type": "String",
@@ -2792,13 +2578,9 @@
         }
     },
     "searchMore": "Traži više...",
-    "@searchMore": {},
     "gallery": "Galerija",
-    "@gallery": {},
     "files": "Datoteke",
-    "@files": {},
     "verifyOtherDevice": "🔐 Potvrdi drugi uređaj",
-    "@verifyOtherDevice": {},
     "unreadChatsInApp": "{appname}: Nroj nepročitanih razgovora: {unread}",
     "@unreadChatsInApp": {
         "type": "String",
@@ -2812,9 +2594,7 @@
         }
     },
     "commandHint_ignore": "Zanemari navedeni matrix ID",
-    "@commandHint_ignore": {},
     "blockListDescription": "Možeš blokirati korisnike koji te ometaju. Nećeš moći primati poruke ili pozivnice za sobe od korisnika koji se nalaze u tvom osobnom popisu blokiranih.",
-    "@blockListDescription": {},
     "isReadyForKeyVerification": "{sender} je spreman/na za potvrđivanje ključa",
     "@isReadyForKeyVerification": {
         "type": "String",
@@ -2825,7 +2605,6 @@
         }
     },
     "banUserDescription": "Korisnik će biti isključen iz razgovora i moći će ponovo prisustvovati razgovoru kad ga se deblokira.",
-    "@banUserDescription": {},
     "sessionLostBody": "Tvoja je sesija izgubljena. Prijavi ovu grešku programerima na {url}. Poruka o grešci glasi: {error}",
     "@sessionLostBody": {
         "type": "String",
@@ -2848,9 +2627,7 @@
         }
     },
     "archiveRoomDescription": "Razgovor će se premjestiti u arhivu. Drugi korisnici će moći vidjeti da si napustio/la razgovor.",
-    "@archiveRoomDescription": {},
     "removeDevicesDescription": "Bit ćeš odjavljen/a s ovog uređaja i više nećeš moći primati poruke.",
-    "@removeDevicesDescription": {},
     "noUsersFoundWithQuery": "Nažalost nije pronađen nijedan korisnik s „{query}”. Provjeri točnost upisa.",
     "@noUsersFoundWithQuery": {
         "type": "String",
@@ -2882,26 +2659,18 @@
         }
     },
     "restricted": "Ograničeni",
-    "@restricted": {},
     "roomUpgradeDescription": "Razgovor će se tada ponovo stvoriti s novom verzijom sobe. Svi sudionici će biti obaviješteni da se moraju prebaciti na novi razgovor. Više o verzijama soba možeš saznati na https://spec.matrix.org/latest/rooms/",
-    "@roomUpgradeDescription": {},
     "noGoogleServicesWarning": "Čini se da Firebase Cloud Messaging nije dostupan na tvom uređaju. Za daljnje primanje push obavijesti, preporučujemo da instaliraš ntfy. S ntfy ili drugim pružateljem Unified Push usluge možeš primati push obavijesti na podatkovno siguran način. Ntfy možeš preuzeti s PlayStorea ili s F-Droida.",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
     },
     "verifyOtherDeviceDescription": "Kada potvrdiš jedan drugi uređaj, ti uređaji mogu razmjenjivati ključeve, povećavajući tvoju ukupnu sigurnost. 💪 Kada pokreneš provjeru, pojavit će se skočni prozor u aplikaciji na oba uređaja. Tamo ćeš tada vidjeti niz emojija ili brojeve koje moraš međusobno usporediti. Najbolje je imati oba uređaja pri ruci prije nego što započneš provjeru. 🤳",
-    "@verifyOtherDeviceDescription": {},
     "verifyOtherUserDescription": "Ako potvrdiš jednog drugog korisnika, možeš biti siguran/na da znaš kome zapravo pišeš. 💪\n\nKada pokreneš provjeru, vi i drugi korisnik vidjet ćete skočni prozor u aplikaciji. Tamo ćeš tada vidjeti niz emojija ili brojeve koje morate međusobno usporediti.\n\nNajbolji način za to je da se nađete zajedno ili započnete videopoziv. 👭",
-    "@verifyOtherUserDescription": {},
     "knockRestricted": "Pokucaj na ograničene sobe",
-    "@knockRestricted": {},
     "hideMemberChangesInPublicChatsBody": "Za bolju čitljivosti, na vremenskoj traci razgovora nemoj prikazivati kad se netko pridruži ili napusti javni razgovor.",
-    "@hideMemberChangesInPublicChatsBody": {},
     "makeAdminDescription": "Nakon postavljanja ovog korisnika kao administratora, to možda nećeš moći poništiti jer će on tada imati iste dozvole kao i ti.",
-    "@makeAdminDescription": {},
     "leaveEmptyToClearStatus": "Ostavi prazno za brisanje tvog stanja.",
-    "@leaveEmptyToClearStatus": {},
     "forwardMessageTo": "Proslijediti poruku u sobu {roomName}?",
     "@forwardMessageTo": {
         "type": "String",
@@ -2933,7 +2702,6 @@
         }
     },
     "sendReadReceipts": "Šalji potvrde o čitanju",
-    "@sendReadReceipts": {},
     "acceptedKeyVerification": "{sender} je prihvatio/la potvrđivanje ključa",
     "@acceptedKeyVerification": {
         "type": "String",
@@ -2962,24 +2730,19 @@
         }
     },
     "commandHint_unignore": "Poništi zanemarivanje navedenog matrix ID-a",
-    "@commandHint_unignore": {},
     "noDatabaseEncryption": "Šifriranje baze podataka nije podržano na ovoj platformi",
-    "@noDatabaseEncryption": {},
     "thereAreCountUsersBlocked": "Broj trenutačno blokiranih korisnika: {count}.",
     "@thereAreCountUsersBlocked": {
         "type": "String",
         "count": {}
     },
     "swipeRightToLeftToReply": "Za odgovaranje povuci prstom zdesna ulijevo",
-    "@swipeRightToLeftToReply": {},
     "alwaysUse24HourFormat": "true",
     "@alwaysUse24HourFormat": {
         "description": "Set to true to always display time of day in 24 hour format."
     },
     "prepareSendingAttachment": "Pripremi slanje priloga …",
-    "@prepareSendingAttachment": {},
     "sendingAttachment": "Slanje priloga …",
-    "@sendingAttachment": {},
     "sendingAttachmentCountOfCount": "Slanje priloga {index} od {length} …",
     "@sendingAttachmentCountOfCount": {
         "type": "integer",
@@ -2993,13 +2756,9 @@
         }
     },
     "setCustomPermissionLevel": "Postavi razinu dozvole",
-    "@setCustomPermissionLevel": {},
     "setPermissionsLevelDescription": "Odaberi unaprijed definiranu ulogu u nastavku ili upiši prilagođenu razinu dozvole između 0 i 100.",
-    "@setPermissionsLevelDescription": {},
     "ignoreUser": "Zanemari korisnika",
-    "@ignoreUser": {},
     "normalUser": "Normalni korisnik",
-    "@normalUser": {},
     "aboutHomeserver": "Informacije o {homeserver}",
     "@aboutHomeserver": {
         "type": "String",
@@ -3009,6 +2768,5 @@
             }
         }
     },
-    "commandHint_roomupgrade": "Nadogradi ovu sobu na zadanu verziju sobe",
-    "@commandHint_roomupgrade": {}
+    "commandHint_roomupgrade": "Nadogradi ovu sobu na zadanu verziju sobe"
 }
