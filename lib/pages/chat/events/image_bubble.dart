@@ -5,7 +5,6 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -59,19 +58,6 @@ class ImageBubble extends StatelessWidget {
     );
   }
 
-  void _onTap(BuildContext context) {
-    if (onTap != null) {
-      onTap!();
-      return;
-    }
-    if (!tapToView) return;
-    showDialog(
-      context: context,
-      builder: (_) =>
-          ImageViewer(event, timeline: timeline, outerContext: context),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -105,7 +91,7 @@ class ImageBubble extends StatelessWidget {
             ),
           ),
           child: InkWell(
-            onTap: () => _onTap(context),
+            onTap: onTap,
             borderRadius: borderRadius,
             child: Hero(
               tag: event.eventId,
