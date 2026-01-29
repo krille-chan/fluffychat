@@ -1561,10 +1561,6 @@ let wasm_bindgen;
         }
     };
 
-    __exports.wasm_start_callback = function() {
-        wasm.wasm_start_callback();
-    };
-
     /**
      * # Safety
      *
@@ -1594,8 +1590,12 @@ let wasm_bindgen;
         wasm.frb_dart_opaque_drop_thread_box_persistent_handle(ptr);
     };
 
+    __exports.wasm_start_callback = function() {
+        wasm.wasm_start_callback();
+    };
+
     function __wbg_adapter_40(arg0, arg1, arg2) {
-        wasm.closure587_externref_shim(arg0, arg1, arg2);
+        wasm.closure582_externref_shim(arg0, arg1, arg2);
     }
 
     const WorkerPoolFinalization = (typeof FinalizationRegistry === 'undefined')
@@ -1955,8 +1955,8 @@ let wasm_bindgen;
             const ret = false;
             return ret;
         };
-        imports.wbg.__wbindgen_closure_wrapper1733 = function(arg0, arg1, arg2) {
-            const ret = makeMutClosure(arg0, arg1, 588, __wbg_adapter_40);
+        imports.wbg.__wbindgen_closure_wrapper1731 = function(arg0, arg1, arg2) {
+            const ret = makeMutClosure(arg0, arg1, 583, __wbg_adapter_40);
             return ret;
         };
         imports.wbg.__wbindgen_debug_string = function(arg0, arg1) {
