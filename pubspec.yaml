@@ -25,7 +25,7 @@ dependencies:
   device_info_plus: ^12.3.0
   dynamic_color: ^1.8.1
   emoji_picker_flutter: ^4.4.0
-  file_picker: ^10.3.8
+  file_picker: ^10.3.10
   file_selector: ^1.1.0
   flutter:
     sdk: flutter
