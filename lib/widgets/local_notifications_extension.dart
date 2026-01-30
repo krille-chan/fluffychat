@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
@@ -154,6 +155,30 @@ extension LocalNotificationsExtension on MatrixState {
         }
       });
       linuxNotificationIds[roomId] = notification.id;
+    } else if (Platform.isMacOS) {
+      // macOS notifications using flutter_local_notifications
+      if (macOSNotifications == null) {
+        Logs().w('macOS notifications not initialized');
+        return;
+      }
+
+      try {
+        await macOSNotifications!.show(
+          roomId.hashCode,
+          title,
+          body,
+          const NotificationDetails(
+            macOS: DarwinNotificationDetails(
+              presentAlert: true,
+              presentBadge: true,
+              presentSound: true,
+            ),
+          ),
+          payload: roomId,
+        );
+      } catch (e, s) {
+        Logs().e('Failed to show macOS notification', e, s);
+      }
     }
   }
 }
