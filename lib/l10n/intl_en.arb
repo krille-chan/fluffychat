@@ -3491,5 +3491,6 @@
   "@advancedConfigs": {},
   "advancedConfigurations": "Advanced configurations",
   "@advancedConfigurations": {},
-  "signInWithLabel": "Sign in with:"
+  "signInWithLabel": "Sign in with:",
+  "accountsAndSettings": "Accounts and settings"
 }

@@ -1,0 +1,16 @@
+url: http://localhost:4567
+---
+- launchApp
+- tapOn: "Sign in with:"
+- eraseText: 20 # Erase the current text
+- inputText: "http://${HOMESERVER}"
+- tapOn: "Continue"
+- assertVisible: "Login"
+- inputText: "${USER1_NAME}"
+- tapOn: "Password"
+- inputText: "${USER1_PW}"
+- tapOn: "Login" # Click the login button
+- tapOn: "Accounts and settings" # Open the popup menu
+- tapOn: "Settings"
+- tapOn: "Logout"
+- tapOn: "Logout" # Confirm logout dialog
