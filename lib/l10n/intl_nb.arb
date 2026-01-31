@@ -3059,5 +3059,11 @@
         }
     },
     "usersMustKnock": "Brukere må banke på",
-    "knock": "Bank på"
+    "knock": "Bank på",
+    "notificationRuleRoomServerAclDescription": "Skjuler varsler for tilgangskontrollister (ACL) for romservere.",
+    "displayNavigationRail": "Vis navigasjonsfelt på mobil",
+    "attribution": "Kreditering",
+    "skipChatBackupWarning": "Er du sikker? Uten sikkerhetskopi av chattene kan du miste meldingene dine hvis du bytter enhet.",
+    "noMoreResultsFound": "Ingen flere treff",
+    "federationBaseUrl": "Federation Base URL"
 }
