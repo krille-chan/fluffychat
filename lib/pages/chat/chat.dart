@@ -714,9 +714,6 @@ class ChatController extends State<ChatPageWithRoom>
       name: fileName ?? audioFile.path,
     );
 
-    setState(() {
-      replyEvent = null;
-    });
     room
         .sendFileEvent(
           file,
@@ -737,6 +734,9 @@ class ChatController extends State<ChatPageWithRoom>
           );
           return null;
         });
+    setState(() {
+      replyEvent = null;
+    });
     return;
   }
 
