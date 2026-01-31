@@ -253,8 +253,8 @@ Future<void> _tryPushHelper(
       ?.createNotificationChannel(roomsChannel);
 
   final androidPlatformChannelSpecifics = AndroidNotificationDetails(
-    AppConfig.pushNotificationsChannelId,
-    l10n.incomingMessages,
+    event.room.id,
+    roomName,
     number: notification.counts?.unread,
     category: AndroidNotificationCategory.message,
     shortcutId: event.room.id,
