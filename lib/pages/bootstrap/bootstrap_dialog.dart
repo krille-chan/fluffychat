@@ -115,7 +115,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
     await client.accountDataLoading;
     await client.userDeviceKeysLoading;
     while (client.prevBatch == null) {
-      await client.onSync.stream.first;
+      await client.onSyncStatus.stream.first;
     }
     await client.updateUserDeviceKeys();
     _wipe = wipe;

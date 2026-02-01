@@ -55,7 +55,8 @@ class DevicesSettingsController extends State<DevicesSettings> {
   void removeDevicesAction(List<Device> devices) async {
     final client = Matrix.of(context).client;
 
-    final accountManageUrl = client.wellKnown?.additionalProperties
+    final wellKnown = await client.getWellknown();
+    final accountManageUrl = wellKnown.additionalProperties
         .tryGetMap<String, Object?>('org.matrix.msc2965.authentication')
         ?.tryGet<String>('account');
     if (accountManageUrl != null) {

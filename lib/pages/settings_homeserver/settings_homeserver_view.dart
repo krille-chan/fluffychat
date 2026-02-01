@@ -157,7 +157,7 @@ class SettingsHomeserverView extends StatelessWidget {
                         subtitle: Text(data.version),
                       ),
                       ListTile(
-                        title: const Text('Federation Base URL'),
+                        title: Text(L10n.of(context).federationBaseUrl),
                         subtitle: Linkify(
                           text: data.federationBaseUrl.toString(),
                           textScaleFactor: MediaQuery.textScalerOf(
@@ -178,7 +178,6 @@ class SettingsHomeserverView extends StatelessWidget {
               Divider(color: theme.dividerColor),
               FutureBuilder(
                 future: client.getWellknown(),
-                initialData: client.wellKnown,
                 builder: (context, snapshot) {
                   final error = snapshot.error;
                   if (error != null) {
@@ -210,7 +209,7 @@ class SettingsHomeserverView extends StatelessWidget {
                     children: [
                       ListTile(
                         title: Text(
-                          'Client-Well-Known Information:',
+                          L10n.of(context).clientWellKnownInformation,
                           style: TextStyle(
                             color: theme.colorScheme.secondary,
                             fontWeight: FontWeight.bold,
@@ -218,7 +217,7 @@ class SettingsHomeserverView extends StatelessWidget {
                         ),
                       ),
                       ListTile(
-                        title: const Text('Base URL'),
+                        title: Text(L10n.of(context).baseUrl),
                         subtitle: Linkify(
                           text: wellKnown.mHomeserver.baseUrl.toString(),
                           textScaleFactor: MediaQuery.textScalerOf(
@@ -234,7 +233,7 @@ class SettingsHomeserverView extends StatelessWidget {
                       ),
                       if (identityServer != null)
                         ListTile(
-                          title: const Text('Identity Server:'),
+                          title: Text(L10n.of(context).identityServer),
                           subtitle: Linkify(
                             text: identityServer.baseUrl.toString(),
                             textScaleFactor: MediaQuery.textScalerOf(

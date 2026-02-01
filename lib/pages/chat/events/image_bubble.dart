@@ -5,7 +5,6 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -44,10 +43,9 @@ class ImageBubble extends StatelessWidget {
   });
 
   Widget _buildPlaceholder(BuildContext context) {
-    final String blurHashString =
-        event.infoMap['xyz.amorgan.blurhash'] is String
-        ? event.infoMap['xyz.amorgan.blurhash']
-        : 'LEHV6nWB2yk8pyo0adR*.7kCMdnj';
+    final blurHashString =
+        event.infoMap.tryGet<String>('xyz.amorgan.blurhash') ??
+        'LEHV6nWB2yk8pyo0adR*.7kCMdnj';
     return SizedBox(
       width: width,
       height: height,
@@ -57,19 +55,6 @@ class ImageBubble extends StatelessWidget {
         height: height,
         fit: fit,
       ),
-    );
-  }
-
-  void _onTap(BuildContext context) {
-    if (onTap != null) {
-      onTap!();
-      return;
-    }
-    if (!tapToView) return;
-    showDialog(
-      context: context,
-      builder: (_) =>
-          ImageViewer(event, timeline: timeline, outerContext: context),
     );
   }
 
@@ -106,7 +91,7 @@ class ImageBubble extends StatelessWidget {
             ),
           ),
           child: InkWell(
-            onTap: () => _onTap(context),
+            onTap: onTap,
             borderRadius: borderRadius,
             child: Hero(
               tag: event.eventId,

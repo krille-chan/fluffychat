@@ -520,6 +520,11 @@ class _SpaceViewState extends State<SpaceView> {
                         textInputAction: TextInputAction.search,
                         decoration: InputDecoration(
                           filled: true,
+                          fillColor: theme.colorScheme.secondaryContainer,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(99),
+                          ),
                           contentPadding: EdgeInsets.zero,
                           hintText: L10n.of(context).search,
                           hintStyle: TextStyle(

@@ -322,7 +322,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Din sludringssikkerhetskopi er sikret med en sikkerhetsnøkkel. Ikke mist den.",
+    "chatBackupDescription": "Meldingene dine er sikret med en gjenopprettingsnøkkel. Pass på at du ikke mister den.",
     "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
@@ -342,12 +342,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "compareEmojiMatch": "Sammenlign og forsikre at følgende smilefjes samsvarer med de på den andre enheten:",
+    "compareEmojiMatch": "Sammenlign og forsikre at følgende emojiene samsvarer med de på den andre enheten",
     "@compareEmojiMatch": {
         "type": "String",
         "placeholders": {}
     },
-    "compareNumbersMatch": "Sammenlign og forsikre at følgende tall samsvarer med de på den andre enheten:",
+    "compareNumbersMatch": "Sammenlign og forsikre at følgende tall samsvarer med de på den andre enheten",
     "@compareNumbersMatch": {
         "type": "String",
         "placeholders": {}
@@ -824,7 +824,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} har invitert deg til FluffyChat. \n1. Installer FluffyChat: https://fluffychat.im \n2. Registrer deg eller logg inn \n3. Åpne invitasjonslenken: {link}",
+    "inviteText": "{username} har invitert deg til FluffyChat. \n1. Installer FluffyChat: https://fluffychat.im \n2. Registrer deg eller logg inn \n3. Åpne invitasjonslenken: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1011,7 +1011,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "Bruk https://microg.org/ for å få Google-tjenester (uten at det går ut over personvernet) for å få push-merknader i FluffyChat:",
+    "noGoogleServicesWarning": "Firebase Cloud Messaging ser ikke ut til å være tilgjengelig på enheten din. For å fortsatt kunne motta push-varsler, anbefaler vi at du installerer ntfy. Med ntfy eller en annen UnifiedPush-leverandør kan du motta push-varsler på en datasikker måte. Du kan laste ned ntfy fra Play Store eller F-Droid.",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
@@ -1525,7 +1525,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "unknownEvent": "Ukjent hendelse «{type}»",
+    "unknownEvent": "Ukjent hendelse '{type}'",
     "@unknownEvent": {
         "type": "String",
         "placeholders": {
@@ -1662,7 +1662,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "wallpaper": "Bakgrunnsbilde",
+    "wallpaper": "Bakgrunnsbilde:",
     "@wallpaper": {
         "type": "String",
         "placeholders": {}
@@ -1753,9 +1753,7 @@
         "placeholders": {}
     },
     "repeatPassword": "Gjenta passord",
-    "@repeatPassword": {},
-    "addToSpace": "Legg til space",
-    "@addToSpace": {},
+    "addToSpace": "Legg til område",
     "allChats": "Alle samtaler",
     "@allChats": {
         "type": "String",
@@ -1779,8 +1777,7 @@
         }
     },
     "sendOnEnter": "Trykk på enter for å sende",
-    "@sendOnEnter": {},
-    "badServerVersionsException": "Denne hjemme serveren støtter følgene Spec-versjoner:\n{serverVersions}\nMen denne applikasjonen støtter kun {supportedVersions}",
+    "badServerVersionsException": "Hjemmeserveren støtter følgene Spec-versjoner:\n{serverVersions}\nMen applikasjonen støtter kun {supportedVersions}",
     "@badServerVersionsException": {
         "type": "String",
         "placeholders": {
@@ -1812,9 +1809,7 @@
         "placeholders": {}
     },
     "notAnImage": "Ikke en bildefil.",
-    "@notAnImage": {},
     "importNow": "Importer nå",
-    "@importNow": {},
     "hugContent": "{senderName} klemmer deg",
     "@hugContent": {
         "type": "String",
@@ -1825,9 +1820,7 @@
         }
     },
     "space": "Område",
-    "@space": {},
     "spaces": "Områder",
-    "@spaces": {},
     "cuddleContent": "{senderName} koser med deg",
     "@cuddleContent": {
         "type": "String",
@@ -1838,21 +1831,13 @@
         }
     },
     "appLockDescription": "Lås appen med en PIN-kode når den ikke er i bruk",
-    "@appLockDescription": {},
     "ignoreUser": "Ignorer bruker",
-    "@ignoreUser": {},
     "setCustomPermissionLevel": "Angi egendefinert tillatelsesnivå",
-    "@setCustomPermissionLevel": {},
     "normalUser": "Vanlig bruker",
-    "@normalUser": {},
     "replace": "Erstatt",
-    "@replace": {},
     "noMoreChatsFound": "Ingen flere chatter funnet ...",
-    "@noMoreChatsFound": {},
-    "confirmMatrixId": "Vennligst bekreft din Matrix-ID for å slette kontoen din.",
-    "@confirmMatrixId": {},
+    "confirmMatrixId": "Bekreft Matrix-IDen din for å slette kontoen din.",
     "unread": "Ulest",
-    "@unread": {},
     "aboutHomeserver": "Om {homeserver}",
     "@aboutHomeserver": {
         "type": "String",
@@ -1863,29 +1848,17 @@
         }
     },
     "commandHint_hug": "Send en klem",
-    "@commandHint_hug": {},
     "markAsRead": "Marker som lest",
-    "@markAsRead": {},
     "openLinkInBrowser": "Åpne lenke i nettleser",
-    "@openLinkInBrowser": {},
     "start": "Start",
-    "@start": {},
     "passwordsDoNotMatch": "Passordene stemmer ikke overens",
-    "@passwordsDoNotMatch": {},
     "decline": "Avslå",
-    "@decline": {},
     "emailOrUsername": "E-post eller brukernavn",
-    "@emailOrUsername": {},
     "encryptThisChat": "Krypter denne chatten",
-    "@encryptThisChat": {},
     "nextAccount": "Neste konto",
-    "@nextAccount": {},
     "doNotShowAgain": "Ikke vis igjen",
-    "@doNotShowAgain": {},
     "notificationRuleContainsUserName": "Inneholder brukernavn",
-    "@notificationRuleContainsUserName": {},
     "notificationRuleMaster": "Demp alle varslinger",
-    "@notificationRuleMaster": {},
     "presenceStyle": "Tilstedeværelse:",
     "@presenceStyle": {
         "type": "String",
@@ -1902,7 +1875,6 @@
         "placeholders": {}
     },
     "recoveryKey": "Gjenopprettingsnøkkel",
-    "@recoveryKey": {},
     "sendSticker": "Send sticker",
     "@sendSticker": {
         "type": "String",
@@ -1924,42 +1896,26 @@
         "placeholders": {}
     },
     "dismiss": "Avvis",
-    "@dismiss": {},
     "openChat": "Åpne chat",
-    "@openChat": {},
     "addWidget": "Legg til widget",
-    "@addWidget": {},
     "reopenChat": "Gjenåpne chat",
-    "@reopenChat": {},
     "changeTheDescriptionOfTheGroup": "Endre beskrivelsen til chatten",
-    "@changeTheDescriptionOfTheGroup": {},
     "inviteOtherUsers": "Inviter andre brukere til denne chatten",
-    "@inviteOtherUsers": {},
     "open": "Åpne",
-    "@open": {},
     "waitingForServer": "Venter på server...",
-    "@waitingForServer": {},
     "notificationRuleJitsi": "Jitsi",
-    "@notificationRuleJitsi": {},
     "takeAPhoto": "Ta et bilde",
-    "@takeAPhoto": {},
     "setChatDescription": "Sett chat beskrivelse",
-    "@setChatDescription": {},
     "singlesignon": "Single Sign on (SSO)",
     "@singlesignon": {
         "type": "String",
         "placeholders": {}
     },
     "openGallery": "Åpne galleri",
-    "@openGallery": {},
     "widgetCustom": "Egendefinert",
-    "@widgetCustom": {},
     "widgetVideo": "Video",
-    "@widgetVideo": {},
     "pushNotificationsNotAvailable": "Push-varsler er ikke tilgjengelige",
-    "@pushNotificationsNotAvailable": {},
     "gallery": "Galleri",
-    "@gallery": {},
     "moderatorLevel": "{level} - Moderator",
     "@moderatorLevel": {
         "type": "String",
@@ -1979,7 +1935,6 @@
         }
     },
     "restricted": "Begrenset",
-    "@restricted": {},
     "updateInstalled": "🎉 Oppdatering {version} installert!",
     "@updateInstalled": {
         "type": "String",
@@ -1990,71 +1945,38 @@
         }
     },
     "calculatingFileSize": "Beregner filstørrelse...",
-    "@calculatingFileSize": {},
     "continueText": "Fortsett",
-    "@continueText": {},
     "serverInformation": "Serverinformasjon:",
-    "@serverInformation": {},
     "previous": "Forrige",
-    "@previous": {},
     "name": "Navn",
-    "@name": {},
     "version": "Versjon",
-    "@version": {},
     "invalidUrl": "Ugyldig url",
-    "@invalidUrl": {},
     "notificationRuleReaction": "Reaksjon",
-    "@notificationRuleReaction": {},
     "notificationRuleMessage": "Melding",
-    "@notificationRuleMessage": {},
     "notificationRuleEncrypted": "Kkryptert",
-    "@notificationRuleEncrypted": {},
     "more": "Mer",
-    "@more": {},
     "passwordIsWrong": "Det inntastede passordet ditt er feil",
-    "@passwordIsWrong": {},
     "startConversation": "Start samtale",
-    "@startConversation": {},
     "manageAccount": "Administrer konto",
-    "@manageAccount": {},
     "nothingFound": "Ingenting funnet...",
-    "@nothingFound": {},
     "incomingMessages": "Innkommende meldinger",
-    "@incomingMessages": {},
     "changelog": "Endringslogg",
-    "@changelog": {},
     "contactServerAdmin": "Kontakt serveradministrator",
-    "@contactServerAdmin": {},
     "setWallpaper": "Sett bakgrunnsbilde",
-    "@setWallpaper": {},
     "unsupportedAndroidVersion": "Usupportert Android-versjon",
-    "@unsupportedAndroidVersion": {},
     "widgetName": "Navn",
-    "@widgetName": {},
     "youJoinedTheChat": "Du har blitt med i chatten",
-    "@youJoinedTheChat": {},
     "widgetJitsi": "Jitsi Meet",
-    "@widgetJitsi": {},
     "widgetNameError": "Vennligst oppgi et visningsnavn.",
-    "@widgetNameError": {},
     "youRejectedTheInvitation": "Du har avvist invitasjonen",
-    "@youRejectedTheInvitation": {},
     "formattedMessages": "Formaterte meldinger",
-    "@formattedMessages": {},
     "allDevices": "Alle enheter",
-    "@allDevices": {},
     "learnMore": "Lær mer",
-    "@learnMore": {},
     "sorryThatsNotPossible": "Beklager... det er ikke mulig",
-    "@sorryThatsNotPossible": {},
     "markAsUnread": "Marker som ulest",
-    "@markAsUnread": {},
     "newGroup": "Ny gruppe",
-    "@newGroup": {},
     "userRole": "Brukerrolle",
-    "@userRole": {},
     "addLink": "Legg til lenke",
-    "@addLink": {},
     "synchronizingPleaseWaitCounter": " Synkroniserer… ({percentage}%)",
     "@synchronizingPleaseWaitCounter": {
         "type": "String",
@@ -2065,26 +1987,18 @@
         }
     },
     "unverified": "Ikke verifisert",
-    "@unverified": {},
     "thisDevice": "Denne enheten:",
-    "@thisDevice": {},
     "sendingAttachment": "Sender vedlegg...",
-    "@sendingAttachment": {},
     "removeYourAvatar": "Fjern din avatar",
     "@removeYourAvatar": {
         "type": "String",
         "placeholders": {}
     },
     "importFromZipFile": "Importer fra .zip-fil",
-    "@importFromZipFile": {},
     "select": "Velg",
-    "@select": {},
     "databaseMigrationTitle": "Databasen er optimalisert",
-    "@databaseMigrationTitle": {},
     "newPassword": "Nytt passord",
-    "@newPassword": {},
     "files": "Filer",
-    "@files": {},
     "searchIn": "Søk i chatten «{chat}»...",
     "@searchIn": {
         "type": "String",
@@ -2095,7 +2009,6 @@
         }
     },
     "approve": "Godkjenn",
-    "@approve": {},
     "goToSpace": "Gå til område: {space}",
     "@goToSpace": {
         "type": "String",
@@ -2111,15 +2024,10 @@
         }
     },
     "oneOfYourDevicesIsNotVerified": "En av dine enheter er ikke verifisert",
-    "@oneOfYourDevicesIsNotVerified": {},
     "website": "Nettside",
-    "@website": {},
     "boldText": "Fet skrift",
-    "@boldText": {},
     "pleaseFillOut": "Vennligst fyll ut",
-    "@pleaseFillOut": {},
     "importEmojis": "Importer emojier",
-    "@importEmojis": {},
     "supposedMxid": "Denne bør være {mxid}",
     "@supposedMxid": {
         "type": "String",
@@ -2130,17 +2038,11 @@
         }
     },
     "addChatDescription": "Legg til chat beskrivelse...",
-    "@addChatDescription": {},
     "commandHint_roomupgrade": "Oppgrader dette rommet til den gitte romversjonen",
-    "@commandHint_roomupgrade": {},
     "hideMemberChangesInPublicChatsBody": "Ikke vis i chattens tidslinje hvis noen blir med i eller forlater en offentlig chat for økt lesbarhet.",
-    "@hideMemberChangesInPublicChatsBody": {},
     "overview": "Oversikt",
-    "@overview": {},
     "notifyMeFor": "Varsle meg om",
-    "@notifyMeFor": {},
     "passwordRecoverySettings": "Innstillinger for gjenoppretting av passord",
-    "@passwordRecoverySettings": {},
     "people": "Folk",
     "@people": {
         "type": "String",
@@ -2162,23 +2064,19 @@
         "placeholders": {}
     },
     "pleaseEnterRecoveryKey": "Vennligst skriv inn gjenopprettingsnøkkelen din:",
-    "@pleaseEnterRecoveryKey": {},
     "pleaseEnterYourPin": "Vennligst skriv inn PIN-koden din",
     "@pleaseEnterYourPin": {
         "type": "String",
         "placeholders": {}
     },
     "globalChatId": "Global chat-ID",
-    "@globalChatId": {},
     "allRooms": "Alle gruppechatter",
     "@allRooms": {
         "type": "String",
         "placeholders": {}
     },
     "chatPermissions": "Chat tillatelser",
-    "@chatPermissions": {},
     "setPermissionsLevelDescription": "Vennligst velg en forhåndsdefinert rolle nedenfor eller skriv inn et tilpasset tillatelsesnivå mellom 0 og 100.",
-    "@setPermissionsLevelDescription": {},
     "commandHint_invite": "Inviter den gitte brukeren til dette rommet",
     "@commandHint_invite": {
         "type": "String",
@@ -2195,58 +2093,39 @@
         "placeholders": {}
     },
     "yourChatBackupHasBeenSetUp": "Sikkerhetskopien av chatten din er konfigurert.",
-    "@yourChatBackupHasBeenSetUp": {},
     "discover": "Oppdag",
-    "@discover": {},
     "thereAreCountUsersBlocked": "Akkurat nå er det {count} blokkerte brukere.",
     "@thereAreCountUsersBlocked": {
         "type": "String",
         "count": {}
     },
     "sendCanceled": "Sending avbrutt",
-    "@sendCanceled": {},
     "loginWithMatrixId": "Logg på med Matrix ID",
-    "@loginWithMatrixId": {},
     "discoverHomeservers": "Oppdag hjemmeservere",
-    "@discoverHomeservers": {},
     "shareInviteLink": "Del invitasjonslenke",
-    "@shareInviteLink": {},
     "scanQrCode": "Skann QR-kode",
-    "@scanQrCode": {},
     "messagesStyle": "Meldinger:",
-    "@messagesStyle": {},
     "hydrate": "Gjenopprett fra sikkerhetskopifil",
-    "@hydrate": {},
     "oneClientLoggedOut": "En av klientene dine har blitt logget ut",
-    "@oneClientLoggedOut": {},
     "addAccount": "Legg til konto",
-    "@addAccount": {},
     "enableMultiAccounts": "(BETA) Aktiver flere kontoer på denne enheten",
-    "@enableMultiAccounts": {},
     "openInMaps": "Åpne i kart",
     "@openInMaps": {
         "type": "String",
         "placeholders": {}
     },
     "link": "Lenke",
-    "@link": {},
     "serverRequiresEmail": "Denne serveren må validere e-postadressen din for registrering.",
-    "@serverRequiresEmail": {},
     "or": "Eller",
     "@or": {
         "type": "String",
         "placeholders": {}
     },
     "previousAccount": "Forrige konto",
-    "@previousAccount": {},
     "widgetUrlError": "Dette er ikke en gyldig URL.",
-    "@widgetUrlError": {},
     "custom": "Egendefinert",
-    "@custom": {},
     "user": "Bruker",
-    "@user": {},
     "users": "Brukere",
-    "@users": {},
     "countInvited": "{count} inviterte",
     "@countInvited": {
         "type": "String",
@@ -2257,34 +2136,22 @@
         }
     },
     "createGroup": "Opprett gruppe",
-    "@createGroup": {},
     "editRoomAliases": "Rediger rom aliaser",
     "@editRoomAliases": {
         "type": "String",
         "placeholders": {}
     },
     "accessAndVisibility": "Tilgang og synlighet",
-    "@accessAndVisibility": {},
     "hideInvalidOrUnknownMessageFormats": "Skjul ugyldige eller ukjente meldingsformater",
-    "@hideInvalidOrUnknownMessageFormats": {},
     "block": "Blokkér",
-    "@block": {},
     "blockedUsers": "Blokkerte brukere",
-    "@blockedUsers": {},
     "tryAgain": "Prøv igjen",
-    "@tryAgain": {},
     "invalidServerName": "Ugyldig servernavn",
-    "@invalidServerName": {},
     "messageInfo": "Meldingsinformasjon",
-    "@messageInfo": {},
     "time": "Tid",
-    "@time": {},
     "messageType": "Meldingstype",
-    "@messageType": {},
     "sender": "Avsender",
-    "@sender": {},
     "publish": "Publiser",
-    "@publish": {},
     "videoWithSize": "Video ({size})",
     "@videoWithSize": {
         "type": "String",
@@ -2295,7 +2162,6 @@
         }
     },
     "reportUser": "Rapporter bruker",
-    "@reportUser": {},
     "youHaveWithdrawnTheInvitationFor": "Du har trukket tilbake invitasjonen for {user}",
     "@youHaveWithdrawnTheInvitationFor": {
         "placeholders": {
@@ -2305,7 +2171,6 @@
         }
     },
     "youAcceptedTheInvitation": "👍 Du har akseptert invitasjonen",
-    "@youAcceptedTheInvitation": {},
     "youBannedUser": "Du stengte ute {user}",
     "@youBannedUser": {
         "placeholders": {
@@ -2315,36 +2180,23 @@
         }
     },
     "chatDescriptionHasBeenChanged": "Chatbeskrivelsen er endret",
-    "@chatDescriptionHasBeenChanged": {},
     "goToTheNewRoom": "Gå til det nye rommet",
     "@goToTheNewRoom": {
         "type": "String",
         "placeholders": {}
     },
     "screenSharingTitle": "skjermdeling",
-    "@screenSharingTitle": {},
     "screenSharingDetail": "Du deler skjermen din i FuffyChat",
-    "@screenSharingDetail": {},
     "callingPermissions": "Anropstillatelser",
-    "@callingPermissions": {},
     "callingAccountDetails": "Lar FluffyChat bruke den innebygde Android-oppringingsappen.",
-    "@callingAccountDetails": {},
     "appearOnTop": "Vis øverst",
-    "@appearOnTop": {},
     "otherCallingPermissions": "Mikrofon, kamera og andre FluffyChat-tillatelser",
-    "@otherCallingPermissions": {},
     "whyIsThisMessageEncrypted": "Hvorfor er denne meldingen uleselig?",
-    "@whyIsThisMessageEncrypted": {},
     "yourGlobalUserIdIs": "Din globale bruker-ID er: ",
-    "@yourGlobalUserIdIs": {},
     "searchChatsRooms": "Søk etter #chatter, @brukere...",
-    "@searchChatsRooms": {},
     "groupName": "Gruppenavn",
-    "@groupName": {},
     "createGroupAndInviteUsers": "Opprett en gruppe og inviter brukere",
-    "@createGroupAndInviteUsers": {},
     "invite": "Inviter",
-    "@invite": {},
     "wrongPinEntered": "Feil PIN-kode tastet inn! Prøv igjen om {seconds} sekunder...",
     "@wrongPinEntered": {
         "type": "String",
@@ -2373,13 +2225,9 @@
         "placeholders": {}
     },
     "voiceCall": "Taleanrop",
-    "@voiceCall": {},
     "accessAndVisibilityDescription": "Hvem som har lov til å bli med i denne chatten og hvordan chatten kan oppdages.",
-    "@accessAndVisibilityDescription": {},
     "calls": "Anrop",
-    "@calls": {},
     "customEmojisAndStickers": "Egendefinerte emojier og klistremerker",
-    "@customEmojisAndStickers": {},
     "oopsPushError": "Oops! Dessverre oppsto det en feil under oppsettet av push-varsler.",
     "@oopsPushError": {
         "type": "String",
@@ -2396,11 +2244,8 @@
         "placeholders": {}
     },
     "noDatabaseEncryption": "Databasekryptering støttes ikke på denne plattformen",
-    "@noDatabaseEncryption": {},
     "changeGeneralChatSettings": "Endre generelle chatinnstillinger",
-    "@changeGeneralChatSettings": {},
     "changeTheChatPermissions": "Endre chattillatelsene",
-    "@changeTheChatPermissions": {},
     "youInvitedToBy": "📩 Du har blitt invitert via lenke til:\n{alias}",
     "@youInvitedToBy": {
         "placeholders": {
@@ -2458,7 +2303,6 @@
         }
     },
     "noOtherDevicesFound": "Ingen andre enheter funnet",
-    "@noOtherDevicesFound": {},
     "fileIsTooBigForServer": "Kan ikke sende! Serveren støtter bare vedlegg opptil {max}.",
     "@fileIsTooBigForServer": {
         "type": "String",
@@ -2478,7 +2322,6 @@
         }
     },
     "jumpToLastReadMessage": "Hopp til sist leste melding",
-    "@jumpToLastReadMessage": {},
     "serverLimitReached": "Grensen for server er nådd! Venter i {seconds} sekunder...",
     "@serverLimitReached": {
         "type": "integer",
@@ -2489,19 +2332,12 @@
         }
     },
     "blur": "Uskarphet:",
-    "@blur": {},
     "opacity": "Ugjennomsiktighet:",
-    "@opacity": {},
     "noContactInformationProvided": "Serveren oppgir ingen gyldig kontaktinformasjon",
-    "@noContactInformationProvided": {},
     "supportPage": "Supportside",
-    "@supportPage": {},
     "compress": "Komprimer",
-    "@compress": {},
     "italicText": "Kursiv tekst",
-    "@italicText": {},
     "strikeThrough": "Gjennomstreking",
-    "@strikeThrough": {},
     "youUnbannedUser": "Du opphevet utestengelsen av {user}",
     "@youUnbannedUser": {
         "placeholders": {
@@ -2511,43 +2347,24 @@
         }
     },
     "disableEncryptionWarning": "Av sikkerhetshensyn kan du ikke deaktivere kryptering i en chat der det har vært aktivert tidligere.",
-    "@disableEncryptionWarning": {},
     "deviceKeys": "Enhetsnøkler:",
-    "@deviceKeys": {},
     "readUpToHere": "Lest frem til her",
-    "@readUpToHere": {},
     "jump": "Hopp",
-    "@jump": {},
     "reportErrorDescription": "😭 Å nei. Noe gikk galt. Hvis du ønsker det, kan du rapportere denne feilen til utviklerne.",
-    "@reportErrorDescription": {},
     "invalidInput": "Ugyldig inndata!",
-    "@invalidInput": {},
     "pleaseEnterANumber": "Vennligst skriv inn et tall større enn 0",
-    "@pleaseEnterANumber": {},
     "archiveRoomDescription": "Chatten vil bli flyttet til arkivet. Andre brukere vil kunne se at du har forlatt chatten.",
-    "@archiveRoomDescription": {},
     "removeDevicesDescription": "Du vil bli logget ut av denne enheten og vil ikke lenger kunne motta meldinger.",
-    "@removeDevicesDescription": {},
     "profileNotFound": "Brukeren ble ikke funnet på serveren. Kanskje det er et tilkoblingsproblem, eller brukeren finnes ikke.",
-    "@profileNotFound": {},
     "setTheme": "Angi tema:",
-    "@setTheme": {},
     "setColorTheme": "Angi fargetema:",
-    "@setColorTheme": {},
     "inviteGroupChat": "📨 Invitasjon til gruppechat",
-    "@inviteGroupChat": {},
     "invitePrivateChat": "📨 Invitasjon til privat chat",
-    "@invitePrivateChat": {},
     "pleaseChooseAStrongPassword": "Vennligst velg et sterkt passord",
-    "@pleaseChooseAStrongPassword": {},
     "publicLink": "Offentlig lenke",
-    "@publicLink": {},
     "publicChatAddresses": "Offentlige chatadresser",
-    "@publicChatAddresses": {},
     "createNewAddress": "Opprett ny adresse",
-    "@createNewAddress": {},
     "initAppError": "Det oppsto en feil under oppstart av appen",
-    "@initAppError": {},
     "minimumPowerLevel": "{level} er det laveste strømnivået.",
     "@minimumPowerLevel": {
         "type": "String",
@@ -2558,35 +2375,20 @@
         }
     },
     "sendReadReceipts": "Send lesebekreftelser",
-    "@sendReadReceipts": {},
     "searchMore": "Søk mer...",
-    "@searchMore": {},
     "shareKeysWithDescription": "Hvilke enheter bør man stole på, slik at de kan lese meldingene dine i krypterte chatter?",
-    "@shareKeysWithDescription": {},
     "crossVerifiedDevicesIfEnabled": "Kryssbekreftede enheter hvis dette er aktivert",
-    "@crossVerifiedDevicesIfEnabled": {},
     "crossVerifiedDevices": "Kryssverifiserte enheter",
-    "@crossVerifiedDevices": {},
     "verifiedDevicesOnly": "Bare verifiserte enheter",
-    "@verifiedDevicesOnly": {},
     "recordAVideo": "Ta opp en video",
-    "@recordAVideo": {},
     "optionalMessage": "(Valgfritt) melding...",
-    "@optionalMessage": {},
     "notSupportedOnThisDevice": "Ikke støttet på denne enheten",
-    "@notSupportedOnThisDevice": {},
     "enterNewChat": "Bli med i ny chat",
-    "@enterNewChat": {},
     "pleaseWaitUntilInvited": "Vennligst vent nå, til noen fra rommet inviterer deg.",
-    "@pleaseWaitUntilInvited": {},
     "notificationRuleSuppressNoticesDescription": "Demper varsler fra automatiserte klienter som roboter.",
-    "@notificationRuleSuppressNoticesDescription": {},
     "notificationRuleInviteForMe": "Inviter for meg",
-    "@notificationRuleInviteForMe": {},
     "notificationRuleInviteForMeDescription": "Varsler bruker når en blir invitert til et rom.",
-    "@notificationRuleInviteForMeDescription": {},
     "newChatRequest": "📩 Ny chatforespørsel",
-    "@newChatRequest": {},
     "appWantsToUseForLogin": "Bruk '{server}' for å logge inn",
     "@appWantsToUseForLogin": {
         "type": "String",
@@ -2597,9 +2399,7 @@
         }
     },
     "appWantsToUseForLoginDescription": "Du gir herved tillatelse til at appen og nettstedet deler informasjon om deg.",
-    "@appWantsToUseForLoginDescription": {},
     "exportEmotePack": "Eksporter smilefjes som .zip-fil",
-    "@exportEmotePack": {},
     "noUsersFoundWithQuery": "Dessverre ble ingen bruker funnet med \"{query}\". Sjekk om du har skrevet feil.",
     "@noUsersFoundWithQuery": {
         "type": "String",
@@ -2619,17 +2419,11 @@
         }
     },
     "leaveEmptyToClearStatus": "La stå tomt for å slette statusen din.",
-    "@leaveEmptyToClearStatus": {},
     "searchForUsers": "Søk etter @brukere...",
-    "@searchForUsers": {},
     "pleaseEnterYourCurrentPassword": "Skriv inn ditt nåværende passord",
-    "@pleaseEnterYourCurrentPassword": {},
     "databaseMigrationBody": "Vent litt. Dette kan ta et øyeblikk.",
-    "@databaseMigrationBody": {},
     "wrongRecoveryKey": "Beklager ... dette ser ikke ut til å være riktig gjenopprettingsnøkkel.",
-    "@wrongRecoveryKey": {},
     "declineInvitation": "Avslå invitasjon",
-    "@declineInvitation": {},
     "restoreSessionBody": "Appen prøver nå å gjenopprette økten din fra sikkerhetskopien. Rapporter denne feilen til utviklerne på {url}. Feilmeldingen er: {error}",
     "@restoreSessionBody": {
         "type": "String",
@@ -2652,13 +2446,9 @@
         }
     },
     "hideUnimportantStateEvents": "Skjul uviktige tilstandshendelser",
-    "@hideUnimportantStateEvents": {},
     "hidePresences": "Skjul statuslisten?",
-    "@hidePresences": {},
     "signInWithPassword": "Logg inn med passord",
-    "@signInWithPassword": {},
     "pleaseTryAgainLaterOrChooseDifferentServer": "Prøv igjen senere eller velg en annen server.",
-    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
     "signInWith": "Logg inn med {provider}",
     "@signInWith": {
         "type": "String",
@@ -2669,11 +2459,8 @@
         }
     },
     "noMessagesYet": "Ingen meldinger enda",
-    "@noMessagesYet": {},
     "notificationRuleMasterDescription": "Overstyrer alle andre regler og deaktiverer alle varsler.",
-    "@notificationRuleMasterDescription": {},
     "notificationRuleSuppressNotices": "Undertrykk automatiserte meldinger",
-    "@notificationRuleSuppressNotices": {},
     "startedKeyVerification": "{sender} startet nøkkelverifisering",
     "@startedKeyVerification": {
         "type": "String",
@@ -2684,13 +2471,9 @@
         }
     },
     "transparent": "Gjennomsiktig",
-    "@transparent": {},
     "stickers": "Stickers",
-    "@stickers": {},
     "commandHint_ignore": "Ignorer den oppgitte matrix IDen",
-    "@commandHint_ignore": {},
     "commandHint_unignore": "Opphev ignorering av den gitte matrix IDen",
-    "@commandHint_unignore": {},
     "unreadChatsInApp": "{appname}: {unread} uleste chatter",
     "@unreadChatsInApp": {
         "type": "String",
@@ -2704,27 +2487,16 @@
         }
     },
     "changeTheVisibilityOfChatHistory": "Endre synligheten til chatloggen",
-    "@changeTheVisibilityOfChatHistory": {},
     "changeTheCanonicalRoomAlias": "Endre hovedadressen til den offentlige chatten",
-    "@changeTheCanonicalRoomAlias": {},
     "sendRoomNotifications": "Send en @room varsling",
-    "@sendRoomNotifications": {},
     "formattedMessagesDescription": "Vis rikt meldingsinnhold som fet skrift ved hjelp av markdown.",
-    "@formattedMessagesDescription": {},
     "verifyOtherUser": "🔐 Verifiser annen bruker",
-    "@verifyOtherUser": {},
     "verifyOtherDevice": "🔐 Verifiser annen enhet",
-    "@verifyOtherDevice": {},
     "sendTypingNotificationsDescription": "Andre deltakere i en chat kan se når du skriver en ny melding.",
-    "@sendTypingNotificationsDescription": {},
     "sendReadReceiptsDescription": "Andre deltakere i en chat kan se når du har lest en melding.",
-    "@sendReadReceiptsDescription": {},
     "commandHint_logout": "Logg av din nåværende enhet",
-    "@commandHint_logout": {},
     "commandHint_logoutall": "Logg ut alle aktive enheter",
-    "@commandHint_logoutall": {},
     "resume": "Gjenoppta",
-    "@resume": {},
     "unknownPushRule": "Ukjent push-regel '{rule}'",
     "@unknownPushRule": {
         "type": "String",
@@ -2747,9 +2519,7 @@
         }
     },
     "deletePushRuleCanNotBeUndone": "Hvis du sletter denne varslingsinnstillingen, kan du ikke angre dette.",
-    "@deletePushRuleCanNotBeUndone": {},
     "shareKeysWith": "Del nøkler med...",
-    "@shareKeysWith": {},
     "canceledKeyVerification": "{sender} avbrøt nøkkelverifisering",
     "@canceledKeyVerification": {
         "type": "String",
@@ -2787,15 +2557,10 @@
         }
     },
     "notificationRuleEncryptedRoomOneToOne": "Kryptert rom én-til-én",
-    "@notificationRuleEncryptedRoomOneToOne": {},
     "notificationRuleEncryptedRoomOneToOneDescription": "Varsler brukeren om meldinger i krypterte en-til-en-rom.",
-    "@notificationRuleEncryptedRoomOneToOneDescription": {},
     "notificationRuleRoomOneToOne": "Rom én-til-én",
-    "@notificationRuleRoomOneToOne": {},
     "customEmojisAndStickersBody": "Legg til eller del tilpassede emojier eller klistremerker som kan brukes i hvilken som helst chat.",
-    "@customEmojisAndStickersBody": {},
     "homeserver": "Hjemmeserver",
-    "@homeserver": {},
     "errorObtainingLocation": "Feil ved henting av posisjon: {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -2806,23 +2571,14 @@
         }
     },
     "chatDescription": "Chat beskrivelse",
-    "@chatDescription": {},
     "hideRedactedMessages": "Skjul redigerte meldinger",
-    "@hideRedactedMessages": {},
     "hideRedactedMessagesBody": "Hvis noen redigerer en melding, vil ikke denne meldingen lenger være synlig i chatten.",
-    "@hideRedactedMessagesBody": {},
     "blockListDescription": "Du kan blokkere brukere som forstyrrer deg. Du vil ikke kunne motta meldinger eller rominvitasjoner fra brukerne på din personlige blokkeringsliste.",
-    "@blockListDescription": {},
     "blockUsername": "Ignorer brukernavn",
-    "@blockUsername": {},
     "inviteContactToGroupQuestion": "Vil du invitere {contact} til chatten «{groupName}»?",
-    "@inviteContactToGroupQuestion": {},
     "noChatDescriptionYet": "Ingen chatbeskrivelse er opprettet ennå.",
-    "@noChatDescriptionYet": {},
     "redactMessageDescription": "Meldingen vil bli redigert for alle deltakerne i denne samtalen. Dette kan ikke angres.",
-    "@redactMessageDescription": {},
     "optionalRedactReason": "(Valgfritt) Årsak til redigering av denne meldingen...",
-    "@optionalRedactReason": {},
     "locationDisabledNotice": "Lokasjonstjenester er deaktivert. Vennligst aktiver dem for at du skal kunne dele posisjonen din.",
     "@locationDisabledNotice": {
         "type": "String",
@@ -2834,17 +2590,11 @@
         "placeholders": {}
     },
     "dehydrate": "Eksporter økten og slett enheten",
-    "@dehydrate": {},
     "dehydrateWarning": "Denne handlingen kan ikke angres. Sørg for at du lagrer sikkerhetskopifilen på en trygg måte.",
-    "@dehydrateWarning": {},
     "dehydrateTor": "TOR-brukere: Eksporter økt",
-    "@dehydrateTor": {},
     "dehydrateTorLong": "For TOR-brukere anbefales det å eksportere økten før vinduet lukkes.",
-    "@dehydrateTorLong": {},
     "hydrateTor": "TOR-brukere: Importer eksportert økt",
-    "@hydrateTor": {},
     "hydrateTorLong": "Eksporterte du økten din sist gang på TOR? Importer den raskt og fortsett å chatte.",
-    "@hydrateTorLong": {},
     "noEncryptionForPublicRooms": "Du kan bare aktivere kryptering på rom som ikke er offentlig tilgjengelig.",
     "@noEncryptionForPublicRooms": {
         "type": "String",
@@ -2863,27 +2613,16 @@
         }
     },
     "roomNotificationSettings": "Innstillinger for romvarsler",
-    "@roomNotificationSettings": {},
     "userSpecificNotificationSettings": "Brukerspesifikke varslingsinnstillinger",
-    "@userSpecificNotificationSettings": {},
     "otherNotificationSettings": "Andre varslingsinnstillinger",
-    "@otherNotificationSettings": {},
     "contentNotificationSettings": "Innstillinger for innholdsvarslinger",
-    "@contentNotificationSettings": {},
     "generalNotificationSettings": "Generelle varslingsinnstillinger",
-    "@generalNotificationSettings": {},
     "appIntroduction": "Med FluffyChat kan du chatte med vennene dine på tvers av forskjellige meldingstjenester. Finn ut mer på https://matrix.org eller trykk bare på *Fortsett*.",
-    "@appIntroduction": {},
     "notificationRuleContainsUserNameDescription": "Varsler bruker når en melding inneholder ens brukernavn.",
-    "@notificationRuleContainsUserNameDescription": {},
     "hideMemberChangesInPublicChats": "Skjul medlemsendringer i offentlige chatter",
-    "@hideMemberChangesInPublicChats": {},
     "removeFromSpace": "Fjern fra området",
-    "@removeFromSpace": {},
     "addToSpaceDescription": "Velg områder hvor denne chatten legges til.",
-    "@addToSpaceDescription": {},
     "pleaseEnterRecoveryKeyDescription": "For å låse opp gamle meldinger, vennligst skriv inn gjenopprettingsnøkkelen som ble generert i en tidligere økt. Gjenopprettingsnøkkelen er IKKE passordet ditt.",
-    "@pleaseEnterRecoveryKeyDescription": {},
     "reactedWith": "{sender} reagerte med {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -2897,31 +2636,18 @@
         }
     },
     "pinMessage": "Fest til rommet",
-    "@pinMessage": {},
     "emojis": "Emojier",
-    "@emojis": {},
     "placeCall": "Ringe opp",
-    "@placeCall": {},
     "unsupportedAndroidVersionLong": "Denne funksjonen krever en nyere Android-versjon. Se etter oppdateringer eller støtte for Lineage OS.",
-    "@unsupportedAndroidVersionLong": {},
     "videoCallsBetaWarning": "Vær oppmerksom på at videosamtaler for øyeblikket er i betaversjon. Det fungerer kanskje ikke som forventet eller i det hele tatt.",
-    "@videoCallsBetaWarning": {},
     "experimentalVideoCalls": "Eksperimentelle videoanrop",
-    "@experimentalVideoCalls": {},
     "notificationRuleRoomnotifDescription": "Varsler brukeren når en melding inneholder ‘@room’.",
-    "@notificationRuleRoomnotifDescription": {},
     "notificationRuleTombstoneDescription": "Varsler brukeren om meldinger om deaktivering av rom.",
-    "@notificationRuleTombstoneDescription": {},
     "notificationRuleReactionDescription": "Demper varsler for reaksjoner.",
-    "@notificationRuleReactionDescription": {},
     "notificationRuleSuppressEdits": "Demp redigeringer",
-    "@notificationRuleSuppressEdits": {},
     "chatHasBeenAddedToThisSpace": "Chatten er lagt til i dette området",
-    "@chatHasBeenAddedToThisSpace": {},
     "clearArchive": "Tøm arkivet",
-    "@clearArchive": {},
     "commandHint_markasgroup": "Merk som gruppe",
-    "@commandHint_markasgroup": {},
     "commandHint_ban": "Utesteng den gitte brukeren fra dette rommet",
     "@commandHint_ban": {
         "type": "String",
@@ -2933,29 +2659,17 @@
         "description": "Usage hint for the command /clearcache"
     },
     "homeserverDescription": "Alle dataene dine lagres på hjemmeserveren, akkurat som hos en e-postleverandør. Du kan velge hvilken hjemmeserver du vil bruke, samtidig som du fortsatt kan kommunisere med alle. Lær mer på https://matrix.org.",
-    "@homeserverDescription": {},
     "doesNotSeemToBeAValidHomeserver": "Ser ikke ut til å være en kompatibel hjemmeserver. Feil URL?",
-    "@doesNotSeemToBeAValidHomeserver": {},
     "prepareSendingAttachment": "Forbered sending av vedlegg...",
-    "@prepareSendingAttachment": {},
     "generatingVideoThumbnail": "Genererer videominiatyrbilde ...",
-    "@generatingVideoThumbnail": {},
     "compressVideo": "Komprimerer video...",
-    "@compressVideo": {},
     "welcomeText": "Hei, hei! 👋 Dette er FluffyChat. Du kan logge på hvilken som helst hjemmeserver som er kompatibel med https://matrix.org. Og deretter chatte med hvem som helst. Det er et stort desentralisert meldingsnettverk!",
-    "@welcomeText": {},
     "notificationRuleIsUserMentionDescription": "Varsler brukeren når de er direkte nevnt i en melding.",
-    "@notificationRuleIsUserMentionDescription": {},
     "notificationRuleContainsDisplayName": "Inneholder visningsnavn",
-    "@notificationRuleContainsDisplayName": {},
     "notificationRuleContainsDisplayNameDescription": "Varsler brukeren når en melding inneholder ens visningsnavnet.",
-    "@notificationRuleContainsDisplayNameDescription": {},
     "notificationRuleIsUserMention": "Brukeromtale",
-    "@notificationRuleIsUserMention": {},
     "notificationRuleIsRoomMention": "Romomtale",
-    "@notificationRuleIsRoomMention": {},
     "whatIsAHomeserver": "Hva er en hjemmeserver?",
-    "@whatIsAHomeserver": {},
     "commandHint_me": "Beskriv deg selv",
     "@commandHint_me": {
         "type": "String",
@@ -3006,7 +2720,6 @@
         "description": "State that {command} is not a valid /command."
     },
     "checkList": "Sjekkliste",
-    "@checkList": {},
     "createNewSpace": "Nytt område",
     "@createNewSpace": {
         "type": "String",
@@ -3018,17 +2731,11 @@
         "placeholders": {}
     },
     "unableToJoinChat": "Kan ikke bli med i chatten. Kanskje den andre parten allerede har lukket samtalen.",
-    "@unableToJoinChat": {},
     "otherPartyNotLoggedIn": "Den andre parten er ikke logget inn og kan derfor ikke motta meldinger!",
-    "@otherPartyNotLoggedIn": {},
     "notificationRuleIsRoomMentionDescription": "Varsler brukeren når det er en romomtale.",
-    "@notificationRuleIsRoomMentionDescription": {},
     "notificationRuleRoomnotif": "Romvarsel",
-    "@notificationRuleRoomnotif": {},
     "notificationRuleCall": "Anrop",
-    "@notificationRuleCall": {},
     "notificationRuleCallDescription": "Varsler brukeren om anrop.",
-    "@notificationRuleCallDescription": {},
     "waitingPartnerAcceptRequest": "Venter på at partneren skal godta forespørselen…",
     "@waitingPartnerAcceptRequest": {
         "type": "String",
@@ -3054,9 +2761,7 @@
         }
     },
     "widgetEtherpad": "Tekstnotat",
-    "@widgetEtherpad": {},
     "noOneCanJoin": "Ingen kan bli med",
-    "@noOneCanJoin": {},
     "userWouldLikeToChangeTheChat": "{user} vil gjerne bli med i chatten.",
     "@userWouldLikeToChangeTheChat": {
         "placeholders": {
@@ -3066,7 +2771,6 @@
         }
     },
     "noPublicLinkHasBeenCreatedYet": "Ingen offentlig lenke er opprettet ennå",
-    "@noPublicLinkHasBeenCreatedYet": {},
     "commandHint_html": "Send HTML-formatert tekst",
     "@commandHint_html": {
         "type": "String",
@@ -3107,7 +2811,6 @@
         }
     },
     "directChat": "Direkte chat",
-    "@directChat": {},
     "redactedByBecause": "Redigert av {username} fordi: «{reason}»",
     "@redactedByBecause": {
         "type": "String",
@@ -3131,9 +2834,7 @@
         "placeholders": {}
     },
     "newSpace": "Nytt område",
-    "@newSpace": {},
     "allSpaces": "Alle områder",
-    "@allSpaces": {},
     "numChats": "{number} chats",
     "@numChats": {
         "type": "number",
@@ -3153,9 +2854,7 @@
         }
     },
     "moveDown": "Flytt ned",
-    "@moveDown": {},
     "removeFromSpaceDescription": "Chatten blir fjernet fra området, men vises fortsatt i chatlisten din.",
-    "@removeFromSpaceDescription": {},
     "countChats": "{chats} chats",
     "@countChats": {
         "type": "String",
@@ -3166,27 +2865,16 @@
         }
     },
     "donate": "Doner",
-    "@donate": {},
     "banUserDescription": "Brukeren vil bli utestengt fra chatten og vil ikke kunne delta i chatten igjen før utestengelsen er opphevet.",
-    "@banUserDescription": {},
     "unbanUserDescription": "Brukeren vil kunne gå inn i chatten igjen hvis vedkommende prøver.",
-    "@unbanUserDescription": {},
     "kickUserDescription": "Brukeren blir kastet ut av chatten, men ikke utestengt. I offentlige chatter kan brukeren bli med på nytt når som helst.",
-    "@kickUserDescription": {},
-    "sendTypingNotifications": "Send skrivevarsler",
-    "@sendTypingNotifications": {},
+    "sendTypingNotifications": "Send varsler ved skriving",
     "swipeRightToLeftToReply": "Sveip fra høyre mot venstre for å svare",
-    "@swipeRightToLeftToReply": {},
     "startFirstChat": "Start din første chat",
-    "@startFirstChat": {},
     "unlockOldMessages": "Lås opp gamle meldinger",
-    "@unlockOldMessages": {},
     "storeInAndroidKeystore": "Lagre i Android KeyStore",
-    "@storeInAndroidKeystore": {},
     "storeInAppleKeyChain": "Lagre i Apple nøkkelring",
-    "@storeInAppleKeyChain": {},
     "storeSecurlyOnThisDevice": "Lagre sikkert på denne enheten",
-    "@storeSecurlyOnThisDevice": {},
     "acceptedKeyVerification": "{sender} godtok nøkkelverifisering",
     "@acceptedKeyVerification": {
         "type": "String",
@@ -3197,35 +2885,20 @@
         }
     },
     "notificationRuleMessageDescription": "Varsler brukeren om generelle meldinger.",
-    "@notificationRuleMessageDescription": {},
     "notificationRuleSuppressEditsDescription": "Demper varsler for redigerte meldinger.",
-    "@notificationRuleSuppressEditsDescription": {},
     "notificationRuleEncryptedDescription": "Varsler brukeren om meldinger i krypterte rom.",
-    "@notificationRuleEncryptedDescription": {},
     "notificationRuleRoomServerAcl": "Romserverens tilgangskontrolliste",
-    "@notificationRuleRoomServerAcl": {},
     "notificationRuleRoomOneToOneDescription": "Varsler brukeren om meldinger i én-til-én-rom.",
-    "@notificationRuleRoomOneToOneDescription": {},
     "notificationRuleJitsiDescription": "Varsler brukeren om hendelser i Jitsi-widgeten.",
-    "@notificationRuleJitsiDescription": {},
     "customReaction": "Egendefinert reaksjon",
-    "@customReaction": {},
     "pause": "Pause",
-    "@pause": {},
     "moveToDifferentSpace": "Flytt til et annet område",
-    "@moveToDifferentSpace": {},
     "moveUp": "Flytt opp",
-    "@moveUp": {},
     "storeInSecureStorageDescription": "Oppbevar gjenopprettingsnøkkelen på en sikker lagringsplass på denne enheten.",
-    "@storeInSecureStorageDescription": {},
     "foregroundServiceRunning": "Denne varslingen vises når forgrunnstjenesten kjører.",
-    "@foregroundServiceRunning": {},
     "callingAccount": "Ringekonto",
-    "@callingAccount": {},
     "appearOnTopDetails": "Lar appen vises øverst (ikke nødvendig hvis du allerede har Fluffychat konfigurert som en ringekonto)",
-    "@appearOnTopDetails": {},
     "longPressToRecordVoiceMessage": "Langt trykk for å spille inn talemelding.",
-    "@longPressToRecordVoiceMessage": {},
     "startedAPoll": "{username} startet en avstemning.",
     "@startedAPoll": {
         "type": "String",
@@ -3236,31 +2909,18 @@
         }
     },
     "poll": "Avstemning",
-    "@poll": {},
     "startPoll": "Start avstemning",
-    "@startPoll": {},
     "endPoll": "Avslutt avstemning",
-    "@endPoll": {},
     "answersVisible": "Svar synlige",
-    "@answersVisible": {},
     "answersHidden": "Svar skjult",
-    "@answersHidden": {},
     "addAnswerOption": "Legg til svaralternativ",
-    "@addAnswerOption": {},
     "answerOption": "Svaralternativ",
-    "@answerOption": {},
     "allowMultipleAnswers": "Tillat flere svar",
-    "@allowMultipleAnswers": {},
     "pollHasBeenEnded": "Avstemningen er avsluttet",
-    "@pollHasBeenEnded": {},
     "roomUpgradeDescription": "Chatten vil deretter bli gjenskapt med den nye romversjonen. Alle deltakere vil bli varslet om at de må bytte til den nye chatten. Du kan finne ut mer om romversjoner på https://spec.matrix.org/latest/rooms/",
-    "@roomUpgradeDescription": {},
     "groupCanBeFoundViaSearch": "Gruppen kan finnes via søk",
-    "@groupCanBeFoundViaSearch": {},
     "commandHint_sendraw": "Send raw json",
-    "@commandHint_sendraw": {},
     "replyInThread": "Svar i tråden",
-    "@replyInThread": {},
     "sessionLostBody": "Sesjonen din er tapt. Vennligst rapporter denne feilen til utviklerne på {url}. Feilmeldingen er: {error}",
     "@sessionLostBody": {
         "type": "String",
@@ -3274,28 +2934,17 @@
         }
     },
     "noticeChatBackupDeviceVerification": "Merk: Når du kobler alle enhetene dine til chat-sikkerhetskopien, blir de automatisk bekreftet.",
-    "@noticeChatBackupDeviceVerification": {},
     "notificationRuleTombstone": "Gravstein",
-    "@notificationRuleTombstone": {},
     "answersWillBeVisibleWhenPollHasEnded": "Svarene vil være synlige når avstemningen er avsluttet",
-    "@answersWillBeVisibleWhenPollHasEnded": {},
     "thread": "Tråd",
-    "@thread": {},
     "backToMainChat": "Tilbake til hovedchatten",
-    "@backToMainChat": {},
     "saveChanges": "Lagre endringer",
-    "@saveChanges": {},
     "skipChatBackup": "Hopp over sikkerhetskopiering av chat",
-    "@skipChatBackup": {},
     "loadingMessages": "Laster inn meldinger",
-    "@loadingMessages": {},
     "setupChatBackup": "Konfigurer sikkerhetskopi av chat",
-    "@setupChatBackup": {},
-    "commandHint_googly": "Send noen stirreøyne",
-    "@commandHint_googly": {},
+    "commandHint_googly": "Send noen googly-eyes",
     "commandHint_cuddle": "Send en kos",
-    "@commandHint_cuddle": {},
-    "googlyEyesContent": "{senderName} sender deg noen stirreøyner",
+    "googlyEyesContent": "{senderName} sender deg googly-eyes",
     "@googlyEyesContent": {
         "type": "String",
         "placeholders": {
@@ -3303,5 +2952,118 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "countChatsAndCountParticipants": "{chats} chatter og {participants} deltakere",
+    "@countChatsAndCountParticipants": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            },
+            "participants": {
+                "type": "int"
+            }
+        }
+    },
+    "noChatsFoundHere": "Ingen chatter her. Bruk knappen under for å starte en ny samtale. ⤵️",
+    "joinedChats": "Mine chatter",
+    "changedTheChatDescription": "{username} endret beskrivelsen av chatten",
+    "changedTheChatName": "{username} endret navnet på chatten",
+    "commandHint_markasdm": "Marker som rom for direktemeldinger for den angitte Matrix-IDen",
+    "indexedDbErrorTitle": "Problemer med privat modus",
+    "recoveryKeyLost": "Mistet gjenopprettingsnøkkel?",
+    "separateChatTypes": "Skille direktemeldinger og grupper",
+    "@separateChatTypes": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setAsCanonicalAlias": "Angi som hovedalias",
+    "@setAsCanonicalAlias": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "spaceIsPublic": "Området er offentlig",
+    "@spaceIsPublic": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "spaceName": "Navn på område",
+    "@spaceName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "useAsEmoji": "Bruk som emoji",
+    "stickerPackNameAlreadyExists": "Klistremerkepakken finnes allerede",
+    "newStickerPack": "Ny klistremerkepakke",
+    "stickerPackName": "Navn på klistremerkepakke",
+    "signInWithLabel": "Logg inn med:",
+    "enterSpace": "Bli med i området",
+    "enterRoom": "Bli med i rommet",
+    "addToBundle": "Legg til i pakke",
+    "removeFromBundle": "Fjern fra denne pakken",
+    "bundleName": "Navn på pakke",
+    "noBackupWarning": "Advarsel! Hvis du ikke aktiverer sikkerhetskopiering av chatten, vil du miste tilgangen til dine krypterte meldinger. Det anbefales sterkt å aktivere sikkerhetskopiering før du logger ut.",
+    "commandHint_op": "Angi makt-nivå for valgt bruker (standard: 50)",
+    "@commandHint_op": {
+        "type": "String",
+        "description": "Usage hint for the command /op"
+    },
+    "editBundlesForAccount": "Rediger pakker for denne kontoen",
+    "register": "Registrer",
+    "@register": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "errorAddingWidget": "Kunne ikke legge til widget.",
+    "makeAdminDescription": "Når du gjør denne brukeren til administrator, kan du kanskje ikke omgjøre det senere. Brukeren vil da få de samme rettighetene som deg.",
+    "joinSpace": "Bli med i området",
+    "publicSpaces": "Offentlige områder",
+    "databaseBuildErrorBody": "Kunne ikke bygge SQLite-databasen. Appen prøver å bruke den gamle databasen enn så lenge. Vennligst rapporter denne feilen til utviklerne på {url}. Feilmeldingen er: {error}",
+    "@databaseBuildErrorBody": {
+        "type": "String",
+        "placeholders": {
+            "url": {
+                "type": "String"
+            },
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "verifyOtherUserDescription": "Hvis du verifiserer en annen bruker, kan du være trygg på at du vet hvem du faktisk skriver med. 💪\n\nNår du starter en verifisering, vil både du og den andre brukeren se et popup-vindu i appen. Der vil dere se en serie emojier eller tall som dere må sammenligne med hverandre.\n\nDen beste måten å gjøre dette på er å møtes ansikt til ansikt eller starte en videosamtale. 👭",
+    "verifyOtherDeviceDescription": "Når du verifiserer en annen enhet, kan disse enhetene utveksle nøkler, noe som øker den generelle sikkerheten din. 💪 Når du starter en verifisering, vil det dukke opp et popup-vindu i appen på begge enhetene. Der vil du se en serie emojier eller tall som du må sammenligne med hverandre. Det er best å ha begge enhetene forhånden før du starter verifiseringen. 🤳",
+    "clientWellKnownInformation": "Velkjent informasjon om klienten:",
+    "baseUrl": "Base URL",
+    "identityServer": "Identitetsserver:",
+    "versionWithNumber": "Versjon: {version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "logs": "Logger",
+    "advancedConfigs": "Avanserte innstillinger",
+    "advancedConfigurations": "Avanserte innstillinger",
+    "createSticker": "Lag sticker eller emoji",
+    "useAsSticker": "Bruk som sticker",
+    "pollQuestion": "Spørsmål til avstemning",
+    "hasKnocked": "🚪{user} har banket på",
+    "@hasKnocked": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "usersMustKnock": "Brukere må banke på",
+    "knock": "Bank på",
+    "notificationRuleRoomServerAclDescription": "Skjuler varsler for tilgangskontrollister (ACL) for romservere.",
+    "displayNavigationRail": "Vis navigasjonsfelt på mobil",
+    "attribution": "Kreditering",
+    "skipChatBackupWarning": "Er du sikker? Uten sikkerhetskopi av chattene kan du miste meldingene dine hvis du bytter enhet.",
+    "noMoreResultsFound": "Ingen flere treff",
+    "federationBaseUrl": "Federation Base URL"
 }

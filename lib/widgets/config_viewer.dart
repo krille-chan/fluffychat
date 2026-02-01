@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -52,7 +53,7 @@ class _ConfigViewerState extends State<ConfigViewer> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Advanced configurations'),
+        title: Text(L10n.of(context).advancedConfigurations),
         leading: BackButton(onPressed: () => context.go('/')),
       ),
       body: Column(

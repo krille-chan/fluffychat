@@ -13,7 +13,6 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -26,9 +25,7 @@ extension LocalNotificationsExtension on MatrixState {
   void showLocalNotification(Event event) async {
     final roomId = event.room.id;
     if (activeRoomId == roomId) {
-      if (kIsWeb && webHasFocus) return;
-      if (PlatformInfos.isDesktop &&
-          WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
+      if (WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
         return;
       }
     }

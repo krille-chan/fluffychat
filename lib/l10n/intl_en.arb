@@ -2739,15 +2739,6 @@
   "@signInWithPassword": {},
   "pleaseTryAgainLaterOrChooseDifferentServer": "Please try again later or choose a different server.",
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "signInWith": "Sign in with {provider}",
-  "@signInWith": {
-    "type": "String",
-    "placeholders": {
-      "provider": {
-        "type": "String"
-      }
-    }
-  },
   "profileNotFound": "The user could not be found on the server. Maybe there is a connection problem or the user doesn't exist.",
   "@profileNotFound": {},
   "setTheme": "Set theme:",
@@ -3476,5 +3467,29 @@
         "type": "String"
       }
     }
-  }
+  },
+  "federationBaseUrl": "Federation Base URL",
+  "@federationBaseUrl": {},
+  "clientWellKnownInformation": "Client-Well-Known Information:",
+  "@clientWellKnownInformation": {},
+  "baseUrl": "Base URL",
+  "@baseUrl": {},
+  "identityServer": "Identity Server:",
+  "@identityServer": {},
+  "versionWithNumber": "Version: {version}",
+  "@versionWithNumber": {
+    "type": "String",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "logs": "Logs",
+  "@logs": {},
+  "advancedConfigs": "Advanced Configs",
+  "@advancedConfigs": {},
+  "advancedConfigurations": "Advanced configurations",
+  "@advancedConfigurations": {},
+  "signInWithLabel": "Sign in with:"
 }

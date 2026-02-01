@@ -206,7 +206,7 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} změnil popis chatu na: „{description}“",
+    "changedTheChatDescriptionTo": "{username} změnil/a popis konverzace na: „{description}“",
     "@changedTheChatDescriptionTo": {
         "type": "String",
         "placeholders": {
@@ -218,7 +218,7 @@
             }
         }
     },
-    "changedTheChatNameTo": "{username} změnil jméno chatu na: „{chatname}“",
+    "changedTheChatNameTo": "{username} změnil/a název konverzace na: „{chatname}“",
     "@changedTheChatNameTo": {
         "type": "String",
         "placeholders": {
@@ -239,7 +239,7 @@
             }
         }
     },
-    "changedTheDisplaynameTo": "{username} změnili svoji přezdívku na: {displayname}",
+    "changedTheDisplaynameTo": "{username} změnil/a svoji přezdívku na: „{displayname}“",
     "@changedTheDisplaynameTo": {
         "type": "String",
         "placeholders": {
@@ -381,7 +381,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Záloha chatu je zabezpečena bezpečnostním klíčem. Ujistěte se, prosím, že klíč neztratíte.",
+    "chatBackupDescription": "Vaše zprávy jsou zabezpečeny bezpečnostním klíčem. Ujistěte se, prosím, že klíč neztratíte.",
     "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
@@ -2439,7 +2439,7 @@
     "@allSpaces": {},
     "noOtherDevicesFound": "Žádná ostatní zařízení nebyla nalezena",
     "@noOtherDevicesFound": {},
-    "addChatDescription": "Přidejte popis konverzace",
+    "addChatDescription": "Přidat popis konverzace...",
     "@addChatDescription": {},
     "chatDescription": "Popis konverzace",
     "@chatDescription": {},
@@ -2470,7 +2470,7 @@
             }
         }
     },
-    "newSpaceDescription": "Prostory umožňují organizovat vaše konverzace a vytvářet soukromé nebo veřejné komunity",
+    "newSpaceDescription": "Prostory umožňují organizovat Vaše konverzace a vytvářet soukromé nebo veřejné komunity.",
     "@newSpaceDescription": {},
     "profileNotFound": "Uživatel nebyl na serveru nalezen. Možná je problém s připojením nebo uživatel neexistuje.",
     "@profileNotFound": {},
@@ -2507,7 +2507,7 @@
     "@deviceKeys": {},
     "reopenChat": "Znovu otevřít konverzaci",
     "@reopenChat": {},
-    "fileIsTooBigForServer": "Server oznamuje že soubor je příliš velký na odeslání.",
+    "fileIsTooBigForServer": "Neodesláno! Server povoluje maximálně {max} příloh.",
     "@fileIsTooBigForServer": {},
     "jump": "Skočit",
     "@jump": {},
@@ -2642,7 +2642,7 @@
     "@blockListDescription": {},
     "blockedUsers": "Zablokování uživatelé",
     "@blockedUsers": {},
-    "alwaysUse24HourFormat": "",
+    "alwaysUse24HourFormat": "Vypnuto",
     "@alwaysUse24HourFormat": {
         "description": "Set to true to always display time of day in 24 hour format."
     },
@@ -2700,5 +2700,133 @@
         }
     },
     "usersMustKnock": "Uživatelé musí zaklepat",
-    "@usersMustKnock": {}
+    "@usersMustKnock": {},
+    "setCustomPermissionLevel": "Nastavit vlastní úroveň oprávnění",
+    "@setCustomPermissionLevel": {},
+    "changedTheChatDescription": "{username} změnil/a popis konverzace",
+    "@changedTheChatDescription": {},
+    "changedTheChatName": "{username} změnil/a název konverzace",
+    "@changedTheChatName": {},
+    "checkList": "Kontrolní seznam",
+    "@checkList": {},
+    "knock": "Zaklepat",
+    "@knock": {},
+    "userWouldLikeToChangeTheChat": "{user} požádal/a o přidání do konverzace.",
+    "@userWouldLikeToChangeTheChat": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "enterSpace": "Vstoupit do prostoru",
+    "@enterSpace": {},
+    "enterRoom": "Vstoupit do místnosti",
+    "@enterRoom": {},
+    "hideUnimportantStateEvents": "Skrýt nedůležité stavové události",
+    "@hideUnimportantStateEvents": {},
+    "hidePresences": "Skrýt seznam událostí?",
+    "@hidePresences": {},
+    "noBackupWarning": "Pozor! Bez povolení zálohování konverzací ztratíte přístup k zašifrovaným zprávám. Důrazně doporučujeme zálohování konverzací před odhlášením povolit.",
+    "@noBackupWarning": {},
+    "readUpToHere": "Čtěte až sem",
+    "@readUpToHere": {},
+    "reportErrorDescription": "😭 Ale ne, něco se porouchalo. Pokud chcete, můžete tento bug nahlásit vývojářům.",
+    "@reportErrorDescription": {},
+    "report": "hlášení",
+    "@report": {},
+    "invite": "Pozvánka",
+    "@invite": {},
+    "inviteGroupChat": "📨 Skupinová pozvánka",
+    "@inviteGroupChat": {},
+    "invitePrivateChat": "📨 Soukromá pozvánka",
+    "@invitePrivateChat": {},
+    "appearOnTopDetails": "Umožňuje zobrazit aplikaci nahoře (není nutné, pokud již máte Fluffychat nastaven jako účet volajícího)",
+    "@appearOnTopDetails": {},
+    "noKeyForThisMessage": "K tomuto může dojít, pokud byla zpráva odeslána před přihlášením k účtu v tomto zařízení.\n\nJe také možné, že odesílatel zablokoval vaše zařízení nebo se něco pokazilo s internetovým připojením.\n\nJste schopni si zprávu přečíst v jiné relaci? Pak můžete zprávu přenést z něj! Přejděte do Nastavení > Zařízení a zkontrolujte, zda se Vaše zařízení vzájemně ověřila. Při příštím otevření místnosti, kdy budou obě relace v popředí, se klíče přenesou automaticky.\n\nNechcete klíče ztratit při odhlašování nebo přepínání zařízení? Ujistěte se, že jste v nastaveních povolili zálohování konverzací.",
+    "@noKeyForThisMessage": {},
+    "invalidInput": "Nevhodný vstup!",
+    "@invalidInput": {},
+    "wrongPinEntered": "Nespravný PIN! Zkuste to znovu za {seconds} vteřin...",
+    "@wrongPinEntered": {
+        "type": "String",
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "pleaseEnterANumber": "Prosím, zadejte číslo větší než 0",
+    "@pleaseEnterANumber": {},
+    "archiveRoomDescription": "Konverzace bude přesunuta do archivu. Ostatní uživatelé uvidí, že jste konverzaci opustil/a.",
+    "@archiveRoomDescription": {},
+    "roomUpgradeDescription": "Konverzace bude vytvořena znovu s novou verzí místnosti. Všem účastníkům bude oznámeno, že se musí přesunout do nové konverzace. Více o verzích místností se dočtete na https://spec.matrix.org/latest/",
+    "@roomUpgradeDescription": {},
+    "removeDevicesDescription": "Budete odhlášen/a z tohoto zařízení a nebudete nadále moci přijímat zprávy.",
+    "@removeDevicesDescription": {},
+    "banUserDescription": "Uživatel bude vyhozen z konverzace a nebude se moci znovu připojit dokud nebude odblokován.",
+    "@banUserDescription": {},
+    "unbanUserDescription": "Uživatel se bude moci vrátit do konverzace pokud se o to pokusí.",
+    "@unbanUserDescription": {},
+    "makeAdminDescription": "Jestliže tohoto uživatele povýšíte na administrátora, nebude tak moci odčinit, protože bude mít stejná oprávnění jako Vy.",
+    "@makeAdminDescription": {},
+    "pushNotificationsNotAvailable": "Notifikace nejsou dostupné",
+    "@pushNotificationsNotAvailable": {},
+    "learnMore": "Dozvědět se více",
+    "@learnMore": {},
+    "yourGlobalUserIdIs": "Vaše globální uživatelské ID (user-ID) je: ",
+    "@yourGlobalUserIdIs": {},
+    "knocking": "Klepání",
+    "@knocking": {},
+    "chatCanBeDiscoveredViaSearchOnServer": "Konverzaci naleznete vyhledáváním na {server}",
+    "@chatCanBeDiscoveredViaSearchOnServer": {
+        "type": "String",
+        "placeholders": {
+            "server": {
+                "type": "String"
+            }
+        }
+    },
+    "searchChatsRooms": "Vyhledat #konverzace, @uživatele...",
+    "@searchChatsRooms": {},
+    "nothingFound": "Nic nenalezeno...",
+    "@nothingFound": {},
+    "groupName": "Název skupiny",
+    "@groupName": {},
+    "createGroupAndInviteUsers": "Vytvořit skupinu a pozvat uživatele",
+    "@createGroupAndInviteUsers": {},
+    "groupCanBeFoundViaSearch": "Skupinu naleznete vyhledávním",
+    "@groupCanBeFoundViaSearch": {},
+    "startConversation": "Začít konverzaci",
+    "@startConversation": {},
+    "commandHint_sendraw": "Odeslat soubor json",
+    "@commandHint_sendraw": {},
+    "databaseMigrationTitle": "Databáze je optimalizována",
+    "@databaseMigrationTitle": {},
+    "databaseMigrationBody": "Vydržte prosím. Bude to chvilku trvat.",
+    "@databaseMigrationBody": {},
+    "leaveEmptyToClearStatus": "Zanechte prázdné pro smazání statusu.",
+    "@leaveEmptyToClearStatus": {},
+    "select": "Vybrat",
+    "@select": {},
+    "searchForUsers": "Vyhledat @uživatele...",
+    "@searchForUsers": {},
+    "pleaseEnterYourCurrentPassword": "Prosím, zadejte Vaše současné heslo",
+    "@pleaseEnterYourCurrentPassword": {},
+    "newPassword": "Nové heslo",
+    "@newPassword": {},
+    "pleaseChooseAStrongPassword": "Prosím, zvolte si silné heslo",
+    "@pleaseChooseAStrongPassword": {},
+    "passwordsDoNotMatch": "Hesla se neshodují",
+    "@passwordsDoNotMatch": {},
+    "passwordIsWrong": "Zadané heslo je nesprávné",
+    "@passwordIsWrong": {},
+    "publicLink": "Veřejný odkaz",
+    "@publicLink": {},
+    "publicChatAddresses": "Adresy veřejných konverzací",
+    "@publicChatAddresses": {},
+    "createNewAddress": "Vytvořit novou adresu",
+    "@createNewAddress": {},
+    "thisDevice": "Toto zařzení:",
+    "@thisDevice": {}
 }
