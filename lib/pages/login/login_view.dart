@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'login.dart';
 
 class LoginView extends StatelessWidget {
@@ -15,32 +14,18 @@ class LoginView extends StatelessWidget {
     final theme = Theme.of(context);
 
     final homeserver = controller.widget.client.homeserver
-        .toString()
+        ?.toString()
         .replaceFirst('https://', '');
-    final title = L10n.of(context).logInTo(homeserver);
-    final titleParts = title.split(homeserver);
+    final title = homeserver == null
+        ? L10n.of(context).loginWithMatrixId
+        : L10n.of(context).logInTo(homeserver);
 
     return LoginScaffold(
-      enforceMobileMode: Matrix.of(
-        context,
-      ).widget.clients.any((client) => client.isLogged()),
       appBar: AppBar(
         leading: controller.loading ? null : const Center(child: BackButton()),
         automaticallyImplyLeading: !controller.loading,
         titleSpacing: !controller.loading ? 0 : null,
-        title: Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(text: titleParts.first),
-              TextSpan(
-                text: homeserver,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              TextSpan(text: titleParts.last),
-            ],
-          ),
-          style: const TextStyle(fontSize: 18),
-        ),
+        title: Text(title),
       ),
       body: Builder(
         builder: (context) {
@@ -121,18 +106,19 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: TextButton(
-                    onPressed: controller.loading
-                        ? () {}
-                        : controller.passwordForgotten,
-                    style: TextButton.styleFrom(
-                      foregroundColor: theme.colorScheme.error,
+                if (homeserver != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: TextButton(
+                      onPressed: controller.loading
+                          ? () {}
+                          : controller.passwordForgotten,
+                      style: TextButton.styleFrom(
+                        foregroundColor: theme.colorScheme.error,
+                      ),
+                      child: Text(L10n.of(context).passwordForgotten),
                     ),
-                    child: Text(L10n.of(context).passwordForgotten),
                   ),
-                ),
                 const SizedBox(height: 16),
               ],
             ),

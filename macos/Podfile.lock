@@ -26,7 +26,7 @@ PODS:
     - FlutterMacOS
   - flutter_vodozemac (0.0.1):
     - FlutterMacOS
-  - flutter_web_auth_2 (3.0.0):
+  - flutter_web_auth_2 (5.0.0):
     - FlutterMacOS
   - flutter_webrtc (1.2.0):
     - FlutterMacOS
@@ -197,7 +197,7 @@ SPEC CHECKSUMS:
   flutter_new_badger: 6fe9bf7e42793a164032c21f164c0ad9985cd0f2
   flutter_secure_storage_darwin: acdb3f316ed05a3e68f856e0353b133eec373a23
   flutter_vodozemac: fd2ea9cb3e2a37beaac883a369811fbfe042fc53
-  flutter_web_auth_2: 62b08da29f15a20fa63f144234622a1488d45b65
+  flutter_web_auth_2: 7fe624ff12ddcb4c19e5dbcd56c9e9ea4899d967
   flutter_webrtc: 718eae22a371cd94e5d56aa4f301443ebc5bb737
   FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
   geolocator_apple: ab36aa0e8b7d7a2d7639b3b4e48308394e8cef5e
