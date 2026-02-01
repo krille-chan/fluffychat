@@ -77,7 +77,7 @@ dependencies:
   swipe_to_action: ^0.3.0
   unifiedpush: ^6.2.0
   unifiedpush_ui: ^0.2.0
-  universal_html: ^2.3.0
+  universal_web: ^1.1.1+1
   url_launcher: ^6.3.2
   video_compress: ^3.1.4
   video_player: ^2.10.1

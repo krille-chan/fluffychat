@@ -6,7 +6,7 @@ import 'package:matrix/matrix.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:universal_html/html.dart' as html;
+import 'package:universal_web/web.dart' as html;
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_manager.dart';
@@ -54,7 +54,7 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(String clientName) async {
 
 Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
   if (kIsWeb) {
-    html.window.navigator.storage?.persist();
+    html.window.navigator.storage.persist();
     return await MatrixSdkDatabase.init(clientName);
   }
 

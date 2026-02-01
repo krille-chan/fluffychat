@@ -161,14 +161,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
-  charcode:
-    dependency: transitive
-    description:
-      name: charcode
-      sha256: fb0f1107cac15a5ea6ef0a6ef71a807b9e4267c713bb93e00e92d737cc8dbd8a
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.4.0"
   checked_yaml:
     dependency: transitive
     description:
@@ -1921,14 +1913,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.0"
-  universal_html:
-    dependency: "direct main"
-    description:
-      name: universal_html
-      sha256: c0bcae5c733c60f26c7dfc88b10b0fd27cbcc45cb7492311cdaa6067e21c9cd4
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.0"
   universal_io:
     dependency: transitive
     description:
@@ -1945,6 +1929,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  universal_web:
+    dependency: "direct main"
+    description:
+      name: universal_web
+      sha256: "618a9d8659e9429875f69d4da0fb9c0c143d3d4cdab28b4545502088aa50ed62"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1+1"
   unorm_dart:
     dependency: transitive
     description:
