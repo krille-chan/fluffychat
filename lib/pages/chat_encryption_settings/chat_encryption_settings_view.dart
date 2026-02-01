@@ -101,78 +101,84 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                         );
                       }
                       final deviceKeys = snapshot.data!;
-                      return ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: deviceKeys.length,
-                        itemBuilder: (BuildContext context, int i) => Column(
-                          mainAxisSize: .min,
-                          children: [
-                            if (i == 0 ||
-                                deviceKeys[i].userId !=
-                                    deviceKeys[i - 1].userId) ...[
-                              const Divider(),
-                              FutureBuilder(
-                                future: room.client.getUserProfile(
-                                  deviceKeys[i].userId,
+                      return SelectionArea(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: deviceKeys.length,
+                          itemBuilder: (BuildContext context, int i) => Column(
+                            mainAxisSize: .min,
+                            children: [
+                              if (i == 0 ||
+                                  deviceKeys[i].userId !=
+                                      deviceKeys[i - 1].userId) ...[
+                                const Divider(),
+                                FutureBuilder(
+                                  future: room.client.getUserProfile(
+                                    deviceKeys[i].userId,
+                                  ),
+                                  builder: (context, snapshot) {
+                                    final displayname =
+                                        snapshot.data?.displayname ??
+                                        deviceKeys[i].userId.localpart ??
+                                        deviceKeys[i].userId;
+                                    return ListTile(
+                                      leading: Avatar(
+                                        name: displayname,
+                                        mxContent: snapshot.data?.avatarUrl,
+                                      ),
+                                      title: Text(displayname),
+                                      subtitle: Text(deviceKeys[i].userId),
+                                    );
+                                  },
                                 ),
-                                builder: (context, snapshot) {
-                                  final displayname =
-                                      snapshot.data?.displayname ??
-                                      deviceKeys[i].userId.localpart ??
-                                      deviceKeys[i].userId;
-                                  return ListTile(
-                                    leading: Avatar(
-                                      name: displayname,
-                                      mxContent: snapshot.data?.avatarUrl,
+                              ],
+                              ListTile(
+                                leading: Switch.adaptive(
+                                  value: !deviceKeys[i].blocked,
+                                  activeThumbColor: deviceKeys[i].verified
+                                      ? Colors.green
+                                      : Colors.orange,
+                                  onChanged: (_) =>
+                                      controller.toggleDeviceKey(deviceKeys[i]),
+                                ),
+                                title: Row(
+                                  children: [
+                                    Text(
+                                      deviceKeys[i].verified
+                                          ? L10n.of(context).verified
+                                          : deviceKeys[i].blocked
+                                          ? L10n.of(context).blocked
+                                          : L10n.of(context).unverified,
+                                      style: TextStyle(
+                                        color: deviceKeys[i].verified
+                                            ? Colors.green
+                                            : deviceKeys[i].blocked
+                                            ? Colors.red
+                                            : Colors.orange,
+                                      ),
                                     ),
-                                    title: Text(displayname),
-                                    subtitle: Text(deviceKeys[i].userId),
-                                  );
-                                },
+                                    const Text(' | ID: '),
+                                    Text(
+                                      deviceKeys[i].deviceId ??
+                                          L10n.of(context).unknownDevice,
+                                    ),
+                                  ],
+                                ),
+                                subtitle: Text(
+                                  deviceKeys[i].ed25519Key?.beautified ??
+                                      L10n.of(
+                                        context,
+                                      ).unknownEncryptionAlgorithm,
+                                  style: TextStyle(
+                                    fontFamily: 'RobotoMono',
+                                    color: theme.colorScheme.secondary,
+                                    fontSize: 11,
+                                  ),
+                                ),
                               ),
                             ],
-                            SwitchListTile(
-                              value: !deviceKeys[i].blocked,
-                              activeThumbColor: deviceKeys[i].verified
-                                  ? Colors.green
-                                  : Colors.orange,
-                              onChanged: (_) =>
-                                  controller.toggleDeviceKey(deviceKeys[i]),
-                              title: Row(
-                                children: [
-                                  Text(
-                                    deviceKeys[i].verified
-                                        ? L10n.of(context).verified
-                                        : deviceKeys[i].blocked
-                                        ? L10n.of(context).blocked
-                                        : L10n.of(context).unverified,
-                                    style: TextStyle(
-                                      color: deviceKeys[i].verified
-                                          ? Colors.green
-                                          : deviceKeys[i].blocked
-                                          ? Colors.red
-                                          : Colors.orange,
-                                    ),
-                                  ),
-                                  const Text(' | ID: '),
-                                  Text(
-                                    deviceKeys[i].deviceId ??
-                                        L10n.of(context).unknownDevice,
-                                  ),
-                                ],
-                              ),
-                              subtitle: Text(
-                                deviceKeys[i].ed25519Key?.beautified ??
-                                    L10n.of(context).unknownEncryptionAlgorithm,
-                                style: TextStyle(
-                                  fontFamily: 'RobotoMono',
-                                  color: theme.colorScheme.secondary,
-                                  fontSize: 11,
-                                ),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       );
                     },
