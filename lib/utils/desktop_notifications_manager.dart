@@ -161,7 +161,7 @@ class DesktopNotificationsManager {
           NotificationDetails(
             linux: LinuxNotificationDetails(
               icon: icon,
-              sound: const ThemeLinuxSound('message-new-instant'),
+              sound: ThemeLinuxSound('message-new-instant'),
               urgency: LinuxNotificationUrgency.normal,
               actions: actions,
               defaultActionName: openChatLabel ?? 'Open',
