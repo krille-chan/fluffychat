@@ -121,8 +121,10 @@ class DesktopNotificationsManager {
   }) async {
     if (!isSupported) return;
 
-    // Use roomId.hashCode for consistent IDs (allows notification replacement)
-    final id = roomId.hashCode;
+    // Use eventId.hashCode for unique IDs per message.
+    // Using roomId.hashCode caused issues with notifications not appearing
+    // on some desktop environments (e.g., KDE) after the first was dismissed.
+    final id = eventId.hashCode;
     _roomIdToNotificationId[roomId] = id;
 
     final payload = '$roomId|$eventId';

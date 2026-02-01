@@ -279,14 +279,18 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
     if (PlatformInfos.isWeb || DesktopNotificationsManager.isSupported) {
-      c.onSync.stream.first.then((s) {
-        if (PlatformInfos.isWeb) {
+      // For web, wait for first sync to request permission
+      if (PlatformInfos.isWeb) {
+        c.onSync.stream.first.then((s) {
           html.Notification.requestPermission();
-        }
-        onNotification[name] ??= c.onNotification.stream.listen(
-          showLocalNotification,
-        );
-      });
+        });
+      }
+      // Subscribe to notifications immediately - don't wait for first sync.
+      // The client may already be syncing if logged in from a previous session,
+      // in which case onSync.stream.first would never fire.
+      onNotification[name] ??= c.onNotification.stream.listen(
+        showLocalNotification,
+      );
     }
   }
 
