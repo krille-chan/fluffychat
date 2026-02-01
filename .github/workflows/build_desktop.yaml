@@ -1,14 +1,12 @@
-name: Build macOS
+name: Build Desktop (Ad-hoc)
 
+# Manual trigger only - for ad-hoc builds before official releases
 on:
   workflow_dispatch:
-  release:
-    types:
-      - created
 
 jobs:
   build_macos:
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v6
 
@@ -20,9 +18,6 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
 
-      - name: Use Xcode 16.4
-        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
-
       - name: Install dependencies
         run: brew install sqlcipher create-dmg
 
@@ -33,20 +28,16 @@ jobs:
 
       - name: Disable code signing
         run: |
-          # Disable code signing for unsigned distribution
           sed -i '' 's/CODE_SIGN_IDENTITY = .*/CODE_SIGN_IDENTITY = "-";/' macos/Runner.xcodeproj/project.pbxproj
           sed -i '' 's/DEVELOPMENT_TEAM = .*/DEVELOPMENT_TEAM = "";/' macos/Runner.xcodeproj/project.pbxproj
           sed -i '' 's/CODE_SIGN_STYLE = .*/CODE_SIGN_STYLE = Manual;/' macos/Runner.xcodeproj/project.pbxproj
           sed -i '' 's/PROVISIONING_PROFILE_SPECIFIER = .*/PROVISIONING_PROFILE_SPECIFIER = "";/' macos/Runner.xcodeproj/project.pbxproj
 
       - name: Build macOS
-        run: |
-          flutter build macos --release \
-            --dart-define=FLUTTER_BUILD_NAME=unsigned
+        run: flutter build macos --release
 
       - name: Ad-hoc sign the app with entitlements
         run: |
-          # Create minimal entitlements for ad-hoc signing (no sandbox)
           cat > /tmp/adhoc.entitlements << 'EOF'
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -59,8 +50,6 @@ jobs:
           </dict>
           </plist>
           EOF
-
-          # Ad-hoc sign with minimal entitlements
           codesign --force --deep --sign - \
             --entitlements /tmp/adhoc.entitlements \
             "build/macos/Build/Products/Release/FluffyChat.app"
@@ -86,7 +75,7 @@ jobs:
             cd ../../../../..
           fi
 
-      - name: Upload DMG artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v5
         with:
           name: FluffyChat-macOS
@@ -95,13 +84,36 @@ jobs:
             FluffyChat-macOS.zip
           if-no-files-found: error
 
-      - name: Upload to release
-        if: github.event_name == 'release'
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  build_linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Load version config
+        run: cat .github/workflows/versions.env >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
+
+      - name: Install Flutter
+        run: |
+          git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
+          ./flutter/bin/flutter doctor
+
+      - uses: moonrepo/setup-rust@v1
+
+      - name: Get dependencies
+        run: ./flutter/bin/flutter pub get
+
+      - name: Build Linux
+        run: ./flutter/bin/flutter build linux
+
+      - name: Create archive
+        run: tar -czf FluffyChat-linux-x64.tar.gz -C build/linux/x64/release/bundle/ .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v5
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: FluffyChat-macOS.dmg
-          asset_name: FluffyChat-macOS.dmg
-          asset_content_type: application/x-apple-diskimage
+          name: FluffyChat-Linux
+          path: FluffyChat-linux-x64.tar.gz
+          if-no-files-found: error

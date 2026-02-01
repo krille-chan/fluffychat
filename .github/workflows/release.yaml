@@ -135,6 +135,76 @@ jobs:
           asset_name: fluffychat-linux-${{ matrix.arch }}.tar.gz
           asset_content_type: application/gzip
 
+  build_macos:
+    strategy:
+      matrix:
+        arch: [ x64, arm64 ]
+    runs-on: ${{ matrix.arch == 'arm64' && 'macos-latest' || 'macos-13' }}
+    steps:
+      - uses: actions/checkout@v6
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - name: Install dependencies
+        run: brew install sqlcipher create-dmg
+      - uses: moonrepo/setup-rust@v1
+      - run: flutter pub get
+      - name: Disable code signing
+        run: |
+          sed -i '' 's/CODE_SIGN_IDENTITY = .*/CODE_SIGN_IDENTITY = "-";/' macos/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/DEVELOPMENT_TEAM = .*/DEVELOPMENT_TEAM = "";/' macos/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/CODE_SIGN_STYLE = .*/CODE_SIGN_STYLE = Manual;/' macos/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/PROVISIONING_PROFILE_SPECIFIER = .*/PROVISIONING_PROFILE_SPECIFIER = "";/' macos/Runner.xcodeproj/project.pbxproj
+      - name: Build macOS
+        run: flutter build macos --release
+      - name: Ad-hoc sign the app
+        run: |
+          cat > /tmp/adhoc.entitlements << 'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>com.apple.security.files.user-selected.read-write</key>
+              <true/>
+              <key>com.apple.security.network.client</key>
+              <true/>
+          </dict>
+          </plist>
+          EOF
+          codesign --force --deep --sign - \
+            --entitlements /tmp/adhoc.entitlements \
+            "build/macos/Build/Products/Release/FluffyChat.app"
+      - name: Create DMG
+        run: |
+          create-dmg \
+            --volname "FluffyChat" \
+            --window-pos 200 120 \
+            --window-size 800 400 \
+            --icon-size 100 \
+            --icon "FluffyChat.app" 200 190 \
+            --hide-extension "FluffyChat.app" \
+            --app-drop-link 600 185 \
+            --no-internet-enable \
+            "fluffychat-macos-${{ matrix.arch }}.dmg" \
+            "build/macos/Build/Products/Release/FluffyChat.app" || true
+          # Fallback to zip if DMG creation fails
+          if [ ! -f "fluffychat-macos-${{ matrix.arch }}.dmg" ]; then
+            cd build/macos/Build/Products/Release
+            zip -r ../../../../../fluffychat-macos-${{ matrix.arch }}.zip FluffyChat.app
+            cd ../../../../..
+          fi
+      - name: Upload to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: fluffychat-macos-${{ matrix.arch }}.dmg
+          asset_name: fluffychat-macos-${{ matrix.arch }}.dmg
+          asset_content_type: application/x-apple-diskimage
+
   deploy_playstore:
     runs-on: ubuntu-latest
     steps:

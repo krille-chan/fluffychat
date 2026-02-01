@@ -3,18 +3,15 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
-import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
 
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
+import 'package:fluffychat/utils/desktop_notifications_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/push_helper.dart';
-import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 extension LocalNotificationsExtension on MatrixState {
@@ -82,80 +79,48 @@ extension LocalNotificationsExtension on MatrixState {
         icon: thumbnailUri?.toString(),
         tag: event.room.id,
       );
-    } else if (Platform.isLinux) {
+    } else if (DesktopNotificationsManager.isSupported) {
+      // Download and decode avatar for desktop notifications
+      Uint8List? avatarData;
+      int? avatarWidth;
+      int? avatarHeight;
+
       final avatarUrl = event.room.avatar;
-      final hints = [NotificationHint.soundName('message-new-instant')];
-
-      if (avatarUrl != null) {
-        const size = notificationAvatarDimension;
-        const thumbnailMethod = ThumbnailMethod.crop;
-        // Pre-cache so that we can later just set the thumbnail uri as icon:
-        final data = await client.downloadMxcCached(
-          avatarUrl,
-          width: size,
-          height: size,
-          thumbnailMethod: thumbnailMethod,
-          isThumbnail: true,
-          rounded: true,
-        );
-
-        final image = decodeImage(data);
-        if (image != null) {
-          final realData = image.getBytes(order: ChannelOrder.rgba);
-          hints.add(
-            NotificationHint.imageData(
-              image.width,
-              image.height,
-              realData,
-              hasAlpha: true,
-              channels: 4,
-            ),
+      if (avatarUrl != null && Platform.isLinux) {
+        try {
+          const size = notificationAvatarDimension;
+          const thumbnailMethod = ThumbnailMethod.crop;
+          final data = await client.downloadMxcCached(
+            avatarUrl,
+            width: size,
+            height: size,
+            thumbnailMethod: thumbnailMethod,
+            isThumbnail: true,
+            rounded: true,
           );
+
+          final image = decodeImage(data);
+          if (image != null) {
+            avatarData = image.getBytes(order: ChannelOrder.rgba);
+            avatarWidth = image.width;
+            avatarHeight = image.height;
+          }
+        } catch (e, s) {
+          Logs().d('Unable to download avatar for desktop notification', e, s);
         }
       }
-      final notification = await linuxNotifications!.notify(
-        title,
-        body: body,
-        replacesId: linuxNotificationIds[roomId] ?? 0,
-        appName: AppSettings.applicationName.value,
-        appIcon: 'fluffychat',
-        actions: [
-          NotificationAction(
-            DesktopNotificationActions.openChat.name,
-            L10n.of(context).openChat,
-          ),
-          NotificationAction(
-            DesktopNotificationActions.seen.name,
-            L10n.of(context).markAsRead,
-          ),
-        ],
-        hints: hints,
-      );
-      notification.action.then((actionStr) {
-        var action = DesktopNotificationActions.values.singleWhereOrNull(
-          (a) => a.name == actionStr,
-        );
-        if (action == null && actionStr == "default") {
-          action = DesktopNotificationActions.openChat;
-        }
-        switch (action!) {
-          case DesktopNotificationActions.seen:
-            event.room.setReadMarker(
-              event.eventId,
-              mRead: event.eventId,
-              public: AppSettings.sendPublicReadReceipts.value,
-            );
-            break;
-          case DesktopNotificationActions.openChat:
-            setActiveClient(event.room.client);
 
-            FluffyChatApp.router.go('/rooms/${event.room.id}');
-            break;
-        }
-      });
-      linuxNotificationIds[roomId] = notification.id;
+      await DesktopNotificationsManager.instance.showNotification(
+        title: title,
+        body: body,
+        roomId: roomId,
+        eventId: event.eventId,
+        avatarData: avatarData,
+        avatarWidth: avatarWidth,
+        avatarHeight: avatarHeight,
+        openChatLabel: L10n.of(context).openChat,
+        markAsReadLabel: L10n.of(context).markAsRead,
+      );
     }
   }
 }
-
-enum DesktopNotificationActions { seen, openChat }

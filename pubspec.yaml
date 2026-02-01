@@ -21,7 +21,6 @@ dependencies:
   cross_file: ^0.3.5
   cupertino_icons: any
   desktop_drop: ^0.7.0
-  desktop_notifications: ^0.6.3
   device_info_plus: ^12.3.0
   dynamic_color: ^1.8.1
   emoji_picker_flutter: ^4.4.0
