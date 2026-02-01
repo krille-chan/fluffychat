@@ -1,0 +1,107 @@
+name: Build macOS
+
+on:
+  workflow_dispatch:
+  release:
+    types:
+      - created
+
+jobs:
+  build_macos:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Load version config
+        run: cat .github/workflows/versions.env >> $GITHUB_ENV
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+
+      - name: Use Xcode 16.4
+        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
+
+      - name: Install dependencies
+        run: brew install sqlcipher create-dmg
+
+      - uses: moonrepo/setup-rust@v1
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Disable code signing
+        run: |
+          # Disable code signing for unsigned distribution
+          sed -i '' 's/CODE_SIGN_IDENTITY = .*/CODE_SIGN_IDENTITY = "-";/' macos/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/DEVELOPMENT_TEAM = .*/DEVELOPMENT_TEAM = "";/' macos/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/CODE_SIGN_STYLE = .*/CODE_SIGN_STYLE = Manual;/' macos/Runner.xcodeproj/project.pbxproj
+          sed -i '' 's/PROVISIONING_PROFILE_SPECIFIER = .*/PROVISIONING_PROFILE_SPECIFIER = "";/' macos/Runner.xcodeproj/project.pbxproj
+
+      - name: Build macOS
+        run: |
+          flutter build macos --release \
+            --dart-define=FLUTTER_BUILD_NAME=unsigned
+
+      - name: Ad-hoc sign the app with entitlements
+        run: |
+          # Create minimal entitlements for ad-hoc signing (no sandbox)
+          cat > /tmp/adhoc.entitlements << 'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>com.apple.security.files.user-selected.read-write</key>
+              <true/>
+              <key>com.apple.security.network.client</key>
+              <true/>
+          </dict>
+          </plist>
+          EOF
+
+          # Ad-hoc sign with minimal entitlements
+          codesign --force --deep --sign - \
+            --entitlements /tmp/adhoc.entitlements \
+            "build/macos/Build/Products/Release/FluffyChat.app"
+
+      - name: Create DMG
+        run: |
+          create-dmg \
+            --volname "FluffyChat" \
+            --window-pos 200 120 \
+            --window-size 800 400 \
+            --icon-size 100 \
+            --icon "FluffyChat.app" 200 190 \
+            --hide-extension "FluffyChat.app" \
+            --app-drop-link 600 185 \
+            --no-internet-enable \
+            "FluffyChat-macOS.dmg" \
+            "build/macos/Build/Products/Release/FluffyChat.app" || true
+
+          # Fallback: if create-dmg fails, just zip the app
+          if [ ! -f "FluffyChat-macOS.dmg" ]; then
+            cd build/macos/Build/Products/Release
+            zip -r ../../../../../FluffyChat-macOS.zip FluffyChat.app
+            cd ../../../../..
+          fi
+
+      - name: Upload DMG artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: FluffyChat-macOS
+          path: |
+            FluffyChat-macOS.dmg
+            FluffyChat-macOS.zip
+          if-no-files-found: error
+
+      - name: Upload to release
+        if: github.event_name == 'release'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: FluffyChat-macOS.dmg
+          asset_name: FluffyChat-macOS.dmg
+          asset_content_type: application/x-apple-diskimage

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
@@ -208,6 +209,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       : null;
   final Map<String, int> linuxNotificationIds = {};
 
+  // macOS notifications using flutter_local_notifications
+  FlutterLocalNotificationsPlugin? macOSNotifications;
+  bool _macOSNotificationsInitialized = false;
+
   @override
   void initState() {
     super.initState();
@@ -283,9 +288,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       }
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
-    if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
+    if (PlatformInfos.isWeb || PlatformInfos.isLinux || PlatformInfos.isMacOS) {
       c.onSync.stream.first.then((s) {
-        html.Notification.requestPermission();
+        if (PlatformInfos.isWeb) {
+          html.Notification.requestPermission();
+        }
         onNotification[name] ??= c.onNotification.stream.listen(
           showLocalNotification,
         );
@@ -341,6 +348,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       );
     }
 
+    // Initialize macOS notifications
+    if (PlatformInfos.isMacOS && !_macOSNotificationsInitialized) {
+      _initMacOSNotifications();
+    }
+
     createVoipPlugin();
   }
 
@@ -350,6 +362,32 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       return;
     }
     voipPlugin = VoipPlugin(this);
+  }
+
+  Future<void> _initMacOSNotifications() async {
+    if (_macOSNotificationsInitialized) return;
+    try {
+      macOSNotifications = FlutterLocalNotificationsPlugin();
+      await macOSNotifications!.initialize(
+        const InitializationSettings(
+          macOS: DarwinInitializationSettings(
+            requestAlertPermission: true,
+            requestBadgePermission: true,
+            requestSoundPermission: true,
+          ),
+        ),
+        onDidReceiveNotificationResponse: (response) {
+          final roomId = response.payload;
+          if (roomId != null) {
+            FluffyChatApp.router.go('/rooms/$roomId');
+          }
+        },
+      );
+      _macOSNotificationsInitialized = true;
+      Logs().v('macOS notifications initialized');
+    } catch (e, s) {
+      Logs().e('Failed to initialize macOS notifications', e, s);
+    }
   }
 
   @override
