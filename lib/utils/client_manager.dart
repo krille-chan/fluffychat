@@ -166,6 +166,7 @@ abstract class ClientManager {
       settings: const InitializationSettings(
         android: AndroidInitializationSettings('notifications_icon'),
         iOS: DarwinInitializationSettings(),
+        linux: LinuxInitializationSettings(defaultActionName: "Open chat"),
       ),
     );
 
