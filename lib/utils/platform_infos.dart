@@ -29,6 +29,7 @@ abstract class PlatformInfos {
   static bool get isDesktop => isLinux || isWindows || isMacOS;
 
   static bool get usesTouchscreen => !isMobile;
+  static bool get canUseUnifiedPush => isAndroid || isLinux;
 
   static bool get supportsVideoPlayer =>
       !PlatformInfos.isWindows && !PlatformInfos.isLinux;

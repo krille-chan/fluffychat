@@ -73,6 +73,11 @@ static void my_application_activate(GApplication* application) {
   gtk_widget_show(GTK_WIDGET(window));
   gtk_widget_show(GTK_WIDGET(view));
   gtk_widget_grab_focus(GTK_WIDGET(view));
+
+  if (g_getenv("FLUTTER_HEADLESS")) {
+    printf("Hiding window...\n");
+    gtk_widget_hide(GTK_WIDGET(window));
+  }
 }
 
 // Implements GApplication::local_command_line.

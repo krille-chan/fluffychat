@@ -31,6 +31,8 @@ import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
+import 'package:unifiedpush_platform_interface/unifiedpush_platform_interface.dart';
+import 'package:unifiedpush_storage_shared_preferences/storage.dart';
 import 'package:unifiedpush_ui/unifiedpush_ui.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -75,8 +77,9 @@ class BackgroundPush {
   DateTime? lastReceivedPush;
 
   bool upAction = false;
+  Future<void>? _initializing;
 
-  void _init() async {
+  Future<void> _init(bool isBackground) async {
     //<GOOGLE_SERVICES>firebaseEnabled = true;
     try {
       mainIsolateReceivePort?.listen((message) async {
@@ -115,6 +118,7 @@ class BackgroundPush {
         settings: const InitializationSettings(
           android: AndroidInitializationSettings('notifications_icon'),
           iOS: DarwinInitializationSettings(),
+          linux: LinuxInitializationSettings(defaultActionName: "Open chat"),
         ),
         onDidReceiveNotificationResponse: (response) => notificationTap(
           response,
@@ -136,12 +140,21 @@ class BackgroundPush {
       //<GOOGLE_SERVICES>    flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
       //<GOOGLE_SERVICES>  ),
       //<GOOGLE_SERVICES>);
-      if (Platform.isAndroid) {
+      if (PlatformInfos.canUseUnifiedPush) {
+        final linuxOptions = LinuxOptions(
+          // NOTE: we don't use pushNotificationsAppId because it's different from
+          //  the actual app id, (im.fluffychat.Fluffychat), and appId has the wrong casing
+          dbusName: AppConfig.appIdFlatpak,
+          storage: UnifiedPushStorageSharedPreferences(),
+          background: isBackground,
+        );
+
         await UnifiedPush.initialize(
           onNewEndpoint: _newUpEndpoint,
           onRegistrationFailed: (_, i) => _upUnregistered(i),
           onUnregistered: _upUnregistered,
           onMessage: _onUpMessage,
+          linuxOptions: linuxOptions,
         );
       }
     } catch (e, s) {
@@ -149,19 +162,20 @@ class BackgroundPush {
     }
   }
 
-  BackgroundPush._(this.client) {
-    _init();
+  BackgroundPush._(this.client, bool isBackground) {
+    _initializing ??= _init(isBackground);
   }
 
-  factory BackgroundPush.clientOnly(Client client) {
-    return _instance ??= BackgroundPush._(client);
+  factory BackgroundPush.clientOnly(Client client, bool isBackground) {
+    return _instance ??= BackgroundPush._(client, isBackground);
   }
 
   factory BackgroundPush(
     MatrixState matrix, {
+    isBackground = false,
     final void Function(String errorMsg, {Uri? link})? onFcmError,
   }) {
-    final instance = BackgroundPush.clientOnly(matrix.client);
+    final instance = BackgroundPush.clientOnly(matrix.client, isBackground);
     instance.matrix = matrix;
     // ignore: prefer_initializing_formals
     instance.onFcmError = onFcmError;
@@ -212,7 +226,7 @@ class BackgroundPush {
         [];
     var setNewPusher = false;
     // Just the plain app id, we add the .data_message suffix later
-    var appId = AppConfig.pushNotificationsAppId;
+    var appId = PlatformInfos.isLinux ? AppConfig.appIdFlatpak : AppConfig.pushNotificationsAppId;
     // we need the deviceAppId to remove potential legacy UP pusher
     var deviceAppId = '$appId.${client.deviceID}';
     // appId may only be up to 64 chars as per spec
@@ -296,7 +310,7 @@ class BackgroundPush {
   Future<void> setupPush() async {
     Logs().d("SetupPush");
     if (client.onLoginStateChanged.value != LoginState.loggedIn ||
-        !PlatformInfos.isMobile ||
+        !(PlatformInfos.isMobile || PlatformInfos.canUseUnifiedPush) ||
         matrix == null) {
       return;
     }
@@ -305,33 +319,39 @@ class BackgroundPush {
     if (upAction) {
       return;
     }
+    await _initializing;
+
     if (!PlatformInfos.isIOS &&
         (await UnifiedPush.getDistributors()).isNotEmpty) {
+      Logs().d((await UnifiedPush.getDistributors()).join(','));
       await setupUp();
     } else {
       await setupFirebase();
     }
 
-    // ignore: unawaited_futures
-    _flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails().then((
-      details,
-    ) {
-      if (details == null ||
-          !details.didNotificationLaunchApp ||
-          _wentToRoomOnStartup) {
-        return;
-      }
-      _wentToRoomOnStartup = true;
-      final response = details.notificationResponse;
-      if (response != null) {
-        notificationTap(
-          response,
-          client: client,
-          router: FluffyChatApp.router,
-          l10n: l10n,
-        );
-      }
-    });
+    // NOTE: unsupported on Linux (oof)
+    if (!PlatformInfos.isLinux) {
+      // ignore: unawaited_futures
+      _flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails().then((
+        details,
+      ) {
+        if (details == null ||
+            !details.didNotificationLaunchApp ||
+            _wentToRoomOnStartup) {
+          return;
+        }
+        _wentToRoomOnStartup = true;
+        final response = details.notificationResponse;
+        if (response != null) {
+          notificationTap(
+            response,
+            client: client,
+            router: FluffyChatApp.router,
+            l10n: l10n,
+          );
+        }
+      });
+    }
   }
 
   Future<void> _noFcmWarning() async {
@@ -441,7 +461,7 @@ class BackgroundPush {
   }
 
   Future<void> _onUpMessage(PushMessage pushMessage, String i) async {
-    Logs().wtf('Push Notification from UP received', pushMessage);
+    Logs().i('Push Notification from UP received', pushMessage);
     final message = pushMessage.content;
     upAction = true;
     final data = Map<String, dynamic>.from(
@@ -455,8 +475,8 @@ class BackgroundPush {
       l10n: l10n,
       activeRoomId: matrix?.activeRoomId,
       flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
-      useNotificationActions:
-          false, // Buggy with UP: https://codeberg.org/UnifiedPush/flutter-connector/issues/34
+      useNotificationActions: !PlatformInfos
+          .isAndroid, // Buggy with UP: https://codeberg.org/UnifiedPush/flutter-connector/issues/34
     );
   }
 }
