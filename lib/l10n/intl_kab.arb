@@ -1,1 +1,78 @@
-{}
+{
+    "repeatPassword": "Ales awal n uɛeddi",
+    "notAnImage": "Mačči d afaylu n tugna.",
+    "setCustomPermissionLevel": "Sbadu aswir yugnen n usireg",
+    "ignoreUser": "Zgel aseqdac",
+    "setPermissionsLevelDescription": "Ma ulac aɣilif fren tamlilt i yettusbadun ddaw-a neɣ sekcem aswir n usireg yugnen gar 0 akked 100.",
+    "normalUser": "Aseqdac amagnu",
+    "remove": "Kkes",
+    "@remove": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "importNow": "Kter tura",
+    "importEmojis": "Kter imujiten",
+    "importFromZipFile": "Kter seg ufaylu .zip",
+    "exportEmotePack": "Sifeḍ akemmus n Emote am .zip",
+    "replace": "Semselsi",
+    "about": "Ɣef",
+    "aboutHomeserver": "Ɣef {homeserver}",
+    "@aboutHomeserver": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    },
+    "accept": "Qbel",
+    "@accept": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "acceptedTheInvitation": "👍 {username} yeqbel tinubga",
+    "@acceptedTheInvitation": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "account": "Amiḍan",
+    "@account": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "activatedEndToEndEncryption": "🔐 {username} irmed awgelhen seg yixef ɣer yixef",
+    "@activatedEndToEndEncryption": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "addEmail": "Rnu imayl",
+    "@addEmail": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "confirmMatrixId": "Ttxil-ik·im, sentem asulay-ik·im n Matrix akken ad tekkseḍ amiḍan-ik·im.",
+    "supposedMxid": "A win yufan, ad yili d {mxid}",
+    "@supposedMxid": {
+        "type": "String",
+        "placeholders": {
+            "mxid": {
+                "type": "String"
+            }
+        }
+    },
+    "addChatDescription": "Rnu aglam n udiwenni...",
+    "addToSpace": "Rnu ɣer tallunt",
+    "admin": "Anedbal",
+    "@admin": {
+        "type": "String",
+        "placeholders": {}
+    }
+}
