@@ -3136,5 +3136,20 @@
     "saveKeyManuallyDescription": "Lagre denne nøkkelen manuelt ved å åpne systemets delingsmeny eller kopiere til utklippstavlen.",
     "newSpaceDescription": "Områder lar deg samle chattene dine og bygge private eller offentlige fellesskap.",
     "chatPermissionsDescription": "Definer hvilket tilgangsnivå som kreves for bestemte handlinger i denne chatten. Nivåene 0, 50 og 100 representerer vanligvis brukere, moderatorer og administratorer, men alle mellomtrinn er mulige.",
-    "knocking": "Banker på"
+    "knocking": "Banker på",
+    "alwaysUse24HourFormat": "false",
+    "@alwaysUse24HourFormat": {
+        "description": "Set to true to always display time of day in 24 hour format."
+    },
+    "noKeyForThisMessage": "Dette kan skje hvis meldingen ble sendt før du logget inn på kontoen din på denne enheten.\n\nDet er også mulig at senderen har blokkert enheten din, eller at noe gikk galt med internettforbindelsen.\n\nEr du i stand til å lese meldingen i en annen sesjon? Da kan du overføre meldingen fra den! Gå til Innstillinger > Enheter og sørg for at enhetene dine har verifisert hverandre. Neste gang du åpner rommet og begge sesjonene er i forgrunnen, vil nøklene bli overført automatisk.\n\nVil du unngå å miste nøklene når du logger ut eller bytter enhet? Sørg for at du har aktivert sikkerhetskopiering av chat i innstillingene.",
+    "report": "rapportere",
+    "addChatOrSubSpace": "Legg til chat eller underområde",
+    "subspace": "Underområde",
+    "newSubSpace": "Nytt underområde",
+    "signIn": "Logg på",
+    "createNewAccount": "Opprett ny konto",
+    "signUpGreeting": "FluffyChat er desentralisert! Velg en server der du vil opprette kontoen din, så kjører vi på!",
+    "signInGreeting": "Har du allerede en Matrix-konto? Velkommen tilbake! Velg hjemmeserveren din og logg inn.",
+    "appIntro": "Med FluffyChat kan du chatte med vennene dine. Det er en sikker, desentralisert [matrix]-meldingsapp! Les mer på https://matrix.org hvis du vil, eller bare registrer deg.",
+    "theProcessWasCanceled": "Prosessen ble avbrutt."
 }
