@@ -3138,5 +3138,11 @@
     "logs": "日志",
     "advancedConfigs": "高级配置",
     "advancedConfigurations": "高级配置",
-    "signInWithLabel": "登录方式："
+    "signInWithLabel": "登录方式：",
+    "signIn": "登录",
+    "createNewAccount": "创建新账户",
+    "signUpGreeting": "FluffyChat 是去中心化的！选择您希望创建账户的服务器！",
+    "signInGreeting": "已经有 Matrix 账户了？欢迎回来！选择 homeserver 登录。",
+    "appIntro": "借助 FluffyChat，您可以和好友聊天。它是安全的去中心化 [matrix] 消息收发应用！如果愿意，可以在 https://matrix.org 了解更多信息，也可直接注册账户。",
+    "theProcessWasCanceled": "过程被取消。"
 }
