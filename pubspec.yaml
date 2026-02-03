@@ -31,7 +31,7 @@ dependencies:
     sdk: flutter
   flutter_foreground_task: ^9.2.0
   flutter_linkify: ^6.0.0
-  flutter_local_notifications: ^19.5.0
+  flutter_local_notifications: ^20.0.0
   flutter_localizations:
     sdk: flutter
   flutter_map: ^8.2.2
