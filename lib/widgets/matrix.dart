@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
@@ -30,6 +29,7 @@ import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
+import '../utils/desktop_notifications_manager.dart';
 import 'local_notifications_extension.dart';
 
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -203,11 +203,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     return route.split('/')[2];
   }
 
-  final linuxNotifications = PlatformInfos.isLinux
-      ? NotificationsClient()
-      : null;
-  final Map<String, int> linuxNotificationIds = {};
-
   @override
   void initState() {
     super.initState();
@@ -283,13 +278,19 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       }
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
-    if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
-      c.onSync.stream.first.then((s) {
-        html.Notification.requestPermission();
-        onNotification[name] ??= c.onNotification.stream.listen(
-          showLocalNotification,
-        );
-      });
+    if (PlatformInfos.isWeb || DesktopNotificationsManager.isSupported) {
+      // For web, wait for first sync to request permission
+      if (PlatformInfos.isWeb) {
+        c.onSync.stream.first.then((s) {
+          html.Notification.requestPermission();
+        });
+      }
+      // Subscribe to notifications immediately - don't wait for first sync.
+      // The client may already be syncing if logged in from a previous session,
+      // in which case onSync.stream.first would never fire.
+      onNotification[name] ??= c.onNotification.stream.listen(
+        showLocalNotification,
+      );
     }
   }
 
@@ -307,6 +308,23 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   void initMatrix() {
     for (final c in widget.clients) {
       _registerSubs(c.clientName);
+    }
+
+    if (DesktopNotificationsManager.isSupported) {
+      DesktopNotificationsManager.instance.initialize();
+      DesktopNotificationsManager.instance.onSelectNotification = (roomId) {
+        FluffyChatApp.router.go('/rooms/$roomId');
+      };
+      DesktopNotificationsManager.instance.onMarkAsRead = (roomId, eventId) {
+        final room = client.getRoomById(roomId);
+        if (room != null) {
+          room.setReadMarker(
+            eventId,
+            mRead: eventId,
+            public: AppSettings.sendPublicReadReceipts.value,
+          );
+        }
+      };
     }
 
     if (PlatformInfos.isMobile) {
@@ -378,8 +396,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onLoginStateChanged.values.map((s) => s.cancel());
     onNotification.values.map((s) => s.cancel());
     client.httpClient.close();
-
-    linuxNotifications?.close();
 
     super.dispose();
   }

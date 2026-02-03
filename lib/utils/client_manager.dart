@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 
 import 'package:collection/collection.dart';
-import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_vodozemac/flutter_vodozemac.dart' as vod;
 import 'package:matrix/encryption/utils/key_verification.dart';
@@ -148,38 +147,50 @@ abstract class ClientManager {
       html.Notification(title, body: body);
       return;
     }
-    if (Platform.isLinux) {
-      await NotificationsClient().notify(
-        title,
-        body: body,
-        appName: AppSettings.applicationName.value,
-        hints: [NotificationHint.soundName('message-new-instant')],
-      );
-      return;
-    }
 
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-    await flutterLocalNotificationsPlugin.initialize(
-      const InitializationSettings(
-        android: AndroidInitializationSettings('notifications_icon'),
-        iOS: DarwinInitializationSettings(),
-      ),
-    );
+    InitializationSettings? initSettings;
+    NotificationDetails? notificationDetails;
 
-    flutterLocalNotificationsPlugin.show(
-      0,
-      title,
-      body,
-      const NotificationDetails(
+    if (Platform.isLinux) {
+      initSettings = const InitializationSettings(
+        linux: LinuxInitializationSettings(defaultActionName: 'Open'),
+      );
+      notificationDetails = const NotificationDetails(
+        linux: LinuxNotificationDetails(),
+      );
+    } else if (Platform.isMacOS) {
+      initSettings = const InitializationSettings(
+        macOS: DarwinInitializationSettings(),
+      );
+      notificationDetails = const NotificationDetails(
+        macOS: DarwinNotificationDetails(),
+      );
+    } else if (Platform.isAndroid) {
+      initSettings = const InitializationSettings(
+        android: AndroidInitializationSettings('notifications_icon'),
+      );
+      notificationDetails = const NotificationDetails(
         android: AndroidNotificationDetails(
           'error_message',
           'Error Messages',
           importance: Importance.high,
           priority: Priority.max,
         ),
+      );
+    } else if (Platform.isIOS) {
+      initSettings = const InitializationSettings(
+        iOS: DarwinInitializationSettings(),
+      );
+      notificationDetails = const NotificationDetails(
         iOS: DarwinNotificationDetails(sound: 'notification.caf'),
-      ),
-    );
+      );
+    }
+
+    if (initSettings != null && notificationDetails != null) {
+      await flutterLocalNotificationsPlugin.initialize(initSettings);
+      flutterLocalNotificationsPlugin.show(0, title, body, notificationDetails);
+    }
   }
 }
