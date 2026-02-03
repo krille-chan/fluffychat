@@ -64,7 +64,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
 
       // Create the VideoPlayerController from the contents of videoFile.
       if (kIsWeb) {
-        final blob = html.Blob([videoFile.bytes]);
+        final blob = html.Blob([videoFile.bytes], videoFile.mimeType);
         final networkUri = Uri.parse(html.Url.createObjectUrlFromBlob(blob));
         videoPlayerController = VideoPlayerController.networkUrl(networkUri);
       } else {
