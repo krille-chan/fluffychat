@@ -3137,5 +3137,11 @@
     "logs": "Logs",
     "advancedConfigs": "Geavanceerde configuratie",
     "advancedConfigurations": "Geavanceerde configuraties",
-    "signInWithLabel": "Log in met:"
+    "signInWithLabel": "Log in met:",
+    "signIn": "Log in",
+    "createNewAccount": "Registreer nieuw account",
+    "signUpGreeting": "FluffyChat is decentraal! Kies een server waar je wil voor jouw account en laten we gaan!",
+    "signInGreeting": "Heb je al een Matrix account? Welkom terug! Kies jouw server en log in.",
+    "appIntro": "Met FluffyChat kan je chatten met je vrienden. Het is een veilige en decentrale [matrix] app! Lees meer op https://matrix.org als je wilt of kies registreren.",
+    "theProcessWasCanceled": "Het proces is geannuleerd."
 }
