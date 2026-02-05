@@ -687,6 +687,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  fvp:
+    dependency: "direct main"
+    description:
+      name: fvp
+      sha256: e03c4ba02c367cde8610c09325d085c9b1efe4f7d98a563950993a1fee17a28b
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.35.2"
   geoclue:
     dependency: transitive
     description:
