@@ -38,7 +38,7 @@ class ImageViewerController extends State<ImageViewer> {
               (event) => {
                 MessageTypes.Image,
                 MessageTypes.Sticker,
-                if (PlatformInfos.supportsVideoPlayer) MessageTypes.Video,
+                MessageTypes.Video,
               }.contains(event.messageType),
             )
             .toList()

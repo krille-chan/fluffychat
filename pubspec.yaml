@@ -41,6 +41,7 @@ dependencies:
   flutter_vodozemac: ^0.5.0
   flutter_web_auth_2: ^5.0.1
   flutter_webrtc: ^1.3.0
+  fvp: ^0.35.2
   geolocator: ^14.0.2
   go_router: ^17.1.0
   handy_window: ^0.4.0
