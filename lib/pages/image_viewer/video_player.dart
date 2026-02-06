@@ -10,8 +10,6 @@ import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
 
 import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/blur_hash.dart';
 import '../../../utils/error_reporter.dart';
 import '../../widgets/mxc_image.dart';
@@ -31,16 +29,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
 
   double? _downloadProgress;
 
-  // The video_player package only doesn't support Windows and Linux.
-  final _supportsVideoPlayer =
-      !PlatformInfos.isWindows && !PlatformInfos.isLinux;
-
   void _downloadAction() async {
-    if (!_supportsVideoPlayer) {
-      widget.event.saveFile(context);
-      return;
-    }
-
     try {
       final fileSize = widget.event.content
           .tryGetMap<String, dynamic>('info')
