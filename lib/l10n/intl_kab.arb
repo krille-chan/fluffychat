@@ -367,5 +367,130 @@
     "@commandHint_op": {
         "type": "String",
         "description": "Usage hint for the command /op"
-    }
+    },
+    "createNewSpace": "Tallunt tamaynut",
+    "@createNewSpace": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "currentlyActive": "Yermed akka tura",
+    "@currentlyActive": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "darkTheme": "Ubrik",
+    "@darkTheme": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "dateAndTimeOfDay": "{timeOfDay}, {date}",
+    "@dateAndTimeOfDay": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            },
+            "timeOfDay": {
+                "type": "String"
+            }
+        }
+    },
+    "dateWithoutYear": "{day}-{month}",
+    "@dateWithoutYear": {
+        "type": "String",
+        "placeholders": {
+            "month": {
+                "type": "String"
+            },
+            "day": {
+                "type": "String"
+            }
+        }
+    },
+    "dateWithYear": "{day}-{month}-{year}",
+    "@dateWithYear": {
+        "type": "String",
+        "placeholders": {
+            "year": {
+                "type": "String"
+            },
+            "month": {
+                "type": "String"
+            },
+            "day": {
+                "type": "String"
+            }
+        }
+    },
+    "deactivateAccountWarning": "Ayagi ad yekkes armed i umiḍan-ik·im n useqdac. Aya ur yezmir ara ad yettwasefsex. Tetḥeqqeḍ s tidet?",
+    "@deactivateAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "defaultPermissionLevel": "Aswir n turagt amezwer i yiseqdacen imaynuten",
+    "@defaultPermissionLevel": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "delete": "kkes",
+    "@delete": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "deleteAccount": "kkes amiḍan",
+    "@deleteAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "deleteMessage": "kkes izen",
+    "@deleteMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "device": "Ibenk",
+    "@device": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "deviceId": "Asulay n yibenk",
+    "@deviceId": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "devices": "Ibenkan",
+    "@devices": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "directChats": "Idiwenniyen Usriden",
+    "@directChats": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "allRooms": "Akk Igrawen Usriden",
+    "@allRooms": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "displaynameHasBeenChanged": "Isem n uskan yettusnifel",
+    "@displaynameHasBeenChanged": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "downloadFile": "Sider afaylu",
+    "@downloadFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "edit": "Ẓreg",
+    "@edit": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "editBlockedServers": "Ẓreg iqeddacen yettusweḥlen",
+    "@editBlockedServers": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatPermissions": "Isirigen n Udiwenni"
 }
