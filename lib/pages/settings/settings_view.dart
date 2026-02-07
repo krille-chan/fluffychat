@@ -148,15 +148,9 @@ class SettingsView extends StatelessWidget {
                     },
                   ),
                   FutureBuilder(
-                    future: Matrix.of(context).client.getWellknown(),
+                    future: Matrix.of(context).client.getAuthMetadata(),
                     builder: (context, snapshot) {
-                      final accountManageUrl = snapshot
-                          .data
-                          ?.additionalProperties
-                          .tryGetMap<String, Object?>(
-                            'org.matrix.msc2965.authentication',
-                          )
-                          ?.tryGet<String>('account');
+                      final accountManageUrl = snapshot.data?.issuer;
                       if (accountManageUrl == null) {
                         return const SizedBox.shrink();
                       }
@@ -164,7 +158,7 @@ class SettingsView extends StatelessWidget {
                         leading: const Icon(Icons.account_circle_outlined),
                         title: Text(L10n.of(context).manageAccount),
                         trailing: const Icon(Icons.open_in_new_outlined),
-                        onTap: () => launchUrlString(
+                        onTap: () => launchUrl(
                           accountManageUrl,
                           mode: LaunchMode.inAppBrowserView,
                         ),
