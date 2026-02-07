@@ -38,7 +38,7 @@ dependencies:
   flutter_new_badger: ^1.1.1
   flutter_secure_storage: ^10.0.0
   flutter_shortcuts_new: ^2.0.0
-  flutter_vodozemac: ^0.4.1
+  flutter_vodozemac: ^0.5.0
   flutter_web_auth_2: ^5.0.1
   flutter_webrtc: ^1.3.0
   geolocator: ^14.0.2
@@ -53,7 +53,7 @@ dependencies:
   just_audio: ^0.10.5
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix: ^6.0.0
+  matrix: ^6.1.0
   mime: ^2.0.0
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^9.0.0
