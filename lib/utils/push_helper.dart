@@ -42,10 +42,10 @@ Future<void> pushHelper(
 
     l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
     flutterLocalNotificationsPlugin.show(
-      notification.roomId?.hashCode ?? 0,
-      l10n.newMessageInFluffyChat,
-      l10n.openAppToReadMessages,
-      NotificationDetails(
+      id: notification.roomId?.hashCode ?? 0,
+      title: l10n.newMessageInFluffyChat,
+      body: l10n.openAppToReadMessages,
+      notificationDetails: NotificationDetails(
         iOS: const DarwinNotificationDetails(),
         android: AndroidNotificationDetails(
           AppConfig.pushNotificationsChannelId,
@@ -220,7 +220,7 @@ Future<void> _tryPushHelper(
 
   final messagingStyleInformation = PlatformInfos.isAndroid
       ? await AndroidFlutterLocalNotificationsPlugin()
-            .getActiveNotificationMessagingStyle(id)
+            .getActiveNotificationMessagingStyle(notificationId: id)
       : null;
   messagingStyleInformation?.messages?.add(newMessage);
 
@@ -317,10 +317,10 @@ Future<void> _tryPushHelper(
   }
 
   await flutterLocalNotificationsPlugin.show(
-    id,
-    title,
-    body,
-    platformChannelSpecifics,
+    id: id,
+    title: title,
+    body: body,
+    notificationDetails: platformChannelSpecifics,
     payload: FluffyChatPushPayload(
       client.clientName,
       event.room.id,

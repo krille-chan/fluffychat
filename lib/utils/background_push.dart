@@ -112,7 +112,7 @@ class BackgroundPush {
         });
       }
       await _flutterLocalNotificationsPlugin.initialize(
-        const InitializationSettings(
+        initializationSettings: const InitializationSettings(
           android: AndroidInitializationSettings('notifications_icon'),
           iOS: DarwinInitializationSettings(),
         ),
