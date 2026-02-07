@@ -111,35 +111,41 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Image:
           case MessageTypes.Sticker:
             if (event.redacted) continue textmessage;
-            final maxSize = event.messageType == MessageTypes.Sticker
-                ? 128.0
-                : 256.0;
-            final w = event.content
-                .tryGetMap<String, Object?>('info')
-                ?.tryGet<int>('w');
-            final h = event.content
-                .tryGetMap<String, Object?>('info')
-                ?.tryGet<int>('h');
-            var width = maxSize;
-            var height = maxSize;
-            var fit = event.messageType == MessageTypes.Sticker
-                ? BoxFit.contain
-                : BoxFit.cover;
-            if (w != null && h != null) {
+            
+            final screenWidth = MediaQuery.of(context).size.width;
+
+            final targetWidth = screenWidth * 0.7; 
+            final maxHeight = screenWidth * 0.9;
+
+            final info = event.content.tryGetMap<String, Object?>('info');
+            final w = info?.tryGet<int>('w')?.toDouble() ?? 1.0;
+            final h = info?.tryGet<int>('h')?.toDouble() ?? 1.0;
+
+            double width;
+            double height;
+            var fit = BoxFit.cover;
+
+            if (event.messageType == MessageTypes.Sticker) {
+              width = 160.0;
+              height = 160.0;
               fit = BoxFit.contain;
-              if (w > h) {
-                width = maxSize;
-                height = max(32, maxSize * (h / w));
-              } else {
-                height = maxSize;
-                width = max(32, maxSize * (w / h));
-              }
+            } else {
+              width = targetWidth;
+
+              // We calculate the height based on the proportions of the image
+              // But we limit it from being too small or too large
+              final aspectRatio = w / h;
+              height = (width / aspectRatio).clamp(150.0, maxHeight);
+              
+              // If the image is very vertical (e.g. a screenshot),
+              // we will limit the height and center the image
             }
+
             return ImageBubble(
               event,
               width: width,
               height: height,
-              fit: fit,
+              fit: fit, 
               borderRadius: borderRadius,
               timeline: timeline,
               textColor: textColor,
