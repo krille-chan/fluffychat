@@ -3121,5 +3121,11 @@
     "logs": "Žurnāli",
     "advancedConfigs": "Izvērsta konfigurācijas",
     "advancedConfigurations": "Izvērstas konfigurācijas",
-    "signInWithLabel": "Pieteikties ar:"
+    "signInWithLabel": "Pieteikties ar:",
+    "theProcessWasCanceled": "Darbība tika atcelta.",
+    "signIn": "Pieteikties",
+    "createNewAccount": "Izveidot jaunu kontu",
+    "signUpGreeting": "FluffyChat ir decentralizēta. Jāatlasa serveris, kurā ir vēlēšanās izveidot savu kontu, un aiziet!",
+    "signInGreeting": "Jau ir Matrix konts? Laipni lūdzam atpakaļ! Jāatlasa savs mājasserveris un jāpiesakās.",
+    "appIntro": "Ar FluffyChat vari tērzēt ar saviem draugiem. Tā ir droša un decentralizēta [matrix] ziņapmaiņas lietotne. Vairāk var uzzināt https://matrix.org, ja ir vēlēšanās, vai vienkārši jāpiesakās."
 }

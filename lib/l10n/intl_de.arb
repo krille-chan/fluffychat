@@ -3135,5 +3135,13 @@
     "logs": "Protokolle",
     "baseUrl": "Basis-URL",
     "advancedConfigs": "Erweiterte Konfigurationen",
-    "advancedConfigurations": "Erweiterte Konfigurationen"
+    "advancedConfigurations": "Erweiterte Konfigurationen",
+    "signIn": "Anmelden",
+    "createNewAccount": "Neues Konto erstellen",
+    "signUpGreeting": "FluffyChat ist dezentral! Wähle einen Server, auf dem du dein Konto erstellen möchtest, und los geht's!",
+    "signInGreeting": "Du hast bereits ein Konto bei Matrix? Willkommen zurück! Wähle deinen Homeserver aus und melde dich an.",
+    "appIntro": "Mit FluffyChat kannst du mit deinen Freunden chatten. Es ist ein sicherer, dezentralisierter [Matrix]-Messenger! Erfahre mehr auf https://matrix.org, wenn du möchtest, oder melde dich einfach an.",
+    "theProcessWasCanceled": "Der Vorgang wurde abgebrochen.",
+    "federationBaseUrl": "Basis-URL der Föderation",
+    "clientWellKnownInformation": "Bekannte Informationen zum Client:"
 }

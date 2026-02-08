@@ -3065,5 +3065,91 @@
     "attribution": "Kreditering",
     "skipChatBackupWarning": "Er du sikker? Uten sikkerhetskopi av chattene kan du miste meldingene dine hvis du bytter enhet.",
     "noMoreResultsFound": "Ingen flere treff",
-    "federationBaseUrl": "Federation Base URL"
+    "federationBaseUrl": "Federation Base URL",
+    "notificationRuleServerAclDescription": "Skjuler varslinger for Server ACL-hendelser.",
+    "notificationRuleServerAcl": "Skjul Server ACL-hendelser",
+    "notificationRuleMemberEventDescription": "Skjuler varslinger for medlemsskapshendelser.",
+    "youHaveKnocked": "Du har banket på",
+    "moreEvents": "Flere hendelser",
+    "knockRestricted": "Banking deaktivert",
+    "contactServerSecurity": "Kontakt sikkerhetsansvarlig for serveren",
+    "notificationRuleMemberEvent": "Medlemshendelse",
+    "spaceMemberOfCanKnock": "Et medlem av området {spaces} kan banke på",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "countVotes": "{count, plural, =1{En stemme} other{{count} stemmer}}",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "countReplies": "{count, plural, =1{Et svar} other{{count} svar}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "chatSearchedUntil": "Søkte i chatten frem til {time}",
+    "@chatSearchedUntil": {
+        "type": "String",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "sendingAttachmentCountOfCount": "Sender vedlegg {index} av {length}...",
+    "@sendingAttachmentCountOfCount": {
+        "type": "integer",
+        "placeholders": {
+            "index": {
+                "type": "int"
+            },
+            "length": {
+                "type": "int"
+            }
+        }
+    },
+    "spaceMemberOf": "Områdemedlem av {spaces}",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "confirmEventUnpin": "Er du sikker på at du vil løsne hendelsen permanent?",
+    "indexedDbErrorLong": "Lagring av meldinger er dessverre ikke aktivert i privat modus som standard.\nVennligst gå til:\n - about:config\n - Sett dom.indexedDB.privateBrowsing.enabled til true\nEllers er det ikke mulig å kjøre FluffyChat.",
+    "saveKeyManuallyDescription": "Lagre denne nøkkelen manuelt ved å åpne systemets delingsmeny eller kopiere til utklippstavlen.",
+    "newSpaceDescription": "Områder lar deg samle chattene dine og bygge private eller offentlige fellesskap.",
+    "chatPermissionsDescription": "Definer hvilket tilgangsnivå som kreves for bestemte handlinger i denne chatten. Nivåene 0, 50 og 100 representerer vanligvis brukere, moderatorer og administratorer, men alle mellomtrinn er mulige.",
+    "knocking": "Banker på",
+    "alwaysUse24HourFormat": "false",
+    "@alwaysUse24HourFormat": {
+        "description": "Set to true to always display time of day in 24 hour format."
+    },
+    "noKeyForThisMessage": "Dette kan skje hvis meldingen ble sendt før du logget inn på kontoen din på denne enheten.\n\nDet er også mulig at senderen har blokkert enheten din, eller at noe gikk galt med internettforbindelsen.\n\nEr du i stand til å lese meldingen i en annen sesjon? Da kan du overføre meldingen fra den! Gå til Innstillinger > Enheter og sørg for at enhetene dine har verifisert hverandre. Neste gang du åpner rommet og begge sesjonene er i forgrunnen, vil nøklene bli overført automatisk.\n\nVil du unngå å miste nøklene når du logger ut eller bytter enhet? Sørg for at du har aktivert sikkerhetskopiering av chat i innstillingene.",
+    "report": "rapportere",
+    "addChatOrSubSpace": "Legg til chat eller underområde",
+    "subspace": "Underområde",
+    "newSubSpace": "Nytt underområde",
+    "signIn": "Logg på",
+    "createNewAccount": "Opprett ny konto",
+    "signUpGreeting": "FluffyChat er desentralisert! Velg en server der du vil opprette kontoen din, så kjører vi på!",
+    "signInGreeting": "Har du allerede en Matrix-konto? Velkommen tilbake! Velg hjemmeserveren din og logg inn.",
+    "appIntro": "Med FluffyChat kan du chatte med vennene dine. Det er en sikker, desentralisert [matrix]-meldingsapp! Les mer på https://matrix.org hvis du vil, eller bare registrer deg.",
+    "theProcessWasCanceled": "Prosessen ble avbrutt."
 }

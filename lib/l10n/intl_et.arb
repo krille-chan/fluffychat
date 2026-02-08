@@ -2281,7 +2281,7 @@
     "hydrate": "Taasta varundatud failist",
     "user": "Kasutaja",
     "custom": "Kohandatud",
-    "confirmMatrixId": "Konto kustutamiseks palun kinnitage oma Matrix'i ID.",
+    "confirmMatrixId": "Konto kustutamiseks palun kinnita oma Matrix'i kasutajatunnus (Matrix ID).",
     "supposedMxid": "See peaks olema {mxid}",
     "@supposedMxid": {
         "type": "String",
@@ -2986,7 +2986,7 @@
     "enterNewChat": "Liitu uue vestlusega",
     "commandHint_roomupgrade": "Uuenda see jututuba antud jututoa versioonini",
     "setCustomPermissionLevel": "Seadista kohandatud õiguste tase",
-    "setPermissionsLevelDescription": "Palun vali eelvalitud rollide seast või lisa õiguste tase vahemikus 0 kuni 100.",
+    "setPermissionsLevelDescription": "Palun vali eelseadistatud rollide seast või lisa õiguste tase vahemikus 0 kuni 100.",
     "ignoreUser": "Eira kasutajat",
     "normalUser": "Tavakasutaja",
     "approve": "Kiida heaks",
@@ -3138,5 +3138,11 @@
     "logs": "Logid",
     "advancedConfigs": "Täiendav seadistus",
     "advancedConfigurations": "Täiendavad seadistused",
-    "signInWithLabel": "Logi sisse kasutades:"
+    "signInWithLabel": "Logi sisse kasutades:",
+    "signIn": "Logi sisse",
+    "createNewAccount": "Loo uus kasutajakonto",
+    "signUpGreeting": "FluffyChat kasutab hajutatud võrku! Vali server, kuhu tahad oma kasutajakonto lisada ning alustame!",
+    "signInGreeting": "Sul juba on Matrixi kasutajakonto olemas? Tere tulemast tagasi! Vali oma koduserver ja logi sisse.",
+    "appIntro": "FluffyChati abil saad suhelda oma sõpradega. See on turvaline ja hajutatud sõnumiklient [matrix]-i võrgus! Lisateavet leiad https://matrix.org saidist või lihtsalt liitu.",
+    "theProcessWasCanceled": "Protsess on katkestatud."
 }
