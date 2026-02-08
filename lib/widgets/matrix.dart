@@ -309,9 +309,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       _registerSubs(c.clientName);
     }
 
-    if (PlatformInfos.isMobile) {
+    if (PlatformInfos.isMobile || PlatformInfos.isLinux) {
       backgroundPush = BackgroundPush(
         this,
+        isBackground: false,
         onFcmError: (errorMsg, {Uri? link}) async {
           final result = await showOkCancelAlertDialog(
             context:
