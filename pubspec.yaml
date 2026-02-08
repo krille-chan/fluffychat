@@ -43,7 +43,6 @@ dependencies:
   flutter_webrtc: ^1.3.0
   geolocator: ^14.0.2
   go_router: ^17.1.0
-  handy_window: ^0.4.0
   highlight: ^0.7.0
   html: ^0.15.4
   http: ^1.6.0
