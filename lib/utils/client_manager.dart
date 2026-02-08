@@ -161,17 +161,17 @@ abstract class ClientManager {
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
     await flutterLocalNotificationsPlugin.initialize(
-      const InitializationSettings(
+      settings: const InitializationSettings(
         android: AndroidInitializationSettings('notifications_icon'),
         iOS: DarwinInitializationSettings(),
       ),
     );
 
-    flutterLocalNotificationsPlugin.show(
-      0,
-      title,
-      body,
-      const NotificationDetails(
+    await flutterLocalNotificationsPlugin.show(
+      id: 0,
+      title: title,
+      body: body,
+      notificationDetails: const NotificationDetails(
         android: AndroidNotificationDetails(
           'error_message',
           'Error Messages',

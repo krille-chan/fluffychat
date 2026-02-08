@@ -196,7 +196,7 @@ Future<void> notificationTap(
                       .timeout(const Duration(seconds: 3));
             final messagingStyleInformation =
                 await AndroidFlutterLocalNotificationsPlugin()
-                    .getActiveNotificationMessagingStyle(room.id.hashCode);
+                    .getActiveNotificationMessagingStyle(id: room.id.hashCode);
             if (messagingStyleInformation == null) return;
             l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
             messagingStyleInformation.messages?.add(
@@ -214,10 +214,10 @@ Future<void> notificationTap(
             );
 
             await FlutterLocalNotificationsPlugin().show(
-              room.id.hashCode,
-              room.getLocalizedDisplayname(MatrixLocals(l10n)),
-              input,
-              NotificationDetails(
+              id: room.id.hashCode,
+              title: room.getLocalizedDisplayname(MatrixLocals(l10n)),
+              body: input,
+              notificationDetails: NotificationDetails(
                 android: AndroidNotificationDetails(
                   AppConfig.pushNotificationsChannelId,
                   l10n.incomingMessages,
