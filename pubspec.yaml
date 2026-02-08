@@ -111,6 +111,20 @@ flutter:
     - assets/
     - assets/sounds/
     - assets/vodozemac/
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf
+        - asset: assets/fonts/Roboto/Roboto-Italic-VariableFont_wdth,wght.ttf
+          style: italic
+    - family: RobotoMono
+      fonts:
+        - asset: assets/fonts/Roboto_Mono/RobotoMono-VariableFont_wght.ttf
+        - asset: assets/fonts/Roboto_Mono/RobotoMono-Italic-VariableFont_wght.ttf
+          style: italic
+    - family: NotoSansSC
+      fonts:
+        - asset: assets/fonts/Noto_Sans_SC/NotoSansSC-VariableFont_wght.ttf
 
 # Guidelines for adding a dependency override:
 # 1. Don't do it if you can avoid it or fix it upstream in a manageable time
