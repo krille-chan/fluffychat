@@ -492,5 +492,244 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatPermissions": "Isirigen n Udiwenni"
+    "chatPermissions": "Isirigen n Udiwenni",
+    "encrypted": "Yettwawgelhen",
+    "@encrypted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encryption": "Awgelhen",
+    "@encryption": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encryptionNotEnabled": "Awgelhen ur yettwarmed ara",
+    "@encryptionNotEnabled": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "endedTheCall": "{senderName} ifukk asiwel",
+    "@endedTheCall": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "enterAnEmailAddress": "Sekcem tansa n yimayl",
+    "@enterAnEmailAddress": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "homeserver": "Aqeddac agejdan",
+    "enterYourHomeserver": "Sekcem Aqeddac-ik·im agejdan",
+    "@enterYourHomeserver": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "errorObtainingLocation": "Tuccḍa deg wawway n yideg: {error}",
+    "@errorObtainingLocation": {
+        "type": "String",
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "everythingReady": "Kullec ihegga!",
+    "@everythingReady": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fileName": "Isem n ufaylu",
+    "@fileName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fluffychat": "FluffyChat",
+    "@fluffychat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fontSize": "Tiddi n tsefsit",
+    "@fontSize": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "forward": "Ɣer zdat",
+    "@forward": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fromJoining": "Seg unekcam-is",
+    "@fromJoining": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fromTheInvitation": "Seg tinubga",
+    "@fromTheInvitation": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "goToTheNewRoom": "Ddu ɣer texxamt tamaynut",
+    "@goToTheNewRoom": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "group": "Agraw",
+    "@group": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatDescription": "Aglam n udiwenni",
+    "chatDescriptionHasBeenChanged": "Aglam n udiwenni yettwabeddel",
+    "groupIsPublic": "Agraw d azayez",
+    "@groupIsPublic": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "groups": "Igrawen",
+    "@groups": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "groupWith": "Agraw s {displayname}",
+    "@groupWith": {
+        "type": "String",
+        "placeholders": {
+            "displayname": {
+                "type": "String"
+            }
+        }
+    },
+    "tryAgain": "Ɛreḍ tikkelt-nniḍen",
+    "invalidServerName": "Isem n uqeddac d armeɣtu",
+    "invited": "Yettwaɛreḍ",
+    "@invited": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "redactMessageDescription": "Izen ad yettwakkesn i imttekkiyen merra deg udiwenni-agi. Ur tezmireḍ ara ad tesfesxeḍ.",
+    "optionalRedactReason": "(Afrayan) Sebba n tukksa n izen-agi…",
+    "invitedUser": "📩 {username} yenced {targetName}",
+    "@invitedUser": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "invitedUsersOnly": "Iseqdacen kan yettwaɛerḍen",
+    "@invitedUsersOnly": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "inviteForMe": "Snubget-yi-d",
+    "@inviteForMe": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "isTyping": "la yettaru…",
+    "@isTyping": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "joinedTheChat": "👋{username} yekcem ɣer udiwenni",
+    "@joinedTheChat": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "joinRoom": "Tekki deg texxamt",
+    "@joinRoom": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "kicked": "👞{username} yessuffeɣ-d {targetName}",
+    "@kicked": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "kickedAndBanned": "🙅 {username} yessuffeɣ-d udiɣ igdel {targetName}",
+    "@kickedAndBanned": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "kickFromChat": "Suffeɣ seg udiwenni",
+    "@kickFromChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "lastActiveAgo": "Yermed i tikkelt taneggarut: {localizedTimeShort}",
+    "@lastActiveAgo": {
+        "type": "String",
+        "placeholders": {
+            "localizedTimeShort": {
+                "type": "String"
+            }
+        }
+    },
+    "leave": "Eǧǧ",
+    "@leave": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "leftTheChat": "Ffeɣ seg udiwenni",
+    "@leftTheChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "license": "Turagt",
+    "@license": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "lightTheme": "Aceɛlal",
+    "@lightTheme": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadCountMoreParticipants": "Sali-d ugar n {count} yimttekkiyen",
+    "@loadCountMoreParticipants": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "dehydrate": "Sifeḍ tiɣimit akked usfaḍ n yibenk",
+    "dehydrateWarning": "Tigawt-agi ur tezmir ara ad tettwasefsex. Tḥeqqeq belli tesseklaseḍ afaylu n weḥraz.",
+    "dehydrateTor": "Iseqdacen TOR: Sifeḍ tiɣimit",
+    "dehydrateTorLong": "I iseqdacen TOR, yettusemter ad tsifeḍ tɣimit send ad tmedleḍ asfaylu.",
+    "hydrateTor": "Iseqdacen TOR: Akter n tɣimit usifeḍ",
+    "hydrateTorLong": "Tsifḍeḍ tiɣimit-ik·im taneggarut deg TOR? kter-it-id s wudem arurad u kemmel adiwenni.",
+    "hydrate": "Err-d seg ufaylu n weḥraz",
+    "loadingPleaseWait": "Asali... Ttxil-k·m arǧu.",
+    "@loadingPleaseWait": {
+        "type": "String",
+        "placeholders": {}
+    }
 }
