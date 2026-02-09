@@ -731,5 +731,124 @@
     "@loadingPleaseWait": {
         "type": "String",
         "placeholders": {}
+    },
+    "copiedToClipboard": "Yettwanɣel ɣer tecfawit",
+    "@copiedToClipboard": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "copy": "Nɣel",
+    "@copy": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "copyToClipboard": "Nɣel ɣer tecfawit",
+    "@copyToClipboard": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "couldNotDecryptMessage": "Ur izmer ara tukksa n uwgelhen n yizen: {error}",
+    "@couldNotDecryptMessage": {
+        "type": "String",
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "checkList": "Senqed tabdart",
+    "countParticipants": "{count} imttekkiyen",
+    "@countParticipants": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "countInvited": "{count} yettwaɛerḍen",
+    "@countInvited": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "create": "Snulfu-d",
+    "@create": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "createdTheChat": "💬 {username} yesnulfa-d adiwenni",
+    "@createdTheChat": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "createGroup": "Snulfu-d agraw",
+    "editDisplayname": "Ẓreg isem n ubeqqeḍ",
+    "@editDisplayname": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "editRoomAvatar": "Ẓreg avaṭar n texxamt",
+    "@editRoomAvatar": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteExists": "Azamul uḥulfu yella yakan!",
+    "@emoteExists": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteInvalid": "Tangalt tawezlant n uzamul uḥulfu d tarmeɣtut!",
+    "@emoteInvalid": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteKeyboardNoRecents": "Izamulen uḥulfu yettwasqedcen melmi kan ad banen dagi…",
+    "@emoteKeyboardNoRecents": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emotePacks": "Ikemmusen n uzamul uḥulfu i texxamt",
+    "@emotePacks": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteSettings": "Iɣewwaṛen n uzamul uḥulfu",
+    "@emoteSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "globalChatId": "Asulay n udiwenni amatu",
+    "accessAndVisibility": "Addaf d twalit",
+    "accessAndVisibilityDescription": "Anwa i yesɛan turagt ad yernu ɣer udiwenni-agi u amek adiwenni yezmer ad yettwaf.",
+    "calls": "Isawalen",
+    "customEmojisAndStickers": "Imujiten yugnen akked tcṛeṭ n tesfift",
+    "customEmojisAndStickersBody": "Rnu neɣ bḍu imujiten yugnen neɣ tcṛeṭ n tesfift i zemren ad ttwasqedcen deg yal adiwenni.",
+    "emptyChat": "Adiwenni d ilem",
+    "@emptyChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "enableEmotesGlobally": "Sermed akemmus n uzamul uḥulfu s wudem amatu",
+    "@enableEmotesGlobally": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "enableEncryption": "Rmed awgelhen",
+    "@enableEncryption": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "enableEncryptionWarning": "Ur tettizmireḍ ara ad tessenseḍ awgelhen syagi ɣer zdat. Tetḥeqqeḍ s tidet?",
+    "@enableEncryptionWarning": {
+        "type": "String",
+        "placeholders": {}
     }
 }
