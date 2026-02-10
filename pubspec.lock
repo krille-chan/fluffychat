@@ -1088,10 +1088,10 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: f5befb7a9e9658b0b0901cdda86407a909319712a30984ed177f7317ce5f24f1
+      sha256: c0214ee99a73957d3c02d54a60afcf9acee577b0924749085d6fdf556e8eba42
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.0"
+    version: "6.1.1"
   meta:
     dependency: transitive
     description:
