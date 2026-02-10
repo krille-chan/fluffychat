@@ -28,6 +28,8 @@
   "@importEmojis": {},
   "importFromZipFile": "Import from .zip file",
   "@importFromZipFile": {},
+  "imprint": "Imprint",
+  "@imprint": {},
   "exportEmotePack": "Export Emote pack as .zip",
   "@exportEmotePack": {},
   "replace": "Replace",

@@ -2398,6 +2398,8 @@
     "importNow": "Jetzt importieren",
     "importEmojis": "Emojis importieren",
     "importFromZipFile": "Aus ZIP-Datei importieren",
+    "imprint": "Impressum",
+    "@imprint": {},
     "exportEmotePack": "Emote-Paket als ZIP-Datei exportieren",
     "notAnImage": "Keine Bilddatei.",
     "replace": "Ersetzen",
