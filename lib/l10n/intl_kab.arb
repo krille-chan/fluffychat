@@ -13,7 +13,7 @@
     "importNow": "Kter tura",
     "importEmojis": "Kter imujiten",
     "importFromZipFile": "Kter seg ufaylu .zip",
-    "exportEmotePack": "Sifeḍ akemmus n Emote am .zip",
+    "exportEmotePack": "Sifeḍ akemmus n Izamulen uḥulfu am .zip",
     "replace": "Semselsi",
     "about": "Ɣef",
     "aboutHomeserver": "Ɣef {homeserver}",
@@ -848,6 +848,153 @@
     },
     "enableEncryptionWarning": "Ur tettizmireḍ ara ad tessenseḍ awgelhen syagi ɣer zdat. Tetḥeqqeḍ s tidet?",
     "@enableEncryptionWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "login": "Anekcam",
+    "@login": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "logInTo": "Anekcam ɣer {homeserver}",
+    "@logInTo": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    },
+    "logout": "Tuffɣa",
+    "@logout": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "memberChanges": "Ibeddilen n iɛeggalen",
+    "@memberChanges": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mention": "Abdar",
+    "@mention": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messages": "Iznan",
+    "@messages": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messagesStyle": "Iznan:",
+    "muteChat": "Sgugem adiwenni",
+    "@muteChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "needPantalaimonWarning": "Ttxil-k·m ẓeṛ belli tesriḍ Palaimon akken ad tesqedceḍ awgelhen seg yixef ɣer yixef.",
+    "@needPantalaimonWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newChat": "Adiwenni Amaynut",
+    "@newChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newMessageInFluffyChat": "💬 Izen amaynut deg FluffyChat",
+    "@newMessageInFluffyChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newVerificationRequest": "Asuter amaynut n uselken!",
+    "@newVerificationRequest": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "next": "Uḍfir",
+    "@next": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "no": "Ala",
+    "@no": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noConnectionToTheServer": "Ulac tuqqna ɣer uqeddac",
+    "@noConnectionToTheServer": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noEncryptionForPublicRooms": "Tzemreḍ kan ad tesremdeḍ awgelhen akken kan ara tuɣal taxxamt s war anekcum azayez.",
+    "@noEncryptionForPublicRooms": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noEmotesFound": "Ulac izamulen uḥulfu yettwafen. 😕",
+    "@noEmotesFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noMatrixServer": "{server1} ur yelli d aqeddac matriks, seqdec axir {server2} ?",
+    "@noMatrixServer": {
+        "type": "String",
+        "placeholders": {
+            "server1": {
+                "type": "String"
+            },
+            "server2": {
+                "type": "String"
+            }
+        }
+    },
+    "shareInviteLink": "Bḍu aseɣwen n tinubga",
+    "none": "Ulac",
+    "@none": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noPasswordRecoveryDescription": "Mazal ur terniḍ ara tarrayt akken ad terreḍ awal-ik·im n uɛeddi.",
+    "@noPasswordRecoveryDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noPermission": "Ulac tasiregt",
+    "@noPermission": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noRoomsFound": "Ulac taxxamt i yettwafen…",
+    "@noRoomsFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notifications": "Ilɣa",
+    "@notifications": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notificationsEnabledForThisAccount": "Ilɣa remden i umiḍan-agi",
+    "@notificationsEnabledForThisAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "numUsersTyping": "{count} n iseqdacen la yettarun…",
+    "@numUsersTyping": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "obtainingLocation": "Aguccel n wadig…",
+    "@obtainingLocation": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "offensive": "Tanṭagt",
+    "@offensive": {
         "type": "String",
         "placeholders": {}
     }
