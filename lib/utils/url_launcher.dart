@@ -154,12 +154,12 @@ class UrlLauncher {
           context: context,
           future: () => matrix.client.getRoomIdByAlias(roomIdOrAlias),
         );
-        if (response.error != null) {
-          return; // nothing to do, the alias doesn't exist
+        final result = response.result;
+        if (result != null) {
+          roomId = result.roomId;
+          servers.addAll(result.servers!);
+          room = matrix.client.getRoomById(roomId!);
         }
-        roomId = response.result!.roomId;
-        servers.addAll(response.result!.servers!);
-        room = matrix.client.getRoomById(roomId!);
       }
       servers.addAll(identityParts.via);
       if (room != null) {
