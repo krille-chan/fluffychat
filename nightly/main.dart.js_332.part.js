@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIj(){return new A.Gf(B.df("tr"))},
+cIk(){return new A.Gf(B.df("tr"))},
 Gf:function Gf(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"\xd6zel izin d\xfczeyi ayarla"},
 gkr(){return"L\xfctfen a\u015fa\u011f\u0131dan \xf6nceden tan\u0131mlanm\u0131\u015f bir rol se\xe7in veya 0 ile 100 aras\u0131nda bir \xf6zel izin seviyesi girin."},
 gm4(){return"Kullan\u0131c\u0131y\u0131 yok say"},
 gmE(){return"Normal kullan\u0131c\u0131"},
-gb9(d){return"Kald\u0131r"},
+gba(d){return"Kald\u0131r"},
 gm7(){return"\u015eimdi i\xe7e aktar"},
 gm5(){return"\u0130fadeleri \u0130\xe7e Aktar"},
 gm6(){return".zip dosyas\u0131ndan i\xe7e aktar"},
@@ -234,7 +234,7 @@ gfp(){return"Moderat\xf6r"},
 gfq(){return"Sohbeti sessize al"},
 gj_(){return"Yeni sohbet"},
 gj0(){return"Yeni do\u011frulama iste\u011fi!"},
-gd_(d){return"\u0130leri"},
+gd0(d){return"\u0130leri"},
 gei(){return"Hay\u0131r"},
 gj2(){return"Sunucuyla ba\u011flant\u0131 yok"},
 gfs(){return"\u0130fade bulunamad\u0131. \ud83d\ude15"},
@@ -673,10 +673,10 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gf,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"Gf":{"aE":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["EmuspJifx5r99t6AxLazAegnSF4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/a+9PmndERPtaKC0lPGf6dR38Pk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_332.part.js.map

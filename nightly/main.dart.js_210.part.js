@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHx(){return new A.Fu(B.df("ar"))},
+cHy(){return new A.Fu(B.df("ar"))},
 Fu:function Fu(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"\u062d\u062f\u062f \u0645\u0633\u062a\u0648\u0649 \u0635\u0644\u062
 gkr(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
 gm4(){return"Ignore user"},
 gmE(){return"Normal user"},
-gb9(d){return"\u0623\u0632\u0650\u0644"},
+gba(d){return"\u0623\u0632\u0650\u0644"},
 gm7(){return"\u0627\u0633\u062a\u064a\u0631\u0627\u062f \u0627\u0644\u0622\u0646"},
 gm5(){return"\u0627\u0633\u062a\u064a\u0631\u0627\u062f \u0627\u0644\u0631\u0645\u0648\u0632 \u0627\u0644\u062a\u0639\u0628\u064a\u0631\u064a\u0629"},
 gm6(){return"\u0627\u0644\u0627\u0633\u062a\u064a\u0631\u0627\u062f \u0645\u0646 \u0645\u0644\u0641 .zip"},
@@ -234,7 +234,7 @@ gfp(){return"\u0645\u0634\u0631\u0641"},
 gfq(){return"\u0623\u0643\u062a\u0645 \u0627\u0644\u0645\u0627\u062d\u062f\u062b\u0629"},
 gj_(){return"\u0645\u062d\u0627\u062f\u062b\u0629 \u062c\u062f\u064a\u062f\u0629"},
 gj0(){return"\u0637\u0644\u0628 \u062a\u062d\u0642\u0642 \u062c\u062f\u064a\u062f!"},
-gd_(d){return"\u0627\u0644\u062a\u0627\u0644\u064a"},
+gd0(d){return"\u0627\u0644\u062a\u0627\u0644\u064a"},
 gei(){return"\u0644\u0627"},
 gj2(){return"\u0627\u0646\u0642\u0637\u0639 \u0627\u0644\u0627\u062a\u0635\u0627\u0644 \u0628\u0627\u0644\u062e\u0627\u062f\u0645"},
 gfs(){return"\u0644\u0645 \u064a\u064f\u0639\u062b\u0631 \u0639\u0644\u0649 \u0627\u0646\u0641\u0639\u0627\u0644\u0629. \ud83d\ude15"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fu,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"Fu":{"aE":[]}}'))};
-(a=>{a["GLTl4AApfBJJ+AoQlwz9hiXZRwM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["tJNQvx/nuHecBWvFqD2i0b7W6+U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_210.part.js.map

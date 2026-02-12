@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIe(){return new A.Ga(B.df("sr"))},
+cIf(){return new A.Ga(B.df("sr"))},
 Ga:function Ga(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Set custom permission level"},
 gkr(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
 gm4(){return"Ignore user"},
 gmE(){return"Normal user"},
-gb9(d){return"\u0423\u043a\u043b\u043e\u043d\u0438"},
+gba(d){return"\u0423\u043a\u043b\u043e\u043d\u0438"},
 gm7(){return"Import now"},
 gm5(){return"Import Emojis"},
 gm6(){return"Import from .zip file"},
@@ -234,7 +234,7 @@ gfp(){return"\u041c\u043e\u0434\u0435\u0440\u0430\u0442\u043e\u0440"},
 gfq(){return"\u0423\u045b\u0443\u0442\u043a\u0430\u0458 \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
 gj_(){return"\u041d\u043e\u0432\u043e \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
 gj0(){return"\u041d\u043e\u0432\u0438 \u0437\u0430\u0445\u0442\u0435\u0432 \u0437\u0430 \u0432\u0435\u0440\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0458\u0443!"},
-gd_(d){return"\u0421\u043b\u0435\u0434\u0435\u045b\u0435"},
+gd0(d){return"\u0421\u043b\u0435\u0434\u0435\u045b\u0435"},
 gei(){return"\u041d\u0435"},
 gj2(){return"\u041d\u0435\u043c\u0430 \u0432\u0435\u0437\u0435 \u0441\u0430 \u0441\u0435\u0440\u0432\u0435\u0440\u043e\u043c"},
 gfs(){return"\u041d\u0435\u043c\u0430 \u0435\u043c\u043e\u0442\u0438\u0458\u0430. \ud83d\ude15"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ga,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"Ga":{"aE":[]}}'))};
-(a=>{a["eqH7pojWhuYNW5OFzJEWQTnRZXI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/VnQcPgG082H13zl0/gudaklP4E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_326.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHU(){return new A.FR(B.df("hu"))},
+cHV(){return new A.FR(B.df("hu"))},
 FR:function FR(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Egyedi enged\xe9lyszint be\xe1ll\xedt\xe1sa"},
 gkr(){return"K\xe9rem, v\xe1lasszon egy el\u0151re meghat\xe1rozott szerepk\xf6rt, vagy adjon meg egy egyedi enged\xe9ly szintet 0 \xe9s 100 k\xf6z\xf6tt."},
 gm4(){return"Felhaszn\xe1l\xf3 ignor\xe1l\xe1sa"},
 gmE(){return"Norm\xe1l felhaszn\xe1l\xf3"},
-gb9(d){return"Elt\xe1vol\xedt\xe1s"},
+gba(d){return"Elt\xe1vol\xedt\xe1s"},
 gm7(){return"Import\xe1l\xe1s most"},
 gm5(){return"Emojik import\xe1l\xe1sa"},
 gm6(){return"Import\xe1l\xe1s zip f\xe1jlb\xf3l"},
@@ -234,7 +234,7 @@ gfp(){return"Moder\xe1tor"},
 gfq(){return"Cseveg\xe9s n\xe9m\xedt\xe1sa"},
 gj_(){return"\xdaj cseveg\xe9s"},
 gj0(){return"\xdaj hiteles\xedt\xe9si k\xe9relem!"},
-gd_(d){return"K\xf6vetkez\u0151"},
+gd0(d){return"K\xf6vetkez\u0151"},
 gei(){return"Nem"},
 gj2(){return"Nem el\xe9rhet\u0151 a szerver"},
 gfs(){return"Nem tal\xe1lhat\xf3ak hangulatjelek. \ud83d\ude15"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FR,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"FR":{"aE":[]}}'))};
-(a=>{a["JF3XiBtEGlHoZ4E4xQaardpYIxs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["eJk0xxzurfgbw9U/8oQkUS7Pdh0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_296.part.js.map

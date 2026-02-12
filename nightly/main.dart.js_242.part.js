@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHC(){return new A.Fz(B.df("cs"))},
+cHD(){return new A.Fz(B.df("cs"))},
 Fz:function Fz(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Nastavit vlastn\xed \xfarove\u0148 opr\xe1vn\u011bn\xed"},
 gkr(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
 gm4(){return"Ignorovat u\u017eivatele"},
 gmE(){return"Normaln\xed u\u017eivatel"},
-gb9(d){return"Odstranit"},
+gba(d){return"Odstranit"},
 gm7(){return"Importovat nyn\xed"},
 gm5(){return"Importovat Emoji"},
 gm6(){return"Importovat ze .zip souboru"},
@@ -234,7 +234,7 @@ gfp(){return"Moder\xe1tor"},
 gfq(){return"Ztlumit chat"},
 gj_(){return"Nov\xfd chat"},
 gj0(){return"Nov\xe1 \u017e\xe1dost o ov\u011b\u0159en\xed!"},
-gd_(d){return"Dal\u0161\xed"},
+gd0(d){return"Dal\u0161\xed"},
 gei(){return"Ne"},
 gj2(){return"\u017d\xe1dn\xe9 p\u0159ipojen\xed k serveru"},
 gfs(){return"Nebyly nalezeny \u017e\xe1dn\xe9 emotikony. \ud83d\ude15"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fz,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"Fz":{"aE":[]}}'))};
-(a=>{a["f8Xga6cb08orRdYNJthn2mFHxy8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["rcYqDJ+N8HMRndvFlTzE3aaey1Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_242.part.js.map

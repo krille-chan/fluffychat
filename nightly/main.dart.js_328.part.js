@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIf(){return new A.Gb(B.df("sv"))},
+cIg(){return new A.Gb(B.df("sv"))},
 Gb:function Gb(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Set custom permission level"},
 gkr(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
 gm4(){return"Ignore user"},
 gmE(){return"Normal user"},
-gb9(d){return"Ta bort"},
+gba(d){return"Ta bort"},
 gm7(){return"Importera nu"},
 gm5(){return"Importera emojier"},
 gm6(){return"Importera fr\xe5n .zip-fil"},
@@ -234,7 +234,7 @@ gfp(){return"Moderator"},
 gfq(){return"Tysta chatt"},
 gj_(){return"Ny chatt"},
 gj0(){return"Ny verifikationsbeg\xe4ran!"},
-gd_(d){return"N\xe4sta"},
+gd0(d){return"N\xe4sta"},
 gei(){return"Nej"},
 gj2(){return"Ingen anslutning till servern"},
 gfs(){return"Hittade inga dekaler. \ud83d\ude15"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gb,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"Gb":{"aE":[]}}'))};
-(a=>{a["Re3G+aPRQKw1IkYDYJpVl2bLIEI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3iCLWYS1xU0yhsZ5KcMm4xiDP3E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_328.part.js.map

@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cI6(d){return new A.B1(B.df(d))},
-cI7(){return new A.G3(B.df("pt_BR"))},
-cI8(){return new A.G4(B.df("pt_PT"))},
-B1:function B1(d){this.a=d},
+cI7(d){return new A.B0(B.df(d))},
+cI8(){return new A.G3(B.df("pt_BR"))},
+cI9(){return new A.G4(B.df("pt_PT"))},
+B0:function B0(d){this.a=d},
 G3:function G3(d){this.a=d},
 G4:function G4(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[56]
-A.B1.prototype={
+A.B0.prototype={
 gkP(){return"true"},
 gjA(){return"Repita a senha"},
 gmF(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -17,7 +17,7 @@ gkq(){return"Definir n\xedvel de permiss\xe3o personalizado"},
 gkr(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
 gm4(){return"Ignore user"},
 gmE(){return"Normal user"},
-gb9(d){return"Remove"},
+gba(d){return"Remove"},
 gm7(){return"Import now"},
 gm5(){return"Import Emojis"},
 gm6(){return"Import from .zip file"},
@@ -238,7 +238,7 @@ gfp(){return"Moderator"},
 gfq(){return"Mute chat"},
 gj_(){return"New chat"},
 gj0(){return"New verification request!"},
-gd_(d){return"Next"},
+gd0(d){return"Next"},
 gei(){return"No"},
 gj2(){return"No connection to the server"},
 gfs(){return"No emotes found. \ud83d\ude15"},
@@ -677,7 +677,7 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 A.G3.prototype={
 gkP(){return"true"},
 gjA(){return"Repita a senha"},
@@ -686,7 +686,7 @@ gkq(){return"Configurar n\xedvel personalizado de permiss\xe3o"},
 gkr(){return"Selecione um cargo pr\xe9-definido abaixo ou digite um n\xedvel de permiss\xe3o personalizado entre 0 e 100."},
 gm4(){return"Ignorar usu\xe1rio"},
 gmE(){return"Usu\xe1rio normal"},
-gb9(d){return"Remover"},
+gba(d){return"Remover"},
 gm7(){return"Importar agora"},
 gm5(){return"Importar emojis"},
 gm6(){return"Importar de arquivo .zip"},
@@ -907,7 +907,7 @@ gfp(){return"Moderador"},
 gfq(){return"Silenciar conversa"},
 gj_(){return"Nova conversa"},
 gj0(){return"Nova solicita\xe7\xe3o de verifica\xe7\xe3o!"},
-gd_(d){return"Avan\xe7ar"},
+gd0(d){return"Avan\xe7ar"},
 gei(){return"N\xe3o"},
 gj2(){return"Sem conex\xe3o com o servidor"},
 gfs(){return"Nenhum emoji encontrado. \ud83d\ude15"},
@@ -1330,10 +1330,10 @@ goX(){return"Pular backup de conversas"},
 goY(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 gpt(){return"Carregando mensagens"},
 goW(){return"Configurar backup de conversas"},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 A.G4.prototype={
 gjA(){return"Repete a palavra-passe"},
-gb9(d){return"Remover"},
+gba(d){return"Remover"},
 geq(){return"Acerca de"},
 gh4(d){return"Aceitar"},
 h5(d){return d+" aceitou o convite"},
@@ -1500,7 +1500,7 @@ gfp(){return"Moderador"},
 gfq(){return"Silenciar conversa"},
 gj_(){return"Nova conversa"},
 gj0(){return"Novo pedido de verifica\xe7\xe3o!"},
-gd_(d){return"Pr\xf3ximo"},
+gd0(d){return"Pr\xf3ximo"},
 gei(){return"N\xe3o"},
 gj2(){return"Nenhuma liga\xe7\xe3o ao servidor"},
 gfs(){return"Nenhuns emotes encontrados. \ud83d\ude15"},
@@ -1570,11 +1570,11 @@ fU(d){return d+" enviar um \xe1udio"},
 fS(d){return d+" enviar uma imagem"},
 eN(d){return d+" enviou um autocolante"},
 fT(d){return d+" enviou um v\xeddeo"},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.B1,C.aE)
-w(A.B1,[A.G3,A.G4])})()
-B.dH(b.typeUniverse,JSON.parse('{"B1":{"aE":[]},"G3":{"aE":[]},"G4":{"aE":[]}}'))
+x(A.B0,C.aE)
+w(A.B0,[A.G3,A.G4])})()
+B.dH(b.typeUniverse,JSON.parse('{"B0":{"aE":[]},"G3":{"aE":[]},"G4":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["6AvpMc0ElOzq47ji5PALd+9LZWo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Dhy272xtrUSCycfJLTglZzdUcc4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_17.part.js.map

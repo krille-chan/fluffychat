@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHO(){return new A.FL(B.df("fr"))},
+cHP(){return new A.FL(B.df("fr"))},
 FL:function FL(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"D\xe9finir un niveau d\u2019autorisation"},
 gkr(){return"Veuillez choisir un r\xf4le pr\xe9d\xe9fini ci-dessous ou saisir un niveau d\u2019autorisation entre 0 et 100."},
 gm4(){return"Ignorer l'utilisateur"},
 gmE(){return"Utilisateur standard"},
-gb9(d){return"Supprimer"},
+gba(d){return"Supprimer"},
 gm7(){return"Importer maintenant"},
 gm5(){return"Importer des Emojis"},
 gm6(){return"Importer depuis un fichier .zip"},
@@ -234,7 +234,7 @@ gfp(){return"Mod\xe9rateur\xb7rice"},
 gfq(){return"Mettre la discussion en sourdine"},
 gj_(){return"Nouvelle discussion"},
 gj0(){return"Nouvelle demande de v\xe9rification !"},
-gd_(d){return"Suivant"},
+gd0(d){return"Suivant"},
 gei(){return"Non"},
 gj2(){return"Aucune connexion au serveur"},
 gfs(){return"Aucune \xe9motic\xf4ne trouv\xe9e. \ud83d\ude15"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FL,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"FL":{"aE":[]}}'))};
-(a=>{a["mzO8rAvg4ReFYf5FEywHtyqV/wI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BrDqmpAShUjcYcb8fCpqlKNIj04="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_279.part.js.map

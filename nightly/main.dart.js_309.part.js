@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHZ(){return new A.FW(B.df("ja"))},
+cI_(){return new A.FW(B.df("ja"))},
 FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Set custom permission level"},
 gkr(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
 gm4(){return"Ignore user"},
 gmE(){return"Normal user"},
-gb9(d){return"\u6d88\u53bb"},
+gba(d){return"\u6d88\u53bb"},
 gm7(){return"Import now"},
 gm5(){return"Import Emojis"},
 gm6(){return"Import from .zip file"},
@@ -234,7 +234,7 @@ gfp(){return"\u30e2\u30c7\u30ec\u30fc\u30bf"},
 gfq(){return"\u30c1\u30e3\u30c3\u30c8\u306e\u30df\u30e5\u30fc\u30c8"},
 gj_(){return"\u65b0\u898f\u30c1\u30e3\u30c3\u30c8"},
 gj0(){return"\u8a8d\u8a3c\u30ea\u30af\u30a8\u30b9\u30c8\uff01"},
-gd_(d){return"\u6b21\u3078"},
+gd0(d){return"\u6b21\u3078"},
 gei(){return"\u3044\u3044\u3048"},
 gj2(){return"\u30b5\u30fc\u30d0\u30fc\u306b\u63a5\u7d9a\u3067\u304d\u307e\u305b\u3093"},
 gfs(){return"Emote\u306f\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f\ud83d\ude15"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FW,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"FW":{"aE":[]}}'))};
-(a=>{a["+JFoakJA3knc9RGdJOGb2I964ws="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["J+TIKyi9p0EGE05hf0teu/Mh1WQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_309.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cI2(){return new A.G_(B.df("lv"))},
+cI3(){return new A.G_(B.df("lv"))},
 G_:function G_(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Iestat\u012bt piel\u0101gotu at\u013cauju l\u012bmeni"},
 gkr(){return"L\u016bgums zem\u0101k atlas\u012bt iepriek\u0161izveidotu lomu vai ievad\u012bt piel\u0101gotu at\u013cauju l\u012bmeni starp 0 un 100."},
 gm4(){return"Ne\u0146emt v\u0113r\u0101 lietot\u0101ju"},
 gmE(){return"Parasts lietot\u0101js"},
-gb9(d){return"No\u0146emt"},
+gba(d){return"No\u0146emt"},
 gm7(){return"Ievietot tagad"},
 gm5(){return"Ievietot emocijz\u012bmes"},
 gm6(){return"Ievietot no .zip datnes"},
@@ -234,7 +234,7 @@ gfp(){return"Moderators"},
 gfq(){return"Apklusin\u0101t t\u0113rz\u0113\u0161anu"},
 gj_(){return"Jauna t\u0113rz\u0113\u0161ana"},
 gj0(){return"Jauns apliecin\u0101\u0161anas piepras\u012bjums."},
-gd_(d){return"N\u0101kamais"},
+gd0(d){return"N\u0101kamais"},
 gei(){return"N\u0113"},
 gj2(){return"Nav savienojuma ar serveri"},
 gfs(){return"Netika atrasta neviena emocija. \ud83d\ude15"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G_,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"G_":{"aE":[]}}'))};
-(a=>{a["arpS9474oivWeCui8TdJ7z4UQ1I="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["OFEjV5dFVFfYxI/dp2CEskDrGW8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

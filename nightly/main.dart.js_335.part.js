@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIl(){return new A.Gh(B.df("uz"))},
+cIm(){return new A.Gh(B.df("uz"))},
 Gh:function Gh(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Maxsus ruxsatlar darajasini sozlash"},
 gkr(){return"Quyidagi oldindan belgilangan rolni tanlang yoki 0-100 orasidagi maxsus ruxsatlar darajasini kiriting."},
 gm4(){return"Foydalanuvchini e\u2019tiborsiz qoldirish"},
 gmE(){return"Oddiy foydalanuvchi"},
-gb9(d){return"O\u2018chirish"},
+gba(d){return"O\u2018chirish"},
 gm7(){return"Hozir import qilish"},
 gm5(){return"Emojilarni import qilish"},
 gm6(){return".zip faylidan import qilish"},
@@ -234,7 +234,7 @@ gfp(){return"Moderator"},
 gfq(){return"Suhbatni ovozsizlantirish"},
 gj_(){return"Yangi suhbat"},
 gj0(){return"Yangi tasdiqlash so'rovi!"},
-gd_(d){return"Keyingi"},
+gd0(d){return"Keyingi"},
 gei(){return"Yo\u02bbq"},
 gj2(){return"Serverga ulanish yo\u02bbq"},
 gfs(){return"Hech qanday emote\u02bclar topilmadi \ud83d\ude15"},
@@ -673,10 +673,10 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gh,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"Gh":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["hf+1F7AxyWqhtMQqa4YhMfb7WT0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zYNqq+Rij8GxOsbC63eoP9821+o="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_335.part.js.map

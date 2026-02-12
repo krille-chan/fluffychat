@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cI4(){return new A.G1(B.df("nl"))},
+cI5(){return new A.G1(B.df("nl"))},
 G1:function G1(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Aangepast rechten-niveau instellen"},
 gkr(){return"Kies hieronder een standaard rol of voer een aangepast rechten-niveau in tussen 0 en 100."},
 gm4(){return"Persoon negeren"},
 gmE(){return"Normaal persoon"},
-gb9(d){return"Verwijder"},
+gba(d){return"Verwijder"},
 gm7(){return"Nu importeren"},
 gm5(){return"Emoji's importeren"},
 gm6(){return"Uit zip-bestand importeren"},
@@ -234,7 +234,7 @@ gfp(){return"Moderator"},
 gfq(){return"Chat dempen"},
 gj_(){return"Nieuwe chat"},
 gj0(){return"Nieuw verificatieverzoek!"},
-gd_(d){return"Volgende"},
+gd0(d){return"Volgende"},
 gei(){return"Nee"},
 gj2(){return"Geen verbinding met de server"},
 gfs(){return"Geen emoticons gevonden. \ud83d\ude15"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G1,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"G1":{"aE":[]}}'))};
-(a=>{a["hZ2wT8KiLoPOS12RsM95P84OfaE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["6fF/goEuRxSl6aJ/eyqk+XmLPc8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

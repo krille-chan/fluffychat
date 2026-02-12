@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cI3(){return new A.G0(B.df("nb"))},
+cI4(){return new A.G0(B.df("nb"))},
 G0:function G0(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Angi egendefinert tillatelsesniv\xe5"},
 gkr(){return"Vennligst velg en forh\xe5ndsdefinert rolle nedenfor eller skriv inn et tilpasset tillatelsesniv\xe5 mellom 0 og 100."},
 gm4(){return"Ignorer bruker"},
 gmE(){return"Vanlig bruker"},
-gb9(d){return"Fjern"},
+gba(d){return"Fjern"},
 gm7(){return"Importer n\xe5"},
 gm5(){return"Importer emojier"},
 gm6(){return"Importer fra .zip-fil"},
@@ -234,7 +234,7 @@ gfp(){return"Moderator"},
 gfq(){return"Forstum sludring"},
 gj_(){return"Ny sludring"},
 gj0(){return"Ny bekreftelsesforesp\xf8rsel!"},
-gd_(d){return"Neste"},
+gd0(d){return"Neste"},
 gei(){return"Nei"},
 gj2(){return"Ingen tilkobling til tjeneren"},
 gfs(){return"Fant ingen smilefjes. \ud83d\ude15"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G0,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"G0":{"aE":[]}}'))};
-(a=>{a["M6E3bBsnNzEyRStiD9bs8gGMJfU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["gzfG/ly+xf8+R5c0k5gfJHslK40="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

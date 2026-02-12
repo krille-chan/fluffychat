@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHJ(){return new A.FG(B.df("et"))},
+cHK(){return new A.FG(B.df("et"))},
 FG:function FG(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Seadista kohandatud \xf5iguste tase"},
 gkr(){return"Palun vali eelvalitud rollide seast v\xf5i lisa \xf5iguste tase vahemikus 0 kuni 100."},
 gm4(){return"Eira kasutajat"},
 gmE(){return"Tavakasutaja"},
-gb9(d){return"Eemalda"},
+gba(d){return"Eemalda"},
 gm7(){return"Impordi kohe"},
 gm5(){return"Impordi emojid"},
 gm6(){return"Impordi zip-failist"},
@@ -234,7 +234,7 @@ gfp(){return"Moderaator"},
 gfq(){return"Summuta vestlus"},
 gj_(){return"Uus vestlus"},
 gj0(){return"Uus verifitseerimisp\xe4ring!"},
-gd_(d){return"Edasi"},
+gd0(d){return"Edasi"},
 gei(){return"Ei"},
 gj2(){return"Puudub \xfchendus koduserveriga"},
 gfs(){return"\xdchtegi emotsioonitegevust ei leidunud. \ud83d\ude15"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gb9(this).$1(e)}}
+A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FG,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"FG":{"aE":[]}}'))};
-(a=>{a["DhazVcWYxSjTHf+CQPFQKRBYHXc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Xlcs9Nx11dzI6f9ZyCnmSux0gnk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_269.part.js.map
