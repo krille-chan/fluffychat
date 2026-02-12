@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
@@ -768,6 +769,16 @@ class ChatListController extends State<ChatList>
           ),
         ),
       );
+    }
+
+    final uri = Uri.parse(html.window.location.href);
+    final userID = uri.queryParameters['direct'];
+    if (userID != null) {
+      final roomID = await client.startDirectChat(
+        userID,
+        enableEncryption: false,
+      );
+      router.go('/rooms/$roomID');
     }
   }
 
