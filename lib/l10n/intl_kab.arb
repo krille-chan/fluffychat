@@ -997,5 +997,85 @@
     "@offensive": {
         "type": "String",
         "placeholders": {}
+    },
+    "editRoomAliases": "Ẓreg tizeẓla n taxxamt",
+    "@editRoomAliases": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "link": "Aseɣwen",
+    "serverRequiresEmail": "Aqeddac-agi ilaq ad isentem tansa imayl i ujerred.",
+    "or": "Neɣ",
+    "@or": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "participant": "Imttekki",
+    "@participant": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseOrKey": "tafyirt n uɛeddi neɣ tasarut n tririt",
+    "@passphraseOrKey": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "password": "Awal n uɛeddi",
+    "@password": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passwordForgotten": "Awal n uɛeddi yettwattun",
+    "@passwordForgotten": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passwordHasBeenChanged": "Awal n uɛeddi yettusnifel",
+    "@passwordHasBeenChanged": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "hideMemberChangesInPublicChats": "Ffer isenfal n iɛeggalen deg udiwenni azayez",
+    "overview": "Taskant",
+    "notifyMeFor": "Seɛlem-iyi-d ɣef",
+    "passwordRecoverySettings": "Iɣewwaṛen n tririt n wawal n uɛeddi",
+    "passwordRecovery": "Tiririt n wawal n uɛeddi",
+    "@passwordRecovery": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "people": "Imdanen",
+    "@people": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pickImage": "Fren tugna",
+    "@pickImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "play": "Ɣeṛ {fileName}",
+    "@play": {
+        "type": "String",
+        "placeholders": {
+            "fileName": {
+                "type": "String"
+            }
+        }
+    },
+    "pleaseChoose": "Ttxil-k·m fren",
+    "@pleaseChoose": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseChooseAPasscode": "Ttxil-k·m fren tangalt n uɛeddi",
+    "@pleaseChooseAPasscode": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseClickOnLink": "Ma ulac aɣilif, sit ɣef useɣwen yellan deg imayl sakin kemmel.",
+    "@pleaseClickOnLink": {
+        "type": "String",
+        "placeholders": {}
     }
 }
