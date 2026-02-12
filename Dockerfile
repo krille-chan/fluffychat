@@ -14,7 +14,7 @@ RUN rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
 RUN ./scripts/prepare-web.sh
 COPY config.* /app/
 RUN flutter pub get
-RUN flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps
+RUN flutter build web --no-web-resources-cdn --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps
 
 FROM docker.io/nginx:alpine
 RUN rm -rf /usr/share/nginx/html
