@@ -190,7 +190,7 @@ abstract class AppRoutes {
               redirect: loggedOutRedirect,
             ),
             ShellRoute(
-              pageBuilder: (context, state, child) => defaultPageBuilder(
+              pageBuilder: (context, state, child) => noTransitionPageBuilder(
                 context,
                 state,
                 FluffyThemes.isColumnMode(context)
