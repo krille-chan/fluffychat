@@ -1,8 +1,10 @@
 ---
-name: 📝 Test
+name: "\U0001F4DD Test"
 about: A detailed protocol for testing all features
-title: 'Test Report'
-labels: test
+title: Test Report
+labels: ''
+assignees: ''
+
 ---
 
 1. App receives push notifications over Firebase Cloud Messaging when it is in background/terminated:
