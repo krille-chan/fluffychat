@@ -1077,5 +1077,195 @@
     "@pleaseClickOnLink": {
         "type": "String",
         "placeholders": {}
+    },
+    "userAndOthersAreTyping": "{username} akked {count} nniḍen la ad ttarun…",
+    "@userAndOthersAreTyping": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "userAndUserAreTyping": "{username} akked {username2} la ad ttarun…",
+    "@userAndUserAreTyping": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "username2": {
+                "type": "String"
+            }
+        }
+    },
+    "userIsTyping": "{username} la yettaru…",
+    "@userIsTyping": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "userLeftTheChat": "🚪{username} yeffeɣ seg udiwenni",
+    "@userLeftTheChat": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "username": "Isem n useqdac",
+    "@username": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "userSentUnknownEvent": "{username} yuzen-d tadyant {type}",
+    "@userSentUnknownEvent": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "type": {
+                "type": "String"
+            }
+        }
+    },
+    "unverified": "Ur yettwaselken ara",
+    "verified": "Yettwaselken",
+    "@verified": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "verify": "Selken",
+    "@verify": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "verifyStart": "Bdu Aselken",
+    "@verifyStart": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "verifySuccess": "Yedda uselken-ik·im akken iwata!",
+    "@verifySuccess": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "verifyTitle": "Aselken n imiḍanen nniḍen",
+    "@verifyTitle": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "videoCall": "Asiwel s tvidyut",
+    "@videoCall": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "visibilityOfTheChatHistory": "Tawalit n uzray n udiwenni",
+    "@visibilityOfTheChatHistory": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "visibleForAllParticipants": "Yettban i yimttekkiyen meṛṛa",
+    "@visibleForAllParticipants": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "visibleForEveryone": "Yettban i yal yiwen",
+    "@visibleForEveryone": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "voiceMessage": "Izen n taɣect",
+    "@voiceMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingPartnerAcceptRequest": "Araǧu n uneblag ad yeqbel asuter…",
+    "@waitingPartnerAcceptRequest": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingPartnerEmoji": "Araǧu n uneblag ad yeqbel imujit…",
+    "@waitingPartnerEmoji": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingPartnerNumbers": "Araǧu n uneblag ad yeqbel uṭṭunen…",
+    "@waitingPartnerNumbers": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "wallpaper": "Tugna n ugdil:",
+    "@wallpaper": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "warning": "Ɣur-k·m!",
+    "@warning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "weSentYouAnEmail": "Nuzen-ak-d imayl",
+    "@weSentYouAnEmail": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "whoCanPerformWhichAction": "Anwa i izemren ad yexdem anta tigawt",
+    "@whoCanPerformWhichAction": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "whoIsAllowedToJoinThisGroup": "Anwa i izemren ad yernu ɣer ugraw-agi",
+    "@whoIsAllowedToJoinThisGroup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "whyDoYouWantToReportThis": "Ayɣer tebɣiḍ ad temleḍ aya?",
+    "@whyDoYouWantToReportThis": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "wipeChatBackup": "Sfeḍ aḥraz-ik·im n udiwenni akken ad d-tesnulfuḍ tasarut tamaynut n tririt?",
+    "@wipeChatBackup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "withTheseAddressesRecoveryDescription": "S tansiwin-agi i tzemreḍ ad terreḍ awal-ik·im n uɛeddi.",
+    "@withTheseAddressesRecoveryDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "writeAMessage": "Aru izen…",
+    "@writeAMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "yes": "Ih",
+    "@yes": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "you": "kečč·em",
+    "@you": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreNoLongerParticipatingInThisChat": "Ur mazal ara tettekkaḍ deg udiwenni-a",
+    "@youAreNoLongerParticipatingInThisChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youHaveBeenBannedFromThisChat": "Tettwagedleḍ seg udiwenni-agi",
+    "@youHaveBeenBannedFromThisChat": {
+        "type": "String",
+        "placeholders": {}
     }
 }
