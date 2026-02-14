@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fluffychat/utils/matrix_sdk_extensions/send_tofu_event.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:collection/collection.dart';
@@ -110,6 +111,9 @@ abstract class ClientManager {
     final shareKeysWith = AppSettings.shareKeysWith.value;
     final enableSoftLogout = AppSettings.enableSoftLogout.value;
 
+    EventLocalizations.localizationsMap['sdk.matrix.dart.tofu_event'] =
+        (event, _, body) => body;
+
     return Client(
       clientName,
       httpClient: CustomHttpClient.createHTTPClient(),
@@ -131,6 +135,7 @@ abstract class ClientManager {
       nativeImplementations: nativeImplementations,
       defaultNetworkRequestTimeout: const Duration(minutes: 30),
       enableDehydratedDevices: true,
+      onTofuEvent: sendTofuEvent,
       shareKeysWith:
           ShareKeysWith.values.singleWhereOrNull(
             (share) => share.name == shareKeysWith,

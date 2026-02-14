@@ -3496,5 +3496,24 @@
   "signUpGreeting": "FluffyChat is decentralized! Select a server where you want to create your account and let's go!",
   "signInGreeting": "You already have an account in Matrix? Welcome back! Select your homeserver and sign in.",
   "appIntro": "With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up.",
-  "theProcessWasCanceled": "The process was canceled."
+  "theProcessWasCanceled": "The process was canceled.",
+  "userHasChangedTheirKeys": "{user} has changed their keys.",
+  "@userHasChangedTheirKeys": {
+    "type": "String",
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "usersHaveChangedTheirKeys": "{users} have changed their keys.",
+  "@usersHaveChangedTheirKeys": {
+    "type": "String",
+    "placeholders": {
+      "users": {
+        "type": "String"
+      }
+    }
+  },
+  "check": "Check"
 }
