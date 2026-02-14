@@ -13,6 +13,7 @@ Future<void> ssoLoginFlow(
   BuildContext context,
   bool signUp,
 ) async {
+  Logs().i('Starting legacy SSO Flow...');
   final redirectUrl = kIsWeb
       ? Uri.parse(
           html.window.location.href,

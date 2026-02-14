@@ -30,7 +30,7 @@ abstract class AppConfig {
   static const String howDoIGetStickersTutorial =
       'https://fluffy.chat/faq/#how_do_i_get_stickers';
   static const String appId = 'im.fluffychat.FluffyChat';
-  static const String appOpenUrlScheme = 'im.fluffychat';
+  static const String appOpenUrlScheme = 'chat.fluffy';
 
   static const String sourceCodeUrl =
       'https://github.com/krille-chan/fluffychat';
