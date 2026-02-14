@@ -25,6 +25,7 @@ jobs:
         run: |
           git remote add upstream https://github.com/krille-chan/fluffychat.git
           git fetch upstream main
+          git fetch origin
       - name: Merge upstream
         id: merge
         continue-on-error: true
