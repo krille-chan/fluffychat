@@ -10,6 +10,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:opus_caf_converter_dart/opus_caf_converter_dart.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -131,10 +132,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
         matrix.voiceMessageEventId.value != widget.event.eventId
         ? null
         : matrix.audioPlayer;
-    if (currentPlayer != null) {
-      if (currentPlayer.isAtEndPosition) {
-        currentPlayer.seek(Duration.zero);
-      } else if (currentPlayer.playing) {
+    if (currentPlayer != null && !currentPlayer.isAtEndPosition) {
+      if (currentPlayer.playing) {
         currentPlayer.pause();
       } else {
         currentPlayer.play();
@@ -204,8 +203,12 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
     if (file != null) {
       audioPlayer.setFilePath(file.path);
+    } else if (kIsWeb) {
+      final blob = html.Blob([matrixFile.bytes], 'audio/mpeg');
+      final url = html.Url.createObjectUrlFromBlob(blob);
+      await audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(url)));
     } else {
-      await audioPlayer.setAudioSource(MatrixFileAudioSource(matrixFile));
+      throw Exception('No audio file provided!');
     }
 
     audioPlayer.play().onError(
@@ -509,26 +512,6 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           },
         );
       },
-    );
-  }
-}
-
-/// To use a MatrixFile as an AudioSource for the just_audio package
-class MatrixFileAudioSource extends StreamAudioSource {
-  final MatrixFile file;
-
-  MatrixFileAudioSource(this.file);
-
-  @override
-  Future<StreamAudioResponse> request([int? start, int? end]) async {
-    start ??= 0;
-    end ??= file.bytes.length;
-    return StreamAudioResponse(
-      sourceLength: file.bytes.length,
-      contentLength: end - start,
-      offset: start,
-      stream: Stream.value(file.bytes.sublist(start, end)),
-      contentType: file.mimeType,
     );
   }
 }
