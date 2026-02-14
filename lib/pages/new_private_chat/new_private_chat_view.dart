@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:pretty_qr_code/pretty_qr_code.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -26,12 +25,27 @@ class NewPrivateChatView extends StatelessWidget {
     final theme = Theme.of(context);
 
     final searchResponse = controller.searchResponse;
-    final userId = Matrix.of(context).client.userID!;
+    final client = Matrix.of(context).client;
+    final userId = client.userID!;
+    final dmRoomContactList = client.rooms
+        .where((room) => room.isDirectChat)
+        .map(
+          (room) =>
+              room.unsafeGetUserFromMemoryOrFallback(room.directChatMatrixID!),
+        )
+        .map(
+          (user) => Profile(
+            userId: user.id,
+            displayName: user.displayName,
+            avatarUrl: user.avatarUrl,
+          ),
+        )
+        .toList();
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context).newChat),
+        title: Text(L10n.of(context).newMessage),
         backgroundColor: theme.scaffoldBackgroundColor,
         actions: [
           TextButton(
@@ -134,17 +148,6 @@ class NewPrivateChatView extends StatelessWidget {
                           ListTile(
                             leading: CircleAvatar(
                               backgroundColor:
-                                  theme.colorScheme.secondaryContainer,
-                              foregroundColor:
-                                  theme.colorScheme.onSecondaryContainer,
-                              child: Icon(Icons.adaptive.share_outlined),
-                            ),
-                            title: Text(L10n.of(context).shareInviteLink),
-                            onTap: controller.inviteAction,
-                          ),
-                          ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor:
                                   theme.colorScheme.tertiaryContainer,
                               foregroundColor:
                                   theme.colorScheme.onTertiaryContainer,
@@ -152,6 +155,22 @@ class NewPrivateChatView extends StatelessWidget {
                             ),
                             title: Text(L10n.of(context).createGroup),
                             onTap: () => context.go('/rooms/newgroup'),
+                          ),
+                          ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  theme.colorScheme.secondaryContainer,
+                              foregroundColor:
+                                  theme.colorScheme.onSecondaryContainer,
+                              child: Icon(Icons.adaptive.share_outlined),
+                            ),
+                            title: Text(L10n.of(context).shareInviteLink),
+                            trailing: IconButton(
+                              icon: Icon(Icons.qr_code_outlined),
+                              onPressed: () =>
+                                  showQrCodeViewer(context, userId),
+                            ),
+                            onTap: controller.inviteAction,
                           ),
                           if (PlatformInfos.isMobile)
                             ListTile(
@@ -167,50 +186,45 @@ class NewPrivateChatView extends StatelessWidget {
                               title: Text(L10n.of(context).scanQrCode),
                               onTap: controller.openScannerAction,
                             ),
-                          Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 64.0,
-                                vertical: 24.0,
-                              ),
-                              child: Material(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(
-                                    AppConfig.borderRadius,
-                                  ),
-                                  side: BorderSide(
-                                    width: 3,
-                                    color: theme.colorScheme.primary,
-                                  ),
-                                ),
-                                color: Colors.transparent,
-                                clipBehavior: Clip.hardEdge,
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(
-                                    AppConfig.borderRadius,
-                                  ),
-                                  onTap: () =>
-                                      showQrCodeViewer(context, userId),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: ConstrainedBox(
-                                      constraints: const BoxConstraints(
-                                        maxWidth: 200,
-                                      ),
-                                      child: PrettyQrView.data(
-                                        data: 'https://matrix.to/#/$userId',
-                                        decoration: PrettyQrDecoration(
-                                          shape: PrettyQrSmoothSymbol(
-                                            roundFactor: 1,
-                                            color: theme.colorScheme.primary,
-                                          ),
+                          ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: dmRoomContactList.length,
+                            itemBuilder: (context, i) {
+                              if (i == 0 ||
+                                  dmRoomContactList[i]
+                                          .calcDisplayname()
+                                          .substring(0, 1)
+                                          .toUpperCase() !=
+                                      dmRoomContactList[i - 1]
+                                          .calcDisplayname()
+                                          .substring(0, 1)
+                                          .toUpperCase()) {
+                                return Column(
+                                  mainAxisSize: .min,
+                                  children: [
+                                    ListTile(
+                                      leading: CircleAvatar(
+                                        backgroundColor: Colors.transparent,
+                                        child: Text(
+                                          dmRoomContactList[i]
+                                              .calcDisplayname()
+                                              .toUpperCase()
+                                              .substring(0, 1),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                                    ProfileListTile(
+                                      profile: dmRoomContactList[i],
+                                      onTap: controller.openUserModal,
+                                    ),
+                                  ],
+                                );
+                              }
+                              return ProfileListTile(
+                                profile: dmRoomContactList[i],
+                                onTap: controller.openUserModal,
+                              );
+                            },
                           ),
                         ],
                       )
@@ -266,23 +280,10 @@ class NewPrivateChatView extends StatelessWidget {
                           }
                           return ListView.builder(
                             itemCount: result.length,
-                            itemBuilder: (context, i) {
-                              final contact = result[i];
-                              final displayname =
-                                  contact.displayName ??
-                                  contact.userId.localpart ??
-                                  contact.userId;
-                              return ListTile(
-                                leading: Avatar(
-                                  name: displayname,
-                                  mxContent: contact.avatarUrl,
-                                  presenceUserId: contact.userId,
-                                ),
-                                title: Text(displayname),
-                                subtitle: Text(contact.userId),
-                                onTap: () => controller.openUserModal(contact),
-                              );
-                            },
+                            itemBuilder: (context, i) => ProfileListTile(
+                              profile: result[i],
+                              onTap: controller.openUserModal,
+                            ),
                           );
                         },
                       ),
@@ -291,6 +292,35 @@ class NewPrivateChatView extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+extension on Profile {
+  String calcDisplayname() => displayName ?? userId.localpart ?? userId;
+}
+
+class ProfileListTile extends StatelessWidget {
+  final Profile profile;
+  final void Function(Profile) onTap;
+  const ProfileListTile({
+    super.key,
+    required this.profile,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final displayname = profile.calcDisplayname();
+    return ListTile(
+      leading: Avatar(
+        name: displayname,
+        mxContent: profile.avatarUrl,
+        presenceUserId: profile.userId,
+      ),
+      title: Text(displayname),
+      subtitle: Text(profile.userId),
+      onTap: () => onTap(profile),
     );
   }
 }
