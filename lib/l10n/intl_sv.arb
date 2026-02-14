@@ -2932,5 +2932,70 @@
     "notificationRuleContainsUserName": "Innehåller Användarnamn",
     "notificationRuleContainsUserNameDescription": "Avisera användaren när ett meddelande innehåller deras användarnamn.",
     "notificationRuleMaster": "Tysta alla notiser",
-    "notificationRuleMasterDescription": "Åsidosätter alla andra regler och tystar alla notiser."
+    "notificationRuleMasterDescription": "Åsidosätter alla andra regler och tystar alla notiser.",
+    "notificationRuleMemberEvent": "Medlemshändelse",
+    "notificationRuleContainsDisplayName": "Innehåller visningsnamn",
+    "notificationRuleReaction": "Reaktion",
+    "notificationRuleCall": "Samtal",
+    "notificationRuleJitsi": "Jitsi",
+    "takeAPhoto": "Ta ett foto",
+    "recordAVideo": "Spela in en video",
+    "more": "Mer",
+    "allDevices": "Alla enheter",
+    "optionalMessage": "(Valfritt) meddelande ...",
+    "enterNewChat": "Gå med i ny chatt",
+    "approve": "Godkänn",
+    "customReaction": "Anpassad reaktion",
+    "moreEvents": "Fler händelser",
+    "noMessagesYet": "Inga meddelanden än",
+    "pause": "Pausa",
+    "resume": "Fortsätt",
+    "countChats": "{chats} chattar",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "donate": "Donera",
+    "answerOption": "Svarsalternativ",
+    "addAnswerOption": "Lägg till svarsalternativ",
+    "allowMultipleAnswers": "Tillåt flera svar",
+    "countVotes": "{count, plural, =1{En röst} other{{count} röster}}",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "replyInThread": "Svara i tråd",
+    "thread": "Tråd",
+    "countReplies": "{count, plural, =1{Ett svar} other{{count} svar}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "saveChanges": "Spara ändringar",
+    "loadingMessages": "Läser in meddelanden",
+    "noMoreResultsFound": "Inga fler resultat hittades",
+    "versionWithNumber": "Version: {version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "logs": "Loggar",
+    "signIn": "Logga in",
+    "createNewAccount": "Skapa nytt konto"
 }
