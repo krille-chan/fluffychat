@@ -142,7 +142,7 @@ class ChatListViewBody extends StatelessWidget {
                             [
                                   ActiveFilter.allChats,
 
-                                  if (spaceDelegateCandidates.isNotEmpty &&
+                                  if (spaces.isNotEmpty &&
                                       !AppSettings
                                           .displayNavigationRail
                                           .value &&
