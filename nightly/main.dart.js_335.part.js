@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIp(){return new A.Gg(B.df("uz"))},
+cIf(){return new A.Gg(B.df("uz"))},
 Gg:function Gg(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -678,5 +678,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gg,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"Gg":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["ycEOqXfDEwy5zCQrWYHEOFG+j3o="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["B9irRfkXkOx5fSVdMx7eTSgopzY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_335.part.js.map

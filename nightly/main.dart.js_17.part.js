@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cIa(d){return new A.B0(B.df(d))},
-cIb(){return new A.G2(B.df("pt_BR"))},
-cIc(){return new A.G3(B.df("pt_PT"))},
-B0:function B0(d){this.a=d},
+cI0(d){return new A.B_(B.df(d))},
+cI1(){return new A.G2(B.df("pt_BR"))},
+cI2(){return new A.G3(B.df("pt_PT"))},
+B_:function B_(d){this.a=d},
 G2:function G2(d){this.a=d},
 G3:function G3(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[56]
-A.B0.prototype={
+A.B_.prototype={
 gkP(){return"true"},
 gjA(){return"Repita a senha"},
 gmF(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1572,9 +1572,9 @@ eM(d){return d+" enviou um autocolante"},
 fU(d){return d+" enviou um v\xeddeo"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.B0,C.aE)
-w(A.B0,[A.G2,A.G3])})()
-B.dH(b.typeUniverse,JSON.parse('{"B0":{"aE":[]},"G2":{"aE":[]},"G3":{"aE":[]}}'))
+x(A.B_,C.aE)
+w(A.B_,[A.G2,A.G3])})()
+B.dH(b.typeUniverse,JSON.parse('{"B_":{"aE":[]},"G2":{"aE":[]},"G3":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["+C6OQ0LtSJ7stXsZanzoq+j1pRs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Q94uZLfeaTap4H8asuoELCHs3YU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_17.part.js.map
