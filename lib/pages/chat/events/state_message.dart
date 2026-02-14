@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
@@ -51,6 +52,20 @@ class StateMessage extends StatelessWidget {
                                 MatrixLocals(L10n.of(context)),
                               ),
                             ),
+                            if (event.type == EventTypes.TofuNotification) ...[
+                              const TextSpan(text: ' '),
+                              TextSpan(
+                                text: L10n.of(context).check,
+                                style: TextStyle(
+                                  color: theme.colorScheme.primary,
+                                  decoration: TextDecoration.underline,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () => context.go(
+                                    '/rooms/${event.room.id}/encryption',
+                                  ),
+                              ),
+                            ],
                             if (onExpand != null) ...[
                               const TextSpan(text: '\n'),
                               TextSpan(

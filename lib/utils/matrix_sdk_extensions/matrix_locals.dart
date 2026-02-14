@@ -371,4 +371,9 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String get pollHasBeenEnded => l10n.pollHasBeenEnded;
+
+  @override
+  String usersHaveChangedTheirKeys(List<String> users) => users.length == 1
+      ? l10n.userHasChangedTheirKeys(users.single)
+      : l10n.usersHaveChangedTheirKeys(users.join(', '));
 }
