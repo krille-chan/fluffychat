@@ -14,7 +14,7 @@ extension FileDescriptionExtension on Event {
     final filename = content.tryGet<String>('filename');
     final body = calcUnlocalizedBody(hideReply: true, plaintextBody: true);
 
-    if (filename != body && filename != null && body.isNotEmpty) {
+    if (filename != body && filename != null && this.body.isNotEmpty) {
       return body;
     }
     return null;
