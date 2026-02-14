@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHG(){return new A.FB(B.df("el"))},
+cHJ(){return new A.FB(B.df("el"))},
 FB:function FB(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"\u038c\u03c1\u03b9\u03c3\u03b5 \u03c0\u03c1\u03bf\u03c3\u03b1\u03c1
 gkr(){return"\u0395\u03c0\u03ad\u03bb\u03b5\u03be\u03b5 \u03ad\u03bd\u03b1\u03bd \u03c0\u03c1\u03bf\u03ba\u03b1\u03b8\u03bf\u03c1\u03b9\u03c3\u03bc\u03ad\u03bd\u03bf \u03c1\u03cc\u03bb\u03bf \u03c0\u03b1\u03c1\u03b1\u03ba\u03ac\u03c4\u03c9 \u03ae \u03b5\u03b9\u03c3\u03ae\u03b3\u03b1\u03b3\u03b5 \u03ad\u03bd\u03b1 \u03c0\u03c1\u03bf\u03c3\u03b1\u03c1\u03bc\u03bf\u03c3\u03bc\u03ad\u03bd\u03bf \u03b5\u03c0\u03af\u03c0\u03b5\u03b4\u03bf \u03ac\u03b4\u03b5\u03b9\u03b1\u03c2 \u03bc\u03b5\u03c4\u03b1\u03be\u03cd 0 \u03ba\u03b1\u03b9 100."},
 gm4(){return"\u0391\u03b3\u03bd\u03cc\u03b7\u03c3\u03b7 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7"},
 gmE(){return"\u039a\u03b1\u03bd\u03bf\u03bd\u03b9\u03ba\u03cc\u03c2 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7\u03c2"},
-gba(d){return"\u0391\u03c6\u03b1\u03af\u03c1\u03b5\u03c3\u03b7"},
+gbb(d){return"\u0391\u03c6\u03b1\u03af\u03c1\u03b5\u03c3\u03b7"},
 gm7(){return"\u0395\u03b9\u03c3\u03b1\u03b3\u03c9\u03b3\u03ae \u03c4\u03ce\u03c1\u03b1"},
 gm5(){return"\u0395\u03b9\u03c3\u03b1\u03b3\u03c9\u03b3\u03ae Emojis"},
 gm6(){return"\u0395\u03b9\u03c3\u03b1\u03b3\u03c9\u03b3\u03ae \u03b1\u03c0\u03cc \u03b1\u03c1\u03c7\u03b5\u03af\u03bf .zip"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gba(this).$1(e)}}
+A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FB,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"FB":{"aE":[]}}'))};
-(a=>{a["75K5jQgTYQJ+5tOqT3bqxEfXQTU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["eSYRrzU92bFpAcWdPa2o1CaYzvo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_260.part.js.map

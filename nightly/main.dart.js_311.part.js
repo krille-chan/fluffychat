@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cI1(){return new A.FX(B.df("ko"))},
+cI4(){return new A.FX(B.df("ko"))},
 FX:function FX(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"\uc0ac\uc6a9\uc790 \uc9c0\uc815 \uad8c\ud55c \uc218\uc900 \uc124\uc
 gkr(){return"\uc544\ub798\uc5d0\uc11c \ubbf8\ub9ac \uc815\uc758\ub41c \uc5ed\ud560\uc744 \uc120\ud0dd\ud558\uac70\ub098 0\ubd80\ud130 100 \uc0ac\uc774\uc758 \uc0ac\uc6a9\uc790 \uc9c0\uc815 \uad8c\ud55c \uc218\uc900\uc744 \uc785\ub825\ud574 \uc8fc\uc138\uc694."},
 gm4(){return"\uc0ac\uc6a9\uc790 \ubb34\uc2dc"},
 gmE(){return"\uc77c\ubc18 \uc0ac\uc6a9\uc790"},
-gba(d){return"\uc9c0\uc6b0\uae30"},
+gbb(d){return"\uc9c0\uc6b0\uae30"},
 gm7(){return"\uc9c0\uae08 \ubd88\ub7ec\uc624\uae30"},
 gm5(){return"\uc774\ubaa8\uc9c0 \ubd88\ub7ec\uc624\uae30"},
 gm6(){return".zip \ud30c\uc77c\uc5d0\uc11c \ubd88\ub7ec\uc624\uae30"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gba(this).$1(e)}}
+A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FX,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"FX":{"aE":[]}}'))};
-(a=>{a["uQjMZQNtuuKYSlfVEtyYfquoAmU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["oGkVRnXFQsi8Hw185w0jSZNQRIQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_311.part.js.map

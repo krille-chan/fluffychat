@@ -1,8 +1,8 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cI7(d){return new A.B0(B.df(d))},
-cI8(){return new A.G2(B.df("pt_BR"))},
-cI9(){return new A.G3(B.df("pt_PT"))},
+cIa(d){return new A.B0(B.df(d))},
+cIb(){return new A.G2(B.df("pt_BR"))},
+cIc(){return new A.G3(B.df("pt_PT"))},
 B0:function B0(d){this.a=d},
 G2:function G2(d){this.a=d},
 G3:function G3(d){this.a=d}},C
@@ -17,7 +17,7 @@ gkq(){return"Definir n\xedvel de permiss\xe3o personalizado"},
 gkr(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
 gm4(){return"Ignore user"},
 gmE(){return"Normal user"},
-gba(d){return"Remove"},
+gbb(d){return"Remove"},
 gm7(){return"Import now"},
 gm5(){return"Import Emojis"},
 gm6(){return"Import from .zip file"},
@@ -677,7 +677,7 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gba(this).$1(e)}}
+A(d,e){return this.gbb(this).$1(e)}}
 A.G2.prototype={
 gkP(){return"true"},
 gjA(){return"Repita a senha"},
@@ -686,7 +686,7 @@ gkq(){return"Configurar n\xedvel personalizado de permiss\xe3o"},
 gkr(){return"Selecione um cargo pr\xe9-definido abaixo ou digite um n\xedvel de permiss\xe3o personalizado entre 0 e 100."},
 gm4(){return"Ignorar usu\xe1rio"},
 gmE(){return"Usu\xe1rio normal"},
-gba(d){return"Remover"},
+gbb(d){return"Remover"},
 gm7(){return"Importar agora"},
 gm5(){return"Importar emojis"},
 gm6(){return"Importar de arquivo .zip"},
@@ -1330,10 +1330,10 @@ goX(){return"Pular backup de conversas"},
 goY(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 gpt(){return"Carregando mensagens"},
 goW(){return"Configurar backup de conversas"},
-A(d,e){return this.gba(this).$1(e)}}
+A(d,e){return this.gbb(this).$1(e)}}
 A.G3.prototype={
 gjA(){return"Repete a palavra-passe"},
-gba(d){return"Remover"},
+gbb(d){return"Remover"},
 geq(){return"Acerca de"},
 gh5(d){return"Aceitar"},
 h6(d){return d+" aceitou o convite"},
@@ -1570,11 +1570,11 @@ fV(d){return d+" enviar um \xe1udio"},
 fT(d){return d+" enviar uma imagem"},
 eM(d){return d+" enviou um autocolante"},
 fU(d){return d+" enviou um v\xeddeo"},
-A(d,e){return this.gba(this).$1(e)}}
+A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.B0,C.aE)
 w(A.B0,[A.G2,A.G3])})()
 B.dH(b.typeUniverse,JSON.parse('{"B0":{"aE":[]},"G2":{"aE":[]},"G3":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["snrOnNeIwlFbLnIoMhYnMeScT1c="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+C6OQ0LtSJ7stXsZanzoq+j1pRs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_17.part.js.map

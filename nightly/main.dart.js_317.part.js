@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cI6(){return new A.G1(B.df("pl"))},
+cI9(){return new A.G1(B.df("pl"))},
 G1:function G1(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Ustaw w\u0142asny poziom uprawnie\u0144"},
 gkr(){return"Prosz\u0119 wybra\u0107 predefiniowan\u0105 rol\u0119 poni\u017cej, lub wprowadzi\u0107 w\u0142asny poziom uprawnie\u0144 pomi\u0119dzy 0 a 100."},
 gm4(){return"Ignoruj u\u017cytkownika"},
 gmE(){return"Zwyk\u0142y u\u017cytkownik"},
-gba(d){return"Usu\u0144"},
+gbb(d){return"Usu\u0144"},
 gm7(){return"Zaimportuj"},
 gm5(){return"Zaimportuj emotikony"},
 gm6(){return"Zaimportuj z pliku .zip"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gba(this).$1(e)}}
+A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G1,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"G1":{"aE":[]}}'))};
-(a=>{a["8ejV/Q8SpxUj0GMu5aNz/SyNDXE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["bU+4vqkUFo47C9jKjB2RwaStpJM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

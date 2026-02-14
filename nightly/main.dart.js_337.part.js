@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIo(){return new A.Gi(B.df("yue"))},
+cIr(){return new A.Gi(B.df("yue"))},
 Gi:function Gi(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"\u81ea\u8a02\u6b0a\u9650\u7d1a\u5225"},
 gkr(){return"\u8acb\u55ba\u4e0b\u9762\u9078\u64c7\u4e00\u500b\u9810\u5b9a\u7fa9\u5605\u89d2\u8272\uff0c\u6216\u8f38\u5165\u4ecb\u4e4e0\u540c100\u4e4b\u9593\u5605\u81ea\u5b9a\u7fa9\u6b0a\u9650\u7d1a\u5225\u3002"},
 gm4(){return"Ignore user"},
 gmE(){return"\u6b63\u5e38\u7528\u5bb6"},
-gba(d){return"\u522a\u8d70"},
+gbb(d){return"\u522a\u8d70"},
 gm7(){return"\u5373\u523b\u5c0e\u5165"},
 gm5(){return"\u5c0e\u5165 Emoji"},
 gm6(){return"\u55ba .zip \u6a94\u6848\u5c0e\u5165"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gba(this).$1(e)}}
+A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gi,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"Gi":{"aE":[]}}'))};
-(a=>{a["SfMpQATHxfPWS7XB+H2/tw5e3Ps="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["UnQuq30FX+BgjHlxtXQC7pnU80U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_337.part.js.map

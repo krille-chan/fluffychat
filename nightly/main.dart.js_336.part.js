@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIn(){return new A.Gh(B.df("vi"))},
+cIq(){return new A.Gh(B.df("vi"))},
 Gh:function Gh(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"C\xe0i m\u1ee9c ph\xe2n quy\u1ec1n"},
 gkr(){return"Vui l\xf2ng ch\u1ecdn vai tr\xf2 \u0111\u01b0\u1ee3c x\xe1c \u0111\u1ecbnh tr\u01b0\u1edbc b\xean d\u01b0\u1edbi ho\u1eb7c nh\u1eadp m\u1ee9c quy\u1ec1n t\xf9y ch\u1ec9nh t\u1eeb 0 \u0111\u1ebfn 100."},
 gm4(){return"Ch\u1eb7n ng\u01b0\u1eddi d\xf9ng"},
 gmE(){return"Ng\u01b0\u1eddi d\xf9ng th\u01b0\u1eddng"},
-gba(d){return"Lo\u1ea1i b\u1ecf"},
+gbb(d){return"Lo\u1ea1i b\u1ecf"},
 gm7(){return"Nh\u1eadp v\xe0o"},
 gm5(){return"Nh\u1eadp Bi\u1ec3u c\u1ea3m"},
 gm6(){return"Nh\u1eadp v\xe0o t\u1eeb t\u1ec7p .zip"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gba(this).$1(e)}}
+A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gh,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"Gh":{"aE":[]}}'))};
-(a=>{a["PCfoPQOpBruuJNBUVMqXqYZleFE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["glTrIgJUZH2PjC9TTNMBnSehEwM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_336.part.js.map

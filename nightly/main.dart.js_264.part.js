@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHJ(){return new A.FE(B.df("es"))},
+cHM(){return new A.FE(B.df("es"))},
 FE:function FE(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Agregar nivel personalizado de permiso"},
 gkr(){return"Por favor elige un rol predeterminado o un nivel de permiso personalizado entre 0 a 100."},
 gm4(){return"Ignorar usuario"},
 gmE(){return"Usuario normal"},
-gba(d){return"Eliminar"},
+gbb(d){return"Eliminar"},
 gm7(){return"Importar ahora"},
 gm5(){return"Importar emojis"},
 gm6(){return"Importar de un archivo .zip"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gba(this).$1(e)}}
+A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FE,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"FE":{"aE":[]}}'))};
-(a=>{a["jXHpgDC3L6SOn0Uz0Ufwo4d0BrE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+40LU34O02Dt2vC0lrnLQy4TvQY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_264.part.js.map

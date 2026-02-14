@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cHV(){return new A.FQ(B.df("hu"))},
+cHY(){return new A.FQ(B.df("hu"))},
 FQ:function FQ(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"Egyedi enged\xe9lyszint be\xe1ll\xedt\xe1sa"},
 gkr(){return"K\xe9rem, v\xe1lasszon egy el\u0151re meghat\xe1rozott szerepk\xf6rt, vagy adjon meg egy egyedi enged\xe9ly szintet 0 \xe9s 100 k\xf6z\xf6tt."},
 gm4(){return"Felhaszn\xe1l\xf3 ignor\xe1l\xe1sa"},
 gmE(){return"Norm\xe1l felhaszn\xe1l\xf3"},
-gba(d){return"Elt\xe1vol\xedt\xe1s"},
+gbb(d){return"Elt\xe1vol\xedt\xe1s"},
 gm7(){return"Import\xe1l\xe1s most"},
 gm5(){return"Emojik import\xe1l\xe1sa"},
 gm6(){return"Import\xe1l\xe1s zip f\xe1jlb\xf3l"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gba(this).$1(e)}}
+A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FQ,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"FQ":{"aE":[]}}'))};
-(a=>{a["s8mZVmAE3qGvkT8IJglbtLrGJ28="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["hae4B2tzHhK0u11XFdCv4oXUvtE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_296.part.js.map

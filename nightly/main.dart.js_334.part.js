@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIl(){return new A.Gf(B.df("uk"))},
+cIo(){return new A.Gf(B.df("uk"))},
 Gf:function Gf(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -13,7 +13,7 @@ gkq(){return"\u0412\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u0438 \u0440
 gkr(){return"\u0411\u0443\u0434\u044c \u043b\u0430\u0441\u043a\u0430, \u0432\u0438\u0431\u0435\u0440\u0456\u0442\u044c \u0437\u0430\u0437\u0434\u0430\u043b\u0435\u0433\u0456\u0434\u044c \u0432\u0438\u0437\u043d\u0430\u0447\u0435\u043d\u0443 \u0440\u043e\u043b\u044c \u043d\u0438\u0436\u0447\u0435 \u0430\u0431\u043e \u0432\u0432\u0435\u0434\u0456\u0442\u044c \u043a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0446\u044c\u043a\u0438\u0439 \u0440\u0456\u0432\u0435\u043d\u044c \u043f\u0440\u0430\u0432 \u0432\u0456\u0434 0 \u0434\u043e 100."},
 gm4(){return"\u0406\u0433\u043d\u043e\u0440\u0443\u0432\u0430\u0442\u0438 \u043a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0447\u0430"},
 gmE(){return"\u0417\u0432\u0438\u0447\u0430\u0439\u043d\u0438\u0439 \u043a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0447"},
-gba(d){return"\u0412\u0438\u043b\u0443\u0447\u0438\u0442\u0438"},
+gbb(d){return"\u0412\u0438\u043b\u0443\u0447\u0438\u0442\u0438"},
 gm7(){return"\u0406\u043c\u043f\u043e\u0440\u0442\u0443\u0432\u0430\u0442\u0438 \u0437\u0430\u0440\u0430\u0437"},
 gm5(){return"\u0406\u043c\u043f\u043e\u0440\u0442 \u0435\u043c\u043e\u0434\u0437\u0456"},
 gm6(){return"\u0406\u043c\u043f\u043e\u0440\u0442 \u0437 \u0444\u0430\u0439\u043b\u0443 .zip"},
@@ -673,9 +673,9 @@ gpF(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpE(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpI(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpR(){return"The process was canceled."},
-A(d,e){return this.gba(this).$1(e)}}
+A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gf,C.aE)})()
 B.dH(b.typeUniverse,JSON.parse('{"Gf":{"aE":[]}}'))};
-(a=>{a["AejcyZU/5HTN2N/YqVak+HK8sgM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["x2Z1Vn1J7cMQsHzpNfuDNbFY4j4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_334.part.js.map
