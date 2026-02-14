@@ -14,58 +14,71 @@ class SeenByRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final seenByUsers = controller.room.getSeenByUsers(controller.timeline!);
     const maxAvatars = 7;
-    return Container(
-      width: double.infinity,
-      alignment: Alignment.center,
-      child: AnimatedContainer(
-        constraints: const BoxConstraints(
-          maxWidth: FluffyThemes.maxTimelineWidth,
-        ),
-        height: seenByUsers.isEmpty ? 0 : 24,
-        duration: seenByUsers.isEmpty
-            ? Duration.zero
-            : FluffyThemes.animationDuration,
-        curve: FluffyThemes.animationCurve,
-        alignment:
-            controller.timeline!.events.isNotEmpty &&
-                controller.timeline!.events.first.senderId ==
-                    Matrix.of(context).client.userID
-            ? Alignment.topRight
-            : Alignment.topLeft,
-        padding: const EdgeInsets.only(left: 8, right: 8, bottom: 4),
-        child: Wrap(
-          spacing: 4,
-          children: [
-            ...(seenByUsers.length > maxAvatars
-                    ? seenByUsers.sublist(0, maxAvatars)
-                    : seenByUsers)
-                .map(
-                  (user) => Avatar(
-                    mxContent: user.avatarUrl,
-                    name: user.calcDisplayname(),
-                    size: 16,
-                  ),
-                ),
-            if (seenByUsers.length > maxAvatars)
-              SizedBox(
-                width: 16,
-                height: 16,
-                child: Material(
-                  color: theme.colorScheme.surface,
-                  borderRadius: BorderRadius.circular(32),
-                  child: Center(
-                    child: Text(
-                      '+${seenByUsers.length - maxAvatars}',
-                      style: const TextStyle(fontSize: 9),
+    return StreamBuilder(
+      stream: controller.room.client.onSync.stream.where(
+        (syncUpdate) =>
+            syncUpdate.rooms?.join?[controller.room.id]?.ephemeral?.any(
+              (ephemeral) => ephemeral.type == 'm.receipt',
+            ) ??
+            false,
+      ),
+      builder: (context, asyncSnapshot) {
+        final seenByUsers = controller.room.getSeenByUsers(
+          controller.timeline!,
+        );
+        return Container(
+          width: double.infinity,
+          alignment: Alignment.center,
+          child: AnimatedContainer(
+            constraints: const BoxConstraints(
+              maxWidth: FluffyThemes.maxTimelineWidth,
+            ),
+            height: seenByUsers.isEmpty ? 0 : 24,
+            duration: seenByUsers.isEmpty
+                ? Duration.zero
+                : FluffyThemes.animationDuration,
+            curve: FluffyThemes.animationCurve,
+            alignment:
+                controller.timeline!.events.isNotEmpty &&
+                    controller.timeline!.events.first.senderId ==
+                        Matrix.of(context).client.userID
+                ? Alignment.topRight
+                : Alignment.topLeft,
+            padding: const EdgeInsets.only(left: 8, right: 8, bottom: 4),
+            child: Wrap(
+              spacing: 4,
+              children: [
+                ...(seenByUsers.length > maxAvatars
+                        ? seenByUsers.sublist(0, maxAvatars)
+                        : seenByUsers)
+                    .map(
+                      (user) => Avatar(
+                        mxContent: user.avatarUrl,
+                        name: user.calcDisplayname(),
+                        size: 16,
+                      ),
+                    ),
+                if (seenByUsers.length > maxAvatars)
+                  SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: Material(
+                      color: theme.colorScheme.surface,
+                      borderRadius: BorderRadius.circular(32),
+                      child: Center(
+                        child: Text(
+                          '+${seenByUsers.length - maxAvatars}',
+                          style: const TextStyle(fontSize: 9),
+                        ),
+                      ),
                     ),
                   ),
-                ),
-              ),
-          ],
-        ),
-      ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
