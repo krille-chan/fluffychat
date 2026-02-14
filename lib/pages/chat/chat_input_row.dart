@@ -364,6 +364,13 @@ class ChatInputRow extends StatelessWidget {
                             onPressed: () =>
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
+                                    margin: EdgeInsets.only(
+                                      bottom: height + 16,
+                                      left: 16,
+                                      right: 16,
+                                      top: 16,
+                                    ),
+                                    showCloseIcon: true,
                                     content: Text(
                                       L10n.of(
                                         context,
