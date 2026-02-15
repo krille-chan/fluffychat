@@ -24,7 +24,10 @@ class SeenByRow extends StatelessWidget {
             false,
       ),
       builder: (context, asyncSnapshot) {
-        final seenByUsers = event.receipts.map((r) => r.user).toList();
+        final seenByUsers = event.receipts
+            .map((r) => r.user)
+            .where((user) => user.id != event.room.client.userID)
+            .toList();
         return Container(
           width: double.infinity,
           alignment: Alignment.center,
