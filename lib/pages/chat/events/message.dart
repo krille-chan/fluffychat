@@ -851,7 +851,7 @@ class Message extends StatelessWidget {
                     ? const SizedBox.shrink()
                     : Padding(
                         padding: EdgeInsets.only(
-                          top: 4.0,
+                          top: 2.0,
                           left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
                           right: ownMessage ? 0 : 12.0,
                         ),
