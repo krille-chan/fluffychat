@@ -56,13 +56,62 @@ class ImageViewerController extends State<ImageViewer> {
 
   late final List<Event> allEvents;
 
+  bool isZoomed = false;
+
+  void setZoomed(bool value) {
+    if (isZoomed == value) return;
+    setState(() {
+      isZoomed = value;
+    });
+  }
+
+  void handleDriveScroll(double delta) {
+    if (pageController.positions.isEmpty) return;
+    final maxScrollExtent = pageController.position.maxScrollExtent;
+    final minScrollExtent = pageController.position.minScrollExtent;
+    final newOffset = (pageController.offset - delta).clamp(minScrollExtent, maxScrollExtent);
+    pageController.jumpTo(newOffset);
+  }
+
+  void handleDriveScrollEnd(ScaleEndDetails details) {
+    if (pageController.positions.isEmpty) return;
+    
+    // Determine the target page based on velocity and current offset
+    final velocity = details.velocity.pixelsPerSecond.dy;
+    final currentOffset = pageController.offset;
+    final screenHeight = MediaQuery.sizeOf(context).height;
+    
+    // Default to current page
+    int targetDisplayIndex = (currentOffset / screenHeight).round();
+    
+    // Adjust target page based on fling velocity
+    if (velocity < -500) {
+      // Swiped up (Next image)
+      targetDisplayIndex = (currentOffset / screenHeight).ceil();
+    } else if (velocity > 500) {
+      // Swiped down (Prev image)
+      targetDisplayIndex = (currentOffset / screenHeight).floor();
+    }
+    
+    // Ensure bounds
+    if (targetDisplayIndex < 0) targetDisplayIndex = 0;
+    if (targetDisplayIndex >= allEvents.length) targetDisplayIndex = allEvents.length - 1;
+
+    
+    pageController.animateToPage(
+      targetDisplayIndex,
+      duration: FluffyThemes.animationDuration,
+      curve: FluffyThemes.animationCurve,
+    );
+  }
+
   void onKeyEvent(KeyEvent event) {
     switch (event.logicalKey) {
       case LogicalKeyboardKey.arrowUp:
-        if (canGoBack) prevImage();
+        if (canGoBack && !isZoomed) prevImage();
         break;
       case LogicalKeyboardKey.arrowDown:
-        if (canGoNext) nextImage();
+        if (canGoNext && !isZoomed) nextImage();
         break;
     }
   }

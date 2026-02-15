@@ -8,6 +8,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'image_viewer.dart';
+import 'zoomable_image.dart';
 
 class ImageViewerView extends StatelessWidget {
   final ImageViewerController controller;
@@ -74,8 +75,13 @@ class ImageViewerView extends StatelessWidget {
               KeyboardListener(
                 focusNode: controller.focusNode,
                 onKeyEvent: controller.onKeyEvent,
+                // We disable the intrinsic scrolling of the PageView because we want
+                // the [ZoomableImage] to drive the scrolling manually.
+                // This allows us to seamlessly switch between scrolling (1 finger)
+                // and zooming (2 fingers) without the Gesture Arena locking us out.
                 child: PageView.builder(
                   scrollDirection: Axis.vertical,
+                  physics: const NeverScrollableScrollPhysics(),
                   controller: controller.pageController,
                   itemCount: controller.allEvents.length,
                   itemBuilder: (context, i) {
@@ -95,10 +101,15 @@ class ImageViewerView extends StatelessWidget {
                       case MessageTypes.Image:
                       case MessageTypes.Sticker:
                       default:
-                        return InteractiveViewer(
-                          minScale: 1.0,
-                          maxScale: 10.0,
+                        // The ZoomableImage handles all gestures:
+                        // - Double tap to zoom
+                        // - Pinch to zoom
+                        // - Drag to scroll (drives the PageView manually)
+                        return ZoomableImage(
+                          onZoomChanged: controller.setZoomed,
                           onInteractionEnd: controller.onInteractionEnds,
+                          onDriveScroll: controller.handleDriveScroll,
+                          onDriveScrollEnd: controller.handleDriveScrollEnd,
                           child: Center(
                             child: Hero(
                               tag: event.eventId,
