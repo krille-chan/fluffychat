@@ -2778,7 +2778,7 @@
         "space": {}
     },
     "markAsUnread": "Позначити непрочитаним",
-    "alwaysUse24HourFormat": "вимкнено",
+    "alwaysUse24HourFormat": "false",
     "@alwaysUse24HourFormat": {
         "description": "Set to true to always display time of day in 24 hour format."
     },
@@ -3021,7 +3021,7 @@
     "moreEvents": "Інші події",
     "declineInvitation": "Відхилити запрошення",
     "noMessagesYet": "Поки немає повідомлень",
-    "longPressToRecordVoiceMessage": "Довге натискання, щоби записати голосове повідомлення.",
+    "longPressToRecordVoiceMessage": "Затисніть, щоб записати голосове повідомлення.",
     "pause": "Призупинити",
     "resume": "Продовжити",
     "newSubSpace": "Новий вкладений простір",
@@ -3069,9 +3069,9 @@
     "poll": "Опитування",
     "startPoll": "Розпочати опитування",
     "endPoll": "Завершити опитування",
-    "answersVisible": "Публічні відповіді",
-    "answersHidden": "Приховані відповіді",
-    "pollQuestion": "Запитання",
+    "answersVisible": "Відповіді видимі",
+    "answersHidden": "Відповіді сховано",
+    "pollQuestion": "Питання опитування",
     "answerOption": "Варіант відповіді",
     "addAnswerOption": "Додати варіант відповіді",
     "allowMultipleAnswers": "Дозволити декілька варіантів відповіді",
@@ -3138,5 +3138,11 @@
     "identityServer": "Сервер профілів:",
     "clientWellKnownInformation": "Дані клієнту із .well-known:",
     "federationBaseUrl": "Основний URL федерації",
-    "baseUrl": "Основний URL"
+    "baseUrl": "Основний URL",
+    "signIn": "Увійти",
+    "createNewAccount": "Створити новий обліковий запис",
+    "signUpGreeting": "FluffyChat децентралізований! Виберіть сервер, на якому ви хочете створити свій обліковий запис, і почнімо!",
+    "signInGreeting": "Ви вже маєте обліковий запис у Matrix? Ласкаво просимо! Виберіть свій домашній сервер і ввійдіть.",
+    "appIntro": "За допомогою FluffyChat ви можете спілкуватися зі своїми друзями. Це безпечний децентралізований месенджер [matrix]! Дізнайтеся більше на сайті https://matrix.org або просто зареєструйтеся.",
+    "theProcessWasCanceled": "Процес скасовано."
 }

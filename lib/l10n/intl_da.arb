@@ -1,35 +1,137 @@
 {
-  "repeatPassword": "Gentag password",
-  "@repeatPassword": {},
-  "notAnImage": "Ikke en billedfil.",
-  "@notAnImage": {},
-  "setCustomPermissionLevel": "Indstil særligt tilladelsesniveau",
-  "@setCustomPermissionLevel": {},
-  "setPermissionsLevelDescription": "Vælg en prædefineret rolle herunder eller indtaste et særligt tilladelsesniveau mellem 0 og 100.",
-  "@setPermissionsLevelDescription": {},
-  "ignoreUser": "Ignorér bruger",
-  "@ignoreUser": {},
-  "remove": "Fjern",
-  "@remove": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "importNow": "Importer nu",
-  "@importNow": {},
-  "importEmojis": "Importer emojis",
-  "@importEmojis": {},
-  "normalUser": "Normal bruger",
-  "@normalUser": {},
-  "importFromZipFile": "Importer fra .zip fil",
-  "@importFromZipFile": {},
-  "alwaysUse24HourFormat": "true",
-  "@alwaysUse24HourFormat": {
-    "description": "Set to true to always display time of day in 24 hour format."
-  },
-  "exportEmotePack": "Eksportér Emote-pakke som .zip-fil",
-  "@exportEmotePack": {},
-  "replace": "Erstat",
-  "@replace": {},
-  "about": "Om",
-  "@about": {}
+    "repeatPassword": "Gentag password",
+    "notAnImage": "Ikke en billedfil.",
+    "setCustomPermissionLevel": "Indstil særligt tilladelsesniveau",
+    "setPermissionsLevelDescription": "Vælg en prædefineret rolle herunder eller indtaste et særligt tilladelsesniveau mellem 0 og 100.",
+    "ignoreUser": "Ignorér bruger",
+    "remove": "Fjern",
+    "@remove": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "importNow": "Importer nu",
+    "importEmojis": "Importer emojis",
+    "normalUser": "Normal bruger",
+    "importFromZipFile": "Importer fra .zip fil",
+    "alwaysUse24HourFormat": "true",
+    "@alwaysUse24HourFormat": {
+        "description": "Set to true to always display time of day in 24 hour format."
+    },
+    "exportEmotePack": "Eksportér Emote-pakke som .zip-fil",
+    "replace": "Erstat",
+    "about": "Om",
+    "aboutHomeserver": "Om {homeserver}",
+    "@aboutHomeserver": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    },
+    "accept": "Acceptér",
+    "@accept": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "acceptedTheInvitation": "👍 {username} accepterede invitationen",
+    "@acceptedTheInvitation": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "account": "Konto",
+    "@account": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "activatedEndToEndEncryption": "🔐 {username} aktiverede end-to-end kryptering",
+    "@activatedEndToEndEncryption": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "addEmail": "Tilføj e-mail",
+    "@addEmail": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "confirmMatrixId": "Bekræft din Matrix-ID for at slette din konto.",
+    "supposedMxid": "Den burde være {mxid}",
+    "@supposedMxid": {
+        "type": "String",
+        "placeholders": {
+            "mxid": {
+                "type": "String"
+            }
+        }
+    },
+    "addChatDescription": "Tilføj en beskrivelse af chatten...",
+    "addToSpace": "Tilføj til gruppe",
+    "admin": "Admin",
+    "@admin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "alias": "alias",
+    "@alias": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "allChats": "Alle samtaler",
+    "@allChats": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "commandHint_roomupgrade": "Opgrader dette rum til den givne rumversion",
+    "commandHint_googly": "Send googly-eyes",
+    "commandHint_cuddle": "Send et varmt smil",
+    "commandHint_hug": "Send et kram",
+    "googlyEyesContent": "{senderName} sender dig googly-eyes",
+    "@googlyEyesContent": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "cuddleContent": "{senderName} sender dig et varmt smil",
+    "@cuddleContent": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "hugContent": "{senderName} krammer dig",
+    "@hugContent": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "answeredTheCall": "{senderName} svarer på dit opkald",
+    "@answeredTheCall": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "anyoneCanJoin": "Enhver kan deltage",
+    "@anyoneCanJoin": {
+        "type": "String",
+        "placeholders": {}
+    }
 }
