@@ -47,13 +47,13 @@ class SignInViewModel extends ValueNotifier<SignInState> {
         filteredPublicHomeservers.add(PublicHomeserverData(name: filterText));
       }
     }
-    value = value.copyWith(
-      filteredPublicHomeservers: filteredPublicHomeservers,
-    );
+    value.filteredPublicHomeservers = filteredPublicHomeservers;
+    notifyListeners();
   }
 
   void refreshPublicHomeservers() async {
-    value = value.copyWith(publicHomeservers: AsyncSnapshot.waiting());
+    notifyListeners();
+    value.publicHomeservers = AsyncSnapshot.waiting();
     final defaultHomeserverData = PublicHomeserverData(
       name: AppSettings.defaultHomeserver.value,
     );
@@ -83,30 +83,31 @@ class SignInViewModel extends ValueNotifier<SignInState> {
 
       publicHomeservers.insert(0, defaultServer);
 
-      value = value.copyWith(
-        selectedHomeserver: value.selectedHomeserver ?? publicHomeservers.first,
-        publicHomeservers: AsyncSnapshot.withData(
-          ConnectionState.done,
-          publicHomeservers,
-        ),
+      value.selectedHomeserver =
+          value.selectedHomeserver ?? publicHomeservers.first;
+      value.publicHomeservers = AsyncSnapshot.withData(
+        ConnectionState.done,
+        publicHomeservers,
       );
+      notifyListeners();
     } catch (e, s) {
       Logs().w('Unable to fetch public homeservers...', e, s);
-      value = value.copyWith(
-        selectedHomeserver: defaultHomeserverData,
-        publicHomeservers: AsyncSnapshot.withData(ConnectionState.done, [
-          defaultHomeserverData,
-        ]),
-      );
+      value.selectedHomeserver = defaultHomeserverData;
+      value.publicHomeservers = AsyncSnapshot.withData(ConnectionState.done, [
+        defaultHomeserverData,
+      ]);
+      notifyListeners();
     }
     _filterHomeservers();
   }
 
   void selectHomeserver(PublicHomeserverData? publicHomeserverData) {
-    value = value.copyWith(selectedHomeserver: publicHomeserverData);
+    value.selectedHomeserver = publicHomeserverData;
+    notifyListeners();
   }
 
   void setLoginLoading(AsyncSnapshot<bool> loginLoading) {
-    value = value.copyWith(loginLoading: loginLoading);
+    value.loginLoading = loginLoading;
+    notifyListeners();
   }
 }
