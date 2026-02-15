@@ -2935,7 +2935,7 @@
     "deletePushRuleCanNotBeUndone": "Если вы удалите эту настройку уведомлений, это невозможно отменить.",
     "shareKeysWith": "Поделиться ключами с...",
     "shareKeysWithDescription": "Каким устройствам следует доверять, чтобы они могли читать ваши сообщения в зашифрованных чатах?",
-    "crossVerifiedDevicesIfEnabled": "Если включено, перекрестите проверенные устройства",
+    "crossVerifiedDevicesIfEnabled": "Кросс-верифицированные устройства, если они включены",
     "crossVerifiedDevices": "Кросс-верифицированные устройства",
     "verifiedDevicesOnly": "Только проверенные устройства",
     "optionalMessage": "(Необязательно) сообщение...",
@@ -2952,7 +2952,7 @@
     "noMessagesYet": "Пока нет сообщений",
     "longPressToRecordVoiceMessage": "Нажмите длиннее, чтобы записать голосовое сообщение.",
     "pause": "Пауза",
-    "resume": "Резюмировать",
+    "resume": "Продолжить",
     "newSubSpace": "Новое подпространство",
     "moveToDifferentSpace": "Переместить в другое пространство",
     "moveUp": "Переместить вверх",
@@ -3006,8 +3006,8 @@
     "allowMultipleAnswers": "Разрешить несколько ответов",
     "pollHasBeenEnded": "Опрос завершен",
     "answersWillBeVisibleWhenPollHasEnded": "Ответы будут видны после завершения опроса",
-    "replyInThread": "Ответить в потоке",
-    "thread": "Нить",
+    "replyInThread": "Ответить в ветке",
+    "thread": "Ветка",
     "backToMainChat": "Вернуться в основной чат",
     "saveChanges": "Сохранить изменения",
     "createSticker": "Создать стикер или эмоджи",
@@ -3022,5 +3022,6 @@
     "loadingMessages": "Загрузка сообщений",
     "setupChatBackup": "Настроить резервную копию чата",
     "createNewAccount": "Создать новый аккаунт",
-    "theProcessWasCanceled": "Процесс был отменен."
+    "theProcessWasCanceled": "Процесс был отменен.",
+    "noMoreResultsFound": "Ничего не найдено"
 }
