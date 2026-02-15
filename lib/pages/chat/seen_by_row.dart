@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -26,10 +25,7 @@ class SeenByRow extends StatelessWidget {
             false,
       ),
       builder: (context, asyncSnapshot) {
-        final seenByUsers = timeline.room.getSeenByUsers(
-          timeline,
-          eventId: event.eventId,
-        );
+        final seenByUsers = event.receipts.map((r) => r.user).toList();
         return Container(
           width: double.infinity,
           alignment: Alignment.center,
@@ -48,7 +44,7 @@ class SeenByRow extends StatelessWidget {
                         Matrix.of(context).client.userID
                 ? Alignment.topRight
                 : Alignment.topLeft,
-            padding: const EdgeInsets.only(left: 8, right: 8, bottom: 4),
+            padding: const EdgeInsets.only(bottom: 4, top: 1),
             child: Wrap(
               spacing: 4,
               children: [
