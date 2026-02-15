@@ -1,5 +1,7 @@
+import 'package:fluffychat/utils/matrix_sdk_extensions/send_tofu_event.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:matrix/matrix.dart';
 
@@ -23,6 +25,12 @@ class StateMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final tofuUsers = event.type != tofuEventType
+        ? <String>[]
+        : (event.content.tryGetList<String>('users') ?? [])
+              .map(event.room.unsafeGetUserFromMemoryOrFallback)
+              .map((user) => user.calcDisplayname())
+              .toList();
     return AnimatedSize(
       duration: FluffyThemes.animationDuration,
       curve: FluffyThemes.animationCurve,
@@ -46,11 +54,36 @@ class StateMessage extends StatelessWidget {
                       child: Text.rich(
                         TextSpan(
                           children: [
-                            TextSpan(
-                              text: event.calcLocalizedBodyFallback(
-                                MatrixLocals(L10n.of(context)),
+                            if (event.type == tofuEventType) ...[
+                              TextSpan(
+                                text: tofuUsers.length == 1
+                                    ? L10n.of(context).userHasChangedTheirKeys(
+                                        tofuUsers.single,
+                                      )
+                                    : L10n.of(
+                                        context,
+                                      ).usersHaveChangedTheirKeys(
+                                        tofuUsers.join(', '),
+                                      ),
                               ),
-                            ),
+                              const TextSpan(text: ' '),
+                              TextSpan(
+                                text: L10n.of(context).check,
+                                style: TextStyle(
+                                  color: theme.colorScheme.primary,
+                                  decoration: TextDecoration.underline,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () => context.go(
+                                    '/rooms/${event.room.id}/encryption',
+                                  ),
+                              ),
+                            ] else
+                              TextSpan(
+                                text: event.calcLocalizedBodyFallback(
+                                  MatrixLocals(L10n.of(context)),
+                                ),
+                              ),
                             if (onExpand != null) ...[
                               const TextSpan(text: '\n'),
                               TextSpan(
