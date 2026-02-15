@@ -197,6 +197,7 @@ abstract class AppRoutes {
                     ? TwoColumnLayout(
                         mainView: Settings(key: state.pageKey),
                         sideView: child,
+                        hasNavigationRail: false,
                       )
                     : child,
               ),
