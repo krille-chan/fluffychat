@@ -213,7 +213,7 @@ giU(){return"\u0627\u0646\u0636\u0645 \u0644\u0644\u0645\u062d\u0627\u062f\u062b
 iV(d,e){return"\ud83d\udc5e "+d+" \u0631\u0643\u0644 "+e},
 gfp(){return"\u0637\u0631\u062f \u0645\u0646 \u0627\u0644\u0645\u062d\u0627\u062f\u062b\u0629"},
 eF(d){return"\u0622\u062e\u0631 \u0646\u0634\u0627\u0637: "+d},
-gdq(){return"\u063a\u0627\u062f\u0631"},
+gdn(){return"\u063a\u0627\u062f\u0631"},
 gfq(){return"\u063a\u0627\u062f\u0631 \u0627\u0644\u0645\u062d\u0627\u062f\u062b\u0629"},
 giX(){return"\u0641\u0627\u062a\u062d"},
 iY(d){return"\u062d\u0645\u0650\u0651\u0644 "+d+" \u0645\u0646\u062a\u0633\u0628\u064b\u0627 \u0625\u0636\u0627\u0641\u064a\u064b\u0627"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fx,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"Fx":{"aE":[]}}'))};
-(a=>{a["nQoj92FO5jJD7KH8XJGV9l5dFH0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["cK/wa+w4MoVNsBClxhxjoD7ZICA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_210.part.js.map

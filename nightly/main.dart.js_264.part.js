@@ -213,7 +213,7 @@ giU(){return"Unirse a la sala"},
 iV(d,e){return"\ud83d\udc5e"+d+" ech\xf3 a "+e},
 gfp(){return"Echar del chat"},
 eF(d){return"\xdaltima vez activo: "+d},
-gdq(){return"Abandonar"},
+gdn(){return"Abandonar"},
 gfq(){return"Abandon\xf3 el chat"},
 giX(){return"Claro"},
 iY(d){return"Mostrar "+d+" participantes m\xe1s"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FI,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FI":{"aE":[]}}'))};
-(a=>{a["kwcJlp9Ao4GeCfoweFTTGOjwij0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Q48hHnMkvp5NIT90MvXS5bYK+jw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_264.part.js.map

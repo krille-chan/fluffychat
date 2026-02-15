@@ -213,7 +213,7 @@ giU(){return"Join room"},
 iV(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfp(){return"Kick from chat"},
 eF(d){return"Last active: "+d},
-gdq(){return"\u099b\u09c7\u09dc\u09c7 \u09af\u09be\u0993"},
+gdn(){return"\u099b\u09c7\u09dc\u09c7 \u09af\u09be\u0993"},
 gfq(){return"Left the chat"},
 giX(){return"Light"},
 iY(d){return"Load "+d+" more participants"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fz,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"Fz":{"aE":[]}}'))};
-(a=>{a["6dFFKTvtEgpNALZhgRrke738diI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["JbfdlFHuDNfsw2SeEHoQ5twnWco="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_218.part.js.map

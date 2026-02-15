@@ -213,7 +213,7 @@ giU(){return"Csatlakoz\xe1s a szob\xe1hoz"},
 iV(d,e){return"\ud83d\udc5e "+d+" kir\xfagta "+e+"-t"},
 gfp(){return"Kir\xfag\xe1s a cseveg\xe9sb\u0151l"},
 eF(d){return"Utolj\xe1ra akt\xedv: "+d},
-gdq(){return"Elhagy"},
+gdn(){return"Elhagy"},
 gfq(){return"Elhagyta a cseveg\xe9st"},
 giX(){return"Vil\xe1gos"},
 iY(d){return"Tov\xe1bbi "+d+" r\xe9sztvev\u0151 bet\xf6lt\xe9se"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FU,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FU":{"aE":[]}}'))};
-(a=>{a["w7GICSKdmsxJKU+aycwd0RY4ueQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["skPK68+fgLVWtXA9pD3RQ4/1RF0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_296.part.js.map

@@ -213,7 +213,7 @@ giU(){return"Pripoji\u0165 sa k miestnosti"},
 iV(d,e){return d+" vyhodili "+e},
 gfp(){return"Vyhodi\u0165 z chatu"},
 eF(d){return"Naposledy pr\xedtomn\xed: "+d},
-gdq(){return"Opusti\u0165"},
+gdn(){return"Opusti\u0165"},
 gfq(){return"Opustili chat"},
 giX(){return"Svetl\xe1"},
 iY(d){return"Na\u010d\xedta\u0165 \u010fal\u0161\xedch "+d+" \xfa\u010dastn\xedkov"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ga,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"Ga":{"aE":[]}}'))};
-(a=>{a["MW9vsWzgSDQZZ9TCKnZLsjT5PFE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["5wBrMHTusD4H9fsUuCCreKI3KFY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_323.part.js.map

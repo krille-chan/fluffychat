@@ -213,7 +213,7 @@ giU(){return"Liity huoneeseen"},
 iV(d,e){return"\ud83d\udc5e "+d+" potki k\xe4ytt\xe4j\xe4n "+e},
 gfp(){return"Potki keskustelusta"},
 eF(d){return"Aktiivinen viimeksi: "+d},
-gdq(){return"Poistu"},
+gdn(){return"Poistu"},
 gfq(){return"Poistui keskustelusta"},
 giX(){return"Vaalea"},
 iY(d){return"Lataa viel\xe4 "+d+" osallistujaa"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FM,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FM":{"aE":[]}}'))};
-(a=>{a["HQYZiJlMo5cuZnH9ZYxz0BHzpVg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["S7opXWrBHCORDDR2U9yGQM+PhNE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_275.part.js.map

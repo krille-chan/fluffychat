@@ -213,7 +213,7 @@ giU(){return"Toetreden tot de chat"},
 iV(d,e){return"\ud83d\udc5e "+d+" heeft "+e+" verwijderd"},
 gfp(){return"Uit chat verwijderen"},
 eF(d){return"Laatst actief: "+d},
-gdq(){return"Chat verlaten"},
+gdn(){return"Chat verlaten"},
 gfq(){return"Verliet de chat"},
 giX(){return"Licht"},
 iY(d){return"Laad nog "+d+" personen"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G4,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"G4":{"aE":[]}}'))};
-(a=>{a["hQQbpiqYCCbhxx3mG9vHZLqA6C0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["bVpg3aMBeL+OAs1k/PGAUFjI1zY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

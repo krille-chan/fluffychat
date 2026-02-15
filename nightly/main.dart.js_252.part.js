@@ -213,7 +213,7 @@ giU(){return"Raum beitreten"},
 iV(d,e){return"\ud83d\udc5e "+d+" hat "+e+" hinausgeworfen"},
 gfp(){return"Aus dem Chat hinauswerfen"},
 eF(d){return"Zuletzt aktiv: "+d},
-gdq(){return"Verlassen"},
+gdn(){return"Verlassen"},
 gfq(){return"Hat den Chat verlassen"},
 giX(){return"Hell"},
 iY(d){return""+d+" weitere Mitglieder laden"},
@@ -682,5 +682,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FE,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FE":{"aE":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["GsONfi86yo2fY5396ZC0oRISKpY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["NpRLQ9na0y0nIeCh+rzgI9rd+ys="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_252.part.js.map

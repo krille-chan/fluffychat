@@ -213,7 +213,7 @@ giU(){return"Rejoindre le salon"},
 iV(d,e){return"\ud83d\udc5e "+d+" a expuls\xe9 "+e},
 gfp(){return"Expulser de la discussion"},
 eF(d){return"Vu\xb7e pour la derni\xe8re fois\u202f: "+d},
-gdq(){return"Partir"},
+gdn(){return"Partir"},
 gfq(){return"A quitt\xe9 la discussion"},
 giX(){return"Clair"},
 iY(d){return"Charger "+d+" participant\xb7es de plus"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FO,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FO":{"aE":[]}}'))};
-(a=>{a["1biHkuejbl+SfLorZOBzgPLq3vI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["L7iPGPTF9aUK3J3mcex2DZYN5sQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_279.part.js.map

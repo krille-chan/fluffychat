@@ -213,7 +213,7 @@ giU(){return"Batu gelara"},
 iV(d,e){return"\ud83d\udc5e "+d+"(e)k "+e+" kanporatu du"},
 gfp(){return"Txatetik kanporatu"},
 eF(d){return"Azkenekoz aktibo: "+d},
-gdq(){return"Irten"},
+gdn(){return"Irten"},
 gfq(){return"Txatetik irten da"},
 giX(){return"Argia"},
 iY(d){return"Kargatu "+d+" partaide gehiago"},
@@ -682,5 +682,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FK,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FK":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["UwBz9w3R4+BFPlCR+bS8md3q3PU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jCE9eYhnJUParT7LH4ebqo/g3Ac="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_271.part.js.map

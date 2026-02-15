@@ -213,7 +213,7 @@ giU(){return"Al\u0103tura\u021bi la camer\u0103"},
 iV(d,e){return"\ud83d\udc5e"+d+" a dat afar\u0103 pe "+e},
 gfp(){return"Da\u021bi afar\u0103 din chat"},
 eF(d){return"Ultima dat\u0103 activ: "+d},
-gdq(){return"Renun\u021ba\u021bi"},
+gdn(){return"Renun\u021ba\u021bi"},
 gfq(){return"A plecat din chat"},
 giX(){return"Luminat"},
 iY(d){return"\xcenc\u0103rca\u021bi \xeenc\u0103 mai "+d+" participan\u021bi"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G8,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"G8":{"aE":[]}}'))};
-(a=>{a["IK/l9XGI8gNYKk2wGC7CMo7y94s="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["MXpP116Y5xvbvIbFftvDXfWbLrk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map

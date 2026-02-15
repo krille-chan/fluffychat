@@ -217,7 +217,7 @@ giU(){return"Join room"},
 iV(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfp(){return"Kick from chat"},
 eF(d){return"Last active: "+d},
-gdq(){return"Leave"},
+gdn(){return"Leave"},
 gfq(){return"Left the chat"},
 giX(){return"Light"},
 iY(d){return"Load "+d+" more participants"},
@@ -890,7 +890,7 @@ giU(){return"Entrar na sala"},
 iV(d,e){return"\ud83d\udc5e "+d+" expulsou "+e},
 gfp(){return"Expulsar da conversa"},
 eF(d){return"\xdaltima vez ativo: "+d},
-gdq(){return"Sair"},
+gdn(){return"Sair"},
 gfq(){return"Saiu da conversa"},
 giX(){return"Claro"},
 iY(d){return"Carregar mais "+d+" participantes"},
@@ -1488,7 +1488,7 @@ giU(){return"Entrar na sala"},
 iV(d,e){return d+" expulsou "+e},
 gfp(){return"Expulsar da conversa"},
 eF(d){return"Ativo(a) pela \xfaltima vez: "+d},
-gdq(){return"Sair"},
+gdn(){return"Sair"},
 gfq(){return"Saiu da conversa"},
 giX(){return"Claro"},
 iY(d){return"Carregar mais "+d+" participantes"},
@@ -1584,5 +1584,5 @@ x(A.B3,C.aE)
 w(A.B3,[A.G6,A.G7])})()
 B.dI(b.typeUniverse,JSON.parse('{"B3":{"aE":[]},"G6":{"aE":[]},"G7":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["dWUW3notYXSTz7qTOKzYRDN0GTk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["31P3B9SC68jhtQWzL1uTEqcoPpw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_17.part.js.map

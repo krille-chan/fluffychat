@@ -213,7 +213,7 @@ giU(){return"Uneix-te a la sala"},
 iV(d,e){return"\ud83d\udc5e "+d+" ha expulsat a "+e},
 gfp(){return"Expulsa del xat"},
 eF(d){return"Actiu per \xfaltima vegada: "+d},
-gdq(){return"Abandona"},
+gdn(){return"Abandona"},
 gfq(){return"Ha marxat del xat"},
 giX(){return"Clar"},
 iY(d){return"Carrega "+d+" participants m\xe9s"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FB,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FB":{"aE":[]}}'))};
-(a=>{a["3RZ6mw8yPg5LGQY/PL/g8Fysjts="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3FFWMojBg8Tpe//Jzc7bcjnfoXw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_233.part.js.map

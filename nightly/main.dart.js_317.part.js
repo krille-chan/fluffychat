@@ -213,7 +213,7 @@ giU(){return"Do\u0142\u0105cz do pokoju"},
 iV(d,e){return"\ud83d\udc5e "+d+" wyrzuci\u0142/-a "+e},
 gfp(){return"Wyrzu\u0107 z czatu"},
 eF(d){return"Ostatnio widziano "+d},
-gdq(){return"Opu\u015b\u0107"},
+gdn(){return"Opu\u015b\u0107"},
 gfq(){return"Opu\u015bci\u0142/-a czat"},
 giX(){return"Jasny"},
 iY(d){return"Za\u0142aduj jeszcze "+d+" uczestnik\xf3w"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G5,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"G5":{"aE":[]}}'))};
-(a=>{a["gjnZ3+spc0xRxyArCA6LCu70Iuk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["aJuCFtNIpCzmhraSAldQhtblaLA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

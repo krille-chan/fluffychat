@@ -213,7 +213,7 @@ giU(){return"Unisciti alla stanza"},
 iV(d,e){return"\ud83d\udc5e "+d+" ha espulso "+e},
 gfp(){return"Espelli dalla chat"},
 eF(d){return"Ultima attivit\xe0: "+d},
-gdq(){return"Abbandona"},
+gdn(){return"Abbandona"},
 gfq(){return"Ha lasciato la chat"},
 giX(){return"Chiaro"},
 iY(d){return"Carica altri "+d+" partecipanti"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FY,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FY":{"aE":[]}}'))};
-(a=>{a["5H7URyZQzi73HTPZM5eBXWRC+ho="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jMqATIvLaU2H56F/fsLMHgdgWTg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

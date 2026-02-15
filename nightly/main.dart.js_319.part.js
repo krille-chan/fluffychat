@@ -213,7 +213,7 @@ giU(){return"\u041f\u0440\u0438\u0441\u043e\u0435\u0434\u0438\u043d\u0438\u0442\
 iV(d,e){return"\ud83d\udc5e "+d+" \u0432\u044b\u0433\u043d\u0430\u043b(\u0430) "+e},
 gfp(){return"\u0412\u044b\u0433\u043d\u0430\u0442\u044c \u0438\u0437 \u0447\u0430\u0442\u0430"},
 eF(d){return"\u041f\u043e\u0441\u043b\u0435\u0434\u043d\u0435\u0435 \u043f\u043e\u0441\u0435\u0449\u0435\u043d\u0438\u0435: "+d},
-gdq(){return"\u041f\u043e\u043a\u0438\u043d\u0443\u0442\u044c"},
+gdn(){return"\u041f\u043e\u043a\u0438\u043d\u0443\u0442\u044c"},
 gfq(){return"\u041f\u043e\u043a\u0438\u043d\u0443\u0442\u044c \u0447\u0430\u0442"},
 giX(){return"\u0421\u0432\u0435\u0442\u043b\u0430\u044f"},
 iY(d){return"Load "+d+" more participants"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G9,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"G9":{"aE":[]}}'))};
-(a=>{a["yFc1VxtSSM7jZ1izzzKvKFEky0s="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["sovad4DgZFhVmHeIpslOZbIsGeI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_319.part.js.map

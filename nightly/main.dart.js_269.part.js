@@ -213,7 +213,7 @@ giU(){return"Liitu jututoaga"},
 iV(d,e){return"\ud83d\udc5e "+d+" m\xfcksas kasutaja "+e+" v\xe4lja"},
 gfp(){return"M\xfcksa vestlusest v\xe4lja"},
 eF(d){return"Viimati n\xe4htud: "+d},
-gdq(){return"Lahku"},
+gdn(){return"Lahku"},
 gfq(){return"Lahkus vestlusest"},
 giX(){return"Hele"},
 iY(d){return"Lisa veel "+d+" osalejat"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FJ,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FJ":{"aE":[]}}'))};
-(a=>{a["yw+rql6NwI7sFqDTCf2Lf/4whTs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["x1ruEsIYHgHqR+szuq+1+6VEDlM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_269.part.js.map

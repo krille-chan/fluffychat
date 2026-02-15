@@ -213,7 +213,7 @@ giU(){return"Pridru\u017ei se sobi"},
 iV(d,e){return"\ud83d\udc5e "+d+" je izbacio/la "+e},
 gfp(){return"Izbaci iz chata"},
 eF(d){return"Zadnja aktivnost: "+d},
-gdq(){return"Napusti"},
+gdn(){return"Napusti"},
 gfq(){return"Napustio/la je chat"},
 giX(){return"Svijetla"},
 iY(d){return"U\u010ditaj jo\u0161 "+d+" sudionika"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FT,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FT":{"aE":[]}}'))};
-(a=>{a["0pU613FsFpIiRBhImUBs7fNezEM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["QYsbG8eGBx+4ip2mxsk76WGlGeg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_289.part.js.map

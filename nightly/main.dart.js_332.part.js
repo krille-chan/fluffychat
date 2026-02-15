@@ -213,7 +213,7 @@ giU(){return"Odaya kat\u0131l"},
 iV(d,e){return"\ud83d\udc5e "+d+", "+e+" ki\u015fisini att\u0131"},
 gfp(){return"Sohbetten at"},
 eF(d){return"Son g\xf6r\xfclen: "+d},
-gdq(){return"Ayr\u0131l"},
+gdn(){return"Ayr\u0131l"},
 gfq(){return"Sohbetten ayr\u0131ld\u0131"},
 giX(){return"A\xe7\u0131k"},
 iY(d){return""+d+" kat\u0131l\u0131mc\u0131 daha y\xfckle"},
@@ -682,5 +682,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gi,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gi":{"aE":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["5LG7TCpFnutKHgWH2xj9iz7SNwI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["GfHTGBjy0PbepG3V1gRUodg449g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_332.part.js.map

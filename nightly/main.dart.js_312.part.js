@@ -213,7 +213,7 @@ giU(){return"Prisijungti prie kambario"},
 iV(d,e){return"\ud83d\udc5e "+d+" i\u0161met\u0117 "+e},
 gfp(){return"I\u0161mesti i\u0161 pokalbio"},
 eF(d){return"Paskutinis aktyvumas: "+d},
-gdq(){return"Palikti"},
+gdn(){return"Palikti"},
 gfq(){return"Paliko pokalb\u012f"},
 giX(){return"\u0160viesi"},
 iY(d){return"\u012ekelti dar "+d+" dalyvius"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G1,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"G1":{"aE":[]}}'))};
-(a=>{a["LlV8BxWBxj24DQkkpyY2FEUNe6w="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["dwH9sCqENbw7G3/lwU4cZfCxsQs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

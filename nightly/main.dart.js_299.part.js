@@ -213,7 +213,7 @@ giU(){return"Bergabung dengan ruangan"},
 iV(d,e){return"\ud83d\udc5e "+d+" mengeluarkan "+e},
 gfp(){return"Keluarkan dari obrolan"},
 eF(d){return"Terakhir aktif: "+d},
-gdq(){return"Tinggalkan"},
+gdn(){return"Tinggalkan"},
 gfq(){return"Keluar dari obrolan"},
 giX(){return"Terang"},
 iY(d){return"Muat "+d+" anggota"},
@@ -682,5 +682,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FW,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FW":{"aE":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["9u+QFYAjnn7ZZwC2tuDDINZ1rzA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Efig+es2SR07p4l7y4JXHwZeFo8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map
