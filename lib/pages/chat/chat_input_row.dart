@@ -360,7 +360,7 @@ class ChatInputRow extends StatelessWidget {
                     alignment: Alignment.center,
                     child:
                         PlatformInfos.platformCanRecord &&
-                                !controller.sendController.text.isNotEmpty ||
+                            !controller.sendController.text.isNotEmpty &&
                             controller.editEvent == null
                         ? IconButton(
                             tooltip: L10n.of(context).voiceMessage,
