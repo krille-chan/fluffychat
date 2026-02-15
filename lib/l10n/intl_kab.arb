@@ -1267,5 +1267,68 @@
     "@youHaveBeenBannedFromThisChat": {
         "type": "String",
         "placeholders": {}
+    },
+    "yourPublicKey": "Tasarut-ik·im tazayezt",
+    "@yourPublicKey": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageInfo": "Talɣut n yizen",
+    "time": "Akud",
+    "messageType": "Anaw n yizen",
+    "sender": "Amazan",
+    "openGallery": "Ldi timidelt",
+    "removeFromSpace": "Kkes seg tallunt",
+    "addToSpaceDescription": "Fren tallunt akken ad ternuḍ adiwenni-a.",
+    "start": "Senker",
+    "publish": "Suffeɣ-d",
+    "videoWithSize": "Avidyu ({size})",
+    "@videoWithSize": {
+        "type": "String",
+        "placeholders": {
+            "size": {
+                "type": "String"
+            }
+        }
+    },
+    "openChat": "Ldi Adiwenni",
+    "markAsRead": "Creḍ amzun yettwaɣṛa",
+    "reportUser": "Cetki aseqdac",
+    "dismiss": "Agi",
+    "reactedWith": "{sender} err-d s {reaction}",
+    "@reactedWith": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "reaction": {
+                "type": "String"
+            }
+        }
+    },
+    "pinMessage": "Senteḍ ɣer texxamt",
+    "confirmEventUnpin": "Tebɣiḍ ad tekkseḍ s wudem imezgi asenṭed n tadyant-nni?",
+    "emojis": "Imujiten",
+    "placeCall": "Sɛeddi Asiwel",
+    "voiceCall": "Asiwel n taɣect",
+    "removeAllOtherDevices": "Kkes akk ibenkan-nniḍen",
+    "@removeAllOtherDevices": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "removedBy": "Yettwakkes sɣur {username}",
+    "@removedBy": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "removeDevice": "Kkes ibenk",
+    "@removeDevice": {
+        "type": "String",
+        "placeholders": {}
     }
 }
