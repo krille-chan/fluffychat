@@ -32,7 +32,7 @@ void main() {
       testWidgets(
         'Start app, login and logout',
         (WidgetTester tester) async {
-          app.main();
+          app.main([]);
           await tester.ensureAppStartedHomescreen();
           await tester.ensureLoggedOut();
         },
@@ -41,7 +41,7 @@ void main() {
       testWidgets(
         'Login again',
         (WidgetTester tester) async {
-          app.main();
+          app.main([]);
           await tester.ensureAppStartedHomescreen();
         },
       );
@@ -49,7 +49,7 @@ void main() {
       testWidgets(
         'Start chat and send message',
         (WidgetTester tester) async {
-          app.main();
+          app.main([]);
           await tester.ensureAppStartedHomescreen();
           await tester.waitFor(find.byType(TextField));
           await tester.enterText(find.byType(TextField), Users.user2.name);
@@ -113,7 +113,7 @@ void main() {
       );
 
       testWidgets('Spaces', (tester) async {
-        app.main();
+        app.main([]);
         await tester.ensureAppStartedHomescreen();
 
         await tester.waitFor(find.byTooltip('Show menu'));

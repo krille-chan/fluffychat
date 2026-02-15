@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
+import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -252,6 +253,29 @@ Future<void> _tryPushHelper(
       >()
       ?.createNotificationChannel(roomsChannel);
 
+  LinuxNotificationIcon? linuxIcon;
+  if (PlatformInfos.isLinux) {
+    if (roomAvatarFile != null) {
+      final image = decodeImage(roomAvatarFile);
+      if (image != null) {
+        final realData = image.getBytes(order: ChannelOrder.rgba);
+        linuxIcon = ByteDataLinuxIcon(
+          LinuxRawIconData(
+            data: realData,
+            width: image.width,
+            height: image.height,
+            rowStride: image.rowStride,
+            bitsPerSample: image.bitsPerChannel * image.numChannels,
+            channels: image.numChannels,
+            hasAlpha: true,
+          ),
+        );
+      } else {
+        linuxIcon = ThemeLinuxIcon("fluffychat");
+      }
+    }
+  }
+
   final androidPlatformChannelSpecifics = AndroidNotificationDetails(
     AppConfig.pushNotificationsChannelId,
     l10n.incomingMessages,
@@ -305,9 +329,32 @@ Future<void> _tryPushHelper(
           ],
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
+  final linuxPlatformChannelSpecifics = LinuxNotificationDetails(
+    icon: linuxIcon,
+    sound: ThemeLinuxSound("message-new-instant"),
+    category: LinuxNotificationCategory.imReceived,
+    urgency: LinuxNotificationUrgency.normal,
+    resident: false, // remove upon interaction
+    suppressSound: false, // we don't play a sound ourselves
+    actions: event.type == EventTypes.RoomMember || !useNotificationActions
+        ? []
+        : <LinuxNotificationAction>[
+            LinuxNotificationAction(
+              key: FluffyChatNotificationActions.reply.name,
+              label: l10n.reply,
+            ),
+            LinuxNotificationAction(
+              key: FluffyChatNotificationActions.markAsRead.name,
+              label: l10n.markAsRead,
+            ),
+          ],
+    // TODO: can we do KNotificationReplyAction?
+    //  Though, would be better if this were a standard.
+  );
   final platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
     iOS: iOSPlatformChannelSpecifics,
+    linux: linuxPlatformChannelSpecifics,
   );
 
   final title = event.room.getLocalizedDisplayname(MatrixLocals(l10n));

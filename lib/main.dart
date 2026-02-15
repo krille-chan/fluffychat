@@ -19,7 +19,7 @@ import 'widgets/fluffy_chat_app.dart';
 
 ReceivePort? mainIsolateReceivePort;
 
-void main() async {
+void main(List<String> args) async {
   if (PlatformInfos.isAndroid) {
     final port = mainIsolateReceivePort = ReceivePort();
     IsolateNameServer.removePortNameMapping(AppConfig.mainIsolatePortName);
@@ -45,18 +45,29 @@ void main() async {
 
   // If the app starts in detached mode, we assume that it is in
   // background fetch mode for processing push notifications. This is
-  // currently only supported on Android.
-  if (PlatformInfos.isAndroid &&
-      AppLifecycleState.detached == WidgetsBinding.instance.lifecycleState) {
+  // currently only supported on Android and Linux.
+  final backgroundMode = (() {
+    if (PlatformInfos.isAndroid) {
+      return WidgetsBinding.instance.lifecycleState ==
+          AppLifecycleState.detached;
+    }
+    if (PlatformInfos.isLinux) {
+      return args.contains('--unifiedpush-bg');
+    }
+
+    return false;
+  })();
+
+  if (backgroundMode) {
     // Do not send online presences when app is in background fetch mode.
     for (final client in clients) {
       client.backgroundSync = false;
       client.syncPresence = PresenceType.offline;
     }
 
-    // In the background fetch mode we do not want to waste ressources with
+    // In the background fetch mode we do not want to waste resources with
     // starting the Flutter engine but process incoming push notifications.
-    BackgroundPush.clientOnly(clients.first);
+    BackgroundPush.clientOnly(clients.first, backgroundMode);
     // To start the flutter engine afterwards we add an custom observer.
     WidgetsBinding.instance.addObserver(AppStarter(clients, store));
     Logs().i(

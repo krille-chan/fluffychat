@@ -7,6 +7,7 @@ import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
+import 'package:unifiedpush/unifiedpush.dart';
 import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/setting_keys.dart';
@@ -82,9 +83,17 @@ extension LocalNotificationsExtension on MatrixState {
         icon: thumbnailUri?.toString(),
         tag: event.room.id,
       );
-    } else if (Platform.isLinux) {
+    } else if (Platform.isLinux &&
+        (await UnifiedPush.getDistributor() != null)) {
       final avatarUrl = event.room.avatar;
-      final hints = [NotificationHint.soundName('message-new-instant')];
+      final hints = [
+        NotificationHint.soundName('message-new-instant'),
+        NotificationHint.category(
+          event.type == EventTypes.Message
+              ? NotificationCategory.imReceived()
+              : NotificationCategory.im(),
+        ),
+      ];
 
       if (avatarUrl != null) {
         const size = notificationAvatarDimension;
@@ -119,16 +128,18 @@ extension LocalNotificationsExtension on MatrixState {
         replacesId: linuxNotificationIds[roomId] ?? 0,
         appName: AppSettings.applicationName.value,
         appIcon: 'fluffychat',
-        actions: [
-          NotificationAction(
-            DesktopNotificationActions.openChat.name,
-            L10n.of(context).openChat,
-          ),
-          NotificationAction(
-            DesktopNotificationActions.seen.name,
-            L10n.of(context).markAsRead,
-          ),
-        ],
+        actions: event.type == EventTypes.RoomMember
+            ? []
+            : [
+                NotificationAction(
+                  DesktopNotificationActions.openChat.name,
+                  L10n.of(context).openChat,
+                ),
+                NotificationAction(
+                  DesktopNotificationActions.seen.name,
+                  L10n.of(context).markAsRead,
+                ),
+              ],
         hints: hints,
       );
       notification.action.then((actionStr) {
@@ -149,6 +160,7 @@ extension LocalNotificationsExtension on MatrixState {
           case DesktopNotificationActions.openChat:
             setActiveClient(event.room.client);
 
+            // TODO: raise window via token
             FluffyChatApp.router.go('/rooms/${event.room.id}');
             break;
         }
