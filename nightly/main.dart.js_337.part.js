@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJb(){return new A.Gm(B.df("yue"))},
+cJa(){return new A.Gm(B.df("yue"))},
 Gm:function Gm(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -213,7 +213,7 @@ giU(){return"Join room"},
 iV(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfp(){return"Kick from chat"},
 eF(d){return"Last active: "+d},
-gdn(){return"Leave"},
+gdq(){return"Leave"},
 gfq(){return"Left the chat"},
 giX(){return"Light"},
 iY(d){return"Load "+d+" more participants"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gm,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gm":{"aE":[]}}'))};
-(a=>{a["++syL3ndpWsrIALUqmgEDbX+H2M="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Yx/Ld0jdvV8dnADZI+vqoUMo5xY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_337.part.js.map

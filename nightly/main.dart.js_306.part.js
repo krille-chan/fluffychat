@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIM(){return new A.FY(B.df("it"))},
+cIL(){return new A.FY(B.df("it"))},
 FY:function FY(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -213,7 +213,7 @@ giU(){return"Unisciti alla stanza"},
 iV(d,e){return"\ud83d\udc5e "+d+" ha espulso "+e},
 gfp(){return"Espelli dalla chat"},
 eF(d){return"Ultima attivit\xe0: "+d},
-gdn(){return"Abbandona"},
+gdq(){return"Abbandona"},
 gfq(){return"Ha lasciato la chat"},
 giX(){return"Chiaro"},
 iY(d){return"Carica altri "+d+" partecipanti"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FY,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FY":{"aE":[]}}'))};
-(a=>{a["Sf0spJVk/DuQ95xWdlNJDMS612A="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["5H7URyZQzi73HTPZM5eBXWRC+ho="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

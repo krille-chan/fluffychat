@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIR(){return new A.G2(B.df("lv"))},
+cIQ(){return new A.G2(B.df("lv"))},
 G2:function G2(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -213,7 +213,7 @@ giU(){return"Pievienoties istabai"},
 iV(d,e){return"\ud83d\udc5e "+d+" izmeta "+e},
 gfp(){return"Izmest no t\u0113rz\u0113\u0161anas"},
 eF(d){return"P\u0113d\u0113joreiz tie\u0161saist\u0113: "+d},
-gdn(){return"Pamest"},
+gdq(){return"Pamest"},
 gfq(){return"Pameta t\u0113rz\u0113\u0161anu"},
 giX(){return"Gai\u0161s"},
 iY(d){return"Iel\u0101d\u0113t v\u0113l "+d+" dal\u012bbniekus"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G2,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"G2":{"aE":[]}}'))};
-(a=>{a["kN2+UoZfHIw0K0vCAPf3l07ItCM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["VseKKcsqdOwwb+tungjSopuqhV8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

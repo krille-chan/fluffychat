@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIS(){return new A.G3(B.df("nb"))},
+cIR(){return new A.G3(B.df("nb"))},
 G3:function G3(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -213,7 +213,7 @@ giU(){return"Ta del i rom"},
 iV(d,e){return d+" kastet ut "+e},
 gfp(){return"Kast ut av sludringen"},
 eF(d){return"Sist aktiv: "+d},
-gdn(){return"Forlat"},
+gdq(){return"Forlat"},
 gfq(){return"Forlat sludringen"},
 giX(){return"Lys"},
 iY(d){return"Last inn "+d+" deltagere til"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G3,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"G3":{"aE":[]}}'))};
-(a=>{a["hdTSsTJ4wA79CkBthTgqUrRyTiA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["DUOYGGZxnh7CX5lWQpHMieDuf/Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

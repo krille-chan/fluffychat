@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJ9(){return new A.Gk(B.df("uz"))},
+cJ8(){return new A.Gk(B.df("uz"))},
 Gk:function Gk(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -213,7 +213,7 @@ giU(){return"Guruhga qo\u02bbshilish"},
 iV(d,e){return"\ud83d\udc5e "+d+" "+e+"ni tepdi"},
 gfp(){return"Suhbatdan tepish"},
 eF(d){return"Oxirgi faol: "+d},
-gdn(){return"Chiqish"},
+gdq(){return"Chiqish"},
 gfq(){return"Suhbatni tark etdi"},
 giX(){return"Yorug\u02bblik"},
 iY(d){return"Yana "+d+" ishtirokchini yuklang"},
@@ -682,5 +682,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gk,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gk":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["ETXEyl14ujap/kBUu256D5K4RkI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["1vVWXQEiAqMDehi0T9C0xqmw+BE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_335.part.js.map

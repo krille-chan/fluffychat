@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIv(){return new A.FH(B.df("eo"))},
+cIu(){return new A.FH(B.df("eo"))},
 FH:function FH(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -213,7 +213,7 @@ giU(){return"Ali\u011di al \u0109ambro"},
 iV(d,e){return d+" forpelis uzanton "+e},
 gfp(){return"Forpeli de babilo"},
 eF(d){return"Lastafoje aktiva: "+d},
-gdn(){return"Foriri"},
+gdq(){return"Foriri"},
 gfq(){return"Foriris de la \u0109ambro"},
 giX(){return"Hela"},
 iY(d){return"Enlegi "+d+" pliajn partoprenantojn"},
@@ -681,5 +681,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FH,C.aE)})()
 B.dI(b.typeUniverse,JSON.parse('{"FH":{"aE":[]}}'))};
-(a=>{a["UmPNDvYPdmBdBu0/NlCO/LX+hLc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mRevRj3GPQbZOibR3j3HAX0leuY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_262.part.js.map
