@@ -7,9 +7,8 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class SeenByRow extends StatelessWidget {
-  final Timeline timeline;
   final Event event;
-  const SeenByRow({super.key, required this.timeline, required this.event});
+  const SeenByRow({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +16,9 @@ class SeenByRow extends StatelessWidget {
 
     const maxAvatars = 7;
     return StreamBuilder(
-      stream: timeline.room.client.onSync.stream.where(
+      stream: event.room.client.onSync.stream.where(
         (syncUpdate) =>
-            syncUpdate.rooms?.join?[timeline.room.id]?.ephemeral?.any(
+            syncUpdate.rooms?.join?[event.room.id]?.ephemeral?.any(
               (ephemeral) => ephemeral.type == 'm.receipt',
             ) ??
             false,
@@ -38,13 +37,15 @@ class SeenByRow extends StatelessWidget {
                 ? Duration.zero
                 : FluffyThemes.animationDuration,
             curve: FluffyThemes.animationCurve,
-            alignment:
-                timeline.events.isNotEmpty &&
-                    timeline.events.first.senderId ==
-                        Matrix.of(context).client.userID
+            alignment: event.senderId == Matrix.of(context).client.userID
                 ? Alignment.topRight
                 : Alignment.topLeft,
-            padding: const EdgeInsets.only(bottom: 4, top: 1),
+            padding: const EdgeInsets.only(
+              bottom: 4,
+              top: 1,
+              left: 8,
+              right: 8,
+            ),
             child: Wrap(
               spacing: 4,
               children: [

@@ -10,7 +10,6 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
@@ -858,7 +857,6 @@ class Message extends StatelessWidget {
                         child: MessageReactions(event, timeline),
                       ),
               ),
-              SeenByRow(timeline: timeline, event: event),
               if (enterThread != null)
                 AnimatedSize(
                   duration: FluffyThemes.animationDuration,
