@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIo(){return new A.Fy(B.df("ar"))},
-Fy:function Fy(d){this.a=d}}
+cIo(){return new A.Fx(B.df("ar"))},
+Fx:function Fx(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[5],A)
-A.Fy.prototype={
+A.Fx.prototype={
 gkT(){return"\u0639\u0644\u0651\u0645 \u0644\u0639\u0631\u0636 \u0627\u0644\u0648\u0642\u062a \u0628\u0646\u0633\u0642 24 \u0633\u0627\u0639\u0629 \u062f\u0627\u0626\u0645\u0627.\u200f"},
 gjE(){return"\u0643\u0631\u0651\u0631 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631"},
 gmI(){return"\u0644\u064a\u0633 \u0645\u0644\u0641 \u0635\u0648\u0631\u0629."},
@@ -661,14 +661,14 @@ gp5(){return"Skip chat backup"},
 gp6(){return"Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device."},
 gpz(){return"Loading messages"},
 gp0(){return"Set up chat backup"},
-gpW(){return"No more results found"},
+gpX(){return"No more results found"},
 pR(d){return"Chat searched until "+d},
 gpT(){return"Federation Base URL"},
 gpS(){return"Client-Well-Known Information:"},
 gpQ(){return"Base URL"},
 gpU(){return"Identity Server:"},
-pZ(d){return"Version: "+d},
-gpV(){return"Logs"},
+q_(d){return"Version: "+d},
+gpW(){return"Logs"},
 gpN(){return"Advanced Configs"},
 gpO(){return"Advanced configurations"},
 gpK(){return"Sign in"},
@@ -676,10 +676,11 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fy,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"Fy":{"aE":[]}}'))};
-(a=>{a["aJYWIKGc1B2NjN0FgCb+v+p7IFg="]=a.current})($__dart_deferred_initializers__);
+y(A.Fx,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"Fx":{"aE":[]}}'))};
+(a=>{a["mVmQ62AMqcRPfU1KpvMoK1/35XE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_210.part.js.map

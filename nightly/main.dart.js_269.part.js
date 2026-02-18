@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIA(){return new A.FK(B.df("et"))},
-FK:function FK(d){this.a=d}}
+cIA(){return new A.FJ(B.df("et"))},
+FJ:function FJ(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[17],A)
-A.FK.prototype={
+A.FJ.prototype={
 gkT(){return"false"},
 gjE(){return"Korda salas\xf5na"},
 gmI(){return"See pole pildifail."},
@@ -661,14 +661,14 @@ gp5(){return"J\xe4ta vestluse varundamine vahele"},
 gp6(){return"Kas oled kindel? Kui sa pole l\xfclitanud sisse vestluste kr\xfcptov\xf5tmete varundust, siis v\xf5id oma seadme vahetamisel kaotada ligip\xe4\xe4su oma senistele s\xf5numitele."},
 gpz(){return"Laadin s\xf5numeid"},
 gp0(){return"V\xf5ta kasutusele vestluste varundus"},
-gpW(){return"Rohkem tulemusi ei leidu"},
+gpX(){return"Rohkem tulemusi ei leidu"},
 pR(d){return"Otsing vestlusest kuni "+d},
 gpT(){return"F\xf6dereerimise alusaadress"},
 gpS(){return"Kliendi \u201e.well-known\u201c teave:"},
 gpQ(){return"Alusaadress"},
 gpU(){return"Isikutuvastusserver:"},
-pZ(d){return"Versioon: "+d},
-gpV(){return"Logid"},
+q_(d){return"Versioon: "+d},
+gpW(){return"Logid"},
 gpN(){return"T\xe4iendav seadistus"},
 gpO(){return"T\xe4iendavad seadistused"},
 gpK(){return"Sign in"},
@@ -676,10 +676,11 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FK,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"FK":{"aE":[]}}'))};
-(a=>{a["04Sxzo/qbJk+BmKbCHsVb3ibLxw="]=a.current})($__dart_deferred_initializers__);
+y(A.FJ,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"FJ":{"aE":[]}}'))};
+(a=>{a["ju97QoagmDJQyZewpRSiqbelBvY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_269.part.js.map

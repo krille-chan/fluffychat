@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cIY(d){return new A.B3(B.df(d))},
-cIZ(){return new A.G7(B.df("pt_BR"))},
-cJ_(){return new A.G8(B.df("pt_PT"))},
-B3:function B3(d){this.a=d},
-G7:function G7(d){this.a=d},
-G8:function G8(d){this.a=d}},C
+cIY(d){return new A.B2(B.df(d))},
+cIZ(){return new A.G6(B.df("pt_BR"))},
+cJ_(){return new A.G7(B.df("pt_PT"))},
+B2:function B2(d){this.a=d},
+G6:function G6(d){this.a=d},
+G7:function G7(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[56]
-A.B3.prototype={
+A.B2.prototype={
 gkT(){return"true"},
 gjE(){return"Repita a senha"},
 gmI(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -665,14 +665,14 @@ gp5(){return"Skip chat backup"},
 gp6(){return"Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device."},
 gpz(){return"Loading messages"},
 gp0(){return"Set up chat backup"},
-gpW(){return"No more results found"},
+gpX(){return"No more results found"},
 pR(d){return"Chat searched until "+d},
 gpT(){return"Federation Base URL"},
 gpS(){return"Client-Well-Known Information:"},
 gpQ(){return"Base URL"},
 gpU(){return"Identity Server:"},
-pZ(d){return"Version: "+d},
-gpV(){return"Logs"},
+q_(d){return"Version: "+d},
+gpW(){return"Logs"},
 gpN(){return"Advanced Configs"},
 gpO(){return"Advanced configurations"},
 gpK(){return"Sign in"},
@@ -680,9 +680,10 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
-A.G7.prototype={
+A.G6.prototype={
 gkT(){return"true"},
 gjE(){return"Repita a senha"},
 gmI(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1339,7 +1340,7 @@ gp6(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode p
 gpz(){return"Carregando mensagens"},
 gp0(){return"Configurar backup de conversas"},
 A(d,e){return this.gbb(this).$1(e)}}
-A.G8.prototype={
+A.G7.prototype={
 gjE(){return"Repete a palavra-passe"},
 gbb(d){return"Remover"},
 geu(){return"Acerca de"},
@@ -1580,9 +1581,9 @@ eQ(d){return d+" enviou um autocolante"},
 fX(d){return d+" enviou um v\xeddeo"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.B3,C.aE)
-w(A.B3,[A.G7,A.G8])})()
-B.dI(b.typeUniverse,JSON.parse('{"B3":{"aE":[]},"G7":{"aE":[]},"G8":{"aE":[]}}'))
+x(A.B2,C.aE)
+w(A.B2,[A.G6,A.G7])})()
+B.dI(b.typeUniverse,JSON.parse('{"B2":{"aE":[]},"G6":{"aE":[]},"G7":{"aE":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["Rg8aoc9QPSWHlbUFHz1MIvIfcVw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["uWHQ39O1BXhS1Uyzq5gH9VMIGVw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_17.part.js.map

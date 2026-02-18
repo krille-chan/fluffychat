@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIT(){return new A.G2(B.df("lt"))},
-G2:function G2(d){this.a=d}}
+cIT(){return new A.G1(B.df("lt"))},
+G1:function G1(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[36],A)
-A.G2.prototype={
+A.G1.prototype={
 gkT(){return"false"},
 gjE(){return"Pakartokite slapta\u017eod\u012f"},
 gmI(){return"Not an image file."},
@@ -661,14 +661,14 @@ gp5(){return"Skip chat backup"},
 gp6(){return"Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device."},
 gpz(){return"Loading messages"},
 gp0(){return"Set up chat backup"},
-gpW(){return"No more results found"},
+gpX(){return"No more results found"},
 pR(d){return"Chat searched until "+d},
 gpT(){return"Federation Base URL"},
 gpS(){return"Client-Well-Known Information:"},
 gpQ(){return"Base URL"},
 gpU(){return"Identity Server:"},
-pZ(d){return"Version: "+d},
-gpV(){return"Logs"},
+q_(d){return"Version: "+d},
+gpW(){return"Logs"},
 gpN(){return"Advanced Configs"},
 gpO(){return"Advanced configurations"},
 gpK(){return"Sign in"},
@@ -676,10 +676,11 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G2,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"G2":{"aE":[]}}'))};
-(a=>{a["XCoqiHE1qAjgAZRoC47AaokBdJg="]=a.current})($__dart_deferred_initializers__);
+y(A.G1,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"G1":{"aE":[]}}'))};
+(a=>{a["pdVWM6EgaJyM61cYwmaow1Xr8jE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

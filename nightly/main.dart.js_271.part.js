@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIB(){return new A.FL(B.df("eu"))},
-FL:function FL(d){this.a=d}}
+cIB(){return new A.FK(B.df("eu"))},
+FK:function FK(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[18],A)
-A.FL.prototype={
+A.FK.prototype={
 gkT(){return"false"},
 gjE(){return"Idatzi berriro pasahitza"},
 gmI(){return"Ez da irudi-fitxategia."},
@@ -661,14 +661,14 @@ gp5(){return"Ez egin txataren babeskopia"},
 gp6(){return"Ziur? Txataren babeskopia gaitzen ez baduzu, gailuz aldatuz gero mezuen sarbidea gal zenezake."},
 gpz(){return"Mezuak kargatzen"},
 gp0(){return"Ezarri txataren babeskopia"},
-gpW(){return"Ez da beste emaitzarik aurkitu"},
+gpX(){return"Ez da beste emaitzarik aurkitu"},
 pR(d){return"Txatean bilatu da "+d+" arte"},
 gpT(){return"Federatzeko URL oinarria"},
 gpS(){return"Bezeroaren Well-Known informazioa:"},
 gpQ(){return"URL oinarria"},
 gpU(){return"Identitate-zerbitzaria:"},
-pZ(d){return"Bertsioa: "+d},
-gpV(){return"Erregistroak"},
+q_(d){return"Bertsioa: "+d},
+gpW(){return"Erregistroak"},
 gpN(){return"Konfigurazio aurreratua"},
 gpO(){return"Konfigurazio aurreratua"},
 gpK(){return"Sign in"},
@@ -676,11 +676,12 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FL,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"FL":{"aE":[]}}'))
+x(A.FK,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"FK":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["qdvu/JRWIp36d1wvLkHi3P4tx/E="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["UBx0QIUywe6x1hvz8NrwVy2WjIQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_271.part.js.map

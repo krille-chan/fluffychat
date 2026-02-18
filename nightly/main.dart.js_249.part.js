@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIu(){return new A.FE(B.df("da"))},
-FE:function FE(d){this.a=d}}
+cIu(){return new A.FD(B.df("da"))},
+FD:function FD(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[11],A)
-A.FE.prototype={
+A.FD.prototype={
 gkT(){return"true"},
 gjE(){return"Gentag password"},
 gmI(){return"Ikke en billedfil."},
@@ -661,14 +661,14 @@ gp5(){return"Skip chat backup"},
 gp6(){return"Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device."},
 gpz(){return"Loading messages"},
 gp0(){return"Set up chat backup"},
-gpW(){return"No more results found"},
+gpX(){return"No more results found"},
 pR(d){return"Chat searched until "+d},
 gpT(){return"Federation Base URL"},
 gpS(){return"Client-Well-Known Information:"},
 gpQ(){return"Base URL"},
 gpU(){return"Identity Server:"},
-pZ(d){return"Version: "+d},
-gpV(){return"Logs"},
+q_(d){return"Version: "+d},
+gpW(){return"Logs"},
 gpN(){return"Advanced Configs"},
 gpO(){return"Advanced configurations"},
 gpK(){return"Sign in"},
@@ -676,10 +676,11 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FE,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"FE":{"aE":[]}}'))};
-(a=>{a["OgIS8Ykj/VSpdyWzTWDqin8wds8="]=a.current})($__dart_deferred_initializers__);
+y(A.FD,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"FD":{"aE":[]}}'))};
+(a=>{a["LOenX7i49onlCsBrIHuqtdoMFeU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_249.part.js.map

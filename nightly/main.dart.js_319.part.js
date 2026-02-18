@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJ1(){return new A.Ga(B.df("ru"))},
-Ga:function Ga(d){this.a=d}}
+cJ1(){return new A.G9(B.df("ru"))},
+G9:function G9(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[42],A)
-A.Ga.prototype={
+A.G9.prototype={
 gkT(){return"true"},
 gjE(){return"\u041f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u043f\u0430\u0440\u043e\u043b\u044c"},
 gmI(){return"\u042d\u0442\u043e \u043d\u0435 \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0430."},
@@ -661,14 +661,14 @@ gp5(){return"\u041f\u0440\u043e\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u0440
 gp6(){return"\u0412\u044b \u0443\u0432\u0435\u0440\u0435\u043d\u044b? \u0411\u0435\u0437 \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u043e\u0433\u043e \u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f \u0447\u0430\u0442\u0430 \u0432\u044b \u043c\u043e\u0436\u0435\u0442\u0435 \u043f\u043e\u0442\u0435\u0440\u044f\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0441\u0432\u043e\u0438\u043c \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f\u043c, \u0435\u0441\u043b\u0438 \u043f\u0435\u0440\u0435\u043a\u043b\u044e\u0447\u0438\u0442\u0435 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e."},
 gpz(){return"\u0417\u0430\u0433\u0440\u0443\u0437\u043a\u0430 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0439"},
 gp0(){return"\u041d\u0430\u0441\u0442\u0440\u043e\u0438\u0442\u044c \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u0443\u044e \u043a\u043e\u043f\u0438\u044e \u0447\u0430\u0442\u0430"},
-gpW(){return"No more results found"},
+gpX(){return"No more results found"},
 pR(d){return"Chat searched until "+d},
 gpT(){return"Federation Base URL"},
 gpS(){return"Client-Well-Known Information:"},
 gpQ(){return"Base URL"},
 gpU(){return"Identity Server:"},
-pZ(d){return"Version: "+d},
-gpV(){return"Logs"},
+q_(d){return"Version: "+d},
+gpW(){return"Logs"},
 gpN(){return"Advanced Configs"},
 gpO(){return"Advanced configurations"},
 gpK(){return"Sign in"},
@@ -676,10 +676,11 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ga,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"Ga":{"aE":[]}}'))};
-(a=>{a["9NMgXHwLFDTkh4vB67CgVgcm/0Q="]=a.current})($__dart_deferred_initializers__);
+y(A.G9,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"G9":{"aE":[]}}'))};
+(a=>{a["CT4W217XHdhimBzWFW3sPty3TnA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_319.part.js.map

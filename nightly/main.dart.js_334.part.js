@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJb(){return new A.Gk(B.df("uk"))},
-Gk:function Gk(d){this.a=d}}
+cJb(){return new A.Gj(B.df("uk"))},
+Gj:function Gj(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[52],A)
-A.Gk.prototype={
+A.Gj.prototype={
 gkT(){return"\u0432\u0438\u043c\u043a\u043d\u0435\u043d\u043e"},
 gjE(){return"\u041f\u043e\u0432\u0442\u043e\u0440\u0456\u0442\u044c \u043f\u0430\u0440\u043e\u043b\u044c"},
 gmI(){return"\u041d\u0435 \u0444\u0430\u0439\u043b \u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u043d\u044f."},
@@ -661,14 +661,14 @@ gp5(){return"\u041f\u0440\u043e\u043f\u0443\u0441\u0442\u0438\u0442\u0438 \u0440
 gp6(){return"\u0412\u0438 \u0432\u043f\u0435\u0432\u043d\u0435\u043d\u0456? \u0411\u0435\u0437 \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u043e\u0433\u043e \u043a\u043e\u043f\u0456\u044e\u0432\u0430\u043d\u043d\u044f \u0431\u0435\u0441\u0456\u0434 \u0432\u0438 \u043c\u043e\u0436\u0435\u0442\u0435 \u0432\u0442\u0440\u0430\u0442\u0438\u0442\u0438 \u0434\u043e\u0441\u0442\u0443\u043f \u0434\u043e \u043f\u043e\u0432\u0456\u0434\u043e\u043c\u043b\u0435\u043d\u044c, \u044f\u043a\u0449\u043e \u0432\u0438 \u0437\u043c\u0456\u043d\u0438\u0442\u0435 \u043f\u0440\u0438\u0441\u0442\u0440\u0456\u0439."},
 gpz(){return"\u0417\u0430\u0432\u0430\u043d\u0442\u0430\u0436\u0443\u044e\u0442\u044c\u0441\u044f \u043f\u043e\u0432\u0456\u0434\u043e\u043c\u043b\u0435\u043d\u043d\u044f"},
 gp0(){return"\u041d\u0430\u043b\u0430\u0448\u0442\u0443\u0432\u0430\u0442\u0438 \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u0435 \u043a\u043e\u043f\u0456\u044e\u0432\u0430\u043d\u043d\u044f \u0431\u0435\u0441\u0456\u0434"},
-gpW(){return"\u041d\u0456\u0447\u043e\u0433\u043e \u043d\u0435 \u0437\u043d\u0430\u0439\u0434\u0435\u043d\u043e"},
+gpX(){return"\u041d\u0456\u0447\u043e\u0433\u043e \u043d\u0435 \u0437\u043d\u0430\u0439\u0434\u0435\u043d\u043e"},
 pR(d){return"\u041f\u043e\u0448\u0443\u043a \u0432 \u0431\u0435\u0441\u0456\u0434\u0456 \u043f\u043e "+d},
 gpT(){return"\u041e\u0441\u043d\u043e\u0432\u043d\u0438\u0439 URL \u0444\u0435\u0434\u0435\u0440\u0430\u0446\u0456\u0457"},
 gpS(){return"\u0414\u0430\u043d\u0456 \u043a\u043b\u0456\u0454\u043d\u0442\u0443 \u0456\u0437 .well-known:"},
 gpQ(){return"\u041e\u0441\u043d\u043e\u0432\u043d\u0438\u0439 URL"},
 gpU(){return"\u0421\u0435\u0440\u0432\u0435\u0440 \u043f\u0440\u043e\u0444\u0456\u043b\u0456\u0432:"},
-pZ(d){return"\u0412\u0435\u0440\u0441\u0456\u044f: "+d},
-gpV(){return"\u0416\u0443\u0440\u043d\u0430\u043b\u0438"},
+q_(d){return"\u0412\u0435\u0440\u0441\u0456\u044f: "+d},
+gpW(){return"\u0416\u0443\u0440\u043d\u0430\u043b\u0438"},
 gpN(){return"\u0420\u043e\u0437\u0448\u0438\u0440\u0435\u043d\u0456 \u043d\u0430\u043b\u0430\u0448\u0442\u0443\u0432\u0430\u043d\u043d\u044f"},
 gpO(){return"\u0420\u043e\u0437\u0448\u0438\u0440\u0435\u043d\u0456 \u043d\u0430\u043b\u0430\u0448\u0442\u0443\u0432\u0430\u043d\u043d\u044f"},
 gpK(){return"Sign in"},
@@ -676,10 +676,11 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gk,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gk":{"aE":[]}}'))};
-(a=>{a["TaLyk6j4ARdOg2PoaOyQA75P98s="]=a.current})($__dart_deferred_initializers__);
+y(A.Gj,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gj":{"aE":[]}}'))};
+(a=>{a["gPvA2bsvgHon7P9q+N7DeGHzt2M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_334.part.js.map

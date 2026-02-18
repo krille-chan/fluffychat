@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIG(){return new A.FQ(B.df("ga"))},
-FQ:function FQ(d){this.a=d}}
+cIG(){return new A.FP(B.df("ga"))},
+FP:function FP(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[23],A)
-A.FQ.prototype={
+A.FP.prototype={
 gkT(){return"br\xe9agach"},
 gjE(){return"Scr\xedobh an pasfhocal ar\xeds"},
 gmI(){return"N\xed comhad \xedomh\xe1 \xe9."},
@@ -661,14 +661,14 @@ gp5(){return"Seachain c\xfaltaca comhr\xe1"},
 gp6(){return"An bhfuil t\xfa cinnte? Mura gcumasa\xedonn t\xfa an c\xfaltaca comhr\xe1, d\u2019fh\xe9adf\xe1 rochtain ar do theachtaireachta\xed a chailleadh m\xe1 athra\xedonn t\xfa do ghl\xe9as."},
 gpz(){return"Ag l\xf3d\xe1il teachtaireachta\xed"},
 gp0(){return"Socraigh c\xfaltaca comhr\xe1"},
-gpW(){return"N\xed bhfuarthas aon tortha\xed eile"},
+gpX(){return"N\xed bhfuarthas aon tortha\xed eile"},
 pR(d){return"Comhr\xe1 a cuarda\xedodh go dt\xed "+d},
 gpT(){return"URL Bonn C\xf3naidhme"},
 gpS(){return"Faisn\xe9is at\xe1 ar eolas ag an gcliant:"},
 gpQ(){return"Bun-URL"},
 gpU(){return"Freastala\xed Aitheantais:"},
-pZ(d){return"Leagan: "+d},
-gpV(){return"Loga\xed"},
+q_(d){return"Leagan: "+d},
+gpW(){return"Loga\xed"},
 gpN(){return"Cumra\xedochta\xed Ardleibh\xe9il"},
 gpO(){return"Cumra\xedochta\xed ardleibh\xe9il"},
 gpK(){return"Sign in"},
@@ -676,11 +676,12 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FQ,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"FQ":{"aE":[]}}'))
+x(A.FP,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"FP":{"aE":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["5B9GzY/ZLq8gC5cSZH9mZAkBgPk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["UDzBRVP3f9+IZD9XjSEv1/gWAJE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_283.part.js.map

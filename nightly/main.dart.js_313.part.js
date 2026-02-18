@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIU(){return new A.G3(B.df("lv"))},
-G3:function G3(d){this.a=d}}
+cIU(){return new A.G2(B.df("lv"))},
+G2:function G2(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[37],A)
-A.G3.prototype={
+A.G2.prototype={
 gkT(){return"n\u0113"},
 gjE(){return"Atk\u0101rtot paroli"},
 gmI(){return"Nav att\u0113la datne."},
@@ -661,14 +661,14 @@ gp5(){return"Izlaist t\u0113rz\u0113\u0161anu rezerves kop\u0113\u0161anu"},
 gp6(){return"Vai tie\u0161\u0101m? Bez t\u0113rz\u0113\u0161anu rezerves kop\u0113\u0161anas var tikt zaud\u0113ta piek\u013cuve sav\u0101m zi\u0146\u0101m, kad tiks main\u012bta ier\u012bce."},
 gpz(){return"Iel\u0101d\u0113 zi\u0146as"},
 gp0(){return"Iestat\u012bt t\u0113rz\u0113\u0161anu rezerves kop\u0113\u0161anu"},
-gpW(){return"Vairs nekas netika atrasts"},
+gpX(){return"Vairs nekas netika atrasts"},
 pR(d){return"T\u0113rz\u0113\u0161an\u0101 mekl\u0113ts l\u012bdz "+d},
 gpT(){return"Feder\u0101cijas pamata URL"},
 gpS(){return"Client-Well-Known inform\u0101cija:"},
 gpQ(){return"Pamata URL"},
 gpU(){return"Identit\u0101\u0161u serveris:"},
-pZ(d){return"Versija: "+d},
-gpV(){return"\u017durn\u0101li"},
+q_(d){return"Versija: "+d},
+gpW(){return"\u017durn\u0101li"},
 gpN(){return"Izv\u0113rsta konfigur\u0101cijas"},
 gpO(){return"Izv\u0113rstas konfigur\u0101cijas"},
 gpK(){return"Sign in"},
@@ -676,10 +676,11 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G3,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"G3":{"aE":[]}}'))};
-(a=>{a["hKhigvU7rPguuU+Z3wy+bB4CA04="]=a.current})($__dart_deferred_initializers__);
+y(A.G2,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"G2":{"aE":[]}}'))};
+(a=>{a["HL8706suxXGld/uHn7rFdo8ZGyI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

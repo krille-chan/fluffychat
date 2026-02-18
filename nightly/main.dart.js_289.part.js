@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIK(){return new A.FU(B.df("hr"))},
-FU:function FU(d){this.a=d}}
+cIK(){return new A.FT(B.df("hr"))},
+FT:function FT(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[27],A)
-A.FU.prototype={
+A.FT.prototype={
 gkT(){return"true"},
 gjE(){return"Ponovi lozinku"},
 gmI(){return"Nije slikovna datoteka."},
@@ -661,14 +661,14 @@ gp5(){return"Presko\u010di sigurnosno kopiranje chata"},
 gp6(){return"Sigurno? Bez aktiviranja sigurnosne kopije chata mo\u017ee\u0161 izgubiti pristup svojim porukama ako promijeni\u0161 ure\u0111aj."},
 gpz(){return"U\u010ditavanje poruka"},
 gp0(){return"Postavi sigurnosno kopiranje chata"},
-gpW(){return"Nema vi\u0161e rezultata"},
+gpX(){return"Nema vi\u0161e rezultata"},
 pR(d){return"Chat je pretra\u017een do "+d},
 gpT(){return"Osnovni URL federacije"},
 gpS(){return"Dobro poznate informacije o klijentu:"},
 gpQ(){return"Osnovni URL"},
 gpU(){return"Server identiteta:"},
-pZ(d){return"Verzija: "+d},
-gpV(){return"Zapisi"},
+q_(d){return"Verzija: "+d},
+gpW(){return"Zapisi"},
 gpN(){return"Napredne konfiguracije"},
 gpO(){return"Napredne konfiguracije"},
 gpK(){return"Sign in"},
@@ -676,10 +676,11 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FU,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"FU":{"aE":[]}}'))};
-(a=>{a["Gxjv4KXedPSaD2f6H9pU9km+ShE="]=a.current})($__dart_deferred_initializers__);
+y(A.FT,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"FT":{"aE":[]}}'))};
+(a=>{a["izKsbWBx1br2fApbNQFZTPiMk44="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_289.part.js.map

@@ -1,13 +1,13 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cJf(d){return new A.B4(B.df(d))},
-cJg(){return new A.Go(B.df("zh_Hant"))},
-B4:function B4(d){this.a=d},
-Go:function Go(d){this.a=d}},C
+cJf(d){return new A.B3(B.df(d))},
+cJg(){return new A.Gn(B.df("zh_Hant"))},
+B3:function B3(d){this.a=d},
+Gn:function Gn(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[3],A)
 C=c[56]
-A.B4.prototype={
+A.B3.prototype={
 gkT(){return"\u5426"},
 gjE(){return"\u91cd\u590d\u8f93\u5165\u5bc6\u7801"},
 gmI(){return"\u4e0d\u662f\u56fe\u50cf\u6587\u4ef6\u3002"},
@@ -663,14 +663,14 @@ gp5(){return"\u8df3\u8fc7\u804a\u5929\u5907\u4efd"},
 gp6(){return"\u786e\u5b9a\u5417\uff1f\u4e0d\u5f00\u542f\u804a\u5929\u5907\u4efd\uff0c\u5982\u679c\u5207\u6362\u8bbe\u5907\u53ef\u80fd\u65e0\u6cd5\u8bbf\u95ee\u6d88\u606f\u3002"},
 gpz(){return"\u52a0\u8f7d\u6d88\u606f\u4e2d"},
 gp0(){return"\u8bbe\u7f6e\u804a\u5929\u5907\u4efd"},
-gpW(){return"\u672a\u627e\u5230\u66f4\u591a\u7ed3\u679c"},
+gpX(){return"\u672a\u627e\u5230\u66f4\u591a\u7ed3\u679c"},
 pR(d){return"\u641c\u7d22\u4e86\u622a\u81f3 "+d+" \u7684\u804a\u5929\u8bb0\u5f55"},
 gpT(){return"\u8054\u90a6\u57fa\u7840 URL"},
 gpS(){return"Client-Well-Known \u4fe1\u606f\uff1a"},
 gpQ(){return"\u57fa\u7840 URL"},
 gpU(){return"\u8eab\u4efd\u670d\u52a1\u5668\uff1a"},
-pZ(d){return"\u7248\u672c\uff1a"+d},
-gpV(){return"\u65e5\u5fd7"},
+q_(d){return"\u7248\u672c\uff1a"+d},
+gpW(){return"\u65e5\u5fd7"},
 gpN(){return"\u9ad8\u7ea7\u914d\u7f6e"},
 gpO(){return"\u9ad8\u7ea7\u914d\u7f6e"},
 gpK(){return"Sign in"},
@@ -678,9 +678,10 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
-A.Go.prototype={
+A.Gn.prototype={
 gkT(){return"false"},
 gjE(){return"\u518d\u6b21\u8f38\u5165\u5bc6\u78bc"},
 gmI(){return"\u4e0d\u662f\u5716\u7247\u6a94\u6848\u3002"},
@@ -1289,8 +1290,8 @@ goQ(){return"\u60a8\u5df2\u8acb\u6c42\u52a0\u5165"},
 gnF(){return"\u76f4\u5230\u804a\u5929\u5ba4\u88e1\u6709\u4eba\u9080\u8acb\u60a8\u524d\uff0c\u8acb\u7b49\u5019\u3002"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.B4,C.aE)
-y(A.Go,A.B4)})()
-B.dI(b.typeUniverse,JSON.parse('{"B4":{"aE":[]},"Go":{"aE":[]}}'))};
-(a=>{a["rH+GHvY/ohy4Y/uQ+8hGOPHW630="]=a.current})($__dart_deferred_initializers__);
+y(A.B3,C.aE)
+y(A.Gn,A.B3)})()
+B.dI(b.typeUniverse,JSON.parse('{"B3":{"aE":[]},"Gn":{"aE":[]}}'))};
+(a=>{a["sxlMc1j1288mcTt2kMtmab23JS0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map

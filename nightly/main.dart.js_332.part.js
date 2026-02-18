@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJa(){return new A.Gj(B.df("tr"))},
-Gj:function Gj(d){this.a=d}}
+cJa(){return new A.Gi(B.df("tr"))},
+Gi:function Gi(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[51],A)
-A.Gj.prototype={
+A.Gi.prototype={
 gkT(){return"false"},
 gjE(){return"Parolay\u0131 tekrarlay\u0131n"},
 gmI(){return"Bir resim dosyas\u0131 de\u011fil."},
@@ -661,14 +661,14 @@ gp5(){return"Skip chat backup"},
 gp6(){return"Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device."},
 gpz(){return"Loading messages"},
 gp0(){return"Set up chat backup"},
-gpW(){return"No more results found"},
+gpX(){return"No more results found"},
 pR(d){return"Chat searched until "+d},
 gpT(){return"Federation Base URL"},
 gpS(){return"Client-Well-Known Information:"},
 gpQ(){return"Base URL"},
 gpU(){return"Identity Server:"},
-pZ(d){return"Version: "+d},
-gpV(){return"Logs"},
+q_(d){return"Version: "+d},
+gpW(){return"Logs"},
 gpN(){return"Advanced Configs"},
 gpO(){return"Advanced configurations"},
 gpK(){return"Sign in"},
@@ -676,11 +676,12 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gj,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gj":{"aE":[]}}'))
+x(A.Gi,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gi":{"aE":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["rthCnMNiGNYDJv1rf+CzJqv7hjY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["TY9kqxRj8ZWKl4bgBzotT+wcqrQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_332.part.js.map

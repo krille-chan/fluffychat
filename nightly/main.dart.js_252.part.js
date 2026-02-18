@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIv(){return new A.FF(B.df("de"))},
-FF:function FF(d){this.a=d}}
+cIv(){return new A.FE(B.df("de"))},
+FE:function FE(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[12],A)
-A.FF.prototype={
+A.FE.prototype={
 gkT(){return"true"},
 gjE(){return"Passwort wiederholen"},
 gmI(){return"Keine Bilddatei."},
@@ -661,14 +661,14 @@ gp5(){return"Chatsicherung \xfcberspringen"},
 gp6(){return"Bist du sicher? Ohne die Chatsicherung zu aktivieren, kannst du den Zugriff auf deine Nachrichten verlieren, wenn du dein Ger\xe4t wechselst."},
 gpz(){return"Nachrichten werden geladen"},
 gp0(){return"Chatsicherung einrichten"},
-gpW(){return"Keine weiteren Ergebnisse gefunden"},
+gpX(){return"Keine weiteren Ergebnisse gefunden"},
 pR(d){return"Chat durchsucht bis "+d},
 gpT(){return"Federation Base URL"},
 gpS(){return"Client-Well-Known Information:"},
 gpQ(){return"Basis-URL"},
 gpU(){return"Identit\xe4tsserver:"},
-pZ(d){return"Version: "+d},
-gpV(){return"Protokolle"},
+q_(d){return"Version: "+d},
+gpW(){return"Protokolle"},
 gpN(){return"Erweiterte Konfigurationen"},
 gpO(){return"Erweiterte Konfigurationen"},
 gpK(){return"Sign in"},
@@ -676,11 +676,12 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FF,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"FF":{"aE":[]}}'))
+x(A.FE,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"FE":{"aE":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["uSMOVAts+s1ZA+FNUaN8p6aVGic="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["no2pXdlsjVMBMrLRtejzJO7xepE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_252.part.js.map

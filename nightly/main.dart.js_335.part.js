@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJc(){return new A.Gl(B.df("uz"))},
-Gl:function Gl(d){this.a=d}}
+cJc(){return new A.Gk(B.df("uz"))},
+Gk:function Gk(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[53],A)
-A.Gl.prototype={
+A.Gk.prototype={
 gkT(){return"true"},
 gjE(){return"Parolni takrorlang"},
 gmI(){return"Rasm fayli emas."},
@@ -661,14 +661,14 @@ gp5(){return"Chat zaxirasini tashlab ketish"},
 gp6(){return"Ishonchingiz komilmi? Chat zaxirasini yoqmasdan qurilmangizni almashtirsangiz, xabarlaringizga kira olmay qolishingiz mumkin."},
 gpz(){return"Xabarlar yuklanmoqda"},
 gp0(){return"Chat zaxirasini sozlash"},
-gpW(){return"Boshqa natijalar topilmadi"},
+gpX(){return"Boshqa natijalar topilmadi"},
 pR(d){return"Chat "+d+" gacha qidirildi"},
 gpT(){return"Federatsiya bazasi URL manzili"},
 gpS(){return"Mijozlarga yaxshi tanish ma\u2019lumotlar:"},
 gpQ(){return"Asosiy URL"},
 gpU(){return"Identifikatsiya serveri:"},
-pZ(d){return"Versiya: "+d},
-gpV(){return"Jurnallar"},
+q_(d){return"Versiya: "+d},
+gpW(){return"Jurnallar"},
 gpN(){return"Kengaytirilgan konfiguratsiyalar"},
 gpO(){return"Kengaytirilgan sozlamalar"},
 gpK(){return"Sign in"},
@@ -676,11 +676,12 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gl,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gl":{"aE":[]}}'))
+x(A.Gk,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gk":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["UXks5s943UTV3SFXGfYL+ct6AS4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["e0TlSSNd6gEuYLvuIezQVMJUZGY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_335.part.js.map

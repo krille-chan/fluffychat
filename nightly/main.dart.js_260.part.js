@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIw(){return new A.FG(B.df("el"))},
-FG:function FG(d){this.a=d}}
+cIw(){return new A.FF(B.df("el"))},
+FF:function FF(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[13],A)
-A.FG.prototype={
+A.FF.prototype={
 gkT(){return"\u03a8\u03b5\u03c5\u03b4\u03ae\u03c2"},
 gjE(){return"\u0395\u03c0\u03b1\u03bd\u03ac\u03bb\u03b7\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gmI(){return"\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03b5\u03b9\u03ba\u03cc\u03bd\u03b1\u03c2."},
@@ -661,14 +661,14 @@ gp5(){return"Skip chat backup"},
 gp6(){return"Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device."},
 gpz(){return"Loading messages"},
 gp0(){return"Set up chat backup"},
-gpW(){return"No more results found"},
+gpX(){return"No more results found"},
 pR(d){return"Chat searched until "+d},
 gpT(){return"Federation Base URL"},
 gpS(){return"Client-Well-Known Information:"},
 gpQ(){return"Base URL"},
 gpU(){return"Identity Server:"},
-pZ(d){return"Version: "+d},
-gpV(){return"Logs"},
+q_(d){return"Version: "+d},
+gpW(){return"Logs"},
 gpN(){return"Advanced Configs"},
 gpO(){return"Advanced configurations"},
 gpK(){return"Sign in"},
@@ -676,10 +676,11 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FG,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"FG":{"aE":[]}}'))};
-(a=>{a["4GETj5JTvw2Garo5PFizMK5MviA="]=a.current})($__dart_deferred_initializers__);
+y(A.FF,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"FF":{"aE":[]}}'))};
+(a=>{a["0wyfoENUXVrUzLWCBJpAIe6/B/Q="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_260.part.js.map

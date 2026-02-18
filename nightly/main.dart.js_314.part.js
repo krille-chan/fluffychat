@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cIV(){return new A.G4(B.df("nb"))},
-G4:function G4(d){this.a=d}}
+cIV(){return new A.G3(B.df("nb"))},
+G3:function G3(d){this.a=d}}
 B=c[0]
 C=c[56]
 A=a.updateHolder(c[38],A)
-A.G4.prototype={
+A.G3.prototype={
 gkT(){return"false"},
 gjE(){return"Gjenta passord"},
 gmI(){return"Ikke en bildefil."},
@@ -661,14 +661,14 @@ gp5(){return"Hopp over sikkerhetskopiering av chat"},
 gp6(){return"Er du sikker? Uten sikkerhetskopi av chattene kan du miste meldingene dine hvis du bytter enhet."},
 gpz(){return"Laster inn meldinger"},
 gp0(){return"Konfigurer sikkerhetskopi av chat"},
-gpW(){return"Ingen flere treff"},
+gpX(){return"Ingen flere treff"},
 pR(d){return"Chat searched until "+d},
 gpT(){return"Federation Base URL"},
 gpS(){return"Velkjent informasjon om klienten:"},
 gpQ(){return"Base URL"},
 gpU(){return"Identitetsserver:"},
-pZ(d){return"Versjon: "+d},
-gpV(){return"Logger"},
+q_(d){return"Versjon: "+d},
+gpW(){return"Logger"},
 gpN(){return"Avanserte innstillinger"},
 gpO(){return"Avanserte innstillinger"},
 gpK(){return"Sign in"},
@@ -676,10 +676,11 @@ gps(){return"Create new account"},
 gpM(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
 gpL(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpP(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpY(){return"The process was canceled."},
+gpZ(){return"The process was canceled."},
+gpV(d){return"Join"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G4,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"G4":{"aE":[]}}'))};
-(a=>{a["e7ipb0y+hXSrQJi77KaItitWEL4="]=a.current})($__dart_deferred_initializers__);
+y(A.G3,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"G3":{"aE":[]}}'))};
+(a=>{a["TjdnAJoWCVhUJuG31i/TzSFO7Yo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map
