@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKd(){return new A.Gg(B.df("sk"))},
+cK0(){return new A.Gg(B.df("sk"))},
 Gg:function Gg(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Zabanova\u0165 z chatu"},
 gf2(){return"Zabanovan\xfd"},
 hs(d,e){return d+" zabanoval "+e},
 ghu(){return"Zak\xe1za\u0165 zariadenie"},
-gcl(){return"Blocked"},
+gcm(){return"Blocked"},
 gbw(d){return"Zru\u0161i\u0165"},
 f4(d){return"Nemo\u017eno otvori\u0165 identifik\xe1tor prostriedku "+d},
 gf5(){return"Zmeni\u0165 n\xe1zov zariadenia"},
@@ -92,7 +92,7 @@ gfa(){return"Podrobnosti o chate"},
 gfb(){return"\u010cety"},
 ghM(){return"Vyberte si siln\xe9 heslo"},
 gfc(){return"Clear archive"},
-gcm(d){return"Zavrie\u0165"},
+gcf(d){return"Zavrie\u0165"},
 glo(){return"Mark as direct message room for the giving Matrix ID"},
 glp(){return"Mark as group"},
 ghO(){return"Ban the given user from this room"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gg,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"Gg":{"aE":[]}}'))};
-(a=>{a["ZC6RAvUYuK4sbdthpJlXqr1f3ks="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["fNsSIeHx7zGGq8AVQnF8BiSWUCg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_323.part.js.map

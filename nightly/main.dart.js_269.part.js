@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJL(){return new A.FP(B.df("et"))},
+cJy(){return new A.FP(B.df("et"))},
 FP:function FP(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Keela ligip\xe4\xe4s vestlusele"},
 gf2(){return"Ligip\xe4\xe4s vestlusele on keelatud"},
 hs(d,e){return d+" keelas ligip\xe4\xe4su kasutajale "+e},
 ghu(){return"Blokeeri seade"},
-gcl(){return"Blokeeritud"},
+gcm(){return"Blokeeritud"},
 gbw(d){return"Katkesta"},
 f4(d){return d+" aadressi avamine ei \xf5nnestu"},
 gf5(){return"Muuda seadme nime"},
@@ -92,7 +92,7 @@ gfa(){return"Vestluse teave"},
 gfb(){return"Vestlused"},
 ghM(){return"Vali korralik salas\xf5na"},
 gfc(){return"Kustuta arhiiv"},
-gcm(d){return"Sulge"},
+gcf(d){return"Sulge"},
 glo(){return"M\xe4rgi otsevestusluseks antud Matrixi ID jaoks"},
 glp(){return"M\xe4rgi vestlusr\xfchmaks"},
 ghO(){return"Sea sellele kasutajale antud jututoas suhtluskeeld"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FP,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"FP":{"aE":[]}}'))};
-(a=>{a["6jIIEP9rwzrvW0fziGcIuuuL8LM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["SSgV+YcJ6HNpyrvvBW7j2eJdRCo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_269.part.js.map

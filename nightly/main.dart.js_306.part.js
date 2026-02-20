@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK_(){return new A.G3(B.df("it"))},
+cJN(){return new A.G3(B.df("it"))},
 G3:function G3(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Bandisci dalla chat"},
 gf2(){return"Bandito"},
 hs(d,e){return d+" ha bandito "+e},
 ghu(){return"Blocca dispositivo"},
-gcl(){return"Bloccato"},
+gcm(){return"Bloccato"},
 gbw(d){return"Annulla"},
 f4(d){return"Impossibile aprire l'URI "+d},
 gf5(){return"Cambia nome dispositivo"},
@@ -92,7 +92,7 @@ gfa(){return"Dettagli chat"},
 gfb(){return"Discussioni"},
 ghM(){return"Scegli una password complessa"},
 gfc(){return"Cancella archivio"},
-gcm(d){return"Chiudi"},
+gcf(d){return"Chiudi"},
 glo(){return"Contrassegna questo Matrix ID come stanza di messaggi diretti"},
 glp(){return"Segna come gruppo"},
 ghO(){return"Banna l'utente specificato da questa stanza"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G3,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"G3":{"aE":[]}}'))};
-(a=>{a["6oVln9jwaI5lCtExEYYjbW3BNuo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["SPqDR4OA3dbQExqsQDGa+4+5DUo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

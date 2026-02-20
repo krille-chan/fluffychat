@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK6(){return new A.Ga(B.df("nl"))},
+cJU(){return new A.Ga(B.df("nl"))},
 Ga:function Ga(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Van chat verbannen"},
 gf2(){return"Verbannen"},
 hs(d,e){return d+" verbant "+e},
 ghu(){return"Apparaat blokkeren"},
-gcl(){return"Geblokkeerd"},
+gcm(){return"Geblokkeerd"},
 gbw(d){return"Annuleren"},
 f4(d){return"Kan de URI "+d+" niet openen"},
 gf5(){return"Apparaatnaam wijzigen"},
@@ -92,7 +92,7 @@ gfa(){return"Chatdetails"},
 gfb(){return"Chats"},
 ghM(){return"Kies een sterk wachtwoord"},
 gfc(){return"Archief wissen"},
-gcm(d){return"Sluiten"},
+gcf(d){return"Sluiten"},
 glo(){return"Markeer als priv\xe9-chat voor de Matrix-ID"},
 glp(){return"Markeer als groep"},
 ghO(){return"Persoon uit deze chat verbannen"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ga,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"Ga":{"aE":[]}}'))};
-(a=>{a["TpWyxRbajDYTUAOs+aP1wrGqQEI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4aPjRffTIxBtQxLcpyNP9QK6z4g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

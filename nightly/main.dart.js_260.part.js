@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJH(){return new A.FL(B.df("el"))},
+cJu(){return new A.FL(B.df("el"))},
 FL:function FL(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03b9\u03c3\u03bc\u03cc\u03c2 
 gf2(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03af\u03c3\u03c4\u03b7\u03ba\u03b5"},
 hs(d,e){return d+" \u03b1\u03c0\u03ad\u03ba\u03bb\u03b5\u03b9\u03c3\u03b5 "+e},
 ghu(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03b9\u03c3\u03bc\u03cc\u03c2 \u03a3\u03c5\u03c3\u03ba\u03b5\u03c5\u03ae\u03c2"},
-gcl(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03af\u03c3\u03c4\u03b7\u03ba\u03b5"},
+gcm(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03af\u03c3\u03c4\u03b7\u03ba\u03b5"},
 gbw(d){return"\u0391\u03ba\u03cd\u03c1\u03c9\u03c3\u03b7"},
 f4(d){return"\u0394\u03b5\u03bd \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03b1\u03bd\u03bf\u03af\u03be\u03b5\u03b9 \u03c4\u03bf URI "+d},
 gf5(){return"\u0391\u03bb\u03bb\u03b1\u03b3\u03ae \u03bf\u03bd\u03cc\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c3\u03c5\u03c3\u03ba\u03b5\u03c5\u03ae\u03c2"},
@@ -92,7 +92,7 @@ gfa(){return"\u039b\u03b5\u03c0\u03c4\u03bf\u03bc\u03ad\u03c1\u03b5\u03b9\u03b5\
 gfb(){return"\u03a3\u03c5\u03bd\u03bf\u03bc\u03b9\u03bb\u03af\u03b5\u03c2"},
 ghM(){return"\u0395\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03ad\u03bd\u03b1 \u03b4\u03c5\u03bd\u03b1\u03c4\u03cc \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gfc(){return"Clear archive"},
-gcm(d){return"\u039a\u03bb\u03b5\u03af\u03c3\u03b9\u03bc\u03bf"},
+gcf(d){return"\u039a\u03bb\u03b5\u03af\u03c3\u03b9\u03bc\u03bf"},
 glo(){return"Mark as direct message room for the giving Matrix ID"},
 glp(){return"Mark as group"},
 ghO(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03b9\u03c3\u03bc\u03cc\u03c2 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03b1\u03c0\u03cc \u03c4\u03bf \u03b4\u03c9\u03bc\u03ac\u03c4\u03b9\u03bf"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FL,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"FL":{"aE":[]}}'))};
-(a=>{a["WeRYYDf7mMbfLSbF2K+49cFXnXE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["GzqYHzPEsQMaPRBplKF7tS98aSA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_260.part.js.map

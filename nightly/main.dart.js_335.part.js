@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKn(){return new A.Gq(B.df("uz"))},
+cKa(){return new A.Gq(B.df("uz"))},
 Gq:function Gq(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Suhbatdan taqiqlash"},
 gf2(){return"Taqiqlangan"},
 hs(d,e){return d+" taqiqladi "+e+"(ni)"},
 ghu(){return"Qurilmani bloklash"},
-gcl(){return"Bloklandi"},
+gcm(){return"Bloklandi"},
 gbw(d){return"Bekor qilish"},
 f4(d){return d+" URIni ochib bo\u02bblmadi"},
 gf5(){return"Qurilma nomini o\u02bbzgartirish"},
@@ -92,7 +92,7 @@ gfa(){return"Suhbat tafsilotlari"},
 gfb(){return"Suhbatlar"},
 ghM(){return"Kuchli parol tanlang"},
 gfc(){return"Arxivni tozalash"},
-gcm(d){return"Yopish"},
+gcf(d){return"Yopish"},
 glo(){return"Matrix identifikatorini berish uchun shaxsiy xabar guruhi sifatida belgilang"},
 glp(){return"Guruh sifatida belgilash"},
 ghO(){return"Bu guruhdan berilgan foydalanuvchini bloklash"},
@@ -683,5 +683,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gq,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"Gq":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["usA2qOXkQ4/HtuOKozR1nOVVGCQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4C/yd3Gwu/2ezOGfXtFxu8WXRH0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_335.part.js.map

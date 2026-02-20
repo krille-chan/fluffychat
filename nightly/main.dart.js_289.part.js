@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJV(){return new A.FZ(B.df("hr"))},
+cJI(){return new A.FZ(B.df("hr"))},
 FZ:function FZ(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Isklju\u010di iz chata"},
 gf2(){return"Isklju\u010den"},
 hs(d,e){return d+" je isklju\u010dio/la "+e},
 ghu(){return"Blokiraj ure\u0111aj"},
-gcl(){return"Blokirano"},
+gcm(){return"Blokirano"},
 gbw(d){return"Odustani"},
 f4(d){return"URI adresa "+d+" se ne mo\u017ee otvoriti"},
 gf5(){return"Promijeni ime ure\u0111aja"},
@@ -92,7 +92,7 @@ gfa(){return"Detalji chata"},
 gfb(){return"Chatovi"},
 ghM(){return"Odaberi sna\u017enu lozinku"},
 gfc(){return"Isprazni arhiv"},
-gcm(d){return"Zatvori"},
+gcf(d){return"Zatvori"},
 glo(){return"Ozna\u010di kao sobu za izravnu razmjenu poruka za zadani Matrix ID"},
 glp(){return"Ozna\u010di kao grupu"},
 ghO(){return"Isklju\u010di navedenog korisnika iz ove sobe"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FZ,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"FZ":{"aE":[]}}'))};
-(a=>{a["JnLyaUFpeKo74/vFemNT9iqEHf0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["m9pro9FTIKZV1DbjY7Y11XxA050="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_289.part.js.map

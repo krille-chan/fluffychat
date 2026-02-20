@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKe(){return new A.Gh(B.df("sl"))},
+cK1(){return new A.Gh(B.df("sl"))},
 Gh:function Gh(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Prepoved klepeta"},
 gf2(){return"Prepovedano"},
 hs(d,e){return d+" je prepovedan v "+e},
 ghu(){return"Blokirana naprava"},
-gcl(){return"Blokirano"},
+gcm(){return"Blokirano"},
 gbw(d){return"Prekli\u010di"},
 f4(d){return"URI-ja "+d+" ni mogo\u010de odpreti"},
 gf5(){return"Spremenite ime naprave"},
@@ -92,7 +92,7 @@ gfa(){return"Podrobnosti klepeta"},
 gfb(){return"Klepeti"},
 ghM(){return"Izberite mo\u010dno geslo"},
 gfc(){return"Po\u010disti arhiv"},
-gcm(d){return"Zapri"},
+gcf(d){return"Zapri"},
 glo(){return"Mark as direct message room for the giving Matrix ID"},
 glp(){return"Mark as group"},
 ghO(){return"Izklju\u010di dolo\u010denega uporabnika iz te sobe"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gh,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"Gh":{"aE":[]}}'))};
-(a=>{a["6WFChNhiM3nGJaOUFKCSNDwXYfo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["xEAaADo4x9Ly8Ng5K8RDp+YMAwg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_324.part.js.map

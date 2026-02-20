@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKf(){return new A.Gi(B.df("sq"))},
+cK2(){return new A.Gi(B.df("sq"))},
 Gi:function Gi(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Ban from chat"},
 gf2(){return"Banned"},
 hs(d,e){return d+" banned "+e},
 ghu(){return"Block Device"},
-gcl(){return"Blocked"},
+gcm(){return"Blocked"},
 gbw(d){return"Cancel"},
 f4(d){return"Can't open the URI "+d},
 gf5(){return"Change device name"},
@@ -92,7 +92,7 @@ gfa(){return"Chat details"},
 gfb(){return"Chats"},
 ghM(){return"Choose a strong password"},
 gfc(){return"Clear archive"},
-gcm(d){return"Close"},
+gcf(d){return"Close"},
 glo(){return"Mark as direct message room for the giving Matrix ID"},
 glp(){return"Mark as group"},
 ghO(){return"Ban the given user from this room"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gi,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"Gi":{"aE":[]}}'))};
-(a=>{a["VG0G+JA7EZEGOTpruRPKjgEkAnQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["xycTHPQpNLuiiOwie3dTUckucXs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_325.part.js.map

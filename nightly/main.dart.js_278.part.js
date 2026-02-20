@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJP(){return new A.FT(B.df("fil"))},
+cJC(){return new A.FT(B.df("fil"))},
 FT:function FT(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Pagbawalan sa chat"},
 gf2(){return"Pinagbawalan"},
 hs(d,e){return"Pinagbawalan ni "+d+" si "+e},
 ghu(){return"I-block ang Device"},
-gcl(){return"Na-block"},
+gcm(){return"Na-block"},
 gbw(d){return"Kanselahin"},
 f4(d){return"Hindi mabuksan ang URI na "+d},
 gf5(){return"Palitan ang pangalan ng device"},
@@ -92,7 +92,7 @@ gfa(){return"Mga detalye ng chat"},
 gfb(){return"Mga Chat"},
 ghM(){return"Pumili ng malakas na password"},
 gfc(){return"I-clear ang archive"},
-gcm(d){return"Isara"},
+gcf(d){return"Isara"},
 glo(){return"Markahan bilang direktang mensahe na room para sa ibinigay na Matrix ID"},
 glp(){return"Markahan bilang grupo"},
 ghO(){return"Pagbawalan ang ibinigay na user sa room na ito"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FT,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"FT":{"aE":[]}}'))};
-(a=>{a["sxV2VvDyF1ye5ZBrvvLrd1FteDA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["QldhBTQAxgzKfbif2+J8/KDV8NU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_278.part.js.map

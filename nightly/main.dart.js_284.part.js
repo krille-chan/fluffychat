@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJS(){return new A.FW(B.df("gl"))},
+cJF(){return new A.FW(B.df("gl"))},
 FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Vetar na conversa"},
 gf2(){return"Vetada"},
 hs(d,e){return d+" vetou a "+e},
 ghu(){return"Bloquear dispositivo"},
-gcl(){return"Bloqueado"},
+gcm(){return"Bloqueado"},
 gbw(d){return"Cancelar"},
 f4(d){return"Non se pode abrir o URI "+d},
 gf5(){return"Cambiar nome do dispositivo"},
@@ -92,7 +92,7 @@ gfa(){return"Detalles da conversa"},
 gfb(){return"Conversas"},
 ghM(){return"Escolle un contrasinal forte"},
 gfc(){return"Baleirar arquivo"},
-gcm(d){return"Pechar"},
+gcf(d){return"Pechar"},
 glo(){return"Marcar como sala de mensaxe directa para o ID Matrix indicado"},
 glp(){return"Marcar como grupo"},
 ghO(){return"Vetar a usuaria indicada desta sala"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FW,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"FW":{"aE":[]}}'))};
-(a=>{a["CeBuALiBOurTlpik0Hc5NkzbCb0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4fmMdHu/oK0suiVQpGBxRh+ouUE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_284.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKh(){return new A.Gk(B.df("sv"))},
+cK4(){return new A.Gk(B.df("sv"))},
 Gk:function Gk(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Bannlys fr\xe5n chatt"},
 gf2(){return"Bannlyst"},
 hs(d,e){return d+" bannl\xf6s "+e},
 ghu(){return"Blockera Enhet"},
-gcl(){return"Blockerad"},
+gcm(){return"Blockerad"},
 gbw(d){return"Avbryt"},
 f4(d){return"Kan inte \xf6ppna URL "+d},
 gf5(){return"\xc4ndra enhetsnamn"},
@@ -92,7 +92,7 @@ gfa(){return"Chatt-detaljer"},
 gfb(){return"Chatter"},
 ghM(){return"V\xe4lj ett starkt l\xf6senord"},
 gfc(){return"Rensa arkiv"},
-gcm(d){return"St\xe4ng"},
+gcf(d){return"St\xe4ng"},
 glo(){return"M\xe4rk som rum f\xf6r direktmeddelanden f\xf6r det givante Matrix ID"},
 glp(){return"M\xe4rk som grupp"},
 ghO(){return"Bannlys anv\xe4ndaren fr\xe5n detta rum"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gk,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"Gk":{"aE":[]}}'))};
-(a=>{a["fxhpskqoOAq9ws1mzodpAdGpop8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["dFvgu8SlAlJJaVl2bmHihkq5kKY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_328.part.js.map

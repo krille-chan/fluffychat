@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJZ(){return new A.G2(B.df("ie"))},
+cJM(){return new A.G2(B.df("ie"))},
 G2:function G2(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Bannir del conversation"},
 gf2(){return"Bannit"},
 hs(d,e){return d+" ha bannit "+e},
 ghu(){return"Blocar li aparate"},
-gcl(){return"Blocat"},
+gcm(){return"Blocat"},
 gbw(d){return"Anullar"},
 f4(d){return"Ne successat aperter li adresse "+d},
 gf5(){return"Cambiar li n\xf3mine de aparate"},
@@ -92,7 +92,7 @@ gfa(){return"Detallies del conversation"},
 gfb(){return"Conversationes"},
 ghM(){return"Choose a strong password"},
 gfc(){return"Vacuar li archive"},
-gcm(d){return"Cluder"},
+gcf(d){return"Cluder"},
 glo(){return"Mark as direct message room for the giving Matrix ID"},
 glp(){return"Marcar quam gruppe"},
 ghO(){return"Ban the given user from this room"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G2,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"G2":{"aE":[]}}'))};
-(a=>{a["ckIQIr3lvXZwiBrlJxbrC/riYDA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["RStMMcGZEVW1YVZa8ScM2G3pl3g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map

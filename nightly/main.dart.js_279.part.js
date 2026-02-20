@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJQ(){return new A.FU(B.df("fr"))},
+cJD(){return new A.FU(B.df("fr"))},
 FU:function FU(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Bannir de la discussion"},
 gf2(){return"Banni"},
 hs(d,e){return d+" a banni "+e},
 ghu(){return"Bloquer l'appareil"},
-gcl(){return"Bloqu\xe9"},
+gcm(){return"Bloqu\xe9"},
 gbw(d){return"Annuler"},
 f4(d){return"Impossible d'ouvrir l'URI "+d},
 gf5(){return"Modifier le nom de l'appareil"},
@@ -92,7 +92,7 @@ gfa(){return"D\xe9tails de la discussion"},
 gfb(){return"Discussions"},
 ghM(){return"Choisissez un mot de passe fort"},
 gfc(){return"Effacer les archives"},
-gcm(d){return"Fermer"},
+gcf(d){return"Fermer"},
 glo(){return"Marquer comme salon de messages directs pour l'identifiant Matrix indiqu\xe9"},
 glp(){return"Marquer comme groupe"},
 ghO(){return"Bannir l'utilisateur/trice donn\xe9(e) de ce salon"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FU,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"FU":{"aE":[]}}'))};
-(a=>{a["BFlw/ye3Nk+MlK4CguOqytrQNGE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zxKvzIXGXWgIwEQVthfkWJ5aANM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_279.part.js.map

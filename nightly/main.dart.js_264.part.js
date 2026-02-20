@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJK(){return new A.FO(B.df("es"))},
+cJx(){return new A.FO(B.df("es"))},
 FO:function FO(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Vetar del chat"},
 gf2(){return"Vetado"},
 hs(d,e){return d+" vet\xf3 a "+e},
 ghu(){return"Bloquear dispositivo"},
-gcl(){return"Bloqueado"},
+gcm(){return"Bloqueado"},
 gbw(d){return"Cancelar"},
 f4(d){return"No puedo abrir el URI "+d},
 gf5(){return"Cambiar el nombre del dispositivo"},
@@ -92,7 +92,7 @@ gfa(){return"Detalles del chat"},
 gfb(){return"Conversaciones"},
 ghM(){return"Elija una contrase\xf1a segura"},
 gfc(){return"Borrar archivo"},
-gcm(d){return"Cerrar"},
+gcf(d){return"Cerrar"},
 glo(){return"Marcar como sala de mensajes directos para el ID de Matrix"},
 glp(){return"Marcar como grupo"},
 ghO(){return"Prohibir al usuario dado en esta sala"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FO,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"FO":{"aE":[]}}'))};
-(a=>{a["SdsOp0+O+cRB3NzbwACfltI3xgM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["qHMFDrJGBU4fRjQIX4myYydlhx4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_264.part.js.map

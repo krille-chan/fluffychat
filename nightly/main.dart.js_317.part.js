@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK7(){return new A.Gb(B.df("pl"))},
+cJV(){return new A.Gb(B.df("pl"))},
 Gb:function Gb(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Ban w czacie"},
 gf2(){return"Zbanowany/-a"},
 hs(d,e){return d+" zbanowa\u0142/-a "+e},
 ghu(){return"Zablokuj urz\u0105dzenie"},
-gcl(){return"Zablokowane"},
+gcm(){return"Zablokowane"},
 gbw(d){return"Anuluj"},
 f4(d){return"Nie mo\u017cna otworzy\u0107 linku "+d},
 gf5(){return"Zmie\u0144 nazw\u0119 urz\u0105dzenia"},
@@ -92,7 +92,7 @@ gfa(){return"Szczeg\xf3\u0142y czatu"},
 gfb(){return"Czaty"},
 ghM(){return"Wybierz silne has\u0142o"},
 gfc(){return"Wyczy\u015b\u0107 archiwum"},
-gcm(d){return"Zamknij"},
+gcf(d){return"Zamknij"},
 glo(){return"Oznacz jako pok\xf3j wiadomo\u015bci bezpo\u015brednich dla podanego Matrix ID"},
 glp(){return"Oznacz jako grup\u0119"},
 ghO(){return"Zbanuj u\u017cytkownika w tym pokoju"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gb,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"Gb":{"aE":[]}}'))};
-(a=>{a["nLzQKr6mE/+UodXuv5MtuGM7+RQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["CKGyYiqhGrpJv79J6cqstftoXSM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

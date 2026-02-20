@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJO(){return new A.FS(B.df("fi"))},
+cJB(){return new A.FS(B.df("fi"))},
 FS:function FS(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Anna porttikielto keskusteluun"},
 gf2(){return"Porttikiellossa"},
 hs(d,e){return d+" antoi porttikiellon k\xe4ytt\xe4j\xe4lle "+e},
 ghu(){return"Est\xe4 laite"},
-gcl(){return"Estetty"},
+gcm(){return"Estetty"},
 gbw(d){return"Peruuta"},
 f4(d){return"URI-osoitetta "+d+" ei voida avata"},
 gf5(){return"Vaihda laitteen nime\xe4"},
@@ -92,7 +92,7 @@ gfa(){return"Keskustelun tiedot"},
 gfb(){return"Keskustelut"},
 ghM(){return"Valitse vahva salasana"},
 gfc(){return"Tyhjenn\xe4 arkisto"},
-gcm(d){return"Sulje"},
+gcf(d){return"Sulje"},
 glo(){return"Merkitse yksityiskeskusteluksi sy\xf6tetyn Matrix IDn kanssa"},
 glp(){return"Merkitse ryhm\xe4ksi"},
 ghO(){return"Anna sy\xf6tetylle k\xe4ytt\xe4j\xe4lle porttikielto t\xe4h\xe4n huoneeseen"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FS,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"FS":{"aE":[]}}'))};
-(a=>{a["u9kVM3qd8W8RuZByUO2RPNMTRtM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zs5lLRfl2G8fh3Zc79OA4oBoD3k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_275.part.js.map

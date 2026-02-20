@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJW(){return new A.G_(B.df("hu"))},
+cJJ(){return new A.G_(B.df("hu"))},
 G_:function G_(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Kitilt\xe1s a cseveg\xe9sb\u0151l"},
 gf2(){return"Kitiltva"},
 hs(d,e){return d+" kitiltva "+e+" \xe1ltal"},
 ghu(){return"Eszk\xf6z blokkol\xe1sa"},
-gcl(){return"Blokkolva"},
+gcm(){return"Blokkolva"},
 gbw(d){return"M\xe9gse"},
 f4(d){return"Nem siker\xfclt a k\xf6vetkez\u0151 URI megnyit\xe1sa: "+d},
 gf5(){return"Eszk\xf6zn\xe9v m\xf3dos\xedt\xe1sa"},
@@ -92,7 +92,7 @@ gfa(){return"Cseveg\xe9s r\xe9szletei"},
 gfb(){return"Cseveg\xe9sek"},
 ghM(){return"V\xe1lasszon egy er\u0151s jelsz\xf3t"},
 gfc(){return"Arch\xedvum \xfcr\xedt\xe9se"},
-gcm(d){return"Bez\xe1r"},
+gcf(d){return"Bez\xe1r"},
 glo(){return"Szoba megjel\xf6l\xe9se mint k\xf6zvetlen cseveg\u0151 szoba az adott Matrix ID-n\xe9l"},
 glp(){return"Jel\xf6l\xe9s csoportnak"},
 ghO(){return"Adott felhaszn\xe1l\xf3 kitilt\xe1sa a szob\xe1b\xf3l"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G_,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"G_":{"aE":[]}}'))};
-(a=>{a["JF/3lDK4XQzegYccN3J1d1FVCOM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["B2go3WY9LdkjpzZPRJap3k29oKg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_296.part.js.map

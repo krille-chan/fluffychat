@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJD(){return new A.FH(B.df("ca"))},
+cJq(){return new A.FH(B.df("ca"))},
 FH:function FH(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Veta del xat"},
 gf2(){return"Vetadi"},
 hs(d,e){return d+" ha vetat a "+e},
 ghu(){return"Bloca el dispositiu"},
-gcl(){return"Blocat"},
+gcm(){return"Blocat"},
 gbw(d){return"Cancel\xb7la"},
 f4(d){return"No es pot obrir l\u2019URI "+d},
 gf5(){return"Canvia el nom del dispositiu"},
@@ -92,7 +92,7 @@ gfa(){return"Detalls del xat"},
 gfb(){return"Xats"},
 ghM(){return"Trieu una contrasenya forta"},
 gfc(){return"Neteja l\u2019arxiu"},
-gcm(d){return"Tanca"},
+gcf(d){return"Tanca"},
 glo(){return"Marca com a conversa directa la sala amb aquesta ID de Matrix"},
 glp(){return"Marca com un grup"},
 ghO(){return"Veta uni usu\xe0ri\xef d'aquesta sala"},
@@ -682,5 +682,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FH,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"FH":{"aE":[]}}'))};
-(a=>{a["n81JPXxIJWmXe6d1M3RLJUI7OPw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["fMo5BO50ntJhbV49KcKCnR2+UT4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_233.part.js.map

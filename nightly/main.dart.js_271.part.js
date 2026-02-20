@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJM(){return new A.FQ(B.df("eu"))},
+cJz(){return new A.FQ(B.df("eu"))},
 FQ:function FQ(d){this.a=d}}
 B=c[0]
 C=c[56]
@@ -60,7 +60,7 @@ gf1(){return"Txatera batzeko debekua ezarri"},
 gf2(){return"Kanporatuta"},
 hs(d,e){return d+"(e)k "+e+"(r)i debekua ezarri dio"},
 ghu(){return"Blokeatu gailua"},
-gcl(){return"Blokeatuta"},
+gcm(){return"Blokeatuta"},
 gbw(d){return"Utzi"},
 f4(d){return"Ezin da "+d+" URIa ireki"},
 gf5(){return"Aldatu gailuaren izena"},
@@ -92,7 +92,7 @@ gfa(){return"Txataren xehetasunak"},
 gfb(){return"Txatak"},
 ghM(){return"Aukeratu pasahitz sendo bat"},
 gfc(){return"Ezabatu artxiboa"},
-gcm(d){return"Itxi"},
+gcf(d){return"Itxi"},
 glo(){return"Markatu mezu-zuzen gela bezala Matrix ID jakin honentzat"},
 glp(){return"Markatu talde bezala"},
 ghO(){return"Debekatu erabiltzailea gela honetan"},
@@ -683,5 +683,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FQ,C.aE)})()
 B.dK(b.typeUniverse,JSON.parse('{"FQ":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["XZV1sVuBzOI7JchMmI2zhuBWzTE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["cEl9f2V2X+3msvaUxfbBd751A6E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_271.part.js.map
