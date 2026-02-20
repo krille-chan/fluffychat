@@ -22,6 +22,7 @@ class SignInPage extends StatelessWidget {
     final theme = Theme.of(context);
     return ViewModelBuilder(
       create: () => SignInViewModel(Matrix.of(context), signUp: signUp),
+      onCreated: (context, viewModel) => viewModel.autoSsoIfEnabled(context),
       builder: (context, viewModel, _) {
         final state = viewModel.value;
         final publicHomeservers = state.filteredPublicHomeservers;

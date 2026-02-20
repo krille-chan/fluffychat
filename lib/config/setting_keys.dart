@@ -52,7 +52,8 @@ enum AppSettings<T> {
   // colorSchemeSeed stored as ARGB int
   colorSchemeSeedInt<int>('chat.fluffy.color_scheme_seed', 0xFF5625BA),
   emojiSuggestionLocale<String>('emoji_suggestion_locale', ''),
-  enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false);
+  enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false),
+  autoSsoRedirect<bool>('chat.fluffy.auto_sso_redirect', false);
 
   final String key;
   final T defaultValue;

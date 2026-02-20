@@ -25,5 +25,6 @@
   "noEncryptionWarningShown": false,
   "displayChatDetailsColumn": false,
   "colorSchemeSeedInt": 4283835834,
-  "enableSoftLogout": false
+  "enableSoftLogout": false,
+  "autoSsoRedirect": false
 }

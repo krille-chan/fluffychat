@@ -5,11 +5,13 @@ class ViewModelBuilder<T extends ValueNotifier> extends StatefulWidget {
   final Widget Function(BuildContext context, T viewModel, Widget? child)
   builder;
   final Widget? child;
+  final void Function(BuildContext context, T viewModel)? onCreated;
   const ViewModelBuilder({
     super.key,
     required this.create,
     required this.builder,
     this.child,
+    this.onCreated,
   });
 
   @override
@@ -23,6 +25,12 @@ class _ViewModelBuilderState<T extends ValueNotifier>
   @override
   void initState() {
     _viewModel = widget.create();
+    if (widget.onCreated != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        widget.onCreated!(context, _viewModel);
+      });
+    }
     super.initState();
   }
 

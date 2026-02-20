@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
 import 'package:fluffychat/pages/bootstrap/bootstrap_dialog.dart';
@@ -63,6 +64,8 @@ abstract class AppRoutes {
       redirect: (context, state) =>
           Matrix.of(context).widget.clients.any((client) => client.isLogged())
           ? '/rooms'
+          : AppSettings.autoSsoRedirect.value
+          ? '/home/sign_in'
           : '/home',
     ),
     GoRoute(
