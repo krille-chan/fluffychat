@@ -677,11 +677,11 @@ gpO(){return"FluffyChat ist dezentral! W\xe4hle einen Server, auf dem du dein Ko
 gpN(){return"Du hast bereits ein Konto bei Matrix? Willkommen zur\xfcck! W\xe4hle deinen Homeserver aus und melde dich an."},
 gpR(){return"Mit FluffyChat kannst du mit deinen Freunden chatten. Es ist ein sicherer, dezentralisierter [Matrix]-Messenger! Erfahre mehr auf https://matrix.org, wenn du m\xf6chtest, oder melde dich einfach an."},
 gpH(){return"Der Vorgang wurde abgebrochen."},
-gq1(d){return"Join"},
+gq1(d){return"Beitreten"},
 A(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FL,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FL":{"aD":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["HU+GFuuL2nHCODzPUQyA6jhxiwU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Scr+XH5U33Xm6zecljOgrNanjtQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_290.part.js.map

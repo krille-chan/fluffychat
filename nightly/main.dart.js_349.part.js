@@ -677,10 +677,10 @@ gpO(){return"FluffyChat er desentralisert! Velg en server der du vil opprette ko
 gpN(){return"Har du allerede en Matrix-konto? Velkommen tilbake! Velg hjemmeserveren din og logg inn."},
 gpR(){return"Med FluffyChat kan du chatte med vennene dine. Det er en sikker, desentralisert [matrix]-meldingsapp! Les mer p\xe5 https://matrix.org hvis du vil, eller bare registrer deg."},
 gpH(){return"Prosessen ble avbrutt."},
-gq1(d){return"Join"},
+gq1(d){return"Bli med"},
 A(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gb,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gb":{"aD":[]}}'))};
-(a=>{a["MVKhI8gt8qhTu+ImVLd3QvWdprM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["pP/ZtigSktL7o8aDIl5oW+IwaoM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_349.part.js.map

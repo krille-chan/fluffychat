@@ -393,18 +393,18 @@ gov(){return"Asiwel n ta\u0263ect"},
 gor(){return"Please note that video calls are currently in beta. They might not work as expected or work at all on all platforms."},
 glP(){return"Experimental video calls"},
 glL(){return"Email or username"},
-goS(){return"You rejected the invitation"},
-gjX(){return"You joined the chat"},
-goK(){return"\ud83d\udc4d You accepted the invitation"},
-oL(d){return"You banned "+d},
-oO(d){return"You have withdrawn the invitation for "+d},
-oP(d){return"\ud83d\udce9 You have been invited by "+d},
-oQ(d){return"\ud83d\udce9 You invited "+d},
-oR(d){return"\ud83d\udc5e You kicked "+d},
-oT(d){return"You unbanned "+d},
-m1(d){return"\ud83d\udeaa "+d+" has knocked"},
-goi(){return"Users must knock"},
-gmD(){return"No one can join"},
+goS(){return"Tugi\u1e0d tinnubga"},
+gjX(){return"Tekceme\u1e0d \u0263er udiwenni"},
+goK(){return"\ud83d\udc4d Tqeble\u1e0d tinubga"},
+oL(d){return"Tgedle\u1e0d "+d},
+oO(d){return"Tekkse\u1e0d tinnubga i "+d},
+oP(d){return"\ud83d\udce9 Tettwa\u025ber\u1e0de\u1e0d s\u0263ur "+d},
+oQ(d){return"\ud83d\udce9 T\u025ber\u1e0de\u1e0d-d "+d},
+oR(d){return"\ud83d\udc5e Tegli\u1e0d s rrkel "+d},
+oT(d){return"Tekkse\u1e0d agdel n "+d},
+m1(d){return"\ud83d\udeaa"+d+" yes\u1e6deb\u1e6dbed"},
+goi(){return"Iseqdacen yessefk ad s\u1e6deb\u1e6dben"},
+gmD(){return"Yiwen ur yezmir ad d-yernu"},
 gml(){return"Knock"},
 goh(){return"Users"},
 go9(){return"Unlock old messages"},
@@ -682,5 +682,5 @@ A(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G7,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G7":{"aD":[]}}'))};
-(a=>{a["Tx69+RW3IbjFIEUfHYj2pQHesWU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["xsiPAaVJu+k8cxcQy6OlyfljspY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

@@ -671,17 +671,17 @@ pL(d){return"Bertsioa: "+d},
 gq2(){return"Erregistroak"},
 gpa(){return"Konfigurazio aurreratua"},
 gpQ(){return"Konfigurazio aurreratua"},
-gpM(){return"Sign in"},
-gpq(){return"Create new account"},
-gpO(){return"FluffyChat is decentralized! Select a server where you want to create your account and let's go!"},
-gpN(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
-gpR(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
-gpH(){return"The process was canceled."},
-gq1(d){return"Join"},
+gpM(){return"Hasi saioa"},
+gpq(){return"Sortu kontu berria"},
+gpO(){return"FluffyChat deszentralizatua da! Hautatu zure kontua zein zerbitzaritan sortu nahi duzun, eta hasi erabiltzen!"},
+gpN(){return"Baduzu dagoeneko Matrix kontu bat? Ongi etorri berriro ere! Hautatu zure zerbitzaria eta hasi saioa."},
+gpR(){return"FluffyChat-i esker lagunekin txateatu dezakezu. [matrix]-erako mezularitza programa seguru eta deszentralizatua da! Nahi baduzu, irakurri gehiago https://matrix.org gunean, edo hasi saioa."},
+gpH(){return"Eragiketa bertan behera utzi da."},
+gq1(d){return"Batu"},
 A(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FR,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FR":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["5Xm8pGWlxWyiq+AbEUtnom0ISg8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["lfeNcFULpR9Qn+Dg4uq0NnT3yIY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map
