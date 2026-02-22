@@ -258,6 +258,7 @@ class MessageContent extends StatelessWidget {
             }
 
             final bigEmotes =
+                !html.contains('mxc://') &&
                 event.onlyEmotes &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 3;
