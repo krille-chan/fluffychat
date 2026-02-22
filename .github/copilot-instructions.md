@@ -36,12 +36,3 @@ Check the relevant `.github/instructions/` doc before and after coding. If it do
 - API repo files pair with request/response models (e.g., `igc_repo.dart` + `igc_request_model.dart` + `igc_response_model.dart`)
 - Controllers extend `ChangeNotifier` or use `BaseController<T>` (stream-based)
 
-## Documentation
-
-Detailed guides auto-load from `.github/instructions/` when editing matching files:
-
-| File | Applies To | Content |
-|------|-----------|---------|
-| `modules.instructions.md` | `lib/pangea/**` | Full map of ~30 feature modules |
-| `choreographer.instructions.md` | `lib/pangea/choreographer/**` | Writing assistance flow (IGC, IT, text editing) |
-| `events-and-tokens.instructions.md` | `lib/pangea/events/**,lib/pangea/extensions/**` | Custom Matrix events, token model, event wrappers |

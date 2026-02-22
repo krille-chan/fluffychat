@@ -4,6 +4,8 @@ applyTo: "lib/pangea/**"
 
 # Pangea Feature Modules (`lib/pangea/`)
 
+See also: [UX Priorities](../../../.github/instructions/ux-priorities.instructions.md) | [Design System](../../../.github/instructions/design-system.instructions.md)
+
 Each subdirectory is a self-contained feature module. This doc provides the full map.
 
 ## Core Infrastructure
