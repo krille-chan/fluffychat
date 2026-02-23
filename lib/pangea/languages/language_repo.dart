@@ -4,13 +4,11 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 
 import 'package:async/async.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
-import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/languages/language_model.dart';
-import '../common/network/requests.dart';
 
 class LanguageRepo {
   static Future<Result<List<LanguageModel>>> get() async {
@@ -22,21 +20,27 @@ class LanguageRepo {
     }
   }
 
+  /// Fetches languages directly from CMS REST API (public, no auth required).
   static Future<List<LanguageModel>> _fetch() async {
-    final Requests req = Requests(choreoApiKey: Environment.choreoApiKey);
+    final response = await http.get(
+      Uri.parse('${PApiUrls.cmsLanguages}?limit=500&sort=language_name'),
+      headers: {'Accept': 'application/json'},
+    );
 
-    final Response res = await req.get(url: PApiUrls.getLanguages);
-
-    if (res.statusCode != 200) {
+    if (response.statusCode != 200) {
       throw Exception(
-        'Failed to fetch languages: ${res.statusCode} ${res.reasonPhrase}',
+        'Failed to fetch languages from CMS: ${response.statusCode} ${response.reasonPhrase}',
       );
     }
 
-    return (jsonDecode(utf8.decode(res.bodyBytes)) as List)
+    final json =
+        jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, dynamic>;
+    final docs = json['docs'] as List;
+
+    return docs
         .map((e) {
           try {
-            return LanguageModel.fromJson(e);
+            return LanguageModel.fromJson(e as Map<String, dynamic>);
           } catch (err, stack) {
             debugger(when: kDebugMode);
             ErrorHandler.logError(e: err, s: stack, data: e);

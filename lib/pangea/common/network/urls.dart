@@ -21,7 +21,8 @@ class PApiUrls {
   static String appVersion = "${PApiUrls._choreoEndpoint}/version";
 
   ///   ---------------------- Languages --------------------------------------
-  static String getLanguages = "${PApiUrls._choreoEndpoint}/languages_v2";
+  /// CMS REST API endpoint for languages (public, no auth required)
+  static String cmsLanguages = "${Environment.cmsApi}/cms/api/languages";
 
   ///   ---------------------- Users --------------------------------------
   static String paymentLink = "${PApiUrls._subscriptionEndpoint}/payment_link";
