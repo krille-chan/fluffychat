@@ -2,13 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:shimmer/shimmer.dart';
-
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/activity_chat_extension.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
+import 'package:fluffychat/pangea/common/widgets/shimmer_background.dart';
 import 'package:fluffychat/pangea/common/widgets/tutorial_overlay_message.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
@@ -99,16 +97,6 @@ class _ActivityMenuButtonState extends State<ActivityMenuButton> {
       tooltip: L10n.of(context).activityStatsButtonTooltip,
       onPressed: widget.controller.toggleShowDropdown,
     );
-    return AnimatedSwitcher(
-      duration: const Duration(milliseconds: 300),
-      child: _showShimmer
-          ? Shimmer.fromColors(
-              enabled: _showShimmer,
-              baseColor: Theme.of(context).iconTheme.color!,
-              highlightColor: AppConfig.gold,
-              child: content,
-            )
-          : content,
-    );
+    return ShimmerBackground(enabled: _showShimmer, child: content);
   }
 }
