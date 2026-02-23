@@ -198,3 +198,27 @@ jobs:
       - name: AWS CloudFront Invalidation
         run: |
           aws cloudfront create-invalidation --distribution-id $CF_DISTRIBUTION_ID --paths "/*"
+
+  update_sentry:
+    runs-on: ubuntu-latest
+    needs: build_web
+    environment: production
+    env:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+      SENTRY_PROJECT: client
+      SENTRY_ORG: pangea-chat
+    steps:
+      - uses: actions/checkout@v6
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+      - name: Download web
+        uses: actions/download-artifact@v4
+        with:
+          name: web
+          path: build/web
+      - name: Update packages
+        run: flutter pub get
+      - name: Upload source maps to Sentry
+        run: flutter packages pub run sentry_dart_plugin

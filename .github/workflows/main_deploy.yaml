@@ -76,9 +76,8 @@ jobs:
     environment: staging
     env:
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      SENTRY_RELEASE: ${{ github.sha }}
-      SENTRY_PROJECT: ${{ vars.SENTRY_PROJECT }}
-      SENTRY_ORG: ${{ vars.SENTRY_ORG }}
+      SENTRY_PROJECT: client
+      SENTRY_ORG: pangea-chat
     steps:
       - uses: actions/checkout@v6
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
