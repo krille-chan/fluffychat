@@ -83,7 +83,7 @@ extension BotClientExtension on Client {
     // bot settings exist
     r.botOptions != null &&
         // there is no activity plan
-        r.activityPlan == null &&
+        !r.showActivityChatUI &&
         // it's just the bot and one other user in the room
         r.summary.mJoinedMemberCount == 2 &&
         r.getParticipants().any((u) => u.id == BotName.byEnvironment);
