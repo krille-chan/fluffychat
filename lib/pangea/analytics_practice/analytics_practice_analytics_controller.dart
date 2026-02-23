@@ -1,9 +1,7 @@
 import 'package:fluffychat/pangea/analytics_data/analytics_data_service.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -24,21 +22,26 @@ class AnalyticsPracticeAnalyticsController {
   ) => analyticsService.updateService.addAnalytics(targetId, uses, language);
 
   Future<void> addSkippedActivityAnalytics(
-    PangeaToken token,
-    ConstructTypeEnum type,
+    PracticeTarget target,
     String language,
   ) async {
-    final use = OneConstructUse(
-      useType: ConstructUseTypeEnum.ignPA,
-      constructType: type,
-      metadata: ConstructUseMetaData(roomId: null, timeStamp: DateTime.now()),
-      category: token.pos,
-      lemma: token.lemma.text,
-      form: token.lemma.text,
-      xp: 0,
-    );
-
-    await analyticsService.updateService.addAnalytics(null, [use], language);
+    final uses = target.tokens
+        .map(
+          (t) => OneConstructUse(
+            useType: ConstructUseTypeEnum.ignPA,
+            constructType: target.activityType.constructUsesType,
+            metadata: ConstructUseMetaData(
+              roomId: null,
+              timeStamp: DateTime.now(),
+            ),
+            category: t.pos,
+            lemma: t.lemma.text,
+            form: t.lemma.text,
+            xp: 0,
+          ),
+        )
+        .toList();
+    await analyticsService.updateService.addAnalytics(null, uses, language);
   }
 
   Future<void> addSessionAnalytics(

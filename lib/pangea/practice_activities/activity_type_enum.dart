@@ -252,4 +252,17 @@ enum ActivityTypeEnum {
         return _grammarPracticeTypes;
     }
   }
+
+  /// The type of construct uses that these activities produce.
+  /// NOTE: Grammar error activities create vocab uses, assosiated with the tokens in the
+  /// targeted error span – NOT morph uses.
+  ConstructTypeEnum get constructUsesType {
+    switch (this) {
+      case ActivityTypeEnum.grammarCategory:
+      case ActivityTypeEnum.morphId:
+        return ConstructTypeEnum.morph;
+      default:
+        return ConstructTypeEnum.vocab;
+    }
+  }
 }

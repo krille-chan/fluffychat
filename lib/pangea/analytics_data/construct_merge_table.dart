@@ -23,8 +23,7 @@ class ConstructMergeTable {
   ) {
     for (final use in uses) {
       final id = use.identifier;
-      if (exclude.contains(id)) continue;
-      if (id.category == 'other') continue;
+      if (exclude.contains(id) || id.isInvalid) continue;
 
       final composite = id.compositeKey;
       (lemmaTypeGroups[composite] ??= {}).add(id);
@@ -32,8 +31,7 @@ class ConstructMergeTable {
 
     for (final use in uses) {
       final id = use.identifier;
-      if (exclude.contains(id)) continue;
-      if (id.category == 'other') continue;
+      if (exclude.contains(id) || id.isInvalid) continue;
 
       final group = lemmaTypeGroups[id.compositeKey];
       if (group == null) continue;
@@ -71,7 +69,7 @@ class ConstructMergeTable {
     Set<ConstructIdentifier> exclude,
   ) {
     final keys = <ConstructIdentifier>[];
-    if (exclude.contains(id) || id.category == 'other') {
+    if (exclude.contains(id) || id.isInvalid) {
       return keys;
     }
 

@@ -314,8 +314,7 @@ class AnalyticsPracticeState extends State<AnalyticsPractice>
     // Record a 0 XP use so that activity isn't chosen again soon
     _sessionController.skipActivity();
     await _analyticsController.addSkippedActivityAnalytics(
-      request.target.tokens.first,
-      widget.type,
+      request.target,
       _l2!.langCodeShort,
     );
   }

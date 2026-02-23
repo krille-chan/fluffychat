@@ -37,7 +37,6 @@ class ConstructIdentifier {
     if (type == ConstructTypeEnum.morph &&
         MorphFeaturesEnumExtension.fromString(category) ==
             MorphFeaturesEnum.Unknown) {
-      debugger(when: kDebugMode);
       ErrorHandler.logError(
         e: Exception("Morph feature not found"),
         data: {"category": category, "lemma": lemma, "type": type},
@@ -97,8 +96,8 @@ class ConstructIdentifier {
         other.lemma == lemma &&
         other.type == type &&
         (category == other.category ||
-            category.toLowerCase() == "other" ||
-            other.category.toLowerCase() == "other");
+            category.toLowerCase() == 'other' ||
+            other.category.toLowerCase() == 'other');
   }
 
   @override
@@ -190,4 +189,10 @@ class ConstructIdentifier {
       (isContentWord
           ? AnalyticsConstants.contentWordMultiplier
           : AnalyticsConstants.functionWordMultiplier);
+
+  bool get isInvalid =>
+      (type == ConstructTypeEnum.morph &&
+          MorphFeaturesEnumExtension.fromString(category) ==
+              MorphFeaturesEnum.Unknown) ||
+      category == 'other';
 }

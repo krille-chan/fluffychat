@@ -1,6 +1,5 @@
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_practice/analytics_practice_session_model.dart';
@@ -241,7 +240,7 @@ sealed class MultipleChoicePracticeActivityModel extends PracticeActivityModel {
         .map(
           (token) => OneConstructUse(
             useType: useType,
-            constructType: ConstructTypeEnum.vocab,
+            constructType: activityType.constructUsesType,
             metadata: ConstructUseMetaData(
               roomId: null,
               timeStamp: DateTime.now(),
@@ -310,7 +309,7 @@ sealed class MorphPracticeActivityModel
         .map(
           (token) => OneConstructUse(
             useType: useType,
-            constructType: ConstructTypeEnum.morph,
+            constructType: activityType.constructUsesType,
             metadata: ConstructUseMetaData(
               roomId: null,
               timeStamp: DateTime.now(),
@@ -390,7 +389,7 @@ class VocabAudioPracticeActivityModel
     return [
       OneConstructUse(
         useType: useType,
-        constructType: ConstructTypeEnum.vocab,
+        constructType: activityType.constructUsesType,
         metadata: ConstructUseMetaData(roomId: null, timeStamp: DateTime.now()),
         category: matchingToken.pos,
         lemma: matchingToken.lemma.text,

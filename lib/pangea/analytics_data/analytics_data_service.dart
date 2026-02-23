@@ -273,7 +273,7 @@ class AnalyticsDataService {
     final Map<ConstructIdentifier, DateTime?> cappedLastUseCache = {};
     for (final use in uses) {
       if (blocked.contains(use.identifier)) continue;
-      if (use.category == 'other') continue;
+      if (use.identifier.isInvalid) continue;
 
       if (!cappedLastUseCache.containsKey(use.identifier)) {
         final constructs = await getConstructUse(use.identifier, language);
