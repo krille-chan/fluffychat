@@ -4476,7 +4476,7 @@
   "playWithAI": "Παίξτε με την Τεχνητή Νοημοσύνη προς το παρόν",
   "courseStartDesc": "Ο Pangea Bot είναι έτοιμος να ξεκινήσει οποιαδήποτε στιγμή!\n\n...αλλά η μάθηση είναι καλύτερη με φίλους!",
   "@@locale": "el",
-  "@@last_modified": "2026-02-24 14:08:06.582546",
+  "@@last_modified": "2026-02-24 14:59:51.305832",
   "@checkList": {
     "type": "String",
     "placeholders": {}
@@ -12452,6 +12452,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Απαγορευμένο. Αδυναμία συμμετοχής.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

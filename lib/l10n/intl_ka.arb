@@ -2590,7 +2590,7 @@
   "playWithAI": "ამ დროისთვის ითამაშეთ AI-თან",
   "courseStartDesc": "Pangea Bot მზადაა ნებისმიერ დროს გასასვლელად!\n\n...მაგრამ სწავლა უკეთესია მეგობრებთან ერთად!",
   "@@locale": "ka",
-  "@@last_modified": "2026-02-24 14:08:19.939195",
+  "@@last_modified": "2026-02-24 14:59:56.446964",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12457,6 +12457,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "კრძალულია. გაწვდილი ვერ შეძლებთ.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

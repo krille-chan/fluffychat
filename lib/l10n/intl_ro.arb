@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:06:30.605901",
+  "@@last_modified": "2026-02-24 14:59:20.082703",
   "about": "Despre",
   "@about": {
     "type": "String",
@@ -12162,6 +12162,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Interzis. Nu se poate alătura.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

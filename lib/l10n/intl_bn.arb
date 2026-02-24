@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:07:54.538475",
+  "@@last_modified": "2026-02-24 14:59:47.679831",
   "about": "সম্পর্কে",
   "@about": {
     "type": "String",
@@ -12037,6 +12037,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "নিষিদ্ধ। যোগদান করতে অক্ষম।",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

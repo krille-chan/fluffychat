@@ -1,6 +1,6 @@
 {
   "@@locale": "ru",
-  "@@last_modified": "2026-02-24 14:08:16.864653",
+  "@@last_modified": "2026-02-24 14:59:55.748204",
   "about": "О проекте",
   "@about": {
     "type": "String",
@@ -11293,6 +11293,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Запрещено. Невозможно присоединиться.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

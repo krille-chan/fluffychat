@@ -1,6 +1,6 @@
 {
   "@@locale": "et",
-  "@@last_modified": "2026-02-24 14:06:53.185438",
+  "@@last_modified": "2026-02-24 14:59:27.455277",
   "about": "Rakenduse teave",
   "@about": {
     "type": "String",
@@ -11567,6 +11567,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Keelatud. Liitumine ei õnnestu.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

@@ -5352,5 +5352,6 @@
   "denyKnockSpace": "User will be rejected from course, however they may attempt to rejoin any time later.",
   "denyKnockChat": "User will be rejected from chat, however they may attempt to rejoin any time later.",
   "banFromSpace": "Ban from course",
-  "unbanFromSpace": "Unban from course"
+  "unbanFromSpace": "Unban from course",
+  "cannotJoinBannedRoom": "Banned. Unable to join."
 }

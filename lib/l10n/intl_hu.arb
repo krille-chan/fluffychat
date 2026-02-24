@@ -1,6 +1,6 @@
 {
   "@@locale": "hu",
-  "@@last_modified": "2026-02-24 14:06:25.455284",
+  "@@last_modified": "2026-02-24 14:59:18.503383",
   "about": "Névjegy",
   "@about": {
     "type": "String",
@@ -11430,6 +11430,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Kitiltva. Nem lehet csatlakozni.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

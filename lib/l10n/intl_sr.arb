@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:08:23.520286",
+  "@@last_modified": "2026-02-24 14:59:57.459309",
   "about": "О програму",
   "@about": {
     "type": "String",
@@ -12523,6 +12523,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Zabranjeno. Nije moguće pridružiti se.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

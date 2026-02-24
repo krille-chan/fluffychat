@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:06:51.043211",
+  "@@last_modified": "2026-02-24 14:59:26.541602",
   "copiedToClipboard": "Copiada para a área de transferência",
   "@copiedToClipboard": {
     "type": "String",
@@ -12514,6 +12514,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Banido. Impossível de entrar.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

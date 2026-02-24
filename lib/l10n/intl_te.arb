@@ -1916,7 +1916,7 @@
   "playWithAI": "ఇప్పుడే AI తో ఆడండి",
   "courseStartDesc": "పాంజియా బాట్ ఎప్పుడైనా సిద్ధంగా ఉంటుంది!\n\n...కానీ స్నేహితులతో నేర్చుకోవడం మెరుగైనది!",
   "@@locale": "te",
-  "@@last_modified": "2026-02-24 14:07:37.337077",
+  "@@last_modified": "2026-02-24 14:59:42.206776",
   "@setCustomPermissionLevel": {
     "type": "String",
     "placeholders": {}
@@ -12516,6 +12516,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "నిషేధించబడింది. చేరలేను.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

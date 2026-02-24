@@ -1,6 +1,6 @@
 {
   "@@locale": "pl",
-  "@@last_modified": "2026-02-24 14:07:59.566967",
+  "@@last_modified": "2026-02-24 14:59:49.576687",
   "about": "O aplikacji",
   "@about": {
     "type": "String",
@@ -11415,6 +11415,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Zbanowany. Nie można dołączyć.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

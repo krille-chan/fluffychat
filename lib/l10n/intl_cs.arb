@@ -1,6 +1,6 @@
 {
   "@@locale": "cs",
-  "@@last_modified": "2026-02-24 14:07:07.947244",
+  "@@last_modified": "2026-02-24 14:59:31.949116",
   "about": "O aplikaci",
   "@about": {
     "type": "String",
@@ -11865,6 +11865,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Zákaz. Nelze se připojit.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

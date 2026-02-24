@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:07:56.939761",
+  "@@last_modified": "2026-02-24 14:59:48.860067",
   "repeatPassword": "تکرار گذرواژه",
   "@repeatPassword": {},
   "about": "درباره",
@@ -11414,6 +11414,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "ممنوع. قادر به پیوستن نیستید.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

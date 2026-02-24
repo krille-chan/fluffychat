@@ -2460,7 +2460,7 @@
   "playWithAI": "Za zdaj igrajte z AI-jem",
   "courseStartDesc": "Pangea Bot je pripravljen kadarkoli!\n\n...ampak je bolje učiti se s prijatelji!",
   "@@locale": "sl",
-  "@@last_modified": "2026-02-24 14:06:57.605334",
+  "@@last_modified": "2026-02-24 14:59:28.892881",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12508,6 +12508,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Prepovedano. Ne morete se pridružiti.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

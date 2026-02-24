@@ -3857,7 +3857,7 @@
   "playWithAI": "Žaiskite su dirbtiniu intelektu dabar",
   "courseStartDesc": "Pangea botas pasiruošęs bet kada pradėti!\n\n...bet mokymasis yra geresnis su draugais!",
   "@@locale": "lt",
-  "@@last_modified": "2026-02-24 14:07:39.673937",
+  "@@last_modified": "2026-02-24 14:59:43.333670",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12232,6 +12232,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Užblokuota. Negalima prisijungti.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:08:14.712700",
+  "@@last_modified": "2026-02-24 14:59:53.981596",
   "about": "Prio",
   "@about": {
     "type": "String",
@@ -12516,6 +12516,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Malpermesita. Ne eblas eniri.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

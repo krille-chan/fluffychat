@@ -4639,7 +4639,7 @@
   "playWithAI": "Imir le AI faoi láthair",
   "courseStartDesc": "Tá Bot Pangea réidh chun dul am ar bith!\n\n...ach is fearr foghlaim le cairde!",
   "@@locale": "ga",
-  "@@last_modified": "2026-02-24 14:08:25.895629",
+  "@@last_modified": "2026-02-24 14:59:58.265720",
   "@writeAMessageLangCodes": {
     "type": "String",
     "placeholders": {
@@ -11304,6 +11304,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Díothaithe. Ní féidir leat dul isteach.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

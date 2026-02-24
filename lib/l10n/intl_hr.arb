@@ -1,6 +1,6 @@
 {
   "@@locale": "hr",
-  "@@last_modified": "2026-02-24 14:06:38.210241",
+  "@@last_modified": "2026-02-24 14:59:22.923310",
   "about": "Informacije",
   "@about": {
     "type": "String",
@@ -11786,6 +11786,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Zabranjeno. Nije moguće pridružiti se.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

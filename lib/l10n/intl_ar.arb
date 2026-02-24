@@ -1,6 +1,6 @@
 {
   "@@locale": "ar",
-  "@@last_modified": "2026-02-24 14:07:31.856269",
+  "@@last_modified": "2026-02-24 14:59:40.158437",
   "about": "حول",
   "@about": {
     "type": "String",
@@ -11643,6 +11643,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "ممنوع. غير قادر على الانضمام.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

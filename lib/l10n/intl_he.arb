@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:06:40.633331",
+  "@@last_modified": "2026-02-24 14:59:23.521541",
   "about": "אודות",
   "@about": {
     "type": "String",
@@ -12476,6 +12476,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "אסור. לא ניתן להצטרף.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

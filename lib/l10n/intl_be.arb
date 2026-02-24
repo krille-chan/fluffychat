@@ -4619,7 +4619,7 @@
   "playWithAI": "Пакуль гуляйце з ШІ",
   "courseStartDesc": "Pangea Bot гатовы да працы ў любы час!\n\n...але навучанне лепш з сябрамі!",
   "@@locale": "be",
-  "@@last_modified": "2026-02-24 14:07:12.657085",
+  "@@last_modified": "2026-02-24 14:59:33.504013",
   "@ignore": {
     "type": "String",
     "placeholders": {}
@@ -11312,6 +11312,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Забаронена. Нельга далучыцца.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:07:47.165721",
+  "@@last_modified": "2026-02-24 14:59:45.694424",
   "about": "Over ons",
   "@about": {
     "type": "String",
@@ -11293,6 +11293,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Verbannen. Kan niet deelnemen.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

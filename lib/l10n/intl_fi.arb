@@ -4604,7 +4604,7 @@
   "playWithAI": "Leiki tekoälyn kanssa nyt",
   "courseStartDesc": "Pangea Bot on valmis milloin tahansa!\n\n...mutta oppiminen on parempaa ystävien kanssa!",
   "@@locale": "fi",
-  "@@last_modified": "2026-02-24 14:06:18.288132",
+  "@@last_modified": "2026-02-24 14:59:16.651035",
   "@notificationRuleJitsi": {
     "type": "String",
     "placeholders": {}
@@ -11352,6 +11352,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Kielletty. Ei voi liittyä.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

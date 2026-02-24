@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "@@last_modified": "2026-02-24 14:06:13.423452",
+  "@@last_modified": "2026-02-24 14:59:14.844768",
   "about": "Acerca de",
   "@about": {
     "type": "String",
@@ -8603,6 +8603,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Prohibido. No se puede unirse.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

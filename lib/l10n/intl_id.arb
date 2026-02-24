@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:06:27.307387",
+  "@@last_modified": "2026-02-24 14:59:19.093750",
   "setAsCanonicalAlias": "Atur sebagai alias utama",
   "@setAsCanonicalAlias": {
     "type": "String",
@@ -11399,6 +11399,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Dilarang. Tidak dapat bergabung.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

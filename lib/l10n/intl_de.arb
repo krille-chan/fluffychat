@@ -1,6 +1,6 @@
 {
   "@@locale": "de",
-  "@@last_modified": "2026-02-24 14:06:54.935271",
+  "@@last_modified": "2026-02-24 14:59:28.164745",
   "alwaysUse24HourFormat": "true",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
@@ -11282,6 +11282,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Gesperrt. Kann nicht beitreten.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

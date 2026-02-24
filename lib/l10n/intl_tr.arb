@@ -1,6 +1,6 @@
 {
   "@@locale": "tr",
-  "@@last_modified": "2026-02-24 14:07:34.062541",
+  "@@last_modified": "2026-02-24 14:59:41.166599",
   "about": "Hakkında",
   "@about": {
     "type": "String",
@@ -11633,6 +11633,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Yasaklı. Katılamıyor.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

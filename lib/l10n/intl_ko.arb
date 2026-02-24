@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:06:10.800757",
+  "@@last_modified": "2026-02-24 14:59:13.645300",
   "about": "소개",
   "@about": {
     "type": "String",
@@ -11519,6 +11519,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "금지됨. 참여할 수 없습니다.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

@@ -1,6 +1,6 @@
 {
   "@@locale": "fr",
-  "@@last_modified": "2026-02-24 14:08:28.129954",
+  "@@last_modified": "2026-02-24 14:59:58.898976",
   "about": "À propos",
   "@about": {
     "type": "String",
@@ -11699,6 +11699,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Banni. Impossible de rejoindre.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

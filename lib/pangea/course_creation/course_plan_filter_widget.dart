@@ -1,7 +1,9 @@
-import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:fluffychat/pangea/common/widgets/dropdown_text_button.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:dropdown_button2/dropdown_button2.dart';
+
+import 'package:fluffychat/pangea/common/widgets/dropdown_text_button.dart';
 
 class CoursePlanFilter<T> extends StatefulWidget {
   final T? value;

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:07:22.180777",
+  "@@last_modified": "2026-02-24 14:59:36.723188",
   "about": "關於",
   "@about": {
     "type": "String",
@@ -11432,6 +11432,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "已被禁止。無法加入。",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

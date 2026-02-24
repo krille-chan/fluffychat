@@ -1852,7 +1852,7 @@
   "selectAll": "全選",
   "deselectAll": "取消全選",
   "@@locale": "yue",
-  "@@last_modified": "2026-02-24 14:07:00.106729",
+  "@@last_modified": "2026-02-24 14:59:29.472390",
   "@ignoreUser": {
     "type": "String",
     "placeholders": {}
@@ -12523,6 +12523,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "被禁止。無法加入。",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

@@ -3327,7 +3327,7 @@
   "selectAll": "Selecionar tudo",
   "deselectAll": "Desmarcar tudo",
   "@@locale": "pt_PT",
-  "@@last_modified": "2026-02-24 14:07:19.640963",
+  "@@last_modified": "2026-02-24 14:59:36.068751",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12461,6 +12461,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Banido. Impossível entrar.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

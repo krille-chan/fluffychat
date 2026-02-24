@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:07:41.921134",
+  "@@last_modified": "2026-02-24 14:59:44.047251",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -7010,6 +7010,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Bị cấm. Không thể tham gia.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

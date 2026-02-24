@@ -1,6 +1,6 @@
 {
   "@@locale": "zh",
-  "@@last_modified": "2026-02-24 14:07:51.516110",
+  "@@last_modified": "2026-02-24 14:59:46.957191",
   "about": "关于",
   "@about": {
     "type": "String",
@@ -11293,6 +11293,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "被禁止。无法加入。",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

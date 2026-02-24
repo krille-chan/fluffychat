@@ -71,6 +71,12 @@ extension LocalizedExceptionExtension on Object {
         // #Pangea
         case MatrixError.M_THREEPID_AUTH_FAILED:
           return L10n.of(context).emailVerificationFailed;
+        case MatrixError.M_BAD_STATE:
+          if ((this as MatrixException).errorMessage.contains(
+            "Cannot knock user who was banned",
+          )) {
+            return L10n.of(context).cannotJoinBannedRoom;
+          }
         // Pangea#
         default:
           if (exceptionContext == ExceptionContext.joinRoom) {

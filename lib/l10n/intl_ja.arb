@@ -1,6 +1,6 @@
 {
   "@@locale": "ja",
-  "@@last_modified": "2026-02-24 14:08:08.571367",
+  "@@last_modified": "2026-02-24 14:59:52.226358",
   "about": "このアプリについて",
   "@about": {
     "type": "String",
@@ -12217,6 +12217,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "禁止されています。参加できません。",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

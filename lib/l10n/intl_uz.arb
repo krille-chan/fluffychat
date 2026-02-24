@@ -3495,7 +3495,7 @@
   "setupChatBackup": "Chat zaxirasini sozlash",
   "@setupChatBackup": {},
   "@@locale": "uz",
-  "@@last_modified": "2026-02-24 14:07:24.640074",
+  "@@last_modified": "2026-02-24 14:59:37.791267",
   "noMoreResultsFound": "Boshqa natijalar topilmadi",
   "chatSearchedUntil": "Chat {time} gacha qidirildi",
   "federationBaseUrl": "Federatsiya Asos URL",
@@ -11187,6 +11187,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Ta'qiqlangan. Qo'shilish mumkin emas.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

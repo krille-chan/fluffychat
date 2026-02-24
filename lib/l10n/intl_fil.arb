@@ -2783,7 +2783,7 @@
   "selectAll": "Piliin lahat",
   "deselectAll": "Huwag piliin lahat",
   "@@locale": "fil",
-  "@@last_modified": "2026-02-24 14:07:27.103408",
+  "@@last_modified": "2026-02-24 14:59:38.624762",
   "@setCustomPermissionLevel": {
     "type": "String",
     "placeholders": {}
@@ -12408,6 +12408,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Bawal. Hindi makapasok.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

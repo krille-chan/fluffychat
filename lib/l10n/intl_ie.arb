@@ -4000,7 +4000,7 @@
   "playWithAI": "Joca con AI pro ora",
   "courseStartDesc": "Pangea Bot es preste a partir a qualunque momento!\n\n...ma apprender es melior con amicos!",
   "@@locale": "ie",
-  "@@last_modified": "2026-02-24 14:06:35.605465",
+  "@@last_modified": "2026-02-24 14:59:21.774012",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12041,6 +12041,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "Banned. Unable to join.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }

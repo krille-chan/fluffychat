@@ -3999,7 +3999,7 @@
   "playWithAI": "เล่นกับ AI ชั่วคราว",
   "courseStartDesc": "Pangea Bot พร้อมที่จะเริ่มต้นได้ทุกเมื่อ!\n\n...แต่การเรียนรู้ดีกว่ากับเพื่อน!",
   "@@locale": "th",
-  "@@last_modified": "2026-02-24 14:07:17.264437",
+  "@@last_modified": "2026-02-24 14:59:35.264857",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12040,6 +12040,11 @@
     "placeholders": {}
   },
   "@unbanFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cannotJoinBannedRoom": "ถูกแบน ไม่สามารถเข้าร่วมได้.",
+  "@cannotJoinBannedRoom": {
     "type": "String",
     "placeholders": {}
   }
