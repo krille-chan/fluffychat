@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -24,7 +23,7 @@ class ShareRoomButton extends StatelessWidget {
     return PopupMenuButton(
       useRootNavigator: true,
       tooltip: L10n.of(context).shareCourse,
-      child: const Icon(Symbols.upload),
+      child: const Icon(Icons.share_outlined),
       onSelected: (value) async {
         final spaceCode = room.classCode!;
         String toCopy = spaceCode;
