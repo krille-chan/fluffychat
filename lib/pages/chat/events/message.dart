@@ -563,22 +563,24 @@ class Message extends StatelessWidget {
                                                                     .color
                                                               : displayname
                                                                     .lightColorText),
-                                                          shadows:
-                                                              !wallpaperMode
-                                                              ? null
-                                                              : [
-                                                                  const Shadow(
-                                                                    offset:
-                                                                        Offset(
-                                                                          0.0,
-                                                                          0.0,
-                                                                        ),
-                                                                    blurRadius:
-                                                                        3,
-                                                                    color: Colors
-                                                                        .black,
-                                                                  ),
-                                                                ],
+                                                          // #Pangea
+                                                          // shadows:
+                                                          //     !wallpaperMode
+                                                          //     ? null
+                                                          //     : [
+                                                          //         const Shadow(
+                                                          //           offset:
+                                                          //               Offset(
+                                                          //                 0.0,
+                                                          //                 0.0,
+                                                          //               ),
+                                                          //           blurRadius:
+                                                          //               3,
+                                                          //           color: Colors
+                                                          //               .black,
+                                                          //         ),
+                                                          //       ],
+                                                          // Pangea#
                                                         ),
                                                         maxLines: 1,
                                                         overflow: TextOverflow
