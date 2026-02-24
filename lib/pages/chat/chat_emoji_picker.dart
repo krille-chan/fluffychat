@@ -30,14 +30,14 @@ class ChatEmojiPicker extends StatelessWidget {
               // Pangea#
               child: Column(
                 children: [
-                  TabBar(
-                    tabs: [
-                      Tab(text: L10n.of(context).emojis),
-                      // #Pangea
-                      // Tab(text: L10n.of(context).stickers),
-                      // Pangea#
-                    ],
-                  ),
+                  // #Pangea
+                  // TabBar(
+                  //   tabs: [
+                  //     Tab(text: L10n.of(context).emojis),
+                  //     Tab(text: L10n.of(context).stickers),
+                  //   ],
+                  // ),
+                  // Pangea#
                   Expanded(
                     child: TabBarView(
                       children: [
@@ -54,16 +54,23 @@ class ChatEmojiPicker extends StatelessWidget {
                             bottomActionBarConfig: BottomActionBarConfig(
                               // #Pangea
                               // enabled: false,
-                              showBackspaceButton: false,
-                              backgroundColor: Theme.of(
-                                context,
-                              ).colorScheme.surfaceContainer,
-                              buttonColor: Theme.of(
-                                context,
-                              ).colorScheme.surfaceContainer,
-                              buttonIconColor: Theme.of(
-                                context,
-                              ).colorScheme.onSurface,
+                              customBottomActionBar:
+                                  (config, state, showSearchView) => Container(
+                                    decoration: BoxDecoration(
+                                      color: theme.colorScheme.surfaceContainer,
+                                    ),
+                                    child: InkWell(
+                                      onTap: showSearchView,
+                                      child: Row(
+                                        children: [
+                                          const Padding(
+                                            padding: EdgeInsets.all(12.0),
+                                            child: Icon(Icons.search),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                               // Pangea#
                             ),
                             categoryViewConfig: CategoryViewConfig(
