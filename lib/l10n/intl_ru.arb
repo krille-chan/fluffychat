@@ -1,6 +1,6 @@
 {
   "@@locale": "ru",
-  "@@last_modified": "2026-02-18 13:04:06.873611",
+  "@@last_modified": "2026-02-24 14:08:16.864653",
   "about": "О проекте",
   "@about": {
     "type": "String",
@@ -11273,6 +11273,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Пользователь будет отклонен от курса, однако он может попытаться вернуться в любое время позже.",
+  "denyKnockChat": "Пользователь будет отклонен от чата, однако он может попытаться вернуться в любое время позже.",
+  "banFromSpace": "Запрет на участие в курсе",
+  "unbanFromSpace": "Разрешить участие в курсе",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

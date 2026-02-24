@@ -4604,7 +4604,7 @@
   "playWithAI": "Leiki tekoälyn kanssa nyt",
   "courseStartDesc": "Pangea Bot on valmis milloin tahansa!\n\n...mutta oppiminen on parempaa ystävien kanssa!",
   "@@locale": "fi",
-  "@@last_modified": "2026-02-18 13:03:08.156623",
+  "@@last_modified": "2026-02-24 14:06:18.288132",
   "@notificationRuleJitsi": {
     "type": "String",
     "placeholders": {}
@@ -11332,6 +11332,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Käyttäjä hylätään kurssilta, mutta he voivat yrittää liittyä uudelleen milloin tahansa myöhemmin.",
+  "denyKnockChat": "Käyttäjä hylätään chatista, mutta he voivat yrittää liittyä uudelleen milloin tahansa myöhemmin.",
+  "banFromSpace": "Kielto kurssilta",
+  "unbanFromSpace": "Kielto poistettu kurssilta",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

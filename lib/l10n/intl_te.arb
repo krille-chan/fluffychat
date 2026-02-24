@@ -1916,7 +1916,7 @@
   "playWithAI": "ఇప్పుడే AI తో ఆడండి",
   "courseStartDesc": "పాంజియా బాట్ ఎప్పుడైనా సిద్ధంగా ఉంటుంది!\n\n...కానీ స్నేహితులతో నేర్చుకోవడం మెరుగైనది!",
   "@@locale": "te",
-  "@@last_modified": "2026-02-18 13:03:50.930737",
+  "@@last_modified": "2026-02-24 14:07:37.337077",
   "@setCustomPermissionLevel": {
     "type": "String",
     "placeholders": {}
@@ -12496,6 +12496,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "వాడుకరి కోర్సు నుండి తిరస్కరించబడతారు, అయితే వారు ఎప్పుడైనా మళ్లీ చేరడానికి ప్రయత్నించవచ్చు.",
+  "denyKnockChat": "వాడుకరి చాట్లో నుండి తిరస్కరించబడతారు, అయితే వారు ఎప్పుడైనా మళ్లీ చేరడానికి ప్రయత్నించవచ్చు.",
+  "banFromSpace": "కోర్సు నుండి నిషేధం",
+  "unbanFromSpace": "కోర్సు నుండి నిషేధం తొలగించు",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

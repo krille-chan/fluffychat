@@ -1,6 +1,6 @@
 {
   "@@locale": "eu",
-  "@@last_modified": "2026-02-18 13:03:24.113929",
+  "@@last_modified": "2026-02-24 14:06:48.193820",
   "about": "Honi buruz",
   "@about": {
     "type": "String",
@@ -11273,6 +11273,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Erabiltzailea ikastetxetik baztertuko da, baina edozein unetan berriro sartzen saiatuko da.",
+  "denyKnockChat": "Erabiltzailea txatetik baztertuko da, baina edozein unetan berriro sartzen saiatuko da.",
+  "banFromSpace": "Ikastetxetik debekatzea",
+  "unbanFromSpace": "Ikastetxetik debekua kentzea",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

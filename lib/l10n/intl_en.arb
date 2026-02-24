@@ -5348,5 +5348,9 @@
   "unlockLearningTools": "Unlock learning tools",
   "unlockPracticeActivities": "Unlock practice activities",
   "managementSnackbarMessage": "We launched subscription management in a new tab. If you didn't see the new tab, please check your popup blocker.",
-  "hideEvents": "Hide events"
+  "hideEvents": "Hide events",
+  "denyKnockSpace": "User will be rejected from course, however they may attempt to rejoin any time later.",
+  "denyKnockChat": "User will be rejected from chat, however they may attempt to rejoin any time later.",
+  "banFromSpace": "Ban from course",
+  "unbanFromSpace": "Unban from course"
 }

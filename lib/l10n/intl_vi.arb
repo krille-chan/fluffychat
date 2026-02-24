@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:03:52.794013",
+  "@@last_modified": "2026-02-24 14:07:41.921134",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -6990,6 +6990,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Người dùng sẽ bị từ chối tham gia khóa học, tuy nhiên họ có thể cố gắng tham gia lại bất cứ lúc nào sau đó.",
+  "denyKnockChat": "Người dùng sẽ bị từ chối tham gia trò chuyện, tuy nhiên họ có thể cố gắng tham gia lại bất cứ lúc nào sau đó.",
+  "banFromSpace": "Cấm tham gia khóa học",
+  "unbanFromSpace": "Bỏ cấm tham gia khóa học",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

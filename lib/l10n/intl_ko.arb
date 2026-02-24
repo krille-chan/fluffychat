@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:03:04.255294",
+  "@@last_modified": "2026-02-24 14:06:10.800757",
   "about": "소개",
   "@about": {
     "type": "String",
@@ -11499,6 +11499,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "사용자는 과정에서 거부되지만, 언제든지 나중에 다시 참여할 수 있습니다.",
+  "denyKnockChat": "사용자는 채팅에서 거부되지만, 언제든지 나중에 다시 참여할 수 있습니다.",
+  "banFromSpace": "과정에서 차단",
+  "unbanFromSpace": "과정에서 차단 해제",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

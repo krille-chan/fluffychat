@@ -1926,7 +1926,7 @@
   "playWithAI": "Leg med AI for nu",
   "courseStartDesc": "Pangea Bot er klar til at starte når som helst!\n\n...men læring er bedre med venner!",
   "@@locale": "da",
-  "@@last_modified": "2026-02-18 13:03:10.141570",
+  "@@last_modified": "2026-02-24 14:06:22.072718",
   "@aboutHomeserver": {
     "type": "String",
     "placeholders": {
@@ -12473,6 +12473,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Brugeren vil blive afvist fra kurset, men de kan forsøge at genindtræde når som helst senere.",
+  "denyKnockChat": "Brugeren vil blive afvist fra chatten, men de kan forsøge at genindtræde når som helst senere.",
+  "banFromSpace": "Udelukke fra kurset",
+  "unbanFromSpace": "Genindlæs fra kurset",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

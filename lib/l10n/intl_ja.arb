@@ -1,6 +1,6 @@
 {
   "@@locale": "ja",
-  "@@last_modified": "2026-02-18 13:04:03.638923",
+  "@@last_modified": "2026-02-24 14:08:08.571367",
   "about": "このアプリについて",
   "@about": {
     "type": "String",
@@ -12197,6 +12197,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "ユーザーはコースから拒否されますが、後でいつでも再参加を試みることができます。",
+  "denyKnockChat": "ユーザーはチャットから拒否されますが、後でいつでも再参加を試みることができます。",
+  "banFromSpace": "コースからの禁止",
+  "unbanFromSpace": "コースからの禁止解除",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

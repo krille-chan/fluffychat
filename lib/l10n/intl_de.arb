@@ -1,6 +1,6 @@
 {
   "@@locale": "de",
-  "@@last_modified": "2026-02-18 13:03:28.164850",
+  "@@last_modified": "2026-02-24 14:06:54.935271",
   "alwaysUse24HourFormat": "true",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
@@ -11262,6 +11262,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Der Benutzer wird vom Kurs abgelehnt, kann jedoch jederzeit später versuchen, wieder beizutreten.",
+  "denyKnockChat": "Der Benutzer wird vom Chat abgelehnt, kann jedoch jederzeit später versuchen, wieder beizutreten.",
+  "banFromSpace": "Sperre vom Kurs",
+  "unbanFromSpace": "Aufhebung der Sperre vom Kurs",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

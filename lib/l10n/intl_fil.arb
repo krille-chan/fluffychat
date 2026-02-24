@@ -2783,7 +2783,7 @@
   "selectAll": "Piliin lahat",
   "deselectAll": "Huwag piliin lahat",
   "@@locale": "fil",
-  "@@last_modified": "2026-02-18 13:03:45.620544",
+  "@@last_modified": "2026-02-24 14:07:27.103408",
   "@setCustomPermissionLevel": {
     "type": "String",
     "placeholders": {}
@@ -12388,6 +12388,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Ang gumagamit ay tatanggihan mula sa kurso, gayunpaman maaari silang subukang muling sumali anumang oras sa hinaharap.",
+  "denyKnockChat": "Ang gumagamit ay tatanggihan mula sa chat, gayunpaman maaari silang subukang muling sumali anumang oras sa hinaharap.",
+  "banFromSpace": "Bawal mula sa kurso",
+  "unbanFromSpace": "I-unban mula sa kurso",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

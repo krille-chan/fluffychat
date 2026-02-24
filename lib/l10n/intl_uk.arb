@@ -1,6 +1,6 @@
 {
   "@@locale": "uk",
-  "@@last_modified": "2026-02-18 13:03:32.307496",
+  "@@last_modified": "2026-02-24 14:07:05.392764",
   "about": "Про застосунок",
   "@about": {
     "type": "String",
@@ -11273,6 +11273,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Користувача буде відхилено з курсу, однак він може спробувати приєднатися знову в будь-який час пізніше.",
+  "denyKnockChat": "Користувача буде відхилено з чату, однак він може спробувати приєднатися знову в будь-який час пізніше.",
+  "banFromSpace": "Виключення з курсу",
+  "unbanFromSpace": "Відновлення в курсі",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

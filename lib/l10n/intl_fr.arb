@@ -1,6 +1,6 @@
 {
   "@@locale": "fr",
-  "@@last_modified": "2026-02-18 13:04:11.013576",
+  "@@last_modified": "2026-02-24 14:08:28.129954",
   "about": "À propos",
   "@about": {
     "type": "String",
@@ -11679,6 +11679,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "L'utilisateur sera rejeté du cours, cependant il pourra tenter de rejoindre à nouveau à tout moment plus tard.",
+  "denyKnockChat": "L'utilisateur sera rejeté du chat, cependant il pourra tenter de rejoindre à nouveau à tout moment plus tard.",
+  "banFromSpace": "Interdiction de cours",
+  "unbanFromSpace": "Levée de l'interdiction de cours",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

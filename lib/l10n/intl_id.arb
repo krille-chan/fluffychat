@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:03:12.633009",
+  "@@last_modified": "2026-02-24 14:06:27.307387",
   "setAsCanonicalAlias": "Atur sebagai alias utama",
   "@setAsCanonicalAlias": {
     "type": "String",
@@ -11379,6 +11379,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Pengguna akan ditolak dari kursus, namun mereka dapat mencoba untuk bergabung kembali kapan saja nanti.",
+  "denyKnockChat": "Pengguna akan ditolak dari obrolan, namun mereka dapat mencoba untuk bergabung kembali kapan saja nanti.",
+  "banFromSpace": "Larangan dari kursus",
+  "unbanFromSpace": "Bebaskan dari larangan kursus",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

@@ -3781,7 +3781,7 @@
   "joinPublicTrip": "མི་ཚེས་ལ་ལོག་འབད།",
   "startOwnTrip": "ངེད་རང་གི་ལོག་ལ་སྦྱོར་བཅོས།",
   "@@locale": "bo",
-  "@@last_modified": "2026-02-18 13:03:55.752683",
+  "@@last_modified": "2026-02-24 14:07:49.625506",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -10674,6 +10674,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Käuser wird vom Kurs abgelehnt, jedoch kann er jederzeit später versuchen, wieder beizutreten.",
+  "denyKnockChat": "Käuser wird vom Chat abgelehnt, jedoch kann er jederzeit später versuchen, wieder beizutreten.",
+  "banFromSpace": "Verbot vom Kurs",
+  "unbanFromSpace": "Aufhebung des Verbots vom Kurs",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

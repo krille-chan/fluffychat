@@ -2460,7 +2460,7 @@
   "playWithAI": "Za zdaj igrajte z AI-jem",
   "courseStartDesc": "Pangea Bot je pripravljen kadarkoli!\n\n...ampak je bolje učiti se s prijatelji!",
   "@@locale": "sl",
-  "@@last_modified": "2026-02-18 13:03:29.237405",
+  "@@last_modified": "2026-02-24 14:06:57.605334",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12488,6 +12488,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Uporabnik bo zavrnjen iz tečaja, lahko pa se poskusi ponovno pridružiti kadarkoli kasneje.",
+  "denyKnockChat": "Uporabnik bo zavrnjen iz klepeta, lahko pa se poskusi ponovno pridružiti kadarkoli kasneje.",
+  "banFromSpace": "Prepoved iz tečaja",
+  "unbanFromSpace": "Odstranitev prepovedi iz tečaja",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

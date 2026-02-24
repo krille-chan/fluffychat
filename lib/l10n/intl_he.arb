@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:03:21.034399",
+  "@@last_modified": "2026-02-24 14:06:40.633331",
   "about": "אודות",
   "@about": {
     "type": "String",
@@ -12456,6 +12456,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "המשתמש יידחה מהקורס, אך הוא יכול לנסות לחזור בכל עת מאוחר יותר.",
+  "denyKnockChat": "המשתמש יידחה מהצ'אט, אך הוא יכול לנסות לחזור בכל עת מאוחר יותר.",
+  "banFromSpace": "איסור מהקורס",
+  "unbanFromSpace": "הסרת איסור מהקורס",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

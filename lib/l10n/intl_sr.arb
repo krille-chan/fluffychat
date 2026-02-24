@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:04:09.064315",
+  "@@last_modified": "2026-02-24 14:08:23.520286",
   "about": "О програму",
   "@about": {
     "type": "String",
@@ -12503,6 +12503,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Korisnik će biti odbijen iz kursa, međutim može pokušati da se ponovo pridruži bilo kada kasnije.",
+  "denyKnockChat": "Korisnik će biti odbijen iz četa, međutim može pokušati da se ponovo pridruži bilo kada kasnije.",
+  "banFromSpace": "Zabrana iz kursa",
+  "unbanFromSpace": "Ukidanje zabrane iz kursa",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

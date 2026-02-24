@@ -3327,7 +3327,7 @@
   "selectAll": "Selecionar tudo",
   "deselectAll": "Desmarcar tudo",
   "@@locale": "pt_PT",
-  "@@last_modified": "2026-02-18 13:03:42.229149",
+  "@@last_modified": "2026-02-24 14:07:19.640963",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12441,6 +12441,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "O usuário será rejeitado do curso, no entanto, poderá tentar se reconectar a qualquer momento depois.",
+  "denyKnockChat": "O usuário será rejeitado do chat, no entanto, poderá tentar se reconectar a qualquer momento depois.",
+  "banFromSpace": "Banir do curso",
+  "unbanFromSpace": "Desbanir do curso",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

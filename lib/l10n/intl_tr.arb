@@ -1,6 +1,6 @@
 {
   "@@locale": "tr",
-  "@@last_modified": "2026-02-18 13:03:49.364309",
+  "@@last_modified": "2026-02-24 14:07:34.062541",
   "about": "Hakkında",
   "@about": {
     "type": "String",
@@ -11613,6 +11613,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Kullanıcı dersten reddedilecektir, ancak daha sonra tekrar katılmayı deneyebilir.",
+  "denyKnockChat": "Kullanıcı sohbetten reddedilecektir, ancak daha sonra tekrar katılmayı deneyebilir.",
+  "banFromSpace": "Dersten yasakla",
+  "unbanFromSpace": "Dersten yasağı kaldır",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

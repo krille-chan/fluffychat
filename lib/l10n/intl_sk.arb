@@ -1,6 +1,6 @@
 {
   "@@locale": "sk",
-  "@@last_modified": "2026-02-18 13:03:16.333830",
+  "@@last_modified": "2026-02-24 14:06:33.340410",
   "about": "O aplikácii",
   "@about": {
     "type": "String",
@@ -12491,6 +12491,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Používateľ bude vylúčený z kurzu, avšak môže sa pokúsiť pripojiť neskôr.",
+  "denyKnockChat": "Používateľ bude vylúčený z chatu, avšak môže sa pokúsiť pripojiť neskôr.",
+  "banFromSpace": "Vylúčenie z kurzu",
+  "unbanFromSpace": "Obnovenie z kurzu",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

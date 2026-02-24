@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:03:34.341873",
+  "@@last_modified": "2026-02-24 14:07:10.093118",
   "about": "Om",
   "@about": {
     "type": "String",
@@ -11342,6 +11342,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Bruker vil bli avvist fra kurset, men de kan forsøke å bli med igjen når som helst senere.",
+  "denyKnockChat": "Bruker vil bli avvist fra chatten, men de kan forsøke å bli med igjen når som helst senere.",
+  "banFromSpace": "Utestengelse fra kurset",
+  "unbanFromSpace": "Oppheve utestengelse fra kurset",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

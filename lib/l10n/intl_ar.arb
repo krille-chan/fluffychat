@@ -1,6 +1,6 @@
 {
   "@@locale": "ar",
-  "@@last_modified": "2026-02-18 13:03:48.015917",
+  "@@last_modified": "2026-02-24 14:07:31.856269",
   "about": "حول",
   "@about": {
     "type": "String",
@@ -11623,6 +11623,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "سيتم رفض المستخدم من الدورة، ومع ذلك يمكنه محاولة الانضمام مرة أخرى في أي وقت لاحق.",
+  "denyKnockChat": "سيتم رفض المستخدم من الدردشة، ومع ذلك يمكنه محاولة الانضمام مرة أخرى في أي وقت لاحق.",
+  "banFromSpace": "حظر من الدورة",
+  "unbanFromSpace": "رفع الحظر عن الدورة",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

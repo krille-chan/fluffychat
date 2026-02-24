@@ -1,6 +1,6 @@
 {
   "@@locale": "hu",
-  "@@last_modified": "2026-02-18 13:03:11.431357",
+  "@@last_modified": "2026-02-24 14:06:25.455284",
   "about": "Névjegy",
   "@about": {
     "type": "String",
@@ -11410,6 +11410,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "A felhasználót elutasítják a kurzusról, azonban bármikor később megpróbálhat újra csatlakozni.",
+  "denyKnockChat": "A felhasználót elutasítják a csevegésből, azonban bármikor később megpróbálhat újra csatlakozni.",
+  "banFromSpace": "Kitiltás a kurzusról",
+  "unbanFromSpace": "Visszavonás a kitiltás alól",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

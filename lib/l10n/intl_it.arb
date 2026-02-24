@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:03:31.380050",
+  "@@last_modified": "2026-02-24 14:07:02.398129",
   "about": "Informazioni",
   "@about": {
     "type": "String",
@@ -11367,6 +11367,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "L'utente sarà escluso dal corso, tuttavia potrà tentare di rientrare in qualsiasi momento successivo.",
+  "denyKnockChat": "L'utente sarà escluso dalla chat, tuttavia potrà tentare di rientrare in qualsiasi momento successivo.",
+  "banFromSpace": "Divieto di partecipazione al corso",
+  "unbanFromSpace": "Revoca del divieto di partecipazione al corso",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

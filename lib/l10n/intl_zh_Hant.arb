@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:03:43.262239",
+  "@@last_modified": "2026-02-24 14:07:22.180777",
   "about": "關於",
   "@about": {
     "type": "String",
@@ -11412,6 +11412,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "用戶將被拒絕進入課程，但他們可以隨時嘗試重新加入。",
+  "denyKnockChat": "用戶將被拒絕進入聊天，但他們可以隨時嘗試重新加入。",
+  "banFromSpace": "禁止進入課程",
+  "unbanFromSpace": "解除禁止進入課程",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

@@ -3999,7 +3999,7 @@
   "playWithAI": "अभी के लिए एआई के साथ खेलें",
   "courseStartDesc": "पैंजिया बॉट कभी भी जाने के लिए तैयार है!\n\n...लेकिन दोस्तों के साथ सीखना बेहतर है!",
   "@@locale": "hi",
-  "@@last_modified": "2026-02-18 13:04:04.735794",
+  "@@last_modified": "2026-02-24 14:08:11.740962",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12020,6 +12020,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "उपयोगकर्ता को पाठ्यक्रम से अस्वीकृत किया जाएगा, हालाँकि वे किसी भी समय बाद में पुनः शामिल होने का प्रयास कर सकते हैं।",
+  "denyKnockChat": "उपयोगकर्ता को चैट से अस्वीकृत किया जाएगा, हालाँकि वे किसी भी समय बाद में पुनः शामिल होने का प्रयास कर सकते हैं।",
+  "banFromSpace": "पाठ्यक्रम से प्रतिबंधित",
+  "unbanFromSpace": "पाठ्यक्रम से प्रतिबंध हटाना",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

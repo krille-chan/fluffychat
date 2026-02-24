@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:03:57.907755",
+  "@@last_modified": "2026-02-24 14:07:54.538475",
   "about": "সম্পর্কে",
   "@about": {
     "type": "String",
@@ -12017,6 +12017,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "ব্যবহারকারী কোর্স থেকে প্রত্যাখ্যাত হবে, তবে তারা পরে যে কোনো সময় পুনরায় যোগ দেওয়ার চেষ্টা করতে পারে।",
+  "denyKnockChat": "ব্যবহারকারী চ্যাট থেকে প্রত্যাখ্যাত হবে, তবে তারা পরে যে কোনো সময় পুনরায় যোগ দেওয়ার চেষ্টা করতে পারে।",
+  "banFromSpace": "কোর্স থেকে নিষিদ্ধ",
+  "unbanFromSpace": "কোর্স থেকে নিষেধাজ্ঞা প্রত্যাহার",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

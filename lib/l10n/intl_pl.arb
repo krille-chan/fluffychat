@@ -1,6 +1,6 @@
 {
   "@@locale": "pl",
-  "@@last_modified": "2026-02-18 13:04:00.038760",
+  "@@last_modified": "2026-02-24 14:07:59.566967",
   "about": "O aplikacji",
   "@about": {
     "type": "String",
@@ -11395,6 +11395,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Użytkownik zostanie odrzucony z kursu, jednak może spróbować dołączyć ponownie w dowolnym momencie później.",
+  "denyKnockChat": "Użytkownik zostanie odrzucony z czatu, jednak może spróbować dołączyć ponownie w dowolnym momencie później.",
+  "banFromSpace": "Zakaz uczestnictwa w kursie",
+  "unbanFromSpace": "Zniesienie zakazu uczestnictwa w kursie",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

@@ -161,32 +161,52 @@ void showMemberActionsPopupMenu({
             ],
           ),
         ),
-      PopupMenuItem(
-        enabled: user.room.canChangePowerLevel && user.canChangeUserPowerLevel,
-        value: _MemberActions.setRole,
-        child: Row(
-          children: [
-            const Icon(Icons.admin_panel_settings_outlined),
-            const SizedBox(width: 18),
-            Column(
-              mainAxisSize: .min,
-              crossAxisAlignment: .start,
-              children: [
-                Text(L10n.of(context).chatPermissions),
-                Text(
-                  user.powerLevel < 50
-                      ? L10n.of(context).userLevel(user.powerLevel)
-                      : user.powerLevel < 100
-                      ? L10n.of(context).moderatorLevel(user.powerLevel)
-                      : L10n.of(context).adminLevel(user.powerLevel),
-                  style: const TextStyle(fontSize: 10),
-                ),
-              ],
-            ),
-          ],
+      // #Pangea
+      if (user.canKick && user.membership == Membership.knock)
+        PopupMenuItem(
+          value: _MemberActions.kick,
+          child: Row(
+            children: [
+              Icon(Icons.person_remove_outlined),
+              const SizedBox(width: 18),
+              Text(L10n.of(context).deny),
+            ],
+          ),
         ),
-      ),
-      if (user.canKick)
+      // Pangea#
+      // #Pangea
+      if (user.membership == Membership.join)
+        // Pangea#
+        PopupMenuItem(
+          enabled:
+              user.room.canChangePowerLevel && user.canChangeUserPowerLevel,
+          value: _MemberActions.setRole,
+          child: Row(
+            children: [
+              const Icon(Icons.admin_panel_settings_outlined),
+              const SizedBox(width: 18),
+              Column(
+                mainAxisSize: .min,
+                crossAxisAlignment: .start,
+                children: [
+                  Text(L10n.of(context).chatPermissions),
+                  Text(
+                    user.powerLevel < 50
+                        ? L10n.of(context).userLevel(user.powerLevel)
+                        : user.powerLevel < 100
+                        ? L10n.of(context).moderatorLevel(user.powerLevel)
+                        : L10n.of(context).adminLevel(user.powerLevel),
+                    style: const TextStyle(fontSize: 10),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      // #Pangea
+      // if (user.canKick)
+      if (user.canKick && user.membership != Membership.knock)
+        // Pangea#
         PopupMenuItem(
           value: _MemberActions.kick,
           child: Row(
@@ -214,7 +234,12 @@ void showMemberActionsPopupMenu({
               ),
               const SizedBox(width: 18),
               Text(
-                L10n.of(context).ban,
+                // #Pangea
+                // L10n.of(context).ban,
+                user.room.isSpace
+                    ? L10n.of(context).banFromSpace
+                    : L10n.of(context).ban,
+                // Pangea#
                 style: TextStyle(color: theme.colorScheme.onErrorContainer),
               ),
             ],
@@ -227,7 +252,14 @@ void showMemberActionsPopupMenu({
             children: [
               const Icon(Icons.warning),
               const SizedBox(width: 18),
-              Text(L10n.of(context).unbanFromChat),
+              // #Pangea
+              // Text(L10n.of(context).unbanFromChat),
+              Text(
+                user.room.isSpace
+                    ? L10n.of(context).unbanFromSpace
+                    : L10n.of(context).unbanFromChat,
+              ),
+              // Pangea#
             ],
           ),
         ),
@@ -300,6 +332,10 @@ void showMemberActionsPopupMenu({
                     !user.room.isSpace &&
                     !user.room.isDirectChat
                 ? L10n.of(context).kickBotWarning
+                : user.membership == Membership.knock
+                ? user.room.isSpace
+                      ? L10n.of(context).denyKnockSpace
+                      : L10n.of(context).denyKnockChat
                 : L10n.of(context).kickUserDescription,
             // Pangea#
           ) ==

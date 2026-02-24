@@ -1,6 +1,6 @@
 {
   "@@locale": "zh",
-  "@@last_modified": "2026-02-18 13:03:56.668101",
+  "@@last_modified": "2026-02-24 14:07:51.516110",
   "about": "关于",
   "@about": {
     "type": "String",
@@ -11273,6 +11273,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "用户将被拒绝进入课程，但他们可以在稍后任何时间尝试重新加入。",
+  "denyKnockChat": "用户将被拒绝进入聊天，但他们可以在稍后任何时间尝试重新加入。",
+  "banFromSpace": "禁止进入课程",
+  "unbanFromSpace": "解除禁止进入课程",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

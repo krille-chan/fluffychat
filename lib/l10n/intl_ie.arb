@@ -4000,7 +4000,7 @@
   "playWithAI": "Joca con AI pro ora",
   "courseStartDesc": "Pangea Bot es preste a partir a qualunque momento!\n\n...ma apprender es melior con amicos!",
   "@@locale": "ie",
-  "@@last_modified": "2026-02-18 13:03:18.171025",
+  "@@last_modified": "2026-02-24 14:06:35.605465",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12021,6 +12021,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "L'usuari serà rebutjat del curs, tanmateix podrà intentar tornar a unir-se en qualsevol moment més tard.",
+  "denyKnockChat": "L'usuari serà rebutjat del xat, tanmateix podrà intentar tornar a unir-se en qualsevol moment més tard.",
+  "banFromSpace": "Prohibició del curs",
+  "unbanFromSpace": "Levantament de la prohibició del curs",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

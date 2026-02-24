@@ -2590,7 +2590,7 @@
   "playWithAI": "ამ დროისთვის ითამაშეთ AI-თან",
   "courseStartDesc": "Pangea Bot მზადაა ნებისმიერ დროს გასასვლელად!\n\n...მაგრამ სწავლა უკეთესია მეგობრებთან ერთად!",
   "@@locale": "ka",
-  "@@last_modified": "2026-02-18 13:04:07.805593",
+  "@@last_modified": "2026-02-24 14:08:19.939195",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12437,6 +12437,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "მომხმარებელი უარყოფილი იქნება კურსიდან, თუმცა ისინი ნებისმიერ დროს შეძლებენ ხელახლა გაწვდას.",
+  "denyKnockChat": "მომხმარებელი უარყოფილი იქნება ჩატიდან, თუმცა ისინი ნებისმიერ დროს შეძლებენ ხელახლა გაწვდას.",
+  "banFromSpace": "კურსიდან აკრძალვა",
+  "unbanFromSpace": "კურსიდან აკრძალვის მოხსნა",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

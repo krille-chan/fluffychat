@@ -1,6 +1,6 @@
 {
   "@@locale": "hr",
-  "@@last_modified": "2026-02-18 13:03:19.700952",
+  "@@last_modified": "2026-02-24 14:06:38.210241",
   "about": "Informacije",
   "@about": {
     "type": "String",
@@ -11766,6 +11766,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Korisnik će biti odbijen iz tečaja, međutim može pokušati ponovno pridružiti se bilo kada kasnije.",
+  "denyKnockChat": "Korisnik će biti odbijen iz chata, međutim može pokušati ponovno pridružiti se bilo kada kasnije.",
+  "banFromSpace": "Zabrana iz tečaja",
+  "unbanFromSpace": "Ukidanje zabrane iz tečaja",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

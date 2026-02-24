@@ -4619,7 +4619,7 @@
   "playWithAI": "Пакуль гуляйце з ШІ",
   "courseStartDesc": "Pangea Bot гатовы да працы ў любы час!\n\n...але навучанне лепш з сябрамі!",
   "@@locale": "be",
-  "@@last_modified": "2026-02-18 13:03:35.678730",
+  "@@last_modified": "2026-02-24 14:07:12.657085",
   "@ignore": {
     "type": "String",
     "placeholders": {}
@@ -11292,6 +11292,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Карыстальнік будзе адхілены ад курса, аднак ён можа паспрабаваць зноў далучыцца ў любы час пазней.",
+  "denyKnockChat": "Карыстальнік будзе адхілены ад чата, аднак ён можа паспрабаваць зноў далучыцца ў любы час пазней.",
+  "banFromSpace": "Забарона ад курса",
+  "unbanFromSpace": "Скасаванне забароны ад курса",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

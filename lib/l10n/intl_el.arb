@@ -4476,7 +4476,7 @@
   "playWithAI": "Παίξτε με την Τεχνητή Νοημοσύνη προς το παρόν",
   "courseStartDesc": "Ο Pangea Bot είναι έτοιμος να ξεκινήσει οποιαδήποτε στιγμή!\n\n...αλλά η μάθηση είναι καλύτερη με φίλους!",
   "@@locale": "el",
-  "@@last_modified": "2026-02-18 13:04:02.546836",
+  "@@last_modified": "2026-02-24 14:08:06.582546",
   "@checkList": {
     "type": "String",
     "placeholders": {}
@@ -12432,6 +12432,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Ο χρήστης θα απορριφθεί από το μάθημα, ωστόσο μπορεί να προσπαθήσει να επανενωθεί οποιαδήποτε στιγμή αργότερα.",
+  "denyKnockChat": "Ο χρήστης θα απορριφθεί από τη συνομιλία, ωστόσο μπορεί να προσπαθήσει να επανενωθεί οποιαδήποτε στιγμή αργότερα.",
+  "banFromSpace": "Απαγόρευση από το μάθημα",
+  "unbanFromSpace": "Άρση απαγόρευσης από το μάθημα",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:03:53.906946",
+  "@@last_modified": "2026-02-24 14:07:44.902870",
   "acceptedTheInvitation": "👍 {username} அழைப்பை ஏற்றுக்கொண்டது",
   "@acceptedTheInvitation": {
     "type": "String",
@@ -11393,6 +11393,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "பயனர் பாடத்திலிருந்து நிராகரிக்கப்படும், ஆனால் அவர்கள் எப்போது வேண்டுமானாலும் மீண்டும் சேர முயற்சிக்கலாம்.",
+  "denyKnockChat": "பயனர் உரையாடலிலிருந்து நிராகரிக்கப்படும், ஆனால் அவர்கள் எப்போது வேண்டுமானாலும் மீண்டும் சேர முயற்சிக்கலாம்.",
+  "banFromSpace": "பாடத்திலிருந்து தடை",
+  "unbanFromSpace": "பாடத்திலிருந்து தடை நீக்கு",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

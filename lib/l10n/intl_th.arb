@@ -3999,7 +3999,7 @@
   "playWithAI": "เล่นกับ AI ชั่วคราว",
   "courseStartDesc": "Pangea Bot พร้อมที่จะเริ่มต้นได้ทุกเมื่อ!\n\n...แต่การเรียนรู้ดีกว่ากับเพื่อน!",
   "@@locale": "th",
-  "@@last_modified": "2026-02-18 13:03:41.207320",
+  "@@last_modified": "2026-02-24 14:07:17.264437",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12020,6 +12020,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "ผู้ใช้จะถูกปฏิเสธจากหลักสูตร แต่พวกเขาสามารถพยายามเข้าร่วมใหม่ได้ทุกเมื่อในภายหลัง",
+  "denyKnockChat": "ผู้ใช้จะถูกปฏิเสธจากการสนทนา แต่พวกเขาสามารถพยายามเข้าร่วมใหม่ได้ทุกเมื่อในภายหลัง",
+  "banFromSpace": "ห้ามเข้าหลักสูตร",
+  "unbanFromSpace": "ปลดห้ามจากหลักสูตร",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

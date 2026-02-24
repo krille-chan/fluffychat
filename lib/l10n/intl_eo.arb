@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:04:05.883233",
+  "@@last_modified": "2026-02-24 14:08:14.712700",
   "about": "Prio",
   "@about": {
     "type": "String",
@@ -12496,6 +12496,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Uzanto estos malakceptita de la kurso, tamen ili povas provi reiri iam poste.",
+  "denyKnockChat": "Uzanto estos malakceptita de la konversacio, tamen ili povas provi reiri iam poste.",
+  "banFromSpace": "Malpermeso de la kurso",
+  "unbanFromSpace": "Malpermesi de la kurso",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

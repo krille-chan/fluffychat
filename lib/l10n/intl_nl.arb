@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:03:54.717752",
+  "@@last_modified": "2026-02-24 14:07:47.165721",
   "about": "Over ons",
   "@about": {
     "type": "String",
@@ -11273,6 +11273,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Gebruiker zal worden afgewezen van de cursus, echter kan hij/zij op elk moment later opnieuw proberen toe te treden.",
+  "denyKnockChat": "Gebruiker zal worden afgewezen van de chat, echter kan hij/zij op elk moment later opnieuw proberen toe te treden.",
+  "banFromSpace": "Verbod van de cursus",
+  "unbanFromSpace": "Opheffen van het verbod van de cursus",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

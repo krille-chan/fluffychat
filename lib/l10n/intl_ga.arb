@@ -4639,7 +4639,7 @@
   "playWithAI": "Imir le AI faoi láthair",
   "courseStartDesc": "Tá Bot Pangea réidh chun dul am ar bith!\n\n...ach is fearr foghlaim le cairde!",
   "@@locale": "ga",
-  "@@last_modified": "2026-02-18 13:04:10.296613",
+  "@@last_modified": "2026-02-24 14:08:25.895629",
   "@writeAMessageLangCodes": {
     "type": "String",
     "placeholders": {
@@ -11280,6 +11280,30 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Déanfar diúltú do {username} ón gcúrsa, áfach, is féidir leo iarracht a dhéanamh arís ag am ar bith níos déanaí.",
+  "denyKnockChat": "Déanfar diúltú do {username} ón gcomhrá, áfach, is féidir leo iarracht a dhéanamh arís ag am ar bith níos déanaí.",
+  "banFromSpace": "Díothú ón gcúrsa",
+  "unbanFromSpace": "Díothú a chur ar ceal ón gcúrsa",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {
+      "username": {}
+    }
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

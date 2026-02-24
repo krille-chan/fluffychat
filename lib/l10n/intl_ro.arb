@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-18 13:03:14.527214",
+  "@@last_modified": "2026-02-24 14:06:30.605901",
   "about": "Despre",
   "@about": {
     "type": "String",
@@ -12142,6 +12142,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Utilizatorul va fi respins din curs, totuși poate încerca să se alăture din nou oricând mai târziu.",
+  "denyKnockChat": "Utilizatorul va fi respins din chat, totuși poate încerca să se alăture din nou oricând mai târziu.",
+  "banFromSpace": "Interzicere din curs",
+  "unbanFromSpace": "Ridicare a interdicției din curs",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

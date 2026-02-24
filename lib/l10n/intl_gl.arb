@@ -1,6 +1,6 @@
 {
   "@@locale": "gl",
-  "@@last_modified": "2026-02-18 13:03:07.111440",
+  "@@last_modified": "2026-02-24 14:06:15.560012",
   "about": "Acerca de",
   "@about": {
     "type": "String",
@@ -11273,6 +11273,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "O usuario será rexeitado do curso, con todo, poderá intentar volver unirse en calquera momento máis tarde.",
+  "denyKnockChat": "O usuario será rexeitado do chat, con todo, poderá intentar volver unirse en calquera momento máis tarde.",
+  "banFromSpace": "Prohibición do curso",
+  "unbanFromSpace": "Levantamento da prohibición do curso",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

@@ -1852,7 +1852,7 @@
   "selectAll": "全選",
   "deselectAll": "取消全選",
   "@@locale": "yue",
-  "@@last_modified": "2026-02-18 13:03:30.170176",
+  "@@last_modified": "2026-02-24 14:07:00.106729",
   "@ignoreUser": {
     "type": "String",
     "placeholders": {}
@@ -12503,6 +12503,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "用戶將被拒絕參加課程，但他們可以隨時嘗試重新加入。",
+  "denyKnockChat": "用戶將被拒絕參加聊天，但他們可以隨時嘗試重新加入。",
+  "banFromSpace": "禁止參加課程",
+  "unbanFromSpace": "解除禁止參加課程",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }

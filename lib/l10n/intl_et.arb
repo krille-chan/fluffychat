@@ -1,6 +1,6 @@
 {
   "@@locale": "et",
-  "@@last_modified": "2026-02-18 13:03:26.801008",
+  "@@last_modified": "2026-02-24 14:06:53.185438",
   "about": "Rakenduse teave",
   "@about": {
     "type": "String",
@@ -11547,6 +11547,26 @@
     "placeholders": {}
   },
   "@hideEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "denyKnockSpace": "Kasutaja lükatakse kursusest välja, kuid nad võivad proovida hiljem uuesti liituda.",
+  "denyKnockChat": "Kasutaja lükatakse vestlusest välja, kuid nad võivad proovida hiljem uuesti liituda.",
+  "banFromSpace": "Kursusest väljaarvamine",
+  "unbanFromSpace": "Kursusest taastamine",
+  "@denyKnockSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyKnockChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@banFromSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unbanFromSpace": {
     "type": "String",
     "placeholders": {}
   }
