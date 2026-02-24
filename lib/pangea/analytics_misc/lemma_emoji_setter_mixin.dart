@@ -17,6 +17,7 @@ mixin LemmaEmojiSetter {
     String? targetId,
     String? roomId,
     String? eventId,
+    String? form,
   ) async {
     final userL2 =
         MatrixState.pangeaController.userController.userL2?.langCodeShort;
@@ -32,6 +33,7 @@ mixin LemmaEmojiSetter {
         targetId: targetId,
         roomId: roomId,
         eventId: eventId,
+        form: form,
       );
     }
 
@@ -99,6 +101,7 @@ mixin LemmaEmojiSetter {
     String? eventId,
     String? roomId,
     String? targetId,
+    String? form,
   }) {
     final constructs = [
       OneConstructUse(
@@ -111,7 +114,7 @@ mixin LemmaEmojiSetter {
           eventId: eventId,
         ),
         category: constructId.category,
-        form: constructId.lemma,
+        form: form ?? constructId.lemma,
         xp: ConstructUseTypeEnum.em.pointValue,
       ),
     ];

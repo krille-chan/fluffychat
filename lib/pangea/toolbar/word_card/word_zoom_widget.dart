@@ -164,6 +164,7 @@ class WordZoomWidget extends StatelessWidget {
                               langCode: langCode,
                               event: event,
                               enabled: enableEmojiSelection,
+                              form: token.content,
                             ),
                             LemmaMeaningDisplay(
                               langCode: langCode,

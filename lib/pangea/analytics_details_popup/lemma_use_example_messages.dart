@@ -22,7 +22,7 @@ class LemmaUseExampleMessages extends StatelessWidget {
   Future<List<ExampleMessage>> _getExampleMessages() async {
     final List<ExampleMessage> examples = [];
     for (final OneConstructUse use in construct.cappedUses) {
-      if (use.metadata.eventId == null || use.form == null || use.xp <= 0) {
+      if (use.metadata.eventId == null || use.form == null) {
         continue;
       }
 
@@ -67,7 +67,8 @@ class LemmaUseExampleMessages extends StatelessWidget {
       final tokens = pangeaMessageEvent.messageDisplayRepresentation?.tokens;
       if (tokens == null || tokens.isEmpty) continue;
       final token = tokens.firstWhereOrNull(
-        (token) => token.text.content == use.form,
+        (token) =>
+            token.text.content == use.form || token.lemma.text == use.lemma,
       );
       if (token == null) continue;
 

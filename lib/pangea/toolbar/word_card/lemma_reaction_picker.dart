@@ -16,6 +16,7 @@ class LemmaReactionPicker extends StatefulWidget with LemmaEmojiSetter {
   final ConstructIdentifier constructId;
   final String langCode;
   final bool enabled;
+  final String? form;
 
   const LemmaReactionPicker({
     super.key,
@@ -23,6 +24,7 @@ class LemmaReactionPicker extends StatefulWidget with LemmaEmojiSetter {
     required this.langCode,
     this.event,
     this.enabled = true,
+    this.form,
   });
 
   @override
@@ -95,6 +97,7 @@ class LemmaReactionPickerState extends State<LemmaReactionPicker> {
       targetId,
       widget.event?.roomId,
       widget.event?.eventId,
+      widget.form,
     );
     messenger = ScaffoldMessenger.of(context);
     widget.showLemmaEmojiSnackbar(
