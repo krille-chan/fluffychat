@@ -405,13 +405,13 @@ m0(d){return"\ud83d\udeaa"+d+" yes\u1e6deb\u1e6dbed"},
 goh(){return"Iseqdacen yessefk ad s\u1e6deb\u1e6dben"},
 gmC(){return"Yiwen ur yezmir ad d-yernu"},
 gmk(){return"Knock"},
-gog(){return"Users"},
-go8(){return"Unlock old messages"},
-gk8(){return"Save this key manually by triggering the system share dialog or clipboard."},
-lt(d){return""+d+" files"},
-gdN(){return"User"},
-gig(){return"Custom"},
-goD(){return"Why is this message unreadable?"},
+gog(){return"Iseqdacen"},
+go8(){return"Kkes asekke\u1e5b i yiznan iqbu\u1e5ben"},
+gk8(){return"Sekles tasarut-agi s ufus deg udiwenni n be\u1e6d\u1e6du n unagraw ne\u0263 \u0263ef tecfawit."},
+lt(d){return""+d+" n yifuyla"},
+gdN(){return"Aseqdac"},
+gig(){return"Yugnen"},
+goD(){return"Acu\u0263er izen-agi ur yettwa\u0263ri ara?"},
 gmA(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
 gmt(){return"New group"},
 gmv(){return"New space"},
@@ -683,5 +683,5 @@ A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G9,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G9":{"aD":[]}}'))};
-(a=>{a["niwi7556C5XNMJzyEWj3F7Gkvo8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["M8nkHnDd6zkPZ3BUc+LiUisrVok="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map
