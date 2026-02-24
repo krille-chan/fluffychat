@@ -5,6 +5,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/join_codes/knock_room_extension.dart';
 import 'package:fluffychat/pangea/join_codes/space_code_repo.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
@@ -73,7 +74,7 @@ Future<void> showInviteDialog(Room room, BuildContext context) async {
   final joinResult = await showFutureLoadingDialog(
     context: context,
     future: () async {
-      await room.join();
+      await room.joinKnockedRoom();
     },
     exceptionContext: ExceptionContext.joinRoom,
   );
@@ -98,7 +99,7 @@ void chatListHandleSpaceTap(BuildContext context, Room space) {
     showFutureLoadingDialog(
       context: context,
       future: () async {
-        await space.join();
+        await space.joinKnockedRoom();
         setActiveSpaceAndCloseChat();
       },
     );
@@ -121,6 +122,8 @@ void chatListHandleSpaceTap(BuildContext context, Room space) {
       } else if (justInputtedCode != null &&
           justInputtedCode == space.classCode) {
         // do nothing
+      } else if (space.hasKnocked) {
+        autoJoin(space);
       } else {
         showInviteDialog(space, context);
       }

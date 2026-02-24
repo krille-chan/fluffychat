@@ -18,6 +18,8 @@ import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart
 import 'package:fluffychat/pangea/chat_settings/widgets/chat_context_menu_action.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/join_codes/knock_room_extension.dart';
+import 'package:fluffychat/pangea/join_codes/knock_tracker.dart';
 import 'package:fluffychat/pangea/join_codes/space_code_controller.dart';
 import 'package:fluffychat/pangea/join_codes/space_code_repo.dart';
 import 'package:fluffychat/pangea/navigation/navigation_util.dart';
@@ -550,6 +552,10 @@ class ChatListController extends State<ChatList>
                   event.type == EventTypes.RoomCreate &&
                   event.content['type'] == PangeaRoomTypes.analytics,
             );
+            final hasKnocked = KnockTracker.hasKnocked(
+              Matrix.of(context).client,
+              inviteEntry.key,
+            );
 
             if (isSpace) {
               final spaceId = inviteEntry.key;
@@ -565,18 +571,20 @@ class ChatListController extends State<ChatList>
               }
             }
 
-            if (isAnalytics) {
-              final analyticsRoom = Matrix.of(
+            if (isAnalytics || hasKnocked) {
+              final room = Matrix.of(
                 context,
               ).client.getRoomById(inviteEntry.key);
+              if (room == null) return;
+
               try {
-                await analyticsRoom?.join();
+                await room.joinKnockedRoom();
               } catch (err, s) {
                 ErrorHandler.logError(
                   m: "Failed to join analytics room",
                   e: err,
                   s: s,
-                  data: {"analyticsRoom": analyticsRoom?.id},
+                  data: {"roomId": room.id},
                 );
               }
               return;

@@ -11,6 +11,7 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/course_creation/public_course_preview_view.dart';
 import 'package:fluffychat/pangea/course_plans/course_activities/activity_summaries_provider.dart';
 import 'package:fluffychat/pangea/course_plans/courses/course_plan_builder.dart';
+import 'package:fluffychat/pangea/join_codes/knock_room_extension.dart';
 import 'package:fluffychat/pangea/join_codes/space_code_controller.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -140,7 +141,7 @@ class PublicCoursePreviewController extends State<PublicCoursePreview>
         String roomId;
         try {
           roomId = knock
-              ? await client.knockRoom(widget.roomID!)
+              ? await client.knockAndRecordRoom(widget.roomID!)
               : await client.joinRoom(widget.roomID!);
         } catch (e, s) {
           ErrorHandler.logError(e: e, s: s, data: {'roomID': widget.roomID});

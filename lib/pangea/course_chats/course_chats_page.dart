@@ -20,6 +20,7 @@ import 'package:fluffychat/pangea/course_plans/course_activities/activity_summar
 import 'package:fluffychat/pangea/course_plans/courses/course_plan_builder.dart';
 import 'package:fluffychat/pangea/course_plans/courses/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/join_codes/knock_room_extension.dart';
 import 'package:fluffychat/pangea/navigation/navigation_util.dart';
 import 'package:fluffychat/pangea/spaces/space_constants.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -334,96 +335,113 @@ class CourseChatsController extends State<CourseChats>
 
   void onChatTap(Room room) async {
     if (room.membership == Membership.invite) {
-      final theme = Theme.of(context);
-      final inviteEvent = room.getState(
-        EventTypes.RoomMember,
-        room.client.userID!,
-      );
-      final matrixLocals = MatrixLocals(L10n.of(context));
-      final action = await showAdaptiveDialog<InviteAction>(
-        barrierDismissible: true,
-        context: context,
-        builder: (context) => AlertDialog.adaptive(
-          title: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 256),
-            child: Center(
+      if (room.hasKnocked) {
+        if (!mounted) return;
+        await showFutureLoadingDialog(
+          context: context,
+          future: () async {
+            final waitForRoom = room.client.waitForRoomInSync(
+              room.id,
+              join: true,
+            );
+            await room.joinKnockedRoom();
+            await waitForRoom;
+          },
+          exceptionContext: ExceptionContext.joinRoom,
+        );
+      } else {
+        final theme = Theme.of(context);
+        final inviteEvent = room.getState(
+          EventTypes.RoomMember,
+          room.client.userID!,
+        );
+        final matrixLocals = MatrixLocals(L10n.of(context));
+        final action = await showAdaptiveDialog<InviteAction>(
+          barrierDismissible: true,
+          context: context,
+          builder: (context) => AlertDialog.adaptive(
+            title: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 256),
+              child: Center(
+                child: Text(
+                  room.getLocalizedDisplayname(matrixLocals),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            content: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
               child: Text(
-                room.getLocalizedDisplayname(matrixLocals),
+                inviteEvent == null
+                    ? L10n.of(context).inviteForMe
+                    : inviteEvent.content.tryGet<String>('reason') ??
+                          L10n.of(context).youInvitedBy(
+                            room
+                                .unsafeGetUserFromMemoryOrFallback(
+                                  inviteEvent.senderId,
+                                )
+                                .calcDisplayname(i18n: matrixLocals),
+                          ),
                 textAlign: TextAlign.center,
               ),
             ),
-          ),
-          content: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
-            child: Text(
-              inviteEvent == null
-                  ? L10n.of(context).inviteForMe
-                  : inviteEvent.content.tryGet<String>('reason') ??
-                        L10n.of(context).youInvitedBy(
-                          room
-                              .unsafeGetUserFromMemoryOrFallback(
-                                inviteEvent.senderId,
-                              )
-                              .calcDisplayname(i18n: matrixLocals),
-                        ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          actions: [
-            AdaptiveDialogAction(
-              onPressed: () => Navigator.of(context).pop(InviteAction.accept),
-              bigButtons: true,
-              child: Text(L10n.of(context).accept),
-            ),
-            AdaptiveDialogAction(
-              onPressed: () => Navigator.of(context).pop(InviteAction.decline),
-              bigButtons: true,
-              child: Text(
-                L10n.of(context).decline,
-                style: TextStyle(color: theme.colorScheme.error),
+            actions: [
+              AdaptiveDialogAction(
+                onPressed: () => Navigator.of(context).pop(InviteAction.accept),
+                bigButtons: true,
+                child: Text(L10n.of(context).accept),
               ),
-            ),
-            AdaptiveDialogAction(
-              onPressed: () => Navigator.of(context).pop(InviteAction.block),
-              bigButtons: true,
-              child: Text(
-                L10n.of(context).block,
-                style: TextStyle(color: theme.colorScheme.error),
+              AdaptiveDialogAction(
+                onPressed: () =>
+                    Navigator.of(context).pop(InviteAction.decline),
+                bigButtons: true,
+                child: Text(
+                  L10n.of(context).decline,
+                  style: TextStyle(color: theme.colorScheme.error),
+                ),
               ),
-            ),
-          ],
-        ),
-      );
-      switch (action) {
-        case null:
-          return;
-        case InviteAction.accept:
-          break;
-        case InviteAction.decline:
-          await showFutureLoadingDialog(
-            context: context,
-            future: () => room.leave(),
-          );
-          return;
-        case InviteAction.block:
-          final userId = inviteEvent?.senderId;
-          context.go('/rooms/settings/security/ignorelist', extra: userId);
-          return;
+              AdaptiveDialogAction(
+                onPressed: () => Navigator.of(context).pop(InviteAction.block),
+                bigButtons: true,
+                child: Text(
+                  L10n.of(context).block,
+                  style: TextStyle(color: theme.colorScheme.error),
+                ),
+              ),
+            ],
+          ),
+        );
+        switch (action) {
+          case null:
+            return;
+          case InviteAction.accept:
+            break;
+          case InviteAction.decline:
+            await showFutureLoadingDialog(
+              context: context,
+              future: () => room.leave(),
+            );
+            return;
+          case InviteAction.block:
+            final userId = inviteEvent?.senderId;
+            context.go('/rooms/settings/security/ignorelist', extra: userId);
+            return;
+        }
+        if (!mounted) return;
+        final joinResult = await showFutureLoadingDialog(
+          context: context,
+          future: () async {
+            final waitForRoom = room.client.waitForRoomInSync(
+              room.id,
+              join: true,
+            );
+            await room.join();
+            await waitForRoom;
+          },
+          exceptionContext: ExceptionContext.joinRoom,
+        );
+        if (joinResult.error != null) return;
       }
-      if (!mounted) return;
-      final joinResult = await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          final waitForRoom = room.client.waitForRoomInSync(
-            room.id,
-            join: true,
-          );
-          await room.join();
-          await waitForRoom;
-        },
-        exceptionContext: ExceptionContext.joinRoom,
-      );
-      if (joinResult.error != null) return;
     }
 
     if (room.membership == Membership.ban) {
