@@ -23,7 +23,8 @@ enum InvitationFilter {
   contacts,
   knocking,
   invited,
-  public;
+  public,
+  banned;
 
   static InvitationFilter? fromString(String value) {
     switch (value) {
@@ -39,6 +40,8 @@ enum InvitationFilter {
         return InvitationFilter.public;
       case 'participants':
         return InvitationFilter.participants;
+      case 'banned':
+        return InvitationFilter.banned;
       default:
         return null;
     }
@@ -58,6 +61,8 @@ enum InvitationFilter {
         return 'public';
       case InvitationFilter.participants:
         return 'participants';
+      case InvitationFilter.banned:
+        return 'banned';
     }
   }
 }
@@ -93,7 +98,12 @@ class PangeaInvitationSelectionController
 
     _room
         ?.requestParticipants(
-          [Membership.join, Membership.invite, Membership.knock],
+          [
+            Membership.join,
+            Membership.invite,
+            Membership.knock,
+            Membership.ban,
+          ],
           false,
           true,
         )
@@ -139,6 +149,8 @@ class PangeaInvitationSelectionController
         return l10n.public;
       case InvitationFilter.participants:
         return l10n.participants;
+      case InvitationFilter.banned:
+        return l10n.banned;
     }
   }
 
@@ -174,6 +186,8 @@ class PangeaInvitationSelectionController
                 false,
           InvitationFilter.knocking =>
             participants?.any((u) => u.membership == Membership.knock) ?? false,
+          InvitationFilter.banned =>
+            participants?.any((u) => u.membership == Membership.ban) ?? false,
           InvitationFilter.public => true,
           InvitationFilter.participants => true,
         },
@@ -181,7 +195,12 @@ class PangeaInvitationSelectionController
       .toList();
 
   List<User>? get participants {
-    return _room?.getParticipants();
+    return _room?.getParticipants([
+      Membership.join,
+      Membership.invite,
+      Membership.knock,
+      Membership.ban,
+    ]);
   }
 
   List<Membership> get _membershipOrder => [
@@ -266,8 +285,18 @@ class PangeaInvitationSelectionController
                 ?.where((u) => u.membership == Membership.knock)
                 .toList() ??
             [];
+      case InvitationFilter.banned:
+        contacts =
+            participants
+                ?.where((u) => u.membership == Membership.ban)
+                .toList() ??
+            [];
       default:
-        contacts = participants ?? [];
+        contacts =
+            participants
+                ?.where((p) => p.membership != Membership.ban)
+                .toList() ??
+            [];
     }
 
     final search = controller.text.toLowerCase();

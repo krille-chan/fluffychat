@@ -418,7 +418,12 @@ class _InviteContactListTile extends StatelessWidget {
           LevelDisplayName(userId: profile.userId),
         ],
       ),
-      trailing: [Membership.invite, Membership.knock].contains(membership)
+      trailing:
+          [
+            Membership.invite,
+            Membership.knock,
+            Membership.ban,
+          ].contains(membership)
           ? Container(
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               margin: const EdgeInsets.symmetric(horizontal: 8),
