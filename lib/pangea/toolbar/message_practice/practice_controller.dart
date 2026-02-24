@@ -106,16 +106,18 @@ class PracticeController with ChangeNotifier {
 
   bool isPracticeButtonEmpty(PangeaToken token) {
     final target = practiceTargetForToken(token);
-    return switch (_practiceMode) {
+    switch (_practiceMode) {
       // Keep open when completed if emoji assigned
-      MessagePracticeMode.wordEmoji =>
-        target == null || token.vocabConstructID.userSetEmoji != null,
+      case MessagePracticeMode.wordEmoji:
+        if (token.vocabConstructID.userSetEmoji != null) return false;
+        return target == null;
       // Keep open when completed to show morph icon
-      MessagePracticeMode.wordMorph => target == null,
-      _ =>
-        target == null ||
-            PracticeRecordController.isCompleteByToken(target, token),
-    };
+      case MessagePracticeMode.wordMorph:
+        return target == null;
+      default:
+        return target == null ||
+            PracticeRecordController.isCompleteByToken(target, token);
+    }
   }
 
   PracticeTarget? practiceTargetForToken(PangeaToken token) {
