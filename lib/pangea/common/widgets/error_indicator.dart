@@ -20,6 +20,8 @@ class ErrorIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final defaultStyle = DefaultTextStyle.of(context).style;
+    final style = defaultStyle.merge(this.style ?? defaultStyle);
     final content = RichText(
       text: TextSpan(
         children: [
