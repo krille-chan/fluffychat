@@ -81,6 +81,9 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
     } catch (e, s) {
       Logs().w('Unable to toggle push rule', e, s);
       if (!mounted) return;
+      // #Pangea
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+      // Pangea#
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
@@ -165,6 +168,9 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
         } catch (e, s) {
           Logs().w('Unable to delete push rule', e, s);
           if (!mounted) return;
+          // #Pangea
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          // Pangea#
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
