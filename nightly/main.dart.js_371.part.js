@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKK(){return new A.Gv(B.dd("vi"))},
-Gv:function Gv(d){this.a=d}}
+cKK(){return new A.Gw(B.dd("vi"))},
+Gw:function Gw(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[55],A)
-A.Gv.prototype={
+A.Gw.prototype={
 gkR(){return"kh\xf4ng"},
 gjD(){return"Nh\u1eadp l\u1ea1i m\u1eadt kh\u1ea9u"},
 gmF(){return"Kh\xf4ng ph\u1ea3i t\u1ec7p \u1ea3nh."},
@@ -681,7 +681,7 @@ gpL(){return"Search or enter homeserver address"},
 gq3(){return"Matrix ID"},
 A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gv,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gv":{"aD":[]}}'))};
-(a=>{a["rwnozVu1MNDc1wGt0DeC3FOTibg="]=a.current})($__dart_deferred_initializers__);
+y(A.Gw,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gw":{"aD":[]}}'))};
+(a=>{a["Oc3h2rJYqWxCbBW+RfDgB99+vfY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_371.part.js.map

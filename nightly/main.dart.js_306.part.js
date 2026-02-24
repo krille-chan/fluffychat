@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK6(){return new A.FT(B.dd("eu"))},
-FT:function FT(d){this.a=d}}
+cK6(){return new A.FU(B.dd("eu"))},
+FU:function FU(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[18],A)
-A.FT.prototype={
+A.FU.prototype={
 gkR(){return"false"},
 gjD(){return"Idatzi berriro pasahitza"},
 gmF(){return"Ez da irudi-fitxategia."},
@@ -681,8 +681,8 @@ gpL(){return"Search or enter homeserver address"},
 gq3(){return"Matrix ID"},
 A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FT,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FT":{"aD":[]}}'))
+x(A.FU,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FU":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["VIhchgPHR+tq6Chwhqc0bg942k0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["IepuTqHC+D0DZyQ6FwZeiGqMeSQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

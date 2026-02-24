@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKq(){return new A.Gc(B.dd("lv"))},
-Gc:function Gc(d){this.a=d}}
+cKq(){return new A.Gd(B.dd("lv"))},
+Gd:function Gd(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[38],A)
-A.Gc.prototype={
+A.Gd.prototype={
 gkR(){return"n\u0113"},
 gjD(){return"Atk\u0101rtot paroli"},
 gmF(){return"Nav att\u0113la datne."},
@@ -681,7 +681,7 @@ gpL(){return"Search or enter homeserver address"},
 gq3(){return"Matrix ID"},
 A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gc,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gc":{"aD":[]}}'))};
-(a=>{a["W+9aKo48QqIk5k2iiaeMZF7SH24="]=a.current})($__dart_deferred_initializers__);
+y(A.Gd,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gd":{"aD":[]}}'))};
+(a=>{a["7MIJpO73xdiu6bmEQeod6ZleKnc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_348.part.js.map

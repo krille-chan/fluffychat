@@ -1,9 +1,9 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
 cKM(d){return new A.Bf(B.dd(d))},
-cKN(){return new A.Gx(B.dd("zh_Hant"))},
+cKN(){return new A.Gy(B.dd("zh_Hant"))},
 Bf:function Bf(d){this.a=d},
-Gx:function Gx(d){this.a=d}},C
+Gy:function Gy(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[3],A)
 C=c[57]
@@ -682,7 +682,7 @@ gq1(d){return"\u52a0\u5165"},
 gpL(){return"Search or enter homeserver address"},
 gq3(){return"Matrix ID"},
 A(d,e){return this.gba(this).$1(e)}}
-A.Gx.prototype={
+A.Gy.prototype={
 gkR(){return"false"},
 gjD(){return"\u518d\u6b21\u8f38\u5165\u5bc6\u78bc"},
 gmF(){return"\u4e0d\u662f\u5716\u7247\u6a94\u6848\u3002"},
@@ -1291,7 +1291,7 @@ gnB(){return"\u76f4\u5230\u804a\u5929\u5ba4\u88e1\u6709\u4eba\u9080\u8acb\u60a8\
 A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Bf,C.aD)
-y(A.Gx,A.Bf)})()
-B.dI(b.typeUniverse,JSON.parse('{"Bf":{"aD":[]},"Gx":{"aD":[]}}'))};
-(a=>{a["uSRw93/tSy1fWA3n9WDT6bDzclI="]=a.current})($__dart_deferred_initializers__);
+y(A.Gy,A.Bf)})()
+B.dI(b.typeUniverse,JSON.parse('{"Bf":{"aD":[]},"Gy":{"aD":[]}}'))};
+(a=>{a["LpisS+8dWg1St3N1z7eRAGad0wc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map

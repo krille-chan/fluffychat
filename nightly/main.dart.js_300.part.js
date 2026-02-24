@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK4(){return new A.FR(B.dd("es"))},
-FR:function FR(d){this.a=d}}
+cK4(){return new A.FS(B.dd("es"))},
+FS:function FS(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[16],A)
-A.FR.prototype={
+A.FS.prototype={
 gkR(){return"true"},
 gjD(){return"Repite la contrase\xf1a"},
 gmF(){return"El archivo no es una imagen."},
@@ -681,7 +681,7 @@ gpL(){return"Search or enter homeserver address"},
 gq3(){return"Matrix ID"},
 A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FR,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FR":{"aD":[]}}'))};
-(a=>{a["zmqEAbrympiftE7NRSEy0wYby4c="]=a.current})($__dart_deferred_initializers__);
+y(A.FS,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FS":{"aD":[]}}'))};
+(a=>{a["PJtN5bG68eqUd2hdNEERbWq8fJo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_300.part.js.map

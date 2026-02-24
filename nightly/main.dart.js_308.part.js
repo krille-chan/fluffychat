@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK7(){return new A.FU(B.dd("fa"))},
-FU:function FU(d){this.a=d}}
+cK7(){return new A.FV(B.dd("fa"))},
+FV:function FV(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[19],A)
-A.FU.prototype={
+A.FV.prototype={
 gkR(){return"false"},
 gjD(){return"\u062a\u06a9\u0631\u0627\u0631 \u06af\u0630\u0631\u0648\u0627\u0698\u0647"},
 gmF(){return"\u06cc\u06a9 \u0641\u0627\u06cc\u0644 \u062a\u0635\u0648\u06cc\u0631\u06cc \u0646\u06cc\u0633\u062a."},
@@ -681,7 +681,7 @@ gpL(){return"Search or enter homeserver address"},
 gq3(){return"Matrix ID"},
 A(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FU,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FU":{"aD":[]}}'))};
-(a=>{a["U2H2bb84WAASx9XQoSxNZoRImDs="]=a.current})($__dart_deferred_initializers__);
+y(A.FV,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FV":{"aD":[]}}'))};
+(a=>{a["Xu/XUwG3t9Psmx53ji3AkOI348Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map
