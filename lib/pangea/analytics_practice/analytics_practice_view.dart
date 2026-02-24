@@ -7,7 +7,9 @@ import 'package:fluffychat/pangea/analytics_practice/practice_timer_widget.dart'
 import 'package:fluffychat/pangea/analytics_practice/unsubscribed_practice_page.dart';
 import 'package:fluffychat/pangea/analytics_summary/animated_progress_bar.dart';
 import 'package:fluffychat/pangea/common/network/requests.dart';
+import 'package:fluffychat/pangea/common/utils/async_state.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 
@@ -41,11 +43,16 @@ class AnalyticsPracticeView extends StatelessWidget {
                 ),
               ),
             ),
-            PracticeTimerWidget(
-              key: ValueKey(session?.startedAt ?? DateTime(0)),
-              initialSeconds: session?.state.elapsedSeconds ?? 0,
-              onTimeUpdate: controller.session.updateElapsedTime,
-              isRunning: session?.isComplete != true,
+            ValueListenableBuilder(
+              valueListenable: controller.activityState,
+              builder: (context, state, _) => PracticeTimerWidget(
+                key: ValueKey(session?.startedAt ?? DateTime(0)),
+                initialSeconds: session?.state.elapsedSeconds ?? 0,
+                onTimeUpdate: controller.session.updateElapsedTime,
+                isRunning:
+                    session?.isComplete != true &&
+                    state is AsyncLoaded<MultipleChoicePracticeActivityModel>,
+              ),
             ),
           ],
         ),
