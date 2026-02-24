@@ -152,12 +152,18 @@ class PracticeSessionController {
     Future Function(MessageActivityRequest) onSkip,
     Future Function(MultipleChoicePracticeActivityModel) onFetch,
   ) async {
+    final session = this.session;
     if (session == null) {
       throw Exception("Called getNextActivity without loading session");
     }
 
-    if (!session!.isComplete && _queue.isEmpty) {
-      return _initActivityData(onSkip, onFetch);
+    if (!session.isComplete && _queue.isEmpty) {
+      final initialActivity = await _initActivityData(onSkip, onFetch);
+      if (initialActivity == null && session.state.currentIndex == 0) {
+        // No activities were successfully loaded, and we haven't completed any yet, so throw an error
+        throw Exception("Failed to load any activities");
+      }
+      return initialActivity;
     }
 
     while (_queue.isNotEmpty) {
@@ -171,6 +177,12 @@ class PracticeSessionController {
         continue;
       }
     }
+
+    if (session.state.currentIndex == 0) {
+      // No activities were successfully loaded, and we haven't completed any yet, so throw an error
+      throw Exception("Failed to load any activities");
+    }
+
     return null;
   }
 }

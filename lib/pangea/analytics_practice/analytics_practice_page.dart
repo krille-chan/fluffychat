@@ -313,6 +313,8 @@ class AnalyticsPracticeState extends State<AnalyticsPractice>
   Future<void> skipActivity(MessageActivityRequest request) async {
     // Record a 0 XP use so that activity isn't chosen again soon
     _sessionController.skipActivity();
+    progress.value = _sessionController.progress;
+
     await _analyticsController.addSkippedActivityAnalytics(
       request.target,
       _l2!.langCodeShort,
