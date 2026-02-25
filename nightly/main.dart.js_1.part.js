@@ -43,7 +43,7 @@ m4(d){return d+" \u62e5\u62b1\u4e86\u4f60"},
 hp(d){return d+" \u63a5\u542c\u4e86\u901a\u8bdd"},
 gf1(){return"\u4efb\u4f55\u4eba\u90fd\u53ef\u4ee5\u52a0\u5165"},
 gf2(){return"\u5b58\u6863"},
-ghq(){return"\u662f\u5426\u5141\u8bb8\u8bbf\u5ba2\u52a0\u5165"},
+ghq(){return"\u5141\u8bb8\u8bbf\u5ba2\u52a0\u5165\u5417\uff1f"},
 gd8(){return"\u4f60\u786e\u5b9a\u5417\uff1f"},
 ghr(){return"\u4f60\u786e\u5b9a\u8981\u9000\u51fa\u767b\u5f55\u5417\uff1f"},
 ghs(){return"\u8bf7\u8f93\u5165\u4f60\u7684\u5b89\u5168\u5b58\u50a8\u7684\u5bc6\u7801\u77ed\u8bed\u6216\u6062\u590d\u5bc6\u94a5\uff0c\u4ee5\u5411\u5bf9\u65b9\u7b7e\u540d\u3002"},
@@ -677,7 +677,7 @@ gpL(){return"\u5df2\u7ecf\u6709 Matrix \u8d26\u6237\u4e86\uff1f\u6b22\u8fce\u56d
 gpP(){return"\u501f\u52a9 FluffyChat\uff0c\u60a8\u53ef\u4ee5\u548c\u597d\u53cb\u804a\u5929\u3002\u5b83\u662f\u5b89\u5168\u7684\u53bb\u4e2d\u5fc3\u5316 [matrix] \u6d88\u606f\u6536\u53d1\u5e94\u7528\uff01\u5982\u679c\u613f\u610f\uff0c\u53ef\u4ee5\u5728 https://matrix.org \u4e86\u89e3\u66f4\u591a\u4fe1\u606f\uff0c\u4e5f\u53ef\u76f4\u63a5\u6ce8\u518c\u8d26\u6237\u3002"},
 gpE(){return"\u8fc7\u7a0b\u88ab\u53d6\u6d88\u3002"},
 gq_(d){return"\u52a0\u5165"},
-gpJ(){return"Search or enter homeserver address"},
+gpJ(){return"\u641c\u7d22\u6216\u8f93\u5165 homeserver \u5730\u5740"},
 gq1(){return"Matrix ID"},
 B(d,e){return this.gba(this).$1(e)}}
 A.Gz.prototype={
@@ -1289,5 +1289,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Bf,C.aD)
 y(A.Gz,A.Bf)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Bf":{"aD":[]},"Gz":{"aD":[]}}'))};
-(a=>{a["2yRQdCjB9nljraYnPN1v84Pg/0Q="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/ckEvNymjjRssQluVCRy81ah0f0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
