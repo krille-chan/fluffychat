@@ -119,7 +119,7 @@ class PublicCoursePreviewView extends StatelessWidget {
                                         icon: Icons.person,
                                         text: L10n.of(context)
                                             .countParticipants(
-                                              summary.membershipSummary.length,
+                                              summary.joinedMemberCount,
                                             ),
                                         fontSize: descFontSize,
                                         iconSize: smallIconSize,

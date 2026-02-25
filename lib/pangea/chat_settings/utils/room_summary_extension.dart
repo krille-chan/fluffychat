@@ -105,6 +105,10 @@ class RoomSummaryResponse {
     );
   }
 
+  int get joinedMemberCount => membershipSummary.values
+      .where((membership) => membership == Membership.join.name)
+      .length;
+
   factory RoomSummaryResponse.fromJson(Map<String, dynamic> json) {
     final planEntry =
         json[PangeaEventTypes.activityPlan]?["default"]?["content"];
