@@ -33,7 +33,7 @@ class VocabAnalyticsListView extends StatelessWidget {
       controller.vocab?.where(_vocabFilter).sorted(_sortBySearch).toList();
 
   bool _vocabFilter(ConstructUses use) =>
-      use.lemma.isNotEmpty && _levelFilter(use) && _searchFilter(use);
+      _levelFilter(use) && _searchFilter(use);
 
   bool _levelFilter(ConstructUses use) {
     if (controller.selectedConstructLevel == null) {

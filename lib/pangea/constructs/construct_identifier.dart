@@ -194,5 +194,6 @@ class ConstructIdentifier {
       (type == ConstructTypeEnum.morph &&
           MorphFeaturesEnumExtension.fromString(category) ==
               MorphFeaturesEnum.Unknown) ||
-      category == 'other';
+      category == 'other' ||
+      lemma.isEmpty;
 }

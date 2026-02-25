@@ -352,8 +352,7 @@ class AnalyticsDataService {
       final existing = cleaned[canonical];
       if (existing != null) {
         existing.merge(entry);
-      } else if (!blocked.contains(canonical) &&
-          canonical.category != 'other') {
+      } else if (!blocked.contains(canonical) && !canonical.isInvalid) {
         cleaned[canonical] = entry;
       }
     }
