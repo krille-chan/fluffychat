@@ -1,26 +1,26 @@
 enum PangeaMatchStatusEnum {
   open,
-  ignored,
   accepted,
   automatic,
-  undo,
-  unknown;
+  viewed,
+  undo;
 
-  static PangeaMatchStatusEnum fromString(String status) {
-    final String lastPart = status.toString().split('.').last;
-    switch (lastPart) {
-      case 'open':
-        return PangeaMatchStatusEnum.open;
-      case 'ignored':
-        return PangeaMatchStatusEnum.ignored;
-      case 'accepted':
-        return PangeaMatchStatusEnum.accepted;
-      case 'automatic':
-        return PangeaMatchStatusEnum.automatic;
-      case 'undo':
-        return PangeaMatchStatusEnum.undo;
-      default:
-        return PangeaMatchStatusEnum.unknown;
-    }
-  }
+  bool get isOpen => switch (this) {
+    open => true,
+    viewed => true,
+    undo => true,
+    _ => false,
+  };
+
+  double get underlineOpacity => switch (this) {
+    open => 0.8,
+    _ => 0.25,
+  };
+
+  double get igcButtonOpacity => switch (this) {
+    open => 0.8,
+    accepted => 0.8,
+    automatic => 0.8,
+    _ => 0.25,
+  };
 }

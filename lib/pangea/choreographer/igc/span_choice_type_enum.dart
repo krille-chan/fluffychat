@@ -18,7 +18,8 @@ extension SpanChoiceExt on SpanChoiceTypeEnum {
       // ignore: deprecated_member_use_from_same_package
       this == SpanChoiceTypeEnum.bestCorrection ||
       // ignore: deprecated_member_use_from_same_package
-      this == SpanChoiceTypeEnum.bestAnswer;
+      this == SpanChoiceTypeEnum.bestAnswer ||
+      this == SpanChoiceTypeEnum.alt;
 
   String defaultFeedback(BuildContext context) {
     switch (this) {

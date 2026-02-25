@@ -43,6 +43,7 @@ import 'package:fluffychat/pangea/choreographer/choreo_constants.dart';
 import 'package:fluffychat/pangea/choreographer/choreo_record_model.dart';
 import 'package:fluffychat/pangea/choreographer/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/choreographer_state_extension.dart';
+import 'package:fluffychat/pangea/choreographer/igc/pangea_match_state_model.dart';
 import 'package:fluffychat/pangea/choreographer/text_editing/edit_type_enum.dart';
 import 'package:fluffychat/pangea/choreographer/text_editing/pangea_text_controller.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
@@ -484,7 +485,9 @@ class ChatController extends State<ChatPageWithRoom>
     // inputFocus.addListener(_inputFocusListener);
     // Pangea#
 
-    _loadDraft();
+    // #Pangea
+    // _loadDraft();
+    // Pangea#
     WidgetsBinding.instance.addPostFrameCallback(_shareItems);
     super.initState();
     _displayChatDetailsColumn = ValueNotifier(
@@ -503,6 +506,7 @@ class ChatController extends State<ChatPageWithRoom>
     _tryLoadTimeline();
     // #Pangea
     _pangeaInit();
+    _loadDraft();
     // Pangea#
   }
 
@@ -948,6 +952,9 @@ class ChatController extends State<ChatPageWithRoom>
   // Future<void> send() async {
   //   if (sendController.text.trim().isEmpty) return;
   Future<void> send() async {
+    // Close span card if open
+    MatrixState.pAnyState.closeAllOverlays();
+
     final message = sendController.text;
     final edit = editEvent.value;
     final reply = replyEvent.value;
@@ -1822,7 +1829,7 @@ class ChatController extends State<ChatPageWithRoom>
       PaywallCard.show(context, ChoreoConstants.inputTransformTargetKey);
       return;
     }
-    await onRequestWritingAssistance(manual: false, autosend: true);
+    await _onRequestWritingAssistance(manual: false, autosend: true);
   }
   // Pangea#
 
@@ -2069,8 +2076,9 @@ class ChatController extends State<ChatPageWithRoom>
 
   final StreamController<void> stopMediaStream = StreamController.broadcast();
 
-  bool get _isToolbarOpen =>
-      MatrixState.pAnyState.isOverlayOpen(RegExp(r'^message_toolbar_overlay$'));
+  bool get _isToolbarOpen => MatrixState.pAnyState.isOverlayOpen(
+    overlayKey: "message_toolbar_overlay",
+  );
 
   void showToolbar(
     Event event, {
@@ -2270,32 +2278,63 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
-  void showNextMatch() {
-    MatrixState.pAnyState.closeOverlay();
-    final match = choreographer.igcController.openMatches.firstOrNull;
-    if (match == null) {
+  void showNextMatch({PangeaMatchState? match}) {
+    final matchToShow =
+        match ?? choreographer.igcController.openMatches.firstOrNull;
+
+    if (matchToShow == null) {
       inputFocus.requestFocus();
       return;
     }
 
-    match.updatedMatch.isITStart
-        ? choreographer.itController.openIT(sendController.text)
-        : OverlayUtil.showIGCMatch(
-            match,
-            choreographer,
-            context,
-            showNextMatch,
-            (feedback) => onRequestWritingAssistance(feedback: feedback),
-          );
+    if (matchToShow.updatedMatch.isITStart) {
+      choreographer.itController.openIT(sendController.text);
+      return;
+    }
+
+    final isSpanCardOpen = MatrixState.pAnyState.isOverlayOpen(
+      overlayKey: 'span-card-overlay',
+    );
+
+    try {
+      choreographer.igcController.setActiveMatch(match: matchToShow);
+    } catch (e, s) {
+      ErrorHandler.logError(e: e, s: s, data: {'match': matchToShow.toJson()});
+      return;
+    }
+
+    if (!isSpanCardOpen) {
+      OverlayUtil.showIGCMatch(
+        matchToShow,
+        choreographer,
+        context,
+        onWritingAssistanceFeedback,
+      );
+    }
   }
 
-  Future<void> onRequestWritingAssistance({
+  Future<void> onManualWritingAssistance() =>
+      _onRequestWritingAssistance(manual: true);
+
+  Future<void> onWritingAssistanceFeedback(String feedback) =>
+      _onRequestWritingAssistance(feedback: feedback);
+
+  Future<void> _onRequestWritingAssistance({
     bool manual = false,
     bool autosend = false,
     String? feedback,
   }) async {
     if (shouldShowLanguageMismatchPopupByActivity) {
-      return showLanguageMismatchPopup(manual: manual);
+      return showLanguageMismatchPopup(manual: manual, autosend: autosend);
+    }
+
+    // If this request should send on a success, and is not a manual request, and assistance
+    // has already been requested, then just send the message instead of requesting assistance again.
+    if (autosend &&
+        !manual &&
+        choreographer.assistanceState != AssistanceStateEnum.notFetched) {
+      await send();
+      return;
     }
 
     feedback == null
@@ -2311,7 +2350,7 @@ class ChatController extends State<ChatPageWithRoom>
     }
   }
 
-  void showLanguageMismatchPopup({bool manual = false}) {
+  void showLanguageMismatchPopup({bool manual = false, bool autosend = false}) {
     if (!shouldShowLanguageMismatchPopupByActivity) {
       return;
     }
@@ -2324,7 +2363,7 @@ class ChatController extends State<ChatPageWithRoom>
       message: L10n.of(context).languageMismatchDesc,
       targetLanguage: targetLanguage,
       onConfirm: () => WidgetsBinding.instance.addPostFrameCallback(
-        (_) => onRequestWritingAssistance(manual: manual, autosend: true),
+        (_) => _onRequestWritingAssistance(manual: manual, autosend: autosend),
       ),
     );
   }

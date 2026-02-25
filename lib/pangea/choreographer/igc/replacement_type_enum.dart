@@ -259,24 +259,32 @@ extension SpanDataTypeEnumExt on ReplacementTypeEnum {
 
   /// Returns the underline color for this replacement type.
   /// Used to visually distinguish different error categories in the text field.
-  Color underlineColor() {
+  Color get color {
     // IT start and auto-apply types use primary color
-    if (this == ReplacementTypeEnum.itStart || isAutoApply) {
+    if (this == ReplacementTypeEnum.itStart) {
       return AppConfig.primaryColor;
     }
-    // Grammar errors use warning/orange
+
+    // Mint green
+    if (isAutoApply) {
+      return Color.fromARGB(255, 152, 255, 152);
+    }
+
+    // Grammar errors use Coral / warm pink
     if (isGrammarType) {
-      return AppConfig.warning;
+      return Color.fromARGB(255, 245, 122, 138);
     }
-    // Word choice uses blue
+    // Word choice uses Sky blue
     if (isWordChoiceType) {
-      return Colors.blue;
+      return Color.fromARGB(255, 135, 206, 235);
     }
-    // Style and fluency use teal
+    // Style and fluency use Lavender
     switch (this) {
       case ReplacementTypeEnum.style:
       case ReplacementTypeEnum.fluency:
-        return Colors.teal;
+        return Color.fromARGB(255, 188, 139, 194);
+      case ReplacementTypeEnum.translation:
+        return Color.fromARGB(255, 255, 126, 0); // Amber
       default:
         // Other/unknown use error color
         return AppConfig.error;

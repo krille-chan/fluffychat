@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
 
+import 'package:material_symbols_icons/symbols.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
-import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
+import 'package:fluffychat/pangea/choreographer/assistance_state_enum.dart';
 import 'package:fluffychat/pangea/choreographer/choreographer.dart';
+import 'package:fluffychat/pangea/choreographer/choreographer_state_extension.dart';
 import 'package:fluffychat/pangea/choreographer/igc/pangea_match_state_model.dart';
 import 'package:fluffychat/pangea/choreographer/igc/pangea_match_status_enum.dart';
 import 'package:fluffychat/pangea/choreographer/igc/replacement_type_enum.dart';
 import 'package:fluffychat/pangea/choreographer/igc/span_choice_type_enum.dart';
-import 'package:fluffychat/pangea/choreographer/igc/span_data_model.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/choice_array.dart';
 import 'package:fluffychat/pangea/common/widgets/feedback_dialog.dart';
-import '../../../widgets/matrix.dart';
-import '../../common/widgets/choice_array.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class SpanCard extends StatefulWidget {
-  final PangeaMatchState match;
   final Choreographer choreographer;
-  final VoidCallback showNextMatch;
   final Future Function(String) onFeedbackSubmitted;
+  final VoidCallback close;
 
   const SpanCard({
     super.key,
-    required this.match,
     required this.choreographer,
-    required this.showNextMatch,
     required this.onFeedbackSubmitted,
+    required this.close,
   });
 
   @override
@@ -37,35 +36,70 @@ class SpanCard extends StatefulWidget {
 class SpanCardState extends State<SpanCard> {
   final ScrollController scrollController = ScrollController();
 
+  double? _previousOffset;
+  Offset _slideFrom = const Offset(0.1, 0); // default slide from right
+
   @override
   void initState() {
     super.initState();
+    widget.choreographer.addListener(_onAssistanceStateChange);
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.choreographer.igcController.clearActiveMatch();
+    });
+
     scrollController.dispose();
+    widget.choreographer.removeListener(_onAssistanceStateChange);
     super.dispose();
   }
 
-  SpanChoice? get _selectedChoice =>
-      widget.match.updatedMatch.match.selectedChoice;
+  ValueNotifier<PangeaMatchState?> get _activeMatch =>
+      widget.choreographer.igcController.activeMatch;
 
-  void _onChoiceSelect(int index) {
-    widget.match.selectChoice(index);
-    setState(() {});
+  void _onAssistanceStateChange() {
+    if (widget.choreographer.assistanceState != AssistanceStateEnum.fetched) {
+      widget.close();
+    }
   }
 
-  void _updateMatch(PangeaMatchStatusEnum status) {
+  Future<void> _onChoiceSelect(
+    PangeaMatchState match,
+    int index,
+    PangeaMatchStatusEnum status,
+  ) async {
+    final choice = match.updatedMatch.match.choices?[index];
+    final correct = choice?.type.isSuggestion == true;
+    final selected = choice?.selected == true;
+
+    match.selectChoice(index);
+    setState(() {});
+
+    if (!correct && !selected) return;
+    await Future.delayed(
+      Duration(milliseconds: 600),
+      () => _updateMatch(match, status),
+    );
+  }
+
+  Future<void> _updateMatch(
+    PangeaMatchState match,
+    PangeaMatchStatusEnum status,
+  ) async {
     try {
-      widget.choreographer.igcController.updateMatch(widget.match, status);
-      widget.showNextMatch();
+      final igc = widget.choreographer.igcController;
+      igc.updateMatchStatus(match, status);
+      if (!status.isOpen) {
+        igc.hasOpenMatches ? igc.setActiveMatch() : widget.close();
+      }
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,
         s: s,
         level: SentryLevel.warning,
-        data: {"match": widget.match.toJson()},
+        data: {"match": match.toJson()},
       );
       widget.choreographer.clearMatches(e);
       return;
@@ -89,172 +123,185 @@ class SpanCardState extends State<SpanCard> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 300.0,
-      child: Column(
-        children: [
-          // Header row: Close, Type Label + BotFace, Flag
-          SizedBox(
-            height: 40.0,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return StreamBuilder(
+      stream: widget.choreographer.igcController.matchUpdateStream.stream,
+      builder: (context, _) => SizedBox(
+        height: 200.0,
+        child: ValueListenableBuilder(
+          valueListenable: _activeMatch,
+          builder: (context, match, _) {
+            if (match == null) return SizedBox();
+
+            final newOffset = match.updatedMatch.match.offset.toDouble();
+            if (_previousOffset != null) {
+              if (newOffset < _previousOffset!) {
+                // Moving backward → slide from left
+                _slideFrom = const Offset(-0.1, 0);
+              } else if (newOffset > _previousOffset!) {
+                // Moving forward → slide from right
+                _slideFrom = const Offset(0.1, 0);
+              }
+            }
+            _previousOffset = newOffset;
+
+            return Column(
+              mainAxisSize: .min,
               children: [
-                IconButton(
-                  icon: const Icon(Icons.close),
-                  color: Theme.of(context).iconTheme.color,
-                  onPressed: () => _updateMatch(PangeaMatchStatusEnum.ignored),
-                ),
-                const Flexible(
-                  child: Center(
-                    child: BotFace(width: 32.0, expression: BotExpression.idle),
-                  ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.flag_outlined),
-                  color: Theme.of(context).iconTheme.color,
-                  onPressed: _showFeedbackDialog,
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Scrollbar(
-              controller: scrollController,
-              child: SingleChildScrollView(
-                controller: scrollController,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12.0,
-                    horizontal: 24.0,
-                  ),
-                  child: Column(
-                    spacing: 12.0,
+                SizedBox(
+                  height: 40.0,
+                  child: Row(
                     children: [
-                      ChoicesArray(
-                        isLoading: false,
-                        choices: widget.match.updatedMatch.match.choices
-                            ?.map(
-                              (e) => Choice(
-                                text: e.value,
-                                color: e.selected ? e.type.color : null,
-                                isGold: e.type.isSuggestion,
-                              ),
-                            )
-                            .toList(),
-                        onPressed: (value, index) => _onChoiceSelect(index),
-                        selectedChoiceIndex:
-                            widget.match.updatedMatch.match.selectedChoiceIndex,
-                        id: widget.match.hashCode.toString(),
-                        langCode: MatrixState
-                            .pangeaController
-                            .userController
-                            .userL2Code!,
+                      IconButton(
+                        icon: const Icon(Icons.close),
+                        color: Theme.of(context).iconTheme.color,
+                        onPressed: widget.close,
                       ),
-                      const SizedBox(),
-                      _SpanCardFeedback(widget.match.updatedMatch.match),
+                      Expanded(
+                        child: Text(
+                          match.updatedMatch.match.type.displayName(context),
+                          textAlign: TextAlign.center,
+                          style: BotStyle.text(
+                            context,
+                            big: true,
+                          ).copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.flag_outlined),
+                        color: Theme.of(context).iconTheme.color,
+                        onPressed: _showFeedbackDialog,
+                      ),
                     ],
                   ),
                 ),
-              ),
-            ),
-          ),
-          _SpanCardButtons(
-            onAccept: () => _updateMatch(PangeaMatchStatusEnum.accepted),
-            onIgnore: () => _updateMatch(PangeaMatchStatusEnum.ignored),
-            selectedChoice: _selectedChoice,
-          ),
-        ],
+                Expanded(
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    switchInCurve: Curves.easeOut,
+                    switchOutCurve: Curves.easeIn,
+                    transitionBuilder: (child, animation) {
+                      final slideAnimation = Tween<Offset>(
+                        begin: _slideFrom,
+                        end: Offset.zero,
+                      ).animate(animation);
+
+                      return FadeTransition(
+                        opacity: animation,
+                        child: SlideTransition(
+                          position: slideAnimation,
+                          child: child,
+                        ),
+                      );
+                    },
+                    child: _MatchContent(
+                      key: ValueKey(match.hashCode),
+                      match: match,
+                      scrollController: scrollController,
+                      onChoiceSelect: _onChoiceSelect,
+                      onUpdateMatch: _updateMatch,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
 }
 
-class _SpanCardFeedback extends StatelessWidget {
-  final SpanData? span;
-  const _SpanCardFeedback(this.span);
+class _MatchContent extends StatelessWidget {
+  final PangeaMatchState match;
+  final ScrollController scrollController;
+  final Future<void> Function(PangeaMatchState, int, PangeaMatchStatusEnum)
+  onChoiceSelect;
+  final Future<void> Function(PangeaMatchState, PangeaMatchStatusEnum)
+  onUpdateMatch;
 
-  @override
-  Widget build(BuildContext context) {
-    String prompt = L10n.of(context).correctionDefaultPrompt;
-    if (span != null) {
-      prompt = span!.type.defaultPrompt(context);
-    }
-
-    final defaultContent = Text(
-      prompt,
-      style: BotStyle.text(context).copyWith(fontStyle: FontStyle.italic),
-    );
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        span == null || span!.selectedChoice == null
-            ? defaultContent
-            : Text(
-                span!.selectedChoice!.feedbackToDisplay(context),
-                style: BotStyle.text(context),
-              ),
-      ],
-    );
-  }
-}
-
-class _SpanCardButtons extends StatelessWidget {
-  final VoidCallback onAccept;
-  final VoidCallback onIgnore;
-  final SpanChoice? selectedChoice;
-
-  const _SpanCardButtons({
-    required this.onAccept,
-    required this.onIgnore,
-    required this.selectedChoice,
+  const _MatchContent({
+    super.key,
+    required this.match,
+    required this.scrollController,
+    required this.onChoiceSelect,
+    required this.onUpdateMatch,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: Theme.of(context).cardColor),
-      padding: const EdgeInsets.only(top: 12.0),
-      child: Row(
-        spacing: 10.0,
-        children: [
-          Expanded(
-            child: Opacity(
-              opacity: 0.8,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: Theme.of(
-                    context,
-                  ).colorScheme.primary.withAlpha(25),
-                ),
-                onPressed: onIgnore,
-                child: Center(child: Text(L10n.of(context).ignoreInThisText)),
+    final isOpen = match.updatedMatch.status.isOpen;
+
+    return Scrollbar(
+      controller: scrollController,
+      child: SingleChildScrollView(
+        controller: scrollController,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+          child: Column(
+            spacing: 12.0,
+            children: [
+              Text(
+                match.updatedMatch.match.message ??
+                    match.updatedMatch.match.type.defaultPrompt(context),
+                style: BotStyle.text(context),
               ),
-            ),
+              isOpen
+                  ? ChoicesArray(
+                      isLoading: false,
+                      choices: match.updatedMatch.match.choices?.map((e) {
+                        return Choice(
+                          text: e.value,
+                          color: e.selected ? e.type.color : null,
+                          isGold: e.type.isSuggestion,
+                        );
+                      }).toList(),
+                      onPressed: (value, index) => onChoiceSelect(
+                        match,
+                        index,
+                        PangeaMatchStatusEnum.accepted,
+                      ),
+                      selectedChoiceIndex:
+                          match.updatedMatch.match.selectedChoiceIndex,
+                      id: match.hashCode.toString(),
+                      langCode: MatrixState
+                          .pangeaController
+                          .userController
+                          .userL2Code!,
+                    )
+                  : Row(
+                      spacing: 16.0,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Flexible(
+                          child: Wrap(
+                            spacing: 8.0,
+                            runSpacing: 4.0,
+                            alignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              Text(match.originalMatch.match.errorSpan),
+                              const Icon(Icons.arrow_forward, size: 16.0),
+                              Text(
+                                match
+                                        .updatedMatch
+                                        .match
+                                        .selectedChoice
+                                        ?.value ??
+                                    L10n.of(context).nothingFound,
+                              ),
+                            ],
+                          ),
+                        ),
+                        IconButton(
+                          icon: const Icon(Symbols.undo),
+                          onPressed: () =>
+                              onUpdateMatch(match, PangeaMatchStatusEnum.undo),
+                        ),
+                      ],
+                    ),
+            ],
           ),
-          Expanded(
-            child: Opacity(
-              opacity: selectedChoice != null ? 1.0 : 0.5,
-              child: TextButton(
-                onPressed: selectedChoice != null ? onAccept : null,
-                style: TextButton.styleFrom(
-                  backgroundColor:
-                      (selectedChoice?.color ??
-                              Theme.of(context).colorScheme.primary)
-                          .withAlpha(50),
-                  side: selectedChoice != null
-                      ? BorderSide(
-                          color: selectedChoice!.color,
-                          style: BorderStyle.solid,
-                          width: 2.0,
-                        )
-                      : null,
-                ),
-                child: Text(L10n.of(context).replace),
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

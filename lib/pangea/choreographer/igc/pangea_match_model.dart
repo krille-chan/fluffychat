@@ -25,11 +25,16 @@ class PangeaMatch {
         ? json[_matchKey] as Map<String, dynamic>
         : json;
 
+    final statusEntry = json[_statusKey] as String?;
+
     return PangeaMatch(
       match: SpanData.fromJson(spanJson, parentFullText: fullText),
       // V1 format may have status; V2 format always defaults to open
-      status: isV1Format && json[_statusKey] != null
-          ? PangeaMatchStatusEnum.fromString(json[_statusKey] as String)
+      status: isV1Format && statusEntry != null
+          ? PangeaMatchStatusEnum.values.firstWhere(
+              (status) => status.name == statusEntry,
+              orElse: () => PangeaMatchStatusEnum.open,
+            )
           : PangeaMatchStatusEnum.open,
     );
   }

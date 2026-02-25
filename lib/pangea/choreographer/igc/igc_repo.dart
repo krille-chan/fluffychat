@@ -7,7 +7,6 @@ import 'package:http/http.dart';
 
 import 'package:fluffychat/pangea/choreographer/igc/igc_request_model.dart';
 import 'package:fluffychat/pangea/choreographer/igc/igc_response_model.dart';
-import 'package:fluffychat/pangea/choreographer/igc/pangea_match_model.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import '../../common/network/requests.dart';
@@ -20,30 +19,8 @@ class _IgcCacheItem {
   const _IgcCacheItem({required this.data, required this.timestamp});
 }
 
-class _IgnoredMatchCacheItem {
-  final PangeaMatch match;
-  final DateTime timestamp;
-
-  String get spanText => match.match.fullText.characters
-      .skip(match.match.offset)
-      .take(match.match.length)
-      .toString();
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is _IgnoredMatchCacheItem && other.spanText == spanText;
-  }
-
-  @override
-  int get hashCode => spanText.hashCode;
-
-  _IgnoredMatchCacheItem({required this.match, required this.timestamp});
-}
-
 class IgcRepo {
   static final Map<String, _IgcCacheItem> _igcCache = {};
-  static final Map<String, _IgnoredMatchCacheItem> _ignoredMatchCache = {};
   static const Duration _cacheDuration = Duration(minutes: 10);
 
   static Future<Result<IGCResponseModel>> get(
@@ -125,37 +102,4 @@ class IgcRepo {
     data: response,
     timestamp: DateTime.now(),
   );
-
-  static void ignore(PangeaMatch match) {
-    _setCachedIgnoredSpan(match);
-  }
-
-  static bool isIgnored(PangeaMatch match) {
-    final cached = _getCachedIgnoredSpan(match);
-    return cached != null;
-  }
-
-  static PangeaMatch? _getCachedIgnoredSpan(PangeaMatch match) {
-    final cacheKeys = [..._ignoredMatchCache.keys];
-    for (final key in cacheKeys) {
-      final entry = _ignoredMatchCache[key]!;
-      if (DateTime.now().difference(entry.timestamp) >= _cacheDuration) {
-        _ignoredMatchCache.remove(key);
-      }
-    }
-
-    final cacheEntry = _IgnoredMatchCacheItem(
-      match: match,
-      timestamp: DateTime.now(),
-    );
-    return _ignoredMatchCache[cacheEntry.hashCode.toString()]?.match;
-  }
-
-  static void _setCachedIgnoredSpan(PangeaMatch match) {
-    final cacheEntry = _IgnoredMatchCacheItem(
-      match: match,
-      timestamp: DateTime.now(),
-    );
-    _ignoredMatchCache[cacheEntry.hashCode.toString()] = cacheEntry;
-  }
 }

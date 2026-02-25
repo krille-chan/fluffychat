@@ -10,9 +10,8 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/choreographer/choreo_constants.dart';
 import 'package:fluffychat/pangea/choreographer/choreo_mode_enum.dart';
 import 'package:fluffychat/pangea/choreographer/choreographer.dart';
-import 'package:fluffychat/pangea/choreographer/text_editing/edit_type_enum.dart';
+import 'package:fluffychat/pangea/choreographer/igc/pangea_match_state_model.dart';
 import 'package:fluffychat/pangea/choreographer/text_editing/pangea_text_controller.dart';
-import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/common/widgets/shrinkable_text.dart';
 import 'package:fluffychat/pangea/learning_settings/tool_settings_enum.dart';
 import 'package:fluffychat/pangea/subscription/controllers/subscription_controller.dart';
@@ -36,7 +35,7 @@ class InputBar extends StatelessWidget {
   // final TextEditingController? controller;
   final PangeaTextController? controller;
   final Choreographer choreographer;
-  final VoidCallback showNextMatch;
+  final Function(PangeaMatchState) showMatch;
   final Future Function(String) onFeedbackSubmitted;
   // Pangea#
   final InputDecoration decoration;
@@ -62,7 +61,7 @@ class InputBar extends StatelessWidget {
     required this.suggestionEmojis,
     // #Pangea
     required this.choreographer,
-    required this.showNextMatch,
+    required this.showMatch,
     required this.onFeedbackSubmitted,
     // Pangea#
     super.key,
@@ -429,27 +428,11 @@ class InputBar extends StatelessWidget {
     final adjustedOffset = _adjustOffsetForNormalization(baseOffset);
     final match = choreographer.igcController.getMatchByOffset(adjustedOffset);
     if (match == null) return;
+    showMatch(match);
 
-    if (match.updatedMatch.isITStart) {
-      choreographer.itController.openIT(controller!.text);
-    } else {
-      OverlayUtil.showIGCMatch(
-        match,
-        choreographer,
-        context,
-        showNextMatch,
-        onFeedbackSubmitted,
-      );
-
-      // rebuild the text field to highlight the newly selected match
-      choreographer.textController.setSystemText(
-        choreographer.textController.text,
-        EditTypeEnum.other,
-      );
-      choreographer.textController.selection = TextSelection.collapsed(
-        offset: baseOffset,
-      );
-    }
+    choreographer.textController.selection = TextSelection.collapsed(
+      offset: baseOffset,
+    );
   }
 
   bool _shouldShowPaywall(BuildContext context) {
@@ -462,7 +445,8 @@ class InputBar extends StatelessWidget {
 
   int _adjustOffsetForNormalization(int baseOffset) {
     int adjustedOffset = baseOffset;
-    final corrections = choreographer.igcController.recentAutomaticCorrections;
+    final corrections =
+        choreographer.igcController.closedNormalizationCorrections;
 
     for (final correction in corrections) {
       final match = correction.updatedMatch.match;
@@ -484,7 +468,10 @@ class InputBar extends StatelessWidget {
       // #Pangea
       // fieldViewBuilder: (context, controller, focusNode, _) => TextField(
       fieldViewBuilder: (context, _, focusNode, _) => ListenableBuilder(
-        listenable: choreographer,
+        listenable: Listenable.merge([
+          choreographer,
+          choreographer.igcController.activeMatch,
+        ]),
         builder: (context, _) {
           return TextField(
             // Pangea#

@@ -222,19 +222,16 @@ class OverlayUtil {
     PangeaMatchState match,
     Choreographer choreographer,
     BuildContext context,
-    VoidCallback showNextMatch,
     Future Function(String) onFeedbackSubmitted,
   ) {
     MatrixState.pAnyState.closeAllOverlays();
     showPositionedCard(
-      overlayKey:
-          "span_card_overlay_${match.updatedMatch.match.offset}_${match.updatedMatch.match.length}",
+      overlayKey: 'span-card-overlay',
       context: context,
       cardToShow: SpanCard(
-        match: match,
         choreographer: choreographer,
-        showNextMatch: showNextMatch,
         onFeedbackSubmitted: onFeedbackSubmitted,
+        close: () => MatrixState.pAnyState.closeOverlay('span-card-overlay'),
       ),
       maxHeight: 325,
       maxWidth: 325,

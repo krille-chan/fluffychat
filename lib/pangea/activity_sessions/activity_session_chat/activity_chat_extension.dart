@@ -11,7 +11,9 @@ extension ActivityMenuLogic on ChatController {
   bool get shouldShowActivityInstructions {
     if (InstructionsEnum.showedActivityMenu.isToggledOff ||
         InstructionsEnum.activityStatsMenu.isToggledOff ||
-        MatrixState.pAnyState.isOverlayOpen(RegExp(r"^word-zoom-card-.*$")) ||
+        MatrixState.pAnyState.isOverlayOpen(
+          regex: RegExp(r"^word-zoom-card-.*$"),
+        ) ||
         timeline == null ||
         GoRouterState.of(context).fullPath?.endsWith(':roomid') != true) {
       return false;

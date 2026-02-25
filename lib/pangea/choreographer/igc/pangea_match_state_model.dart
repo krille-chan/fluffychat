@@ -1,5 +1,6 @@
 import 'package:fluffychat/pangea/choreographer/igc/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/igc/pangea_match_status_enum.dart';
+import 'package:fluffychat/pangea/choreographer/igc/span_choice_type_enum.dart';
 import 'package:fluffychat/pangea/choreographer/igc/span_data_model.dart';
 
 class PangeaMatchState {
@@ -41,8 +42,26 @@ class PangeaMatchState {
       throw Exception('No choices available to select best choice from.');
     }
     selectChoice(
-      updatedMatch.match.choices!.indexWhere((c) => c.isBestCorrection),
+      updatedMatch.match.choices!.indexWhere((c) => c.type.isSuggestion),
     );
+  }
+
+  void resetChoices() {
+    if (_match.choices == null) {
+      throw Exception('No choices available to reset.');
+    }
+    final resetChoices = _match.choices!
+        .map(
+          (c) => SpanChoice(
+            value: c.value,
+            type: c.type,
+            feedback: c.feedback,
+            selected: false,
+            timestamp: null,
+          ),
+        )
+        .toList();
+    setMatch(_match.copyWith(choices: resetChoices));
   }
 
   Map<String, dynamic> toJson() {

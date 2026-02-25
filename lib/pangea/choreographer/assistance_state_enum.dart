@@ -21,7 +21,7 @@ enum AssistanceStateEnum {
       case AssistanceStateEnum.noMessage:
       case AssistanceStateEnum.fetched:
       case AssistanceStateEnum.error:
-        return Theme.of(context).disabledColor;
+        return Colors.grey[400]!;
       case AssistanceStateEnum.notFetched:
       case AssistanceStateEnum.fetching:
         return Theme.of(context).colorScheme.primary;
@@ -50,14 +50,12 @@ enum AssistanceStateEnum {
     _ => false,
   };
 
-  Color backgroundColor(BuildContext context) => switch (this) {
-    AssistanceStateEnum.noSub ||
-    AssistanceStateEnum.noMessage ||
-    AssistanceStateEnum.fetched ||
-    AssistanceStateEnum.complete ||
-    AssistanceStateEnum.error => Theme.of(
-      context,
-    ).colorScheme.surfaceContainerHighest,
-    _ => Theme.of(context).colorScheme.primaryContainer,
+  bool get showIcon => switch (this) {
+    AssistanceStateEnum.noSub => true,
+    AssistanceStateEnum.noMessage => true,
+    AssistanceStateEnum.notFetched => true,
+    AssistanceStateEnum.error => true,
+    AssistanceStateEnum.complete => true,
+    _ => false,
   };
 }

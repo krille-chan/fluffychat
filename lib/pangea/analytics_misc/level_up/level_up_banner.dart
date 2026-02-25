@@ -65,7 +65,7 @@ class LevelUpUtil {
 
   static Future<void> _waitForSnackbars(BuildContext context) async {
     final snackbarRegex = RegExp(r'_snackbar$');
-    while (MatrixState.pAnyState.isOverlayOpen(snackbarRegex)) {
+    while (MatrixState.pAnyState.isOverlayOpen(regex: snackbarRegex)) {
       await Future.delayed(const Duration(milliseconds: 100));
     }
   }

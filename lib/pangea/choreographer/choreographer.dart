@@ -273,7 +273,7 @@ class Choreographer extends ChangeNotifier {
       openMatches: [],
     );
 
-    if (igcController.openAutomaticMatches.isNotEmpty) {
+    if (igcController.openNormalizationMatches.isNotEmpty) {
       await igcController.acceptNormalizationMatches();
     } else {
       // trigger a re-render of the text field to show IGC matches
@@ -291,7 +291,7 @@ class Choreographer extends ChangeNotifier {
 
     _startLoading();
     final success = await igcController.rerunWithFeedback(feedbackText);
-    if (success && igcController.openAutomaticMatches.isNotEmpty) {
+    if (success && igcController.openNormalizationMatches.isNotEmpty) {
       await igcController.acceptNormalizationMatches();
     }
     _stopLoading();
@@ -423,7 +423,7 @@ class Choreographer extends ChangeNotifier {
     switch (match.updatedMatch.status) {
       case PangeaMatchStatusEnum.accepted:
       case PangeaMatchStatusEnum.automatic:
-      case PangeaMatchStatusEnum.ignored:
+      case PangeaMatchStatusEnum.viewed:
         _record.addRecord(textController.text, match: match.updatedMatch);
       case PangeaMatchStatusEnum.undo:
         _record.choreoSteps.removeWhere(

@@ -121,9 +121,11 @@ class PangeaAnyState {
     return box?.hasSize == true ? box : null;
   }
 
-  bool isOverlayOpen(RegExp regex) {
+  bool isOverlayOpen({RegExp? regex, String? overlayKey}) {
     return entries.any(
-      (element) => element.key != null && regex.hasMatch(element.key!),
+      (element) =>
+          element.key != null &&
+          (regex?.hasMatch(element.key!) == true || element.key == overlayKey),
     );
   }
 
