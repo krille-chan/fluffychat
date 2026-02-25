@@ -123,9 +123,6 @@ class ChatEventList extends StatelessWidget {
                       // WidgetsBinding.instance.addPostFrameCallback(
                       //   controller.requestHistory,
                       // );
-                      WidgetsBinding.instance.addPostFrameCallback(
-                        (_) => controller.requestHistory(),
-                      );
                       // Pangea#
                     }
                     return Center(
