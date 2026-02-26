@@ -15,8 +15,6 @@ mixin CoursePlanProvider<T extends StatefulWidget> on State<T> {
   bool loadingTopics = false;
   Object? topicError;
 
-  Map<String, Object?> activityErrors = {};
-
   CoursePlanModel? course;
 
   Future<void> _initStorage() async {
@@ -84,36 +82,6 @@ mixin CoursePlanProvider<T extends StatefulWidget> on State<T> {
       if (topic != null) {
         futures.add(topic.fetchLocationMedia());
       }
-    }
-    await Future.wait(futures);
-  }
-
-  Future<void> loadActivity(String topicId) async {
-    setState(() {
-      activityErrors[topicId] = null;
-    });
-
-    try {
-      final topic = course?.loadedTopics[topicId];
-      if (topic == null) {
-        throw Exception("Topic is null");
-      }
-      await topic.fetchActivities();
-    } catch (e) {
-      activityErrors[topicId] = e;
-    } finally {
-      if (mounted) {
-        setState(() {});
-      }
-    }
-  }
-
-  Future<void> loadAllActivities() async {
-    if (course == null) return;
-
-    final futures = <Future>[];
-    for (final topicId in course!.topicIds) {
-      futures.add(loadActivity(topicId));
     }
     await Future.wait(futures);
   }

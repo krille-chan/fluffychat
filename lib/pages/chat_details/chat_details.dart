@@ -54,7 +54,7 @@ class ChatDetails extends StatefulWidget {
 // class ChatDetailsController extends State<ChatDetails> {
 class ChatDetailsController extends State<ChatDetails>
     with ActivitySummariesProvider, CoursePlanProvider, ChatDownloadProvider {
-  bool loadingActivities = true;
+  bool loadingCourseInfo = true;
   bool loadingCourseSummary = true;
 
   // listen to language updates to refresh course info
@@ -344,18 +344,17 @@ class ChatDetailsController extends State<ChatDetails>
         course = null;
         loadingCourse = false;
         loadingTopics = false;
-        loadingActivities = false;
+        loadingCourseInfo = false;
       });
       return;
     }
 
-    if (mounted) setState(() => loadingActivities = true);
+    if (mounted) setState(() => loadingCourseInfo = true);
     await loadCourse(room.coursePlan!.uuid);
-    if (course != null) {
-      if (mounted) await loadTopics();
-      if (mounted) await loadAllActivities();
+    if (course != null && mounted) {
+      await loadTopics();
     }
-    if (mounted) setState(() => loadingActivities = false);
+    if (mounted) setState(() => loadingCourseInfo = false);
   }
 
   Future<void> _loadSummaries() async {

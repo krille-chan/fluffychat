@@ -167,8 +167,8 @@ mixin ActivitySummariesProvider<T extends StatefulWidget> on State<T> {
       return completedTopicActivities.length >= activitiesToCompleteOverride;
     }
 
-    final numTwoPersonActivities = topic.loadedActivities.values
-        .where((a) => a.req.numberOfParticipants <= 2)
+    final numTwoPersonActivities = topic.activityRoleCounts.entries
+        .where((e) => e.value <= 2)
         .length;
 
     return completedTopicActivities.length >= numTwoPersonActivities;
@@ -187,8 +187,6 @@ mixin ActivitySummariesProvider<T extends StatefulWidget> on State<T> {
       final topicId = course.topicIds[i];
       final topic = course.loadedTopics[topicId];
       if (topic == null) continue;
-      if (!topic.activityListComplete) continue;
-
       if (!_hasCompletedTopic(userID, topic, activitiesToCompleteOverride) &&
           topic.activityIds.isNotEmpty) {
         return topicId;

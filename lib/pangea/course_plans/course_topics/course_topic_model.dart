@@ -17,6 +17,7 @@ class CourseTopicModel {
   final String uuid;
   final List<String> locationIds;
   final List<String> activityIds;
+  final Map<String, int> activityRoleCounts;
 
   CourseTopicModel({
     required this.title,
@@ -24,6 +25,7 @@ class CourseTopicModel {
     required this.uuid,
     required this.activityIds,
     required this.locationIds,
+    required this.activityRoleCounts,
   });
 
   bool get locationListComplete =>
@@ -103,12 +105,21 @@ class CourseTopicModel {
         json['location_ids'] as List<dynamic>? ??
         json['locationIds'] as List<dynamic>?;
 
+    final activityRoleCountsEntry = json['activity_role_counts'];
+    Map<String, int> activityRoleCounts = {};
+    if (activityRoleCountsEntry != null) {
+      activityRoleCounts = Map<String, dynamic>.from(
+        activityRoleCountsEntry,
+      ).map((key, value) => MapEntry(key, value as int));
+    }
+
     return CourseTopicModel(
       title: json['title'] as String,
       description: json['description'] as String,
       uuid: json['uuid'] as String,
       activityIds: activityIdsEntry?.map((e) => e as String).toList() ?? [],
       locationIds: locationIdsEntry?.map((e) => e as String).toList() ?? [],
+      activityRoleCounts: activityRoleCounts,
     );
   }
 
@@ -120,6 +131,7 @@ class CourseTopicModel {
       'uuid': uuid,
       'activity_ids': activityIds,
       'location_ids': locationIds,
+      'activity_role_counts': activityRoleCounts,
     };
   }
 }

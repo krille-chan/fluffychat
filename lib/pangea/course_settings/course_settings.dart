@@ -3,31 +3,22 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:shimmer/shimmer.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
-import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
-import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_plans/courses/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/course_settings/pin_clipper.dart';
+import 'package:fluffychat/pangea/course_settings/topic_activities_list.dart';
 import 'package:fluffychat/pangea/course_settings/topic_participant_list.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class CourseSettings extends StatelessWidget {
-  // final Room room;
-
-  // /// The course ID to load, from the course plan event in the room.
-  // /// Separate from the room to trigger didUpdateWidget on change
-  // final String? courseId;
   final ChatDetailsController controller;
 
   const CourseSettings({super.key, required this.controller});
@@ -124,7 +115,7 @@ class CourseSettings extends StatelessWidget {
         ? null
         : controller.course!.topicIds.indexOf(activeTopicId);
 
-    final Map<String, List<User>> userTopics = controller.loadingActivities
+    final Map<String, List<User>> userTopics = controller.loadingCourseInfo
         ? {}
         : controller.topicsToUsers(
             room,
@@ -145,13 +136,11 @@ class CourseSettings extends StatelessWidget {
           }
 
           final usersInTopic = userTopics[topicId] ?? [];
-          final activityError = controller.activityErrors[topicId];
 
           final bool locked =
               !teacherMode && (topicIndex == null ? false : index > topicIndex);
 
-          final disabled =
-              locked || controller.loadingActivities || activityError != null;
+          final disabled = locked || controller.loadingCourseInfo;
 
           return AbsorbPointer(
             absorbing: disabled,
@@ -251,26 +240,14 @@ class CourseSettings extends StatelessWidget {
                     },
                   ),
                   if (!locked)
-                    controller.loadingActivities
-                        ? ActivityCardPlaceholder(
-                            activityCount: topic.activityIds.length,
-                          )
-                        : activityError != null
-                        ? ErrorIndicator(
-                            message: L10n.of(context).oopsSomethingWentWrong,
-                          )
-                        : topic.loadedActivities.isNotEmpty
-                        ? SizedBox(
-                            height: isColumnMode ? 290.0 : 210.0,
-                            child: TopicActivitiesList(
-                              room: room,
-                              activities: topic.loadedActivities,
-                              loading: controller.loadingCourseSummary,
-                              hasCompletedActivity:
-                                  controller.hasCompletedActivity,
-                            ),
-                          )
-                        : const SizedBox(),
+                    SizedBox(
+                      height: isColumnMode ? 290.0 : 210.0,
+                      child: TopicActivitiesList(
+                        room: room,
+                        topic: topic,
+                        hasCompletedActivity: controller.hasCompletedActivity,
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -278,156 +255,6 @@ class CourseSettings extends StatelessWidget {
         }),
         const SizedBox(height: 16.0),
       ],
-    );
-  }
-}
-
-class ActivityCardPlaceholder extends StatelessWidget {
-  final int activityCount;
-
-  const ActivityCardPlaceholder({super.key, required this.activityCount});
-
-  @override
-  Widget build(BuildContext context) {
-    final int shimmerCount = activityCount;
-    final theme = Theme.of(context);
-    final isColumnMode = FluffyThemes.isColumnMode(context);
-
-    return SizedBox(
-      height: isColumnMode ? 290.0 : 210.0,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: shimmerCount,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.only(right: 24.0),
-            child: Shimmer.fromColors(
-              baseColor: theme.colorScheme.primary.withAlpha(20),
-              highlightColor: theme.colorScheme.primary.withAlpha(50),
-              child: Container(
-                width: isColumnMode ? 160.0 : 120.0,
-                height: isColumnMode ? 280.0 : 200.0,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.surfaceContainer,
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-class TopicActivitiesList extends StatefulWidget {
-  final Room room;
-  final Map<String, ActivityPlanModel> activities;
-  final bool loading;
-  final bool Function(String userId, String activityId) hasCompletedActivity;
-
-  const TopicActivitiesList({
-    super.key,
-    required this.room,
-    required this.activities,
-    required this.loading,
-    required this.hasCompletedActivity,
-  });
-  @override
-  State<TopicActivitiesList> createState() => TopicActivitiesListState();
-}
-
-class TopicActivitiesListState extends State<TopicActivitiesList> {
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final isColumnMode = FluffyThemes.isColumnMode(context);
-
-    final activityEntries = widget.activities.entries.toList();
-    activityEntries.sort(
-      (a, b) => a.value.req.numberOfParticipants.compareTo(
-        b.value.req.numberOfParticipants,
-      ),
-    );
-
-    return Scrollbar(
-      thumbVisibility: true,
-      controller: _scrollController,
-      child: ListView.builder(
-        controller: _scrollController,
-        scrollDirection: Axis.horizontal,
-        itemCount: activityEntries.length,
-        itemBuilder: (context, index) {
-          final activityEntry = activityEntries[index];
-          final complete = widget.hasCompletedActivity(
-            widget.room.client.userID!,
-            activityEntry.key,
-          );
-
-          final activity = activityEntry.value;
-          return Padding(
-            padding: index != (activityEntries.length - 1)
-                ? const EdgeInsets.only(right: 24.0)
-                : EdgeInsets.zero,
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () => context.go(
-                  "/rooms/spaces/${widget.room.id}/activity/${activityEntry.key}",
-                ),
-                child: Stack(
-                  children: [
-                    ActivitySuggestionCard(
-                      activity: activity,
-                      width: isColumnMode ? 160.0 : 120.0,
-                      height: isColumnMode ? 280.0 : 200.0,
-                      fontSize: isColumnMode ? 20.0 : 12.0,
-                      fontSizeSmall: isColumnMode ? 12.0 : 8.0,
-                      iconSize: isColumnMode ? 12.0 : 8.0,
-                    ),
-                    if (widget.loading)
-                      Container(
-                        width: isColumnMode ? 160.0 : 120.0,
-                        height: isColumnMode ? 280.0 : 200.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.0),
-                          color: theme.colorScheme.surface.withAlpha(180),
-                        ),
-                        child: const Center(
-                          child: CircularProgressIndicator.adaptive(),
-                        ),
-                      )
-                    else if (complete)
-                      Container(
-                        width: isColumnMode ? 160.0 : 120.0,
-                        height: isColumnMode ? 280.0 : 200.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.0),
-                          color: theme.colorScheme.surface.withAlpha(180),
-                        ),
-                        child: Center(
-                          child: SvgPicture.asset(
-                            "assets/pangea/check.svg",
-                            width: 48.0,
-                            height: 48.0,
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      ),
     );
   }
 }
