@@ -88,9 +88,18 @@ class ChatEventList extends StatelessWidget {
                       onPressed: timeline.isRequestingFuture
                           ? null
                           : controller.requestFuture,
-                      icon: timeline.isRequestingFuture
-                          ? CircularProgressIndicator.adaptive(strokeWidth: 2)
-                          : const Icon(Icons.arrow_downward_outlined),
+                      // #Pangea
+                      // icon: timeline.isRequestingFuture
+                      //     ? CircularProgressIndicator.adaptive(strokeWidth: 2)
+                      //     : const Icon(Icons.arrow_downward_outlined),
+                      icon: SizedBox(
+                        height: 24.0,
+                        width: 24.0,
+                        child: timeline.isRequestingFuture
+                            ? CircularProgressIndicator.adaptive(strokeWidth: 2)
+                            : const Icon(Icons.arrow_downward_outlined),
+                      ),
+                      // Pangea#
                       label: Text(L10n.of(context).loadMore),
                     ),
                   );
@@ -130,9 +139,20 @@ class ChatEventList extends StatelessWidget {
                         onPressed: timeline.isRequestingHistory
                             ? null
                             : controller.requestHistory,
-                        icon: timeline.isRequestingHistory
-                            ? CircularProgressIndicator.adaptive(strokeWidth: 2)
-                            : const Icon(Icons.arrow_upward_outlined),
+                        // #Pangea
+                        // icon: timeline.isRequestingHistory
+                        //     ? CircularProgressIndicator.adaptive(strokeWidth: 2)
+                        //     : const Icon(Icons.arrow_upward_outlined),
+                        icon: SizedBox(
+                          height: 24.0,
+                          width: 24.0,
+                          child: timeline.isRequestingHistory
+                              ? CircularProgressIndicator.adaptive(
+                                  strokeWidth: 2,
+                                )
+                              : const Icon(Icons.arrow_upward_outlined),
+                        ),
+                        // Pangea#
                         label: Text(L10n.of(context).loadMore),
                       ),
                     );
