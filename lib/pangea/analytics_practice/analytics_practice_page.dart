@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_data/analytics_updater_mixin.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/example_message_util.dart';
@@ -12,10 +13,12 @@ import 'package:fluffychat/pangea/analytics_practice/analytics_practice_session_
 import 'package:fluffychat/pangea/analytics_practice/analytics_practice_ui_controller.dart';
 import 'package:fluffychat/pangea/analytics_practice/analytics_practice_view.dart';
 import 'package:fluffychat/pangea/common/utils/async_state.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/feedback_dialog.dart';
 import 'package:fluffychat/pangea/languages/language_model.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
-import 'package:fluffychat/pangea/practice_activities/message_activity_request.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class SelectedMorphChoice {
@@ -304,21 +307,42 @@ class AnalyticsPracticeState extends State<AnalyticsPractice>
   Future<void> startNextActivity() async {
     _sessionController.completeActivity();
     progress.value = _sessionController.progress;
-
-    _sessionController.session?.isComplete == true
-        ? await _completeSession()
-        : await _continueSession();
+    await _continueSession();
   }
 
-  Future<void> skipActivity(MessageActivityRequest request) async {
+  Future<void> skipActivity(PracticeTarget target) async {
     // Record a 0 XP use so that activity isn't chosen again soon
     _sessionController.skipActivity();
     progress.value = _sessionController.progress;
 
     await _analyticsController.addSkippedActivityAnalytics(
-      request.target,
+      target,
       _l2!.langCodeShort,
     );
+  }
+
+  Future<void> flagActivity(
+    MultipleChoicePracticeActivityModel activity,
+  ) async {
+    final feedback = await showDialog<String?>(
+      context: context,
+      builder: (context) {
+        return FeedbackDialog(
+          title: L10n.of(context).feedbackTitle,
+          onSubmit: Navigator.of(context).pop,
+          scrollable: false,
+        );
+      },
+    );
+
+    if (feedback == null || feedback.isEmpty) return;
+    ErrorHandler.logError(
+      e: 'Practice activity flagged',
+      data: {'activity': activity.toJson(), 'feedback': feedback},
+    );
+
+    await skipActivity(activity.practiceTarget);
+    await _continueSession();
   }
 
   @override

@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/practice_activities/message_activity_request.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_generation_repo.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -95,7 +96,7 @@ class PracticeSessionController {
   }
 
   Future<MultipleChoicePracticeActivityModel?> _initActivityData(
-    Future Function(MessageActivityRequest) onSkip,
+    Future Function(PracticeTarget) onSkip,
     Future Function(MultipleChoicePracticeActivityModel) onFetch,
   ) async {
     final requests = activityRequests;
@@ -106,7 +107,7 @@ class PracticeSessionController {
         _fillActivityQueue(requests.skip(i + 1).toList(), onSkip, onFetch);
         return res;
       } catch (e) {
-        await onSkip(requests[i]);
+        await onSkip(requests[i].target);
         // Try next request
         continue;
       }
@@ -116,7 +117,7 @@ class PracticeSessionController {
 
   Future<void> _fillActivityQueue(
     List<MessageActivityRequest> requests,
-    Future Function(MessageActivityRequest) onSkip,
+    Future Function(PracticeTarget) onSkip,
     Future Function(MultipleChoicePracticeActivityModel) onFetch,
   ) async {
     for (final request in requests) {
@@ -127,7 +128,7 @@ class PracticeSessionController {
         completer.complete(res);
       } catch (e) {
         completer.completeError(e);
-        await onSkip(request);
+        await onSkip(request.target);
       }
     }
   }
@@ -149,7 +150,7 @@ class PracticeSessionController {
   }
 
   Future<MultipleChoicePracticeActivityModel?> getNextActivity(
-    Future Function(MessageActivityRequest) onSkip,
+    Future Function(PracticeTarget) onSkip,
     Future Function(MultipleChoicePracticeActivityModel) onFetch,
   ) async {
     final session = this.session;
