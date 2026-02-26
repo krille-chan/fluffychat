@@ -5353,5 +5353,8 @@
   "denyKnockChat": "User will be rejected from chat, however they may attempt to rejoin any time later.",
   "banFromSpace": "Ban from course",
   "unbanFromSpace": "Unban from course",
-  "cannotJoinBannedRoom": "Banned. Unable to join."
+  "cannotJoinBannedRoom": "Banned. Unable to join.",
+  "sessionFull": "Too late! This activity is full.",
+  "returnToCourse": "Return to course",
+  "returnHome": "Return home"
 }

@@ -88,6 +88,7 @@ class BackgroundPush {
       // Handle notifications when app is opened from terminated/background state
       FirebaseMessaging.instance.getInitialMessage().then(_onOpenNotification);
       FirebaseMessaging.onMessageOpenedApp.listen(_onOpenNotification);
+      FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
       // Pangea#
       mainIsolateReceivePort?.listen((message) async {
         try {
@@ -631,3 +632,15 @@ class UPFunctions extends UnifiedPushFunctions {
     await UnifiedPush.saveDistributor(distributor);
   }
 }
+
+// #Pangea
+@pragma('vm:entry-point')
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // Required for background isolate
+  WidgetsFlutterBinding.ensureInitialized();
+  final instance = BackgroundPush._instance;
+  if (instance == null) return;
+  await instance._onOpenNotification(message);
+}
+
+// Pangea#
