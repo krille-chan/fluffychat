@@ -3147,5 +3147,13 @@
     "theProcessWasCanceled": "Protsess on katkestatud.",
     "join": "Liitu",
     "searchOrEnterHomeserverAddress": "Otsi koduserveri aadressi või sisesta see",
-    "matrixId": "Matrixi kasutajatunnus"
+    "matrixId": "Matrixi kasutajatunnus",
+    "setPowerLevel": "Seadista õigusi",
+    "makeModerator": "Määra moderaatoriks",
+    "makeAdmin": "Määra peakasutajaks",
+    "removeModeratorRights": "Eemalda moderaatori õigused",
+    "removeAdminRights": "Eemalda peakasutaja õigused",
+    "powerLevel": "Õiguste tase",
+    "setPowerLevelDescription": "Õiguste tase on üks võimalusi kirjeldamaks seda, mida kasutaja saab jututoas teha ning see tavaliselt väljendub numbriga vahemikust 0 kuni 100.",
+    "owner": "Omanik"
 }
