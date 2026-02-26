@@ -557,26 +557,9 @@ class ChatListController extends State<ChatList>
               inviteEntry.key,
             );
 
-            if (isSpace) {
-              final spaceId = inviteEntry.key;
-              final space = Matrix.of(context).client.getRoomById(spaceId);
-
-              if (space?.classCode?.toLowerCase() ==
-                  SpaceCodeRepo.recentCode?.toLowerCase()) {
-                return;
-              }
-
-              if (space != null) {
-                chatListHandleSpaceTap(context, space);
-              }
-            }
-
+            final room = Matrix.of(context).client.getRoomById(inviteEntry.key);
+            if (room == null) continue;
             if (isAnalytics || hasKnocked) {
-              final room = Matrix.of(
-                context,
-              ).client.getRoomById(inviteEntry.key);
-              if (room == null) return;
-
               try {
                 await room.joinKnockedRoom();
               } catch (err, s) {
@@ -587,7 +570,12 @@ class ChatListController extends State<ChatList>
                   data: {"roomId": room.id},
                 );
               }
-              return;
+            } else if (isSpace) {
+              if (room.classCode?.toLowerCase() ==
+                  SpaceCodeRepo.recentCode?.toLowerCase()) {
+                continue;
+              }
+              chatListHandleSpaceTap(context, room);
             }
           }
         });
@@ -639,7 +627,7 @@ class ChatListController extends State<ChatList>
         });
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _joinInvitedSpaces();
+      _joinInvitedRooms();
     });
     // Pangea#
 
@@ -651,12 +639,36 @@ class ChatListController extends State<ChatList>
     if (mounted) showSubscribedSnackbar(context);
   }
 
-  Future<void> _joinInvitedSpaces() async {
-    final invitedSpaces = Matrix.of(
+  Future<void> _joinInvitedRooms() async {
+    final invitedRooms = Matrix.of(
       context,
-    ).client.rooms.where((r) => r.isSpace && r.membership == Membership.invite);
+    ).client.rooms.where((r) => r.membership == Membership.invite);
 
-    for (final space in invitedSpaces) {
+    final spaces = [];
+    for (final room in invitedRooms) {
+      final hasKnocked = KnockTracker.hasKnocked(
+        Matrix.of(context).client,
+        room.id,
+      );
+
+      if (hasKnocked || room.isAnalyticsRoom) {
+        try {
+          await room.joinKnockedRoom();
+        } catch (err, s) {
+          ErrorHandler.logError(
+            m: "Failed to join knocked room",
+            e: err,
+            s: s,
+            data: {"roomId": room.id},
+          );
+        }
+        return;
+      }
+
+      if (room.isSpace) spaces.add(room);
+    }
+
+    for (final space in spaces) {
       await showInviteDialog(space, context);
     }
   }
