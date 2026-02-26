@@ -144,6 +144,7 @@ class _ActivityRoleConfirmedButtons extends StatelessWidget {
     final showPlayWithBot = !controller.isBotRoomMember;
 
     return Column(
+      spacing: 16.0,
       mainAxisSize: .min,
       children: [
         if (showPingCourse)
