@@ -24,7 +24,6 @@ import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activ
 import 'package:fluffychat/pangea/analytics_misc/level_up/star_rain_widget.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_floating_action_button.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_input_bar.dart';
-import 'package:fluffychat/pangea/chat/widgets/chat_view_background.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/navigation/navigation_util.dart';
 import 'package:fluffychat/utils/account_config.dart';
@@ -474,21 +473,11 @@ class ChatView extends StatelessWidget {
                               // #Pangea
                               // onTap: controller.clearSingleSelectedEvent,
                               // child: ChatEventList(controller: controller),
-                              child: Stack(
-                                children: [
-                                  ListenableBuilder(
-                                    listenable:
-                                        controller.timelineUpdateNotifier,
-                                    builder: (context, _) {
-                                      return ChatEventList(
-                                        controller: controller,
-                                      );
-                                    },
-                                  ),
-                                  ChatViewBackground(
-                                    controller.choreographer.itController.open,
-                                  ),
-                                ],
+                              child: ListenableBuilder(
+                                listenable: controller.timelineUpdateNotifier,
+                                builder: (context, _) {
+                                  return ChatEventList(controller: controller);
+                                },
                               ),
                               // Pangea#
                             ),

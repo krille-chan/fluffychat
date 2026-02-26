@@ -31,20 +31,13 @@ class PApiUrls {
       "${PApiUrls._choreoEndpoint}/language_detection";
 
   static String igcLite = "${PApiUrls._choreoEndpoint}/grammar_v2";
-  static String spanDetails = "${PApiUrls._choreoEndpoint}/span_details";
 
   static String simpleTranslation =
       "${PApiUrls._choreoEndpoint}/translation/direct";
   static String tokenize = "${PApiUrls._choreoEndpoint}/tokenize";
-  static String contextualDefinition =
-      "${PApiUrls._choreoEndpoint}/contextual_definition";
-
-  static String firstStep = "${PApiUrls._choreoEndpoint}/it_initialstep";
 
   static String textToSpeech = "${PApiUrls._choreoEndpoint}/text_to_speech";
   static String speechToText = "${PApiUrls._choreoEndpoint}/speech_to_text";
-  static String phoneticTranscription =
-      "${PApiUrls._choreoEndpoint}/phonetic_transcription";
   static String phoneticTranscriptionV2 =
       "${PApiUrls._choreoEndpoint}/phonetic_transcription_v2";
 
@@ -54,15 +47,6 @@ class PApiUrls {
   static String lemmaDictionary =
       "${PApiUrls._choreoEndpoint}/lemma_definition";
   static String morphDictionary = "${PApiUrls._choreoEndpoint}/morph_meaning";
-
-  // static String activityPlan = "${PApiUrls._choreoEndpoint}/activity_plan";
-  // static String activityPlanGeneration =
-  //     "${PApiUrls._choreoEndpoint}/activity_plan/generate";
-  // static String activityPlanSearch =
-  //     "${PApiUrls._choreoEndpoint}/activity_plan/search";
-  // static String activityModeList = "${PApiUrls._choreoEndpoint}/modes";
-  // static String objectiveList = "${PApiUrls._choreoEndpoint}/objectives";
-  // static String topicList = "${PApiUrls._choreoEndpoint}/topics";
 
   static String activitySummary =
       "${PApiUrls._choreoEndpoint}/activity_summary";

@@ -8,7 +8,6 @@ import 'package:slugify/slugify.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/choreographer/choreo_constants.dart';
-import 'package:fluffychat/pangea/choreographer/choreo_mode_enum.dart';
 import 'package:fluffychat/pangea/choreographer/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/igc/pangea_match_state_model.dart';
 import 'package:fluffychat/pangea/choreographer/text_editing/pangea_text_controller.dart';
@@ -484,7 +483,6 @@ class InputBar extends StatelessWidget {
             contextMenuBuilder: (c, e) =>
                 markdownContextBuilder(c, e, controller!),
             onTap: () => _onInputTap(context),
-            readOnly: choreographer.choreoMode == ChoreoModeEnum.it,
             autocorrect: MatrixState.pangeaController.userController
                 .isToolEnabled(ToolSetting.enableAutocorrect),
             // Pangea#
@@ -532,9 +530,7 @@ class InputBar extends StatelessWidget {
                 builder: (context, _) => SizedBox(
                   height: 24,
                   child: ShrinkableText(
-                    text: choreographer.itController.open.value
-                        ? L10n.of(context).buildTranslation
-                        : _defaultHintText(context),
+                    text: _defaultHintText(context),
                     maxWidth: double.infinity,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: Theme.of(context).disabledColor,

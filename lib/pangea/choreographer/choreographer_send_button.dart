@@ -8,11 +8,6 @@ class ChoreographerSendButton extends StatelessWidget {
   final ChatController controller;
   const ChoreographerSendButton({super.key, required this.controller});
 
-  Future<void> _onPressed(BuildContext context) async {
-    controller.choreographer.onClickSend();
-    controller.onInputBarSubmitted();
-  }
-
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
@@ -26,7 +21,7 @@ class ChoreographerSendButton extends StatelessWidget {
             color: controller.choreographer.assistanceState.sendButtonColor(
               context,
             ),
-            onPressed: fetching ? null : () => _onPressed(context),
+            onPressed: fetching ? null : controller.onInputBarSubmitted,
             tooltip: L10n.of(context).send,
           ),
         );

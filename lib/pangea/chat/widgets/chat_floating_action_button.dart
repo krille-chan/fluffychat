@@ -16,7 +16,6 @@ class ChatFloatingActionButton extends StatelessWidget {
     return ListenableBuilder(
       listenable: Listenable.merge([
         controller.choreographer.errorService,
-        controller.choreographer.itController.open,
         controller.scrollController,
         controller.scrollableNotifier,
       ]),
@@ -31,8 +30,7 @@ class ChatFloatingActionButton extends StatelessWidget {
           );
         }
 
-        if (controller.choreographer.errorService.error != null &&
-            !controller.choreographer.itController.open.value) {
+        if (controller.choreographer.errorService.error != null) {
           return ChoreographerHasErrorButton(
             controller.choreographer.errorService.error!,
             controller.choreographer,

@@ -69,15 +69,7 @@ class PangeaChatInputRow extends StatelessWidget {
                           duration: FluffyThemes.animationDuration,
                           curve: FluffyThemes.animationCurve,
                           height: height,
-                          width:
-                              text.text.isEmpty &&
-                                  !controller
-                                      .choreographer
-                                      .itController
-                                      .open
-                                      .value
-                              ? height
-                              : 0,
+                          width: text.text.isEmpty ? height : 0,
                           alignment: Alignment.center,
                           clipBehavior: Clip.hardEdge,
                           decoration: const BoxDecoration(),
@@ -298,12 +290,7 @@ class PangeaChatInputRow extends StatelessWidget {
                           alignment: Alignment.center,
                           child:
                               PlatformInfos.platformCanRecord &&
-                                  text.text.isEmpty &&
-                                  !controller
-                                      .choreographer
-                                      .itController
-                                      .open
-                                      .value
+                                  text.text.isEmpty
                               ? IconButton(
                                   tooltip: L10n.of(context).voiceMessage,
                                   onPressed: () => recordingViewModel

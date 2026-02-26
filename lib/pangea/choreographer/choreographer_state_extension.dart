@@ -1,5 +1,4 @@
 import 'package:fluffychat/pangea/choreographer/assistance_state_enum.dart';
-import 'package:fluffychat/pangea/choreographer/choreo_mode_enum.dart';
 import 'package:fluffychat/pangea/choreographer/choreographer.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -8,7 +7,7 @@ extension ChoregrapherStateExtension on Choreographer {
     final isSubscribed =
         MatrixState.pangeaController.subscriptionController.isSubscribed;
     if (isSubscribed == false) return AssistanceStateEnum.noSub;
-    if (currentText.trim().isEmpty && itController.sourceText.value == null) {
+    if (currentText.trim().isEmpty) {
       return AssistanceStateEnum.noMessage;
     }
 
@@ -16,15 +15,12 @@ extension ChoregrapherStateExtension on Choreographer {
       return AssistanceStateEnum.error;
     }
 
-    if (igcController.openMatches.isNotEmpty ||
-        (choreoMode == ChoreoModeEnum.it &&
-            itController.currentITStep.value?.isFinal != true)) {
+    if (igcController.openMatches.isNotEmpty) {
       return AssistanceStateEnum.fetched;
     }
 
     if (isFetching.value) return AssistanceStateEnum.fetching;
-    if (igcController.currentText == null &&
-        itController.sourceText.value == null) {
+    if (igcController.currentText == null) {
       return AssistanceStateEnum.notFetched;
     }
     return AssistanceStateEnum.complete;

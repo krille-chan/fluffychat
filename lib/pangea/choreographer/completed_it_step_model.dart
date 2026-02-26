@@ -1,8 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:fluffychat/l10n/l10n.dart';
-import '../choreo_constants.dart';
-
 class CompletedITStepModel {
   final List<ContinuanceModel> continuances;
   final int chosen;
@@ -82,58 +77,6 @@ class ContinuanceModel {
       data['gold'] = gold;
     }
     return data;
-  }
-
-  ContinuanceModel copyWith({
-    double? probability,
-    int? level,
-    String? text,
-    String? description,
-    int? indexSavedByServer,
-    bool? wasClicked,
-    bool? inDictionary,
-    bool? hasInfo,
-    bool? gold,
-  }) {
-    return ContinuanceModel(
-      probability: probability ?? this.probability,
-      level: level ?? this.level,
-      text: text ?? this.text,
-      description: description ?? this.description,
-      indexSavedByServer: indexSavedByServer ?? this.indexSavedByServer,
-      wasClicked: wasClicked ?? this.wasClicked,
-      inDictionary: inDictionary ?? this.inDictionary,
-      hasInfo: hasInfo ?? this.hasInfo,
-      gold: gold ?? this.gold,
-    );
-  }
-
-  Color? get color {
-    if (!wasClicked) return null;
-    switch (level) {
-      case ChoreoConstants.levelThresholdForGreen:
-        return ChoreoConstants.green;
-      case ChoreoConstants.levelThresholdForYellow:
-        return ChoreoConstants.yellow;
-      case ChoreoConstants.levelThresholdForRed:
-        return ChoreoConstants.red;
-      default:
-        return null;
-    }
-  }
-
-  String? feedbackText(BuildContext context) {
-    final L10n l10n = L10n.of(context);
-    switch (level) {
-      case ChoreoConstants.levelThresholdForGreen:
-        return l10n.greenFeedback;
-      case ChoreoConstants.levelThresholdForYellow:
-        return l10n.yellowFeedback;
-      case ChoreoConstants.levelThresholdForRed:
-        return l10n.redFeedback;
-      default:
-        return null;
-    }
   }
 
   @override

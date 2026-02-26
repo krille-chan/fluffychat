@@ -572,7 +572,6 @@ class ChatController extends State<ChatPageWithRoom>
 
   void _pangeaInit() {
     choreographer = Choreographer(inputFocus);
-    choreographer.timesDismissedIT.addListener(_onCloseIT);
     final updater = Matrix.of(context).analyticsDataService.updateDispatcher;
 
     _levelSubscription = updater.levelUpdateStream.stream.listen(_onLevelUp);
@@ -861,7 +860,6 @@ class ChatController extends State<ChatPageWithRoom>
     _constructsSubscription?.cancel();
     _tokensSubscription?.cancel();
     _router.routeInformationProvider.removeListener(_onRouteChanged);
-    choreographer.timesDismissedIT.removeListener(_onCloseIT);
     scrollController.dispose();
     inputFocus.dispose();
     depressMessageButton.dispose();
@@ -2287,11 +2285,6 @@ class ChatController extends State<ChatPageWithRoom>
       return;
     }
 
-    if (matchToShow.updatedMatch.isITStart) {
-      choreographer.itController.openIT(sendController.text);
-      return;
-    }
-
     final isSpanCardOpen = MatrixState.pAnyState.isOverlayOpen(
       overlayKey: 'span-card-overlay',
     );
@@ -2394,12 +2387,6 @@ class ChatController extends State<ChatPageWithRoom>
           ),
         ),
       );
-    }
-  }
-
-  void _onCloseIT() {
-    if (choreographer.timesDismissedIT.value >= 3) {
-      showDisableLanguageToolsPopup();
     }
   }
 

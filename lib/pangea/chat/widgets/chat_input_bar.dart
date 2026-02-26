@@ -5,10 +5,8 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_emoji_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/activity_role_tooltip.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/chat/widgets/pangea_chat_input_row.dart';
-import 'package:fluffychat/pangea/choreographer/it/it_bar.dart';
-import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 
 class ChatInputBar extends StatelessWidget {
@@ -27,36 +25,27 @@ class ChatInputBar extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        ValueListenableBuilder(
-          valueListenable: controller.choreographer.itController.open,
-          builder: (context, open, _) {
-            return open
-                ? Container(
-                    constraints: const BoxConstraints(
-                      maxWidth: FluffyThemes.maxTimelineWidth,
-                    ),
-                    alignment: Alignment.center,
-                    child: InstructionsInlineTooltip(
-                      instructionsEnum: InstructionsEnum.clickBestOption,
-                      animate: false,
-                      padding: EdgeInsets.only(
-                        left: 16.0,
-                        right: 16.0,
-                        top: FluffyThemes.isColumnMode(context) ? 16.0 : 8.0,
-                      ),
-                    ),
-                  )
-                : Container(
-                    constraints: const BoxConstraints(
-                      maxWidth: FluffyThemes.maxTimelineWidth,
-                    ),
-                    alignment: Alignment.center,
-                    child: ActivityRoleTooltip(
-                      room: controller.room,
-                      hide: controller.choreographer.itController.open,
-                    ),
-                  );
-          },
+        Container(
+          constraints: const BoxConstraints(
+            maxWidth: FluffyThemes.maxTimelineWidth,
+          ),
+          alignment: Alignment.center,
+          child:
+              controller.room.showActivityChatUI &&
+                  controller.room.ownRole?.goal != null
+              ? InlineTooltip(
+                  message: controller.room.ownRole!.goal!,
+                  isClosed: controller.room.hasDismissedGoalTooltip,
+                  onClose: () async {
+                    await controller.room.dismissGoalTooltip();
+                  },
+                  padding: EdgeInsets.only(
+                    left: 16.0,
+                    right: 16.0,
+                    top: FluffyThemes.isColumnMode(context) ? 16.0 : 8.0,
+                  ),
+                )
+              : SizedBox(),
         ),
         Container(
           margin: EdgeInsets.all(
@@ -75,7 +64,6 @@ class ChatInputBar extends StatelessWidget {
                 : Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      ITBar(choreographer: controller.choreographer),
                       ReplyDisplay(controller),
                       PangeaChatInputRow(controller: controller),
                       ChatEmojiPicker(controller),
