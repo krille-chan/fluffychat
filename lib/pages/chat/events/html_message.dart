@@ -14,7 +14,6 @@ import 'package:fluffychat/pangea/common/widgets/shimmer_background.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
-import 'package:fluffychat/pangea/toolbar/layout/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/message_practice/message_practice_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/message_practice/token_practice_button.dart';
 import 'package:fluffychat/pangea/toolbar/message_selection_overlay.dart';
@@ -50,7 +49,7 @@ class HtmlMessage extends StatelessWidget {
   final Event? nextEvent;
   final Event? prevEvent;
   final bool isTransitionAnimation;
-  final ReadingAssistanceMode? readingAssistanceMode;
+  final bool isPracticeMode;
   final void Function(PangeaToken)? onClick;
   // Pangea#
 
@@ -74,7 +73,7 @@ class HtmlMessage extends StatelessWidget {
     this.prevEvent,
     this.onClick,
     this.isTransitionAnimation = false,
-    this.readingAssistanceMode,
+    this.isPracticeMode = false,
     // Pangea#
   });
 
@@ -409,7 +408,7 @@ class HtmlMessage extends StatelessWidget {
 
     // #Pangea
     double fontSize = this.fontSize;
-    if (readingAssistanceMode == ReadingAssistanceMode.practiceMode) {
+    if (isPracticeMode) {
       fontSize =
           (overlayController != null && overlayController!.maxWidth > 600
               ? Theme.of(context).textTheme.titleLarge?.fontSize
@@ -477,8 +476,7 @@ class HtmlMessage extends StatelessWidget {
         return TextSpan(
           children: [
             WidgetSpan(
-              alignment:
-                  readingAssistanceMode == ReadingAssistanceMode.practiceMode
+              alignment: isPracticeMode
                   ? PlaceholderAlignment.bottom
                   : PlaceholderAlignment.middle,
               child: Column(
@@ -493,8 +491,7 @@ class HtmlMessage extends StatelessWidget {
                           overlayController!.onClickOverlayMessageToken(token),
                       textColor: textColor,
                     ),
-                  if (readingAssistanceMode ==
-                          ReadingAssistanceMode.practiceMode &&
+                  if (isPracticeMode &&
                       token != null &&
                       overlayController != null)
                     TokenPracticeButton(
@@ -505,7 +502,7 @@ class HtmlMessage extends StatelessWidget {
                       textColor: textColor,
                     ),
                   CompositedTransformTarget(
-                    link: token != null
+                    link: token != null && isPracticeMode
                         ? MatrixState.pAnyState
                               .layerLinkAndKey(
                                 "message-token-${token.text.uniqueKey}-${event.eventId}",
@@ -536,9 +533,7 @@ class HtmlMessage extends StatelessWidget {
                                       selected: selected,
                                       highlighted: highlighted,
                                       isNew: isNew,
-                                      practiceMode:
-                                          readingAssistanceMode ==
-                                          ReadingAssistanceMode.practiceMode,
+                                      practiceMode: isPracticeMode,
                                       hovered: hovered,
                                     ),
                               ),
@@ -548,8 +543,7 @@ class HtmlMessage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (readingAssistanceMode ==
-                          ReadingAssistanceMode.practiceMode &&
+                  if (isPracticeMode &&
                       token != null &&
                       overlayController != null)
                     ListenableBuilder(
@@ -969,7 +963,7 @@ class HtmlMessage extends StatelessWidget {
           _ => null,
         };
         return WidgetSpan(
-          alignment: readingAssistanceMode == ReadingAssistanceMode.practiceMode
+          alignment: isPracticeMode
               ? PlaceholderAlignment.bottom
               : PlaceholderAlignment.middle,
           child: Column(

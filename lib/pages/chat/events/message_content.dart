@@ -340,7 +340,8 @@ class MessageContent extends StatelessWidget {
                     ? null
                     : onClick,
                 isTransitionAnimation: isTransitionAnimation,
-                readingAssistanceMode: readingAssistanceMode,
+                isPracticeMode:
+                    readingAssistanceMode == ReadingAssistanceMode.practiceMode,
                 // Pangea#
               ),
             );
