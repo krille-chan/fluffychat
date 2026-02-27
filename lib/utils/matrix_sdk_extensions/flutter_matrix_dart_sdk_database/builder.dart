@@ -65,7 +65,7 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
     final temporaryDirectory = await getTemporaryDirectory();
     fileStorageLocation = await Directory(
       join(temporaryDirectory.path, 'fluffychat_download_cache'),
-    ).create();
+    ).create(recursive: true);
   } on MissingPlatformDirectoryException catch (_) {
     Logs().w(
       'No temporary directory for file cache available on this platform.',
