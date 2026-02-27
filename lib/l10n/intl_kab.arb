@@ -1966,7 +1966,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "unknownEvent": "Tadyant tarussint '{type]'",
+    "unknownEvent": "Tadyant tarussint '{type}'",
     "@unknownEvent": {
         "type": "String",
         "placeholders": {
