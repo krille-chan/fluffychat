@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:59:25.036168",
+  "@@last_modified": "2026-02-27 12:22:21.502851",
   "about": "Sobre",
   "@about": {
     "type": "String",
@@ -11298,6 +11298,26 @@
   },
   "cannotJoinBannedRoom": "Banido. Não é possível entrar.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Seu pedido de entrada foi aceito! Você pode agora entrar no curso.",
+  "sessionFull": "Muito tarde! Esta atividade está cheia.",
+  "returnToCourse": "Voltar ao curso",
+  "returnHome": "Voltar para casa",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

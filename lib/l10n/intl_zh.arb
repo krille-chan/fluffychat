@@ -1,6 +1,6 @@
 {
   "@@locale": "zh",
-  "@@last_modified": "2026-02-24 14:59:46.957191",
+  "@@last_modified": "2026-02-27 12:23:18.517226",
   "about": "关于",
   "@about": {
     "type": "String",
@@ -11298,6 +11298,26 @@
   },
   "cannotJoinBannedRoom": "被禁止。无法加入。",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "您的加入请求已被接受！您现在可以进入课程。",
+  "sessionFull": "太晚了！此活动已满。",
+  "returnToCourse": "返回课程",
+  "returnHome": "返回首页",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

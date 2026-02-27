@@ -1,6 +1,6 @@
 {
   "@@locale": "cs",
-  "@@last_modified": "2026-02-24 14:59:31.949116",
+  "@@last_modified": "2026-02-27 12:22:40.747640",
   "about": "O aplikaci",
   "@about": {
     "type": "String",
@@ -11870,6 +11870,26 @@
   },
   "cannotJoinBannedRoom": "Zákaz. Nelze se připojit.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Vaše žádost o připojení byla přijata! Nyní můžete vstoupit do kurzu.",
+  "sessionFull": "Příliš pozdě! Tato aktivita je plná.",
+  "returnToCourse": "Vrátit se do kurzu",
+  "returnHome": "Vrátit se domů",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

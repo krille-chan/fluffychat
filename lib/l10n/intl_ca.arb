@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:59:34.223579",
+  "@@last_modified": "2026-02-27 12:22:46.690959",
   "about": "Quant a",
   "@about": {
     "type": "String",
@@ -11458,6 +11458,26 @@
   },
   "cannotJoinBannedRoom": "Prohibit. No es pot unir.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "La teva sol·licitud d'unió ha estat acceptada! Ara pots entrar al curs.",
+  "sessionFull": " massa tard! Aquesta activitat està completa.",
+  "returnToCourse": "Torna al curs",
+  "returnHome": "Torna a casa",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

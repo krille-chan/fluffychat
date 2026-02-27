@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:59:23.521541",
+  "@@last_modified": "2026-02-27 12:22:17.196188",
   "about": "אודות",
   "@about": {
     "type": "String",
@@ -12481,6 +12481,26 @@
   },
   "cannotJoinBannedRoom": "אסור. לא ניתן להצטרף.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "בקשת ההצטרפות שלך התקבלה! אתה יכול עכשיו להיכנס לקורס.",
+  "sessionFull": "מאוחר מדי! הפעילות הזו מלאה.",
+  "returnToCourse": "חזור לקורס",
+  "returnHome": "חזור הביתה",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

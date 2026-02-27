@@ -1,6 +1,6 @@
 {
   "@@locale": "de",
-  "@@last_modified": "2026-02-24 14:59:28.164745",
+  "@@last_modified": "2026-02-27 12:22:30.095800",
   "alwaysUse24HourFormat": "true",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
@@ -11287,6 +11287,26 @@
   },
   "cannotJoinBannedRoom": "Gesperrt. Kann nicht beitreten.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Ihre Beitrittsanfrage wurde akzeptiert! Sie können jetzt am Kurs teilnehmen.",
+  "sessionFull": "Zu spät! Diese Aktivität ist voll.",
+  "returnToCourse": "Zum Kurs zurückkehren",
+  "returnHome": "Nach Hause zurückkehren",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

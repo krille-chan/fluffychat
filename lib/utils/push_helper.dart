@@ -13,6 +13,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/join_codes/knock_notification_utils.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -158,11 +159,25 @@ Future<void> _tryPushHelper(
   final matrixLocals = MatrixLocals(l10n);
 
   // Calculate the body
-  final body = event.type == EventTypes.Encrypted
-      // #Pangea
-      // ? l10n.newMessageInFluffyChat
+  // #Pangea
+  // final body = event.type == EventTypes.Encrypted
+  //     ? l10n.newMessageInFluffyChat
+  //     : await event.calcLocalizedBody(
+  //         matrixLocals,
+  //         plaintextBody: true,
+  //         withSenderNamePrefix: false,
+  //         hideReply: true,
+  //         hideEdit: true,
+  //         removeMarkdown: true,
+  //       );
+  final hasKnocked = isKnockAcceptedInviteForClient(
+    event: event,
+    client: client,
+  );
+  final body = hasKnocked
+      ? l10n.knockAccepted
+      : event.type == EventTypes.Encrypted
       ? l10n.newMessageInPangeaChat
-      // Pangea#
       : await event.calcLocalizedBody(
           matrixLocals,
           plaintextBody: true,
@@ -171,6 +186,7 @@ Future<void> _tryPushHelper(
           hideEdit: true,
           removeMarkdown: true,
         );
+  // Pangea#
 
   // The person object for the android message style notification
   final avatar = event.room.avatar;

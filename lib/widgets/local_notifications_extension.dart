@@ -13,6 +13,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/join_codes/knock_notification_utils.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/push_helper.dart';
@@ -35,16 +36,30 @@ extension LocalNotificationsExtension on MatrixState {
     final title = event.room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)),
     );
-    final body = await event.calcLocalizedBody(
-      MatrixLocals(L10n.of(context)),
-      withSenderNamePrefix:
-          !event.room.isDirectChat ||
-          event.room.lastEvent?.senderId == client.userID,
-      plaintextBody: true,
-      hideReply: true,
-      hideEdit: true,
-      removeMarkdown: true,
-    );
+    // #Pangea
+    // final body = await event.calcLocalizedBody(
+    //   MatrixLocals(L10n.of(context)),
+    //   withSenderNamePrefix:
+    //       !event.room.isDirectChat ||
+    //       event.room.lastEvent?.senderId == client.userID,
+    //   plaintextBody: true,
+    //   hideReply: true,
+    //   hideEdit: true,
+    //   removeMarkdown: true,
+    // );
+    final body = isKnockAcceptedInviteForClient(event: event, client: client)
+        ? L10n.of(context).knockAccepted
+        : await event.calcLocalizedBody(
+            MatrixLocals(L10n.of(context)),
+            withSenderNamePrefix:
+                !event.room.isDirectChat ||
+                event.room.lastEvent?.senderId == client.userID,
+            plaintextBody: true,
+            hideReply: true,
+            hideEdit: true,
+            removeMarkdown: true,
+          );
+    // Pangea#
 
     if (kIsWeb) {
       // #Pangea

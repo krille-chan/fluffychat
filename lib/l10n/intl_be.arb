@@ -4619,7 +4619,7 @@
   "playWithAI": "Пакуль гуляйце з ШІ",
   "courseStartDesc": "Pangea Bot гатовы да працы ў любы час!\n\n...але навучанне лепш з сябрамі!",
   "@@locale": "be",
-  "@@last_modified": "2026-02-24 14:59:33.504013",
+  "@@last_modified": "2026-02-27 12:22:44.541648",
   "@ignore": {
     "type": "String",
     "placeholders": {}
@@ -11317,6 +11317,26 @@
   },
   "cannotJoinBannedRoom": "Забаронена. Нельга далучыцца.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Ваш запыт на ўдзел быў прыняты! Цяпер вы можаце ўвайсці ў курс.",
+  "sessionFull": "Занадта позна! Гэтая актыўнасць запоўнена.",
+  "returnToCourse": "Вярнуцца да курса",
+  "returnHome": "Вярнуцца дадому",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

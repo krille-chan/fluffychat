@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:59:57.459309",
+  "@@last_modified": "2026-02-27 12:23:40.141969",
   "about": "О програму",
   "@about": {
     "type": "String",
@@ -12528,6 +12528,26 @@
   },
   "cannotJoinBannedRoom": "Zabranjeno. Nije moguće pridružiti se.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Vaš zahtev za pridruživanje je prihvaćen! Sada možete ući u kurs.",
+  "sessionFull": "Prekasno! Ova aktivnost je puna.",
+  "returnToCourse": "Vrati se na kurs",
+  "returnHome": "Vrati se kući",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

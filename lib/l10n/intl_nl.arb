@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:59:45.694424",
+  "@@last_modified": "2026-02-27 12:23:15.467657",
   "about": "Over ons",
   "@about": {
     "type": "String",
@@ -11298,6 +11298,26 @@
   },
   "cannotJoinBannedRoom": "Verbannen. Kan niet deelnemen.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Je aanvraag om deel te nemen is geaccepteerd! Je kunt nu de cursus binnenkomen.",
+  "sessionFull": "Te laat! Deze activiteit is vol.",
+  "returnToCourse": "Terug naar cursus",
+  "returnHome": "Terug naar huis",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

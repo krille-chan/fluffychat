@@ -1,6 +1,6 @@
 {
   "@@locale": "ja",
-  "@@last_modified": "2026-02-24 14:59:52.226358",
+  "@@last_modified": "2026-02-27 12:23:30.414125",
   "about": "このアプリについて",
   "@about": {
     "type": "String",
@@ -12222,6 +12222,26 @@
   },
   "cannotJoinBannedRoom": "禁止されています。参加できません。",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "あなたの参加リクエストが承認されました！これでコースに入ることができます。",
+  "sessionFull": "遅すぎます！このアクティビティは満員です。",
+  "returnToCourse": "コースに戻る",
+  "returnHome": "ホームに戻る",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

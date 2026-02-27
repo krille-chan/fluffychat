@@ -3495,7 +3495,7 @@
   "setupChatBackup": "Chat zaxirasini sozlash",
   "@setupChatBackup": {},
   "@@locale": "uz",
-  "@@last_modified": "2026-02-24 14:59:37.791267",
+  "@@last_modified": "2026-02-27 12:22:53.595075",
   "noMoreResultsFound": "Boshqa natijalar topilmadi",
   "chatSearchedUntil": "Chat {time} gacha qidirildi",
   "federationBaseUrl": "Federatsiya Asos URL",
@@ -11192,6 +11192,26 @@
   },
   "cannotJoinBannedRoom": "Ta'qiqlangan. Qo'shilish mumkin emas.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Sizning qo'shilish so'rovingiz qabul qilindi! Endi kursga kirishingiz mumkin.",
+  "sessionFull": "Kecha! Ushbu faoliyat to'la.",
+  "returnToCourse": "Kursga qaytish",
+  "returnHome": "Boshqaruvga qaytish",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

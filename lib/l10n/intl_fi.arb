@@ -4604,7 +4604,7 @@
   "playWithAI": "Leiki tekoälyn kanssa nyt",
   "courseStartDesc": "Pangea Bot on valmis milloin tahansa!\n\n...mutta oppiminen on parempaa ystävien kanssa!",
   "@@locale": "fi",
-  "@@last_modified": "2026-02-24 14:59:16.651035",
+  "@@last_modified": "2026-02-27 12:21:54.872687",
   "@notificationRuleJitsi": {
     "type": "String",
     "placeholders": {}
@@ -11357,6 +11357,26 @@
   },
   "cannotJoinBannedRoom": "Kielletty. Ei voi liittyä.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Liittymispyyntösi hyväksyttiin! Voit nyt liittyä kurssille.",
+  "sessionFull": "Liian myöhäistä! Tämä aktiviteetti on täynnä.",
+  "returnToCourse": "Palaa kurssille",
+  "returnHome": "Palaa kotiin",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

@@ -4476,7 +4476,7 @@
   "playWithAI": "Παίξτε με την Τεχνητή Νοημοσύνη προς το παρόν",
   "courseStartDesc": "Ο Pangea Bot είναι έτοιμος να ξεκινήσει οποιαδήποτε στιγμή!\n\n...αλλά η μάθηση είναι καλύτερη με φίλους!",
   "@@locale": "el",
-  "@@last_modified": "2026-02-24 14:59:51.305832",
+  "@@last_modified": "2026-02-27 12:23:28.161217",
   "@checkList": {
     "type": "String",
     "placeholders": {}
@@ -12457,6 +12457,26 @@
   },
   "cannotJoinBannedRoom": "Απαγορευμένο. Αδυναμία συμμετοχής.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Η αίτησή σας για συμμετοχή έγινε αποδεκτή! Μπορείτε τώρα να εισέλθετε στο μάθημα.",
+  "sessionFull": "Πολύ αργά! Αυτή η δραστηριότητα είναι γεμάτη.",
+  "returnToCourse": "Επιστροφή στο μάθημα",
+  "returnHome": "Επιστροφή στην αρχική σελίδα",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

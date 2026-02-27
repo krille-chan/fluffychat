@@ -1,6 +1,6 @@
 {
   "@@locale": "hu",
-  "@@last_modified": "2026-02-24 14:59:18.503383",
+  "@@last_modified": "2026-02-27 12:21:58.762966",
   "about": "Névjegy",
   "@about": {
     "type": "String",
@@ -11435,6 +11435,26 @@
   },
   "cannotJoinBannedRoom": "Kitiltva. Nem lehet csatlakozni.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "A csatlakozási kérelmedet elfogadták! Most már beléphetsz a kurzusra.",
+  "sessionFull": "Túl késő! Ez a tevékenység megtelt.",
+  "returnToCourse": "Vissza a kurzushoz",
+  "returnHome": "Vissza a főoldalra",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

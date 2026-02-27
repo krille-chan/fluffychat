@@ -4000,7 +4000,7 @@
   "playWithAI": "Joca con AI pro ora",
   "courseStartDesc": "Pangea Bot es preste a partir a qualunque momento!\n\n...ma apprender es melior con amicos!",
   "@@locale": "ie",
-  "@@last_modified": "2026-02-24 14:59:21.774012",
+  "@@last_modified": "2026-02-27 12:22:08.111962",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12046,6 +12046,26 @@
   },
   "cannotJoinBannedRoom": "Banned. Unable to join.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Tú aontuigh an iarratas comhoibrithe! Is féidir leat anois dul isteach sa chúrsa.",
+  "sessionFull": "Ró-dhéanach! Tá an gníomhaíocht seo lán.",
+  "returnToCourse": "Téigh ar ais chuig an gcúrsa",
+  "returnHome": "Téigh ar ais abhaile",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

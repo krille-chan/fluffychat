@@ -4639,7 +4639,7 @@
   "playWithAI": "Imir le AI faoi láthair",
   "courseStartDesc": "Tá Bot Pangea réidh chun dul am ar bith!\n\n...ach is fearr foghlaim le cairde!",
   "@@locale": "ga",
-  "@@last_modified": "2026-02-24 14:59:58.265720",
+  "@@last_modified": "2026-02-27 12:23:42.906285",
   "@writeAMessageLangCodes": {
     "type": "String",
     "placeholders": {
@@ -11309,6 +11309,26 @@
   },
   "cannotJoinBannedRoom": "Díothaithe. Ní féidir leat dul isteach.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Glacadh le do hiarratas chun dul isteach! Is féidir leat anois dul isteach sa chúrsa.",
+  "sessionFull": "Ró-dhéanach! Tá an gníomhaíocht seo lán.",
+  "returnToCourse": "Téigh ar ais chuig an gcúrsa",
+  "returnHome": "Téigh ar ais abhaile",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:59:50.399849",
+  "@@last_modified": "2026-02-27 12:23:26.112167",
   "about": "Om",
   "@about": {
     "type": "String",
@@ -11910,6 +11910,26 @@
   },
   "cannotJoinBannedRoom": "Bannad. Kan inte gå med.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Din ansökan om att gå med har accepterats! Du kan nu gå in i kursen.",
+  "sessionFull": "För sent! Denna aktivitet är full.",
+  "returnToCourse": "Återvänd till kursen",
+  "returnHome": "Återvänd hem",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

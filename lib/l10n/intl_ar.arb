@@ -1,6 +1,6 @@
 {
   "@@locale": "ar",
-  "@@last_modified": "2026-02-24 14:59:40.158437",
+  "@@last_modified": "2026-02-27 12:23:01.172808",
   "about": "حول",
   "@about": {
     "type": "String",
@@ -11648,6 +11648,26 @@
   },
   "cannotJoinBannedRoom": "ممنوع. غير قادر على الانضمام.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "تم قبول طلب انضمامك! يمكنك الآن دخول الدورة.",
+  "sessionFull": "لقد فات الأوان! هذه النشاط ممتلئ.",
+  "returnToCourse": "العودة إلى الدورة",
+  "returnHome": "العودة إلى الصفحة الرئيسية",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

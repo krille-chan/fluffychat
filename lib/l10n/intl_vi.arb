@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:59:44.047251",
+  "@@last_modified": "2026-02-27 12:23:11.360379",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -7015,6 +7015,26 @@
   },
   "cannotJoinBannedRoom": "Bị cấm. Không thể tham gia.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Yêu cầu tham gia của bạn đã được chấp nhận! Bạn có thể vào khóa học ngay bây giờ.",
+  "sessionFull": "Quá muộn! Hoạt động này đã đầy.",
+  "returnToCourse": "Quay lại khóa học",
+  "returnHome": "Quay về trang chủ",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

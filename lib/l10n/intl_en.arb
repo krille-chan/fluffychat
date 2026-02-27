@@ -5298,6 +5298,8 @@
   "languageUpdated": "Target language updated!",
   "voiceDropdownTitle": "Pangea Bot voice",
   "knockDesc": "Your request has been sent to course admin! You'll be let in if they approve.",
+  "knockAccepted": "Your join request was accepted! You can now enter the course.",
+  "@knockAccepted": {},
   "joinSpaceOnboardingDesc": "Do you have an invite code or link to a public course?",
   "welcomeUser": "Welcome {user}",
   "@welcomeUser": {

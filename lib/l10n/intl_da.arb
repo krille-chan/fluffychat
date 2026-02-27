@@ -1926,7 +1926,7 @@
   "playWithAI": "Leg med AI for nu",
   "courseStartDesc": "Pangea Bot er klar til at starte når som helst!\n\n...men læring er bedre med venner!",
   "@@locale": "da",
-  "@@last_modified": "2026-02-24 14:59:17.793161",
+  "@@last_modified": "2026-02-27 12:21:56.303075",
   "@aboutHomeserver": {
     "type": "String",
     "placeholders": {
@@ -12498,6 +12498,26 @@
   },
   "cannotJoinBannedRoom": "Udelukket. Kan ikke deltage.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Din anmodning om at deltage blev accepteret! Du kan nu deltage i kurset.",
+  "sessionFull": "For sent! Denne aktivitet er fuld.",
+  "returnToCourse": "Returner til kurset",
+  "returnHome": "Returner hjem",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "@@last_modified": "2026-02-24 14:59:14.844768",
+  "@@last_modified": "2026-02-27 12:21:50.256312",
   "about": "Acerca de",
   "@about": {
     "type": "String",
@@ -8608,6 +8608,26 @@
   },
   "cannotJoinBannedRoom": "Prohibido. No se puede unirse.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "¡Tu solicitud de unión fue aceptada! Ahora puedes entrar al curso.",
+  "sessionFull": "¡Demasiado tarde! Esta actividad está llena.",
+  "returnToCourse": "Regresar al curso",
+  "returnHome": "Regresar a casa",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

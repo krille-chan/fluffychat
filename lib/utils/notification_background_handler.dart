@@ -163,11 +163,21 @@ Future<void> notificationTap(
       }
       // Pangea#
 
-      router.go(
-        client.getRoomById(roomId)?.membership == Membership.invite
-            ? '/rooms'
-            : '/rooms/$roomId',
-      );
+      // #Pangea
+      // router.go(
+      //   client.getRoomById(roomId)?.membership == Membership.invite
+      //       ? '/rooms'
+      //       : '/rooms/$roomId',
+      // );
+      final room = client.getRoomById(roomId);
+      if (room?.membership == Membership.invite) {
+        router.go('/rooms');
+      } else if (room?.isSpace == true) {
+        router.go('/rooms/spaces/$roomId');
+      } else {
+        router.go('/rooms/$roomId');
+      }
+    // Pangea#
     case NotificationResponseType.selectedNotificationAction:
       final actionType = FluffyChatNotificationActions.values.singleWhereOrNull(
         (action) => action.name == notificationResponse.actionId,

@@ -1,6 +1,6 @@
 {
   "@@locale": "tr",
-  "@@last_modified": "2026-02-24 14:59:41.166599",
+  "@@last_modified": "2026-02-27 12:23:03.199696",
   "about": "Hakkında",
   "@about": {
     "type": "String",
@@ -11638,6 +11638,26 @@
   },
   "cannotJoinBannedRoom": "Yasaklı. Katılamıyor.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Katılma isteğiniz kabul edildi! Artık derse girebilirsiniz.",
+  "sessionFull": "Geç kaldınız! Bu etkinlik dolu.",
+  "returnToCourse": "Derse geri dön",
+  "returnHome": "Ana sayfaya geri dön",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

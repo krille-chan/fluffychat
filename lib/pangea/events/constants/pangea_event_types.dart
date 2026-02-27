@@ -36,4 +36,6 @@ class PangeaEventTypes {
   static const analyticsSettings = "pangea.analytics_settings";
 
   static const regenerationRequest = "pangea.regeneration_request";
+
+  static const knockedRooms = 'org.pangea.knocked_rooms';
 }

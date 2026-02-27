@@ -1,6 +1,6 @@
 {
   "@@locale": "pl",
-  "@@last_modified": "2026-02-24 14:59:49.576687",
+  "@@last_modified": "2026-02-27 12:23:24.344739",
   "about": "O aplikacji",
   "@about": {
     "type": "String",
@@ -11420,6 +11420,26 @@
   },
   "cannotJoinBannedRoom": "Zbanowany. Nie można dołączyć.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Twoja prośba o dołączenie została zaakceptowana! Możesz teraz wejść na kurs.",
+  "sessionFull": "Za późno! Ta aktywność jest pełna.",
+  "returnToCourse": "Powrót do kursu",
+  "returnHome": "Powrót do domu",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

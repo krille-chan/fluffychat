@@ -1,6 +1,6 @@
 {
   "@@locale": "ru",
-  "@@last_modified": "2026-02-24 14:59:55.748204",
+  "@@last_modified": "2026-02-27 12:23:35.945707",
   "about": "О проекте",
   "@about": {
     "type": "String",
@@ -11298,6 +11298,26 @@
   },
   "cannotJoinBannedRoom": "Запрещено. Невозможно присоединиться.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Ваш запрос на присоединение был принят! Теперь вы можете войти в курс.",
+  "sessionFull": "Слишком поздно! Это занятие заполнено.",
+  "returnToCourse": "Вернуться к курсу",
+  "returnHome": "Вернуться на главную",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

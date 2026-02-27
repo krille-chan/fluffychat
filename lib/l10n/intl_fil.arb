@@ -2783,7 +2783,7 @@
   "selectAll": "Piliin lahat",
   "deselectAll": "Huwag piliin lahat",
   "@@locale": "fil",
-  "@@last_modified": "2026-02-24 14:59:38.624762",
+  "@@last_modified": "2026-02-27 12:22:55.704285",
   "@setCustomPermissionLevel": {
     "type": "String",
     "placeholders": {}
@@ -12413,6 +12413,26 @@
   },
   "cannotJoinBannedRoom": "Bawal. Hindi makapasok.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Tinanggap ang iyong kahilingan na sumali! Maaari ka nang pumasok sa kurso.",
+  "sessionFull": "Sobrang huli! Puno na ang aktibidad na ito.",
+  "returnToCourse": "Bumalik sa kurso",
+  "returnHome": "Bumalik sa bahay",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

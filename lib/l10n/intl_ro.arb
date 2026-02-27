@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:59:20.082703",
+  "@@last_modified": "2026-02-27 12:22:02.332584",
   "about": "Despre",
   "@about": {
     "type": "String",
@@ -12167,6 +12167,26 @@
   },
   "cannotJoinBannedRoom": "Interzis. Nu se poate alătura.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Cererea ta de aderare a fost acceptată! Acum poți intra în curs.",
+  "sessionFull": "Prea târziu! Această activitate este plină.",
+  "returnToCourse": "Întoarce-te la curs",
+  "returnHome": "Întoarce-te acasă",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

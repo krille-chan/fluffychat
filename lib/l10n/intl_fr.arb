@@ -1,6 +1,6 @@
 {
   "@@locale": "fr",
-  "@@last_modified": "2026-02-24 14:59:58.898976",
+  "@@last_modified": "2026-02-27 12:23:45.139248",
   "about": "À propos",
   "@about": {
     "type": "String",
@@ -11704,6 +11704,26 @@
   },
   "cannotJoinBannedRoom": "Banni. Impossible de rejoindre.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Votre demande de participation a été acceptée ! Vous pouvez maintenant entrer dans le cours.",
+  "sessionFull": "Trop tard ! Cette activité est complète.",
+  "returnToCourse": "Retour au cours",
+  "returnHome": "Retour à l'accueil",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

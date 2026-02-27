@@ -1,6 +1,6 @@
 {
   "@@locale": "et",
-  "@@last_modified": "2026-02-24 14:59:27.455277",
+  "@@last_modified": "2026-02-27 12:22:27.939566",
   "about": "Rakenduse teave",
   "@about": {
     "type": "String",
@@ -11572,6 +11572,26 @@
   },
   "cannotJoinBannedRoom": "Keelatud. Liitumine ei õnnestu.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Teie liitumissoovitus on vastu võetud! Nüüd saate kursusele siseneda.",
+  "sessionFull": "Liiga hilja! See tegevus on täis.",
+  "returnToCourse": "Tagasi kursusele",
+  "returnHome": "Tagasi koju",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

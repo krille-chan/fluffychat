@@ -3857,7 +3857,7 @@
   "playWithAI": "Žaiskite su dirbtiniu intelektu dabar",
   "courseStartDesc": "Pangea botas pasiruošęs bet kada pradėti!\n\n...bet mokymasis yra geresnis su draugais!",
   "@@locale": "lt",
-  "@@last_modified": "2026-02-24 14:59:43.333670",
+  "@@last_modified": "2026-02-27 12:23:08.992471",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12237,6 +12237,26 @@
   },
   "cannotJoinBannedRoom": "Užblokuota. Negalima prisijungti.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Jūsų prisijungimo prašymas buvo priimtas! Dabar galite patekti į kursą.",
+  "sessionFull": "Per vėlu! Ši veikla yra pilna.",
+  "returnToCourse": "Grįžti į kursą",
+  "returnHome": "Grįžti namo",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

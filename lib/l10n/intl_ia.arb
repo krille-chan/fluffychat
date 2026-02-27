@@ -1954,7 +1954,7 @@
   "playWithAI": "Joca con le IA pro ora",
   "courseStartDesc": "Pangea Bot es preste a comenzar a qualunque momento!\n\n...ma apprender es melior con amicos!",
   "@@locale": "ia",
-  "@@last_modified": "2026-02-24 14:59:24.082713",
+  "@@last_modified": "2026-02-27 12:22:19.124682",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12510,6 +12510,26 @@
   },
   "cannotJoinBannedRoom": "Banned. Unable to join.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Tua peticio de unione est acceptata! Tu nunc potes intrare in cursu.",
+  "sessionFull": "Sero! Haec actio plena est.",
+  "returnToCourse": "Redi ad cursum",
+  "returnHome": "Redi domum",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

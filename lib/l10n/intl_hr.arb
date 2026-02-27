@@ -1,6 +1,6 @@
 {
   "@@locale": "hr",
-  "@@last_modified": "2026-02-24 14:59:22.923310",
+  "@@last_modified": "2026-02-27 12:22:10.734115",
   "about": "Informacije",
   "@about": {
     "type": "String",
@@ -11791,6 +11791,26 @@
   },
   "cannotJoinBannedRoom": "Zabranjeno. Nije moguće pridružiti se.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "Vaš zahtjev za pridruživanje je prihvaćen! Sada možete ući u tečaj.",
+  "sessionFull": "Prekasno! Ova aktivnost je puna.",
+  "returnToCourse": "Vrati se na tečaj",
+  "returnHome": "Vrati se kući",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

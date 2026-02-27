@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:59:47.679831",
+  "@@last_modified": "2026-02-27 12:23:20.380952",
   "about": "সম্পর্কে",
   "@about": {
     "type": "String",
@@ -12042,6 +12042,26 @@
   },
   "cannotJoinBannedRoom": "নিষিদ্ধ। যোগদান করতে অক্ষম।",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "আপনার যোগদানের অনুরোধ গৃহীত হয়েছে! আপনি এখন কোর্সে প্রবেশ করতে পারেন।",
+  "sessionFull": "বিলম্ব! এই কার্যক্রম পূর্ণ।",
+  "returnToCourse": "কোর্সে ফিরে যান",
+  "returnHome": "বাড়িতে ফিরে যান",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-24 14:59:45.075838",
+  "@@last_modified": "2026-02-27 12:23:13.510421",
   "acceptedTheInvitation": "👍 {username} அழைப்பை ஏற்றுக்கொண்டது",
   "@acceptedTheInvitation": {
     "type": "String",
@@ -11418,6 +11418,26 @@
   },
   "cannotJoinBannedRoom": "தடைசெய்யப்பட்டது. சேர முடியவில்லை.",
   "@cannotJoinBannedRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "knockAccepted": "உங்கள் சேர்க்கை கோரிக்கை ஏற்கப்பட்டது! நீங்கள் இப்போது பாடத்தில் நுழையலாம்.",
+  "sessionFull": "மிகவும் தாமதமாக! இந்த செயல்பாடு நிரம்பியுள்ளது.",
+  "returnToCourse": "பாடத்திற்கு திரும்பவும்",
+  "returnHome": "வீட்டிற்கு திரும்பவும்",
+  "@knockAccepted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sessionFull": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@returnHome": {
     "type": "String",
     "placeholders": {}
   }
