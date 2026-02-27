@@ -35,6 +35,7 @@ class MessageContent extends StatelessWidget {
   final BorderRadius borderRadius;
   final Timeline timeline;
   final bool selected;
+  final Set<String> bigEmojis;
 
   const MessageContent(
     this.event, {
@@ -45,6 +46,7 @@ class MessageContent extends StatelessWidget {
     required this.linkColor,
     required this.borderRadius,
     required this.selected,
+    required this.bigEmojis,
   });
 
   Future<void> _verifyOrRequestKey(BuildContext context) async {
@@ -258,9 +260,8 @@ class MessageContent extends StatelessWidget {
             }
 
             final bigEmotes =
-                event.onlyEmotes &&
-                event.numberEmotes > 0 &&
-                event.numberEmotes <= 3;
+                !event.isRichMessage && bigEmojis.contains(event.body);
+
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: HtmlMessage(

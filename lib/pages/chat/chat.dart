@@ -104,6 +104,8 @@ class ChatController extends State<ChatPageWithRoom>
 
   String? activeThreadId;
 
+  late final Set<String> bigEmojis;
+
   late final String readMarkerEventId;
 
   String get roomId => widget.room.id;
@@ -358,6 +360,14 @@ class ChatController extends State<ChatPageWithRoom>
     super.initState();
     _displayChatDetailsColumn = ValueNotifier(
       AppSettings.displayChatDetailsColumn.value,
+    );
+
+    bigEmojis = defaultEmojiSet.fold(
+      <String>{},
+      (emojis, category) => {
+        ...emojis,
+        ...(category.emoji.map((emoji) => emoji.emoji)),
+      },
     );
 
     sendingClient = Matrix.of(context).client;

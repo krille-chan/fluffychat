@@ -48,6 +48,7 @@ class Message extends StatelessWidget {
   final List<Color> colors;
   final void Function()? onExpand;
   final bool isCollapsed;
+  final Set<String> bigEmojis;
 
   const Message(
     this.event, {
@@ -55,6 +56,7 @@ class Message extends StatelessWidget {
     this.previousEvent,
     this.displayReadMarker = false,
     this.longPressSelect = false,
+    required this.bigEmojis,
     required this.onSelect,
     required this.onInfoTab,
     required this.scrollToEventId,
@@ -612,6 +614,7 @@ class Message extends StatelessWidget {
                                                               borderRadius,
                                                           timeline: timeline,
                                                           selected: selected,
+                                                          bigEmojis: bigEmojis,
                                                         ),
                                                         if (event
                                                             .hasAggregatedEvents(
