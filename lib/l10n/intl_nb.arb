@@ -3154,5 +3154,13 @@
     "theProcessWasCanceled": "Prosessen ble avbrutt.",
     "join": "Bli med",
     "searchOrEnterHomeserverAddress": "Søk eller angi adresse til hjemmeserver",
-    "matrixId": "Matrix ID"
+    "matrixId": "Matrix ID",
+    "setPowerLevel": "Angi styrkenivå",
+    "makeModerator": "Gjør til moderator",
+    "makeAdmin": "Gjør til admin",
+    "removeModeratorRights": "Fjern moderator-rettigheter",
+    "removeAdminRights": "Fjern admin-rettigheter",
+    "powerLevel": "Styrkenivå",
+    "setPowerLevelDescription": "Styrkenivåer definerer hva et medlem har lov til å gjøre i dette rommet, og varierer vanligvis mellom 0 og 100.",
+    "owner": "Eier"
 }
