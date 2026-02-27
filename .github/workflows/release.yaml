@@ -34,7 +34,7 @@ jobs:
       - name: Create archive
         run: tar -czf fluffychat-web.tar.gz build/web/
       - name: Upload Web Build
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: Web Build
           path: fluffychat-web.tar.gz
