@@ -244,6 +244,7 @@ class _MatchContent extends StatelessWidget {
                 match.updatedMatch.match.message ??
                     match.updatedMatch.match.type.defaultPrompt(context),
                 style: BotStyle.text(context),
+                textAlign: TextAlign.center,
               ),
               isOpen
                   ? ChoicesArray(
