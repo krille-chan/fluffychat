@@ -674,17 +674,17 @@ gpD(){return"Prosessen ble avbrutt."},
 gq_(d){return"Bli med"},
 gpI(){return"S\xf8k eller angi adresse til hjemmeserver"},
 gq3(){return"Matrix ID"},
-goT(){return"Set power level"},
-gq2(){return"Make moderator"},
-gq1(){return"Make admin"},
-gq7(){return"Remove moderator rights"},
-gq6(){return"Remove admin rights"},
-gq5(){return"Power level"},
-gpJ(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdN(){return"Owner"},
+goT(){return"Angi styrkeniv\xe5"},
+gq2(){return"Gj\xf8r til moderator"},
+gq1(){return"Gj\xf8r til admin"},
+gq7(){return"Fjern moderator-rettigheter"},
+gq6(){return"Fjern admin-rettigheter"},
+gq5(){return"Styrkeniv\xe5"},
+gpJ(){return"Styrkeniv\xe5er definerer hva et medlem har lov til \xe5 gj\xf8re i dette rommet, og varierer vanligvis mellom 0 og 100."},
+gdN(){return"Eier"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ge,C.aD)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Ge":{"aD":[]}}'))};
-(a=>{a["YWr1Yy2zsi8fDXK7QdEjO0K8vnw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["vOY1JuWNjvRwEdJZ4SgWc8k0Pe4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_348.part.js.map

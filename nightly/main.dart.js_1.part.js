@@ -1,13 +1,13 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cKY(d){return new A.Bf(B.dc(d))},
+cKY(d){return new A.Bg(B.dc(d))},
 cKZ(){return new A.Gy(B.dc("zh_Hant"))},
-Bf:function Bf(d){this.a=d},
+Bg:function Bg(d){this.a=d},
 Gy:function Gy(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[3],A)
 C=c[57]
-A.Bf.prototype={
+A.Bg.prototype={
 gkO(){return"\u5426"},
 gjF(){return"\u91cd\u590d\u8f93\u5165\u5bc6\u7801"},
 gmA(){return"\u4e0d\u662f\u56fe\u50cf\u6587\u4ef6\u3002"},
@@ -676,14 +676,14 @@ gpD(){return"\u8fc7\u7a0b\u88ab\u53d6\u6d88\u3002"},
 gq_(d){return"\u52a0\u5165"},
 gpI(){return"\u641c\u7d22\u6216\u8f93\u5165 homeserver \u5730\u5740"},
 gq3(){return"Matrix ID"},
-goT(){return"Set power level"},
-gq2(){return"Make moderator"},
-gq1(){return"Make admin"},
-gq7(){return"Remove moderator rights"},
-gq6(){return"Remove admin rights"},
-gq5(){return"Power level"},
-gpJ(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdN(){return"Owner"},
+goT(){return"\u8bbe\u7f6e\u6743\u9650\u7ea7\u522b"},
+gq2(){return"\u534f\u7ba1\u5458"},
+gq1(){return"\u7ba1\u7406\u5458"},
+gq7(){return"\u5220\u9664\u534f\u7ba1\u5458\u6743\u9650"},
+gq6(){return"\u5220\u9664\u7ba1\u7406\u5458\u6743\u9650"},
+gq5(){return"\u6743\u9650\u7ea7\u522b"},
+gpJ(){return"\u6743\u9650\u7ea7\u522b\u5b9a\u4e49\u7fa4\u6210\u5458\u5728\u8fd9\u4e2a\u804a\u5929\u5ba4\u4e2d\u53ef\u4ee5\u505a\u4ec0\u4e48\uff0c\u53d6\u503c\u8303\u56f4 0 \u5230 100\u3002"},
+gdN(){return"\u6240\u6709\u8005"},
 B(d,e){return this.gba(this).$1(e)}}
 A.Gy.prototype={
 gkO(){return"false"},
@@ -1288,8 +1288,8 @@ goI(){return"\u60a8\u5df2\u8acb\u6c42\u52a0\u5165"},
 gnw(){return"\u76f4\u5230\u804a\u5929\u5ba4\u88e1\u6709\u4eba\u9080\u8acb\u60a8\u524d\uff0c\u8acb\u7b49\u5019\u3002"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Bf,C.aD)
-y(A.Gy,A.Bf)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Bf":{"aD":[]},"Gy":{"aD":[]}}'))};
-(a=>{a["kqA2OyrQMCcFtccyWMR7xxasQVM="]=a.current})($__dart_deferred_initializers__);
+y(A.Bg,C.aD)
+y(A.Gy,A.Bg)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Bg":{"aD":[]},"Gy":{"aD":[]}}'))};
+(a=>{a["2g4t4mVsAZgSNtHGHelMxhqJK/o="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map

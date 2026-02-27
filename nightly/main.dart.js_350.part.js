@@ -104,7 +104,7 @@ ghX(){return"Deze chat verlaten"},
 ghY(){return"Beschrijf jezelf"},
 ghZ(){return"Jouw avatar voor deze chat instellen (met mxc-uri)"},
 gi_(){return"Jouw naam voor deze chat instellen"},
-gi0(){return"Machtsniveau van de persoon instellen (standaard: 50)"},
+gi0(){return"Rechtenniveau van de persoon instellen (standaard: 50)"},
 gi1(){return"Niet-opgemaakte tekst versturen"},
 gi2(){return"Antwoord als reactie versturen"},
 gi3(){return"Tekst versturen"},
@@ -674,17 +674,17 @@ gpD(){return"Het proces is geannuleerd."},
 gq_(d){return"Deelnemen"},
 gpI(){return"Zoek of voer serveradres in"},
 gq3(){return"Matrix-ID"},
-goT(){return"Set power level"},
-gq2(){return"Make moderator"},
-gq1(){return"Make admin"},
-gq7(){return"Remove moderator rights"},
-gq6(){return"Remove admin rights"},
-gq5(){return"Power level"},
-gpJ(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdN(){return"Owner"},
+goT(){return"Rechtenniveau instellen"},
+gq2(){return"Maak moderator"},
+gq1(){return"Maak beheerder"},
+gq7(){return"Verwijder moderator-rechten"},
+gq6(){return"Verwijder beheerder-rechten"},
+gq5(){return"Rechtenniveau"},
+gpJ(){return"Rechtenniveau's defini\xebren wat een persoon mag doen in deze chat en vari\xebren meestal tussen 0 en 100."},
+gdN(){return"Eigenaar"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gf,C.aD)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Gf":{"aD":[]}}'))};
-(a=>{a["I8pW+ClFsnuLU0SI5XQXGYp+d+Q="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["tnEr+UnEQ6dhFtRxJAWWXNUbs6M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_350.part.js.map

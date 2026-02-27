@@ -674,17 +674,17 @@ gpD(){return"Protsess on katkestatud."},
 gq_(d){return"Liitu"},
 gpI(){return"Otsi koduserveri aadressi v\xf5i sisesta see"},
 gq3(){return"Matrixi kasutajatunnus"},
-goT(){return"Set power level"},
-gq2(){return"Make moderator"},
-gq1(){return"Make admin"},
-gq7(){return"Remove moderator rights"},
-gq6(){return"Remove admin rights"},
-gq5(){return"Power level"},
-gpJ(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdN(){return"Owner"},
+goT(){return"Seadista \xf5igusi"},
+gq2(){return"M\xe4\xe4ra moderaatoriks"},
+gq1(){return"M\xe4\xe4ra peakasutajaks"},
+gq7(){return"Eemalda moderaatori \xf5igused"},
+gq6(){return"Eemalda peakasutaja \xf5igused"},
+gq5(){return"\xd5iguste tase"},
+gpJ(){return"\xd5iguste tase on \xfcks v\xf5imalusi kirjeldamaks seda, mida kasutaja saab jututoas teha ning see tavaliselt v\xe4ljendub numbriga vahemikust 0 kuni 100."},
+gdN(){return"Omanik"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FT,C.aD)})()
 B.dJ(b.typeUniverse,JSON.parse('{"FT":{"aD":[]}}'))};
-(a=>{a["djqOH7o5EF36jzNgn1dIau5kYxw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["JSH/ZhVSw2WihhxhPohe4W4D2AE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map

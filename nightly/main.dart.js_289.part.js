@@ -38,7 +38,7 @@ m2(d){return d+" umarmt dich"},
 ho(d){return d+" hat den Anruf angenommen"},
 gf1(){return"Jeder darf beitreten"},
 gf2(){return"Archiv"},
-ghp(){return"D\xfcrfen G\xe4ste beitreten"},
+ghp(){return"D\xfcrfen G\xe4ste teilnehmen?"},
 gd5(){return"Bist du sicher?"},
 ghq(){return"Willst du dich wirklich abmelden?"},
 ghr(){return"Bitte gib, um die andere Person signieren zu k\xf6nnen, dein Sicherheitsschl\xfcssel oder Wiederherstellungsschl\xfcssel ein."},
@@ -672,7 +672,7 @@ gpL(){return"Du hast bereits ein Konto bei Matrix? Willkommen zur\xfcck! W\xe4hl
 gpP(){return"Mit FluffyChat kannst du mit deinen Freunden chatten. Es ist ein sicherer, dezentralisierter [Matrix]-Messenger! Erfahre mehr auf https://matrix.org, wenn du m\xf6chtest, oder melde dich einfach an."},
 gpD(){return"Der Vorgang wurde abgebrochen."},
 gq_(d){return"Beitreten"},
-gpI(){return"Search or enter homeserver address"},
+gpI(){return"Homeserver-Adresse suchen oder eingeben"},
 gq3(){return"Matrix ID"},
 goT(){return"Set power level"},
 gq2(){return"Make moderator"},
@@ -687,5 +687,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FO,C.aD)})()
 B.dJ(b.typeUniverse,JSON.parse('{"FO":{"aD":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["xmMF9GBrJB3EY7d6V5A+8OCiVrE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["U0I9OgH5O38ig9ws9Lwjt1GObps="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_289.part.js.map

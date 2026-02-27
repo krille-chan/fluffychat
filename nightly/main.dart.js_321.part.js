@@ -14,16 +14,16 @@ gm5(){return"\u0905\u092d\u0940 \u0906\u092f\u093e\u0924 \u0915\u0930\u0947\u090
 gm3(){return"\u0907\u092e\u094b\u091c\u0940 \u0906\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
 gm4(){return".zip \u092b\u093c\u093e\u0907\u0932 \u0938\u0947 \u0906\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
 glM(){return"\u0907\u092e\u094b\u091f \u092a\u0948\u0915 \u0915\u094b .zip \u0915\u0947 \u0930\u0942\u092a \u092e\u0947\u0902 \u0928\u093f\u0930\u094d\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
-gnI(d){return"Replace"},
-gex(){return"About"},
-hc(d){return"About "+d},
-ghd(d){return"Accept"},
-he(d){return"\ud83d\udc4d "+d+" accepted the invitation"},
-ghg(){return"Account"},
-hh(d){return"\ud83d\udd10 "+d+" activated end to end encryption"},
-ghi(){return"Add email"},
-glm(){return"Please confirm your Matrix ID in order to delete your account."},
-kE(d){return"This should be "+d},
+gnI(d){return"\u092c\u0926\u0932\u0947\u0902"},
+gex(){return"\u0939\u092e\u093e\u0930\u0947 \u092c\u093e\u0930\u0947 \u092e\u0947\u0902"},
+hc(d){return d+" \u0915\u0940 \u091c\u093e\u0928\u0915\u093e\u0930\u0940"},
+ghd(d){return"\u0938\u094d\u0935\u0940\u0915\u093e\u0930 \u0915\u0930\u0947\u0902"},
+he(d){return"\ud83d\udc4d "+d+" \u0928\u0947 \u0928\u093f\u092e\u0902\u0924\u094d\u0930\u0923 \u0938\u094d\u0935\u0940\u0915\u093e\u0930 \u0915\u093f\u092f\u093e"},
+ghg(){return"\u0905\u0915\u093e\u0909\u0902\u091f"},
+hh(d){return"\ud83d\udd10 "+d+" \u0928\u0947 \u090f\u0902\u0921-\u091f\u0942-\u090f\u0902\u0921 \u090f\u0928\u094d\u0915\u094d\u0930\u093f\u092a\u094d\u0936\u0928 \u091a\u093e\u0932\u0942 \u0915\u093f\u092f\u093e"},
+ghi(){return"\u0908\u092e\u0947\u0932 \u0910\u0921 \u0915\u0930\u0947\u0902"},
+glm(){return"\u0915\u0943\u092a\u092f\u093e \u0905\u092a\u0928\u093e \u0905\u0915\u093e\u0909\u0902\u091f \u0939\u091f\u093e\u0928\u0947 \u0915\u0947 \u0932\u093f\u090f \u0905\u092a\u0928\u0940 \u092e\u0948\u091f\u094d\u0930\u093f\u0915\u094d\u0938 \u0906\u0908\u0921\u0940 \u0915\u0940 \u092a\u0941\u0937\u094d\u091f\u093f \u0915\u0930\u0947\u0902\u0964"},
+kE(d){return"\u092f\u0939 "+d+" \u0939\u094b\u0928\u093e \u091a\u093e\u0939\u093f\u090f"},
 ghk(){return"Add to space"},
 ghl(){return"Admin"},
 ghm(){return"alias"},
@@ -686,5 +686,5 @@ B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G1,C.aD)})()
 B.dJ(b.typeUniverse,JSON.parse('{"G1":{"aD":[]}}'))};
-(a=>{a["V3Bt3DuH2IizYTShFKHzghRGeIM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["8UGHt4hR6zRaIkTlUXUJYlzNihw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map

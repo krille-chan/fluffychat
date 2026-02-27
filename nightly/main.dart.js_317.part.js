@@ -38,7 +38,7 @@ m2(d){return d+" abr\xe1zate"},
 ho(d){return d+" respondeu \xe1 chamada"},
 gf1(){return"Calquera pode unirse"},
 gf2(){return"Arquivo"},
-ghp(){return"Permitir o acceso de convidadas"},
+ghp(){return"Poden entrar as usuarias convidadas?"},
 gd5(){return"Tes a certeza?"},
 ghq(){return"Tes a certeza de querer sa\xedr?"},
 ghr(){return"Para poder asinar a outra persoa, escribe a t\xfaa frase de paso ou chave de recuperaci\xf3n."},
@@ -671,9 +671,9 @@ gpM(){return"FluffyChat \xe9 descentralizada! Elixe un servidor para crear a con
 gpL(){return"Xa tes unha conta en Matrix? Benvida! Selecciona o teu servidor de orixe e accede."},
 gpP(){return"Con FluffyChat podes conversar coas amizades. \xc9 mensaxer\xeda segura e descentralizada en [matrix]! Co\xf1ece m\xe1is en https://matrix.org ou crea unha conta."},
 gpD(){return"Desbotouse o proceso."},
-gq_(d){return"Join"},
-gpI(){return"Search or enter homeserver address"},
-gq3(){return"Matrix ID"},
+gq_(d){return"Unirse"},
+gpI(){return"Busca ou escribe o enderezo do servidor de inicio"},
+gq3(){return"ID en Matrix"},
 goT(){return"Set power level"},
 gq2(){return"Make moderator"},
 gq1(){return"Make admin"},
@@ -686,5 +686,5 @@ B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G_,C.aD)})()
 B.dJ(b.typeUniverse,JSON.parse('{"G_":{"aD":[]}}'))};
-(a=>{a["KNcmodZpGKNiZMlFp3jmkxYNbhc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["eZM7+t5atxMQYSnlG/VwW+bq218="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map
