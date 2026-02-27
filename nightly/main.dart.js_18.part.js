@@ -1,8 +1,8 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cKG(d){return new A.Bf(B.dc(d))},
-cKH(){return new A.Gh(B.dc("pt_BR"))},
-cKI(){return new A.Gi(B.dc("pt_PT"))},
+cKE(d){return new A.Bf(B.dc(d))},
+cKF(){return new A.Gh(B.dc("pt_BR"))},
+cKG(){return new A.Gi(B.dc("pt_PT"))},
 Bf:function Bf(d){this.a=d},
 Gh:function Gh(d){this.a=d},
 Gi:function Gi(d){this.a=d}},C
@@ -640,11 +640,11 @@ gp5(){return"Add answer option"},
 gp7(){return"Allow multiple answers"},
 gnx(){return"Poll has been ended"},
 pl(d){var x=null
-return B.bB(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
+return B.bC(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 gpa(){return"Answers will be visible when poll has ended"},
 gnJ(){return"Reply in thread"},
 pk(d){var x=null
-return B.bB(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+return B.bC(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
 gpE(){return"Thread"},
 gpc(){return"Back to main chat"},
 goR(){return"Save changes"},
@@ -1318,11 +1318,11 @@ gp5(){return"Adicionar op\xe7\xe3o de resposta"},
 gp7(){return"Permitir v\xe1rias respostas"},
 gnx(){return"A enquete terminou"},
 pl(d){var x=null
-return B.bB(d,x,this.a,x,"Um voto",""+d+" votos",x,x)},
+return B.bC(d,x,this.a,x,"Um voto",""+d+" votos",x,x)},
 gpa(){return"As respostas ficar\xe3o vis\xedveis quando a enquete terminar"},
 gnJ(){return"Responder no t\xf3pico"},
 pk(d){var x=null
-return B.bB(d,x,this.a,x,"Uma resposta",""+d+" respostas",x,x)},
+return B.bC(d,x,this.a,x,"Uma resposta",""+d+" respostas",x,x)},
 gpE(){return"T\xf3pico"},
 gpc(){return"Voltar \xe0 conversa principal"},
 goR(){return"Salvar altera\xe7\xf5es"},
@@ -1586,5 +1586,5 @@ x(A.Bf,C.aD)
 w(A.Bf,[A.Gh,A.Gi])})()
 B.dJ(b.typeUniverse,JSON.parse('{"Bf":{"aD":[]},"Gh":{"aD":[]},"Gi":{"aD":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["V73W9kkxEdNpNWzpG14FHWrsH/0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["yNelagFRMjwdsUcfR6y+a2RDI5w="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map
