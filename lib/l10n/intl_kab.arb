@@ -1960,5 +1960,134 @@
             }
         }
     },
-    "pleaseEnterANumber": "Ma ulac aɣilif sekcem amḍan yugaren 0"
+    "pleaseEnterANumber": "Ma ulac aɣilif sekcem amḍan yugaren 0",
+    "unknownEncryptionAlgorithm": "Alguritm n uwgelhen d arussin",
+    "@unknownEncryptionAlgorithm": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unknownEvent": "Tadyant tarussint '{type}'",
+    "@unknownEvent": {
+        "type": "String",
+        "placeholders": {
+            "type": {
+                "type": "String"
+            }
+        }
+    },
+    "unmuteChat": "Kkes asgugem i udiwenni",
+    "@unmuteChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unsupportedAndroidVersion": "Lqem Android ur yettwasefrak ara",
+    "unsupportedAndroidVersionLong": "Tamahilt-a tesra lqem Android tamaynut. Ttxil-k·m senqed ileqman neɣ asefrak n Lineage OS.",
+    "startFirstChat": "Senker adiwenni-ik·im amezwaru",
+    "status": "Addad",
+    "@status": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "statusExampleMessage": "Amek telliḍ ass-a?",
+    "@statusExampleMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "submit": "Ceyyeɛ",
+    "@submit": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "synchronizingPleaseWait": "Amtawi... Ttxil-k·m arǧu.",
+    "@synchronizingPleaseWait": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "synchronizingPleaseWaitCounter": " Amtawi… ({percentage}%)",
+    "@synchronizingPleaseWaitCounter": {
+        "type": "String",
+        "placeholders": {
+            "percentage": {
+                "type": "String"
+            }
+        }
+    },
+    "systemTheme": "Anagraw",
+    "@systemTheme": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "theyDontMatch": "Ur mṣadan ara",
+    "@theyDontMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "theyMatch": "mṣadan",
+    "@theyMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "title": "FluffyChat",
+    "@title": {
+        "description": "Title for the application",
+        "type": "String",
+        "placeholders": {}
+    },
+    "toggleFavorite": "Qluqel asmenyif",
+    "@toggleFavorite": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "toggleMuted": "Qluqel asgugem",
+    "@toggleMuted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "toggleUnread": "Creḍ Yettwaɣri/Ur yettwaɣri ara",
+    "@toggleUnread": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "tooManyRequestsWarning": "Deqs n tuttriwin. Ttxil-k·m, ɛreḍ tikelt nniḍen ticki!",
+    "@tooManyRequestsWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "transferFromAnotherDevice": "Asiweḍ seg yibenk nniḍen",
+    "@transferFromAnotherDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "tryToSendAgain": "Ɛreḍ ad tazneḍ tikkelt nniḍen",
+    "@tryToSendAgain": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unavailable": "Ur yewjid ara",
+    "@unavailable": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unbannedUser": "{username} yekkes agdek n {targetName}",
+    "@unbannedUser": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "unblockDevice": "Kkes asewḥel n yibenk",
+    "@unblockDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unknownDevice": "Ibenk arussin",
+    "@unknownDevice": {
+        "type": "String",
+        "placeholders": {}
+    }
 }

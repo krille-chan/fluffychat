@@ -453,7 +453,7 @@
         "type": "String",
         "description": "Usage hint for the command /myroomnick"
     },
-    "commandHint_op": "Machtsniveau van de persoon instellen (standaard: 50)",
+    "commandHint_op": "Rechtenniveau van de persoon instellen (standaard: 50)",
     "@commandHint_op": {
         "type": "String",
         "description": "Usage hint for the command /op"
@@ -3146,5 +3146,13 @@
     "theProcessWasCanceled": "Het proces is geannuleerd.",
     "join": "Deelnemen",
     "searchOrEnterHomeserverAddress": "Zoek of voer serveradres in",
-    "matrixId": "Matrix-ID"
+    "matrixId": "Matrix-ID",
+    "setPowerLevel": "Rechtenniveau instellen",
+    "makeModerator": "Maak moderator",
+    "makeAdmin": "Maak beheerder",
+    "removeModeratorRights": "Verwijder moderator-rechten",
+    "removeAdminRights": "Verwijder beheerder-rechten",
+    "powerLevel": "Rechtenniveau",
+    "setPowerLevelDescription": "Rechtenniveau's definiëren wat een persoon mag doen in deze chat en variëren meestal tussen 0 en 100.",
+    "owner": "Eigenaar"
 }

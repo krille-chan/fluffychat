@@ -3147,5 +3147,13 @@
     "theProcessWasCanceled": "过程被取消。",
     "join": "加入",
     "searchOrEnterHomeserverAddress": "搜索或输入 homeserver 地址",
-    "matrixId": "Matrix ID"
+    "matrixId": "Matrix ID",
+    "setPowerLevel": "设置权限级别",
+    "makeModerator": "协管员",
+    "makeAdmin": "管理员",
+    "removeModeratorRights": "删除协管员权限",
+    "removeAdminRights": "删除管理员权限",
+    "powerLevel": "权限级别",
+    "setPowerLevelDescription": "权限级别定义群成员在这个聊天室中可以做什么，取值范围 0 到 100。",
+    "owner": "所有者"
 }

@@ -87,7 +87,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Dürfen Gäste beitreten",
+    "areGuestsAllowedToJoin": "Dürfen Gäste teilnehmen?",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -2813,7 +2813,7 @@
     "whatIsAHomeserver": "Was ist ein Homeserver?",
     "doesNotSeemToBeAValidHomeserver": "Scheint kein kompatibler Homeserver zu sein. Falsche URL?",
     "loginWithMatrixId": "Mit Matrix-ID anmelden",
-    "discoverHomeservers": "Server suchen",
+    "discoverHomeservers": "Homeserver suchen",
     "homeserverDescription": "Alle deine Daten werden auf einem Homeserver gespeichert, so wie bei einem E-Mail Anbieter. Du kannst aussuchen, welchen Homeserver du benutzen willst und kannst trotzdem mit allen kommunizieren. Erfahre mehr auf https://matrix.org.",
     "sendingAttachment": "Anhang wird gesendet ...",
     "generatingVideoThumbnail": "Generiere Video-Vorschaubild ...",
@@ -3144,5 +3144,7 @@
     "theProcessWasCanceled": "Der Vorgang wurde abgebrochen.",
     "federationBaseUrl": "Basis-URL der Föderation",
     "clientWellKnownInformation": "Bekannte Informationen zum Client:",
-    "join": "Beitreten"
+    "join": "Beitreten",
+    "searchOrEnterHomeserverAddress": "Homeserver-Adresse suchen oder eingeben",
+    "matrixId": "Matrix ID"
 }
