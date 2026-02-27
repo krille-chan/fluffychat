@@ -2185,5 +2185,188 @@
     "searchOrEnterHomeserverAddress": "Nadi neɣ sekcem tansa n uqeddac agejdan",
     "setPowerLevel": "Sbadu aswir n tezmert",
     "removeAdminRights": "Kkes izerfan n unedbal",
-    "powerLevel": "Aswir n tezmert"
+    "powerLevel": "Aswir n tezmert",
+    "help": "Tallelt",
+    "@help": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "privacy": "Tabaḍnit",
+    "@privacy": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "reason": "Taɣẓint",
+    "@reason": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "recording": "Asekles",
+    "@recording": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "register": "Jerred",
+    "@register": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "reject": "Aggi",
+    "@reject": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "search": "Nadi",
+    "@search": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "security": "Taɣellist",
+    "@security": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "settings": "Iɣewwaren",
+    "@settings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "share": "Bḍu",
+    "@share": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unpin": "Kkes anṭaḍ",
+    "@unpin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knock": "Sqeṛbeb",
+    "knocking": "Sqeṛbeb",
+    "select": "Fren",
+    "gallery": "Timidelt",
+    "files": "Ifuyla",
+    "transparent": "Afrawan",
+    "discover": "Snirem",
+    "changelog": "Aɣmis n ibeddilen",
+    "notificationRuleCall": "Asiwel",
+    "notificationRuleMessage": "Izen",
+    "notificationRuleEncrypted": "Yettwawgelhen",
+    "notificationRuleJitsi": "Jitsi",
+    "more": "Ugar",
+    "logs": "Iɣmisen",
+    "join": "Ttekki",
+    "owner": "Amli",
+    "changePassword": "Asnifel n wawal n uɛeddi",
+    "@changePassword": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "commandHint_send": "Azen aḍris",
+    "@commandHint_send": {
+        "type": "String",
+        "description": "Usage hint for the command /send"
+    },
+    "addAccount": "Rnu amiḍan",
+    "directChat": "Adiwenni usrid",
+    "redactMessage": "Kkes izen",
+    "@redactMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "requestPermission": "Suter tasiregt",
+    "@requestPermission": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveFile": "Sekles afaylu",
+    "@saveFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "recoveryKey": "Tasarut n tririt",
+    "setStatus": "Sbadu addad",
+    "@setStatus": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "shareLocation": "Bḍu adig",
+    "@shareLocation": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showPassword": "Sken-d awal n uɛeddi",
+    "@showPassword": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "deviceKeys": "Tisura n yibenk:",
+    "learnMore": "Issin ugar",
+    "groupName": "Isem n ugraw",
+    "startConversation": "Bdu adiwenni",
+    "newPassword": "Awal n uɛeddi amaynut",
+    "publicLink": "Aseɣwen azayaz",
+    "thisDevice": "Ibenk-a:",
+    "userRole": "Tamlilt n useqdac",
+    "searchMore": "Nadi ugar…",
+    "allDevices": "Akk ibenkan",
+    "saveChanges": "Sekles ibeddilen",
+    "baseUrl": "URL n taffa",
+    "identityServer": "Aseqdac n tmagit:",
+    "versionWithNumber": "Lqem: {version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "signIn": "Qqen",
+    "matrixId": "Asulay ID Matrix",
+    "makeAdmin": "Err-it d anedbal",
+    "openInMaps": "Ldi-t deg maps",
+    "@openInMaps": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "singlesignon": "Asesteb asuf",
+    "@singlesignon": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encryptThisChat": "Wgelhen adiwenni-a",
+    "searchForUsers": "Nadi iseqdacen…",
+    "createNewAddress": "Snulfu-d tansa tamaynut",
+    "adminLevel": "{level} - Tadbelt",
+    "@adminLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "loginWithMatrixId": "Tuqqna s usulay ID n Matrix",
+    "calculatingFileSize": "Asiḍen n tiddi n ufaylu...",
+    "shareKeysWith": "Bḍu tisura akked…",
+    "takeAPhoto": "Ṭṭef tawlaft",
+    "recordAVideo": "Sekles tavidyut",
+    "createNewAccount": "Snulfu-d amiḍan amaynut",
+    "pleaseEnterYourPassword": "Ma ulac aɣilif, sekcem-d awal-ik n uɛeddi",
+    "@pleaseEnterYourPassword": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "doNotShowAgain": "Ur t-id-sskan ara tikkelt nniḍen",
+    "passwordsDoNotMatch": "Awalen n uɛeddi mgarraden",
+    "searchIn": "Nadi deg udiwenni \"{chat}\"...",
+    "@searchIn": {
+        "type": "String",
+        "placeholders": {
+            "chat": {
+                "type": "String"
+            }
+        }
+    }
 }
