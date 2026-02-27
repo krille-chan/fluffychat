@@ -220,6 +220,9 @@ class AnalyticsDataService {
   bool hasUsedConstruct(ConstructIdentifier id) =>
       _mergeTable.constructUsed(id);
 
+  bool isConstructBlocked(ConstructIdentifier id) =>
+      blockedConstructs.contains(id);
+
   int uniqueConstructsByType(ConstructTypeEnum type) =>
       _mergeTable.uniqueConstructsByType(type);
 

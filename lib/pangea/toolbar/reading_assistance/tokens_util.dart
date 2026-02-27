@@ -97,11 +97,13 @@ class TokensUtil {
         MatrixState.pangeaController.matrixState.analyticsDataService;
 
     for (final token in tokens) {
-      if (!token.lemma.saveVocab || !token.vocabConstructID.isContentWord) {
+      final cId = token.vocabConstructID;
+      if (!token.lemma.saveVocab || !cId.isContentWord) {
         continue;
       }
 
-      if (analyticsService.hasUsedConstruct(token.vocabConstructID)) {
+      if (analyticsService.hasUsedConstruct(cId) ||
+          analyticsService.isConstructBlocked(cId)) {
         continue;
       }
 
