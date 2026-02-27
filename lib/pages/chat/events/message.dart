@@ -156,17 +156,12 @@ class Message extends StatelessWidget {
     );
     final noBubble =
         ({
-              MessageTypes.Video,
-              MessageTypes.Image,
-              MessageTypes.Sticker,
-            }.contains(event.messageType) &&
-            event.fileDescription == null &&
-            !event.redacted) ||
-        (event.messageType == MessageTypes.Text &&
-            event.relationshipType == null &&
-            event.onlyEmotes &&
-            event.numberEmotes > 0 &&
-            event.numberEmotes <= 3);
+          MessageTypes.Video,
+          MessageTypes.Image,
+          MessageTypes.Sticker,
+        }.contains(event.messageType) &&
+        event.fileDescription == null &&
+        !event.redacted);
 
     if (ownMessage) {
       color = displayEvent.status.isError
