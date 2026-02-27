@@ -42,14 +42,23 @@ class OngoingActivitySessionView extends StatelessWidget {
             Expanded(
               child: ListView(
                 children: [
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: IconButton(
-                      icon: Icon(Icons.flag_outlined),
-                      onPressed: activity != null
-                          ? () => controller.flagActivity(activity)
-                          : null,
-                    ),
+                  ListenableBuilder(
+                    listenable: controller.notifier,
+                    builder: (context, _) {
+                      final enabled =
+                          activity != null &&
+                          !controller.notifier.activityComplete(activity);
+
+                      return Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          icon: Icon(Icons.flag_outlined),
+                          onPressed: enabled
+                              ? () => controller.flagActivity(activity)
+                              : null,
+                        ),
+                      );
+                    },
                   ),
                   //Hints counter bar for grammar activities only
                   if (controller.widget.type == ConstructTypeEnum.morph)
