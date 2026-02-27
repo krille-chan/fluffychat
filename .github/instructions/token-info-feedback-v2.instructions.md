@@ -1,5 +1,5 @@
 ---
-applyTo: "lib/pangea/token_info_feedback/**, lib/**"
+applyTo: "lib/pangea/token_info_feedback/**"
 ---
 
 # Token Info Feedback — v2 Migration (Client)

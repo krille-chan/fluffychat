@@ -1,6 +1,8 @@
-# Client Layout System
+---
+applyTo: "lib/config/themes.dart,lib/widgets/layouts/**,lib/pangea/spaces/space_navigation_column.dart,lib/widgets/navigation_rail.dart,lib/config/routes.dart"
+---
 
-Applies to: `lib/config/themes.dart`, `lib/widgets/layouts/**`, `lib/pangea/spaces/space_navigation_column.dart`, `lib/widgets/navigation_rail.dart`, `lib/config/routes.dart`
+# Client Layout System
 
 ## Overview
 
