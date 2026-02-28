@@ -326,7 +326,7 @@ class _SpaceViewState extends State<SpaceView> {
     if (space == null) return;
     switch (action) {
       case SpaceChildAction.edit:
-        context.push('/rooms/${widget.spaceId}/details');
+        context.push('/rooms/$roomId/details');
       case SpaceChildAction.moveToSpace:
         final spacesWithPowerLevels = space.client.rooms
             .where(
