@@ -1,0 +1,772 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 989fe36..d86a283 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -1,5 +1,5 @@
+ ## v2.4.0
+-FluffyChat 2.4.0 adds a new improved GUI for managing stickers with tutorials how to
++ZedChat 2.4.0 adds a new improved GUI for managing stickers with tutorials how to
+ easily add your own sticker packs.
+ It also improves the search and image gallery in chats, especially encrypted chats.
+ Besides that this update comes with a lot of fixes and improvements under the hood.
+@@ -126,7 +126,7 @@ Besides that this update comes with a lot of fixes and improvements under the ho
+ 
+ ## v2.3.0
+ 
+-FluffyChat v2.3.0 fixes a possible database corruption bug on Android, also fixes a
++ZedChat v2.3.0 fixes a possible database corruption bug on Android, also fixes a
+ major performance leak and introduces polls and threads.
+ 
+ - feat: Implement polls (Christian Kußowski)
+@@ -164,7 +164,7 @@ major performance leak and introduces polls and threads.
+ 
+ ## v2.2.0
+ 
+-FluffyChat 2.2.0 introduces a new UX for spaces and adds support for restricted
++ZedChat 2.2.0 introduces a new UX for spaces and adds support for restricted
+ join rules.
+ 
+ The app also now has a new design for recording voice messages including a new
+@@ -179,7 +179,7 @@ has changed as the available configs are now generated automatically.
+ Did you know that you can set a lot of additional configs in the new config viewer
+ inside the app? This now supports much more options but please use with care!
+ 
+-On Android FluffyChat now supports notification actions (reply and mark as read) and
++On Android ZedChat now supports notification actions (reply and mark as read) and
+ also now supports Android Auto integration. Please do not cause an accident when using
+ the app while driving!
+ 
+@@ -308,7 +308,7 @@ Bugfix release to trigger flatpak arm64 release again.
+ - refactor: Remove broken push error reporter (Christian Kußowski)
+ 
+ ## v2.1.0
+-FluffyChat 2.1.0 brings support for room version 12 and a lot of bugfixes, updated translations and performance improvements. Also chat state events are now collapsed by default.
++ZedChat 2.1.0 brings support for room version 12 and a lot of bugfixes, updated translations and performance improvements. Also chat state events are now collapsed by default.
+ 
+ - feat: Collapse all state events by default (Christian Kußowski)
+ - feat(linux/notify): support avatar icon (ShootingStarDragons)
+@@ -789,11 +789,11 @@ Updates the Matrix Dart SDK to fix multiple issues where messages can be missing
+ 
+ ## v1.22.0
+ 
+-FluffyChat v1.22.0 brings a new design for spaces, replaces the bottom navigation bar with filter
++ZedChat v1.22.0 brings a new design for spaces, replaces the bottom navigation bar with filter
+ chips and makes it finally possible to play ogg audio messages on iOS. A lot of other fixes and
+ improvements have also been added to this release.
+ 
+-FluffyChat also now uses the new authenticated media endpoints if the server supports Matrix v1.11
++ZedChat also now uses the new authenticated media endpoints if the server supports Matrix v1.11
+ or
+ mentions the msc with the key `org.matrix.msc3916.stable` in the `unstable_features`.
+ 
+@@ -908,7 +908,7 @@ Updates the Matrix Dart SDK to fix some minor bugs.
+ 
+ ## v1.21.0
+ 
+-FluffyChat v1.21.0 introduces the new search feature which also includes a gallery and files list
++ZedChat v1.21.0 introduces the new search feature which also includes a gallery and files list
+ for each chat. Several performance improvements have been added under the hood, leading to a much
+ nicer user experience.
+ 
+@@ -1039,7 +1039,7 @@ Minor bugfix release for login with SSO on web.
+ 
+ ## v1.19.0
+ 
+-FluffyChat v1.19.0 features an improved design for message bubbles and a lot of fixes under the
++ZedChat v1.19.0 features an improved design for message bubbles and a lot of fixes under the
+ hood.
+ 
+ - build: Update matrix dart sdk (Krille)
+@@ -1062,7 +1062,7 @@ hood.
+ - feat: Add insert content via gboard (krille-chan)
+ - feat: Reply with one button in desktop (krille-chan)
+ - fix: Do not sync in background mode (krille-chan)
+-- fix: FluffyChat should assume m.change_password capabilitiy is supported if not present per spec (
++- fix: ZedChat should assume m.change_password capabilitiy is supported if not present per spec (
+   krille-chan)
+ - fix: never use root navigator for bottom sheets (The one with the braid)
+ - fix: Remove pantalaimon message with normal error message (krille-chan)
+@@ -1181,7 +1181,7 @@ Minor bugfix release.
+ 
+ ## v1.17.0
+ 
+-FluffyChat v1.17.0 refreshes the overall user experience, changes some design and fixes a lot of
++ZedChat v1.17.0 refreshes the overall user experience, changes some design and fixes a lot of
+ bugs. It also replaces the stories feature with matrix presences, introduces a new kind of database
+ to store the messages locally and improves the performance and app stability.
+ 
+@@ -1476,7 +1476,7 @@ Test candidate for the new database.
+ 
+ ## v1.14.4
+ 
+-Minor bugfix release. Please note that because of a Flutter update FluffyChat is no longer
++Minor bugfix release. Please note that because of a Flutter update ZedChat is no longer
+ compatible with iOS 11.
+ 
+ - Translated using Weblate (Spanish) (José Muñoz)
+@@ -1505,7 +1505,7 @@ compatible with iOS 11.
+ 
+ ## v1.14.0
+ 
+-Release with a lot of bugfixes and refactorings under the hood. FluffyChat now uses go_router
++Release with a lot of bugfixes and refactorings under the hood. ZedChat now uses go_router
+ instead of vrouter, works with the newest Flutter SDK and supports "reason" field for redactions.
+ For Android there is a new "background-fetch mode" for Push Notifications which should make
+ notifications in background faster and more reliable and reduce battery-usage.
+@@ -1838,7 +1838,7 @@ some translations
+ 
+ ## v1.7.0 2022-11-17
+ 
+-FluffyChat 1.7.0 features a new way to work with spaces via a bottom navigation bar. A lot of work
++ZedChat 1.7.0 features a new way to work with spaces via a bottom navigation bar. A lot of work
+ has also been done under the hood to make the app faster and more stable. The main color has
+ slightly changed and the design got some finetuning.
+ 
+@@ -1927,7 +1927,7 @@ slightly changed and the design got some finetuning.
+ 
+ ## v1.6.0 - 2022-07-31
+ 
+-FluffyChat 1.6.0 features a lot of bug fixes and improvements. The code base has been
++ZedChat 1.6.0 features a lot of bug fixes and improvements. The code base has been
+ simplified and the drawer on the chat list page got a come-back. Some new features like
+ the space hierarchy and session dump have been implemented.
+ 
+@@ -2042,7 +2042,7 @@ the space hierarchy and session dump have been implemented.
+ - feat: Faster image resizing (Krille Fear)
+ - feat: Groups and Direct Chats virtual spaces option (20kdc)
+ - feat: New onboarding design (Krille Fear)
+-- feat: Onboarding with dynamic homeservers from joinmatrix.org (Krille Fear)
++- feat: Onboarding with dynamic homeservers from joinmt.zednet.ir (Krille Fear)
+ - feat: Play audio messages in stories (Krille Fear)
+ - feat: Use native imaging for much faster thumbnail calc on mobile (Krille Fear)
+ - feat: add Dockerfile for nginx/web builds (TheOneWithTheBraid)
+@@ -2128,7 +2128,7 @@ the space hierarchy and session dump have been implemented.
+ 
+ ## v1.3.0 - 2022-02-12
+ 
+-FluffyChat 1.3.0 makes it possible to report offensive users to server admins (not only messages).
++ZedChat 1.3.0 makes it possible to report offensive users to server admins (not only messages).
+ It fixes
+ the video player, improves Linux desktop notifications, and the stories design.
+ 
+@@ -2136,7 +2136,7 @@ The button to create a new story is now in the app bar of the main page so that
+ to use
+ this feature no longer have a whole list item pinned at the top of the chat list.
+ 
+-FluffyChat 1.3.0 is the first release with full null safe dart code. While this is a huge change
++ZedChat 1.3.0 is the first release with full null safe dart code. While this is a huge change
+ under the
+ hood, it should improve the stability and performance of the app. It also builds now with Flutter
+ 2.10.
+@@ -2180,7 +2180,7 @@ Thanks to all contributors and translators!! <3
+ 
+ ## v1.2.0 - 2022-01-27
+ 
+-FluffyChat 1.2.0 brings a new stories feature, a lot of bug fixes and improved
++ZedChat 1.2.0 brings a new stories feature, a lot of bug fixes and improved
+ voice messages.
+ 
+ - change: Set client ID in invite action link (Krille Fear)
+@@ -2324,12 +2324,12 @@ voice messages.
+ 
+ ## v0.42.2 - 2021-11-04
+ 
+-Minor bugfix release which fixes signing up on matrix.org and make FluffyChats voice messages
++Minor bugfix release which fixes signing up on mt.zednet.ir and make ZedChats voice messages
+ playable in Element.
+ 
+ - feat: Nicer registration form
+ - feat: Nicer audio message design and send duration
+-- fix: Signup on matrix.org
++- fix: Signup on mt.zednet.ir
+ - fix: Mark voice messages with msc3245
+ - fix: Play response voice messages
+ - fix: Crash on logout
+@@ -2357,8 +2357,8 @@ This release fixes several bugs and makes E2EE enabled by default.
+ - feat: More finetuning for font sizes
+ - chore: Updated translations (Thanks to all translators!)
+ - fix: App crash on logout
+-- fix: Temporary disable sign-up for matrix.org (Currently gives "500: Internal Server Error" while
+-  FluffyChat **should** send the same requests like Element)
++- fix: Temporary disable sign-up for mt.zednet.ir (Currently gives "500: Internal Server Error" while
++  ZedChat **should** send the same requests like Element)
+ - fix: Implement Roboto font to fix font issues on Linux Desktop and mobile
+ - fix: QR Code scanning
+ 
+@@ -2374,7 +2374,7 @@ Minor bugfix release.
+ Minor bugfix release.
+ 
+ - fix: Start up time waits for first sync
+-- fix: Registration -> matrix.org responses with 500
++- fix: Registration -> mt.zednet.ir responses with 500
+ - fix: Wellknown look up for multi accounts
+ 
+ And some other minor bugs.
+@@ -2401,7 +2401,7 @@ Minor bug fixes.
+ ## v0.40.0 - 2021-09-13
+ 
+ This release contains a security fix. Red more about it
+-here: https://matrix.org/blog/2021/09/13/vulnerability-disclosure-key-sharing
++here: https://mt.zednet.ir/blog/2021/09/13/vulnerability-disclosure-key-sharing
+ 
+ - New in-app registration
+ - Design improvements
+@@ -2613,7 +2613,7 @@ translations and for rebuilding the arm64 Linux Flatpak.
+ 
+ ## v0.32.0 - 2021-06-16
+ 
+-FluffyChat 0.32.0 targets improved stability and a new onboarding flow where single sign on is now
++ZedChat 0.32.0 targets improved stability and a new onboarding flow where single sign on is now
+ the more prominent way to get new users into the app. This release also introduces a complete
+ rewritten database under the hood based on the key value store Hive instead of sqlite. This should
+ improve the overall stability and the performance of the web version.
+diff --git a/CONTRIBUTING.md b/CONTRIBUTING.md
+index 6c192cc..c74721a 100644
+--- a/CONTRIBUTING.md
++++ b/CONTRIBUTING.md
+@@ -1,4 +1,4 @@
+-# Contributing to FluffyChat
++# Contributing to ZedChat
+ Contributions are always welcome. Yet we might lack manpower to review all of them in time.
+ 
+ To improve the process please make sure that you read the following guidelines carefully:
+@@ -17,7 +17,7 @@ To improve the process please make sure that you read the following guidelines c
+ 
+ # Code Style
+ 
+-FluffyChat tries to be as minimal as possible even in the code style. We try to keep the code clean, simple and easy to read. The source code of the app is under `/lib` with the main entry point `/lib/main.dart`.
++ZedChat tries to be as minimal as possible even in the code style. We try to keep the code clean, simple and easy to read. The source code of the app is under `/lib` with the main entry point `/lib/main.dart`.
+ 
+ <!-- editorconfig-checker-disable -->
+ <!-- prettier-ignore-start -->
+diff --git a/PRIVACY.md b/PRIVACY.md
+index 53c7cdd..ece7889 100644
+--- a/PRIVACY.md
++++ b/PRIVACY.md
+@@ -1,6 +1,6 @@
+ # Privacy
+ 
+-FluffyChat is available on Android, iOS, Linux and as a web version. Desktop versions for Windows and macOS may follow.
++ZedChat is available on Android, iOS, Linux and as a web version. Desktop versions for Windows and macOS may follow.
+ 
+ *   [Matrix](#matrix)
+ *   [Database](#database)
+@@ -10,37 +10,37 @@ FluffyChat is available on Android, iOS, Linux and as a web version. Desktop ver
+ *   [PlayStore Safety Standards](#playstore-safety)
+ 
+ ## <a id="matrix" href="#matrix">#</a> Matrix
+-FluffyChat uses the Matrix protocol. This means that FluffyChat is just a client that can be connected to any compatible matrix server. The respective data protection agreement of the server selected by the user then applies.
++ZedChat uses the Matrix protocol. This means that ZedChat is just a client that can be connected to any compatible matrix server. The respective data protection agreement of the server selected by the user then applies.
+ 
+-For convenience, one or more servers are set as default that the FluffyChat developers consider trustworthy. The developers of FluffyChat do not guarantee their trustworthiness. Before the first communication, users are informed which server they are connecting to.
++For convenience, one or more servers are set as default that the ZedChat developers consider trustworthy. The developers of ZedChat do not guarantee their trustworthiness. Before the first communication, users are informed which server they are connecting to.
+ 
+-FluffyChat only communicates with the selected server and with [OpenStreetMap](https://openstreetmap.org) to display maps.
++ZedChat only communicates with the selected server and with [OpenStreetMap](https://openstreetmap.org) to display maps.
+ 
+-More information is available at: [https://matrix.org](https://matrix.org)
++More information is available at: [https://mt.zednet.ir](https://mt.zednet.ir)
+ 
+ ## <a id="database" href="#database">#</a> Database
+-FluffyChat caches some data received from the server in a local sqflite database on the device of the user. On web indexedDB is used. FluffyChat always tries to encrypt the database by using SQLCipher and stores the encryption key in the [Secure Storage](https://pub.dev/packages/flutter_secure_storage) of the device.
++ZedChat caches some data received from the server in a local sqflite database on the device of the user. On web indexedDB is used. ZedChat always tries to encrypt the database by using SQLCipher and stores the encryption key in the [Secure Storage](https://pub.dev/packages/flutter_secure_storage) of the device.
+ 
+ More information is available at: [https://pub.dev/packages/sqflite](https://pub.dev/packages/sqflite) and [https://pub.dev/packages/sqlcipher_flutter_libs](https://pub.dev/packages/sqlcipher_flutter_libs)
+ 
+ ## <a id="encryption" href="#encryption">#</a> Encryption
+ All communication of substantive content between Fluffychat and any server is done in secure way, using transport encryption to protect it.
+ 
+-FluffyChat also uses End-To-End-Encryption by using [Vodozemac](https://github.com/matrix-org/vodozemac) and enables it by default for private chats.
++ZedChat also uses End-To-End-Encryption by using [Vodozemac](https://github.com/matrix-org/vodozemac) and enables it by default for private chats.
+ 
+ ## <a id="app-permissions" href="#app-permissions">#</a> App Permissions
+ 
+ The permissions are the same on Android and iOS but may differ in the name. This are the Android Permissions:
+ 
+ #### Internet Access
+-FluffyChat needs to have internet access to communicate with the Matrix Server.
++ZedChat needs to have internet access to communicate with the Matrix Server.
+ 
+ #### Vibrate
+-FluffyChat uses vibration for local notifications. More informations about this are at the used package:
++ZedChat uses vibration for local notifications. More informations about this are at the used package:
+ [https://pub.dev/packages/flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+ 
+ #### Record Audio
+-FluffyChat can send voice messages in a chat and therefore needs to have the permission to record audio.
++ZedChat can send voice messages in a chat and therefore needs to have the permission to record audio.
+ 
+ #### Write External Storage
+ The user is able to save received files and therefore app needs this permission.
+@@ -49,12 +49,12 @@ The user is able to save received files and therefore app needs this permission.
+ The user is able to send files from the device's file system.
+ 
+ #### Location
+-FluffyChat makes it possible to share the current location via the chat. When the user shares their location, FluffyChat uses the device location service and sends the geo-data via Matrix.
++ZedChat makes it possible to share the current location via the chat. When the user shares their location, ZedChat uses the device location service and sends the geo-data via Matrix.
+ 
+ ## <a id="push-notifications" href="#push-notifications">#</a> Push Notifications
+-FluffyChat uses the Firebase Cloud Messaging service for push notifications on Android and iOS. This takes place in the following steps:
+-1. The matrix server sends the push notification to the FluffyChat Push Gateway
+-2. The FluffyChat Push Gateway forwards the message in a different format to Firebase Cloud Messaging
++ZedChat uses the Firebase Cloud Messaging service for push notifications on Android and iOS. This takes place in the following steps:
++1. The matrix server sends the push notification to the ZedChat Push Gateway
++2. The ZedChat Push Gateway forwards the message in a different format to Firebase Cloud Messaging
+ 3. Firebase Cloud Messaging waits until the user's device is online again
+ 4. The device receives the push notification from Firebase Cloud Messaging and displays it as a notification
+ 
+@@ -92,14 +92,14 @@ A typical push notification could look like this:
+ }
+ ```
+ 
+-FluffyChat sets the `event_id_only` flag at the Matrix Server. This server is then responsible to send the correct data.
++ZedChat sets the `event_id_only` flag at the Matrix Server. This server is then responsible to send the correct data.
+ 
+ 
+-# <a id="playstore-safety" href="#playstore-safety">#</a> Explanation of FluffyChat's Compliance with Google Play Store's Safety Standards
++# <a id="playstore-safety" href="#playstore-safety">#</a> Explanation of ZedChat's Compliance with Google Play Store's Safety Standards
+ 
+-FluffyChat is committed to promoting a safe and respectful environment for all users. As a Matrix client, FluffyChat connects users to various Matrix servers. Please note that FluffyChat does not host or manage any servers directly, and as such, we do not have the capability to enforce content moderation or deletion within the app itself.
++ZedChat is committed to promoting a safe and respectful environment for all users. As a Matrix client, ZedChat connects users to various Matrix servers. Please note that ZedChat does not host or manage any servers directly, and as such, we do not have the capability to enforce content moderation or deletion within the app itself.
+ 
+-To enhance user safety and help protect against the sexual abuse and exploitation of children, FluffyChat enables users to report inappropriate content directly to server administrators.
++To enhance user safety and help protect against the sexual abuse and exploitation of children, ZedChat enables users to report inappropriate content directly to server administrators.
+ 
+ #### Reporting Content or Users:
+ 
+@@ -110,4 +110,4 @@ To enhance user safety and help protect against the sexual abuse and exploitatio
+ 
+ In addition to reporting messages, users can also report other users following a similar process.
+ 
+-We encourage server administrators to adhere to strict safety standards and provide mechanisms for addressing and moderating inappropriate content. For more information on the Matrix protocol and its safety standards, please refer to the following link: https://matrix.org/docs/older/moderation/
++We encourage server administrators to adhere to strict safety standards and provide mechanisms for addressing and moderating inappropriate content. For more information on the Matrix protocol and its safety standards, please refer to the following link: https://mt.zednet.ir/docs/older/moderation/
+diff --git a/README.md b/README.md
+index b118f08..dd7194d 100644
+--- a/README.md
++++ b/README.md
+@@ -1,14 +1,14 @@
+ ![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/assets/banner_transparent.png?raw=true)
+ 
+-[FluffyChat](https://fluffy.chat) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
++[ZedChat](https://fluffy.chat) is an open source, nonprofit and cute [[matrix](https://mt.zednet.ir)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
+ 
+ ### Links:
+ 
+-- 🌐 [[Weblate] Translate FluffyChat into your language](https://hosted.weblate.org/projects/fluffychat/)
+-- 🌍 [[m] Join the community](https://matrix.to/#/#fluffy-space:matrix.org)
++- 🌐 [[Weblate] Translate ZedChat into your language](https://hosted.weblate.org/projects/fluffychat/)
++- 🌍 [[m] Join the community](https://matrix.to/#/#fluffy-space:mt.zednet.ir)
+ - 📰 [[Mastodon] Get updates on social media](https://troet.cafe/@krille)
+ - 🖥️ [[Famedly] Server hosting and professional support](https://famedly.com/kontakt)
+-- 💝 [[Liberapay] Support FluffyChat development](https://de.liberapay.com/KrilleChritzelius)
++- 💝 [[Liberapay] Support ZedChat development](https://de.liberapay.com/KrilleChritzelius)
+ 
+ <a href='https://ko-fi.com/C1C86VN53' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+ 
+@@ -48,7 +48,7 @@ Please visit the website for installation instructions:
+ 
+ # How to build
+ 
+-1. To build FluffyChat you need [Flutter](https://flutter.dev) and [Rust](https://www.rust-lang.org/tools/install)
++1. To build ZedChat you need [Flutter](https://flutter.dev) and [Rust](https://www.rust-lang.org/tools/install)
+ 
+ 2. Clone the repo:
+ ```
+diff --git a/android/app/src/main/AndroidManifest.xml b/android/app/src/main/AndroidManifest.xml
+index 1b3f518..d634f69 100644
+--- a/android/app/src/main/AndroidManifest.xml
++++ b/android/app/src/main/AndroidManifest.xml
+@@ -25,7 +25,7 @@
+     <uses-sdk
+             tools:overrideLibrary="io.wazo.callkeep, net.touchcapture.qr.flutterqr, com.cloudwebrtc.webrtc, org.webrtc, com.it_nomads.fluttersecurestorage, com.pichillilorenzo.flutter_inappwebview, com.example.video_compress, com.otaliastudios.transcoder, com.otaliastudios.opengl, com.kineapps.flutter_file_dialog, com.llfbandit.record, com.pravera.flutter_foreground_task"/>
+     <application
+-        android:label="FluffyChat"
++        android:label="ZedChat"
+         android:icon="@mipmap/ic_launcher"
+         android:requestLegacyExternalStorage="true"
+         android:allowBackup="false"
+diff --git a/config.sample.json b/config.sample.json
+index a1ea6f6..9e8c449 100644
+--- a/config.sample.json
++++ b/config.sample.json
+@@ -1,6 +1,6 @@
+ {
+-  "applicationName": "FluffyChat",
+-  "defaultHomeserver": "matrix.org",
++  "applicationName": "ZedChat",
++  "defaultHomeserver": "mt.zednet.ir",
+   "presetHomeserver": "",
+   "welcomeText": "",
+   "privacyUrl": "https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md",
+diff --git a/ios/Runner/Info.plist b/ios/Runner/Info.plist
+index 51765d1..9594ad6 100644
+--- a/ios/Runner/Info.plist
++++ b/ios/Runner/Info.plist
+@@ -9,7 +9,7 @@
+ 	<key>CFBundleDevelopmentRegion</key>
+ 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+ 	<key>CFBundleDisplayName</key>
+-	<string>FluffyChat</string>
++	<string>ZedChat</string>
+ 	<key>CFBundleExecutable</key>
+ 	<string>$(EXECUTABLE_NAME)</string>
+ 	<key>CFBundleIdentifier</key>
+@@ -52,27 +52,27 @@
+ 	<key>NSBluetoothPeripheralUsageDescription</key>
+ 	<string>Play audio and voice messages on bluetooth devices</string>
+ 	<key>NSCalendarsUsageDescription</key>
+-	<string>Share calendar dates with your contacts in FluffyChat.</string>
++	<string>Share calendar dates with your contacts in ZedChat.</string>
+ 	<key>NSCameraUsageDescription</key>
+-	<string>Open the camera and take a picture to share them with your contacts on FluffyChat.</string>
++	<string>Open the camera and take a picture to share them with your contacts on ZedChat.</string>
+ 	<key>NSContactsUsageDescription</key>
+-	<string>Share contacts with your contacts in FluffyChat.</string>
++	<string>Share contacts with your contacts in ZedChat.</string>
+ 	<key>NSFaceIDUsageDescription</key>
+-	<string>FluffyChat uses an app lock for an additional security level</string>
++	<string>ZedChat uses an app lock for an additional security level</string>
+ 	<key>NSLocationAlwaysUsageDescription</key>
+-	<string>Share your location with your contacts in FluffyChat.</string>
++	<string>Share your location with your contacts in ZedChat.</string>
+ 	<key>NSLocationWhenInUseUsageDescription</key>
+-	<string>Share your location with your contacts in FluffyChat.</string>
++	<string>Share your location with your contacts in ZedChat.</string>
+ 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+-	<string>Share your location with your contacts in FluffyChat.</string>
++	<string>Share your location with your contacts in ZedChat.</string>
+ 	<key>NSMicrophoneUsageDescription</key>
+-	<string>Record voice message and share them with your contacts on FluffyChat.</string>
++	<string>Record voice message and share them with your contacts on ZedChat.</string>
+ 	<key>NSMotionUsageDescription</key>
+-	<string>Share motions with your contacts in FluffyChat.</string>
++	<string>Share motions with your contacts in ZedChat.</string>
+ 	<key>NSPhotoLibraryUsageDescription</key>
+-	<string>Open photos from your gallery and share them with your contacts on FluffyChat.</string>
++	<string>Open photos from your gallery and share them with your contacts on ZedChat.</string>
+ 	<key>NSSpeechRecognitionUsageDescription</key>
+-	<string>Share data with your contacts in FluffyChat.</string>
++	<string>Share data with your contacts in ZedChat.</string>
+ 	<key>UIBackgroundModes</key>
+ 	<array>
+ 		<string>audio</string>
+diff --git a/lib/config/routes.dart b/lib/config/routes.dart
+index 451b1b6..c26f537 100644
+--- a/lib/config/routes.dart
++++ b/lib/config/routes.dart
+@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
+ import 'package:matrix/matrix.dart';
+ 
+ import 'package:fluffychat/config/themes.dart';
++import 'package:fluffychat/pages/autologin/auto_login_page.dart';
+ import 'package:fluffychat/pages/archive/archive.dart';
+ import 'package:fluffychat/pages/bootstrap/bootstrap_dialog.dart';
+ import 'package:fluffychat/pages/chat/chat.dart';
+@@ -65,7 +66,15 @@ abstract class AppRoutes {
+           ? '/rooms'
+           : '/home',
+     ),
+-    GoRoute(
++        GoRoute(
++      path: '/autologin',
++      pageBuilder: (context, state) => defaultPageBuilder(
++        context,
++        state,
++        const AutoLoginPage(),
++      ),
++    ),
++GoRoute(
+       path: '/home',
+       pageBuilder: (context, state) =>
+           defaultPageBuilder(context, state, const IntroPagePresenter()),
+diff --git a/lib/config/setting_keys.dart b/lib/config/setting_keys.dart
+index d8522e9..0a2402c 100644
+--- a/lib/config/setting_keys.dart
++++ b/lib/config/setting_keys.dart
+@@ -47,8 +47,8 @@ enum AppSettings<T> {
+   ),
+   displayChatDetailsColumn('chat.fluffy.display_chat_details_column', false),
+   // AppConfig-mirrored settings
+-  applicationName<String>('chat.fluffy.application_name', 'FluffyChat'),
+-  defaultHomeserver<String>('chat.fluffy.default_homeserver', 'matrix.org'),
++  applicationName<String>('chat.fluffy.application_name', 'ZedChat'),
++  defaultHomeserver<String>('chat.fluffy.default_homeserver', 'mt.zednet.ir'),
+   // colorSchemeSeed stored as ARGB int
+   colorSchemeSeedInt<int>('chat.fluffy.color_scheme_seed', 0xFF5625BA),
+   emojiSuggestionLocale<String>('emoji_suggestion_locale', ''),
+diff --git a/lib/pages/autologin/auto_login_page.dart b/lib/pages/autologin/auto_login_page.dart
+new file mode 100644
+index 0000000..ad23a03
+--- /dev/null
++++ b/lib/pages/autologin/auto_login_page.dart
+@@ -0,0 +1,140 @@
++import 'dart:convert';
++
++import 'package:flutter/material.dart';
++
++import 'package:go_router/go_router.dart';
++import 'package:http/http.dart' as http;
++import 'package:matrix/matrix.dart';
++
++import 'package:fluffychat/config/setting_keys.dart';
++import 'package:fluffychat/utils/platform_infos.dart';
++import 'package:fluffychat/widgets/matrix.dart';
++
++/// Auto login entrypoint for embedding inside Refaland.
++/// 
++/// Usage:
++///   /autologin?st=<one-time-token>
++/// 
++/// It will:
++/// 1) Show a loading UI (no login page).
++/// 2) Exchange `st` with Refaland backend to obtain a Matrix loginToken.
++/// 3) Login to the homeserver (default: AppSettings.defaultHomeserver).
++class AutoLoginPage extends StatefulWidget {
++  const AutoLoginPage({super.key});
++
++  @override
++  State<AutoLoginPage> createState() => _AutoLoginPageState();
++}
++
++class _AutoLoginPageState extends State<AutoLoginPage> {
++  String? _error;
++
++  @override
++  void initState() {
++    super.initState();
++    WidgetsBinding.instance.addPostFrameCallback((_) => _run());
++  }
++
++  Future<void> _run() async {
++    final matrix = Matrix.of(context);
++    final st = GoRouterState.of(context).uri.queryParameters['st'] ??
++        Uri.base.queryParameters['st'];
++
++    if (st == null || st.isEmpty) {
++      _fail('Missing token');
++      return;
++    }
++
++    try {
++      // 1) Exchange the short-lived token with Refaland backend.
++      // Recommended: keep this same-origin (reverse proxy ZedChat under Refaland domain).
++      final exchangeUri = Uri.parse('/api/zedchat/exchange?st=$st');
++      final res = await http.get(exchangeUri, headers: const {
++        'Accept': 'application/json',
++      });
++
++      if (res.statusCode != 200) {
++        _fail('Exchange failed: ${res.statusCode}');
++        return;
++      }
++
++      final data = jsonDecode(res.body) as Map<String, dynamic>;
++
++      // 2) Determine homeserver.
++      final hs = (data['homeserver'] ?? data['homeserverUrl'] ?? AppSettings.defaultHomeserver.value)
++          .toString()
++          .trim();
++      final homeserverUri = Uri.parse(hs.startsWith('http') ? hs : 'https://$hs');
++
++      // 3) Matrix login token (preferred).
++      final loginToken = (data['loginToken'] ?? data['token'])?.toString();
++
++      if (loginToken == null || loginToken.isEmpty) {
++        _fail('No loginToken in response');
++        return;
++      }
++
++      // 4) Login using Matrix login token (no password in the client).
++      final client = await matrix.getLoginClient();
++      await client.checkHomeserver(homeserverUri);
++      await client.login(
++        LoginType.mLoginToken,
++        token: loginToken,
++        initialDeviceDisplayName: PlatformInfos.clientName,
++      );
++
++      if (!mounted) return;
++      context.go('/rooms');
++    } catch (e) {
++      _fail(e.toString());
++    }
++  }
++
++  void _fail(String msg) {
++    if (!mounted) return;
++    setState(() => _error = msg);
++    // Fallback: go to home (intro/sign-in).
++    // Keep it slightly delayed so user sees a brief error if needed.
++    Future.delayed(const Duration(milliseconds: 400), () {
++      if (!mounted) return;
++      context.go('/home');
++    });
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    return Scaffold(
++      body: Center(
++        child: _error == null
++            ? Column(
++                mainAxisSize: MainAxisSize.min,
++                children: const [
++                  SizedBox(
++                    width: 42,
++                    height: 42,
++                    child: CircularProgressIndicator(),
++                  ),
++                  SizedBox(height: 16),
++                  Text('در حال ورود به ZedChat...'),
++                ],
++              )
++            : Column(
++                mainAxisSize: MainAxisSize.min,
++                children: [
++                  const Icon(Icons.error_outline, size: 40),
++                  const SizedBox(height: 12),
++                  Text(
++                    'مشکل در ورود خودکار',
++                    style: Theme.of(context).textTheme.titleMedium,
++                  ),
++                  const SizedBox(height: 8),
++                  Text(
++                    _error!,
++                    textAlign: TextAlign.center,
++                  ),
++                ],
++              ),
++      ),
++    );
++  }
++}
+diff --git a/scripts/add-firebase-messaging.sh b/scripts/add-firebase-messaging.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/build-ios.sh b/scripts/build-ios.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/build-macos.sh b/scripts/build-macos.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/create_fdroid_repos.sh b/scripts/create_fdroid_repos.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/generate-locale-config.sh b/scripts/generate-locale-config.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/generate_command_hints_glue.sh b/scripts/generate_command_hints_glue.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/integration-check-release-build.sh b/scripts/integration-check-release-build.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/integration-create-environment-variables.sh b/scripts/integration-create-environment-variables.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/integration-prepare-homeserver.sh b/scripts/integration-prepare-homeserver.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/integration-prepare-host.sh b/scripts/integration-prepare-host.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/integration-server-conduit.sh b/scripts/integration-server-conduit.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/integration-server-dendrite.sh b/scripts/integration-server-dendrite.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/integration-server-synapse.sh b/scripts/integration-server-synapse.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/integration-start-avd.sh b/scripts/integration-start-avd.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/prepare-android-release.sh b/scripts/prepare-android-release.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/prepare-fdroid.sh b/scripts/prepare-fdroid.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/prepare-web.sh b/scripts/prepare-web.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/release-ios-testflight.sh b/scripts/release-ios-testflight.sh
+old mode 100755
+new mode 100644
+diff --git a/scripts/update-dependencies.sh b/scripts/update-dependencies.sh
+old mode 100755
+new mode 100644
+diff --git a/snap/gui/fluffychat.desktop b/snap/gui/fluffychat.desktop
+old mode 100755
+new mode 100644
+diff --git a/web/index.html b/web/index.html
+index c593cc0..98a0bef 100644
+--- a/web/index.html
++++ b/web/index.html
+@@ -24,13 +24,13 @@
+   <!-- iOS meta tags & icons -->
+   <meta name="mobile-web-app-capable" content="yes">
+   <meta name="apple-mobile-web-app-status-bar-style" content="black">
+-  <meta name="apple-mobile-web-app-title" content="FluffyChat">
++  <meta name="apple-mobile-web-app-title" content="ZedChat">
+   <link rel="apple-touch-icon" href="icons/Icon-192.png">
+ 
+   <!-- Favicon -->
+   <link rel="icon" type="image/png" href="favicon.png" />
+ 
+-  <title>FluffyChat</title>
++  <title>ZedChat</title>
+   <link rel="manifest" href="manifest.json">
+   <link rel="stylesheet" type="text/css" href="splash/style.css">
+   <script src="Imaging.js"></script>
+diff --git a/web/manifest.json b/web/manifest.json
+index e4f6c31..30d9234 100644
+--- a/web/manifest.json
++++ b/web/manifest.json
+@@ -1,23 +1,23 @@
+ {
+-    "name": "FluffyChat",
+-    "short_name": "FluffyChat",
+-    "start_url": ".",
+-    "display": "standalone",
+-    "background_color": "#0175C2",
+-    "theme_color": "#0175C2",
+-    "description": "The cutest messenger in the Matrix network",
+-    "orientation": "portrait-primary",
+-    "prefer_related_applications": false,
+-    "icons": [
+-        {
+-            "src": "icons/Icon-192.png",
+-            "sizes": "192x192",
+-            "type": "image/png"
+-        },
+-        {
+-            "src": "icons/Icon-512.png",
+-            "sizes": "512x512",
+-            "type": "image/png"
+-        }
+-    ]
++  "name": "ZedChat",
++  "short_name": "ZedChat",
++  "start_url": ".",
++  "display": "standalone",
++  "background_color": "#0175C2",
++  "theme_color": "#0175C2",
++  "description": "The cutest messenger in the Matrix network",
++  "orientation": "portrait-primary",
++  "prefer_related_applications": false,
++  "icons": [
++    {
++      "src": "icons/Icon-192.png",
++      "sizes": "192x192",
++      "type": "image/png"
++    },
++    {
++      "src": "icons/Icon-512.png",
++      "sizes": "512x512",
++      "type": "image/png"
++    }
++  ]
+ }
+\ No newline at end of file
