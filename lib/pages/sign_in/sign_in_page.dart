@@ -59,7 +59,9 @@ class SignInPage extends StatelessWidget {
                 TextField(
                   readOnly:
                       state.publicHomeservers.connectionState ==
-                      ConnectionState.waiting,
+                          ConnectionState.waiting ||
+                      state.loginLoading.connectionState ==
+                          ConnectionState.waiting,
                   controller: viewModel.filterTextController,
                   autocorrect: false,
                   keyboardType: TextInputType.url,
