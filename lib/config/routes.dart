@@ -176,8 +176,11 @@ abstract class AppRoutes {
             ),
             GoRoute(
               path: 'newgroup',
-              pageBuilder: (context, state) =>
-                  defaultPageBuilder(context, state, const NewGroup()),
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                state,
+                NewGroup(spaceId: state.uri.queryParameters['space_id']),
+              ),
               redirect: loggedOutRedirect,
             ),
             GoRoute(
@@ -185,7 +188,10 @@ abstract class AppRoutes {
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const NewGroup(createGroupType: CreateGroupType.space),
+                NewGroup(
+                  createGroupType: CreateGroupType.space,
+                  spaceId: state.uri.queryParameters['space_id'],
+                ),
               ),
               redirect: loggedOutRedirect,
             ),

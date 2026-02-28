@@ -14,7 +14,12 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class NewGroup extends StatefulWidget {
   final CreateGroupType createGroupType;
-  const NewGroup({this.createGroupType = CreateGroupType.group, super.key});
+  final String? spaceId;
+  const NewGroup({
+    this.createGroupType = CreateGroupType.group,
+    this.spaceId,
+    super.key,
+  });
 
   @override
   NewGroupController createState() => NewGroupController();
@@ -63,7 +68,9 @@ class NewGroupController extends State<NewGroup> {
 
   Future<void> _createGroup() async {
     if (!mounted) return;
-    final roomId = await Matrix.of(context).client.createGroupChat(
+    final client = Matrix.of(context).client;
+
+    final roomId = await client.createGroupChat(
       visibility: groupCanBeFound
           ? sdk.Visibility.public
           : sdk.Visibility.private,
@@ -79,7 +86,9 @@ class NewGroupController extends State<NewGroup> {
           ),
       ],
     );
+    await _addToSpace(roomId);
     if (!mounted) return;
+
     context.go('/rooms/$roomId/invite');
   }
 
@@ -104,8 +113,21 @@ class NewGroupController extends State<NewGroup> {
           ),
       ],
     );
+    await _addToSpace(spaceId);
     if (!mounted) return;
     context.pop<String>(spaceId);
+  }
+
+  Future<void> _addToSpace(String roomId) async {
+    final spaceId = widget.spaceId;
+    if (spaceId != null) {
+      final activeSpace = Matrix.of(context).client.getRoomById(spaceId);
+      if (activeSpace == null) {
+        throw Exception('Can not add group to space: Space not found $spaceId');
+      }
+      await activeSpace.postLoad();
+      await activeSpace.setSpaceChild(roomId);
+    }
   }
 
   Future<void> submitAction([_]) async {
@@ -141,6 +163,16 @@ class NewGroupController extends State<NewGroup> {
         loading = false;
       });
     }
+  }
+
+  @override
+  void initState() {
+    final spaceId = widget.spaceId;
+    if (spaceId != null) {
+      final space = Matrix.of(context).client.getRoomById(spaceId);
+      publicGroup = space?.joinRules == JoinRules.public;
+    }
+    super.initState();
   }
 
   @override

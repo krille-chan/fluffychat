@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -15,13 +16,10 @@ import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-
-enum AddRoomType { chat, subspace }
 
 enum SpaceChildAction {
   mute,
@@ -59,13 +57,30 @@ class _SpaceViewState extends State<SpaceView> {
   bool _noMoreRooms = false;
   bool _isLoading = false;
 
+  StreamSubscription? _childStateSub;
+
   @override
   void initState() {
     _loadHierarchy();
+    _childStateSub = Matrix.of(context).client.onSync.stream
+        .where(
+          (syncUpdate) =>
+              syncUpdate.rooms?.join?[widget.spaceId]?.timeline?.events?.any(
+                (event) => event.type == EventTypes.SpaceChild,
+              ) ??
+              false,
+        )
+        .listen(_loadHierarchy);
     super.initState();
   }
 
-  Future<void> _loadHierarchy() async {
+  @override
+  void dispose() {
+    _childStateSub?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _loadHierarchy([_]) async {
     final matrix = Matrix.of(context);
     final room = matrix.client.getRoomById(widget.spaceId);
     if (room == null) return;
@@ -189,83 +204,6 @@ class _SpaceViewState extends State<SpaceView> {
     }
   }
 
-  Future<void> _addChatOrSubspace(AddRoomType roomType) async {
-    final names = await showTextInputDialog(
-      context: context,
-      title: roomType == AddRoomType.subspace
-          ? L10n.of(context).newSubSpace
-          : L10n.of(context).createGroup,
-      hintText: roomType == AddRoomType.subspace
-          ? L10n.of(context).spaceName
-          : L10n.of(context).groupName,
-      minLines: 1,
-      maxLines: 1,
-      maxLength: 64,
-      validator: (text) {
-        if (text.isEmpty) {
-          return L10n.of(context).pleaseChoose;
-        }
-        return null;
-      },
-      okLabel: L10n.of(context).create,
-      cancelLabel: L10n.of(context).cancel,
-    );
-    if (names == null) return;
-    final client = Matrix.of(context).client;
-    final result = await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        late final String roomId;
-        final activeSpace = client.getRoomById(widget.spaceId)!;
-        await activeSpace.postLoad();
-        final isPublicSpace = activeSpace.joinRules == JoinRules.public;
-
-        if (roomType == AddRoomType.subspace) {
-          roomId = await client.createSpace(
-            name: names,
-            visibility: isPublicSpace
-                ? sdk.Visibility.public
-                : sdk.Visibility.private,
-          );
-        } else {
-          roomId = await client.createGroupChat(
-            enableEncryption: !isPublicSpace,
-            groupName: names,
-            preset: isPublicSpace
-                ? CreateRoomPreset.publicChat
-                : CreateRoomPreset.privateChat,
-            visibility: isPublicSpace
-                ? sdk.Visibility.public
-                : sdk.Visibility.private,
-            initialState: isPublicSpace
-                ? null
-                : [
-                    StateEvent(
-                      content: {
-                        'join_rule': 'restricted',
-                        'allow': [
-                          {
-                            'room_id': widget.spaceId,
-                            'type': 'm.room_membership',
-                          },
-                        ],
-                      },
-                      type: EventTypes.RoomJoinRules,
-                    ),
-                  ],
-          );
-        }
-        await activeSpace.setSpaceChild(roomId);
-      },
-    );
-    if (result.error != null) return;
-    setState(() {
-      _nextBatch = null;
-      _discoveredChildren.clear();
-    });
-    _loadHierarchy();
-  }
-
   Future<void> _showSpaceChildEditMenu(
     BuildContext posContext,
     String roomId,
@@ -363,9 +301,17 @@ class _SpaceViewState extends State<SpaceView> {
             child: Row(
               mainAxisSize: .min,
               children: [
-                const Icon(Icons.remove),
+                Icon(
+                  Icons.remove,
+                  color: Theme.of(context).colorScheme.onErrorContainer,
+                ),
                 const SizedBox(width: 12),
-                Text(L10n.of(context).removeFromSpace),
+                Text(
+                  L10n.of(context).removeFromSpace,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onErrorContainer,
+                  ),
+                ),
               ],
             ),
           ),
@@ -389,7 +335,6 @@ class _SpaceViewState extends State<SpaceView> {
         if (result.isError) return;
         if (!mounted) return;
         _nextBatch = null;
-        _loadHierarchy();
         return;
       case SpaceChildAction.mute:
         await showFutureLoadingDialog(
@@ -455,34 +400,11 @@ class _SpaceViewState extends State<SpaceView> {
         ),
         actions: [
           if (isAdmin)
-            PopupMenuButton<AddRoomType>(
-              icon: const Icon(Icons.add_outlined),
-              onSelected: _addChatOrSubspace,
+            IconButton(
+              icon: Icon(Icons.add_outlined),
               tooltip: L10n.of(context).addChatOrSubSpace,
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  value: AddRoomType.chat,
-                  child: Row(
-                    mainAxisSize: .min,
-                    children: [
-                      const Icon(Icons.group_add_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context).newGroup),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: AddRoomType.subspace,
-                  child: Row(
-                    mainAxisSize: .min,
-                    children: [
-                      const Icon(Icons.workspaces_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context).newSubSpace),
-                    ],
-                  ),
-                ),
-              ],
+              onPressed: () =>
+                  context.go('/rooms/newgroup?space_id=${widget.spaceId}'),
             ),
           PopupMenuButton<SpaceActions>(
             useRootNavigator: true,
