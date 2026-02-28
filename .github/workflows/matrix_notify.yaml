@@ -39,11 +39,4 @@ jobs:
             "${HOMESERVER}/_matrix/client/v3/rooms/${ROOM_ID}/send/m.room.message/${TXN_ID}" \
             -H "Authorization: Bearer ${ACCESS_TOKEN}" \
             -H "Content-Type: application/json" \
-            -d @- <<EOF
-          {
-            "msgtype": "m.text",
-            "body": "${PLAIN}",
-            "format": "org.matrix.custom.html",
-            "formatted_body": "${HTML}"
-          }
-          EOF
+            -d "{\"msgtype\":\"m.text\",\"body\":\"${PLAIN}\",\"format\":\"org.matrix.custom.html\",\"formatted_body\":\"${HTML}\"}"
