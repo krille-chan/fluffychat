@@ -28,6 +28,13 @@ class SignInPage extends StatelessWidget {
         final selectedHomserver = state.selectedHomeserver;
         return LoginScaffold(
           appBar: AppBar(
+            leading:
+                state.loginLoading.connectionState == ConnectionState.waiting
+                ? CloseButton(
+                    onPressed: () =>
+                        viewModel.setLoginLoading(AsyncSnapshot.nothing()),
+                  )
+                : BackButton(onPressed: Navigator.of(context).pop),
             backgroundColor: theme.colorScheme.surface,
             surfaceTintColor: theme.colorScheme.surface,
             scrolledUnderElevation: 0,
@@ -89,6 +96,9 @@ class SignInPage extends StatelessWidget {
                             final website = server.website;
                             return RadioListTile.adaptive(
                               value: server,
+                              enabled:
+                                  state.loginLoading.connectionState !=
+                                  ConnectionState.waiting,
                               radioScaleFactor:
                                   FluffyThemes.isColumnMode(context) ||
                                       {
