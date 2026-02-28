@@ -1,5 +1,5 @@
 ## v2.4.0
-FluffyChat 2.4.0 adds a new improved GUI for managing stickers with tutorials how to
+ZedChat 2.4.0 adds a new improved GUI for managing stickers with tutorials how to
 easily add your own sticker packs.
 It also improves the search and image gallery in chats, especially encrypted chats.
 Besides that this update comes with a lot of fixes and improvements under the hood.
@@ -126,7 +126,7 @@ Besides that this update comes with a lot of fixes and improvements under the ho
 
 ## v2.3.0
 
-FluffyChat v2.3.0 fixes a possible database corruption bug on Android, also fixes a
+ZedChat v2.3.0 fixes a possible database corruption bug on Android, also fixes a
 major performance leak and introduces polls and threads.
 
 - feat: Implement polls (Christian Kußowski)
@@ -164,7 +164,7 @@ major performance leak and introduces polls and threads.
 
 ## v2.2.0
 
-FluffyChat 2.2.0 introduces a new UX for spaces and adds support for restricted
+ZedChat 2.2.0 introduces a new UX for spaces and adds support for restricted
 join rules.
 
 The app also now has a new design for recording voice messages including a new
@@ -179,7 +179,7 @@ has changed as the available configs are now generated automatically.
 Did you know that you can set a lot of additional configs in the new config viewer
 inside the app? This now supports much more options but please use with care!
 
-On Android FluffyChat now supports notification actions (reply and mark as read) and
+On Android ZedChat now supports notification actions (reply and mark as read) and
 also now supports Android Auto integration. Please do not cause an accident when using
 the app while driving!
 
@@ -308,7 +308,7 @@ Bugfix release to trigger flatpak arm64 release again.
 - refactor: Remove broken push error reporter (Christian Kußowski)
 
 ## v2.1.0
-FluffyChat 2.1.0 brings support for room version 12 and a lot of bugfixes, updated translations and performance improvements. Also chat state events are now collapsed by default.
+ZedChat 2.1.0 brings support for room version 12 and a lot of bugfixes, updated translations and performance improvements. Also chat state events are now collapsed by default.
 
 - feat: Collapse all state events by default (Christian Kußowski)
 - feat(linux/notify): support avatar icon (ShootingStarDragons)
@@ -789,11 +789,11 @@ Updates the Matrix Dart SDK to fix multiple issues where messages can be missing
 
 ## v1.22.0
 
-FluffyChat v1.22.0 brings a new design for spaces, replaces the bottom navigation bar with filter
+ZedChat v1.22.0 brings a new design for spaces, replaces the bottom navigation bar with filter
 chips and makes it finally possible to play ogg audio messages on iOS. A lot of other fixes and
 improvements have also been added to this release.
 
-FluffyChat also now uses the new authenticated media endpoints if the server supports Matrix v1.11
+ZedChat also now uses the new authenticated media endpoints if the server supports Matrix v1.11
 or
 mentions the msc with the key `org.matrix.msc3916.stable` in the `unstable_features`.
 
@@ -908,7 +908,7 @@ Updates the Matrix Dart SDK to fix some minor bugs.
 
 ## v1.21.0
 
-FluffyChat v1.21.0 introduces the new search feature which also includes a gallery and files list
+ZedChat v1.21.0 introduces the new search feature which also includes a gallery and files list
 for each chat. Several performance improvements have been added under the hood, leading to a much
 nicer user experience.
 
@@ -1039,7 +1039,7 @@ Minor bugfix release for login with SSO on web.
 
 ## v1.19.0
 
-FluffyChat v1.19.0 features an improved design for message bubbles and a lot of fixes under the
+ZedChat v1.19.0 features an improved design for message bubbles and a lot of fixes under the
 hood.
 
 - build: Update matrix dart sdk (Krille)
@@ -1062,7 +1062,7 @@ hood.
 - feat: Add insert content via gboard (krille-chan)
 - feat: Reply with one button in desktop (krille-chan)
 - fix: Do not sync in background mode (krille-chan)
-- fix: FluffyChat should assume m.change_password capabilitiy is supported if not present per spec (
+- fix: ZedChat should assume m.change_password capabilitiy is supported if not present per spec (
   krille-chan)
 - fix: never use root navigator for bottom sheets (The one with the braid)
 - fix: Remove pantalaimon message with normal error message (krille-chan)
@@ -1181,7 +1181,7 @@ Minor bugfix release.
 
 ## v1.17.0
 
-FluffyChat v1.17.0 refreshes the overall user experience, changes some design and fixes a lot of
+ZedChat v1.17.0 refreshes the overall user experience, changes some design and fixes a lot of
 bugs. It also replaces the stories feature with matrix presences, introduces a new kind of database
 to store the messages locally and improves the performance and app stability.
 
@@ -1476,7 +1476,7 @@ Test candidate for the new database.
 
 ## v1.14.4
 
-Minor bugfix release. Please note that because of a Flutter update FluffyChat is no longer
+Minor bugfix release. Please note that because of a Flutter update ZedChat is no longer
 compatible with iOS 11.
 
 - Translated using Weblate (Spanish) (José Muñoz)
@@ -1505,7 +1505,7 @@ compatible with iOS 11.
 
 ## v1.14.0
 
-Release with a lot of bugfixes and refactorings under the hood. FluffyChat now uses go_router
+Release with a lot of bugfixes and refactorings under the hood. ZedChat now uses go_router
 instead of vrouter, works with the newest Flutter SDK and supports "reason" field for redactions.
 For Android there is a new "background-fetch mode" for Push Notifications which should make
 notifications in background faster and more reliable and reduce battery-usage.
@@ -1838,7 +1838,7 @@ some translations
 
 ## v1.7.0 2022-11-17
 
-FluffyChat 1.7.0 features a new way to work with spaces via a bottom navigation bar. A lot of work
+ZedChat 1.7.0 features a new way to work with spaces via a bottom navigation bar. A lot of work
 has also been done under the hood to make the app faster and more stable. The main color has
 slightly changed and the design got some finetuning.
 
@@ -1927,7 +1927,7 @@ slightly changed and the design got some finetuning.
 
 ## v1.6.0 - 2022-07-31
 
-FluffyChat 1.6.0 features a lot of bug fixes and improvements. The code base has been
+ZedChat 1.6.0 features a lot of bug fixes and improvements. The code base has been
 simplified and the drawer on the chat list page got a come-back. Some new features like
 the space hierarchy and session dump have been implemented.
 
@@ -2042,7 +2042,7 @@ the space hierarchy and session dump have been implemented.
 - feat: Faster image resizing (Krille Fear)
 - feat: Groups and Direct Chats virtual spaces option (20kdc)
 - feat: New onboarding design (Krille Fear)
-- feat: Onboarding with dynamic homeservers from joinmatrix.org (Krille Fear)
+- feat: Onboarding with dynamic homeservers from joinmt.zednet.ir (Krille Fear)
 - feat: Play audio messages in stories (Krille Fear)
 - feat: Use native imaging for much faster thumbnail calc on mobile (Krille Fear)
 - feat: add Dockerfile for nginx/web builds (TheOneWithTheBraid)
@@ -2128,7 +2128,7 @@ the space hierarchy and session dump have been implemented.
 
 ## v1.3.0 - 2022-02-12
 
-FluffyChat 1.3.0 makes it possible to report offensive users to server admins (not only messages).
+ZedChat 1.3.0 makes it possible to report offensive users to server admins (not only messages).
 It fixes
 the video player, improves Linux desktop notifications, and the stories design.
 
@@ -2136,7 +2136,7 @@ The button to create a new story is now in the app bar of the main page so that 
 to use
 this feature no longer have a whole list item pinned at the top of the chat list.
 
-FluffyChat 1.3.0 is the first release with full null safe dart code. While this is a huge change
+ZedChat 1.3.0 is the first release with full null safe dart code. While this is a huge change
 under the
 hood, it should improve the stability and performance of the app. It also builds now with Flutter
 2.10.
@@ -2180,7 +2180,7 @@ Thanks to all contributors and translators!! <3
 
 ## v1.2.0 - 2022-01-27
 
-FluffyChat 1.2.0 brings a new stories feature, a lot of bug fixes and improved
+ZedChat 1.2.0 brings a new stories feature, a lot of bug fixes and improved
 voice messages.
 
 - change: Set client ID in invite action link (Krille Fear)
@@ -2324,12 +2324,12 @@ voice messages.
 
 ## v0.42.2 - 2021-11-04
 
-Minor bugfix release which fixes signing up on matrix.org and make FluffyChats voice messages
+Minor bugfix release which fixes signing up on mt.zednet.ir and make ZedChats voice messages
 playable in Element.
 
 - feat: Nicer registration form
 - feat: Nicer audio message design and send duration
-- fix: Signup on matrix.org
+- fix: Signup on mt.zednet.ir
 - fix: Mark voice messages with msc3245
 - fix: Play response voice messages
 - fix: Crash on logout
@@ -2357,8 +2357,8 @@ This release fixes several bugs and makes E2EE enabled by default.
 - feat: More finetuning for font sizes
 - chore: Updated translations (Thanks to all translators!)
 - fix: App crash on logout
-- fix: Temporary disable sign-up for matrix.org (Currently gives "500: Internal Server Error" while
-  FluffyChat **should** send the same requests like Element)
+- fix: Temporary disable sign-up for mt.zednet.ir (Currently gives "500: Internal Server Error" while
+  ZedChat **should** send the same requests like Element)
 - fix: Implement Roboto font to fix font issues on Linux Desktop and mobile
 - fix: QR Code scanning
 
@@ -2374,7 +2374,7 @@ Minor bugfix release.
 Minor bugfix release.
 
 - fix: Start up time waits for first sync
-- fix: Registration -> matrix.org responses with 500
+- fix: Registration -> mt.zednet.ir responses with 500
 - fix: Wellknown look up for multi accounts
 
 And some other minor bugs.
@@ -2401,7 +2401,7 @@ Minor bug fixes.
 ## v0.40.0 - 2021-09-13
 
 This release contains a security fix. Red more about it
-here: https://matrix.org/blog/2021/09/13/vulnerability-disclosure-key-sharing
+here: https://mt.zednet.ir/blog/2021/09/13/vulnerability-disclosure-key-sharing
 
 - New in-app registration
 - Design improvements
@@ -2613,7 +2613,7 @@ translations and for rebuilding the arm64 Linux Flatpak.
 
 ## v0.32.0 - 2021-06-16
 
-FluffyChat 0.32.0 targets improved stability and a new onboarding flow where single sign on is now
+ZedChat 0.32.0 targets improved stability and a new onboarding flow where single sign on is now
 the more prominent way to get new users into the app. This release also introduces a complete
 rewritten database under the hood based on the key value store Hive instead of sqlite. This should
 improve the overall stability and the performance of the web version.

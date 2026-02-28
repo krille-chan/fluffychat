@@ -1,4 +1,4 @@
-# Contributing to FluffyChat
+# Contributing to ZedChat
 Contributions are always welcome. Yet we might lack manpower to review all of them in time.
 
 To improve the process please make sure that you read the following guidelines carefully:
@@ -17,7 +17,7 @@ To improve the process please make sure that you read the following guidelines c
 
 # Code Style
 
-FluffyChat tries to be as minimal as possible even in the code style. We try to keep the code clean, simple and easy to read. The source code of the app is under `/lib` with the main entry point `/lib/main.dart`.
+ZedChat tries to be as minimal as possible even in the code style. We try to keep the code clean, simple and easy to read. The source code of the app is under `/lib` with the main entry point `/lib/main.dart`.
 
 <!-- editorconfig-checker-disable -->
 <!-- prettier-ignore-start -->

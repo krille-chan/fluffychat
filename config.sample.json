@@ -1,6 +1,6 @@
 {
-  "applicationName": "FluffyChat",
-  "defaultHomeserver": "matrix.org",
+  "applicationName": "ZedChat",
+  "defaultHomeserver": "mt.zednet.ir",
   "presetHomeserver": "",
   "welcomeText": "",
   "privacyUrl": "https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md",

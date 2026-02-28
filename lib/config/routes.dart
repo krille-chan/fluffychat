@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pages/autologin/auto_login_page.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
 import 'package:fluffychat/pages/bootstrap/bootstrap_dialog.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -65,7 +66,15 @@ abstract class AppRoutes {
           ? '/rooms'
           : '/home',
     ),
-    GoRoute(
+        GoRoute(
+      path: '/autologin',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        state,
+        const AutoLoginPage(),
+      ),
+    ),
+GoRoute(
       path: '/home',
       pageBuilder: (context, state) =>
           defaultPageBuilder(context, state, const IntroPagePresenter()),
