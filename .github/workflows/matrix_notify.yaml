@@ -26,24 +26,26 @@ jobs:
           PR_AUTHOR: ${{ github.event.pull_request.user.login }}
         run: |
           if [ "${EVENT_NAME}" = "issues" ]; then
-            EMOJI="🐛"
-            PREFIX="New issue"
+            EMOJI="📝"
+            PREFIX="New Issue"
             TITLE="${ISSUE_TITLE}"
             URL="${ISSUE_URL}"
             LABELS="${ISSUE_LABELS}"
             AUTHOR="${ISSUE_AUTHOR}"
           else
             EMOJI="🔀"
-            PREFIX="New pull request"
+            PREFIX="New Pull Request"
             TITLE="${PR_TITLE}"
             URL="${PR_URL}"
             LABELS="${PR_LABELS}"
             AUTHOR="${PR_AUTHOR}"
           fi
 
+          AUTHOR_URL="https://github.com/${AUTHOR}"
           PLAIN="${EMOJI} ${PREFIX} by ${AUTHOR}: ${TITLE} - ${URL}"
-          HTML="${EMOJI} <b>${PREFIX}</b> by <i>${AUTHOR}</i><br/>"
-          HTML="${HTML}<a href='${URL}'>${TITLE}</a>"
+          HTML="<h3>${EMOJI} ${PREFIX}</h3>"
+          HTML="${HTML}<b><a href='${URL}'>${TITLE}</a></b><br/>"
+          HTML="${HTML}👤 <a href='${AUTHOR_URL}'>${AUTHOR}</a>"
           if [ -n "${LABELS}" ]; then
             HTML="${HTML}<br/>🏷️ ${LABELS}"
           fi
