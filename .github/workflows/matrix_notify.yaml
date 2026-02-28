@@ -18,25 +18,40 @@ jobs:
           EVENT_NAME: ${{ github.event_name }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
           ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ', ') }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
           PR_TITLE: ${{ github.event.pull_request.title }}
           PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_LABELS: ${{ join(github.event.pull_request.labels.*.name, ', ') }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
         run: |
           if [ "${EVENT_NAME}" = "issues" ]; then
+            EMOJI="🐛"
             PREFIX="New issue"
             TITLE="${ISSUE_TITLE}"
             URL="${ISSUE_URL}"
+            LABELS="${ISSUE_LABELS}"
+            AUTHOR="${ISSUE_AUTHOR}"
           else
+            EMOJI="🔀"
             PREFIX="New pull request"
             TITLE="${PR_TITLE}"
             URL="${PR_URL}"
+            LABELS="${PR_LABELS}"
+            AUTHOR="${PR_AUTHOR}"
           fi
 
-          PLAIN="${PREFIX}: ${TITLE} - ${URL}"
-          HTML="${PREFIX}: <b>${TITLE}</b> - <a href=\"${URL}\">${URL}</a>"
+          PLAIN="${EMOJI} ${PREFIX} by ${AUTHOR}: ${TITLE} - ${URL}"
+          HTML="${EMOJI} <b>${PREFIX}</b> by <i>${AUTHOR}</i><br/>"
+          HTML="${HTML}<a href='${URL}'>${TITLE}</a>"
+          if [ -n "${LABELS}" ]; then
+            HTML="${HTML}<br/>🏷️ ${LABELS}"
+          fi
           TXN_ID=$(date +%s%N)
 
           curl -s -o /dev/null -w "%{http_code}" -X PUT \
             "${HOMESERVER}/_matrix/client/v3/rooms/${ROOM_ID}/send/m.room.message/${TXN_ID}" \
             -H "Authorization: Bearer ${ACCESS_TOKEN}" \
             -H "Content-Type: application/json" \
-            -d "{\"msgtype\":\"m.text\",\"body\":\"${PLAIN}\",\"format\":\"org.matrix.custom.html\",\"formatted_body\":\"${HTML}\"}"
+            -d "$(jq -n --arg body "$PLAIN" --arg html "$HTML" \
+              '{"msgtype":"m.notice","body":$body,"format":"org.matrix.custom.html","formatted_body":$html}')"
