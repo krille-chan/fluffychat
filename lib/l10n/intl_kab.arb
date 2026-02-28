@@ -2089,5 +2089,101 @@
     "@unknownDevice": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "skip": "Zgel",
+    "@skip": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sourceCode": "Tangalt taɣbalutt",
+    "@sourceCode": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "spaceIsPublic": "Tallunt d tazayezt",
+    "@spaceIsPublic": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "spaceName": "Isem n tallunt",
+    "@spaceName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "startedACall": "{senderName} yebda-d asiwel",
+    "@startedACall": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "pleaseEnterRecoveryKeyDescription": "Akken ad tekkseḍ asekkeṛ i yiznan-ik·im iqburen, ttxil-k·m sekcem tasarut n tririt i d-yenulfan di tɣimit tuzwirt. Tasarut-ik·im n tririt UR TELLI ARA d awal-ik·im n uɛeddi.",
+    "experimentalVideoCalls": "Isawalen uvidya s wudem armitan",
+    "emailOrUsername": "Imayl neɣ isem n useqdac",
+    "indexedDbErrorTitle": "Uguren n uskar uslig",
+    "indexedDbErrorLong": "Asekles n yizen ur yettwarmed ara deg uskar uslig s wudem amezwer.\nTtxil-k·m rzu ɣer\n - ɣef:swel\n - sbadu om.indexedDB.privateBrowsing.enabled ɣer d ilaw\nMa ulac, ur yezmir ara ad isselkem FluffyChat.",
+    "switchToAccount": "Ddu ɣer umiḍan {number}",
+    "@switchToAccount": {
+        "type": "number",
+        "placeholders": {
+            "number": {
+                "type": "String"
+            }
+        }
+    },
+    "nextAccount": "Amiḍan uḍfir",
+    "previousAccount": "Amiḍan yezrin",
+    "addWidget": "Rnu awiǧit",
+    "widgetVideo": "Avidyu",
+    "widgetEtherpad": "Tazmilt n uḍris",
+    "widgetJitsi": "Asarag Jitsi",
+    "widgetCustom": "Sagen",
+    "newGroup": "Agraw amaynut",
+    "newSpace": "Tallunt tamaynut",
+    "enterSpace": "Kcem tallunt",
+    "enterRoom": "Kcem taxxamt",
+    "allSpaces": "Akk tallunin",
+    "numChats": "{number} idiwenniyen",
+    "@numChats": {
+        "type": "number",
+        "placeholders": {
+            "number": {
+                "type": "String"
+            }
+        }
+    },
+    "verifiedDevicesOnly": "Ibenkan yettwasneqden kan",
+    "optionalMessage": "(D afrayan) izen…",
+    "notSupportedOnThisDevice": "Ur itteddu ara deg yibenk-agi",
+    "approve": "Sqbel",
+    "enterNewChat": "Sekcem adiwenni amaynut",
+    "pleaseWaitUntilInvited": "Ttxil-k·m, rǧu arma yeɛreḍ-ik-id yiwen seg texxamt.",
+    "commandHint_logout": "Senser seg yibenk-ik·im amiran",
+    "commandHint_logoutall": "Senser akk ibenkan urmiden",
+    "displayNavigationRail": "Sken afeggag n yinig deg uziraz",
+    "customReaction": "Tasedmirt yugnen",
+    "backToMainChat": "Uɣal ɣer udiwenni agejdan",
+    "createSticker": "Snulfu-d ticṛeṭ n tesfift neɣ imujiten",
+    "useAsSticker": "Seqdec am tcṛeṭ n tesfift",
+    "useAsEmoji": "Seqdec am imujit",
+    "stickerPackNameAlreadyExists": "Isem ukemmus n tcṛeṭ n tesfift yella yakan",
+    "newStickerPack": "Akemmus n tcṛeṭ n tesfift",
+    "stickerPackName": "Isem ukemmus n tcṛeṭ n tesfift",
+    "skipChatBackup": "Zgel aḥraz n udiwenni",
+    "skipChatBackupWarning": "tetḥeqqeḍ? S war armad n weḥraz n udiwenni, tzemreḍ ad tesruḥeḍ anekcum ɣer yiznan-ik·im ma tbeddeleḍ ibenk-ik·im.",
+    "loadingMessages": "Asali n yiznan",
+    "setupChatBackup": "Sbadu aḥraz n udiwenni",
+    "noMoreResultsFound": "Ulac ugar n igmaḍ yettwafen",
+    "clientWellKnownInformation": "Talɣut yettwasnen ɣef umsaɣ:",
+    "advancedConfigs": "Tawila leqqayen",
+    "advancedConfigurations": "Tawila tinaẓiyin",
+    "signUpGreeting": "FluffyChat d araslemmes! Fren aqeddac anda tebɣiḍ ad ternuḍ amiḍan-ik·im, u yyaw ad neddu!",
+    "signInGreeting": "Tesɛiḍ yakan amiḍan deg Matriks? Anṣuf yes-k·m tikkelt niḍen! Fren aqeddac-ik·im, u tkecmeḍ.",
+    "theProcessWasCanceled": "Tettwasefsex ukala-nni.",
+    "searchOrEnterHomeserverAddress": "Nadi neɣ sekcem tansa n uqeddac agejdan",
+    "setPowerLevel": "Sbadu aswir n tezmert",
+    "removeAdminRights": "Kkes izerfan n unedbal",
+    "powerLevel": "Aswir n tezmert"
 }
