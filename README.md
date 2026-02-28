@@ -1,4 +1,4 @@
-![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/assets/banner_transparent.png?raw=true)
+![Screenshot](assets/banner_transparent.png?raw=true)
 
 [ZedChat](https://fluffy.chat) is an open source, nonprofit and cute [[matrix](https://mt.zednet.ir)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
 
@@ -14,8 +14,8 @@
 
 ### Screenshots:
 
-<img src="https://github.com/krille-chan/fluffychat-website/blob/main/src/assets/screenshots/mobile.png?raw=true" height="300">
-<img src="https://github.com/krille-chan/fluffychat-website/blob/main/src/assets/screenshots/desktop.png?raw=true" height="300">
+<img src="assets/screenshots/mobile.png?raw=true" height="300">
+<img src="/assets/screenshots/desktop.png?raw=true" height="300">
 
 # Features
 
