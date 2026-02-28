@@ -113,10 +113,11 @@ class SpacesNavigationRail extends StatelessWidget {
                       },
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: StartChatFab(),
-                  ),
+                  if (FluffyThemes.isColumnMode(context))
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: StartChatFab(),
+                    ),
                 ],
               ),
             );
