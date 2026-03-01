@@ -2368,5 +2368,87 @@
                 "type": "String"
             }
         }
+    },
+    "enableMultiAccounts": "(armitan) Rmed aget n yimiḍanen deg yibenk-agi",
+    "hideMemberChangesInPublicChatsBody": "Ur d-skan ara deg yizirig n wakud ma yella win i d-yernan neɣ yeffɣen adiwenni azayez i usnerni n tɣara n tɣuṛi.",
+    "pleaseEnter4Digits": "Ttxil-k·m sekcem 4 n wuṭṭunen neɣ eǧǧ-it d ilem akken ad tsenseḍ asekkeṛ n usnas.",
+    "@pleaseEnter4Digits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseEnterRecoveryKey": "Ttxil-k·m sekcem tasarut-ik·im n tririt:",
+    "pleaseEnterYourPin": "Ttxil-k·m sekcem tangalt-ik·im pin",
+    "@pleaseEnterYourPin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseEnterYourUsername": "Ma ulac aɣilif sekcem isem n useqdac",
+    "@pleaseEnterYourUsername": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseFollowInstructionsOnWeb": "Ma ulac aɣilif, ḍfeṛ iwellihen n usmel web sakin sit ɣef uḍfir.",
+    "@pleaseFollowInstructionsOnWeb": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "publicRooms": "Tixxamin tizuyaz",
+    "@publicRooms": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rejectedTheInvitation": "{username} yugi tinnubga-nni",
+    "@rejectedTheInvitation": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "rejoin": "ales attekki tikkelt nniḍen",
+    "@rejoin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "reportMessage": "Mmel-d izen",
+    "@reportMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "roomHasBeenUpgraded": "Taxxamt tettwaleqqem",
+    "@roomHasBeenUpgraded": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "roomVersion": "Lqem n texxamt",
+    "@roomVersion": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "separateChatTypes": "Brez Idiwenniyen usriden akked igrawen",
+    "@separateChatTypes": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setChatDescription": "Sbadu aglam n udiwenni",
+    "setInvitationLink": "Sbadu aseɣwen n tinubga",
+    "@setInvitationLink": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setPermissionsLevel": "Sbadu aswir n tsirag",
+    "@setPermissionsLevel": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sharedTheLocation": "{username} yebḍa adig-is",
+    "@sharedTheLocation": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
     }
 }
