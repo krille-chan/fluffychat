@@ -2450,5 +2450,29 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "compressVideo": "Asekkussem n tvidyut...",
+    "sendingAttachmentCountOfCount": "Tuzna umedday {index} n {length}…",
+    "@sendingAttachmentCountOfCount": {
+        "type": "integer",
+        "placeholders": {
+            "index": {
+                "type": "int"
+            },
+            "length": {
+                "type": "int"
+            }
+        }
+    },
+    "welcomeText": "Azul Azul 👋 Wa d FluffyChat. Tzemreḍ ad tkecmeḍ ɣer uqeddac agejdan, yellan yemsaḍa akked https://matrix.org. Dɣa meslay d win tebɣiḍ, d aẓeṭṭa n udiwenni araslemmas amuqṛan!",
+    "notificationRuleRoomnotif": "Alɣu n texxamt",
+    "notificationRuleRoomnotifDescription": "Azen alɣu i useqdec mi ara yelli yizen yegber '@room'.",
+    "notificationRuleTombstoneDescription": "Azen alɣu i useqdec ɣef yiznan n usens n texxamt.",
+    "notificationRuleReaction": "Tasedmirt",
+    "notificationRuleReactionDescription": "Kkes ilɣa i tsedmirin.",
+    "notificationRuleSuppressEdits": "Kkes Asiẓreg",
+    "notificationRuleSuppressEditsDescription": "Kkes ilɣa i yeznan yettwaẓergen.",
+    "notificationRuleCallDescription": "Azen alɣu i useqdac ɣef isawalen.",
+    "notificationRuleEncryptedRoomOneToOne": "Taxxamt yettwawgelhen s wudem n yiwen ɣer yiwen",
+    "notificationRuleRoomOneToOne": "Taxxamt s wudem n yiwen ɣer yiwen"
 }
