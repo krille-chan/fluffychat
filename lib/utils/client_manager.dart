@@ -138,7 +138,6 @@ abstract class ClientManager {
             (share) => share.name == shareKeysWith,
           ) ??
           ShareKeysWith.all,
-      convertLinebreaksInFormatting: false,
       onSoftLogout: enableSoftLogout
           ? (client) => client.refreshAccessToken()
           : null,
