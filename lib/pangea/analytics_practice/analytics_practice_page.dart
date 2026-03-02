@@ -252,6 +252,11 @@ class AnalyticsPracticeState extends State<AnalyticsPractice>
       return;
     }
 
+    if (_sessionController.session?.isComplete == true) {
+      await _completeSession();
+      return;
+    }
+
     _clearActivityState(loadingActivity: true);
 
     try {
