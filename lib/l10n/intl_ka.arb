@@ -325,7 +325,7 @@
             }
         }
     },
-    "areGuestsAllowedToJoin": "შეუძლიათ თუ არა სტუმარ მომხმარებლებს გაწევრიანება",
+    "areGuestsAllowedToJoin": "შეუძლიათ სტუმარ მომხმარებლებს გაწევრება?",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
