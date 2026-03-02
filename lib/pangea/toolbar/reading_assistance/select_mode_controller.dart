@@ -7,12 +7,14 @@ import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/lemma_emoji_setter_mixin.dart';
+import 'package:fluffychat/pangea/common/models/llm_feedback_model.dart';
 import 'package:fluffychat/pangea/common/utils/async_state.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/speech_to_text/speech_to_text_response_model.dart';
 import 'package:fluffychat/pangea/toolbar/message_practice/message_audio_card.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance/select_mode_buttons.dart';
+import 'package:fluffychat/pangea/translation/full_text_translation_response_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class _TranscriptionLoader extends AsyncLoader<SpeechToTextResponseModel> {
@@ -36,14 +38,6 @@ class _STTTranslationLoader extends AsyncLoader<String> {
     l1Code: MatrixState.pangeaController.userController.userL1!.langCodeShort,
     l2Code: MatrixState.pangeaController.userController.userL2!.langCodeShort,
   );
-}
-
-class _TranslationLoader extends AsyncLoader<String> {
-  final PangeaMessageEvent messageEvent;
-  _TranslationLoader(this.messageEvent) : super();
-
-  @override
-  Future<String> fetch() => messageEvent.requestRespresentationByL1();
 }
 
 class _AudioLoader extends AsyncLoader<(PangeaAudioFile, File?)> {
@@ -71,20 +65,25 @@ class _AudioLoader extends AsyncLoader<(PangeaAudioFile, File?)> {
   }
 }
 
+typedef _TranslationLoader = ValueNotifier<AsyncState<String>>;
+
 class SelectModeController with LemmaEmojiSetter {
   final PangeaMessageEvent messageEvent;
   final _TranscriptionLoader _transcriptLoader;
   final _TranslationLoader _translationLoader;
+
   final _AudioLoader _audioLoader;
   final _STTTranslationLoader _sttTranslationLoader;
 
   SelectModeController(this.messageEvent)
     : _transcriptLoader = _TranscriptionLoader(messageEvent),
-      _translationLoader = _TranslationLoader(messageEvent),
+      _translationLoader = _TranslationLoader(AsyncIdle<String>()),
       _audioLoader = _AudioLoader(messageEvent),
       _sttTranslationLoader = _STTTranslationLoader(messageEvent);
 
   ValueNotifier<SelectMode?> selectedMode = ValueNotifier<SelectMode?>(null);
+
+  FullTextTranslationResponseModel? _lastTranslationResponse;
 
   // Sometimes the same token is clicked twice. Setting it to the same value
   // won't trigger the notifier, so use the bool for force it to trigger.
@@ -109,8 +108,7 @@ class SelectModeController with LemmaEmojiSetter {
 
   static List<SelectMode> get _audioModes => [SelectMode.speechTranslation];
 
-  ValueNotifier<AsyncState<String>> get translationState =>
-      _translationLoader.state;
+  ValueNotifier<AsyncState<String>> get translationState => _translationLoader;
 
   ValueNotifier<AsyncState<SpeechToTextResponseModel>> get transcriptionState =>
       _transcriptLoader.state;
@@ -179,7 +177,7 @@ class SelectModeController with LemmaEmojiSetter {
 
   bool get isShowingExtraContent =>
       (selectedMode.value == SelectMode.translate &&
-          _translationLoader.isLoaded) ||
+          _translationLoader.value is AsyncLoaded<String>) ||
       (selectedMode.value == SelectMode.speechTranslation &&
           _sttTranslationLoader.isLoaded) ||
       _transcriptLoader.isLoaded ||
@@ -191,7 +189,7 @@ class SelectModeController with LemmaEmojiSetter {
   ValueNotifier<AsyncState>? modeStateNotifier(SelectMode? mode) =>
       switch (mode) {
         SelectMode.audio => _audioLoader.state,
-        SelectMode.translate => _translationLoader.state,
+        SelectMode.translate => _translationLoader,
         SelectMode.speechTranslation => _sttTranslationLoader.state,
         _ => null,
       };
@@ -205,7 +203,32 @@ class SelectModeController with LemmaEmojiSetter {
       playTokenNotifier.value = (token, !playTokenNotifier.value.$2);
 
   Future<void> fetchAudio() => _audioLoader.load();
-  Future<void> fetchTranslation() => _translationLoader.load();
   Future<void> fetchTranscription() => _transcriptLoader.load();
   Future<void> fetchSpeechTranslation() => _sttTranslationLoader.load();
+
+  Future<void> fetchTranslation({String? feedback}) async {
+    try {
+      _translationLoader.value = AsyncLoading();
+
+      List<LLMFeedbackModel<FullTextTranslationResponseModel>>? feedbackModel;
+      if (feedback != null && _lastTranslationResponse != null) {
+        feedbackModel = [
+          LLMFeedbackModel<FullTextTranslationResponseModel>(
+            feedback: feedback,
+            content: _lastTranslationResponse!,
+            contentToJson: (c) => c.toJson(),
+          ),
+        ];
+      }
+
+      final resp = await messageEvent.requestTranslationByL1(
+        feedback: feedbackModel,
+      );
+
+      _lastTranslationResponse = resp;
+      _translationLoader.value = AsyncLoaded(resp.bestTranslation);
+    } catch (e) {
+      _translationLoader.value = AsyncError(e.toString());
+    }
+  }
 }

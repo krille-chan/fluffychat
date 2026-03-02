@@ -14,7 +14,7 @@ import '../common/network/requests.dart';
 import '../common/network/urls.dart';
 
 class _TranslateCacheItem {
-  final Future<String> response;
+  final Future<FullTextTranslationResponseModel> response;
   final DateTime timestamp;
 
   const _TranslateCacheItem({required this.response, required this.timestamp});
@@ -24,7 +24,7 @@ class FullTextTranslationRepo {
   static final Map<String, _TranslateCacheItem> _cache = {};
   static const Duration _cacheDuration = Duration(minutes: 10);
 
-  static Future<Result<String>> get(
+  static Future<Result<FullTextTranslationResponseModel>> get(
     String accessToken,
     FullTextTranslationRequestModel request,
   ) {
@@ -38,7 +38,7 @@ class FullTextTranslationRepo {
     return _getResult(request, future);
   }
 
-  static Future<String> _fetch(
+  static Future<FullTextTranslationResponseModel> _fetch(
     String accessToken,
     FullTextTranslationRequestModel request,
   ) async {
@@ -60,12 +60,12 @@ class FullTextTranslationRepo {
 
     return FullTextTranslationResponseModel.fromJson(
       jsonDecode(utf8.decode(res.bodyBytes)),
-    ).bestTranslation;
+    );
   }
 
-  static Future<Result<String>> _getResult(
+  static Future<Result<FullTextTranslationResponseModel>> _getResult(
     FullTextTranslationRequestModel request,
-    Future<String> future,
+    Future<FullTextTranslationResponseModel> future,
   ) async {
     try {
       final res = await future;
@@ -77,7 +77,9 @@ class FullTextTranslationRepo {
     }
   }
 
-  static Future<String>? _getCached(FullTextTranslationRequestModel request) {
+  static Future<FullTextTranslationResponseModel>? _getCached(
+    FullTextTranslationRequestModel request,
+  ) {
     final cacheKeys = [..._cache.keys];
     for (final key in cacheKeys) {
       if (DateTime.now().difference(_cache[key]!.timestamp) >= _cacheDuration) {
@@ -90,7 +92,7 @@ class FullTextTranslationRepo {
 
   static void _setCached(
     FullTextTranslationRequestModel request,
-    Future<String> response,
+    Future<FullTextTranslationResponseModel> response,
   ) => _cache[request.hashCode.toString()] = _TranslateCacheItem(
     response: response,
     timestamp: DateTime.now(),

@@ -11,6 +11,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/choreographer/choreo_record_model.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
+import 'package:fluffychat/pangea/common/models/llm_feedback_model.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
@@ -31,6 +32,7 @@ import 'package:fluffychat/pangea/text_to_speech/text_to_speech_response_model.d
 import 'package:fluffychat/pangea/toolbar/message_practice/message_audio_card.dart';
 import 'package:fluffychat/pangea/translation/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/translation/full_text_translation_request_model.dart';
+import 'package:fluffychat/pangea/translation/full_text_translation_response_model.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../../../widgets/matrix.dart';
 import '../../common/utils/error_handler.dart';
@@ -505,7 +507,7 @@ class PangeaMessageEvent {
     }
 
     final translation = SttTranslationModel(
-      translation: res.result!,
+      translation: res.result!.bestTranslation,
       langCode: l1Code,
     );
 
@@ -544,44 +546,70 @@ class PangeaMessageEvent {
     return _sendRepresentationEvent(res.result!);
   }
 
-  Future<String> requestRespresentationByL1() async {
+  Future<FullTextTranslationResponseModel> requestTranslationByL1({
+    List<LLMFeedbackModel<FullTextTranslationResponseModel>>? feedback,
+  }) async {
     if (_l1Code == null || _l2Code == null) {
       throw Exception("Missing language codes");
     }
 
-    final includedIT =
-        (originalSent?.choreo?.endedWithIT(originalSent!.text) ?? false) &&
-        !(originalSent?.choreo?.includedIGC ?? true);
-
-    RepresentationEvent? rep;
-    if (!includedIT) {
-      // if the message didn't go through translation, get any l1 rep
-      rep = _representationByLanguage(_l1Code!);
-    } else {
-      // if the message went through translation, get the non-original
-      // l1 rep since originalWritten could contain some l2 words
-      // (https://github.com/pangeachat/client/issues/3591)
-      rep = _representationByLanguage(
-        _l1Code!,
-        filter: (rep) => !rep.content.originalWritten,
-      );
+    if (feedback == null) {
+      final includedIT =
+          originalSent?.choreo?.endedWithIT(originalSent!.text) == true;
+      RepresentationEvent? rep;
+      if (!includedIT) {
+        // if the message didn't go through translation, get any l1 rep
+        rep = _representationByLanguage(_l1Code!);
+      } else {
+        // if the message went through translation, get the non-original
+        // l1 rep since originalWritten could contain some l2 words
+        // (https://github.com/pangeachat/client/issues/3591)
+        rep = _representationByLanguage(
+          _l1Code!,
+          filter: (rep) => !rep.content.originalWritten,
+        );
+      }
+      if (rep != null) {
+        return FullTextTranslationResponseModel(
+          translation: rep.text,
+          translations: [rep.text],
+          source: messageDisplayLangCode,
+        );
+      }
     }
 
-    if (rep != null) return rep.content.text;
+    final includedIT =
+        originalSent?.choreo?.endedWithIT(originalSent!.text) == true;
 
     final String srcLang = includedIT
         ? (originalWritten?.langCode ?? _l1Code!)
         : (originalSent?.langCode ?? _l2Code!);
 
-    final resp = await _requestRepresentation(
-      includedIT ? originalWrittenContent : messageDisplayText,
-      _l1Code!,
-      srcLang,
+    final text = includedIT ? originalWrittenContent : messageDisplayText;
+    final resp = await FullTextTranslationRepo.get(
+      MatrixState.pangeaController.userController.accessToken,
+      FullTextTranslationRequestModel(
+        text: text,
+        srcLang: srcLang,
+        tgtLang: _l1Code!,
+        userL2:
+            MatrixState.pangeaController.userController.userL2Code ??
+            LanguageKeys.unknownLanguage,
+        userL1: _l1Code!,
+        feedback: feedback,
+      ),
     );
 
     if (resp.isError) throw resp.error!;
-    _sendRepresentationEvent(resp.result!);
-    return resp.result!.text;
+    _sendRepresentationEvent(
+      PangeaRepresentation(
+        langCode: _l1Code!,
+        text: resp.result!.bestTranslation,
+        originalSent: false,
+        originalWritten: false,
+      ),
+    );
+    return resp.result!;
   }
 
   Future<Result<PangeaRepresentation>> _requestRepresentation(
@@ -589,6 +617,7 @@ class PangeaMessageEvent {
     String targetLang,
     String sourceLang, {
     bool originalSent = false,
+    List<LLMFeedbackModel<FullTextTranslationResponseModel>>? feedback,
   }) async {
     _representations = null;
 
@@ -600,6 +629,7 @@ class PangeaMessageEvent {
         tgtLang: targetLang,
         userL2: _l2Code ?? LanguageKeys.unknownLanguage,
         userL1: _l1Code ?? LanguageKeys.unknownLanguage,
+        feedback: feedback,
       ),
     );
 
@@ -608,7 +638,7 @@ class PangeaMessageEvent {
         : Result.value(
             PangeaRepresentation(
               langCode: targetLang,
-              text: res.result!,
+              text: res.result!.bestTranslation,
               originalSent: originalSent,
               originalWritten: false,
             ),

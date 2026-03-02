@@ -12,6 +12,7 @@ import 'package:fluffychat/pages/chat/events/message_content.dart';
 import 'package:fluffychat/pages/chat/events/reply_content.dart';
 import 'package:fluffychat/pangea/common/utils/async_state.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
+import 'package:fluffychat/pangea/common/widgets/feedback_dialog.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/toolbar/layout/reading_assistance_mode_enum.dart';
@@ -300,6 +301,7 @@ class OverlayMessage extends StatelessWidget {
                 controller: selectModeController,
                 style: style,
                 maxWidth: maxWidth,
+                minWidth: messageWidth ?? 0,
               ),
             ],
           ),
@@ -313,12 +315,30 @@ class _MessageSelectModeContent extends StatelessWidget {
   final SelectModeController controller;
   final TextStyle style;
   final double maxWidth;
+  final double minWidth;
 
   const _MessageSelectModeContent({
     required this.controller,
     required this.style,
     required this.maxWidth,
+    required this.minWidth,
   });
+
+  Future<void> onFlagTranslation(BuildContext context) async {
+    final resp = await showDialog<String?>(
+      context: context,
+      builder: (context) => FeedbackDialog(
+        title: L10n.of(context).translationFeedback,
+        onSubmit: (feedback) => Navigator.of(context).pop(feedback),
+      ),
+    );
+
+    if (resp == null || resp.isEmpty) {
+      return;
+    }
+
+    await controller.fetchTranslation(feedback: resp);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -356,8 +376,13 @@ class _MessageSelectModeContent extends StatelessWidget {
             ? controller.translationState.value
             : controller.speechTranslationState.value;
 
-        return Padding(
+        return Container(
           padding: const EdgeInsets.all(12.0),
+          constraints: BoxConstraints(
+            minHeight: 40.0,
+            maxWidth: maxWidth,
+            minWidth: minWidth,
+          ),
           child: switch (state) {
             AsyncLoading() => Row(
               mainAxisSize: MainAxisSize.min,
@@ -371,15 +396,28 @@ class _MessageSelectModeContent extends StatelessWidget {
               message: L10n.of(context).translationError,
               style: style.copyWith(fontStyle: FontStyle.italic),
             ),
-            AsyncLoaded(value: final value) => Container(
-              constraints: BoxConstraints(maxWidth: maxWidth),
-              child: SingleChildScrollView(
-                child: Text(
-                  value,
-                  textScaler: TextScaler.noScaling,
-                  style: style.copyWith(fontStyle: FontStyle.italic),
+            AsyncLoaded(value: final value) => Row(
+              spacing: 8.0,
+              mainAxisSize: .min,
+              mainAxisAlignment: .spaceBetween,
+              children: [
+                Flexible(
+                  child: Text(
+                    value,
+                    textScaler: TextScaler.noScaling,
+                    style: style.copyWith(fontStyle: FontStyle.italic),
+                  ),
                 ),
-              ),
+                if (mode == SelectMode.translate)
+                  InkWell(
+                    onTap: () => onFlagTranslation(context),
+                    child: Icon(
+                      Icons.flag_outlined,
+                      color: style.color,
+                      size: 16.0,
+                    ),
+                  ),
+              ],
             ),
             _ => const SizedBox(),
           },

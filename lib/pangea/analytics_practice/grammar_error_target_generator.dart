@@ -134,7 +134,8 @@ class GrammarErrorTargetGenerator {
       }
 
       try {
-        translation ??= await event.requestRespresentationByL1();
+        final resp = await event.requestTranslationByL1();
+        translation ??= resp.bestTranslation;
       } catch (e, s) {
         ErrorHandler.logError(
           e: e,

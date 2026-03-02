@@ -2,25 +2,31 @@ import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 
 class FullTextTranslationResponseModel {
   final List<String> translations;
+  final String translation;
   final String source;
-  final String? deepL;
 
   const FullTextTranslationResponseModel({
+    required this.translation,
     required this.translations,
     required this.source,
-    required this.deepL,
   });
 
   factory FullTextTranslationResponseModel.fromJson(Map<String, dynamic> json) {
     return FullTextTranslationResponseModel(
+      translation: json['translation'] as String,
       translations: (json["translations"] as Iterable)
           .map<String>((e) => e)
           .toList()
           .cast<String>(),
       source: json[ModelKey.srcLang],
-      deepL: json['deepl_res'],
     );
   }
 
-  String get bestTranslation => deepL ?? translations.first;
+  Map<String, dynamic> toJson() => {
+    'translation': translation,
+    'translations': translations,
+    ModelKey.srcLang: source,
+  };
+
+  String get bestTranslation => translation;
 }

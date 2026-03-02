@@ -180,8 +180,8 @@ class AnalyticsPracticeDataService {
     }
 
     // Prefetch the translation
-    final translation = await pangeaEvent.requestRespresentationByL1();
-    _setAudioInfo(eventId, audioFile, translation);
+    final translation = await pangeaEvent.requestTranslationByL1();
+    _setAudioInfo(eventId, audioFile, translation.bestTranslation);
   }
 
   Future<void> _prefetchLemmaInfo(

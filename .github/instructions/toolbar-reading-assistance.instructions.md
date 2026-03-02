@@ -77,7 +77,7 @@ The word card is the detailed view for a single token. It appears above the mess
 - **Meaning** — either user-set or auto-generated L1 translation
 - **Phonetic transcription** — IPA or simplified pronunciation guide
 - **Emoji** — the user's personal emoji association (if set), or a picker to set one
-- **Feedback button** — lets the user report bad tokenization or incorrect meanings
+- **Feedback button** — lets the user flag incorrect token data (POS, meaning, phonetics, language). See §User Feedback below.
 
 The word card is intentionally compact — it should be glanceable, not a full dictionary entry. The goal is quick recognition, not exhaustive reference.
 
@@ -118,6 +118,27 @@ The toolbar must work within chat layout constraints:
 - On small screens, it scrolls if the message + word card + buttons exceed available space
 - The overlay must survive screen rotation and keyboard appearance without losing state
 - On width changes (e.g., split-screen), the overlay dismisses rather than attempting to reposition (avoids jarring layout jumps)
+
+## User Feedback
+
+AI-generated content in the toolbar — word card info and translations — can be wrong. Users need a lightweight way to say "this is incorrect" without leaving the toolbar flow. The pattern is the same everywhere: a small **flag icon** beside the content opens a dialog where the user describes the problem in free text. The server re-generates the content with the feedback in context and returns an improved result.
+
+### Design Principles
+
+- **Low friction**: One tap to flag, one text field, done. The user shouldn't need to know *what* is wrong technically — just describe it in their own words.
+- **Immediate improvement**: After flagging, the UI replaces the old content with the regenerated version so the user sees the fix right away.
+- **Same interaction everywhere**: Word card flagging and translation flagging look and feel identical to the user. Same icon, same dialog, same flow.
+- **Auditable**: Every flag is recorded on the server with the user's identity, building a quality signal that improves future results for all users.
+
+### Word Card Feedback (exists)
+
+The word card already has a flag button. When tapped, the user can report issues with tokenization, meaning, phonetics, or language detection. The server figures out which fields need correction and returns updates. See [token-info-feedback-v2.instructions.md](token-info-feedback-v2.instructions.md).
+
+### Translation Feedback (planned)
+
+The full-text translation shown in Translate mode currently has no flag button. Add one — same icon, same dialog, same UX as word card feedback. When the user flags a bad translation, the server regenerates it with a stronger model and the user's feedback as context.
+
+This is especially important for mixed-language and polysemous inputs where the default model gets it wrong (see [#1311](https://github.com/pangeachat/2-step-choreographer/issues/1311), [#1477](https://github.com/pangeachat/2-step-choreographer/issues/1477)). No new server endpoint is needed — the existing translation endpoint already supports feedback. See [direct-translate.instructions.md](../../2-step-choreographer/.github/instructions/direct-translate.instructions.md).
 
 ## Key Contracts
 

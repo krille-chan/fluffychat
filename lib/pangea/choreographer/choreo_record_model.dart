@@ -159,7 +159,7 @@ class ChoreoRecordModel {
   });
 
   bool endedWithIT(String sent) {
-    return includedIT && stepText() == sent;
+    return includedIT && !includedIGC && stepText() == sent;
   }
 
   /// Get the text at [stepIndex]
