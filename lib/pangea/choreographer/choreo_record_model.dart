@@ -301,6 +301,14 @@ class ChoreoRecordStepModel {
         .toList()
         .cast<String>();
   }
+
+  String? get selectedChoice {
+    if (itStep != null) {
+      return itStep!.chosenContinuance?.text;
+    }
+
+    return acceptedOrIgnoredMatch?.match.selectedChoice?.value;
+  }
 }
 
 // Example flow

@@ -1,12 +1,12 @@
-import 'dart:math';
-
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/choreographer/choreo_record_model.dart';
+import 'package:fluffychat/pangea/choreographer/completed_it_step_model.dart';
+import 'package:fluffychat/pangea/choreographer/igc/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/igc/pangea_match_status_enum.dart';
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/choreographer/igc/span_choice_type_enum.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/speech_to_text/speech_to_text_response_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -108,12 +108,10 @@ class PangeaRepresentation {
     ConstructUseMetaData? metadata,
     ChoreoRecordModel? choreo,
   }) {
-    final List<OneConstructUse> uses = [];
-
     // missing vital info so return
     if (event?.roomId == null && metadata?.roomId == null) {
       // debugger(when: kDebugMode);
-      return uses;
+      return [];
     }
 
     metadata ??= ConstructUseMetaData(
@@ -122,22 +120,9 @@ class PangeaRepresentation {
       timeStamp: event.originServerTs,
     );
 
-    // for each token, record whether selected in ga, ta, or wa
-    List<PangeaToken> tokensToSave = tokens
-        .where((token) => token.lemma.saveVocab)
-        .toList();
-    if (choreo != null && choreo.pastedStrings.isNotEmpty) {
-      tokensToSave = tokensToSave
-          .where(
-            (token) => !choreo.pastedStrings.any(
-              (pasted) => pasted.toLowerCase().contains(
-                token.text.content.toLowerCase(),
-              ),
-            ),
-          )
-          .toList();
-    }
+    final tokensToSave = _filterTokensToSave(tokens, choreo);
 
+    final List<OneConstructUse> uses = [];
     if (choreo == null || choreo.choreoSteps.isEmpty) {
       for (final token in tokensToSave) {
         uses.addAll(
@@ -148,99 +133,172 @@ class PangeaRepresentation {
           ),
         );
       }
-
       return uses;
     }
 
     for (final token in tokensToSave) {
-      ChoreoRecordStepModel? tokenStep;
-      for (final step in choreo.choreoSteps) {
-        final igcMatch = step.acceptedOrIgnoredMatch;
-        final itStep = step.itStep;
-        if (itStep == null && igcMatch == null) {
-          continue;
-        }
-
-        final choices = step.choices;
-        if (choices == null || choices.isEmpty) {
-          continue;
-        }
-
-        final stepContainsToken = choices.any(
-          (choice) => choice.contains(token.text.content),
-        );
-
-        // if the step contains the token, and the token hasn't been assigned a step
-        // (or the assigned step is an IGC step, but an IT step contains the token)
-        // then assign the token to the step
-        if (stepContainsToken &&
-            (tokenStep == null ||
-                (tokenStep.itStep == null && step.itStep != null))) {
-          tokenStep = step;
-        }
-      }
-
-      if (tokenStep == null ||
-          tokenStep.acceptedOrIgnoredMatch?.status ==
-              PangeaMatchStatusEnum.automatic) {
-        // if the token wasn't found in any IT or IGC step, so it was wa
-        uses.addAll(
-          token.allUses(
-            ConstructUseTypeEnum.wa,
-            metadata,
-            ConstructUseTypeEnum.wa.pointValue,
-          ),
-        );
-        continue;
-      }
-
-      if (tokenStep.acceptedOrIgnoredMatch != null &&
-          tokenStep.acceptedOrIgnoredMatch?.status !=
-              PangeaMatchStatusEnum.accepted) {
-        uses.addAll(token.allUses(ConstructUseTypeEnum.ga, metadata, 0));
-        continue;
-      }
-
-      if (tokenStep.itStep != null) {
-        final selectedChoices = tokenStep.itStep!.continuances
-            .where((choice) => choice.wasClicked)
-            .length;
-        if (selectedChoices == 0) {
-          ErrorHandler.logError(
-            e: "No selected choices for IT step",
-            data: {"token": token.text.content, "step": tokenStep.toJson()},
-          );
-          continue;
-        }
-
-        final corITPoints = ConstructUseTypeEnum.corIt.pointValue;
-        final incITPoints = ConstructUseTypeEnum.incIt.pointValue;
-        final xp = max(0, corITPoints + (incITPoints * (selectedChoices - 1)));
-
-        uses.addAll(token.allUses(ConstructUseTypeEnum.ta, metadata, xp));
-      } else if (tokenStep.acceptedOrIgnoredMatch!.match.choices != null) {
-        final selectedChoices = tokenStep.acceptedOrIgnoredMatch!.match.choices!
-            .where((choice) => choice.selected)
-            .length;
-        if (selectedChoices == 0) {
-          ErrorHandler.logError(
-            e: "No selected choices for IGC step",
-            data: {"token": token.text.content, "step": tokenStep.toJson()},
-          );
-          continue;
-        }
-
-        final corIGCPoints = ConstructUseTypeEnum.corIGC.pointValue;
-        final incIGCPoints = ConstructUseTypeEnum.incIGC.pointValue;
-        final xp = max(
-          0,
-          corIGCPoints + (incIGCPoints * (selectedChoices - 1)),
-        );
-
-        uses.addAll(token.allUses(ConstructUseTypeEnum.ga, metadata, xp));
-      }
+      final step = _getStepForToken(token, choreo);
+      uses.addAll(_getUsesForToken(token, metadata, step));
     }
 
     return uses;
+  }
+
+  List<PangeaToken> _filterTokensToSave(
+    List<PangeaToken> tokens,
+    ChoreoRecordModel? choreo,
+  ) {
+    final List<PangeaToken> tokensToSave = tokens
+        .where((token) => token.lemma.saveVocab)
+        .toList();
+
+    final pastedStrings = choreo?.pastedStrings ?? <String>{};
+
+    return tokensToSave
+        .where(
+          (token) => !pastedStrings.any(
+            (pasted) =>
+                pasted.toLowerCase().contains(token.text.content.toLowerCase()),
+          ),
+        )
+        .toList();
+  }
+
+  ChoreoRecordStepModel? _getStepForToken(
+    PangeaToken token,
+    ChoreoRecordModel choreo,
+  ) {
+    ChoreoRecordStepModel? tokenStep;
+    for (final step in choreo.choreoSteps) {
+      final igcMatch = step.acceptedOrIgnoredMatch;
+      final itStep = step.itStep;
+      if (itStep == null &&
+          (igcMatch == null ||
+              igcMatch.status == PangeaMatchStatusEnum.viewed)) {
+        continue;
+      }
+
+      final choices = step.choices;
+      if (choices == null || choices.isEmpty) {
+        continue;
+      }
+
+      final stepContainsToken =
+          step.selectedChoice?.contains(token.text.content) == true;
+
+      // if the step contains the token, and the token hasn't been assigned a step
+      // (or the assigned step is an IGC step, but an IT step contains the token)
+      // then assign the token to the step
+      if (stepContainsToken &&
+          (tokenStep == null ||
+              (tokenStep.itStep == null && step.itStep != null))) {
+        tokenStep = step;
+      }
+    }
+    return tokenStep;
+  }
+
+  List<OneConstructUse> _getUsesForToken(
+    PangeaToken token,
+    ConstructUseMetaData metadata,
+    ChoreoRecordStepModel? tokenStep,
+  ) {
+    if (tokenStep == null ||
+        tokenStep.acceptedOrIgnoredMatch?.status ==
+            PangeaMatchStatusEnum.automatic) {
+      // if the token wasn't found in any IT or IGC step, so it was wa
+      return token.allUses(
+        ConstructUseTypeEnum.wa,
+        metadata,
+        ConstructUseTypeEnum.wa.pointValue,
+      );
+    }
+
+    if (tokenStep.acceptedOrIgnoredMatch != null &&
+        tokenStep.acceptedOrIgnoredMatch?.status !=
+            PangeaMatchStatusEnum.accepted) {
+      return token.allUses(ConstructUseTypeEnum.ignIGC, metadata, 0);
+    }
+
+    if (tokenStep.itStep != null) {
+      return _getUsesForITToken(token, tokenStep.itStep!, metadata);
+    } else if (tokenStep.acceptedOrIgnoredMatch!.match.choices != null) {
+      return _getUsesForIGCToken(
+        token,
+        tokenStep.acceptedOrIgnoredMatch!,
+        metadata,
+      );
+    }
+
+    return [];
+  }
+
+  List<OneConstructUse> _getUsesForITToken(
+    PangeaToken token,
+    CompletedITStepModel itStep,
+    ConstructUseMetaData metadata,
+  ) {
+    final selectedChoices = itStep.continuances.where(
+      (choice) => choice.wasClicked,
+    );
+
+    if (selectedChoices.isEmpty) {
+      return token.allUses(ConstructUseTypeEnum.ignIt, metadata, 0);
+    }
+
+    final numCorrectChoices = selectedChoices
+        .where((choice) => choice.gold)
+        .length;
+
+    final numIncorrectChoices = selectedChoices.length - numCorrectChoices;
+    return [
+      if (numCorrectChoices > 0)
+        ...token.allUses(
+          ConstructUseTypeEnum.corIt,
+          metadata,
+          ConstructUseTypeEnum.corIt.pointValue * numCorrectChoices,
+        ),
+      if (numIncorrectChoices > 0)
+        ...token.allUses(
+          ConstructUseTypeEnum.incIt,
+          metadata,
+          ConstructUseTypeEnum.incIt.pointValue * numIncorrectChoices,
+        ),
+    ];
+  }
+
+  List<OneConstructUse> _getUsesForIGCToken(
+    PangeaToken token,
+    PangeaMatch match,
+    ConstructUseMetaData metadata,
+  ) {
+    final selectedChoices = match.match.choices!.where(
+      (choice) => choice.selected,
+    );
+
+    if (selectedChoices.isEmpty) {
+      return token.allUses(ConstructUseTypeEnum.ignIGC, metadata, 0);
+    }
+
+    final numCorrectChoices = selectedChoices
+        .where((choice) => choice.type.isSuggestion)
+        .length;
+
+    final numIncorrectChoices = selectedChoices.length - numCorrectChoices;
+
+    return [
+      if (numCorrectChoices > 0)
+        ...token.allUses(
+          ConstructUseTypeEnum.corIGC,
+          metadata,
+          ConstructUseTypeEnum.corIGC.pointValue * numCorrectChoices,
+        ),
+      if (numIncorrectChoices > 0)
+        ...token.allUses(
+          ConstructUseTypeEnum.incIGC,
+          metadata,
+          ConstructUseTypeEnum.incIGC.pointValue * numIncorrectChoices,
+        ),
+    ];
   }
 }

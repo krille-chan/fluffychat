@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use_from_same_package
+
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -222,6 +224,12 @@ class SpaceAnalyticsSummaryModel {
       ConstructUseTypeEnum.wa,
       ConstructUseTypeEnum.ga,
       ConstructUseTypeEnum.ta,
+      ConstructUseTypeEnum.corIt,
+      ConstructUseTypeEnum.incIt,
+      ConstructUseTypeEnum.ignIt,
+      ConstructUseTypeEnum.corIGC,
+      ConstructUseTypeEnum.incIGC,
+      ConstructUseTypeEnum.ignIGC,
     };
 
     final List<String> morphConstructs = [];

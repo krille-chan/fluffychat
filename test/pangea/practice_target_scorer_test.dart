@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use_from_same_package
+
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
@@ -54,18 +56,30 @@ ConstructIdentifier _makeId({String lemma = 'test', String category = 'verb'}) {
 
 void main() {
   group('ConstructUseTypeEnum boolean getters', () {
-    test('isChatUse is true for wa, ga, ta', () {
+    test('isChatUse is true for wa, ga, ta and granular IGC/IT types', () {
       expect(ConstructUseTypeEnum.wa.isChatUse, true);
       expect(ConstructUseTypeEnum.ga.isChatUse, true);
       expect(ConstructUseTypeEnum.ta.isChatUse, true);
+      expect(ConstructUseTypeEnum.corIGC.isChatUse, true);
+      expect(ConstructUseTypeEnum.incIGC.isChatUse, true);
+      expect(ConstructUseTypeEnum.ignIGC.isChatUse, true);
+      expect(ConstructUseTypeEnum.corIt.isChatUse, true);
+      expect(ConstructUseTypeEnum.incIt.isChatUse, true);
+      expect(ConstructUseTypeEnum.ignIt.isChatUse, true);
       expect(ConstructUseTypeEnum.corPA.isChatUse, false);
       expect(ConstructUseTypeEnum.incLM.isChatUse, false);
       expect(ConstructUseTypeEnum.click.isChatUse, false);
     });
 
-    test('isAssistedChatUse is true for ga, ta only', () {
+    test('isAssistedChatUse is true for ga, ta and granular IGC/IT types', () {
       expect(ConstructUseTypeEnum.ga.isAssistedChatUse, true);
       expect(ConstructUseTypeEnum.ta.isAssistedChatUse, true);
+      expect(ConstructUseTypeEnum.corIGC.isAssistedChatUse, true);
+      expect(ConstructUseTypeEnum.incIGC.isAssistedChatUse, true);
+      expect(ConstructUseTypeEnum.ignIGC.isAssistedChatUse, true);
+      expect(ConstructUseTypeEnum.corIt.isAssistedChatUse, true);
+      expect(ConstructUseTypeEnum.incIt.isAssistedChatUse, true);
+      expect(ConstructUseTypeEnum.ignIt.isAssistedChatUse, true);
       expect(ConstructUseTypeEnum.wa.isAssistedChatUse, false);
     });
 
@@ -132,12 +146,22 @@ void main() {
       expect(uses.practiceTier, PracticeTier.active);
     });
 
-    test('ga use (IGC correction) → active', () {
+    test('ignIGC use → active', () {
+      final uses = _makeConstructUses([_makeUse(ConstructUseTypeEnum.ignIGC)]);
+      expect(uses.practiceTier, PracticeTier.active);
+    });
+
+    test('corIt use (IT translation) → active', () {
+      final uses = _makeConstructUses([_makeUse(ConstructUseTypeEnum.corIt)]);
+      expect(uses.practiceTier, PracticeTier.active);
+    });
+
+    test('ga use (legacy IGC correction) → active', () {
       final uses = _makeConstructUses([_makeUse(ConstructUseTypeEnum.ga)]);
       expect(uses.practiceTier, PracticeTier.active);
     });
 
-    test('ta use (IT translation) → active', () {
+    test('ta use (legacy IT translation) → active', () {
       final uses = _makeConstructUses([_makeUse(ConstructUseTypeEnum.ta)]);
       expect(uses.practiceTier, PracticeTier.active);
     });
