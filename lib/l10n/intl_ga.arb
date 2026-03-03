@@ -4639,7 +4639,7 @@
   "playWithAI": "Imir le AI faoi láthair",
   "courseStartDesc": "Tá Bot Pangea réidh chun dul am ar bith!\n\n...ach is fearr foghlaim le cairde!",
   "@@locale": "ga",
-  "@@last_modified": "2026-02-27 12:23:42.906285",
+  "@@last_modified": "2026-03-03 11:18:58.533377",
   "@writeAMessageLangCodes": {
     "type": "String",
     "placeholders": {
@@ -11329,6 +11329,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Aiseolas aistriúcháin",
+  "userUpdatedLearningSettings": "{username} nuashonraigh socruithe foghlama",
+  "youUpdatedLearningSettings": "Nuashonraigh tú do shocruithe foghlama",
+  "userAddedActivityPlan": "{username} chuir plean gníomhaíochta leis",
+  "youAddedActivityPlan": "Chuir tú plean gníomhaíochta leis",
+  "userSentActivitySummary": "{username} sheol achoimre gníomhaíochta",
+  "youSentActivitySummary": "Sheol tú achoimre gníomhaíochta",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

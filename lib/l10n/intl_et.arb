@@ -1,6 +1,6 @@
 {
   "@@locale": "et",
-  "@@last_modified": "2026-02-27 12:22:27.939566",
+  "@@last_modified": "2026-03-03 11:16:40.704501",
   "about": "Rakenduse teave",
   "@about": {
     "type": "String",
@@ -11592,6 +11592,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Tõlke tagasiside",
+  "userUpdatedLearningSettings": "{username} uuendas õppe seadeid",
+  "youUpdatedLearningSettings": "Sa uuendasid oma õppe seadeid",
+  "userAddedActivityPlan": "{username} lisas tegevusplaani",
+  "youAddedActivityPlan": "Sa lisasid tegevusplaani",
+  "userSentActivitySummary": "{username} saatis tegevuse kokkuvõtte",
+  "youSentActivitySummary": "Sa saatsid tegevuse kokkuvõtte",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

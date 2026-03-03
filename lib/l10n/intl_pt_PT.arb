@@ -3327,7 +3327,7 @@
   "selectAll": "Selecionar tudo",
   "deselectAll": "Desmarcar tudo",
   "@@locale": "pt_PT",
-  "@@last_modified": "2026-02-27 12:22:50.283963",
+  "@@last_modified": "2026-03-03 11:17:19.641181",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12486,6 +12486,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Feedback de Tradução",
+  "userUpdatedLearningSettings": "{username} atualizou as configurações de aprendizado",
+  "youUpdatedLearningSettings": "Você atualizou suas configurações de aprendizado",
+  "userAddedActivityPlan": "{username} adicionou um plano de atividades",
+  "youAddedActivityPlan": "Você adicionou um plano de atividades",
+  "userSentActivitySummary": "{username} enviou um resumo de atividades",
+  "youSentActivitySummary": "Você enviou um resumo de atividades",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

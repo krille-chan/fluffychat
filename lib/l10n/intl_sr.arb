@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-27 12:23:40.141969",
+  "@@last_modified": "2026-03-03 11:18:54.878766",
   "about": "О програму",
   "@about": {
     "type": "String",
@@ -12548,6 +12548,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Povratne informacije o prevodu",
+  "userUpdatedLearningSettings": "{username} je ažurirao postavke učenja",
+  "youUpdatedLearningSettings": "Ažurirali ste svoje postavke učenja",
+  "userAddedActivityPlan": "{username} je dodao plan aktivnosti",
+  "youAddedActivityPlan": "Dodali ste plan aktivnosti",
+  "userSentActivitySummary": "{username} je poslao sažetak aktivnosti",
+  "youSentActivitySummary": "Poslali ste sažetak aktivnosti",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

@@ -1,6 +1,6 @@
 {
   "@@locale": "ar",
-  "@@last_modified": "2026-02-27 12:23:01.172808",
+  "@@last_modified": "2026-03-03 11:17:39.813719",
   "about": "حول",
   "@about": {
     "type": "String",
@@ -11668,6 +11668,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "تعليقات الترجمة",
+  "userUpdatedLearningSettings": "{username} قام بتحديث إعدادات التعلم",
+  "youUpdatedLearningSettings": "لقد قمت بتحديث إعدادات التعلم",
+  "userAddedActivityPlan": "{username} أضاف خطة نشاط",
+  "youAddedActivityPlan": "لقد أضفت خطة نشاط",
+  "userSentActivitySummary": "{username} أرسل ملخص النشاط",
+  "youSentActivitySummary": "لقد أرسلت ملخص النشاط",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

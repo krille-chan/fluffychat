@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-27 12:22:51.603823",
+  "@@last_modified": "2026-03-03 11:17:24.156003",
   "about": "關於",
   "@about": {
     "type": "String",
@@ -11457,6 +11457,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "翻譯反饋",
+  "userUpdatedLearningSettings": "{username} 更新了學習設置",
+  "youUpdatedLearningSettings": "您更新了學習設置",
+  "userAddedActivityPlan": "{username} 添加了一個活動計劃",
+  "youAddedActivityPlan": "您添加了一個活動計劃",
+  "userSentActivitySummary": "{username} 發送了一個活動摘要",
+  "youSentActivitySummary": "您發送了一個活動摘要",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

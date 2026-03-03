@@ -2460,7 +2460,7 @@
   "playWithAI": "Za zdaj igrajte z AI-jem",
   "courseStartDesc": "Pangea Bot je pripravljen kadarkoli!\n\n...ampak je bolje učiti se s prijatelji!",
   "@@locale": "sl",
-  "@@last_modified": "2026-02-27 12:22:32.222833",
+  "@@last_modified": "2026-03-03 11:16:48.530834",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12533,6 +12533,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Povratne informacije o prevodu",
+  "userUpdatedLearningSettings": "{username} je posodobil nastavitve učenja",
+  "youUpdatedLearningSettings": "Posodobili ste svoje nastavitve učenja",
+  "userAddedActivityPlan": "{username} je dodal načrt aktivnosti",
+  "youAddedActivityPlan": "Dodali ste načrt aktivnosti",
+  "userSentActivitySummary": "{username} je poslal povzetek aktivnosti",
+  "youSentActivitySummary": "Poslali ste povzetek aktivnosti",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

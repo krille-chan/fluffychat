@@ -1954,7 +1954,7 @@
   "playWithAI": "Joca con le IA pro ora",
   "courseStartDesc": "Pangea Bot es preste a comenzar a qualunque momento!\n\n...ma apprender es melior con amicos!",
   "@@locale": "ia",
-  "@@last_modified": "2026-02-27 12:22:19.124682",
+  "@@last_modified": "2026-03-03 11:16:27.115216",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12530,6 +12530,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Feedback de Traducción",
+  "userUpdatedLearningSettings": "{username} actualizó la configuración de aprendizaje",
+  "youUpdatedLearningSettings": "Has actualizado tu configuración de aprendizaje",
+  "userAddedActivityPlan": "{username} agregó un plan de actividad",
+  "youAddedActivityPlan": "Has agregado un plan de actividad",
+  "userSentActivitySummary": "{username} envió un resumen de actividad",
+  "youSentActivitySummary": "Has enviado un resumen de actividad",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

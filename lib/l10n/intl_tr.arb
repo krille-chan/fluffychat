@@ -1,6 +1,6 @@
 {
   "@@locale": "tr",
-  "@@last_modified": "2026-02-27 12:23:03.199696",
+  "@@last_modified": "2026-03-03 11:17:43.720408",
   "about": "Hakkında",
   "@about": {
     "type": "String",
@@ -11658,6 +11658,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Çeviri Geri Bildirimi",
+  "userUpdatedLearningSettings": "{username} öğrenme ayarlarını güncelledi",
+  "youUpdatedLearningSettings": "Öğrenme ayarlarını güncelledin",
+  "userAddedActivityPlan": "{username} bir etkinlik planı ekledi",
+  "youAddedActivityPlan": "Bir etkinlik planı ekledin",
+  "userSentActivitySummary": "{username} bir etkinlik özeti gönderdi",
+  "youSentActivitySummary": "Bir etkinlik özeti gönderdin",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

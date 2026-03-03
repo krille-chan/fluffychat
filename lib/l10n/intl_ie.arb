@@ -4000,7 +4000,7 @@
   "playWithAI": "Joca con AI pro ora",
   "courseStartDesc": "Pangea Bot es preste a partir a qualunque momento!\n\n...ma apprender es melior con amicos!",
   "@@locale": "ie",
-  "@@last_modified": "2026-02-27 12:22:08.111962",
+  "@@last_modified": "2026-03-03 11:16:18.104771",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12066,6 +12066,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Fíoróireacht aistriúcháin",
+  "userUpdatedLearningSettings": "D'athraigh {username} socruithe foghlama",
+  "youUpdatedLearningSettings": "D'athraigh tú do shocruithe foghlama",
+  "userAddedActivityPlan": "Chuir {username} plean gníomhaíochta leis",
+  "youAddedActivityPlan": "Chuir tú plean gníomhaíochta leis",
+  "userSentActivitySummary": "Chuir {username} achoimre gníomhaíochta ar fáil",
+  "youSentActivitySummary": "Chuir tú achoimre gníomhaíochta ar fáil",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

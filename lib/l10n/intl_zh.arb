@@ -1,6 +1,6 @@
 {
   "@@locale": "zh",
-  "@@last_modified": "2026-02-27 12:23:18.517226",
+  "@@last_modified": "2026-03-03 11:18:10.746520",
   "about": "关于",
   "@about": {
     "type": "String",
@@ -11318,6 +11318,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "翻译反馈",
+  "userUpdatedLearningSettings": "{username} 更新了学习设置",
+  "youUpdatedLearningSettings": "您更新了学习设置",
+  "userAddedActivityPlan": "{username} 添加了活动计划",
+  "youAddedActivityPlan": "您添加了活动计划",
+  "userSentActivitySummary": "{username} 发送了活动摘要",
+  "youSentActivitySummary": "您发送了活动摘要",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

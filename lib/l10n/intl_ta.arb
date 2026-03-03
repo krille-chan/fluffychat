@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-27 12:23:13.510421",
+  "@@last_modified": "2026-03-03 11:17:59.891882",
   "acceptedTheInvitation": "👍 {username} அழைப்பை ஏற்றுக்கொண்டது",
   "@acceptedTheInvitation": {
     "type": "String",
@@ -11438,6 +11438,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "மொழிபெயர்ப்பு கருத்து",
+  "userUpdatedLearningSettings": "{username} கற்றல் அமைப்புகளை புதுப்பித்தார்",
+  "youUpdatedLearningSettings": "நீங்கள் உங்கள் கற்றல் அமைப்புகளை புதுப்பித்தீர்கள்",
+  "userAddedActivityPlan": "{username} ஒரு செயல்பாட்டு திட்டத்தை சேர்த்தார்",
+  "youAddedActivityPlan": "நீங்கள் ஒரு செயல்பாட்டு திட்டத்தை சேர்த்தீர்கள்",
+  "userSentActivitySummary": "{username} ஒரு செயல்பாட்டு சுருக்கத்தை அனுப்பினார்",
+  "youSentActivitySummary": "நீங்கள் ஒரு செயல்பாட்டு சுருக்கத்தை அனுப்பினீர்கள்",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

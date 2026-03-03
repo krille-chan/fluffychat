@@ -3495,7 +3495,7 @@
   "setupChatBackup": "Chat zaxirasini sozlash",
   "@setupChatBackup": {},
   "@@locale": "uz",
-  "@@last_modified": "2026-02-27 12:22:53.595075",
+  "@@last_modified": "2026-03-03 11:17:27.937047",
   "noMoreResultsFound": "Boshqa natijalar topilmadi",
   "chatSearchedUntil": "Chat {time} gacha qidirildi",
   "federationBaseUrl": "Federatsiya Asos URL",
@@ -11212,6 +11212,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Tarjima Fikri",
+  "userUpdatedLearningSettings": "{username} o'qish sozlamalarini yangiladi",
+  "youUpdatedLearningSettings": "Siz o'qish sozlamalaringizni yangiladingiz",
+  "userAddedActivityPlan": "{username} faoliyat rejasini qo'shdi",
+  "youAddedActivityPlan": "Siz faoliyat rejasini qo'shdingiz",
+  "userSentActivitySummary": "{username} faoliyat xulosasini yubordi",
+  "youSentActivitySummary": "Siz faoliyat xulosasini yubordingiz",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

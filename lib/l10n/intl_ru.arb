@@ -1,6 +1,6 @@
 {
   "@@locale": "ru",
-  "@@last_modified": "2026-02-27 12:23:35.945707",
+  "@@last_modified": "2026-03-03 11:18:48.349091",
   "about": "О проекте",
   "@about": {
     "type": "String",
@@ -11318,6 +11318,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Обратная связь по переводу",
+  "userUpdatedLearningSettings": "{username} обновил настройки обучения",
+  "youUpdatedLearningSettings": "Вы обновили свои настройки обучения",
+  "userAddedActivityPlan": "{username} добавил план активности",
+  "youAddedActivityPlan": "Вы добавили план активности",
+  "userSentActivitySummary": "{username} отправил сводку активности",
+  "youSentActivitySummary": "Вы отправили сводку активности",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

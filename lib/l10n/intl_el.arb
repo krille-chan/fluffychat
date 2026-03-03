@@ -4476,7 +4476,7 @@
   "playWithAI": "Παίξτε με την Τεχνητή Νοημοσύνη προς το παρόν",
   "courseStartDesc": "Ο Pangea Bot είναι έτοιμος να ξεκινήσει οποιαδήποτε στιγμή!\n\n...αλλά η μάθηση είναι καλύτερη με φίλους!",
   "@@locale": "el",
-  "@@last_modified": "2026-02-27 12:23:28.161217",
+  "@@last_modified": "2026-03-03 11:18:36.292085",
   "@checkList": {
     "type": "String",
     "placeholders": {}
@@ -12477,6 +12477,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Σχόλια Μετάφρασης",
+  "userUpdatedLearningSettings": "{username} ενημέρωσε τις ρυθμίσεις μάθησης",
+  "youUpdatedLearningSettings": "Ενημερώσατε τις ρυθμίσεις μάθησης σας",
+  "userAddedActivityPlan": "{username} πρόσθεσε ένα σχέδιο δραστηριότητας",
+  "youAddedActivityPlan": "Προσθέσατε ένα σχέδιο δραστηριότητας",
+  "userSentActivitySummary": "{username} έστειλε μια σύνοψη δραστηριότητας",
+  "youSentActivitySummary": "Στείλατε μια σύνοψη δραστηριότητας",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

@@ -2590,7 +2590,7 @@
   "playWithAI": "ამ დროისთვის ითამაშეთ AI-თან",
   "courseStartDesc": "Pangea Bot მზადაა ნებისმიერ დროს გასასვლელად!\n\n...მაგრამ სწავლა უკეთესია მეგობრებთან ერთად!",
   "@@locale": "ka",
-  "@@last_modified": "2026-02-27 12:23:38.157366",
+  "@@last_modified": "2026-03-03 11:18:51.909285",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12482,6 +12482,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "თარგმანის უკუკავშირი",
+  "userUpdatedLearningSettings": "{username} განაახლა სწავლის პარამეტრები",
+  "youUpdatedLearningSettings": "თქვენ განაახლეთ თქვენი სწავლის პარამეტრები",
+  "userAddedActivityPlan": "{username} დაამატა აქტივობის გეგმა",
+  "youAddedActivityPlan": "თქვენ დაამატეთ აქტივობის გეგმა",
+  "userSentActivitySummary": "{username} გამოგიგზავნათ აქტივობის რეზიუმე",
+  "youSentActivitySummary": "თქვენ გამოგიგზავნათ აქტივობის რეზიუმე",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

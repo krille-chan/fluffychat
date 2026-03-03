@@ -1,6 +1,6 @@
 {
   "@@locale": "pl",
-  "@@last_modified": "2026-02-27 12:23:24.344739",
+  "@@last_modified": "2026-03-03 11:18:29.469250",
   "about": "O aplikacji",
   "@about": {
     "type": "String",
@@ -11440,6 +11440,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Opinie o tłumaczeniu",
+  "userUpdatedLearningSettings": "{username} zaktualizował ustawienia nauki",
+  "youUpdatedLearningSettings": "Zaktualizowałeś swoje ustawienia nauki",
+  "userAddedActivityPlan": "{username} dodał plan aktywności",
+  "youAddedActivityPlan": "Dodałeś plan aktywności",
+  "userSentActivitySummary": "{username} wysłał podsumowanie aktywności",
+  "youSentActivitySummary": "Wysłałeś podsumowanie aktywności",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

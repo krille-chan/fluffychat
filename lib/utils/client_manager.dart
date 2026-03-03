@@ -12,8 +12,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/utils/custom_http_client.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -166,13 +166,13 @@ abstract class ClientManager {
           ? (client) => client.refreshAccessToken()
           : null,
       // #Pangea
-      shouldReplaceRoomLastEvent: (_, event) {
-        return event.content.tryGet(ModelKey.transcription) == null &&
-            !event.type.startsWith("p.") &&
-            !event.type.startsWith("pangea.") &&
-            event.type != EventTypes.RoomPinnedEvents &&
-            event.type != EventTypes.SpaceChild &&
-            event.type != EventTypes.SpaceParent;
+      shouldReplaceRoomLastEvent: (_, event) => event.isVisibleLastEvent,
+      enableLastEventRefresh: false,
+      roomPreviewLastEvents: {
+        PangeaEventTypes.botOptions,
+        PangeaEventTypes.activityPlan,
+        PangeaEventTypes.activitySummary,
+        EventTypes.RoomMember,
       },
       // Pangea#
     );

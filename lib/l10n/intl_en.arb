@@ -5359,5 +5359,35 @@
   "sessionFull": "Too late! This activity is full.",
   "returnToCourse": "Return to course",
   "returnHome": "Return home",
-  "translationFeedback": "Translation Feedback"
+  "translationFeedback": "Translation Feedback",
+  "userUpdatedLearningSettings": "{username} updated learning settings",
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "youUpdatedLearningSettings": "You updated your learning settings",
+  "userAddedActivityPlan": "{username} added an activity plan",
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "youAddedActivityPlan": "You added an activity plan",
+  "userSentActivitySummary": "{username} sent an activity summary",
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "youSentActivitySummary": "You sent an activity summary"
 }

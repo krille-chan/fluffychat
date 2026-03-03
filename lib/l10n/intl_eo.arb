@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-27 12:23:34.605003",
+  "@@last_modified": "2026-03-03 11:18:45.265226",
   "about": "Prio",
   "@about": {
     "type": "String",
@@ -12541,6 +12541,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Tradukkomento",
+  "userUpdatedLearningSettings": "{username} ĝisdatigis lernagordojn",
+  "youUpdatedLearningSettings": "Vi ĝisdatigis viajn lernagordojn",
+  "userAddedActivityPlan": "{username} aldonis aktivplanon",
+  "youAddedActivityPlan": "Vi aldonis aktivplanon",
+  "userSentActivitySummary": "{username} sendis aktivsumaron",
+  "youSentActivitySummary": "Vi sendis aktivsumaron",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

@@ -374,4 +374,25 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String get pollHasBeenEnded => l10n.pollHasBeenEnded;
+
+  @override
+  String userUpdatedLearningSettings(String senderName) =>
+      l10n.userUpdatedLearningSettings(senderName);
+
+  @override
+  String get youUpdatedLearningSettings => l10n.youUpdatedLearningSettings;
+
+  @override
+  String userAddedActivityPlan(String senderName) =>
+      l10n.userAddedActivityPlan(senderName);
+
+  @override
+  String get youAddedActivityPlan => l10n.youAddedActivityPlan;
+
+  @override
+  String userSentActivitySummary(String senderName) =>
+      l10n.userSentActivitySummary(senderName);
+
+  @override
+  String get youSentActivitySummary => l10n.youSentActivitySummary;
 }

@@ -1926,7 +1926,7 @@
   "playWithAI": "Leg med AI for nu",
   "courseStartDesc": "Pangea Bot er klar til at starte når som helst!\n\n...men læring er bedre med venner!",
   "@@locale": "da",
-  "@@last_modified": "2026-02-27 12:21:56.303075",
+  "@@last_modified": "2026-03-03 11:15:59.565537",
   "@aboutHomeserver": {
     "type": "String",
     "placeholders": {
@@ -12518,6 +12518,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Oversættelsesfeedback",
+  "userUpdatedLearningSettings": "{username} opdaterede læringsindstillinger",
+  "youUpdatedLearningSettings": "Du opdaterede dine læringsindstillinger",
+  "userAddedActivityPlan": "{username} tilføjede en aktivitetsplan",
+  "youAddedActivityPlan": "Du tilføjede en aktivitetsplan",
+  "userSentActivitySummary": "{username} sendte et aktivitetsresumé",
+  "youSentActivitySummary": "Du sendte et aktivitetsresumé",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

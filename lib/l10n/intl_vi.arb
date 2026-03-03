@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-27 12:23:11.360379",
+  "@@last_modified": "2026-03-03 11:17:54.562414",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -7035,6 +7035,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Phản hồi dịch thuật",
+  "userUpdatedLearningSettings": "{username} đã cập nhật cài đặt học tập",
+  "youUpdatedLearningSettings": "Bạn đã cập nhật cài đặt học tập của mình",
+  "userAddedActivityPlan": "{username} đã thêm một kế hoạch hoạt động",
+  "youAddedActivityPlan": "Bạn đã thêm một kế hoạch hoạt động",
+  "userSentActivitySummary": "{username} đã gửi một tóm tắt hoạt động",
+  "youSentActivitySummary": "Bạn đã gửi một tóm tắt hoạt động",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

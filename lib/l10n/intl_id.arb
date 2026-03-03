@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-27 12:22:00.506173",
+  "@@last_modified": "2026-03-03 11:16:06.635249",
   "setAsCanonicalAlias": "Atur sebagai alias utama",
   "@setAsCanonicalAlias": {
     "type": "String",
@@ -11424,6 +11424,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Umpan Balik Terjemahan",
+  "userUpdatedLearningSettings": "{username} memperbarui pengaturan pembelajaran",
+  "youUpdatedLearningSettings": "Anda memperbarui pengaturan pembelajaran Anda",
+  "userAddedActivityPlan": "{username} menambahkan rencana aktivitas",
+  "youAddedActivityPlan": "Anda menambahkan rencana aktivitas",
+  "userSentActivitySummary": "{username} mengirimkan ringkasan aktivitas",
+  "youSentActivitySummary": "Anda mengirimkan ringkasan aktivitas",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/choreographer/choreo_record_model.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/events/extensions/room_member_change_extension.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
@@ -90,4 +91,35 @@ extension PangeaEvent on Event {
 
   bool get isActivityMessage =>
       content[ModelKey.messageTags] == ModelKey.messageTagActivityPlan;
+
+  bool get isVisibleLastEvent {
+    if (content.tryGet(ModelKey.transcription) != null) {
+      return false;
+    }
+
+    if ({
+      EventTypes.RoomPinnedEvents,
+      EventTypes.SpaceChild,
+      EventTypes.SpaceParent,
+    }.contains(type)) {
+      return false;
+    }
+
+    if (type == EventTypes.RoomMember) {
+      return roomMemberChangeType.isVisibleLastEvent;
+    }
+
+    if (type == PangeaEventTypes.botOptions) {
+      return senderId == room.client.userID;
+    }
+
+    if (type.startsWith("p.") || type.startsWith("pangea.")) {
+      return {
+        PangeaEventTypes.activityPlan,
+        PangeaEventTypes.activitySummary,
+      }.contains(type);
+    }
+
+    return true;
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-27 12:23:26.112167",
+  "@@last_modified": "2026-03-03 11:18:32.231087",
   "about": "Om",
   "@about": {
     "type": "String",
@@ -11930,6 +11930,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Översättningsfeedback",
+  "userUpdatedLearningSettings": "{username} uppdaterade inlärningsinställningar",
+  "youUpdatedLearningSettings": "Du uppdaterade dina inlärningsinställningar",
+  "userAddedActivityPlan": "{username} lade till en aktivitetsplan",
+  "youAddedActivityPlan": "Du lade till en aktivitetsplan",
+  "userSentActivitySummary": "{username} skickade en aktivitetsöversikt",
+  "youSentActivitySummary": "Du skickade en aktivitetsöversikt",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

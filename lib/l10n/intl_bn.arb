@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-27 12:23:20.380952",
+  "@@last_modified": "2026-03-03 11:18:21.188952",
   "about": "সম্পর্কে",
   "@about": {
     "type": "String",
@@ -12062,6 +12062,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "অনুবাদ প্রতিক্রিয়া",
+  "userUpdatedLearningSettings": "{username} শেখার সেটিংস আপডেট করেছে",
+  "youUpdatedLearningSettings": "আপনি আপনার শেখার সেটিংস আপডেট করেছেন",
+  "userAddedActivityPlan": "{username} একটি কার্যকলাপ পরিকল্পনা যোগ করেছে",
+  "youAddedActivityPlan": "আপনি একটি কার্যকলাপ পরিকল্পনা যোগ করেছেন",
+  "userSentActivitySummary": "{username} একটি কার্যকলাপ সারসংক্ষেপ পাঠিয়েছে",
+  "youSentActivitySummary": "আপনি একটি কার্যকলাপ সারসংক্ষেপ পাঠিয়েছেন",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

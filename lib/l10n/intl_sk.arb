@@ -1,6 +1,6 @@
 {
   "@@locale": "sk",
-  "@@last_modified": "2026-02-27 12:22:05.630664",
+  "@@last_modified": "2026-03-03 11:16:14.252147",
   "about": "O aplikácii",
   "@about": {
     "type": "String",
@@ -12536,6 +12536,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Spätná väzba k prekladu",
+  "userUpdatedLearningSettings": "{username} aktualizoval nastavenia učenia",
+  "youUpdatedLearningSettings": "Aktualizovali ste svoje nastavenia učenia",
+  "userAddedActivityPlan": "{username} pridal plán aktivít",
+  "youAddedActivityPlan": "Pridali ste plán aktivít",
+  "userSentActivitySummary": "{username} poslal súhrn aktivít",
+  "youSentActivitySummary": "Poslali ste súhrn aktivít",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

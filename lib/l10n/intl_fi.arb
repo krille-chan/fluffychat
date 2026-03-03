@@ -4604,7 +4604,7 @@
   "playWithAI": "Leiki tekoälyn kanssa nyt",
   "courseStartDesc": "Pangea Bot on valmis milloin tahansa!\n\n...mutta oppiminen on parempaa ystävien kanssa!",
   "@@locale": "fi",
-  "@@last_modified": "2026-02-27 12:21:54.872687",
+  "@@last_modified": "2026-03-03 11:15:55.553675",
   "@notificationRuleJitsi": {
     "type": "String",
     "placeholders": {}
@@ -11377,6 +11377,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Käännöspalaute",
+  "userUpdatedLearningSettings": "{username} päivitti oppimisasetuksia",
+  "youUpdatedLearningSettings": "Päivitit oppimisasetuksesi",
+  "userAddedActivityPlan": "{username} lisäsi aktiviteettisuunnitelman",
+  "youAddedActivityPlan": "Lisäsit aktiviteettisuunnitelman",
+  "userSentActivitySummary": "{username} lähetti aktiviteettiyhteenvetoon",
+  "youSentActivitySummary": "Lähetit aktiviteettiyhteenvetoon",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

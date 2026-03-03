@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-27 12:22:17.196188",
+  "@@last_modified": "2026-03-03 11:16:24.145306",
   "about": "אודות",
   "@about": {
     "type": "String",
@@ -12501,6 +12501,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "משוב על תרגום",
+  "userUpdatedLearningSettings": "{username} עדכן את הגדרות הלמידה",
+  "youUpdatedLearningSettings": "עדכנת את הגדרות הלמידה שלך",
+  "userAddedActivityPlan": "{username} הוסיף תוכנית פעילות",
+  "youAddedActivityPlan": "הוספת תוכנית פעילות",
+  "userSentActivitySummary": "{username} שלח סיכום פעילות",
+  "youSentActivitySummary": "שלחת סיכום פעילות",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

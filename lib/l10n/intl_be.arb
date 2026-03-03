@@ -4619,7 +4619,7 @@
   "playWithAI": "Пакуль гуляйце з ШІ",
   "courseStartDesc": "Pangea Bot гатовы да працы ў любы час!\n\n...але навучанне лепш з сябрамі!",
   "@@locale": "be",
-  "@@last_modified": "2026-02-27 12:22:44.541648",
+  "@@last_modified": "2026-03-03 11:17:09.610346",
   "@ignore": {
     "type": "String",
     "placeholders": {}
@@ -11337,6 +11337,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Зваротная сувязь па перакладзе",
+  "userUpdatedLearningSettings": "{username} абнавіў налады навучання",
+  "youUpdatedLearningSettings": "Вы абнавілі свае налады навучання",
+  "userAddedActivityPlan": "{username} дадаў план дзейнасці",
+  "youAddedActivityPlan": "Вы дабавілі план дзейнасці",
+  "userSentActivitySummary": "{username} адправіў рэзюмэ дзейнасці",
+  "youSentActivitySummary": "Вы адправілі рэзюмэ дзейнасці",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

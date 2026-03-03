@@ -1,6 +1,6 @@
 {
   "@@locale": "eu",
-  "@@last_modified": "2026-02-27 12:22:24.260020",
+  "@@last_modified": "2026-03-03 11:16:33.051895",
   "about": "Honi buruz",
   "@about": {
     "type": "String",
@@ -11318,6 +11318,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Itzulpen Feedback",
+  "userUpdatedLearningSettings": "{username} ikasketa ezarpenak eguneratu ditu",
+  "youUpdatedLearningSettings": "Zuk ikasketa ezarpenak eguneratu dituzu",
+  "userAddedActivityPlan": "{username} jarduera plana gehitu du",
+  "youAddedActivityPlan": "Zuk jarduera plana gehitu duzu",
+  "userSentActivitySummary": "{username} jarduera laburpena bidali du",
+  "youSentActivitySummary": "Zuk jarduera laburpena bidali duzu",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

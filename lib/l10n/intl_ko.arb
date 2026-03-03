@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-27 12:21:46.139305",
+  "@@last_modified": "2026-03-03 11:15:45.580921",
   "about": "소개",
   "@about": {
     "type": "String",
@@ -11544,6 +11544,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "번역 피드백",
+  "userUpdatedLearningSettings": "{username}이 학습 설정을 업데이트했습니다",
+  "youUpdatedLearningSettings": "당신이 학습 설정을 업데이트했습니다",
+  "userAddedActivityPlan": "{username}이 활동 계획을 추가했습니다",
+  "youAddedActivityPlan": "당신이 활동 계획을 추가했습니다",
+  "userSentActivitySummary": "{username}이 활동 요약을 보냈습니다",
+  "youSentActivitySummary": "당신이 활동 요약을 보냈습니다",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

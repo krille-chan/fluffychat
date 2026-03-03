@@ -1,6 +1,6 @@
 {
   "@@locale": "hu",
-  "@@last_modified": "2026-02-27 12:21:58.762966",
+  "@@last_modified": "2026-03-03 11:16:02.751840",
   "about": "Névjegy",
   "@about": {
     "type": "String",
@@ -11455,6 +11455,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Fordítási visszajelzés",
+  "userUpdatedLearningSettings": "{username} frissítette a tanulási beállításokat",
+  "youUpdatedLearningSettings": "Frissítetted a tanulási beállításaidat",
+  "userAddedActivityPlan": "{username} hozzáadott egy aktivitási tervet",
+  "youAddedActivityPlan": "Hozzáadtál egy aktivitási tervet",
+  "userSentActivitySummary": "{username} elküldött egy aktivitási összefoglalót",
+  "youSentActivitySummary": "Elküldted az aktivitási összefoglalót",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

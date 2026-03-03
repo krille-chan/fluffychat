@@ -1,6 +1,6 @@
 {
   "@@locale": "fr",
-  "@@last_modified": "2026-02-27 12:23:45.139248",
+  "@@last_modified": "2026-03-03 11:19:01.669385",
   "about": "À propos",
   "@about": {
     "type": "String",
@@ -11724,6 +11724,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Retour de traduction",
+  "userUpdatedLearningSettings": "{username} a mis à jour les paramètres d'apprentissage",
+  "youUpdatedLearningSettings": "Vous avez mis à jour vos paramètres d'apprentissage",
+  "userAddedActivityPlan": "{username} a ajouté un plan d'activité",
+  "youAddedActivityPlan": "Vous avez ajouté un plan d'activité",
+  "userSentActivitySummary": "{username} a envoyé un résumé d'activité",
+  "youSentActivitySummary": "Vous avez envoyé un résumé d'activité",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

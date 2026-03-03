@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-02-27 12:22:02.332584",
+  "@@last_modified": "2026-03-03 11:16:10.669284",
   "about": "Despre",
   "@about": {
     "type": "String",
@@ -12187,6 +12187,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Feedback de traducere",
+  "userUpdatedLearningSettings": "{username} a actualizat setările de învățare",
+  "youUpdatedLearningSettings": "Ai actualizat setările tale de învățare",
+  "userAddedActivityPlan": "{username} a adăugat un plan de activitate",
+  "youAddedActivityPlan": "Ai adăugat un plan de activitate",
+  "userSentActivitySummary": "{username} a trimis un rezumat al activității",
+  "youSentActivitySummary": "Ai trimis un rezumat al activității",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

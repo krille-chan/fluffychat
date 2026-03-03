@@ -1916,7 +1916,7 @@
   "playWithAI": "ఇప్పుడే AI తో ఆడండి",
   "courseStartDesc": "పాంజియా బాట్ ఎప్పుడైనా సిద్ధంగా ఉంటుంది!\n\n...కానీ స్నేహితులతో నేర్చుకోవడం మెరుగైనది!",
   "@@locale": "te",
-  "@@last_modified": "2026-02-27 12:23:05.628176",
+  "@@last_modified": "2026-03-03 11:17:47.087332",
   "@setCustomPermissionLevel": {
     "type": "String",
     "placeholders": {}
@@ -12541,6 +12541,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "అనువాద ఫీడ్‌బ్యాక్",
+  "userUpdatedLearningSettings": "{username} అభ్యాస సెట్టింగులను నవీకరించారు",
+  "youUpdatedLearningSettings": "మీరు మీ అభ్యాస సెట్టింగులను నవీకరించారు",
+  "userAddedActivityPlan": "{username} ఒక కార్యకలాప ప్రణాళికను జోడించారు",
+  "youAddedActivityPlan": "మీరు ఒక కార్యకలాప ప్రణాళికను జోడించారు",
+  "userSentActivitySummary": "{username} ఒక కార్యకలాప సారాంశాన్ని పంపించారు",
+  "youSentActivitySummary": "మీరు ఒక కార్యకలాప సారాంశాన్ని పంపించారు",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

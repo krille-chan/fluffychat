@@ -1852,7 +1852,7 @@
   "selectAll": "全選",
   "deselectAll": "取消全選",
   "@@locale": "yue",
-  "@@last_modified": "2026-02-27 12:22:34.197254",
+  "@@last_modified": "2026-03-03 11:16:51.885772",
   "@ignoreUser": {
     "type": "String",
     "placeholders": {}
@@ -12548,6 +12548,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "翻譯反饋",
+  "userUpdatedLearningSettings": "{username} 更新了學習設置",
+  "youUpdatedLearningSettings": "你更新了你的學習設置",
+  "userAddedActivityPlan": "{username} 添加了一個活動計劃",
+  "youAddedActivityPlan": "你添加了一個活動計劃",
+  "userSentActivitySummary": "{username} 發送了一個活動摘要",
+  "youSentActivitySummary": "你發送了一個活動摘要",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }

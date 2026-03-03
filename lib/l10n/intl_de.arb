@@ -1,6 +1,6 @@
 {
   "@@locale": "de",
-  "@@last_modified": "2026-02-27 12:22:30.095800",
+  "@@last_modified": "2026-03-03 11:16:43.677868",
   "alwaysUse24HourFormat": "true",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
@@ -11307,6 +11307,53 @@
     "placeholders": {}
   },
   "@returnHome": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "translationFeedback": "Übersetzungsfeedback",
+  "userUpdatedLearningSettings": "{username} hat die Lern Einstellungen aktualisiert",
+  "youUpdatedLearningSettings": "Du hast deine Lern Einstellungen aktualisiert",
+  "userAddedActivityPlan": "{username} hat einen Aktivitätsplan hinzugefügt",
+  "youAddedActivityPlan": "Du hast einen Aktivitätsplan hinzugefügt",
+  "userSentActivitySummary": "{username} hat eine Aktivitätszusammenfassung gesendet",
+  "youSentActivitySummary": "Du hast eine Aktivitätszusammenfassung gesendet",
+  "@translationFeedback": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youUpdatedLearningSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youAddedActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userSentActivitySummary": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@youSentActivitySummary": {
     "type": "String",
     "placeholders": {}
   }
