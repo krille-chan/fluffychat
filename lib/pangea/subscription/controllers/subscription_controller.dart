@@ -293,7 +293,7 @@ class SubscriptionController with ChangeNotifier {
       accessToken: _pangeaController.userController.accessToken,
     );
     final String reqUrl = Uri.encodeFull(
-      "${PApiUrls.paymentLink}?pangea_user_id=$_userID&duration=${duration.value}&redeem=$isPromo",
+      "${PApiUrls.paymentLink}?duration=${duration.value}&redeem=$isPromo",
     );
     final Response res = await req.get(url: reqUrl);
     final json = jsonDecode(res.body);
