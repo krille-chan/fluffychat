@@ -73,7 +73,7 @@ jobs:
       - run: ./scripts/add-firebase-messaging.sh
       - run: flutter build apk --debug --target-platform android-x64
       - name: Upload Debug APK
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: debug-apk-x64
           path: build/app/outputs/flutter-apk/app-debug.apk
@@ -95,7 +95,7 @@ jobs:
         run: ./scripts/prepare-web.sh
       - run: flutter build web --dart-define=WITH_SEMANTICS=true
       - name: Upload Web Build
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: Web Build
           path: build/web
@@ -246,7 +246,7 @@ jobs:
             cp flutter_logs.txt ~/.maestro/tests/
       - name: Upload Flutter and Maestro logs
         if: failure()
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: maestro-logs
           path: ~/.maestro/tests
