@@ -45,9 +45,11 @@ jobs:
       - run: flutter test
 
   build_debug_apk:
+    needs: [ code_tests ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: ./.github/actions/free_up_space
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v5
         with:
@@ -57,12 +59,27 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - uses: ./.github/actions/free_up_space
       - uses: moonrepo/setup-rust@v1
-      - run: flutter pub get
-      - run: flutter build apk --debug --target-platform android-arm64
+        with:
+          cache: true
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
+      - run: ./scripts/add-firebase-messaging.sh
+      - run: flutter build apk --debug --target-platform android-x64
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v5
+        with:
+          name: debug-apk-x64
+          path: build/app/outputs/flutter-apk/app-debug.apk
 
   build_debug_web:
+    needs: [ code_tests ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -76,9 +93,15 @@ jobs:
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
-      - run: flutter build web
+      - run: flutter build web --dart-define=WITH_SEMANTICS=true
+      - name: Upload Web Build
+        uses: actions/upload-artifact@v5
+        with:
+          name: Web Build
+          path: build/web
 
   build_debug_linux:
+    needs: [ code_tests ]
     strategy:
       matrix:
         arch: [ x64, arm64 ]
@@ -97,6 +120,7 @@ jobs:
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
 
   build_debug_ios:
+    needs: [ code_tests ]
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v6
@@ -115,3 +139,115 @@ jobs:
           sed -i '' 's,//<GOOGLE_SERVICES>,,g' lib/utils/background_push.dart
       - run: flutter pub get
       - run: flutter build ios --no-codesign
+
+  integration_test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: [ build_debug_apk ]
+    strategy:
+      matrix:
+        api-level: [34]
+    env:
+      ANDROID_USER_HOME: /home/runner/.android
+      ANDROID_EMULATOR_HOME: /home/runner/.android
+      ANDROID_AVD_HOME: /home/runner/.android/avd
+      AVD_CONFIG_PATH: "~/.android/avd/test.avd/config.ini"
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v7
+        with:
+          name: debug-apk-x64
+          path: .
+      - uses: ./.github/actions/free_up_space
+      # https://github.blog/changelog/2023-02-23-hardware-accelerated-android-virtualization-on-actions-windows-and-linux-larger-hosted-runners/
+      - name: Enable KVM group perms
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: AVD cache
+        uses: actions/cache@v4
+        id: avd-cache
+        with:
+          path: ~/.android/*
+          key: avd-${{ matrix.api-level }}-integration_docker
+      - name: create AVD and generate snapshot for caching
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: reactivecircus/android-emulator-runner@d94c3fbe4fe6a29e4a5ba47c12fb47677c73656b
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: google_apis
+          arch: x86_64
+          cores: 16
+          ndk: 28.2.13676358
+          force-avd-creation: false
+          disk-size: 4096M
+          ram-size: 4096M
+          sdcard-path-or-size: 4096M
+          emulator-options: -no-window -wipe-data -accel on -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: |
+            cat ${{ env.AVD_CONFIG_PATH }}
+
+            sed -i.bak 's/hw.lcd.density = .*/hw.lcd.density=420/' ${{ env.AVD_CONFIG_PATH }}
+            sed -i.bak 's/hw.lcd.height = .*/hw.lcd.height=1920/' ${{ env.AVD_CONFIG_PATH }}
+            sed -i.bak 's/hw.lcd.width = .*/hw.lcd.width=1080/' ${{ env.AVD_CONFIG_PATH }}
+
+            if ! grep -q "hw.lcd.density"  ${{ env.AVD_CONFIG_PATH }} && echo "hw.lcd.density = 420" >>  ${{ env.AVD_CONFIG_PATH }}; then :; fi
+            if ! grep -q "hw.lcd.height"  ${{ env.AVD_CONFIG_PATH }} && echo "hw.lcd.height = 1920" >>  ${{ env.AVD_CONFIG_PATH }}; then :; fi
+            if ! grep -q "hw.lcd.width"  ${{ env.AVD_CONFIG_PATH }} && echo "hw.lcd.width = 1080" >>  ${{ env.AVD_CONFIG_PATH }}; then :; fi
+
+            echo "Emulator settings (${{ env.AVD_CONFIG_PATH }})"
+            cat ${{ env.AVD_CONFIG_PATH }}
+            echo "Generated AVD snapshot for caching."
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - uses: remarkablemark/setup-maestro-cli@v1
+      - name: Load integration test env
+        run: cat integration_test/data/integration_users.env >> $GITHUB_ENV
+      - name: Prepare Homeserver
+        run: |
+          docker run -d --name synapse --tmpfs /data \
+          --volume="$(pwd)/integration_test/synapse/data/homeserver.yaml":/data/homeserver.yaml:rw \
+          --volume="$(pwd)/integration_test/synapse/data/localhost.log.config":/data/localhost.log.config:rw \
+          -p 80:80 matrixdotorg/synapse:latest
+          while ! curl -XGET "http://$HOMESERVER/_matrix/client/v3/login" >/dev/null 2>/dev/null; do
+          echo "Waiting for homeserver to be available... (GET http://$HOMESERVER/_matrix/client/v3/login)"
+            sleep 2
+          done
+
+          echo "Homeserver is online!"
+
+          # create users
+          curl -fS --retry 3 -XPOST -d "{\"username\":\"$USER1_NAME\", \"password\":\"$USER1_PW\", \"inhibit_login\":true, \"auth\": {\"type\":\"m.login.dummy\"}}" "http://$HOMESERVER/_matrix/client/r0/register"
+          curl -fS --retry 3 -XPOST -d "{\"username\":\"$USER2_NAME\", \"password\":\"$USER2_PW\", \"inhibit_login\":true, \"auth\": {\"type\":\"m.login.dummy\"}}" "http://$HOMESERVER/_matrix/client/r0/register"
+
+      - name: Integration tests
+        id: integration_tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: google_apis
+          arch: x86_64
+          cores: 16
+          ndk: 28.2.13676358
+          force-avd-creation: false
+          disk-size: 4096M
+          ram-size: 4096M
+          sdcard-path-or-size: 4096M
+          emulator-options: -no-snapshot-save -no-window -wipe-data -accel on -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: |
+            flutter run --use-application-binary=$PWD/app-debug.apk > flutter_logs.txt 2>&1 &
+            FLUTTER_PID=$!
+            sleep 10
+            maestro test integration_test/login.yaml --env HOMESERVER=10.0.2.2 --env USER1_NAME=${USER1_NAME} --env USER1_PW=${USER1_PW}
+            kill $FLUTTER_PID 2>/dev/null || true
+            cp flutter_logs.txt ~/.maestro/tests/
+      - name: Upload Flutter and Maestro logs
+        if: failure()
+        uses: actions/upload-artifact@v5
+        with:
+          name: maestro-logs
+          path: ~/.maestro/tests
+          if-no-files-found: ignore

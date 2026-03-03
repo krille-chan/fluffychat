@@ -204,31 +204,39 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                 ),
                 const SizedBox(height: 16),
                 if (_supportsSecureStorage)
-                  CheckboxListTile.adaptive(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    value: _storeInSecureStorage,
-                    activeColor: theme.colorScheme.primary,
-                    onChanged: (b) {
-                      setState(() {
-                        _storeInSecureStorage = b;
-                      });
-                    },
-                    title: Text(_getSecureStorageLocalizedName()),
-                    subtitle: Text(
-                      L10n.of(context).storeInSecureStorageDescription,
+                  Semantics(
+                    identifier: 'store_in_secure_storage',
+                    child: CheckboxListTile.adaptive(
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                      ),
+                      value: _storeInSecureStorage,
+                      activeColor: theme.colorScheme.primary,
+                      onChanged: (b) {
+                        setState(() {
+                          _storeInSecureStorage = b;
+                        });
+                      },
+                      title: Text(_getSecureStorageLocalizedName()),
+                      subtitle: Text(
+                        L10n.of(context).storeInSecureStorageDescription,
+                      ),
                     ),
                   ),
                 const SizedBox(height: 16),
-                CheckboxListTile.adaptive(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  value: _recoveryKeyCopied,
-                  activeColor: theme.colorScheme.primary,
-                  onChanged: (b) {
-                    FluffyShare.share(key!, context);
-                    setState(() => _recoveryKeyCopied = true);
-                  },
-                  title: Text(L10n.of(context).copyToClipboard),
-                  subtitle: Text(L10n.of(context).saveKeyManuallyDescription),
+                Semantics(
+                  identifier: 'copy_to_clipboard',
+                  child: CheckboxListTile.adaptive(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    value: _recoveryKeyCopied,
+                    activeColor: theme.colorScheme.primary,
+                    onChanged: (b) {
+                      FluffyShare.share(key!, context);
+                      setState(() => _recoveryKeyCopied = true);
+                    },
+                    title: Text(L10n.of(context).copyToClipboard),
+                    subtitle: Text(L10n.of(context).saveKeyManuallyDescription),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton.icon(
