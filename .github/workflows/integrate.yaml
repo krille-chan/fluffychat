@@ -154,7 +154,7 @@ jobs:
       AVD_CONFIG_PATH: "~/.android/avd/test.avd/config.ini"
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           name: debug-apk-x64
           path: .
