@@ -36,6 +36,7 @@ import 'package:unifiedpush_ui/unifiedpush_ui.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/main.dart';
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/join_codes/knock_room_extension.dart';
@@ -523,7 +524,10 @@ class BackgroundPush {
       }
     }
     await setupPusher(
-      gatewayUrl: AppSettings.pushNotificationsGatewayUrl.value,
+      // #Pangea
+      // gatewayUrl: AppSettings.pushNotificationsGatewayUrl.value,
+      gatewayUrl: Environment.pushGatewayUrl,
+      // Pangea#
       token: _fcmToken,
     );
   }

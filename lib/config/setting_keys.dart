@@ -23,14 +23,11 @@ enum AppSettings<T> {
   showNoGoogle<bool>('chat.fluffy.show_no_google', false),
   unifiedPushRegistered<bool>('chat.fluffy.unifiedpush.registered', false),
   unifiedPushEndpoint<String>('chat.fluffy.unifiedpush.endpoint', ''),
-  pushNotificationsGatewayUrl<String>(
-    'pushNotificationsGatewayUrl',
-    // #Pangea
-    // 'https://push.fluffychat.im/_matrix/push/v1/notify',
-    'https://sygnal.pangea.chat/_matrix/push/v1/notify',
-    // Pangea#
-  ),
   // #Pangea
+  // pushNotificationsGatewayUrl<String>(
+  //   'pushNotificationsGatewayUrl',
+  //   'https://push.fluffychat.im/_matrix/push/v1/notify',
+  // ),
   // pushNotificationsPusherFormat<String>(
   //   'pushNotificationsPusherFormat',
   //   'event_id_only',

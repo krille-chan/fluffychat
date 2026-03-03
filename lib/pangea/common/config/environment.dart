@@ -81,6 +81,10 @@ class Environment {
     return envEntry;
   }
 
+  static String get pushGatewayUrl => isStagingEnvironment
+      ? 'https://sygnal.staging.pangea.chat/_matrix/push/v1/notify'
+      : 'https://sygnal.pangea.chat/_matrix/push/v1/notify';
+
   static String get choreoApiKey {
     return appConfigOverride?.choreoApiKey ??
         dotenv.env['CHOREO_API_KEY'] ??
