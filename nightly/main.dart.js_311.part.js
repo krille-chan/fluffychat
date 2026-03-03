@@ -670,17 +670,17 @@ gpz(){return"Desbotouse o proceso."},
 gpW(d){return"Unirse"},
 gpE(){return"Busca ou escribe o enderezo do servidor de inicio"},
 gq_(){return"ID en Matrix"},
-goR(){return"Set power level"},
-gpZ(){return"Make moderator"},
-gpY(){return"Make admin"},
-gq3(){return"Remove moderator rights"},
-gq2(){return"Remove admin rights"},
-gq1(){return"Power level"},
-gpF(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdN(){return"Owner"},
+goR(){return"Establecer responsabilidade"},
+gpZ(){return"Facer moderadora"},
+gpY(){return"Facer admin"},
+gq3(){return"Retirar permiso de moderaci\xf3n"},
+gq2(){return"Retirar permiso de administraci\xf3n"},
+gq1(){return"Nivel responsabilidade"},
+gpF(){return"Os niveis de responsabilidade definen o que pode facer unha usuaria na sala, normalmente var\xeda de 0 a 100."},
+gdN(){return"Propietaria"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FZ,C.aD)})()
 B.dJ(b.typeUniverse,JSON.parse('{"FZ":{"aD":[]}}'))};
-(a=>{a["dNFHJMbicWVMdpDlr/KTZ+f70gw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+fFl0fB9OnSm22KGpe3AoDMQiKQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_311.part.js.map
