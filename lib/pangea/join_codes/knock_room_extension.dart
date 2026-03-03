@@ -14,6 +14,10 @@ extension KnockRoomExtension on Room {
     await join();
     await client.onJoinKnockedRoom(id);
   }
+
+  Future<void> acceptKnock(String userID) async {
+    await invite(userID, reason: "invite_on_knock");
+  }
 }
 
 extension KnockClientExtension on Client {

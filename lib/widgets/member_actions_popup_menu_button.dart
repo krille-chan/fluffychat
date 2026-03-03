@@ -8,6 +8,7 @@ import 'package:fluffychat/pangea/analytics_misc/level_display_name.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/bot/widgets/bot_chat_settings_dialog.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/join_codes/knock_room_extension.dart';
 import 'package:fluffychat/pangea/user/about_me_display.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/permission_slider_dialog.dart';
@@ -316,7 +317,10 @@ void showMemberActionsPopupMenu({
     case _MemberActions.approve:
       await showFutureLoadingDialog(
         context: context,
-        future: () => user.room.invite(user.id),
+        // #Pangea
+        // future: () => user.room.invite(user.id),
+        future: () => user.room.acceptKnock(user.id),
+        // Pangea#
       );
       return;
     case _MemberActions.kick:
