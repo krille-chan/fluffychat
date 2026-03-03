@@ -26,7 +26,7 @@ class RecordingInputRow extends StatelessWidget {
         crossAxisAlignment: .center,
         mainAxisAlignment: .spaceBetween,
         children: [
-          const SizedBox(width: 4),
+          const SizedBox(width: 8),
           Container(
             alignment: .center,
             width: 48,
