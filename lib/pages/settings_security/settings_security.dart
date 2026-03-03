@@ -79,7 +79,9 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       delay: false,
       future: () =>
           Matrix.of(context).client.uiaRequestBackground<IdServerUnbindResult?>(
-            (auth) => Matrix.of(context).client.deactivateAccount(auth: auth),
+            (auth) => Matrix.of(
+              context,
+            ).client.deactivateAccount(auth: auth, erase: true),
           ),
     );
 
