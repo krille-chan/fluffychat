@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK7(){return new A.FJ(B.dc("bn"))},
-FJ:function FJ(d){this.a=d}}
+cK6(){return new A.FI(B.dc("bn"))},
+FI:function FI(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[7],A)
-A.FJ.prototype={
+A.FI.prototype={
 gkP(){return"\u09a8\u09be"},
 gjF(){return"\u09aa\u09be\u09b8\u0993\u09df\u09be\u09b0\u09cd\u09a1 \u0986\u09ac\u09be\u09b0 \u09b2\u09bf\u0996\u09cb"},
 gmy(){return"\u0987\u09ae\u09c7\u099c \u09ab\u09be\u0987\u09b2 \u09a8\u09be\u0964"},
@@ -290,7 +290,7 @@ gfM(){return"Report message"},
 gjH(){return"Room has been upgraded"},
 ged(){return"Room version"},
 gfS(){return"Save file"},
-gdW(d){return"Search"},
+gdX(d){return"Search"},
 geR(){return"Security"},
 gfJ(){return"Recovery key"},
 gjw(){return"Recovery key lost?"},
@@ -313,7 +313,7 @@ gkp(){return"Set as main alias"},
 gh3(){return"Set chat description"},
 ges(){return"Set status"},
 geu(){return"Settings"},
-gdX(d){return"Share"},
+gdY(d){return"Share"},
 kv(d){return d+" shared their location"},
 gku(){return"Share location"},
 gnx(){return"Show status messages from other users"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FJ,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FJ":{"aD":[]}}'))};
-(a=>{a["AVoWvjNlXAdiSbX6z1fkGvO7qLc="]=a.current})($__dart_deferred_initializers__);
+y(A.FI,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FI":{"aD":[]}}'))};
+(a=>{a["nmrGBKD8GrGIa1vEufTFnuCZSps="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_246.part.js.map

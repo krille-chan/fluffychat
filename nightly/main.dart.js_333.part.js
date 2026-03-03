@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKw(){return new A.G7(B.dc("it"))},
-G7:function G7(d){this.a=d}}
+cKv(){return new A.G6(B.dc("it"))},
+G6:function G6(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[32],A)
-A.G7.prototype={
+A.G6.prototype={
 gkP(){return"disattivato"},
 gjF(){return"Ripeti password"},
 gmy(){return"Non \xe8 un file immagine."},
@@ -290,7 +290,7 @@ gfM(){return"Segnala il messaggio"},
 gjH(){return"La stanza \xe8 stata aggiornata"},
 ged(){return"Versione della stanza"},
 gfS(){return"Salva file"},
-gdW(d){return"Cerca"},
+gdX(d){return"Cerca"},
 geR(){return"Sicurezza"},
 gfJ(){return"Chiave di recupero"},
 gjw(){return"Chiave di recupero smarrita?"},
@@ -313,7 +313,7 @@ gkp(){return"Imposta come alias principale"},
 gh3(){return"Imposta la descrizione della chat"},
 ges(){return"Imposta lo stato"},
 geu(){return"Impostazioni"},
-gdX(d){return"Condividi"},
+gdY(d){return"Condividi"},
 kv(d){return d+" ha condiviso la sua posizione"},
 gku(){return"Condividi posizione"},
 gnx(){return"Mostra i messaggi di stato di altri utenti"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G7,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G7":{"aD":[]}}'))};
-(a=>{a["bQgLjtfdf3np+2aFJQj/f+pQPbI="]=a.current})($__dart_deferred_initializers__);
+y(A.G6,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"G6":{"aD":[]}}'))};
+(a=>{a["qdEDEe9X31av4eLzqhGF68D7fwg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_333.part.js.map

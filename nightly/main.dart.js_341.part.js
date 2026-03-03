@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKC(){return new A.Gd(B.dc("lv"))},
-Gd:function Gd(d){this.a=d}}
+cKB(){return new A.Gc(B.dc("lv"))},
+Gc:function Gc(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[38],A)
-A.Gd.prototype={
+A.Gc.prototype={
 gkP(){return"n\u0113"},
 gjF(){return"Atk\u0101rtot paroli"},
 gmy(){return"Nav att\u0113la datne."},
@@ -290,7 +290,7 @@ gfM(){return"Zi\u0146ot par zi\u0146u"},
 gjH(){return"Istaba tika atjaunin\u0101ta"},
 ged(){return"Istabas versija"},
 gfS(){return"Saglab\u0101t datni"},
-gdW(d){return"Mekl\u0113t"},
+gdX(d){return"Mekl\u0113t"},
 geR(){return"Dro\u0161\u012bba"},
 gfJ(){return"Atkopes atsl\u0113ga"},
 gjw(){return"Pazaud\u0113ta atkopes atsl\u0113ga?"},
@@ -313,7 +313,7 @@ gkp(){return"Iestat\u012bt k\u0101 galveno aizst\u0101jv\u0101rdu"},
 gh3(){return"Iestat\u012bt t\u0113rz\u0113\u0161anas aprakstu"},
 ges(){return"Iestat\u012bt st\u0101vokli"},
 geu(){return"Iestat\u012bjumi"},
-gdX(d){return"Kop\u012bgot"},
+gdY(d){return"Kop\u012bgot"},
 kv(d){return d+" kop\u012bgoja savu atra\u0161an\u0101s vietu"},
 gku(){return"Kop\u012bgot atra\u0161an\u0101s vietu"},
 gnx(){return"R\u0101d\u012bt citu lietot\u0101ju st\u0101vok\u013ca zi\u0146as"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gd,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gd":{"aD":[]}}'))};
-(a=>{a["Ni1xQXpWoK23GoYjlHUY7S/+GB4="]=a.current})($__dart_deferred_initializers__);
+y(A.Gc,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gc":{"aD":[]}}'))};
+(a=>{a["B+5qH+FHzl5dL1aGKO7FEkUobcE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_341.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKP(){return new A.Gp(B.dc("sv"))},
-Gp:function Gp(d){this.a=d}}
+cKO(){return new A.Go(B.dc("sv"))},
+Go:function Go(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[48],A)
-A.Gp.prototype={
+A.Go.prototype={
 gkP(){return"falskt"},
 gjF(){return"Upprepa l\xf6senord"},
 gmy(){return"Inte en bildfil."},
@@ -290,7 +290,7 @@ gfM(){return"Rapportera meddelande"},
 gjH(){return"Rummet har blivit uppgraderat"},
 ged(){return"Rum version"},
 gfS(){return"Spara fil"},
-gdW(d){return"S\xf6k"},
+gdX(d){return"S\xf6k"},
 geR(){return"S\xe4kerhet"},
 gfJ(){return"\xc5terst\xe4llningsnyckel"},
 gjw(){return"Borttappad \xe5terst\xe4llningsnyckel?"},
@@ -313,7 +313,7 @@ gkp(){return"S\xe4tt som prim\xe4rt alias"},
 gh3(){return"\xc4ndra chattens beskrivning"},
 ges(){return"St\xe4ll in status"},
 geu(){return"Inst\xe4llningar"},
-gdX(d){return"Dela"},
+gdY(d){return"Dela"},
 kv(d){return d+" delade sin position"},
 gku(){return"Dela plats"},
 gnx(){return"Visa statusmeddelanden fr\xe5n andra anv\xe4ndare"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gp,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gp":{"aD":[]}}'))};
-(a=>{a["Bn+8kol65giF1P/BvvCTCBVwTZY="]=a.current})($__dart_deferred_initializers__);
+y(A.Go,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Go":{"aD":[]}}'))};
+(a=>{a["ysKpYatuiKQs9OFh3WhJ08c7quE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_356.part.js.map

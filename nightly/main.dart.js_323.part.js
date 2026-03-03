@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKs(){return new A.G3(B.dc("hu"))},
-G3:function G3(d){this.a=d}}
+cKr(){return new A.G2(B.dc("hu"))},
+G2:function G2(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[28],A)
-A.G3.prototype={
+A.G2.prototype={
 gkP(){return""},
 gjF(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gmy(){return"Nem k\xe9p f\xe1jl."},
@@ -290,7 +290,7 @@ gfM(){return"\xdczenet jelent\xe9se"},
 gjH(){return"A szoba friss\xedt\xe9sre ker\xfclt"},
 ged(){return"Szoba verzi\xf3"},
 gfS(){return"F\xe1jl ment\xe9se"},
-gdW(d){return"Keres\xe9s"},
+gdX(d){return"Keres\xe9s"},
 geR(){return"Biztons\xe1g"},
 gfJ(){return"Vissza\xe1ll\xedt\xf3 kulcs"},
 gjw(){return"Elveszett vissza\xe1ll\xedt\xf3 kulcs?"},
@@ -313,7 +313,7 @@ gkp(){return"Be\xe1ll\xedt\xe1s alap\xe9rtelmezett \xe1ln\xe9vk\xe9nt"},
 gh3(){return"Cseveg\xe9s le\xedr\xe1s be\xe1ll\xedt\xe1sa"},
 ges(){return"\xc1llapot be\xe1ll\xedt\xe1sa"},
 geu(){return"Be\xe1ll\xedt\xe1sok"},
-gdX(d){return"Megoszt\xe1s"},
+gdY(d){return"Megoszt\xe1s"},
 kv(d){return d+" megosztotta a poz\xedci\xf3j\xe1t"},
 gku(){return"Poz\xedci\xf3 megoszt\xe1sa"},
 gnx(){return"M\xe1s felhaszn\xe1l\xf3k \xe1llapot \xfczeneteinek megjelen\xedt\xe9se"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G3,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G3":{"aD":[]}}'))};
-(a=>{a["lH8ROaq4i9OperMGsmrpm99QyhM="]=a.current})($__dart_deferred_initializers__);
+y(A.G2,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"G2":{"aD":[]}}'))};
+(a=>{a["N25+hIq6S6NX7Yvzl7kATAh72rU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_323.part.js.map

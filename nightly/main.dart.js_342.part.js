@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKD(){return new A.Ge(B.dc("nb"))},
-Ge:function Ge(d){this.a=d}}
+cKC(){return new A.Gd(B.dc("nb"))},
+Gd:function Gd(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[39],A)
-A.Ge.prototype={
+A.Gd.prototype={
 gkP(){return"false"},
 gjF(){return"Gjenta passord"},
 gmy(){return"Ikke en bildefil."},
@@ -290,7 +290,7 @@ gfM(){return"Rapporter melding"},
 gjH(){return"Rommet har blitt oppgradert"},
 ged(){return"Rom versjon"},
 gfS(){return"Lagre fil"},
-gdW(d){return"S\xf8k"},
+gdX(d){return"S\xf8k"},
 geR(){return"Sikkerhet"},
 gfJ(){return"Gjenopprettingsn\xf8kkel"},
 gjw(){return"Mistet gjenopprettingsn\xf8kkel?"},
@@ -313,7 +313,7 @@ gkp(){return"Angi som hovedalias"},
 gh3(){return"Sett chat beskrivelse"},
 ges(){return"Angi status"},
 geu(){return"Innstilinger"},
-gdX(d){return"Del"},
+gdY(d){return"Del"},
 kv(d){return d+" delte posisjonen"},
 gku(){return"Del lokasjon"},
 gnx(){return"Vis statusmeldinger fra andre brukere"},
@@ -680,7 +680,7 @@ gpF(){return"Styrkeniv\xe5er definerer hva et medlem har lov til \xe5 gj\xf8re i
 gdN(){return"Eier"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ge,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Ge":{"aD":[]}}'))};
-(a=>{a["dw3fRX3MrAZMdmKtvvPX87QacqE="]=a.current})($__dart_deferred_initializers__);
+y(A.Gd,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gd":{"aD":[]}}'))};
+(a=>{a["qIoX985UM5kwyWzZwTU1CYtkuyY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_342.part.js.map

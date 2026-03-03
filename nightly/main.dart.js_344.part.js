@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKE(){return new A.Gf(B.dc("nl"))},
-Gf:function Gf(d){this.a=d}}
+cKD(){return new A.Ge(B.dc("nl"))},
+Ge:function Ge(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[40],A)
-A.Gf.prototype={
+A.Ge.prototype={
 gkP(){return"true"},
 gjF(){return"Wachtwoord herhalen"},
 gmy(){return"Geen afbeeldingsbestand."},
@@ -290,7 +290,7 @@ gfM(){return"Bericht rapporteren"},
 gjH(){return"Chat is ge\xfcpgrade"},
 ged(){return"Kamerversie"},
 gfS(){return"Bestand opslaan"},
-gdW(d){return"Zoeken"},
+gdX(d){return"Zoeken"},
 geR(){return"Beveiliging"},
 gfJ(){return"Herstelsleutel"},
 gjw(){return"Herstelsleutel verloren?"},
@@ -313,7 +313,7 @@ gkp(){return"Als hoofdalias instellen"},
 gh3(){return"Onderwerp instellen"},
 ges(){return"Status instellen"},
 geu(){return"Instellingen"},
-gdX(d){return"Delen"},
+gdY(d){return"Delen"},
 kv(d){return d+" heeft deze locatie gedeeld"},
 gku(){return"Locatie delen"},
 gnx(){return"Statusberichten van andere personen tonen"},
@@ -680,7 +680,7 @@ gpF(){return"Rechtenniveau's defini\xebren wat een persoon mag doen in deze chat
 gdN(){return"Eigenaar"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gf,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gf":{"aD":[]}}'))};
-(a=>{a["a9ZeedH4jNIwua+yEwzctZZU3AE="]=a.current})($__dart_deferred_initializers__);
+y(A.Ge,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Ge":{"aD":[]}}'))};
+(a=>{a["I6P2f3GEqs0TMPpUGffLq/OK3NM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_344.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKV(){return new A.Gv(B.dc("uz"))},
-Gv:function Gv(d){this.a=d}}
+cKU(){return new A.Gu(B.dc("uz"))},
+Gu:function Gu(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[54],A)
-A.Gv.prototype={
+A.Gu.prototype={
 gkP(){return"true"},
 gjF(){return"Parolni takrorlang"},
 gmy(){return"Rasm fayli emas."},
@@ -290,7 +290,7 @@ gfM(){return"Xabar berish"},
 gjH(){return"Xona takomillashtirildi"},
 ged(){return"Guruh versiyasi"},
 gfS(){return"Fayl saqlash"},
-gdW(d){return"Qidiruv"},
+gdX(d){return"Qidiruv"},
 geR(){return"Xavfsizlik"},
 gfJ(){return"Tiklash kaliti"},
 gjw(){return"Tiklash kaliti yo\u2018qolib qoldimi?"},
@@ -313,7 +313,7 @@ gkp(){return"Asosiy taxallus sifatida belgilash"},
 gh3(){return"Suhbat tavsifini sozlash"},
 ges(){return"Holatni sozlash"},
 geu(){return"Sozlamalar"},
-gdX(d){return"Bo\u2018lishmoq"},
+gdY(d){return"Bo\u2018lishmoq"},
 kv(d){return d+" joylashuvini ulashdi"},
 gku(){return"Joylashuvni ulashish"},
 gnx(){return"Boshqa foydalanuvchilarning holat xabarlarini ko\u2018rsatish"},
@@ -680,8 +680,8 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gv,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gv":{"aD":[]}}'))
+x(A.Gu,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gu":{"aD":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["tNWCYu8M1xeVUH2XgM48ZZNO/mc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["askYDwVkjaLtfR90Q/E5wPldXhQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

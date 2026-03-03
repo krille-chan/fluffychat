@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKg(){return new A.FS(B.dc("es"))},
-FS:function FS(d){this.a=d}}
+cKf(){return new A.FR(B.dc("es"))},
+FR:function FR(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[16],A)
-A.FS.prototype={
+A.FR.prototype={
 gkP(){return"true"},
 gjF(){return"Repite la contrase\xf1a"},
 gmy(){return"El archivo no es una imagen."},
@@ -290,7 +290,7 @@ gfM(){return"Mensaje de informe"},
 gjH(){return"La sala ha subido de categor\xeda"},
 ged(){return"Versi\xf3n de sala"},
 gfS(){return"Guardar el archivo"},
-gdW(d){return"Buscar"},
+gdX(d){return"Buscar"},
 geR(){return"Seguridad"},
 gfJ(){return"Clave de recuperaci\xf3n"},
 gjw(){return"\xbfPerdi\xf3 su clave de recuperaci\xf3n?"},
@@ -313,7 +313,7 @@ gkp(){return"Fijar alias principal"},
 gh3(){return"Establecer descripci\xf3n del chat"},
 ges(){return"Establecer estado"},
 geu(){return"Ajustes"},
-gdX(d){return"Compartir"},
+gdY(d){return"Compartir"},
 kv(d){return d+" comparti\xf3 la ubicaci\xf3n"},
 gku(){return"Compartir ubicaci\xf3n"},
 gnx(){return"Mostrar mensajes de estado de otros usuarios"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FS,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FS":{"aD":[]}}'))};
-(a=>{a["Iv7ks0jWmZeXAmfW7pzyHKCvAh0="]=a.current})($__dart_deferred_initializers__);
+y(A.FR,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FR":{"aD":[]}}'))};
+(a=>{a["wVNcwY8tGPzepjjn1F3seiAj8cY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_293.part.js.map

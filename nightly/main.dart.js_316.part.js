@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKr(){return new A.G2(B.dc("hr"))},
-G2:function G2(d){this.a=d}}
+cKq(){return new A.G1(B.dc("hr"))},
+G1:function G1(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[27],A)
-A.G2.prototype={
+A.G1.prototype={
 gkP(){return"true"},
 gjF(){return"Ponovi lozinku"},
 gmy(){return"Nije slikovna datoteka."},
@@ -290,7 +290,7 @@ gfM(){return"Prijavi poruku"},
 gjH(){return"Soba je nadogra\u0111ena"},
 ged(){return"Verzija sobe"},
 gfS(){return"Spremi datoteku"},
-gdW(d){return"Tra\u017ei"},
+gdX(d){return"Tra\u017ei"},
 geR(){return"Sigurnost"},
 gfJ(){return"Klju\u010d za obnavljanje"},
 gjw(){return"Izgubio/la si klju\u010d za obnavljanje?"},
@@ -313,7 +313,7 @@ gkp(){return"Postavi kao glavni pseudonim"},
 gh3(){return"Postavi opis rzgovora"},
 ges(){return"Postavi stanje"},
 geu(){return"Postavke"},
-gdX(d){return"Dijeli"},
+gdY(d){return"Dijeli"},
 kv(d){return d+" je dijelio/la svoje mjesto"},
 gku(){return"Dijeli lokaciju"},
 gnx(){return"Prika\u017ei poruke stanja od drugih korisnika"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G2,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G2":{"aD":[]}}'))};
-(a=>{a["YNCkncrMk4Y6ceRoMQzBS1qJAvs="]=a.current})($__dart_deferred_initializers__);
+y(A.G1,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"G1":{"aD":[]}}'))};
+(a=>{a["lY4BpeBHyLO0C+0mH2yfcP+PiZ8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

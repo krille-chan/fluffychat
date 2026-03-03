@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKz(){return new A.Ga(B.dc("kab"))},
-Ga:function Ga(d){this.a=d}}
+cKy(){return new A.G9(B.dc("kab"))},
+G9:function G9(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[35],A)
-A.Ga.prototype={
+A.G9.prototype={
 gkP(){return"false"},
 gjF(){return"Ales awal n u\u025beddi"},
 gmy(){return"Ma\u010d\u010di d afaylu n tugna."},
@@ -290,7 +290,7 @@ gfM(){return"Mmel-d izen"},
 gjH(){return"Taxxamt tettwaleqqem"},
 ged(){return"Lqem n texxamt"},
 gfS(){return"Sekles afaylu"},
-gdW(d){return"Nadi"},
+gdX(d){return"Nadi"},
 geR(){return"Ta\u0263ellist"},
 gfJ(){return"Tasarut n tririt"},
 gjw(){return"Tasarut n tririt te\u025breq?"},
@@ -313,7 +313,7 @@ gkp(){return"Sbadu-t d taza\u1e93lut tagejdant"},
 gh3(){return"Sbadu aglam n udiwenni"},
 ges(){return"Sbadu addad"},
 geu(){return"I\u0263ewwaren"},
-gdX(d){return"B\u1e0du"},
+gdY(d){return"B\u1e0du"},
 kv(d){return d+" yeb\u1e0da adig-is"},
 gku(){return"B\u1e0du adig"},
 gnx(){return"Show status messages from other users"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Amli"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ga,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Ga":{"aD":[]}}'))};
-(a=>{a["AvsMf7tpyEM/nzQr1EOlWta+Fdc="]=a.current})($__dart_deferred_initializers__);
+y(A.G9,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"G9":{"aD":[]}}'))};
+(a=>{a["2U2STeepDDWqYkT+ZhLCQ/OTT+0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_338.part.js.map

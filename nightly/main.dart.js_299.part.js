@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKi(){return new A.FU(B.dc("eu"))},
-FU:function FU(d){this.a=d}}
+cKh(){return new A.FT(B.dc("eu"))},
+FT:function FT(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[18],A)
-A.FU.prototype={
+A.FT.prototype={
 gkP(){return"false"},
 gjF(){return"Idatzi berriro pasahitza"},
 gmy(){return"Ez da irudi-fitxategia."},
@@ -290,7 +290,7 @@ gfM(){return"Salatu mezua"},
 gjH(){return"Gela bertsio-berritu da"},
 ged(){return"Gelaren bertsioa"},
 gfS(){return"Gorde fitxategia"},
-gdW(d){return"Bilatu"},
+gdX(d){return"Bilatu"},
 geR(){return"Segurtasuna"},
 gfJ(){return"Berreskuratze-gakoa"},
 gjw(){return"Berreskuratze-gakoa galdu duzu?"},
@@ -313,7 +313,7 @@ gkp(){return"Ezarri alias nagusi bezala"},
 gh3(){return"Ezarri txataren deskribapena"},
 ges(){return"Ezarri egoera"},
 geu(){return"Ezarpenak"},
-gdX(d){return"Partekatu"},
+gdY(d){return"Partekatu"},
 kv(d){return d+"(e)k kokapena partekatu du"},
 gku(){return"Partekatu kokapena"},
 gnx(){return"Erakutsi beste erabiltzaileen egoera-mezuak"},
@@ -680,8 +680,8 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FU,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FU":{"aD":[]}}'))
+x(A.FT,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FT":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["H+druBWmnpMtwrgsKUkoHfFJW0Q="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["pKY759gR+GCGtl/XdhnwDYjwH/s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

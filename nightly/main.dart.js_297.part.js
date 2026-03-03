@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKh(){return new A.FT(B.dc("et"))},
-FT:function FT(d){this.a=d}}
+cKg(){return new A.FS(B.dc("et"))},
+FS:function FS(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[17],A)
-A.FT.prototype={
+A.FS.prototype={
 gkP(){return"false"},
 gjF(){return"Korda salas\xf5na"},
 gmy(){return"See pole pildifail."},
@@ -290,7 +290,7 @@ gfM(){return"Teata s\xf5numist"},
 gjH(){return"Jututoa vesrioon on uuendatud"},
 ged(){return"Jututoa versioon"},
 gfS(){return"Salvesta fail"},
-gdW(d){return"Otsi"},
+gdX(d){return"Otsi"},
 geR(){return"Turvalisus"},
 gfJ(){return"Taastev\xf5ti"},
 gjw(){return"Kas taasetv\xf5ti on kadunud?"},
@@ -313,7 +313,7 @@ gkp(){return"M\xe4\xe4ra p\xf5hinimeks"},
 gh3(){return"Lisa vestluse kirjeldus"},
 ges(){return"M\xe4\xe4ra olek"},
 geu(){return"Seadistused"},
-gdX(d){return"Jaga"},
+gdY(d){return"Jaga"},
 kv(d){return d+" jagas oma asukohta"},
 gku(){return"Jaga asukohta"},
 gnx(){return"N\xe4ita teiste kasutajate olekuteateid"},
@@ -680,7 +680,7 @@ gpF(){return"\xd5iguste tase on \xfcks v\xf5imalusi kirjeldamaks seda, mida kasu
 gdN(){return"Omanik"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FT,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FT":{"aD":[]}}'))};
-(a=>{a["rGUBd3ErqAYFb+twlxVbeklBCfY="]=a.current})($__dart_deferred_initializers__);
+y(A.FS,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FS":{"aD":[]}}'))};
+(a=>{a["M9GKg8l5M5QAikgUcIGN5dU/hNM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

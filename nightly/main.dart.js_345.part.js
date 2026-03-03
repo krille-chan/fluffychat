@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKF(){return new A.Gg(B.dc("pl"))},
-Gg:function Gg(d){this.a=d}}
+cKE(){return new A.Gf(B.dc("pl"))},
+Gf:function Gf(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[41],A)
-A.Gg.prototype={
+A.Gf.prototype={
 gkP(){return"false"},
 gjF(){return"Powt\xf3rz has\u0142o"},
 gmy(){return"To nie jest plik obrazu."},
@@ -290,7 +290,7 @@ gfM(){return"Zg\u0142o\u015b wiadomo\u015b\u0107"},
 gjH(){return"Pok\xf3j zosta\u0142 zaktualizowany"},
 ged(){return"Wersja pokoju"},
 gfS(){return"Zapisz plik"},
-gdW(d){return"Szukaj"},
+gdX(d){return"Szukaj"},
 geR(){return"Bezpiecze\u0144stwo"},
 gfJ(){return"Klucz odzyskiwania"},
 gjw(){return"Utracono klucz odzyskiwania?"},
@@ -313,7 +313,7 @@ gkp(){return"Ustaw jako g\u0142\xf3wny alias"},
 gh3(){return"Ustaw opis czatu"},
 ges(){return"Ustaw status"},
 geu(){return"Ustawienia"},
-gdX(d){return"Udost\u0119pnij"},
+gdY(d){return"Udost\u0119pnij"},
 kv(d){return d+" udost\u0119pni\u0142/-a swoj\u0105 lokalizacj\u0119"},
 gku(){return"Udost\u0119pnij lokalizacj\u0119"},
 gnx(){return"Pokazuj zmiany status\xf3w innych u\u017cytkownik\xf3w"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gg,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gg":{"aD":[]}}'))};
-(a=>{a["U52+XlQc/b7Zswjgi4WHHIcCV9Q="]=a.current})($__dart_deferred_initializers__);
+y(A.Gf,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gf":{"aD":[]}}'))};
+(a=>{a["upOtAUCf4aMOI/AQnsbyHJfTg0I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

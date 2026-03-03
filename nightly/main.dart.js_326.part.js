@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKu(){return new A.G5(B.dc("id"))},
-G5:function G5(d){this.a=d}}
+cKt(){return new A.G4(B.dc("id"))},
+G4:function G4(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[30],A)
-A.G5.prototype={
+A.G4.prototype={
 gkP(){return"tidak"},
 gjF(){return"Ulangi kata sandi"},
 gmy(){return"Bukan berkas gambar."},
@@ -290,7 +290,7 @@ gfM(){return"Laporkan pesan"},
 gjH(){return"Ruangan telah ditingkatkan"},
 ged(){return"Versi ruangan"},
 gfS(){return"Simpan file"},
-gdW(d){return"Cari"},
+gdX(d){return"Cari"},
 geR(){return"Keamanan"},
 gfJ(){return"Kunci pemulihan"},
 gjw(){return"Kunci pemulihan hilang?"},
@@ -313,7 +313,7 @@ gkp(){return"Atur sebagai alias utama"},
 gh3(){return"Lihat deskripsi obrolan"},
 ges(){return"Tetapkan status"},
 geu(){return"Pengaturan"},
-gdX(d){return"Bagikan"},
+gdY(d){return"Bagikan"},
 kv(d){return d+" membagikan lokasinya"},
 gku(){return"Bagikan lokasi"},
 gnx(){return"Tampilkan pesan status dari pengguna lain"},
@@ -680,8 +680,8 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.G5,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G5":{"aD":[]}}'))
+x(A.G4,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"G4":{"aD":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["XIENNqmL++EDvX1oQn7rmfm+P4E="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["m1sney+vd9LnDY9vcVOnEbMgIGc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_326.part.js.map

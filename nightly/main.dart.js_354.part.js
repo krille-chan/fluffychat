@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKO(){return new A.Go(B.dc("sr"))},
-Go:function Go(d){this.a=d}}
+cKN(){return new A.Gn(B.dc("sr"))},
+Gn:function Gn(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[47],A)
-A.Go.prototype={
+A.Gn.prototype={
 gkP(){return"false"},
 gjF(){return"Ponovite lozinku"},
 gmy(){return"Not an image file."},
@@ -290,7 +290,7 @@ gfM(){return"\u041f\u0440\u0438\u0458\u0430\u0432\u0438 \u043f\u043e\u0440\u0443
 gjH(){return"\u0421\u043e\u0431\u0430 \u0458\u0435 \u043d\u0430\u0434\u043e\u0433\u0440\u0430\u0452\u0435\u043d\u0430"},
 ged(){return"\u0412\u0435\u0440\u0437\u0438\u0458\u0430 \u0441\u043e\u0431\u0435"},
 gfS(){return"Save file"},
-gdW(d){return"\u041f\u0440\u0435\u0442\u0440\u0430\u0436\u0438"},
+gdX(d){return"\u041f\u0440\u0435\u0442\u0440\u0430\u0436\u0438"},
 geR(){return"\u0411\u0435\u0437\u0431\u0435\u0434\u043d\u043e\u0441\u0442"},
 gfJ(){return"Recovery key"},
 gjw(){return"Recovery key lost?"},
@@ -313,7 +313,7 @@ gkp(){return"\u041f\u043e\u0441\u0442\u0430\u0432\u0438 \u043a\u0430\u043e \u043
 gh3(){return"Set chat description"},
 ges(){return"\u041f\u043e\u0441\u0442\u0430\u0432\u0438 \u0441\u0442\u0430\u0442\u0443\u0441"},
 geu(){return"\u041f\u043e\u0441\u0442\u0430\u0432\u043a\u0435"},
-gdX(d){return"\u041f\u043e\u0434\u0435\u043b\u0438"},
+gdY(d){return"\u041f\u043e\u0434\u0435\u043b\u0438"},
 kv(d){return d+" \u043f\u043e\u0434\u0435\u043b\u0438 \u043b\u043e\u043a\u0430\u0446\u0438\u0458\u0443"},
 gku(){return"Share location"},
 gnx(){return"Show status messages from other users"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Go,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Go":{"aD":[]}}'))};
-(a=>{a["4nmQunM9+kfgS2xWcXHJp0oAQv4="]=a.current})($__dart_deferred_initializers__);
+y(A.Gn,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gn":{"aD":[]}}'))};
+(a=>{a["J1J+/Ic+a0rB5qIxClrBmMTXIxY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_354.part.js.map

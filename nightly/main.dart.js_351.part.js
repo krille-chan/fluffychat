@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKL(){return new A.Gl(B.dc("sk"))},
-Gl:function Gl(d){this.a=d}}
+cKK(){return new A.Gk(B.dc("sk"))},
+Gk:function Gk(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[44],A)
-A.Gl.prototype={
+A.Gk.prototype={
 gkP(){return"false"},
 gjF(){return"Zopakujte heslo"},
 gmy(){return"Not an image file."},
@@ -290,7 +290,7 @@ gfM(){return"Nahl\xe1si\u0165 spr\xe1vu"},
 gjH(){return"Miestnos\u0165 bola upgradeovan\xe1"},
 ged(){return"Verzia miestnosti"},
 gfS(){return"Save file"},
-gdW(d){return"H\u013eada\u0165"},
+gdX(d){return"H\u013eada\u0165"},
 geR(){return"Bezpe\u010dnos\u0165"},
 gfJ(){return"Recovery key"},
 gjw(){return"Recovery key lost?"},
@@ -313,7 +313,7 @@ gkp(){return"Set as main alias"},
 gh3(){return"Set chat description"},
 ges(){return"Nastavi\u0165 status"},
 geu(){return"Nastavenia"},
-gdX(d){return"Zdie\u013ea\u0165"},
+gdY(d){return"Zdie\u013ea\u0165"},
 kv(d){return d+" zdie\u013ea lok\xe1ciu"},
 gku(){return"Share location"},
 gnx(){return"Show status messages from other users"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gl,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gl":{"aD":[]}}'))};
-(a=>{a["/y+HFcpDTiEaejDrYNvoAlmgHLw="]=a.current})($__dart_deferred_initializers__);
+y(A.Gk,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gk":{"aD":[]}}'))};
+(a=>{a["INTIETfXRGcICJMMmISHAJdkUoc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

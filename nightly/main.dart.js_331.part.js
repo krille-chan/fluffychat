@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKv(){return new A.G6(B.dc("ie"))},
-G6:function G6(d){this.a=d}}
+cKu(){return new A.G5(B.dc("ie"))},
+G5:function G5(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[31],A)
-A.G6.prototype={
+A.G5.prototype={
 gkP(){return"false"},
 gjF(){return"Repetir li contrasigne"},
 gmy(){return"Not an image file."},
@@ -290,7 +290,7 @@ gfM(){return"Raportar li missage"},
 gjH(){return"Room has been upgraded"},
 ged(){return"Version del chambre"},
 gfS(){return"Gardar li file"},
-gdW(d){return"Sercha"},
+gdX(d){return"Sercha"},
 geR(){return"Securit\xe1"},
 gfJ(){return"Clave de regania"},
 gjw(){return"Recovery key lost?"},
@@ -313,7 +313,7 @@ gkp(){return"Set as main alias"},
 gh3(){return"Set chat description"},
 ges(){return"Assignar li statu"},
 geu(){return"Parametres"},
-gdX(d){return"Partir"},
+gdY(d){return"Partir"},
 kv(d){return d+" shared their location"},
 gku(){return"Partir un localisation"},
 gnx(){return"Show status messages from other users"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G6,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G6":{"aD":[]}}'))};
-(a=>{a["l1uLbYWSgQY3DoDVUBhucAbLlAs="]=a.current})($__dart_deferred_initializers__);
+y(A.G5,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"G5":{"aD":[]}}'))};
+(a=>{a["z6jFgrBT3xZjnKk2ft8Hd2AFB9Q="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map

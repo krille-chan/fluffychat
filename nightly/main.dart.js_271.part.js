@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKa(){return new A.FM(B.dc("cs"))},
-FM:function FM(d){this.a=d}}
+cK9(){return new A.FL(B.dc("cs"))},
+FL:function FL(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[10],A)
-A.FM.prototype={
+A.FL.prototype={
 gkP(){return"Vypnuto"},
 gjF(){return"Zopakujte heslo"},
 gmy(){return"Nen\xed obr\xe1zek."},
@@ -290,7 +290,7 @@ gfM(){return"Nahl\xe1sit zpr\xe1vu"},
 gjH(){return"M\xedstnost byla upgradov\xe1na"},
 ged(){return"Verze m\xedstnosti"},
 gfS(){return"Ulo\u017eit soubor"},
-gdW(d){return"Hledat"},
+gdX(d){return"Hledat"},
 geR(){return"Bezpe\u010dnostn\xed"},
 gfJ(){return"Kl\xed\u010d k obnoven\xed"},
 gjw(){return"Ztracen\xfd kl\xed\u010d k obnoven\xed?"},
@@ -313,7 +313,7 @@ gkp(){return"Nastavit jako hlavn\xed alias"},
 gh3(){return"Nastavit popis konverzace"},
 ges(){return"Nastavit stav"},
 geu(){return"Nastaven\xed"},
-gdX(d){return"Sd\xedlet"},
+gdY(d){return"Sd\xedlet"},
 kv(d){return d+" sd\xedlel jejich polohu"},
 gku(){return"Sd\xedlet polohu"},
 gnx(){return"Zobrazen\xed stavov\xfdch zpr\xe1v od jin\xfdch u\u017eivatel\u016f"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FM,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FM":{"aD":[]}}'))};
-(a=>{a["wMvWfC00dhx3mpFyCBHE/1KO9fo="]=a.current})($__dart_deferred_initializers__);
+y(A.FL,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FL":{"aD":[]}}'))};
+(a=>{a["gD7zoMLygGzgN9z1m3KeysbVrv4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_271.part.js.map

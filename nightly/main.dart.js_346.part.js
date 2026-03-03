@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKJ(){return new A.Gj(B.dc("ro"))},
-Gj:function Gj(d){this.a=d}}
+cKI(){return new A.Gi(B.dc("ro"))},
+Gi:function Gi(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[42],A)
-A.Gj.prototype={
+A.Gi.prototype={
 gkP(){return"false"},
 gjF(){return"Repeta\u021bi parola"},
 gmy(){return"Not an image file."},
@@ -290,7 +290,7 @@ gfM(){return"Raporta\u021bi mesajul"},
 gjH(){return"Camera a fost actualizat\u0103"},
 ged(){return"Versiunea camerei"},
 gfS(){return"Salva\u021bi fi\u0219ierul"},
-gdW(d){return"C\u0103uta\u021bi"},
+gdX(d){return"C\u0103uta\u021bi"},
 geR(){return"Securitate"},
 gfJ(){return"Cheie de recuperare"},
 gjw(){return"Cheia de recuperare pierdut\u0103?"},
@@ -313,7 +313,7 @@ gkp(){return"Stabili\u021bi ca pseudonimul primar"},
 gh3(){return"Set chat description"},
 ges(){return"Stabili\u021bi status"},
 geu(){return"Configur\u0103ri"},
-gdX(d){return"Partaja\u021bi"},
+gdY(d){return"Partaja\u021bi"},
 kv(d){return d+" sa partajat loca\u021bia"},
 gku(){return"Partaja\u021bi loca\u021bia"},
 gnx(){return"Show status messages from other users"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gj,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gj":{"aD":[]}}'))};
-(a=>{a["2FHjZkXOKVzlzFIOCbPZyd/v2uI="]=a.current})($__dart_deferred_initializers__);
+y(A.Gi,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gi":{"aD":[]}}'))};
+(a=>{a["gFLZX7ohtP4Uv2OXqLPCsxm/9Ug="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_346.part.js.map

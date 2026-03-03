@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKm(){return new A.FY(B.dc("fr"))},
-FY:function FY(d){this.a=d}}
+cKl(){return new A.FX(B.dc("fr"))},
+FX:function FX(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[22],A)
-A.FY.prototype={
+A.FX.prototype={
 gkP(){return"true"},
 gjF(){return"R\xe9p\xe9tez le mot de passe"},
 gmy(){return"Pas un fichier image."},
@@ -290,7 +290,7 @@ gfM(){return"Signaler un message"},
 gjH(){return"Le salon a \xe9t\xe9 mis \xe0 niveau"},
 ged(){return"Version du salon"},
 gfS(){return"Enregistrer le fichier"},
-gdW(d){return"Rechercher"},
+gdX(d){return"Rechercher"},
 geR(){return"S\xe9curit\xe9"},
 gfJ(){return"Cl\xe9 de r\xe9cup\xe9ration"},
 gjw(){return"Cl\xe9 de r\xe9cup\xe9ration perdue ?"},
@@ -313,7 +313,7 @@ gkp(){return"D\xe9finir comme adresse principale"},
 gh3(){return"D\xe9finir la description de la discussion"},
 ges(){return"D\xe9finir le statut"},
 geu(){return"Param\xe8tres"},
-gdX(d){return"Partager"},
+gdY(d){return"Partager"},
 kv(d){return d+" a partag\xe9 sa position"},
 gku(){return"Partager la localisation"},
 gnx(){return"Afficher les messages de statut des autres utilisateurs/trices"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FY,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FY":{"aD":[]}}'))};
-(a=>{a["MFiJRDj0OrdLsqNcpJe2kgHi8wc="]=a.current})($__dart_deferred_initializers__);
+y(A.FX,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))};
+(a=>{a["SwrMGERp96hBAaxRnJ7G2yRxtBM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

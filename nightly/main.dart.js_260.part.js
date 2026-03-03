@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK9(){return new A.FL(B.dc("ca"))},
-FL:function FL(d){this.a=d}}
+cK8(){return new A.FK(B.dc("ca"))},
+FK:function FK(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[9],A)
-A.FL.prototype={
+A.FK.prototype={
 gkP(){return"true"},
 gjF(){return"Repetiu la contrasenya"},
 gmy(){return"No \xe9s un arxiu d'image."},
@@ -290,7 +290,7 @@ gfM(){return"Denuncia el missatge"},
 gjH(){return"La sala s'ha actualitzat"},
 ged(){return"Versi\xf3 de la sala"},
 gfS(){return"Desa el fitxer"},
-gdW(d){return"Cerca"},
+gdX(d){return"Cerca"},
 geR(){return"Seguretat"},
 gfJ(){return"Clau de recuperaci\xf3"},
 gjw(){return"Que has perdut la clau de recuperaci\xf3?"},
@@ -313,7 +313,7 @@ gkp(){return"Defineix com a \xe0lies principal"},
 gh3(){return"Posa una descripci\xf3 de xat"},
 ges(){return"Defineix l\u2019estat"},
 geu(){return"Par\xe0metres"},
-gdX(d){return"Comparteix"},
+gdY(d){return"Comparteix"},
 kv(d){return d+" n\u2019ha compartit la ubicaci\xf3"},
 gku(){return"Comparteix la ubicaci\xf3"},
 gnx(){return"Mostra els missatges d'estat d'altres usu\xe0r\xefis"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FL,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FL":{"aD":[]}}'))};
-(a=>{a["MsjjRLRJYSV3u0nOv7xBWiJl6Qo="]=a.current})($__dart_deferred_initializers__);
+y(A.FK,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FK":{"aD":[]}}'))};
+(a=>{a["G0oAbGLXq/cIrWexX9AtGpxq+xY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_260.part.js.map
