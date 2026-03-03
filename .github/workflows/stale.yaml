@@ -18,3 +18,4 @@ jobs:
           days-before-issue-close: 30
           days-before-pr-close: 30
           exempt-all-assignees: true
+          operations-per-run: 1000
