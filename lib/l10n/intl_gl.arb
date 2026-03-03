@@ -3147,5 +3147,13 @@
     "theProcessWasCanceled": "Desbotouse o proceso.",
     "join": "Unirse",
     "searchOrEnterHomeserverAddress": "Busca ou escribe o enderezo do servidor de inicio",
-    "matrixId": "ID en Matrix"
+    "matrixId": "ID en Matrix",
+    "setPowerLevel": "Establecer responsabilidade",
+    "makeModerator": "Facer moderadora",
+    "makeAdmin": "Facer admin",
+    "removeModeratorRights": "Retirar permiso de moderación",
+    "removeAdminRights": "Retirar permiso de administración",
+    "powerLevel": "Nivel responsabilidade",
+    "setPowerLevelDescription": "Os niveis de responsabilidade definen o que pode facer unha usuaria na sala, normalmente varía de 0 a 100.",
+    "owner": "Propietaria"
 }
