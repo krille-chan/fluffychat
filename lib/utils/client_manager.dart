@@ -111,6 +111,9 @@ abstract class ClientManager {
     final shareKeysWith = AppSettings.shareKeysWith.value;
     final enableSoftLogout = AppSettings.enableSoftLogout.value;
 
+    EventLocalizations.localizationsMap['sdk.matrix.dart.tofu_event'] =
+        (event, _, body) => body;
+
     return Client(
       clientName,
       httpClient: CustomHttpClient.createHTTPClient(),

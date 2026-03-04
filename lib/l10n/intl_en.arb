@@ -3134,5 +3134,24 @@
     "removeAdminRights": "Remove admin rights",
     "powerLevel": "Power level",
     "setPowerLevelDescription": "Power levels define what a member is allowed to do in this room and usually range between 0 and 100.",
-    "owner": "Owner"
+    "owner": "Owner",
+    "userHasChangedTheirKeys": "{user} has changed their keys.",
+    "@userHasChangedTheirKeys": {
+      "type": "String",
+      "placeholders": {
+        "user": {
+          "type": "String"
+        }
+      }
+    },
+    "usersHaveChangedTheirKeys": "{users} have changed their keys.",
+    "@usersHaveChangedTheirKeys": {
+      "type": "String",
+      "placeholders": {
+        "users": {
+          "type": "String"
+        }
+      }
+    },
+    "check": "Check"
 }
