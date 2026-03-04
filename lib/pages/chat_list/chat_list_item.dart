@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/chat_list/unread_bubble.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import '../../config/themes.dart';
 import '../../utils/date_time_extension.dart';
 import '../../widgets/avatar.dart';
 
-enum ArchivedRoomAction { delete, rejoin }
-
 class ChatListItem extends StatelessWidget {
   final Room room;
+  final Room? space;
   final bool activeChat;
-  final bool selected;
-  final void Function()? onLongPress;
+  final void Function(BuildContext context)? onLongPress;
   final void Function()? onForget;
   final void Function() onTap;
   final String? filter;
@@ -27,126 +26,155 @@ class ChatListItem extends StatelessWidget {
   const ChatListItem(
     this.room, {
     this.activeChat = false,
-    this.selected = false,
     required this.onTap,
     this.onLongPress,
     this.onForget,
     this.filter,
+    this.space,
     super.key,
   });
 
-  Future<void> archiveAction(BuildContext context) async {
-    {
-      if ([Membership.leave, Membership.ban].contains(room.membership)) {
-        await showFutureLoadingDialog(
-          context: context,
-          future: () => room.forget(),
-        );
-        return;
-      }
-      final confirmed = await showOkCancelAlertDialog(
-        useRootNavigator: false,
-        context: context,
-        title: L10n.of(context)!.areYouSure,
-        okLabel: L10n.of(context)!.yes,
-        cancelLabel: L10n.of(context)!.no,
-        message: L10n.of(context)!.archiveRoomDescription,
-      );
-      if (confirmed == OkCancelResult.cancel) return;
-      await showFutureLoadingDialog(
-        context: context,
-        future: () => room.leave(),
-      );
-      return;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     final isMuted = room.pushRuleState != PushRuleState.notify;
     final typingText = room.getLocalizedTypingText(context);
     final lastEvent = room.lastEvent;
     final ownMessage = lastEvent?.senderId == room.client.userID;
-    final unread = room.isUnread || room.membership == Membership.invite;
-    final theme = Theme.of(context);
     final directChatMatrixId = room.directChatMatrixID;
     final isDirectChat = directChatMatrixId != null;
-    final unreadBubbleSize = unread || room.hasNewMessages
-        ? room.notificationCount > 0
-            ? 20.0
-            : 14.0
-        : 0.0;
     final hasNotifications = room.notificationCount > 0;
-    final backgroundColor = selected
-        ? theme.colorScheme.primaryContainer
-        : activeChat
-            ? theme.colorScheme.secondaryContainer
-            : null;
+    final backgroundColor = activeChat
+        ? theme.colorScheme.secondaryContainer
+        : null;
     final displayname = room.getLocalizedDisplayname(
-      MatrixLocals(L10n.of(context)!),
+      MatrixLocals(L10n.of(context)),
     );
     final filter = this.filter;
     if (filter != null && !displayname.toLowerCase().contains(filter)) {
       return const SizedBox.shrink();
     }
 
-    final needLastEventSender = lastEvent == null
-        ? false
-        : room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;
+    final needLastEventSender =
+        lastEvent != null &&
+        room.getState(EventTypes.RoomMember, lastEvent.senderId) == null;
+    final space = this.space;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 1,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
       child: Material(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         clipBehavior: Clip.hardEdge,
         color: backgroundColor,
         child: FutureBuilder(
-          future: room.loadHeroUsers(),
-          builder: (context, snapshot) => HoverBuilder(
-            builder: (context, hovered) => ListTile(
+          future: room.name.isEmpty ? room.loadHeroUsers() : null,
+          builder: (context, _) => HoverBuilder(
+            builder: (context, listTileHovered) => ListTile(
               visualDensity: const VisualDensity(vertical: -0.5),
               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-              onLongPress: onLongPress,
-              leading: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  HoverBuilder(
-                    builder: (context, hovered) => AnimatedScale(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
-                      scale: hovered ? 1.1 : 1.0,
-                      child: Avatar(
-                        mxContent: room.avatar,
-                        name: displayname,
-                        presenceUserId: directChatMatrixId,
-                        presenceBackgroundColor: backgroundColor,
-                        onTap: onLongPress,
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: -2,
-                    right: -2,
-                    child: AnimatedScale(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
-                      scale: (hovered || selected) ? 1.0 : 0.0,
-                      child: Material(
-                        color: backgroundColor,
-                        borderRadius: BorderRadius.circular(16),
-                        child: Icon(
-                          selected
-                              ? Icons.check_circle
-                              : Icons.check_circle_outlined,
-                          size: 18,
+              onLongPress: () => onLongPress?.call(context),
+              leading: HoverBuilder(
+                builder: (context, hovered) => AnimatedScale(
+                  duration: FluffyThemes.animationDuration,
+                  curve: FluffyThemes.animationCurve,
+                  scale: hovered ? 1.1 : 1.0,
+                  child: SizedBox(
+                    width: Avatar.defaultSize,
+                    height: Avatar.defaultSize,
+                    child: Stack(
+                      children: [
+                        if (space != null)
+                          Positioned(
+                            top: 0,
+                            left: 0,
+                            child: Avatar(
+                              shapeBorder: RoundedSuperellipseBorder(
+                                side: BorderSide(
+                                  width: 2,
+                                  color:
+                                      backgroundColor ??
+                                      theme.colorScheme.surface,
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                  AppConfig.spaceBorderRadius * 0.75,
+                                ),
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                AppConfig.spaceBorderRadius * 0.75,
+                              ),
+                              mxContent: space.avatar,
+                              size: Avatar.defaultSize * 0.75,
+                              name: space.getLocalizedDisplayname(),
+                              onTap: () => onLongPress?.call(context),
+                            ),
+                          ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Avatar(
+                            shapeBorder: space == null
+                                ? room.isSpace
+                                      ? RoundedSuperellipseBorder(
+                                          side: BorderSide(
+                                            width: 1,
+                                            color: theme.dividerColor,
+                                          ),
+                                          borderRadius: BorderRadius.circular(
+                                            AppConfig.spaceBorderRadius,
+                                          ),
+                                        )
+                                      : null
+                                : RoundedRectangleBorder(
+                                    side: BorderSide(
+                                      width: 2,
+                                      color:
+                                          backgroundColor ??
+                                          theme.colorScheme.surface,
+                                    ),
+                                    borderRadius: BorderRadius.circular(
+                                      Avatar.defaultSize,
+                                    ),
+                                  ),
+                            borderRadius: room.isSpace
+                                ? BorderRadius.circular(
+                                    AppConfig.spaceBorderRadius,
+                                  )
+                                : null,
+                            mxContent: room.avatar,
+                            size: space != null
+                                ? Avatar.defaultSize * 0.75
+                                : Avatar.defaultSize,
+                            name: displayname,
+                            presenceUserId: directChatMatrixId,
+                            presenceBackgroundColor: backgroundColor,
+                            onTap: () => onLongPress?.call(context),
+                          ),
                         ),
-                      ),
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: GestureDetector(
+                            onTap: () => onLongPress?.call(context),
+                            child: AnimatedScale(
+                              duration: FluffyThemes.animationDuration,
+                              curve: FluffyThemes.animationCurve,
+                              scale: listTileHovered ? 1.0 : 0.0,
+                              child: Material(
+                                color: backgroundColor,
+                                borderRadius: BorderRadius.circular(16),
+                                child: const Icon(
+                                  Icons.arrow_drop_down_circle_outlined,
+                                  size: 18,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
+                ),
               ),
               title: Row(
                 children: <Widget>[
@@ -156,20 +184,14 @@ class ChatListItem extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
-                      style: unread || room.hasNewMessages
-                          ? const TextStyle(fontWeight: FontWeight.bold)
-                          : null,
                     ),
                   ),
                   if (isMuted)
                     const Padding(
                       padding: EdgeInsets.only(left: 4.0),
-                      child: Icon(
-                        Icons.notifications_off_outlined,
-                        size: 16,
-                      ),
+                      child: Icon(Icons.notifications_off_outlined, size: 16),
                     ),
-                  if (room.isFavourite || room.membership == Membership.invite)
+                  if (room.isFavourite)
                     Padding(
                       padding: EdgeInsets.only(
                         right: hasNotifications ? 4.0 : 0.0,
@@ -180,27 +202,25 @@ class ChatListItem extends StatelessWidget {
                         color: theme.colorScheme.primary,
                       ),
                     ),
-                  if (lastEvent != null && room.membership != Membership.invite)
+                  if (!room.isSpace && room.membership != Membership.invite)
                     Padding(
                       padding: const EdgeInsets.only(left: 4.0),
                       child: Text(
-                        lastEvent.originServerTs.localizedTimeShort(context),
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: unread
-                              ? theme.colorScheme.secondary
-                              : theme.textTheme.bodyMedium!.color,
+                        room.latestEventReceivedTime.localizedTimeShort(
+                          context,
                         ),
+                        style: TextStyle(fontSize: 11),
                       ),
                     ),
                 ],
               ),
               subtitle: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: .start,
+                mainAxisAlignment: .center,
                 children: <Widget>[
                   if (typingText.isEmpty &&
                       ownMessage &&
-                      room.lastEvent!.status.isSending) ...[
+                      room.lastEvent?.status.isSending == true) ...[
                     const SizedBox(
                       width: 16,
                       height: 16,
@@ -208,68 +228,112 @@ class ChatListItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                   ],
-                  AnimatedContainer(
-                    width: typingText.isEmpty ? 0 : 18,
+                  AnimatedSize(
                     clipBehavior: Clip.hardEdge,
-                    decoration: const BoxDecoration(),
                     duration: FluffyThemes.animationDuration,
                     curve: FluffyThemes.animationCurve,
-                    padding: const EdgeInsets.only(right: 4),
-                    child: Icon(
-                      Icons.edit_outlined,
-                      color: theme.colorScheme.secondary,
-                      size: 14,
-                    ),
+                    child: typingText.isNotEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.only(right: 4.0),
+                            child: Icon(
+                              Icons.edit_outlined,
+                              color: theme.colorScheme.secondary,
+                              size: 16,
+                            ),
+                          )
+                        : room.lastEvent?.relationshipType ==
+                              RelationshipTypes.thread
+                        ? Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: theme.colorScheme.outline,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                AppConfig.borderRadius,
+                              ),
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8.0,
+                            ),
+                            margin: const EdgeInsets.only(right: 4.0),
+                            child: Row(
+                              mainAxisSize: .min,
+                              children: [
+                                Icon(
+                                  Icons.message_outlined,
+                                  size: 12,
+                                  color: theme.colorScheme.outline,
+                                ),
+                                const SizedBox(width: 4),
+                                Text(
+                                  L10n.of(context).thread,
+                                  style: TextStyle(fontSize: 11),
+                                ),
+                              ],
+                            ),
+                          )
+                        : const SizedBox.shrink(),
                   ),
                   Expanded(
-                    child: typingText.isNotEmpty
+                    child: room.isSpace && room.membership == Membership.join
+                        ? Text(
+                            L10n.of(
+                              context,
+                            ).countChats(room.spaceChildren.length),
+                          )
+                        : typingText.isNotEmpty
                         ? Text(
                             typingText,
-                            style: TextStyle(
-                              color: theme.colorScheme.primary,
-                            ),
+                            style: TextStyle(color: theme.colorScheme.primary),
                             maxLines: 1,
                             softWrap: false,
                           )
                         : FutureBuilder(
-                            key: ValueKey(lastEvent?.eventId),
+                            key: ValueKey(
+                              '${lastEvent?.eventId}_${lastEvent?.type}_${lastEvent?.redacted}',
+                            ),
                             future: needLastEventSender
                                 ? lastEvent.calcLocalizedBody(
-                                    MatrixLocals(L10n.of(context)!),
+                                    MatrixLocals(L10n.of(context)),
                                     hideReply: true,
                                     hideEdit: true,
                                     plaintextBody: true,
                                     removeMarkdown: true,
-                                    withSenderNamePrefix: !isDirectChat ||
+                                    withSenderNamePrefix:
+                                        (!isDirectChat ||
                                         directChatMatrixId !=
-                                            room.lastEvent?.senderId,
+                                            room.lastEvent?.senderId),
                                   )
                                 : null,
                             initialData: lastEvent?.calcLocalizedBodyFallback(
-                              MatrixLocals(L10n.of(context)!),
+                              MatrixLocals(L10n.of(context)),
                               hideReply: true,
                               hideEdit: true,
                               plaintextBody: true,
                               removeMarkdown: true,
-                              withSenderNamePrefix: !isDirectChat ||
+                              withSenderNamePrefix:
+                                  (!isDirectChat ||
                                   directChatMatrixId !=
-                                      room.lastEvent?.senderId,
+                                      room.lastEvent?.senderId),
                             ),
                             builder: (context, snapshot) => Text(
                               room.membership == Membership.invite
-                                  ? isDirectChat
-                                      ? L10n.of(context)!.invitePrivateChat
-                                      : L10n.of(context)!.inviteGroupChat
+                                  ? room
+                                            .getState(
+                                              EventTypes.RoomMember,
+                                              room.client.userID!,
+                                            )
+                                            ?.content
+                                            .tryGet<String>('reason') ??
+                                        (isDirectChat
+                                            ? L10n.of(context).newChatRequest
+                                            : L10n.of(context).inviteGroupChat)
                                   : snapshot.data ??
-                                      L10n.of(context)!.emptyChat,
+                                        L10n.of(context).noMessagesYet,
                               softWrap: false,
-                              maxLines: 1,
+                              maxLines: room.notificationCount >= 1 ? 2 : 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                fontWeight: unread || room.hasNewMessages
-                                    ? FontWeight.bold
-                                    : null,
-                                color: theme.colorScheme.onSurfaceVariant,
                                 decoration: room.lastEvent?.redacted == true
                                     ? TextDecoration.lineThrough
                                     : null,
@@ -278,47 +342,33 @@ class ChatListItem extends StatelessWidget {
                           ),
                   ),
                   const SizedBox(width: 8),
-                  AnimatedContainer(
-                    duration: FluffyThemes.animationDuration,
-                    curve: FluffyThemes.animationCurve,
-                    padding: const EdgeInsets.symmetric(horizontal: 7),
-                    height: unreadBubbleSize,
-                    width: !hasNotifications && !unread && !room.hasNewMessages
-                        ? 0
-                        : (unreadBubbleSize - 9) *
-                                room.notificationCount.toString().length +
-                            9,
-                    decoration: BoxDecoration(
-                      color: room.highlightCount > 0 ||
-                              room.membership == Membership.invite
-                          ? Colors.red
-                          : hasNotifications || room.markedUnread
-                              ? theme.colorScheme.primary
-                              : theme.colorScheme.primaryContainer,
-                      borderRadius:
-                          BorderRadius.circular(AppConfig.borderRadius),
-                    ),
-                    child: Center(
-                      child: hasNotifications
-                          ? Text(
-                              room.notificationCount.toString(),
-                              style: TextStyle(
-                                color: room.highlightCount > 0
-                                    ? Colors.white
-                                    : hasNotifications
-                                        ? theme.colorScheme.onPrimary
-                                        : theme.colorScheme.onPrimaryContainer,
-                                fontSize: 13,
-                              ),
-                            )
-                          : const SizedBox.shrink(),
-                    ),
-                  ),
+                  UnreadBubble(room: room),
                 ],
               ),
               onTap: onTap,
               trailing: onForget == null
-                  ? null
+                  ? room.membership == Membership.invite
+                        ? IconButton(
+                            tooltip: L10n.of(context).declineInvitation,
+                            icon: const Icon(Icons.delete_forever_outlined),
+                            color: theme.colorScheme.error,
+                            onPressed: () async {
+                              final consent = await showOkCancelAlertDialog(
+                                context: context,
+                                title: L10n.of(context).declineInvitation,
+                                message: L10n.of(context).areYouSure,
+                                okLabel: L10n.of(context).yes,
+                                isDestructive: true,
+                              );
+                              if (consent != OkCancelResult.ok) return;
+                              if (!context.mounted) return;
+                              await showFutureLoadingDialog(
+                                context: context,
+                                future: room.leave,
+                              );
+                            },
+                          )
+                        : null
                   : IconButton(
                       icon: const Icon(Icons.delete_outlined),
                       onPressed: onForget,

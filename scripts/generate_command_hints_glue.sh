@@ -9,7 +9,7 @@
 
 # Looking to add descriptions for a new command, but don't know what it does?
 # It is likely defined here (in registerDefaultCommands()):
-# https://gitlab.com/famedly/company/frontend/famedlysdk/-/blob/main/lib/src/utils/commands_extension.dart
+# https://github.com/famedly/matrix-dart-sdk/tree/main/lib/src/utils/commands_extension.dart
 
 echo "\
 // This file is auto-generated using scripts/generate_command_hints_glue.sh.
@@ -21,7 +21,7 @@ String commandHint(L10n l10n, String command) {
 $(sed -n \
   's/[[:blank:]]*\"\(commandHint_\([[:lower:]]*\)\)\".*/    case "\2":\
       return l10n.\1;/p' \
-  assets/l10n/intl_en.arb
+  lib/l10n/intl_en.arb
 )
     default:
       return \"\";

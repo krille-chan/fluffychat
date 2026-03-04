@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import '../../utils/date_time_extension.dart';
 import '../../utils/matrix_sdk_extensions/device_extension.dart';
 import '../../widgets/matrix.dart';
 
-enum UserDeviceListItemAction {
-  rename,
-  remove,
-  verify,
-  block,
-  unblock,
-}
+enum UserDeviceListItemAction { rename, remove, verify, block, unblock }
 
 class UserDeviceListItem extends StatelessWidget {
   final Device userDevice;
@@ -38,7 +32,8 @@ class UserDeviceListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
-    final keys = client.userDeviceKeys[Matrix.of(context).client.userID]
+    final keys = client
+        .userDeviceKeys[Matrix.of(context).client.userID]
         ?.deviceKeys[userDevice.deviceId];
     final isOwnDevice = userDevice.deviceId == client.deviceID;
 
@@ -49,37 +44,43 @@ class UserDeviceListItem extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         child: ListTile(
           onTap: () async {
-            final action = await showModalActionSheet<UserDeviceListItemAction>(
+            final action = await showModalActionPopup<UserDeviceListItemAction>(
               context: context,
               title: '${userDevice.displayName} (${userDevice.deviceId})',
+              cancelLabel: L10n.of(context).cancel,
               actions: [
-                SheetAction(
-                  key: UserDeviceListItemAction.rename,
-                  label: L10n.of(context)!.changeDeviceName,
+                AdaptiveModalAction(
+                  value: UserDeviceListItemAction.rename,
+                  icon: const Icon(Icons.edit_outlined),
+                  label: L10n.of(context).changeDeviceName,
                 ),
                 if (!isOwnDevice && keys != null) ...{
-                  SheetAction(
-                    key: UserDeviceListItemAction.verify,
-                    label: L10n.of(context)!.verifyStart,
+                  AdaptiveModalAction(
+                    value: UserDeviceListItemAction.verify,
+                    icon: const Icon(Icons.verified_outlined),
+                    label: L10n.of(context).verifyStart,
                   ),
                   if (!keys.blocked)
-                    SheetAction(
-                      key: UserDeviceListItemAction.block,
-                      label: L10n.of(context)!.blockDevice,
-                      isDestructiveAction: true,
+                    AdaptiveModalAction(
+                      value: UserDeviceListItemAction.block,
+                      icon: const Icon(Icons.block_outlined),
+                      label: L10n.of(context).blockDevice,
+                      isDestructive: true,
                     ),
                   if (keys.blocked)
-                    SheetAction(
-                      key: UserDeviceListItemAction.unblock,
-                      label: L10n.of(context)!.unblockDevice,
-                      isDestructiveAction: true,
+                    AdaptiveModalAction(
+                      value: UserDeviceListItemAction.unblock,
+                      icon: const Icon(Icons.block),
+                      label: L10n.of(context).unblockDevice,
+                      isDestructive: true,
                     ),
                 },
                 if (!isOwnDevice)
-                  SheetAction(
-                    key: UserDeviceListItemAction.remove,
-                    label: L10n.of(context)!.delete,
-                    isDestructiveAction: true,
+                  AdaptiveModalAction(
+                    value: UserDeviceListItemAction.remove,
+                    icon: const Icon(Icons.delete_outlined),
+                    label: L10n.of(context).delete,
+                    isDestructive: true,
                   ),
               ],
             );
@@ -107,10 +108,10 @@ class UserDeviceListItem extends StatelessWidget {
             backgroundColor: keys == null
                 ? Colors.grey[700]
                 : keys.blocked
-                    ? Colors.red
-                    : keys.verified
-                        ? Colors.green
-                        : Colors.orange,
+                ? Colors.red
+                : keys.verified
+                ? Colors.green
+                : Colors.orange,
             child: Icon(userDevice.icon),
           ),
           title: Text(
@@ -119,9 +120,10 @@ class UserDeviceListItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           subtitle: Text(
-            L10n.of(context)!.lastActiveAgo(
-              DateTime.fromMillisecondsSinceEpoch(userDevice.lastSeenTs ?? 0)
-                  .localizedTimeShort(context),
+            L10n.of(context).lastActiveAgo(
+              DateTime.fromMillisecondsSinceEpoch(
+                userDevice.lastSeenTs ?? 0,
+              ).localizedTimeShort(context),
             ),
             style: const TextStyle(fontWeight: FontWeight.w300),
           ),
@@ -129,16 +131,16 @@ class UserDeviceListItem extends StatelessWidget {
               ? null
               : Text(
                   keys.blocked
-                      ? L10n.of(context)!.blocked
+                      ? L10n.of(context).blocked
                       : keys.verified
-                          ? L10n.of(context)!.verified
-                          : L10n.of(context)!.unverified,
+                      ? L10n.of(context).verified
+                      : L10n.of(context).unverified,
                   style: TextStyle(
                     color: keys.blocked
                         ? Colors.red
                         : keys.verified
-                            ? Colors.green
-                            : Colors.orange,
+                        ? Colors.green
+                        : Colors.orange,
                   ),
                 ),
         ),

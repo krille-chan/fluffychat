@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../../widgets/matrix.dart';
 import 'settings_ignore_list_view.dart';
 
@@ -22,8 +22,9 @@ class SettingsIgnoreListController extends State<SettingsIgnoreList> {
   @override
   void initState() {
     super.initState();
-    if (widget.initialUserId != null) {
-      controller.text = widget.initialUserId!.replaceAll('@', '');
+    final initialUserId = widget.initialUserId;
+    if (initialUserId != null) {
+      controller.text = initialUserId;
     }
   }
 
@@ -34,7 +35,7 @@ class SettingsIgnoreListController extends State<SettingsIgnoreList> {
     if (userId.isEmpty) return;
     if (!userId.isValidMatrixId || userId.sigil != '@') {
       setState(() {
-        errorText = L10n.of(context)!.invalidInput;
+        errorText = L10n.of(context).invalidInput;
       });
       return;
     }
@@ -42,10 +43,12 @@ class SettingsIgnoreListController extends State<SettingsIgnoreList> {
       errorText = null;
     });
 
+    final client = Matrix.of(context).client;
     showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.ignoreUser(userId),
+      future: () => client.ignoreUser(userId),
     );
+    setState(() {});
     controller.clear();
   }
 

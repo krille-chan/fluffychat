@@ -1,0 +1,43 @@
+{
+    "public_servers": [
+        {
+            "name": "matrix.org",
+            "website": "https://matrix.org",
+            "description": "The Matrix.org Foundation offers the matrix.org homeserver as an easy entry point for anyone wanting to try out Matrix.",
+            "reg_method": "oidc",
+            "languages": [
+                "All",
+                "English"
+            ]
+        },
+        {
+            "name": "converser.eu",
+            "website": "https://converser.eu",
+            "description": "A free and decentralized communication server.",
+            "reg_method": "oidc",
+            "languages": [
+                "All",
+                "Français"
+            ]
+        },
+        {
+            "name": "mozilla.org",
+            "website": "https://mozilla.org",
+            "description": "Matrix homeserver hosted by Mozilla.",
+            "reg_method": "oidc",
+            "languages": [
+                "All",
+                "English"
+            ]
+        },
+        {
+            "name": "magdeburg.jetzt",
+            "website": "https://magdeburg.jetzt",
+            "reg_method": "oidc",
+            "languages": [
+                "All",
+                "Deutsch"
+            ]
+        }
+    ]
+}

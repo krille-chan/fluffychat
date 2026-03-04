@@ -1,0 +1,194 @@
+{
+    "@@last_modified": "2021-08-14 12:41:10.154280",
+    "about": "সম্পর্কে",
+    "@about": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "accept": "স্বীকার করি",
+    "@accept": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "acceptedTheInvitation": "{username} আমন্ত্রণ গ্রহণ করেছে",
+    "@acceptedTheInvitation": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "account": "অ্যাকাউন্ট",
+    "@account": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "alwaysUse24HourFormat": "না",
+    "@alwaysUse24HourFormat": {
+        "description": "Set to true to always display time of day in 24 hour format."
+    },
+    "repeatPassword": "পাসওয়ার্ড আবার লিখো",
+    "@repeatPassword": {},
+    "notAnImage": "ইমেজ ফাইল না।",
+    "@notAnImage": {},
+    "setCustomPermissionLevel": "কাস্টম অনুমতি লেভেল ঠিক করো",
+    "@setCustomPermissionLevel": {},
+    "admin": "অ্যাডমিস",
+    "@admin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "alias": "অ্যালিয়াস",
+    "@alias": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "archive": "আর্কাইভ",
+    "@archive": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "banned": "ব্যানড",
+    "@banned": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "cancel": "বাতিল",
+    "@cancel": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chat": "চ্যাট",
+    "@chat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "close": "বন্ধ",
+    "@close": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "confirm": "নিশ্চিত করো",
+    "@confirm": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "connect": "কানেক্ট",
+    "@connect": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "copy": "অনুলিপি",
+    "@copy": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "create": "তৈরি",
+    "@create": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "dateWithoutYear": "{month}-{day}",
+    "@dateWithoutYear": {
+        "type": "String",
+        "placeholders": {
+            "month": {
+                "type": "String"
+            },
+            "day": {
+                "type": "String"
+            }
+        }
+    },
+    "delete": "অপসারণ",
+    "@delete": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "device": "ডিভাইস",
+    "@device": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "devices": "ডিভাইস",
+    "@devices": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notifications": "বিজ্ঞপ্তি",
+    "@notifications": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "edit": "সম্পাদন",
+    "@edit": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encryption": "এনক্রিপশন",
+    "@encryption": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encrypted": "এনক্রিপ্টকৃত",
+    "@encrypted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fluffychat": "ফ্লাফিচ্যাট",
+    "@fluffychat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "forward": "ফরওয়ার্ড",
+    "@forward": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "group": "গ্রুপ",
+    "@group": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "help": "সাহায্য",
+    "@help": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "id": "আইডি",
+    "@id": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "identity": "পরিচয়",
+    "@identity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "invited": "আমন্ত্রিত",
+    "@invited": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "leave": "ছেড়ে যাও",
+    "@leave": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "logout": "প্রস্থান",
+    "@logout": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "license": "অনুমতিপত্র (লাইসেন্স)",
+    "@license": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "login": "প্রবেশ",
+    "@login": {
+        "type": "String",
+        "placeholders": {}
+    }
+}

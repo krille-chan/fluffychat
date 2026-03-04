@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:archive/archive.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_emotes/settings_emotes.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ImportEmoteArchiveDialog extends StatefulWidget {
@@ -44,13 +44,9 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(L10n.of(context)!.importEmojis),
+      title: Text(L10n.of(context).importEmojis),
       content: _loading
-          ? Center(
-              child: CircularProgressIndicator(
-                value: _progress,
-              ),
-            )
+          ? Center(child: CircularProgressIndicator(value: _progress))
           : SingleChildScrollView(
               child: Wrap(
                 alignment: WrapAlignment.spaceEvenly,
@@ -73,15 +69,15 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
       actions: [
         TextButton(
           onPressed: _loading ? null : Navigator.of(context).pop,
-          child: Text(L10n.of(context)!.cancel),
+          child: Text(L10n.of(context).cancel),
         ),
         TextButton(
           onPressed: _loading
               ? null
               : _importMap.isNotEmpty
-                  ? _addEmotePack
-                  : null,
-          child: Text(L10n.of(context)!.importNow),
+              ? _addEmotePack
+              : null,
+          child: Text(L10n.of(context).importNow),
         ),
       ],
     );
@@ -91,12 +87,8 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
     _importMap = Map.fromEntries(
       widget.archive.files
           .where((e) => e.isFile)
-          .map(
-            (e) => MapEntry(e, e.name.emoteNameFromPath),
-          )
-          .sorted(
-            (a, b) => a.value.compareTo(b.value),
-          ),
+          .map((e) => MapEntry(e, e.name.emoteNameFromPath))
+          .sorted((a, b) => a.value.compareTo(b.value)),
     );
   }
 
@@ -121,10 +113,10 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
           final result = await showOkCancelAlertDialog(
             useRootNavigator: false,
             context: context,
-            title: L10n.of(context)!.emoteExists,
+            title: L10n.of(context).emoteExists,
             message: imageCode,
-            cancelLabel: L10n.of(context)!.replace,
-            okLabel: L10n.of(context)!.skip,
+            cancelLabel: L10n.of(context).replace,
+            okLabel: L10n.of(context).skip,
           );
           completer.complete(result);
         });
@@ -148,10 +140,7 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
       final imageCode = entry.value;
 
       try {
-        var mxcFile = MatrixImageFile(
-          bytes: file.content,
-          name: file.name,
-        );
+        var mxcFile = MatrixImageFile(bytes: file.content, name: file.name);
 
         final thumbnail = (await mxcFile.generateThumbnail(
           nativeImplementations: ClientManager.nativeImplementations,
@@ -162,14 +151,12 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
           mxcFile = thumbnail;
         }
         final uri = await Matrix.of(context).client.uploadContent(
-              mxcFile.bytes,
-              filename: mxcFile.name,
-              contentType: mxcFile.mimeType,
-            );
+          mxcFile.bytes,
+          filename: mxcFile.name,
+          contentType: mxcFile.mimeType,
+        );
 
-        final info = <String, dynamic>{
-          ...mxcFile.info,
-        };
+        final info = <String, dynamic>{...mxcFile.info};
 
         // normalize width / height to 256, required for stickers
         if (info['w'] is int && info['h'] is int) {
@@ -184,9 +171,9 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
         }
         widget.controller.pack!.images[imageCode] =
             ImagePackImageContent.fromJson(<String, dynamic>{
-          'url': uri.toString(),
-          'info': info,
-        });
+              'url': uri.toString(),
+              'info': info,
+            });
         successfulUploads.add(file.name);
       } catch (e) {
         Logs().d('Could not upload emote $imageCode');
@@ -204,8 +191,9 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
     // in case we have unhandled / duplicated emotes left, don't pop
     if (mounted) setState(() {});
     if (_importMap.isEmpty) {
-      WidgetsBinding.instance
-          .addPostFrameCallback((_) => Navigator.of(context).pop());
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => Navigator.of(context).pop(),
+      );
     }
   }
 }
@@ -231,6 +219,8 @@ class _EmojiImportPreviewState extends State<_EmojiImportPreview> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     // TODO: support Lottie here as well ...
     final controller = TextEditingController(text: widget.entry.value);
 
@@ -240,7 +230,7 @@ class _EmojiImportPreviewState extends State<_EmojiImportPreview> {
         IconButton(
           onPressed: widget.onRemove,
           icon: const Icon(Icons.remove_circle),
-          tooltip: L10n.of(context)!.remove,
+          tooltip: L10n.of(context).remove,
         ),
         ValueListenableBuilder(
           valueListenable: hasErrorNotifier,
@@ -248,21 +238,20 @@ class _EmojiImportPreviewState extends State<_EmojiImportPreview> {
             if (hasError) return _ImageFileError(name: widget.entry.key.name);
 
             return Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: .min,
+              mainAxisAlignment: .center,
+              crossAxisAlignment: .center,
               children: [
                 Image.memory(
                   widget.entry.key.content,
                   height: 64,
                   width: 64,
                   errorBuilder: (context, e, s) {
-                    WidgetsBinding.instance
-                        .addPostFrameCallback((_) => _setRenderError());
-
-                    return _ImageFileError(
-                      name: widget.entry.key.name,
+                    WidgetsBinding.instance.addPostFrameCallback(
+                      (_) => _setRenderError(),
                     );
+
+                    return _ImageFileError(name: widget.entry.key.name);
                   },
                 ),
                 SizedBox(
@@ -276,16 +265,16 @@ class _EmojiImportPreviewState extends State<_EmojiImportPreview> {
                     minLines: 1,
                     maxLines: 1,
                     decoration: InputDecoration(
-                      hintText: L10n.of(context)!.emoteShortcode,
+                      hintText: L10n.of(context).emoteShortcode,
                       prefixText: ': ',
                       suffixText: ':',
                       border: const OutlineInputBorder(),
                       prefixStyle: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                       suffixStyle: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary,
+                        color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -301,7 +290,7 @@ class _EmojiImportPreviewState extends State<_EmojiImportPreview> {
     );
   }
 
-  _setRenderError() {
+  void _setRenderError() {
     hasErrorNotifier.value = true;
     widget.onRemove.call();
   }
@@ -314,20 +303,22 @@ class _ImageFileError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return SizedBox.square(
       dimension: 64,
       child: Tooltip(
         message: name,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: .start,
+          mainAxisSize: .min,
+          crossAxisAlignment: .center,
           children: [
             const Icon(Icons.error),
             Text(
-              L10n.of(context)!.notAnImage,
+              L10n.of(context).notAnImage,
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.labelSmall,
+              style: theme.textTheme.labelSmall,
             ),
           ],
         ),
@@ -343,8 +334,7 @@ extension on String {
   /// Used to compute emote name proposal based on file name
   String get emoteNameFromPath {
     // ... removing leading path
-    return split(RegExp(r'[/\\]'))
-        .last
+    return split(RegExp(r'[/\\]')).last
         // ... removing file extension
         .split('.')
         .first

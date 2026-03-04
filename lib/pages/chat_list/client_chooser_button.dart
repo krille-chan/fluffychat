@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:keyboard_shortcuts/keyboard_shortcuts.dart';
 import 'package:matrix/matrix.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/fluffy_share.dart';
@@ -24,8 +25,8 @@ class ClientChooserButton extends StatelessWidget {
         (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
             ? 0
             : a.isValidMatrixId && !b.isValidMatrixId
-                ? -1
-                : 1,
+            ? -1
+            : 1,
       );
     return <PopupMenuEntry<Object>>[
       PopupMenuItem(
@@ -34,17 +35,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.group_add_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.createGroup),
-          ],
-        ),
-      ),
-      PopupMenuItem(
-        value: SettingsAction.newSpace,
-        child: Row(
-          children: [
-            const Icon(Icons.workspaces_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context)!.createNewSpace),
+            Text(L10n.of(context).createGroup),
           ],
         ),
       ),
@@ -54,7 +45,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.edit_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.setStatus),
+            Text(L10n.of(context).setStatus),
           ],
         ),
       ),
@@ -64,7 +55,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             Icon(Icons.adaptive.share_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.inviteContact),
+            Text(L10n.of(context).inviteContact),
           ],
         ),
       ),
@@ -74,17 +65,28 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.archive_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.archive),
+            Text(L10n.of(context).archive),
           ],
         ),
       ),
+      if (Matrix.of(context).backgroundPush?.firebaseEnabled != true)
+        PopupMenuItem(
+          value: SettingsAction.support,
+          child: Row(
+            children: [
+              const Icon(Icons.favorite, color: Colors.red),
+              const SizedBox(width: 18),
+              Text(L10n.of(context).donate),
+            ],
+          ),
+        ),
       PopupMenuItem(
         value: SettingsAction.settings,
         child: Row(
           children: [
             const Icon(Icons.settings_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.settings),
+            Text(L10n.of(context).settings),
           ],
         ),
       ),
@@ -95,8 +97,8 @@ class ClientChooserButton extends StatelessWidget {
           PopupMenuItem(
             value: null,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: .start,
+              mainAxisSize: .min,
               children: [
                 Text(
                   bundle!,
@@ -109,44 +111,44 @@ class ClientChooserButton extends StatelessWidget {
               ],
             ),
           ),
-        ...matrix.accountBundles[bundle]!.map(
-          (client) => PopupMenuItem(
-            value: client,
-            child: FutureBuilder<Profile?>(
-              // analyzer does not understand this type cast for error
-              // handling
-              //
-              // ignore: unnecessary_cast
-              future: (client!.fetchOwnProfile() as Future<Profile?>)
-                  .onError((e, s) => null),
-              builder: (context, snapshot) => Row(
-                children: [
-                  Avatar(
-                    mxContent: snapshot.data?.avatarUrl,
-                    name:
-                        snapshot.data?.displayName ?? client.userID!.localpart,
-                    size: 32,
+        ...matrix.accountBundles[bundle]!
+            .whereType<Client>()
+            .where((client) => client.isLogged())
+            .map(
+              (client) => PopupMenuItem(
+                value: client,
+                child: FutureBuilder<Profile?>(
+                  future: client.fetchOwnProfile(),
+                  builder: (context, snapshot) => Row(
+                    children: [
+                      Avatar(
+                        mxContent: snapshot.data?.avatarUrl,
+                        name:
+                            snapshot.data?.displayName ??
+                            client.userID!.localpart,
+                        size: 32,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          snapshot.data?.displayName ??
+                              client.userID!.localpart!,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      IconButton(
+                        icon: const Icon(Icons.edit_outlined),
+                        onPressed: () => controller.editBundlesForAccount(
+                          client.userID,
+                          bundle,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      snapshot.data?.displayName ?? client.userID!.localpart!,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  IconButton(
-                    icon: const Icon(Icons.edit_outlined),
-                    onPressed: () => controller.editBundlesForAccount(
-                      client.userID,
-                      bundle,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
-        ),
       ],
       PopupMenuItem(
         value: SettingsAction.addAccount,
@@ -154,7 +156,7 @@ class ClientChooserButton extends StatelessWidget {
           children: [
             const Icon(Icons.person_add_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context)!.addAccount),
+            Text(L10n.of(context).addAccount),
           ],
         ),
       ),
@@ -165,79 +167,39 @@ class ClientChooserButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final matrix = Matrix.of(context);
 
-    int clientCount = 0;
+    var clientCount = 0;
     matrix.accountBundles.forEach((key, value) => clientCount += value.length);
     return FutureBuilder<Profile>(
-      future: matrix.client.fetchOwnProfile(),
-      builder: (context, snapshot) => Stack(
-        alignment: Alignment.center,
-        children: [
-          ...List.generate(
-            clientCount,
-            (index) => KeyBoardShortcuts(
-              keysToPress: _buildKeyboardShortcut(index + 1),
-              helpLabel: L10n.of(context)!.switchToAccount(index + 1),
-              onKeysPressed: () => _handleKeyboardShortcut(
-                matrix,
-                index,
-                context,
-              ),
-              child: const SizedBox.shrink(),
-            ),
-          ),
-          KeyBoardShortcuts(
-            keysToPress: {
-              LogicalKeyboardKey.controlLeft,
-              LogicalKeyboardKey.tab,
-            },
-            helpLabel: L10n.of(context)!.nextAccount,
-            onKeysPressed: () => _nextAccount(matrix, context),
-            child: const SizedBox.shrink(),
-          ),
-          KeyBoardShortcuts(
-            keysToPress: {
-              LogicalKeyboardKey.controlLeft,
-              LogicalKeyboardKey.shiftLeft,
-              LogicalKeyboardKey.tab,
-            },
-            helpLabel: L10n.of(context)!.previousAccount,
-            onKeysPressed: () => _previousAccount(matrix, context),
-            child: const SizedBox.shrink(),
-          ),
-          PopupMenuButton<Object>(
+      future: matrix.client.isLogged() ? matrix.client.fetchOwnProfile() : null,
+      builder: (context, snapshot) => Material(
+        clipBehavior: Clip.hardEdge,
+        borderRadius: BorderRadius.circular(99),
+        color: Colors.transparent,
+        child: Semantics(
+          identifier: 'accounts_and_settings',
+          child: PopupMenuButton<Object>(
+            tooltip: 'Accounts and settings',
+            popUpAnimationStyle: FluffyThemes.isColumnMode(context)
+                ? AnimationStyle.noAnimation
+                : null, // https://github.com/flutter/flutter/issues/167180
             onSelected: (o) => _clientSelected(o, context),
             itemBuilder: _bundleMenuItems,
-            child: Material(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(99),
+            child: Center(
               child: Avatar(
                 mxContent: snapshot.data?.avatarUrl,
-                name: snapshot.data?.displayName ??
-                    matrix.client.userID!.localpart,
+                name:
+                    snapshot.data?.displayName ??
+                    matrix.client.userID?.localpart,
                 size: 32,
               ),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
 
-  Set<LogicalKeyboardKey>? _buildKeyboardShortcut(int index) {
-    if (index > 0 && index < 10) {
-      return {
-        LogicalKeyboardKey.altLeft,
-        LogicalKeyboardKey(0x00000000030 + index),
-      };
-    } else {
-      return null;
-    }
-  }
-
-  void _clientSelected(
-    Object object,
-    BuildContext context,
-  ) async {
+  Future<void> _clientSelected(Object object, BuildContext context) async {
     if (object is Client) {
       controller.setActiveClient(object);
     } else if (object is String) {
@@ -247,10 +209,10 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.addAccount:
           final consent = await showOkCancelAlertDialog(
             context: context,
-            title: L10n.of(context)!.addAccount,
-            message: L10n.of(context)!.enableMultiAccounts,
-            okLabel: L10n.of(context)!.next,
-            cancelLabel: L10n.of(context)!.cancel,
+            title: L10n.of(context).addAccount,
+            message: L10n.of(context).enableMultiAccounts,
+            okLabel: L10n.of(context).next,
+            cancelLabel: L10n.of(context).cancel,
           );
           if (consent != OkCancelResult.ok) return;
           context.go('/rooms/settings/addaccount');
@@ -258,11 +220,11 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.newGroup:
           context.go('/rooms/newgroup');
           break;
-        case SettingsAction.newSpace:
-          controller.createNewSpace();
-          break;
         case SettingsAction.invite:
           FluffyShare.shareInviteLink(context);
+          break;
+        case SettingsAction.support:
+          launchUrlString(AppConfig.donationUrl);
           break;
         case SettingsAction.settings:
           context.go('/rooms/settings');
@@ -276,83 +238,14 @@ class ClientChooserButton extends StatelessWidget {
       }
     }
   }
-
-  void _handleKeyboardShortcut(
-    MatrixState matrix,
-    int index,
-    BuildContext context,
-  ) {
-    final bundles = matrix.accountBundles.keys.toList()
-      ..sort(
-        (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
-            ? 0
-            : a.isValidMatrixId && !b.isValidMatrixId
-                ? -1
-                : 1,
-      );
-    // beginning from end if negative
-    if (index < 0) {
-      int clientCount = 0;
-      matrix.accountBundles
-          .forEach((key, value) => clientCount += value.length);
-      _handleKeyboardShortcut(matrix, clientCount, context);
-    }
-    for (final bundleName in bundles) {
-      final bundle = matrix.accountBundles[bundleName];
-      if (bundle != null) {
-        if (index < bundle.length) {
-          return _clientSelected(bundle[index]!, context);
-        } else {
-          index -= bundle.length;
-        }
-      }
-    }
-    // if index too high, restarting from 0
-    _handleKeyboardShortcut(matrix, 0, context);
-  }
-
-  int? _shortcutIndexOfClient(MatrixState matrix, Client client) {
-    int index = 0;
-
-    final bundles = matrix.accountBundles.keys.toList()
-      ..sort(
-        (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
-            ? 0
-            : a.isValidMatrixId && !b.isValidMatrixId
-                ? -1
-                : 1,
-      );
-    for (final bundleName in bundles) {
-      final bundle = matrix.accountBundles[bundleName];
-      if (bundle == null) return null;
-      if (bundle.contains(client)) {
-        return index + bundle.indexOf(client);
-      } else {
-        index += bundle.length;
-      }
-    }
-    return null;
-  }
-
-  void _nextAccount(MatrixState matrix, BuildContext context) {
-    final client = matrix.client;
-    final lastIndex = _shortcutIndexOfClient(matrix, client);
-    _handleKeyboardShortcut(matrix, lastIndex! + 1, context);
-  }
-
-  void _previousAccount(MatrixState matrix, BuildContext context) {
-    final client = matrix.client;
-    final lastIndex = _shortcutIndexOfClient(matrix, client);
-    _handleKeyboardShortcut(matrix, lastIndex! - 1, context);
-  }
 }
 
 enum SettingsAction {
   addAccount,
   newGroup,
-  newSpace,
   setStatus,
   invite,
+  support,
   settings,
   archive,
 }

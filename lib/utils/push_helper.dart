@@ -1,29 +1,32 @@
-import 'dart:io';
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:flutter_shortcuts/flutter_shortcuts.dart';
+import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:matrix/matrix.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/voip/callkeep_manager.dart';
+
+const notificationAvatarDimension = 128;
 
 Future<void> pushHelper(
   PushNotification notification, {
   Client? client,
   L10n? l10n,
   String? activeRoomId,
-  void Function(NotificationResponse?)? onSelectNotification,
+  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
+  bool useNotificationActions = true,
 }) async {
   try {
     await _tryPushHelper(
@@ -31,35 +34,25 @@ Future<void> pushHelper(
       client: client,
       l10n: l10n,
       activeRoomId: activeRoomId,
-      onSelectNotification: onSelectNotification,
+      flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
+      useNotificationActions: useNotificationActions,
     );
   } catch (e, s) {
-    Logs().v('Push Helper has crashed!', e, s);
+    Logs().e('Push Helper has crashed! Writing into temporary file', e, s);
 
-    // Initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    await flutterLocalNotificationsPlugin.initialize(
-      const InitializationSettings(
-        android: AndroidInitializationSettings('notifications_icon'),
-        iOS: DarwinInitializationSettings(),
-      ),
-      onDidReceiveNotificationResponse: onSelectNotification,
-      onDidReceiveBackgroundNotificationResponse: onSelectNotification,
-    );
-
-    l10n ??= lookupL10n(const Locale('en'));
-    flutterLocalNotificationsPlugin.show(
-      notification.roomId?.hashCode ?? 0,
-      l10n.newMessageInFluffyChat,
-      l10n.openAppToReadMessages,
-      NotificationDetails(
+    l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
+    await flutterLocalNotificationsPlugin.show(
+      id: notification.roomId?.hashCode ?? 0,
+      title: l10n.newMessageInFluffyChat,
+      body: l10n.openAppToReadMessages,
+      notificationDetails: NotificationDetails(
         iOS: const DarwinNotificationDetails(),
         android: AndroidNotificationDetails(
           AppConfig.pushNotificationsChannelId,
           l10n.incomingMessages,
           number: notification.counts?.unread,
           ticker: l10n.unreadChatsInApp(
-            AppConfig.applicationName,
+            AppSettings.applicationName.value,
             (notification.counts?.unread ?? 0).toString(),
           ),
           importance: Importance.high,
@@ -77,7 +70,8 @@ Future<void> _tryPushHelper(
   Client? client,
   L10n? l10n,
   String? activeRoomId,
-  void Function(NotificationResponse?)? onSelectNotification,
+  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
+  bool useNotificationActions = true,
 }) async {
   final isBackgroundMessage = client == null;
   Logs().v(
@@ -92,25 +86,13 @@ Future<void> _tryPushHelper(
     return;
   }
 
-  // Initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
-  final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-  await flutterLocalNotificationsPlugin.initialize(
-    const InitializationSettings(
-      android: AndroidInitializationSettings('notifications_icon'),
-      iOS: DarwinInitializationSettings(),
-    ),
-    onDidReceiveNotificationResponse: onSelectNotification,
-    //onDidReceiveBackgroundNotificationResponse: onSelectNotification,
-  );
-
   client ??= (await ClientManager.getClients(
     initialize: false,
-    store: await SharedPreferences.getInstance(),
-  ))
-      .first;
+    store: await AppSettings.init(),
+  )).first;
   final event = await client.getEventByPushNotification(
     notification,
-    storeInDatabase: isBackgroundMessage,
+    storeInDatabase: false,
   );
 
   if (event == null) {
@@ -122,14 +104,14 @@ Future<void> _tryPushHelper(
       // Make sure client is fully loaded and synced before dismiss notifications:
       await client.roomsLoading;
       await client.oneShotSync();
-      final activeNotifications =
-          await flutterLocalNotificationsPlugin.getActiveNotifications();
+      final activeNotifications = await flutterLocalNotificationsPlugin
+          .getActiveNotifications();
       for (final activeNotification in activeNotifications) {
         final room = client.rooms.singleWhereOrNull(
           (room) => room.id.hashCode == activeNotification.id,
         );
         if (room == null || !room.isUnreadOrInvited) {
-          flutterLocalNotificationsPlugin.cancel(activeNotification.id!);
+          flutterLocalNotificationsPlugin.cancel(id: activeNotification.id!);
         }
       }
     }
@@ -143,9 +125,7 @@ Future<void> _tryPushHelper(
     client.backgroundSync = true;
   }
 
-  if (event.type == EventTypes.CallInvite) {
-    CallKeepManager().initialize();
-  } else if (event.type == EventTypes.CallHangup) {
+  if (event.type == EventTypes.CallHangup) {
     client.backgroundSync = false;
   }
 
@@ -177,28 +157,26 @@ Future<void> _tryPushHelper(
         );
 
   // The person object for the android message style notification
-  final avatar = event.room.avatar
-      ?.getThumbnail(
-        client,
-        width: 256,
-        height: 256,
-      )
-      .toString();
+  final avatar = event.room.avatar;
   final senderAvatar = event.room.isDirectChat
       ? avatar
-      : event.senderFromMemoryOrFallback.avatarUrl
-          ?.getThumbnail(
-            client,
-            width: 256,
-            height: 256,
-          )
-          .toString();
+      : event.senderFromMemoryOrFallback.avatarUrl;
 
-  File? roomAvatarFile, senderAvatarFile;
+  Uint8List? roomAvatarFile, senderAvatarFile;
   try {
     roomAvatarFile = avatar == null
         ? null
-        : await DefaultCacheManager().getSingleFile(avatar);
+        : await client
+              .downloadMxcCached(
+                avatar,
+                thumbnailMethod: ThumbnailMethod.crop,
+                width: notificationAvatarDimension,
+                height: notificationAvatarDimension,
+                animated: false,
+                isThumbnail: true,
+                rounded: true,
+              )
+              .timeout(const Duration(seconds: 3));
   } catch (e, s) {
     Logs().e('Unable to get avatar picture', e, s);
   }
@@ -206,14 +184,25 @@ Future<void> _tryPushHelper(
     senderAvatarFile = event.room.isDirectChat
         ? roomAvatarFile
         : senderAvatar == null
-            ? null
-            : await DefaultCacheManager().getSingleFile(senderAvatar);
+        ? null
+        : await client
+              .downloadMxcCached(
+                senderAvatar,
+                thumbnailMethod: ThumbnailMethod.crop,
+                width: notificationAvatarDimension,
+                height: notificationAvatarDimension,
+                animated: false,
+                isThumbnail: true,
+                rounded: true,
+              )
+              .timeout(const Duration(seconds: 3));
   } catch (e, s) {
     Logs().e('Unable to get avatar picture', e, s);
   }
 
   final id = notification.roomId.hashCode;
 
+  final senderName = event.senderFromMemoryOrFallback.calcDisplayname();
   // Show notification
 
   final newMessage = Message(
@@ -222,23 +211,24 @@ Future<void> _tryPushHelper(
     Person(
       bot: event.messageType == MessageTypes.Notice,
       key: event.senderId,
-      name: event.senderFromMemoryOrFallback.calcDisplayname(),
+      name: senderName,
       icon: senderAvatarFile == null
           ? null
-          : BitmapFilePathAndroidIcon(senderAvatarFile.path),
+          : ByteArrayAndroidIcon(senderAvatarFile),
     ),
   );
 
   final messagingStyleInformation = PlatformInfos.isAndroid
       ? await AndroidFlutterLocalNotificationsPlugin()
-          .getActiveNotificationMessagingStyle(id)
+            .getActiveNotificationMessagingStyle(id: id)
       : null;
   messagingStyleInformation?.messages?.add(newMessage);
 
   final roomName = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
 
-  final notificationGroupId =
-      event.room.isDirectChat ? 'directChats' : 'groupChats';
+  final notificationGroupId = event.room.isDirectChat
+      ? 'directChats'
+      : 'groupChats';
   final groupName = event.room.isDirectChat ? l10n.directChats : l10n.groups;
 
   final messageRooms = AndroidNotificationChannelGroup(
@@ -253,11 +243,13 @@ Future<void> _tryPushHelper(
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
+        AndroidFlutterLocalNotificationsPlugin
+      >()
       ?.createNotificationChannelGroup(messageRooms);
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin>()
+        AndroidFlutterLocalNotificationsPlugin
+      >()
       ?.createNotificationChannel(roomsChannel);
 
   final androidPlatformChannelSpecifics = AndroidNotificationDetails(
@@ -266,31 +258,51 @@ Future<void> _tryPushHelper(
     number: notification.counts?.unread,
     category: AndroidNotificationCategory.message,
     shortcutId: event.room.id,
-    styleInformation: messagingStyleInformation ??
+    styleInformation:
+        messagingStyleInformation ??
         MessagingStyleInformation(
           Person(
-            name: event.senderFromMemoryOrFallback.calcDisplayname(),
+            name: senderName,
             icon: roomAvatarFile == null
                 ? null
-                : BitmapFilePathAndroidIcon(roomAvatarFile.path),
+                : ByteArrayAndroidIcon(roomAvatarFile),
             key: event.roomId,
             important: event.room.isFavourite,
           ),
-          conversationTitle: roomName,
+          conversationTitle: event.room.isDirectChat ? null : roomName,
           groupConversation: !event.room.isDirectChat,
           messages: [newMessage],
         ),
     ticker: event.calcLocalizedBodyFallback(
       matrixLocals,
       plaintextBody: true,
-      withSenderNamePrefix: true,
+      withSenderNamePrefix: !event.room.isDirectChat,
       hideReply: true,
       hideEdit: true,
       removeMarkdown: true,
     ),
     importance: Importance.high,
     priority: Priority.max,
-    groupKey: notificationGroupId,
+    groupKey: event.room.spaceParents.firstOrNull?.roomId ?? 'rooms',
+    actions: event.type == EventTypes.RoomMember || !useNotificationActions
+        ? null
+        : <AndroidNotificationAction>[
+            AndroidNotificationAction(
+              FluffyChatNotificationActions.reply.name,
+              l10n.reply,
+              inputs: [
+                AndroidNotificationActionInput(label: l10n.writeAMessage),
+              ],
+              cancelNotification: false,
+              allowGeneratedReplies: true,
+              semanticAction: SemanticAction.reply,
+            ),
+            AndroidNotificationAction(
+              FluffyChatNotificationActions.markAsRead.name,
+              l10n.markAsRead,
+              semanticAction: SemanticAction.markAsRead,
+            ),
+          ],
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
   final platformChannelSpecifics = NotificationDetails(
@@ -305,13 +317,34 @@ Future<void> _tryPushHelper(
   }
 
   await flutterLocalNotificationsPlugin.show(
-    id,
-    title,
-    body,
-    platformChannelSpecifics,
-    payload: event.roomId,
+    id: id,
+    title: title,
+    body: body,
+    notificationDetails: platformChannelSpecifics,
+    payload: FluffyChatPushPayload(
+      client.clientName,
+      event.room.id,
+      event.eventId,
+    ).toString(),
   );
   Logs().v('Push helper has been completed!');
+}
+
+class FluffyChatPushPayload {
+  final String? clientName, roomId, eventId;
+
+  FluffyChatPushPayload(this.clientName, this.roomId, this.eventId);
+
+  factory FluffyChatPushPayload.fromString(String payload) {
+    final parts = payload.split('|');
+    if (parts.length != 3) {
+      return FluffyChatPushPayload(null, null, null);
+    }
+    return FluffyChatPushPayload(parts.first, parts[1], parts[2]);
+  }
+
+  @override
+  String toString() => '$clientName|$roomId|$eventId';
 }
 
 /// Creates a shortcut for Android platform but does not block displaying the
@@ -321,7 +354,7 @@ Future<void> _setShortcut(
   Event event,
   L10n l10n,
   String title,
-  File? avatarFile,
+  Uint8List? avatarFile,
 ) async {
   final flutterShortcuts = FlutterShortcuts();
   await flutterShortcuts.initialize(debug: !kReleaseMode);
@@ -331,10 +364,7 @@ Future<void> _setShortcut(
       action: AppConfig.inviteLinkPrefix + event.room.id,
       shortLabel: title,
       conversationShortcut: true,
-      icon: avatarFile == null
-          ? null
-          : ShortcutMemoryIcon(jpegImage: await avatarFile.readAsBytes())
-              .toString(),
+      icon: avatarFile == null ? null : base64Encode(avatarFile),
       shortcutIconAsset: avatarFile == null
           ? ShortcutIconAsset.androidAsset
           : ShortcutIconAsset.memoryAsset,

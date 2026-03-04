@@ -3,17 +3,18 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as http;
+import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:universal_html/html.dart' as html;
 
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/push_helper.dart';
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 extension LocalNotificationsExtension on MatrixState {
@@ -21,104 +22,134 @@ extension LocalNotificationsExtension on MatrixState {
     ..src = 'assets/assets/sounds/notification.ogg'
     ..load();
 
-  void showLocalNotification(EventUpdate eventUpdate) async {
-    final roomId = eventUpdate.roomID;
+  Future<void> showLocalNotification(Event event) async {
+    final roomId = event.room.id;
     if (activeRoomId == roomId) {
-      if (kIsWeb && webHasFocus) return;
-      if (PlatformInfos.isDesktop &&
-          WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
+      if (WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
         return;
       }
     }
-    final room = client.getRoomById(roomId);
-    if (room == null) {
-      Logs().w('Can not display notification for unknown room $roomId');
-      return;
-    }
-    if (room.notificationCount == 0) return;
 
-    final event = Event.fromJson(eventUpdate.content, room);
-    final title = room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!));
+    final title = event.room.getLocalizedDisplayname(
+      MatrixLocals(L10n.of(context)),
+    );
     final body = await event.calcLocalizedBody(
-      MatrixLocals(L10n.of(context)!),
+      MatrixLocals(L10n.of(context)),
       withSenderNamePrefix:
-          !room.isDirectChat || room.lastEvent?.senderId == client.userID,
+          !event.room.isDirectChat ||
+          event.room.lastEvent?.senderId == client.userID,
       plaintextBody: true,
       hideReply: true,
       hideEdit: true,
       removeMarkdown: true,
     );
-    final icon = event.senderFromMemoryOrFallback.avatarUrl?.getThumbnail(
-          client,
-          width: 64,
-          height: 64,
-          method: ThumbnailMethod.crop,
-        ) ??
-        room.avatar?.getThumbnail(
-          client,
-          width: 64,
-          height: 64,
-          method: ThumbnailMethod.crop,
-        );
+
     if (kIsWeb) {
+      final avatarUrl = event.senderFromMemoryOrFallback.avatarUrl;
+      Uri? thumbnailUri;
+
+      if (avatarUrl != null) {
+        const size = 128;
+        const thumbnailMethod = ThumbnailMethod.crop;
+        // Pre-cache so that we can later just set the thumbnail uri as icon:
+        try {
+          await client.downloadMxcCached(
+            avatarUrl,
+            width: size,
+            height: size,
+            thumbnailMethod: thumbnailMethod,
+            isThumbnail: true,
+            rounded: true,
+          );
+        } catch (e, s) {
+          Logs().d('Unable to pre-download avatar for web notification', e, s);
+        }
+
+        thumbnailUri = await event.senderFromMemoryOrFallback.avatarUrl
+            ?.getThumbnailUri(
+              client,
+              width: size,
+              height: size,
+              method: thumbnailMethod,
+            );
+      }
+
       _audioPlayer.play();
+
       html.Notification(
         title,
         body: body,
-        icon: icon.toString(),
+        icon: thumbnailUri?.toString(),
+        tag: event.room.id,
       );
     } else if (Platform.isLinux) {
-      final appIconUrl = room.avatar?.getThumbnail(
-        room.client,
-        width: 56,
-        height: 56,
-      );
-      File? appIconFile;
-      if (appIconUrl != null) {
-        final tempDirectory = await getApplicationSupportDirectory();
-        final avatarDirectory =
-            await Directory('${tempDirectory.path}/notiavatars/').create();
-        appIconFile = File(
-          '${avatarDirectory.path}/${Uri.encodeComponent(appIconUrl.toString())}',
+      final avatarUrl = event.room.avatar;
+      final hints = [NotificationHint.soundName('message-new-instant')];
+
+      if (avatarUrl != null) {
+        const size = notificationAvatarDimension;
+        const thumbnailMethod = ThumbnailMethod.crop;
+        // Pre-cache so that we can later just set the thumbnail uri as icon:
+        final data = await client.downloadMxcCached(
+          avatarUrl,
+          width: size,
+          height: size,
+          thumbnailMethod: thumbnailMethod,
+          isThumbnail: true,
+          rounded: true,
         );
-        if (await appIconFile.exists() == false) {
-          final response = await http.get(appIconUrl);
-          await appIconFile.writeAsBytes(response.bodyBytes);
+
+        final image = decodeImage(data);
+        if (image != null) {
+          final realData = image.getBytes(order: ChannelOrder.rgba);
+          hints.add(
+            NotificationHint.imageData(
+              image.width,
+              image.height,
+              realData,
+              hasAlpha: true,
+              channels: 4,
+            ),
+          );
         }
       }
       final notification = await linuxNotifications!.notify(
         title,
         body: body,
         replacesId: linuxNotificationIds[roomId] ?? 0,
-        appName: AppConfig.applicationName,
-        appIcon: appIconFile?.path ?? '',
+        appName: AppSettings.applicationName.value,
+        appIcon: 'fluffychat',
         actions: [
           NotificationAction(
             DesktopNotificationActions.openChat.name,
-            L10n.of(context)!.openChat,
+            L10n.of(context).openChat,
           ),
           NotificationAction(
             DesktopNotificationActions.seen.name,
-            L10n.of(context)!.markAsRead,
+            L10n.of(context).markAsRead,
           ),
         ],
-        hints: [
-          NotificationHint.soundName('message-new-instant'),
-        ],
+        hints: hints,
       );
       notification.action.then((actionStr) {
-        final action = DesktopNotificationActions.values
-            .singleWhere((a) => a.name == actionStr);
-        switch (action) {
+        var action = DesktopNotificationActions.values.singleWhereOrNull(
+          (a) => a.name == actionStr,
+        );
+        if (action == null && actionStr == 'default') {
+          action = DesktopNotificationActions.openChat;
+        }
+        switch (action!) {
           case DesktopNotificationActions.seen:
-            room.setReadMarker(
+            event.room.setReadMarker(
               event.eventId,
               mRead: event.eventId,
-              public: AppConfig.sendPublicReadReceipts,
+              public: AppSettings.sendPublicReadReceipts.value,
             );
             break;
           case DesktopNotificationActions.openChat:
-            context.go('/rooms/${room.id}');
+            setActiveClient(event.room.client);
+
+            FluffyChatApp.router.go('/rooms/${event.room.id}');
             break;
         }
       });

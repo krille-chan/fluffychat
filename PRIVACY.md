@@ -1,35 +1,34 @@
 # Privacy
 
-FluffyChat is available on Android, iOS and as a web version. Desktop versions for Windows, Linux and macOS may follow.
+FluffyChat is available on Android, iOS, Linux and as a web version. Desktop versions for Windows and macOS may follow.
 
 *   [Matrix](#matrix)
-*   Sentry
 *   [Database](#database)
 *   [Encryption](#encryption)
 *   [App Permissions](#app-permissions)
 *   [Push Notifications](#push-notifications)
-*   [Stories](#stories)
+*   [PlayStore Safety Standards](#playstore-safety)
 
-## Matrix<a id="matrix"/>
+## <a id="matrix" href="#matrix">#</a> Matrix
 FluffyChat uses the Matrix protocol. This means that FluffyChat is just a client that can be connected to any compatible matrix server. The respective data protection agreement of the server selected by the user then applies.
 
 For convenience, one or more servers are set as default that the FluffyChat developers consider trustworthy. The developers of FluffyChat do not guarantee their trustworthiness. Before the first communication, users are informed which server they are connecting to.
 
-FluffyChat only communicates with the selected server, with sentry.io if enabled and with [OpenStreetMap](https://openstreetmap.org) to display maps.
+FluffyChat only communicates with the selected server and with [OpenStreetMap](https://openstreetmap.org) to display maps.
 
 More information is available at: [https://matrix.org](https://matrix.org)
 
-## Database<a id="database"/>
-FluffyChat caches some data received from the server in a local database on the device of the user.
+## <a id="database" href="#database">#</a> Database
+FluffyChat caches some data received from the server in a local sqflite database on the device of the user. On web indexedDB is used. FluffyChat always tries to encrypt the database by using SQLCipher and stores the encryption key in the [Secure Storage](https://pub.dev/packages/flutter_secure_storage) of the device.
 
-More information is available at: [https://pub.dev/packages/hive](https://pub.dev/packages/hive)
+More information is available at: [https://pub.dev/packages/sqflite](https://pub.dev/packages/sqflite) and [https://pub.dev/packages/sqlcipher_flutter_libs](https://pub.dev/packages/sqlcipher_flutter_libs)
 
-## Encryption<a id="encryption"/>
+## <a id="encryption" href="#encryption">#</a> Encryption
 All communication of substantive content between Fluffychat and any server is done in secure way, using transport encryption to protect it.
 
-FluffyChat is able to use End-To-End-Encryption as a tech preview.
+FluffyChat also uses End-To-End-Encryption by using [Vodozemac](https://github.com/matrix-org/vodozemac) and enables it by default for private chats.
 
-## App Permissions<a id="app-permissions"/>
+## <a id="app-permissions" href="#app-permissions">#</a> App Permissions
 
 The permissions are the same on Android and iOS but may differ in the name. This are the Android Permissions:
 
@@ -52,7 +51,7 @@ The user is able to send files from the device's file system.
 #### Location
 FluffyChat makes it possible to share the current location via the chat. When the user shares their location, FluffyChat uses the device location service and sends the geo-data via Matrix.
 
-## Push Notifications<a id="push-notifications"/>
+## <a id="push-notifications" href="#push-notifications">#</a> Push Notifications
 FluffyChat uses the Firebase Cloud Messaging service for push notifications on Android and iOS. This takes place in the following steps:
 1. The matrix server sends the push notification to the FluffyChat Push Gateway
 2. The FluffyChat Push Gateway forwards the message in a different format to Firebase Cloud Messaging
@@ -60,7 +59,7 @@ FluffyChat uses the Firebase Cloud Messaging service for push notifications on A
 4. The device receives the push notification from Firebase Cloud Messaging and displays it as a notification
 
 The source code of the push gateway can be viewed here:
-[https://gitlab.com/famedly/services/famedly-push-gateway](https://gitlab.com/famedly/services/famedly-push-gateway)
+[https://github.com/krille-chan/fluffygate](https://github.com/krille-chan/fluffygate)
 
 `event_id_only` is used as the format for the push notification. A typical push notification therefore only contains:
 - Event ID
@@ -95,22 +94,20 @@ A typical push notification could look like this:
 
 FluffyChat sets the `event_id_only` flag at the Matrix Server. This server is then responsible to send the correct data.
 
-## Stories<a id="stories"/>
 
-FluffyChat supports stories which is a feature similar to WhatsApp status or Instagram stories. However it is just a different GUI for the same room-related communication. More information about the feature can be found here:
+# <a id="playstore-safety" href="#playstore-safety">#</a> Explanation of FluffyChat's Compliance with Google Play Store's Safety Standards
 
-https://github.com/krillefear/matrix-doc/blob/main/proposals/3588-stories-as-rooms.md
+FluffyChat is committed to promoting a safe and respectful environment for all users. As a Matrix client, FluffyChat connects users to various Matrix servers. Please note that FluffyChat does not host or manage any servers directly, and as such, we do not have the capability to enforce content moderation or deletion within the app itself.
 
-Stories are basically:
+To enhance user safety and help protect against the sexual abuse and exploitation of children, FluffyChat enables users to report inappropriate content directly to server administrators.
 
-- End to end encrypted rooms
-- Read-only rooms with only one admin who can post stuff (while there is no technical limitation to have multiple admins)
+#### Reporting Content or Users:
 
-By default:
+1. Mark a message in the chat: Tap and hold the message you wish to report.
+2. Report the message: Select the "Report" option.
+3. Provide a reason and score: Enter the reason for reporting and assign a score from 1-100 to indicate how offensive the content is.
+4. Notification to admin: The server administrator will be notified of the reported content.
 
-- The user has to invite all contacts manually to a story room
-- The user can only invite contacts (matrix users the user shares a DM room with) to the story room
-- The story room is created when the first story is posted
-- User can mute and leave story rooms
+In addition to reporting messages, users can also report other users following a similar process.
 
-The user is informed in the app that in theory all contacts can see each other in the story room. The user must give consent here. However the user is at any time able to create a group chat and invite all of their contacts to this chat in any matrix client which has the same result.
+We encourage server administrators to adhere to strict safety standards and provide mechanisms for addressing and moderating inappropriate content. For more information on the Matrix protocol and its safety standards, please refer to the following link: https://matrix.org/docs/older/moderation/

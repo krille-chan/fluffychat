@@ -8,19 +8,11 @@ extension ApplicationAccountConfigExtension on Client {
         accountData[accountDataKey]?.content ?? {},
       );
 
-  Future<void> setApplicationAccountConfig(
-    ApplicationAccountConfig config,
-  ) =>
-      setAccountData(
-        userID!,
-        accountDataKey,
-        config.toJson(),
-      );
+  Future<void> setApplicationAccountConfig(ApplicationAccountConfig config) =>
+      setAccountData(userID!, accountDataKey, config.toJson());
 
   /// Only updates the specified values in ApplicationAccountConfig
-  Future<void> updateApplicationAccountConfig(
-    ApplicationAccountConfig config,
-  ) {
+  Future<void> updateApplicationAccountConfig(ApplicationAccountConfig config) {
     final currentConfig = applicationAccountConfig;
     return setAccountData(
       userID!,
@@ -29,6 +21,7 @@ extension ApplicationAccountConfigExtension on Client {
         wallpaperUrl: config.wallpaperUrl ?? currentConfig.wallpaperUrl,
         wallpaperOpacity:
             config.wallpaperOpacity ?? currentConfig.wallpaperOpacity,
+        wallpaperBlur: config.wallpaperBlur ?? currentConfig.wallpaperBlur,
       ).toJson(),
     );
   }
@@ -37,10 +30,12 @@ extension ApplicationAccountConfigExtension on Client {
 class ApplicationAccountConfig {
   final Uri? wallpaperUrl;
   final double? wallpaperOpacity;
+  final double? wallpaperBlur;
 
   const ApplicationAccountConfig({
     this.wallpaperUrl,
     this.wallpaperOpacity,
+    this.wallpaperBlur,
   });
 
   static double _sanitizedOpacity(double? opacity) {
@@ -54,12 +49,15 @@ class ApplicationAccountConfig {
         wallpaperUrl: json['wallpaper_url'] is String
             ? Uri.tryParse(json['wallpaper_url'])
             : null,
-        wallpaperOpacity:
-            _sanitizedOpacity(json.tryGet<double>('wallpaper_opacity')),
+        wallpaperOpacity: _sanitizedOpacity(
+          json.tryGet<double>('wallpaper_opacity'),
+        ),
+        wallpaperBlur: json.tryGet<double>('wallpaper_blur'),
       );
 
   Map<String, dynamic> toJson() => {
-        'wallpaper_url': wallpaperUrl?.toString(),
-        'wallpaper_opacity': wallpaperOpacity,
-      };
+    'wallpaper_url': wallpaperUrl?.toString(),
+    'wallpaper_opacity': wallpaperOpacity,
+    'wallpaper_blur': wallpaperBlur,
+  };
 }

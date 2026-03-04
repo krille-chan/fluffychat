@@ -15,17 +15,14 @@ class LogViewerState extends State<LogViewer> {
   double fontSize = 14;
   @override
   Widget build(BuildContext context) {
-    final outputEvents = Logs()
-        .outputEvents
+    final outputEvents = Logs().outputEvents
         .where((e) => e.level.index <= logLevel.index)
         .toList();
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(logLevel.toString()),
-        leading: BackButton(
-          onPressed: () => context.go('/'),
-        ),
+        leading: BackButton(onPressed: () => context.go('/')),
         actions: [
           IconButton(
             icon: const Icon(Icons.zoom_in_outlined),
@@ -36,6 +33,7 @@ class LogViewerState extends State<LogViewer> {
             onPressed: () => setState(() => fontSize--),
           ),
           PopupMenuButton<Level>(
+            useRootNavigator: true,
             itemBuilder: (context) => Level.values
                 .map(
                   (level) => PopupMenuItem(
@@ -54,9 +52,7 @@ class LogViewerState extends State<LogViewer> {
           scrollDirection: Axis.horizontal,
           child: SelectableText(
             outputEvents[i].toDisplayString(),
-            style: TextStyle(
-              color: outputEvents[i].color,
-            ),
+            style: TextStyle(color: outputEvents[i].color),
           ),
         ),
       ),
@@ -78,7 +74,6 @@ extension on LogEvent {
       case Level.debug:
         return Colors.white;
       case Level.verbose:
-      default:
         return Colors.grey;
     }
   }
@@ -86,10 +81,10 @@ extension on LogEvent {
   String toDisplayString() {
     var str = '# [${level.toString().split('.').last.toUpperCase()}] $title';
     if (exception != null) {
-      str += ' - ${exception.toString()}';
+      str += ' - $exception';
     }
     if (stackTrace != null) {
-      str += '\n${stackTrace.toString()}';
+      str += '\n$stackTrace';
     }
     return str;
   }

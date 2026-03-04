@@ -1,6 +1,6 @@
 // This file is auto-generated using scripts/generate_command_hints_glue.sh.
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 
 String commandExample(String command) {
   switch (command) {
@@ -26,41 +26,41 @@ String commandExample(String command) {
 
 String commandHint(L10n l10n, String command) {
   switch (command) {
-    case "ban":
+    case 'ban':
       return l10n.commandHint_ban;
-    case "clearcache":
+    case 'clearcache':
       return l10n.commandHint_clearcache;
-    case "create":
+    case 'create':
       return l10n.commandHint_create;
-    case "discardsession":
+    case 'discardsession':
       return l10n.commandHint_discardsession;
-    case "dm":
+    case 'dm':
       return l10n.commandHint_dm;
-    case "html":
+    case 'html':
       return l10n.commandHint_html;
-    case "invite":
+    case 'invite':
       return l10n.commandHint_invite;
-    case "join":
+    case 'join':
       return l10n.commandHint_join;
-    case "kick":
+    case 'kick':
       return l10n.commandHint_kick;
-    case "leave":
+    case 'leave':
       return l10n.commandHint_leave;
-    case "me":
+    case 'me':
       return l10n.commandHint_me;
-    case "myroomavatar":
+    case 'myroomavatar':
       return l10n.commandHint_myroomavatar;
-    case "myroomnick":
+    case 'myroomnick':
       return l10n.commandHint_myroomnick;
-    case "op":
+    case 'op':
       return l10n.commandHint_op;
-    case "plain":
+    case 'plain':
       return l10n.commandHint_plain;
-    case "react":
+    case 'react':
       return l10n.commandHint_react;
-    case "send":
+    case 'send':
       return l10n.commandHint_send;
-    case "unban":
+    case 'unban':
       return l10n.commandHint_unban;
     case 'markasdm':
       return l10n.commandHint_markasdm;
@@ -78,7 +78,13 @@ String commandHint(L10n l10n, String command) {
       return l10n.commandHint_ignore;
     case 'unignore':
       return l10n.commandHint_unignore;
+    case 'roomupgrade':
+      return l10n.commandHint_roomupgrade;
+    case 'logout':
+      return l10n.commandHint_logout;
+    case 'logoutall':
+      return l10n.commandHint_logoutall;
     default:
-      return "";
+      return '';
   }
 }

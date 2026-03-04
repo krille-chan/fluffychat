@@ -1,7 +1,7 @@
 name: fluffychat
 title: FluffyChat
-base: core22
-version: git
+base: core24
+version: 2.4.0
 license: AGPL-3.0
 summary: The cutest messenger in the Matrix network
 description: |
@@ -37,36 +37,23 @@ description: |
 
   And a world where apps are made for fluffyness and not for profit. ♥
 
-  Join the community: https://matrix.to/#/#fluffychat:matrix.org
-  Website: http://fluffychat.im
+  Join the community: https://matrix.to/#/#fluffy-space:matrix.org
+  Website: http://fluffy.chat
   Microblog: https://mastodon.art/@krille
 
 grade: stable
 confinement: strict
 
-architectures:
-  - build-on: amd64
-  - build-on: arm64
+platforms:
+  amd64:
+    build-on: amd64
+  arm64:
+    build-on: arm64
 
 parts:
-  olm:
-    plugin: cmake
-    cmake-parameters:
-      - -DCMAKE_INSTALL_PREFIX=/usr
-    source: https://gitlab.matrix.org/matrix-org/olm.git
-    source-type: git
-    source-tag: '3.2.14'
-    build-packages:
-      - g++
-
-  zenity-integration:
-    plugin: nil
-    stage-snaps:
-      - zenity-integration
-
   flutter-git:
     source: https://github.com/flutter/flutter.git
-    source-tag: 3.19.6
+    source-tag: 3.41.2
     source-depth: 1
     plugin: nil
     override-build: |
@@ -85,6 +72,8 @@ parts:
       - unzip
       - xz-utils
       - zip
+      - lld
+      - llvm-18
     override-prime: ''
 
   fluffychat:
@@ -99,12 +88,16 @@ parts:
       mkdir -p $CRAFT_PART_INSTALL/bin/
       cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/bin/
     build-packages:
-      - libjsoncpp-dev
-      - curl
-    stage-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
-      - libssl-dev
+      - curl
+      - libpciaccess-dev
+    build-snaps:
+      - rustup
+    stage-packages:
+      - libsecret-1-0
+      - libjsoncpp25
+      - libpciaccess0
 
 slots:
   dbus-svc:

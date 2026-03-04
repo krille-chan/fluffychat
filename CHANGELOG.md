@@ -1,4 +1,899 @@
+## v2.4.0
+FluffyChat 2.4.0 adds a new improved GUI for managing stickers with tutorials how to
+easily add your own sticker packs.
+It also improves the search and image gallery in chats, especially encrypted chats.
+Besides that this update comes with a lot of fixes and improvements under the hood.
+
+- feat: Create new sticker packs (krille-chan)
+- feat: Edit displayname and attribution for sticker packs (krille-chan)
+- feat: Improved search (Christian Kußowski)
+- feat: Set usage of custom emojis and stickers (krille-chan)
+- feat: Upload multiple stickers at once (krille-chan)
+- build: (deps): bump actions/checkout from 5 to 6 (dependabot[bot])
+- build: (deps): bump animations from 2.1.0 to 2.1.1 (dependabot[bot])
+- build: (deps): bump device_info_plus from 12.2.0 to 12.3.0 (dependabot[bot])
+- build: (deps): bump emoji_picker_flutter from 4.3.0 to 4.4.0 (dependabot[bot])
+- build: (deps): bump file_picker from 10.3.6 to 10.3.7 (dependabot[bot])
+- build: (deps): bump file_picker from 10.3.7 to 10.3.8 (dependabot[bot])
+- build: (deps): bump file_selector from 1.0.4 to 1.1.0 (dependabot[bot])
+- build: (deps): bump flutter_foreground_task from 9.1.0 to 9.2.0 (dependabot[bot])
+- build: (deps): bump flutter_webrtc from 1.2.0 to 1.2.1 (dependabot[bot])
+- build: (deps): bump go_router from 17.0.0 to 17.0.1 (dependabot[bot])
+- build: (deps): bump image from 4.5.4 to 4.6.0 (dependabot[bot])
+- build: (deps): bump image from 4.6.0 to 4.7.1 (dependabot[bot])
+- build: (deps): bump image from 4.7.1 to 4.7.2 (dependabot[bot])
+- build: (deps): bump matrix from 4.0.0 to 4.0.1 (dependabot[bot])
+- build: (deps): bump shared_preferences from 2.5.3 to 2.5.4 (dependabot[bot])
+- build: (deps): bump translations_cleaner from 0.0.5 to 0.1.0 (dependabot[bot])
+- build: (deps): bump universal_html from 2.2.4 to 2.3.0 (dependabot[bot])
+- build: Reenable shrink resources and minify in gradle (Christian Kußowski)
+- build: Upgrade to flutter 3.38.4 (Christian Kußowski)
+- build: Use matrix sdk vom pub.dev again (Christian Kußowski)
+- chore(translations): Translated using Weblate (Basque) (xabirequejo)
+- chore(translations): Translated using Weblate (Belarusian) (Alex Katon)
+- chore(translations): Translated using Weblate (Bengali) (Kom nake)
+- chore(translations): Translated using Weblate (Chinese (Simplified Han script)) (Creeper)
+- chore(translations): Translated using Weblate (Chinese (Simplified Han script)) (大王叫我来巡山)
+- chore(translations): Translated using Weblate (Croatian) (Milo Ivir)
+- chore(translations): Translated using Weblate (Czech) (arxari)
+- chore(translations): Translated using Weblate (Dutch) (Jelv)
+- chore(translations): Translated using Weblate (Estonian) (Priit Jõerüüt)
+- chore(translations): Translated using Weblate (Finnish) (Ricky Tigg)
+- chore(translations): Translated using Weblate (French) (hugues de keyzer)
+- chore(translations): Translated using Weblate (Galician) (josé m.)
+- chore(translations): Translated using Weblate (Georgian) (Nicholas Winterhalter)
+- chore(translations): Translated using Weblate (Georgian) (Temuri Doghonadze)
+- chore(translations): Translated using Weblate (German) (Bella)
+- chore(translations): Translated using Weblate (German) (nautilusx)
+- chore(translations): Translated using Weblate (Greek) (Rain4Cats)
+- chore(translations): Translated using Weblate (Irish) (Aindriú Mac Giolla Eoin)
+- chore(translations): Translated using Weblate (Italian) (Alessio Olivieri)
+- chore(translations): Translated using Weblate (Italian) (Claudio Maradonna)
+- chore(translations): Translated using Weblate (Latvian) (Edgars Andersons)
+- chore(translations): Translated using Weblate (Norwegian Bokmål) (Frank Paul Silye)
+- chore(translations): Translated using Weblate (Portuguese (Brazil)) (LucasMZ)
+- chore(translations): Translated using Weblate (Russian) (BeMeritus)
+- chore(translations): Translated using Weblate (Russian) (Christian)
+- chore(translations): Translated using Weblate (Russian) (Дмитрий Михирев)
+- chore(translations): Translated using Weblate (Serbian) (Luka)
+- chore(translations): Translated using Weblate (Spanish) (Kimby)
+- chore(translations): Translated using Weblate (Ukrainian) (Andriy Kushnir)
+- chore(translations): Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+- chore(translations): Translated using Weblate (Uzbek) (BeMeritus)
+- chore(translations): Translated using Weblate (Uzbek) (Maftuna Vohidjonovna)
+- chore: Allow all chars for emoji search (Christian Kußowski)
+- chore: Allow export of readonly sticker packs (Christian Kußowski)
+- chore: delete unrelated line (ShootingStarDragons)
+- chore: Display attribution for sticker packs (krille-chan)
+- chore: Escape title in check duplicates job (Christian Kußowski)
+- chore: ignore for now deprecated regex (Christian Kußowski)
+- chore: Improve room custom emote UX (krille-chan)
+- chore: Improve sticker editor UX (krille-chan)
+- chore: Improve text selection color for messages (Christian Kußowski)
+- chore: Improve via calculation (Christian Kußowski)
+- chore: Increase padding for code blocks (Christian Kußowski)
+- chore: Link how do I get stickers FAQ entry (Christian Kußowski)
+- chore: Localize emoji picker (Christian Kußowski)
+- chore: Make attribution url field clickable (Christian Kußowski)
+- chore: Make cross signing self sign mandatory for bootstrap (Christian Kußowski)
+- chore: make locale for emoji suggestions configureable (krille-chan)
+- chore: Make sticker previews in editor clickable (krille-chan)
+- chore: Make stickers smaller than normal image messages (Christian Kußowski)
+- chore: Override sqlcipher license (Christian Kußowski)
+- chore: Remove horizontal scrolling for code blocks (Christian Kußowski)
+- chore: remove the userId param (ShootingStarDragons)
+- chore: Replace copy action with pin event action in UI (Christian Kußowski)
+- chore: Request keys for last room messages after bootstrap (krille-chan)
+- chore: Simplify adaptive bottom sheet code (Christian Kußowski)
+- chore: Update privacy policy links (Christian Kußowski)
+- chore: Update start poll design (Christian Kußowski)
+- chore: Update user device keys before creating bootstrap (Christian Kußowski)
+- chore: Use license_checker from pub again (Christian Kußowski)
+- chore: Wait for secrets after bootstrap verification (Christian Kußowski)
+- Fix regression after new linter rules (Andriy Kushnir)
+- fix: Better wait for secrets after verification bootstrap (Christian Kußowski)
+- fix: Broken ruzzian plurals (Christian Kußowski)
+- fix: Do not auto load history in rooms with collapsed state only (Christian Kußowski)
+- fix: Do not display empty file description body (Christian Kußowski)
+- fix: Do not render html in unformatted messages (Christian Kußowski)
+- fix: Do not request hero users for rooms with name (Christian Kußowski)
+- fix: enable users without passwords to delete their accounts by using uia request in account deletion (ggurdin)
+- fix: Hide no fcm warning after dismissed (Christian Kußowski)
+- fix: jump cannot work properly when there are multi users (ShootingStarDragons)
+- fix: Make keyboard moving bottom sheet up (Christian Kußowski)
+- fix: No description for video and audio messages displayed (Christian Kußowski)
+- fix: Render not permitted html tags as text instead of hiding (Christian Kußowski)
+- fix: Scrolling in fragmented timeline (Christian Kußowski)
+- fix: spoiler formatting in reply (denalena)
+- fix: State problem when not changing emote name (krille-chan)
+- fix: Unlock app with leading 0 in pin is not possible (Christian Kußowski)
+- fix: when user has multi counts,notification not works well (ShootingStarDragons)
+- refactor: Adjust state event design (Christian Kußowski)
+- refactor: Always open Chat Backup as page right after login (Christian Kußowski)
+- refactor: Display all sticker packs in same editor with filterchips (krille-chan)
+- refactor: File selector just use default FileType and remove not working zip selector (Christian Kußowski)
+- refactor: Improved design and UX for sticker editor (krille-chan)
+- refactor: Remove native imaging and enable web worker (Christian Kußowski)
+- refactor: Remove unused feature tor browser detector (Christian Kußowski)
+- refactor: Remove unused html onfocus streams (Christian Kußowski)
+- refactor: Remove unused msix (Christian Kußowski)
+- refactor: Remove workaround for download files (Christian Kußowski)
+- refactor: Update flutter lints (Christian Kußowski)
+- refactor: Update to Dart 3.10 with . shorthands (Christian Kußowski)
+- refactor: Use localized emojis for suggestion input (krille-chan)
+- refactor: Use own highlight rendering with working scrollbar and text selection (Christian Kußowski)
+- chore: Update links to matrix spaces to avoid confusion (Andriy Kushnir)
+
+## v2.3.0
+
+FluffyChat v2.3.0 fixes a possible database corruption bug on Android, also fixes a
+major performance leak and introduces polls and threads.
+
+- feat: Implement polls (Christian Kußowski)
+- feat: Implement threads (krille-chan)
+- fix: Database corruption because notification tab isolate starts too late (Christian Kußowski)
+- fix: Import sticker packs (Christian Kußowski)
+- refactor: Improved UIA support for OIDC and SSO (Christian Kußowski)
+- refactor: Invite users when upgrading private room (Christian Kußowski)
+- build: (deps): bump cross_file from 0.3.4+2 to 0.3.5 (dependabot[bot])
+- build: (deps): bump file_picker from 10.3.3 to 10.3.6 (dependabot[bot])
+- build: (deps): bump go_router from 16.3.0 to 17.0.0 (dependabot[bot])
+- build: (deps): bump http from 1.5.0 to 1.6.0 (dependabot[bot])
+- build: (deps): bump image_picker from 1.2.0 to 1.2.1 (dependabot[bot])
+- build: (deps): bump qr_code_scanner_plus from 2.0.13 to 2.0.14 (dependabot[bot])
+- build: (deps): bump video_player from 2.10.0 to 2.10.1 (dependabot[bot])
+- build: Switch back to stable web auth package (krille-chan)
+- build: Use matrix sdk 4.0.0 (Christian Kußowski)
+- build: Use secure storage from pub.dev again (krille-chan)
+- chore: Remove Notification actions when using UnifiedPush (Christian Kußowski)
+- chore(translations): Added translation using Weblate (Uzbek) (bahrom04)
+- chore(translations): Translated using Weblate (Basque) (xabirequejo)
+- chore(translations): Translated using Weblate (Belarusian) (Alex Katon)
+- chore(translations): Translated using Weblate (Chinese (Simplified Han script)) (大王叫我来巡山)
+- chore(translations): Translated using Weblate (Dutch) (Jelv)
+- chore(translations): Translated using Weblate (Estonian) (Priit Jõerüüt)
+- chore(translations): Translated using Weblate (Finnish) (Priit Jõerüüt)
+- chore(translations): Translated using Weblate (Finnish) (Ricky Tigg)
+- chore(translations): Translated using Weblate (French) (luneth)
+- chore(translations): Translated using Weblate (Galician) (josé m.)
+- chore(translations): Translated using Weblate (Irish) (Aindriú Mac Giolla Eoin)
+- chore(translations): Translated using Weblate (Latvian) (Edgars Andersons)
+- chore(translations): Translated using Weblate (Norwegian Bokmål) (Frank Paul Silye)
+- chore(translations): Translated using Weblate (Uzbek) (bahrom04)
+- chore(translations): Translated using Weblate (Uzbek) (BeMeritus)
+
+## v2.2.0
+
+FluffyChat 2.2.0 introduces a new UX for spaces and adds support for restricted
+join rules.
+
+The app also now has a new design for recording voice messages including a new
+pause button.
+
+You also now see the progress when downloading files.
+
+On web the performance for image compressing has been drastically improved. Also
+the config.json file loading has finally been fixed. Please be aware that the format
+has changed as the available configs are now generated automatically.
+
+Did you know that you can set a lot of additional configs in the new config viewer
+inside the app? This now supports much more options but please use with care!
+
+On Android FluffyChat now supports notification actions (reply and mark as read) and
+also now supports Android Auto integration. Please do not cause an accident when using
+the app while driving!
+
+On iOS the notifications are now localized. Stay tuned for more improvements on iOS
+notifications in the next releases!
+
+Besides that this release brings a ton of bug fixes and performance improvements and
+of course updated translations. Big thanks to all the volunteers who have helped on weblate!
+
+- feat: Add donation buttons except for PlayStore&AppStore version (Christian Kußowski)
+- feat: Add iOS Notification Service Extension for localizable push notifications (Christian Kußowski)
+- feat: Add notification actions (krille-chan)
+- feat: Add support for restricted join rule (Christian Kußowski)
+- feat: Display progress for downloading content (Christian Kußowski)
+- feat: Display progress on redact events and clear archive dialogs (Christian Kußowski)
+- feat: Enable native imaging for web (Christian Kußowski)
+- feat: Forward notifications to Android Auto (Christian Kußowski)
+- feat: Nicer record voice message UI with pause function (Christian Kußowski)
+- feat: Notification actions on android (krille-chan)
+- design: Improved spaces UX (Christian Kußowski)
+- fix: Correctly pass through obscure text (Christian Kußowski)
+- fix: Create a subdirectory in the tmp directory (Inex Code)
+- fix: Cupertino text dialogs (Christian Kußowski)
+- fix: Null pointer crash in chat list item (Christian Kußowski)
+- chore(translations): Translated using Weblate (Arabic) (jamazi)
+- chore(translations): Translated using Weblate (Basque) (xabirequejo)
+- chore(translations): Translated using Weblate (Belarusian) (Alex Katon)
+- chore(translations): Translated using Weblate (Chinese (Simplified Han script)) (大王叫我来巡山)
+- chore(translations): Translated using Weblate (Croatian) (Milo Ivir)
+- chore(translations): Translated using Weblate (Czech) (Flibble)
+- chore(translations): Translated using Weblate (Dutch) (Jelv)
+- chore(translations): Translated using Weblate (Esperanto) (Anonymous)
+- chore(translations): Translated using Weblate (Estonian) (Priit Jõerüüt)
+- chore(translations): Translated using Weblate (Finnish) (Aminda Suomalainen)
+- chore(translations): Translated using Weblate (Galician) (josé m)
+- chore(translations): Translated using Weblate (German) (Alex Katon)
+- chore(translations): Translated using Weblate (German) (cheese1)
+- chore(translations): Translated using Weblate (German) (Christian)
+- chore(translations): Translated using Weblate (German) (Jana)
+- chore(translations): Translated using Weblate (Greek) (Λευτέρης Τ)
+- chore(translations): Translated using Weblate (Hebrew) (Anonymous)
+- chore(translations): Translated using Weblate (Hungarian) (Balázs Meskó)
+- chore(translations): Translated using Weblate (Indonesian) (Linerly)
+- chore(translations): Translated using Weblate (Irish) (Aindriú Mac Giolla Eoin)
+- chore(translations): Translated using Weblate (Japanese) (Allan Nordhøy)
+- chore(translations): Translated using Weblate (Korean) (loyedison92)
+- chore(translations): Translated using Weblate (Latvian) (Edgars Andersons)
+- chore(translations): Translated using Weblate (Latvian) (ℂ𝕠𝕠𝕠𝕝 (𝕘𝕚𝕥𝕙𝕦𝕓.𝕔𝕠𝕞/ℂ𝕠𝕠𝕠𝕝))
+- chore(translations): Translated using Weblate (Lithuanian) (Anonymous)
+- chore(translations): Translated using Weblate (Norwegian Bokmål) (Frank Paul Silye)
+- chore(translations): Translated using Weblate (Norwegian Bokmål) (sunniva)
+- chore(translations): Translated using Weblate (Polish) (Paweł Gronowski)
+- chore(translations): Translated using Weblate (Portuguese (Brazil)) (LucasMZ)
+- chore(translations): Translated using Weblate (Portuguese (Portugal)) (Anonymous)
+- chore(translations): Translated using Weblate (Romanian) (Anonymous)
+- chore(translations): Translated using Weblate (Russian) (Christian)
+- chore(translations): Translated using Weblate (Russian) (Дмитрий Михирев)
+- chore(translations): Translated using Weblate (Russian) (Жора Змейкин)
+- chore(translations): Translated using Weblate (Serbian) (Anonymous)
+- chore(translations): Translated using Weblate (Slovak) (Anonymous)
+- chore(translations): Translated using Weblate (Spanish) (Kimby)
+- chore(translations): Translated using Weblate (Spanish) (LucasMZ)
+- chore(translations): Translated using Weblate (Turkish) (Christian)
+- chore(translations): Translated using Weblate (Turkish) (Ufuk Karal)
+- chore(translations): Translated using Weblate (Vietnamese) (desperadohp)
+- chore: add a link to the platforms' different behaviors for the 24h format (kaanelloed)
+- chore: Add ActionsPadding in column mode (Christian Kußowski)
+- chore: Add close icon to snackbar in column mode (Christian Kußowski)
+- chore: Adjust chat details button design (Christian Kußowski)
+- chore: Adjust encryption page design (Christian Kußowski)
+- chore: Adjust input bar button design (Christian Kußowski)
+- chore: Adjust material dialog button design (krille-chan)
+- chore: Adjust padding for status msg list (Christian Kußowski)
+- chore: Adjust status header design (krille-chan)
+- chore: Better display rooms without known messages (Christian Kußowski)
+- chore: Better routing to space id (Christian Kußowski)
+- chore: Correctly remove knockRestricted from possible join rules (Christian Kußowski)
+- chore: Fix load config.json (Christian Kußowski)
+- chore: Go back to pub.dev matrix dep (Christian Kußowski)
+- chore: Hide restricted and knock restricted for unsupported room versions (Christian Kußowski)
+- chore: Hide topic if empty and cannot be changed (Christian Kußowski)
+- chore: Improve chat details icon color design (Christian Kußowski)
+- chore: Improve ignore list UX (Christian Kußowski)
+- chore: Leave invites and DM rooms when blocking a user (Christian Kußowski)
+- chore: Make privacy url not configurable (Christian Kußowski)
+- chore: Make progress indicators rounder (Christian Kußowski)
+- chore: Mention rebases (Christian Kußowski)
+- chore: Move emote settings button to chat popup menu (Christian Kußowski)
+- chore: Move encryption button to input row (Christian Kußowski)
+- chore: Revert "refactor: Make ChatListItem cache lasteventbody for better performance" (Christian Kußowski)
+- chore: Translate iOS notifications into german (Christian Kußowski)
+- chore: Try out refactored user device keys update method (Christian Kußowski)
+- chore: Update matrix dart sdk (Christian Kußowski)
+- chore: use time format based on system settings (kaanelloed)
+- ci: Build only for arm64 (Christian Kußowski)
+- refactor: Make ChatListItem cache lasteventbody for better performance (Christian Kußowski)
+- refactor: Remove unused directories (Christian Kußowski)
+- refactor: Rename models for matrix spec 1.16 (Christian Kußowski)
+- refactor: Replace flutter typeahead with autocomplete to fix (Christian Kußowski)
+- refactor: Use AppSettings enum based configuration everywhere and fix load from json on web (Christian Kußowski)
+- build: Flutter upgrade 3.35.5 (Christian Kußowski)
+- build: Matrix version 3.0.0 (Christian Kußowski)
+- build: Remove dependency for telephony (Christian Kußowski)
+- build: Remove openssl dependency (Christian Kußowski)
+- build: Use correct fcm_shared_isolate version (Christian Kußowski)
+- build: Use correct version of vodozemac for web build (Christian Kußowski)
+
+## v2.1.1
+Bugfix release to trigger flatpak arm64 release again.
+
+- build: (deps): bump actions/checkout from 4 to 5 (dependabot[bot])
+- build: (deps): bump app_links from 6.4.0 to 6.4.1 (dependabot[bot])
+- build: (deps): bump file_picker from 10.2.3 to 10.3.1 (dependabot[bot])
+- build: (deps): bump msix from 3.16.10 to 3.16.12 (dependabot[bot])
+- build: (deps): bump package_info_plus from 8.3.0 to 8.3.1 (dependabot[bot])
+- build: (deps): bump share_plus from 11.0.0 to 11.1.0 (dependabot[bot])
+- build: Also build linux on github runners (Christian Kußowski)
+- build: Update macos podfile (Christian Kußowski)
+- chore: Follow up subtitle font style (Christian Kußowski)
+- chore: Slightly adjust font sizes and design (Christian Kußowski)
+- chore(translations): Translated using Weblate (Chinese (Traditional Han script)) (miullu)
+- chore(translations): Translated using Weblate (Norwegian Bokmål) (Frank Paul Silye)
+- chore(translations): Translated using Weblate (Polish) (Piotr Orzechowski)
+- feat: support xdp selector for linux (ShootingStarDragons)
+- fix: Follow up fix rectangle avatars (Christian Kußowski)
+- refactor: Remove broken push error reporter (Christian Kußowski)
+
+## v2.1.0
+FluffyChat 2.1.0 brings support for room version 12 and a lot of bugfixes, updated translations and performance improvements. Also chat state events are now collapsed by default.
+
+- feat: Collapse all state events by default (Christian Kußowski)
+- feat(linux/notify): support avatar icon (ShootingStarDragons)
+- build: (deps): bump archive from 3.6.1 to 4.0.7 (dependabot[bot])
+- build: (deps): bump chewie from 1.11.3 to 1.12.1 (dependabot[bot])
+- build: (deps): bump desktop_drop from 0.4.4 to 0.6.1 (dependabot[bot])
+- build: (deps): bump device_info_plus from 10.1.2 to 11.5.0 (dependabot[bot])
+- build: (deps): bump dynamic_color from 1.7.0 to 1.8.1 (dependabot[bot])
+- build: (deps): bump file_picker from 10.2.0 to 10.2.1 (dependabot[bot])
+- build: (deps): bump file_picker from 8.3.7 to 10.2.0 (dependabot[bot])
+- build: (deps): bump flutter_foreground_task from 6.5.0 to 9.1.0 (dependabot[bot])
+- build: (deps): bump flutter_local_notifications from 19.3.0 to 19.4.0 (dependabot[bot])
+- build: (deps): bump flutter_map from 6.2.1 to 8.1.1 (dependabot[bot])
+- build: (deps): bump flutter_map from 8.1.1 to 8.2.1 (dependabot[bot])
+- build: (deps): bump flutter_native_splash from 2.4.4 to 2.4.6 (dependabot[bot])
+- build: (deps): bump flutter_webrtc from 0.12.12+hotfix.1 to 1.0.0 (dependabot[bot])
+- build: (deps): bump geolocator from 13.0.4 to 14.0.2 (dependabot[bot])
+- build: (deps): bump go_router from 15.1.2 to 16.0.0 (dependabot[bot])
+- build: (deps): bump go_router from 16.0.0 to 16.1.0 (dependabot[bot])
+- build: (deps): bump just_audio from 0.9.46 to 0.10.4 (dependabot[bot])
+- build: (deps): bump matrix from 1.0.1 to 1.1.0 (dependabot[bot])
+- build: (deps): bump mime from 1.0.6 to 2.0.0 (dependabot[bot])
+- build: (deps): bump msix from 3.16.9 to 3.16.10 (dependabot[bot])
+- build: (deps): bump permission_handler from 11.4.0 to 12.0.1 (dependabot[bot])
+- build: (deps): bump pretty_qr_code from 3.4.0 to 3.5.0 (dependabot[bot])
+- build: (deps): bump share_plus from 10.1.4 to 11.0.0 (dependabot[bot])
+- build: (deps): bump sqflite_common_ffi from 2.3.5 to 2.3.6 (dependabot[bot])
+- build: (deps): bump sqlcipher_flutter_libs from 0.6.6 to 0.6.7 (dependabot[bot])
+- build: (deps): bump unifiedpush from 5.0.2 to 6.0.2 (dependabot[bot])
+- build: (deps): bump url_launcher from 6.3.1 to 6.3.2 (dependabot[bot])
+- build: Update Flutter 3.32.8 (Christian Kußowski)
+- build: Upgrade emoji picker flutter (Christian Kußowski)
+- build: Use gradle in kotlin (Christian Kußowski)
+- build: Use macos-latest for debug ios job (Christian Kußowski)
+- chore: Add CI workflow for thank you message after issue got completed (Christian Kußowski)
+- chore: Add dependabot to code owners for pubspec (Christian Kußowski)
+- chore: Add ISC as compatible license to aGPLv3 (Christian Kußowski)
+- chore: Better error handling for push notifications (Christian Kußowski)
+- chore: Bump Flutter version in pubspec.lock (Rafał Hirsch)
+- chore: do format (ShootingStarDragons)
+- chore: Fix snapcraft build (krille-chan)
+- chore: Nicer own reaction color design (Christian Kußowski)
+- chore: Remove double quotes from screenshot filenames (Christian Kußowski)
+- chore: Remove lifecyclestate logs (Christian Kußowski)
+- chore: Remove unused workflow (krille-chan)
+- chore: Set height for screenshots in readme (krille-chan)
+- chore: Set text message max length to 16384 but make it configurable (Christian Kußowski)
+- chore: Update height for screenshots in readme (krille-chan)
+- chore: Update screenshots in readme (krille-chan)
+- fix: Add flexible to file messages to prevent long name overflow (Kelrap)
+- fix: Avoid using MediaQuery.of() (imnotlxy)
+- fix: Config viewer not updating state (Christian Kußowski)
+- fix: Delete database correctly after corruption (krille-chan)
+- fix: Design glitches in sticker dialog (Christian Kußowski)
+- fix: limit characters and lines so redact message can't be too long (avashilling)
+- fix: LoadingSnackBar consistently remains visible until the upload is complete (JaWeee)
+- fix: notification clicked still cannot jump (ShootingStarDragons)
+- fix: open chat from notification (ShootingStarDragons)
+- fix: Open database crashes on start (krille-chan)
+- fix: Open external account management when trying to delete devices (Christian Kußowski)
+- fix: Use retry http client (Christian Kußowski)
+- fix: Workaround for reversed width and height of compressed videos sent from Android (Christian Kußowski)
+- refactor: Add support for Room version 12 via matrix dart sdk update
+- refactor: Better UX for accepting declining invite (krille-chan)
+- refactor: ignore bubble gradient when using system high contrast mode (Christian Kußowski)
+- refactor: Make notification avatars rounded (krille-chan)
+- refactor: Remove unused dependencies (krille-chan)
+- chore(translations): Translated using Weblate (Basque) (xabirequejo)
+- chore(translations): Translated using Weblate (Belarusian) (Alex Katon)
+- chore(translations): Translated using Weblate (German) (Christian)
+- chore(translations): Translated using Weblate (Norwegian Bokmål) (Frank Paul Silye)
+- chore(translations): Translated using Weblate (Portuguese (Brazil)) (LucasMZ)
+- chore(translations): Translated using Weblate (Spanish) (Fuan200)
+- chore(translations): Translated using Weblate (Tamil) (தமிழ்நேரம்)
+- chore(translations): Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+- Translated using Weblate (Arabic) (LucasMZ)
+- Translated using Weblate (Basque) (xabirequejo)
+- Translated using Weblate (Chinese (Simplified Han script)) (大王叫我来巡山)
+- Translated using Weblate (Chinese (Traditional Han script)) (miullu)
+- Translated using Weblate (Czech) (LucasMZ)
+- Translated using Weblate (Dutch) (Jelv)
+- Translated using Weblate (English) (LucasMZ)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (German) (nautilusx)
+- Translated using Weblate (Hebrew) (LucasMZ)
+- Translated using Weblate (Hungarian) (LucasMZ)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Irish) (Aindriú Mac Giolla Eoin)
+- Translated using Weblate (Irish) (LucasMZ)
+- Translated using Weblate (Italian) (Angelo Schirinzi)
+- Translated using Weblate (Italian) (LucasMZ)
+- Translated using Weblate (Latvian) (Edgars Andersons)
+- Translated using Weblate (Latvian) (LucasMZ)
+- Translated using Weblate (Norwegian Bokmål) (Christian)
+- Translated using Weblate (Norwegian Bokmål) (Frank Paul Silye)
+- Translated using Weblate (Persian) (Alireza Rashidi)
+- Translated using Weblate (Polish) (Piotr Orzechowski)
+- Translated using Weblate (Portuguese (Brazil)) (LucasMZ)
+- Translated using Weblate (Portuguese) (Ana Elisa Ramos)
+- Translated using Weblate (Portuguese) (LucasMZ)
+- Translated using Weblate (Russian) (LucasMZ)
+- Translated using Weblate (Tamil) (தமிழ்நேரம்)
+- Translated using Weblate (Tamil) (LucasMZ)
+- Translated using Weblate (Telugu) (LucasMZ)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+- Translated using Weblate (Ukrainian) (LucasMZ)
+- Translated using Weblate (Vietnamese) (LucasMZ)
+
+## v2.0.0
+
+This version migrates to Vodozemac and Matrix Dart SDK 1.0.0. This is a breaking
+change. The user should not notice the migration at all but downgrading from
+v2.0.0 to a previous version is not possible without losing the session.
+
+- fix: Do not set read markers for sending events (Christian Kußowski)
+- fix: fix compile error related to MxcImage (gilice)
+- fix: Forward last version of events when forwarding (Christian Kußowski)
+- fix: Ban button displayed for already banned users (Christian Kußowski)
+- fix: Route back to room list after leaving a chat (Christian Kußowski)
+- build: Switch to matrix sdk 1.0.0 (Christian Kußowski)
+- build: Upgrade flutter to 3.32.2 (krille-chan)
+- build: Update to flutter 3.32.4 (Christian Kußowski)
+- chore: Add missing mounted check (Christian Kußowski)
+- chore: highlight select mode actions (Christian Kußowski)
+- refactor: sdk 1.0 (Christian Kußowski)
+- refactor: New message context menu (Christian Kußowski)
+- refactor: Nicer popupmenus (Christian Kußowski)
+- Translated using Weblate (Spanish) (Kimby)
+
+## v1.27.0
+- feat: Add confirmation dialog before accepting invite (krille-chan)
+- feat: Add feature flag for refresh tokens (Christian Kußowski)
+- feat: add setting for whether to show space navigation rail on mobile (ggurdin)
+- feat: Background audio player (Christian Kußowski)
+- feat: Check markdown checkboxes in messages (krille-chan)
+- feat: Create lists with checkboxes via + menu (krille-chan)
+- feat: Limit height of text messages and expand if selected (krille-chan)
+- feat: Move videoplayer into multi image viewer (Christian Kußowski)
+- feat: Show all supported image-/video-files when sending images or videos (MoonlightWave-12)
+- feat: Show WebM-videos when choosing video-files for sending (MoonlightWave-12)
+- fix: Add missing mounted check to mxcImage (Christian Kußowski)
+- fix: App crash on page navigation with open popup menu (Christian Kußowski)
+- fix: App crashes on window resize in chat (krille-chan)
+- fix: Change `PNGs` to `PNG` for consistency in file-selector (MoonlightWave-12)
+- fix: Crash when going to settings in desktop mode (krille-chan)
+- Fix: Fix jagged avatar edges Use anti-alias Clipping allowing for round Avatar circles (martin)
+- fix: Join new room after room upgrade (krille-chan)
+- fix: Keep state of text input dialogs (Christian Kußowski)
+- fix: Localizations (krille-chan)
+- fix: No crash on logging out in client chooser button (Christian Kußowski)
+- fix: Show WebP-images with a file-extension written in lower-case (MoonlightWave-12)
+- build: Update matrix dart sdk 0.40.2 (Christian Kußowski)
+- build: Update record package (Christian Kußowski)
+- build: Update shared preferences android (krille-chan)
+- build: Upgrade to flutter 3.32.1 (Christian Kußowski)
+- build: Use workaround for flutter secure storage on linux (krille-chan)
+- chore: Crop shortcut file on android and cache it (krille-chan)
+- chore: Display loading dialog when preparing voice message (Christian Kußowski)
+- chore: Format lib/utils/file_selector.dart (MoonlightWave-12)
+- chore: Let users decide for the title in error reporter (Christian Kußowski)
+- chore: make space nav bar narrower on mobile and ensure space nav bar matches user's theme (ggurdin)
+- chore: Nicer checkboxes (Christian Kußowski)
+- chore: Preload server file config before upload files (Christian Kußowski)
+- chore: Remove custom errorwidgetbuilder (Christian Kußowski)
+- chore: Remove unused translations (Christian Kußowski)
+- chore: Simplify voiceMessage getter (Christian Kußowski)
+- chore: Update voice message localization (Christian Kußowski)
+- refactor: Always use HtmlMessage (krille-chan)
+- refactor: Reduce notification avatar size to 128 (krille-chan)
+- Added translation using Weblate (Cantonese (Traditional Han script)) (Mike Evans)
+- Added translation using Weblate (Danish) (Øjvind Fritjof Arnfred)
+- Added translation using Weblate (Yue (yue_HK)) (Mike Evans)
+- Translated using Weblate (Arabic) (abdelbasset jabrane)
+- Translated using Weblate (Basque) (xabirequejo)
+- Translated using Weblate (Cantonese (Traditional Han script)) (Mike Evans)
+- Translated using Weblate (Catalan) (Marc Pina Artigas)
+- Translated using Weblate (Chinese (Simplified Han script)) (大王叫我来巡山)
+- Translated using Weblate (Chinese (Simplified Han script)) (Mike Evans)
+- Translated using Weblate (Chinese (Traditional Han script)) (Mike Evans)
+- Translated using Weblate (Chinese (Traditional Han script)) (miullu)
+- Translated using Weblate (Danish) (Øjvind Fritjof Arnfred)
+- Translated using Weblate (Dutch) (Jelv)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Finnish) (sevonj)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (German) (Christian)
+- Translated using Weblate (German) (Jana)
+- Translated using Weblate (German) (JSchmerling)
+- Translated using Weblate (Hebrew) (DavidEl-Natan)
+- Translated using Weblate (Hungarian) (H Tamás)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Irish) (Aindriú Mac Giolla Eoin)
+- Translated using Weblate (Italian) (Angelo Schirinzi)
+- Translated using Weblate (Latvian) (ℂ𝕠𝕠𝕠𝕝 (𝕘𝕚𝕥𝕙𝕦𝕓.𝕔𝕠𝕞/ℂ𝕠𝕠𝕠𝕝))
+- Translated using Weblate (Latvian) (Edgars Andersons)
+- Translated using Weblate (Polish) (Piotr Orzechowski)
+- Translated using Weblate (Portuguese (Brazil)) (Pedro Alves)
+- Translated using Weblate (Russian) (Yurt Page)
+- Translated using Weblate (Ukrainian) (Bezruchenko Simon)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+
+## v1.26.1
+
+Updates the Matrix Dart SDK to fix multiple issues where messages can be missing in the timeline.
+
+- feat: Reenable archive feature after various fixes landed in sdk (krille-chan)
+- build: Update matrix dart sdk to 0.40.0 (Christian Kußowski)
+- chore: Adjust new chat page design (krille-chan)
+- chore: Display count of invited in members page (krille-chan)
+- chore: Do not load timeline while sync processing (Krille)
+- chore: Do not store event from push in database (Krille)
+- chore: Only show joined members in members list by default (Krille)
+- chore: Remove matrix notification workflow (Krille)
+- fix(docs): escape tag (Sophie L)
+- fix: Crash when opening settings in column mode from popup menu (krille-chan)
+- refactor: Display thread messages like replies as a thread fallback (Krille)
+
+## v1.26.0
+
+- feat: Add advanced configuration page (Krille)
+- feat: clearly mark when a video is to be downloaded (Rafał Hirsch)
+- feat: Filter for room members page and easier approve knocking users (Krille)
+- feat: Navigate in image viewer with keyboard keys (krille-chan)
+- feat: New video file picker button (Krille)
+- feat: Send optional message with images or files (Krille)
+- feat: support inline video playback on macOS (Rafał Hirsch)
+- build: Flutter 3.29.3 (Krille)
+- build: Update gorouter package (Krille)
+- build: Update kotlin gradle plugin (Krille)
+- build: Update matrix dart sdk (Krille)
+- build: Update openssl to 0.5.0 (Krille)
+- build: use singleInstance as launchmode (krille-chan)
+- chore: Add matrix notifications for issues (Krille)
+- chore: Better error handling for image rendering (krille-chan)
+- chore: Better no compression supported UX (Krille)
+- chore: Correct availability of desktop builds (Lenni)
+- chore: disable echoCancel for audio messages (Krille)
+- chore: divider when scrolled up (krille-chan)
+- chore: Improve avatar designg (Krille)
+- chore: Make push gateway configurable (Krille)
+- chore: Nicer colors for reactions (krille-chan)
+- chore: Nicer scaffold dialog for column mode (Krille)
+- chore: Simpler changing config variables (Krille)
+- chore: Update locale config for localizations (Krille)
+- chore: Update pubspec.lock (Krille)
+- chore: upgrade chewie and video_player packages (Rafał Hirsch)
+- chore: Use Cupertino Activity Indicator in ChatEventList (krille-chan)
+- chore: Use other join endpoint for room upgrades (Krille)
+- fix(macos): update dependencies to make the build work (Rafał Hirsch)
+- fix: Add missing \<s> html tag to render (Krille)
+- fix: Consistent element padding between server picker and login view (xegim)
+- fix: Index of numbered lists are off (Krille)
+- fix: never use a transition on the shell route (Rafał Hirsch)
+- fix: Null error in ClientChooserButton (krille-chan)
+- fix: prevent users from creating spaces with empty names (ggurdin)
+- fix: properly dispose VideoPlayerController (Rafał Hirsch)
+- fix: Remove too sensitive dismiss gesture on chat list items (Krille)
+- fix: Text scale factor in Linkify widgets (Krille)
+- fix: update condition in account deletion function to allow deletion to go through (ggurdin)
+- refactor: Easier shift enter logic for text input (Krille)
+- refactor: Formatting (Krille)
+- refactor: Implement avatar image viewer and adjust design (Krille)
+- refactor: Improved UX for room upgrades (Krille)
+- refactor: Migrate more config options to config viewer (Krille)
+- refactor: Move public room bottom sheet into dialog (Krille)
+- refactor: Remove custom font and emoji font workaround (krille-chan)
+- refactor: Replace user bottom sheet with menu and small dialog (Krille)
+- Added translation using Weblate (Telugu) (katakam chakri)
+- Translated using Weblate (Basque) (xabirequejo)
+- Translated using Weblate (Chinese (Simplified Han script)) (Poesty Li)
+- Translated using Weblate (Chinese (Simplified Han script)) (大王叫我来巡山)
+- Translated using Weblate (Chinese (Traditional Han script)) (Mare JP)
+- Translated using Weblate (Chinese (Traditional Han script)) (miullu)
+- Translated using Weblate (Dutch) (Jelv)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Filipino) (searinminecraft)
+- Translated using Weblate (French) (Antonin Del Fabbro)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (German) (nautilusx)
+- Translated using Weblate (German) (Very Able)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Irish) (Aindriú Mac Giolla Eoin)
+- Translated using Weblate (Italian) (Angelo Schirinzi)
+- Translated using Weblate (Korean) (kdh8219)
+- Translated using Weblate (Latvian) (Edgars Andersons)
+- Translated using Weblate (Latvian) (ℂ𝕠𝕠𝕠𝕝 (𝕘𝕚𝕥𝕙𝕦𝕓.𝕔𝕠𝕞/ℂ𝕠𝕠𝕠𝕝))
+- Translated using Weblate (Polish) (Piotr Orzechowski)
+- Translated using Weblate (Russian) (Yurt Page)
+- Translated using Weblate (Spanish) (José Muñoz)
+- Translated using Weblate (Spanish) (Kimby)
+- Translated using Weblate (Telugu) (katakam chakri)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+
+## v1.25.0
+
+- feat: Display all push rules and allow to enable disable them (Krille)
+- feat: Inspect and delete push rules (Krille)
+- feat: Pick share keys with (Krille)
+- feat: Select share keys with property in security settings (Krille)
+- feat: Use dynamic gradient for chat bubbles (Krille)
+- fix: Image search rendering problem (krille-chan)
+- build: Add locale config for android (krille-chan)
+- build: Add missing permissions (Krille)
+- build: Automerge weblate PRs (Krille)
+- build: Fix ios debug build (krille-chan)
+- build: Follow up auto merge weblate (Krille)
+- build: remove weblate auto merge (Krille)
+- build: Switch to flutter_shortcuts_new (Krille)
+- build: Update dependencies for flutter (Krille)
+- build: Update dependencies to remove more flutter android v1 references (Krille)
+- build: Update fcm_shared_isolate (Krille)
+- build: Update flutter web uild (Krille)
+- build: Update flutter_olm to 2.0.0 (Krille)
+- build: Update gradle version (Krille)
+- build: Update native_imaging (Krille)
+- build: Update PAT (Krille)
+- build: Update to flutter 3.27.4 (Krille)
+- build: Update weblate auto merge (Krille)
+- build: Upgrade gradle (Krille)
+- chore: Add explanation for PlayStore Safety Standards (Krille)
+- chore: Add medium font (Krille)
+- chore: Add start to ordered list (Krille)
+- chore: Add tooltip to links in html (Krille)
+- chore: Adjust button icon colors (Krille)
+- chore: Adjust design of adaptive dialogs (krille-chan)
+- chore: Adjust navrail design (Krille)
+- chore: Adjust share scaffold dialog design (Krille)
+- chore: Better connection status indicator (Krille)
+- chore: Design adjustments (krille-chan)
+- chore: Make login with matrix id more prominent again (krille-chan)
+- chore: Message bubble color follow up (krille-chan)
+- chore: Remove gradle workaround (Krille)
+- chore: Slightly adjust welcome screen (Krille)
+- chore: Use UbuntuMono (Krille)
+- docs: Fix snap store icon (krille-chan)
+- refactor: Display navigationrail in settings page (krille-chan)
+- refactor: Follow up fix types in localization files (Krille)
+- refactor: Improve sso login UX on web (krille-chan)
+- refactor: Migrate to maintained badge package (Krille)
+- refactor: Migrate uni_links to app_links (Krille)
+- refactor: New html rendering (Krille)
+- refactor: Remove broken callkeep implementation (Krille)
+- refactor: Remove unused class (krille-chan)
+- refactor: Switch to maintained qr code package (Krille)
+- refactor: Switch to ubuntu font (krille-chan)
+- refactor: Update arb file types (Krille)
+- Translated using Weblate (Arabic) (Rex_sa)
+- Translated using Weblate (Basque) (xabirequejo)
+- Translated using Weblate (Catalan) (fadelkon)
+- Translated using Weblate (Chinese (Simplified Han script)) (玖然)
+- Translated using Weblate (Chinese (Simplified Han script)) (大王叫我来巡山)
+- Translated using Weblate (Chinese (Traditional Han script)) (玖然)
+- Translated using Weblate (Croatian) (Milo Ivir)
+- Translated using Weblate (Dutch) (Jelv)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (German) (Christian)
+- Translated using Weblate (German) (Ettore Atalan)
+- Translated using Weblate (German) (Jana)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Irish) (Aindriú Mac Giolla Eoin)
+- Translated using Weblate (Italian) (Angelo Schirinzi)
+- Translated using Weblate (Korean) (kdh8219)
+- Translated using Weblate (Latvian) (Edgars Andersons)
+- Translated using Weblate (Slovak) (Anonymous)
+- Translated using Weblate (Spanish) (Alfredo Sola)
+- Translated using Weblate (Ukrainian) (Bezruchenko Simon)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+
+## v1.24.0
+
+- build: Add missing libssl library (krille-chan)
+- build: Update dart_webrtc package (Krille)
+- build: Update matrix sdk and dependencies (Krille)
+- build: Update to flutter 3.27 (Krille)
+- chore: Better bottom sheets on desktop (krille-chan)
+- chore: Check file size before loading (krille-chan)
+- chore: Display normal Slider when no waveform provided in audioplayer (krille-chan)
+- chore: Do not display sender prefix for DM rooms in notification ticker (krille-chan)
+- chore: Enable share multiple files to app (krille-chan)
+- chore: Improve alias UX in chat settings (Krille)
+- chore: Improve join abandoned invite exception (Krille)
+- chore: Improve UserBottomSheet UX (Krille)
+- chore: Make message bubble color dark also in dark mode (krille-chan)
+- chore: Remove conversationTitle if room is dm room in android notifications (krille-chan)
+- feat: QR Code viewer for mxid sharing (Krille)
+- fix: Do not set public visibility for private groups (Krille)
+- fix: Use MB and KB instead of MiB and KiB for file sizes (Krille)
+- refactor: Adjust chat list item UX (Krille)
+- refactor: Better custom image resizer (Krille)
+- refactor: Clean up android manifest (Krille)
+- refactor: Implement own adaptive dialogs and remove package (krille-chan)
+- refactor: Improve UX of user role in UserBottomSheet (Krille)
+- refactor: Improved share / forward dialog (krille-chan)
+- Translated using Weblate (Arabic) (Rex_sa)
+- Translated using Weblate (Basque) (xabirequejo)
+- Translated using Weblate (Catalan) (fadelkon)
+- Translated using Weblate (Chinese (Simplified Han script)) (大王叫我来巡山)
+- Translated using Weblate (Czech) (Erin)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (German) (Christian)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Irish) (Aindriú Mac Giolla Eoin)
+- Translated using Weblate (Italian) (Angelo Schirinzi)
+- Translated using Weblate (Latvian) (Edgars Andersons)
+- Translated using Weblate (Polish) (Piotr Orzechowski)
+- Translated using Weblate (Russian) (-)
+- Translated using Weblate (Tamil) (Christian)
+- Translated using Weblate (Tamil) (தமிழ்நேரம்)
+- Translated using Weblate (Turkish) (goknarbahceli)
+- Translated using Weblate (Ukrainian) (Bezruchenko Simon)
+- Translated using Weblate (Vietnamese) (Tewuzij)
+
+## v1.23.0
+
+- design: Highlight emoji only messages (Krille)
+- design: New login design (Krille)
+- docs: fix snapstore badge on website (Krille)
+- feat: Add about server page (Krille)
+- feat: Add default chat wallpaper (Krille)
+- feat: Add markdown context actions for text input (krille-chan)
+- feat: Better wallpapers with blur and opacity sliders and improved styles page (krille-chan)
+- feat: Display warning banner on unverified devices (krille-chan)
+- feat: New audio message design with displayed body (krille-chan)
+- feat: Nicer room creation UI (krille-chan)
+- feat: Open account manage url when using MAS (krille-chan)
+- feat: Sending multiple files at once (krille-chan)
+- feat: Swipe to archive rooms (Krille)
+- fix: Bypass image compression in flutter_file_picker (q234rty)
+- fix: dont use thumbnails for emoticons (Marek Vospěl)
+- fix: Public rooms always publicly visible even when turned off on creation (krille-chan)
+- fix: Wait for room invite before open in pushhelper (krille-chan)
+- refactor: Better future loading dialog without flickering (krille-chan)
+- refactor: Display two lines on new messages (krille-chan)
+- refactor: Improve delete device UX flow (krille-chan)
+- refactor: Load bytes from sending files later to not let app crash (krille-chan)
+- refactor: Migrate to newer keyboard shortcuts package (Krille)
+- refactor: Move to upstream geolocator (Krille)
+- refactor: Performance boost for avatar widget (Krille)
+- refactor: Remove duplicated navigator workaround (krille-chan)
+- refactor: Remove keyboard shortcuts (Krille)
+- refactor: Remove unnecessary builder widget (krille-chan)
+- refactor: Reuse flutter local notifications object (krille-chan)
+- refactor: Use adaptive dialog action (Krille)
+- refactor: Use file selector on linux (krille-chan)
+- refactor: Use non nullable localizations builder and lazy load on web (krille-chan)
+- Revert "chore: Follow up new chat design" (Krille)
+- Revert "feat: Add default chat wallpaper" (Krille)
+- Revert "refactor: Performance boost for avatar widget" (krille-chan)
+- Translated using Weblate (Arabic) (Rex_sa)
+- Translated using Weblate (Basque) (xabirequejo)
+- Translated using Weblate (Catalan) (fadelkon)
+- Translated using Weblate (Chinese (Simplified Han script)) (大王叫我来巡山)
+- Translated using Weblate (Czech) (Michal Bedáň)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Finnish) (Priit Jõerüüt)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (German) (Christian)
+- Translated using Weblate (German) (Ettore Atalan)
+- Translated using Weblate (German) (Peter Wallerius)
+- Translated using Weblate (Hungarian) (Zentropivity)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Irish) (Aindriú Mac Giolla Eoin)
+- Translated using Weblate (Irish) (Christian)
+- Translated using Weblate (Italian) (Angelo Schirinzi)
+- Translated using Weblate (Korean) (Bruno Roh)
+- Translated using Weblate (Korean) (kdh8219)
+- Translated using Weblate (Latvian) (Edgars Andersons)
+- Translated using Weblate (Latvian) (GGLVXD)
+- Translated using Weblate (Russian) (Pavel Kozhukhov)
+- Translated using Weblate (Russian) (v1s7)
+- Translated using Weblate (Spanish) (Kimby)
+- Translated using Weblate (Turkish) (Oğuz Ersen)
+- Translated using Weblate (Ukrainian) (Bezruchenko Simon)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+
+## v1.22.0
+
+FluffyChat v1.22.0 brings a new design for spaces, replaces the bottom navigation bar with filter
+chips and makes it finally possible to play ogg audio messages on iOS. A lot of other fixes and
+improvements have also been added to this release.
+
+FluffyChat also now uses the new authenticated media endpoints if the server supports Matrix v1.11
+or
+mentions the msc with the key `org.matrix.msc3916.stable` in the `unstable_features`.
+
+- design: Add snackbar with link to changelog on new version (Krille)
+- docs: Update privacy policy (krille-chan)
+- feat: Support for matrix auth media endpoints
+- feat: Convert opus to aac on iOS before playing (Krille)
+- feat: New spaces and chat list design (krille-chan)
+- feat: Record voice message with opus/ogg if supported (Krille)
+- feat: Send voice messages from web (Krille)
+- feat: Add about server page (Krille)
+- feat: Add default chat wallpaper (Krille)
+- feat: Add markdown context actions for text input (krille-chan)
+- feat: Better wallpapers with blur and opacity sliders and improved styles page (krille-chan)
+- feat: Display warning banner on unverified devices (krille-chan)
+- feat: New audio message design with displayed body (krille-chan)
+- feat: Nicer room creation UI (krille-chan)
+- feat: Open account manage url when using MAS (krille-chan)
+- feat: Sending multiple files at once (krille-chan)
+- feat: Swipe to archive rooms (Krille)
+- fix: Display only available join rules (Krille)
+- fix: Path correct userId to ignore list (krille-chan)
+- fix: Scroll to event missing the position (Krille)
+- Fix web base url and privacy url configuration processing (dlyrsk)
+- refactor: Clean up some widths (krille-chan)
+- refactor: Design polishment and better user viewer (Krille)
+- refactor: Migrate android gradle plugin (Krille)
+- refactor: Only initialize FlutterLocalNotificationsPlugin once (krille-chan)
+- refactor: Recording dialog (Krille)
+- Refactor: Reduce .of(context) calls theme (Thomas Klein Langenhorst)
+- refactor: Use cached network image for mxc image uris (Krille)
+- Translated using Weblate (Arabic) (kdh8219)
+- Translated using Weblate (Arabic) (Rex_sa)
+- Translated using Weblate (Basque) (kdh8219)
+- Translated using Weblate (Basque) (xabirequejo)
+- Translated using Weblate (Chinese (Simplified)) (kdh8219)
+- Translated using Weblate (Chinese (Simplified)) (大王叫我来巡山)
+- Translated using Weblate (Chinese (Traditional)) (kdh8219)
+- Translated using Weblate (Chinese (Traditional)) (Lukas)
+- Translated using Weblate (Chinese (Traditional)) (Ricky From Hong Kong)
+- Translated using Weblate (Chinese (Traditional)) (不知火 Shiranui)
+- Translated using Weblate (Croatian) (Milo Ivir)
+- Translated using Weblate (Czech) (Anonymous)
+- Translated using Weblate (Czech) (Michal Bedáň)
+- Translated using Weblate (Dutch) (Guacamolie)
+- Translated using Weblate (Dutch) (Jelv)
+- Translated using Weblate (Dutch) (Thomas Klein Langenhorst)
+- Translated using Weblate (Esperanto) (Anonymous)
+- Translated using Weblate (Estonian) (kdh8219)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Finnish) (Anonymous)
+- Translated using Weblate (French) (Sovkipyk)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (German) (Christian)
+- Translated using Weblate (German) (Pixelcode)
+- Translated using Weblate (German) (tct123)
+- Translated using Weblate (Hebrew) (Anonymous)
+- Translated using Weblate (Indonesian) (Linerly)
+- Translated using Weblate (Irish) (Anonymous)
+- Translated using Weblate (Japanese) (Anonymous)
+- Translated using Weblate (Korean) (kdh8219)
+- Translated using Weblate (Lithuanian) (Anonymous)
+- Translated using Weblate (Norwegian Bokmål) (Anonymous)
+- Translated using Weblate (Persian) (Anonymous)
+- Translated using Weblate (Portuguese (Portugal)) (Anonymous)
+- Translated using Weblate (Romanian) (Anonymous)
+- Translated using Weblate (Russian) (-)
+- Translated using Weblate (Serbian) (Anonymous)
+- Translated using Weblate (Slovenian) (Anonymous)
+- Translated using Weblate (Spanish) (Anonymous)
+- Translated using Weblate (Turkish) (kdh8219)
+- Translated using Weblate (Turkish) (Oğuz Ersen)
+- Translated using Weblate (Ukrainian) (Bezruchenko Simon)
+- Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
+
+## v1.21.2
+
+Updates the Matrix Dart SDK to fix some minor bugs.
+
+- Added translation using Weblate (Lojban) (Zig-Rust-Odin)
+- build: Update matrix dart sdk (Krille)
+- chore: Update last event after decryption (Krille)
+- fix: Correctly localize time of date (Krille)
+- refactor: Omit local types (Krille)
+- Translated using Weblate (Arabic) (Rex_sa)
+- Translated using Weblate (Basque) (xabirequejo)
+- Translated using Weblate (Chinese (Simplified)) (大王叫我来巡山)
+- Translated using Weblate (Croatian) (Milo Ivir)
+- Translated using Weblate (Estonian) (Priit Jõerüüt)
+- Translated using Weblate (Galician) (josé m)
+- Translated using Weblate (Hungarian) (H Tamás)
+- Translated using Weblate (Korean) (kdh8219)
+- Translated using Weblate (Latvian) (Edgars Andersons)
+- Translated using Weblate (Polish) (Eryk Michalak)
+- Translated using Weblate (Portuguese (Brazil)) (lucasmz-dev)
+- Translated using Weblate (Russian) (Nicholas Winterhalter)
+- Translated using Weblate (Turkish) (Oğuz Ersen)
+
 ## v1.21.1
+
 - build: Update Matrix Dart SDK (Krille)
 - build: Update to Flutter 3.22.2 (krille-chan)
 - feat: add option to configure reply swipe direction (MrSpoony)
@@ -12,7 +907,10 @@
 - Translated using Weblate (Vietnamese) (Karo)
 
 ## v1.21.0
-FluffyChat v1.21.0 introduces the new search feature which also includes a gallery and files list for each chat. Several performance improvements have been added under the hood, leading to a much nicer user experience.
+
+FluffyChat v1.21.0 introduces the new search feature which also includes a gallery and files list
+for each chat. Several performance improvements have been added under the hood, leading to a much
+nicer user experience.
 
 - feat: Enable download images on iOS, not only share images (krille-chan)
 - feat: Search feature (krille-chan)
@@ -41,7 +939,8 @@ FluffyChat v1.21.0 introduces the new search feature which also includes a galle
 - refactor: Delete database file on failed app start (krille-chan)
 - refactor: Display better command hints (Krille)
 - refactor: Improve performance of chat list (krille-chan)
-- refactor: Precache theme and directchatmatrixid to improve performance in chat list item (krille-chan)
+- refactor: Precache theme and directchatmatrixid to improve performance in chat list item (
+  krille-chan)
 - refactor: Update to Matrix Dart SDK 0.29.9 (Krille)
 - Translated using Weblate (Croatian) (Milo Ivir)
 - Translated using Weblate (Czech) (Jozef Mlich)
@@ -53,6 +952,7 @@ FluffyChat v1.21.0 introduces the new search feature which also includes a galle
 - Translated using Weblate (Turkish) (Oğuz Ersen)
 
 ## v1.20.0
+
 Design improvements and new advanced UI to manage rooms.
 
 - build: Fix google services patch (Krille)
@@ -87,6 +987,7 @@ Design improvements and new advanced UI to manage rooms.
 - Translated using Weblate (Portuguese (Brazil)) (Rudah Ximenes Alvarenga)
 
 ## v1.19.2
+
 Bugfix release to mostly fix the new database encryption on Linux and update the translations.
 
 - build: (deps): bump peaceiris/actions-gh-pages from 3 to 4 (dependabot[bot])
@@ -94,7 +995,8 @@ Bugfix release to mostly fix the new database encryption on Linux and update the
 - build: Update emoji picker package (krille-chan)
 - build: Update flutter_map package (krille-chan)
 - docs: Fix typo in android app description (Krille)
-- fix: Allow unencrypted database if gnome keyring not present or platform does not support it (krille-chan)
+- fix: Allow unencrypted database if gnome keyring not present or platform does not support it (
+  krille-chan)
 - fix: Background color of images with transparency (Krille)
 - fix: Localizations from weblate confused by unknownEvent locale (Krille)
 - fix: More logs when database fails to init and trycatch sendInitNotification (Krille)
@@ -124,6 +1026,7 @@ Bugfix release to mostly fix the new database encryption on Linux and update the
 - Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
 
 ## v1.19.1
+
 Minor bugfix release for login with SSO on web.
 
 - feat: Show/hide third column in chat view (krille-chan)
@@ -135,7 +1038,9 @@ Minor bugfix release for login with SSO on web.
 - refactor: new flutter only typing animation (krille-chan)
 
 ## v1.19.0
-FluffyChat v1.19.0 features an improved design for message bubbles and a lot of fixes under the hood.
+
+FluffyChat v1.19.0 features an improved design for message bubbles and a lot of fixes under the
+hood.
 
 - build: Update matrix dart sdk (Krille)
 - build: Update to flutter 3.19.5 (krille-chan)
@@ -157,7 +1062,8 @@ FluffyChat v1.19.0 features an improved design for message bubbles and a lot of 
 - feat: Add insert content via gboard (krille-chan)
 - feat: Reply with one button in desktop (krille-chan)
 - fix: Do not sync in background mode (krille-chan)
-- fix: FluffyChat should assume m.change_password capabilitiy is supported if not present per spec (krille-chan)
+- fix: FluffyChat should assume m.change_password capabilitiy is supported if not present per spec (
+  krille-chan)
 - fix: never use root navigator for bottom sheets (The one with the braid)
 - fix: Remove pantalaimon message with normal error message (krille-chan)
 - fix: Search in spaces view (krille-chan)
@@ -172,6 +1078,7 @@ FluffyChat v1.19.0 features an improved design for message bubbles and a lot of 
 - Translated using Weblate (Interlingua) (Software In Interlingua)
 
 ## v1.18.0
+
 - feat: Add speed button for audioplayer (krille-chan)
 - feat: enhanced send video functionality by adding toggle send original (Mubeen Rizvi)
 - feat: add dialog to hide presence list with long-press (Marcus Hoffmann)
@@ -210,6 +1117,7 @@ FluffyChat v1.19.0 features an improved design for message bubbles and a lot of 
 - Translated using Weblate (Ukrainian) (Сергій)
 
 ## v1.17.3
+
 - feat: New account data based wallpaper feature (Krille)
 - build: Update dependencies (Krille)
 - build: Update flutter to 3.16.9 (Krille)
@@ -227,6 +1135,7 @@ FluffyChat v1.19.0 features an improved design for message bubbles and a lot of 
 - fix: Share invite links of public rooms (Krille)
 
 ## v1.17.2
+
 Another minor bugfix release which also implements private read receipts.
 
 - feat: Implement private read receipts (krille-chan)
@@ -256,6 +1165,7 @@ Another minor bugfix release which also implements private read receipts.
 - Translated using Weblate (Ukrainian) (Сергій)
 
 ## v1.17.1
+
 Minor bugfix release.
 
 - build: Update matrix sdk 0.25.5 (Krille)
@@ -263,13 +1173,17 @@ Minor bugfix release.
 - chore: Remove vibration on iOS for long press (Krille)
 - design: Better paddings in tablet mode (krille-chan)
 - docs: Fix typo in readme (Krille)
-- Fix dependency. missing yq when invoking setup-web. also ensure updated config.json copied in (Isaac Johnson)
+- Fix dependency. missing yq when invoking setup-web. also ensure updated config.json copied in (
+  Isaac Johnson)
 - fix: text nodes with multiple links crash the timeline (Krille)
 - fix: URL too long when reporting bug (Krille)
 - fix: Wait for user device keys before start verification (Krille)
 
 ## v1.17.0
-FluffyChat v1.17.0 refreshes the overall user experience, changes some design and fixes a lot of bugs. It also replaces the stories feature with matrix presences, introduces a new kind of database to store the messages locally and improves the performance and app stability.
+
+FluffyChat v1.17.0 refreshes the overall user experience, changes some design and fixes a lot of
+bugs. It also replaces the stories feature with matrix presences, introduces a new kind of database
+to store the messages locally and improves the performance and app stability.
 
 - change: Remove wallpaper feature (krille-chan)
 - design: Adjust login page design (krille-chan)
@@ -323,9 +1237,11 @@ FluffyChat v1.17.0 refreshes the overall user experience, changes some design an
 - Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
 
 ## v1.16.1
+
 Test candidate for the new database.
 
 ## v1.16.0
+
 - build: Set olm to 1.3.2 to fix android build (krille-chan)
 - build: Update dependencies (krille-chan)
 - build: Update flutter_olm (Krille)
@@ -486,6 +1402,7 @@ Test candidate for the new database.
 - Translated using Weblate (Vietnamese) (Sorunome)
 
 ## v1.15.1
+
 - feat: Make all text in chat selectable on desktop (krille-chan)
 - chore: Add border to images in timeline (krille-chan)
 - chore: added android audio sharing intent (Aryan Arora)
@@ -511,6 +1428,7 @@ Test candidate for the new database.
 - Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
 
 ## v1.15.0
+
 - feat: Add experimental todo list for rooms (krille-chan)
 - feat: better scroll to last read message handling (krille-chan)
 - build: Add appid suffix to android debug builds (krille-chan)
@@ -524,13 +1442,15 @@ Test candidate for the new database.
 - design: Make incoming messages color more light (krille-chan)
 - design: Make key verification an adaptive dialog (krille-chan)
 - design: Make own chat bubble primary color for better contrast (krille-chan)
-- fix: Create chat dialog crashes sometimes and power level textfield does not validate input (krille-chan)
+- fix: Create chat dialog crashes sometimes and power level textfield does not validate input (
+  krille-chan)
 - fix: Remove uncompatible dependencies connectivity_plus and wakelock (Krille)
 - fix: Use correct localization for redactedBy (krille-chan)
 - fix: noFCM warning dialog (krille-chan)
 - fix: render tg-forward as blockquote style (krille-chan)
 - fix: Archive does not update its state
-- refactor: Change audio codec to opus where supported to have better compatibility with Element (Krille)
+- refactor: Change audio codec to opus where supported to have better compatibility with Element (
+  Krille)
 - refactor: Make file dialog adaptive and adjust design (krille-chan)
 - refactor: Preload notification sound on web (Krille)
 - refactor: Remove unused config (krille-chan)
@@ -550,10 +1470,12 @@ Test candidate for the new database.
 - Translated using Weblate (Thai) (Amy/Atius)
 
 ## v1.14.5
+
 - Hotfix iOS crashes on start
 - Hotfix cannot reset applock
 
 ## v1.14.4
+
 Minor bugfix release. Please note that because of a Flutter update FluffyChat is no longer
 compatible with iOS 11.
 
@@ -569,17 +1491,24 @@ compatible with iOS 11.
 - refactor: Only preload client for GUI start (krille-chan)
 
 ## v1.14.3
+
 - hotfix app lock still displayed even when account is logged out
 - Update to Flutter 3.13.6
 
 ## v1.14.2
+
 - hotfix for broken applock screen
 
 ## v1.14.1
+
 - fix: Routing bug when adding second account via password login
 
 ## v1.14.0
-Release with a lot of bugfixes and refactorings under the hood. FluffyChat now uses go_router instead of vrouter, works with the newest Flutter SDK and supports "reason" field for redactions. For Android there is a new "background-fetch mode" for Push Notifications which should make notifications in background faster and more reliable and reduce battery-usage.
+
+Release with a lot of bugfixes and refactorings under the hood. FluffyChat now uses go_router
+instead of vrouter, works with the newest Flutter SDK and supports "reason" field for redactions.
+For Android there is a new "background-fetch mode" for Push Notifications which should make
+notifications in background faster and more reliable and reduce battery-usage.
 
 - feat: Background fetch mode on Android (krille-chan)
 - feat: Improved mouse support for selecting events (krille-chan)
@@ -645,6 +1574,7 @@ Release with a lot of bugfixes and refactorings under the hood. FluffyChat now u
 - Translated using Weblate (Ukrainian) (Skrripy)
 
 ## v1.13.0
+
 - feat: option to not send typing notifications (Bnyro)
 - feat: small performance tweaks for Message (gilice)
 - feat: New onboarding screen with SSO as first class feature
@@ -652,7 +1582,8 @@ Release with a lot of bugfixes and refactorings under the hood. FluffyChat now u
 - fix: Set iOS badge (Krille)
 - refactor: Switch the dev hosting platform from GitLab to GitHub
 - design: New more compact chat bubble design and other design tweaks
-- design: Login now shows SSO more prominent and deprecates in-app registration in favor of SSO registration
+- design: Login now shows SSO more prominent and deprecates in-app registration in favor of SSO
+  registration
 - Translated using Weblate (Arabic) (Rex_sa)
 - Translated using Weblate (Chinese (Simplified)) (Poesty Li)
 - Translated using Weblate (Estonian) (Priit Jõerüüt)
@@ -661,6 +1592,7 @@ Release with a lot of bugfixes and refactorings under the hood. FluffyChat now u
 - Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
 
 ## v1.12.0
+
 - Added translation using Weblate (Toki Pona) (Mæve Rey)
 - Translated using Weblate (Arabic) (Rex_sa)
 - Translated using Weblate (Chinese (Simplified)) (Eric)
@@ -698,12 +1630,14 @@ Release with a lot of bugfixes and refactorings under the hood. FluffyChat now u
 - feat: Add toggle to mute notifications from chat groups (fbievan)
 - feat: Allow ruby tags in html (Krille)
 - feat: Display progress value for initial sync (Krille)
-- feat: Implement new error reporting tool when critical features break like playing audio or video messages or opening a chat (Krille)
+- feat: Implement new error reporting tool when critical features break like playing audio or video
+  messages or opening a chat (Krille)
 - feat: clean up macOS build metadata (TheOneWithTheBraid)
 - feat: set display information correctly (TheOneWithTheBraid)
 - feat: update macOS build files (TheOneWithTheBraid)
 - feat: update macOS build information for macOS Ventura (TheOneWithTheBraid)
-- fix "Unhandled Exception: VRouter.of(context) was called with a context which does not contain a VRouter." (Lauren N. Liberda)
+- fix "Unhandled Exception: VRouter.of(context) was called with a context which does not contain a
+  VRouter." (Lauren N. Liberda)
 - fix: Broken arb file (Krille)
 - fix: Do not unnecessary request all members in public rooms (Krille)
 - fix: Remove wrong rendered linebreak in html (Krille)
@@ -725,6 +1659,7 @@ Release with a lot of bugfixes and refactorings under the hood. FluffyChat now u
 - refactor: Use DateTime for weekday localization (Malin Errenst)
 
 ## v1.11.2
+
 - Translated using Weblate (Croatian) (Milo Ivir)
 - Translated using Weblate (Dutch) (Jelv)
 - Translated using Weblate (Estonian) (Priit Jõerüüt)
@@ -736,9 +1671,11 @@ Release with a lot of bugfixes and refactorings under the hood. FluffyChat now u
 - fix: Chats do not load (Krille)
 
 ## v1.11.1 - 2023-04-20
+
 - fix: Download files on web and iOS with correct mimetype
 
 ## v1.11.0 - 2023-04-14
+
 - feat: Add visual read marker (Krille)
 - feat: Jump to last read event (Krille)
 - feat: Use fragmented timeline to jump to event (Krille)
@@ -769,6 +1706,7 @@ Release with a lot of bugfixes and refactorings under the hood. FluffyChat now u
 - Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
 
 ## v1.10.0 - 2023-02-25
+
 - Added translation using Weblate (Thai) (Wphaoka)
 - Added translation using Weblate (Tibetan) (Nathan Freitas)
 - Default hardcoded message when l10n is not available (fabienli)
@@ -806,7 +1744,8 @@ Release with a lot of bugfixes and refactorings under the hood. FluffyChat now u
 - fix: Display error when user tries to send too large file (Christian Pauly)
 - refactor: Do only instantiate AudioPlayer() object when in use (Christian Pauly)
 - refactor: Remove syncstatus verbose logs (Christian Pauly)
-- refactor: Store cached files in tmp directory so OS will clear file cache from time to time (Krille)
+- refactor: Store cached files in tmp directory so OS will clear file cache from time to time (
+  Krille)
 - style: Adjust key verification dialog (Christian Pauly)
 - style: Bootstrap design adjustments (Christian Pauly)
 - style: Encryption page adjustments (Christian Pauly)
@@ -823,6 +1762,7 @@ Release with a lot of bugfixes and refactorings under the hood. FluffyChat now u
 - utils/url_launcher: force opening http(s) links in external browser (Marcus Hoffmann)
 
 ## v1.9.0 - 2023-01-29
+
 - Translated using Weblate (Czech) (Michal Bedáň)
 - Translated using Weblate (Czech) (grreby)
 - Translated using Weblate (Dutch) (Jelv)
@@ -861,6 +1801,7 @@ Release with a lot of bugfixes and refactorings under the hood. FluffyChat now u
 - style: Redesign public room bottomsheets (Krille)
 
 ## v1.8.0 2022-12-30
+
 - Added translation using Weblate (Yue (yue_HK)) (Raatty)
 - Translated using Weblate (Chinese (Simplified)) (Mike Evans)
 - Translated using Weblate (Estonian) (Priit Jõerüüt)
@@ -887,13 +1828,19 @@ Release with a lot of bugfixes and refactorings under the hood. FluffyChat now u
 - fix: minor issues in room list (TheOneWithTheBraid)
 
 ## v1.7.2 2022-12-19
+
 Update dependencies and translations.
 
 ## v1.7.1 2022-11-23
-Minor bugfix release to retrigger build for FlatPak and Android. Fixes some style bugs and updates some translations
+
+Minor bugfix release to retrigger build for FlatPak and Android. Fixes some style bugs and updates
+some translations
 
 ## v1.7.0 2022-11-17
-FluffyChat 1.7.0 features a new way to work with spaces via a bottom navigation bar. A lot of work has also been done under the hood to make the app faster and more stable. The main color has slightly changed and the design got some finetuning.
+
+FluffyChat 1.7.0 features a new way to work with spaces via a bottom navigation bar. A lot of work
+has also been done under the hood to make the app faster and more stable. The main color has
+slightly changed and the design got some finetuning.
 
 - chore: Add keys to roomlist and stories header (Christian Pauly)
 - chore: Add unread badge to navigation rail and adjust design (Christian Pauly)
@@ -950,6 +1897,7 @@ FluffyChat 1.7.0 features a new way to work with spaces via a bottom navigation 
 - Translated using Weblate (Ukrainian) (Raatty)
 
 ## v1.6.4 - 2022-09-08
+
 - Translated using Weblate (Chinese (Simplified)) (Eric)
 - Translated using Weblate (Estonian) (Priit Jõerüüt)
 - Translated using Weblate (Galician) (Xosé M)
@@ -965,6 +1913,7 @@ FluffyChat 1.7.0 features a new way to work with spaces via a bottom navigation 
 - fix: add missing command localizations (Christian Pauly)
 
 ## v1.6.3 - 2022-08-25
+
 - Translated using Weblate (Chinese (Simplified)) (Eric)
 - Translated using Weblate (Estonian) (Priit Jõerüüt)
 - Translated using Weblate (Finnish) (Aminda Suomalainen)
@@ -977,6 +1926,7 @@ FluffyChat 1.7.0 features a new way to work with spaces via a bottom navigation 
 - refactor: App widget (Christian Pauly)
 
 ## v1.6.0 - 2022-07-31
+
 FluffyChat 1.6.0 features a lot of bug fixes and improvements. The code base has been
 simplified and the drawer on the chat list page got a come-back. Some new features like
 the space hierarchy and session dump have been implemented.
@@ -1047,6 +1997,7 @@ the space hierarchy and session dump have been implemented.
 - chore: remove snapping sheet (TheOneWithTheBraid)
 
 ## v1.5.0 - 2022-06-03
+
 - Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
 - feat: Better sign up UX and allow signup without password (Christian Pauly)
 - feat: Initial material you support (Christian Pauly)
@@ -1082,6 +2033,7 @@ the space hierarchy and session dump have been implemented.
 - Translated using Weblate (Turkish) (Oğuz Ersen)
 
 ## v1.4.0 - 2022-04-23
+
 - design: Display icon for failed sent messages (Krille Fear)
 - design: Display own stories at first place and combine with new stories button (Krille Fear)
 - feat: Add "Show related DMs in spaces" settings (20kdc)
@@ -1136,6 +2088,7 @@ the space hierarchy and session dump have been implemented.
 - refactor: New push (Krille Fear)
 
 ## v1.3.1 - 2022-03-20
+
 - Allow app to be moved to external storage (Marcel)
 - Translated using Weblate (Arabic) (Mads Louis)
 - Translated using Weblate (Basque) (Sorunome)
@@ -1174,14 +2127,19 @@ the space hierarchy and session dump have been implemented.
 - refactor: Switch to just audio for playing sounds (Krille Fear)
 
 ## v1.3.0 - 2022-02-12
-FluffyChat 1.3.0 makes it possible to report offensive users to server admins (not only messages). It fixes
+
+FluffyChat 1.3.0 makes it possible to report offensive users to server admins (not only messages).
+It fixes
 the video player, improves Linux desktop notifications, and the stories design.
 
-The button to create a new story is now in the app bar of the main page so that users who don't want to use
+The button to create a new story is now in the app bar of the main page so that users who don't want
+to use
 this feature no longer have a whole list item pinned at the top of the chat list.
 
-FluffyChat 1.3.0 is the first release with full null safe dart code. While this is a huge change under the
-hood, it should improve the stability and performance of the app. It also builds now with Flutter 2.10.
+FluffyChat 1.3.0 is the first release with full null safe dart code. While this is a huge change
+under the
+hood, it should improve the stability and performance of the app. It also builds now with Flutter
+2.10.
 
 Thanks to all contributors and translators!! <3
 
@@ -1221,6 +2179,7 @@ Thanks to all contributors and translators!! <3
 - refactor: Migrate to null safety (Krille Fear)
 
 ## v1.2.0 - 2022-01-27
+
 FluffyChat 1.2.0 brings a new stories feature, a lot of bug fixes and improved
 voice messages.
 
@@ -1254,7 +2213,8 @@ voice messages.
 - followup: Improve stories (Krille Fear)
 - Improve website SEO tagging (Marcel)
 - Increase font size granularity (S1m)
-- refactor: /command hints add tooltips, test for missing hints, script to generate glue code, hints for dm, create, clearcache, discardsession (Steef Hegeman)
+- refactor: /command hints add tooltips, test for missing hints, script to generate glue code, hints
+  for dm, create, clearcache, discardsession (Steef Hegeman)
 - refactor: Make more files null safe (Krille Fear)
 - refactor: Make style settings null safe (Krille Fear)
 - systemNavigationBarColor ← appBar.backgroundColor (Steef Hegeman)
@@ -1284,6 +2244,7 @@ voice messages.
 - Translated using Weblate (Ukrainian) (Ihor Hordiichuk)
 
 ## v1.1.0 - 2021-12-08
+
 - CI: Add candidate release pipeline (Krille Fear)
 - Translated using Weblate (Dutch) (Jelv)
 - Translated using Weblate (Estonian) (Priit Jõerüüt)
@@ -1304,6 +2265,7 @@ voice messages.
 - refactor: Make user device list item null safe (Krille Fear)
 
 ## v1.0.0 - 2021-11-29
+
 - design: Chat backup dialog as a banner
 - design: Encrypted by design, all users valid is normal not green
 - design: Move video call button to menu
@@ -1361,7 +2323,9 @@ voice messages.
 - fix: Wrong version in snap packages
 
 ## v0.42.2 - 2021-11-04
-Minor bugfix release which fixes signing up on matrix.org and make FluffyChats voice messages playable in Element.
+
+Minor bugfix release which fixes signing up on matrix.org and make FluffyChats voice messages
+playable in Element.
 
 - feat: Nicer registration form
 - feat: Nicer audio message design and send duration
@@ -1371,6 +2335,7 @@ Minor bugfix release which fixes signing up on matrix.org and make FluffyChats v
 - fix: Crash on logout
 
 ## v0.42.1 - 2021-10-26
+
 Minor bugfix release.
 
 - feat: Ignore users directly from bottom sheet
@@ -1381,6 +2346,7 @@ Minor bugfix release.
 - design: Make homepicker page nicer
 
 ## v0.42.0 - 2021-10-14
+
 This release fixes several bugs and makes E2EE enabled by default.
 
 - feat: Enable E2EE by default for new rooms
@@ -1391,17 +2357,20 @@ This release fixes several bugs and makes E2EE enabled by default.
 - feat: More finetuning for font sizes
 - chore: Updated translations (Thanks to all translators!)
 - fix: App crash on logout
-- fix: Temporary disable sign-up for matrix.org (Currently gives "500: Internal Server Error" while FluffyChat **should** send the same requests like Element)
+- fix: Temporary disable sign-up for matrix.org (Currently gives "500: Internal Server Error" while
+  FluffyChat **should** send the same requests like Element)
 - fix: Implement Roboto font to fix font issues on Linux Desktop and mobile
 - fix: QR Code scanning
 
 ## v0.41.3 - 2021-10-08
+
 Minor bugfix release.
 
 - fix: Last space is not visible
 - chore: Google services disabled by default for F-Droid
 
 ## v0.41.1 - 2021-09-15
+
 Minor bugfix release.
 
 - fix: Start up time waits for first sync
@@ -1411,7 +2380,10 @@ Minor bugfix release.
 And some other minor bugs.
 
 ## v0.41.0 - 2021-09-14
-This release features a lot of bug fixes and the new multi account feature which also include account bundles.
+
+This release features a lot of bug fixes and the new multi account feature which also include
+account bundles.
+
 - feat: Multiple accounts
 - feat: New splash screen
 - fix: Password reset
@@ -1423,21 +2395,28 @@ This release features a lot of bug fixes and the new multi account feature which
 - chore: Updated translations
 
 ## v0.40.1 - 2021-09-14
+
 Minor bug fixes.
 
 ## v0.40.0 - 2021-09-13
-This release contains a security fix. Red more about it here: https://matrix.org/blog/2021/09/13/vulnerability-disclosure-key-sharing
+
+This release contains a security fix. Red more about it
+here: https://matrix.org/blog/2021/09/13/vulnerability-disclosure-key-sharing
 
 - New in-app registration
 - Design improvements
 - Minor fixes
 
 ## v0.39.0 - 2021-08-30
+
 - Hotfix a bug which produces problems in downloading files and playing audios
 - Hotfix a bug which breaks device management
 
 ## v0.39.0 - 2021-08-28
-This release fixes a bug which makes it impossible to send images in unencrypted rooms. It also implements a complete new designed new chat page which now uses a QR code based workflow to start a new chat.
+
+This release fixes a bug which makes it impossible to send images in unencrypted rooms. It also
+implements a complete new designed new chat page which now uses a QR code based workflow to start a
+new chat.
 
 - feat: Dismiss keyboard on scroll in iOS
 - feat: Implement QR code scanner
@@ -1450,11 +2429,13 @@ This release fixes a bug which makes it impossible to send images in unencrypted
 - fix: Open matrix.to urls
 - fix: Padding and colors
 - fix: Sharing invite link
-- fix: Unread bubbles on iOS 
+- fix: Unread bubbles on iOS
 - fix: Sending images in unencrypted rooms
 
 ## v0.38.0 - 2021-08-22
-This release adds more functionality for spaces, enhances the html viewer, adds a brand new video player and brings some improvements for voice messages. Thanks to everyone involved!
+
+This release adds more functionality for spaces, enhances the html viewer, adds a brand new video
+player and brings some improvements for voice messages. Thanks to everyone involved!
 
 ### All changes:
 
@@ -1479,7 +2460,8 @@ This release adds more functionality for spaces, enhances the html viewer, adds 
 - fix: Display loading dialog on start DM
 - fix: Dont add/remove DMs to space
 - fix: Empty timelines crashing the room view
-- fix: excessive CPU usage on Windows, as described in https://github.com/flutter/flutter/issues/78517#issuecomment-846436695
+- fix: excessive CPU usage on Windows, as described
+  in https://github.com/flutter/flutter/issues/78517#issuecomment-846436695
 - fix: Joining room aliases not published into the room directory
 - fix: Keep display alive while recording
 - fix: Load space members to display DM rooms
@@ -1497,22 +2479,27 @@ This release adds more functionality for spaces, enhances the html viewer, adds 
 - fix: Wrap login form into `AutofillGroup`
 
 ## v0.37.0 - 2021-08-06
+
 - Implement location sharing
 - Updated translations
 - Improved spaces support
 - Minor bug fixes
 
 ## v0.36.2 - 2021-08-03
+
 Hotfix a routing problem on web and desktop
 
 ## v0.36.1 - 2021-08-03
+
 - Hotfix uploading to many OTKs
 - Implement initial spaces UI
 
 ## v0.36.0 - 2021-07-31
+
 Minor design improvements and bug fixes.
 
 ### All changes:
+
 * design: Make unread listtiles more visible
 * design: Move pinned icon in title
 * feat: Rate limit streams so that large accounts have a smoother UI
@@ -1525,10 +2512,13 @@ Minor design improvements and bug fixes.
 * fix: Tests
 
 ## v0.35.0 - 2021-07-24
+
 This release introduces stickers and a lot of minor bug fixes and improvements.
 
 ### All changes:
+
 ### Feature
+
 * Add sticker picker [205d7e8]
 * Also suggest username completions based on their slugs [3d980df]
 * Nicer mentions [99bc819]
@@ -1537,6 +2527,7 @@ This release introduces stickers and a lot of minor bug fixes and improvements.
 * Android SSO in webview [befd8e1]
 
 ### Fixes
+
 * Reset bootstrap on bad ssss [b78b654]
 * Hide stickers button when there is not sticker pack [b71dd4b]
 * Download files on iOS [a8201c4]
@@ -1552,15 +2543,19 @@ This release introduces stickers and a lot of minor bug fixes and improvements.
 * Close safariviewcontroller on SSO [ba685b7]
 
 ### Refactor
+
 * Rename store and allow storing custom values [b1c35e5]
 
 ## v0.34.1 - 2021-07-14
+
 Bugfix image picker on Android 11
 
 ## v0.34.0 - 2021-07-13
+
 Mostly bugfixes and one new feature: Lottie file rendering.
 
 ### All changes:
+
 * feat: Add rendering of lottie files
 * fix: Check for jitsi server in well-known lookup also on login screen
 * fix: show thumbnails in timeline on desktop
@@ -1572,21 +2567,27 @@ Mostly bugfixes and one new feature: Lottie file rendering.
 * fix: Don't allow backup of the android app
 
 ## v0.33.3 - 2021-07-11
+
 Another bugfixing release to solve some problems and republish the app on iOS.
 
 ### Changes
+
 * Redesign SSO buttons
 * Update dependencies
 * Remove moor database (no migration from here possible)
 * fix: Keyboard hides imagePicker buttons on iOS
 
 ## v0.33.2 - 2021-06-29
+
 * Fix Linux Flatpak persistent storing of data
 
 ## v0.33.0 - 2021-06-26
-Just a more minor bugfixing release with some design changes in the settings, updated missing translations and for rebuilding the arm64 Linux Flatpak.
+
+Just a more minor bugfixing release with some design changes in the settings, updated missing
+translations and for rebuilding the arm64 Linux Flatpak.
 
 ### Features
+
 * redesigned settings
 * Updated translations - thanks to all translators
 * display progress bar in first sync
@@ -1594,23 +2595,31 @@ Just a more minor bugfixing release with some design changes in the settings, up
 * update some dependencies
 
 ### Fixes
+
 * Favicon on web
 * Database not storing files correctly
 * Linux builds for arm64
 * a lot of minor bugs
 
 ## v0.32.2 - 2021-06-20
+
 * fix: Broken hive keys
 
 ## v0.32.1 - 2021-06-17
-* fix: Hive breaks if room IDs contain emojis (yes there are users with hacked synapses out there who needs this)
+
+* fix: Hive breaks if room IDs contain emojis (yes there are users with hacked synapses out there
+  who needs this)
 * feat: Also migrate inbound group sessions
 
-
 ## v0.32.0 - 2021-06-16
-FluffyChat 0.32.0 targets improved stability and a new onboarding flow where single sign on is now the more prominent way to get new users into the app. This release also introduces a complete rewritten database under the hood based on the key value store Hive instead of sqlite. This should improve the overall stability and the performance of the web version.
+
+FluffyChat 0.32.0 targets improved stability and a new onboarding flow where single sign on is now
+the more prominent way to get new users into the app. This release also introduces a complete
+rewritten database under the hood based on the key value store Hive instead of sqlite. This should
+improve the overall stability and the performance of the web version.
 
 ### Feat
+
 * Long-press reactions to see who sent this
 * New login UI
 * Shift+Enter makes a new line on web and desktop
@@ -1620,6 +2629,7 @@ FluffyChat 0.32.0 targets improved stability and a new onboarding flow where sin
 * Minor design tweaks
 
 ### Fixes
+
 * Single sign on on iOS and web
 * Database corruptions
 * Minor fixes
@@ -1627,26 +2637,31 @@ FluffyChat 0.32.0 targets improved stability and a new onboarding flow where sin
 ## v0.31.3 - 2021-05-28
 
 ### Fixes
+
 * Build Linux
 * Multiline keyboard on web and desktop
 
 ## v0.31.2 - 2021-05-28
 
 ### Fixes
+
 * Setting up push was broken
 
 ## v0.31.0 - 2021-05-26
 
 ### Chore
+
 * Format iOS stuff [584c873]
 * LibOlm has been updated to 3.2.3
 
 ### Feature
+
 * Cute animation for hiding the + button in inputbar [37c40a2]
 * Improved chat bubble design and splash animations [0b3734f]
 * Zoom page transition on Android and Fuchsia [e6c20dd]
 
 ### Fixes
+
 * "Pick an image" button in emote settings doesn't do anything [e6be684]
 * Formatting and style [2540a6c]
 * Emoji picker [e1bd4e1]
@@ -1660,9 +2675,11 @@ FluffyChat 0.32.0 targets improved stability and a new onboarding flow where sin
 * Send read markers [08dd2d7]
 
 ### Docs
+
 * Update code style [3e7269d]
 
 ### Refactor
+
 * Structure files in more directories [ebc598a]
 * Rename UI to Views [e44de26]
 * rename UI to View and MVC login page [cc113bb]
@@ -1675,40 +2692,58 @@ FluffyChat 0.32.0 targets improved stability and a new onboarding flow where sin
 ## v0.30.2 - 2021-05-13
 
 ### Feature
+
 * Implement registration with email [19616f3]
 
 ### Fixes
+
 * Android input after sending message [4488520]
 
 ### Changes
+
 * Switch to tchncs.de as default homeserver
 
 ### Refactor
+
 * UIA registering [48bf116]
 
 ## v0.30.1 - 2021-05-07
 
 ### Chore
+
 * Update translations
 
 ### Fixes
+
 * Record audio on iOS [cd1e9ae]
 
 ## v0.30.0 - 2021-05-01
 
-In this release we have mostly focused on bugfixing and stability. We have switched to the new Flutter 2 framework and have done a lot of refactoring under the hood. The annoying freezing bug should now be fixed. Voice messages now have a new backend which should improve the sound quality and stability. There is now a more professional UI for editing aliases of a room. Users can now see a list of all aliases, add new aliases, delete them and mark one alias as the canonical (or main) alias. Some minor design changes and design fixes should improve the overall UX of the app exspecially on tablets.
+In this release we have mostly focused on bugfixing and stability. We have switched to the new
+Flutter 2 framework and have done a lot of refactoring under the hood. The annoying freezing bug
+should now be fixed. Voice messages now have a new backend which should improve the sound quality
+and stability. There is now a more professional UI for editing aliases of a room. Users can now see
+a list of all aliases, add new aliases, delete them and mark one alias as the canonical (or main)
+alias. Some minor design changes and design fixes should improve the overall UX of the app
+exspecially on tablets.
 
-Version 0.30.0 will be the first version with arm64 support. You can download binaries from the CI and we will try to publish it on Flathub. Together with the new Linux Desktop Notifications feature, this might be interesting for the Librem 5 or the PinePhone. Sadly I don't own one of these very interesting devices. If you have one, I would very like to see some screenshots of it! :-)
+Version 0.30.0 will be the first version with arm64 support. You can download binaries from the CI
+and we will try to publish it on Flathub. Together with the new Linux Desktop Notifications feature,
+this might be interesting for the Librem 5 or the PinePhone. Sadly I don't own one of these very
+interesting devices. If you have one, I would very like to see some screenshots of it! :-)
 
 ### Chore
+
 * Update UP and automatically re-register UP on startup [aa3348e]
 
 ### Feature
+
 * Desktop notifications on Linux Desktop [25e76f0]
 * Much better alias managing [642db67]
 * Archive with clean up [f366ab6]
 
 ### Fixes
+
 * Lock screen [f8ba7bd]
 * Freeze bug [15c3178]
 * UserBottomSheet [dbb0464]
@@ -1723,6 +2758,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Chat UI doesnt load [4f20ea4]
 
 ### Refactor
+
 * Remove unused variable [b9f5c94]
 * Remove flutter_sound [334d4c0]
 * Switch to record package [2cf4f47]
@@ -1753,9 +2789,11 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 ## v0.29.1 - 2021-04-13
 
 ### Chore
+
 * Bump version [215f3c8]
 
 ### Fixes
+
 * Save file [3f854d6]
 * Routing broken in chat details [f1166b2]
 * Tests [e75a5a0]
@@ -1763,6 +2801,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * nogooglewarning [7619941]
 
 ### Refactor
+
 * MVC archive [c2cbad7]
 * MVC sign up password view [fa0162a]
 * MVC sign up view [db19b37]
@@ -1771,6 +2810,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 ## v0.29.0 - 2021-04-09
 
 ### Chore
+
 * Clean up repo [ef7ccef]
 * Bump version [81a4c26]
 * Nicer FAB icon [3eeb9a9]
@@ -1779,9 +2819,11 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Remove unused dependencies [c505c50]
 
 ### Feature
+
 * Experimental support for room upgrades [a3af5a9]
 
 ### Fixes
+
 * Room upgrade again [1d40705]
 * Better padding [c79562f]
 * Room upgrade [dac26dd]
@@ -1805,9 +2847,11 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Select room version [2f5a73f]
 
 ### Docs
+
 * Add code style [035ad96]
 
 ### Refactor
+
 * Move app_config to /configs [8b9f4a4]
 * homeserver picker view [8e828d8]
 * widgets dir [c9ab69a]
@@ -1815,12 +2859,15 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 ## v0.28.1 - 2021-03-28
 
 ### Chore
+
 * Update version [518634a]
 
 ### Feature
+
 * Implement new search view design [e42dd4b]
 
 ### Fixes
+
 * Share on iOS [ea31991]
 * Permission to send video call [4de6d16]
 * Unread badge color [49d5f86]
@@ -1831,11 +2878,13 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Set status missing [17a3311]
 
 ### Refactor
+
 * push stuff [b6eaf5b]
 
 ## v0.28.0 - 2021-03-16
 
 ### Chore
+
 * Bump version [f8ee682]
 * Change push gateway url [078aefa]
 * Update file picker cross dependency [91c6912]
@@ -1845,12 +2894,14 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Update famedlySdk [ec64cf6]
 
 ### Feature
+
 * Cache and resend status message [c8a7031]
 * New experimental design [94aa9a3]
 * Better verification design [9bcd6b2]
 * Verify and block devices in devices list [8ebacfe]
 
 ### Fixes
+
 * substring in reply key respects unicode runes [5695342]
 * Resend status message [05cd699]
 * Remove test push [a838d90]
@@ -1892,10 +2943,12 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Use single-isolate push [949771d]
 
 ### Docs
+
 * Update readme and contributing [449e46d]
 * Update Turkish translation for website [4a664eb]
 
 ### Refactor
+
 * Update SDK and enable login with email and phone [864b665]
 * Migrate to flutter 2 [bb97b1b]
 * Switch to TextButton [55803d1]
@@ -1903,6 +2956,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 ## v0.27.0 - 2021-02-17
 
 ### Chore
+
 * Switch to experimental new hedwig [30a1fb0]
 * update sdk & remove selfSign [26f7cb3]
 * Update sdk [cde8a30]
@@ -1910,6 +2964,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Change push gateway port [8f36140]
 
 ### Feature
+
 * localize bootstrap [395e62e]
 * Add more bootstrap features [e4db84a]
 * Add some tooltipps [b9eb8d1]
@@ -1924,6 +2979,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Implement autofillhints [41a2457]
 
 ### Fixes
+
 * Website [080a909]
 * docs _site dir [875d652]
 * Bootstrap dialog [c72da0a]
@@ -1960,29 +3016,35 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * iOS push [c01bdf7]
 
 ### Docs
+
 * Fix qr-codes [c7f0a74]
 * grammar fixes [c4d569b]
 
 ### Refactor
+
 * Theme colors [fe13778]
 * border radius [ddd10d1]
 
 ## v0.26.1 - 2021-01-26
 
 ### Chore
+
 * Update SDK [e9df6bf]
 * Bump version [d79b356]
 * Update dependencies [6159f99]
 
 ### Feature
+
 * Add unified push as push provider [124a5ee]
 
 ### Fixes
+
 * Link color [16d6623]
 
 ## v0.26.0 - 2021-01-25
 
 ### Chore
+
 * Redesign textfields [aef8090]
 * Simplify bootstrap [2df4a78]
 * Update audio player icons [3f14d5e]
@@ -1998,6 +3060,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Use correct paths on new server [2f00007]
 
 ### Feature
+
 * emoji working on desktop [c3feb65]
 * Implement sso [d1d470d]
 * Implement app lock [77ee2ef]
@@ -2005,6 +3068,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Display version number in app [e1e60c4]
 
 ### Fixes
+
 * Dark mode fixes [36746c8]
 * Dark theme [0bd0e58]
 * clean up iOS dir [6ae59a8]
@@ -2038,6 +3102,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Readme [dda0925]
 
 ### Docs
+
 * Make howtofork.md less misunderstandable [96de54a]
 * Add howtofork.md [f091469]
 * Mention emoji font [bb53714]
@@ -2045,23 +3110,28 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Update fdroid button [ea7e20b]
 
 ### Refactor
+
 * Theme and iOS stuff [189f65a]
 * Upgrade to latest flutter_sound_lite [2f7dece]
 
 ## v0.25.1 - 2021-01-17
 
 ### Chore
+
 * Bump version [c881424]
 
 ### Fixes
+
 * Change size [83e2385]
 
 ### Refactor
+
 * remove deprecated approute [be08de5]
 
 ## v0.25.0 - 2021-01-16
 
 ### Chore
+
 * Minor design improvements [d4dbe83]
 * Minor design tweaks [06581e2]
 * Bump version [7f51f7f]
@@ -2069,6 +3139,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Better authwebview [d76df0a]
 
 ### Fixes
+
 * Share files [d018a4b]
 * Typing update [9b5a3ca]
 * Status [d27dbe0]
@@ -2091,9 +3162,11 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Minor apl bugs [05b9551]
 
 ### Docs
+
 * Update fdroid logo [31d16a0]
 
 ### Refactor
+
 * Use APL [cbcfa15]
 * Use Provider [880f9cc]
 * Use adaptive_theme [5d52c26]
@@ -2101,29 +3174,35 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 ## v0.24.3 - 2021-01-15
 
 ### Chore
+
 * Bump version [46c8386]
 * Update SDK [ba0726c]
 * Update fdroid domain [f130681]
 * Update dependencies [611e5e3]
 
 ### Feature
+
 * Add Turkish translations for website [817c7dd]
 * Handle matrix: URIs as per MSC2312 [1da643f]
 
 ### Fixes
+
 * Format [84b2ac9]
 * Push gateway url [ed2fbf7]
 
 ## v0.24.2 - 2021-01-08
 
 ### Chore
+
 * Update linux version [ef9369c]
 * Update SDK [4a006c9]
 
 ### Feature
+
 * Regulate when thumbnails are animated as per MSC2705 [f5e11c2]
 
 ### Fixes
+
 * Don't allow an empty ssss passphrase in key verification [3a0ce79]
 * reactions [92684da]
 * Reply fallback sometimes being stripped incorrectly [e9ec699]
@@ -2131,11 +3210,13 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Properly handle url encoding in matrix.to URLs [baccd0a]
 
 ### Refactor
+
 * Switch to loading dialog [e84bc25]
 
 ## v0.24.1 - 2020-12-24
 
 ### Chore
+
 * Update linux build [a91407f]
 * Add website to main repo [4df33a1]
 * Update dependencies [0d9f418]
@@ -2145,11 +3226,13 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Update SDK [e802593]
 
 ### Feature
+
 * Better invite search bar [3c4a29b]
 * Open alias in discover page [f0d1f5a]
 * Implement logger [714c7b4]
 
 ### Fixes
+
 * auto-dep update [d9e8c5f]
 * Read receipts and filtered events [0ae36f0]
 * Don't re-render the lock icon nearly as often [00a56a7]
@@ -2168,6 +3251,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 ## v0.24.0 - 2020-12-18
 
 ### Chore
+
 * Update dependencies [550cb4a]
 * Update SDK [775a33b]
 * Update dependencies [644433c]
@@ -2176,6 +3260,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Update dependencies [5af4eab]
 
 ### Feature
+
 * Add languages to iOS [68a5efb]
 * Bring back config.json [b6a0d37]
 * Implement emojipicker for reactions [20b3157]
@@ -2191,6 +3276,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Implement rich notification settings [87a73dd]
 
 ### Fixes
+
 * Update typing [3d70b1e]
 * Build in dev [f892a9f]
 * Fix that damn regex [8961bff]
@@ -2207,16 +3293,19 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * CI [da5bc56]
 
 ### Refactor
+
 * Update sdk [32acc21]
 
 ## v0.23.1 - 2020-11-25
 
 ### Fixes
+
 * Release CI [14d8c80]
 
 ## v0.23.0 - 2020-11-25
 
 ### Chore
+
 * Update adaptive dialogs [0061660]
 * Prettier redacted events [d1e291e]
 * Minor design changes in user viewer [b4fb283]
@@ -2225,6 +3314,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Only load google services if needed [bae779a]
 
 ### Feature
+
 * Next version [1af048e]
 * Annoy user with dialog to add a recovery method [d9ec9f6]
 * Implement password recovery [4b2fef5]
@@ -2233,6 +3323,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Improved encryption UI [2516848]
 
 ### Fixes
+
 * Broken dialog [97bb692]
 * set email dialog [72e325a]
 * Minor fixes [11e2dd5]
@@ -2248,17 +3339,20 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Suggest correct rooms [59ec9de]
 
 ### Refactor
+
 * Make verification in dialogs [1f9e953]
 * matrix to link prefix [1aa9c08]
 
 ## v0.22.1 - 2020-11-21
 
 ### Fixes
+
 * Input bar not working, making app unusable [10773b4]
 
 ## v0.22.0 - 2020-11-21
 
 ### Chore
+
 * fix CI [00ed0d6]
 * fix CI [bb4bb9f]
 * Fix CI variables [d3822b0]
@@ -2272,6 +3366,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Remove unused dependency [d12de2d]
 
 ### Feature
+
 * Add svg support and better image handling [f70bbc3]
 * add config.json [4b7fb6b]
 * persistent upload of release artifacts [1b2481b]
@@ -2279,28 +3374,33 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Better encryption / verification [1ff986e]
 
 ### Fixes
+
 * iOS [26731ab]
 * resolve some sentry issues [61f35e8]
 * resolve some sentry issues [2c3693e]
 * iOS build [9fee409]
 * Automatic update deps job [255c05d]
-* Don't re-render message widgets on insertion of new messages, making e.g. audio playing not stop [25b2997]
+* Don't re-render message widgets on insertion of new messages, making e.g. audio playing not
+  stop [25b2997]
 * Add missing safearea [caab868]
 * no pushers enpdoint [b3942ad]
 * Sentry and small null fix [5dc22be]
 
 ### Refactor
+
 * CI [34d7fdd]
 * SDK update [7e23280]
 
 ## v0.21.1 - 2020-10-28
 
 ### Chore
+
 * update version code [d1dfa9c]
 
 ## v0.21.0 - 2020-10-28
 
 ### Chore
+
 * Change compileSdkVersion again [f93f9c2]
 * Update packages [b471bd0]
 * Update SDK [86a385d]
@@ -2311,6 +3411,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * release [844b4a8]
 
 ### Fixes
+
 * CompileSDKVersion [bcf75fc]
 * Target sdk [c3e23b6]
 * File picker issue [aa191c1]
@@ -2326,6 +3427,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 ## v0.20.0 - 2020-10-23
 
 ### Chore
+
 * update dependencies [427cdc0]
 * upate matrix link text [0892ca9]
 * Change default linux window size [719323a]
@@ -2337,6 +3439,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Make app ready for flutter 1 22 [e5b23fa]
 
 ### Feature
+
 * Implement mouse select chat list items [6d41136]
 * Implement linux desktop notifications [75cd6f1]
 * Implement change device name [bfd3888]
@@ -2349,6 +3452,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Enable macOS build [a845209]
 
 ### Fixes
+
 * return text field to the previous state after editing message [08e61c0]
 * Web server picker [4cb19be]
 * Some single-emoji names crashing [b29ebce]
@@ -2391,6 +3495,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 ## v0.19.0 - 2020-09-21
 
 ### Chore
+
 * Version update & olm-CI [0f805a2]
 * Update SDK & Changelog [1825543]
 * Add new language [c6d67ad]
@@ -2404,6 +3509,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * update sdk [954eedb]
 
 ### Feature
+
 * Implement send reactions [6bf25b7]
 * Improve design [c8a63c6]
 * Display emotes/emojis bigger [9cccd07]
@@ -2419,6 +3525,7 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * New notification sound [8a5be21]
 
 ### Fixes
+
 * Last bits for the release [1db9bdd]
 * Small stuff [9d3f272]
 * Search bar [eca25de]
@@ -2434,5 +3541,5 @@ Version 0.30.0 will be the first version with arm64 support. You can download bi
 * Send read receipt only on focus [98316f1]
 * Desktop notifications [b05bfa6]
 
-
-This CHANGELOG.md was generated with [**Changelog for Dart**](https://pub.dartlang.org/packages/changelog)
+This CHANGELOG.md was generated with [**Changelog for Dart
+**](https://pub.dartlang.org/packages/changelog)

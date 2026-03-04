@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
+
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 
 /// Provides extra functionality for formatting the time.
 extension DateTimeExtension on DateTime {
@@ -21,27 +23,15 @@ extension DateTimeExtension on DateTime {
     return millisecondsSinceEpoch <= other.millisecondsSinceEpoch;
   }
 
-  /// Two message events can belong to the same environment. That means that they
-  /// don't need to display the time they were sent because they are close
-  /// enaugh.
-  static const minutesBetweenEnvironments = 10;
-
   /// Checks if two DateTimes are close enough to belong to the same
   /// environment.
-  bool sameEnvironment(DateTime prevTime) {
-    return millisecondsSinceEpoch - prevTime.millisecondsSinceEpoch <
-        1000 * 60 * minutesBetweenEnvironments;
-  }
+  bool sameEnvironment(DateTime prevTime) =>
+      difference(prevTime) < const Duration(hours: 1);
 
   /// Returns a simple time String.
-  /// TODO: Add localization
-  String localizedTimeOfDay(BuildContext context) {
-    if (MediaQuery.of(context).alwaysUse24HourFormat) {
-      return '${_z(hour)}:${_z(minute)}';
-    } else {
-      return '${_z(hour % 12 == 0 ? 12 : hour % 12)}:${_z(minute)} ${hour > 11 ? "pm" : "am"}';
-    }
-  }
+  String localizedTimeOfDay(BuildContext context) => use24HourFormat(context)
+      ? DateFormat('HH:mm', L10n.of(context).localeName).format(this)
+      : DateFormat('h:mm a', L10n.of(context).localeName).format(this);
 
   /// Returns [localizedTimeOfDay()] if the ChatTime is today, the name of the week
   /// day if the ChatTime is this week and a date string else.
@@ -52,7 +42,8 @@ extension DateTimeExtension on DateTime {
 
     final sameDay = sameYear && now.month == month && now.day == day;
 
-    final sameWeek = sameYear &&
+    final sameWeek =
+        sameYear &&
         !sameDay &&
         now.millisecondsSinceEpoch - millisecondsSinceEpoch <
             1000 * 60 * 60 * 24 * 7;
@@ -60,19 +51,17 @@ extension DateTimeExtension on DateTime {
     if (sameDay) {
       return localizedTimeOfDay(context);
     } else if (sameWeek) {
-      return DateFormat.EEEE(Localizations.localeOf(context).languageCode)
-          .format(this);
+      return DateFormat.E(
+        Localizations.localeOf(context).languageCode,
+      ).format(this);
     } else if (sameYear) {
-      return L10n.of(context)!.dateWithoutYear(
-        month.toString().padLeft(2, '0'),
-        day.toString().padLeft(2, '0'),
-      );
+      return DateFormat.MMMd(
+        Localizations.localeOf(context).languageCode,
+      ).format(this);
     }
-    return L10n.of(context)!.dateWithYear(
-      year.toString(),
-      month.toString().padLeft(2, '0'),
-      day.toString().padLeft(2, '0'),
-    );
+    return DateFormat.yMMMd(
+      Localizations.localeOf(context).languageCode,
+    ).format(this);
   }
 
   /// If the DateTime is today, this returns [localizedTimeOfDay()], if not it also
@@ -86,11 +75,25 @@ extension DateTimeExtension on DateTime {
     final sameDay = sameYear && now.month == month && now.day == day;
 
     if (sameDay) return localizedTimeOfDay(context);
-    return L10n.of(context)!.dateAndTimeOfDay(
+    return L10n.of(context).dateAndTimeOfDay(
       localizedTimeShort(context),
       localizedTimeOfDay(context),
     );
   }
 
-  static String _z(int i) => i < 10 ? '0${i.toString()}' : i.toString();
+  /// Check if time needs to be in 24h format
+  bool use24HourFormat(BuildContext context) {
+    final mediaQuery24h = MediaQuery.alwaysUse24HourFormatOf(context);
+
+    final l10n24h = L10n.of(context).alwaysUse24HourFormat == 'true';
+
+    // https://github.com/krille-chan/fluffychat/pull/1457#discussion_r1836817914
+    if (PlatformInfos.isAndroid) {
+      return mediaQuery24h;
+    } else if (PlatformInfos.isIOS) {
+      return mediaQuery24h || l10n24h;
+    }
+
+    return l10n24h;
+  }
 }

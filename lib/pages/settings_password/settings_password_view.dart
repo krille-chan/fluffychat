@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 
@@ -12,30 +12,17 @@ class SettingsPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(L10n.of(context)!.changePassword),
-        actions: [
-          TextButton(
-            child: Text(L10n.of(context)!.passwordRecoverySettings),
-            onPressed: () => context.go('/rooms/settings/security/3pid'),
-          ),
-        ],
-      ),
+      appBar: AppBar(title: Text(L10n.of(context).changePassword)),
       body: ListTileTheme(
-        iconColor: Theme.of(context).colorScheme.onSurface,
+        iconColor: theme.colorScheme.onSurface,
         child: MaxWidthBody(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                Center(
-                  child: Icon(
-                    Icons.key_outlined,
-                    color: Theme.of(context).dividerColor,
-                    size: 80,
-                  ),
-                ),
                 const SizedBox(height: 16),
                 TextField(
                   controller: controller.oldPasswordController,
@@ -44,18 +31,22 @@ class SettingsPasswordView extends StatelessWidget {
                   autofocus: true,
                   readOnly: controller.loading,
                   decoration: InputDecoration(
-                    hintText: L10n.of(context)!.pleaseEnterYourCurrentPassword,
+                    prefixIcon: const Icon(Icons.lock_outlined),
+                    hintText: '********',
+                    labelText: L10n.of(context).pleaseEnterYourCurrentPassword,
                     errorText: controller.oldPasswordError,
                   ),
                 ),
-                const Divider(height: 32),
+                const Divider(height: 64),
                 TextField(
                   controller: controller.newPassword1Controller,
                   obscureText: true,
                   autocorrect: false,
                   readOnly: controller.loading,
                   decoration: InputDecoration(
-                    hintText: L10n.of(context)!.newPassword,
+                    prefixIcon: const Icon(Icons.lock_reset_outlined),
+                    hintText: '********',
+                    labelText: L10n.of(context).newPassword,
                     errorText: controller.newPassword1Error,
                   ),
                 ),
@@ -66,21 +57,28 @@ class SettingsPasswordView extends StatelessWidget {
                   autocorrect: false,
                   readOnly: controller.loading,
                   decoration: InputDecoration(
-                    hintText: L10n.of(context)!.repeatPassword,
+                    prefixIcon: const Icon(Icons.repeat_outlined),
+                    hintText: '********',
+                    labelText: L10n.of(context).repeatPassword,
                     errorText: controller.newPassword2Error,
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 32),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton.icon(
-                    onPressed:
-                        controller.loading ? null : controller.changePassword,
-                    icon: const Icon(Icons.send_outlined),
-                    label: controller.loading
+                  child: ElevatedButton(
+                    onPressed: controller.loading
+                        ? null
+                        : controller.changePassword,
+                    child: controller.loading
                         ? const LinearProgressIndicator()
-                        : Text(L10n.of(context)!.changePassword),
+                        : Text(L10n.of(context).changePassword),
                   ),
+                ),
+                const SizedBox(height: 16),
+                TextButton(
+                  child: Text(L10n.of(context).passwordRecoverySettings),
+                  onPressed: () => context.go('/rooms/settings/security/3pid'),
                 ),
               ],
             ),

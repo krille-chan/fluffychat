@@ -4,14 +4,11 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
-import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
@@ -19,22 +16,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/utils/voip_plugin.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
-import '../config/app_config.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
 import 'local_notifications_extension.dart';
-
-// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Matrix extends StatefulWidget {
   final Widget? child;
@@ -74,9 +70,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   BackgroundPush? backgroundPush;
 
   Client get client {
-    if (widget.clients.isEmpty) {
-      widget.clients.add(getLoginClient());
-    }
     if (_activeClient < 0 || _activeClient >= widget.clients.length) {
       return currentBundle!.first!;
     }
@@ -125,10 +118,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         }
         resBundles[bundle.name] ??= [];
         resBundles[bundle.name]!.add(
-          _AccountBundleWithClient(
-            client: widget.clients[i],
-            bundle: bundle,
-          ),
+          _AccountBundleWithClient(client: widget.clients[i], bundle: bundle),
         );
       }
     }
@@ -137,65 +127,58 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         (a, b) => a.bundle!.priority == null
             ? 1
             : b.bundle!.priority == null
-                ? -1
-                : a.bundle!.priority!.compareTo(b.bundle!.priority!),
+            ? -1
+            : a.bundle!.priority!.compareTo(b.bundle!.priority!),
       );
     }
-    return resBundles
-        .map((k, v) => MapEntry(k, v.map((vv) => vv.client).toList()));
+    return resBundles.map(
+      (k, v) => MapEntry(k, v.map((vv) => vv.client).toList()),
+    );
   }
 
   bool get hasComplexBundles => accountBundles.values.any((v) => v.length > 1);
 
   Client? _loginClientCandidate;
 
-  Client getLoginClient() {
+  AudioPlayer? audioPlayer;
+  final ValueNotifier<String?> voiceMessageEventId = ValueNotifier(null);
+
+  Future<Client> getLoginClient() async {
     if (widget.clients.isNotEmpty && !client.isLogged()) {
       return client;
     }
-    final candidate = _loginClientCandidate ??= ClientManager.createClient(
-      '${AppConfig.applicationName}-${DateTime.now().millisecondsSinceEpoch}',
-    )..onLoginStateChanged
-          .stream
-          .where((l) => l == LoginState.loggedIn)
-          .first
-          .then((_) {
-        if (!widget.clients.contains(_loginClientCandidate)) {
-          widget.clients.add(_loginClientCandidate!);
-        }
-        ClientManager.addClientNameToStore(
-          _loginClientCandidate!.clientName,
-          store,
-        );
-        _registerSubs(_loginClientCandidate!.clientName);
-        _loginClientCandidate = null;
-        FluffyChatApp.router.go('/rooms');
-      });
+    final candidate = _loginClientCandidate ??=
+        await ClientManager.createClient(
+            '${AppSettings.applicationName.value}-${DateTime.now().millisecondsSinceEpoch}',
+            store,
+          )
+          ..onLoginStateChanged.stream
+              .where((l) => l == LoginState.loggedIn)
+              .first
+              .then((_) {
+                if (!widget.clients.contains(_loginClientCandidate)) {
+                  widget.clients.add(_loginClientCandidate!);
+                }
+                ClientManager.addClientNameToStore(
+                  _loginClientCandidate!.clientName,
+                  store,
+                );
+                _registerSubs(_loginClientCandidate!.clientName);
+                _loginClientCandidate = null;
+                FluffyChatApp.router.go('/backup');
+              });
+    if (widget.clients.isEmpty) widget.clients.add(candidate);
     return candidate;
   }
 
   Client? getClientByName(String name) =>
       widget.clients.firstWhereOrNull((c) => c.clientName == name);
 
-  Map<String, dynamic>? get shareContent => _shareContent;
-
-  set shareContent(Map<String, dynamic>? content) {
-    _shareContent = content;
-    onShareContentChanged.add(_shareContent);
-  }
-
-  Map<String, dynamic>? _shareContent;
-
-  final StreamController<Map<String, dynamic>?> onShareContentChanged =
-      StreamController.broadcast();
-
   final onRoomKeyRequestSub = <String, StreamSubscription>{};
   final onKeyVerificationRequestSub = <String, StreamSubscription>{};
   final onNotification = <String, StreamSubscription>{};
-  final onLoginStateChanged = <String, StreamSubscription<LoginState>>{};
+  final onLogoutSub = <String, StreamSubscription<LoginState>>{};
   final onUiaRequest = <String, StreamSubscription<UiaRequest>>{};
-  StreamSubscription<html.Event>? onFocusSub;
-  StreamSubscription<html.Event>? onBlurSub;
 
   String? _cachedPassword;
   Timer? _cachedPasswordClearTimer;
@@ -212,16 +195,15 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     });
   }
 
-  bool webHasFocus = true;
-
   String? get activeRoomId {
     final route = FluffyChatApp.router.routeInformationProvider.value.uri.path;
     if (!route.startsWith('/rooms/')) return null;
     return route.split('/')[2];
   }
 
-  final linuxNotifications =
-      PlatformInfos.isLinux ? NotificationsClient() : null;
+  final linuxNotifications = PlatformInfos.isLinux
+      ? NotificationsClient()
+      : null;
   final Map<String, int> linuxNotificationIds = {};
 
   @override
@@ -229,34 +211,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     initMatrix();
-    if (PlatformInfos.isWeb) {
-      initConfig().then((_) => initSettings());
-    } else {
-      initSettings();
-    }
-    initLoadingDialog();
-  }
-
-  void initLoadingDialog() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      LoadingDialog.defaultTitle = L10n.of(context)!.loadingPleaseWait;
-      LoadingDialog.defaultBackLabel = L10n.of(context)!.close;
-      LoadingDialog.defaultOnError =
-          (e) => (e as Object?)!.toLocalizedString(context);
-    });
-  }
-
-  Future<void> initConfig() async {
-    try {
-      final configJsonString =
-          utf8.decode((await http.get(Uri.parse('config.json'))).bodyBytes);
-      final configJson = json.decode(configJsonString);
-      AppConfig.loadFromJson(configJson);
-    } on FormatException catch (_) {
-      Logs().v('[ConfigLoader] config.json not found');
-    } catch (e) {
-      Logs().v('[ConfigLoader] config.json not found', e);
-    }
   }
 
   void _registerSubs(String name) {
@@ -267,8 +221,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       );
       return;
     }
-    onRoomKeyRequestSub[name] ??=
-        c.onRoomKeyRequest.stream.listen((RoomKeyRequest request) async {
+    onRoomKeyRequestSub[name] ??= c.onRoomKeyRequest.stream.listen((
+      RoomKeyRequest request,
+    ) async {
       if (widget.clients.any(
         ((cl) =>
             cl.userID == request.requestingDevice.userId &&
@@ -282,55 +237,54 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     });
     onKeyVerificationRequestSub[name] ??= c.onKeyVerificationRequest.stream
         .listen((KeyVerification request) async {
-      var hidPopup = false;
-      request.onUpdate = () {
-        if (!hidPopup &&
-            {KeyVerificationState.done, KeyVerificationState.error}
-                .contains(request.state)) {
-          Navigator.of(context).pop('dialog');
-        }
-        hidPopup = true;
-      };
-      request.onUpdate = null;
-      hidPopup = true;
-      await KeyVerificationDialog(request: request).show(context);
-    });
-    onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
-      final loggedInWithMultipleClients = widget.clients.length > 1;
-      if (state == LoginState.loggedOut) {
-        InitWithRestoreExtension.deleteSessionBackup(name);
-      }
-      if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
-        _cancelSubs(c.clientName);
-        widget.clients.remove(c);
-        ClientManager.removeClientNameFromStore(c.clientName, store);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(L10n.of(context)!.oneClientLoggedOut),
-          ),
-        );
+          var hidPopup = false;
+          request.onUpdate = () {
+            if (!hidPopup &&
+                {
+                  KeyVerificationState.done,
+                  KeyVerificationState.error,
+                }.contains(request.state)) {
+              FluffyChatApp.router.pop('dialog');
+            }
+            hidPopup = true;
+          };
+          request.onUpdate = null;
+          hidPopup = true;
+          await KeyVerificationDialog(request: request).show(
+            FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
+                context,
+          );
+        });
+    onLogoutSub[name] ??= c.onLoginStateChanged.stream
+        .where((state) => state == LoginState.loggedOut)
+        .listen((state) {
+          final loggedInWithMultipleClients = widget.clients.length > 1;
 
-        if (state != LoginState.loggedIn) {
-          FluffyChatApp.router.go('/rooms');
-        }
-      } else {
-        FluffyChatApp.router
-            .go(state == LoginState.loggedIn ? '/rooms' : '/home');
-      }
-    });
+          _cancelSubs(c.clientName);
+          widget.clients.remove(c);
+          ClientManager.removeClientNameFromStore(c.clientName, store);
+          InitWithRestoreExtension.deleteSessionBackup(name);
+
+          if (loggedInWithMultipleClients) {
+            ScaffoldMessenger.of(
+              FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
+                  context,
+            ).showSnackBar(
+              SnackBar(content: Text(L10n.of(context).oneClientLoggedOut)),
+            );
+
+            if (state != LoginState.loggedIn) {
+              FluffyChatApp.router.go('/rooms');
+            }
+          }
+        });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
       c.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
-        onNotification[name] ??= c.onEvent.stream
-            .where(
-              (e) =>
-                  e.type == EventUpdateType.timeline &&
-                  [EventTypes.Message, EventTypes.Sticker, EventTypes.Encrypted]
-                      .contains(e.content['type']) &&
-                  e.content['sender'] != c.userID,
-            )
-            .listen(showLocalNotification);
+        onNotification[name] ??= c.onNotification.stream.listen(
+          showLocalNotification,
+        );
       });
     }
   }
@@ -340,8 +294,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onRoomKeyRequestSub.remove(name);
     onKeyVerificationRequestSub[name]?.cancel();
     onKeyVerificationRequestSub.remove(name);
-    onLoginStateChanged[name]?.cancel();
-    onLoginStateChanged.remove(name);
+    onLogoutSub[name]?.cancel();
+    onLogoutSub.remove(name);
     onNotification[name]?.cancel();
     onNotification.remove(name);
   }
@@ -351,25 +305,24 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       _registerSubs(c.clientName);
     }
 
-    if (kIsWeb) {
-      onFocusSub = html.window.onFocus.listen((_) => webHasFocus = true);
-      onBlurSub = html.window.onBlur.listen((_) => webHasFocus = false);
-    }
-
     if (PlatformInfos.isMobile) {
       backgroundPush = BackgroundPush(
         this,
         onFcmError: (errorMsg, {Uri? link}) async {
           final result = await showOkCancelAlertDialog(
-            barrierDismissible: true,
-            context: context,
-            title: L10n.of(context)!.pushNotificationsNotAvailable,
+            context:
+                FluffyChatApp
+                    .router
+                    .routerDelegate
+                    .navigatorKey
+                    .currentContext ??
+                context,
+            title: L10n.of(context).pushNotificationsNotAvailable,
             message: errorMsg,
-            fullyCapitalizedForMaterial: false,
             okLabel: link == null
-                ? L10n.of(context)!.ok
-                : L10n.of(context)!.learnMore,
-            cancelLabel: L10n.of(context)!.doNotShowAgain,
+                ? L10n.of(context).ok
+                : L10n.of(context).learnMore,
+            cancelLabel: L10n.of(context).doNotShowAgain,
           );
           if (result == OkCancelResult.ok && link != null) {
             launchUrlString(
@@ -378,7 +331,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             );
           }
           if (result == OkCancelResult.cancel) {
-            await store.setBool(SettingKeys.showNoGoogle, true);
+            await AppSettings.showNoGoogle.setItem(true);
           }
         },
       );
@@ -387,8 +340,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     createVoipPlugin();
   }
 
-  void createVoipPlugin() async {
-    if (store.getBool(SettingKeys.experimentalVoip) == false) {
+  Future<void> createVoipPlugin() async {
+    if (AppSettings.experimentalVoip.value) {
       voipPlugin = null;
       return;
     }
@@ -397,65 +350,19 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    Logs().v('AppLifecycleState = $state');
-    final foreground = state != AppLifecycleState.inactive &&
+    final foreground =
+        state != AppLifecycleState.inactive &&
         state != AppLifecycleState.paused;
-    client.syncPresence =
-        state == AppLifecycleState.resumed ? null : PresenceType.unavailable;
-    if (PlatformInfos.isMobile) {
-      client.backgroundSync = foreground;
-      client.requestHistoryOnLimitedTimeline = !foreground;
-      Logs().v('Set background sync to', foreground);
+    for (final client in widget.clients) {
+      client.syncPresence = state == AppLifecycleState.resumed
+          ? null
+          : PresenceType.unavailable;
+      if (PlatformInfos.isMobile) {
+        client.backgroundSync = foreground;
+        client.requestHistoryOnLimitedTimeline = !foreground;
+        Logs().v('Set background sync to', foreground);
+      }
     }
-  }
-
-  void initSettings() {
-    AppConfig.fontSizeFactor =
-        double.tryParse(store.getString(SettingKeys.fontSizeFactor) ?? '') ??
-            AppConfig.fontSizeFactor;
-
-    AppConfig.renderHtml =
-        store.getBool(SettingKeys.renderHtml) ?? AppConfig.renderHtml;
-
-    AppConfig.swipeRightToLeftToReply =
-        store.getBool(SettingKeys.swipeRightToLeftToReply) ??
-            AppConfig.swipeRightToLeftToReply;
-
-    AppConfig.hideRedactedEvents =
-        store.getBool(SettingKeys.hideRedactedEvents) ??
-            AppConfig.hideRedactedEvents;
-
-    AppConfig.hideUnknownEvents =
-        store.getBool(SettingKeys.hideUnknownEvents) ??
-            AppConfig.hideUnknownEvents;
-
-    AppConfig.hideUnimportantStateEvents =
-        store.getBool(SettingKeys.hideUnimportantStateEvents) ??
-            AppConfig.hideUnimportantStateEvents;
-
-    AppConfig.separateChatTypes =
-        store.getBool(SettingKeys.separateChatTypes) ??
-            AppConfig.separateChatTypes;
-
-    AppConfig.autoplayImages =
-        store.getBool(SettingKeys.autoplayImages) ?? AppConfig.autoplayImages;
-
-    AppConfig.sendTypingNotifications =
-        store.getBool(SettingKeys.sendTypingNotifications) ??
-            AppConfig.sendTypingNotifications;
-
-    AppConfig.sendPublicReadReceipts =
-        store.getBool(SettingKeys.sendPublicReadReceipts) ??
-            AppConfig.sendPublicReadReceipts;
-
-    AppConfig.sendOnEnter =
-        store.getBool(SettingKeys.sendOnEnter) ?? AppConfig.sendOnEnter;
-
-    AppConfig.experimentalVoip = store.getBool(SettingKeys.experimentalVoip) ??
-        AppConfig.experimentalVoip;
-
-    AppConfig.showPresences =
-        store.getBool(SettingKeys.showPresences) ?? AppConfig.showPresences;
   }
 
   @override
@@ -464,11 +371,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
     onRoomKeyRequestSub.values.map((s) => s.cancel());
     onKeyVerificationRequestSub.values.map((s) => s.cancel());
-    onLoginStateChanged.values.map((s) => s.cancel());
+    onLogoutSub.values.map((s) => s.cancel());
     onNotification.values.map((s) => s.cancel());
     client.httpClient.close();
-    onFocusSub?.cancel();
-    onBlurSub?.cancel();
 
     linuxNotifications?.close();
 
@@ -477,18 +382,15 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
-      create: (_) => this,
-      child: widget.child,
-    );
+    return Provider(create: (_) => this, child: widget.child);
   }
 
-  Future<void> dehydrateAction() async {
+  Future<void> dehydrateAction(BuildContext context) async {
     final response = await showOkCancelAlertDialog(
       context: context,
-      isDestructiveAction: true,
-      title: L10n.of(context)!.dehydrate,
-      message: L10n.of(context)!.dehydrateWarning,
+      isDestructive: true,
+      title: L10n.of(context).dehydrate,
+      message: L10n.of(context).dehydrateWarning,
     );
     if (response != OkCancelResult.ok) {
       return;
@@ -500,9 +402,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     final export = result.result;
     if (export == null) return;
 
-    final exportBytes = Uint8List.fromList(
-      const Utf8Codec().encode(export),
-    );
+    final exportBytes = Uint8List.fromList(const Utf8Codec().encode(export));
 
     final exportFileName =
         'fluffychat-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.fluffybackup';

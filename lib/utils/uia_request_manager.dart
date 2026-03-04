@@ -1,15 +1,22 @@
 import 'dart:async';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-import 'package:url_launcher/url_launcher_string.dart';
+import 'package:flutter/material.dart';
 
+import 'package:matrix/matrix.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 extension UiaRequestManager on MatrixState {
   Future uiaRequestHandler(UiaRequest uiaRequest) async {
-    final l10n = L10n.of(context)!;
+    final l10n = L10n.of(context);
+    final navigatorContext =
+        FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
+        context;
     try {
       if (uiaRequest.state != UiaRequestState.waitForUser ||
           uiaRequest.nextStages.isEmpty) {
@@ -20,22 +27,18 @@ extension UiaRequestManager on MatrixState {
       Logs().d('Uia Request Stage: $stage');
       switch (stage) {
         case AuthenticationTypes.password:
-          final input = cachedPassword ??
+          final input =
+              cachedPassword ??
               (await showTextInputDialog(
-                context: context,
+                context: navigatorContext,
                 title: l10n.pleaseEnterYourPassword,
                 okLabel: l10n.ok,
                 cancelLabel: l10n.cancel,
-                textFields: [
-                  const DialogTextField(
-                    minLines: 1,
-                    maxLines: 1,
-                    obscureText: true,
-                    hintText: '******',
-                  ),
-                ],
-              ))
-                  ?.single;
+                minLines: 1,
+                maxLines: 1,
+                obscureText: true,
+                hintText: '******',
+              ));
           if (input == null || input.isEmpty) {
             return uiaRequest.cancel();
           }
@@ -49,7 +52,7 @@ extension UiaRequestManager on MatrixState {
         case AuthenticationTypes.emailIdentity:
           if (currentThreepidCreds == null) {
             return uiaRequest.cancel(
-              UiaException(L10n.of(context)!.serverRequiresEmail),
+              UiaException(L10n.of(context).serverRequiresEmail),
             );
           }
           final auth = AuthenticationThreePidCreds(
@@ -63,7 +66,7 @@ extension UiaRequestManager on MatrixState {
           if (OkCancelResult.ok ==
               await showOkCancelAlertDialog(
                 useRootNavigator: false,
-                context: context,
+                context: navigatorContext,
                 title: l10n.weSentYouAnEmail,
                 message: l10n.pleaseClickOnLink,
                 okLabel: l10n.iHaveClickedOnLink,
@@ -80,24 +83,35 @@ extension UiaRequestManager on MatrixState {
             ),
           );
         default:
-          final url = Uri.parse(
-            '${client.homeserver}/_matrix/client/r0/auth/$stage/fallback/web?session=${uiaRequest.session}',
+          final stageUrl = uiaRequest.params
+              .tryGetMap<String, Object?>(stage)
+              ?.tryGet<String>('url');
+          final fallbackUrl = client.homeserver!.replace(
+            path: '/_matrix/client/v3/auth/$stage/fallback/web',
+            queryParameters: {'session': uiaRequest.session},
           );
-          launchUrlString(url.toString());
-          if (OkCancelResult.ok ==
-              await showOkCancelAlertDialog(
-                useRootNavigator: false,
-                message: l10n.pleaseFollowInstructionsOnWeb,
-                context: context,
-                okLabel: l10n.next,
-                cancelLabel: l10n.cancel,
-              )) {
-            return uiaRequest.completeStage(
-              AuthenticationData(session: uiaRequest.session),
-            );
-          } else {
-            return uiaRequest.cancel();
-          }
+          final url = stageUrl != null
+              ? (Uri.tryParse(stageUrl) ?? fallbackUrl)
+              : fallbackUrl;
+
+          final consent = await showOkCancelAlertDialog(
+            useRootNavigator: false,
+            title: l10n.pleaseFollowInstructionsOnWeb,
+            context: navigatorContext,
+            okLabel: l10n.open,
+            cancelLabel: l10n.cancel,
+          );
+          if (consent != OkCancelResult.ok) return uiaRequest.cancel();
+
+          launchUrl(url, mode: LaunchMode.inAppBrowserView);
+          final completer = Completer();
+          final listener = AppLifecycleListener(onResume: completer.complete);
+          await completer.future;
+          listener.dispose();
+
+          return uiaRequest.completeStage(
+            AuthenticationData(session: uiaRequest.session),
+          );
       }
     } catch (e, s) {
       Logs().e('Error while background UIA', e, s);

@@ -1,0 +1,146 @@
+{
+  "@@last_modified": "2021-08-14 12:41:09.940318",
+  "copiedToClipboard": "Copiada para a área de transferência",
+  "@copiedToClipboard": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "login": "Iniciar sessão",
+  "@login": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "about": "Sobre",
+  "@about": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "admin": "Admin",
+  "@admin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "areYouSure": "Tens a certeza?",
+  "@areYouSure": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "notifications": "Notificações",
+  "@notifications": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "account": "Conta",
+  "@account": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "delete": "Eliminar",
+  "@delete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "String",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "timeOfDay": {
+        "type": "String"
+      }
+    }
+  },
+  "dateWithYear": "{day}-{month}-{year}",
+  "@dateWithYear": {
+    "type": "String",
+    "placeholders": {
+      "year": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "help": "Ajuda",
+  "@help": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "messages": "Mensagens",
+  "@messages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "reason": "Razão",
+  "@reason": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "privacy": "Privacidade",
+  "@privacy": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "openCamera": "Abrir câmara",
+  "@openCamera": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "settings": "Configurações",
+  "@settings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "logout": "Terminar sessão",
+  "@logout": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "search": "Pesquisar",
+  "@search": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "users": "Utilizadores",
+  "@users": {},
+  "close": "Fechar",
+  "@close": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "dateWithoutYear": "{day}-{month}",
+  "@dateWithoutYear": {
+    "type": "String",
+    "placeholders": {
+      "month": {
+        "type": "String"
+      },
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "alwaysUse24HourFormat": "true",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "repeatPassword": "Repita a senha",
+  "@repeatPassword": {},
+  "notAnImage": "Não é um arquivo de imagem.",
+  "@notAnImage": {},
+  "setCustomPermissionLevel": "Definir nível de permissão personalizado",
+  "@setCustomPermissionLevel": {},
+  "addChatDescription": "Adicionar uma descrição de chat...",
+  "@addChatDescription": {}
+}

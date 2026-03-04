@@ -11,7 +11,6 @@ import 'package:webrtc_interface/webrtc_interface.dart' hide Navigator;
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/dialer/dialer.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import '../../utils/voip/callkeep_manager.dart';
 import '../../utils/voip/user_media_manager.dart';
 import '../widgets/matrix.dart';
 
@@ -34,14 +33,15 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState? state) {
-    background = (state == AppLifecycleState.detached ||
+    background =
+        (state == AppLifecycleState.detached ||
         state == AppLifecycleState.paused);
-    Logs().w('Set background mode in VOIP plugin', background);
   }
 
   void addCallingOverlay(String callId, CallSession call) {
-    final context =
-        kIsWeb ? ChatList.contextForVoip! : this.context; // web is weird
+    final context = kIsWeb
+        ? ChatList.contextForVoip!
+        : this.context; // web is weird
 
     if (overlayEntry != null) {
       Logs().e('[VOIP] addCallingOverlay: The call session already exists?');
@@ -87,11 +87,9 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   Future<RTCPeerConnection> createPeerConnection(
     Map<String, dynamic> configuration, [
     Map<String, dynamic> constraints = const {},
-  ]) =>
-      webrtc_impl.createPeerConnection(configuration, constraints);
+  ]) => webrtc_impl.createPeerConnection(configuration, constraints);
 
-  Future<bool> get hasCallingAccount async =>
-      kIsWeb ? false : await CallKeepManager().hasPhoneAccountEnabled;
+  Future<bool> get hasCallingAccount async => false;
 
   @override
   Future<void> playRingtone() async {
@@ -114,46 +112,21 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   @override
   Future<void> handleNewCall(CallSession call) async {
     if (PlatformInfos.isAndroid) {
-      // probably works on ios too
-      final hasCallingAccount = await CallKeepManager().hasPhoneAccountEnabled;
-      if (call.direction == CallDirection.kIncoming &&
-          hasCallingAccount &&
-          call.type == CallType.kVoice) {
-        ///Popup native telecom manager call UI for incoming call.
-        final callKeeper = CallKeeper(CallKeepManager(), call);
-        CallKeepManager().addCall(call.callId, callKeeper);
-        await CallKeepManager().showCallkitIncoming(call);
-        return;
-      } else {
-        try {
-          final wasForeground = await FlutterForegroundTask.isAppOnForeground;
+      try {
+        final wasForeground = await FlutterForegroundTask.isAppOnForeground;
 
-          await matrix.store.setString(
-            'wasForeground',
-            wasForeground == true ? 'true' : 'false',
-          );
-          FlutterForegroundTask.setOnLockScreenVisibility(true);
-          FlutterForegroundTask.wakeUpScreen();
-          FlutterForegroundTask.launchApp();
-        } catch (e) {
-          Logs().e('VOIP foreground failed $e');
-        }
-        // use fallback flutter call pages for outgoing and video calls.
-        addCallingOverlay(call.callId, call);
-        try {
-          if (!hasCallingAccount) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text(
-                  'No calling accounts found (used for native calls UI)',
-                ),
-              ),
-            );
-          }
-        } catch (e) {
-          Logs().e('failed to show snackbar');
-        }
+        await matrix.store.setString(
+          'wasForeground',
+          wasForeground == true ? 'true' : 'false',
+        );
+        FlutterForegroundTask.setOnLockScreenVisibility(true);
+        FlutterForegroundTask.wakeUpScreen();
+        FlutterForegroundTask.launchApp();
+      } catch (e) {
+        Logs().e('VOIP foreground failed $e');
       }
+      // use fallback flutter call pages for outgoing and video calls.
+      addCallingOverlay(call.callId, call);
     } else {
       addCallingOverlay(call.callId, call);
     }
@@ -168,7 +141,7 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
         FlutterForegroundTask.setOnLockScreenVisibility(false);
         FlutterForegroundTask.stopService();
         final wasForeground = matrix.store.getString('wasForeground');
-        wasForeground == 'false' ? FlutterForegroundTask.minimizeApp() : null;
+        if (wasForeground == 'false') FlutterForegroundTask.minimizeApp();
       }
     }
   }
@@ -196,4 +169,10 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   @override
   // TODO: implement keyProvider
   EncryptionKeyProvider? get keyProvider => throw UnimplementedError();
+
+  @override
+  Future<void> registerListeners(CallSession session) {
+    // TODO: implement registerListeners
+    throw UnimplementedError();
+  }
 }

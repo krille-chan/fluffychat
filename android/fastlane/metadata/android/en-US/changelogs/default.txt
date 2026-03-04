@@ -1,0 +1,4 @@
+FluffyChat 2.4.0 adds a new improved GUI for managing stickers with tutorials how to
+easily add your own sticker packs.
+It also improves the search and image gallery in chats, especially encrypted chats.
+Besides that this update comes with a lot of fixes and improvements under the hood.

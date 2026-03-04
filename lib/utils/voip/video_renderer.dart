@@ -45,8 +45,9 @@ class _VideoRendererState extends State<VideoRenderer> {
 
   @override
   void initState() {
-    _streamChangeSubscription =
-        widget.stream?.onStreamChanged.stream.listen((stream) {
+    _streamChangeSubscription = widget.stream?.onStreamChanged.stream.listen((
+      stream,
+    ) {
       setState(() {
         _renderer?.srcObject = stream;
       });
@@ -79,7 +80,7 @@ class _VideoRendererState extends State<VideoRenderer> {
               filterQuality: FilterQuality.medium,
               objectFit: widget.fit,
               placeholderBuilder: (_) =>
-                  Container(color: Colors.white.withOpacity(0.18)),
+                  Container(color: Colors.white.withAlpha(45)),
             );
           },
         );

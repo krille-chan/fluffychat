@@ -16,5 +16,6 @@ void main() {
     /* await tester.pumpWidget(FluffyChatApp(
       client: await prepareTestClient(),
     ));*/
+    return;
   });
 }

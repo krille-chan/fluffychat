@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/archive/archive_view.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class Archive extends StatefulWidget {
@@ -23,7 +23,7 @@ class ArchiveController extends State<Archive> {
     return archive = await Matrix.of(context).client.loadArchive();
   }
 
-  void forgetRoomAction(int i) async {
+  Future<void> forgetRoomAction(int i) async {
     await showFutureLoadingDialog(
       context: context,
       future: () async {
@@ -35,25 +35,27 @@ class ArchiveController extends State<Archive> {
     setState(() {});
   }
 
-  void forgetAllAction() async {
+  Future<void> forgetAllAction() async {
     final archive = this.archive;
     final client = Matrix.of(context).client;
     if (archive.isEmpty) return;
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context)!.areYouSure,
-          okLabel: L10n.of(context)!.yes,
-          cancelLabel: L10n.of(context)!.cancel,
-          message: L10n.of(context)!.clearArchive,
+          title: L10n.of(context).areYouSure,
+          okLabel: L10n.of(context).yes,
+          cancelLabel: L10n.of(context).cancel,
+          message: L10n.of(context).clearArchive,
         ) !=
         OkCancelResult.ok) {
       return;
     }
     await showFutureLoadingDialog(
       context: context,
-      future: () async {
+      futureWithProgress: (onProgress) async {
+        final count = archive.length;
         while (archive.isNotEmpty) {
+          onProgress(1 - (archive.length / count));
           Logs().v('Forget room ${archive.last.getLocalizedDisplayname()}');
           await archive.last.forget();
           archive.removeLast();

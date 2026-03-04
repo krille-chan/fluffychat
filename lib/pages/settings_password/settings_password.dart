@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_password/settings_password_view.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -25,26 +25,26 @@ class SettingsPasswordController extends State<SettingsPassword> {
 
   bool loading = false;
 
-  void changePassword() async {
+  Future<void> changePassword() async {
     setState(() {
       oldPasswordError = newPassword1Error = newPassword2Error = null;
     });
     if (oldPasswordController.text.isEmpty) {
       setState(() {
-        oldPasswordError = L10n.of(context)!.pleaseEnterYourPassword;
+        oldPasswordError = L10n.of(context).pleaseEnterYourPassword;
       });
       return;
     }
     if (newPassword1Controller.text.isEmpty ||
         newPassword1Controller.text.length < 6) {
       setState(() {
-        newPassword1Error = L10n.of(context)!.pleaseChooseAStrongPassword;
+        newPassword1Error = L10n.of(context).pleaseChooseAStrongPassword;
       });
       return;
     }
     if (newPassword1Controller.text != newPassword2Controller.text) {
       setState(() {
-        newPassword2Error = L10n.of(context)!.passwordsDoNotMatch;
+        newPassword2Error = L10n.of(context).passwordsDoNotMatch;
       });
       return;
     }
@@ -55,13 +55,11 @@ class SettingsPasswordController extends State<SettingsPassword> {
     try {
       final scaffoldMessenger = ScaffoldMessenger.of(context);
       await Matrix.of(context).client.changePassword(
-            newPassword1Controller.text,
-            oldPassword: oldPasswordController.text,
-          );
+        newPassword1Controller.text,
+        oldPassword: oldPasswordController.text,
+      );
       scaffoldMessenger.showSnackBar(
-        SnackBar(
-          content: Text(L10n.of(context)!.passwordHasBeenChanged),
-        ),
+        SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)),
       );
       if (mounted) context.pop();
     } catch (e) {

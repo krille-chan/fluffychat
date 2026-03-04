@@ -24,12 +24,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart' hide VideoRenderer;
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/voip/video_renderer.dart';
@@ -70,9 +70,7 @@ class _StreamView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        color: Colors.black54,
-      ),
+      decoration: const BoxDecoration(color: Colors.black54),
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
@@ -133,9 +131,8 @@ class Calling extends StatefulWidget {
 class MyCallingPage extends State<Calling> {
   Room? get room => call.room;
 
-  String get displayName => call.room.getLocalizedDisplayname(
-        MatrixLocals(L10n.of(widget.context)!),
-      );
+  String get displayName =>
+      call.room.getLocalizedDisplayname(MatrixLocals(L10n.of(widget.context)));
 
   String get callId => widget.callId;
 
@@ -150,7 +147,7 @@ class MyCallingPage extends State<Calling> {
 
   MediaStream? get remoteStream {
     if (call.getRemoteStreams.isNotEmpty) {
-      return call.getRemoteStreams[0].stream!;
+      return call.getRemoteStreams.first.stream!;
     }
     return null;
   }
@@ -174,7 +171,7 @@ class MyCallingPage extends State<Calling> {
   EdgeInsetsGeometry? _localVideoMargin;
   CallState? _state;
 
-  void _playCallSound() async {
+  Future<void> _playCallSound() async {
     const path = 'assets/sounds/call.ogg';
     if (kIsWeb || PlatformInfos.isMobile || PlatformInfos.isMacOS) {
       final player = AudioPlayer();
@@ -192,14 +189,12 @@ class MyCallingPage extends State<Calling> {
     _playCallSound();
   }
 
-  void initialize() async {
+  void initialize() {
     final call = this.call;
     call.onCallStateChanged.stream.listen(_handleCallState);
     call.onCallEventChanged.stream.listen((event) {
       if (event == CallStateChange.kFeedsChanged) {
-        setState(() {
-          call.tryRemoveStopedStreams();
-        });
+        setState(call.tryRemoveStopedStreams);
       } else if (event == CallStateChange.kLocalHoldUnhold ||
           event == CallStateChange.kRemoteHoldUnhold) {
         setState(() {});
@@ -219,10 +214,7 @@ class MyCallingPage extends State<Calling> {
   }
 
   void cleanUp() {
-    Timer(
-      const Duration(seconds: 2),
-      () => widget.onClear?.call(),
-    );
+    Timer(const Duration(seconds: 2), () => widget.onClear?.call());
     if (call.type == CallType.kVideo) {
       try {
         unawaited(WakelockPlus.disable());
@@ -238,22 +230,22 @@ class MyCallingPage extends State<Calling> {
 
   void _resizeLocalVideo(Orientation orientation) {
     final shortSide = min(
-      MediaQuery.of(widget.context).size.width,
-      MediaQuery.of(widget.context).size.height,
+      MediaQuery.sizeOf(widget.context).width,
+      MediaQuery.sizeOf(widget.context).height,
     );
     _localVideoMargin = remoteStream != null
         ? const EdgeInsets.only(top: 20.0, right: 20.0)
         : EdgeInsets.zero;
     _localVideoWidth = remoteStream != null
         ? shortSide / 3
-        : MediaQuery.of(widget.context).size.width;
+        : MediaQuery.sizeOf(widget.context).width;
     _localVideoHeight = remoteStream != null
         ? shortSide / 4
-        : MediaQuery.of(widget.context).size.height;
+        : MediaQuery.sizeOf(widget.context).height;
   }
 
   void _handleCallState(CallState state) {
-    Logs().v('CallingPage::handleCallState: ${state.toString()}');
+    Logs().v('CallingPage::handleCallState: $state');
     if ({CallState.kConnected, CallState.kEnded}.contains(state)) {
       HapticFeedback.heavyImpact();
     }
@@ -288,22 +280,25 @@ class MyCallingPage extends State<Calling> {
     });
   }
 
-  void _screenSharing() async {
+  void _screenSharing() {
     if (PlatformInfos.isAndroid) {
       if (!call.screensharingEnabled) {
         FlutterForegroundTask.init(
           androidNotificationOptions: AndroidNotificationOptions(
             channelId: 'notification_channel_id',
             channelName: 'Foreground Notification',
-            channelDescription:
-                L10n.of(widget.context)!.foregroundServiceRunning,
+            channelDescription: L10n.of(
+              widget.context,
+            ).foregroundServiceRunning,
           ),
           iosNotificationOptions: const IOSNotificationOptions(),
-          foregroundTaskOptions: const ForegroundTaskOptions(),
+          foregroundTaskOptions: ForegroundTaskOptions(
+            eventAction: ForegroundTaskEventAction.nothing(),
+          ),
         );
         FlutterForegroundTask.startService(
-          notificationTitle: L10n.of(widget.context)!.screenSharingTitle,
-          notificationText: L10n.of(widget.context)!.screenSharingDetail,
+          notificationTitle: L10n.of(widget.context).screenSharingTitle,
+          notificationText: L10n.of(widget.context).screenSharingDetail,
         );
       } else {
         FlutterForegroundTask.stopService();
@@ -327,10 +322,10 @@ class MyCallingPage extends State<Calling> {
     });
   }
 
-  void _switchCamera() async {
+  Future<void> _switchCamera() async {
     if (call.localUserMediaStream != null) {
       await Helper.switchCamera(
-        call.localUserMediaStream!.stream!.getVideoTracks()[0],
+        call.localUserMediaStream!.stream!.getVideoTracks().first,
       );
     }
     setState(() {});
@@ -344,244 +339,103 @@ class MyCallingPage extends State<Calling> {
   }
   */
 
-  List<Widget> _buildActionButtons(bool isFloating) {
-    if (isFloating) {
-      return [];
-    }
-
-    final switchCameraButton = FloatingActionButton(
-      heroTag: 'switchCamera',
-      onPressed: _switchCamera,
-      backgroundColor: Colors.black45,
-      child: const Icon(Icons.switch_camera),
-    );
-    /*
-    var switchSpeakerButton = FloatingActionButton(
-      heroTag: 'switchSpeaker',
-      child: Icon(_speakerOn ? Icons.volume_up : Icons.volume_off),
-      onPressed: _switchSpeaker,
-      foregroundColor: Colors.black54,
-      backgroundColor: Theme.of(widget.context).backgroundColor,
-    );
-    */
-    final hangupButton = FloatingActionButton(
-      heroTag: 'hangup',
-      onPressed: _hangUp,
-      tooltip: 'Hangup',
-      backgroundColor: _state == CallState.kEnded ? Colors.black45 : Colors.red,
-      child: const Icon(Icons.call_end),
-    );
-
-    final answerButton = FloatingActionButton(
-      heroTag: 'answer',
-      onPressed: _answerCall,
-      tooltip: 'Answer',
-      backgroundColor: Colors.green,
-      child: const Icon(Icons.phone),
-    );
-
-    final muteMicButton = FloatingActionButton(
-      heroTag: 'muteMic',
-      onPressed: _muteMic,
-      foregroundColor: isMicrophoneMuted ? Colors.black26 : Colors.white,
-      backgroundColor: isMicrophoneMuted ? Colors.white : Colors.black45,
-      child: Icon(isMicrophoneMuted ? Icons.mic_off : Icons.mic),
-    );
-
-    final screenSharingButton = FloatingActionButton(
-      heroTag: 'screenSharing',
-      onPressed: _screenSharing,
-      foregroundColor: isScreensharingEnabled ? Colors.black26 : Colors.white,
-      backgroundColor: isScreensharingEnabled ? Colors.white : Colors.black45,
-      child: const Icon(Icons.desktop_mac),
-    );
-
-    final holdButton = FloatingActionButton(
-      heroTag: 'hold',
-      onPressed: _remoteOnHold,
-      foregroundColor: isRemoteOnHold ? Colors.black26 : Colors.white,
-      backgroundColor: isRemoteOnHold ? Colors.white : Colors.black45,
-      child: const Icon(Icons.pause),
-    );
-
-    final muteCameraButton = FloatingActionButton(
-      heroTag: 'muteCam',
-      onPressed: _muteCamera,
-      foregroundColor: isLocalVideoMuted ? Colors.black26 : Colors.white,
-      backgroundColor: isLocalVideoMuted ? Colors.white : Colors.black45,
-      child: Icon(isLocalVideoMuted ? Icons.videocam_off : Icons.videocam),
-    );
-
-    switch (_state) {
-      case CallState.kRinging:
-      case CallState.kInviteSent:
-      case CallState.kCreateAnswer:
-      case CallState.kConnecting:
-        return call.isOutgoing
-            ? <Widget>[hangupButton]
-            : <Widget>[answerButton, hangupButton];
-      case CallState.kConnected:
-        return <Widget>[
-          muteMicButton,
-          //switchSpeakerButton,
-          if (!voiceonly && !kIsWeb) switchCameraButton,
-          if (!voiceonly) muteCameraButton,
-          if (PlatformInfos.isMobile || PlatformInfos.isWeb)
-            screenSharingButton,
-          holdButton,
-          hangupButton,
-        ];
-      case CallState.kEnded:
-        return <Widget>[
-          hangupButton,
-        ];
-      case CallState.kFledgling:
-      case CallState.kWaitLocalMedia:
-      case CallState.kCreateOffer:
-      case CallState.kEnding:
-      case null:
-        break;
-    }
-    return <Widget>[];
-  }
-
-  List<Widget> _buildContent(Orientation orientation, bool isFloating) {
-    final stackWidgets = <Widget>[];
-
-    final call = this.call;
-    if (call.callHasEnded) {
-      return stackWidgets;
-    }
-
-    if (call.localHold || call.remoteOnHold) {
-      var title = '';
-      if (call.localHold) {
-        title = '${call.room.getLocalizedDisplayname(
-          MatrixLocals(L10n.of(widget.context)!),
-        )} held the call.';
-      } else if (call.remoteOnHold) {
-        title = 'You held the call.';
-      }
-      stackWidgets.add(
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.pause,
-                size: 48.0,
-                color: Colors.white,
-              ),
-              Text(
-                title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 24.0,
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-      return stackWidgets;
-    }
-
-    var primaryStream = call.remoteScreenSharingStream ??
-        call.localScreenSharingStream ??
-        call.remoteUserMediaStream ??
-        call.localUserMediaStream;
-
-    if (!connected) {
-      primaryStream = call.localUserMediaStream;
-    }
-
-    if (primaryStream != null) {
-      stackWidgets.add(
-        Center(
-          child: _StreamView(
-            primaryStream,
-            mainView: true,
-            matrixClient: widget.client,
-          ),
-        ),
-      );
-    }
-
-    if (isFloating || !connected) {
-      return stackWidgets;
-    }
-
-    _resizeLocalVideo(orientation);
-
-    if (call.getRemoteStreams.isEmpty) {
-      return stackWidgets;
-    }
-
-    final secondaryStreamViews = <Widget>[];
-
-    if (call.remoteScreenSharingStream != null) {
-      final remoteUserMediaStream = call.remoteUserMediaStream;
-      secondaryStreamViews.add(
-        SizedBox(
-          width: _localVideoWidth,
-          height: _localVideoHeight,
-          child:
-              _StreamView(remoteUserMediaStream!, matrixClient: widget.client),
-        ),
-      );
-      secondaryStreamViews.add(const SizedBox(height: 10));
-    }
-
-    final localStream =
-        call.localUserMediaStream ?? call.localScreenSharingStream;
-    if (localStream != null && !isFloating) {
-      secondaryStreamViews.add(
-        SizedBox(
-          width: _localVideoWidth,
-          height: _localVideoHeight,
-          child: _StreamView(localStream, matrixClient: widget.client),
-        ),
-      );
-      secondaryStreamViews.add(const SizedBox(height: 10));
-    }
-
-    if (call.localScreenSharingStream != null && !isFloating) {
-      secondaryStreamViews.add(
-        SizedBox(
-          width: _localVideoWidth,
-          height: _localVideoHeight,
-          child: _StreamView(
-            call.remoteUserMediaStream!,
-            matrixClient: widget.client,
-          ),
-        ),
-      );
-      secondaryStreamViews.add(const SizedBox(height: 10));
-    }
-
-    if (secondaryStreamViews.isNotEmpty) {
-      stackWidgets.add(
-        Container(
-          padding: const EdgeInsets.fromLTRB(0, 20, 0, 120),
-          alignment: Alignment.bottomRight,
-          child: Container(
-            width: _localVideoWidth,
-            margin: _localVideoMargin,
-            child: Column(
-              children: secondaryStreamViews,
-            ),
-          ),
-        ),
-      );
-    }
-
-    return stackWidgets;
-  }
-
   @override
   Widget build(BuildContext context) {
     return PIPView(
       builder: (context, isFloating) {
+        // Build action buttons
+        final switchCameraButton = FloatingActionButton(
+          heroTag: 'switchCamera',
+          onPressed: _switchCamera,
+          backgroundColor: Colors.black45,
+          child: const Icon(Icons.switch_camera),
+        );
+        final hangupButton = FloatingActionButton(
+          heroTag: 'hangup',
+          onPressed: _hangUp,
+          tooltip: 'Hangup',
+          backgroundColor: _state == CallState.kEnded
+              ? Colors.black45
+              : Colors.red,
+          child: const Icon(Icons.call_end),
+        );
+        final answerButton = FloatingActionButton(
+          heroTag: 'answer',
+          onPressed: _answerCall,
+          tooltip: 'Answer',
+          backgroundColor: Colors.green,
+          child: const Icon(Icons.phone),
+        );
+        final muteMicButton = FloatingActionButton(
+          heroTag: 'muteMic',
+          onPressed: _muteMic,
+          foregroundColor: isMicrophoneMuted ? Colors.black26 : Colors.white,
+          backgroundColor: isMicrophoneMuted ? Colors.white : Colors.black45,
+          child: Icon(isMicrophoneMuted ? Icons.mic_off : Icons.mic),
+        );
+        final screenSharingButton = FloatingActionButton(
+          heroTag: 'screenSharing',
+          onPressed: _screenSharing,
+          foregroundColor: isScreensharingEnabled
+              ? Colors.black26
+              : Colors.white,
+          backgroundColor: isScreensharingEnabled
+              ? Colors.white
+              : Colors.black45,
+          child: const Icon(Icons.desktop_mac),
+        );
+        final holdButton = FloatingActionButton(
+          heroTag: 'hold',
+          onPressed: _remoteOnHold,
+          foregroundColor: isRemoteOnHold ? Colors.black26 : Colors.white,
+          backgroundColor: isRemoteOnHold ? Colors.white : Colors.black45,
+          child: const Icon(Icons.pause),
+        );
+        final muteCameraButton = FloatingActionButton(
+          heroTag: 'muteCam',
+          onPressed: _muteCamera,
+          foregroundColor: isLocalVideoMuted ? Colors.black26 : Colors.white,
+          backgroundColor: isLocalVideoMuted ? Colors.white : Colors.black45,
+          child: Icon(isLocalVideoMuted ? Icons.videocam_off : Icons.videocam),
+        );
+
+        late final List<Widget> actionButtons;
+        if (!isFloating) {
+          switch (_state) {
+            case CallState.kRinging:
+            case CallState.kInviteSent:
+            case CallState.kCreateAnswer:
+            case CallState.kConnecting:
+              actionButtons = call.isOutgoing
+                  ? <Widget>[hangupButton]
+                  : <Widget>[answerButton, hangupButton];
+              break;
+            case CallState.kConnected:
+              actionButtons = <Widget>[
+                muteMicButton,
+                if (!voiceonly && !kIsWeb) switchCameraButton,
+                if (!voiceonly) muteCameraButton,
+                if (PlatformInfos.isMobile || PlatformInfos.isWeb)
+                  screenSharingButton,
+                holdButton,
+                hangupButton,
+              ];
+              break;
+            case CallState.kEnded:
+              actionButtons = <Widget>[hangupButton];
+              break;
+            case CallState.kFledgling:
+            case CallState.kWaitLocalMedia:
+            case CallState.kCreateOffer:
+            case CallState.kEnding:
+            case null:
+              actionButtons = <Widget>[];
+              break;
+          }
+        } else {
+          actionButtons = <Widget>[];
+        }
+
         return Scaffold(
           resizeToAvoidBottomInset: !isFloating,
           floatingActionButtonLocation:
@@ -590,19 +444,148 @@ class MyCallingPage extends State<Calling> {
             width: 320.0,
             height: 150.0,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: _buildActionButtons(isFloating),
+              mainAxisAlignment: .spaceAround,
+              children: actionButtons,
             ),
           ),
           body: OrientationBuilder(
             builder: (BuildContext context, Orientation orientation) {
+              final stackWidgets = <Widget>[];
+
+              final callHasEnded = call.callHasEnded;
+              if (!callHasEnded) {
+                if (call.localHold || call.remoteOnHold) {
+                  var title = '';
+                  if (call.localHold) {
+                    title =
+                        '${call.room.getLocalizedDisplayname(MatrixLocals(L10n.of(widget.context)))} held the call.';
+                  } else if (call.remoteOnHold) {
+                    title = 'You held the call.';
+                  }
+                  stackWidgets.add(
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: .center,
+                        children: [
+                          const Icon(
+                            Icons.pause,
+                            size: 48.0,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            title,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 24.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                } else {
+                  var primaryStream =
+                      call.remoteScreenSharingStream ??
+                      call.localScreenSharingStream ??
+                      call.remoteUserMediaStream ??
+                      call.localUserMediaStream;
+
+                  if (!connected) {
+                    primaryStream = call.localUserMediaStream;
+                  }
+
+                  if (primaryStream != null) {
+                    stackWidgets.add(
+                      Center(
+                        child: _StreamView(
+                          primaryStream,
+                          mainView: true,
+                          matrixClient: widget.client,
+                        ),
+                      ),
+                    );
+                  }
+
+                  if (!isFloating && connected) {
+                    _resizeLocalVideo(orientation);
+
+                    if (call.getRemoteStreams.isNotEmpty) {
+                      final secondaryStreamViews = <Widget>[];
+
+                      if (call.remoteScreenSharingStream != null) {
+                        final remoteUserMediaStream =
+                            call.remoteUserMediaStream;
+                        secondaryStreamViews.add(
+                          SizedBox(
+                            width: _localVideoWidth,
+                            height: _localVideoHeight,
+                            child: _StreamView(
+                              remoteUserMediaStream!,
+                              matrixClient: widget.client,
+                            ),
+                          ),
+                        );
+                        secondaryStreamViews.add(const SizedBox(height: 10));
+                      }
+
+                      final localStream =
+                          call.localUserMediaStream ??
+                          call.localScreenSharingStream;
+                      if (localStream != null && !isFloating) {
+                        secondaryStreamViews.add(
+                          SizedBox(
+                            width: _localVideoWidth,
+                            height: _localVideoHeight,
+                            child: _StreamView(
+                              localStream,
+                              matrixClient: widget.client,
+                            ),
+                          ),
+                        );
+                        secondaryStreamViews.add(const SizedBox(height: 10));
+                      }
+
+                      if (call.localScreenSharingStream != null &&
+                          !isFloating) {
+                        secondaryStreamViews.add(
+                          SizedBox(
+                            width: _localVideoWidth,
+                            height: _localVideoHeight,
+                            child: _StreamView(
+                              call.remoteUserMediaStream!,
+                              matrixClient: widget.client,
+                            ),
+                          ),
+                        );
+                        secondaryStreamViews.add(const SizedBox(height: 10));
+                      }
+
+                      if (secondaryStreamViews.isNotEmpty) {
+                        stackWidgets.add(
+                          Container(
+                            padding: const EdgeInsets.only(
+                              top: 20,
+                              bottom: 120,
+                            ),
+                            alignment: Alignment.bottomRight,
+                            child: Container(
+                              width: _localVideoWidth,
+                              margin: _localVideoMargin,
+                              child: Column(children: secondaryStreamViews),
+                            ),
+                          ),
+                        );
+                      }
+                    }
+                  }
+                }
+              }
+
               return Container(
-                decoration: const BoxDecoration(
-                  color: Colors.black87,
-                ),
+                decoration: const BoxDecoration(color: Colors.black87),
                 child: Stack(
                   children: [
-                    ..._buildContent(orientation, isFloating),
+                    ...stackWidgets,
                     if (!isFloating)
                       Positioned(
                         top: 24.0,

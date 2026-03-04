@@ -2,12 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings_view.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/permission_slider_dialog.dart';
 
@@ -21,7 +21,7 @@ class ChatPermissionsSettings extends StatefulWidget {
 
 class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
   String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
-  void editPowerLevel(
+  Future<void> editPowerLevel(
     BuildContext context,
     String key,
     int currentLevel, {
@@ -30,9 +30,9 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
   }) async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
     if (!room.canSendEvent(EventTypes.RoomPowerLevels)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.noPermission)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(L10n.of(context).noPermission)));
       return;
     }
     newLevel ??= await showPermissionChooser(
@@ -64,12 +64,13 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
   }
 
   Stream get onChanged => Matrix.of(context).client.onSync.stream.where(
-        (e) =>
-            (e.rooms?.join?.containsKey(roomId) ?? false) &&
-            (e.rooms!.join![roomId!]?.timeline?.events
-                    ?.any((s) => s.type == EventTypes.RoomPowerLevels) ??
-                false),
-      );
+    (e) =>
+        (e.rooms?.join?.containsKey(roomId) ?? false) &&
+        (e.rooms!.join![roomId!]?.timeline?.events?.any(
+              (s) => s.type == EventTypes.RoomPowerLevels,
+            ) ??
+            false),
+  );
 
   @override
   Widget build(BuildContext context) => ChatPermissionsSettingsView(this);

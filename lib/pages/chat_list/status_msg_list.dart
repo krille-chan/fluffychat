@@ -4,19 +4,16 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import '../../widgets/adaptive_dialogs/user_dialog.dart';
 
 class StatusMessageList extends StatelessWidget {
   final void Function() onStatusEdit;
-  const StatusMessageList({
-    required this.onStatusEdit,
-    super.key,
-  });
+
+  const StatusMessageList({required this.onStatusEdit, super.key});
 
   static const double height = 116;
 
@@ -24,13 +21,7 @@ class StatusMessageList extends StatelessWidget {
     final client = Matrix.of(context).client;
     if (profile.userId == client.userID) return onStatusEdit();
 
-    showAdaptiveBottomSheet(
-      context: context,
-      builder: (c) => UserBottomSheet(
-        profile: profile,
-        outerContext: context,
-      ),
-    );
+    UserDialog.show(context: context, profile: profile);
     return;
   }
 
@@ -59,8 +50,9 @@ class StatusMessageList extends StatelessWidget {
               ),
             ),
             builder: (context, snapshot) {
-              final presences =
-                  snapshot.data?.where(isInterestingPresence).toList();
+              final presences = snapshot.data
+                  ?.where(isInterestingPresence)
+                  .toList();
 
               // If no other presences than the own entry is interesting, we
               // hide the presence header.
@@ -79,7 +71,12 @@ class StatusMessageList extends StatelessWidget {
               return SizedBox(
                 height: StatusMessageList.height,
                 child: ListView.builder(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.only(
+                    left: 8.0,
+                    right: 8.0,
+                    top: 8.0,
+                    bottom: 6.0,
+                  ),
                   scrollDirection: Axis.horizontal,
                   itemCount: presences.length,
                   itemBuilder: (context, i) => PresenceAvatar(
@@ -111,22 +108,23 @@ class PresenceAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final avatarSize = height - 16 - 16 - 8;
+    final avatarSize = height - 16 - 16 - 6;
     final client = Matrix.of(context).client;
     return FutureBuilder<Profile>(
       future: client.getProfileFromUserId(presence.userid),
       builder: (context, snapshot) {
+        final theme = Theme.of(context);
+
         final profile = snapshot.data;
-        final displayName = profile?.displayName ??
+        final displayName =
+            profile?.displayName ??
             presence.userid.localpart ??
             presence.userid;
         final statusMsg = presence.statusMsg;
 
-        final statusMsgBubbleElevation =
-            Theme.of(context).appBarTheme.scrolledUnderElevation ?? 4;
-        final statusMsgBubbleShadowColor =
-            Theme.of(context).colorScheme.onSurface;
-        final statusMsgBubbleColor = Colors.white.withAlpha(245);
+        const statusMsgBubbleElevation = 6.0;
+        final statusMsgBubbleShadowColor = theme.colorScheme.surfaceBright;
+        final statusMsgBubbleColor = Colors.white.withAlpha(212);
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: SizedBox(
@@ -150,13 +148,26 @@ class PresenceAvatar extends StatelessWidget {
                                 padding: const EdgeInsets.all(3),
                                 decoration: BoxDecoration(
                                   gradient: presence.gradient,
-                                  borderRadius:
-                                      BorderRadius.circular(avatarSize),
+                                  borderRadius: BorderRadius.circular(
+                                    avatarSize,
+                                  ),
                                 ),
-                                child: Avatar(
-                                  name: displayName,
-                                  mxContent: profile?.avatarUrl,
-                                  size: avatarSize - 6,
+                                alignment: Alignment.center,
+                                child: Container(
+                                  height: avatarSize - 6,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: theme.colorScheme.surface,
+                                    borderRadius: BorderRadius.circular(
+                                      avatarSize,
+                                    ),
+                                  ),
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: Avatar(
+                                    name: displayName,
+                                    mxContent: profile?.avatarUrl,
+                                    size: avatarSize - 12,
+                                  ),
                                 ),
                               ),
                               if (presence.userid == client.userID)
@@ -186,58 +197,70 @@ class PresenceAvatar extends StatelessWidget {
                                 Positioned(
                                   left: 0,
                                   top: 0,
-                                  right: 8,
-                                  child: Material(
-                                    elevation: statusMsgBubbleElevation,
-                                    shadowColor: statusMsgBubbleShadowColor,
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius / 2,
-                                    ),
-                                    color: statusMsgBubbleColor,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(2.0),
-                                      child: Text(
-                                        statusMsg,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 10.5,
+                                  right: 0,
+                                  child: Column(
+                                    spacing: 2,
+                                    crossAxisAlignment: .start,
+                                    mainAxisSize: .min,
+                                    children: [
+                                      Material(
+                                        elevation: statusMsgBubbleElevation,
+                                        shadowColor: statusMsgBubbleShadowColor,
+                                        borderRadius: BorderRadius.circular(
+                                          AppConfig.borderRadius / 2,
+                                        ),
+                                        color: statusMsgBubbleColor,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 2.0,
+                                            horizontal: 4.0,
+                                          ),
+                                          child: Text(
+                                            statusMsg,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 9,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 8,
-                                  top: 32,
-                                  child: Material(
-                                    color: statusMsgBubbleColor,
-                                    elevation: statusMsgBubbleElevation,
-                                    shadowColor: statusMsgBubbleShadowColor,
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius / 2,
-                                    ),
-                                    child: const SizedBox(
-                                      width: 8,
-                                      height: 8,
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 14,
-                                  top: 40,
-                                  child: Material(
-                                    color: statusMsgBubbleColor,
-                                    elevation: statusMsgBubbleElevation,
-                                    shadowColor: statusMsgBubbleShadowColor,
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius / 2,
-                                    ),
-                                    child: const SizedBox(
-                                      width: 4,
-                                      height: 4,
-                                    ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          left: 8.0,
+                                        ),
+                                        child: Material(
+                                          color: statusMsgBubbleColor,
+                                          elevation: statusMsgBubbleElevation,
+                                          shadowColor:
+                                              statusMsgBubbleShadowColor,
+                                          borderRadius: BorderRadius.circular(
+                                            AppConfig.borderRadius,
+                                          ),
+                                          child: const SizedBox.square(
+                                            dimension: 8,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          left: 13.0,
+                                        ),
+                                        child: Material(
+                                          color: statusMsgBubbleColor,
+                                          elevation: statusMsgBubbleElevation,
+                                          shadowColor:
+                                              statusMsgBubbleShadowColor,
+                                          borderRadius: BorderRadius.circular(
+                                            AppConfig.borderRadius,
+                                          ),
+                                          child: const SizedBox.square(
+                                            dimension: 5,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
@@ -256,9 +279,7 @@ class PresenceAvatar extends StatelessWidget {
                     textAlign: TextAlign.center,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 13,
-                    ),
+                    style: const TextStyle(fontSize: 11),
                   ),
                 ),
               ],
@@ -272,10 +293,12 @@ class PresenceAvatar extends StatelessWidget {
 
 extension on Client {
   Set<String> get interestingPresences {
-    final allHeroes = rooms.map((room) => room.summary.mHeroes).fold(
-      <String>{},
-      (previousValue, element) => previousValue..addAll(element ?? {}),
-    );
+    final allHeroes = rooms
+        .map((room) => room.summary.mHeroes)
+        .fold(
+          <String>{},
+          (previousValue, element) => previousValue..addAll(element ?? {}),
+        );
     allHeroes.add(userID!);
     return allHeroes;
   }
@@ -290,33 +313,26 @@ extension on CachedPresence {
       (currentlyActive == true
           ? DateTime.now()
           : DateTime.fromMillisecondsSinceEpoch(0));
+
   LinearGradient get gradient => presence.isOnline == true
       ? LinearGradient(
-          colors: [
-            Colors.green,
-            Colors.green.shade200,
-            Colors.green.shade900,
-          ],
+          colors: [Colors.green, Colors.green.shade200, Colors.green.shade900],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         )
       : presence.isUnavailable
-          ? LinearGradient(
-              colors: [
-                Colors.yellow,
-                Colors.yellow.shade200,
-                Colors.yellow.shade900,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            )
-          : LinearGradient(
-              colors: [
-                Colors.grey,
-                Colors.grey.shade200,
-                Colors.grey.shade900,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            );
+      ? LinearGradient(
+          colors: [
+            Colors.yellow,
+            Colors.yellow.shade200,
+            Colors.yellow.shade900,
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        )
+      : LinearGradient(
+          colors: [Colors.grey, Colors.grey.shade200, Colors.grey.shade900],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        );
 }

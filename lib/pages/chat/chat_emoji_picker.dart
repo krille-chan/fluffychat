@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/sticker_picker_dialog.dart';
 import 'chat.dart';
 
@@ -14,14 +14,14 @@ class ChatEmojiPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
+    final theme = Theme.of(context);
     return AnimatedContainer(
       duration: FluffyThemes.animationDuration,
       curve: FluffyThemes.animationCurve,
       clipBehavior: Clip.hardEdge,
       decoration: const BoxDecoration(),
       height: controller.showEmojiPicker
-          ? MediaQuery.of(context).size.height / 2
+          ? MediaQuery.sizeOf(context).height / 2
           : 0,
       child: controller.showEmojiPicker
           ? DefaultTabController(
@@ -30,8 +30,8 @@ class ChatEmojiPicker extends StatelessWidget {
                 children: [
                   TabBar(
                     tabs: [
-                      Tab(text: L10n.of(context)!.emojis),
-                      Tab(text: L10n.of(context)!.stickers),
+                      Tab(text: L10n.of(context).emojis),
+                      Tab(text: L10n.of(context).stickers),
                     ],
                   ),
                   Expanded(
@@ -41,21 +41,23 @@ class ChatEmojiPicker extends StatelessWidget {
                           onEmojiSelected: controller.onEmojiSelected,
                           onBackspacePressed: controller.emojiPickerBackspace,
                           config: Config(
+                            locale: Localizations.localeOf(context),
                             emojiViewConfig: EmojiViewConfig(
                               noRecents: const NoRecent(),
-                              backgroundColor: Theme.of(context)
-                                  .colorScheme
-                                  .onInverseSurface,
+                              backgroundColor:
+                                  theme.colorScheme.onInverseSurface,
                             ),
                             bottomActionBarConfig: const BottomActionBarConfig(
                               enabled: false,
                             ),
                             categoryViewConfig: CategoryViewConfig(
                               backspaceColor: theme.colorScheme.primary,
-                              iconColor:
-                                  theme.colorScheme.primary.withOpacity(0.5),
+                              iconColor: theme.colorScheme.primary.withAlpha(
+                                128,
+                              ),
                               iconColorSelected: theme.colorScheme.primary,
                               indicatorColor: theme.colorScheme.primary,
+                              backgroundColor: theme.colorScheme.surface,
                             ),
                             skinToneConfig: SkinToneConfig(
                               dialogBackgroundColor: Color.lerp(
@@ -77,6 +79,8 @@ class ChatEmojiPicker extends StatelessWidget {
                                 'url': sticker.url.toString(),
                               },
                               type: EventTypes.Sticker,
+                              threadRootEventId: controller.activeThreadId,
+                              threadLastEventId: controller.threadLastEventId,
                             );
                             controller.hideEmojiPicker();
                           },
@@ -97,9 +101,15 @@ class NoRecent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      L10n.of(context)!.emoteKeyboardNoRecents,
-      style: Theme.of(context).textTheme.bodyLarge,
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(
+          L10n.of(context).emoteKeyboardNoRecents,
+          style: Theme.of(context).textTheme.bodyLarge,
+          textAlign: TextAlign.center,
+        ),
+      ),
     );
   }
 }

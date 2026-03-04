@@ -1,14 +1,13 @@
 #!/bin/sh -ve
-git apply ./scripts/enable-android-google-services.patch
-rm -rf fonts/NotoEmoji
-yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
+flutter pub add fcm_shared_isolate:0.2.0
+sed -i '' 's,//<GOOGLE_SERVICES>,,g' lib/utils/background_push.dart
 flutter clean
 flutter pub get
 cd ios
 rm -rf Pods
 rm -f Podfile.lock
-arch -x86_64 pod install
-arch -x86_64 pod update
+pod install
+pod update
 cd ..
 flutter build ios --release
 cd ios

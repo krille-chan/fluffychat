@@ -4,7 +4,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
 
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/widgets/lock_screen.dart';
 
 class AppLockWidget extends StatefulWidget {
@@ -42,7 +41,7 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
     WidgetsBinding.instance.addPostFrameCallback(_checkLoggedIn);
   }
 
-  void _checkLoggedIn(_) async {
+  Future<void> _checkLoggedIn(_) async {
     if (widget.clients.any((client) => client.isLogged())) return;
 
     await changePincode(null);
@@ -65,7 +64,7 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
 
   Future<void> changePincode(String? pincode) async {
     await const FlutterSecureStorage().write(
-      key: SettingKeys.appLockKey,
+      key: 'chat.fluffy.app_lock',
       value: pincode,
     );
     _pincode = pincode;
@@ -83,8 +82,8 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
   }
 
   void showLockScreen() => setState(() {
-        _isLocked = true;
-      });
+    _isLocked = true;
+  });
 
   Future<T> pauseWhile<T>(Future<T> future) async {
     _paused = true;
@@ -95,20 +94,15 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
     }
   }
 
-  static AppLock of(BuildContext context) => Provider.of<AppLock>(
-        context,
-        listen: false,
-      );
+  static AppLock of(BuildContext context) =>
+      Provider.of<AppLock>(context, listen: false);
 
   @override
   Widget build(BuildContext context) => Provider<AppLock>(
-        create: (_) => this,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            widget.child,
-            if (isLocked) const LockScreen(),
-          ],
-        ),
-      );
+    create: (_) => this,
+    child: Stack(
+      fit: StackFit.expand,
+      children: [widget.child, if (isLocked) const LockScreen()],
+    ),
+  );
 }

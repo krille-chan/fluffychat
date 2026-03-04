@@ -1,48 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'app_config.dart';
 
 abstract class FluffyThemes {
-  static const double columnWidth = 360.0;
+  static const double columnWidth = 380.0;
 
-  static const double navRailWidth = 64.0;
+  static const double maxTimelineWidth = columnWidth * 2;
+
+  static const double navRailWidth = 80.0;
 
   static bool isColumnModeByWidth(double width) =>
       width > columnWidth * 2 + navRailWidth;
 
   static bool isColumnMode(BuildContext context) =>
-      isColumnModeByWidth(MediaQuery.of(context).size.width);
+      isColumnModeByWidth(MediaQuery.sizeOf(context).width);
 
   static bool isThreeColumnMode(BuildContext context) =>
-      MediaQuery.of(context).size.width > FluffyThemes.columnWidth * 3.5;
+      MediaQuery.sizeOf(context).width > FluffyThemes.columnWidth * 3.5;
 
-  static const fallbackTextStyle = TextStyle(
-    fontFamily: 'Roboto',
-    fontFamilyFallback: ['NotoEmoji'],
-  );
-
-  static var fallbackTextTheme = const TextTheme(
-    bodyLarge: fallbackTextStyle,
-    bodyMedium: fallbackTextStyle,
-    labelLarge: fallbackTextStyle,
-    bodySmall: fallbackTextStyle,
-    labelSmall: fallbackTextStyle,
-    displayLarge: fallbackTextStyle,
-    displayMedium: fallbackTextStyle,
-    displaySmall: fallbackTextStyle,
-    headlineMedium: fallbackTextStyle,
-    headlineSmall: fallbackTextStyle,
-    titleLarge: fallbackTextStyle,
-    titleMedium: fallbackTextStyle,
-    titleSmall: fallbackTextStyle,
-  );
-
-  static LinearGradient backgroundGradient(
-    BuildContext context,
-    int alpha,
-  ) {
+  static LinearGradient backgroundGradient(BuildContext context, int alpha) {
     final colorScheme = Theme.of(context).colorScheme;
     return LinearGradient(
       begin: Alignment.topCenter,
@@ -65,32 +43,34 @@ abstract class FluffyThemes {
   ]) {
     final colorScheme = ColorScheme.fromSeed(
       brightness: brightness,
-      seedColor: seed ?? AppConfig.colorSchemeSeed ?? AppConfig.primaryColor,
+      seedColor: seed ?? Color(AppSettings.colorSchemeSeedInt.value),
     );
     // Sets status and navigation bar style whenever buildTheme called
     SystemChrome.setSystemUIOverlayStyle(
       getOverlayStyle(brightness, colorScheme),
     );
 
+    final isColumnMode = FluffyThemes.isColumnMode(context);
     return ThemeData(
       visualDensity: VisualDensity.standard,
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
-      textTheme: PlatformInfos.isDesktop
-          ? brightness == Brightness.light
-              ? Typography.material2018().black.merge(fallbackTextTheme)
-              : Typography.material2018().white.merge(fallbackTextTheme)
-          : null,
-      snackBarTheme: const SnackBarThemeData(
-        behavior: SnackBarBehavior.floating,
-      ),
-      dividerColor: brightness == Brightness.light
-          ? Colors.blueGrey.shade50
-          : Colors.blueGrey.shade900,
+      dividerColor: brightness == Brightness.dark
+          ? colorScheme.surfaceContainerHighest
+          : colorScheme.surfaceContainer,
       popupMenuTheme: PopupMenuThemeData(
+        color: colorScheme.surfaceContainerLow,
+        iconColor: colorScheme.onSurface,
+        textStyle: TextStyle(color: colorScheme.onSurface),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+        ),
+      ),
+      segmentedButtonTheme: SegmentedButtonThemeData(
+        style: SegmentedButton.styleFrom(
+          iconColor: colorScheme.onSurface,
+          disabledIconColor: colorScheme.onSurface,
         ),
       ),
       textSelectionTheme: TextSelectionThemeData(
@@ -99,21 +79,28 @@ abstract class FluffyThemes {
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
         contentPadding: const EdgeInsets.all(12),
-        filled: true,
+      ),
+      chipTheme: ChipThemeData(
+        showCheckmark: false,
+        backgroundColor: colorScheme.surfaceContainer,
+        side: BorderSide.none,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        ),
       ),
       appBarTheme: AppBarTheme(
-        toolbarHeight: FluffyThemes.isColumnMode(context) ? 72 : 56,
-        shadowColor: FluffyThemes.isColumnMode(context)
-            ? Colors.grey.withAlpha(64)
+        toolbarHeight: isColumnMode ? 72 : 56,
+        shadowColor: isColumnMode
+            ? colorScheme.surfaceContainer.withAlpha(128)
             : null,
-        surfaceTintColor:
-            FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
-        backgroundColor:
-            FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
+        surfaceTintColor: isColumnMode ? colorScheme.surface : null,
+        backgroundColor: isColumnMode ? colorScheme.surface : null,
+        actionsPadding: isColumnMode
+            ? const EdgeInsets.symmetric(horizontal: 16.0)
+            : null,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: brightness.reversed,
@@ -122,30 +109,27 @@ abstract class FluffyThemes {
           systemNavigationBarColor: colorScheme.surface,
         ),
       ),
-      textButtonTheme: TextButtonThemeData(
-        style: TextButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-          ),
-        ),
-      ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          side: BorderSide(
-            width: 1,
-            color: colorScheme.primary,
-          ),
+          side: BorderSide(width: 1, color: colorScheme.primary),
           shape: RoundedRectangleBorder(
             side: BorderSide(color: colorScheme.primary),
             borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
         ),
       ),
-      dialogTheme: DialogTheme(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-        ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        strokeCap: StrokeCap.round,
+        color: colorScheme.primary,
+        refreshBackgroundColor: colorScheme.primaryContainer,
       ),
+      snackBarTheme: isColumnMode
+          ? const SnackBarThemeData(
+              showCloseIcon: true,
+              behavior: SnackBarBehavior.floating,
+              width: FluffyThemes.columnWidth * 1.5,
+            )
+          : const SnackBarThemeData(behavior: SnackBarBehavior.floating),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: colorScheme.secondaryContainer,
@@ -153,9 +137,6 @@ abstract class FluffyThemes {
           elevation: 0,
           padding: const EdgeInsets.all(16),
           textStyle: const TextStyle(fontSize: 16),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          ),
         ),
       ),
     );
@@ -175,4 +156,20 @@ abstract class FluffyThemes {
 extension on Brightness {
   Brightness get reversed =>
       this == Brightness.dark ? Brightness.light : Brightness.dark;
+}
+
+extension BubbleColorTheme on ThemeData {
+  Color get bubbleColor => brightness == Brightness.light
+      ? colorScheme.primary
+      : colorScheme.primaryContainer;
+
+  Color get onBubbleColor => brightness == Brightness.light
+      ? colorScheme.onPrimary
+      : colorScheme.onPrimaryContainer;
+
+  Color get secondaryBubbleColor => HSLColor.fromColor(
+    brightness == Brightness.light
+        ? colorScheme.tertiary
+        : colorScheme.tertiaryContainer,
+  ).withSaturation(0.5).toColor();
 }

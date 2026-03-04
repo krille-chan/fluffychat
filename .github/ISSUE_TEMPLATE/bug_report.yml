@@ -34,6 +34,28 @@ body:
       placeholder: "e.g. 1.12.0"
     validations:
       required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: "Platform"
+      description: "Select the platform where the bug occurs."
+      options:
+        - Android (PlayStore)
+        - Android (F-Droid)
+        - Android (Other)
+        - iOS (iPhone)
+        - iOS (iPad)
+        - Web (Chrome(ium))
+        - Web (Firefox)
+        - Web (Safari)
+        - Linux (Snap)
+        - Linux (Flatpak)
+        - Linux (Other)
+        - macOS (iOS/iPadOS version)
+        - macOS (Self-compiled)
+        - Windows (Self-compiled)
+    validations:
+      required: true
   - type: input
     id: platform-info
     attributes:

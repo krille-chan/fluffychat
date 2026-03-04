@@ -2,52 +2,75 @@ include: package:flutter_lints/flutter.yaml
 
 linter:
   rules:
-    - camel_case_types
     - avoid_print
     - constant_identifier_names
     - prefer_final_locals
     - prefer_final_in_for_each
     - sort_pub_dependencies
     - require_trailing_commas
+    - omit_local_variable_types
+    - cancel_subscriptions
+    - always_declare_return_types
+    - avoid_void_async
+    - no_adjacent_strings_in_list
+    - test_types_in_equals
+    - throw_in_finally
+    - unnecessary_statements
+    - avoid_bool_literals_in_conditional_expressions
+    - prefer_single_quotes
+    - prefer_const_declarations
+    - unnecessary_lambdas
+    - combinators_ordering
+    - noop_primitive_operations
+    - unnecessary_null_checks
+    - unnecessary_null_in_if_null_operators
+    - unnecessary_to_list_in_spreads
+    - use_is_even_rather_than_modulo
+    - use_super_parameters
+    # Flutter specific:
+    - use_colored_box
 
 analyzer:
+  plugins:
+    - dart_code_linter
   errors:
     todo: ignore
     use_build_context_synchronously: ignore
   exclude:
-    - lib/generated_plugin_registrant.dart
     - lib/l10n/*.dart
 
-dart_code_metrics:
-  metrics:
-    cyclomatic-complexity: 20
-    number-of-arguments: 4
-    maximum-nesting-level: 5
-    source-lines-of-code: 50
-    maintainability-index: 40
+dart_code_linter:
   rules:
-    - no-boolean-literal-compare
-    - no-empty-block
-    - prefer-conditional-expressions
+    # Dart specific:
+    - avoid-dynamic
+    - avoid-redundant-async
+    - avoid-unnecessary-type-assertions
+    - avoid-unnecessary-type-casts
+    - avoid-unrelated-type-assertions
     - no-equal-then-else
-    - no-magic-number:
-        severity: style
-    - avoid-late-keyword:
-        severity: style
-    - avoid-non-null-assertion:
-        severity: style
-    - avoid-unused-parameters
-    - binary-expression-operand-order
-    - avoid-unnecessary-setstate
+    - prefer-first
+    - prefer-last
+    - prefer-immediate-return
+    - prefer-enums-by-name
+    - avoid-unnecessary-conditionals
+    # TODO:
+    # - member-ordering
+    # - avoid-global-state
+    # - prefer-match-file-name
+    # - avoid-banned-imports:
+    #     entries:
+    #     - paths: ['some/folder/.*\.dart', 'another/folder/.*\.dart']
+    #       deny: ['package:flutter/material.dart']
+    #       message: 'Do not import Flutter Material Design library, we should not depend on it!'
+    # - no-magic-number:
+    #     allowed: [-1, 0, 1,2,4,6,8,12,16,32,40,56,64]
+    #     allow-only-once: true
+    # Flutter specific:
+    - prefer-media-query-direct-access
     - avoid-wrapping-in-padding
-    - prefer-const-border-radius
-    - prefer-single-widget-per-file:
-        ignore-private-widgets: true
-    - prefer-extracting-callbacks
-  metrics-exclude:
-    - test/**
-  rules-exclude:
-    - test/**
-  anti-patterns:
-    - long-method
-    - long-parameter-list
+    - prefer-correct-edge-insets-constructor
+    - avoid-returning-widgets
+    # TODO:
+    # - prefer-single-widget-per-file:
+    #    ignore-private-widgets: true
+    # - prefer-extracting-callbacks

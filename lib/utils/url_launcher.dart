@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:punycode/punycode.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
+import '../widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'platform_infos.dart';
 
 class UrlLauncher {
@@ -28,7 +27,7 @@ class UrlLauncher {
 
   const UrlLauncher(this.context, this.url, [this.name]);
 
-  void launchUrl() async {
+  Future<void> launchUrl() async {
     if (url!.toLowerCase().startsWith(AppConfig.deepLinkPrefix) ||
         url!.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         {'#', '@', '!', '+', '\$'}.contains(url![0]) ||
@@ -39,7 +38,7 @@ class UrlLauncher {
     if (uri == null) {
       // we can't open this thing
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.cantOpenUri(url!))),
+        SnackBar(content: Text(L10n.of(context).cantOpenUri(url!))),
       );
       return;
     }
@@ -49,10 +48,10 @@ class UrlLauncher {
       // that the user can see the actual url before opening the browser.
       final consent = await showOkCancelAlertDialog(
         context: context,
-        title: L10n.of(context)!.openLinkInBrowser,
+        title: L10n.of(context).openLinkInBrowser,
         message: url,
-        okLabel: L10n.of(context)!.yes,
-        cancelLabel: L10n.of(context)!.cancel,
+        okLabel: L10n.of(context).open,
+        cancelLabel: L10n.of(context).cancel,
       );
       if (consent != OkCancelResult.ok) return;
     }
@@ -67,7 +66,7 @@ class UrlLauncher {
             .split(';')
             .first
             .split(',')
-            .map((s) => double.tryParse(s))
+            .map(double.tryParse)
             .toList();
         if (latlong.length == 2 &&
             latlong.first != null &&
@@ -93,20 +92,23 @@ class UrlLauncher {
     }
     if (uri.host.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context)!.cantOpenUri(url!))),
+        SnackBar(content: Text(L10n.of(context).cantOpenUri(url!))),
       );
       return;
     }
     // okay, we have either an http or an https URI.
     // As some platforms have issues with opening unicode URLs, we are going to help
     // them out by punycode-encoding them for them ourself.
-    final newHost = uri.host.split('.').map((hostPartEncoded) {
-      final hostPart = Uri.decodeComponent(hostPartEncoded);
-      final hostPartPunycode = punycodeEncode(hostPart);
-      return hostPartPunycode != '$hostPart-'
-          ? 'xn--$hostPartPunycode'
-          : hostPart;
-    }).join('.');
+    final newHost = uri.host
+        .split('.')
+        .map((hostPartEncoded) {
+          final hostPart = Uri.decodeComponent(hostPartEncoded);
+          final hostPartPunycode = punycodeEncode(hostPart);
+          return hostPartPunycode != '$hostPart-'
+              ? 'xn--$hostPartPunycode'
+              : hostPart;
+        })
+        .join('.');
     // Force LaunchMode.externalApplication, otherwise url_launcher will default
     // to opening links in a webview on mobile platforms.
     launchUrlString(
@@ -115,20 +117,20 @@ class UrlLauncher {
     );
   }
 
-  void openMatrixToUrl() async {
+  Future<void> openMatrixToUrl() async {
     final matrix = Matrix.of(context);
     final url = this.url!.replaceFirst(
-          AppConfig.deepLinkPrefix,
-          AppConfig.inviteLinkPrefix,
-        );
+      AppConfig.deepLinkPrefix,
+      AppConfig.inviteLinkPrefix,
+    );
 
     // The identifier might be a matrix.to url and needs escaping. Or, it might have multiple
     // identifiers (room id & event id), or it might also have a query part.
     // All this needs parsing.
-    final identityParts = url.parseIdentifierIntoParts() ??
+    final identityParts =
+        url.parseIdentifierIntoParts() ??
         Uri.tryParse(url)?.host.parseIdentifierIntoParts() ??
-        Uri.tryParse(url)
-            ?.pathSegments
+        Uri.tryParse(url)?.pathSegments
             .lastWhereOrNull((_) => true)
             ?.parseIdentifierIntoParts();
     if (identityParts == null) {
@@ -139,7 +141,8 @@ class UrlLauncher {
       // we got a room! Let's open that one
       final roomIdOrAlias = identityParts.primaryIdentifier;
       final event = identityParts.secondaryIdentifier;
-      var room = matrix.client.getRoomByAlias(roomIdOrAlias) ??
+      var room =
+          matrix.client.getRoomByAlias(roomIdOrAlias) ??
           matrix.client.getRoomById(roomIdOrAlias);
       var roomId = room?.id;
       // we make the servers a set and later on convert to a list, so that we can easily
@@ -151,12 +154,12 @@ class UrlLauncher {
           context: context,
           future: () => matrix.client.getRoomIdByAlias(roomIdOrAlias),
         );
-        if (response.error != null) {
-          return; // nothing to do, the alias doesn't exist
+        final result = response.result;
+        if (result != null) {
+          roomId = result.roomId;
+          servers.addAll(result.servers!);
+          room = matrix.client.getRoomById(roomId!);
         }
-        roomId = response.result!.roomId;
-        servers.addAll(response.result!.servers!);
-        room = matrix.client.getRoomById(roomId!);
       }
       servers.addAll(identityParts.via);
       if (room != null) {
@@ -169,22 +172,17 @@ class UrlLauncher {
         // we have the room, so....just open it
         if (event != null) {
           context.go(
-            '/${Uri(
-              pathSegments: ['rooms', room.id],
-              queryParameters: {'event': event},
-            )}',
+            '/${Uri(pathSegments: ['rooms', room.id], queryParameters: {'event': event})}',
           );
         } else {
           context.go('/rooms/${room.id}');
         }
         return;
       } else {
-        await showAdaptiveBottomSheet(
+        await showAdaptiveDialog(
           context: context,
-          builder: (c) => PublicRoomBottomSheet(
-            roomAlias: identityParts.primaryIdentifier,
-            outerContext: context,
-          ),
+          builder: (c) =>
+              PublicRoomDialog(roomAlias: identityParts.primaryIdentifier),
         );
       }
       if (roomIdOrAlias.sigil == '!') {
@@ -221,12 +219,20 @@ class UrlLauncher {
         }
       }
     } else if (identityParts.primaryIdentifier.sigil == '@') {
-      await showAdaptiveBottomSheet(
+      final userId = identityParts.primaryIdentifier;
+      var noProfileWarning = false;
+      final profileResult = await showFutureLoadingDialog(
         context: context,
-        builder: (c) => LoadProfileBottomSheet(
-          userId: identityParts.primaryIdentifier,
-          outerContext: context,
-        ),
+        future: () =>
+            matrix.client.getProfileFromUserId(userId).catchError((_) {
+              noProfileWarning = true;
+              return Profile(userId: userId);
+            }),
+      );
+      await UserDialog.show(
+        context: context,
+        profile: profileResult.result!,
+        noProfileWarning: noProfileWarning,
       );
     }
   }

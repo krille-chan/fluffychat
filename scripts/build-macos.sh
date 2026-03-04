@@ -30,6 +30,4 @@ FLUFFYCHAT_ORIG_TEAM="4NXF6Z997G"
 ### Make release build ###
 flutter build macos --release
 
-cp /usr/local/Cellar/libolm/**/lib/libolm.3.dylib build/macos/Build/Products/Release/FluffyChat.app/Contents/Frameworks/libolm.3.dylib
-
 echo "Build build/macos/Build/Products/Release/FluffyChat.app"

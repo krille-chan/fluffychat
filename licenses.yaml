@@ -12,6 +12,8 @@ permittedLicenses:
   - BSD-2-Clause
   - BSD-3-Clause
   - EUPL-1.2
+  - ISC
+  - LGPL-3.0
   - MIT
   - MPL-2.0
   - Zlib
@@ -24,6 +26,8 @@ packageLicenseOverride:
   latlong2: Apache-2.0
   platform_detect: Apache-2.0
   rxdart: Apache-2.0
+  flutter_new_badger: MIT
+  sqlcipher_flutter_libs: MIT
 
   # flutter's internal packages
   flutter_driver: BSD-3-Clause

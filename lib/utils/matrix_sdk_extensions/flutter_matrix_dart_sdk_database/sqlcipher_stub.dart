@@ -1,1 +1,2 @@
-Future<void> applyWorkaroundToOpenSqlCipherOnOldAndroidVersions() async {}
+Future<void> applyWorkaroundToOpenSqlCipherOnOldAndroidVersions() =>
+    Future.value();

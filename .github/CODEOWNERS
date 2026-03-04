@@ -1,2 +1,3 @@
 * @krille-chan
-assets/l10n/*.arb @weblate
+pubspec.* @dependabot
+lib/l10n/*.arb @weblate

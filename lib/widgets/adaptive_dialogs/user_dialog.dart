@@ -1,0 +1,260 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/date_time_extension.dart';
+import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/presence_builder.dart';
+import '../../utils/url_launcher.dart';
+import '../future_loading_dialog.dart';
+import '../hover_builder.dart';
+import '../matrix.dart';
+import '../mxc_image_viewer.dart';
+
+// ignore: unused_import
+
+class UserDialog extends StatelessWidget {
+  static Future<void> show({
+    required BuildContext context,
+    required Profile profile,
+    bool noProfileWarning = false,
+  }) => showAdaptiveDialog(
+    context: context,
+    barrierDismissible: true,
+    builder: (context) =>
+        UserDialog(profile, noProfileWarning: noProfileWarning),
+  );
+
+  final Profile profile;
+  final bool noProfileWarning;
+
+  const UserDialog(this.profile, {this.noProfileWarning = false, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final client = Matrix.of(context).client;
+    final displayname =
+        profile.displayName ??
+        profile.userId.localpart ??
+        L10n.of(context).user;
+    var copied = false;
+    final theme = Theme.of(context);
+    final avatar = profile.avatarUrl;
+    return AlertDialog.adaptive(
+      content: PresenceBuilder(
+        userId: profile.userId,
+        client: Matrix.of(context).client,
+        builder: (context, presence) {
+          if (presence == null) return const SizedBox.shrink();
+          final statusMsg = presence.statusMsg;
+          final lastActiveTimestamp = presence.lastActiveTimestamp;
+          final presenceText = presence.currentlyActive == true
+              ? L10n.of(context).currentlyActive
+              : lastActiveTimestamp != null
+              ? L10n.of(
+                  context,
+                ).lastActiveAgo(lastActiveTimestamp.localizedTimeShort(context))
+              : null;
+          return Column(
+            spacing: 16,
+            mainAxisSize: .min,
+            crossAxisAlignment: .stretch,
+            children: [
+              Row(
+                spacing: 12,
+                children: [
+                  Avatar(
+                    mxContent: avatar,
+                    name: displayname,
+                    size: Avatar.defaultSize * 1.5,
+                    onTap: avatar != null
+                        ? () => showDialog(
+                            context: context,
+                            builder: (_) => MxcImageViewer(avatar),
+                          )
+                        : null,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: .start,
+                      children: [
+                        Text(
+                          displayname,
+                          maxLines: 1,
+                          overflow: .ellipsis,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        const SizedBox(height: 8),
+                        HoverBuilder(
+                          builder: (context, hovered) => StatefulBuilder(
+                            builder: (context, setState) => MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Clipboard.setData(
+                                    ClipboardData(text: profile.userId),
+                                  );
+                                  setState(() {
+                                    copied = true;
+                                  });
+                                },
+                                child: RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      WidgetSpan(
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                            right: 4.0,
+                                          ),
+                                          child: AnimatedScale(
+                                            duration:
+                                                FluffyThemes.animationDuration,
+                                            curve: FluffyThemes.animationCurve,
+                                            scale: hovered
+                                                ? 1.33
+                                                : copied
+                                                ? 1.25
+                                                : 1.0,
+                                            child: Icon(
+                                              copied
+                                                  ? Icons.check_circle
+                                                  : Icons.copy,
+                                              size: 12,
+                                              color: copied
+                                                  ? Colors.green
+                                                  : null,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      TextSpan(text: profile.userId),
+                                    ],
+                                    style: theme.textTheme.bodyMedium?.copyWith(
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                  maxLines: 1,
+                                  overflow: .ellipsis,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        if (presenceText != null)
+                          Text(
+                            presenceText,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              fontSize: 10,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+
+              if (statusMsg != null)
+                ConstrainedBox(
+                  constraints: BoxConstraints(maxHeight: 200),
+                  child: Scrollbar(
+                    thumbVisibility: true,
+                    trackVisibility: true,
+                    child: SingleChildScrollView(
+                      child: SelectableLinkify(
+                        text: statusMsg,
+                        textScaleFactor: MediaQuery.textScalerOf(
+                          context,
+                        ).scale(1),
+                        textAlign: TextAlign.start,
+                        options: const LinkifyOptions(humanize: false),
+                        linkStyle: TextStyle(
+                          color: theme.colorScheme.primary,
+                          decoration: TextDecoration.underline,
+                          decorationColor: theme.colorScheme.primary,
+                        ),
+                        onOpen: (url) =>
+                            UrlLauncher(context, url.url).launchUrl(),
+                      ),
+                    ),
+                  ),
+                ),
+              Row(
+                mainAxisAlignment: .spaceBetween,
+                spacing: 4,
+                children: [
+                  AdaptiveIconTextButton(
+                    label: L10n.of(context).block,
+                    icon: Icons.block_outlined,
+                    onTap: () {
+                      final router = GoRouter.of(context);
+                      Navigator.of(context).pop();
+                      router.go(
+                        '/rooms/settings/security/ignorelist',
+                        extra: profile.userId,
+                      );
+                    },
+                  ),
+                  AdaptiveIconTextButton(
+                    label: L10n.of(context).report,
+                    icon: Icons.gavel_outlined,
+                    onTap: () async {
+                      Navigator.of(context).pop();
+                      final reason = await showTextInputDialog(
+                        context: context,
+                        title: L10n.of(context).whyDoYouWantToReportThis,
+                        okLabel: L10n.of(context).report,
+                        cancelLabel: L10n.of(context).cancel,
+                        hintText: L10n.of(context).reason,
+                      );
+                      if (reason == null || reason.isEmpty) return;
+                      await showFutureLoadingDialog(
+                        context: context,
+                        future: () => Matrix.of(
+                          context,
+                        ).client.reportUser(profile.userId, reason),
+                      );
+                    },
+                  ),
+                  AdaptiveIconTextButton(
+                    label: L10n.of(context).share,
+                    icon: Icons.adaptive.share,
+                    onTap: () => FluffyShare.share(
+                      'https://matrix.to/#/${profile.userId}',
+                      context,
+                    ),
+                  ),
+                ],
+              ),
+              AdaptiveDialogInkWell(
+                onTap: () async {
+                  final router = GoRouter.of(context);
+                  final roomIdResult = await showFutureLoadingDialog(
+                    context: context,
+                    future: () => client.startDirectChat(profile.userId),
+                  );
+                  final roomId = roomIdResult.result;
+                  if (roomId == null) return;
+                  if (context.mounted) Navigator.of(context).pop();
+                  router.go('/rooms/$roomId');
+                },
+                child: Text(
+                  L10n.of(context).sendAMessage,
+                  style: TextStyle(color: theme.colorScheme.secondary),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}

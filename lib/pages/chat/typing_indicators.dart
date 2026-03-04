@@ -14,13 +14,16 @@ class TypingIndicators extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     const avatarSize = Avatar.defaultSize / 2;
 
     return StreamBuilder<Object>(
       stream: controller.room.client.onSync.stream.where(
         (syncUpdate) =>
-            syncUpdate.rooms?.join?[controller.room.id]?.ephemeral
-                ?.any((ephemeral) => ephemeral.type == 'm.typing') ??
+            syncUpdate.rooms?.join?[controller.room.id]?.ephemeral?.any(
+              (ephemeral) => ephemeral.type == 'm.typing',
+            ) ??
             false,
       ),
       builder: (context, _) {
@@ -31,22 +34,21 @@ class TypingIndicators extends StatelessWidget {
           width: double.infinity,
           alignment: Alignment.center,
           child: AnimatedContainer(
-            constraints:
-                const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
+            constraints: const BoxConstraints(
+              maxWidth: FluffyThemes.maxTimelineWidth,
+            ),
             height: typingUsers.isEmpty ? 0 : avatarSize + 8,
             duration: FluffyThemes.animationDuration,
             curve: FluffyThemes.animationCurve,
-            alignment: controller.timeline!.events.isNotEmpty &&
+            alignment:
+                controller.timeline!.events.isNotEmpty &&
                     controller.timeline!.events.first.senderId ==
                         Matrix.of(context).client.userID
                 ? Alignment.topRight
                 : Alignment.topLeft,
             clipBehavior: Clip.hardEdge,
             decoration: const BoxDecoration(),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8.0,
-              vertical: 4.0,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Row(
               children: [
                 Container(
@@ -79,9 +81,7 @@ class TypingIndicators extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Material(
-                  color:
-                      // ignore: deprecated_member_use
-                      Theme.of(context).colorScheme.surfaceVariant,
+                  color: theme.colorScheme.surfaceContainerHigh,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(AppConfig.borderRadius),
                   ),
@@ -115,17 +115,14 @@ class __TypingDotsState extends State<_TypingDots> {
 
   @override
   void initState() {
-    _timer = Timer.periodic(
-      animationDuration,
-      (_) {
-        if (!mounted) {
-          return;
-        }
-        setState(() {
-          _tick = (_tick + 1) % 4;
-        });
-      },
-    );
+    _timer = Timer.periodic(animationDuration, (_) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _tick = (_tick + 1) % 4;
+      });
+    });
     super.initState();
   }
 
@@ -137,10 +134,11 @@ class __TypingDotsState extends State<_TypingDots> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     const size = 8.0;
 
     return Row(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisSize: .min,
       children: [
         for (var i = 1; i <= 3; i++)
           AnimatedContainer(
@@ -154,7 +152,7 @@ class __TypingDotsState extends State<_TypingDots> {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(size * 2),
-              color: Theme.of(context).colorScheme.secondary,
+              color: theme.colorScheme.secondary,
             ),
           ),
       ],

@@ -11,10 +11,15 @@ class Avatar extends StatelessWidget {
   final String? name;
   final double size;
   final void Function()? onTap;
-  static const double defaultSize = 44;
+  static const double defaultSize = 48;
   final Client? client;
   final String? presenceUserId;
   final Color? presenceBackgroundColor;
+  final BorderRadius? borderRadius;
+  final IconData? icon;
+  final ShapeBorder? shapeBorder;
+  final Color? backgroundColor;
+  final Color? textColor;
 
   const Avatar({
     this.mxContent,
@@ -24,106 +29,129 @@ class Avatar extends StatelessWidget {
     this.client,
     this.presenceUserId,
     this.presenceBackgroundColor,
+    this.borderRadius,
+    this.shapeBorder,
+    this.icon,
+    this.backgroundColor,
+    this.textColor,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    var fallbackLetters = '@';
+    final theme = Theme.of(context);
+
     final name = this.name;
-    if (name != null) {
-      if (name.runes.length >= 2) {
-        fallbackLetters = String.fromCharCodes(name.runes, 0, 2);
-      } else if (name.runes.length == 1) {
-        fallbackLetters = name;
-      }
-    }
-    final noPic = mxContent == null ||
+    final fallbackLetters = name == null || name.isEmpty
+        ? '@'
+        : name.substring(0, 1);
+
+    final noPic =
+        mxContent == null ||
         mxContent.toString().isEmpty ||
         mxContent.toString() == 'null';
-    final textWidget = Center(
-      child: Text(
-        fallbackLetters,
-        style: TextStyle(
-          color: noPic ? Colors.white : null,
-          fontSize: (size / 2.5).roundToDouble(),
-        ),
-      ),
-    );
-    final borderRadius = BorderRadius.circular(size / 2);
+    final borderRadius = this.borderRadius ?? BorderRadius.circular(size / 2);
     final presenceUserId = this.presenceUserId;
-    final color =
-        noPic ? name?.lightColorAvatar : Theme.of(context).secondaryHeaderColor;
     final container = Stack(
       children: [
-        ClipRRect(
-          borderRadius: borderRadius,
-          child: Container(
-            width: size,
-            height: size,
-            color: color,
-            child: noPic
-                ? textWidget
-                : MxcImage(
-                    key: Key(mxContent.toString()),
-                    uri: mxContent,
-                    fit: BoxFit.cover,
-                    width: size,
-                    height: size,
-                    placeholder: (_) => textWidget,
-                    cacheKey: mxContent.toString(),
-                  ),
+        SizedBox(
+          width: size,
+          height: size,
+          child: Material(
+            color: theme.brightness == Brightness.light
+                ? Colors.white
+                : Colors.black,
+            shape:
+                shapeBorder ??
+                RoundedSuperellipseBorder(
+                  borderRadius: borderRadius,
+                  side: BorderSide.none,
+                ),
+            clipBehavior: Clip.antiAlias,
+            child: MxcImage(
+              client: client,
+              borderRadius: borderRadius,
+              key: ValueKey(mxContent.toString()),
+              cacheKey: '${mxContent}_$size',
+              uri: mxContent,
+              fit: BoxFit.cover,
+              width: size,
+              height: size,
+              placeholder: (_) => noPic
+                  ? Container(
+                      decoration: BoxDecoration(
+                        color: backgroundColor ?? name?.lightColorAvatar,
+                      ),
+                      alignment: Alignment.center,
+                      child: Text(
+                        fallbackLetters,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'RobotoMono',
+                          color: textColor ?? Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: (size / 2.5).roundToDouble(),
+                        ),
+                      ),
+                    )
+                  : Center(
+                      child: Icon(
+                        Icons.person_2,
+                        color: theme.colorScheme.tertiary,
+                        size: size / 1.5,
+                      ),
+                    ),
+            ),
           ),
         ),
-        PresenceBuilder(
-          client: client,
-          userId: presenceUserId,
-          builder: (context, presence) {
-            if (presence == null ||
-                (presence.presence == PresenceType.offline &&
-                    presence.lastActiveTimestamp == null)) {
-              return const SizedBox.shrink();
-            }
-            final dotColor = presence.presence.isOnline
-                ? Colors.green
-                : presence.presence.isUnavailable
-                    ? Colors.orange
-                    : Colors.grey;
-            return Positioned(
-              bottom: -3,
-              right: -3,
-              child: Container(
-                width: 16,
-                height: 16,
-                decoration: BoxDecoration(
-                  color: presenceBackgroundColor ??
-                      Theme.of(context).colorScheme.surface,
-                  borderRadius: BorderRadius.circular(32),
-                ),
-                alignment: Alignment.center,
+        if (presenceUserId != null)
+          PresenceBuilder(
+            client: client,
+            userId: presenceUserId,
+            builder: (context, presence) {
+              if (presence == null ||
+                  (presence.presence == PresenceType.offline &&
+                      presence.lastActiveTimestamp == null)) {
+                return const SizedBox.shrink();
+              }
+              final dotColor = presence.presence.isOnline
+                  ? Colors.green
+                  : presence.presence.isUnavailable
+                  ? Colors.orange
+                  : Colors.grey;
+              return Positioned(
+                bottom: -3,
+                right: -3,
                 child: Container(
-                  width: 10,
-                  height: 10,
+                  width: 16,
+                  height: 16,
                   decoration: BoxDecoration(
-                    color: dotColor,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      width: 1,
-                      color: Theme.of(context).colorScheme.surface,
+                    color: presenceBackgroundColor ?? theme.colorScheme.surface,
+                    borderRadius: BorderRadius.circular(32),
+                  ),
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: dotColor,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        width: 1,
+                        color: theme.colorScheme.surface,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            );
-          },
-        ),
+              );
+            },
+          ),
       ],
     );
     if (onTap == null) return container;
-    return InkWell(
-      onTap: onTap,
-      borderRadius: borderRadius,
-      child: container,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(onTap: onTap, child: container),
     );
   }
 }

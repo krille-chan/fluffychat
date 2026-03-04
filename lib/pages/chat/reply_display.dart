@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import '../../config/themes.dart';
 import 'chat.dart';
@@ -14,6 +14,8 @@ class ReplyDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return AnimatedContainer(
       duration: FluffyThemes.animationDuration,
       curve: FluffyThemes.animationCurve,
@@ -21,13 +23,11 @@ class ReplyDisplay extends StatelessWidget {
           ? 56
           : 0,
       clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.onInverseSurface,
-      ),
+      decoration: BoxDecoration(color: theme.colorScheme.onInverseSurface),
       child: Row(
         children: <Widget>[
           IconButton(
-            tooltip: L10n.of(context)!.close,
+            tooltip: L10n.of(context).close,
             icon: const Icon(Icons.close),
             onPressed: controller.cancelReplyEventAction,
           ),
@@ -35,8 +35,7 @@ class ReplyDisplay extends StatelessWidget {
             child: controller.replyEvent != null
                 ? ReplyContent(
                     controller.replyEvent!,
-                    timeline: controller.timeline!,
-                    backgroundColor: Colors.transparent,
+                    timeline: controller.timeline,
                   )
                 : _EditContent(
                     controller.editEvent?.getDisplayEvent(controller.timeline!),
@@ -55,28 +54,24 @@ class _EditContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final event = this.event;
     if (event == null) {
       return const SizedBox.shrink();
     }
     return Row(
       children: <Widget>[
-        Icon(
-          Icons.edit,
-          color: Theme.of(context).colorScheme.primary,
-        ),
+        Icon(Icons.edit, color: theme.colorScheme.primary),
         Container(width: 15.0),
         Text(
           event.calcLocalizedBodyFallback(
-            MatrixLocals(L10n.of(context)!),
+            MatrixLocals(L10n.of(context)),
             withSenderNamePrefix: false,
             hideReply: true,
           ),
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
-          style: TextStyle(
-            color: Theme.of(context).textTheme.bodyMedium!.color,
-          ),
+          style: TextStyle(color: theme.textTheme.bodyMedium!.color),
         ),
       ],
     );
