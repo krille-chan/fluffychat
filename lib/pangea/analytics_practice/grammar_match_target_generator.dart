@@ -26,6 +26,7 @@ class GrammarMatchTargetGenerator {
     final sortedConstructs = constructs.practiceSort(activityType);
 
     final Set<String> seenForms = {};
+    final cutoffTime = DateTime.now().subtract(const Duration(hours: 24));
 
     final morphInfoResult = await MorphsRepo.get(
       MatrixState.pangeaController.userController.userL2,
@@ -49,6 +50,14 @@ class GrammarMatchTargetGenerator {
       // Only include features that are in the valid list (have multiple tags)
       if (feature == MorphFeaturesEnum.Unknown ||
           (validFeatures.isNotEmpty && !validFeatures.contains(feature.name))) {
+        continue;
+      }
+
+      final lastPracticeUse = construct.lastUseByTypes(
+        activityType.associatedUseTypes,
+      );
+
+      if (lastPracticeUse != null && lastPracticeUse.isAfter(cutoffTime)) {
         continue;
       }
 

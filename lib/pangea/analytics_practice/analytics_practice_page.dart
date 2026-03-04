@@ -239,6 +239,7 @@ class AnalyticsPracticeState extends State<AnalyticsPractice>
 
   Future<void> _completeSession() async {
     _sessionController.completeSession();
+    progress.value = _sessionController.progress;
     setState(() {});
 
     final bonus = _sessionController.bonusUses;

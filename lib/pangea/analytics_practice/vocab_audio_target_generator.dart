@@ -18,6 +18,8 @@ class VocabAudioTargetGenerator {
 
     final Set<String> seenLemmas = {};
     final Set<String> seenEventIds = {};
+    final cutoffTime = DateTime.now().subtract(const Duration(hours: 24));
+
     final targets = <AnalyticsActivityTarget>[];
 
     for (final construct in sortedConstructs) {
@@ -26,6 +28,14 @@ class VocabAudioTargetGenerator {
       }
 
       if (seenLemmas.contains(construct.lemma)) continue;
+
+      final lastPracticeUse = construct.lastUseByTypes(
+        activityType.associatedUseTypes,
+      );
+
+      if (lastPracticeUse != null && lastPracticeUse.isAfter(cutoffTime)) {
+        continue;
+      }
 
       // Try to get an audio example message with token data for this lemma
       final exampleMessage = await ExampleMessageUtil.getAudioExampleMessage(
