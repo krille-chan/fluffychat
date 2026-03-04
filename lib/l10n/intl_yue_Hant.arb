@@ -1,7 +1,5 @@
 {
   "@@locale": "yue",
-  "normalUser": "正常用家",
-  "@normalUser": {},
   "areYouSureYouWantToLogout": "係咪確定要 log out？",
   "@areYouSureYouWantToLogout": {
     "type": "String",
@@ -38,18 +36,6 @@
       }
     }
   },
-  "badServerVersionsException": "呢個 Homeserver 支持以下 Spec 版本：\n{serverVersions}\n但係個 App 淨係支持 {supoortedVersions} 版本",
-  "@badServerVersionsException": {
-    "type": "String",
-    "placeholders": {
-      "serverVersions": {
-        "type": "String"
-      },
-      "supportedVersions": {
-        "type": "String"
-      }
-    }
-  },
   "banFromChat": "喺傾偈入面 Ban 咗佢",
   "@banFromChat": {
     "type": "String",
@@ -65,18 +51,6 @@
         "type": "String"
       },
       "targetName": {
-        "type": "String"
-      }
-    }
-  },
-  "changedTheChatDescriptionTo": "{username} 改咗呢個偈嘅介紹： 「'{description}'」",
-  "@changedTheChatDescriptionTo": {
-    "type": "String",
-    "placeholders": {
-      "username": {
-        "type": "String"
-      },
-      "description": {
         "type": "String"
       }
     }
@@ -171,8 +145,6 @@
       }
     }
   },
-  "addChatDescription": "講下關於呢個偈係傾嘅乜嘢……",
-  "@addChatDescription": {},
   "addToSpace": "加落去空間嗰度",
   "@addToSpace": {},
   "admin": "Admin",
@@ -265,22 +237,8 @@
   "@swipeRightToLeftToReply": {},
   "sendOnEnter": "撳 Enter 即 Send",
   "@sendOnEnter": {},
-  "countChatsAndCountParticipants": "{chats} 間房同 {participants} 條友",
-  "@countChatsAndCountParticipants": {
-    "type": "String",
-    "placeholders": {
-      "chats": {
-        "type": "int"
-      },
-      "participants": {
-        "type": "int"
-      }
-    }
-  },
   "noMoreChatsFound": "搵唔到更多偈傾啦…",
   "@noMoreChatsFound": {},
-  "joinedChats": "入咗嘅房間",
-  "@joinedChats": {},
   "unread": "未讀",
   "@unread": {},
   "space": "空間",
@@ -299,11 +257,6 @@
   },
   "blocked": "Block 咗",
   "@blocked": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "botMessages": "機械人訊息",
-  "@botMessages": {
     "type": "String",
     "placeholders": {}
   },
@@ -328,10 +281,6 @@
   },
   "confirmMatrixId": "Confirm 你嘅 Matrix ID ，我哋先至可以刪除你嘅 Account。",
   "@confirmMatrixId": {},
-  "setCustomPermissionLevel": "自訂權限級別",
-  "@setCustomPermissionLevel": {},
   "importFromZipFile": "喺 .zip 檔案導入",
-  "@importFromZipFile": {},
-  "setPermissionsLevelDescription": "請喺下面選擇一個預定義嘅角色，或輸入介乎0同100之間嘅自定義權限級別。",
-  "@setPermissionsLevelDescription": {}
+  "@importFromZipFile": {}
 }

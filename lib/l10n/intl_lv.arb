@@ -1,3131 +1,2663 @@
 {
-    "showPassword": "Rādīt paroli",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "hugContent": "{senderName} apskauj Tevi",
-    "@hugContent": {
-        "type": "String",
-        "placeholders": {
-            "senderName": {
-                "type": "String"
-            }
-        }
-    },
-    "darkTheme": "Tumšs",
-    "@darkTheme": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "passphraseOrKey": "paroles vārdkopa vai atkopes atslēga",
-    "@passphraseOrKey": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pleaseEnterYourPassword": "Lūgums ievadīt savu paroli",
-    "@pleaseEnterYourPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "theyMatch": "Tās sakrīt",
-    "@theyMatch": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "Savienot",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "jumpToLastReadMessage": "Pārlēkt uz pēdējo izlasīto ziņu",
-    "allRooms": "Visām kopu tērzēšanām",
-    "@allRooms": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "obtainingLocation": "Iegūst atrašanās vietu…",
-    "@obtainingLocation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_cuddle": "Nosūtīt samīļojienu",
-    "chats": "Tērzēšanas",
-    "@chats": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "widgetVideo": "Video",
-    "dismiss": "Atmest",
-    "unknownDevice": "Nezināma ierīce",
-    "@unknownDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emoteShortcode": "Emocijas īskods",
-    "@emoteShortcode": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "noEncryptionForPublicRooms": "Šifrēšanu var iespējot tikai tad, kad istaba vairs nav publiski pieejama.",
-    "@noEncryptionForPublicRooms": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "admin": "Pārvaldītājs",
-    "@admin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "reportErrorDescription": "😭 Ak nē! Kaut kas nogāja greizi. Ja ir vēlēšanas, par šo nepilnību var ziņot izstrādātājiem.",
-    "directChats": "Tiešās tērzēšanas",
-    "@directChats": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setPermissionsLevel": "Iestatīt atļauju līmeni",
-    "@setPermissionsLevel": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "inviteContactToGroup": "Uzaicināt kontaktpersonu {groupName}",
-    "@inviteContactToGroup": {
-        "type": "String",
-        "placeholders": {
-            "groupName": {
-                "type": "String"
-            }
-        }
-    },
-    "addAccount": "Pievienot kontu",
-    "close": "Aizvērt",
-    "@close": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "configureChat": "Konfigurēt tērzēšanu",
-    "@configureChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatHasBeenAddedToThisSpace": "Šai vietai tika pievienota tērzēšana",
-    "reply": "Atbildēt",
-    "@reply": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "currentlyActive": "Pašreiz darbīgi",
-    "@currentlyActive": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "removeYourAvatar": "Noņemt savu attēlu",
-    "@removeYourAvatar": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unsupportedAndroidVersion": "Neatbalstīta Android versija",
-    "device": "Ierīce",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "blockDevice": "Liegt ierīci",
-    "@blockDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_html": "Nosūtīt ar HTML formatētu tekstu",
-    "@commandHint_html": {
-        "type": "String",
-        "description": "Usage hint for the command /html"
-    },
-    "widgetJitsi": "Jitsi Meet",
-    "youAreNoLongerParticipatingInThisChat": "Tu vairs nepiedalies šajā tērzēšanā",
-    "@youAreNoLongerParticipatingInThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "encryption": "Šifrēšana",
-    "@encryption": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "messageType": "Ziņas veids",
-    "indexedDbErrorLong": "Diemžēl ziņu krātuve pēc noklusējuma nav iespējota privātajā režīmā.\nLūgums apmeklēt\n - about:config\n - iestatīt dom.indexedDB.privateBrowsing.enabled kā true\nPretējā gadījumā nav iespējams palaist FluffyChat.",
-    "oneClientLoggedOut": "Viens no klientiem ir atteicies",
-    "toggleMuted": "Pārslēgt apklusināšanu",
-    "@toggleMuted": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unsupportedAndroidVersionLong": "Šai iespējai ir nepieciešama jaunāka Android versija. Lūgums pārbaudīt atjauninājumus vai Lineage OS atbalstu.",
-    "kicked": "👞 {username} izmeta {targetName}",
-    "@kicked": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "targetName": {
-                "type": "String"
-            }
-        }
-    },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
-    "changeTheNameOfTheGroup": "Mainīt kopas nosaukumu",
-    "@changeTheNameOfTheGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changedTheChatAvatar": "{username} nomainīja tērzēšanas attēlu",
-    "@changedTheChatAvatar": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "verifySuccess": "Apliecināšana bija sekmīga.",
-    "@verifySuccess": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendFile": "Nosūtīt datni",
-    "@sendFile": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "newVerificationRequest": "Jauns apliecināšanas pieprasījums.",
-    "@newVerificationRequest": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "startFirstChat": "Uzsāc savu pirmo tērzēšanu",
-    "callingAccount": "Zvanīšanas konts",
-    "requestPermission": "Pieprasīt atļauju",
-    "@requestPermission": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sentAPicture": "🖼️ {username} nosūtīja attēlu",
-    "@sentAPicture": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "invited": "Uzaicināts",
-    "@invited": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changedTheDisplaynameTo": "{username} nomainīja savu attēlojamo vārdu uz '{displayname}'",
-    "@changedTheDisplaynameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "displayname": {
-                "type": "String"
-            }
-        }
-    },
-    "setColorTheme": "Iestatīt krāsu izskatu:",
-    "nextAccount": "Nākamais konts",
-    "commandHint_create": "Izveidot tukšu kopas tērzēšanu\nLai atspējotu šifrēšanu, jāizmanto --no-encryption",
-    "@commandHint_create": {
-        "type": "String",
-        "description": "Usage hint for the command /create"
-    },
-    "singlesignon": "Vienotā pieteikšanās",
-    "@singlesignon": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "warning": "Uzmanību!",
-    "@warning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "password": "Parole",
-    "@password": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "allSpaces": "Visas vietas",
-    "supposedMxid": "Tam būtu jābūt {mxid}",
-    "@supposedMxid": {
-        "type": "String",
-        "placeholders": {
-            "mxid": {
-                "type": "String"
-            }
-        }
-    },
-    "editDisplayname": "Labot attēlojamo vārdu",
-    "@editDisplayname": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "user": "Lietotājs",
-    "roomVersion": "Istabas versija",
-    "@roomVersion": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sentAFile": "📁 {username} nosūtīja datni",
-    "@sentAFile": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "videoCall": "Videozvans",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youAcceptedTheInvitation": "👍 Tu pieņēmi uzaicinājumu",
-    "banFromChat": "Izslēgt no tērzēšanas",
-    "@banFromChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "noMatrixServer": "{server1} nav Matrix serveris, tā vietā izmantot {server2}?",
-    "@noMatrixServer": {
-        "type": "String",
-        "placeholders": {
-            "server1": {
-                "type": "String"
-            },
-            "server2": {
-                "type": "String"
-            }
-        }
-    },
-    "userAndOthersAreTyping": "{username} un {count} citi raksta…",
-    "@userAndOthersAreTyping": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "youInvitedBy": "📩 {user} Tevi uzaicināja",
-    "@youInvitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "userIsTyping": "{username} raksta…",
-    "@userIsTyping": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "openAppToReadMessages": "Atvērt lietotni, lai lasītu ziņas",
-    "@openAppToReadMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sentAVideo": "🎥 {username} nosūtīja video",
-    "@sentAVideo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "banUserDescription": "Lietotājam tiks liegta piekļuve tērzēšanai, un vairs nevarēs vēlreiz pievienoties tērzēšanai, līdz liegums tiks atcelts.",
-    "inviteContact": "Uzaicināt kontaktpersonu",
-    "@inviteContact": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "askSSSSSign": "Lai varētu parakstīt otru cilvēku, lūgums ievadīt savu drošo krātuves paroles vārdkopu vai atkopes atslēgu.",
-    "@askSSSSSign": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "widgetEtherpad": "Teksta piezīme",
-    "waitingPartnerAcceptRequest": "Gaida, līdz biedrs apstiprinās pieprasījumu…",
-    "@waitingPartnerAcceptRequest": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "remove": "Noņemt",
-    "@remove": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "writeAMessage": "Rakstīt ziņu…",
-    "@writeAMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changeTheme": "Mainīt izskatu",
-    "@changeTheme": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "Id",
-    "@id": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "removeDevicesDescription": "Tu tiksi izrakstīts no šīs ierīces un vairs nevarēsi saņemt ziņas.",
-    "changedTheChatDescriptionTo": "{username} nomainīja tērzēšanas aprakstu uz '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "countParticipants": "{count} dalībnieki",
-    "@countParticipants": {
-        "type": "String",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "separateChatTypes": "Atdalīt tiešās tērzēšanas un kopas",
-    "@separateChatTypes": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "tryAgain": "Jāmēģina vēlreiz",
-    "areGuestsAllowedToJoin": "Vai vieslietotājiem ir ļauts pievienoties",
-    "@areGuestsAllowedToJoin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "blocked": "Liegta",
-    "@blocked": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youKickedAndBanned": "🙅 Izraidīji {user} un liedzi piekļuvi",
-    "@youKickedAndBanned": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithoutYear": "{day}.{month}.",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "removeDevice": "Noņemt ierīci",
-    "@removeDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unbanUserDescription": "Lietotājs varēs atkal pievienoties tērzēšanai, ja mēģinās.",
-    "userAndUserAreTyping": "{username} un {username2} raksta…",
-    "@userAndUserAreTyping": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "username2": {
-                "type": "String"
-            }
-        }
-    },
-    "pleaseClickOnLink": "Lūgums klikšķināt uz saites e-pastā un tad turpināt.",
-    "@pleaseClickOnLink": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "saveFile": "Saglabāt datni",
-    "@saveFile": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendOnEnter": "Nosūtīt ar Enter",
-    "pickImage": "Izvēlēties attēlu",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "answeredTheCall": "{senderName} atbildēja uz zvanu",
-    "@answeredTheCall": {
-        "type": "String",
-        "placeholders": {
-            "senderName": {
-                "type": "String"
-            }
-        }
-    },
-    "youRejectedTheInvitation": "Tu noraidīji uzaicinājumu",
-    "otherCallingPermissions": "Mikrofons, kamera un citas FluffyChat atļaujas",
-    "messagesStyle": "Ziņas:",
-    "couldNotDecryptMessage": "Nevarēja atšifrēt ziņu: {error}",
-    "@couldNotDecryptMessage": {
-        "type": "String",
-        "placeholders": {
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "invitedUsersOnly": "Tikai uzaicināti lietotāji",
-    "@invitedUsersOnly": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "link": "Saite",
-    "widgetUrlError": "Tas nav derīgs URL.",
-    "emailOrUsername": "E-pasta adrese vai lietotājvārds",
-    "newSpaceDescription": "Vietas ļauj apvienot tērzēšanas un būvēt privātas vai publiskas kopienas.",
-    "chatDescription": "Tērzēšanas apraksts",
-    "callingAccountDetails": "Ļauj FluffyChat izmantot iebūvēto Android zvanīšanas lietotni.",
-    "next": "Nākamais",
-    "@next": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pleaseFollowInstructionsOnWeb": "Lūgums sekot norādēm tīmekļvietnē un piesist \"Nākamais\".",
-    "@pleaseFollowInstructionsOnWeb": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changedTheGuestAccessRules": "{username} nomainīja viesu piekļuves nosacījumus",
-    "@changedTheGuestAccessRules": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithYear": "{year}.{month}.{day}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "editRoomAliases": "Labot istabu aizstājvārdus",
-    "@editRoomAliases": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "enterSpace": "Ieiet vietā",
-    "encryptThisChat": "Šifrēt šo tērzēšanu",
-    "fileName": "Datnes nosaukums",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Nav pieejams",
-    "@unavailable": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "previousAccount": "Iepriekšējais konts",
-    "publicRooms": "Publiskas istabas",
-    "@publicRooms": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fromTheInvitation": "No uzaicinājuma",
-    "@fromTheInvitation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendMessages": "Nosūtīt ziņas",
-    "@sendMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "incorrectPassphraseOrKey": "Nepareiza paroles vārdkopa vai atkopes atslēga",
-    "@incorrectPassphraseOrKey": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emoteWarnNeedToPick": "Nepieciešams izvēlēties emocijas īskodu un attēlu.",
-    "@emoteWarnNeedToPick": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "reopenChat": "Atkārtoti atvērt tērzēšanu",
-    "pleaseEnterRecoveryKey": "Lūgums ievadīt savu atkopes atslēgu:",
-    "create": "Izveidot",
-    "@create": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleFavorite": "Pārslēgt iecienīto",
-    "@toggleFavorite": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "no": "Nē",
-    "@no": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "alias": "aizstājvārds",
-    "@alias": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "widgetNameError": "Lūgums norādīt attēlojamo nosaukumu.",
-    "inoffensive": "Nav aizskarošs",
-    "@inoffensive": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unpin": "Atspraust",
-    "@unpin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "addToBundle": "Pievienot komplektam",
-    "reportMessage": "Ziņot par ziņu",
-    "@reportMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "spaceIsPublic": "Vieta ir publiska",
-    "@spaceIsPublic": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "addWidget": "Pievienot logrīku",
-    "all": "Viss",
-    "@all": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "removeAllOtherDevices": "Noņemt visas pārējās ierīces",
-    "@removeAllOtherDevices": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unblockDevice": "Atslēgt ierīci",
-    "@unblockDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "countFiles": "{count} datnes",
-    "@countFiles": {
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "noKeyForThisMessage": "Tā var notikt, ja ziņa tika nosūtīta, pirms pieteicies savā kontā šajā ierīcē.\n\nIr arī iespējams, ka sūtītājs noliedza Tavu ierīci vai kaut kas nogāja greizi ar interneta savienojumu.\n\nVai ziņas ir lasāmas citā sesijā? Tad Tu vari pārsūtīt ziņu no tās. Jādodas uz Iestatījumi > Ierīces un jāpārliecinās, ka ierīces viena otru ir apliecinājušas. Kad nākamreiz atvērsi istabu un abas sesijas būs priekšplānā, atslēgas tiks automātiski pārsūtītas.\n\nVai nevēlies zaudēt atslēgas, kad atsakies vai maini ierīces? Jāpārliecinās, ka iestatījumos ir iespējota tērzēšanu rezerves kopija.",
-    "enableEncryptionWarning": "Vairs nebūs iespējams atspējot šifrēšanu. Vai tiešām to darīt?",
-    "@enableEncryptionWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "inviteText": "{username} uzaicināja pievienoties FluffyChat.\n1. Jāapmeklē fluffychat.im un jāuzstāda lietotne \n2. Jāizveido konts vai jāpiesakās \n3. Jāatver uzaicinājuma saite: \n {link}",
-    "@inviteText": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "link": {
-                "type": "String"
-            }
-        }
-    },
-    "shareLocation": "Kopīgot atrašanās vietu",
-    "@shareLocation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "reason": "Iemesls",
-    "@reason": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_markasgroup": "Atzīmēt kā kopu",
-    "errorObtainingLocation": "Kļūda atrašanās vietas iegūšanā: {error}",
-    "@errorObtainingLocation": {
-        "type": "String",
-        "placeholders": {
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "hydrateTor": "TOR lietotāji: ievietot sesijas izguvi",
-    "pushNotificationsNotAvailable": "Pašpiegādes paziņojumi nav pieejami",
-    "passwordRecovery": "Paroles atkope",
-    "@passwordRecovery": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "storeInAppleKeyChain": "Glabāt Apple KeyChain",
-    "replaceRoomWithNewerVersion": "Aizvietot istabu ar jaunāku versiju",
-    "@replaceRoomWithNewerVersion": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "hydrate": "Atjaunot no rezerves kopijas datnes",
-    "invalidServerName": "Nederīgs servera nosaukums",
-    "chatPermissions": "Tērzēšanas atļaujas",
-    "voiceMessage": "Balss ziņa",
-    "@voiceMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "badServerLoginTypesException": "Mājasserveris nodrošina pieteikšanās veidus:\n{serverVersions}\nSavukārt, šī lietotne atbalsta tikai:\n{supportedVersions}",
-    "@badServerLoginTypesException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
-    "wipeChatBackup": "Notīrīt tērzēšanu rezerves kopiju, lai izveidotu jaunu atkopes atslēgu?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "cantOpenUri": "Nevar atvērt adresi {uri}",
-    "@cantOpenUri": {
-        "type": "String",
-        "placeholders": {
-            "uri": {
-                "type": "String"
-            }
-        }
-    },
-    "sender": "Sūtītājs",
-    "storeInAndroidKeystore": "Glabāt Android KeyStore",
-    "hideRedactedEvents": "Paslēpt labošanas notikumus",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "Tiešsaistē",
-    "@online": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "signInWithPassword": "Pieteikties ar paroli",
-    "lastActiveAgo": "Pēdējoreiz tiešsaistē: {localizedTimeShort}",
-    "@lastActiveAgo": {
-        "type": "String",
-        "placeholders": {
-            "localizedTimeShort": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheGuestAccessRulesTo": "{username} nomainīja viesu piekļuves nosacījumus uz {rules}",
-    "@changedTheGuestAccessRulesTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "rules": {
-                "type": "String"
-            }
-        }
-    },
-    "weSentYouAnEmail": "Mēs nosūtīja e-pasta ziņu",
-    "@weSentYouAnEmail": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "offensive": "Aizskarošs",
-    "@offensive": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "needPantalaimonWarning": "Lūgums ņemt vērā, ka pagaidām ir nepieciešams Pantalaimon, lai izmantotu pilnīgu šifrēšanu.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "makeAdminDescription": "Tiklīdz šis lietotājs tiks padarīts par pārvaldītāju, to vairs nevarēs atdarīt, jo tad tam būs tādas pašas atļaujas kā Tev.",
-    "edit": "Labot",
-    "@edit": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "loadMore": "Ielādēt vēl…",
-    "@loadMore": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "noEmotesFound": "Netika atrasta neviena emocija. 😕",
-    "@noEmotesFound": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "synchronizingPleaseWait": "Sinhronizē... Lūgums uzgaidīt.",
-    "@synchronizingPleaseWait": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "transferFromAnotherDevice": "Pārnest no citas ierīces",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "passwordHasBeenChanged": "Parole tikai nomainīta",
-    "@passwordHasBeenChanged": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pushRules": "Pašpiegādes nosacījumi",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "goToTheNewRoom": "Doties uz jauno istabu",
-    "@goToTheNewRoom": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_clearcache": "Iztīrīt kešatmiņu",
-    "@commandHint_clearcache": {
-        "type": "String",
-        "description": "Usage hint for the command /clearcache"
-    },
-    "loadingPleaseWait": "Ielādē... Lūgums uzgaidīt.",
-    "@loadingPleaseWait": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "copy": "Ievietot starpliktuvē",
-    "@copy": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "saveKeyManuallyDescription": "Šo atslēgu var pašrocīgi saglabāt ar sistēmas kopīgošanas dialogloga vai starpliktuves izsaukšanu.",
-    "none": "Neviens",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "editBundlesForAccount": "Labot šī konta komplektus",
-    "enableEncryption": "Iespējot šifrēšanu",
-    "@enableEncryption": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "whyIsThisMessageEncrypted": "Kādēļ šī ziņa ir nelasāma?",
-    "unreadChats": "{unreadCount, plural, zero{{unreadCount} nelasītu tērzēšanu} =1{{unreadCount} nelasīta tērzēšana} other{{unreadCount} nelasītas tērzēšanas}}",
-    "@unreadChats": {
-        "type": "String",
-        "placeholders": {
-            "unreadCount": {
-                "type": "int"
-            }
-        }
-    },
-    "rejectedTheInvitation": "{username} noraidīja uzaicinājumu",
-    "@rejectedTheInvitation": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "setChatDescription": "Iestatīt tērzēšanas aprakstu",
-    "userLeftTheChat": "🚪 {username} pameta tērzēšanu",
-    "@userLeftTheChat": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "spaceName": "Vietas nosaukums",
-    "@spaceName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "importFromZipFile": "Ievietot no .zip datnes",
-    "toggleUnread": "Atzīmēt kā lasītu/nelasītu",
-    "@toggleUnread": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "or": "Vai",
-    "@or": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "dehydrateWarning": "Šī darbība nav atdarāma. Jānodrošina, ka rezerves kopijas datne tiek droši uzglabāta.",
-    "sendOriginal": "Nosūtīt sākotnējo",
-    "@sendOriginal": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "noOtherDevicesFound": "Netika atrastas citas ierīces",
-    "whoIsAllowedToJoinThisGroup": "Kuram ir ļauts pievienoties šai kopai",
-    "@whoIsAllowedToJoinThisGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emptyChat": "Tukša tērzēšana",
-    "@emptyChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "seenByUser": "{username} redzēja",
-    "@seenByUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "storeSecurlyOnThisDevice": "Droši uzglabāt šajā ierīcē",
-    "yourChatBackupHasBeenSetUp": "Tērzēšanu rezerves kopēšana iestatīta.",
-    "chatBackup": "Tērzēšanu rezerves kopēšana",
-    "@chatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "redactedBy": "Laboja {username}",
-    "@redactedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "submit": "Iesniegt",
-    "@submit": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "videoCallsBetaWarning": "Lūgums ņemt vērā, ka video zvani pašreiz ir beta stāvoklī. Tie visās platformās var nedarboties kā paredzēs vai pat nedarboties vispār.",
-    "unmuteChat": "Atcelt tērzēšanas apklusināšanu",
-    "@unmuteChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "createdTheChat": "💬 {username} izveidoja tērzēšanu",
-    "@createdTheChat": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "redactedAnEvent": "{username} laboja notikumu",
-    "@redactedAnEvent": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "autoplayImages": "Automātiski atskaņot animētas uzlīmes un emocijas",
-    "@autoplayImages": {
-        "type": "String",
-        "placeholder": {}
-    },
-    "compareEmojiMatch": "Lūgums salīdzināt emocijzīmes",
-    "@compareEmojiMatch": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "participant": "Dalībnieks",
-    "@participant": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "logInTo": "PIeteikties {homeserver}",
-    "@logInTo": {
-        "type": "String",
-        "placeholders": {
-            "homeserver": {
-                "type": "String"
-            }
-        }
-    },
-    "yes": "Jā",
-    "@yes": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsDisplayName": "Satur attēlojamo vārdu",
-    "@containsDisplayName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "signInWith": "Pieteikties ar {provider}",
-    "@signInWith": {
-        "type": "String",
-        "placeholders": {
-            "provider": {
-                "type": "String"
-            }
-        }
-    },
-    "username": "Lietotājvārds",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changedTheRoomAliases": "{username} nomainīja istabas aizstājvārdus",
-    "@changedTheRoomAliases": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "fileIsTooBigForServer": "Nevar nosūtīt. Serveris nodrošina pielikums līdz {max}.",
-    "homeserver": "Mājasserveris",
-    "help": "Palīdzība",
-    "@help": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatDetails": "Tērzēšanas izvērsums",
-    "@chatDetails": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "people": "Cilvēki",
-    "@people": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changedTheHistoryVisibilityTo": "{username} nomainīja vēstures redzamību uz {rules}",
-    "@changedTheHistoryVisibilityTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "rules": {
-                "type": "String"
-            }
-        }
-    },
-    "leftTheChat": "Pameta tērzēšanu",
-    "@leftTheChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verified": "Apliecināta",
-    "@verified": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "repeatPassword": "Atkārtot paroli",
-    "setStatus": "Iestatīt stāvokli",
-    "@setStatus": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "groupWith": "Kopa ar {displayname}",
-    "@groupWith": {
-        "type": "String",
-        "placeholders": {
-            "displayname": {
-                "type": "String"
-            }
-        }
-    },
-    "callingPermissions": "Zvanīšanas atļaujas",
-    "delete": "Izdzēst",
-    "@delete": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "newMessageInFluffyChat": "💬 Jauna ziņa FluffyChat",
-    "@newMessageInFluffyChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "readUpToHere": "Izlasīts līdz šejienei",
-    "start": "Uzsākt",
-    "downloadFile": "Lejupielādēt datni",
-    "@downloadFile": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "Ierīces Id",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "register": "Reģistrēties",
-    "@register": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unlockOldMessages": "Atslēgt vecās ziņas",
-    "identity": "Identitāte",
-    "@identity": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "numChats": "{number} tērzēšanas",
-    "@numChats": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheJoinRulesTo": "{username} nomainīja pievienošanās nosacījumus uz {joinRules}",
-    "@changedTheJoinRulesTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "joinRules": {
-                "type": "String"
-            }
-        }
-    },
-    "recording": "Ieraksta",
-    "@recording": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changedTheChatPermissions": "{username} nomainīja tērzēšanas atļaujas",
-    "@changedTheChatPermissions": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "moderator": "Moderators",
-    "@moderator": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "optionalRedactReason": "(Pēc izvēles) Ziņas labošanas iemesls...",
-    "acceptedTheInvitation": "👍 {username} pieņēma uzaicinājumu",
-    "@acceptedTheInvitation": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "waitingPartnerEmoji": "Gaida, līdz biedrs apstiprinās emocijzīmes…",
-    "@waitingPartnerEmoji": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "channelCorruptedDecryptError": "Šifrēšana tika bojāta",
-    "@channelCorruptedDecryptError": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "tryToSendAgain": "Mēģināt nosūtīt vēlreiz",
-    "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "guestsCanJoin": "Viesi var pievienoties",
-    "@guestsCanJoin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "ok": "Labi",
-    "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "copyToClipboard": "Ievietot starpliktuvē",
-    "@copyToClipboard": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "dehydrate": "Izgūt sesiju un iztīrīt ierīci",
-    "locationPermissionDeniedNotice": "Atrašanās vietas atļauja noliegta. Lūgums nodrošināt to, lai būtu iespējams kopīgot savu atrašanās vietu.",
-    "@locationPermissionDeniedNotice": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "send": "Nosūtīt",
-    "@send": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "hasWithdrawnTheInvitationFor": "{username} atsauca uzaicinājumu {targetName}",
-    "@hasWithdrawnTheInvitationFor": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "targetName": {
-                "type": "String"
-            }
-        }
-    },
-    "visibleForAllParticipants": "Redzama visiem dalībniekiem",
-    "@visibleForAllParticipants": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "noRoomsFound": "Istabas netika atrastas…",
-    "@noRoomsFound": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "banned": "Izslēgts",
-    "@banned": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendAsText": "Nosūtīt kā tekstu",
-    "@sendAsText": {
+  "showPassword": "Rādīt paroli",
+  "@showPassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "hugContent": "{senderName} apskauj Tevi",
+  "@hugContent": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
         "type": "String"
-    },
-    "inviteForMe": "Uzaicinājumu man",
-    "@inviteForMe": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "archiveRoomDescription": "Tērzēšana tiks pārvietota uz arhīvu. Citi lietotāji redzēs, ka pameti tērzēšanu.",
-    "exportEmotePack": "Izgūt emociju paku kā .zip",
-    "changedTheChatNameTo": "{username} nomainīja tērzēšanas nosaukumu uz '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
-    "sendSticker": "Nosūtīt uzlīmi",
-    "@sendSticker": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "account": "Konts",
-    "@account": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "switchToAccount": "Pārslēgties uz kontu {number}",
-    "@switchToAccount": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "commandInvalid": "Nederīga komanda",
-    "@commandInvalid": {
+      }
+    }
+  },
+  "darkTheme": "Tumšs",
+  "@darkTheme": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "paroles vārdkopa vai atkopes atslēga",
+  "@passphraseOrKey": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPassword": "Lūgums ievadīt savu paroli",
+  "@pleaseEnterYourPassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "theyMatch": "Tās sakrīt",
+  "@theyMatch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "jumpToLastReadMessage": "Pārlēkt uz pēdējo izlasīto ziņu",
+  "obtainingLocation": "Iegūst atrašanās vietu…",
+  "@obtainingLocation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_cuddle": "Nosūtīt samīļojienu",
+  "chats": "Tērzēšanas",
+  "@chats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unknownDevice": "Nezināma ierīce",
+  "@unknownDevice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "emoteShortcode": "Emocijas īskods",
+  "@emoteShortcode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "Šifrēšanu var iespējot tikai tad, kad istaba vairs nav publiski pieejama.",
+  "@noEncryptionForPublicRooms": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "admin": "Pārvaldītājs",
+  "@admin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "reportErrorDescription": "😭 Ak nē! Kaut kas nogāja greizi. Ja ir vēlēšanas, par šo nepilnību var ziņot izstrādātājiem.",
+  "directChats": "Tiešās tērzēšanas",
+  "@directChats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "inviteContactToGroup": "Uzaicināt kontaktpersonu {groupName}",
+  "@inviteContactToGroup": {
+    "type": "String",
+    "placeholders": {
+      "groupName": {
         "type": "String"
-    },
-    "setAsCanonicalAlias": "Iestatīt kā galveno aizstājvārdu",
-    "@setAsCanonicalAlias": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "whyDoYouWantToReportThis": "Kādēļ vēlies ziņot par šo?",
-    "@whyDoYouWantToReportThis": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "locationDisabledNotice": "Atrašanās vietas pakalpojumi ir atspējoti. Lūgums tos iespējot, lai būtu iespējams kopīgot savu atrašanās vietu.",
-    "@locationDisabledNotice": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "placeCall": "Veikt zvanu",
-    "removedBy": "Noņēma {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheRoomInvitationLink": "{username} nomainīja uzaicinājuma saiti",
-    "@changedTheRoomInvitationLink": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "newChat": "Jauna tērzēšana",
-    "@newChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "notifications": "Paziņojumi",
-    "@notifications": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_plain": "Nosūtīt neformatētu tekstu",
-    "@commandHint_plain": {
-        "type": "String",
-        "description": "Usage hint for the command /plain"
-    },
-    "emoteSettings": "Emociju iestatījumi",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "experimentalVideoCalls": "Izmēģinājuma video zvani",
-    "openCamera": "Atvērt kameru",
-    "@openCamera": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pleaseEnterRecoveryKeyDescription": "Lai atslēgtu savas vecās ziņas, lūgums ievadīt savu atkopes atslēgu, kas tika izveidota iepriekšējā sesijā. Atkopes atslēga NAV parole.",
-    "guestsAreForbidden": "Viesi nav ļauti",
-    "@guestsAreForbidden": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "mention": "Pieminēt",
-    "@mention": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "openInMaps": "Atvērt kartēs",
-    "@openInMaps": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "withTheseAddressesRecoveryDescription": "Ar šīm adresēm var atjaunot savu paroli.",
-    "@withTheseAddressesRecoveryDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "inviteContactToGroupQuestion": "Vai vēlies uzaicināt {contact} uz tērzēšanu \"{groupName}\"?",
-    "emoteExists": "Emocija jau pastāv.",
-    "@emoteExists": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "redactedByBecause": "Laboja {username}, jo: \"{reason}\"",
-    "@redactedByBecause": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "reason": {
-                "type": "String"
-            }
-        }
-    },
-    "isTyping": "raksta…",
-    "@isTyping": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youHaveWithdrawnTheInvitationFor": "Tu atsauci {user} uzaicinājumu",
-    "@youHaveWithdrawnTheInvitationFor": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "chat": "Tērzēšana",
-    "@chat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "group": "Kopa",
-    "@group": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "leave": "Pamest",
-    "@leave": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "skip": "Izlaist",
-    "@skip": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "appearOnTopDetails": "Ļauj lietotnei parādīties virspusē (nav nepieciešams, ja FluffyChat jau ir iestatīts kā zvanīšanas konts)",
-    "roomHasBeenUpgraded": "Istaba tika atjaunināta",
-    "@roomHasBeenUpgraded": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "enterRoom": "Ieiet istabā",
-    "enableEmotesGlobally": "Iespējot kā vispārēju emociju paku",
-    "@enableEmotesGlobally": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "areYouSure": "Vai tiešām?",
-    "@areYouSure": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pleaseChooseAPasscode": "Lūgums izvēlēties piekļuves kodu",
-    "@pleaseChooseAPasscode": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "noPasswordRecoveryDescription": "Vēl nav pievienots paroles atjaunošanas veids.",
-    "@noPasswordRecoveryDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changedTheProfileAvatar": "{username} nomainīja savu attēlu",
-    "@changedTheProfileAvatar": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "allChats": "Visas tērzēšanas",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "reportUser": "Ziņot par lietotāju",
-    "sharedTheLocation": "{username} kopīgoja savu atrašanās vietu",
-    "@sharedTheLocation": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "commandHint_send": "Nosūtīt tekstu",
-    "@commandHint_send": {
-        "type": "String",
-        "description": "Usage hint for the command /send"
-    },
-    "onlineKeyBackupEnabled": "Tiešsaistes atslēgas rezerves kopēšana ir iespējota",
-    "@onlineKeyBackupEnabled": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unbannedUser": "{username} atcēla {targetName} piekļuves liegumu",
-    "@unbannedUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "targetName": {
-                "type": "String"
-            }
-        }
-    },
-    "confirmEventUnpin": "Vai tiešām neatgriezeniski atspraust šo notikumu?",
-    "badServerVersionsException": "Mājasserveris nodrošina specifikācijas versijas:\n{serverVersions}\nSavukārt, lietotne atbalsta tikai {supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
-    "youInvitedUser": "📩 Tu uzaicināji {user}",
-    "@youInvitedUser": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "kickedAndBanned": "🙅 {username} izmeta {targetName} un liedza piekļuvi",
-    "@kickedAndBanned": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "targetName": {
-                "type": "String"
-            }
-        }
-    },
-    "noConnectionToTheServer": "Nav savienojuma ar serveri",
-    "@noConnectionToTheServer": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fileHasBeenSavedAt": "Datne tika saglabāta {path}",
-    "@fileHasBeenSavedAt": {
-        "type": "String",
-        "placeholders": {
-            "path": {
-                "type": "String"
-            }
-        }
-    },
-    "license": "Licence",
-    "@license": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "addToSpace": "Pievienot vietai",
-    "unbanFromChat": "Atcelt liegumu tērzēšanā",
-    "@unbanFromChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandMissing": "{command} nav komanda.",
-    "@commandMissing": {
-        "type": "String",
-        "placeholders": {
-            "command": {
-                "type": "String"
-            }
-        },
-        "description": "State that {command} is not a valid /command."
-    },
-    "redactMessageDescription": "Ziņa tiks labota visiem šīs sarunas dalībniekiem. To nevar atdarīt.",
-    "rejoin": "Pievienoties atkārtoti",
-    "@rejoin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recoveryKey": "Atkopes atslēga",
-    "redactMessage": "Labot ziņu",
-    "@redactMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "forward": "Pārsūtīt",
-    "@forward": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_discardsession": "Atmest sesiju",
-    "@commandHint_discardsession": {
-        "type": "String",
-        "description": "Usage hint for the command /discardsession"
-    },
-    "invalidInput": "Nederīga ievade.",
-    "about": "Par",
-    "@about": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chooseAStrongPassword": "Jāizvēlas droša parole",
-    "@chooseAStrongPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "dehydrateTorLong": "TOR lietotājiem ir ieteicams izgūt sesiju pirms loga aizvēršanas.",
-    "yourPublicKey": "Tava publiskā atslēga",
-    "@yourPublicKey": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "tooManyRequestsWarning": "Pārāk daudz pieprasījumu. Lūdzu, vēlāk mēģini vēlreiz!",
-    "@tooManyRequestsWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "invitedUser": "📩 {username} uzaicināja {targetName}",
-    "@invitedUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "targetName": {
-                "type": "String"
-            }
-        }
-    },
-    "kickFromChat": "Izmest no tērzēšanas",
-    "@kickFromChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_myroomnick": "Iestatīt savu attēlojamo vārdu šajā istabā",
-    "@commandHint_myroomnick": {
-        "type": "String",
-        "description": "Usage hint for the command /myroomnick"
-    },
-    "offline": "Bezsaistē",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "noPermission": "Nav atļaujas",
-    "@noPermission": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "doNotShowAgain": "Vairs nerādīt",
-    "activatedEndToEndEncryption": "🔐 {username} iespējoja pilnīgu šifrēšanu",
-    "@activatedEndToEndEncryption": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "report": "Ziņot",
-    "status": "Stāvoklis",
-    "@status": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "compareNumbersMatch": "Lūgums salīdzināt skaitļus",
-    "@compareNumbersMatch": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "groupIsPublic": "Kopa ir publiska",
-    "@groupIsPublic": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verifyStart": "Uzsākt apliecināšanu",
-    "@verifyStart": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "memberChanges": "Dalībnieku izmaiņām",
-    "@memberChanges": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "joinRoom": "Pievienoties istabai",
-    "@joinRoom": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unverified": "Neapliecināta",
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "howOffensiveIsThisContent": "Cik aizskarošs ir šis saturs?",
-    "@howOffensiveIsThisContent": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "serverRequiresEmail": "Šim serverim ir nepieciešams pārbaudīt Tavu e-pasta adresi reģistrācijai.",
-    "hideUnimportantStateEvents": "Paslēpt nebūtiskus stāvokļa notikumus",
-    "screenSharingTitle": "ekrāna kopīgošana",
-    "widgetCustom": "Pielāgots",
-    "sentCallInformations": "{senderName} nosūtīja informāciju par zvanu",
-    "@sentCallInformations": {
-        "type": "String",
-        "placeholders": {
-            "senderName": {
-                "type": "String"
-            }
-        }
-    },
-    "addToSpaceDescription": "Atlasīt vietu, kurai pievienot šo tērzēšanu.",
-    "googlyEyesContent": "{senderName} sūta izbolītas acis",
-    "@googlyEyesContent": {
-        "type": "String",
-        "placeholders": {
-            "senderName": {
-                "type": "String"
-            }
-        }
-    },
-    "youBannedUser": "Tu {user} liedzi piekļuvi",
-    "@youBannedUser": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "theyDontMatch": "Tās nesakrīt",
-    "@theyDontMatch": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youHaveBeenBannedFromThisChat": "Tev tika liegta piekļuve šai tērzēšanai",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "displaynameHasBeenChanged": "Attēlojamais vārds tika nomainīts",
-    "@displaynameHasBeenChanged": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "addChatDescription": "Pievienot tērzēšanas aprakstu…",
-    "sentAnAudio": "🎤 {username} nosūtīja skaņu",
-    "@sentAnAudio": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "editRoomAvatar": "Labot istabas attēlu",
-    "@editRoomAvatar": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "encrypted": "Šifrēta",
-    "@encrypted": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_leave": "Pamest šo istabu",
-    "@commandHint_leave": {
-        "type": "String",
-        "description": "Usage hint for the command /leave"
-    },
-    "commandHint_myroomavatar": "Iestatīt savu attēlu šajā istabā (ar mxc-uri)",
-    "@commandHint_myroomavatar": {
-        "type": "String",
-        "description": "Usage hint for the command /myroomavatar"
-    },
-    "cancel": "Atcelt",
-    "@cancel": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "hasKnocked": "🚪 {user} pieklauvēja",
-    "@hasKnocked": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "publish": "Publicēt",
-    "openLinkInBrowser": "Atvērt saiti pārlūkā",
-    "clearArchive": "Iztīrīt arhīvu",
-    "appLock": "Lietotnes aizslēgšana",
-    "@appLock": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_react": "Nosūtīt atbildi kā reakciju",
-    "@commandHint_react": {
-        "type": "String",
-        "description": "Usage hint for the command /react"
-    },
-    "changedTheHistoryVisibility": "{username} mainīja vēstures redzamību",
-    "@changedTheHistoryVisibility": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "commandHint_me": "Apraksti sevi",
-    "@commandHint_me": {
-        "type": "String",
-        "description": "Usage hint for the command /me"
-    },
-    "pleaseEnterYourUsername": "Lūgums ievadīt savu lietotājvārdu",
-    "@pleaseEnterYourUsername": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "messageInfo": "Informācija par ziņu",
-    "disableEncryptionWarning": "Drošības iemeslu dēļ tērzēšanā nevar atspējot šifrēšanu, ja tā ir pirms tam ir bijusi iespējota.",
-    "directChat": "Tiešā tērzēšana",
-    "encryptionNotEnabled": "Šifrēšana nav iespējota",
-    "@encryptionNotEnabled": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wrongPinEntered": "Ievadīts nepareizs PIN. Lūgums mēģināt vēlreiz pēc {seconds} sekundēm...",
-    "@wrongPinEntered": {
-        "type": "String",
-        "placeholders": {
-            "seconds": {
-                "type": "int"
-            }
-        }
-    },
-    "sendTypingNotifications": "Nosūtīt rakstīšanas paziņojumus",
-    "lightTheme": "Gaišs",
-    "@lightTheme": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "inviteGroupChat": "📨 Uzaicinājums uz kopas tērzēšanu",
-    "appearOnTop": "Parādīt virspusē",
-    "invitePrivateChat": "📨 Uzaicinājums uz privātu tērzēšanu",
-    "verifyTitle": "Apliecina citu kontu",
-    "@verifyTitle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "foregroundServiceRunning": "Šis paziņojums parādās, kad darbojas priekšplāna pakalpojums.",
-    "enterAnEmailAddress": "Jāievada e-pasta adrese",
-    "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "voiceCall": "Balss zvans",
-    "commandHint_kick": "Noņemt norādīto lietotāju no šīs istabas",
-    "@commandHint_kick": {
-        "type": "String",
-        "description": "Usage hint for the command /kick"
-    },
-    "copiedToClipboard": "Ievietots starpliktuvē",
-    "@copiedToClipboard": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "createNewSpace": "Jauna vieta",
-    "@createNewSpace": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_unban": "Atcelt norādītā lietotāja izslēgšanu no šīs istabas",
-    "@commandHint_unban": {
-        "type": "String",
-        "description": "Usage hint for the command /unban"
-    },
-    "unknownEncryptionAlgorithm": "Nezināms šifrēšanas algoritms",
-    "@unknownEncryptionAlgorithm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_ban": "Izslēgt norādīto lietotāju no šīs istabas",
-    "@commandHint_ban": {
-        "type": "String",
-        "description": "Usage hint for the command /ban"
-    },
-    "importEmojis": "Ievietot emocijzīmes",
-    "confirm": "Apstiprināt",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wasDirectChatDisplayName": "Tukša tērzēšana (bija {oldDisplayName})",
-    "@wasDirectChatDisplayName": {
-        "type": "String",
-        "placeholders": {
-            "oldDisplayName": {
-                "type": "String"
-            }
-        }
-    },
-    "noChatDescriptionYet": "Tērzēšanas apraksts vēl nav izveidots.",
-    "defaultPermissionLevel": "Noklusējuma atļauju līmenis jauniem lietotājiem",
-    "@defaultPermissionLevel": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "removeFromBundle": "Noņemt no šī komplekta",
-    "numUsersTyping": "{count} lietotāji raksta…",
-    "@numUsersTyping": {
-        "type": "String",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "fontSize": "Fonta izmērs",
-    "@fontSize": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "whoCanPerformWhichAction": "Kurš var veikt kādas darbības",
-    "@whoCanPerformWhichAction": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "confirmMatrixId": "Lūgums apliecināt savu Matrix Id, lai varētu izdzēst savu kontu.",
-    "learnMore": "Uzzināt vairāk",
-    "iHaveClickedOnLink": "Es uzklikšķināju uz saites",
-    "@iHaveClickedOnLink": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "you": "Tu",
-    "@you": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "notAnImage": "Nav attēla datne.",
-    "users": "Lietotāji",
-    "openGallery": "Atvērt galeriju",
-    "chatDescriptionHasBeenChanged": "Tērzēšanas apraksts ir mainījies",
-    "search": "Meklēt",
-    "@search": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "newGroup": "Jauna kopa",
-    "bundleName": "Komplekta nosaukums",
-    "dehydrateTor": "TOR lietotāji: izgūt sesiju",
-    "removeFromSpace": "Noņemt no vietas",
-    "dateAndTimeOfDay": "{date}, {timeOfDay}",
-    "@dateAndTimeOfDay": {
-        "type": "String",
-        "placeholders": {
-            "date": {
-                "type": "String"
-            },
-            "timeOfDay": {
-                "type": "String"
-            }
-        }
-    },
-    "commandHint_op": "Iestatīt norādītā lietotāja pilnvaru līmeni (noklusējums: 50)",
-    "@commandHint_op": {
-        "type": "String",
-        "description": "Usage hint for the command /op"
-    },
-    "commandHint_join": "Pievienoties norādītajai istabai",
-    "@commandHint_join": {
-        "type": "String",
-        "description": "Usage hint for the command /join"
-    },
-    "sourceCode": "Pirmkods",
-    "@sourceCode": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "roomUpgradeDescription": "Tērzēšana tad tiks atkārtoti izveidota ar jauno istabas versiju. Visiem dalībniekiem tiks paziņots, ka viņiem ir jāpārslēdzas uz jauno tērzēšanu. Vairāk par istabu versijām var atrast https://spec.matrix.org/latest/rooms/",
-    "commandHint_invite": "Uzaicināt norādīto lietotāju šajā istabā",
-    "@commandHint_invite": {
-        "type": "String",
-        "description": "Usage hint for the command /invite"
-    },
-    "userSentUnknownEvent": "{username} nosūtīja notikumu {type}",
-    "@userSentUnknownEvent": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "type": {
-                "type": "String"
-            }
-        }
-    },
-    "scanQrCode": "Nolasīt kvadrātkodu",
-    "logout": "Atteikties",
-    "@logout": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pleaseEnterANumber": "Lūgums ievadīt skaitli lielāku par 0",
-    "contactHasBeenInvitedToTheGroup": "Kontaktpersona tika uzaicināta kopā",
-    "@contactHasBeenInvitedToTheGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youKicked": "👞 Tu izraidīji {user}",
-    "@youKicked": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "areYouSureYouWantToLogout": "Vai tiešām atteikties?",
-    "@areYouSureYouWantToLogout": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changedTheJoinRules": "{username} nomainīja pievienošanās nosacījumus",
-    "@changedTheJoinRules": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "profileNotFound": "Lietotāju serverī nevarēja atrast. Varbūt ir nebūšanas ar savienojumu vai lietotājs nepastāv.",
-    "jump": "Pārlēkt",
-    "groups": "Kopas",
-    "@groups": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "reactedWith": "{sender} atsaucās ar {reaction}",
-    "@reactedWith": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            },
-            "reaction": {
-                "type": "String"
-            }
-        }
-    },
-    "bannedUser": "{username} izslēdza {targetName}",
-    "@bannedUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "targetName": {
-                "type": "String"
-            }
-        }
-    },
-    "sorryThatsNotPossible": "Atvaino! Tas nav iespējams",
-    "videoWithSize": "Video ({size})",
-    "@videoWithSize": {
-        "type": "String",
-        "placeholders": {
-            "size": {
-                "type": "String"
-            }
-        }
-    },
-    "oopsSomethingWentWrong": "Ups! Kaut kas nogāja greizi…",
-    "@oopsSomethingWentWrong": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "loadCountMoreParticipants": "Ielādēt vēl {count} dalībniekus",
-    "@loadCountMoreParticipants": {
-        "type": "String",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "shareInviteLink": "Kopīgot uzaicinājuma saiti",
-    "commandHint_markasdm": "Atzīmēt kā tiešo ziņu istabu norādītajam Matrix Id",
-    "recoveryKeyLost": "Pazaudēta atkopes atslēga?",
-    "cuddleContent": "{senderName} samīļo Tevi",
-    "@cuddleContent": {
-        "type": "String",
-        "placeholders": {
-            "senderName": {
-                "type": "String"
-            }
-        }
-    },
-    "askVerificationRequest": "Pieņemt apliecināšanas pieprasījumu no {username}?",
-    "@askVerificationRequest": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "containsUserName": "Satur lietotājvārdu",
-    "@containsUserName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "messages": "Ziņas",
-    "@messages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "login": "Pieteikties",
-    "@login": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceKeys": "Ierīces atslēgas:",
-    "waitingPartnerNumbers": "Gaida, līdz biedrs apstiprinās skaitļus…",
-    "@waitingPartnerNumbers": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "noGoogleServicesWarning": "Izskatās, ka Firebase mākoņziņojumapmaiņa nav pieejama šajā ierīcē. Lai joprojām saņemtu pašpiegādes paziņojumus, mēs iesakām uzstādīt ntfy. Ar ntfy vai citu UnifiedPush nodrošinātāju ir iespējams saņemt pašpiegādes paziņojumus drošā veidā. ntfy var lejupielādēt no Play Store vai F-Droid.",
-    "@noGoogleServicesWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "Viss ir gatavs!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "addEmail": "Pievienot e-pasta adresi",
-    "@addEmail": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emoteKeyboardNoRecents": "Nesen izmantotās emocijas parādīsies šeit...",
-    "@emoteKeyboardNoRecents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setCustomEmotes": "Iestatīt pielāgotas emocijas",
-    "@setCustomEmotes": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "startedACall": "{senderName} uzsāka zvanu",
-    "@startedACall": {
-        "type": "String",
-        "placeholders": {
-            "senderName": {
-                "type": "String"
-            }
-        }
-    },
-    "emoteInvalid": "Nederīgs emocijas īskods.",
-    "@emoteInvalid": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "systemTheme": "Sistēmas",
-    "@systemTheme": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "notificationsEnabledForThisAccount": "Paziņojumi iespējoti šim kontam",
-    "@notificationsEnabledForThisAccount": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deleteMessage": "Izdzēst ziņu",
-    "@deleteMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "visibilityOfTheChatHistory": "Tērzēšanas vēstures redzamība",
-    "@visibilityOfTheChatHistory": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "settings": "Iestatījumi",
-    "@settings": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setTheme": "Iestatīt izskatu:",
-    "changeTheHomeserver": "Mainīt mājasserveri",
-    "@changeTheHomeserver": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youJoinedTheChat": "Tu pievienojies tērzēšanai",
-    "wallpaper": "Ekrāntapete:",
-    "@wallpaper": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "openVideoCamera": "Atvērt kameru video uzņemšanai",
-    "@openVideoCamera": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "play": "Atskaņot {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
-    },
-    "chatBackupDescription": "Ziņas ir aizsargātas ar atkopes atslēgu. Lūgums nodrošināt, ka tā netiek pazaudēta.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changeDeviceName": "Mainīt ierīces nosaukumu",
-    "@changeDeviceName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "passwordForgotten": "Aizmirsta parole",
-    "@passwordForgotten": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "statusExampleMessage": "Kā Tev šodien klājas?",
-    "@statusExampleMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "security": "Drošība",
-    "@security": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "markAsRead": "Atzīmēt kā lasītu",
-    "sendAudio": "Nosūtīt skaņu",
-    "@sendAudio": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "widgetName": "Nosaukums",
-    "sentASticker": "😊 {username} nosūtīja uzlīmi",
-    "@sentASticker": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "errorAddingWidget": "Kļūda logrīka pievienošanā.",
-    "commandHint_dm": "Uzsākt tiešu tērzēšanu\nLai atspējotu šifrēšanu, jāizmanto --no-encryption",
-    "@commandHint_dm": {
-        "type": "String",
-        "description": "Usage hint for the command /dm"
-    },
-    "commandHint_hug": "Nosūtīt apskāvienu",
-    "replace": "Aizstāt",
-    "reject": "Noraidīt",
-    "@reject": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "extremeOffensive": "Īpaši aizskarošs",
-    "@extremeOffensive": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "editBlockedServers": "Labot liegtos serverus",
-    "@editBlockedServers": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "oopsPushError": "Ups! Diemžēl atgadījās kļūda pašpiegādes paziņojumu iestatīšanas laikā.",
-    "@oopsPushError": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youUnbannedUser": "Tu atcēli {user} piekļuves liegumu",
-    "@youUnbannedUser": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "deactivateAccountWarning": "Tas atspējos Tavu lietotāja kontu. To nevar atdarīt. Vai tiešām?",
-    "@deactivateAccountWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "archive": "Arhīvs",
-    "@archive": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "joinedTheChat": "👋 {username} pievienojās tērzēšanai",
-    "@joinedTheChat": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "visibleForEveryone": "Redzama visiem",
-    "@visibleForEveryone": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pleaseEnter4Digits": "Lūgums ievadīt 4 ciparus vai atstāt tukšu, lai atspējotu lietotnes slēgu.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "newSpace": "Jauna vieta",
-    "changePassword": "Nomainīt paroli",
-    "@changePassword": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "devices": "Ierīces",
-    "@devices": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "accept": "Pieņemt",
-    "@accept": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unknownEvent": "Nezināms notikums '{type}'",
-    "@unknownEvent": {
-        "type": "String",
-        "placeholders": {
-            "type": {
-                "type": "String"
-            }
-        }
-    },
-    "emojis": "Emocijzīmes",
-    "pleaseEnterYourPin": "Lūgums ievadīt savu PIN",
-    "@pleaseEnterYourPin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pleaseChoose": "Lūgums izvēlēties",
-    "@pleaseChoose": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "share": "Kopīgot",
-    "@share": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_googly": "Nosūtīt izbolītu acu pāri",
-    "pleaseTryAgainLaterOrChooseDifferentServer": "Lūgums vēlāk mēģināt vēlreiz vai izvēlēties citu serveri.",
-    "createGroup": "Izveidot kopu",
-    "privacy": "Privātums",
-    "@privacy": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changeYourAvatar": "Mainīt savu attēlu",
-    "@changeYourAvatar": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendImage": "Nosūtīt attēlu",
-    "@sendImage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "hydrateTorLong": "Vai sesija pēdējoreiz tika izgūta TOR? Ātri ievieto to un turpini tērzēšanu!",
-    "time": "Laiks",
-    "enterYourHomeserver": "Jāievada mājasserveris",
-    "@enterYourHomeserver": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "botMessages": "Robotprogrammatūras ziņām",
-    "@botMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "contentHasBeenReported": "Par saturu tika ziņos servera pārvaldītājiem",
-    "@contentHasBeenReported": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "custom": "Pielāgots",
-    "noBackupWarning": "Uzmanību! Bez tērzēšanu rezerves kopiju veidošanas iespējošanas tiks zaudēta piekļuve savām šifrētajām ziņām. Ir ļoti ieteicams iespējot tērzēšanu rezerves kopiju veidošanu pirms atteikšanās.",
-    "fromJoining": "No pievienošanās",
-    "@fromJoining": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verify": "Apliecināt",
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendVideo": "Nosūtīt video",
-    "@sendVideo": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "storeInSecureStorageDescription": "Glabāt atkopes atslēgu šīs ierīces drošajā krātuvē.",
-    "openChat": "Atvērt tērzēšanu",
-    "kickUserDescription": "Lietotājs ir izmests no tērzēšanas, bet piekļuve nav liegta. Publiskās tērzēšanās lietotājs var atkārtoti pievienoties jebkurā laikā.",
-    "sendAMessage": "Nosūtīt ziņu",
-    "@sendAMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pin": "PIN",
-    "@pin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "importNow": "Ievietot tagad",
-    "deleteAccount": "Izdzēst kontu",
-    "@deleteAccount": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setInvitationLink": "Iestatīt uzaicinājumu saiti",
-    "@setInvitationLink": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pinMessage": "Piespraust istabai",
-    "screenSharingDetail": "Tu kopīgo savu ekrānu FluffyChat",
-    "muteChat": "Apklusināt tērzēšanu",
-    "@muteChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "invite": "Uzaicināt",
-    "enableMultiAccounts": "(BETA) Iespējot vairākus kontus šajā ierīcē",
-    "anyoneCanJoin": "Ikviens var pievienoties",
-    "@anyoneCanJoin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Emociju pakas istabai",
-    "@emotePacks": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "indexedDbErrorTitle": "Privātā režīma nebūšanas",
-    "endedTheCall": "{senderName} beidza zvanu",
-    "@endedTheCall": {
-        "type": "String",
-        "placeholders": {
-            "senderName": {
-                "type": "String"
-            }
-        }
-    },
-    "appLockDescription": "Aizslēgt lietotni, kad tā netiek izmantota, ar PIN kodu",
-    "globalChatId": "Vispārējais tērzēšanas Id",
-    "accessAndVisibilityDescription": "Kam ir ļauts pievienoties šai tērzēšanai un kā tērzēšana var tikt atklāta.",
-    "customEmojisAndStickers": "Pielāgotas emocijzīmes un uzlīmes",
-    "customEmojisAndStickersBody": "Pievienot vai kopīgot pielāgotas emocijzīmes vai uzlīmes, kas var tikt izmantotas jebkurā tērzēšanā.",
-    "hideInvalidOrUnknownMessageFormats": "Paslēpt nederīgus vai nezināmus ziņu formātus",
-    "blockUsername": "Neņemt vērā lietotājvārdu",
-    "accessAndVisibility": "Piekļuve un redzamība",
-    "calls": "Zvani",
-    "hideRedactedMessages": "Paslēpt labošanas ziņas",
-    "hideRedactedMessagesBody": "Ja kāds labo ziņu, tā vairs nebūs redzama tērzēšanā.",
-    "blockListDescription": "Ir iespējams atslēgt traucējošus lietotājus. Nebūs iespējams saņem jebkādas ziņas vai uzaicinājumus uz istabām no lietotājiem, kas ir personīgajā izslēgšanas sarakstā.",
-    "hideMemberChangesInPublicChatsBody": "Nerādīt tērzēšanas plūsmā, ja kāds pievienojas publiskai tērzēšanai vai pamet to, lai uzlabotu lasāmību.",
-    "overview": "Pārskats",
-    "notifyMeFor": "Paziņot man par",
-    "wrongRecoveryKey": "Atvaino... Nešķiet, ka šī būtu pareiza atkopes atslēga.",
-    "block": "Izslēgt",
-    "hideMemberChangesInPublicChats": "Paslēpt dalībnieku izmaiņas publiskajās tērzēšanās",
-    "passwordRecoverySettings": "Paroles atkopes iestatījumi",
-    "blockedUsers": "Atslēgtie lietotāji",
-    "transparent": "Caurspīdīgs",
-    "searchForUsers": "Meklēt @lietotājus...",
-    "pleaseEnterYourCurrentPassword": "Lūgums ievadīt savu pašreizējo paroli",
-    "publicSpaces": "Publiskas vietas",
-    "decline": "Atteikt",
-    "joinSpace": "Pievienoties vietai",
-    "createGroupAndInviteUsers": "Izveidot kopu un uzaicināt lietotājus",
-    "groupCanBeFoundViaSearch": "Kopu var atrast meklēšanā",
-    "commandHint_sendraw": "Nosūtīt neapstrādātu JSON",
-    "newPassword": "Jauna parole",
-    "forwardMessageTo": "Pārsūtīt ziņu uz {roomName}?",
-    "@forwardMessageTo": {
-        "type": "String",
-        "placeholders": {
-            "roomName": {
-                "type": "String"
-            }
-        }
-    },
-    "sendReadReceipts": "Nosūtīt lasīšanas atskaites",
-    "verifyOtherUser": "🔐 Apliecināt otru lietotāju",
-    "verifyOtherDevice": "🔐 Apliecināt otru ierīci",
-    "yourGlobalUserIdIs": "Vispārējais lietotāja Id ir: ",
-    "select": "Atlasīt",
-    "initAppError": "Atgadījās kļūda lietotnes sāknēšanas laikā",
-    "formattedMessages": "Formatētas ziņas",
-    "canceledKeyVerification": "{sender} atcēla atslēgas apliecināšanu",
-    "@canceledKeyVerification": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            }
-        }
-    },
-    "completedKeyVerification": "{sender} pabeidza atslēgas apliecināšanu",
-    "@completedKeyVerification": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            }
-        }
-    },
-    "requestedKeyVerification": "{sender} pieprasīja atslēgas apliecināšanu",
-    "@requestedKeyVerification": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            }
-        }
-    },
-    "startedKeyVerification": "{sender} uzsāka atslēgas apliecināšanu",
-    "@startedKeyVerification": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            }
-        }
-    },
-    "incomingMessages": "Ienākošās ziņas",
-    "isReadyForKeyVerification": "{sender} ir gatavs atslēgas apliecināšanai",
-    "@isReadyForKeyVerification": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            }
-        }
-    },
-    "commandHint_unignore": "Atcelt norādītā Matrix Id neņemšanu vērā",
-    "commandHint_ignore": "Neņemt vērā norādīto Matrix Id",
-    "searchChatsRooms": "Meklēt #tērzēšanas, @lietotājus...",
-    "groupName": "Kopas nosaukums",
-    "presenceStyle": "Klātesamība:",
-    "@presenceStyle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youInvitedToBy": "📩 Tu tiki uzaicināts ar saiti:\n{alias}",
-    "@youInvitedToBy": {
-        "placeholders": {
-            "alias": {
-                "type": "String"
-            }
-        }
-    },
-    "userWouldLikeToChangeTheChat": "{user} vēlas pievienoties tērzēšanai.",
-    "@userWouldLikeToChangeTheChat": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "noPublicLinkHasBeenCreatedYet": "Vēl nav izveidota neviena publiska saite",
-    "knock": "Pieklauvēt",
-    "stickers": "Uzlīmes",
-    "usersMustKnock": "Lietotājiem jāpieklauvē",
-    "noOneCanJoin": "Neviens nevar pievienoties",
-    "hidePresences": "Paslēpt stāvokļu sarakstu?",
-    "knocking": "Klauvē",
-    "chatCanBeDiscoveredViaSearchOnServer": "Tērzēšana var tikt atklāta ar meklēšanu {server}",
-    "@chatCanBeDiscoveredViaSearchOnServer": {
-        "type": "String",
-        "placeholders": {
-            "server": {
-                "type": "String"
-            }
-        }
-    },
-    "nothingFound": "Nekas netika atrasts...",
-    "startConversation": "Uzsākt sarunu",
-    "databaseMigrationTitle": "Datubāze ir optimizēta",
-    "leaveEmptyToClearStatus": "Atstāt tukšu, lai notīrītu savu stāvokli.",
-    "pleaseChooseAStrongPassword": "Lūgums izvēlēties spēcīgu paroli",
-    "passwordIsWrong": "Ievadītā parole ir nepareiza",
-    "publicLink": "Publiska saite",
-    "thisDevice": "Šī ierīce:",
-    "acceptedKeyVerification": "{sender} apstiprināja atslēgas apliecināšanu",
-    "@acceptedKeyVerification": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            }
-        }
-    },
-    "userRole": "Lietotāja loma",
-    "noDatabaseEncryption": "Šajā platformā datubāzes šifrēšana netiek nodrošināta",
-    "presencesToggle": "Rādīt citu lietotāju stāvokļa ziņas",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "databaseMigrationBody": "Lūgums uzgaidīt. Tas var aizņemt kādu brīdi.",
-    "passwordsDoNotMatch": "Paroles nesakrīt",
-    "publicChatAddresses": "Publiskas tērzēšanas adreses",
-    "createNewAddress": "Izveidot jaunu adresi",
-    "minimumPowerLevel": "{level} ir zemākais spēka līmenis.",
-    "@minimumPowerLevel": {
-        "type": "String",
-        "placeholders": {
-            "level": {
-                "type": "String"
-            }
-        }
-    },
-    "discover": "Atklāt",
-    "unreadChatsInApp": "{appname}: {unread} nelasītas tērzēšanas",
-    "@unreadChatsInApp": {
-        "type": "String",
-        "placeholders": {
-            "appname": {
-                "type": "String"
-            },
-            "unread": {
-                "type": "String"
-            }
-        }
-    },
-    "subspace": "Apakšvieta",
-    "addChatOrSubSpace": "Pievienot tērzēšanu vai apakšvietu",
-    "formattedMessagesDescription": "Attēlot bagātinātu ziņu saturu, piemēram, ar Markdown iezīmētu treknrakstu.",
-    "databaseBuildErrorBody": "Nebija iespējams izveidot SQlite datubāzi. Lietotne pagaidām mēģina izmantot iepriekšējo datubāzi. Lūgums ziņot par šo kļūdu izstrādātājiem {url}. Kļūdas ziņojums ir: {error}",
-    "@databaseBuildErrorBody": {
-        "type": "String",
-        "placeholders": {
-            "url": {
-                "type": "String"
-            },
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "sessionLostBody": "Sesija ir zaudēta. Lūgums ziņot par šo kļūdu izstrādātājiem {url}. Kļūdas ziņojums ir: {error}",
-    "@sessionLostBody": {
-        "type": "String",
-        "placeholders": {
-            "url": {
-                "type": "String"
-            },
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "verifyOtherUserDescription": "Ar cita lietotāja apliecināšanu vari pārliecināties, ka zini, kam Tu tiešām raksti. 💪\n\nKad uzsāc apliecināšanu, Tu un otrs lietotājs lietotnē redzēs uznirstošo logu. Tajā jūs redzēsiet dažādas emocijzīmes vai skaitļus, kas ir jāsalīdzina savā starpā.\n\nLabākais veids, kā to izdarīt, ir satikties vai uzsākt videozvanu. 👭",
-    "sendTypingNotificationsDescription": "Citi tērzēšanas dalībnieki var redzēt, kad raksti jaunu ziņu.",
-    "noUsersFoundWithQuery": "Diemžēl ar \"{query}\" netika atrasts neviens lietotājs. Lūgums pārbaudīt, vai ir pieļauta drukas kļūda.",
-    "@noUsersFoundWithQuery": {
-        "type": "String",
-        "placeholders": {
-            "query": {
-                "type": "String"
-            }
-        }
-    },
-    "restoreSessionBody": "Lietotne tagad mēģina atjaunot sesiju no rezerves kopijas. Lūgums ziņot par šo kļūdu izstrādātājiem {url}. Kļūdas ziņojums ir: {error}",
-    "@restoreSessionBody": {
-        "type": "String",
-        "placeholders": {
-            "url": {
-                "type": "String"
-            },
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "sendReadReceiptsDescription": "Citi tērzēšanas dalībnieki var redzēt, kad izlasīji ziņu.",
-    "thereAreCountUsersBlocked": "Šobrīd ir izslēgti {count} lietotāji.",
-    "@thereAreCountUsersBlocked": {
-        "type": "String",
-        "count": {}
-    },
-    "verifyOtherDeviceDescription": "Kad apliecini citu ierīci, šīs ierīces var apmainīt atslēgas, palielinot vispārējo drošību. 💪 Pēc apliecināšanas uzsākšanas abās ierīcēs lietotnē parādīsies uznirstošais logs. Tajā būs redzamas dažādas emocijzīmes vai skaitļi, kas jāsalīdzina abās ierīcēs. Vislabāk, ja abas ierīces ir pieejamas, pirms tiek uzsākta apliecināšana. 🤳",
-    "swipeRightToLeftToReply": "Pavilkt no labās puses uz kreiso, lai atbildētu",
-    "searchIn": "Meklēt tērzēšanā \"{chat}\"...",
-    "@searchIn": {
-        "type": "String",
-        "placeholders": {
-            "chat": {
-                "type": "String"
-            }
-        }
-    },
-    "searchMore": "Meklēt vairāk...",
-    "gallery": "Galerija",
-    "files": "Datnes",
-    "restricted": "Ierobežots",
-    "knockRestricted": "Pieklauvēt ierobežotajiem",
-    "sendCanceled": "Sūtīšana atcelta",
-    "noChatsFoundHere": "Šeit vēl nav tērzēšanu. Jauna saruna ar kādu ir uzsākama ar zemāk esošo pogu. ⤵️",
-    "invitedBy": "📩 {user} uzaicināja",
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "moderatorLevel": "{level} - Moderators",
-    "@moderatorLevel": {
-        "type": "String",
-        "placeholders": {
-            "level": {
-                "type": "int"
-            }
-        }
-    },
-    "adminLevel": "{level} - Pārvaldītājs",
-    "@adminLevel": {
-        "type": "String",
-        "placeholders": {
-            "level": {
-                "type": "int"
-            }
-        }
-    },
-    "changeTheVisibilityOfChatHistory": "Mainīt tērzēšanas vēstures redzamību",
-    "changeTheCanonicalRoomAlias": "Mainīt tērzēšanas galveno publisko adresi",
-    "sendRoomNotifications": "Sūtīt @istaba paziņojumus",
-    "changeTheDescriptionOfTheGroup": "Mainīt tērzēšanas aprakstu",
-    "alwaysUse24HourFormat": "nē",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
-    "userLevel": "{level} - Lietotājs",
-    "@userLevel": {
-        "type": "String",
-        "placeholders": {
-            "level": {
-                "type": "int"
-            }
-        }
-    },
-    "goToSpace": "Doties uz vietu: {space}",
-    "@goToSpace": {
-        "type": "String",
-        "space": {}
-    },
-    "changeGeneralChatSettings": "Mainīt vispārējos tērzēšanas iestatījumus",
-    "inviteOtherUsers": "Uzaicināt šajā tērzēšanā citus lietotājus",
-    "changeTheChatPermissions": "Mainīt tērzēšanas atļaujas",
-    "chatPermissionsDescription": "Noteikt, kurš spēka līmenis ir nepieciešams noteiktām darbībām šajā tērzēšanā. Spēka līmeņi 0, 50 un 100 parasti atbilst lietotājiem, moderatoriem un pārvaldītājiem, bet ir iespējams jebkāds iedalījums.",
-    "doesNotSeemToBeAValidHomeserver": "Neizskatās pēc saderīga mājasservera. Nepareizs URL?",
-    "loginWithMatrixId": "Pieteikties ar Matrix-Id",
-    "discoverHomeservers": "Atklāt mājasserverus",
-    "whatIsAHomeserver": "Kas ir mājasserveris?",
-    "homeserverDescription": "Visi lietotāja dati tiek glabāti mājasserverī, gluži kā ar e-pasta nodrošinātāju. Ir iespējams izvēlēties, kuru mājasserveri izmantot, saglabājot iespēju sazināties ar ikvienu. Vairāk var uzzināt https://matrix.org.",
-    "updateInstalled": "🎉 Atjauninājums {version} uzstādīts.",
-    "@updateInstalled": {
-        "type": "String",
-        "placeholders": {
-            "version": {
-                "type": "String"
-            }
-        }
-    },
-    "changelog": "Izmaiņu žurnāls",
-    "countChatsAndCountParticipants": "{chats} tērzēšanas un {participants} dalībnieki",
-    "@countChatsAndCountParticipants": {
-        "type": "String",
-        "placeholders": {
-            "chats": {
-                "type": "int"
-            },
-            "participants": {
-                "type": "int"
-            }
-        }
-    },
-    "noMoreChatsFound": "Vairs netika atrasta neviena tērzēšana...",
-    "joinedChats": "Tērzēšanas, kurās piedalos",
-    "unread": "Nelasītas",
-    "space": "Vieta",
-    "spaces": "Vietas",
-    "markAsUnread": "Atzīmēt kā nelasītu",
-    "sendingAttachment": "Nosūta pielikumu...",
-    "generatingVideoThumbnail": "Izveido video sīktēlu...",
-    "sendingAttachmentCountOfCount": "Nosūta {index}. pielikumu no {length}...",
-    "@sendingAttachmentCountOfCount": {
-        "type": "integer",
-        "placeholders": {
-            "index": {
-                "type": "int"
-            },
-            "length": {
-                "type": "int"
-            }
-        }
-    },
-    "serverLimitReached": "Sasniegts servera ierobežojums. Gaida {seconds} sekundes...",
-    "@serverLimitReached": {
-        "type": "integer",
-        "placeholders": {
-            "seconds": {
-                "type": "int"
-            }
-        }
-    },
-    "calculatingFileSize": "Aprēķina datnes lielumu...",
-    "prepareSendingAttachment": "Sagatavo pielikuma nosūtīšanu...",
-    "compressVideo": "Saspiež video...",
-    "oneOfYourDevicesIsNotVerified": "Viena no ierīcēm nav apliecināta",
-    "noticeChatBackupDeviceVerification": "Piezīme: kad visas ierīces tiek savienotas ar tērzēšanu rezerves kopiju, tās tiek automātiski apliecinātas.",
-    "continueText": "Turpināt",
-    "welcomeText": "Sveicieni! 👋 Šis ir FluffyChat. Tu vari pieteikties jebkurā mājasserverī, kas ir saderīgs ar https://matrix.org. Tad vari tērzēt ar ikvienu. Tas ir milzīgs decentralizētās saziņas tīkls.",
-    "blur": "Aizmiglojums:",
-    "setWallpaper": "Iestatīt ekrāntapeti",
-    "opacity": "Necaurredzamība:",
-    "manageAccount": "Pārvaldīt kontu",
-    "noContactInformationProvided": "Serveris nesniedz nekādu derīgu saziņas informāciju",
-    "serverInformation": "Informācija par serveri:",
-    "aboutHomeserver": "Par {homeserver}",
-    "@aboutHomeserver": {
-        "type": "String",
-        "placeholders": {
-            "homeserver": {
-                "type": "String"
-            }
-        }
-    },
-    "contactServerAdmin": "Sazināties ar servera pārvaldītāju",
-    "contactServerSecurity": "Sazināties ar servera drošības uzturētājiem",
-    "supportPage": "Atbalsta lapa",
-    "name": "Nosaukums",
-    "version": "Versija",
-    "website": "Tīmekļvietne",
-    "boldText": "Teksts treknrakstā",
-    "strikeThrough": "Pārsvītrots",
-    "invalidUrl": "Nederīgs URL",
-    "addLink": "Pievienot saiti",
-    "italicText": "Teksts slīprakstā",
-    "pleaseFillOut": "Lūgums aizpildīt",
-    "sendImages": "Nosūtīt {count} attēlu(s)",
-    "@sendImages": {
-        "type": "String",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "compress": "Saspiest",
-    "unableToJoinChat": "Nevarēja pievienoties tērzēšanai. Varbūt otra puse jau ir aizvērusi sarunu.",
-    "appWantsToUseForLoginDescription": "Ar šo tiek ļauts lietotnei un tīmekļvietnei kopīgot informāciju par Tevi.",
-    "appIntroduction": "FluffyChat ļauj tērzēt ar draugiem, kuri izmanto dažādas ziņojumapmaiņas lietotnes. Vairāk var uzzināt https://matrix.org vai vienkārši piesitot *Turpināt*.",
-    "synchronizingPleaseWaitCounter": " Sinhronizē... ({percentage}%)",
-    "@synchronizingPleaseWaitCounter": {
-        "type": "String",
-        "placeholders": {
-            "percentage": {
-                "type": "String"
-            }
-        }
-    },
-    "previous": "Iepriekšējais",
-    "otherPartyNotLoggedIn": "Otra puse pašlaik nav pieteikusies un tādēļ nevar saņemt ziņas.",
-    "appWantsToUseForLogin": "Izmantot '{server}', lai pieteiktos",
-    "@appWantsToUseForLogin": {
-        "type": "String",
-        "placeholders": {
-            "server": {
-                "type": "String"
-            }
-        }
-    },
-    "open": "Atvērt",
-    "waitingForServer": "Gaida serveri...",
-    "notificationRuleContainsDisplayNameDescription": "Paziņo lietotājam, kad ziņa satur viņa attēlojamo vārdu.",
-    "notificationRuleServerAcl": "Apspiest servera ACL notikumus",
-    "notificationRuleSuppressNoticesDescription": "Apspiež paziņojumus no automatizētiem klientiem, piemēram, robotprogrammatūras.",
-    "notificationRuleInviteForMeDescription": "Paziņo lietotājam, kad viņš ir uzaicināts pievienoties istabai.",
-    "generalNotificationSettings": "Vispārēji paziņojumu iestatījumi",
-    "otherNotificationSettings": "Citi paziņojumu iestatījumi",
-    "notificationRuleContainsUserName": "Saturs lietotāja vārdu",
-    "notificationRuleMasterDescription": "Aizvieto visas pārējās kārtulas un atspējo visus paziņojumus.",
-    "notificationRuleInviteForMe": "Uzaicinājums man",
-    "notificationRuleMemberEvent": "Dalībnieka notikums",
-    "notificationRuleMemberEventDescription": "Apspiež paziņojums par dalības notikumiem.",
-    "notificationRuleIsUserMentionDescription": "Paziņo lietotājam, kad viņš ziņā ir tieši pieminēts.",
-    "notificationRuleIsRoomMention": "Istabas pieminēšana",
-    "notificationRuleRoomnotif": "Istabas paziņojums",
-    "notificationRuleReaction": "Reakcija",
-    "notificationRuleRoomServerAcl": "Istabas servera ACL",
-    "notificationRuleCall": "Zvans",
-    "notificationRuleCallDescription": "Paziņo lietotājam par zvaniem.",
-    "deletePushRuleCanNotBeUndone": "Ja tiek izdzēsts šis paziņojuma iestatījums, to nevar atsaukt.",
-    "more": "Vairāk",
-    "roomNotificationSettings": "Istabu paziņojumu iestatījumi",
-    "notificationRuleEncrypted": "Šifrēts",
-    "notificationRuleJitsi": "Jitsi",
-    "notificationRuleIsUserMention": "Lietotāja pieminēšana",
-    "notificationRuleIsRoomMentionDescription": "Paziņo lietotājam, kad tiek pieminēta istaba.",
-    "notificationRuleMessageDescription": "Paziņo lietotājam par vispārējām ziņām.",
-    "notificationRuleServerAclDescription": "Apspiež notikumus par servera ACL notikumiem.",
-    "notificationRuleReactionDescription": "Apspiež paziņojums par reakcijām.",
-    "unknownPushRule": "Nezināma pašpiegādes kārtula '{rule}'",
-    "@unknownPushRule": {
-        "type": "String",
-        "placeholders": {
-            "rule": {
-                "type": "String"
-            }
-        }
-    },
-    "newChatRequest": "📩 Jauns tērzēšanas pieprasījums",
-    "notificationRuleContainsUserNameDescription": "Paziņo lietotājam, kad ziņa satur viņa lietotājvārdu.",
-    "notificationRuleRoomnotifDescription": "Paziņo lietotājam, kad ziņa satur \"@istaba\".",
-    "notificationRuleEncryptedRoomOneToOneDescription": "Paziņo lietotājam par ziņām šifrētās viens pret viens istabās.",
-    "notificationRuleRoomServerAclDescription": "Apspiež paziņojumus par istabas servera piekļuves kontroles sarakstiem (ACL).",
-    "contentNotificationSettings": "Satura paziņojumu iestatījumi",
-    "notificationRuleContainsDisplayName": "Satur attēlojamo vārdu",
-    "notificationRuleRoomOneToOne": "Viens pret viens istaba",
-    "notificationRuleJitsiDescription": "Paziņo lietotājam par Jitsi logrīka notikumiem.",
-    "notificationRuleSuppressEditsDescription": "Apspiež paziņojumus par labotām ziņām.",
-    "notificationRuleTombstone": "Kapakmens",
-    "notificationRuleTombstoneDescription": "Paziņo lietotājam par istabu aizvēršanas ziņām.",
-    "notificationRuleSuppressEdits": "Apspiest labojumus",
-    "notificationRuleEncryptedRoomOneToOne": "Šifrēta viens pret viens istaba",
-    "notificationRuleRoomOneToOneDescription": "Paziņo lietotājam par ziņām viens pret viens istabās.",
-    "notificationRuleMessage": "Ziņa",
-    "notificationRuleEncryptedDescription": "Paziņo lietotājam par ziņām šifrētās istabās.",
-    "userSpecificNotificationSettings": "Lietotāja paziņojumu iestatījumi",
-    "notificationRuleMaster": "Apklusināt visus paziņojumus",
-    "notificationRuleSuppressNotices": "Apspiest automātiskās ziņas",
-    "crossVerifiedDevices": "Savstarpēji apliecinātas ierīces",
-    "shareKeysWith": "Kopīgot atslēgas ar...",
-    "shareKeysWithDescription": "Kurām ierīcēm vajadzētu uzticēties, lai tajās varētu lasīt ziņas šifrētajās tērzēšanās?",
-    "allDevices": "Visas ierīces",
-    "crossVerifiedDevicesIfEnabled": "Savstarpēji apliecinātas ierīces, ja iespējots",
-    "verifiedDevicesOnly": "Tikai apliecinātas ierīces",
-    "optionalMessage": "(Pēc izvēles) Ziņojums...",
-    "takeAPhoto": "Uzņemt attēlu",
-    "recordAVideo": "Ierakstīt video",
-    "notSupportedOnThisDevice": "Šajā ierīcē nav atbalstīts",
-    "enterNewChat": "Ieiet jaunajā tērzēšanā",
-    "commandHint_roomupgrade": "Uzlabot šo istabu uz norādīto istabas versiju",
-    "setCustomPermissionLevel": "Iestatīt pielāgotu atļauju līmeni",
-    "setPermissionsLevelDescription": "Lūgums zemāk atlasīt iepriekšizveidotu lomu vai ievadīt pielāgotu atļauju līmeni starp 0 un 100.",
-    "ignoreUser": "Neņemt vērā lietotāju",
-    "normalUser": "Parasts lietotājs",
-    "youHaveKnocked": "Tu pieklauvēji",
-    "pleaseWaitUntilInvited": "Lūgums tagad uzgaidīt, līdz kāds no istabas uzaicinās Tevi.",
-    "approve": "Apstiprināt",
-    "checkList": "Pārbaužu saraksts",
-    "countInvited": "{count} uzaicināti",
-    "@countInvited": {
-        "type": "String",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "sentVoiceMessage": "🎙️ {duration} - Balss ziņa no {sender}",
-    "@sentVoiceMessage": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            },
-            "duration": {
-                "type": "String"
-            }
-        }
-    },
-    "commandHint_logout": "Atteikties pašreizējā ierīcē",
-    "commandHint_logoutall": "Atteikties visās izmantotajās ierīcēs",
-    "displayNavigationRail": "Rādīt pārvietošanās sliedi viedierīcēs",
-    "customReaction": "Pielāgota reakcija",
-    "moreEvents": "Vairāk notikumu",
-    "declineInvitation": "Noraidīt uzaicinājumu",
-    "noMessagesYet": "Vēl nav ziņu",
-    "longPressToRecordVoiceMessage": "Ilga piespiešana, lai ierakstītu balss ziņu.",
-    "pause": "Apturēt",
-    "resume": "Atsākt",
-    "newSubSpace": "Jauna apakšvieta",
-    "moveToDifferentSpace": "Pārvietot uz citu vietu",
-    "moveUp": "Pārvietot augšup",
-    "moveDown": "Pārvietot lejup",
-    "removeFromSpaceDescription": "Tērzēšana tiks noņemta no vietas, bet tā joprojām būs redzama tērzēšanu sarakstā.",
-    "countChats": "{chats} tērzēšanas",
-    "@countChats": {
-        "type": "String",
-        "placeholders": {
-            "chats": {
-                "type": "int"
-            }
-        }
-    },
-    "spaceMemberOf": "{spaces} dalībnieks",
-    "@spaceMemberOf": {
-        "type": "String",
-        "placeholders": {
-            "spaces": {
-                "type": "String"
-            }
-        }
-    },
-    "spaceMemberOfCanKnock": "{spaces} dalībnieks var pieklauvēt",
-    "@spaceMemberOfCanKnock": {
-        "type": "String",
-        "placeholders": {
-            "spaces": {
-                "type": "String"
-            }
-        }
-    },
-    "donate": "Ziedot",
-    "startedAPoll": "{username} uzsāka aptauju.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "Aptauja",
-    "startPoll": "Sākt aptauju",
-    "endPoll": "Noslēgt aptauju",
-    "answersVisible": "Atbildes ir redzamas",
-    "answersHidden": "Atbildes ir paslēptas",
-    "pollQuestion": "Aptaujas jautājums",
-    "answerOption": "Atbildes iespēja",
-    "addAnswerOption": "Pievienot atbildes iespēju",
-    "allowMultipleAnswers": "Atļaut vairākas atbildes",
-    "pollHasBeenEnded": "Aptauja ir noslēgusies",
-    "countVotes": "{count, plural, =0{{count} balsu} =1{{count} balss} other{{count} balsis}}",
-    "@countVotes": {
-        "type": "int",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "answersWillBeVisibleWhenPollHasEnded": "Atbildes būs redzams, kad aptauja noslēgsies",
-    "replyInThread": "Atbildēt pavedienā",
-    "countReplies": "{count, plural, =0{{count} atbilžu} =1{{count} atbilde} other{{count} atbildes}}",
-    "@countReplies": {
-        "type": "int",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "thread": "Pavediens",
-    "backToMainChat": "Atgriezties galvenajā tērzēšanā",
-    "saveChanges": "Saglabāt izmaiņas",
-    "createSticker": "Izveidot uzlīmi vai emocijzīmi",
-    "useAsSticker": "Izmantot kā uzlīmi",
-    "useAsEmoji": "Izmantot kā emocijzīmi",
-    "stickerPackNameAlreadyExists": "Uzlīmju pakas nosaukums jau pastāv",
-    "newStickerPack": "Jauna uzlīmju paka",
-    "stickerPackName": "Uzlīmju pakas nosaukums",
-    "attribution": "Piedēvējums",
-    "skipChatBackup": "Izlaist tērzēšanu rezerves kopēšanu",
-    "skipChatBackupWarning": "Vai tiešām? Bez tērzēšanu rezerves kopēšanas var tikt zaudēta piekļuve savām ziņām, kad tiks mainīta ierīce.",
-    "loadingMessages": "Ielādē ziņas",
-    "setupChatBackup": "Iestatīt tērzēšanu rezerves kopēšanu",
-    "changedTheChatDescription": "{username} nomainīja tērzēšanas aprakstu",
-    "changedTheChatName": "{username} nomainīja tērzēšanas nosaukumu",
-    "noMoreResultsFound": "Vairs nekas netika atrasts",
-    "chatSearchedUntil": "Tērzēšanā meklēts līdz {time}",
-    "@chatSearchedUntil": {
-        "type": "String",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "federationBaseUrl": "Federācijas pamata URL",
-    "clientWellKnownInformation": "Client-Well-Known informācija:",
-    "baseUrl": "Pamata URL",
-    "identityServer": "Identitāšu serveris:",
-    "versionWithNumber": "Versija: {version}",
-    "@versionWithNumber": {
-        "type": "String",
-        "placeholders": {
-            "version": {
-                "type": "String"
-            }
-        }
-    },
-    "logs": "Žurnāli",
-    "advancedConfigs": "Izvērsta konfigurācijas",
-    "advancedConfigurations": "Izvērstas konfigurācijas",
-    "signInWithLabel": "Pieteikties ar:",
-    "theProcessWasCanceled": "Darbība tika atcelta.",
-    "signIn": "Pieteikties",
-    "createNewAccount": "Izveidot jaunu kontu",
-    "signUpGreeting": "FluffyChat ir decentralizēta. Jāatlasa serveris, kurā ir vēlēšanās izveidot savu kontu, un aiziet!",
-    "signInGreeting": "Jau ir Matrix konts? Laipni lūdzam atpakaļ! Jāatlasa savs mājasserveris un jāpiesakās.",
-    "appIntro": "Ar FluffyChat vari tērzēt ar saviem draugiem. Tā ir droša un decentralizēta [matrix] ziņapmaiņas lietotne. Vairāk var uzzināt https://matrix.org, ja ir vēlēšanās, vai vienkārši jāpiesakās."
+      }
+    }
+  },
+  "addAccount": "Pievienot kontu",
+  "close": "Aizvērt",
+  "@close": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "configureChat": "Konfigurēt tērzēšanu",
+  "@configureChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "reply": "Atbildēt",
+  "@reply": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "currentlyActive": "Pašreiz darbīgi",
+  "@currentlyActive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Noņemt savu attēlu",
+  "@removeYourAvatar": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unsupportedAndroidVersion": "Neatbalstīta Android versija",
+  "blockDevice": "Liegt ierīci",
+  "@blockDevice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_html": "Nosūtīt ar HTML formatētu tekstu",
+  "@commandHint_html": {
+    "type": "String",
+    "description": "Usage hint for the command /html"
+  },
+  "youAreNoLongerParticipatingInThisChat": "Tu vairs nepiedalies šajā tērzēšanā",
+  "@youAreNoLongerParticipatingInThisChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "encryption": "Šifrēšana",
+  "@encryption": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "messageType": "Ziņas veids",
+  "oneClientLoggedOut": "Viens no klientiem ir atteicies",
+  "unsupportedAndroidVersionLong": "Šai iespējai ir nepieciešama jaunāka Android versija. Lūgums pārbaudīt atjauninājumus vai Lineage OS atbalstu.",
+  "kicked": "👞 {username} izmeta {targetName}",
+  "@kicked": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "title": "FluffyChat",
+  "@title": {
+    "description": "Title for the application",
+    "type": "String",
+    "placeholders": {}
+  },
+  "changeTheNameOfTheGroup": "Mainīt kopas nosaukumu",
+  "@changeTheNameOfTheGroup": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changedTheChatAvatar": "{username} nomainīja tērzēšanas attēlu",
+  "@changedTheChatAvatar": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "verifySuccess": "Apliecināšana bija sekmīga.",
+  "@verifySuccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendFile": "Nosūtīt datni",
+  "@sendFile": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "Jauns apliecināšanas pieprasījums.",
+  "@newVerificationRequest": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "requestPermission": "Pieprasīt atļauju",
+  "@requestPermission": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sentAPicture": "🖼️ {username} nosūtīja attēlu",
+  "@sentAPicture": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "invited": "Uzaicināts",
+  "@invited": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changedTheDisplaynameTo": "{username} nomainīja savu attēlojamo vārdu uz '{displayname}'",
+  "@changedTheDisplaynameTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "displayname": {
+        "type": "String"
+      }
+    }
+  },
+  "setColorTheme": "Iestatīt krāsu izskatu:",
+  "commandHint_create": "Izveidot tukšu kopas tērzēšanu\nLai atspējotu šifrēšanu, jāizmanto --no-encryption",
+  "@commandHint_create": {
+    "type": "String",
+    "description": "Usage hint for the command /create"
+  },
+  "warning": "Uzmanību!",
+  "@warning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "password": "Parole",
+  "@password": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "supposedMxid": "Tam būtu jābūt {mxid}",
+  "@supposedMxid": {
+    "type": "String",
+    "placeholders": {
+      "mxid": {
+        "type": "String"
+      }
+    }
+  },
+  "editDisplayname": "Labot attēlojamo vārdu",
+  "@editDisplayname": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "user": "Lietotājs",
+  "roomVersion": "Istabas versija",
+  "@roomVersion": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sentAFile": "📁 {username} nosūtīja datni",
+  "@sentAFile": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "videoCall": "Videozvans",
+  "@videoCall": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "youAcceptedTheInvitation": "👍 Tu pieņēmi uzaicinājumu",
+  "banFromChat": "Izslēgt no tērzēšanas",
+  "@banFromChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noMatrixServer": "{server1} nav Matrix serveris, tā vietā izmantot {server2}?",
+  "@noMatrixServer": {
+    "type": "String",
+    "placeholders": {
+      "server1": {
+        "type": "String"
+      },
+      "server2": {
+        "type": "String"
+      }
+    }
+  },
+  "userAndOthersAreTyping": "{username} un {count} citi raksta…",
+  "@userAndOthersAreTyping": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "youInvitedBy": "📩 {user} Tevi uzaicināja",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "userIsTyping": "{username} raksta…",
+  "@userIsTyping": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "openAppToReadMessages": "Atvērt lietotni, lai lasītu ziņas",
+  "@openAppToReadMessages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sentAVideo": "🎥 {username} nosūtīja video",
+  "@sentAVideo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "banUserDescription": "Lietotājam tiks liegta piekļuve tērzēšanai, un vairs nevarēs vēlreiz pievienoties tērzēšanai, līdz liegums tiks atcelts.",
+  "inviteContact": "Uzaicināt kontaktpersonu",
+  "@inviteContact": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "askSSSSSign": "Lai varētu parakstīt otru cilvēku, lūgums ievadīt savu drošo krātuves paroles vārdkopu vai atkopes atslēgu.",
+  "@askSSSSSign": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "Gaida, līdz biedrs apstiprinās pieprasījumu…",
+  "@waitingPartnerAcceptRequest": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "remove": "Noņemt",
+  "@remove": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "writeAMessage": "Rakstīt ziņu…",
+  "@writeAMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changeTheme": "Mainīt izskatu",
+  "@changeTheme": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "id": "Id",
+  "@id": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "removeDevicesDescription": "Tu tiksi izrakstīts no šīs ierīces un vairs nevarēsi saņemt ziņas.",
+  "countParticipants": "{count} dalībnieki",
+  "@countParticipants": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tryAgain": "Jāmēģina vēlreiz",
+  "areGuestsAllowedToJoin": "Vai vieslietotājiem ir ļauts pievienoties",
+  "@areGuestsAllowedToJoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "blocked": "Liegta",
+  "@blocked": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "youKickedAndBanned": "🙅 Izraidīji {user} un liedzi piekļuvi",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "unbanUserDescription": "Lietotājs varēs atkal pievienoties tērzēšanai, ja mēģinās.",
+  "userAndUserAreTyping": "{username} un {username2} raksta…",
+  "@userAndUserAreTyping": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "username2": {
+        "type": "String"
+      }
+    }
+  },
+  "pleaseClickOnLink": "Lūgums klikšķināt uz saites e-pastā un tad turpināt.",
+  "@pleaseClickOnLink": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "saveFile": "Saglabāt datni",
+  "@saveFile": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendOnEnter": "Nosūtīt ar Enter",
+  "answeredTheCall": "{senderName} atbildēja uz zvanu",
+  "@answeredTheCall": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "youRejectedTheInvitation": "Tu noraidīji uzaicinājumu",
+  "messagesStyle": "Ziņas:",
+  "couldNotDecryptMessage": "Nevarēja atšifrēt ziņu: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "String",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "invitedUsersOnly": "Tikai uzaicināti lietotāji",
+  "@invitedUsersOnly": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "link": "Saite",
+  "newSpaceDescription": "Vietas ļauj apvienot tērzēšanas un būvēt privātas vai publiskas kopienas.",
+  "chatDescription": "Tērzēšanas apraksts",
+  "next": "Nākamais",
+  "@next": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Lūgums sekot norādēm tīmekļvietnē un piesist \"Nākamais\".",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changedTheGuestAccessRules": "{username} nomainīja viesu piekļuves nosacījumus",
+  "@changedTheGuestAccessRules": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "editRoomAliases": "Labot istabu aizstājvārdus",
+  "@editRoomAliases": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "encryptThisChat": "Šifrēt šo tērzēšanu",
+  "unavailable": "Nav pieejams",
+  "@unavailable": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "publicRooms": "Publiskas istabas",
+  "@publicRooms": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "fromTheInvitation": "No uzaicinājuma",
+  "@fromTheInvitation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendMessages": "Nosūtīt ziņas",
+  "@sendMessages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "Nepareiza paroles vārdkopa vai atkopes atslēga",
+  "@incorrectPassphraseOrKey": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "reopenChat": "Atkārtoti atvērt tērzēšanu",
+  "create": "Izveidot",
+  "@create": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "no": "Nē",
+  "@no": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "alias": "aizstājvārds",
+  "@alias": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "inoffensive": "Nav aizskarošs",
+  "@inoffensive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unpin": "Atspraust",
+  "@unpin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "addToBundle": "Pievienot komplektam",
+  "reportMessage": "Ziņot par ziņu",
+  "@reportMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Vieta ir publiska",
+  "@spaceIsPublic": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "all": "Viss",
+  "@all": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "removeAllOtherDevices": "Noņemt visas pārējās ierīces",
+  "@removeAllOtherDevices": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unblockDevice": "Atslēgt ierīci",
+  "@unblockDevice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "countFiles": "{count} datnes",
+  "@countFiles": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noKeyForThisMessage": "Tā var notikt, ja ziņa tika nosūtīta, pirms pieteicies savā kontā šajā ierīcē.\n\nIr arī iespējams, ka sūtītājs noliedza Tavu ierīci vai kaut kas nogāja greizi ar interneta savienojumu.\n\nVai ziņas ir lasāmas citā sesijā? Tad Tu vari pārsūtīt ziņu no tās. Jādodas uz Iestatījumi > Ierīces un jāpārliecinās, ka ierīces viena otru ir apliecinājušas. Kad nākamreiz atvērsi istabu un abas sesijas būs priekšplānā, atslēgas tiks automātiski pārsūtītas.\n\nVai nevēlies zaudēt atslēgas, kad atsakies vai maini ierīces? Jāpārliecinās, ka iestatījumos ir iespējota tērzēšanu rezerves kopija.",
+  "enableEncryptionWarning": "Vairs nebūs iespējams atspējot šifrēšanu. Vai tiešām to darīt?",
+  "@enableEncryptionWarning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "inviteText": "{username} uzaicināja pievienoties FluffyChat.\n1. Jāapmeklē fluffychat.im un jāuzstāda lietotne \n2. Jāizveido konts vai jāpiesakās \n3. Jāatver uzaicinājuma saite: \n {link}",
+  "@inviteText": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "shareLocation": "Kopīgot atrašanās vietu",
+  "@shareLocation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "reason": "Iemesls",
+  "@reason": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_markasgroup": "Atzīmēt kā kopu",
+  "errorObtainingLocation": "Kļūda atrašanās vietas iegūšanā: {error}",
+  "@errorObtainingLocation": {
+    "type": "String",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "pushNotificationsNotAvailable": "Pašpiegādes paziņojumi nav pieejami",
+  "passwordRecovery": "Paroles atkope",
+  "@passwordRecovery": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "storeInAppleKeyChain": "Glabāt Apple KeyChain",
+  "replaceRoomWithNewerVersion": "Aizvietot istabu ar jaunāku versiju",
+  "@replaceRoomWithNewerVersion": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "hydrate": "Atjaunot no rezerves kopijas datnes",
+  "invalidServerName": "Nederīgs servera nosaukums",
+  "chatPermissions": "Tērzēšanas atļaujas",
+  "voiceMessage": "Balss ziņa",
+  "@voiceMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "Mājasserveris nodrošina pieteikšanās veidus:\n{serverVersions}\nSavukārt, šī lietotne atbalsta tikai:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "String",
+    "placeholders": {
+      "serverVersions": {
+        "type": "String"
+      },
+      "supportedVersions": {
+        "type": "String"
+      }
+    }
+  },
+  "wipeChatBackup": "Notīrīt tērzēšanu rezerves kopiju, lai izveidotu jaunu atkopes atslēgu?",
+  "@wipeChatBackup": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cantOpenUri": "Nevar atvērt adresi {uri}",
+  "@cantOpenUri": {
+    "type": "String",
+    "placeholders": {
+      "uri": {
+        "type": "String"
+      }
+    }
+  },
+  "sender": "Sūtītājs",
+  "storeInAndroidKeystore": "Glabāt Android KeyStore",
+  "hideRedactedEvents": "Paslēpt labošanas notikumus",
+  "@hideRedactedEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "online": "Tiešsaistē",
+  "@online": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "lastActiveAgo": "Pēdējoreiz tiešsaistē: {localizedTimeShort}",
+  "@lastActiveAgo": {
+    "type": "String",
+    "placeholders": {
+      "localizedTimeShort": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheGuestAccessRulesTo": "{username} nomainīja viesu piekļuves nosacījumus uz {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "rules": {
+        "type": "String"
+      }
+    }
+  },
+  "weSentYouAnEmail": "Mēs nosūtīja e-pasta ziņu",
+  "@weSentYouAnEmail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "offensive": "Aizskarošs",
+  "@offensive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "makeAdminDescription": "Tiklīdz šis lietotājs tiks padarīts par pārvaldītāju, to vairs nevarēs atdarīt, jo tad tam būs tādas pašas atļaujas kā Tev.",
+  "edit": "Labot",
+  "@edit": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "loadMore": "Ielādēt vēl…",
+  "@loadMore": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noEmotesFound": "Netika atrasta neviena emocija. 😕",
+  "@noEmotesFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "synchronizingPleaseWait": "Sinhronizē... Lūgums uzgaidīt.",
+  "@synchronizingPleaseWait": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Pārnest no citas ierīces",
+  "@transferFromAnotherDevice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Parole tikai nomainīta",
+  "@passwordHasBeenChanged": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_clearcache": "Iztīrīt kešatmiņu",
+  "@commandHint_clearcache": {
+    "type": "String",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "loadingPleaseWait": "Ielādē... Lūgums uzgaidīt.",
+  "@loadingPleaseWait": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "copy": "Ievietot starpliktuvē",
+  "@copy": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "saveKeyManuallyDescription": "Šo atslēgu var pašrocīgi saglabāt ar sistēmas kopīgošanas dialogloga vai starpliktuves izsaukšanu.",
+  "none": "Neviens",
+  "@none": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "editBundlesForAccount": "Labot šī konta komplektus",
+  "enableEncryption": "Iespējot šifrēšanu",
+  "@enableEncryption": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "whyIsThisMessageEncrypted": "Kādēļ šī ziņa ir nelasāma?",
+  "rejectedTheInvitation": "{username} noraidīja uzaicinājumu",
+  "@rejectedTheInvitation": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "setChatDescription": "Iestatīt tērzēšanas aprakstu",
+  "userLeftTheChat": "🚪 {username} pameta tērzēšanu",
+  "@userLeftTheChat": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "spaceName": "Vietas nosaukums",
+  "@spaceName": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "importFromZipFile": "Ievietot no .zip datnes",
+  "or": "Vai",
+  "@or": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "dehydrateWarning": "Šī darbība nav atdarāma. Jānodrošina, ka rezerves kopijas datne tiek droši uzglabāta.",
+  "noOtherDevicesFound": "Netika atrastas citas ierīces",
+  "whoIsAllowedToJoinThisGroup": "Kuram ir ļauts pievienoties šai kopai",
+  "@whoIsAllowedToJoinThisGroup": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "emptyChat": "Tukša tērzēšana",
+  "@emptyChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "storeSecurlyOnThisDevice": "Droši uzglabāt šajā ierīcē",
+  "yourChatBackupHasBeenSetUp": "Tērzēšanu rezerves kopēšana iestatīta.",
+  "chatBackup": "Tērzēšanu rezerves kopēšana",
+  "@chatBackup": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "redactedBy": "Laboja {username}",
+  "@redactedBy": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "submit": "Iesniegt",
+  "@submit": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "videoCallsBetaWarning": "Lūgums ņemt vērā, ka video zvani pašreiz ir beta stāvoklī. Tie visās platformās var nedarboties kā paredzēs vai pat nedarboties vispār.",
+  "unmuteChat": "Atcelt tērzēšanas apklusināšanu",
+  "@unmuteChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "createdTheChat": "💬 {username} izveidoja tērzēšanu",
+  "@createdTheChat": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "redactedAnEvent": "{username} laboja notikumu",
+  "@redactedAnEvent": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "autoplayImages": "Automātiski atskaņot animētas uzlīmes un emocijas",
+  "@autoplayImages": {
+    "type": "String",
+    "placeholder": {}
+  },
+  "compareEmojiMatch": "Lūgums salīdzināt emocijzīmes",
+  "@compareEmojiMatch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "participant": "Dalībnieks",
+  "@participant": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "logInTo": "PIeteikties {homeserver}",
+  "@logInTo": {
+    "type": "String",
+    "placeholders": {
+      "homeserver": {
+        "type": "String"
+      }
+    }
+  },
+  "yes": "Jā",
+  "@yes": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "username": "Lietotājvārds",
+  "@username": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changedTheRoomAliases": "{username} nomainīja istabas aizstājvārdus",
+  "@changedTheRoomAliases": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "fileIsTooBigForServer": "Nevar nosūtīt. Serveris nodrošina pielikums līdz {max}.",
+  "homeserver": "Mājasserveris",
+  "help": "Palīdzība",
+  "@help": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chatDetails": "Tērzēšanas izvērsums",
+  "@chatDetails": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changedTheHistoryVisibilityTo": "{username} nomainīja vēstures redzamību uz {rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "rules": {
+        "type": "String"
+      }
+    }
+  },
+  "leftTheChat": "Pameta tērzēšanu",
+  "@leftTheChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "verified": "Apliecināta",
+  "@verified": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "repeatPassword": "Atkārtot paroli",
+  "setStatus": "Iestatīt stāvokli",
+  "@setStatus": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "groupWith": "Kopa ar {displayname}",
+  "@groupWith": {
+    "type": "String",
+    "placeholders": {
+      "displayname": {
+        "type": "String"
+      }
+    }
+  },
+  "delete": "Izdzēst",
+  "@delete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "newMessageInFluffyChat": "💬 Jauna ziņa FluffyChat",
+  "@newMessageInFluffyChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "readUpToHere": "Izlasīts līdz šejienei",
+  "start": "Uzsākt",
+  "downloadFile": "Lejupielādēt datni",
+  "@downloadFile": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "deviceId": "Ierīces Id",
+  "@deviceId": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "register": "Reģistrēties",
+  "@register": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unlockOldMessages": "Atslēgt vecās ziņas",
+  "changedTheJoinRulesTo": "{username} nomainīja pievienošanās nosacījumus uz {joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "joinRules": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheChatPermissions": "{username} nomainīja tērzēšanas atļaujas",
+  "@changedTheChatPermissions": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "moderator": "Moderators",
+  "@moderator": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "optionalRedactReason": "(Pēc izvēles) Ziņas labošanas iemesls...",
+  "acceptedTheInvitation": "👍 {username} pieņēma uzaicinājumu",
+  "@acceptedTheInvitation": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "waitingPartnerEmoji": "Gaida, līdz biedrs apstiprinās emocijzīmes…",
+  "@waitingPartnerEmoji": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "channelCorruptedDecryptError": "Šifrēšana tika bojāta",
+  "@channelCorruptedDecryptError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "tryToSendAgain": "Mēģināt nosūtīt vēlreiz",
+  "@tryToSendAgain": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "guestsCanJoin": "Viesi var pievienoties",
+  "@guestsCanJoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "ok": "Labi",
+  "@ok": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Ievietot starpliktuvē",
+  "@copyToClipboard": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "dehydrate": "Izgūt sesiju un iztīrīt ierīci",
+  "locationPermissionDeniedNotice": "Atrašanās vietas atļauja noliegta. Lūgums nodrošināt to, lai būtu iespējams kopīgot savu atrašanās vietu.",
+  "@locationPermissionDeniedNotice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "send": "Nosūtīt",
+  "@send": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "hasWithdrawnTheInvitationFor": "{username} atsauca uzaicinājumu {targetName}",
+  "@hasWithdrawnTheInvitationFor": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleForAllParticipants": "Redzama visiem dalībniekiem",
+  "@visibleForAllParticipants": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noRoomsFound": "Istabas netika atrastas…",
+  "@noRoomsFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "banned": "Izslēgts",
+  "@banned": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendAsText": "Nosūtīt kā tekstu",
+  "@sendAsText": {
+    "type": "String"
+  },
+  "archiveRoomDescription": "Tērzēšana tiks pārvietota uz arhīvu. Citi lietotāji redzēs, ka pameti tērzēšanu.",
+  "exportEmotePack": "Izgūt emociju paku kā .zip",
+  "account": "Konts",
+  "@account": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandInvalid": "Nederīga komanda",
+  "@commandInvalid": {
+    "type": "String"
+  },
+  "setAsCanonicalAlias": "Iestatīt kā galveno aizstājvārdu",
+  "@setAsCanonicalAlias": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Kādēļ vēlies ziņot par šo?",
+  "@whyDoYouWantToReportThis": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "Atrašanās vietas pakalpojumi ir atspējoti. Lūgums tos iespējot, lai būtu iespējams kopīgot savu atrašanās vietu.",
+  "@locationDisabledNotice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "placeCall": "Veikt zvanu",
+  "changedTheRoomInvitationLink": "{username} nomainīja uzaicinājuma saiti",
+  "@changedTheRoomInvitationLink": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "newChat": "Jauna tērzēšana",
+  "@newChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "notifications": "Paziņojumi",
+  "@notifications": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_plain": "Nosūtīt neformatētu tekstu",
+  "@commandHint_plain": {
+    "type": "String",
+    "description": "Usage hint for the command /plain"
+  },
+  "emoteSettings": "Emociju iestatījumi",
+  "@emoteSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "experimentalVideoCalls": "Izmēģinājuma video zvani",
+  "openCamera": "Atvērt kameru",
+  "@openCamera": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseEnterRecoveryKeyDescription": "Lai atslēgtu savas vecās ziņas, lūgums ievadīt savu atkopes atslēgu, kas tika izveidota iepriekšējā sesijā. Atkopes atslēga NAV parole.",
+  "guestsAreForbidden": "Viesi nav ļauti",
+  "@guestsAreForbidden": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "mention": "Pieminēt",
+  "@mention": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "openInMaps": "Atvērt kartēs",
+  "@openInMaps": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "Ar šīm adresēm var atjaunot savu paroli.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "emoteExists": "Emocija jau pastāv.",
+  "@emoteExists": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "redactedByBecause": "Laboja {username}, jo: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "isTyping": "raksta…",
+  "@isTyping": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "youHaveWithdrawnTheInvitationFor": "Tu atsauci {user} uzaicinājumu",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "chat": "Tērzēšana",
+  "@chat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "group": "Kopa",
+  "@group": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "leave": "Pamest",
+  "@leave": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "skip": "Izlaist",
+  "@skip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "roomHasBeenUpgraded": "Istaba tika atjaunināta",
+  "@roomHasBeenUpgraded": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Iespējot kā vispārēju emociju paku",
+  "@enableEmotesGlobally": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "areYouSure": "Vai tiešām?",
+  "@areYouSure": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Lūgums izvēlēties piekļuves kodu",
+  "@pleaseChooseAPasscode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "Vēl nav pievienots paroles atjaunošanas veids.",
+  "@noPasswordRecoveryDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changedTheProfileAvatar": "{username} nomainīja savu attēlu",
+  "@changedTheProfileAvatar": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "allChats": "Visas tērzēšanas",
+  "@allChats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "reportUser": "Ziņot par lietotāju",
+  "sharedTheLocation": "{username} kopīgoja savu atrašanās vietu",
+  "@sharedTheLocation": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "commandHint_send": "Nosūtīt tekstu",
+  "@commandHint_send": {
+    "type": "String",
+    "description": "Usage hint for the command /send"
+  },
+  "onlineKeyBackupEnabled": "Tiešsaistes atslēgas rezerves kopēšana ir iespējota",
+  "@onlineKeyBackupEnabled": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unbannedUser": "{username} atcēla {targetName} piekļuves liegumu",
+  "@unbannedUser": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmEventUnpin": "Vai tiešām neatgriezeniski atspraust šo notikumu?",
+  "youInvitedUser": "📩 Tu uzaicināji {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "kickedAndBanned": "🙅 {username} izmeta {targetName} un liedza piekļuvi",
+  "@kickedAndBanned": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "noConnectionToTheServer": "Nav savienojuma ar serveri",
+  "@noConnectionToTheServer": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "fileHasBeenSavedAt": "Datne tika saglabāta {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "String",
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "addToSpace": "Pievienot vietai",
+  "unbanFromChat": "Atcelt liegumu tērzēšanā",
+  "@unbanFromChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandMissing": "{command} nav komanda.",
+  "@commandMissing": {
+    "type": "String",
+    "placeholders": {
+      "command": {
+        "type": "String"
+      }
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "redactMessageDescription": "Ziņa tiks labota visiem šīs sarunas dalībniekiem. To nevar atdarīt.",
+  "recoveryKey": "Atkopes atslēga",
+  "redactMessage": "Labot ziņu",
+  "@redactMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "forward": "Pārsūtīt",
+  "@forward": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_discardsession": "Atmest sesiju",
+  "@commandHint_discardsession": {
+    "type": "String",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "invalidInput": "Nederīga ievade.",
+  "about": "Par",
+  "@about": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "Jāizvēlas droša parole",
+  "@chooseAStrongPassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "yourPublicKey": "Tava publiskā atslēga",
+  "@yourPublicKey": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Pārāk daudz pieprasījumu. Lūdzu, vēlāk mēģini vēlreiz!",
+  "@tooManyRequestsWarning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "invitedUser": "📩 {username} uzaicināja {targetName}",
+  "@invitedUser": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "kickFromChat": "Izmest no tērzēšanas",
+  "@kickFromChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_myroomnick": "Iestatīt savu attēlojamo vārdu šajā istabā",
+  "@commandHint_myroomnick": {
+    "type": "String",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "offline": "Bezsaistē",
+  "@offline": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noPermission": "Nav atļaujas",
+  "@noPermission": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "doNotShowAgain": "Vairs nerādīt",
+  "activatedEndToEndEncryption": "🔐 {username} iespējoja pilnīgu šifrēšanu",
+  "@activatedEndToEndEncryption": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "report": "Ziņot",
+  "status": "Stāvoklis",
+  "@status": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Lūgums salīdzināt skaitļus",
+  "@compareNumbersMatch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "groupIsPublic": "Kopa ir publiska",
+  "@groupIsPublic": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "verifyStart": "Uzsākt apliecināšanu",
+  "@verifyStart": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "joinRoom": "Pievienoties istabai",
+  "@joinRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unverified": "Neapliecināta",
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "howOffensiveIsThisContent": "Cik aizskarošs ir šis saturs?",
+  "@howOffensiveIsThisContent": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "serverRequiresEmail": "Šim serverim ir nepieciešams pārbaudīt Tavu e-pasta adresi reģistrācijai.",
+  "sentCallInformations": "{senderName} nosūtīja informāciju par zvanu",
+  "@sentCallInformations": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "googlyEyesContent": "{senderName} sūta izbolītas acis",
+  "@googlyEyesContent": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "youBannedUser": "Tu {user} liedzi piekļuvi",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "theyDontMatch": "Tās nesakrīt",
+  "@theyDontMatch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "youHaveBeenBannedFromThisChat": "Tev tika liegta piekļuve šai tērzēšanai",
+  "@youHaveBeenBannedFromThisChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "displaynameHasBeenChanged": "Attēlojamais vārds tika nomainīts",
+  "@displaynameHasBeenChanged": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sentAnAudio": "🎤 {username} nosūtīja skaņu",
+  "@sentAnAudio": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "editRoomAvatar": "Labot istabas attēlu",
+  "@editRoomAvatar": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "encrypted": "Šifrēta",
+  "@encrypted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_leave": "Pamest šo istabu",
+  "@commandHint_leave": {
+    "type": "String",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHint_myroomavatar": "Iestatīt savu attēlu šajā istabā (ar mxc-uri)",
+  "@commandHint_myroomavatar": {
+    "type": "String",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "cancel": "Atcelt",
+  "@cancel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "hasKnocked": "🚪 {user} pieklauvēja",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "openLinkInBrowser": "Atvērt saiti pārlūkā",
+  "clearArchive": "Iztīrīt arhīvu",
+  "appLock": "Lietotnes aizslēgšana",
+  "@appLock": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_react": "Nosūtīt atbildi kā reakciju",
+  "@commandHint_react": {
+    "type": "String",
+    "description": "Usage hint for the command /react"
+  },
+  "changedTheHistoryVisibility": "{username} mainīja vēstures redzamību",
+  "@changedTheHistoryVisibility": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "commandHint_me": "Apraksti sevi",
+  "@commandHint_me": {
+    "type": "String",
+    "description": "Usage hint for the command /me"
+  },
+  "pleaseEnterYourUsername": "Lūgums ievadīt savu lietotājvārdu",
+  "@pleaseEnterYourUsername": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "messageInfo": "Informācija par ziņu",
+  "disableEncryptionWarning": "Drošības iemeslu dēļ tērzēšanā nevar atspējot šifrēšanu, ja tā ir pirms tam ir bijusi iespējota.",
+  "directChat": "Tiešā tērzēšana",
+  "encryptionNotEnabled": "Šifrēšana nav iespējota",
+  "@encryptionNotEnabled": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "wrongPinEntered": "Ievadīts nepareizs PIN. Lūgums mēģināt vēlreiz pēc {seconds} sekundēm...",
+  "@wrongPinEntered": {
+    "type": "String",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "sendTypingNotifications": "Nosūtīt rakstīšanas paziņojumus",
+  "lightTheme": "Gaišs",
+  "@lightTheme": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "inviteGroupChat": "📨 Uzaicinājums uz kopas tērzēšanu",
+  "verifyTitle": "Apliecina citu kontu",
+  "@verifyTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "enterAnEmailAddress": "Jāievada e-pasta adrese",
+  "@enterAnEmailAddress": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "voiceCall": "Balss zvans",
+  "commandHint_kick": "Noņemt norādīto lietotāju no šīs istabas",
+  "@commandHint_kick": {
+    "type": "String",
+    "description": "Usage hint for the command /kick"
+  },
+  "copiedToClipboard": "Ievietots starpliktuvē",
+  "@copiedToClipboard": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "createNewSpace": "Jauna vieta",
+  "@createNewSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_unban": "Atcelt norādītā lietotāja izslēgšanu no šīs istabas",
+  "@commandHint_unban": {
+    "type": "String",
+    "description": "Usage hint for the command /unban"
+  },
+  "unknownEncryptionAlgorithm": "Nezināms šifrēšanas algoritms",
+  "@unknownEncryptionAlgorithm": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_ban": "Izslēgt norādīto lietotāju no šīs istabas",
+  "@commandHint_ban": {
+    "type": "String",
+    "description": "Usage hint for the command /ban"
+  },
+  "importEmojis": "Ievietot emocijzīmes",
+  "wasDirectChatDisplayName": "Tukša tērzēšana (bija {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "String",
+    "placeholders": {
+      "oldDisplayName": {
+        "type": "String"
+      }
+    }
+  },
+  "noChatDescriptionYet": "Tērzēšanas apraksts vēl nav izveidots.",
+  "defaultPermissionLevel": "Noklusējuma atļauju līmenis jauniem lietotājiem",
+  "@defaultPermissionLevel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "removeFromBundle": "Noņemt no šī komplekta",
+  "numUsersTyping": "{count} lietotāji raksta…",
+  "@numUsersTyping": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fontSize": "Fonta izmērs",
+  "@fontSize": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Kurš var veikt kādas darbības",
+  "@whoCanPerformWhichAction": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "confirmMatrixId": "Lūgums apliecināt savu Matrix Id, lai varētu izdzēst savu kontu.",
+  "learnMore": "Uzzināt vairāk",
+  "iHaveClickedOnLink": "Es uzklikšķināju uz saites",
+  "@iHaveClickedOnLink": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "you": "Tu",
+  "@you": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "notAnImage": "Nav attēla datne.",
+  "users": "Lietotāji",
+  "openGallery": "Atvērt galeriju",
+  "chatDescriptionHasBeenChanged": "Tērzēšanas apraksts ir mainījies",
+  "search": "Meklēt",
+  "@search": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "newGroup": "Jauna kopa",
+  "bundleName": "Komplekta nosaukums",
+  "removeFromSpace": "Noņemt no vietas",
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "String",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "timeOfDay": {
+        "type": "String"
+      }
+    }
+  },
+  "commandHint_op": "Iestatīt norādītā lietotāja pilnvaru līmeni (noklusējums: 50)",
+  "@commandHint_op": {
+    "type": "String",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHint_join": "Pievienoties norādītajai istabai",
+  "@commandHint_join": {
+    "type": "String",
+    "description": "Usage hint for the command /join"
+  },
+  "sourceCode": "Pirmkods",
+  "@sourceCode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "roomUpgradeDescription": "Tērzēšana tad tiks atkārtoti izveidota ar jauno istabas versiju. Visiem dalībniekiem tiks paziņots, ka viņiem ir jāpārslēdzas uz jauno tērzēšanu. Vairāk par istabu versijām var atrast https://spec.matrix.org/latest/rooms/",
+  "commandHint_invite": "Uzaicināt norādīto lietotāju šajā istabā",
+  "@commandHint_invite": {
+    "type": "String",
+    "description": "Usage hint for the command /invite"
+  },
+  "userSentUnknownEvent": "{username} nosūtīja notikumu {type}",
+  "@userSentUnknownEvent": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "scanQrCode": "Nolasīt kvadrātkodu",
+  "logout": "Atteikties",
+  "@logout": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseEnterANumber": "Lūgums ievadīt skaitli lielāku par 0",
+  "contactHasBeenInvitedToTheGroup": "Kontaktpersona tika uzaicināta kopā",
+  "@contactHasBeenInvitedToTheGroup": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "youKicked": "👞 Tu izraidīji {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "areYouSureYouWantToLogout": "Vai tiešām atteikties?",
+  "@areYouSureYouWantToLogout": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changedTheJoinRules": "{username} nomainīja pievienošanās nosacījumus",
+  "@changedTheJoinRules": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "jump": "Pārlēkt",
+  "groups": "Kopas",
+  "@groups": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "reactedWith": "{sender} atsaucās ar {reaction}",
+  "@reactedWith": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "reaction": {
+        "type": "String"
+      }
+    }
+  },
+  "bannedUser": "{username} izslēdza {targetName}",
+  "@bannedUser": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "sorryThatsNotPossible": "Atvaino! Tas nav iespējams",
+  "oopsSomethingWentWrong": "Ups! Kaut kas nogāja greizi…",
+  "@oopsSomethingWentWrong": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "loadCountMoreParticipants": "Ielādēt vēl {count} dalībniekus",
+  "@loadCountMoreParticipants": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareInviteLink": "Kopīgot uzaicinājuma saiti",
+  "commandHint_markasdm": "Atzīmēt kā tiešo ziņu istabu norādītajam Matrix Id",
+  "recoveryKeyLost": "Pazaudēta atkopes atslēga?",
+  "cuddleContent": "{senderName} samīļo Tevi",
+  "@cuddleContent": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "askVerificationRequest": "Pieņemt apliecināšanas pieprasījumu no {username}?",
+  "@askVerificationRequest": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "messages": "Ziņas",
+  "@messages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "login": "Pieteikties",
+  "@login": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "deviceKeys": "Ierīces atslēgas:",
+  "waitingPartnerNumbers": "Gaida, līdz biedrs apstiprinās skaitļus…",
+  "@waitingPartnerNumbers": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "everythingReady": "Viss ir gatavs!",
+  "@everythingReady": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "addEmail": "Pievienot e-pasta adresi",
+  "@addEmail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "emoteKeyboardNoRecents": "Nesen izmantotās emocijas parādīsies šeit...",
+  "@emoteKeyboardNoRecents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} uzsāka zvanu",
+  "@startedACall": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "emoteInvalid": "Nederīgs emocijas īskods.",
+  "@emoteInvalid": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "systemTheme": "Sistēmas",
+  "@systemTheme": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "deleteMessage": "Izdzēst ziņu",
+  "@deleteMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "visibilityOfTheChatHistory": "Tērzēšanas vēstures redzamība",
+  "@visibilityOfTheChatHistory": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "settings": "Iestatījumi",
+  "@settings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changeTheHomeserver": "Mainīt mājasserveri",
+  "@changeTheHomeserver": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "youJoinedTheChat": "Tu pievienojies tērzēšanai",
+  "play": "Atskaņot {fileName}",
+  "@play": {
+    "type": "String",
+    "placeholders": {
+      "fileName": {
+        "type": "String"
+      }
+    }
+  },
+  "chatBackupDescription": "Ziņas ir aizsargātas ar atkopes atslēgu. Lūgums nodrošināt, ka tā netiek pazaudēta.",
+  "@chatBackupDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changeDeviceName": "Mainīt ierīces nosaukumu",
+  "@changeDeviceName": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Aizmirsta parole",
+  "@passwordForgotten": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "statusExampleMessage": "Kā Tev šodien klājas?",
+  "@statusExampleMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "security": "Drošība",
+  "@security": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "markAsRead": "Atzīmēt kā lasītu",
+  "sendAudio": "Nosūtīt skaņu",
+  "@sendAudio": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sentASticker": "😊 {username} nosūtīja uzlīmi",
+  "@sentASticker": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "commandHint_dm": "Uzsākt tiešu tērzēšanu\nLai atspējotu šifrēšanu, jāizmanto --no-encryption",
+  "@commandHint_dm": {
+    "type": "String",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_hug": "Nosūtīt apskāvienu",
+  "replace": "Aizstāt",
+  "reject": "Noraidīt",
+  "@reject": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Īpaši aizskarošs",
+  "@extremeOffensive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "editBlockedServers": "Labot liegtos serverus",
+  "@editBlockedServers": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "youUnbannedUser": "Tu atcēli {user} piekļuves liegumu",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "deactivateAccountWarning": "Tas atspējos Tavu lietotāja kontu. To nevar atdarīt. Vai tiešām?",
+  "@deactivateAccountWarning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "archive": "Arhīvs",
+  "@archive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "joinedTheChat": "👋 {username} pievienojās tērzēšanai",
+  "@joinedTheChat": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "visibleForEveryone": "Redzama visiem",
+  "@visibleForEveryone": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Lūgums ievadīt 4 ciparus vai atstāt tukšu, lai atspējotu lietotnes slēgu.",
+  "@pleaseEnter4Digits": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "newSpace": "Jauna vieta",
+  "changePassword": "Nomainīt paroli",
+  "@changePassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "devices": "Ierīces",
+  "@devices": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "accept": "Pieņemt",
+  "@accept": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unknownEvent": "Nezināms notikums '{type}'",
+  "@unknownEvent": {
+    "type": "String",
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "emojis": "Emocijzīmes",
+  "pleaseEnterYourPin": "Lūgums ievadīt savu PIN",
+  "@pleaseEnterYourPin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "share": "Kopīgot",
+  "@share": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_googly": "Nosūtīt izbolītu acu pāri",
+  "createGroup": "Izveidot kopu",
+  "privacy": "Privātums",
+  "@privacy": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Mainīt savu attēlu",
+  "@changeYourAvatar": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendImage": "Nosūtīt attēlu",
+  "@sendImage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "time": "Laiks",
+  "contentHasBeenReported": "Par saturu tika ziņos servera pārvaldītājiem",
+  "@contentHasBeenReported": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "custom": "Pielāgots",
+  "noBackupWarning": "Uzmanību! Bez tērzēšanu rezerves kopiju veidošanas iespējošanas tiks zaudēta piekļuve savām šifrētajām ziņām. Ir ļoti ieteicams iespējot tērzēšanu rezerves kopiju veidošanu pirms atteikšanās.",
+  "fromJoining": "No pievienošanās",
+  "@fromJoining": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "verify": "Apliecināt",
+  "@verify": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendVideo": "Nosūtīt video",
+  "@sendVideo": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "storeInSecureStorageDescription": "Glabāt atkopes atslēgu šīs ierīces drošajā krātuvē.",
+  "openChat": "Atvērt tērzēšanu",
+  "kickUserDescription": "Lietotājs ir izmests no tērzēšanas, bet piekļuve nav liegta. Publiskās tērzēšanās lietotājs var atkārtoti pievienoties jebkurā laikā.",
+  "sendAMessage": "Nosūtīt ziņu",
+  "@sendAMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pin": "PIN",
+  "@pin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "importNow": "Ievietot tagad",
+  "deleteAccount": "Izdzēst kontu",
+  "@deleteAccount": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pinMessage": "Piespraust istabai",
+  "muteChat": "Apklusināt tērzēšanu",
+  "@muteChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "invite": "Uzaicināt",
+  "enableMultiAccounts": "(BETA) Iespējot vairākus kontus šajā ierīcē",
+  "anyoneCanJoin": "Ikviens var pievienoties",
+  "@anyoneCanJoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} beidza zvanu",
+  "@endedTheCall": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "appLockDescription": "Aizslēgt lietotni, kad tā netiek izmantota, ar PIN kodu",
+  "globalChatId": "Vispārējais tērzēšanas Id",
+  "accessAndVisibilityDescription": "Kam ir ļauts pievienoties šai tērzēšanai un kā tērzēšana var tikt atklāta.",
+  "customEmojisAndStickers": "Pielāgotas emocijzīmes un uzlīmes",
+  "customEmojisAndStickersBody": "Pievienot vai kopīgot pielāgotas emocijzīmes vai uzlīmes, kas var tikt izmantotas jebkurā tērzēšanā.",
+  "hideInvalidOrUnknownMessageFormats": "Paslēpt nederīgus vai nezināmus ziņu formātus",
+  "blockUsername": "Neņemt vērā lietotājvārdu",
+  "accessAndVisibility": "Piekļuve un redzamība",
+  "calls": "Zvani",
+  "hideRedactedMessages": "Paslēpt labošanas ziņas",
+  "hideRedactedMessagesBody": "Ja kāds labo ziņu, tā vairs nebūs redzama tērzēšanā.",
+  "blockListDescription": "Ir iespējams atslēgt traucējošus lietotājus. Nebūs iespējams saņem jebkādas ziņas vai uzaicinājumus uz istabām no lietotājiem, kas ir personīgajā izslēgšanas sarakstā.",
+  "overview": "Pārskats",
+  "wrongRecoveryKey": "Atvaino... Nešķiet, ka šī būtu pareiza atkopes atslēga.",
+  "block": "Izslēgt",
+  "passwordRecoverySettings": "Paroles atkopes iestatījumi",
+  "blockedUsers": "Atslēgtie lietotāji",
+  "transparent": "Caurspīdīgs",
+  "searchForUsers": "Meklēt @lietotājus...",
+  "pleaseEnterYourCurrentPassword": "Lūgums ievadīt savu pašreizējo paroli",
+  "publicSpaces": "Publiskas vietas",
+  "joinSpace": "Pievienoties vietai",
+  "createGroupAndInviteUsers": "Izveidot kopu un uzaicināt lietotājus",
+  "groupCanBeFoundViaSearch": "Kopu var atrast meklēšanā",
+  "commandHint_sendraw": "Nosūtīt neapstrādātu JSON",
+  "newPassword": "Jauna parole",
+  "sendReadReceipts": "Nosūtīt lasīšanas atskaites",
+  "verifyOtherUser": "🔐 Apliecināt otru lietotāju",
+  "verifyOtherDevice": "🔐 Apliecināt otru ierīci",
+  "yourGlobalUserIdIs": "Vispārējais lietotāja Id ir: ",
+  "select": "Atlasīt",
+  "initAppError": "Atgadījās kļūda lietotnes sāknēšanas laikā",
+  "formattedMessages": "Formatētas ziņas",
+  "canceledKeyVerification": "{sender} atcēla atslēgas apliecināšanu",
+  "@canceledKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "completedKeyVerification": "{sender} pabeidza atslēgas apliecināšanu",
+  "@completedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "requestedKeyVerification": "{sender} pieprasīja atslēgas apliecināšanu",
+  "@requestedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "startedKeyVerification": "{sender} uzsāka atslēgas apliecināšanu",
+  "@startedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "incomingMessages": "Ienākošās ziņas",
+  "isReadyForKeyVerification": "{sender} ir gatavs atslēgas apliecināšanai",
+  "@isReadyForKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "commandHint_unignore": "Atcelt norādītā Matrix Id neņemšanu vērā",
+  "commandHint_ignore": "Neņemt vērā norādīto Matrix Id",
+  "searchChatsRooms": "Meklēt #tērzēšanas, @lietotājus...",
+  "groupName": "Kopas nosaukums",
+  "knock": "Pieklauvēt",
+  "stickers": "Uzlīmes",
+  "usersMustKnock": "Lietotājiem jāpieklauvē",
+  "noOneCanJoin": "Neviens nevar pievienoties",
+  "hidePresences": "Paslēpt stāvokļu sarakstu?",
+  "knocking": "Klauvē",
+  "chatCanBeDiscoveredViaSearchOnServer": "Tērzēšana var tikt atklāta ar meklēšanu {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "String",
+    "placeholders": {
+      "server": {
+        "type": "String"
+      }
+    }
+  },
+  "nothingFound": "Nekas netika atrasts...",
+  "databaseMigrationTitle": "Datubāze ir optimizēta",
+  "leaveEmptyToClearStatus": "Atstāt tukšu, lai notīrītu savu stāvokli.",
+  "pleaseChooseAStrongPassword": "Lūgums izvēlēties spēcīgu paroli",
+  "passwordIsWrong": "Ievadītā parole ir nepareiza",
+  "thisDevice": "Šī ierīce:",
+  "acceptedKeyVerification": "{sender} apstiprināja atslēgas apliecināšanu",
+  "@acceptedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "noDatabaseEncryption": "Šajā platformā datubāzes šifrēšana netiek nodrošināta",
+  "presencesToggle": "Rādīt citu lietotāju stāvokļa ziņas",
+  "@presencesToggle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "databaseMigrationBody": "Lūgums uzgaidīt. Tas var aizņemt kādu brīdi.",
+  "passwordsDoNotMatch": "Paroles nesakrīt",
+  "publicChatAddresses": "Publiskas tērzēšanas adreses",
+  "createNewAddress": "Izveidot jaunu adresi",
+  "discover": "Atklāt",
+  "unreadChatsInApp": "{appname}: {unread} nelasītas tērzēšanas",
+  "@unreadChatsInApp": {
+    "type": "String",
+    "placeholders": {
+      "appname": {
+        "type": "String"
+      },
+      "unread": {
+        "type": "String"
+      }
+    }
+  },
+  "addChatOrSubSpace": "Pievienot tērzēšanu vai apakšvietu",
+  "formattedMessagesDescription": "Attēlot bagātinātu ziņu saturu, piemēram, ar Markdown iezīmētu treknrakstu.",
+  "sessionLostBody": "Sesija ir zaudēta. Lūgums ziņot par šo kļūdu izstrādātājiem {url}. Kļūdas ziņojums ir: {error}",
+  "@sessionLostBody": {
+    "type": "String",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "verifyOtherUserDescription": "Ar cita lietotāja apliecināšanu vari pārliecināties, ka zini, kam Tu tiešām raksti. 💪\n\nKad uzsāc apliecināšanu, Tu un otrs lietotājs lietotnē redzēs uznirstošo logu. Tajā jūs redzēsiet dažādas emocijzīmes vai skaitļus, kas ir jāsalīdzina savā starpā.\n\nLabākais veids, kā to izdarīt, ir satikties vai uzsākt videozvanu. 👭",
+  "sendTypingNotificationsDescription": "Citi tērzēšanas dalībnieki var redzēt, kad raksti jaunu ziņu.",
+  "noUsersFoundWithQuery": "Diemžēl ar \"{query}\" netika atrasts neviens lietotājs. Lūgums pārbaudīt, vai ir pieļauta drukas kļūda.",
+  "@noUsersFoundWithQuery": {
+    "type": "String",
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreSessionBody": "Lietotne tagad mēģina atjaunot sesiju no rezerves kopijas. Lūgums ziņot par šo kļūdu izstrādātājiem {url}. Kļūdas ziņojums ir: {error}",
+  "@restoreSessionBody": {
+    "type": "String",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "sendReadReceiptsDescription": "Citi tērzēšanas dalībnieki var redzēt, kad izlasīji ziņu.",
+  "thereAreCountUsersBlocked": "Šobrīd ir izslēgti {count} lietotāji.",
+  "@thereAreCountUsersBlocked": {
+    "type": "String",
+    "count": {}
+  },
+  "verifyOtherDeviceDescription": "Kad apliecini citu ierīci, šīs ierīces var apmainīt atslēgas, palielinot vispārējo drošību. 💪 Pēc apliecināšanas uzsākšanas abās ierīcēs lietotnē parādīsies uznirstošais logs. Tajā būs redzamas dažādas emocijzīmes vai skaitļi, kas jāsalīdzina abās ierīcēs. Vislabāk, ja abas ierīces ir pieejamas, pirms tiek uzsākta apliecināšana. 🤳",
+  "swipeRightToLeftToReply": "Pavilkt no labās puses uz kreiso, lai atbildētu",
+  "searchIn": "Meklēt tērzēšanā \"{chat}\"...",
+  "@searchIn": {
+    "type": "String",
+    "placeholders": {
+      "chat": {
+        "type": "String"
+      }
+    }
+  },
+  "searchMore": "Meklēt vairāk...",
+  "gallery": "Galerija",
+  "files": "Datnes",
+  "restricted": "Ierobežots",
+  "knockRestricted": "Pieklauvēt ierobežotajiem",
+  "sendCanceled": "Sūtīšana atcelta",
+  "noChatsFoundHere": "Šeit vēl nav tērzēšanu. Jauna saruna ar kādu ir uzsākama ar zemāk esošo pogu. ⤵️",
+  "moderatorLevel": "{level} - Moderators",
+  "@moderatorLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "adminLevel": "{level} - Pārvaldītājs",
+  "@adminLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "changeTheVisibilityOfChatHistory": "Mainīt tērzēšanas vēstures redzamību",
+  "changeTheCanonicalRoomAlias": "Mainīt tērzēšanas galveno publisko adresi",
+  "sendRoomNotifications": "Sūtīt @istaba paziņojumus",
+  "changeTheDescriptionOfTheGroup": "Mainīt tērzēšanas aprakstu",
+  "alwaysUse24HourFormat": "nē",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "userLevel": "{level} - Lietotājs",
+  "@userLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "goToSpace": "Doties uz vietu: {space}",
+  "@goToSpace": {
+    "type": "String",
+    "space": {}
+  },
+  "changeGeneralChatSettings": "Mainīt vispārējos tērzēšanas iestatījumus",
+  "inviteOtherUsers": "Uzaicināt šajā tērzēšanā citus lietotājus",
+  "changeTheChatPermissions": "Mainīt tērzēšanas atļaujas",
+  "chatPermissionsDescription": "Noteikt, kurš spēka līmenis ir nepieciešams noteiktām darbībām šajā tērzēšanā. Spēka līmeņi 0, 50 un 100 parasti atbilst lietotājiem, moderatoriem un pārvaldītājiem, bet ir iespējams jebkāds iedalījums.",
+  "doesNotSeemToBeAValidHomeserver": "Neizskatās pēc saderīga mājasservera. Nepareizs URL?",
+  "loginWithMatrixId": "Pieteikties ar Matrix-Id",
+  "updateInstalled": "🎉 Atjauninājums {version} uzstādīts.",
+  "@updateInstalled": {
+    "type": "String",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "changelog": "Izmaiņu žurnāls",
+  "noMoreChatsFound": "Vairs netika atrasta neviena tērzēšana...",
+  "unread": "Nelasītas",
+  "space": "Vieta",
+  "spaces": "Vietas",
+  "markAsUnread": "Atzīmēt kā nelasītu",
+  "sendingAttachment": "Nosūta pielikumu...",
+  "generatingVideoThumbnail": "Izveido video sīktēlu...",
+  "sendingAttachmentCountOfCount": "Nosūta {index}. pielikumu no {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "serverLimitReached": "Sasniegts servera ierobežojums. Gaida {seconds} sekundes...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "calculatingFileSize": "Aprēķina datnes lielumu...",
+  "prepareSendingAttachment": "Sagatavo pielikuma nosūtīšanu...",
+  "compressVideo": "Saspiež video...",
+  "oneOfYourDevicesIsNotVerified": "Viena no ierīcēm nav apliecināta",
+  "noticeChatBackupDeviceVerification": "Piezīme: kad visas ierīces tiek savienotas ar tērzēšanu rezerves kopiju, tās tiek automātiski apliecinātas.",
+  "continueText": "Turpināt",
+  "welcomeText": "Sveicieni! 👋 Šis ir FluffyChat. Tu vari pieteikties jebkurā mājasserverī, kas ir saderīgs ar https://matrix.org. Tad vari tērzēt ar ikvienu. Tas ir milzīgs decentralizētās saziņas tīkls.",
+  "blur": "Aizmiglojums:",
+  "setWallpaper": "Iestatīt ekrāntapeti",
+  "opacity": "Necaurredzamība:",
+  "manageAccount": "Pārvaldīt kontu",
+  "noContactInformationProvided": "Serveris nesniedz nekādu derīgu saziņas informāciju",
+  "serverInformation": "Informācija par serveri:",
+  "aboutHomeserver": "Par {homeserver}",
+  "@aboutHomeserver": {
+    "type": "String",
+    "placeholders": {
+      "homeserver": {
+        "type": "String"
+      }
+    }
+  },
+  "contactServerAdmin": "Sazināties ar servera pārvaldītāju",
+  "contactServerSecurity": "Sazināties ar servera drošības uzturētājiem",
+  "supportPage": "Atbalsta lapa",
+  "name": "Nosaukums",
+  "version": "Versija",
+  "website": "Tīmekļvietne",
+  "boldText": "Teksts treknrakstā",
+  "strikeThrough": "Pārsvītrots",
+  "invalidUrl": "Nederīgs URL",
+  "addLink": "Pievienot saiti",
+  "italicText": "Teksts slīprakstā",
+  "pleaseFillOut": "Lūgums aizpildīt",
+  "sendImages": "Nosūtīt {count} attēlu(s)",
+  "@sendImages": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "compress": "Saspiest",
+  "unableToJoinChat": "Nevarēja pievienoties tērzēšanai. Varbūt otra puse jau ir aizvērusi sarunu.",
+  "appWantsToUseForLoginDescription": "Ar šo tiek ļauts lietotnei un tīmekļvietnei kopīgot informāciju par Tevi.",
+  "synchronizingPleaseWaitCounter": " Sinhronizē... ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "String",
+    "placeholders": {
+      "percentage": {
+        "type": "String"
+      }
+    }
+  },
+  "previous": "Iepriekšējais",
+  "otherPartyNotLoggedIn": "Otra puse pašlaik nav pieteikusies un tādēļ nevar saņemt ziņas.",
+  "appWantsToUseForLogin": "Izmantot '{server}', lai pieteiktos",
+  "@appWantsToUseForLogin": {
+    "type": "String",
+    "placeholders": {
+      "server": {
+        "type": "String"
+      }
+    }
+  },
+  "open": "Atvērt",
+  "waitingForServer": "Gaida serveri...",
+  "notificationRuleContainsDisplayNameDescription": "Paziņo lietotājam, kad ziņa satur viņa attēlojamo vārdu.",
+  "notificationRuleServerAcl": "Apspiest servera ACL notikumus",
+  "notificationRuleSuppressNoticesDescription": "Apspiež paziņojumus no automatizētiem klientiem, piemēram, robotprogrammatūras.",
+  "notificationRuleInviteForMeDescription": "Paziņo lietotājam, kad viņš ir uzaicināts pievienoties istabai.",
+  "generalNotificationSettings": "Vispārēji paziņojumu iestatījumi",
+  "otherNotificationSettings": "Citi paziņojumu iestatījumi",
+  "notificationRuleContainsUserName": "Saturs lietotāja vārdu",
+  "notificationRuleMasterDescription": "Aizvieto visas pārējās kārtulas un atspējo visus paziņojumus.",
+  "notificationRuleInviteForMe": "Uzaicinājums man",
+  "notificationRuleMemberEvent": "Dalībnieka notikums",
+  "notificationRuleMemberEventDescription": "Apspiež paziņojums par dalības notikumiem.",
+  "notificationRuleIsUserMentionDescription": "Paziņo lietotājam, kad viņš ziņā ir tieši pieminēts.",
+  "notificationRuleIsRoomMention": "Istabas pieminēšana",
+  "notificationRuleRoomnotif": "Istabas paziņojums",
+  "notificationRuleReaction": "Reakcija",
+  "notificationRuleRoomServerAcl": "Istabas servera ACL",
+  "notificationRuleCall": "Zvans",
+  "notificationRuleCallDescription": "Paziņo lietotājam par zvaniem.",
+  "deletePushRuleCanNotBeUndone": "Ja tiek izdzēsts šis paziņojuma iestatījums, to nevar atsaukt.",
+  "more": "Vairāk",
+  "roomNotificationSettings": "Istabu paziņojumu iestatījumi",
+  "notificationRuleEncrypted": "Šifrēts",
+  "notificationRuleJitsi": "Jitsi",
+  "notificationRuleIsUserMention": "Lietotāja pieminēšana",
+  "notificationRuleIsRoomMentionDescription": "Paziņo lietotājam, kad tiek pieminēta istaba.",
+  "notificationRuleMessageDescription": "Paziņo lietotājam par vispārējām ziņām.",
+  "notificationRuleServerAclDescription": "Apspiež notikumus par servera ACL notikumiem.",
+  "notificationRuleReactionDescription": "Apspiež paziņojums par reakcijām.",
+  "unknownPushRule": "Nezināma pašpiegādes kārtula '{rule}'",
+  "@unknownPushRule": {
+    "type": "String",
+    "placeholders": {
+      "rule": {
+        "type": "String"
+      }
+    }
+  },
+  "newChatRequest": "📩 Jauns tērzēšanas pieprasījums",
+  "notificationRuleContainsUserNameDescription": "Paziņo lietotājam, kad ziņa satur viņa lietotājvārdu.",
+  "notificationRuleRoomnotifDescription": "Paziņo lietotājam, kad ziņa satur \"@istaba\".",
+  "notificationRuleEncryptedRoomOneToOneDescription": "Paziņo lietotājam par ziņām šifrētās viens pret viens istabās.",
+  "notificationRuleRoomServerAclDescription": "Apspiež paziņojumus par istabas servera piekļuves kontroles sarakstiem (ACL).",
+  "contentNotificationSettings": "Satura paziņojumu iestatījumi",
+  "notificationRuleContainsDisplayName": "Satur attēlojamo vārdu",
+  "notificationRuleRoomOneToOne": "Viens pret viens istaba",
+  "notificationRuleJitsiDescription": "Paziņo lietotājam par Jitsi logrīka notikumiem.",
+  "notificationRuleSuppressEditsDescription": "Apspiež paziņojumus par labotām ziņām.",
+  "notificationRuleTombstone": "Kapakmens",
+  "notificationRuleTombstoneDescription": "Paziņo lietotājam par istabu aizvēršanas ziņām.",
+  "notificationRuleSuppressEdits": "Apspiest labojumus",
+  "notificationRuleEncryptedRoomOneToOne": "Šifrēta viens pret viens istaba",
+  "notificationRuleRoomOneToOneDescription": "Paziņo lietotājam par ziņām viens pret viens istabās.",
+  "notificationRuleMessage": "Ziņa",
+  "notificationRuleEncryptedDescription": "Paziņo lietotājam par ziņām šifrētās istabās.",
+  "userSpecificNotificationSettings": "Lietotāja paziņojumu iestatījumi",
+  "notificationRuleMaster": "Apklusināt visus paziņojumus",
+  "notificationRuleSuppressNotices": "Apspiest automātiskās ziņas",
+  "crossVerifiedDevices": "Savstarpēji apliecinātas ierīces",
+  "shareKeysWith": "Kopīgot atslēgas ar...",
+  "shareKeysWithDescription": "Kurām ierīcēm vajadzētu uzticēties, lai tajās varētu lasīt ziņas šifrētajās tērzēšanās?",
+  "allDevices": "Visas ierīces",
+  "crossVerifiedDevicesIfEnabled": "Savstarpēji apliecinātas ierīces, ja iespējots",
+  "verifiedDevicesOnly": "Tikai apliecinātas ierīces",
+  "optionalMessage": "(Pēc izvēles) Ziņojums...",
+  "takeAPhoto": "Uzņemt attēlu",
+  "recordAVideo": "Ierakstīt video",
+  "notSupportedOnThisDevice": "Šajā ierīcē nav atbalstīts",
+  "enterNewChat": "Ieiet jaunajā tērzēšanā",
+  "commandHint_roomupgrade": "Uzlabot šo istabu uz norādīto istabas versiju",
+  "ignoreUser": "Neņemt vērā lietotāju",
+  "youHaveKnocked": "Tu pieklauvēji",
+  "pleaseWaitUntilInvited": "Lūgums tagad uzgaidīt, līdz kāds no istabas uzaicinās Tevi.",
+  "approve": "Apstiprināt",
+  "checkList": "Pārbaužu saraksts",
+  "countInvited": "{count} uzaicināti",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sentVoiceMessage": "🎙️ {duration} - Balss ziņa no {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "commandHint_logout": "Atteikties pašreizējā ierīcē",
+  "commandHint_logoutall": "Atteikties visās izmantotajās ierīcēs",
+  "displayNavigationRail": "Rādīt pārvietošanās sliedi viedierīcēs",
+  "customReaction": "Pielāgota reakcija",
+  "moreEvents": "Vairāk notikumu",
+  "declineInvitation": "Noraidīt uzaicinājumu",
+  "noMessagesYet": "Vēl nav ziņu",
+  "longPressToRecordVoiceMessage": "Ilga piespiešana, lai ierakstītu balss ziņu.",
+  "pause": "Apturēt",
+  "resume": "Atsākt",
+  "removeFromSpaceDescription": "Tērzēšana tiks noņemta no vietas, bet tā joprojām būs redzama tērzēšanu sarakstā.",
+  "countChats": "{chats} tērzēšanas",
+  "@countChats": {
+    "type": "String",
+    "placeholders": {
+      "chats": {
+        "type": "int"
+      }
+    }
+  },
+  "spaceMemberOf": "{spaces} dalībnieks",
+  "@spaceMemberOf": {
+    "type": "String",
+    "placeholders": {
+      "spaces": {
+        "type": "String"
+      }
+    }
+  },
+  "spaceMemberOfCanKnock": "{spaces} dalībnieks var pieklauvēt",
+  "@spaceMemberOfCanKnock": {
+    "type": "String",
+    "placeholders": {
+      "spaces": {
+        "type": "String"
+      }
+    }
+  },
+  "donate": "Ziedot",
+  "poll": "Aptauja",
+  "startPoll": "Sākt aptauju",
+  "endPoll": "Noslēgt aptauju",
+  "answersVisible": "Atbildes ir redzamas",
+  "pollQuestion": "Aptaujas jautājums",
+  "answerOption": "Atbildes iespēja",
+  "addAnswerOption": "Pievienot atbildes iespēju",
+  "allowMultipleAnswers": "Atļaut vairākas atbildes",
+  "pollHasBeenEnded": "Aptauja ir noslēgusies",
+  "countVotes": "{count, plural, =0{{count} balsu} =1{{count} balss} other{{count} balsis}}",
+  "@countVotes": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "answersWillBeVisibleWhenPollHasEnded": "Atbildes būs redzams, kad aptauja noslēgsies",
+  "replyInThread": "Atbildēt pavedienā",
+  "countReplies": "{count, plural, =0{{count} atbilžu} =1{{count} atbilde} other{{count} atbildes}}",
+  "@countReplies": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "thread": "Pavediens",
+  "backToMainChat": "Atgriezties galvenajā tērzēšanā",
+  "saveChanges": "Saglabāt izmaiņas",
+  "createSticker": "Izveidot uzlīmi vai emocijzīmi",
+  "useAsSticker": "Izmantot kā uzlīmi",
+  "useAsEmoji": "Izmantot kā emocijzīmi",
+  "stickerPackNameAlreadyExists": "Uzlīmju pakas nosaukums jau pastāv",
+  "newStickerPack": "Jauna uzlīmju paka",
+  "stickerPackName": "Uzlīmju pakas nosaukums",
+  "attribution": "Piedēvējums",
+  "skipChatBackup": "Izlaist tērzēšanu rezerves kopēšanu",
+  "skipChatBackupWarning": "Vai tiešām? Bez tērzēšanu rezerves kopēšanas var tikt zaudēta piekļuve savām ziņām, kad tiks mainīta ierīce.",
+  "loadingMessages": "Ielādē ziņas",
+  "setupChatBackup": "Iestatīt tērzēšanu rezerves kopēšanu",
+  "changedTheChatDescription": "{username} nomainīja tērzēšanas aprakstu",
+  "changedTheChatName": "{username} nomainīja tērzēšanas nosaukumu",
+  "noMoreResultsFound": "Vairs nekas netika atrasts",
+  "chatSearchedUntil": "Tērzēšanā meklēts līdz {time}",
+  "@chatSearchedUntil": {
+    "type": "String",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "federationBaseUrl": "Federācijas pamata URL",
+  "clientWellKnownInformation": "Client-Well-Known informācija:",
+  "baseUrl": "Pamata URL",
+  "identityServer": "Identitāšu serveris:",
+  "versionWithNumber": "Versija: {version}",
+  "@versionWithNumber": {
+    "type": "String",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "logs": "Žurnāli",
+  "advancedConfigs": "Izvērsta konfigurācijas",
+  "advancedConfigurations": "Izvērstas konfigurācijas",
+  "theProcessWasCanceled": "Darbība tika atcelta.",
+  "signIn": "Pieteikties",
+  "createNewAccount": "Izveidot jaunu kontu",
+  "signUpGreeting": "FluffyChat ir decentralizēta. Jāatlasa serveris, kurā ir vēlēšanās izveidot savu kontu, un aiziet!",
+  "signInGreeting": "Jau ir Matrix konts? Laipni lūdzam atpakaļ! Jāatlasa savs mājasserveris un jāpiesakās.",
+  "appIntro": "Ar FluffyChat vari tērzēt ar saviem draugiem. Tā ir droša un decentralizēta [matrix] ziņapmaiņas lietotne. Vairāk var uzzināt https://matrix.org, ja ir vēlēšanās, vai vienkārši jāpiesakās."
 }

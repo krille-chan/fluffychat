@@ -57,21 +57,6 @@
       }
     }
   },
-  "dateWithYear": "{day}-{month}-{year}",
-  "@dateWithYear": {
-    "type": "String",
-    "placeholders": {
-      "year": {
-        "type": "String"
-      },
-      "month": {
-        "type": "String"
-      },
-      "day": {
-        "type": "String"
-      }
-    }
-  },
   "help": "Ajuda",
   "@help": {
     "type": "String",
@@ -119,18 +104,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "dateWithoutYear": "{day}-{month}",
-  "@dateWithoutYear": {
-    "type": "String",
-    "placeholders": {
-      "month": {
-        "type": "String"
-      },
-      "day": {
-        "type": "String"
-      }
-    }
-  },
   "alwaysUse24HourFormat": "true",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
@@ -138,9 +111,5 @@
   "repeatPassword": "Repita a senha",
   "@repeatPassword": {},
   "notAnImage": "Não é um arquivo de imagem.",
-  "@notAnImage": {},
-  "setCustomPermissionLevel": "Definir nível de permissão personalizado",
-  "@setCustomPermissionLevel": {},
-  "addChatDescription": "Adicionar uma descrição de chat...",
-  "@addChatDescription": {}
+  "@notAnImage": {}
 }

@@ -4,18 +4,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "identity": "Identitá",
-  "@identity": {
-    "type": "String",
-    "placeholders": {}
-  },
   "close": "Cluder",
   "@close": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "confirm": "Confirmar",
-  "@confirm": {
     "type": "String",
     "placeholders": {}
   },
@@ -26,16 +16,6 @@
   },
   "chats": "Conversationes",
   "@chats": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "containsUserName": "Contene li nómine",
-  "@containsUserName": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "containsDisplayName": "Contene li visibil nómine",
-  "@containsDisplayName": {
     "type": "String",
     "placeholders": {}
   },
@@ -105,11 +85,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "fileName": "Nómine de file",
-  "@fileName": {
-    "type": "String",
-    "placeholders": {}
-  },
   "fontSize": "Dimension de fonde",
   "@fontSize": {
     "type": "String",
@@ -117,11 +92,6 @@
   },
   "fromJoining": "Pro adhesion",
   "@fromJoining": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "enterYourHomeserver": "Provide vor hem-servitor",
-  "@enterYourHomeserver": {
     "type": "String",
     "placeholders": {}
   },
@@ -180,11 +150,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "inviteForMe": "Invitationes por me",
-  "@inviteForMe": {
-    "type": "String",
-    "placeholders": {}
-  },
   "lastActiveAgo": "Ultim activité: {localizedTimeShort}",
   "@lastActiveAgo": {
     "type": "String",
@@ -226,11 +191,6 @@
   },
   "online": "In li rete",
   "@online": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "memberChanges": "Cambios inter membres",
-  "@memberChanges": {
     "type": "String",
     "placeholders": {}
   },
@@ -276,23 +236,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "pleaseChoose": "Ples selecter",
-  "@pleaseChoose": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "pushRules": "Regules de push-notificationes",
-  "@pushRules": {
-    "type": "String",
-    "placeholders": {}
-  },
   "redactMessage": "Redacter li missage",
   "@redactMessage": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "removeDevice": "Remover li aparate",
-  "@removeDevice": {
     "type": "String",
     "placeholders": {}
   },
@@ -328,11 +273,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "toggleUnread": "Marcar quam (ín)leet",
-  "@toggleUnread": {
-    "type": "String",
-    "placeholders": {}
-  },
   "unblockDevice": "Deblocar li aparate",
   "@unblockDevice": {
     "type": "String",
@@ -348,11 +288,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "wallpaper": "Tapete",
-  "@wallpaper": {
-    "type": "String",
-    "placeholders": {}
-  },
   "messageType": "Tip de missage",
   "@messageType": {},
   "start": "Iniciar",
@@ -361,23 +296,10 @@
   "@messageInfo": {},
   "openGallery": "Aperter li galerie",
   "@openGallery": {},
-  "videoWithSize": "Video ({size})",
-  "@videoWithSize": {
-    "type": "String",
-    "placeholders": {
-      "size": {
-        "type": "String"
-      }
-    }
-  },
   "reportUser": "Raportar li usator",
   "@reportUser": {},
   "voiceCall": "Telefonada",
   "@voiceCall": {},
-  "nextAccount": "Sequent conto",
-  "@nextAccount": {},
-  "previousAccount": "Precedent conto",
-  "@previousAccount": {},
   "countFiles": "{count} files",
   "@countFiles": {
     "placeholders": {
@@ -393,11 +315,6 @@
   },
   "create": "Crear",
   "@create": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "connect": "Conexer",
-  "@connect": {
     "type": "String",
     "placeholders": {}
   },
@@ -421,11 +338,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "rejoin": "Re-adherer",
-  "@rejoin": {
-    "type": "String",
-    "placeholders": {}
-  },
   "remove": "Remover",
   "@remove": {
     "type": "String",
@@ -440,21 +352,6 @@
   "@reply": {
     "type": "String",
     "placeholders": {}
-  },
-  "dateWithYear": "{day}.{month}.{year}",
-  "@dateWithYear": {
-    "type": "String",
-    "placeholders": {
-      "year": {
-        "type": "String"
-      },
-      "month": {
-        "type": "String"
-      },
-      "day": {
-        "type": "String"
-      }
-    }
   },
   "delete": "Remover",
   "@delete": {
@@ -538,18 +435,12 @@
   },
   "time": "Hora",
   "@time": {},
-  "publish": "Publicar",
-  "@publish": {},
   "sender": "Autor",
   "@sender": {},
-  "dismiss": "Demisser",
-  "@dismiss": {},
   "custom": "Personalisat",
   "@custom": {},
   "emojis": "Emoji",
   "@emojis": {},
-  "widgetCustom": "Personalisat",
-  "@widgetCustom": {},
   "users": "Usatores",
   "@users": {},
   "user": "Usator",
@@ -584,11 +475,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "license": "Licentie",
-  "@license": {
-    "type": "String",
-    "placeholders": {}
-  },
   "or": "O",
   "@or": {
     "type": "String",
@@ -606,11 +492,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "people": "Homes",
-  "@people": {
-    "type": "String",
-    "placeholders": {}
-  },
   "pin": "Fixar",
   "@pin": {
     "type": "String",
@@ -618,11 +499,6 @@
   },
   "privacy": "Privatie",
   "@privacy": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "recording": "Registrante",
-  "@recording": {
     "type": "String",
     "placeholders": {}
   },
@@ -732,11 +608,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "sendOriginal": "Inviar li originale",
-  "@sendOriginal": {
-    "type": "String",
-    "placeholders": {}
-  },
   "theyMatch": "Corresponde",
   "@theyMatch": {
     "type": "String",
@@ -752,8 +623,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "addWidget": "Adjunter un widget",
-  "@addWidget": {},
   "addAccount": "Adjunter un conto",
   "@addAccount": {},
   "publicRooms": "Public chambres",
@@ -773,11 +642,6 @@
   },
   "sendAudio": "Inviar audio",
   "@sendAudio": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "sendSticker": "Inviar un nota adhesiv",
-  "@sendSticker": {
     "type": "String",
     "placeholders": {}
   },
@@ -845,11 +709,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "botMessages": "Missages de robots",
-  "@botMessages": {
-    "type": "String",
-    "placeholders": {}
-  },
   "changeDeviceName": "Cambiar li nómine de aparate",
   "@changeDeviceName": {
     "type": "String",
@@ -894,8 +753,6 @@
   "@commandInvalid": {
     "type": "String"
   },
-  "widgetEtherpad": "Textual nota",
-  "@widgetEtherpad": {},
   "banFromChat": "Bannir del conversation",
   "@banFromChat": {
     "type": "String",
@@ -908,14 +765,6 @@
   },
   "commandHint_markasgroup": "Marcar quam gruppe",
   "@commandHint_markasgroup": {},
-  "widgetJitsi": "Jitsi Meet",
-  "@widgetJitsi": {},
-  "screenSharingTitle": "partir li ecran",
-  "@screenSharingTitle": {},
-  "callingPermissions": "Permissiones de telefonada",
-  "@callingPermissions": {},
-  "callingAccount": "Conto telefonante",
-  "@callingAccount": {},
   "bannedUser": "{username} ha bannit {targetName}",
   "@bannedUser": {
     "type": "String",
@@ -1028,39 +877,6 @@
       }
     }
   },
-  "badServerVersionsException": "Li hem-servitor supporta ti versiones de specification:\n{serverVersions}\nMa ti-ci application supporta solmen {supportedVersions}",
-  "@badServerVersionsException": {
-    "type": "String",
-    "placeholders": {
-      "serverVersions": {
-        "type": "String"
-      },
-      "supportedVersions": {
-        "type": "String"
-      }
-    }
-  },
-  "dateWithoutYear": "{day}.{month}",
-  "@dateWithoutYear": {
-    "type": "String",
-    "placeholders": {
-      "month": {
-        "type": "String"
-      },
-      "day": {
-        "type": "String"
-      }
-    }
-  },
-  "device": "Aparate",
-  "@device": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "widgetVideo": "Video",
-  "@widgetVideo": {},
-  "widgetName": "Nómine",
-  "@widgetName": {},
   "account": "Conto",
   "@account": {
     "type": "String",
@@ -1112,21 +928,6 @@
   "@newGroup": {},
   "newSpace": "Crear un spacie",
   "@newSpace": {},
-  "enterSpace": "Intrar li spacie",
-  "@enterSpace": {},
-  "enterRoom": "Intrar li chambre",
-  "@enterRoom": {},
-  "allSpaces": "Omni spacies",
-  "@allSpaces": {},
-  "numChats": "{number} conversationes",
-  "@numChats": {
-    "type": "number",
-    "placeholders": {
-      "number": {
-        "type": "String"
-      }
-    }
-  },
   "logout": "Cluder li session",
   "@logout": {
     "type": "String",

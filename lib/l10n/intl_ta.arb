@@ -30,11 +30,6 @@
   "@globalChatId": {},
   "accessAndVisibility": "அணுகல் மற்றும் தெரிவுநிலை",
   "@accessAndVisibility": {},
-  "enterYourHomeserver": "உங்கள் ஓம்சர்வரை உள்ளிடவும்",
-  "@enterYourHomeserver": {
-    "type": "String",
-    "placeholders": {}
-  },
   "onlineKeyBackupEnabled": "நிகழ்நிலை விசை காப்புப்பிரதி இயக்கப்பட்டது",
   "@onlineKeyBackupEnabled": {
     "type": "String",
@@ -65,31 +60,10 @@
   },
   "unsupportedAndroidVersion": "ஆதரிக்கப்படாத ஆண்ட்ராய்டு பதிப்பு",
   "@unsupportedAndroidVersion": {},
-  "invitedBy": "{user} அழைத்தார்",
-  "@invitedBy": {
-    "placeholders": {
-      "user": {
-        "type": "String"
-      }
-    }
-  },
-  "startConversation": "உரையாடலைத் தொடங்குங்கள்",
-  "@startConversation": {},
   "commandHint_sendraw": "மூல சாதொபொகு ஐ அனுப்புங்கள்",
   "@commandHint_sendraw": {},
   "passwordIsWrong": "நீங்கள் உள்ளிட்ட கடவுச்சொல் தவறு",
   "@passwordIsWrong": {},
-  "publicLink": "பொது இணைப்பு",
-  "@publicLink": {},
-  "forwardMessageTo": "செய்தியை {roomName}க்கு அனுப்பவா?",
-  "@forwardMessageTo": {
-    "type": "String",
-    "placeholders": {
-      "roomName": {
-        "type": "String"
-      }
-    }
-  },
   "completedKeyVerification": "{sender} நிறைவு செய்யப்பட்ட விசை சரிபார்ப்பு",
   "@completedKeyVerification": {
     "type": "String",
@@ -132,8 +106,6 @@
       }
     }
   },
-  "widgetName": "பெயர்",
-  "@widgetName": {},
   "chooseAStrongPassword": "வலுவான கடவுச்சொல்லைத் தேர்வுசெய்க",
   "@chooseAStrongPassword": {
     "type": "String",
@@ -163,11 +135,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "fileName": "கோப்பு பெயர்",
-  "@fileName": {
-    "type": "String",
-    "placeholders": {}
-  },
   "hasWithdrawnTheInvitationFor": "{targetName} க்கான அழைப்பை {username} திரும்பப் பெற்றுள்ளார்",
   "@hasWithdrawnTheInvitationFor": {
     "type": "String",
@@ -176,20 +143,6 @@
         "type": "String"
       },
       "targetName": {
-        "type": "String"
-      }
-    }
-  },
-  "identity": "முற்றொருமை",
-  "@identity": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "removedBy": "{username} ஆல் அகற்றப்பட்டது",
-  "@removedBy": {
-    "type": "String",
-    "placeholders": {
-      "username": {
         "type": "String"
       }
     }
@@ -203,16 +156,6 @@
   "@user": {},
   "optionalRedactReason": "(விரும்பினால்) இந்த செய்தியை மாற்றியமைப்பதற்கான காரணம் ...",
   "@optionalRedactReason": {},
-  "device": "சாதனம்",
-  "@device": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "license": "உரிமம்",
-  "@license": {
-    "type": "String",
-    "placeholders": {}
-  },
   "contactHasBeenInvitedToTheGroup": "குழுவிற்கு தொடர்பு அழைக்கப்பட்டுள்ளது",
   "@contactHasBeenInvitedToTheGroup": {
     "type": "String",
@@ -223,26 +166,12 @@
     "type": "String",
     "placeholders": {}
   },
-  "widgetNameError": "காட்சி பெயரை வழங்கவும்.",
-  "@widgetNameError": {},
   "select": "தேர்ந்தெடு",
   "@select": {},
   "compareEmojiMatch": "தயவுசெய்து ஈமோசிகளை ஒப்பிடுக",
   "@compareEmojiMatch": {
     "type": "String",
     "placeholders": {}
-  },
-  "dateWithoutYear": "{month}-{day}",
-  "@dateWithoutYear": {
-    "type": "String",
-    "placeholders": {
-      "month": {
-        "type": "String"
-      },
-      "day": {
-        "type": "String"
-      }
-    }
   },
   "fromTheInvitation": "அழைப்பிலிருந்து",
   "@fromTheInvitation": {
@@ -288,11 +217,6 @@
   },
   "shareInviteLink": "இணைப்பைப் பகிரவும்",
   "@shareInviteLink": {},
-  "pickImage": "ஒரு படத்தைத் தேர்ந்தெடுக்கவும்",
-  "@pickImage": {
-    "type": "String",
-    "placeholders": {}
-  },
   "pin": "முள்",
   "@pin": {
     "type": "String",
@@ -400,8 +324,6 @@
   "@commandHint_googly": {},
   "commandHint_cuddle": "ஒரு கசப்பு அனுப்பவும்",
   "@commandHint_cuddle": {},
-  "startFirstChat": "உங்கள் முதல் அரட்டையைத் தொடங்கவும்",
-  "@startFirstChat": {},
   "importEmojis": "ஈமோசிகளை இறக்குமதி செய்யுங்கள்",
   "@importEmojis": {},
   "exportEmotePack": "எமோட் பேக் .zip என ஏற்றுமதி செய்யுங்கள்",
@@ -468,15 +390,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} unread chats}}",
-  "@unreadChats": {
-    "type": "String",
-    "placeholders": {
-      "unreadCount": {
-        "type": "int"
-      }
-    }
-  },
   "verifyTitle": "பிற கணக்கை சரிபார்க்கிறது",
   "@verifyTitle": {
     "type": "String",
@@ -516,8 +429,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "widgetUrlError": "இது சரியான முகவரி அல்ல.",
-  "@widgetUrlError": {},
   "commandHint_invite": "கொடுக்கப்பட்ட பயனரை இந்த அறைக்கு அழைக்கவும்",
   "@commandHint_invite": {
     "type": "String",
@@ -542,11 +453,6 @@
       }
     },
     "description": "State that {command} is not a valid /command."
-  },
-  "inviteForMe": "எனக்கு அழைக்கவும்",
-  "@inviteForMe": {
-    "type": "String",
-    "placeholders": {}
   },
   "moderator": "மதிப்பீட்டாளர்",
   "@moderator": {
@@ -580,8 +486,6 @@
   },
   "sendOnEnter": "Enter ஐ அனுப்பவும்",
   "@sendOnEnter": {},
-  "pleaseEnterRecoveryKey": "உங்கள் மீட்பு விசையை உள்ளிடவும்:",
-  "@pleaseEnterRecoveryKey": {},
   "dehydrate": "ஏற்றுமதி அமர்வு மற்றும் சாதனத்தை துடைக்கவும்",
   "@dehydrate": {},
   "ok": "சரி",
@@ -628,11 +532,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "oopsPushError": "அச்சச்சோ! துரதிர்ச்டவசமாக, புச் அறிவிப்புகளை அமைக்கும் போது பிழை ஏற்பட்டது.",
-  "@oopsPushError": {
-    "type": "String",
-    "placeholders": {}
-  },
   "oopsSomethingWentWrong": "அச்சச்சோ, ஏதோ தவறு நடந்தது…",
   "@oopsSomethingWentWrong": {
     "type": "String",
@@ -674,8 +573,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "enterRoom": "அறையை உள்ளிடவும்",
-  "@enterRoom": {},
   "report": "அறிக்கை",
   "@report": {},
   "verifyOtherDevice": "Sevice பிற சாதனத்தை சரிபார்க்கவும்",
@@ -688,11 +585,6 @@
         "type": "String"
       }
     }
-  },
-  "toggleFavorite": "பிடித்ததை மாற்றவும்",
-  "@toggleFavorite": {
-    "type": "String",
-    "placeholders": {}
   },
   "userSentUnknownEvent": "{username} ஒரு {type} நிகழ்வை அனுப்பியது",
   "@userSentUnknownEvent": {
@@ -728,16 +620,8 @@
   },
   "pinMessage": "அறைக்கு முள்",
   "@pinMessage": {},
-  "addWidget": "விட்செட்டைச் சேர்க்கவும்",
-  "@addWidget": {},
-  "widgetEtherpad": "உரை குறிப்பு",
-  "@widgetEtherpad": {},
-  "widgetCustom": "தனிப்பயன்",
-  "@widgetCustom": {},
   "unlockOldMessages": "பழைய செய்திகளைத் திறக்கவும்",
   "@unlockOldMessages": {},
-  "appearOnTop": "மேலே தோன்றும்",
-  "@appearOnTop": {},
   "serverLimitReached": "சேவையக வரம்பு அடைந்தது! {seconds} விநாடிகள் காத்திருக்கிறது ...",
   "@serverLimitReached": {
     "type": "integer",
@@ -765,15 +649,6 @@
   "@createGroup": {},
   "editBundlesForAccount": "இந்த கணக்கிற்கான மூட்டைகளைத் திருத்தவும்",
   "@editBundlesForAccount": {},
-  "seenByUser": "{username} ஆல் பார்த்தது",
-  "@seenByUser": {
-    "type": "String",
-    "placeholders": {
-      "username": {
-        "type": "String"
-      }
-    }
-  },
   "unpin": "மூள்நீக்கு",
   "@unpin": {
     "type": "String",
@@ -781,8 +656,6 @@
   },
   "emojis": "ஈமோசிகள்",
   "@emojis": {},
-  "indexedDbErrorTitle": "தனியார் பயன்முறை சிக்கல்கள்",
-  "@indexedDbErrorTitle": {},
   "jumpToLastReadMessage": "கடைசி வாசிப்பு செய்திக்கு செல்லவும்",
   "@jumpToLastReadMessage": {},
   "commandHint_markasgroup": "குழுவாக குறி",
@@ -813,15 +686,6 @@
       }
     }
   },
-  "videoWithSize": "வீடியோ ({size})",
-  "@videoWithSize": {
-    "type": "String",
-    "placeholders": {
-      "size": {
-        "type": "String"
-      }
-    }
-  },
   "readUpToHere": "இங்கே படிக்கவும்",
   "@readUpToHere": {},
   "chatDescriptionHasBeenChanged": "அரட்டை விளக்கம் மாற்றப்பட்டது",
@@ -836,8 +700,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "widgetVideo": "ஒளிதோற்றம்",
-  "@widgetVideo": {},
   "redactedAnEvent": "{username} ஒரு நிகழ்வை மறுவடிவமைத்தது",
   "@redactedAnEvent": {
     "type": "String",
@@ -858,11 +720,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "toggleUnread": "மார்க் படிக்க/படிக்கவில்லை",
-  "@toggleUnread": {
-    "type": "String",
-    "placeholders": {}
-  },
   "tooManyRequestsWarning": "பல கோரிக்கைகள். தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும்!",
   "@tooManyRequestsWarning": {
     "type": "String",
@@ -878,24 +735,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "addToSpaceDescription": "இந்த அரட்டையைச் சேர்க்க ஒரு இடத்தைத் தேர்ந்தெடுக்கவும்.",
-  "@addToSpaceDescription": {},
-  "errorAddingWidget": "விட்செட்டைச் சேர்ப்பதில் பிழை.",
-  "@errorAddingWidget": {},
-  "youInvitedToBy": "In இணைப்பு வழியாக நீங்கள் அழைக்கப்பட்டுள்ளீர்கள்:\n {alias}",
-  "@youInvitedToBy": {
-    "placeholders": {
-      "alias": {
-        "type": "String"
-      }
-    }
-  },
   "storeSecurlyOnThisDevice": "இந்த சாதனத்தில் பாதுகாப்பாக சேமிக்கவும்",
   "@storeSecurlyOnThisDevice": {},
-  "screenSharingTitle": "திரை பகிர்வு",
-  "@screenSharingTitle": {},
-  "appearOnTopDetails": "பயன்பாடு மேலே தோன்ற அனுமதிக்கிறது (நீங்கள் ஏற்கனவே ஒரு அழைப்பு கணக்காக பஞ்சுபோன்ற அமைப்பைக் கொண்டிருந்தால் தேவையில்லை)",
-  "@appearOnTopDetails": {},
   "newGroup": "புதிய குழு",
   "@newGroup": {},
   "noOtherDevicesFound": "வேறு சாதனங்கள் எதுவும் கிடைக்கவில்லை",
@@ -937,18 +778,6 @@
   "@swipeRightToLeftToReply": {},
   "unread": "படிக்காதது",
   "@unread": {},
-  "changedTheChatDescriptionTo": "{username} பயனர்பெயர் the அரட்டை விளக்கத்தை மாற்றியது: '{description}'",
-  "@changedTheChatDescriptionTo": {
-    "type": "String",
-    "placeholders": {
-      "username": {
-        "type": "String"
-      },
-      "description": {
-        "type": "String"
-      }
-    }
-  },
   "dateAndTimeOfDay": "{date}, {timeOfDay}",
   "@dateAndTimeOfDay": {
     "type": "String",
@@ -1024,16 +853,12 @@
   },
   "time": "நேரம்",
   "@time": {},
-  "publish": "வெளியிடுங்கள்",
-  "@publish": {},
   "openChat": "திறந்த அரட்டை",
   "@openChat": {},
   "markAsRead": "படித்தபடி குறி",
   "@markAsRead": {},
   "reportUser": "பயனர் புகாரளிக்கவும்",
   "@reportUser": {},
-  "dismiss": "தள்ளுபடி",
-  "@dismiss": {},
   "reactedWith": "{sender} {reaction} உடன் பதிலளித்தார்",
   "@reactedWith": {
     "type": "String",
@@ -1052,24 +877,10 @@
   "@videoCallsBetaWarning": {},
   "experimentalVideoCalls": "சோதனை வீடியோ அழைப்புகள்",
   "@experimentalVideoCalls": {},
-  "emailOrUsername": "மின்னஞ்சல் அல்லது பயனர்பெயர்",
-  "@emailOrUsername": {},
-  "previousAccount": "முந்தைய கணக்கு",
-  "@previousAccount": {},
   "noOneCanJoin": "யாரும் சேர முடியாது",
   "@noOneCanJoin": {},
-  "userWouldLikeToChangeTheChat": "{user} அரட்டையில் சேர விரும்புகிறார்.",
-  "@userWouldLikeToChangeTheChat": {
-    "placeholders": {
-      "user": {
-        "type": "String"
-      }
-    }
-  },
   "newSpace": "புதிய இடம்",
   "@newSpace": {},
-  "enterSpace": "இடத்தை உள்ளிடவும்",
-  "@enterSpace": {},
   "wasDirectChatDisplayName": "வெற்று அரட்டை ({oldDisplayName})",
   "@wasDirectChatDisplayName": {
     "type": "String",
@@ -1083,8 +894,6 @@
   "@openLinkInBrowser": {},
   "reportErrorDescription": "😭 ஓ இல்லை. ஏதோ தவறு நடந்தது. நீங்கள் விரும்பினால், இந்த பிழையை டெவலப்பர்களிடம் புகாரளிக்கலாம்.",
   "@reportErrorDescription": {},
-  "setTheme": "கருப்பொருள் அமைக்கவும்:",
-  "@setTheme": {},
   "invite": "அழைக்கவும்",
   "@invite": {},
   "wrongPinEntered": "தவறான முள் நுழைந்தது! {seconds} விநாடிகளில் மீண்டும் முயற்சிக்கவும் ...",
@@ -1206,16 +1015,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "connect": "இணை",
-  "@connect": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "containsUserName": "பயனர்பெயர் உள்ளது",
-  "@containsUserName": {
-    "type": "String",
-    "placeholders": {}
-  },
   "copiedToClipboard": "இடைநிலைப்பலகைக்கு நகலெடுக்கப்பட்டது",
   "@copiedToClipboard": {
     "type": "String",
@@ -1327,10 +1126,6 @@
   },
   "dehydrateWarning": "இந்த செயலை செயல்தவிர்க்க முடியாது. காப்புப்பிரதி கோப்பை பாதுகாப்பாக சேமித்து வைக்கவும்.",
   "@dehydrateWarning": {},
-  "dehydrateTor": "டோர் பயனர்கள்: ஏற்றுமதி அமர்வு",
-  "@dehydrateTor": {},
-  "hydrateTor": "டோர் பயனர்கள்: இறக்குமதி அமர்வு ஏற்றுமதி",
-  "@hydrateTor": {},
   "loadMore": "மேலும் ஏற்றவும்…",
   "@loadMore": {
     "type": "String",
@@ -1341,18 +1136,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "memberChanges": "உறுப்பினர் மாற்றங்கள்",
-  "@memberChanges": {
-    "type": "String",
-    "placeholders": {}
-  },
   "messagesStyle": "செய்திகள்:",
   "@messagesStyle": {},
-  "needPantalaimonWarning": "இப்போதைக்கு இறுதி முதல் இறுதி குறியாக்கத்தைப் பயன்படுத்த உங்களுக்கு பாண்டலாயமன் தேவை என்பதை நினைவில் கொள்க.",
-  "@needPantalaimonWarning": {
-    "type": "String",
-    "placeholders": {}
-  },
   "newMessageInFluffyChat": "Fuf பஞ்சுபோன்ற புதிய செய்தி",
   "@newMessageInFluffyChat": {
     "type": "String",
@@ -1385,11 +1170,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "notificationsEnabledForThisAccount": "இந்த கணக்கிற்கு அறிவிப்புகள் இயக்கப்பட்டன",
-  "@notificationsEnabledForThisAccount": {
-    "type": "String",
-    "placeholders": {}
-  },
   "numUsersTyping": "{count} பயனர்கள் தட்டச்சு செய்கிறார்கள்…",
   "@numUsersTyping": {
     "type": "String",
@@ -1406,11 +1186,6 @@
   },
   "openCamera": "திறந்த கேமரா",
   "@openCamera": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "openVideoCamera": "வீடியோவுக்கு கேமரா திறக்கவும்",
-  "@openVideoCamera": {
     "type": "String",
     "placeholders": {}
   },
@@ -1492,11 +1267,6 @@
       }
     }
   },
-  "setPermissionsLevel": "இசைவு அளவை அமைக்கவும்",
-  "@setPermissionsLevel": {
-    "type": "String",
-    "placeholders": {}
-  },
   "settings": "அமைப்புகள்",
   "@settings": {
     "type": "String",
@@ -1550,11 +1320,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "people": "மக்கள்",
-  "@people": {
-    "type": "String",
-    "placeholders": {}
-  },
   "youHaveBeenBannedFromThisChat": "இந்த அரட்டையிலிருந்து உங்களுக்கு தடை விதிக்கப்பட்டுள்ளது",
   "@youHaveBeenBannedFromThisChat": {
     "type": "String",
@@ -1566,8 +1331,6 @@
   "@databaseMigrationTitle": {},
   "usersMustKnock": "பயனர்கள் தட்ட வேண்டும்",
   "@usersMustKnock": {},
-  "allSpaces": "அனைத்து இடங்களும்",
-  "@allSpaces": {},
   "importFromZipFile": ".Zip கோப்பிலிருந்து இறக்குமதி செய்யுங்கள்",
   "@importFromZipFile": {},
   "activatedEndToEndEncryption": "{username} இறுதி குறியாக்கத்திற்கு செயல்படுத்தப்பட்ட முடிவு",
@@ -1579,8 +1342,6 @@
       }
     }
   },
-  "addChatDescription": "அரட்டை விளக்கத்தைச் சேர்க்கவும் ...",
-  "@addChatDescription": {},
   "addToSpace": "விண்வெளியில் சேர்க்கவும்",
   "@addToSpace": {},
   "commandHint_hug": "கட்டிப்பிடிக்கவும்",
@@ -1650,18 +1411,6 @@
       }
     }
   },
-  "badServerVersionsException": "ஓம்சர்வர் ச்பெக் பதிப்புகளை ஆதரிக்கிறது:\n {serverVersions}\n ஆனால் இந்த பயன்பாடு {supportedVersions} மட்டுமே ஆதரிக்கிறது",
-  "@badServerVersionsException": {
-    "type": "String",
-    "placeholders": {
-      "serverVersions": {
-        "type": "String"
-      },
-      "supportedVersions": {
-        "type": "String"
-      }
-    }
-  },
   "noChatsFoundHere": "இங்கே அரட்டைகள் எதுவும் காணப்படவில்லை. கீழே உள்ள பொத்தானைப் பயன்படுத்தி ஒருவருடன் புதிய அரட்டையைத் தொடங்கவும். ⤵️",
   "@noChatsFoundHere": {},
   "space": "இடைவெளி",
@@ -1670,23 +1419,6 @@
   "@banned": {
     "type": "String",
     "placeholders": {}
-  },
-  "botMessages": "போட் செய்திகள்",
-  "@botMessages": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "changedTheChatNameTo": "{username} அரட்டை பெயரை மாற்றியது: '{chatname}'",
-  "@changedTheChatNameTo": {
-    "type": "String",
-    "placeholders": {
-      "username": {
-        "type": "String"
-      },
-      "chatname": {
-        "type": "String"
-      }
-    }
   },
   "changedTheHistoryVisibilityTo": "{username} வரலாற்று தெரிவுநிலையை மாற்றியது: {rules}",
   "@changedTheHistoryVisibilityTo": {
@@ -1762,8 +1494,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "இந்த இடத்தில் அரட்டை சேர்க்கப்பட்டுள்ளது",
-  "@chatHasBeenAddedToThisSpace": {},
   "commandHint_markasdm": "கொடுக்கப்பட்ட மேட்ரிக்சிற்கான நேரடி செய்தி அறையாக குறிக்கவும்",
   "@commandHint_markasdm": {},
   "commandHint_ban": "கொடுக்கப்பட்ட பயனரை இந்த அறையிலிருந்து தடை செய்யுங்கள்",
@@ -1795,11 +1525,6 @@
   "@commandInvalid": {
     "type": "String"
   },
-  "confirm": "உறுதிப்படுத்தவும்",
-  "@confirm": {
-    "type": "String",
-    "placeholders": {}
-  },
   "contentHasBeenReported": "உள்ளடக்கம் சேவையக நிர்வாகிகளுக்கு தெரிவிக்கப்பட்டுள்ளது",
   "@contentHasBeenReported": {
     "type": "String",
@@ -1818,21 +1543,6 @@
   "@currentlyActive": {
     "type": "String",
     "placeholders": {}
-  },
-  "dateWithYear": "{year}-{month}-{day}",
-  "@dateWithYear": {
-    "type": "String",
-    "placeholders": {
-      "year": {
-        "type": "String"
-      },
-      "month": {
-        "type": "String"
-      },
-      "day": {
-        "type": "String"
-      }
-    }
   },
   "deactivateAccountWarning": "இது உங்கள் பயனர் கணக்கை செயலிழக்கச் செய்யும். இதை செயல்தவிர்க்க முடியாது! நீங்கள் உறுதியாக இருக்கிறீர்களா?",
   "@deactivateAccountWarning": {
@@ -1856,11 +1566,6 @@
   },
   "directChats": "நேரடி அரட்டைகள்",
   "@directChats": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "allRooms": "அனைத்து குழு அரட்டைகளும்",
-  "@allRooms": {
     "type": "String",
     "placeholders": {}
   },
@@ -1889,11 +1594,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "emotePacks": "அறைக்கு எமோட் பொதிகள்",
-  "@emotePacks": {
-    "type": "String",
-    "placeholders": {}
-  },
   "emoteSettings": "எமோட் அமைப்புகள்",
   "@emoteSettings": {
     "type": "String",
@@ -1909,11 +1609,6 @@
   "@customEmojisAndStickersBody": {},
   "emoteShortcode": "சார்ட்கோட் எமோட்",
   "@emoteShortcode": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "emoteWarnNeedToPick": "நீங்கள் ஒரு எமோட் சார்ட்கோட் மற்றும் ஒரு படத்தை எடுக்க வேண்டும்!",
-  "@emoteWarnNeedToPick": {
     "type": "String",
     "placeholders": {}
   },
@@ -1972,11 +1667,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "goToTheNewRoom": "புதிய அறைக்குச் செல்லுங்கள்",
-  "@goToTheNewRoom": {
-    "type": "String",
-    "placeholders": {}
-  },
   "group": "குழு",
   "@group": {
     "type": "String",
@@ -2003,8 +1693,6 @@
   },
   "block": "தொகுதி",
   "@block": {},
-  "inviteContactToGroupQuestion": "\"{groupName}\" அரட்டைக்கு {contact} ஐ அழைக்க விரும்புகிறீர்களா?",
-  "@inviteContactToGroupQuestion": {},
   "inviteContactToGroup": "{groupName} க்கு தொடர்பை அழை",
   "@inviteContactToGroup": {
     "type": "String",
@@ -2054,10 +1742,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "dehydrateTorLong": "TOR பயனர்களுக்கு, சாளரத்தை மூடுவதற்கு முன் அமர்வை ஏற்றுமதி செய்ய பரிந்துரைக்கப்படுகிறது.",
-  "@dehydrateTorLong": {},
-  "hydrateTorLong": "உங்கள் அமர்வை கடைசியாக டோரில் ஏற்றுமதி செய்தீர்களா? விரைவாக அதை இறக்குமதி செய்து அரட்டையடிக்கவும்.",
-  "@hydrateTorLong": {},
   "hydrate": "காப்பு கோப்பிலிருந்து மீட்டமைக்கவும்",
   "@hydrate": {},
   "locationDisabledNotice": "இருப்பிட சேவைகள் முடக்கப்பட்டுள்ளன. தயவுசெய்து உங்கள் இருப்பிடத்தைப் பகிர்ந்து கொள்ள அவர்களுக்கு உதவவும்.",
@@ -2128,23 +1812,12 @@
     "type": "String",
     "placeholders": {}
   },
-  "hideMemberChangesInPublicChats": "பொது அரட்டைகளில் உறுப்பினர் மாற்றங்களை மறைக்கவும்",
-  "@hideMemberChangesInPublicChats": {},
-  "hideMemberChangesInPublicChatsBody": "வாசிப்புத்திறனை மேம்படுத்த யாராவது ஒரு பொது அரட்டையில் சேர்ந்தால் அல்லது விட்டுவிட்டால் அரட்டை காலவரிசையில் காட்ட வேண்டாம்.",
-  "@hideMemberChangesInPublicChatsBody": {},
   "overview": "கண்ணோட்டம்",
   "@overview": {},
-  "notifyMeFor": "எனக்கு அறிவிக்கவும்",
-  "@notifyMeFor": {},
   "passwordRecoverySettings": "கடவுச்சொல் மீட்பு அமைப்புகள்",
   "@passwordRecoverySettings": {},
   "passwordRecovery": "கடவுச்சொல் மீட்பு",
   "@passwordRecovery": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "pleaseChoose": "தயவுசெய்து தேர்வு செய்யவும்",
-  "@pleaseChoose": {
     "type": "String",
     "placeholders": {}
   },
@@ -2218,11 +1891,6 @@
       }
     }
   },
-  "rejoin": "மீண்டும் சேரவும்",
-  "@rejoin": {
-    "type": "String",
-    "placeholders": {}
-  },
   "unbanFromChat": "அரட்டையிலிருந்து தடையின்றி",
   "@unbanFromChat": {
     "type": "String",
@@ -2261,16 +1929,6 @@
       }
     }
   },
-  "sendOriginal": "அசல் அனுப்பு",
-  "@sendOriginal": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "sendSticker": "ச்டிக்கரை அனுப்பவும்",
-  "@sendSticker": {
-    "type": "String",
-    "placeholders": {}
-  },
   "sendVideo": "வீடியோ அனுப்பவும்",
   "@sendVideo": {
     "type": "String",
@@ -2294,45 +1952,20 @@
       }
     }
   },
-  "separateChatTypes": "நேரடி அரட்டைகள் மற்றும் குழுக்களை பிரிக்கவும்",
-  "@separateChatTypes": {
-    "type": "String",
-    "placeholders": {}
-  },
   "setAsCanonicalAlias": "முதன்மையான மாற்றுப்பெயராக அமைக்கவும்",
   "@setAsCanonicalAlias": {
     "type": "String",
     "placeholders": {}
   },
-  "setCustomEmotes": "தனிப்பயன் உணர்ச்சிகளை அமைக்கவும்",
-  "@setCustomEmotes": {
-    "type": "String",
-    "placeholders": {}
-  },
   "setChatDescription": "அரட்டை விளக்கத்தை அமைக்கவும்",
   "@setChatDescription": {},
-  "setInvitationLink": "அழைப்பிதழ் இணைப்பை அமைக்கவும்",
-  "@setInvitationLink": {
-    "type": "String",
-    "placeholders": {}
-  },
   "share": "பங்கு",
   "@share": {
     "type": "String",
     "placeholders": {}
   },
-  "presenceStyle": "இருப்பு:",
-  "@presenceStyle": {
-    "type": "String",
-    "placeholders": {}
-  },
   "presencesToggle": "பிற பயனர்களிடமிருந்து நிலை செய்திகளைக் காட்டு",
   "@presencesToggle": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "singlesignon": "ஒற்றை அடையாளம்",
-  "@singlesignon": {
     "type": "String",
     "placeholders": {}
   },
@@ -2422,11 +2055,6 @@
   "@sender": {},
   "openGallery": "திறந்த கேலரி",
   "@openGallery": {},
-  "wallpaper": "வால்பேப்பர்:",
-  "@wallpaper": {
-    "type": "String",
-    "placeholders": {}
-  },
   "whyDoYouWantToReportThis": "இதை ஏன் புகாரளிக்க விரும்புகிறீர்கள்?",
   "@whyDoYouWantToReportThis": {
     "type": "String",
@@ -2458,21 +2086,8 @@
   "@pleaseEnterRecoveryKeyDescription": {},
   "confirmEventUnpin": "நிகழ்வை நிரந்தரமாக அவிழ்ப்பது உறுதி?",
   "@confirmEventUnpin": {},
-  "switchToAccount": "கணக்குக்கு மாறவும் {number}",
-  "@switchToAccount": {
-    "type": "number",
-    "placeholders": {
-      "number": {
-        "type": "String"
-      }
-    }
-  },
-  "nextAccount": "அடுத்த கணக்கு",
-  "@nextAccount": {},
   "youJoinedTheChat": "நீங்கள் அரட்டையில் சேர்ந்தீர்கள்",
   "@youJoinedTheChat": {},
-  "indexedDbErrorLong": "செய்தி சேமிப்பு துரதிர்ச்டவசமாக இயல்புநிலையாக தனிப்பட்ட பயன்முறையில் இயக்கப்படவில்லை.\n தயவுசெய்து பார்வையிடவும்\n - பற்றி: கட்டமைப்பு\n - கணம் dom.indexedDB.privateBrowsing.enabled பெறுநர் true\n இல்லையெனில், பஞ்சுபோன்றவை இயக்க முடியாது.",
-  "@indexedDbErrorLong": {},
   "youAcceptedTheInvitation": "👍 நீங்கள் அழைப்பை ஏற்றுக்கொண்டீர்கள்",
   "@youAcceptedTheInvitation": {},
   "youBannedUser": "நீங்கள் {user} தடை செய்தீர்கள்",
@@ -2523,8 +2138,6 @@
       }
     }
   },
-  "noPublicLinkHasBeenCreatedYet": "பொது இணைப்பு இதுவரை உருவாக்கப்படவில்லை",
-  "@noPublicLinkHasBeenCreatedYet": {},
   "knock": "தட்டவும்",
   "@knock": {},
   "users": "பயனர்கள்",
@@ -2545,29 +2158,6 @@
   },
   "custom": "தனிப்பயன்",
   "@custom": {},
-  "foregroundServiceRunning": "முன்புற பணி இயங்கும்போது இந்த அறிவிப்பு தோன்றும்.",
-  "@foregroundServiceRunning": {},
-  "screenSharingDetail": "உங்கள் திரையை FUFFYCHAT இல் பகிர்கிறீர்கள்",
-  "@screenSharingDetail": {},
-  "callingPermissions": "அழைப்பு அனுமதிகள்",
-  "@callingPermissions": {},
-  "callingAccount": "அழைப்பு கணக்கு",
-  "@callingAccount": {},
-  "callingAccountDetails": "சொந்த ஆண்ட்ராய்டு டயலர் பயன்பாட்டைப் பயன்படுத்த பஞ்சுபோன்றது அனுமதிக்கிறது.",
-  "@callingAccountDetails": {},
-  "otherCallingPermissions": "மைக்ரோஃபோன், கேமரா மற்றும் பிற பஞ்சுபோன்ற அனுமதிகள்",
-  "@otherCallingPermissions": {},
-  "numChats": "{number} அரட்டைகள்",
-  "@numChats": {
-    "type": "number",
-    "placeholders": {
-      "number": {
-        "type": "String"
-      }
-    }
-  },
-  "hideUnimportantStateEvents": "முக்கியமற்ற மாநில நிகழ்வுகளை மறைக்கவும்",
-  "@hideUnimportantStateEvents": {},
   "whyIsThisMessageEncrypted": "இந்த செய்தி ஏன் படிக்க முடியாதது?",
   "@whyIsThisMessageEncrypted": {},
   "noKeyForThisMessage": "இந்த சாதனத்தில் உங்கள் கணக்கில் கையொப்பமிடுவதற்கு முன்பு செய்தி அனுப்பப்பட்டால் இது நிகழலாம்.\n\n அனுப்புநர் உங்கள் சாதனத்தைத் தடுத்துள்ளார் அல்லது இணைய இணைப்பில் ஏதேனும் தவறு ஏற்பட்டுள்ளது.\n\n மற்றொரு அமர்வில் செய்தியைப் படிக்க முடியுமா? அதிலிருந்து செய்தியை மாற்றலாம்! அமைப்புகள்> சாதனங்களுக்குச் சென்று, உங்கள் சாதனங்கள் ஒருவருக்கொருவர் சரிபார்த்துள்ளன என்பதை உறுதிப்படுத்தவும். அடுத்த முறை நீங்கள் அறையைத் திறக்கும்போது, இரண்டு அமர்வுகளும் முன்னணியில் இருக்கும்போது, விசைகள் தானாகவே அனுப்பப்படும்.\n\n வெளியேறும்போது அல்லது சாதனங்களை மாற்றும்போது விசைகளை இழக்க நீங்கள் விரும்பவில்லையா? அமைப்புகளில் அரட்டை காப்புப்பிரதியை நீங்கள் இயக்கியுள்ளீர்கள் என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்.",
@@ -2602,23 +2192,8 @@
       }
     }
   },
-  "pleaseTryAgainLaterOrChooseDifferentServer": "தயவுசெய்து பின்னர் மீண்டும் முயற்சிக்கவும் அல்லது வேறு சேவையகத்தைத் தேர்வுசெய்க.",
-  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-  "signInWith": "{provider} மூலம் உள்நுழையவும்",
-  "@signInWith": {
-    "type": "String",
-    "placeholders": {
-      "provider": {
-        "type": "String"
-      }
-    }
-  },
-  "profileNotFound": "பயனரை சேவையகத்தில் காண முடியவில்லை. ஒரு இணைப்பு சிக்கல் இருக்கலாம் அல்லது பயனர் இல்லை.",
-  "@profileNotFound": {},
   "inviteGroupChat": "📨 குழு அரட்டை அழைப்பு",
   "@inviteGroupChat": {},
-  "invitePrivateChat": "Sative தனியார் அரட்டை அழைப்பு",
-  "@invitePrivateChat": {},
   "invalidInput": "தவறான உள்ளீடு!",
   "@invalidInput": {},
   "archiveRoomDescription": "அரட்டை காப்பகத்திற்கு நகர்த்தப்படும். மற்ற பயனர்கள் நீங்கள் அரட்டையை விட்டுவிட்டீர்கள் என்பதைக் காண முடியும்.",
@@ -2657,18 +2232,6 @@
   "@addChatOrSubSpace": {},
   "initAppError": "பயன்பாட்டைத் தொடங்கும்போது பிழை ஏற்பட்டது",
   "@initAppError": {},
-  "databaseBuildErrorBody": "SQlite தரவுத்தளத்தை உருவாக்க முடியவில்லை. ஆப்ஸ் தற்போதைக்கு மரபு தரவுத்தளத்தைப் பயன்படுத்த முயற்சிக்கிறது. {url} இல் டெவலப்பர்களிடம் இந்தப் பிழையைப் புகாரளிக்கவும். பிழை செய்தி: {error}",
-  "@databaseBuildErrorBody": {
-    "type": "String",
-    "placeholders": {
-      "url": {
-        "type": "String"
-      },
-      "error": {
-        "type": "String"
-      }
-    }
-  },
   "sessionLostBody": "உங்கள் அமர்வு தொலைந்துவிட்டது. {url} இல் டெவலப்பர்களிடம் இந்தப் பிழையைப் புகாரளிக்கவும். பிழை செய்தி: {error}",
   "@sessionLostBody": {
     "type": "String",
@@ -2788,8 +2351,6 @@
   },
   "changelog": "மாற்றபதிவு",
   "@changelog": {},
-  "homeserverDescription": "உங்கள் எல்லா தரவுகளும் ஒரு மின்னஞ்சல் வழங்குநரைப் போலவே ஓம்சர்வரில் சேமிக்கப்படுகின்றன. நீங்கள் எந்த ஓம்சர்வரை பயன்படுத்த விரும்புகிறீர்கள் என்பதை நீங்கள் தேர்வு செய்யலாம், அதே நேரத்தில் நீங்கள் எல்லோரிடமும் தொடர்பு கொள்ளலாம். Https://matrix.org இல் மேலும் அறிக.",
-  "@homeserverDescription": {},
   "calculatingFileSize": "கோப்பு அளவைக் கணக்கிடுகிறது ...",
   "@calculatingFileSize": {},
   "compressVideo": "அமைக்கும் வீடியோ ...",
@@ -2861,23 +2422,8 @@
     "type": "String",
     "description": "Usage hint for the command /send"
   },
-  "containsDisplayName": "காட்சி பெயரைக் கொண்டுள்ளது",
-  "@containsDisplayName": {
-    "type": "String",
-    "placeholders": {}
-  },
   "removeFromBundle": "இந்த மூட்டையிலிருந்து அகற்றவும்",
   "@removeFromBundle": {},
-  "pushRules": "தள்ளி விதிகள்",
-  "@pushRules": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "recording": "பதிவு",
-  "@recording": {
-    "type": "String",
-    "placeholders": {}
-  },
   "redactedBy": "{username} ஆல் திருத்தப்பட்டது",
   "@redactedBy": {
     "type": "String",
@@ -2927,10 +2473,6 @@
   },
   "unsupportedAndroidVersionLong": "இந்த அம்சத்திற்கு புதிய ஆண்ட்ராய்டு பதிப்பு தேவைப்படுகிறது. புதுப்பிப்புகள் அல்லது பரம்பரை OS ஆதரவை சரிபார்க்கவும்.",
   "@unsupportedAndroidVersionLong": {},
-  "widgetJitsi": "சிட்சி சந்திக்கிறார்",
-  "@widgetJitsi": {},
-  "signInWithPassword": "கடவுச்சொல்லுடன் உள்நுழைக",
-  "@signInWithPassword": {},
   "setColorTheme": "வண்ண கருப்பொருள் அமைக்கவும்:",
   "@setColorTheme": {},
   "roomUpgradeDescription": "அரட்டை பின்னர் புதிய அறை பதிப்பில் மீண்டும் உருவாக்கப்படும். பங்கேற்பாளர்கள் அனைவருக்கும் புதிய அரட்டைக்கு மாற வேண்டும் என்று அறிவிக்கப்படும். அறை பதிப்புகள் பற்றி மேலும் அறிய https://spec.matrix.org/latest/rooms/",
@@ -2949,21 +2491,8 @@
   "@blockedUsers": {},
   "leaveEmptyToClearStatus": "உங்கள் நிலையை அழிக்க காலியாக விடவும்.",
   "@leaveEmptyToClearStatus": {},
-  "subspace": "துணை",
-  "@subspace": {},
-  "decline": "வீழ்ச்சி",
-  "@decline": {},
   "thisDevice": "இந்த சாதனம்:",
   "@thisDevice": {},
-  "minimumPowerLevel": "{level} என்பது குறைந்தபட்ச ஆற்றல் நிலை.",
-  "@minimumPowerLevel": {
-    "type": "String",
-    "placeholders": {
-      "level": {
-        "type": "String"
-      }
-    }
-  },
   "gallery": "கேலரி",
   "@gallery": {},
   "files": "கோப்புகள்",
@@ -2990,8 +2519,6 @@
   "@notAnImage": {},
   "encryptThisChat": "இந்த அரட்டையை குறியாக்கவும்",
   "@encryptThisChat": {},
-  "userRole": "பயனர் பங்கு",
-  "@userRole": {},
   "publicChatAddresses": "பொது அரட்டை முகவரிகள்",
   "@publicChatAddresses": {},
   "createNewAddress": "புதிய முகவரியை உருவாக்கவும்",
@@ -3030,28 +2557,10 @@
   },
   "loginWithMatrixId": "மேட்ரிக்ச்-ஐடியுடன் உள்நுழைக",
   "@loginWithMatrixId": {},
-  "discoverHomeservers": "ஓம்சர்சர்களைக் கண்டறியவும்",
-  "@discoverHomeservers": {},
-  "whatIsAHomeserver": "ஓம்சர்வர் என்றால் என்ன?",
-  "@whatIsAHomeserver": {},
   "doesNotSeemToBeAValidHomeserver": "இணக்கமான ஓம்சர்வர் என்று தெரியவில்லை. தவறான URL?",
   "@doesNotSeemToBeAValidHomeserver": {},
-  "countChatsAndCountParticipants": "{chats} அரட்டைகள் மற்றும் {participants} பங்கேற்பாளர்கள்",
-  "@countChatsAndCountParticipants": {
-    "type": "String",
-    "placeholders": {
-      "chats": {
-        "type": "int"
-      },
-      "participants": {
-        "type": "int"
-      }
-    }
-  },
   "noMoreChatsFound": "இனி அரட்டைகள் கிடைக்கவில்லை ...",
   "@noMoreChatsFound": {},
-  "joinedChats": "இணைந்த அரட்டைகள்",
-  "@joinedChats": {},
   "spaces": "இடங்கள்",
   "@spaces": {},
   "changedTheChatPermissions": "{username} அரட்டை அனுமதிகளை மாற்றியுள்ளார்",
@@ -3099,11 +2608,6 @@
     "type": "String",
     "description": "Usage hint for the command /leave"
   },
-  "toggleMuted": "முடக்கியது",
-  "@toggleMuted": {
-    "type": "String",
-    "placeholders": {}
-  },
   "unbanUserDescription": "அவர்கள் முயற்சித்தால் பயனர் மீண்டும் அரட்டையை உள்ளிட முடியும்.",
   "@unbanUserDescription": {},
   "restoreSessionBody": "ஆப்ஸ் இப்போது உங்கள் அமர்வை காப்புப்பிரதியிலிருந்து மீட்டெடுக்க முயற்சிக்கிறது. {url} இல் டெவலப்பர்களிடம் இந்தப் பிழையைப் புகாரளிக்கவும். பிழை செய்தி: {error}",
@@ -3122,11 +2626,6 @@
   "@sendReadReceipts": {},
   "unableToJoinChat": "அரட்டையில் சேர முடியவில்லை. ஒருவேளை மற்ற கட்சி ஏற்கனவே உரையாடலை மூடியிருக்கலாம்.",
   "@unableToJoinChat": {},
-  "noGoogleServicesWarning": "ஃபயர்பேச் முகில் செய்தி உங்கள் சாதனத்தில் கிடைக்கவில்லை. இன்னும் புச் அறிவிப்புகளைப் பெற, NTFY ஐ நிறுவ பரிந்துரைக்கிறோம். NTFY அல்லது மற்றொரு ஒருங்கிணைந்த புச் வழங்குநருடன் நீங்கள் தரவு பாதுகாப்பான வழியில் புச் அறிவிப்புகளைப் பெறலாம். நீங்கள் பிளேச்டோரிலிருந்து அல்லது எஃப்-டிராய்டிலிருந்து NTFY ஐ பதிவிறக்கம் செய்யலாம்.",
-  "@noGoogleServicesWarning": {
-    "type": "String",
-    "placeholders": {}
-  },
   "scanQrCode": "QR குறியீட்டை ச்கேன் செய்யுங்கள்",
   "@scanQrCode": {},
   "obtainingLocation": "இருப்பிடத்தைப் பெறுதல்…",
@@ -3149,11 +2648,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "removeDevice": "சாதனத்தை அகற்று",
-  "@removeDevice": {
-    "type": "String",
-    "placeholders": {}
-  },
   "search": "தேடல்",
   "@search": {
     "type": "String",
@@ -3169,14 +2663,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "setCustomPermissionLevel": "தனிப்பயன் இசைவு அளவை அமைக்கவும்",
-  "@setCustomPermissionLevel": {},
-  "setPermissionsLevelDescription": "தயவுசெய்து கீழே ஒரு முன் வரையறுக்கப்பட்ட பாத்திரத்தைத் தேர்வுசெய்க அல்லது 0 மற்றும் 100 க்கு இடையில் தனிப்பயன் இசைவு நிலையை உள்ளிடவும்.",
-  "@setPermissionsLevelDescription": {},
   "ignoreUser": "பயனரை புறக்கணிக்கவும்",
   "@ignoreUser": {},
-  "normalUser": "சாதாரண பயனர்",
-  "@normalUser": {},
   "commandHint_roomupgrade": "கொடுக்கப்பட்ட அறை பதிப்பிற்கு இந்த அறையை மேம்படுத்தவும்",
   "@commandHint_roomupgrade": {},
   "checkList": "சரிபார்ப்பு பட்டியல்",
@@ -3218,8 +2706,6 @@
   "@open": {},
   "waitingForServer": "சேவையகத்திற்காக காத்திருக்கிறது ...",
   "@waitingForServer": {},
-  "appIntroduction": "வெவ்வேறு தூதர்களில் உங்கள் நண்பர்களுடன் அரட்டையடிக்க உங்களை பஞ்சுபோன்றது உங்களை அனுமதிக்கிறது. Https://matrix.org இல் மேலும் அறிக அல்லது *தொடரவும் *தட்டவும்.",
-  "@appIntroduction": {},
   "newChatRequest": "அரட்டை கோரிக்கை",
   "@newChatRequest": {},
   "contentNotificationSettings": "உள்ளடக்க அறிவிப்பு அமைப்புகள்",

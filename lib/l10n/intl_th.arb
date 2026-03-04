@@ -172,8 +172,6 @@
       }
     }
   },
-  "addChatDescription": "เพิ่มคำอธิบายการแชท",
-  "@addChatDescription": {},
   "appLock": "ล็อคแอป",
   "@appLock": {
     "type": "String",

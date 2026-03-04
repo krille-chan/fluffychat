@@ -1,72 +1,68 @@
 {
-    "remove": "निकालना",
-    "@remove": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "importFromZipFile": ".zip फ़ाइल से आयात करें",
-    "repeatPassword": "पासवर्ड दोहराएं",
-    "exportEmotePack": "इमोट पैक को .zip के रूप में निर्यात करें",
-    "importEmojis": "इमोजी आयात करें",
-    "notAnImage": "कोई छवि फ़ाइल नहीं।",
-    "importNow": "अभी आयात करें",
-    "setCustomPermissionLevel": "अपना अनुमति स्तर निर्धारित करें",
-    "setPermissionsLevelDescription": "कृपया नीचे दी गई भूमिका चुनें या 0 से 100 के बीच अपनी कस्टम अनुमति स्तर दर्ज करें।",
-    "ignoreUser": "उपयोगकर्ता को नजरअंदाज करें",
-    "normalUser": "सामान्य उपयोगकर्ता",
-    "replace": "बदलें",
-    "about": "हमारे बारे में",
-    "aboutHomeserver": "{homeserver} की जानकारी",
-    "@aboutHomeserver": {
-        "type": "String",
-        "placeholders": {
-            "homeserver": {
-                "type": "String"
-            }
-        }
-    },
-    "accept": "स्वीकार करें",
-    "@accept": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "acceptedTheInvitation": "👍 {username} ने निमंत्रण स्वीकार किया",
-    "@acceptedTheInvitation": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "account": "अकाउंट",
-    "@account": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "activatedEndToEndEncryption": "🔐 {username} ने एंड-टू-एंड एन्क्रिप्शन चालू किया",
-    "@activatedEndToEndEncryption": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "addEmail": "ईमेल ऐड करें",
-    "@addEmail": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "confirmMatrixId": "कृपया अपना अकाउंट हटाने के लिए अपनी मैट्रिक्स आईडी की पुष्टि करें।",
-    "supposedMxid": "यह {mxid} होना चाहिए",
-    "@supposedMxid": {
-        "type": "String",
-        "placeholders": {
-            "mxid": {
-                "type": "String"
-            }
-        }
-    },
-    "addChatDescription": "चैट का विवरण जोड़ें..।"
+  "remove": "निकालना",
+  "@remove": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "importFromZipFile": ".zip फ़ाइल से आयात करें",
+  "repeatPassword": "पासवर्ड दोहराएं",
+  "exportEmotePack": "इमोट पैक को .zip के रूप में निर्यात करें",
+  "importEmojis": "इमोजी आयात करें",
+  "notAnImage": "कोई छवि फ़ाइल नहीं।",
+  "importNow": "अभी आयात करें",
+  "ignoreUser": "उपयोगकर्ता को नजरअंदाज करें",
+  "replace": "बदलें",
+  "about": "हमारे बारे में",
+  "aboutHomeserver": "{homeserver} की जानकारी",
+  "@aboutHomeserver": {
+    "type": "String",
+    "placeholders": {
+      "homeserver": {
+        "type": "String"
+      }
+    }
+  },
+  "accept": "स्वीकार करें",
+  "@accept": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "👍 {username} ने निमंत्रण स्वीकार किया",
+  "@acceptedTheInvitation": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "account": "अकाउंट",
+  "@account": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "🔐 {username} ने एंड-टू-एंड एन्क्रिप्शन चालू किया",
+  "@activatedEndToEndEncryption": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "addEmail": "ईमेल ऐड करें",
+  "@addEmail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "confirmMatrixId": "कृपया अपना अकाउंट हटाने के लिए अपनी मैट्रिक्स आईडी की पुष्टि करें।",
+  "supposedMxid": "यह {mxid} होना चाहिए",
+  "@supposedMxid": {
+    "type": "String",
+    "placeholders": {
+      "mxid": {
+        "type": "String"
+      }
+    }
+  }
 }

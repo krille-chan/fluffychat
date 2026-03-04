@@ -1,503 +1,438 @@
 {
-    "hugContent": "{senderName} σε αγκαλιάζει",
-    "@hugContent": {
-        "type": "String",
-        "placeholders": {
-            "senderName": {
-                "type": "String"
-            }
-        }
-    },
-    "commandHint_cuddle": "Στείλε μια αγκαλιά",
-    "@commandHint_cuddle": {},
-    "admin": "Διαχειριστής",
-    "@admin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "blockDevice": "Αποκλεισμός Συσκευής",
-    "@blockDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "supposedMxid": "Αυτό θα πρέπει να είναι {mxid}",
-    "@supposedMxid": {
-        "type": "String",
-        "placeholders": {
-            "mxid": {
-                "type": "String"
-            }
-        }
-    },
-    "banFromChat": "Αποκλεισμός από τη συνομιλία",
-    "@banFromChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "askSSSSSign": "Για να μπορέσεις να υπογράψεις το άλλο άτομο, πληκτρολόγησε τη συνθηματική φράση ασφαλούς αποθήκευσης ή το κλειδί ανάκτησης.",
-    "@askSSSSSign": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "remove": "Αφαίρεση",
-    "@remove": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "areGuestsAllowedToJoin": "Επιτρέπεται στους επισκέπτες χρήστες να συμμετάσχουν",
-    "@areGuestsAllowedToJoin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "blocked": "Αποκλείστηκε",
-    "@blocked": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendOnEnter": "Αποστολή με enter",
-    "@sendOnEnter": {},
-    "answeredTheCall": "{senderName} απάντησε στην κλήση",
-    "@answeredTheCall": {
-        "type": "String",
-        "placeholders": {
-            "senderName": {
-                "type": "String"
-            }
-        }
-    },
-    "alias": "ψευδώνυμο",
-    "@alias": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "all": "Όλα",
-    "@all": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "badServerLoginTypesException": "Ο οικιακός διακομιστής υποστηρίζει τους τύπους σύνδεσης:\n{serverVersions}\nΑλλά αυτή η εφαρμογή υποστηρίζει μόνο:\n{supportedVersions}",
-    "@badServerLoginTypesException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
-    "cantOpenUri": "Δεν μπορεί να ανοίξει το URI {uri}",
-    "@cantOpenUri": {
-        "type": "String",
-        "placeholders": {
-            "uri": {
-                "type": "String"
-            }
-        }
-    },
-    "importFromZipFile": "Εισαγωγή από αρχείο .zip",
-    "@importFromZipFile": {},
-    "autoplayImages": "Αυτόματη αναπαραγωγή κινούμενων αυτοκόλλητων και emotes",
-    "@autoplayImages": {
-        "type": "String",
-        "placeholder": {}
-    },
-    "repeatPassword": "Επανάληψη κωδικού πρόσβασης",
-    "@repeatPassword": {},
-    "acceptedTheInvitation": "👍 {username} αποδέχτηκε την πρόσκληση",
-    "@acceptedTheInvitation": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "banned": "Αποκλείστηκε",
-    "@banned": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "exportEmotePack": "Εξαγωγή πακέτου Emote ως .zip",
-    "@exportEmotePack": {},
-    "account": "Λογαριασμός",
-    "@account": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "areYouSure": "Σίγουρα;",
-    "@areYouSure": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "allChats": "Όλες οι συνομιλίες",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "badServerVersionsException": "Ο οικιακός διακομιστής υποστηρίζει τις εκδόσεις Spec:\n{serverVersions}\nΑλλά αυτή η εφαρμογή υποστηρίζει μόνο {supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
-    "addToSpace": "Προσθήκη στο χώρο",
-    "@addToSpace": {},
-    "about": "Σχετικά",
-    "@about": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "activatedEndToEndEncryption": "🔐 {username} ενεργοποίησε την κρυπτογράφηση από άκρο σε άκρο",
-    "@activatedEndToEndEncryption": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "googlyEyesContent": "{senderName} σού στέλνει αστεία μάτια",
-    "@googlyEyesContent": {
-        "type": "String",
-        "placeholders": {
-            "senderName": {
-                "type": "String"
-            }
-        }
-    },
-    "addChatDescription": "Πρόσθεσε μια περιγραφή συνομιλίας...",
-    "@addChatDescription": {},
-    "cancel": "Ακύρωση",
-    "@cancel": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "appLock": "Κλείδωμα εφαρμογής",
-    "@appLock": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendTypingNotifications": "Αποστολή ειδοποιήσεων πληκτρολόγησης",
-    "@sendTypingNotifications": {},
-    "importEmojis": "Εισαγωγή Emojis",
-    "@importEmojis": {},
-    "confirmMatrixId": "Παρακαλούμε επιβεβαίωσε το Matrix ID σου για να διαγράψεις τον λογαριασμό σου.",
-    "@confirmMatrixId": {},
-    "notAnImage": "Δεν είναι αρχείο εικόνας.",
-    "@notAnImage": {},
-    "areYouSureYouWantToLogout": "Σίγουρα θες να αποσυνδεθείς;",
-    "@areYouSureYouWantToLogout": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "bannedUser": "{username} απέκλεισε {targetName}",
-    "@bannedUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "targetName": {
-                "type": "String"
-            }
-        }
-    },
-    "cuddleContent": "{senderName} σέ αγκαλιάζει",
-    "@cuddleContent": {
-        "type": "String",
-        "placeholders": {
-            "senderName": {
-                "type": "String"
-            }
-        }
-    },
-    "askVerificationRequest": "Αποδοχή αυτού του αιτήματος επαλήθευσης από {username};",
-    "@askVerificationRequest": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "addEmail": "Προσθήκη email",
-    "@addEmail": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_hug": "Στείλτε μια αγκαλιά",
-    "@commandHint_hug": {},
-    "replace": "Αντικατάσταση",
-    "@replace": {},
-    "archive": "Αρχείο",
-    "@archive": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "accept": "Αποδοχή",
-    "@accept": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_googly": "Στείλε αστεία μάτια",
-    "@commandHint_googly": {},
-    "botMessages": "Μηνύματα bot",
-    "@botMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "importNow": "Εισαγωγή τώρα",
-    "@importNow": {},
-    "anyoneCanJoin": "Οποιοσδήποτε μπορεί να συμμετάσχει",
-    "@anyoneCanJoin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "alwaysUse24HourFormat": "Ψευδής",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
-    "setCustomPermissionLevel": "Όρισε προσαρμοσμένο επίπεδο άδειας",
-    "@setCustomPermissionLevel": {},
-    "setPermissionsLevelDescription": "Επέλεξε έναν προκαθορισμένο ρόλο παρακάτω ή εισήγαγε ένα προσαρμοσμένο επίπεδο άδειας μεταξύ 0 και 100.",
-    "@setPermissionsLevelDescription": {},
-    "ignoreUser": "Αγνόηση χρήστη",
-    "@ignoreUser": {},
-    "normalUser": "Κανονικός χρήστης",
-    "@normalUser": {},
-    "aboutHomeserver": "Σχετικά με {homeserver}",
-    "@aboutHomeserver": {
-        "type": "String",
-        "placeholders": {
-            "homeserver": {
-                "type": "String"
-            }
-        }
-    },
-    "commandHint_roomupgrade": "Αναβάθμιση αυτού του δωματίου στην δεδομένη έκδοση δωματίου",
-    "@commandHint_roomupgrade": {},
-    "appLockDescription": "Κλείδωμα εφαρμογής όταν δεν χρησιμοποιείται με κωδικό PIN",
-    "@appLockDescription": {},
-    "swipeRightToLeftToReply": "Σύρσιμο δεξιά προς αριστερά για απάντηση",
-    "@swipeRightToLeftToReply": {},
-    "countChatsAndCountParticipants": "{chats} συνομιλίες και {participants} συμμετέχοντες",
-    "@countChatsAndCountParticipants": {
-        "type": "String",
-        "placeholders": {
-            "chats": {
-                "type": "int"
-            },
-            "participants": {
-                "type": "int"
-            }
-        }
-    },
-    "noMoreChatsFound": "Δεν βρέθηκαν άλλες συνομιλίες...",
-    "@noMoreChatsFound": {},
-    "noChatsFoundHere": "Δεν υπάρχουν συνομιλίες ακόμα. Ξεκίνα μια νέα συνομιλία με κάποιον χρησιμοποιώντας το κουμπί παρακάτω. ⤵️",
-    "@noChatsFoundHere": {},
-    "unread": "Μη αναγνωσμένα",
-    "@unread": {},
-    "space": "Χώρος",
-    "@space": {},
-    "spaces": "Χώροι",
-    "@spaces": {},
-    "changeDeviceName": "Αλλαγή ονόματος συσκευής",
-    "@changeDeviceName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changedTheChatAvatar": "{username} άλλαξε το άβαταρ συνομιλίας",
-    "@changedTheChatAvatar": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} άλλαξε την περιγραφή συνομιλίας σε: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} άλλαξε το όνομα συνομιλίας σε: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatPermissions": "{username} άλλαξε τα δικαιώματα συνομιλίας",
-    "@changedTheChatPermissions": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheDisplaynameTo": "{username} άλλαξε το εμφανιζόμενο όνομά του σε: '{displayname}'",
-    "@changedTheDisplaynameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "displayname": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheGuestAccessRules": "{username} άλλαξε τους κανόνες πρόσβασης των επισκεπτών",
-    "@changedTheGuestAccessRules": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheGuestAccessRulesTo": "{username} άλλαξε τους κανόνες πρόσβασης των επισκεπτών σε: {rules}",
-    "@changedTheGuestAccessRulesTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "rules": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheHistoryVisibility": "{username} άλλαξε την ορατότητα ιστορικού",
-    "@changedTheHistoryVisibility": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheHistoryVisibilityTo": "{username} άλλαξε την ορατότητα ιστορικού σε: {rules}",
-    "@changedTheHistoryVisibilityTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "rules": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheJoinRules": "{username} άλλαξε τους κανόνες συμμετοχής",
-    "@changedTheJoinRules": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheJoinRulesTo": "{username} άλλαξε τους κανόνες συμμετοχής σε: {joinRules}",
-    "@changedTheJoinRulesTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "joinRules": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheProfileAvatar": "Ο χρήστης {username} άλλαξε την εικόνα προφίλ του",
-    "@changedTheProfileAvatar": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changePassword": "Αλλαγή κωδικού πρόσβασης",
-    "@changePassword": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changeTheme": "Άλλαξε το στυλ σου",
-    "@changeTheme": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "changeYourAvatar": "Αλλαγή εικόνας προφιλ",
-    "@changeYourAvatar": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "joinedChats": "Συνδεδεμένες συνομιλίες",
-    "@joinedChats": {},
-    "chatBackup": "Αντίγραφο ασφαλείας συνομιλίας",
-    "@chatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatDetails": "Λεπτομέρειες συνομιλίας",
-    "@chatDetails": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatHasBeenAddedToThisSpace": "Η συνομιλία προστέθηκε στο δωμάτιο",
-    "@chatHasBeenAddedToThisSpace": {},
-    "chats": "Συνομιλίες",
-    "@chats": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chooseAStrongPassword": "Εισάγετε ένα δυνατό κωδικό πρόσβασης",
-    "@chooseAStrongPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "close": "Κλείσιμο",
-    "@close": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "commandHint_ban": "Αποκλεισμός χρήστη από το δωμάτιο",
-    "@commandHint_ban": {
-        "type": "String",
-        "description": "Usage hint for the command /ban"
-    },
-    "commandHint_clearcache": "Εκκαθάριση προσωρινής μνήμης",
-    "@commandHint_clearcache": {
-        "type": "String",
-        "description": "Usage hint for the command /clearcache"
-    },
-    "commandHint_invite": "Πρόσκληση αυτού του χρήστη στο δωμάτιο",
-    "@commandHint_invite": {
-        "type": "String",
-        "description": "Usage hint for the command /invite"
+  "hugContent": "{senderName} σε αγκαλιάζει",
+  "@hugContent": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
     }
+  },
+  "commandHint_cuddle": "Στείλε μια αγκαλιά",
+  "@commandHint_cuddle": {},
+  "admin": "Διαχειριστής",
+  "@admin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "blockDevice": "Αποκλεισμός Συσκευής",
+  "@blockDevice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "supposedMxid": "Αυτό θα πρέπει να είναι {mxid}",
+  "@supposedMxid": {
+    "type": "String",
+    "placeholders": {
+      "mxid": {
+        "type": "String"
+      }
+    }
+  },
+  "banFromChat": "Αποκλεισμός από τη συνομιλία",
+  "@banFromChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "askSSSSSign": "Για να μπορέσεις να υπογράψεις το άλλο άτομο, πληκτρολόγησε τη συνθηματική φράση ασφαλούς αποθήκευσης ή το κλειδί ανάκτησης.",
+  "@askSSSSSign": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "remove": "Αφαίρεση",
+  "@remove": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "Επιτρέπεται στους επισκέπτες χρήστες να συμμετάσχουν",
+  "@areGuestsAllowedToJoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "blocked": "Αποκλείστηκε",
+  "@blocked": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendOnEnter": "Αποστολή με enter",
+  "@sendOnEnter": {},
+  "answeredTheCall": "{senderName} απάντησε στην κλήση",
+  "@answeredTheCall": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "alias": "ψευδώνυμο",
+  "@alias": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "all": "Όλα",
+  "@all": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "badServerLoginTypesException": "Ο οικιακός διακομιστής υποστηρίζει τους τύπους σύνδεσης:\n{serverVersions}\nΑλλά αυτή η εφαρμογή υποστηρίζει μόνο:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "String",
+    "placeholders": {
+      "serverVersions": {
+        "type": "String"
+      },
+      "supportedVersions": {
+        "type": "String"
+      }
+    }
+  },
+  "cantOpenUri": "Δεν μπορεί να ανοίξει το URI {uri}",
+  "@cantOpenUri": {
+    "type": "String",
+    "placeholders": {
+      "uri": {
+        "type": "String"
+      }
+    }
+  },
+  "importFromZipFile": "Εισαγωγή από αρχείο .zip",
+  "@importFromZipFile": {},
+  "autoplayImages": "Αυτόματη αναπαραγωγή κινούμενων αυτοκόλλητων και emotes",
+  "@autoplayImages": {
+    "type": "String",
+    "placeholder": {}
+  },
+  "repeatPassword": "Επανάληψη κωδικού πρόσβασης",
+  "@repeatPassword": {},
+  "acceptedTheInvitation": "👍 {username} αποδέχτηκε την πρόσκληση",
+  "@acceptedTheInvitation": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "banned": "Αποκλείστηκε",
+  "@banned": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "exportEmotePack": "Εξαγωγή πακέτου Emote ως .zip",
+  "@exportEmotePack": {},
+  "account": "Λογαριασμός",
+  "@account": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "areYouSure": "Σίγουρα;",
+  "@areYouSure": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "allChats": "Όλες οι συνομιλίες",
+  "@allChats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "addToSpace": "Προσθήκη στο χώρο",
+  "@addToSpace": {},
+  "about": "Σχετικά",
+  "@about": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "🔐 {username} ενεργοποίησε την κρυπτογράφηση από άκρο σε άκρο",
+  "@activatedEndToEndEncryption": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "googlyEyesContent": "{senderName} σού στέλνει αστεία μάτια",
+  "@googlyEyesContent": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "cancel": "Ακύρωση",
+  "@cancel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "appLock": "Κλείδωμα εφαρμογής",
+  "@appLock": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendTypingNotifications": "Αποστολή ειδοποιήσεων πληκτρολόγησης",
+  "@sendTypingNotifications": {},
+  "importEmojis": "Εισαγωγή Emojis",
+  "@importEmojis": {},
+  "confirmMatrixId": "Παρακαλούμε επιβεβαίωσε το Matrix ID σου για να διαγράψεις τον λογαριασμό σου.",
+  "@confirmMatrixId": {},
+  "notAnImage": "Δεν είναι αρχείο εικόνας.",
+  "@notAnImage": {},
+  "areYouSureYouWantToLogout": "Σίγουρα θες να αποσυνδεθείς;",
+  "@areYouSureYouWantToLogout": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} απέκλεισε {targetName}",
+  "@bannedUser": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "cuddleContent": "{senderName} σέ αγκαλιάζει",
+  "@cuddleContent": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "askVerificationRequest": "Αποδοχή αυτού του αιτήματος επαλήθευσης από {username};",
+  "@askVerificationRequest": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "addEmail": "Προσθήκη email",
+  "@addEmail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_hug": "Στείλτε μια αγκαλιά",
+  "@commandHint_hug": {},
+  "replace": "Αντικατάσταση",
+  "@replace": {},
+  "archive": "Αρχείο",
+  "@archive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "accept": "Αποδοχή",
+  "@accept": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_googly": "Στείλε αστεία μάτια",
+  "@commandHint_googly": {},
+  "importNow": "Εισαγωγή τώρα",
+  "@importNow": {},
+  "anyoneCanJoin": "Οποιοσδήποτε μπορεί να συμμετάσχει",
+  "@anyoneCanJoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "alwaysUse24HourFormat": "Ψευδής",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "ignoreUser": "Αγνόηση χρήστη",
+  "@ignoreUser": {},
+  "aboutHomeserver": "Σχετικά με {homeserver}",
+  "@aboutHomeserver": {
+    "type": "String",
+    "placeholders": {
+      "homeserver": {
+        "type": "String"
+      }
+    }
+  },
+  "commandHint_roomupgrade": "Αναβάθμιση αυτού του δωματίου στην δεδομένη έκδοση δωματίου",
+  "@commandHint_roomupgrade": {},
+  "appLockDescription": "Κλείδωμα εφαρμογής όταν δεν χρησιμοποιείται με κωδικό PIN",
+  "@appLockDescription": {},
+  "swipeRightToLeftToReply": "Σύρσιμο δεξιά προς αριστερά για απάντηση",
+  "@swipeRightToLeftToReply": {},
+  "noMoreChatsFound": "Δεν βρέθηκαν άλλες συνομιλίες...",
+  "@noMoreChatsFound": {},
+  "noChatsFoundHere": "Δεν υπάρχουν συνομιλίες ακόμα. Ξεκίνα μια νέα συνομιλία με κάποιον χρησιμοποιώντας το κουμπί παρακάτω. ⤵️",
+  "@noChatsFoundHere": {},
+  "unread": "Μη αναγνωσμένα",
+  "@unread": {},
+  "space": "Χώρος",
+  "@space": {},
+  "spaces": "Χώροι",
+  "@spaces": {},
+  "changeDeviceName": "Αλλαγή ονόματος συσκευής",
+  "@changeDeviceName": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changedTheChatAvatar": "{username} άλλαξε το άβαταρ συνομιλίας",
+  "@changedTheChatAvatar": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheChatPermissions": "{username} άλλαξε τα δικαιώματα συνομιλίας",
+  "@changedTheChatPermissions": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheDisplaynameTo": "{username} άλλαξε το εμφανιζόμενο όνομά του σε: '{displayname}'",
+  "@changedTheDisplaynameTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "displayname": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheGuestAccessRules": "{username} άλλαξε τους κανόνες πρόσβασης των επισκεπτών",
+  "@changedTheGuestAccessRules": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheGuestAccessRulesTo": "{username} άλλαξε τους κανόνες πρόσβασης των επισκεπτών σε: {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "rules": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheHistoryVisibility": "{username} άλλαξε την ορατότητα ιστορικού",
+  "@changedTheHistoryVisibility": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheHistoryVisibilityTo": "{username} άλλαξε την ορατότητα ιστορικού σε: {rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "rules": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheJoinRules": "{username} άλλαξε τους κανόνες συμμετοχής",
+  "@changedTheJoinRules": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheJoinRulesTo": "{username} άλλαξε τους κανόνες συμμετοχής σε: {joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "joinRules": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheProfileAvatar": "Ο χρήστης {username} άλλαξε την εικόνα προφίλ του",
+  "@changedTheProfileAvatar": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changePassword": "Αλλαγή κωδικού πρόσβασης",
+  "@changePassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changeTheme": "Άλλαξε το στυλ σου",
+  "@changeTheme": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Αλλαγή εικόνας προφιλ",
+  "@changeYourAvatar": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chatBackup": "Αντίγραφο ασφαλείας συνομιλίας",
+  "@chatBackup": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chatDetails": "Λεπτομέρειες συνομιλίας",
+  "@chatDetails": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chats": "Συνομιλίες",
+  "@chats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "Εισάγετε ένα δυνατό κωδικό πρόσβασης",
+  "@chooseAStrongPassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "close": "Κλείσιμο",
+  "@close": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_ban": "Αποκλεισμός χρήστη από το δωμάτιο",
+  "@commandHint_ban": {
+    "type": "String",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHint_clearcache": "Εκκαθάριση προσωρινής μνήμης",
+  "@commandHint_clearcache": {
+    "type": "String",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_invite": "Πρόσκληση αυτού του χρήστη στο δωμάτιο",
+  "@commandHint_invite": {
+    "type": "String",
+    "description": "Usage hint for the command /invite"
+  }
 }

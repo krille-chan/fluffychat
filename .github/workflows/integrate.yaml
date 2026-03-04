@@ -20,7 +20,8 @@ jobs:
       - run: flutter pub get
       - name: Check if pubspec.lock is up to date
         run: git diff --exit-code pubspec.lock
-      - run: flutter gen-l10n
+      - name: Check for unused localizations
+        run: dart run remove_unused_localizations --keep-unused && test -z "$(git status --porcelain -- unused_localization_keys.txt)"
       - name: Check formatting
         run: dart format lib/ test/ --set-exit-if-changed
       - name: Check import formatting

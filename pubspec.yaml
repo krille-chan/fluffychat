@@ -95,6 +95,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   license_checker: ^1.6.2
+  remove_unused_localizations: ^1.0.2
   translations_cleaner: ^0.1.0
 
 import_sorter:
