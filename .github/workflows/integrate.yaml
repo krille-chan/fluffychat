@@ -12,6 +12,8 @@ jobs:
       - uses: webiny/action-conventional-commits@v1.3.1
       - run: ./scripts/generate-locale-config.sh
       - run: git diff --exit-code
+      - name: Check for unused translations
+        run: flutter pub run translations_cleaner list-unused-terms -a
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -20,7 +22,6 @@ jobs:
       - run: flutter pub get
       - name: Check if pubspec.lock is up to date
         run: git diff --exit-code pubspec.lock
-      - run: flutter gen-l10n
       - name: Check formatting
         run: dart format lib/ test/ --set-exit-if-changed
       - name: Check import formatting
