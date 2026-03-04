@@ -7,10 +7,7 @@
     },
     "repeatPassword": "Repeat password",
     "notAnImage": "Not an image file.",
-    "setCustomPermissionLevel": "Set custom permission level",
-    "setPermissionsLevelDescription": "Please choose a predefined role below or enter a custom permission level between 0 and 100.",
     "ignoreUser": "Ignore user",
-    "normalUser": "Normal user",
     "remove": "Remove",
     "@remove": {
         "type": "String",
@@ -74,7 +71,6 @@
             }
         }
     },
-    "addChatDescription": "Add a chat description...",
     "addToSpace": "Add to space",
     "admin": "Admin",
     "@admin": {
@@ -201,33 +197,8 @@
     "sendTypingNotifications": "Send typing notifications",
     "swipeRightToLeftToReply": "Swipe right to left to reply",
     "sendOnEnter": "Send on enter",
-    "badServerVersionsException": "The homeserver supports the Spec versions:\n{serverVersions}\nBut this app supports only {supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
-    "countChatsAndCountParticipants": "{chats} chats and {participants} participants",
-    "@countChatsAndCountParticipants": {
-        "type": "String",
-        "placeholders": {
-            "chats": {
-                "type": "int"
-            },
-            "participants": {
-                "type": "int"
-            }
-        }
-    },
     "noMoreChatsFound": "No more chats found...",
     "noChatsFoundHere": "No chats found here yet. Start a new chat with someone by using the button below. ⤵️",
-    "joinedChats": "Joined chats",
     "unread": "Unread",
     "space": "Space",
     "spaces": "Spaces",
@@ -260,11 +231,6 @@
     },
     "blocked": "Blocked",
     "@blocked": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "botMessages": "Bot messages",
-    "@botMessages": {
         "type": "String",
         "placeholders": {}
     },
@@ -484,7 +450,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatHasBeenAddedToThisSpace": "Chat has been added to this space",
     "chats": "Chats",
     "@chats": {
         "type": "String",
@@ -622,28 +587,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "confirm": "Confirm",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "Connect",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
     "contactHasBeenInvitedToTheGroup": "Contact has been invited to the group",
     "@contactHasBeenInvitedToTheGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsDisplayName": "Contains display name",
-    "@containsDisplayName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsUserName": "Contains username",
-    "@containsUserName": {
         "type": "String",
         "placeholders": {}
     },
@@ -737,33 +682,6 @@
             }
         }
     },
-    "dateWithoutYear": "{month}-{day}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithYear": "{year}-{month}-{day}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
     "deactivateAccountWarning": "This will deactivate your user account. This can not be undone! Are you sure?",
     "@deactivateAccountWarning": {
         "type": "String",
@@ -806,11 +724,6 @@
     },
     "directChats": "Direct Chats",
     "@directChats": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "allRooms": "All Group Chats",
-    "@allRooms": {
         "type": "String",
         "placeholders": {}
     },
@@ -886,11 +799,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteWarnNeedToPick": "You need to pick an emote shortcode and an image!",
-    "@emoteWarnNeedToPick": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emptyChat": "Empty chat",
     "@emptyChat": {
         "type": "String",
@@ -941,11 +849,6 @@
         "placeholders": {}
     },
     "homeserver": "Homeserver",
-    "enterYourHomeserver": "Enter your homeserver",
-    "@enterYourHomeserver": {
-        "type": "String",
-        "placeholders": {}
-    },
     "errorObtainingLocation": "Error obtaining location: {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -992,11 +895,6 @@
     },
     "fromTheInvitation": "From the invitation",
     "@fromTheInvitation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "goToTheNewRoom": "Go to the new room",
-    "@goToTheNewRoom": {
         "type": "String",
         "placeholders": {}
     },
@@ -1071,11 +969,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "identity": "Identity",
-    "@identity": {
-        "type": "String",
-        "placeholders": {}
-    },
     "block": "Block",
     "blockedUsers": "Blocked users",
     "blockListDescription": "You can block users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal block list.",
@@ -1100,7 +993,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteContactToGroupQuestion": "Do you want to invite {contact} to the chat \"{groupName}\"?",
     "inviteContactToGroup": "Invite contact to {groupName}",
     "@inviteContactToGroup": {
         "type": "String",
@@ -1134,11 +1026,6 @@
     },
     "invitedUsersOnly": "Invited users only",
     "@invitedUsersOnly": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "inviteForMe": "Invite for me",
-    "@inviteForMe": {
         "type": "String",
         "placeholders": {}
     },
@@ -1221,11 +1108,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "license": "License",
-    "@license": {
-        "type": "String",
-        "placeholders": {}
-    },
     "lightTheme": "Light",
     "@lightTheme": {
         "type": "String",
@@ -1242,10 +1124,6 @@
     },
     "dehydrate": "Export session and wipe device",
     "dehydrateWarning": "This action cannot be undone. Ensure you safely store the backup file.",
-    "dehydrateTor": "TOR Users: Export session",
-    "dehydrateTorLong": "For TOR users, it is recommended to export the session before closing the window.",
-    "hydrateTor": "TOR Users: Import session export",
-    "hydrateTorLong": "Did you export your session last time on TOR? Quickly import it and continue chatting.",
     "hydrate": "Restore from backup file",
     "loadingPleaseWait": "Loading… Please wait.",
     "@loadingPleaseWait": {
@@ -1283,11 +1161,6 @@
     },
     "logout": "Logout",
     "@logout": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "memberChanges": "Member changes",
-    "@memberChanges": {
         "type": "String",
         "placeholders": {}
     },
@@ -1401,11 +1274,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "notificationsEnabledForThisAccount": "Notifications enabled for this account",
-    "@notificationsEnabledForThisAccount": {
-        "type": "String",
-        "placeholders": {}
-    },
     "numUsersTyping": "{count} users are typing…",
     "@numUsersTyping": {
         "type": "String",
@@ -1465,11 +1333,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "openVideoCamera": "Open camera for a video",
-    "@openVideoCamera": {
-        "type": "String",
-        "placeholders": {}
-    },
     "oneClientLoggedOut": "One of your clients has been logged out",
     "addAccount": "Add account",
     "editBundlesForAccount": "Edit bundles for this account",
@@ -1514,18 +1377,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideMemberChangesInPublicChats": "Hide member changes in public chats",
-    "hideMemberChangesInPublicChatsBody": "Do not show in the chat timeline if someone joins or leaves a public chat to improve readability.",
     "overview": "Overview",
-    "notifyMeFor": "Notify me for",
     "passwordRecoverySettings": "Password recovery settings",
     "passwordRecovery": "Password recovery",
     "@passwordRecovery": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "people": "People",
-    "@people": {
         "type": "String",
         "placeholders": {}
     },
@@ -1548,11 +1403,6 @@
             }
         }
     },
-    "pleaseChoose": "Please choose",
-    "@pleaseChoose": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseChooseAPasscode": "Please choose a pass code",
     "@pleaseChooseAPasscode": {
         "type": "String",
@@ -1568,7 +1418,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnterRecoveryKey": "Please enter your recovery key:",
     "pleaseEnterYourPassword": "Please enter your password",
     "@pleaseEnterYourPassword": {
         "type": "String",
@@ -1669,11 +1518,6 @@
             }
         }
     },
-    "rejoin": "Rejoin",
-    "@rejoin": {
-        "type": "String",
-        "placeholders": {}
-    },
     "removeAllOtherDevices": "Remove all other devices",
     "@removeAllOtherDevices": {
         "type": "String",
@@ -1687,11 +1531,6 @@
                 "type": "String"
             }
         }
-    },
-    "removeDevice": "Remove device",
-    "@removeDevice": {
-        "type": "String",
-        "placeholders": {}
     },
     "unbanFromChat": "Unban from chat",
     "@unbanFromChat": {
@@ -1750,15 +1589,6 @@
     },
     "recoveryKey": "Recovery key",
     "recoveryKeyLost": "Recovery key lost?",
-    "seenByUser": "Seen by {username}",
-    "@seenByUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "send": "Send",
     "@send": {
         "type": "String",
@@ -1799,16 +1629,6 @@
     },
     "sendMessages": "Send messages",
     "@sendMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendOriginal": "Send original",
-    "@sendOriginal": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendSticker": "Send sticker",
-    "@sendSticker": {
         "type": "String",
         "placeholders": {}
     },
@@ -1871,32 +1691,12 @@
             }
         }
     },
-    "separateChatTypes": "Separate Direct Chats and Groups",
-    "@separateChatTypes": {
-        "type": "String",
-        "placeholders": {}
-    },
     "setAsCanonicalAlias": "Set as main alias",
     "@setAsCanonicalAlias": {
         "type": "String",
         "placeholders": {}
     },
-    "setCustomEmotes": "Set custom emotes",
-    "@setCustomEmotes": {
-        "type": "String",
-        "placeholders": {}
-    },
     "setChatDescription": "Set chat description",
-    "setInvitationLink": "Set invitation link",
-    "@setInvitationLink": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setPermissionsLevel": "Set permissions level",
-    "@setPermissionsLevel": {
-        "type": "String",
-        "placeholders": {}
-    },
     "setStatus": "Set status",
     "@setStatus": {
         "type": "String",
@@ -1931,18 +1731,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "presenceStyle": "Presence:",
-    "@presenceStyle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "presencesToggle": "Show status messages from other users",
     "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "singlesignon": "Single Sign on",
-    "@singlesignon": {
         "type": "String",
         "placeholders": {}
     },
@@ -1975,7 +1765,6 @@
             }
         }
     },
-    "startFirstChat": "Start your first chat",
     "status": "Status",
     "@status": {
         "type": "String",
@@ -2023,21 +1812,6 @@
     "title": "FluffyChat",
     "@title": {
         "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleFavorite": "Toggle Favorite",
-    "@toggleFavorite": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleMuted": "Toggle Muted",
-    "@toggleMuted": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleUnread": "Mark Read/Unread",
-    "@toggleUnread": {
         "type": "String",
         "placeholders": {}
     },
@@ -2106,15 +1880,6 @@
     "@unpin": {
         "type": "String",
         "placeholders": {}
-    },
-    "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} unread chats}}",
-    "@unreadChats": {
-        "type": "String",
-        "placeholders": {
-            "unreadCount": {
-                "type": "int"
-            }
-        }
     },
     "userAndOthersAreTyping": "{username} and {count} others are typing…",
     "@userAndOthersAreTyping": {
@@ -2241,11 +2006,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wallpaper": "Wallpaper:",
-    "@wallpaper": {
-        "type": "String",
-        "placeholders": {}
-    },
     "warning": "Warning!",
     "@warning": {
         "type": "String",
@@ -2317,19 +2077,8 @@
     "sender": "Sender",
     "openGallery": "Open gallery",
     "removeFromSpace": "Remove from space",
-    "addToSpaceDescription": "Select a space to add this chat to it.",
     "start": "Start",
     "pleaseEnterRecoveryKeyDescription": "To unlock your old messages, please enter your recovery key that has been generated in a previous session. Your recovery key is NOT your password.",
-    "publish": "Publish",
-    "videoWithSize": "Video ({size})",
-    "@videoWithSize": {
-        "type": "String",
-        "placeholders": {
-            "size": {
-                "type": "String"
-            }
-        }
-    },
     "openChat": "Open Chat",
     "markAsRead": "Mark as read",
     "reportUser": "Report user",
@@ -2355,29 +2104,6 @@
     "unsupportedAndroidVersionLong": "This feature requires a newer Android version. Please check for updates or Lineage OS support.",
     "videoCallsBetaWarning": "Please note that video calls are currently in beta. They might not work as expected or work at all on all platforms.",
     "experimentalVideoCalls": "Experimental video calls",
-    "emailOrUsername": "Email or username",
-    "indexedDbErrorTitle": "Private mode issues",
-    "indexedDbErrorLong": "The message storage is unfortunately not enabled in private mode by default.\nPlease visit\n - about:config\n - set dom.indexedDB.privateBrowsing.enabled to true\nOtherwise, it is not possible to run FluffyChat.",
-    "switchToAccount": "Switch to account {number}",
-    "@switchToAccount": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "nextAccount": "Next account",
-    "previousAccount": "Previous account",
-    "addWidget": "Add widget",
-    "widgetVideo": "Video",
-    "widgetEtherpad": "Text note",
-    "widgetJitsi": "Jitsi Meet",
-    "widgetCustom": "Custom",
-    "widgetName": "Name",
-    "widgetUrlError": "This is not a valid URL.",
-    "widgetNameError": "Please provide a display name.",
-    "errorAddingWidget": "Error adding the widget.",
     "youRejectedTheInvitation": "You rejected the invitation",
     "youJoinedTheChat": "You joined the chat",
     "youAcceptedTheInvitation": "👍 You accepted the invitation",
@@ -2393,14 +2119,6 @@
     "@youHaveWithdrawnTheInvitationFor": {
         "placeholders": {
             "user": {
-                "type": "String"
-            }
-        }
-    },
-    "youInvitedToBy": "📩 You have been invited via link to:\n{alias}",
-    "@youInvitedToBy": {
-        "placeholders": {
-            "alias": {
                 "type": "String"
             }
         }
@@ -2463,15 +2181,6 @@
     },
     "usersMustKnock": "Users must knock",
     "noOneCanJoin": "No one can join",
-    "userWouldLikeToChangeTheChat": "{user} would like to join the chat.",
-    "@userWouldLikeToChangeTheChat": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "noPublicLinkHasBeenCreatedYet": "No public link has been created yet",
     "knock": "Knock",
     "users": "Users",
     "unlockOldMessages": "Unlock old messages",
@@ -2493,29 +2202,11 @@
     "foregroundServiceRunning": "This notification appears when the foreground service is running.",
     "screenSharingTitle": "screen sharing",
     "screenSharingDetail": "You are sharing your screen in FuffyChat",
-    "callingPermissions": "Calling permissions",
-    "callingAccount": "Calling account",
-    "callingAccountDetails": "Allows FluffyChat to use the native android dialer app.",
-    "appearOnTop": "Appear on top",
-    "appearOnTopDetails": "Allows the app to appear on top (not needed if you already have Fluffychat setup as a calling account)",
-    "otherCallingPermissions": "Microphone, camera and other FluffyChat permissions",
     "whyIsThisMessageEncrypted": "Why is this message unreadable?",
     "noKeyForThisMessage": "This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings.",
     "newGroup": "New group",
     "newSpace": "New space",
-    "enterSpace": "Enter space",
-    "enterRoom": "Enter room",
     "allSpaces": "All spaces",
-    "numChats": "{number} chats",
-    "@numChats": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "hideUnimportantStateEvents": "Hide unimportant state events",
     "hidePresences": "Hide Status List?",
     "doNotShowAgain": "Do not show again",
     "wasDirectChatDisplayName": "Empty chat (was {oldDisplayName})",
@@ -2559,14 +2250,9 @@
     "openLinkInBrowser": "Open link in browser",
     "reportErrorDescription": "😭 Oh no. Something went wrong. If you want, you can report this bug to the developers.",
     "report": "report",
-    "signInWithPassword": "Sign in with password",
-    "pleaseTryAgainLaterOrChooseDifferentServer": "Please try again later or choose a different server.",
-    "profileNotFound": "The user could not be found on the server. Maybe there is a connection problem or the user doesn't exist.",
-    "setTheme": "Set theme:",
     "setColorTheme": "Set color theme:",
     "invite": "Invite",
     "inviteGroupChat": "📨 Group chat invite",
-    "invitePrivateChat": "📨 Private chat invite",
     "invalidInput": "Invalid input!",
     "wrongPinEntered": "Wrong pin entered! Try again in {seconds} seconds...",
     "@wrongPinEntered": {
@@ -2613,7 +2299,6 @@
     "createGroupAndInviteUsers": "Create a group and invite users",
     "groupCanBeFoundViaSearch": "Group can be found via search",
     "wrongRecoveryKey": "Sorry... this does not seem to be the correct recovery key.",
-    "startConversation": "Start conversation",
     "commandHint_sendraw": "Send raw json",
     "databaseMigrationTitle": "Database is optimized",
     "databaseMigrationBody": "Please wait. This may take a moment.",
@@ -2625,26 +2310,13 @@
     "pleaseChooseAStrongPassword": "Please choose a strong password",
     "passwordsDoNotMatch": "Passwords do not match",
     "passwordIsWrong": "Your entered password is wrong",
-    "publicLink": "Public link",
     "publicChatAddresses": "Public chat addresses",
     "createNewAddress": "Create new address",
     "joinSpace": "Join space",
     "publicSpaces": "Public spaces",
     "addChatOrSubSpace": "Add chat or sub space",
-    "subspace": "Subspace",
-    "decline": "Decline",
     "thisDevice": "This device:",
     "initAppError": "An error occured while init the app",
-    "userRole": "User role",
-    "minimumPowerLevel": "{level} is the minimum power level.",
-    "@minimumPowerLevel": {
-        "type": "String",
-        "placeholders": {
-            "level": {
-                "type": "String"
-            }
-        }
-    },
     "searchIn": "Search in chat \"{chat}\"...",
     "@searchIn": {
         "type": "String",
@@ -2657,18 +2329,6 @@
     "searchMore": "Search more...",
     "gallery": "Gallery",
     "files": "Files",
-    "databaseBuildErrorBody": "Unable to build the SQlite database. The app tries to use the legacy database for now. Please report this error to the developers at {url}. The error message is: {error}",
-    "@databaseBuildErrorBody": {
-        "type": "String",
-        "placeholders": {
-            "url": {
-                "type": "String"
-            },
-            "error": {
-                "type": "String"
-            }
-        }
-    },
     "sessionLostBody": "Your session is lost. Please report this error to the developers at {url}. The error message is: {error}",
     "@sessionLostBody": {
         "type": "String",
@@ -2689,15 +2349,6 @@
                 "type": "String"
             },
             "error": {
-                "type": "String"
-            }
-        }
-    },
-    "forwardMessageTo": "Forward message to {roomName}?",
-    "@forwardMessageTo": {
-        "type": "String",
-        "placeholders": {
-            "roomName": {
                 "type": "String"
             }
         }
@@ -2844,9 +2495,6 @@
     "changelog": "Changelog",
     "sendCanceled": "Sending canceled",
     "loginWithMatrixId": "Login with Matrix-ID",
-    "discoverHomeservers": "Discover homeservers",
-    "whatIsAHomeserver": "What is a homeserver?",
-    "homeserverDescription": "All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org.",
     "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
     "calculatingFileSize": "Calculating file size...",
     "prepareSendingAttachment": "Prepare sending attachment...",
@@ -2912,7 +2560,6 @@
     "appWantsToUseForLoginDescription": "You hereby allow the app and website to share information about you.",
     "open": "Open",
     "waitingForServer": "Waiting for server...",
-    "appIntroduction": "FluffyChat lets you chat with your friends across different messengers. Learn more at https://matrix.org or just tap *Continue*.",
     "newChatRequest": "📩 New chat request",
     "contentNotificationSettings": "Content notification settings",
     "generalNotificationSettings": "General notification settings",
@@ -3006,10 +2653,6 @@
     "longPressToRecordVoiceMessage": "Long press to record voice message.",
     "pause": "Pause",
     "resume": "Resume",
-    "newSubSpace": "New sub space",
-    "moveToDifferentSpace": "Move to different space",
-    "moveUp": "Move up",
-    "moveDown": "Move down",
     "removeFromSpaceDescription": "The chat will be removed from the space but still appear in your chat list.",
     "countChats": "{chats} chats",
     "@countChats": {
@@ -3052,7 +2695,6 @@
     "startPoll": "Start poll",
     "endPoll": "End poll",
     "answersVisible": "Answers visible",
-    "answersHidden": "Answers hidden",
     "pollQuestion": "Poll question",
     "answerOption": "Answer option",
     "addAnswerOption": "Add answer option",

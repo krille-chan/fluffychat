@@ -116,18 +116,6 @@
     },
     "sendOnEnter": "Enviar com Enter",
     "@sendOnEnter": {},
-    "badServerVersionsException": "O servidor suporta as versões Spec:\n{serverVersions}\nMas esta aplicação apenas suporta {suportedVersions}",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
     "badServerLoginTypesException": "O servidor suporta os tipos de início de sessão:\n{serverVersions}\nMas esta aplicação apenas suporta:\n{suportedVersions}",
     "@badServerLoginTypesException": {
         "type": "String",
@@ -169,11 +157,6 @@
     },
     "blocked": "Bloqueado",
     "@blocked": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "botMessages": "Mensagens de robôs",
-    "@botMessages": {
         "type": "String",
         "placeholders": {}
     },
@@ -329,8 +312,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatHasBeenAddedToThisSpace": "A conversa foi adicionada a este espaço",
-    "@chatHasBeenAddedToThisSpace": {},
     "chats": "Conversas",
     "@chats": {
         "type": "String",
@@ -447,28 +428,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "confirm": "Confirmar",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "Ligar",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
     "contactHasBeenInvitedToTheGroup": "O contacto foi convidado para o grupo",
     "@contactHasBeenInvitedToTheGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsDisplayName": "Contém nome de exibição",
-    "@containsDisplayName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsUserName": "Contém nome de utilizador",
-    "@containsUserName": {
         "type": "String",
         "placeholders": {}
     },
@@ -547,33 +508,6 @@
                 "type": "String"
             },
             "timeOfDay": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithoutYear": "{day}-{month}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithYear": "{day}-{month}-{year}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
                 "type": "String"
             }
         }
@@ -683,11 +617,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteWarnNeedToPick": "Precisas de escolher um código de emote e uma imagem!",
-    "@emoteWarnNeedToPick": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emptyChat": "Conversa vazia",
     "@emptyChat": {
         "type": "String",
@@ -739,11 +668,6 @@
     },
     "homeserver": "Servidor",
     "@homeserver": {},
-    "enterYourHomeserver": "Insere o teu servidor",
-    "@enterYourHomeserver": {
-        "type": "String",
-        "placeholders": {}
-    },
     "errorObtainingLocation": "Erro ao obter localização: {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -780,11 +704,6 @@
     },
     "forward": "Reencaminhar",
     "@forward": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "goToTheNewRoom": "Ir para a nova sala",
-    "@goToTheNewRoom": {
         "type": "String",
         "placeholders": {}
     },
@@ -859,11 +778,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "identity": "Identidade",
-    "@identity": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ignore": "Ignorar",
     "@ignore": {
         "type": "String",
@@ -922,11 +836,6 @@
     },
     "invitedUsersOnly": "Utilizadores(as) convidados(as) apenas",
     "@invitedUsersOnly": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "inviteForMe": "Convite para mim",
-    "@inviteForMe": {
         "type": "String",
         "placeholders": {}
     },
@@ -1009,11 +918,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "license": "Licença",
-    "@license": {
-        "type": "String",
-        "placeholders": {}
-    },
     "lightTheme": "Claro",
     "@lightTheme": {
         "type": "String",
@@ -1064,11 +968,6 @@
     },
     "logout": "Sair",
     "@logout": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "memberChanges": "Alterações de membros",
-    "@memberChanges": {
         "type": "String",
         "placeholders": {}
     },
@@ -1266,11 +1165,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "notificationsEnabledForThisAccount": "Notificações ativadas para esta conta",
-    "@notificationsEnabledForThisAccount": {
-        "type": "String",
-        "placeholders": {}
-    },
     "numUsersTyping": "Estão {count} utilizadores(as) a escrever…",
     "@numUsersTyping": {
         "type": "String",
@@ -1388,11 +1282,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "people": "Pessoas",
-    "@people": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pickImage": "Escolher uma imagem",
     "@pickImage": {
         "type": "String",
@@ -1411,11 +1300,6 @@
                 "type": "String"
             }
         }
-    },
-    "pleaseChoose": "Por favor, escolhe",
-    "@pleaseChoose": {
-        "type": "String",
-        "placeholders": {}
     },
     "pleaseChooseAPasscode": "Por favor, escolhe um código-passe",
     "@pleaseChooseAPasscode": {
@@ -1505,11 +1389,6 @@
             }
         }
     },
-    "rejoin": "Reentrar",
-    "@rejoin": {
-        "type": "String",
-        "placeholders": {}
-    },
     "remove": "Remover",
     "@remove": {
         "type": "String",
@@ -1528,11 +1407,6 @@
                 "type": "String"
             }
         }
-    },
-    "removeDevice": "Remover dispositivo",
-    "@removeDevice": {
-        "type": "String",
-        "placeholders": {}
     },
     "unbanFromChat": "Perdoar nesta conversa",
     "@unbanFromChat": {
@@ -1589,15 +1463,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "seenByUser": "Visto por {username}",
-    "@seenByUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "sendFile": "Enviar ficheiro",
     "@sendFile": {
         "type": "String",
@@ -1610,16 +1475,6 @@
     },
     "sendMessages": "Enviar mensagens",
     "@sendMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendOriginal": "Enviar original",
-    "@sendOriginal": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendSticker": "Enviar autocolante",
-    "@sendSticker": {
         "type": "String",
         "placeholders": {}
     },
@@ -1697,14 +1552,6 @@
     "@dehydrate": {},
     "dehydrateWarning": "Esta ação não pode ser revertida. Assegura-te que guardas bem a cópia de segurança.",
     "@dehydrateWarning": {},
-    "hydrateTorLong": "Exportaste a tua sessão na última vez que estiveste no TOR? Importa-a rapidamente e continua a conversar.",
-    "@hydrateTorLong": {},
-    "dehydrateTor": "Utilizadores do TOR: Exportar sessão",
-    "@dehydrateTor": {},
     "hydrate": "Restaurar a partir de cópia de segurança",
-    "@hydrate": {},
-    "hydrateTor": "Utilizadores do TOR: Importar sessão",
-    "@hydrateTor": {},
-    "dehydrateTorLong": "Para utilizadores do TOR, é recomendado exportar a sessão antes de fechar a janela.",
-    "@dehydrateTorLong": {}
+    "@hydrate": {}
 }

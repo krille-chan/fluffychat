@@ -123,18 +123,6 @@
             }
         }
     },
-    "badServerVersionsException": "La hejmservilo subtenas la jenajn version de la specifaĵo:\n{serverVersions}\nSed ĉi tiu aplikaĵo subtenas nur {supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
     "banFromChat": "Forbari de babilo",
     "@banFromChat": {
         "type": "String",
@@ -164,11 +152,6 @@
     },
     "blocked": "Blokita",
     "@blocked": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "botMessages": "Mesaĝoj de robotoj",
-    "@botMessages": {
         "type": "String",
         "placeholders": {}
     },
@@ -496,28 +479,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "confirm": "Konfirmi",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "Konektiĝi",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
     "contactHasBeenInvitedToTheGroup": "Kontakto invitiĝis al la grupo",
     "@contactHasBeenInvitedToTheGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsDisplayName": "Enhavas prezentan nomon",
-    "@containsDisplayName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsUserName": "Enhavas uzantonomon",
-    "@containsUserName": {
         "type": "String",
         "placeholders": {}
     },
@@ -596,33 +559,6 @@
                 "type": "String"
             },
             "timeOfDay": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithoutYear": "{day}a de la {month}a",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithYear": "{day}a de la {month}a de {year}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
                 "type": "String"
             }
         }
@@ -732,11 +668,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteWarnNeedToPick": "Vi devas elekti mallongigon de mieneto kaj bildon!",
-    "@emoteWarnNeedToPick": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emptyChat": "Malplena babilo",
     "@emptyChat": {
         "type": "String",
@@ -786,11 +717,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "enterYourHomeserver": "Enigu vian hejmservilon",
-    "@enterYourHomeserver": {
-        "type": "String",
-        "placeholders": {}
-    },
     "errorObtainingLocation": "Eraris akirado de loko: {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -837,11 +763,6 @@
     },
     "fromTheInvitation": "Ekde la invito",
     "@fromTheInvitation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "goToTheNewRoom": "Iri al la nova ĉambro",
-    "@goToTheNewRoom": {
         "type": "String",
         "placeholders": {}
     },
@@ -916,11 +837,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "identity": "Identeco",
-    "@identity": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ignore": "Malatenti",
     "@ignore": {
         "type": "String",
@@ -979,11 +895,6 @@
     },
     "invitedUsersOnly": "Nur invititoj",
     "@invitedUsersOnly": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "inviteForMe": "Invito por mi",
-    "@inviteForMe": {
         "type": "String",
         "placeholders": {}
     },
@@ -1066,11 +977,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "license": "Permesilo",
-    "@license": {
-        "type": "String",
-        "placeholders": {}
-    },
     "lightTheme": "Hela",
     "@lightTheme": {
         "type": "String",
@@ -1111,11 +1017,6 @@
     },
     "logout": "Adiaŭi",
     "@logout": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "memberChanges": "Ŝanĝoj de anoj",
-    "@memberChanges": {
         "type": "String",
         "placeholders": {}
     },
@@ -1214,11 +1115,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "notificationsEnabledForThisAccount": "Sciigoj ŝaltiĝis por ĉi tiu konto",
-    "@notificationsEnabledForThisAccount": {
-        "type": "String",
-        "placeholders": {}
-    },
     "numUsersTyping": "{count} uzantoj tajpas…",
     "@numUsersTyping": {
         "type": "String",
@@ -1313,11 +1209,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "people": "Personoj",
-    "@people": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pickImage": "Elekti bildon",
     "@pickImage": {
         "type": "String",
@@ -1336,11 +1227,6 @@
                 "type": "String"
             }
         }
-    },
-    "pleaseChoose": "Bonvolu elekti",
-    "@pleaseChoose": {
-        "type": "String",
-        "placeholders": {}
     },
     "pleaseChooseAPasscode": "Bonvolu elekti paskodon",
     "@pleaseChooseAPasscode": {
@@ -1435,11 +1321,6 @@
             }
         }
     },
-    "rejoin": "Ree aliĝi",
-    "@rejoin": {
-        "type": "String",
-        "placeholders": {}
-    },
     "remove": "Forigi",
     "@remove": {
         "type": "String",
@@ -1458,11 +1339,6 @@
                 "type": "String"
             }
         }
-    },
-    "removeDevice": "Forigi aparaton",
-    "@removeDevice": {
-        "type": "String",
-        "placeholders": {}
     },
     "unbanFromChat": "Malforbari",
     "@unbanFromChat": {
@@ -1519,15 +1395,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "seenByUser": "Vidita de {username}",
-    "@seenByUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "send": "Sendi",
     "@send": {
         "type": "String",
@@ -1555,16 +1422,6 @@
     },
     "sendMessages": "Sendi mesaĝojn",
     "@sendMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendOriginal": "Sendi originalon",
-    "@sendOriginal": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendSticker": "Sendi glumarkon",
-    "@sendSticker": {
         "type": "String",
         "placeholders": {}
     },
@@ -1632,21 +1489,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "setCustomEmotes": "Agordi proprajn mienetojn",
-    "@setCustomEmotes": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setInvitationLink": "Agordi invitan ligilon",
-    "@setInvitationLink": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setPermissionsLevel": "Agordi nivelon de permesoj",
-    "@setPermissionsLevel": {
-        "type": "String",
-        "placeholders": {}
-    },
     "setStatus": "Agordi staton",
     "@setStatus": {
         "type": "String",
@@ -1678,11 +1520,6 @@
     },
     "showPassword": "Montri pasvorton",
     "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "singlesignon": "Ununura saluto",
-    "@singlesignon": {
         "type": "String",
         "placeholders": {}
     },
@@ -1756,21 +1593,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "toggleFavorite": "Baskuli elstarigon",
-    "@toggleFavorite": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleMuted": "Basklui silentigon",
-    "@toggleMuted": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleUnread": "Baskuli legitecon",
-    "@toggleUnread": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tooManyRequestsWarning": "Tro multaj petoj. Bonvolu reprovi poste!",
     "@tooManyRequestsWarning": {
         "type": "String",
@@ -1836,15 +1658,6 @@
     "@unpin": {
         "type": "String",
         "placeholders": {}
-    },
-    "unreadChats": "{unreadCount, plural, =1{1 nelegita babilo} other{{unreadCount} nelegitaj babiloj}}",
-    "@unreadChats": {
-        "type": "String",
-        "placeholders": {
-            "unreadCount": {
-                "type": "int"
-            }
-        }
     },
     "userAndOthersAreTyping": "{username} kaj {count} aliaj tajpas…",
     "@userAndOthersAreTyping": {
@@ -1970,11 +1783,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wallpaper": "Fonbildo",
-    "@wallpaper": {
-        "type": "String",
-        "placeholders": {}
-    },
     "warning": "Averto!",
     "@warning": {
         "type": "String",
@@ -2061,8 +1869,6 @@
         "type": "String",
         "description": "Usage hint for the command /send"
     },
-    "chatHasBeenAddedToThisSpace": "Babilo aldoniĝis al ĉi tiu aro",
-    "@chatHasBeenAddedToThisSpace": {},
     "autoplayImages": "Memage ludi movbildajn glumarkojn kaj mienetojn",
     "@autoplayImages": {
         "type": "String",

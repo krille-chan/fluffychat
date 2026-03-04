@@ -17,10 +17,11 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
+      - name: Check for unused translations
+        run: flutter pub run translations_cleaner list-unused-terms -a
       - run: flutter pub get
       - name: Check if pubspec.lock is up to date
         run: git diff --exit-code pubspec.lock
-      - run: flutter gen-l10n
       - name: Check formatting
         run: dart format lib/ test/ --set-exit-if-changed
       - name: Check import formatting

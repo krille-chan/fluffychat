@@ -1,8 +1,6 @@
 {
     "repeatPassword": "Gentag password",
     "notAnImage": "Ikke en billedfil.",
-    "setCustomPermissionLevel": "Indstil særligt tilladelsesniveau",
-    "setPermissionsLevelDescription": "Vælg en prædefineret rolle herunder eller indtaste et særligt tilladelsesniveau mellem 0 og 100.",
     "ignoreUser": "Ignorér bruger",
     "remove": "Fjern",
     "@remove": {
@@ -11,7 +9,6 @@
     },
     "importNow": "Importer nu",
     "importEmojis": "Importer emojis",
-    "normalUser": "Normal bruger",
     "importFromZipFile": "Importer fra .zip fil",
     "alwaysUse24HourFormat": "true",
     "@alwaysUse24HourFormat": {
@@ -72,7 +69,6 @@
             }
         }
     },
-    "addChatDescription": "Tilføj en beskrivelse af chatten...",
     "addToSpace": "Tilføj til gruppe",
     "admin": "Admin",
     "@admin": {
