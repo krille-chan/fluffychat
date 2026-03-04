@@ -32,8 +32,6 @@
     "@repeatPassword": {},
     "notAnImage": "ইমেজ ফাইল না।",
     "@notAnImage": {},
-    "setCustomPermissionLevel": "কাস্টম অনুমতি লেভেল ঠিক করো",
-    "@setCustomPermissionLevel": {},
     "admin": "অ্যাডমিস",
     "@admin": {
         "type": "String",
@@ -69,16 +67,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "confirm": "নিশ্চিত করো",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "কানেক্ট",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
     "copy": "অনুলিপি",
     "@copy": {
         "type": "String",
@@ -88,18 +76,6 @@
     "@create": {
         "type": "String",
         "placeholders": {}
-    },
-    "dateWithoutYear": "{month}-{day}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
     },
     "delete": "অপসারণ",
     "@delete": {
@@ -161,11 +137,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "identity": "পরিচয়",
-    "@identity": {
-        "type": "String",
-        "placeholders": {}
-    },
     "invited": "আমন্ত্রিত",
     "@invited": {
         "type": "String",
@@ -178,11 +149,6 @@
     },
     "logout": "প্রস্থান",
     "@logout": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "license": "অনুমতিপত্র (লাইসেন্স)",
-    "@license": {
         "type": "String",
         "placeholders": {}
     },

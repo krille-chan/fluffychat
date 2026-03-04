@@ -7,14 +7,8 @@
     "@repeatPassword": {},
     "notAnImage": "Не файл выявы.",
     "@notAnImage": {},
-    "setCustomPermissionLevel": "Задаць карыстальніцкі ўзровень дазволу",
-    "@setCustomPermissionLevel": {},
-    "setPermissionsLevelDescription": "Калі ласка, выберыце ролю ніжэй ці ўвядзіце карыстальніцкі ўзровень дазволу паміж 0 і 100.",
-    "@setPermissionsLevelDescription": {},
     "ignoreUser": "Ігнараваць карыстальніка",
     "@ignoreUser": {},
-    "normalUser": "Звычайны карыстальнік",
-    "@normalUser": {},
     "remove": "Прыбраць",
     "@remove": {
         "type": "String",
@@ -85,8 +79,6 @@
             }
         }
     },
-    "addChatDescription": "Дадайце апісанне чату...",
-    "@addChatDescription": {},
     "addToSpace": "Дадаць у прастору",
     "@addToSpace": {},
     "admin": "Адмін",
@@ -222,36 +214,10 @@
     "@swipeRightToLeftToReply": {},
     "sendOnEnter": "Дасылаць на enter",
     "@sendOnEnter": {},
-    "badServerVersionsException": "Хатні сервер падтрымлівае наступныя версіі спецыфікацыі:\n{serverVersions}\nАле гэта праграма падтрымлівае толькі:{supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
-    "countChatsAndCountParticipants": "{chats} чатаў і {participants} удзельнікаў",
-    "@countChatsAndCountParticipants": {
-        "type": "String",
-        "placeholders": {
-            "chats": {
-                "type": "int"
-            },
-            "participants": {
-                "type": "int"
-            }
-        }
-    },
     "noMoreChatsFound": "Болей чатаў не знойдзена...",
     "@noMoreChatsFound": {},
     "noChatsFoundHere": "Здаецца, тут пуста. Пачніце новы чат з кімсьці праз кнопку ніжэй. ⤵️",
     "@noChatsFoundHere": {},
-    "joinedChats": "Чаты, да якіх вы далучыліся",
-    "@joinedChats": {},
     "unread": "Непрачытаные",
     "@unread": {},
     "space": "Прастора",
@@ -287,11 +253,6 @@
     },
     "blocked": "Заблакіравана",
     "@blocked": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "botMessages": "Паведамленні ботаў",
-    "@botMessages": {
         "type": "String",
         "placeholders": {}
     },
@@ -512,8 +473,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatHasBeenAddedToThisSpace": "Чат быў дададзены ў гэту прастору",
-    "@chatHasBeenAddedToThisSpace": {},
     "chats": "Чаты",
     "@chats": {
         "type": "String",
@@ -654,28 +613,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "confirm": "Пацвердзіць",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "Далучыцца",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
     "contactHasBeenInvitedToTheGroup": "Кантакт быў запрошаны ў групу",
     "@contactHasBeenInvitedToTheGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsDisplayName": "Мае адлюстроўваемае імя",
-    "@containsDisplayName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsUserName": "Мае імя карыстальніка",
-    "@containsUserName": {
         "type": "String",
         "placeholders": {}
     },
@@ -771,33 +710,6 @@
             }
         }
     },
-    "dateWithoutYear": "{day}-{month}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithYear": "{year}-{month}-{day}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
     "deactivateAccountWarning": "Гэта дэактывіруе ваш уліковы запіс. Гэта дзеянне не можа быць адменена! Вы ўпэўнены?",
     "@deactivateAccountWarning": {
         "type": "String",
@@ -840,11 +752,6 @@
     },
     "directChats": "Асобныя чаты",
     "@directChats": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "allRooms": "Усе групавыя чаты",
-    "@allRooms": {
         "type": "String",
         "placeholders": {}
     },
@@ -927,11 +834,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteWarnNeedToPick": "Вы павінны задаць скарачэнне эмодзі і выяву!",
-    "@emoteWarnNeedToPick": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emptyChat": "Пусты чат",
     "@emptyChat": {
         "type": "String",
@@ -985,11 +887,6 @@
     },
     "homeserver": "Дамашні сервер",
     "@homeserver": {},
-    "enterYourHomeserver": "Увядзіце адрас дамашняга сервера",
-    "@enterYourHomeserver": {
-        "type": "String",
-        "placeholders": {}
-    },
     "errorObtainingLocation": "Памылка атрымання месцазнаходжання: {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -1036,11 +933,6 @@
     },
     "fromTheInvitation": "З запрашэння",
     "@fromTheInvitation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "goToTheNewRoom": "Перайсці ў новы пакой",
-    "@goToTheNewRoom": {
         "type": "String",
         "placeholders": {}
     },
@@ -1120,11 +1012,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "identity": "Ідэнтыфікацыя",
-    "@identity": {
-        "type": "String",
-        "placeholders": {}
-    },
     "block": "Заблакіраваць",
     "@block": {},
     "blockedUsers": "Заблакіраваныя карыстальнікі",
@@ -1153,8 +1040,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteContactToGroupQuestion": "Вы хаціце запрасіць {contact} да чату \"{groupName}\"?",
-    "@inviteContactToGroupQuestion": {},
     "inviteContactToGroup": "Запрасіць кантакт да {groupName}",
     "@inviteContactToGroup": {
         "type": "String",
@@ -1193,11 +1078,6 @@
     },
     "invitedUsersOnly": "Толькі запрошаныя карыстальнікі",
     "@invitedUsersOnly": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "inviteForMe": "Запрашэнне для мяне",
-    "@inviteForMe": {
         "type": "String",
         "placeholders": {}
     },
@@ -1280,11 +1160,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "license": "Ліцэнзія",
-    "@license": {
-        "type": "String",
-        "placeholders": {}
-    },
     "lightTheme": "Светлая",
     "@lightTheme": {
         "type": "String",
@@ -1303,14 +1178,6 @@
     "@dehydrate": {},
     "dehydrateWarning": "Гэта дзеянне не можа быць адменена. Пераканайцеся, што вы бяспечна захавалі файл рэзервовай копіі.",
     "@dehydrateWarning": {},
-    "dehydrateTor": "Карыстальнікі TOR: Экспарт сесіі",
-    "@dehydrateTor": {},
-    "dehydrateTorLong": "Для карыстальнікаў TOR прапануем экспартаваць сесію перад тым, як закрыць акно.",
-    "@dehydrateTorLong": {},
-    "hydrateTor": "Карыстальнікі TOR: Імпарт экспарту сесіі",
-    "@hydrateTor": {},
-    "hydrateTorLong": "Вы экспартавалі сесію ў мінулы раз праз TOR? Хутка імпартуйце яе і працягніце размовы.",
-    "@hydrateTorLong": {},
     "hydrate": "Аднавіць з рэзервовай копіі",
     "@hydrate": {},
     "loadingPleaseWait": "Загрузка... Калі ласка, пачакайце.",
@@ -1349,11 +1216,6 @@
     },
     "logout": "Выйсці",
     "@logout": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "memberChanges": "Змяненні ўдзельнікаў",
-    "@memberChanges": {
         "type": "String",
         "placeholders": {}
     },
@@ -1472,16 +1334,6 @@
     },
     "setChatDescription": "Задаць апісанне чату",
     "@setChatDescription": {},
-    "setInvitationLink": "Задаць запрашальную спасылку",
-    "@setInvitationLink": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setPermissionsLevel": "Задаць ўзровееь дазволаў",
-    "@setPermissionsLevel": {
-        "type": "String",
-        "placeholders": {}
-    },
     "setStatus": "Задаць статус",
     "@setStatus": {
         "type": "String",
@@ -1516,18 +1368,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "presenceStyle": "Прысутнасць:",
-    "@presenceStyle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "presencesToggle": "Паказваць паведасленні статусаў іншых карыстальнікаў",
     "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "singlesignon": "Адзіны ўваход",
-    "@singlesignon": {
         "type": "String",
         "placeholders": {}
     },
@@ -1560,8 +1402,6 @@
             }
         }
     },
-    "startFirstChat": "Пачніце ваш першы чат",
-    "@startFirstChat": {},
     "status": "Статус",
     "@status": {
         "type": "String",
@@ -1612,16 +1452,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "toggleFavorite": "Пераключыць Захаванае",
-    "@toggleFavorite": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleMuted": "Пераключыць гук",
-    "@toggleMuted": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibleForEveryone": "Бачна ўсім",
     "@visibleForEveryone": {
         "type": "String",
@@ -1644,11 +1474,6 @@
     },
     "waitingPartnerNumbers": "Чакаем, калі партнёр зацвердзіць лічбы…",
     "@waitingPartnerNumbers": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wallpaper": "Шпалеры:",
-    "@wallpaper": {
         "type": "String",
         "placeholders": {}
     },
@@ -1729,23 +1554,10 @@
     "@openGallery": {},
     "removeFromSpace": "Выдаліць з прасторы",
     "@removeFromSpace": {},
-    "addToSpaceDescription": "Выберыце прастору, да якой дадаць гэты чат.",
-    "@addToSpaceDescription": {},
     "start": "Пачаць",
     "@start": {},
     "pleaseEnterRecoveryKeyDescription": "Каб разблакіраваць вашы мінулыя паведамленні, калі ласка, увядзіце ключ аднаўлення, што быў згенерыраваны ў мінулай сесіі. Ключ аднаўлення гэта НЕ ваш пароль.",
     "@pleaseEnterRecoveryKeyDescription": {},
-    "publish": "Апублікаваць",
-    "@publish": {},
-    "videoWithSize": "Відэа ({size})",
-    "@videoWithSize": {
-        "type": "String",
-        "placeholders": {
-            "size": {
-                "type": "String"
-            }
-        }
-    },
     "openChat": "Адкрыць чат",
     "@openChat": {},
     "markAsRead": "Адзначыць як прачытанае",
@@ -1784,43 +1596,6 @@
     "@videoCallsBetaWarning": {},
     "experimentalVideoCalls": "Эксперыментальныя відэа выклікі",
     "@experimentalVideoCalls": {},
-    "emailOrUsername": "Email ці імя карыстальніка",
-    "@emailOrUsername": {},
-    "indexedDbErrorTitle": "Праблемы з прыватным рэжымам",
-    "@indexedDbErrorTitle": {},
-    "indexedDbErrorLong": "Сховішча паведамленняў, на жаль, не ўключана ў прыватным рэжыме па змаўчанні.\nКалі ласка, наведайце\n - about:config\n - што dom.indexedDB.privateBrowsing.enabled уключаны\nІнакш, FluffyChat будзе немагчыма запусціць.",
-    "@indexedDbErrorLong": {},
-    "switchToAccount": "Пераключыцца на ўліковы запіс {number}",
-    "@switchToAccount": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "nextAccount": "Наступны ўліковы запіс",
-    "@nextAccount": {},
-    "previousAccount": "Мінулы ўліковы запіс",
-    "@previousAccount": {},
-    "addWidget": "Дадаць віджэт",
-    "@addWidget": {},
-    "widgetVideo": "Відэа",
-    "@widgetVideo": {},
-    "widgetEtherpad": "Тэкставая нататка",
-    "@widgetEtherpad": {},
-    "widgetJitsi": "Jitsi Meet",
-    "@widgetJitsi": {},
-    "widgetCustom": "Карыстальніцкі",
-    "@widgetCustom": {},
-    "widgetName": "Імя",
-    "@widgetName": {},
-    "widgetUrlError": "Гэта хібны URL.",
-    "@widgetUrlError": {},
-    "widgetNameError": "Калі ласка, укажыце адлюстроўваемаем імя.",
-    "@widgetNameError": {},
-    "errorAddingWidget": "Памылка дадання віджэту.",
-    "@errorAddingWidget": {},
     "youRejectedTheInvitation": "Вы скасавалі запрашэнне",
     "@youRejectedTheInvitation": {},
     "youJoinedTheChat": "Вы далучыліся да чату",
@@ -1839,14 +1614,6 @@
     "@youHaveWithdrawnTheInvitationFor": {
         "placeholders": {
             "user": {
-                "type": "String"
-            }
-        }
-    },
-    "youInvitedToBy": "📩 Вы былі запрошаны па спасылцы на:\n{alias}",
-    "@youInvitedToBy": {
-        "placeholders": {
-            "alias": {
                 "type": "String"
             }
         }
@@ -1911,16 +1678,6 @@
     "@usersMustKnock": {},
     "noOneCanJoin": "Ніхто не можа далучыцца",
     "@noOneCanJoin": {},
-    "userWouldLikeToChangeTheChat": "{user} хоча далучыцца да чату.",
-    "@userWouldLikeToChangeTheChat": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "noPublicLinkHasBeenCreatedYet": "Публічны ключ яшчэ не створаны",
-    "@noPublicLinkHasBeenCreatedYet": {},
     "knock": "Пагрукацца",
     "@knock": {},
     "users": "Карыстальнікі",
@@ -1955,18 +1712,6 @@
     "@screenSharingTitle": {},
     "screenSharingDetail": "Вы дзеліцеся экранам у FluffyChat",
     "@screenSharingDetail": {},
-    "callingPermissions": "Дазволы на выклікі",
-    "@callingPermissions": {},
-    "callingAccount": "Уліковы запіс для выклікаў",
-    "@callingAccount": {},
-    "callingAccountDetails": "Дазваляе FluffyChat выкарыстоўваць сістэмную праграму для выклікаў.",
-    "@callingAccountDetails": {},
-    "appearOnTop": "З'яўляцца зверху",
-    "@appearOnTop": {},
-    "appearOnTopDetails": "Дазваляе праграму з'яўляцца наверсе (не патрэбна, калі FluffyChat наладжаны як уліковы запіс для выклікаў)",
-    "@appearOnTopDetails": {},
-    "otherCallingPermissions": "Мікрафон, камера і іншыя дазволы FluffyChat",
-    "@otherCallingPermissions": {},
     "whyIsThisMessageEncrypted": "Чаму гэта паведамленне нельга прачытаць?",
     "@whyIsThisMessageEncrypted": {},
     "noKeyForThisMessage": "Гэта можа здарыцца з-за таго, што паведамленне было даслана да таго, як вы увайшлі ў уліковы запіс на гэтай прыладзе.\n\nТаксама верагодна, што адпраўшчык заблакіраваў вашу прыладу ці ў вас хібы з інтэрнэтам.\n\nВы можаце чытаць гэта паведамленне з іншага сеансу? Тад дашліце паведамленне адтуль! Перайдзіце ў Налады > Прылады і пераканайцеся ў тым, што вашы прылады верыфікавалі адна адну. Калі вы адкрыеце пакой наступны раз і абодве сэсіі будуць запушчаны, ключы павінны сінхранізавацца аўтаматычна.\n\nВы не хаціце згубіць клбчы, калі будзеце выходзіць ці змяняць прылады? Пераканайцеся ў тым, што вы уключылі рэзервовае капіраванне чатаў у наладах.",
@@ -1975,23 +1720,8 @@
     "@newGroup": {},
     "newSpace": "Новая прастора",
     "@newSpace": {},
-    "enterSpace": "Увайсці ў прастору",
-    "@enterSpace": {},
-    "enterRoom": "Увайсці ў пакой",
-    "@enterRoom": {},
     "allSpaces": "Усе прасторы",
     "@allSpaces": {},
-    "numChats": "{number} чатаў",
-    "@numChats": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "hideUnimportantStateEvents": "Хаваць неабавязковыя падзеі статусу",
-    "@hideUnimportantStateEvents": {},
     "hidePresences": "Хаваць спіс статусаў?",
     "@hidePresences": {},
     "doNotShowAgain": "Не паказваць зноў",
@@ -2051,8 +1781,6 @@
     "@reportErrorDescription": {},
     "report": "паскардзіцца",
     "@report": {},
-    "signInWithPassword": "Увайсці з паролем",
-    "@signInWithPassword": {},
     "manageAccount": "Кіраванне ўліковым запісам",
     "@manageAccount": {},
     "noContactInformationProvided": "Сервер не мае ніякай вернай кантактнай інфармацыі",
@@ -2106,8 +1834,6 @@
     "@open": {},
     "waitingForServer": "Чаканне сервера...",
     "@waitingForServer": {},
-    "appIntroduction": "FluffyChat дазваляе вам і вашым сябрам размаўляць скрозь розныя мэсэнджары. Даведайцеся болей на https://matrix.org ці націсніце *Працягнуць*.",
-    "@appIntroduction": {},
     "newChatRequest": "📩 Запыт новага чату",
     "@newChatRequest": {},
     "contentNotificationSettings": "Налады паведамленняў кантэнту",
@@ -2172,11 +1898,6 @@
     "@moreEvents": {},
     "declineInvitation": "Скасаваць запрашэнне",
     "@declineInvitation": {},
-    "notificationsEnabledForThisAccount": "Паведамленні ўклбчаны для гжтага ўліковага запісу",
-    "@notificationsEnabledForThisAccount": {
-        "type": "String",
-        "placeholders": {}
-    },
     "numUsersTyping": "{count} карыстальнікаў пішуць…",
     "@numUsersTyping": {
         "type": "String",
@@ -2236,11 +1957,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "openVideoCamera": "Адкрыць камеру для відэа",
-    "@openVideoCamera": {
-        "type": "String",
-        "placeholders": {}
-    },
     "oneClientLoggedOut": "Адзін з вашых кліентаў выйшаў",
     "@oneClientLoggedOut": {},
     "addAccount": "Дадаць уліковы запіс",
@@ -2292,23 +2008,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideMemberChangesInPublicChats": "Хаваць змяненні ўдзельнікаў у публічных чатах",
-    "@hideMemberChangesInPublicChats": {},
-    "hideMemberChangesInPublicChatsBody": "Не паказваць далучэнні і выхады з чату ў шкале часу для лепшай чытальнасці.",
-    "@hideMemberChangesInPublicChatsBody": {},
     "overview": "Агляд",
     "@overview": {},
-    "notifyMeFor": "Паведамляць мяне пра",
-    "@notifyMeFor": {},
     "passwordRecoverySettings": "Налады скіду пароля",
     "@passwordRecoverySettings": {},
     "passwordRecovery": "Аднаўленне пароля",
     "@passwordRecovery": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "people": "Людзі",
-    "@people": {
         "type": "String",
         "placeholders": {}
     },
@@ -2331,11 +2036,6 @@
             }
         }
     },
-    "pleaseChoose": "Калі ласка, выберыце",
-    "@pleaseChoose": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseChooseAPasscode": "Калі ласка, выберыце код доступу",
     "@pleaseChooseAPasscode": {
         "type": "String",
@@ -2351,8 +2051,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnterRecoveryKey": "Увядзіце ключ аднаўлення:",
-    "@pleaseEnterRecoveryKey": {},
     "pleaseEnterYourPassword": "Калі ласка, увядзіце ваш пароль",
     "@pleaseEnterYourPassword": {
         "type": "String",
@@ -2454,11 +2152,6 @@
             }
         }
     },
-    "rejoin": "Далучыцца зноў",
-    "@rejoin": {
-        "type": "String",
-        "placeholders": {}
-    },
     "removeAllOtherDevices": "Выдаліць усе іншыя прылады",
     "@removeAllOtherDevices": {
         "type": "String",
@@ -2472,11 +2165,6 @@
                 "type": "String"
             }
         }
-    },
-    "removeDevice": "Выдаліць прыладу",
-    "@removeDevice": {
-        "type": "String",
-        "placeholders": {}
     },
     "unbanFromChat": "Разблакіраваць у чаце",
     "@unbanFromChat": {
@@ -2537,15 +2225,6 @@
     "@recoveryKey": {},
     "recoveryKeyLost": "Ключ абнаўлення страчаны?",
     "@recoveryKeyLost": {},
-    "seenByUser": "Прагледжана {username}",
-    "@seenByUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "send": "Даслаць",
     "@send": {
         "type": "String",
@@ -2586,16 +2265,6 @@
     },
     "sendMessages": "Даслаць паведамленні",
     "@sendMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendOriginal": "Даслаць арыгінал",
-    "@sendOriginal": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendSticker": "Даслаць стыкер",
-    "@sendSticker": {
         "type": "String",
         "placeholders": {}
     },
@@ -2658,23 +2327,8 @@
             }
         }
     },
-    "separateChatTypes": "Падзяляць асобныя чаты і групы",
-    "@separateChatTypes": {
-        "type": "String",
-        "placeholders": {}
-    },
     "setAsCanonicalAlias": "Задаць як асноўны псеўданім",
     "@setAsCanonicalAlias": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setCustomEmotes": "Задаць карыстальніцкі эмодзі",
-    "@setCustomEmotes": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleUnread": "Пазначыць прачытаным/непрачытаным",
-    "@toggleUnread": {
         "type": "String",
         "placeholders": {}
     },
@@ -2743,15 +2397,6 @@
     "@unpin": {
         "type": "String",
         "placeholders": {}
-    },
-    "unreadChats": "{unreadCount, plural, =1{1 непрачытаны чат} other{{unreadCount} непрачытаных чатаў}}",
-    "@unreadChats": {
-        "type": "String",
-        "placeholders": {
-            "unreadCount": {
-                "type": "int"
-            }
-        }
     },
     "userAndOthersAreTyping": "{username} і {count} іншых удзельнікаў пішуць…",
     "@userAndOthersAreTyping": {
@@ -2870,8 +2515,6 @@
             }
         }
     },
-    "homeserverDescription": "Вашыя даныя захоўваюцца на дамашнім серверы, як у правайдара электронай пошты. Вы можаце самастойна абраць дамашні сервер, захоўвая пры тым магчымасць размаўляць. Даведайцеся болей на https://matrix.org.",
-    "@homeserverDescription": {},
     "longPressToRecordVoiceMessage": "Доўга цісніце, каб запісаць галасавое паведамленне.",
     "@longPressToRecordVoiceMessage": {},
     "visibilityOfTheChatHistory": "Бачнасць гісторыі чату",
@@ -2884,29 +2527,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseTryAgainLaterOrChooseDifferentServer": "Калі ласка, паспрабуйце пазней ці абярыце іншы сервер.",
-    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
-    "signInWith": "Увайсці з {provider}",
-    "@signInWith": {
-        "type": "String",
-        "placeholders": {
-            "provider": {
-                "type": "String"
-            }
-        }
-    },
-    "profileNotFound": "Карыстальнік не знойдзены на гэтым серверы. Гэта можа быць памылка сеткі ці карыстальніка не існуе.",
-    "@profileNotFound": {},
-    "setTheme": "Тэма:",
-    "@setTheme": {},
     "setColorTheme": "Каляровая схема:",
     "@setColorTheme": {},
     "invite": "Запрасіць",
     "@invite": {},
     "inviteGroupChat": "📨 Запрашэнне ў групавы чат",
     "@inviteGroupChat": {},
-    "invitePrivateChat": "📨 Запрашэнне ў асобны чат",
-    "@invitePrivateChat": {},
     "invalidInput": "Недапушчальны ўвод!",
     "@invalidInput": {},
     "wrongPinEntered": "Няверны пін-код! Паспрабуйце праз {seconds} секунд...",
@@ -2983,8 +2609,6 @@
     "@createGroupAndInviteUsers": {},
     "groupCanBeFoundViaSearch": "Група можа быць знойдзена праз пошук",
     "@groupCanBeFoundViaSearch": {},
-    "startConversation": "Пачаць размову",
-    "@startConversation": {},
     "commandHint_sendraw": "Даслаць толькі json",
     "@commandHint_sendraw": {},
     "databaseMigrationTitle": "База даных аптымізавана",
@@ -3007,8 +2631,6 @@
     "@passwordsDoNotMatch": {},
     "passwordIsWrong": "Вы ўвялі няверны пароль",
     "@passwordIsWrong": {},
-    "publicLink": "Публічная спасылка",
-    "@publicLink": {},
     "publicChatAddresses": "Публічныя адрасы чату",
     "@publicChatAddresses": {},
     "createNewAddress": "Стварыць новы адрас",
@@ -3019,25 +2641,10 @@
     "@publicSpaces": {},
     "addChatOrSubSpace": "Дадаць чат ці пад-прастору",
     "@addChatOrSubSpace": {},
-    "subspace": "Пад-прастора",
-    "@subspace": {},
-    "decline": "Адхіліць",
-    "@decline": {},
     "thisDevice": "Гэта прылада:",
     "@thisDevice": {},
     "initAppError": "Адбылася памылка пры ініцыялізацыі праграмы",
     "@initAppError": {},
-    "userRole": "Роль карыстальніка",
-    "@userRole": {},
-    "minimumPowerLevel": "{level} - мінімальны ўзровень дазволаў.",
-    "@minimumPowerLevel": {
-        "type": "String",
-        "placeholders": {
-            "level": {
-                "type": "String"
-            }
-        }
-    },
     "searchIn": "Пошук у чаце \"{chat}\"...",
     "@searchIn": {
         "type": "String",
@@ -3053,18 +2660,6 @@
     "@gallery": {},
     "files": "Файлы",
     "@files": {},
-    "databaseBuildErrorBody": "Немагчыма стварыць базу даных SQlite. Праграма спрабуе выкарыстоўваць састарэлую базу. Калі ласка, паведаміце распрацоўшчыкам пра гэта: {url}. Паведамленне памылкі: {error}",
-    "@databaseBuildErrorBody": {
-        "type": "String",
-        "placeholders": {
-            "url": {
-                "type": "String"
-            },
-            "error": {
-                "type": "String"
-            }
-        }
-    },
     "sessionLostBody": "Ваш сеанс страчаны. Калі ласка, паведаміце пра гэта распрацоўшчыкам: {url}. Паведамленне памылкі: {error}",
     "@sessionLostBody": {
         "type": "String",
@@ -3073,15 +2668,6 @@
                 "type": "String"
             },
             "error": {
-                "type": "String"
-            }
-        }
-    },
-    "forwardMessageTo": "Пераслаць паведамленне ў {roomName}?",
-    "@forwardMessageTo": {
-        "type": "String",
-        "placeholders": {
-            "roomName": {
                 "type": "String"
             }
         }
@@ -3244,10 +2830,6 @@
     "@sendCanceled": {},
     "loginWithMatrixId": "Увайсці з Matrix-ID",
     "@loginWithMatrixId": {},
-    "discoverHomeservers": "Даследаваць дамашнія сервера",
-    "@discoverHomeservers": {},
-    "whatIsAHomeserver": "Што такое дамашні сервер?",
-    "@whatIsAHomeserver": {},
     "doesNotSeemToBeAValidHomeserver": "Гэта не выглядае як дамашні сервер. Няслушны URL?",
     "@doesNotSeemToBeAValidHomeserver": {},
     "calculatingFileSize": "Вылічэнне памеру файла...",
@@ -3390,14 +2972,6 @@
     "@pause": {},
     "resume": "Працягнуць",
     "@resume": {},
-    "newSubSpace": "Новая пад-прастора",
-    "@newSubSpace": {},
-    "moveToDifferentSpace": "Перамясціцца ў іншую прастору",
-    "@moveToDifferentSpace": {},
-    "moveUp": "Перамясціць вышэй",
-    "@moveUp": {},
-    "moveDown": "Перамясціць ніжэй",
-    "@moveDown": {},
     "removeFromSpaceDescription": "Гэты чат будзе выдалены з прасторы, але з'явіцца ў вашым спісе чатаў.",
     "@removeFromSpaceDescription": {},
     "countChats": "{chats} чатаў",
@@ -3437,8 +3011,6 @@
     "@endPoll": {},
     "answersVisible": "Адказы бачны",
     "@answersVisible": {},
-    "answersHidden": "Адказы схаваны",
-    "@answersHidden": {},
     "pollQuestion": "Пытанне апытання",
     "@pollQuestion": {},
     "answerOption": "Варыянт адказу",

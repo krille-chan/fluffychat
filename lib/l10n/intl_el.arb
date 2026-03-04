@@ -136,18 +136,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "badServerVersionsException": "Ο οικιακός διακομιστής υποστηρίζει τις εκδόσεις Spec:\n{serverVersions}\nΑλλά αυτή η εφαρμογή υποστηρίζει μόνο {supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
     "addToSpace": "Προσθήκη στο χώρο",
     "@addToSpace": {},
     "about": "Σχετικά",
@@ -173,8 +161,6 @@
             }
         }
     },
-    "addChatDescription": "Πρόσθεσε μια περιγραφή συνομιλίας...",
-    "@addChatDescription": {},
     "cancel": "Ακύρωση",
     "@cancel": {
         "type": "String",
@@ -249,11 +235,6 @@
     },
     "commandHint_googly": "Στείλε αστεία μάτια",
     "@commandHint_googly": {},
-    "botMessages": "Μηνύματα bot",
-    "@botMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
     "importNow": "Εισαγωγή τώρα",
     "@importNow": {},
     "anyoneCanJoin": "Οποιοσδήποτε μπορεί να συμμετάσχει",
@@ -265,14 +246,8 @@
     "@alwaysUse24HourFormat": {
         "description": "Set to true to always display time of day in 24 hour format."
     },
-    "setCustomPermissionLevel": "Όρισε προσαρμοσμένο επίπεδο άδειας",
-    "@setCustomPermissionLevel": {},
-    "setPermissionsLevelDescription": "Επέλεξε έναν προκαθορισμένο ρόλο παρακάτω ή εισήγαγε ένα προσαρμοσμένο επίπεδο άδειας μεταξύ 0 και 100.",
-    "@setPermissionsLevelDescription": {},
     "ignoreUser": "Αγνόηση χρήστη",
     "@ignoreUser": {},
-    "normalUser": "Κανονικός χρήστης",
-    "@normalUser": {},
     "aboutHomeserver": "Σχετικά με {homeserver}",
     "@aboutHomeserver": {
         "type": "String",
@@ -288,18 +263,6 @@
     "@appLockDescription": {},
     "swipeRightToLeftToReply": "Σύρσιμο δεξιά προς αριστερά για απάντηση",
     "@swipeRightToLeftToReply": {},
-    "countChatsAndCountParticipants": "{chats} συνομιλίες και {participants} συμμετέχοντες",
-    "@countChatsAndCountParticipants": {
-        "type": "String",
-        "placeholders": {
-            "chats": {
-                "type": "int"
-            },
-            "participants": {
-                "type": "int"
-            }
-        }
-    },
     "noMoreChatsFound": "Δεν βρέθηκαν άλλες συνομιλίες...",
     "@noMoreChatsFound": {},
     "noChatsFoundHere": "Δεν υπάρχουν συνομιλίες ακόμα. Ξεκίνα μια νέα συνομιλία με κάποιον χρησιμοποιώντας το κουμπί παρακάτω. ⤵️",
@@ -456,8 +419,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "joinedChats": "Συνδεδεμένες συνομιλίες",
-    "@joinedChats": {},
     "chatBackup": "Αντίγραφο ασφαλείας συνομιλίας",
     "@chatBackup": {
         "type": "String",
@@ -468,8 +429,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatHasBeenAddedToThisSpace": "Η συνομιλία προστέθηκε στο δωμάτιο",
-    "@chatHasBeenAddedToThisSpace": {},
     "chats": "Συνομιλίες",
     "@chats": {
         "type": "String",

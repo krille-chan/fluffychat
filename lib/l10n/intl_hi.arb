@@ -10,10 +10,7 @@
     "importEmojis": "इमोजी आयात करें",
     "notAnImage": "कोई छवि फ़ाइल नहीं।",
     "importNow": "अभी आयात करें",
-    "setCustomPermissionLevel": "अपना अनुमति स्तर निर्धारित करें",
-    "setPermissionsLevelDescription": "कृपया नीचे दी गई भूमिका चुनें या 0 से 100 के बीच अपनी कस्टम अनुमति स्तर दर्ज करें।",
     "ignoreUser": "उपयोगकर्ता को नजरअंदाज करें",
-    "normalUser": "सामान्य उपयोगकर्ता",
     "replace": "बदलें",
     "about": "हमारे बारे में",
     "aboutHomeserver": "{homeserver} की जानकारी",
@@ -67,6 +64,5 @@
                 "type": "String"
             }
         }
-    },
-    "addChatDescription": "चैट का विवरण जोड़ें..।"
+    }
 }

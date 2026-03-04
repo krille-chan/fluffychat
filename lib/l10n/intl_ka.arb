@@ -80,11 +80,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "botMessages": "ბოტის შეტყობინებები",
-    "@botMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
     "cancel": "გაუქმება",
     "@cancel": {
         "type": "String",
@@ -171,16 +166,6 @@
         },
         "description": "State that {command} is not a valid /command."
     },
-    "confirm": "დადასტურება",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "დაკავშირება",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
     "countParticipants": "{count} მონაწილე",
     "@countParticipants": {
         "type": "String",
@@ -264,7 +249,6 @@
         "placeholders": {}
     },
     "confirmMatrixId": "გთხოვთ, დაადასტუროთ თქვენი Matrix ID ანგარიშის წაშლისათვის.",
-    "addChatDescription": "ჩატის აღწერილობის დამატება...",
     "addToSpace": "სივრცეში დამატება",
     "admin": "ადმინი",
     "@admin": {
@@ -486,7 +470,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatHasBeenAddedToThisSpace": "ჩატი დაემატა ამ სივრცეს",
     "chats": "ჩატები",
     "@chats": {
         "type": "String",
@@ -563,11 +546,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "containsUserName": "შეიცავს სახელს",
-    "@containsUserName": {
-        "type": "String",
-        "placeholders": {}
-    },
     "copiedToClipboard": "კოპირებულია ბუფერში",
     "@copiedToClipboard": {
         "type": "String",
@@ -616,33 +594,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "dateWithoutYear": "{day}-{month}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithYear": "{day}-{month}-{year}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
     "delete": "წაშლა",
     "@delete": {
         "type": "String",
@@ -670,11 +621,6 @@
     },
     "directChats": "პირდაპირი ჩატები",
     "@directChats": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "allRooms": "ყველა ჯგუფური ჩატები",
-    "@allRooms": {
         "type": "String",
         "placeholders": {}
     },
@@ -781,11 +727,6 @@
         "type": "String",
         "description": "Usage hint for the command /react"
     },
-    "containsDisplayName": "ნაჩვენებ სახელს შეიცავს",
-    "@containsDisplayName": {
-        "type": "String",
-        "placeholders": {}
-    },
     "contentHasBeenReported": "ეს კონტენტი გაგზავნილ იქნა სერვერის ადმინისტრატორებთან",
     "@contentHasBeenReported": {
         "type": "String",
@@ -807,7 +748,6 @@
         "placeholders": {}
     },
     "ignoreUser": "დაიგნორება",
-    "normalUser": "ჩვეულებრვი მომხმარებელი",
     "aboutHomeserver": "{homeserver}-ის შესახებ",
     "@aboutHomeserver": {
         "type": "String",

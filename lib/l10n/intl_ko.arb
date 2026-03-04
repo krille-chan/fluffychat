@@ -88,11 +88,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "license": "라이선스",
-    "@license": {
-        "type": "String",
-        "placeholders": {}
-    },
     "help": "도움",
     "@help": {
         "type": "String",
@@ -115,11 +110,6 @@
     },
     "group": "그룹 채팅",
     "@group": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "goToTheNewRoom": "새로운 방 가기",
-    "@goToTheNewRoom": {
         "type": "String",
         "placeholders": {}
     },
@@ -160,11 +150,6 @@
     },
     "everythingReady": "모든 것이 준비됐어요!",
     "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "enterYourHomeserver": "당신의 홈서버를 입력하세요",
-    "@enterYourHomeserver": {
         "type": "String",
         "placeholders": {}
     },
@@ -216,11 +201,6 @@
     },
     "emptyChat": "빈 채팅",
     "@emptyChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emoteWarnNeedToPick": "이모트 단축키와 이미지를 골라야 합니다!",
-    "@emoteWarnNeedToPick": {
         "type": "String",
         "placeholders": {}
     },
@@ -381,28 +361,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "containsUserName": "내 아이디 포함",
-    "@containsUserName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsDisplayName": "내 닉네임 포함",
-    "@containsDisplayName": {
-        "type": "String",
-        "placeholders": {}
-    },
     "contactHasBeenInvitedToTheGroup": "연락처가 채팅에 초대되었습니다",
     "@contactHasBeenInvitedToTheGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "연결",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "confirm": "확인",
-    "@confirm": {
         "type": "String",
         "placeholders": {}
     },
@@ -477,8 +437,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatHasBeenAddedToThisSpace": "이 스페이스에 채팅이 추가되었습니다",
-    "@chatHasBeenAddedToThisSpace": {},
     "chatDetails": "채팅 정보",
     "@chatDetails": {
         "type": "String",
@@ -683,11 +641,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "botMessages": "봇 메시지",
-    "@botMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
     "blocked": "차단됨",
     "@blocked": {
         "type": "String",
@@ -719,18 +672,6 @@
     "@banFromChat": {
         "type": "String",
         "placeholders": {}
-    },
-    "badServerVersionsException": "이 홈서버가 지원하는 Spec 버전:\n{serverVersions}\n하지만 이 앱은 {supportedVersions}만 지원합니다",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
     },
     "sendOnEnter": "엔터로 보내기",
     "@sendOnEnter": {},
@@ -849,11 +790,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "identity": "신원",
-    "@identity": {
-        "type": "String",
-        "placeholders": {}
-    },
     "id": "ID",
     "@id": {
         "type": "String",
@@ -919,33 +855,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "dateWithYear": "{year}-{month}-{day}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithoutYear": "{month}-{day}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
     "dateAndTimeOfDay": "{date}, {timeOfDay}",
     "@dateAndTimeOfDay": {
         "type": "String",
@@ -1005,11 +914,6 @@
     },
     "warning": "경고!",
     "@warning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wallpaper": "배경:",
-    "@wallpaper": {
         "type": "String",
         "placeholders": {}
     },
@@ -1226,11 +1130,6 @@
             }
         }
     },
-    "notificationsEnabledForThisAccount": "이 계정에서 알림이 활성화되었습니다",
-    "@notificationsEnabledForThisAccount": {
-        "type": "String",
-        "placeholders": {}
-    },
     "notifications": "알림",
     "@notifications": {
         "type": "String",
@@ -1323,15 +1222,6 @@
     "@logout": {
         "type": "String",
         "placeholders": {}
-    },
-    "unreadChats": "{unreadCount, plural, =1{읽지 않은 채팅 1} other{{unreadCount} 개}}",
-    "@unreadChats": {
-        "type": "String",
-        "placeholders": {
-            "unreadCount": {
-                "type": "int"
-            }
-        }
     },
     "unavailable": "사용할 수 없음",
     "@unavailable": {
@@ -1426,21 +1316,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "toggleUnread": "메시지 안/읽음 으로 표시",
-    "@toggleUnread": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleMuted": "음소거 토글",
-    "@toggleMuted": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleFavorite": "즐겨찾기 토글",
-    "@toggleFavorite": {
-        "type": "String",
-        "placeholders": {}
-    },
     "title": "FluffyChat",
     "@title": {
         "description": "Title for the application",
@@ -1501,11 +1376,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "singlesignon": "단일 계정 로그인(SSO)",
-    "@singlesignon": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pushRules": "푸시 규칙",
     "@pushRules": {
         "type": "String",
@@ -1535,11 +1405,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseChoose": "선택해주세요",
-    "@pleaseChoose": {
-        "type": "String",
-        "placeholders": {}
-    },
     "play": "{fileName} 재생",
     "@play": {
         "type": "String",
@@ -1548,11 +1413,6 @@
                 "type": "String"
             }
         }
-    },
-    "people": "사람들",
-    "@people": {
-        "type": "String",
-        "placeholders": {}
     },
     "passwordHasBeenChanged": "비밀번호가 변경됨",
     "@passwordHasBeenChanged": {
@@ -1633,11 +1493,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "memberChanges": "참가자 변경",
-    "@memberChanges": {
-        "type": "String",
-        "placeholders": {}
-    },
     "loadingPleaseWait": "로딩 중... 기다려 주세요.",
     "@loadingPleaseWait": {
         "type": "String",
@@ -1697,21 +1552,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "setPermissionsLevel": "권한 레벨 설정",
-    "@setPermissionsLevel": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setInvitationLink": "초대 링크 설정",
-    "@setInvitationLink": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setCustomEmotes": "맞춤 이모트 설정",
-    "@setCustomEmotes": {
-        "type": "String",
-        "placeholders": {}
-    },
     "setAsCanonicalAlias": "주 별명으로 설정",
     "@setAsCanonicalAlias": {
         "type": "String",
@@ -1734,11 +1574,6 @@
                 "type": "String"
             }
         }
-    },
-    "sendOriginal": "원본 보내기",
-    "@sendOriginal": {
-        "type": "String",
-        "placeholders": {}
     },
     "sendMessages": "메시지 보내기",
     "@sendMessages": {
@@ -1773,15 +1608,6 @@
     "@send": {
         "type": "String",
         "placeholders": {}
-    },
-    "seenByUser": "{username}님이 읽음",
-    "@seenByUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "security": "보안",
     "@security": {
@@ -1879,11 +1705,6 @@
             }
         }
     },
-    "inviteForMe": "초대됨",
-    "@inviteForMe": {
-        "type": "String",
-        "placeholders": {}
-    },
     "invitedUsersOnly": "초대된 유저만",
     "@invitedUsersOnly": {
         "type": "String",
@@ -1976,11 +1797,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "sendSticker": "스티커 보내기",
-    "@sendSticker": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reportMessage": "메시지 신고",
     "@reportMessage": {
         "type": "String",
@@ -2006,11 +1822,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removeDevice": "기기 삭제",
-    "@removeDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "removedBy": "{username}에 의해 지워짐",
     "@removedBy": {
         "type": "String",
@@ -2027,11 +1838,6 @@
     },
     "remove": "지우기",
     "@remove": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "rejoin": "다시 참가",
-    "@rejoin": {
         "type": "String",
         "placeholders": {}
     },
@@ -2129,8 +1935,6 @@
     "@start": {},
     "removeFromSpace": "스페이스에서 삭제",
     "@removeFromSpace": {},
-    "addToSpaceDescription": "이 채팅을 추가할 스페이스를 선택하세요.",
-    "@addToSpaceDescription": {},
     "commandHint_discardsession": "세션 삭제",
     "@commandHint_discardsession": {
         "type": "String",
@@ -2150,22 +1954,6 @@
     "@commandHint_create": {
         "type": "String",
         "description": "Usage hint for the command /create"
-    },
-    "openVideoCamera": "영상용 카메라 열기",
-    "@openVideoCamera": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "publish": "공개",
-    "@publish": {},
-    "videoWithSize": "영상 ({size})",
-    "@videoWithSize": {
-        "type": "String",
-        "placeholders": {
-            "size": {
-                "type": "String"
-            }
-        }
     },
     "dismiss": "닫기",
     "@dismiss": {},
@@ -2205,8 +1993,6 @@
     "@unsupportedAndroidVersionLong": {},
     "videoCallsBetaWarning": "영상 통화는 베타임을 확인해주세요. 의도한 대로 작동하지 않거나 모든 플랫폼에서 작동하지 않을 수 있습니다.",
     "@videoCallsBetaWarning": {},
-    "emailOrUsername": "이메일이나 유저 이름",
-    "@emailOrUsername": {},
     "confirmMatrixId": "계정을 삭제하려면 Matrix ID를 입력해 주세요.",
     "@confirmMatrixId": {},
     "commandHint_googly": "왕눈이 눈알 보내기",
@@ -2237,29 +2023,12 @@
     },
     "jumpToLastReadMessage": "마지막으로 읽은 메시지로 이동",
     "@jumpToLastReadMessage": {},
-    "allRooms": "모든 그룹 채팅",
-    "@allRooms": {
-        "type": "String",
-        "placeholders": {}
-    },
     "commandHint_cuddle": "미소 보내기",
     "@commandHint_cuddle": {},
-    "widgetVideo": "영상",
-    "@widgetVideo": {},
     "reportErrorDescription": "😭 이런. 무언가 잘못되었습니다. 원한다면, 개발자에게 버그를 신고할 수 있습니다.",
     "@reportErrorDescription": {},
-    "widgetJitsi": "Jitsi Meet",
-    "@widgetJitsi": {},
-    "indexedDbErrorLong": "메시지 저장은 기본적으로 사생활 보호 모드에서 사용할 수 없습니다.\n- about:config 로 이동\n- dom.indexedDB.privateBrowsing.enabled 를 true로 설정\n그렇지 않으면 FluffyChat을 실행할 수 없습니다.",
-    "@indexedDbErrorLong": {},
-    "startFirstChat": "첫 번째 채팅을 시작하기",
-    "@startFirstChat": {},
-    "callingAccount": "통화 계정",
-    "@callingAccount": {},
     "setColorTheme": "색상 테마 설정:",
     "@setColorTheme": {},
-    "nextAccount": "다음 계정",
-    "@nextAccount": {},
     "allSpaces": "모든 스페이스",
     "@allSpaces": {},
     "supposedMxid": "{mxid} 이어야 함",
@@ -2285,15 +2054,8 @@
     },
     "banUserDescription": "유저는 채팅에서 영구 추방되며 추방 해제 전까지 채팅을 다시 입력할 수 없습니다.",
     "@banUserDescription": {},
-    "widgetEtherpad": "텍스트 메모",
-    "@widgetEtherpad": {},
     "removeDevicesDescription": "이 기기에서 로그아웃되며 더 이상 메시지를 받을 수 없습니다.",
     "@removeDevicesDescription": {},
-    "separateChatTypes": "다이렉트 채팅과 그룹 채팅 분리",
-    "@separateChatTypes": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryAgain": "다시 시도하기",
     "@tryAgain": {},
     "youKickedAndBanned": "🙅 {user}님을 영구 추방했습니다",
@@ -2308,32 +2070,16 @@
     "@unbanUserDescription": {},
     "youRejectedTheInvitation": "초대를 거부했습니다",
     "@youRejectedTheInvitation": {},
-    "otherCallingPermissions": "마이크, 카메라 그리고 다름 FluffyChat 권한",
-    "@otherCallingPermissions": {},
     "messagesStyle": "메세지:",
     "@messagesStyle": {},
-    "widgetUrlError": "유효한 URL이 아닙니다.",
-    "@widgetUrlError": {},
     "newSpaceDescription": "스페이스를 사용하면 채팅을 통합하고 비공개 또는 공개 커뮤니티를 구축할 수 있습니다.",
     "@newSpaceDescription": {},
     "chatDescription": "채팅 설명",
     "@chatDescription": {},
-    "callingAccountDetails": "FluffyChat이 android 전화앱을 사용 할 수 있도록 허가.",
-    "@callingAccountDetails": {},
-    "enterSpace": "스페이스에 입장",
-    "@enterSpace": {},
     "encryptThisChat": "이 채팅을 암호화",
     "@encryptThisChat": {},
-    "previousAccount": "이전 계정",
-    "@previousAccount": {},
     "reopenChat": "채팅 다시 열기",
     "@reopenChat": {},
-    "pleaseEnterRecoveryKey": "당신의 복구키를 입력하세요:",
-    "@pleaseEnterRecoveryKey": {},
-    "widgetNameError": "표시 이름을 입력하세요.",
-    "@widgetNameError": {},
-    "addWidget": "위젯 추가",
-    "@addWidget": {},
     "countFiles": "{count}개의 파일",
     "@countFiles": {
         "placeholders": {
@@ -2344,8 +2090,6 @@
     },
     "noKeyForThisMessage": "이것은 이 메시지가 당신이 이 기기를 서명하기 전에 발송되었기 때문에 일어났을 수 있습니다.\n\n이것은 또한 발송자가 당신의 기기를 차단하였거나 혹은 인터넷 연결이 잘못되었을 수 있습니다.\n\n다른 세션에서 이 메시지를 읽을 수 있나요? 그렇다면 그 메시지를 옮길 수 있습니다! 설정 > 기기로 가서 기기를 서로 증명하세요. 다음번에 방을 열었을 때 두 세션이 모두 작동중이라면, 키가 자동으로 옮겨질것입니다.\n\n로그아웃하거나 기기를 바꿀 때 키를 잃고싶지 않으신가요? 설정에서 채팅 백업을 사용중인지 확인하세요.",
     "@noKeyForThisMessage": {},
-    "hydrateTor": "TOR 사용자: 내보낸 세션 불러오기",
-    "@hydrateTor": {},
     "pushNotificationsNotAvailable": "푸시 알림 사용 불가",
     "@pushNotificationsNotAvailable": {},
     "storeInAppleKeyChain": "Apple KeyChain에 저장하기",
@@ -2358,8 +2102,6 @@
     "@chatPermissions": {},
     "storeInAndroidKeystore": "Android KeyStore에 저장하기",
     "@storeInAndroidKeystore": {},
-    "signInWithPassword": "비밀번호로 로그인",
-    "@signInWithPassword": {},
     "makeAdminDescription": "유저를 한 번 관리자로 만들면, 당신과 같은 권한을 가지기때문에 권한 회수가 불가능합니다.",
     "@makeAdminDescription": {},
     "saveKeyManuallyDescription": "공유나 클립보드를 이용해 수동으로 키를 저장합니다.",
@@ -2381,51 +2123,20 @@
             }
         }
     },
-    "signInWith": "{provider}로 로그인",
-    "@signInWith": {
-        "type": "String",
-        "placeholders": {
-            "provider": {
-                "type": "String"
-            }
-        }
-    },
     "fileIsTooBigForServer": "전송에 실패했습니다. 서버는 {max}가 넘는 파일을 지원하지 않습니다.",
     "@fileIsTooBigForServer": {},
-    "callingPermissions": "통화 권한",
-    "@callingPermissions": {},
     "readUpToHere": "여기까지 읽음",
     "@readUpToHere": {},
     "unlockOldMessages": "오래된 메시지 잠금 해제하기",
     "@unlockOldMessages": {},
-    "numChats": "{number}개의 채팅",
-    "@numChats": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
     "optionalRedactReason": "(선택) 이 메시지를 편집하는 이유...",
     "@optionalRedactReason": {},
     "archiveRoomDescription": "채팅이 보관함으로 이동합니다. 다른 유저들은 당신이 떠난다는것을 볼 수 있습니다.",
     "@archiveRoomDescription": {},
     "exportEmotePack": ".zip 파일로 이모트 내보내기",
     "@exportEmotePack": {},
-    "switchToAccount": "계정 {number}로 전환",
-    "@switchToAccount": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
     "pleaseEnterRecoveryKeyDescription": "오래된 메시지를 잠금 해제하려면, 이전 세션에서 생성된 복호화 키를 입력하세요. 복호화 키는 비밀번호가 아닙니다.",
     "@pleaseEnterRecoveryKeyDescription": {},
-    "inviteContactToGroupQuestion": "{contact} 를 \"{groupName}\"에 초대할까요?",
-    "@inviteContactToGroupQuestion": {},
     "redactedByBecause": "{username}님이 삭제함. 사유: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
@@ -2446,10 +2157,6 @@
             }
         }
     },
-    "appearOnTopDetails": "앱이 상단에 표시되도록 허용 (이미 FluffyChat을 통화 계정으로 설정한 경우에는 필요하지 않음)",
-    "@appearOnTopDetails": {},
-    "enterRoom": "방에 입장",
-    "@enterRoom": {},
     "youInvitedUser": "📩 {user}님을 초대했습니다",
     "@youInvitedUser": {
         "placeholders": {
@@ -2473,18 +2180,12 @@
     "@recoveryKey": {},
     "invalidInput": "잘못된 입력!",
     "@invalidInput": {},
-    "dehydrateTorLong": "TOR 사용자들은 창을 닫기 전에 세션을 내보내는것이 권장됩니다.",
-    "@dehydrateTorLong": {},
     "doNotShowAgain": "다시 보지 않기",
     "@doNotShowAgain": {},
     "report": "신고",
     "@report": {},
-    "hideUnimportantStateEvents": "중요하지 않은 상태 이벤트 숨기기",
-    "@hideUnimportantStateEvents": {},
     "screenSharingTitle": "화면 공유",
     "@screenSharingTitle": {},
-    "widgetCustom": "사용자 정의",
-    "@widgetCustom": {},
     "youBannedUser": "{user}님을 영구 추방함",
     "@youBannedUser": {
         "placeholders": {
@@ -2493,8 +2194,6 @@
             }
         }
     },
-    "addChatDescription": "채팅 설명 추가하기...",
-    "@addChatDescription": {},
     "hasKnocked": "🚪 {user}님이 참가를 요청했습니다",
     "@hasKnocked": {
         "placeholders": {
@@ -2522,10 +2221,6 @@
     "@sendTypingNotifications": {},
     "inviteGroupChat": "📨 그룹 채팅에 초대",
     "@inviteGroupChat": {},
-    "appearOnTop": "상단에 표시",
-    "@appearOnTop": {},
-    "invitePrivateChat": "📨 비공개 채팅에 초대",
-    "@invitePrivateChat": {},
     "foregroundServiceRunning": "이 알림은 백그라운드 서비스가 실행중일때 표시됩니다.",
     "@foregroundServiceRunning": {},
     "importEmojis": "이모지 불러오기",
@@ -2551,8 +2246,6 @@
     "@chatDescriptionHasBeenChanged": {},
     "newGroup": "새 그룹 채팅",
     "@newGroup": {},
-    "dehydrateTor": "TOR 사용자: 세션 내보내기",
-    "@dehydrateTor": {},
     "roomUpgradeDescription": "채팅이 새로운 방 버전으로 다시 생성됩니다. 모든 참가자는 새로운 채팅으로 전환해야합니다. https://spec.matrix.org/latest/rooms/ 에서 방 버전에 대해 자세히 알아볼 수 있습니다.",
     "@roomUpgradeDescription": {},
     "pleaseEnterANumber": "0보다 큰 숫자를 입력하세요",
@@ -2565,8 +2258,6 @@
             }
         }
     },
-    "profileNotFound": "유저를 서버에서 찾을 수 있습니다. 연결 문제가 있거나 유저가 존재하지 않을 수 있습니다.",
-    "@profileNotFound": {},
     "jump": "점프",
     "@jump": {},
     "sorryThatsNotPossible": "죄송합니다...그것은 불가능합니다",
@@ -2593,14 +2284,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "setTheme": "테마 설정:",
-    "@setTheme": {},
     "youJoinedTheChat": "채팅에 참가하였습니다",
     "@youJoinedTheChat": {},
-    "widgetName": "이름",
-    "@widgetName": {},
-    "errorAddingWidget": "위젯 추가중 오류 발생.",
-    "@errorAddingWidget": {},
     "commandHint_hug": "허그 보내기",
     "@commandHint_hug": {},
     "replace": "대체",
@@ -2615,12 +2300,8 @@
     },
     "newSpace": "새 스페이스",
     "@newSpace": {},
-    "pleaseTryAgainLaterOrChooseDifferentServer": "나중에 다시 시도하거나 다른 서버를 선택하십시오.",
-    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
     "createGroup": "새 그룹 채팅",
     "@createGroup": {},
-    "hydrateTorLong": "지난 TOR 이용에서 세션을 내보내셨나요? 빠르게 불러오고 채팅을 계속하세요.",
-    "@hydrateTorLong": {},
     "custom": "커스텀",
     "@custom": {},
     "noBackupWarning": "경고! 채팅 백업을 켜지 않을경우, 당신은 암호화된 메시지에 대한 접근권한을 잃을것 입니다. 로그아웃 하기 전에 채팅을 백업하는것이 강력히 권장됩니다.",
@@ -2633,8 +2314,6 @@
     "@importNow": {},
     "invite": "초대",
     "@invite": {},
-    "indexedDbErrorTitle": "사생활 보호 모드의 문제",
-    "@indexedDbErrorTitle": {},
     "storeSecurlyOnThisDevice": "이 기기에 안전하게 저장",
     "@storeSecurlyOnThisDevice": {},
     "screenSharingDetail": "FluffyChat에 당신의 화면을 공유하는중",
@@ -2653,24 +2332,12 @@
     "@pleaseChooseAStrongPassword": {},
     "addChatOrSubSpace": "채팅 또는 하위 스페이스 추가",
     "@addChatOrSubSpace": {},
-    "subspace": "하위 스페이스",
-    "@subspace": {},
-    "youInvitedToBy": "📩 링크를 통해 초대되셨습니다:\n{alias}",
-    "@youInvitedToBy": {
-        "placeholders": {
-            "alias": {
-                "type": "String"
-            }
-        }
-    },
     "databaseMigrationBody": "잠시만 기다리세요. 시간이 걸릴 수 있습니다.",
     "@databaseMigrationBody": {},
     "select": "선택",
     "@select": {},
     "joinSpace": "스페이스 참가",
     "@joinSpace": {},
-    "decline": "거절",
-    "@decline": {},
     "formattedMessagesDescription": "마크다운을 이용한 볼드등의 서식이 있는 메시지를 봅니다.",
     "@formattedMessagesDescription": {},
     "completedKeyVerification": "{sender}가 키 검증을 완료함",
@@ -2697,8 +2364,6 @@
     "@passwordsDoNotMatch": {},
     "passwordIsWrong": "비밀번호가 틀립니다",
     "@passwordIsWrong": {},
-    "publicLink": "공개 링크",
-    "@publicLink": {},
     "thisDevice": "이 기기:",
     "@thisDevice": {},
     "sendReadReceipts": "읽음 확인 보내기",
@@ -2753,11 +2418,6 @@
     "@commandHint_unignore": {},
     "blockListDescription": "당신은 당신을 방해하는 유저들을 차단할 수 있습니다. 당신은 당신의 개인 차단 목록에 있는 어떠한 유저의 메시지와 방 초대도 받지 않을것 입니다.",
     "@blockListDescription": {},
-    "presenceStyle": "상태:",
-    "@presenceStyle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "sessionLostBody": "세션을 잃었습니다. {url} 에서 개발자에게 오류를 신고하세요. 오류 메시지는 다음과 같습니다: {error}",
     "@sessionLostBody": {
         "type": "String",
@@ -2783,8 +2443,6 @@
     },
     "nothingFound": "아무것도 찾지 못했습니다...",
     "@nothingFound": {},
-    "startConversation": "대화 시작",
-    "@startConversation": {},
     "databaseMigrationTitle": "데이터베이스가 최적화됨",
     "@databaseMigrationTitle": {},
     "pleaseEnterYourCurrentPassword": "현재 비밀번호 입력",
@@ -2793,31 +2451,10 @@
     "@publicSpaces": {},
     "initAppError": "앱 초기화중 오류 발생",
     "@initAppError": {},
-    "databaseBuildErrorBody": "SQlite 데이터베이스를 구축할 수 없습니다. 현재 레거시 데이터베이스 사용을 시도중입니다. {url} 에서 개발자에게 오류를 신고하세요. 오류 메시지는 다음과 같습니다: {error}",
-    "@databaseBuildErrorBody": {
-        "type": "String",
-        "placeholders": {
-            "url": {
-                "type": "String"
-            },
-            "error": {
-                "type": "String"
-            }
-        }
-    },
     "sendTypingNotificationsDescription": "채팅의 다른 참가자들이 당신이 새 메시지를 입력중인것을 볼 수 있습니다.",
     "@sendTypingNotificationsDescription": {},
     "formattedMessages": "형식이 지정된 메시지",
     "@formattedMessages": {},
-    "forwardMessageTo": "{roomName}에 메시지를 전달할까요?",
-    "@forwardMessageTo": {
-        "type": "String",
-        "placeholders": {
-            "roomName": {
-                "type": "String"
-            }
-        }
-    },
     "verifyOtherDevice": "🔐 다른 기기를 확인",
     "@verifyOtherDevice": {},
     "verifyOtherUserDescription": "다른 유저를 확인하면, 당신은 당신이 누구에게 말하고있는지 알 수 있습니다. 💪\n\n확인을 시작할 때, 다른 유저는 앱에서 팝업을 볼 수 있습니다. 당신은 그런 다음 서로 비교해야 이모지 또는 숫자의 목록을 볼 수 있습니다.\n\n이 작업을 수행하는 가장 좋은 방법은 직접 만나거나 영상통화를 하는것입니다. 👭",
@@ -2893,22 +2530,8 @@
     "@hideInvalidOrUnknownMessageFormats": {},
     "overview": "개요",
     "@overview": {},
-    "notifyMeFor": "나에게 알림",
-    "@notifyMeFor": {},
     "passwordRecoverySettings": "비밀번호 복구 설정",
     "@passwordRecoverySettings": {},
-    "hideMemberChangesInPublicChats": "공개 채팅에서의 참가자 변화 숨김",
-    "@hideMemberChangesInPublicChats": {},
-    "userWouldLikeToChangeTheChat": "{user}님이 참가를 희망합니다.",
-    "@userWouldLikeToChangeTheChat": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "noPublicLinkHasBeenCreatedYet": "공개 링크가 아직 생성되지 않았음",
-    "@noPublicLinkHasBeenCreatedYet": {},
     "knock": "참가 요청",
     "@knock": {},
     "usersMustKnock": "유저들이 참가를 허가받아야함",
@@ -2931,25 +2554,12 @@
         "type": "String",
         "count": {}
     },
-    "minimumPowerLevel": "{level}은 최소 권한 레벨입니다.",
-    "@minimumPowerLevel": {
-        "type": "String",
-        "placeholders": {
-            "level": {
-                "type": "String"
-            }
-        }
-    },
     "noDatabaseEncryption": "데이터베이스 암호화는 이 플랫폼에서 지원되지 않음",
     "@noDatabaseEncryption": {},
     "publicChatAddresses": "공개 채팅 주소",
     "@publicChatAddresses": {},
-    "userRole": "유저 역할",
-    "@userRole": {},
     "createNewAddress": "새 주소 만들기",
     "@createNewAddress": {},
-    "hideMemberChangesInPublicChatsBody": "공개 채팅에 누군가가 참가하거나 떠날때 타임라인에 표시하지 않습니다.",
-    "@hideMemberChangesInPublicChatsBody": {},
     "searchMore": "더 검색...",
     "@searchMore": {},
     "files": "파일",
@@ -2988,20 +2598,6 @@
     },
     "markAsUnread": "읽지 않음으로 표시",
     "@markAsUnread": {},
-    "countChatsAndCountParticipants": "{chats} 채팅과 {participants} 참여자",
-    "@countChatsAndCountParticipants": {
-        "type": "String",
-        "placeholders": {
-            "chats": {
-                "type": "int"
-            },
-            "participants": {
-                "type": "int"
-            }
-        }
-    },
-    "joinedChats": "참가한 채팅",
-    "@joinedChats": {},
     "noMoreChatsFound": "채팅을 찾을 수 없습니다...",
     "@noMoreChatsFound": {},
     "moderatorLevel": "{level} - 관리자",
@@ -3047,8 +2643,6 @@
     "@changeTheCanonicalRoomAlias": {},
     "sendCanceled": "전송 최소됨",
     "@sendCanceled": {},
-    "homeserverDescription": "당신의 모든 데이터는 이메일과 흡사하게 당신의 홈서버에 저장됩니다. 당신이 소통하고 싶은 사람들과 다른 서버를 사용해도 무관하니 당신이 원하는 홈서버를 선택해도 됩니다. https://matrix.org에서 자세히 알아보세요.",
-    "@homeserverDescription": {},
     "sendingAttachmentCountOfCount": "첨부파일 {length}개중 {index}번째 전송 중...",
     "@sendingAttachmentCountOfCount": {
         "type": "integer",
@@ -3125,10 +2719,6 @@
     "@chatPermissionsDescription": {},
     "loginWithMatrixId": "Matrix-ID로 로그인",
     "@loginWithMatrixId": {},
-    "discoverHomeservers": "홈서버 찾아보기",
-    "@discoverHomeservers": {},
-    "whatIsAHomeserver": "홈서버가 무엇인가요?",
-    "@whatIsAHomeserver": {},
     "doesNotSeemToBeAValidHomeserver": "호환되는 홈서버가 아닌 것 같습니다. URL을 올바르게 입력됐나요?",
     "@doesNotSeemToBeAValidHomeserver": {},
     "continueText": "계속하기",
@@ -3196,8 +2786,6 @@
     "@previous": {},
     "newChatRequest": "📩 새 채팅 요청",
     "@newChatRequest": {},
-    "appIntroduction": "FluffyChat는 다른 메신저들을 사용하는 친구들과도 채팅할 수 있습니다. https://matrix.org에 방문하거나 *계속*을 눌러 자세한 정보를 확인하세요.",
-    "@appIntroduction": {},
     "synchronizingPleaseWaitCounter": " 동기화중… ({percentage}%)",
     "@synchronizingPleaseWaitCounter": {
         "type": "String",
@@ -3271,14 +2859,8 @@
     "@notificationRuleSuppressEditsDescription": {},
     "notificationRuleCall": "전화",
     "@notificationRuleCall": {},
-    "setCustomPermissionLevel": "사용자 지정 권한 수준 설정",
-    "@setCustomPermissionLevel": {},
-    "setPermissionsLevelDescription": "아래에서 미리 정의된 역할을 선택하거나 0부터 100 사이의 사용자 지정 권한 수준을 입력해 주세요.",
-    "@setPermissionsLevelDescription": {},
     "ignoreUser": "사용자 무시",
     "@ignoreUser": {},
-    "normalUser": "일반 사용자",
-    "@normalUser": {},
     "commandHint_roomupgrade": "이 방을 주어진 방 버전으로 업그레이드합니다",
     "@commandHint_roomupgrade": {},
     "checkList": "체크리스트",
