@@ -204,7 +204,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     if (file != null) {
       audioPlayer.setFilePath(file.path);
     } else if (kIsWeb) {
-      final blob = html.Blob([matrixFile.bytes], 'audio/mpeg');
+      final blob = html.Blob([matrixFile.bytes], matrixFile.mimeType);
       final url = html.Url.createObjectUrlFromBlob(blob);
       await audioPlayer.setAudioSource(AudioSource.uri(Uri.parse(url)));
     } else {
