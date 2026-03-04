@@ -233,11 +233,11 @@ class SpacesNavigationRail extends StatelessWidget {
                           backgroundColor: Colors.transparent,
                           borderRadius: BorderRadius.circular(0),
                           // onTap: () => onGoToSpaceId(allSpaces[i].id),
-                          onTap: () {
+                          onTap: () async {
                             collapse();
                             final room = client.getRoomById(allSpaces[i].id);
                             if (room != null) {
-                              chatListHandleSpaceTap(context, room);
+                              await SpaceTapUtil.onTap(context, room);
                             } else {
                               context.go(
                                 "/rooms/spaces/${allSpaces[i].id}/details",

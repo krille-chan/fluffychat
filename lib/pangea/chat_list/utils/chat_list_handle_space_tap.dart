@@ -3,142 +3,63 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/chat_list/widgets/room_invite_dialog.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/join_codes/knock_room_extension.dart';
 import 'package:fluffychat/pangea/join_codes/space_code_repo.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../common/utils/error_handler.dart';
 
-Future<void> showInviteDialog(Room room, BuildContext context) async {
-  if (room.membership != Membership.invite) return;
-
-  final theme = Theme.of(context);
-  final action = await showAdaptiveDialog<CourseInviteAction>(
-    barrierDismissible: true,
-    context: context,
-    builder: (context) => AlertDialog.adaptive(
-      title: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 256),
-        child: Center(
-          child: Text(
-            L10n.of(context).youreInvited,
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-      content: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
-        child: Text(
-          room.isSpace
-              ? L10n.of(
-                  context,
-                ).invitedToSpace(room.name, room.creatorId ?? "???")
-              : L10n.of(
-                  context,
-                ).invitedToChat(room.name, room.creatorId ?? "???"),
-          textAlign: TextAlign.center,
-        ),
-      ),
-      actions: [
-        AdaptiveDialogAction(
-          onPressed: () =>
-              Navigator.of(context).pop(CourseInviteAction.decline),
-          bigButtons: true,
-          child: Text(
-            L10n.of(context).decline,
-            style: TextStyle(color: theme.colorScheme.error),
-          ),
-        ),
-        AdaptiveDialogAction(
-          onPressed: () => Navigator.of(context).pop(CourseInviteAction.accept),
-          bigButtons: true,
-          child: Text(L10n.of(context).accept),
-        ),
-      ],
-    ),
-  );
-  switch (action) {
-    case null:
-      return;
-    case CourseInviteAction.accept:
-      break;
-    case CourseInviteAction.decline:
-      await room.leave();
-      return;
+class SpaceTapUtil {
+  static Future<void> onTap(BuildContext context, Room space) async {
+    switch (space.membership) {
+      case Membership.join:
+        context.go("/rooms/spaces/${space.id}/details");
+        return;
+      case Membership.leave:
+        await _autoJoin(context, space);
+        return;
+      case Membership.invite:
+        await _onInviteTap(context, space);
+        return;
+      case Membership.ban:
+      case Membership.knock:
+        context.go("/rooms/spaces/${space.id}/details");
+        ErrorHandler.logError(
+          m: 'should not show space with membership ${space.membership}',
+          data: space.toJson(),
+        );
+    }
   }
 
-  final joinResult = await showFutureLoadingDialog(
-    context: context,
-    future: () async {
-      await room.joinKnockedRoom();
-    },
-    exceptionContext: ExceptionContext.joinRoom,
-  );
-  if (joinResult.error != null) return;
+  static Future<void> _autoJoin(BuildContext context, Room space) async {
+    final resp = await showFutureLoadingDialog(
+      context: context,
+      future: space.joinKnockedRoom,
+    );
 
-  if (room.membership != Membership.join) {
-    await room.client.waitForRoomInSync(room.id, join: true);
-  }
-
-  context.go(
-    room.isSpace ? "/rooms/spaces/${room.id}/details" : "/rooms/${room.id}",
-  );
-}
-
-// ignore: curly_braces_in_flow_control_structures
-void chatListHandleSpaceTap(BuildContext context, Room space) {
-  void setActiveSpaceAndCloseChat() {
+    if (resp.isError) return;
     context.go("/rooms/spaces/${space.id}/details");
   }
 
-  void autoJoin(Room space) {
-    showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        await space.joinKnockedRoom();
-        setActiveSpaceAndCloseChat();
-      },
-    );
-  }
+  static Future<void> _onInviteTap(BuildContext context, Room space) async {
+    final justInputtedCode = SpaceCodeRepo.recentCode;
+    final spaceCode = space.classCode;
+    if (spaceCode != null && justInputtedCode == spaceCode) {
+      return;
+    }
 
-  switch (space.membership) {
-    case Membership.join:
-      setActiveSpaceAndCloseChat();
-      break;
-    case Membership.invite:
-      //if space is a child of a space you're in, automatically join
-      //else confirm you want to join
-      //can we tell whether space or chat?
-      final rooms = Matrix.of(context).client.rooms.where(
-        (element) => element.isSpace && element.membership == Membership.join,
-      );
-      final justInputtedCode = SpaceCodeRepo.recentCode;
-      if (rooms.any((s) => s.spaceChildren.any((c) => c.roomId == space.id))) {
-        autoJoin(space);
-      } else if (justInputtedCode != null &&
-          justInputtedCode == space.classCode) {
-        // do nothing
-      } else if (space.hasKnocked) {
-        autoJoin(space);
-      } else {
-        showInviteDialog(space, context);
-      }
-      break;
-    case Membership.leave:
-      autoJoin(space);
-      break;
-    default:
-      setActiveSpaceAndCloseChat();
-      ErrorHandler.logError(
-        m: 'should not show space with membership ${space.membership}',
-        data: space.toJson(),
-      );
-      break;
+    final rooms = Matrix.of(context).client.rooms.where(
+      (element) => element.isSpace && element.membership == Membership.join,
+    );
+
+    final isSpaceChild = rooms.any(
+      (s) => s.spaceChildren.any((c) => c.roomId == space.id),
+    );
+
+    isSpaceChild || space.hasKnocked
+        ? await _autoJoin(context, space)
+        : await RoomInviteDialog.show(context, space);
   }
 }
-
-enum CourseInviteAction { accept, decline }

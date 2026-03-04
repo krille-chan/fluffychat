@@ -604,7 +604,7 @@ class ChatListController extends State<ChatList>
     ).client.rooms.where((r) => r.isSpace && r.membership == Membership.invite);
 
     for (final space in invitedSpaces) {
-      await showInviteDialog(space, context);
+      await SpaceTapUtil.onTap(context, space);
     }
   }
 
@@ -641,9 +641,7 @@ class ChatListController extends State<ChatList>
         final roomCode = room.classCode?.toLowerCase();
         final cachedCode = SpaceCodeRepo.recentCode?.toLowerCase();
         if (cachedCode == roomCode) continue;
-
-        // Show invite popup
-        chatListHandleSpaceTap(context, room);
+        await SpaceTapUtil.onTap(context, room);
       }
     }
   }
