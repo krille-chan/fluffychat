@@ -18,10 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: pubspec.yaml
           cache: true
       - uses: moonrepo/setup-rust@v1
       - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
@@ -67,14 +66,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: actions/setup-java@v5
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'zulu'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: pubspec.yaml
           cache: true
       - name: Add Firebase Messaging
         run: |
@@ -107,9 +101,9 @@ jobs:
     runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libwebkit2gtk-4.1-dev -y
+      - run: echo "FLUTTER_VERSION=$(yq '.environment.flutter' < pubspec.yaml)" >> $GITHUB_ENV
       - name: Install Flutter
         run: |
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
@@ -133,14 +127,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: actions/setup-java@v5
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'zulu'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: pubspec.yaml
           cache: true
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1

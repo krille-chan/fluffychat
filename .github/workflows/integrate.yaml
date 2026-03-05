@@ -12,10 +12,9 @@ jobs:
       - uses: webiny/action-conventional-commits@v1.3.1
       - run: ./scripts/generate-locale-config.sh
       - run: git diff --exit-code
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: pubspec.yaml
           cache: true
       - name: Check for unused translations
         run: flutter pub run translations_cleaner list-unused-terms -a
@@ -51,14 +50,9 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/free_up_space
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: actions/setup-java@v5
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: "zulu"
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: pubspec.yaml
           cache: true
       - uses: moonrepo/setup-rust@v1
         with:
@@ -84,10 +78,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: pubspec.yaml
           cache: true
       - uses: moonrepo/setup-rust@v1
       - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
@@ -109,9 +102,9 @@ jobs:
     runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install git wget curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libwebkit2gtk-4.1-dev -y
+      - run: echo "FLUTTER_VERSION=$(yq '.environment.flutter' < pubspec.yaml)" >> $GITHUB_ENV
       - name: Install Flutter
         run: |
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
@@ -125,10 +118,9 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: pubspec.yaml
           cache: true
       - name: Use Xcode 16.4
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
@@ -202,7 +194,7 @@ jobs:
             echo "Generated AVD snapshot for caching."
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: pubspec.yaml
           cache: true
       - uses: remarkablemark/setup-maestro-cli@v1
       - name: Load integration test env

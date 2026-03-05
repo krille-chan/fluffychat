@@ -8,6 +8,7 @@ version: 2.4.0+3546
 
 environment:
   sdk: ">=3.10.0 <4.0.0"
+  flutter: 3.41.3
 
 dependencies:
   animations: ^2.1.1
