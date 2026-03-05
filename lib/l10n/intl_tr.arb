@@ -1,6 +1,6 @@
 {
   "@@locale": "tr",
-  "@@last_modified": "2026-03-03 11:17:43.720408",
+  "@@last_modified": "2026-03-05 11:40:54.589380",
   "about": "Hakkında",
   "@about": {
     "type": "String",
@@ -11705,6 +11705,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Başlayın",
+  "writeAndSpeakWorryFree": "Pangea Bot ile her zaman, her yerde endişesiz yazın ve konuşun!",
+  "joinLearningCommunities": "Uluslararası öğrenme topluluklarına katılın veya... kendi topluluğunuzu oluşturun!",
+  "playConversationGames": "Bot, sınıf arkadaşlarınız ve yeni arkadaşlarınızla konuşma oyunları oynayın!",
+  "jumpIntoConversation": "Gün birden itibaren AI yazım araçlarıyla konuşmaya atlayın!",
+  "playPersonalizedGames": "Kendi kelime dağarcığınız ve dilbilgisi ihtiyaçlarınıza göre kişiselleştirilmiş pratik oyunlar oynayın!",
+  "learnLanguageWhileTexting": "Arkadaşlarınızla mesajlaşırken bir dil öğrenin!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

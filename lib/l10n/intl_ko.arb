@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-03-03 11:15:45.580921",
+  "@@last_modified": "2026-03-05 11:38:29.595106",
   "about": "소개",
   "@about": {
     "type": "String",
@@ -11591,6 +11591,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "시작하기",
+  "writeAndSpeakWorryFree": "언제 어디서나 Pangea Bot과 함께 걱정 없이 글을 쓰고 말하세요!",
+  "joinLearningCommunities": "국제 학습 커뮤니티에 가입하거나... 당신만의 커뮤니티를 시작하세요!",
+  "playConversationGames": "봇, 급우 및 새로운 친구들과 대화 게임을 하세요!",
+  "jumpIntoConversation": "AI 작문 도구로 첫날부터 대화에 참여하세요!",
+  "playPersonalizedGames": "당신의 어휘와 문법 필요에 맞춘 연습 게임을 하세요!",
+  "learnLanguageWhileTexting": "친구에게 문자 메시지를 보내면서 언어를 배우세요!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

@@ -3999,7 +3999,7 @@
   "playWithAI": "अभी के लिए एआई के साथ खेलें",
   "courseStartDesc": "पैंजिया बॉट कभी भी जाने के लिए तैयार है!\n\n...लेकिन दोस्तों के साथ सीखना बेहतर है!",
   "@@locale": "hi",
-  "@@last_modified": "2026-03-03 11:18:42.077788",
+  "@@last_modified": "2026-03-05 11:42:02.677469",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12112,6 +12112,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "शुरू करें",
+  "writeAndSpeakWorryFree": "किसी भी समय, कहीं भी Pangea Bot के साथ बिना चिंता के लिखें और बोलें!",
+  "joinLearningCommunities": "अंतरराष्ट्रीय शिक्षण समुदायों में शामिल हों या... अपना खुद का शुरू करें!",
+  "playConversationGames": "बॉट, सहपाठियों और नए दोस्तों के साथ बातचीत के खेल खेलें!",
+  "jumpIntoConversation": "AI लेखन उपकरणों के साथ पहले दिन से बातचीत में कूदें!",
+  "playPersonalizedGames": "अपने शब्दावली और व्याकरण की जरूरतों के अनुसार व्यक्तिगत अभ्यास खेल खेलें!",
+  "learnLanguageWhileTexting": "अपने दोस्तों को टेक्स्ट करते समय एक भाषा सीखें!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

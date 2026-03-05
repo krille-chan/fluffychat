@@ -2783,7 +2783,7 @@
   "selectAll": "Piliin lahat",
   "deselectAll": "Huwag piliin lahat",
   "@@locale": "fil",
-  "@@last_modified": "2026-03-03 11:17:31.316729",
+  "@@last_modified": "2026-03-05 11:40:38.303239",
   "@setCustomPermissionLevel": {
     "type": "String",
     "placeholders": {}
@@ -12480,6 +12480,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Magsimula na",
+  "writeAndSpeakWorryFree": "Sumulat at makipag-usap nang walang alalahanin gamit ang Pangea Bot anumang oras, saanman!",
+  "joinLearningCommunities": "Sumali sa mga pandaigdigang komunidad ng pag-aaral o... simulan ang iyo!",
+  "playConversationGames": "Maglaro ng mga laro sa pag-uusap kasama ang bot, mga kaklase, at mga bagong kaibigan!",
+  "jumpIntoConversation": "Sumabak sa pag-uusap mula sa Unang Araw gamit ang mga tool sa pagsusulat ng AI!",
+  "playPersonalizedGames": "Maglaro ng mga laro sa pagsasanay na naayon sa iyong bokabularyo at pangangailangan sa gramatika!",
+  "learnLanguageWhileTexting": "Matuto ng wika habang nagte-text sa iyong mga kaibigan!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

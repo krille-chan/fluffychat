@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-03-03 11:16:24.145306",
+  "@@last_modified": "2026-03-05 11:39:19.406110",
   "about": "אודות",
   "@about": {
     "type": "String",
@@ -12548,6 +12548,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "התחל",
+  "writeAndSpeakWorryFree": "כתוב ודבר ללא דאגות עם פנגיאה בוט בכל זמן, בכל מקום!",
+  "joinLearningCommunities": "הצטרף לקהילות למידה בינלאומיות או... התחל את שלך!",
+  "playConversationGames": "שחק במשחקי שיחה עם הבוט, חברים לכיתה וחברים חדשים!",
+  "jumpIntoConversation": "קפוץ לשיחה מהיום הראשון עם כלים לכתיבה מבוססי AI!",
+  "playPersonalizedGames": "שחק במשחקי תרגול מותאמים אישית לצרכי אוצר המילים והדקדוק שלך!",
+  "learnLanguageWhileTexting": "למד שפה בזמן שאתה שולח הודעות לחברים שלך!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

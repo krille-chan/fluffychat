@@ -4476,7 +4476,7 @@
   "playWithAI": "Παίξτε με την Τεχνητή Νοημοσύνη προς το παρόν",
   "courseStartDesc": "Ο Pangea Bot είναι έτοιμος να ξεκινήσει οποιαδήποτε στιγμή!\n\n...αλλά η μάθηση είναι καλύτερη με φίλους!",
   "@@locale": "el",
-  "@@last_modified": "2026-03-03 11:18:36.292085",
+  "@@last_modified": "2026-03-05 11:41:53.874367",
   "@checkList": {
     "type": "String",
     "placeholders": {}
@@ -12524,6 +12524,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Ξεκινήστε",
+  "writeAndSpeakWorryFree": "Γράψτε και μιλήστε χωρίς ανησυχίες με τον Pangea Bot οποιαδήποτε στιγμή, οπουδήποτε!",
+  "joinLearningCommunities": "Εγγραφείτε σε διεθνείς μαθησιακές κοινότητες ή... ξεκινήστε τη δική σας!",
+  "playConversationGames": "Παίξτε παιχνίδια συνομιλίας με τον ρομπότ, τους συμμαθητές και νέους φίλους!",
+  "jumpIntoConversation": "Βουτήξτε στη συνομιλία από την Πρώτη Ημέρα με εργαλεία γραφής AI!",
+  "playPersonalizedGames": "Παίξτε παιχνίδια πρακτικής προσαρμοσμένα στο λεξιλόγιο και τις γραμματικές σας ανάγκες!",
+  "learnLanguageWhileTexting": "Μάθετε μια γλώσσα ενώ στέλνετε μηνύματα στους φίλους σας!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

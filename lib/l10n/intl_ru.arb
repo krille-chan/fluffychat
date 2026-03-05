@@ -1,6 +1,6 @@
 {
   "@@locale": "ru",
-  "@@last_modified": "2026-03-03 11:18:48.349091",
+  "@@last_modified": "2026-03-05 11:42:11.380114",
   "about": "О проекте",
   "@about": {
     "type": "String",
@@ -11330,6 +11330,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Начать",
+  "writeAndSpeakWorryFree": "Пишите и говорите без забот с Pangea Bot в любое время и в любом месте!",
+  "joinLearningCommunities": "Присоединяйтесь к международным учебным сообществам или... создайте свое собственное!",
+  "playConversationGames": "Играйте в разговорные игры с ботом, одноклассниками и новыми друзьями!",
+  "jumpIntoConversation": "Погружайтесь в разговор с первого дня с помощью инструментов AI для написания!",
+  "playPersonalizedGames": "Играйте в практические игры, персонализированные под ваши словарные и грамматические потребности!",
+  "learnLanguageWhileTexting": "Изучайте язык, переписываясь с друзьями!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

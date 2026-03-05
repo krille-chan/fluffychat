@@ -3857,7 +3857,7 @@
   "playWithAI": "Žaiskite su dirbtiniu intelektu dabar",
   "courseStartDesc": "Pangea botas pasiruošęs bet kada pradėti!\n\n...bet mokymasis yra geresnis su draugais!",
   "@@locale": "lt",
-  "@@last_modified": "2026-03-03 11:17:51.497686",
+  "@@last_modified": "2026-03-05 11:41:07.585688",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -12304,6 +12304,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Pradėti",
+  "writeAndSpeakWorryFree": "Rašykite ir kalbėkite be rūpesčių su Pangea Bot bet kada, bet kur!",
+  "joinLearningCommunities": "Prisijunkite prie tarptautinių mokymosi bendruomenių arba... pradėkite savo!",
+  "playConversationGames": "Žaiskite pokalbių žaidimus su botu, klasės draugais ir naujais draugais!",
+  "jumpIntoConversation": "Šokite į pokalbį nuo pirmos dienos su AI rašymo įrankiais!",
+  "playPersonalizedGames": "Žaiskite praktikos žaidimus, pritaikytus jūsų žodynui ir gramatikos poreikiams!",
+  "learnLanguageWhileTexting": "Išmokite kalbą, kol rašote žinutes savo draugams!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

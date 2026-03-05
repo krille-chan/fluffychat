@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-03-03 11:18:45.265226",
+  "@@last_modified": "2026-03-05 11:42:07.378085",
   "about": "Prio",
   "@about": {
     "type": "String",
@@ -12588,6 +12588,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Komencu",
+  "writeAndSpeakWorryFree": "Skribu kaj parolu sen zorgoj kun Pangea Bot iam ajn, kie ajn!",
+  "joinLearningCommunities": "Aliĝu al internaciaj lernokomunumoj aŭ... komencu vian propran!",
+  "playConversationGames": "Ludu konversaciajn ludojn kun la bot, klaspartneroj, kaj novaj amikoj!",
+  "jumpIntoConversation": "Saltetu en konversacion ekde la Unua Tago kun AI skribaj iloj!",
+  "playPersonalizedGames": "Ludu praktikajn ludojn personigitajn al viaj vortaro kaj gramatikaj bezonoj!",
+  "learnLanguageWhileTexting": "Lernu lingvon dum vi sendas mesaĝojn al viaj amikoj!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

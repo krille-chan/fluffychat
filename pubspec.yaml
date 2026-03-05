@@ -99,6 +99,7 @@ dependencies:
   app_settings: ^6.1.1
   audioplayers: ^6.1.0
   cached_network_image: ^3.4.1
+  carousel_slider: ^5.1.2
   characters: ^1.2.0
   country_picker: ^2.0.25
   csv: ^6.0.0
@@ -126,6 +127,7 @@ dependencies:
   flutter_tts: ^4.2.0
   animated_flip_counter: ^0.3.4
   meta: ^1.17.0
+  xml: ^6.6.1
   # Pangea#
 
 dev_dependencies:

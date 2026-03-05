@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-03-03 11:17:59.891882",
+  "@@last_modified": "2026-03-05 11:41:18.544851",
   "acceptedTheInvitation": "👍 {username} அழைப்பை ஏற்றுக்கொண்டது",
   "@acceptedTheInvitation": {
     "type": "String",
@@ -11485,6 +11485,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "தொடங்குங்கள்",
+  "writeAndSpeakWorryFree": "எப்போது வேண்டுமானாலும், எங்கு வேண்டுமானாலும் Pangea Bot உடன் கவலை இல்லாமல் எழுதவும் பேசவும்!",
+  "joinLearningCommunities": "உலகளாவிய கற்றல் சமூகங்களில் சேருங்கள் அல்லது... உங்கள் சொந்தத்தை தொடங்குங்கள்!",
+  "playConversationGames": "போட்டியில், வகுப்பினருடன் மற்றும் புதிய நண்பர்களுடன் உரையாடல் விளையாட்டுகளை விளையாடுங்கள்!",
+  "jumpIntoConversation": "AI எழுதும் கருவிகளுடன் முதல் நாளிலிருந்து உரையாடலில் குதிக்கவும்!",
+  "playPersonalizedGames": "உங்கள் சொற்பொழிவு மற்றும் இலக்கண தேவைகளுக்கு தனிப்பயனாக்கப்பட்ட பயிற்சி விளையாட்டுகளை விளையாடுங்கள்!",
+  "learnLanguageWhileTexting": "உங்கள் நண்பர்களுக்கு செய்தி அனுப்பும் போது ஒரு மொழியை கற்றுக்கொள்ளுங்கள்!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

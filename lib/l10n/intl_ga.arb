@@ -4639,7 +4639,7 @@
   "playWithAI": "Imir le AI faoi láthair",
   "courseStartDesc": "Tá Bot Pangea réidh chun dul am ar bith!\n\n...ach is fearr foghlaim le cairde!",
   "@@locale": "ga",
-  "@@last_modified": "2026-03-03 11:18:58.533377",
+  "@@last_modified": "2026-03-05 11:42:25.823078",
   "@writeAMessageLangCodes": {
     "type": "String",
     "placeholders": {
@@ -11376,6 +11376,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Tosaigh",
+  "writeAndSpeakWorryFree": "Scríobh agus labhair gan imní le Pangea Bot ag am ar bith, áit ar bith!",
+  "joinLearningCommunities": "Bí páirteach i bpobail fhoghlama idirnáisiúnta nó... tús do chuid féin!",
+  "playConversationGames": "Imir cluichí comhrá leis an mbot, le do chomhoibrithe, agus le cairde nua!",
+  "jumpIntoConversation": "Léim isteach i gcomhrá ó Lá a hAon le huirlisí scríbhneoireachta AI!",
+  "playPersonalizedGames": "Imir cluichí cleachtais pearsantaithe do do fhoclóir agus do riachtanais ghramadaí!",
+  "learnLanguageWhileTexting": "Foghlaim teanga agus tú ag téacsáil do chairde!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

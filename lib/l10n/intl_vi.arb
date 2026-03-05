@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-03-03 11:17:54.562414",
+  "@@last_modified": "2026-03-05 11:41:12.805715",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -7082,6 +7082,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Bắt đầu",
+  "writeAndSpeakWorryFree": "Viết và nói không lo lắng với Pangea Bot bất cứ lúc nào, ở bất cứ đâu!",
+  "joinLearningCommunities": "Tham gia các cộng đồng học tập quốc tế hoặc... bắt đầu cộng đồng của riêng bạn!",
+  "playConversationGames": "Chơi các trò chơi hội thoại với bot, bạn học và những người bạn mới!",
+  "jumpIntoConversation": "Bước vào cuộc trò chuyện từ Ngày Đầu tiên với các công cụ viết AI!",
+  "playPersonalizedGames": "Chơi các trò chơi thực hành được cá nhân hóa theo nhu cầu từ vựng và ngữ pháp của bạn!",
+  "learnLanguageWhileTexting": "Học một ngôn ngữ trong khi nhắn tin cho bạn bè của bạn!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

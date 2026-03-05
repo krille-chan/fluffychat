@@ -3495,7 +3495,7 @@
   "setupChatBackup": "Chat zaxirasini sozlash",
   "@setupChatBackup": {},
   "@@locale": "uz",
-  "@@last_modified": "2026-03-03 11:17:27.937047",
+  "@@last_modified": "2026-03-05 11:40:33.287123",
   "noMoreResultsFound": "Boshqa natijalar topilmadi",
   "chatSearchedUntil": "Chat {time} gacha qidirildi",
   "federationBaseUrl": "Federatsiya Asos URL",
@@ -11259,6 +11259,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Boshlash",
+  "writeAndSpeakWorryFree": "Pangea Bot bilan har qanday vaqtda, har qanday joyda xavotirsiz yozing va gapiring!",
+  "joinLearningCommunities": "Xalqaro o‘rganish jamoalariga qo‘shiling yoki... o‘z jamoangizni boshlang!",
+  "playConversationGames": "Bot, sinfdoshlar va yangi do‘stlar bilan suhbat o‘yinlarini o‘ynang!",
+  "jumpIntoConversation": "AI yozish vositalari bilan birinchi kundan suhbatga kirishing!",
+  "playPersonalizedGames": "So‘z boyligingiz va grammatika ehtiyojlaringizga moslashtirilgan amaliy o‘yinlarni o‘ynang!",
+  "learnLanguageWhileTexting": "Do‘stlaringizga xabar yozayotganda til o‘rganing!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

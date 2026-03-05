@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-03-03 11:17:04.937044",
+  "@@last_modified": "2026-03-05 11:40:07.170388",
   "about": "Om",
   "@about": {
     "type": "String",
@@ -11434,6 +11434,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Kom i gang",
+  "writeAndSpeakWorryFree": "Skriv og snakk uten bekymringer med Pangea Bot når som helst, hvor som helst!",
+  "joinLearningCommunities": "Bli med i internasjonale læringsfellesskap eller... start ditt eget!",
+  "playConversationGames": "Spill samtalespill med boten, klassekamerater og nye venner!",
+  "jumpIntoConversation": "Kast deg inn i samtalen fra dag én med AI-skriveverktøy!",
+  "playPersonalizedGames": "Spill øvelsesspill tilpasset ditt ordforråd og grammatikkbehov!",
+  "learnLanguageWhileTexting": "Lær et språk mens du sender tekstmeldinger til vennene dine!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

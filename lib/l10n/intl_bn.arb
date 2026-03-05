@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-03-03 11:18:21.188952",
+  "@@last_modified": "2026-03-05 11:41:35.342328",
   "about": "সম্পর্কে",
   "@about": {
     "type": "String",
@@ -12109,6 +12109,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "শুরু করুন",
+  "writeAndSpeakWorryFree": "যেকোনো সময়, যেকোনো স্থানে Pangea Bot-এর সাথে চিন্তামুক্তভাবে লিখুন এবং কথা বলুন!",
+  "joinLearningCommunities": "আন্তর্জাতিক শেখার সম্প্রদায়ে যোগ দিন অথবা... আপনার নিজস্ব শুরু করুন!",
+  "playConversationGames": "বট, সহপাঠী এবং নতুন বন্ধুদের সাথে কথোপকথনের গেম খেলুন!",
+  "jumpIntoConversation": "AI লেখার সরঞ্জামগুলির সাথে প্রথম দিন থেকেই কথোপকথনে ঝাঁপ দিন!",
+  "playPersonalizedGames": "আপনার শব্দভাণ্ডার এবং ব্যাকরণ প্রয়োজনের জন্য ব্যক্তিগতকৃত অনুশীলন গেম খেলুন!",
+  "learnLanguageWhileTexting": "আপনার বন্ধুদের সাথে টেক্সটিং করার সময় একটি ভাষা শিখুন!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

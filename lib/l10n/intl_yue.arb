@@ -1852,7 +1852,7 @@
   "selectAll": "全選",
   "deselectAll": "取消全選",
   "@@locale": "yue",
-  "@@last_modified": "2026-03-03 11:16:51.885772",
+  "@@last_modified": "2026-03-05 11:39:49.763881",
   "@ignoreUser": {
     "type": "String",
     "placeholders": {}
@@ -12595,6 +12595,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "開始",
+  "writeAndSpeakWorryFree": "隨時隨地與 Pangea Bot 自由地寫作和說話！",
+  "joinLearningCommunities": "加入國際學習社區或... 開始你自己的社區！",
+  "playConversationGames": "與機械人、同學和新朋友一起玩對話遊戲！",
+  "jumpIntoConversation": "從第一天開始使用 AI 寫作工具進入對話！",
+  "playPersonalizedGames": "玩根據你的詞彙和語法需求量身定制的練習遊戲！",
+  "learnLanguageWhileTexting": "在與朋友發短信的同時學習語言！",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

@@ -1,6 +1,6 @@
 {
   "@@locale": "hu",
-  "@@last_modified": "2026-03-03 11:16:02.751840",
+  "@@last_modified": "2026-03-05 11:38:50.687479",
   "about": "Névjegy",
   "@about": {
     "type": "String",
@@ -11502,6 +11502,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Kezdj el",
+  "writeAndSpeakWorryFree": "Írj és beszélj aggodalom nélkül a Pangea Bot segítségével bármikor, bárhol!",
+  "joinLearningCommunities": "Csatlakozz nemzetközi tanulói közösségekhez, vagy... indítsd el a sajátodat!",
+  "playConversationGames": "Játssz beszélgetős játékokat a bottal, osztálytársaiddal és új barátaiddal!",
+  "jumpIntoConversation": "Ugorj bele a beszélgetésbe az első naptól kezdve AI írási eszközökkel!",
+  "playPersonalizedGames": "Játssz olyan gyakorló játékokat, amelyek személyre szabottak a szókincsed és nyelvtani igényeid szerint!",
+  "learnLanguageWhileTexting": "Tanulj meg egy nyelvet, miközben üzenetet írsz a barátaidnak!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

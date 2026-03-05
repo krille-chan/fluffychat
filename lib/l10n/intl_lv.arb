@@ -4605,7 +4605,7 @@
   "playWithAI": "Tagad spēlējiet ar AI",
   "courseStartDesc": "Pangea bots ir gatavs jebkurā laikā!\n\n...bet mācīties ir labāk ar draugiem!",
   "@@locale": "lv",
-  "@@last_modified": "2026-03-03 11:17:37.144304",
+  "@@last_modified": "2026-03-05 11:40:45.163245",
   "analyticsInactiveTitle": "Pieprasījumi neaktīviem lietotājiem nevar tikt nosūtīti",
   "analyticsInactiveDesc": "Neaktīvi lietotāji, kuri nav pieteikušies kopš šīs funkcijas ieviešanas, neredzēs jūsu pieprasījumu.\n\nPieprasījuma poga parādīsies, kad viņi atgriezīsies. Jūs varat atkārtoti nosūtīt pieprasījumu vēlāk, noklikšķinot uz pieprasījuma pogas viņu vārdā, kad tā būs pieejama.",
   "accessRequestedTitle": "Pieprasījums piekļūt analītikai",
@@ -11360,6 +11360,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Sākt",
+  "writeAndSpeakWorryFree": "Rakstiet un runājiet bez raizēm ar Pangea Bot jebkurā laikā, jebkur!",
+  "joinLearningCommunities": "Pievienojieties starptautiskām mācību kopienām vai... uzsāciet savu!",
+  "playConversationGames": "Spēlējiet sarunu spēles ar botu, klasesbiedriem un jauniem draugiem!",
+  "jumpIntoConversation": "Ielēkt sarunā no pirmās dienas ar AI rakstīšanas rīkiem!",
+  "playPersonalizedGames": "Spēlējiet prakses spēles, kas pielāgotas jūsu vārdu krājuma un gramatikas vajadzībām!",
+  "learnLanguageWhileTexting": "Mācieties valodu, kamēr sūtāt ziņas saviem draugiem!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

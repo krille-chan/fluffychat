@@ -4604,7 +4604,7 @@
   "playWithAI": "Leiki tekoälyn kanssa nyt",
   "courseStartDesc": "Pangea Bot on valmis milloin tahansa!\n\n...mutta oppiminen on parempaa ystävien kanssa!",
   "@@locale": "fi",
-  "@@last_modified": "2026-03-03 11:15:55.553675",
+  "@@last_modified": "2026-03-05 11:38:41.356196",
   "@notificationRuleJitsi": {
     "type": "String",
     "placeholders": {}
@@ -11424,6 +11424,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Aloita",
+  "writeAndSpeakWorryFree": "Kirjoita ja puhu huoletta Pangea Botin kanssa milloin tahansa, missä tahansa!",
+  "joinLearningCommunities": "Liity kansainvälisiin oppimisryhmiin tai... perusta oma!",
+  "playConversationGames": "Pelaa keskustelupeliä botin, luokkatovereiden ja uusien ystävien kanssa!",
+  "jumpIntoConversation": "Hyppää keskusteluun ensimmäisestä päivästä alkaen AI-kirjoitustyökalujen avulla!",
+  "playPersonalizedGames": "Pelaa harjoituspelejä, jotka on räätälöity sanastosi ja kielioppisi tarpeisiin!",
+  "learnLanguageWhileTexting": "Opettele kieltä tekstiviestitellessäsi ystäviesi kanssa!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

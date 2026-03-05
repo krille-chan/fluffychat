@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-03-03 11:18:26.509797",
+  "@@last_modified": "2026-03-05 11:41:40.555490",
   "repeatPassword": "تکرار گذرواژه",
   "@repeatPassword": {},
   "about": "درباره",
@@ -11486,6 +11486,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "شروع کنید",
+  "writeAndSpeakWorryFree": "بدون نگرانی بنویسید و صحبت کنید با Pangea Bot در هر زمان و هر مکان!",
+  "joinLearningCommunities": "به جوامع یادگیری بین‌المللی بپیوندید یا... خودتان یکی را شروع کنید!",
+  "playConversationGames": "با ربات، همکلاسی‌ها و دوستان جدید بازی‌های گفتگویی انجام دهید!",
+  "jumpIntoConversation": "از روز اول با ابزارهای نوشتاری هوش مصنوعی به گفتگو بپرید!",
+  "playPersonalizedGames": "بازی‌های تمرینی متناسب با نیازهای واژگان و گرامر خود را انجام دهید!",
+  "learnLanguageWhileTexting": "در حین پیام دادن به دوستانتان یک زبان یاد بگیرید!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

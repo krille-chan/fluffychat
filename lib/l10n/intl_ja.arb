@@ -1,6 +1,6 @@
 {
   "@@locale": "ja",
-  "@@last_modified": "2026-03-03 11:18:39.108169",
+  "@@last_modified": "2026-03-05 11:41:57.968047",
   "about": "このアプリについて",
   "@about": {
     "type": "String",
@@ -12289,6 +12289,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "始める",
+  "writeAndSpeakWorryFree": "いつでもどこでもPangea Botと一緒に心配なく書いたり話したりしましょう！",
+  "joinLearningCommunities": "国際的な学習コミュニティに参加するか... 自分のコミュニティを始めましょう！",
+  "playConversationGames": "ボットやクラスメート、新しい友達と会話ゲームをしましょう！",
+  "jumpIntoConversation": "AIライティングツールを使って、初日から会話に飛び込みましょう！",
+  "playPersonalizedGames": "あなたの語彙や文法のニーズに合わせた練習ゲームをしましょう！",
+  "learnLanguageWhileTexting": "友達にメッセージを送りながら言語を学びましょう！",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

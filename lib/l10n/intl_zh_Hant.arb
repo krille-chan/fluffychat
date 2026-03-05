@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2026-03-03 11:17:24.156003",
+  "@@last_modified": "2026-03-05 11:40:28.846638",
   "about": "關於",
   "@about": {
     "type": "String",
@@ -11504,6 +11504,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "開始使用",
+  "writeAndSpeakWorryFree": "隨時隨地與 Pangea Bot 自由寫作和交流！",
+  "joinLearningCommunities": "加入國際學習社群或... 開始您自己的社群！",
+  "playConversationGames": "與機器人、同學和新朋友一起玩對話遊戲！",
+  "jumpIntoConversation": "從第一天起就使用 AI 寫作工具進入對話！",
+  "playPersonalizedGames": "玩根據您的詞彙和語法需求量身定制的練習遊戲！",
+  "learnLanguageWhileTexting": "在與朋友發短信的同時學習語言！",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

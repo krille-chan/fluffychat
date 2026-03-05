@@ -3781,7 +3781,7 @@
   "joinPublicTrip": "མི་ཚེས་ལ་ལོག་འབད།",
   "startOwnTrip": "ངེད་རང་གི་ལོག་ལ་སྦྱོར་བཅོས།",
   "@@locale": "bo",
-  "@@last_modified": "2026-03-03 11:18:06.436808",
+  "@@last_modified": "2026-03-05 11:41:26.014318",
   "@alwaysUse24HourFormat": {
     "type": "String",
     "placeholders": {}
@@ -10766,6 +10766,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Buka",
+  "writeAndSpeakWorryFree": "Tulis dan berbicara tanpa khawatir dengan Pangea Bot kapan saja, di mana saja!",
+  "joinLearningCommunities": "Bergabunglah dengan komunitas pembelajaran internasional atau... mulai milikmu sendiri!",
+  "playConversationGames": "Mainkan permainan percakapan dengan bot, teman sekelas, dan teman baru!",
+  "jumpIntoConversation": "Lompat ke dalam percakapan sejak Hari Pertama dengan alat tulis AI!",
+  "playPersonalizedGames": "Mainkan permainan latihan yang dipersonalisasi sesuai dengan kosakata dan kebutuhan tata bahasamu!",
+  "learnLanguageWhileTexting": "Pelajari bahasa sambil mengirim pesan kepada teman-temanmu!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }

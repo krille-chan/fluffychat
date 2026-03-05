@@ -1,6 +1,6 @@
 {
   "@@locale": "eu",
-  "@@last_modified": "2026-03-03 11:16:33.051895",
+  "@@last_modified": "2026-03-05 11:39:32.048932",
   "about": "Honi buruz",
   "@about": {
     "type": "String",
@@ -11365,6 +11365,41 @@
     }
   },
   "@youSentActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "getStarted": "Hasi",
+  "writeAndSpeakWorryFree": "Idatzi eta hitz egin kezkatu gabe Pangea Bot-ekin edozein unetan, edozein lekutan!",
+  "joinLearningCommunities": "Bat egin nazioarteko ikaskuntza komunitateekin edo... hasi zurea!",
+  "playConversationGames": "Jolastu elkarrizketa jokoekin botarekin, ikaskideekin eta lagun berriekin!",
+  "jumpIntoConversation": "Sartu elkarrizketan Lehen Egunean AI idazketa tresnekin!",
+  "playPersonalizedGames": "Jolastu zure hiztegi eta gramatika beharrak pertsonalizatutako praktika jokoekin!",
+  "learnLanguageWhileTexting": "Ikasi hizkuntza lagunekin mezuak bidaltzen ari zaren bitartean!",
+  "@getStarted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writeAndSpeakWorryFree": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinLearningCommunities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playConversationGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@jumpIntoConversation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playPersonalizedGames": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnLanguageWhileTexting": {
     "type": "String",
     "placeholders": {}
   }
