@@ -268,6 +268,8 @@ class _MatchContent extends StatelessWidget {
                           .pangeaController
                           .userController
                           .userL2Code!,
+                      enabled:
+                          !match.updatedMatch.match.isSelectedChoiceCorrection,
                     )
                   : Row(
                       spacing: 16.0,

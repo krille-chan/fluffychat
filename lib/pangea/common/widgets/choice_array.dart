@@ -30,6 +30,7 @@ class ChoicesArray extends StatelessWidget {
   final String? id;
 
   final String Function(String)? getDisplayCopy;
+  final bool enabled;
 
   const ChoicesArray({
     super.key,
@@ -42,6 +43,7 @@ class ChoicesArray extends StatelessWidget {
     this.onLongPress,
     this.getDisplayCopy,
     this.id,
+    this.enabled = true,
   });
 
   @override
@@ -95,6 +97,7 @@ class ChoicesArray extends StatelessWidget {
                   isSelected: selectedChoiceIndex == index,
                   id: id,
                   getDisplayCopy: getDisplayCopy,
+                  enabled: enabled,
                 ),
               ),
             ],
@@ -118,6 +121,7 @@ class ChoiceItem extends StatelessWidget {
   final String? id;
   final String Function(String)? getDisplayCopy;
   final double? fontSize;
+  final bool enabled;
 
   const ChoiceItem({
     super.key,
@@ -128,6 +132,7 @@ class ChoiceItem extends StatelessWidget {
     required this.id,
     this.getDisplayCopy,
     this.fontSize,
+    this.enabled = true,
   });
 
   @override
@@ -174,10 +179,12 @@ class ChoiceItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                 ),
               ),
-              onLongPress: onLongPress != null
+              onLongPress: onLongPress != null && enabled
                   ? () => onLongPress!(entry.value.text, entry.key)
                   : null,
-              onPressed: () => onPressed(entry.value.text, entry.key),
+              onPressed: enabled
+                  ? () => onPressed(entry.value.text, entry.key)
+                  : null,
               child: Text(
                 getDisplayCopy != null
                     ? getDisplayCopy!(entry.value.text)

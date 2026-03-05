@@ -151,6 +151,9 @@ class SpanData {
     return choices![index];
   }
 
+  bool get isSelectedChoiceCorrection =>
+      selectedChoice != null && selectedChoice!.type.isSuggestion;
+
   String get errorSpan =>
       fullText.characters.skip(offset).take(length).toString();
 
