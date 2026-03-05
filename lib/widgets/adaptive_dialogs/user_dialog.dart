@@ -248,7 +248,7 @@ class UserDialog extends StatelessWidget {
                   router.go('/rooms/$roomId');
                 },
                 child: Text(
-                  directChatRoomId != null
+                  directChatRoomId == null
                       ? L10n.of(context).createNewChat
                       : L10n.of(context).sendAMessage,
                   style: TextStyle(color: theme.colorScheme.secondary),
