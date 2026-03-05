@@ -2776,5 +2776,45 @@
     "removeAdminRights": "Remove admin rights",
     "powerLevel": "Power level",
     "setPowerLevelDescription": "Power levels define what a member is allowed to do in this room and usually range between 0 and 100.",
-    "owner": "Owner"
+    "owner": "Owner",
+    "restoreBootstrapEmptyDevicesDescription": "Please enter your passphrase or recovery key to verify this device and get access to your encrypted message backup.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Verify this device with one of your active sessions to get access to your encrypted message backup:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapAlternativeDescription": "Alternatively, you can use your passphrase or recovery key to verify your device and unlock your encrypted message backup:",
+    "@restoreBootstrapAlternativeDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapHintText": "Passphrase or recovery key",
+    "@restoreBootstrapHintText": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Reset account",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Restore Crypto Identity",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Reset Crypto Identity",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Set Up Crypto Identity",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    }
 }
