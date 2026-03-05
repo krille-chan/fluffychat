@@ -655,14 +655,14 @@ goT(){return"Skip chat backup"},
 goU(){return"Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device."},
 gpq(){return"Loading messages"},
 goS(){return"Set up chat backup"},
-gq0(){return"No more results found"},
+gq1(){return"No more results found"},
 pN(d){return"Chat searched until "+d},
-gpQ(){return"Federation Base URL"},
+gpR(){return"Federation Base URL"},
 gpO(){return"Client-Well-Known Information:"},
 gpM(){return"Base URL"},
-gpV(){return"Identity Server:"},
+gpW(){return"Identity Server:"},
 pD(d){return"Version: "+d},
-gpX(){return"Logs"},
+gpY(){return"Logs"},
 gp0(){return"Advanced Configs"},
 gpK(){return"Advanced configurations"},
 gpG(){return"Sign in"},
@@ -671,17 +671,18 @@ gpI(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpH(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpL(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpz(){return"The process was canceled."},
-gpW(d){return"Join"},
+gpX(d){return"Join"},
 gpE(){return"Search or enter homeserver address"},
-gq_(){return"Matrix ID"},
+gq0(){return"Matrix ID"},
 goR(){return"Set power level"},
-gpZ(){return"Make moderator"},
-gpY(){return"Make admin"},
-gq3(){return"Remove moderator rights"},
-gq2(){return"Remove admin rights"},
-gq1(){return"Power level"},
+gq_(){return"Make moderator"},
+gpZ(){return"Make admin"},
+gq4(){return"Remove moderator rights"},
+gq3(){return"Remove admin rights"},
+gq2(){return"Power level"},
 gpF(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
 gdN(){return"Owner"},
+gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 A.Gj.prototype={
 gkP(){return"true"},
@@ -1577,5 +1578,5 @@ x(A.Bh,C.aD)
 w(A.Bh,[A.Gj,A.Gk])})()
 B.dI(b.typeUniverse,JSON.parse('{"Bh":{"aD":[]},"Gj":{"aD":[]},"Gk":{"aD":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["TBT4g4Gp4L4kCSCdDZHMevaNL+c="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["kBY9O0KTN4ST03T6VlyKhqUjgZc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

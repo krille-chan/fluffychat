@@ -653,14 +653,14 @@ goT(){return"\u8df3\u8fc7\u804a\u5929\u5907\u4efd"},
 goU(){return"\u786e\u5b9a\u5417\uff1f\u4e0d\u5f00\u542f\u804a\u5929\u5907\u4efd\uff0c\u5982\u679c\u5207\u6362\u8bbe\u5907\u53ef\u80fd\u65e0\u6cd5\u8bbf\u95ee\u6d88\u606f\u3002"},
 gpq(){return"\u52a0\u8f7d\u6d88\u606f\u4e2d"},
 goS(){return"\u8bbe\u7f6e\u804a\u5929\u5907\u4efd"},
-gq0(){return"\u672a\u627e\u5230\u66f4\u591a\u7ed3\u679c"},
+gq1(){return"\u672a\u627e\u5230\u66f4\u591a\u7ed3\u679c"},
 pN(d){return"\u641c\u7d22\u4e86\u622a\u81f3 "+d+" \u7684\u804a\u5929\u8bb0\u5f55"},
-gpQ(){return"\u8054\u90a6\u57fa\u7840 URL"},
+gpR(){return"\u8054\u90a6\u57fa\u7840 URL"},
 gpO(){return"Client-Well-Known \u4fe1\u606f\uff1a"},
 gpM(){return"\u57fa\u7840 URL"},
-gpV(){return"\u8eab\u4efd\u670d\u52a1\u5668\uff1a"},
+gpW(){return"\u8eab\u4efd\u670d\u52a1\u5668\uff1a"},
 pD(d){return"\u7248\u672c\uff1a"+d},
-gpX(){return"\u65e5\u5fd7"},
+gpY(){return"\u65e5\u5fd7"},
 gp0(){return"\u9ad8\u7ea7\u914d\u7f6e"},
 gpK(){return"\u9ad8\u7ea7\u914d\u7f6e"},
 gpG(){return"\u767b\u5f55"},
@@ -669,17 +669,18 @@ gpI(){return"FluffyChat \u662f\u53bb\u4e2d\u5fc3\u5316\u7684\uff01\u9009\u62e9\u
 gpH(){return"\u5df2\u7ecf\u6709 Matrix \u8d26\u6237\u4e86\uff1f\u6b22\u8fce\u56de\u6765\uff01\u9009\u62e9 homeserver \u767b\u5f55\u3002"},
 gpL(){return"\u501f\u52a9 FluffyChat\uff0c\u60a8\u53ef\u4ee5\u548c\u597d\u53cb\u804a\u5929\u3002\u5b83\u662f\u5b89\u5168\u7684\u53bb\u4e2d\u5fc3\u5316 [matrix] \u6d88\u606f\u6536\u53d1\u5e94\u7528\uff01\u5982\u679c\u613f\u610f\uff0c\u53ef\u4ee5\u5728 https://matrix.org \u4e86\u89e3\u66f4\u591a\u4fe1\u606f\uff0c\u4e5f\u53ef\u76f4\u63a5\u6ce8\u518c\u8d26\u6237\u3002"},
 gpz(){return"\u8fc7\u7a0b\u88ab\u53d6\u6d88\u3002"},
-gpW(d){return"\u52a0\u5165"},
+gpX(d){return"\u52a0\u5165"},
 gpE(){return"\u641c\u7d22\u6216\u8f93\u5165 homeserver \u5730\u5740"},
-gq_(){return"Matrix ID"},
+gq0(){return"Matrix ID"},
 goR(){return"\u8bbe\u7f6e\u6743\u9650\u7ea7\u522b"},
-gpZ(){return"\u534f\u7ba1\u5458"},
-gpY(){return"\u7ba1\u7406\u5458"},
-gq3(){return"\u5220\u9664\u534f\u7ba1\u5458\u6743\u9650"},
-gq2(){return"\u5220\u9664\u7ba1\u7406\u5458\u6743\u9650"},
-gq1(){return"\u6743\u9650\u7ea7\u522b"},
+gq_(){return"\u534f\u7ba1\u5458"},
+gpZ(){return"\u7ba1\u7406\u5458"},
+gq4(){return"\u5220\u9664\u534f\u7ba1\u5458\u6743\u9650"},
+gq3(){return"\u5220\u9664\u7ba1\u7406\u5458\u6743\u9650"},
+gq2(){return"\u6743\u9650\u7ea7\u522b"},
 gpF(){return"\u6743\u9650\u7ea7\u522b\u5b9a\u4e49\u7fa4\u6210\u5458\u5728\u8fd9\u4e2a\u804a\u5929\u5ba4\u4e2d\u53ef\u4ee5\u505a\u4ec0\u4e48\uff0c\u53d6\u503c\u8303\u56f4 0 \u5230 100\u3002"},
 gdN(){return"\u6240\u6709\u8005"},
+gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 A.GA.prototype={
 gkP(){return"false"},
@@ -1285,5 +1286,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Bi,C.aD)
 y(A.GA,A.Bi)})()
 B.dI(b.typeUniverse,JSON.parse('{"Bi":{"aD":[]},"GA":{"aD":[]}}'))};
-(a=>{a["O/ZLJIBxQRdDSrb3bbwFDu2dKkE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["vLu0tF/JIdmPG4CmWBLDKsIGnq0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map

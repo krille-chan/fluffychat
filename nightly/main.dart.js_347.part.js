@@ -651,14 +651,14 @@ goT(){return"\u041f\u0440\u043e\u043f\u0443\u0441\u0442\u0438\u0442\u044c \u0440
 goU(){return"\u0412\u044b \u0443\u0432\u0435\u0440\u0435\u043d\u044b? \u0411\u0435\u0437 \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u043e\u0433\u043e \u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u044f \u0447\u0430\u0442\u0430 \u0432\u044b \u043c\u043e\u0436\u0435\u0442\u0435 \u043f\u043e\u0442\u0435\u0440\u044f\u0442\u044c \u0434\u043e\u0441\u0442\u0443\u043f \u043a \u0441\u0432\u043e\u0438\u043c \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u044f\u043c, \u0435\u0441\u043b\u0438 \u043f\u0435\u0440\u0435\u043a\u043b\u044e\u0447\u0438\u0442\u0435 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e."},
 gpq(){return"\u0417\u0430\u0433\u0440\u0443\u0437\u043a\u0430 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0439"},
 goS(){return"\u041d\u0430\u0441\u0442\u0440\u043e\u0438\u0442\u044c \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u0443\u044e \u043a\u043e\u043f\u0438\u044e \u0447\u0430\u0442\u0430"},
-gq0(){return"\u041d\u0438\u0447\u0435\u0433\u043e \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e"},
+gq1(){return"\u041d\u0438\u0447\u0435\u0433\u043e \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e"},
 pN(d){return"Chat searched until "+d},
-gpQ(){return"Federation Base URL"},
+gpR(){return"Federation Base URL"},
 gpO(){return"Client-Well-Known Information:"},
 gpM(){return"Base URL"},
-gpV(){return"Identity Server:"},
+gpW(){return"Identity Server:"},
 pD(d){return"Version: "+d},
-gpX(){return"Logs"},
+gpY(){return"Logs"},
 gp0(){return"Advanced Configs"},
 gpK(){return"Advanced configurations"},
 gpG(){return"Sign in"},
@@ -667,20 +667,21 @@ gpI(){return"FluffyChat is decentralized! Select a server where you want to crea
 gpH(){return"You already have an account in Matrix? Welcome back! Select your homeserver and sign in."},
 gpL(){return"With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up."},
 gpz(){return"\u041f\u0440\u043e\u0446\u0435\u0441\u0441 \u0431\u044b\u043b \u043e\u0442\u043c\u0435\u043d\u0435\u043d."},
-gpW(d){return"Join"},
+gpX(d){return"Join"},
 gpE(){return"Search or enter homeserver address"},
-gq_(){return"Matrix ID"},
+gq0(){return"Matrix ID"},
 goR(){return"Set power level"},
-gpZ(){return"Make moderator"},
-gpY(){return"Make admin"},
-gq3(){return"Remove moderator rights"},
-gq2(){return"Remove admin rights"},
-gq1(){return"Power level"},
+gq_(){return"Make moderator"},
+gpZ(){return"Make admin"},
+gq4(){return"Remove moderator rights"},
+gq3(){return"Remove admin rights"},
+gq2(){return"Power level"},
 gpF(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
 gdN(){return"Owner"},
+gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gm,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gm":{"aD":[]}}'))};
-(a=>{a["u2aLYEag7K3Us8UZRY7kZxOIn1o="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+v1TGnoOJGKFqgu+4TdkUhEig7g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_347.part.js.map
