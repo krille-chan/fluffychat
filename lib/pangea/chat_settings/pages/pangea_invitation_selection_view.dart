@@ -162,6 +162,7 @@ class PangeaInvitationSelectionView extends StatelessWidget {
                                   ),
                                 )
                               : ListView.builder(
+                                  controller: controller.scrollController,
                                   itemCount: controller.foundProfiles.length,
                                   itemBuilder: (BuildContext context, int i) =>
                                       _InviteContactListTile(
@@ -176,6 +177,7 @@ class PangeaInvitationSelectionView extends StatelessWidget {
                                       ),
                                 )
                         : ListView.builder(
+                            controller: controller.scrollController,
                             itemCount: contacts.length + 2,
                             itemBuilder: (BuildContext context, int i) {
                               if (i == 0) {
