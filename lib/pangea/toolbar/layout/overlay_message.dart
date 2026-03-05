@@ -411,10 +411,15 @@ class _MessageSelectModeContent extends StatelessWidget {
                 if (mode == SelectMode.translate)
                   InkWell(
                     onTap: () => onFlagTranslation(context),
-                    child: Icon(
-                      Icons.flag_outlined,
-                      color: style.color,
-                      size: 16.0,
+                    child: SizedBox(
+                      width: 32.0,
+                      child: Center(
+                        child: Icon(
+                          Icons.flag_outlined,
+                          color: style.color,
+                          size: 16.0,
+                        ),
+                      ),
                     ),
                   ),
               ],
