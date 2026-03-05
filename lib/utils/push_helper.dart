@@ -272,6 +272,11 @@ Future<void> _tryPushHelper(
               l10n.markAsRead,
               semanticAction: SemanticAction.markAsRead,
             ),
+            AndroidNotificationAction(
+              FluffyChatNotificationActions.mute.name,
+              l10n.mute,
+              semanticAction: SemanticAction.mute,
+            ),
           ],
   );
   const iOSPlatformChannelSpecifics = DarwinNotificationDetails();

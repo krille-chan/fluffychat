@@ -174,8 +174,10 @@ Future<void> notificationTap(
             parseCommands: false,
             displayPendingEvent: false,
           );
+        case FluffyChatNotificationActions.mute:
+          await room.setPushRuleState(PushRuleState.mentionsOnly);
       }
   }
 }
 
-enum FluffyChatNotificationActions { markAsRead, reply }
+enum FluffyChatNotificationActions { markAsRead, reply, mute }
