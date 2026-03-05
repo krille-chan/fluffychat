@@ -2776,5 +2776,9 @@
     "removeAdminRights": "Remove admin rights",
     "powerLevel": "Power level",
     "setPowerLevelDescription": "Power levels define what a member is allowed to do in this room and usually range between 0 and 100.",
-    "owner": "Owner"
+    "owner": "Owner",
+    "mute": "Mute",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    }
 }
