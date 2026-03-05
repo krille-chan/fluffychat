@@ -123,17 +123,23 @@ class PracticeSessionController {
     for (final request in requests) {
       final completer = Completer<MultipleChoicePracticeActivityModel>();
       _queue.add(_PracticeQueueEntry(request: request, completer: completer));
-      try {
-        final res = await _fetchActivity(request, onFetch);
-        completer.complete(res);
-      } catch (e) {
-        completer.completeError(e);
-        await onSkip(request.target);
-      }
+      _fetchActivity(request, onFetch)
+          .then((activity) {
+            activity != null
+                ? completer.complete(activity)
+                : completer.completeError(
+                    Exception("Failed to fetch activity"),
+                  );
+          })
+          .catchError((e, s) async {
+            completer.completeError(e);
+            await onSkip(request.target);
+            return null;
+          });
     }
   }
 
-  Future<MultipleChoicePracticeActivityModel> _fetchActivity(
+  Future<MultipleChoicePracticeActivityModel?> _fetchActivity(
     MessageActivityRequest req,
     Future Function(MultipleChoicePracticeActivityModel) onFetch,
   ) async {
