@@ -162,43 +162,15 @@ Future<void> _tryPushHelper(
       ? avatar
       : event.senderFromMemoryOrFallback.avatarUrl;
 
-  Uint8List? roomAvatarFile, senderAvatarFile;
-  try {
-    roomAvatarFile = avatar == null
-        ? null
-        : await client
-              .downloadMxcCached(
-                avatar,
-                thumbnailMethod: ThumbnailMethod.crop,
-                width: notificationAvatarDimension,
-                height: notificationAvatarDimension,
-                animated: false,
-                isThumbnail: true,
-                rounded: true,
-              )
-              .timeout(const Duration(seconds: 3));
-  } catch (e, s) {
-    Logs().e('Unable to get avatar picture', e, s);
-  }
-  try {
-    senderAvatarFile = event.room.isDirectChat
-        ? roomAvatarFile
-        : senderAvatar == null
-        ? null
-        : await client
-              .downloadMxcCached(
-                senderAvatar,
-                thumbnailMethod: ThumbnailMethod.crop,
-                width: notificationAvatarDimension,
-                height: notificationAvatarDimension,
-                animated: false,
-                isThumbnail: true,
-                rounded: true,
-              )
-              .timeout(const Duration(seconds: 3));
-  } catch (e, s) {
-    Logs().e('Unable to get avatar picture', e, s);
-  }
+  final ownUser = event.room.unsafeGetUserFromMemoryOrFallback(client.userID!);
+
+  final userAvatarFile = await client.tryDownloadNotificationAvatar(
+    ownUser.avatarUrl,
+  );
+  final roomAvatarFile = await client.tryDownloadNotificationAvatar(avatar);
+  final senderAvatarFile = await client.tryDownloadNotificationAvatar(
+    senderAvatar,
+  );
 
   final id = notification.roomId.hashCode;
 
@@ -262,12 +234,11 @@ Future<void> _tryPushHelper(
         messagingStyleInformation ??
         MessagingStyleInformation(
           Person(
-            name: senderName,
-            icon: roomAvatarFile == null
+            name: ownUser.calcDisplayname(),
+            icon: userAvatarFile == null
                 ? null
-                : ByteArrayAndroidIcon(roomAvatarFile),
-            key: event.roomId,
-            important: event.room.isFavourite,
+                : ByteArrayAndroidIcon(userAvatarFile),
+            key: event.room.client.userID,
           ),
           conversationTitle: event.room.isDirectChat ? null : roomName,
           groupConversation: !event.room.isDirectChat,
@@ -371,4 +342,24 @@ Future<void> _setShortcut(
       isImportant: event.room.isFavourite,
     ),
   );
+}
+
+extension on Client {
+  Future<Uint8List?> tryDownloadNotificationAvatar(Uri? avatar) async {
+    if (avatar == null) return null;
+    try {
+      return await downloadMxcCached(
+        avatar,
+        thumbnailMethod: ThumbnailMethod.crop,
+        width: notificationAvatarDimension,
+        height: notificationAvatarDimension,
+        animated: false,
+        isThumbnail: true,
+        rounded: true,
+      ).timeout(const Duration(seconds: 3));
+    } catch (e, s) {
+      Logs().e('Unable to get avatar picture', e, s);
+      return null;
+    }
+  }
 }

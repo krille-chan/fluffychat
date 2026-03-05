@@ -9,10 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
@@ -172,89 +169,11 @@ Future<void> notificationTap(
             );
           }
 
-          final eventId = await room.sendTextEvent(
+          await room.sendTextEvent(
             input,
             parseCommands: false,
             displayPendingEvent: false,
           );
-
-          if (PlatformInfos.isAndroid) {
-            final ownProfile = await room.client.fetchOwnProfile();
-            final avatar = ownProfile.avatarUrl;
-            final avatarFile = avatar == null
-                ? null
-                : await client
-                      .downloadMxcCached(
-                        avatar,
-                        thumbnailMethod: ThumbnailMethod.crop,
-                        width: notificationAvatarDimension,
-                        height: notificationAvatarDimension,
-                        animated: false,
-                        isThumbnail: true,
-                        rounded: true,
-                      )
-                      .timeout(const Duration(seconds: 3));
-            final messagingStyleInformation =
-                await AndroidFlutterLocalNotificationsPlugin()
-                    .getActiveNotificationMessagingStyle(id: room.id.hashCode);
-            if (messagingStyleInformation == null) return;
-            l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
-            messagingStyleInformation.messages?.add(
-              Message(
-                input,
-                DateTime.now(),
-                Person(
-                  key: room.client.userID,
-                  name: l10n.you,
-                  icon: avatarFile == null
-                      ? null
-                      : ByteArrayAndroidIcon(avatarFile),
-                ),
-              ),
-            );
-
-            await FlutterLocalNotificationsPlugin().show(
-              id: room.id.hashCode,
-              title: room.getLocalizedDisplayname(MatrixLocals(l10n)),
-              body: input,
-              notificationDetails: NotificationDetails(
-                android: AndroidNotificationDetails(
-                  AppConfig.pushNotificationsChannelId,
-                  l10n.incomingMessages,
-                  category: AndroidNotificationCategory.message,
-                  shortcutId: room.id,
-                  styleInformation: messagingStyleInformation,
-                  groupKey: room.id,
-                  playSound: false,
-                  enableVibration: false,
-                  actions: <AndroidNotificationAction>[
-                    AndroidNotificationAction(
-                      FluffyChatNotificationActions.reply.name,
-                      l10n.reply,
-                      inputs: [
-                        AndroidNotificationActionInput(
-                          label: l10n.writeAMessage,
-                        ),
-                      ],
-                      cancelNotification: false,
-                      allowGeneratedReplies: true,
-                      semanticAction: SemanticAction.reply,
-                    ),
-                    AndroidNotificationAction(
-                      FluffyChatNotificationActions.markAsRead.name,
-                      l10n.markAsRead,
-                      semanticAction: SemanticAction.markAsRead,
-                    ),
-                  ],
-                ),
-              ),
-              payload: FluffyChatPushPayload(
-                client.clientName,
-                room.id,
-                eventId,
-              ).toString(),
-            );
-          }
       }
   }
 }
