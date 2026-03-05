@@ -41,6 +41,7 @@ class UserDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
+    final directChatRoomId = client.getDirectChatFromUserId(profile.userId);
     final displayname =
         profile.displayName ??
         profile.userId.localpart ??
@@ -247,7 +248,9 @@ class UserDialog extends StatelessWidget {
                   router.go('/rooms/$roomId');
                 },
                 child: Text(
-                  L10n.of(context).sendAMessage,
+                  directChatRoomId != null
+                      ? L10n.of(context).createNewChat
+                      : L10n.of(context).sendAMessage,
                   style: TextStyle(color: theme.colorScheme.secondary),
                 ),
               ),

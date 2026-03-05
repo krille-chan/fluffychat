@@ -2780,5 +2780,6 @@
     "mute": "Mute",
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
-    }
+    },
+    "createNewChat": "Create new chat"
 }

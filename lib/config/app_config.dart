@@ -17,7 +17,7 @@ abstract class AppConfig {
   static const String schemePrefix = 'matrix:';
   static const String pushNotificationsChannelId = 'fluffychat_push';
   static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
-  static const double borderRadius = 18.0;
+  static const double borderRadius = 8.0;
   static const double spaceBorderRadius = 11.0;
   static const double columnWidth = 360.0;
 
