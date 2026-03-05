@@ -109,10 +109,6 @@ extension PangeaEvent on Event {
       return roomMemberChangeType.isVisibleLastEvent;
     }
 
-    if (type == PangeaEventTypes.botOptions) {
-      return senderId == room.client.userID;
-    }
-
     if (type.startsWith("p.") || type.startsWith("pangea.")) {
       return {
         PangeaEventTypes.activityPlan,

@@ -169,7 +169,6 @@ abstract class ClientManager {
       shouldReplaceRoomLastEvent: (_, event) => event.isVisibleLastEvent,
       enableLastEventRefresh: false,
       roomPreviewLastEvents: {
-        PangeaEventTypes.botOptions,
         PangeaEventTypes.activityPlan,
         PangeaEventTypes.activitySummary,
         EventTypes.RoomMember,
