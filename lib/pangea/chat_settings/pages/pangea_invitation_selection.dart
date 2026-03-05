@@ -90,6 +90,7 @@ class PangeaInvitationSelectionController
 
   List<Profile> foundProfiles = [];
   Timer? coolDown;
+  String? lastSearch;
 
   InvitationFilter filter = InvitationFilter.knocking;
 
@@ -369,7 +370,10 @@ class PangeaInvitationSelectionController
       setState(() => foundProfiles = []);
     }
 
-    setState(() => loading = true);
+    setState(() {
+      loading = true;
+      lastSearch = null;
+    });
     final matrix = Matrix.of(context);
     SearchUserDirectoryResponse response;
     try {
@@ -380,7 +384,10 @@ class PangeaInvitationSelectionController
       ).showSnackBar(SnackBar(content: Text((e).toLocalizedString(context))));
       return;
     } finally {
-      setState(() => loading = false);
+      setState(() {
+        loading = false;
+        lastSearch = text;
+      });
     }
 
     final results = response.results;

@@ -156,7 +156,11 @@ class PangeaInvitationSelectionView extends StatelessWidget {
                               ? Padding(
                                   padding: const EdgeInsets.all(24.0),
                                   child: Text(
-                                    room.isSpace
+                                    controller.controller.text.isNotEmpty &&
+                                            controller.controller.text ==
+                                                controller.lastSearch
+                                        ? L10n.of(context).emptyInviteSearchHint
+                                        : room.isSpace
                                         ? L10n.of(context).publicInviteDescSpace
                                         : L10n.of(context).publicInviteDescChat,
                                   ),
