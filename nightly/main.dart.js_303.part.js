@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKj(){return new A.FV(B.dc("fi"))},
-FV:function FV(d){this.a=d}}
+cKk(){return new A.FX(B.dc("fi"))},
+FX:function FX(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[20],A)
-A.FV.prototype={
+A.FX.prototype={
 gkP(){return"v\xe4\xe4r\xe4"},
 gjF(){return"Salasana uudelleen"},
 gmy(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FV,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FV":{"aD":[]}}'))};
-(a=>{a["A82NZXMl5opE5zpQNBPidMSRg+I="]=a.current})($__dart_deferred_initializers__);
+y(A.FX,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))};
+(a=>{a["+yaJ7PynOlskHMi2/vKXnFYXGFA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map

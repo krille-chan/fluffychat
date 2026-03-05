@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cKF(d){return new A.Bf(B.dc(d))},
-cKG(){return new A.Gg(B.dc("pt_BR"))},
-cKH(){return new A.Gh(B.dc("pt_PT"))},
-Bf:function Bf(d){this.a=d},
-Gg:function Gg(d){this.a=d},
-Gh:function Gh(d){this.a=d}},C
+cKG(d){return new A.Bg(B.dc(d))},
+cKH(){return new A.Gi(B.dc("pt_BR"))},
+cKI(){return new A.Gj(B.dc("pt_PT"))},
+Bg:function Bg(d){this.a=d},
+Gi:function Gi(d){this.a=d},
+Gj:function Gj(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[57]
-A.Bf.prototype={
+A.Bg.prototype={
 gkP(){return"true"},
 gjF(){return"Repita a senha"},
 gmy(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -683,7 +683,7 @@ gq1(){return"Power level"},
 gpF(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
-A.Gg.prototype={
+A.Gi.prototype={
 gkP(){return"true"},
 gjF(){return"Repita a senha"},
 gmy(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1333,7 +1333,7 @@ pD(d){return"Vers\xe3o: "+d},
 gp0(){return""},
 gpz(){return""},
 B(d,e){return this.gba(this).$1(e)}}
-A.Gh.prototype={
+A.Gj.prototype={
 gjF(){return"Repete a palavra-passe"},
 gba(d){return"Remover"},
 gex(){return"Acerca de"},
@@ -1573,9 +1573,9 @@ eW(d){return d+" enviou um autocolante"},
 h_(d){return d+" enviou um v\xeddeo"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Bf,C.aD)
-w(A.Bf,[A.Gg,A.Gh])})()
-B.dJ(b.typeUniverse,JSON.parse('{"Bf":{"aD":[]},"Gg":{"aD":[]},"Gh":{"aD":[]}}'))
+x(A.Bg,C.aD)
+w(A.Bg,[A.Gi,A.Gj])})()
+B.dJ(b.typeUniverse,JSON.parse('{"Bg":{"aD":[]},"Gi":{"aD":[]},"Gj":{"aD":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["QAaDEqfFVovYquqSitldUIVNSaA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["5OLrpBgVmPwPuCVWWR5s1eLtbkI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

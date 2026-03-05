@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKE(){return new A.Gf(B.dc("pl"))},
-Gf:function Gf(d){this.a=d}}
+cKF(){return new A.Gh(B.dc("pl"))},
+Gh:function Gh(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[41],A)
-A.Gf.prototype={
+A.Gh.prototype={
 gkP(){return"false"},
 gjF(){return"Powt\xf3rz has\u0142o"},
 gmy(){return"To nie jest plik obrazu."},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gf,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gf":{"aD":[]}}'))};
-(a=>{a["upOtAUCf4aMOI/AQnsbyHJfTg0I="]=a.current})($__dart_deferred_initializers__);
+y(A.Gh,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gh":{"aD":[]}}'))};
+(a=>{a["ciM8+8+nk20sV0xbugjz62MOqHA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

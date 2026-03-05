@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKy(){return new A.G9(B.dc("kab"))},
-G9:function G9(d){this.a=d}}
+cKz(){return new A.Gb(B.dc("kab"))},
+Gb:function Gb(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[35],A)
-A.G9.prototype={
+A.Gb.prototype={
 gkP(){return"false"},
 gjF(){return"Ales awal n u\u025beddi"},
 gmy(){return"Ma\u010d\u010di d afaylu n tugna."},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Amli"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G9,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G9":{"aD":[]}}'))};
-(a=>{a["M1nd8co9m/idV+dUAcs7KVMjgrs="]=a.current})($__dart_deferred_initializers__);
+y(A.Gb,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gb":{"aD":[]}}'))};
+(a=>{a["ch13cbFKgclPGyT3yuPY9i7z7G8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_338.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKh(){return new A.FT(B.dc("eu"))},
-FT:function FT(d){this.a=d}}
+cKi(){return new A.FV(B.dc("eu"))},
+FV:function FV(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[18],A)
-A.FT.prototype={
+A.FV.prototype={
 gkP(){return"false"},
 gjF(){return"Idatzi berriro pasahitza"},
 gmy(){return"Ez da irudi-fitxategia."},
@@ -680,8 +680,8 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FT,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FT":{"aD":[]}}'))
+x(A.FV,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FV":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["pKY759gR+GCGtl/XdhnwDYjwH/s="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["P5qHUVF8+b5roTDrOKLfmloi4e8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

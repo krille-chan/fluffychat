@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKg(){return new A.FS(B.dc("et"))},
-FS:function FS(d){this.a=d}}
+cKh(){return new A.FU(B.dc("et"))},
+FU:function FU(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[17],A)
-A.FS.prototype={
+A.FU.prototype={
 gkP(){return"false"},
 gjF(){return"Korda salas\xf5na"},
 gmy(){return"See pole pildifail."},
@@ -680,7 +680,7 @@ gpF(){return"\xd5iguste tase on \xfcks v\xf5imalusi kirjeldamaks seda, mida kasu
 gdN(){return"Omanik"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FS,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FS":{"aD":[]}}'))};
-(a=>{a["M9GKg8l5M5QAikgUcIGN5dU/hNM="]=a.current})($__dart_deferred_initializers__);
+y(A.FU,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FU":{"aD":[]}}'))};
+(a=>{a["7GzSi4Mb7ExjQc8xwQFat/UAKFQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

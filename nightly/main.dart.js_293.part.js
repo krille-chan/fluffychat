@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKf(){return new A.FR(B.dc("es"))},
-FR:function FR(d){this.a=d}}
+cKg(){return new A.FT(B.dc("es"))},
+FT:function FT(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[16],A)
-A.FR.prototype={
+A.FT.prototype={
 gkP(){return"true"},
 gjF(){return"Repite la contrase\xf1a"},
 gmy(){return"El archivo no es una imagen."},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FR,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FR":{"aD":[]}}'))};
-(a=>{a["wVNcwY8tGPzepjjn1F3seiAj8cY="]=a.current})($__dart_deferred_initializers__);
+y(A.FT,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FT":{"aD":[]}}'))};
+(a=>{a["ysZfwKHPNXK4LvAhvP6WBcXYTTg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_293.part.js.map

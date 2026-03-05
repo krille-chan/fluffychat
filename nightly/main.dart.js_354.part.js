@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKN(){return new A.Gn(B.dc("sr"))},
-Gn:function Gn(d){this.a=d}}
+cKO(){return new A.Gp(B.dc("sr"))},
+Gp:function Gp(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[47],A)
-A.Gn.prototype={
+A.Gp.prototype={
 gkP(){return"false"},
 gjF(){return"Ponovite lozinku"},
 gmy(){return"Not an image file."},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gn,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gn":{"aD":[]}}'))};
-(a=>{a["J1J+/Ic+a0rB5qIxClrBmMTXIxY="]=a.current})($__dart_deferred_initializers__);
+y(A.Gp,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gp":{"aD":[]}}'))};
+(a=>{a["8hYevYN+pHuzTTMZ14IuVsllv9U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_354.part.js.map

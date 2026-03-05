@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKi(){return new A.FU(B.dc("fa"))},
-FU:function FU(d){this.a=d}}
+cKj(){return new A.FW(B.dc("fa"))},
+FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[19],A)
-A.FU.prototype={
+A.FW.prototype={
 gkP(){return"false"},
 gjF(){return"\u062a\u06a9\u0631\u0627\u0631 \u06af\u0630\u0631\u0648\u0627\u0698\u0647"},
 gmy(){return"\u06cc\u06a9 \u0641\u0627\u06cc\u0644 \u062a\u0635\u0648\u06cc\u0631\u06cc \u0646\u06cc\u0633\u062a."},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FU,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FU":{"aD":[]}}'))};
-(a=>{a["9jGL4yMoVerw+nbAwQcKThJev5s="]=a.current})($__dart_deferred_initializers__);
+y(A.FW,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))};
+(a=>{a["5vD4B59H11x3Ec2+lTkP6MpK5Uw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map
