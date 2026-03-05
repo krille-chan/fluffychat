@@ -11,14 +11,10 @@ import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
-import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
-import 'package:fluffychat/pangea/common/widgets/card_header.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
-import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/languages/language_constants.dart';
 import 'package:fluffychat/pangea/phonetic_transcription/pt_v2_disambiguation.dart';
 import 'package:fluffychat/pangea/phonetic_transcription/pt_v2_repo.dart';
@@ -39,6 +35,25 @@ class TtsController {
       StreamController<bool>.broadcast();
 
   static AudioPlayer? audioPlayer;
+
+  static TextToSpeechRequestModel _request(
+    String text,
+    String langCode,
+    List<PangeaTokenText> tokens,
+    String? ttsPhoneme,
+  ) => TextToSpeechRequestModel(
+    text: text,
+    langCode: langCode,
+    tokens: tokens,
+    userL1:
+        MatrixState.pangeaController.userController.userL1Code ??
+        LanguageKeys.unknownLanguage,
+    userL2:
+        MatrixState.pangeaController.userController.userL2Code ??
+        LanguageKeys.unknownLanguage,
+    ttsPhoneme: ttsPhoneme,
+    speakingRate: 1.0,
+  );
 
   static Future<void> _onError(dynamic message) async {
     if (message != 'canceled' && message != 'interrupted') {
@@ -235,24 +250,37 @@ class TtsController {
         length: text.length,
       );
 
+      final langSupported = _isLangFullySupported(langCode);
+
       onStart?.call();
 
       // When tts_phoneme is provided, skip device TTS and use choreo with phoneme tags.
-      if (ttsPhoneme != null) {
-        await _speakFromChoreo(text, langCode, [token], ttsPhoneme: ttsPhoneme);
+      if (ttsPhoneme != null || !langSupported) {
+        final success = await _speakFromChoreo(
+          text,
+          langCode,
+          [token],
+          ttsPhoneme: ttsPhoneme,
+          timeout: langSupported
+              ? const Duration(seconds: 1)
+              : const Duration(seconds: 10),
+        );
+
+        // fallback to device TTS if language is supported but choreo fails (e.g. due to timeout)
+        if (!success && langSupported) {
+          await _speakFromDevice(text, langCode, [token]);
+        }
       } else {
-        await (_isLangFullySupported(langCode)
-            ? _speak(text, langCode, [token])
-            : _speakFromChoreo(text, langCode, [token]));
+        await _speakFromChoreo(text, langCode, [token]);
       }
     } else if (targetID != null && context != null) {
-      await _showTTSDisabledPopup(context, targetID);
+      OverlayUtil.showTTSDisabledPopup(context, targetID);
     }
 
     onStop?.call();
   }
 
-  static Future<void> _speak(
+  static Future<bool> _speakFromDevice(
     String text,
     String langCode,
     List<PangeaTokenText> tokens,
@@ -260,48 +288,23 @@ class TtsController {
     try {
       await stop();
       text = text.toLowerCase();
-
-      Logs().i('Speaking: $text, langCode: $langCode');
-      final result = await Future(
-        () => (_tts.speak(text)),
-        //     .timeout(
-        //   const Duration(seconds: 5),
-        //   // onTimeout: () {
-        //   //   ErrorHandler.logError(
-        //   //     e: "Timeout on tts.speak",
-        //   //     data: {"text": text},
-        //   //   );
-        //   // },
-        // ),
-      );
-      Logs().i('Finished speaking: $text, result: $result');
-
-      // return type is dynamic but apparent its supposed to be 1
-      // https://pub.dev/packages/flutter_tts
-      // if (result != 1 && !kIsWeb) {
-      //   ErrorHandler.logError(
-      //     m: 'Unexpected result from tts.speak',
-      //     data: {
-      //       'result': result,
-      //       'text': text,
-      //     },
-      //     level: SentryLevel.warning,
-      //   );
-      // }
+      await Future(() => (_tts.speak(text)));
+      return true;
     } catch (e, s) {
       debugger(when: kDebugMode);
       error_handler.ErrorHandler.logError(e: e, s: s, data: {'text': text});
-      await _speakFromChoreo(text, langCode, tokens);
+      return false;
     } finally {
-      stop();
+      await stop();
     }
   }
 
-  static Future<void> _speakFromChoreo(
+  static Future<bool> _speakFromChoreo(
     String text,
     String langCode,
     List<PangeaTokenText> tokens, {
     String? ttsPhoneme,
+    Duration timeout = const Duration(seconds: 10),
   }) async {
     debugPrint(
       '[TTS-DEBUG] _speakFromChoreo: text="$text" ttsPhoneme=$ttsPhoneme',
@@ -309,25 +312,25 @@ class TtsController {
     TextToSpeechResponseModel? ttsRes;
 
     loadingChoreoStream.add(true);
-    final result = await TextToSpeechRepo.get(
-      MatrixState.pangeaController.userController.accessToken,
-      TextToSpeechRequestModel(
-        text: text,
-        langCode: langCode,
-        tokens: tokens,
-        userL1:
-            MatrixState.pangeaController.userController.userL1Code ??
-            LanguageKeys.unknownLanguage,
-        userL2:
-            MatrixState.pangeaController.userController.userL2Code ??
-            LanguageKeys.unknownLanguage,
-        ttsPhoneme: ttsPhoneme,
-        speakingRate: 1.0,
-      ),
-    );
-    loadingChoreoStream.add(false);
-    if (result.isError) return;
-    ttsRes = result.result!;
+    try {
+      final result = await TextToSpeechRepo.get(
+        MatrixState.pangeaController.userController.accessToken,
+        _request(text, langCode, tokens, ttsPhoneme),
+      ).timeout(timeout);
+      if (result.isError) return false;
+      ttsRes = result.result!;
+    } on TimeoutException catch (_) {
+      return false;
+    } catch (e, s) {
+      error_handler.ErrorHandler.logError(
+        e: 'Error in TTS API call',
+        s: s,
+        data: {'text': text, 'error': e.toString()},
+      );
+      return false;
+    } finally {
+      loadingChoreoStream.add(false);
+    }
 
     try {
       Logs().i('Speaking from choreo: $text, langCode: $langCode');
@@ -338,12 +341,14 @@ class TtsController {
         BytesAudioSource(audioContent, ttsRes.mimeType),
       );
       await audioPlayer!.play();
+      return true;
     } catch (e, s) {
       error_handler.ErrorHandler.logError(
         e: 'Error playing audio',
         s: s,
         data: {'error': e.toString(), 'text': text},
       );
+      return false;
     } finally {
       audioPlayer?.dispose();
       audioPlayer = null;
@@ -362,31 +367,4 @@ class TtsController {
 
     return _availableLangCodes.any((lang) => lang.startsWith(langCodeShort));
   }
-
-  static Future<void> _showTTSDisabledPopup(
-    BuildContext context,
-    String targetID,
-  ) async => OverlayUtil.showPositionedCard(
-    context: context,
-    backDropToDismiss: false,
-    cardToShow: Column(
-      spacing: 12.0,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        CardHeader(InstructionsEnum.ttsDisabled.title(L10n.of(context))),
-        Padding(
-          padding: const EdgeInsets.all(6.0),
-          child: Text(
-            InstructionsEnum.ttsDisabled.body(L10n.of(context)),
-            style: BotStyle.text(context),
-          ),
-        ),
-      ],
-    ),
-    maxHeight: 300,
-    maxWidth: 300,
-    transformTargetId: targetID,
-    closePrevOverlay: false,
-    overlayKey: InstructionsEnum.ttsDisabled.toString(),
-  );
 }

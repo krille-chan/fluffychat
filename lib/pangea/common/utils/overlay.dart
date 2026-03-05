@@ -3,19 +3,23 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
 import 'package:fluffychat/pangea/analytics_misc/growth_animation.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_up/star_rain_widget.dart';
+import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
 import 'package:fluffychat/pangea/choreographer/choreo_constants.dart';
 import 'package:fluffychat/pangea/choreographer/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/igc/pangea_match_state_model.dart';
 import 'package:fluffychat/pangea/choreographer/igc/span_card.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/common/widgets/anchored_overlay_widget.dart';
+import 'package:fluffychat/pangea/common/widgets/card_header.dart';
 import 'package:fluffychat/pangea/common/widgets/overlay_container.dart';
 import 'package:fluffychat/pangea/common/widgets/transparent_backdrop.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
+import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/language_mismatch_popup.dart';
 import '../../../config/themes.dart';
 import '../../../widgets/matrix.dart';
@@ -346,6 +350,32 @@ class OverlayUtil {
       maxWidth: 325,
       transformTargetId: targetId,
       overlayKey: 'language_mismatch_popup',
+    );
+  }
+
+  static void showTTSDisabledPopup(BuildContext context, String targetID) {
+    showPositionedCard(
+      context: context,
+      backDropToDismiss: false,
+      cardToShow: Column(
+        spacing: 12.0,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          CardHeader(InstructionsEnum.ttsDisabled.title(L10n.of(context))),
+          Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: Text(
+              InstructionsEnum.ttsDisabled.body(L10n.of(context)),
+              style: BotStyle.text(context),
+            ),
+          ),
+        ],
+      ),
+      maxHeight: 300,
+      maxWidth: 300,
+      transformTargetId: targetID,
+      closePrevOverlay: false,
+      overlayKey: InstructionsEnum.ttsDisabled.toString(),
     );
   }
 }
