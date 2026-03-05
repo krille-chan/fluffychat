@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
 import 'package:diacritic/diacritic.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,8 +28,14 @@ class VocabAnalyticsListView extends StatelessWidget {
 
   const VocabAnalyticsListView({super.key, required this.controller});
 
-  List<ConstructUses>? get _filteredVocab =>
-      controller.vocab?.where(_vocabFilter).sorted(_sortBySearch).toList();
+  List<ConstructUses>? get _filteredVocab {
+    final filteredVocab = controller.vocab?.where(_vocabFilter).toList();
+    if (controller.isSearching &&
+        controller.searchController.text.trim().isNotEmpty) {
+      filteredVocab?.sort(_sortBySearch);
+    }
+    return filteredVocab?.toList();
+  }
 
   bool _vocabFilter(ConstructUses use) =>
       _levelFilter(use) && _searchFilter(use);
@@ -57,11 +62,6 @@ class VocabAnalyticsListView extends StatelessWidget {
   }
 
   int _sortBySearch(ConstructUses a, ConstructUses b) {
-    if (!controller.isSearching ||
-        controller.searchController.text.trim().isEmpty) {
-      return 0; // No sorting if not searching
-    }
-
     final normalizedSearch = removeDiacritics(
       controller.searchController.text,
     ).toLowerCase();
