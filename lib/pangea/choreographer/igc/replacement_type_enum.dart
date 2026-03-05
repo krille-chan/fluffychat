@@ -60,7 +60,6 @@ extension SpanDataTypeEnumExt on ReplacementTypeEnum {
   static const List<ReplacementTypeEnum> autoApplyTypes = [
     ReplacementTypeEnum.punct,
     ReplacementTypeEnum.diacritics,
-    ReplacementTypeEnum.spell,
     ReplacementTypeEnum.cap,
   ];
 
