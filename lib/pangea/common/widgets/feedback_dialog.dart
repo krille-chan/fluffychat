@@ -102,7 +102,7 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
                 ],
               ),
               widget.scrollable
-                  ? Expanded(child: SingleChildScrollView(child: content))
+                  ? Flexible(child: SingleChildScrollView(child: content))
                   : content,
               ValueListenableBuilder<TextEditingValue>(
                 valueListenable: _feedbackController,
