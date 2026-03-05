@@ -40,29 +40,46 @@ class SettingsStyleView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: .stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: SegmentedButton<ThemeMode>(
-                selected: {controller.currentTheme},
-                onSelectionChanged: (selected) =>
-                    controller.switchTheme(selected.single),
-                segments: [
-                  ButtonSegment(
-                    value: ThemeMode.light,
-                    label: Text(L10n.of(context).lightTheme),
-                    icon: const Icon(Icons.light_mode_outlined),
-                  ),
-                  ButtonSegment(
-                    value: ThemeMode.dark,
-                    label: Text(L10n.of(context).darkTheme),
-                    icon: const Icon(Icons.dark_mode_outlined),
-                  ),
-                  ButtonSegment(
-                    value: ThemeMode.system,
-                    label: Text(L10n.of(context).systemTheme),
-                    icon: const Icon(Icons.auto_mode_outlined),
-                  ),
-                ],
+            // #Pangea
+            LayoutBuilder(
+              builder: (context, constraints) => Center(
+                child:
+                    // Pangea#
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: SegmentedButton<ThemeMode>(
+                        // #Pangea
+                        direction: constraints.maxWidth < 350
+                            ? Axis.vertical
+                            : Axis.horizontal,
+                        style: SegmentedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        // Pangea#
+                        selected: {controller.currentTheme},
+                        onSelectionChanged: (selected) =>
+                            controller.switchTheme(selected.single),
+                        segments: [
+                          ButtonSegment(
+                            value: ThemeMode.light,
+                            label: Text(L10n.of(context).lightTheme),
+                            icon: const Icon(Icons.light_mode_outlined),
+                          ),
+                          ButtonSegment(
+                            value: ThemeMode.dark,
+                            label: Text(L10n.of(context).darkTheme),
+                            icon: const Icon(Icons.dark_mode_outlined),
+                          ),
+                          ButtonSegment(
+                            value: ThemeMode.system,
+                            label: Text(L10n.of(context).systemTheme),
+                            icon: const Icon(Icons.auto_mode_outlined),
+                          ),
+                        ],
+                      ),
+                    ),
               ),
             ),
             Divider(color: theme.dividerColor),
