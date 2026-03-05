@@ -264,7 +264,6 @@ Future<void> _tryPushHelper(
               inputs: [
                 AndroidNotificationActionInput(label: l10n.writeAMessage),
               ],
-              cancelNotification: false,
               allowGeneratedReplies: true,
               semanticAction: SemanticAction.reply,
             ),
