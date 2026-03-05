@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKm(){return new A.FZ(B.dc("fr"))},
-FZ:function FZ(d){this.a=d}}
+cKk(){return new A.G_(B.dc("fr"))},
+G_:function G_(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[22],A)
-A.FZ.prototype={
+A.G_.prototype={
 gkP(){return"true"},
 gjF(){return"R\xe9p\xe9tez le mot de passe"},
 gmy(){return"Pas un fichier image."},
@@ -88,7 +88,7 @@ gfd(){return"D\xe9tails de la discussion"},
 gfe(){return"Discussions"},
 ghK(){return"Choisissez un mot de passe fort"},
 gff(){return"Effacer les archives"},
-gcn(d){return"Fermer"},
+gci(d){return"Fermer"},
 glf(){return"Marquer comme salon de messages directs pour l'identifiant Matrix indiqu\xe9"},
 glg(){return"Marquer comme groupe"},
 ghL(){return"Bannir l'utilisateur/trice donn\xe9(e) de ce salon"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FZ,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FZ":{"aD":[]}}'))};
-(a=>{a["XWQHuT/G7Kpd041GinbJLZslnlc="]=a.current})($__dart_deferred_initializers__);
+y(A.G_,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G_":{"aD":[]}}'))};
+(a=>{a["7W1AUls8I6a+3x7bmsMPTTv6Aek="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

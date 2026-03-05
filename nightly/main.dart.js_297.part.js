@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKh(){return new A.FU(B.dc("et"))},
-FU:function FU(d){this.a=d}}
+cKf(){return new A.FV(B.dc("et"))},
+FV:function FV(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[17],A)
-A.FU.prototype={
+A.FV.prototype={
 gkP(){return"false"},
 gjF(){return"Korda salas\xf5na"},
 gmy(){return"See pole pildifail."},
@@ -88,7 +88,7 @@ gfd(){return"Vestluse teave"},
 gfe(){return"Vestlused"},
 ghK(){return"Vali korralik salas\xf5na"},
 gff(){return"Kustuta arhiiv"},
-gcn(d){return"Sulge"},
+gci(d){return"Sulge"},
 glf(){return"M\xe4rgi otsevestusluseks antud Matrixi ID jaoks"},
 glg(){return"M\xe4rgi vestlusr\xfchmaks"},
 ghL(){return"Sea sellele kasutajale antud jututoas suhtluskeeld"},
@@ -680,7 +680,7 @@ gpF(){return"\xd5iguste tase on \xfcks v\xf5imalusi kirjeldamaks seda, mida kasu
 gdN(){return"Omanik"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FU,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FU":{"aD":[]}}'))};
-(a=>{a["7GzSi4Mb7ExjQc8xwQFat/UAKFQ="]=a.current})($__dart_deferred_initializers__);
+y(A.FV,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FV":{"aD":[]}}'))};
+(a=>{a["CC7QloZd2EYJ6aEKb8xEJXysxuo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKv(){return new A.G7(B.dc("ie"))},
-G7:function G7(d){this.a=d}}
+cKt(){return new A.G8(B.dc("ie"))},
+G8:function G8(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[31],A)
-A.G7.prototype={
+A.G8.prototype={
 gkP(){return"false"},
 gjF(){return"Repetir li contrasigne"},
 gmy(){return"Not an image file."},
@@ -88,7 +88,7 @@ gfd(){return"Detallies del conversation"},
 gfe(){return"Conversationes"},
 ghK(){return"Choose a strong password"},
 gff(){return"Vacuar li archive"},
-gcn(d){return"Cluder"},
+gci(d){return"Cluder"},
 glf(){return"Mark as direct message room for the giving Matrix ID"},
 glg(){return"Marcar quam gruppe"},
 ghL(){return"Ban the given user from this room"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G7,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G7":{"aD":[]}}'))};
-(a=>{a["svYDyM7ugFIHHZGZYvy+zKcyBBk="]=a.current})($__dart_deferred_initializers__);
+y(A.G8,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G8":{"aD":[]}}'))};
+(a=>{a["sTIK8s8AtOXf1wz89gykl7MoLoM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map

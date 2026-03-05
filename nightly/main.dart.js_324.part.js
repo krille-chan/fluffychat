@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKt(){return new A.G5(B.dc("ia"))},
-G5:function G5(d){this.a=d}}
+cKr(){return new A.G6(B.dc("ia"))},
+G6:function G6(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[29],A)
-A.G5.prototype={
+A.G6.prototype={
 gkP(){return"false"},
 gjF(){return"Repeter le contrasigno"},
 gmy(){return"Non es un file de imagine."},
@@ -88,7 +88,7 @@ gfd(){return"Chat details"},
 gfe(){return"Chats"},
 ghK(){return"Choose a strong password"},
 gff(){return"Clear archive"},
-gcn(d){return"Close"},
+gci(d){return"Close"},
 glf(){return"Mark as direct message room for the giving Matrix ID"},
 glg(){return"Mark as group"},
 ghL(){return"Ban the given user from this room"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G5,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G5":{"aD":[]}}'))};
-(a=>{a["Av2/hB8WWXzhPyt2z8LrRPaLyko="]=a.current})($__dart_deferred_initializers__);
+y(A.G6,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G6":{"aD":[]}}'))};
+(a=>{a["D3KaAFfmTt19cL8cjUU8xUUk/5I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_324.part.js.map

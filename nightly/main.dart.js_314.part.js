@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKp(){return new A.G1(B.dc("he"))},
-G1:function G1(d){this.a=d}}
+cKn(){return new A.G2(B.dc("he"))},
+G2:function G2(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[25],A)
-A.G1.prototype={
+A.G2.prototype={
 gkP(){return""},
 gjF(){return"\u05db\u05ea\u05d5\u05d1 \u05e9\u05d5\u05d1 \u05d0\u05ea \u05d4\u05e1\u05d9\u05e1\u05de\u05d4"},
 gmy(){return"\u05d4\u05e7\u05d5\u05d1\u05e5 \u05d0\u05d9\u05e0\u05d5 \u05ea\u05de\u05d5\u05e0\u05d4."},
@@ -88,7 +88,7 @@ gfd(){return"\u05e4\u05e8\u05d8\u05d9 \u05e6'\u05d0\u05d8"},
 gfe(){return"\u05e6'\u05d0\u05d8\u05d9\u05dd"},
 ghK(){return"\u05d1\u05d7\u05e8 \u05e1\u05d9\u05e1\u05de\u05d4 \u05d7\u05d6\u05e7\u05d4"},
 gff(){return"\u05e0\u05e7\u05d4 \u05d0\u05e8\u05db\u05d9\u05d5\u05df"},
-gcn(d){return"\u05e1\u05d2\u05d5\u05e8"},
+gci(d){return"\u05e1\u05d2\u05d5\u05e8"},
 glf(){return"Mark as direct message room for the giving Matrix ID"},
 glg(){return"Mark as group"},
 ghL(){return"\u05d7\u05e1\u05d5\u05dd \u05d0\u05ea \u05d4\u05de\u05e9\u05ea\u05de\u05e9 \u05d4\u05e0\u05ea\u05d5\u05df \u05de\u05d4\u05d7\u05d3\u05e8 \u05d4\u05d6\u05d4"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G1,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G1":{"aD":[]}}'))};
-(a=>{a["cjGlsaxaOkIMtEfW/qJeaG5M8cc="]=a.current})($__dart_deferred_initializers__);
+y(A.G2,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G2":{"aD":[]}}'))};
+(a=>{a["xdDiRLigG469Zbg5oKD70YJ+W2Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

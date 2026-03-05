@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKa(){return new A.FN(B.dc("cs"))},
-FN:function FN(d){this.a=d}}
+cK8(){return new A.FO(B.dc("cs"))},
+FO:function FO(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[10],A)
-A.FN.prototype={
+A.FO.prototype={
 gkP(){return"Vypnuto"},
 gjF(){return"Zopakujte heslo"},
 gmy(){return"Nen\xed obr\xe1zek."},
@@ -88,7 +88,7 @@ gfd(){return"Bli\u017e\u0161\xed \xfadaje o chatu"},
 gfe(){return"Chaty"},
 ghK(){return"Vyberte siln\xe9 heslo"},
 gff(){return"Vymazat archiv"},
-gcn(d){return"Zav\u0159\xedt"},
+gci(d){return"Zav\u0159\xedt"},
 glf(){return"Ozna\u010dit jako m\xedstnost p\u0159\xedm\xe9 konverzace s dan\xfdm Matrix ID"},
 glg(){return"Ozna\u010dit jako skupinu"},
 ghL(){return"Zak\xe1zat dan\xe9mu u\u017eivateli p\u0159\xedstup do t\xe9to m\xedstnosti"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FN,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FN":{"aD":[]}}'))};
-(a=>{a["IYfp1lAVz2jih8oL7gZiri5cFaA="]=a.current})($__dart_deferred_initializers__);
+y(A.FO,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FO":{"aD":[]}}'))};
+(a=>{a["BVjo4BMgvSrekxouruxSkocAYRc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_271.part.js.map

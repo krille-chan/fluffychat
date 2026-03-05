@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKz(){return new A.Gb(B.dc("kab"))},
-Gb:function Gb(d){this.a=d}}
+cKx(){return new A.Gc(B.dc("kab"))},
+Gc:function Gc(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[35],A)
-A.Gb.prototype={
+A.Gc.prototype={
 gkP(){return"false"},
 gjF(){return"Ales awal n u\u025beddi"},
 gmy(){return"Ma\u010d\u010di d afaylu n tugna."},
@@ -88,7 +88,7 @@ gfd(){return"Ifatusen n udiwenni"},
 gfe(){return"Idiwenniyen"},
 ghK(){return"Fren awal n u\u025beddi i\u01e7ehden"},
 gff(){return"Sfe\u1e0d a\u0263ba\u1e5b"},
-gcn(d){return"Mdel"},
+gci(d){return"Mdel"},
 glf(){return"Cre\u1e0d d akken taxxamt n yizen usrid i Usulay Matriks i d-yettunefken"},
 glg(){return"Cre\u1e0d am ugraw"},
 ghL(){return"Gdel aseqdac i d-ittunefken seg texxamt-agi"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Amli"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gb,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gb":{"aD":[]}}'))};
-(a=>{a["ch13cbFKgclPGyT3yuPY9i7z7G8="]=a.current})($__dart_deferred_initializers__);
+y(A.Gc,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gc":{"aD":[]}}'))};
+(a=>{a["J0wBq0x5af/uwy+5Emss8EmYrMM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_338.part.js.map

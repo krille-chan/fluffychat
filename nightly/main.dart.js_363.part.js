@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKV(){return new A.Gw(B.dc("uz"))},
-Gw:function Gw(d){this.a=d}}
+cKT(){return new A.Gx(B.dc("uz"))},
+Gx:function Gx(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[54],A)
-A.Gw.prototype={
+A.Gx.prototype={
 gkP(){return"true"},
 gjF(){return"Parolni takrorlang"},
 gmy(){return"Rasm fayli emas."},
@@ -88,7 +88,7 @@ gfd(){return"Suhbat tafsilotlari"},
 gfe(){return"Suhbatlar"},
 ghK(){return"Kuchli parol tanlang"},
 gff(){return"Arxivni tozalash"},
-gcn(d){return"Yopish"},
+gci(d){return"Yopish"},
 glf(){return"Matrix identifikatorini berish uchun shaxsiy xabar guruhi sifatida belgilang"},
 glg(){return"Guruh sifatida belgilash"},
 ghL(){return"Bu guruhdan berilgan foydalanuvchini bloklash"},
@@ -680,8 +680,8 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gw,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gw":{"aD":[]}}'))
+x(A.Gx,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gx":{"aD":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["2JZqVmniWSmtAxzXICbttk7ON0k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9B2pJTIyqbwYo/9rNlNsn4VDfMc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

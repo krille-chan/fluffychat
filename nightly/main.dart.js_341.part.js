@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKC(){return new A.Ge(B.dc("lv"))},
-Ge:function Ge(d){this.a=d}}
+cKA(){return new A.Gf(B.dc("lv"))},
+Gf:function Gf(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[38],A)
-A.Ge.prototype={
+A.Gf.prototype={
 gkP(){return"n\u0113"},
 gjF(){return"Atk\u0101rtot paroli"},
 gmy(){return"Nav att\u0113la datne."},
@@ -88,7 +88,7 @@ gfd(){return"T\u0113rz\u0113\u0161anas izv\u0113rsums"},
 gfe(){return"T\u0113rz\u0113\u0161anas"},
 ghK(){return"J\u0101izv\u0113las dro\u0161a parole"},
 gff(){return"Izt\u012br\u012bt arh\u012bvu"},
-gcn(d){return"Aizv\u0113rt"},
+gci(d){return"Aizv\u0113rt"},
 glf(){return"Atz\u012bm\u0113t k\u0101 tie\u0161o zi\u0146u istabu nor\u0101d\u012btajam Matrix Id"},
 glg(){return"Atz\u012bm\u0113t k\u0101 kopu"},
 ghL(){return"Izsl\u0113gt nor\u0101d\u012bto lietot\u0101ju no \u0161\u012bs istabas"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ge,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Ge":{"aD":[]}}'))};
-(a=>{a["95asSlD+wTO/L6vEqMrcKbZb1zg="]=a.current})($__dart_deferred_initializers__);
+y(A.Gf,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gf":{"aD":[]}}'))};
+(a=>{a["hdJqrQxVDLkx0tXw5bSIl5/QgP8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_341.part.js.map

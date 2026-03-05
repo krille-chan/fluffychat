@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKF(){return new A.Gh(B.dc("pl"))},
-Gh:function Gh(d){this.a=d}}
+cKD(){return new A.Gi(B.dc("pl"))},
+Gi:function Gi(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[41],A)
-A.Gh.prototype={
+A.Gi.prototype={
 gkP(){return"false"},
 gjF(){return"Powt\xf3rz has\u0142o"},
 gmy(){return"To nie jest plik obrazu."},
@@ -88,7 +88,7 @@ gfd(){return"Szczeg\xf3\u0142y czatu"},
 gfe(){return"Czaty"},
 ghK(){return"Wybierz silne has\u0142o"},
 gff(){return"Wyczy\u015b\u0107 archiwum"},
-gcn(d){return"Zamknij"},
+gci(d){return"Zamknij"},
 glf(){return"Oznacz jako pok\xf3j wiadomo\u015bci bezpo\u015brednich dla podanego Matrix ID"},
 glg(){return"Oznacz jako grup\u0119"},
 ghL(){return"Zbanuj u\u017cytkownika w tym pokoju"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gh,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gh":{"aD":[]}}'))};
-(a=>{a["ciM8+8+nk20sV0xbugjz62MOqHA="]=a.current})($__dart_deferred_initializers__);
+y(A.Gi,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gi":{"aD":[]}}'))};
+(a=>{a["fz7Jics39fTEJhylbT9rW1IwCGc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

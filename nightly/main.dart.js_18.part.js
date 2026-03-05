@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cKG(d){return new A.Bg(B.dc(d))},
-cKH(){return new A.Gi(B.dc("pt_BR"))},
-cKI(){return new A.Gj(B.dc("pt_PT"))},
-Bg:function Bg(d){this.a=d},
-Gi:function Gi(d){this.a=d},
-Gj:function Gj(d){this.a=d}},C
+cKE(d){return new A.Bh(B.dc(d))},
+cKF(){return new A.Gj(B.dc("pt_BR"))},
+cKG(){return new A.Gk(B.dc("pt_PT"))},
+Bh:function Bh(d){this.a=d},
+Gj:function Gj(d){this.a=d},
+Gk:function Gk(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[57]
-A.Bg.prototype={
+A.Bh.prototype={
 gkP(){return"true"},
 gjF(){return"Repita a senha"},
 gmy(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -92,7 +92,7 @@ gfd(){return"Chat details"},
 gfe(){return"Chats"},
 ghK(){return"Choose a strong password"},
 gff(){return"Clear archive"},
-gcn(d){return"Fechar"},
+gci(d){return"Fechar"},
 glf(){return"Mark as direct message room for the giving Matrix ID"},
 glg(){return"Mark as group"},
 ghL(){return"Ban the given user from this room"},
@@ -683,7 +683,7 @@ gq1(){return"Power level"},
 gpF(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
-A.Gi.prototype={
+A.Gj.prototype={
 gkP(){return"true"},
 gjF(){return"Repita a senha"},
 gmy(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -766,7 +766,7 @@ gfd(){return"Detalhes da conversa"},
 gfe(){return"Conversas"},
 ghK(){return"Escolha uma senha forte"},
 gff(){return"Limpar arquivo"},
-gcn(d){return"Fechar"},
+gci(d){return"Fechar"},
 glf(){return"Marcar como sala de mensagens diretas para o ID Matrix fornecido"},
 glg(){return"Marcar como grupo"},
 ghL(){return"Banir o usu\xe1rio especificado desta sala"},
@@ -1333,7 +1333,7 @@ pD(d){return"Vers\xe3o: "+d},
 gp0(){return""},
 gpz(){return""},
 B(d,e){return this.gba(this).$1(e)}}
-A.Gj.prototype={
+A.Gk.prototype={
 gjF(){return"Repete a palavra-passe"},
 gba(d){return"Remover"},
 gex(){return"Acerca de"},
@@ -1390,7 +1390,7 @@ gfd(){return"Detalhes de conversa"},
 gfe(){return"Conversas"},
 ghK(){return"Escolhe uma palavra-passe forte"},
 gff(){return"Limpar arquivo"},
-gcn(d){return"Fechar"},
+gci(d){return"Fechar"},
 ghL(){return"Banir o utilizador dado desta sala"},
 ghM(){return"Limpar cache"},
 ghN(){return"Criar uma conversa de grupo vazia\nUsa --no-encryption para desativar a encripta\xe7\xe3o"},
@@ -1573,9 +1573,9 @@ eW(d){return d+" enviou um autocolante"},
 h_(d){return d+" enviou um v\xeddeo"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Bg,C.aD)
-w(A.Bg,[A.Gi,A.Gj])})()
-B.dJ(b.typeUniverse,JSON.parse('{"Bg":{"aD":[]},"Gi":{"aD":[]},"Gj":{"aD":[]}}'))
+x(A.Bh,C.aD)
+w(A.Bh,[A.Gj,A.Gk])})()
+B.dI(b.typeUniverse,JSON.parse('{"Bh":{"aD":[]},"Gj":{"aD":[]},"Gk":{"aD":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["5OLrpBgVmPwPuCVWWR5s1eLtbkI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["TBT4g4Gp4L4kCSCdDZHMevaNL+c="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKE(){return new A.Gg(B.dc("nl"))},
-Gg:function Gg(d){this.a=d}}
+cKC(){return new A.Gh(B.dc("nl"))},
+Gh:function Gh(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[40],A)
-A.Gg.prototype={
+A.Gh.prototype={
 gkP(){return"true"},
 gjF(){return"Wachtwoord herhalen"},
 gmy(){return"Geen afbeeldingsbestand."},
@@ -88,7 +88,7 @@ gfd(){return"Chatdetails"},
 gfe(){return"Chats"},
 ghK(){return"Kies een sterk wachtwoord"},
 gff(){return"Archief wissen"},
-gcn(d){return"Sluiten"},
+gci(d){return"Sluiten"},
 glf(){return"Markeer als priv\xe9-chat voor de Matrix-ID"},
 glg(){return"Markeer als groep"},
 ghL(){return"Persoon uit deze chat verbannen"},
@@ -680,7 +680,7 @@ gpF(){return"Rechtenniveau's defini\xebren wat een persoon mag doen in deze chat
 gdN(){return"Eigenaar"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gg,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gg":{"aD":[]}}'))};
-(a=>{a["E67XBBv4Kaa+3GLAXzpzbXZ01kw="]=a.current})($__dart_deferred_initializers__);
+y(A.Gh,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gh":{"aD":[]}}'))};
+(a=>{a["2++uLCrJLZYaqWIO9fnNbq7cpLY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_344.part.js.map

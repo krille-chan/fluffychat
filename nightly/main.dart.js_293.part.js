@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKg(){return new A.FT(B.dc("es"))},
-FT:function FT(d){this.a=d}}
+cKe(){return new A.FU(B.dc("es"))},
+FU:function FU(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[16],A)
-A.FT.prototype={
+A.FU.prototype={
 gkP(){return"true"},
 gjF(){return"Repite la contrase\xf1a"},
 gmy(){return"El archivo no es una imagen."},
@@ -88,7 +88,7 @@ gfd(){return"Detalles del chat"},
 gfe(){return"Conversaciones"},
 ghK(){return"Elija una contrase\xf1a segura"},
 gff(){return"Borrar archivo"},
-gcn(d){return"Cerrar"},
+gci(d){return"Cerrar"},
 glf(){return"Marcar como sala de mensajes directos para el ID de Matrix"},
 glg(){return"Marcar como grupo"},
 ghL(){return"Prohibir al usuario dado en esta sala"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FT,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FT":{"aD":[]}}'))};
-(a=>{a["ysZfwKHPNXK4LvAhvP6WBcXYTTg="]=a.current})($__dart_deferred_initializers__);
+y(A.FU,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FU":{"aD":[]}}'))};
+(a=>{a["7xomP9Ux+Tr74/e8PGiTa2CdBw4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_293.part.js.map

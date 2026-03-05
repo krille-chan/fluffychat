@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKR(){return new A.Gs(B.dc("te"))},
-Gs:function Gs(d){this.a=d}}
+cKP(){return new A.Gt(B.dc("te"))},
+Gt:function Gt(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[50],A)
-A.Gs.prototype={
+A.Gt.prototype={
 gkP(){return""},
 gjF(){return"\u0c2a\u0c3e\u0c38\u0c4d\u200c\u0c35\u0c30\u0c4d\u0c21\u0c4d\u200c\u0c28\u0c41 \u0c2a\u0c41\u0c28\u0c30\u0c3e\u0c35\u0c43\u0c24\u0c02 \u0c1a\u0c47\u0c2f\u0c02\u0c21\u0c3f"},
 gmy(){return"\u0c07\u0c2e\u0c47\u0c1c\u0c4d \u0c2b\u0c48\u0c32\u0c4d \u0c15\u0c3e\u0c26\u0c41."},
@@ -88,7 +88,7 @@ gfd(){return"Chat details"},
 gfe(){return"Chats"},
 ghK(){return"Choose a strong password"},
 gff(){return"Clear archive"},
-gcn(d){return"Close"},
+gci(d){return"Close"},
 glf(){return"Mark as direct message room for the giving Matrix ID"},
 glg(){return"Mark as group"},
 ghL(){return"Ban the given user from this room"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gs,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gs":{"aD":[]}}'))};
-(a=>{a["gMHjXdYuAcq1oar+6lun7CPlThs="]=a.current})($__dart_deferred_initializers__);
+y(A.Gt,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gt":{"aD":[]}}'))};
+(a=>{a["TbBDaS0vasKGmhlOkWLw9MkUVfo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_358.part.js.map

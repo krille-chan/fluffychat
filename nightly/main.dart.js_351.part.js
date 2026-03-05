@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKL(){return new A.Gm(B.dc("sk"))},
-Gm:function Gm(d){this.a=d}}
+cKJ(){return new A.Gn(B.dc("sk"))},
+Gn:function Gn(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[44],A)
-A.Gm.prototype={
+A.Gn.prototype={
 gkP(){return"false"},
 gjF(){return"Zopakujte heslo"},
 gmy(){return"Not an image file."},
@@ -88,7 +88,7 @@ gfd(){return"Podrobnosti o chate"},
 gfe(){return"\u010cety"},
 ghK(){return"Vyberte si siln\xe9 heslo"},
 gff(){return"Clear archive"},
-gcn(d){return"Zavrie\u0165"},
+gci(d){return"Zavrie\u0165"},
 glf(){return"Mark as direct message room for the giving Matrix ID"},
 glg(){return"Mark as group"},
 ghL(){return"Ban the given user from this room"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gm,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gm":{"aD":[]}}'))};
-(a=>{a["AZ6aDg6h7gtRHS65Ousnq97dltE="]=a.current})($__dart_deferred_initializers__);
+y(A.Gn,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gn":{"aD":[]}}'))};
+(a=>{a["tcoHjqMte22XBhHqqLzUnRs2v9E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

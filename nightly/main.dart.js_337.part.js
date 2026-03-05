@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKy(){return new A.Ga(B.dc("ka"))},
-Ga:function Ga(d){this.a=d}}
+cKw(){return new A.Gb(B.dc("ka"))},
+Gb:function Gb(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[34],A)
-A.Ga.prototype={
+A.Gb.prototype={
 gkP(){return"false"},
 gjF(){return"\u10d2\u10d0\u10d8\u10db\u10d4\u10dd\u10e0\u10d4\u10d7 \u10de\u10d0\u10e0\u10dd\u10da\u10d8"},
 gmy(){return"\u10e4\u10d0\u10d8\u10da\u10d8 \u10d0\u10e0\u10d0\u10d0 \u10e1\u10e3\u10e0\u10d0\u10d7\u10d8."},
@@ -88,7 +88,7 @@ gfd(){return"\u10e9\u10d0\u10e2\u10d8\u10e1 \u10d3\u10d4\u10e2\u10d0\u10da\u10d4
 gfe(){return"\u10e9\u10d0\u10e2\u10d4\u10d1\u10d8"},
 ghK(){return"\u10eb\u10da\u10d8\u10d4\u10e0\u10d8 \u10de\u10d0\u10e0\u10dd\u10da\u10d8 \u10d0\u10d0\u10e0\u10e9\u10d8\u10d4\u10d7"},
 gff(){return"\u10d0\u10e0\u10e5\u10d8\u10d5\u10d8\u10e1 \u10d2\u10d0\u10ec\u10db\u10d4\u10dc\u10d3\u10d0"},
-gcn(d){return"\u10d3\u10d0\u10ee\u10e3\u10e0\u10d5\u10d0"},
+gci(d){return"\u10d3\u10d0\u10ee\u10e3\u10e0\u10d5\u10d0"},
 glf(){return"Mark as direct message room for the giving Matrix ID"},
 glg(){return"\u10d0\u10e6\u10dc\u10d8\u10e8\u10d5\u10dc\u10d0, \u10e0\u10dd\u10d2\u10dd\u10e0\u10ea \u10ef\u10d2\u10e3\u10e4\u10d8\u10e1"},
 ghL(){return"\u10db\u10dd\u10ea\u10d4\u10db\u10e3\u10da\u10d8 \u10db\u10dd\u10db\u10ee\u10db\u10d0\u10e0\u10d4\u10d1\u10da\u10d8\u10e1 \u10d1\u10da\u10dd\u10d9\u10d8\u10e0\u10d4\u10d1\u10d0 \u10d0\u10db \u10dd\u10d7\u10d0\u10ee\u10e8\u10d8"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ga,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Ga":{"aD":[]}}'))};
-(a=>{a["EbzDC6Wg9gQZurvEzZRpjTiz9vw="]=a.current})($__dart_deferred_initializers__);
+y(A.Gb,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gb":{"aD":[]}}'))};
+(a=>{a["YkCku6xCEnEakg67fkZtmJ94dLM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_337.part.js.map

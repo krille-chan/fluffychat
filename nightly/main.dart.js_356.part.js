@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKP(){return new A.Gq(B.dc("sv"))},
-Gq:function Gq(d){this.a=d}}
+cKN(){return new A.Gr(B.dc("sv"))},
+Gr:function Gr(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[48],A)
-A.Gq.prototype={
+A.Gr.prototype={
 gkP(){return"falskt"},
 gjF(){return"Upprepa l\xf6senord"},
 gmy(){return"Inte en bildfil."},
@@ -88,7 +88,7 @@ gfd(){return"Chatt-detaljer"},
 gfe(){return"Chatter"},
 ghK(){return"V\xe4lj ett starkt l\xf6senord"},
 gff(){return"Rensa arkiv"},
-gcn(d){return"St\xe4ng"},
+gci(d){return"St\xe4ng"},
 glf(){return"M\xe4rk som rum f\xf6r direktmeddelanden f\xf6r det givante Matrix ID"},
 glg(){return"M\xe4rk som grupp"},
 ghL(){return"Bannlys anv\xe4ndaren fr\xe5n detta rum"},
@@ -680,7 +680,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdN(){return"Owner"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gq,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gq":{"aD":[]}}'))};
-(a=>{a["KBs90/MrUX+CebKx08bjMdvft2Y="]=a.current})($__dart_deferred_initializers__);
+y(A.Gr,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gr":{"aD":[]}}'))};
+(a=>{a["XPvYPVFZhThZBIvLnxdpQjEseEE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_356.part.js.map
