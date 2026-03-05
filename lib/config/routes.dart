@@ -200,14 +200,19 @@ abstract class AppRoutes {
             );
             if (redirect != null) return redirect;
             final enabled = await Matrix.of(context).notificationsEnabled;
-            if (enabled) return "/registration/course";
+            if (enabled) return "/registration/notifications/course";
             return null;
           },
-        ),
-        GoRoute(
-          path: 'course',
-          pageBuilder: (context, state) =>
-              defaultPageBuilder(context, state, const SpaceCodeOnboarding()),
+          routes: [
+            GoRoute(
+              path: 'course',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                state,
+                const SpaceCodeOnboarding(),
+              ),
+            ),
+          ],
         ),
       ],
     ),

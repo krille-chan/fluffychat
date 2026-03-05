@@ -16,7 +16,16 @@ class SpaceCodeOnboardingView extends StatelessWidget {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(onPressed: Navigator.of(context).pop),
+        title: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 450),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              BackButton(onPressed: Navigator.of(context).pop),
+              const SizedBox(width: 40.0),
+            ],
+          ),
+        ),
         automaticallyImplyLeading: false,
       ),
       body: SafeArea(

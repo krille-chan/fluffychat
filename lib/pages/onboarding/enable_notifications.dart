@@ -6,7 +6,8 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/authentication/p_logout.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/login/pages/pangea_login_scaffold.dart';
+import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
+import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/local_notifications_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -41,14 +42,15 @@ class EnableNotificationsController extends State<EnableNotifications> {
   Future<void> _requestNotificationPermission() async {
     await Matrix.of(context).requestNotificationPermission();
     if (mounted) {
-      context.go("/registration/course");
+      context.go("/registration/notifications/course");
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return PangeaLoginScaffold(
-      customAppBar: AppBar(
+    final theme = Theme.of(context);
+    return Scaffold(
+      appBar: AppBar(
         title: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 450),
           child: Row(
@@ -63,46 +65,58 @@ class EnableNotificationsController extends State<EnableNotifications> {
         ),
         automaticallyImplyLeading: false,
       ),
-      showAppName: false,
-      mainAssetUrl: profile?.avatarUrl,
-      children: [
-        Column(
-          spacing: 8.0,
-          children: [
-            Text(
-              L10n.of(context).welcomeUser(
-                profile?.displayName ??
-                    Matrix.of(context).client.userID?.localpart ??
-                    "",
-              ),
-              style: Theme.of(
-                context,
-              ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+      body: SafeArea(
+        child: MaxWidthBody(
+          maxWidth: 300,
+          withScrolling: false,
+          showBorder: false,
+          child: Container(
+            alignment: .center,
+            padding: const EdgeInsets.symmetric(
+              vertical: 24.0,
+              horizontal: 16.0,
             ),
-            Text(
-              L10n.of(context).enableNotificationsTitle,
-              textAlign: TextAlign.center,
+            child: Column(
+              spacing: 32.0,
+              mainAxisSize: .min,
+              children: [
+                PangeaLogoSvg(width: 72),
+                Column(
+                  spacing: 12.0,
+                  mainAxisSize: .min,
+                  children: [
+                    Text(
+                      L10n.of(context).enableNotificationsTitle,
+                      style: theme.textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: .center,
+                    ),
+                    ElevatedButton(
+                      onPressed: _requestNotificationPermission,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: theme.colorScheme.primaryContainer,
+                        foregroundColor: theme.colorScheme.onPrimaryContainer,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(L10n.of(context).enableNotificationsDesc),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                TextButton(
+                  onPressed: () =>
+                      context.go("/registration/notifications/course"),
+                  child: Text(L10n.of(context).skipForNow),
+                ),
+              ],
             ),
-            ElevatedButton(
-              onPressed: _requestNotificationPermission,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                foregroundColor: Theme.of(
-                  context,
-                ).colorScheme.onPrimaryContainer,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [Text(L10n.of(context).enableNotificationsDesc)],
-              ),
-            ),
-            TextButton(
-              child: Text(L10n.of(context).skipForNow),
-              onPressed: () => context.go("/registration/course"),
-            ),
-          ],
+          ),
         ),
-      ],
+      ),
     );
   }
 }
