@@ -4,7 +4,23 @@ applyTo: "lib/pangea/subscription/**"
 
 # Subscription Module — Client
 
-Client-side subscription UI, platform branching, and payment flows. For the cross-repo architecture (service roles, price configuration, entitlement flow), see [subscriptions.instructions.md](../../../.github/instructions/subscriptions.instructions.md).
+Client-side subscription UI, platform branching, and payment flows. For the cross-repo architecture (service roles, price configuration, entitlement flow), see [subscriptions.instructions.md](../../../.github/instructions/subscriptions.instructions.md). For group subscription design, see [group-subscriptions.instructions.md](../../../.github/instructions/group-subscriptions.instructions.md).
+
+## Table of Contents
+
+1. [Platform Branching](#platform-branching)
+2. [Key Files](#key-files)
+3. [Initialization Flow](#initialization-flow)
+4. [Price Display](#price-display)
+5. [Web Payment Flow](#web-payment-flow)
+6. [Environment Configuration](#environment-configuration)
+7. [Discount Codes on Mobile](#discount-codes-on-mobile)
+8. [Group Plans](#group-plans)
+   - [Group Management Page](#group-management-page)
+   - [Sponsored User Indicator](#sponsored-user-indicator)
+   - [Navigation & Entry Points](#navigation--entry-points)
+   - [Choreo API Integration](#choreo-api-integration)
+9. [Future Work](#future-work)
 
 ## Platform Branching
 
@@ -37,6 +53,8 @@ Both extend [`CurrentSubscriptionInfo`](../../../lib/pangea/subscription/models/
 4. `configure()` → on mobile, initializes RevenueCat SDK with platform API key
 5. `setCurrentSubscription()` → on mobile, queries RC SDK; on web, queries choreographer (`/subscription`)
 6. If no active subscription and user is in trial window, activates free trial
+
+**Pending-seat activation hook:** Between steps 5 and 6, if `currentSubscriptionId == null`, the client calls `GET /subscription/check_pending_seats`. If the choreo finds and activates a pending seat, the user gets an entitlement without entering the trial flow. This runs on every startup/login, identically on web and mobile. See [choreo pending-email activation](../../../2-step-choreographer/.github/instructions/subscriptions.instructions.md#pending-email-activation).
 
 ## Price Display
 
@@ -78,6 +96,52 @@ Stripe promo codes (from conferences, LCB promotions, Google Form webhooks) only
 **Why not web-only checkout on mobile**: Native IAP conversion rates are significantly higher than browser redirects. RevenueCat already abstracts the multi-platform complexity. Removing native IAP would also lose access to App Store / Play Store promotional pricing and subscription offer codes.
 
 **Possible future alternative**: Apple Subscription Offer Codes (iOS 14+) and Google Play promo codes allow native discount redemption without Stripe. RevenueCat supports both. This would require creating codes in each store's console instead of just Stripe, but would eliminate the web checkout redirect for discount users.
+
+## Group Plans
+
+Group plans let a buyer (teacher or admin) purchase a bundle of seats and assign them to learners. The buyer interacts with group management entirely on **web** — mobile users who receive a sponsored seat simply see their entitlement activate. For design decisions and cross-repo contracts, see [group-subscriptions.instructions.md](../../../.github/instructions/group-subscriptions.instructions.md).
+
+### Group Management Page
+
+A new page accessible to any logged-in user (web only) for buying and managing group seats:
+
+- **Purchase flow**: Seat count selector with sliding discount preview → Stripe Checkout (via `POST /subscription/seat_checkout`) → return to management page
+- **Seat roster**: Table of assignments per subscription — shows user display name, email, status (`active` / `pending`), assigned date
+- **Assign seats**: Bulk email input (comma/newline separated) → `POST /subscription/seats/assign_emails`. Individual Matrix-ID-based assignment for users already on platform → `POST /subscription/seats/assign`
+- **Revoke seats**: Per-row action that calls `POST /subscription/seats/revoke` and updates the roster
+- **Subscription summary**: Shows seat utilization (assigned/total), next renewal date, link to Stripe billing portal for cancellation
+
+This page is **web-only** because group purchases use Stripe Checkout, which requires a browser redirect.
+
+### Sponsored User Indicator
+
+Users who have an active entitlement from a seat assignment (rather than their own purchase) see a visual indicator in the same placement as the free trial indicator (for users in the trial window):
+- Who is sponsoring them (buyer display name)
+- That their subscription is managed externally (they cannot cancel — the buyer controls it)
+- Expiration date of the sponsored seat
+
+This data comes from `GET /subscription/my_seats` (not from RC, which has no sponsor metadata).
+
+### Navigation & Entry Points
+
+- **Pricing page** (website, not in-app): "Group" tier card → links to group checkout flow
+- **App subscription settings**: Link to group management page for users with active group subscriptions
+- **Invitation email**: Learner receives email with link to sign up with the invited email address. Seat activates automatically on account creation.
+
+### Choreo API Integration
+
+New repo methods for the group endpoints listed in the [choreo subscription doc](../../../2-step-choreographer/.github/instructions/subscriptions.instructions.md#new-endpoints):
+
+- `getGroupCheckoutUrl(seatCount)` → POST `/subscription/seat_checkout`
+- `getSeatPurchases()` → GET `/subscription/seat_purchases`
+- `getSeatAssignments(purchaseId)` → GET `/subscription/seat_purchases/{id}/assignments`
+- `assignSeatsByEmail(purchaseId, emails)` → POST `/subscription/seats/assign_emails`
+- `assignSeat(purchaseId, userMatrixId)` → POST `/subscription/seats/assign`
+- `revokeSeat(assignmentId)` → POST `/subscription/seats/revoke`
+- `getMySeats()` → GET `/subscription/my_seats`
+- `checkPendingSeats()` → GET `/subscription/check_pending_seats`
+
+These follow the same pattern as existing `subscription_repo.dart` methods — authenticated via Matrix token.
 
 ## Future Work
 
