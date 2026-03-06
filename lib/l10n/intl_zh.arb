@@ -2787,5 +2787,10 @@
     "removeAdminRights": "删除管理员权限",
     "powerLevel": "权限级别",
     "setPowerLevelDescription": "权限级别定义群成员在这个聊天室中可以做什么，取值范围 0 到 100。",
-    "owner": "所有者"
+    "owner": "所有者",
+    "mute": "静音",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "新建聊天"
 }
