@@ -1,7 +1,12 @@
 appId: chat.fluffy.fluffychat
 ---
-- assertVisible: "Sign in"
-- tapOn: "Sign in"
+- extendedWaitUntil: # Wait for app to be visible
+    visible: "Sign in"
+    timeout: 60000
+- retry:
+    maxRetries: 10 # Emulator might need some time to be ready to
+    commands:
+      - tapOn: "Sign in"
 - tapOn: "Search or enter homeserver address"
 - inputText: "http://${HOMESERVER}"
 - pressKey: "back"

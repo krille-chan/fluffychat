@@ -233,7 +233,6 @@ jobs:
           script: |
             flutter run --use-application-binary=$PWD/app-debug.apk > flutter_logs.txt 2>&1 &
             FLUTTER_PID=$!
-            sleep 10
             maestro test integration_test/login.yaml --env HOMESERVER=10.0.2.2 --env USER1_NAME=${USER1_NAME} --env USER1_PW=${USER1_PW}
             kill $FLUTTER_PID 2>/dev/null || true
             cp flutter_logs.txt ~/.maestro/tests/
