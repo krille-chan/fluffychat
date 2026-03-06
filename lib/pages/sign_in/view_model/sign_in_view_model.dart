@@ -39,7 +39,9 @@ class SignInViewModel extends ValueNotifier<SignInState> {
             )
             .toList() ??
         [];
-    if (Uri.tryParse(filterText) != null &&
+    if (filterText.length >= 3 &&
+        filterText.contains('.') &&
+        Uri.tryParse(filterText) != null &&
         !filteredPublicHomeservers.any(
           (homeserver) => homeserver.name == filterText,
         )) {
