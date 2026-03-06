@@ -24,7 +24,7 @@ class AvatarCropDialogController extends State<AvatarCropDialog> {
 
   void onCancelAction() => Navigator.of(context).pop();
 
-  void onCropAction() async {
+  Future<void> onCropAction() async {
     final image = await controller.croppedBitmap();
     if (mounted) {
       final data = await image.toByteData(format: ui.ImageByteFormat.png);
