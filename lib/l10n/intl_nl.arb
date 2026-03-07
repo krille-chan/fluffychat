@@ -2786,5 +2786,10 @@
     "removeAdminRights": "Verwijder beheerder-rechten",
     "powerLevel": "Rechtenniveau",
     "setPowerLevelDescription": "Rechtenniveau's definiëren wat een persoon mag doen in deze chat en variëren meestal tussen 0 en 100.",
-    "owner": "Eigenaar"
+    "owner": "Eigenaar",
+    "mute": "Demp",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Creëer nieuw chat"
 }
