@@ -13,14 +13,15 @@ Future<void> ssoLoginFlow(
   BuildContext context,
   bool signUp,
 ) async {
-  Logs().i('Starting legacy SSO Flow...');
   final redirectUrl = kIsWeb
       ? Uri.parse(
           html.window.location.href,
         ).resolveUri(Uri(pathSegments: ['auth.html'])).toString()
-      : (PlatformInfos.isMobile || PlatformInfos.isWeb || PlatformInfos.isMacOS)
+      : (PlatformInfos.isMobile || PlatformInfos.isMacOS)
       ? '${AppConfig.appOpenUrlScheme.toLowerCase()}://login'
       : 'http://localhost:3001//login';
+
+  Logs().i('Starting legacy SSO Flow with redirect URL', redirectUrl);
 
   final url = client.homeserver!.replace(
     path: '/_matrix/client/v3/login/sso/redirect',
