@@ -2793,5 +2793,10 @@
     "removeAdminRights": "Bain cearta riarthóra",
     "powerLevel": "Leibhéal cumhachta",
     "setPowerLevelDescription": "Sainmhíníonn leibhéil chumhachta cad a cheadaítear do bhall a dhéanamh sa seomra seo agus is gnách go mbíonn siad idir 0 agus 100.",
-    "owner": "Úinéir"
+    "owner": "Úinéir",
+    "mute": "Balbhaigh",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Cruthaigh comhrá nua"
 }
