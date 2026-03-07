@@ -121,7 +121,7 @@ geA(d){return"Kopyala"},
 gfh(){return"Panoya kopyala"},
 ia(d){return"Mesaj\u0131n \u015fifresi \xe7\xf6z\xfclemedi: "+d},
 gpe(){return"Kontrol listesi"},
-dS(d){return""+d+" kat\u0131l\u0131mc\u0131"},
+dR(d){return""+d+" kat\u0131l\u0131mc\u0131"},
 ls(d){return""+d+" davet edildi"},
 gib(d){return"Olu\u015ftur"},
 ic(d){return"\ud83d\udcac "+d+" sohbeti olu\u015fturdu"},
@@ -366,7 +366,7 @@ geQ(){return"Bunu neden bildirmek istiyorsunuz?"},
 goy(){return"Yeni bir kurtarma anahtar\u0131 olu\u015fturmak i\xe7in sohbet yede\u011finiz silinsin mi?"},
 goz(){return"Bu adresler ile parolan\u0131z\u0131 kurtarabilirsiniz."},
 goA(){return"Bir mesaj yaz\u2026"},
-gdP(){return"Evet"},
+gdO(){return"Evet"},
 goC(){return"Sen"},
 gee(){return"Art\u0131k bu sohbette kat\u0131l\u0131mc\u0131 de\u011filsiniz"},
 goF(){return"Bu sohbetten engellendiniz"},
@@ -404,7 +404,7 @@ goa(){return"Kullan\u0131c\u0131lar"},
 go1(){return"Eski mesajlar\u0131n kilidini a\xe7"},
 gk7(){return"Sistem payla\u015f\u0131m\u0131 ileti\u015fim kutusunu veya panoyu tetikleyerek bu anahtar\u0131 elle kaydedin."},
 lr(d){return""+d+" dosya"},
-gdO(){return"Kullan\u0131c\u0131"},
+gdN(){return"Kullan\u0131c\u0131"},
 gie(){return"\xd6zel"},
 gox(){return"Bu mesaj neden okunam\u0131yor?"},
 gmu(){return"Bu durum, mesaj siz bu ayg\u0131tta hesab\u0131n\u0131zda oturum a\xe7madan \xf6nce g\xf6nderildiyse meydana gelebilir.\n\nG\xf6nderenin ayg\u0131t\u0131n\u0131z\u0131 engellemi\u015f olmas\u0131 veya internet ba\u011flant\u0131s\u0131nda bir sorun olmas\u0131 da m\xfcmk\xfcnd\xfcr.\n\nMesaj\u0131 ba\u015fka bir oturumda okuyabiliyor musunuz? O zaman mesaj\u0131 oradan aktarabilirsiniz! Ayarlar > Ayg\u0131tlar b\xf6l\xfcm\xfcne gidin ve ayg\u0131tlar\u0131n\u0131z\u0131n birbirini do\u011frulad\u0131\u011f\u0131ndan emin olun. Oday\u0131 bir sonraki sefer a\xe7t\u0131\u011f\u0131n\u0131zda ve her iki oturum da \xf6n planda oldu\u011funda, anahtarlar otomatik olarak iletilecektir.\n\nOturumu kapat\u0131rken veya ayg\u0131t de\u011fi\u015ftirirken anahtarlar\u0131 kaybetmek istemiyor musunuz? Ayarlarda sohbet yedeklemesini etkinle\u015ftirdi\u011finizden emin olun."},
@@ -677,12 +677,12 @@ gq4(){return"Remove moderator rights"},
 gq3(){return"Remove admin rights"},
 gq2(){return"Power level"},
 gpF(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdN(){return"Owner"},
+gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gv,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gv":{"aD":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["o6CS5x+Fl2pHIQNpBRCimmVa1mM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["YRGcOJSyg7PuBGVS8pZOQT3a6Lg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map

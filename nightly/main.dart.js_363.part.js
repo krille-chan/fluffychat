@@ -121,7 +121,7 @@ geA(d){return"Nusxalash"},
 gfh(){return"Buferga nusxalash"},
 ia(d){return"Xabarni shifrlab bo\u02bblmadi: "+d},
 gpe(){return"Tekshirish ro\u02bbyxati"},
-dS(d){return""+d+" qatnashuvchilar"},
+dR(d){return""+d+" qatnashuvchilar"},
 ls(d){return""+d+" taklif qilindi"},
 gib(d){return"Yaratish"},
 ic(d){return"\ud83d\udcac "+d+" suhbat yaratdi"},
@@ -366,7 +366,7 @@ geQ(){return"Nima uchun bu haqda xabar bermoqchisiz?"},
 goy(){return"Yangi tiklash kalitini yaratish uchun suhbat zaxirasi tozalansinmi?"},
 goz(){return"Ushbu manzillar yordamida parolingizni tiklashingiz mumkin."},
 goA(){return"Xabar yozish\u2026"},
-gdP(){return"Ha"},
+gdO(){return"Ha"},
 goC(){return"Siz"},
 gee(){return"Siz ortiq bu suhbatda qatnashmayapsiz"},
 goF(){return"Bu suhbatdan bloklandingiz"},
@@ -404,7 +404,7 @@ goa(){return"Foydalanuvchilar"},
 go1(){return"Eski xabarlarni qulfdan chiqaring"},
 gk7(){return"Tizim ulashish dialog oynasi yoki buferni ishga tushirish orqali ushbu kalitni qo\u02bblda saqlang."},
 lr(d){return""+d+" fayllar"},
-gdO(){return"Foydalanuvchi"},
+gdN(){return"Foydalanuvchi"},
 gie(){return"Maxsus"},
 gox(){return"Nima uchun bu xabarni o\u02bbqib bo\u02bblmaydi?"},
 gmu(){return"Bu xabar siz ushbu qurilmada hisobingizga kirishdan oldin yuborilgan bo\u02bblsa sodir bo\u02bblishi mumkin.\n\nShuningdek, jo\u02bbnatuvchi qurilmangizni bloklagan yoki internet ulanishida biron bir muammo yuzaga kelgan bo\u02bblishi mumkin.\n\nXabarni boshqa sessiyada o\u02bbqiy olasizmi? Keyin xabarni undan uzatishingiz mumkin! Sozlamalar > Qurilmalar bo\u02bblimiga o\u02bbting va qurilmalaringiz bir-birini tasdiqlaganligiga ishonch hosil qiling. Keyingi safar xonani ochganingizda va ikkala sessiya ham oldinda bo\u02bblganda, kalitlar avtomatik ravishda uzatiladi.\n\nTizimdan chiqishda yoki qurilmalarni almashtirishda kalitlarni yo\u02bbqotishni xohlamaysizmi? Sozlamalarda suhbatning zaxira nusxasini yoqganingizga ishonch hosil qiling."},
@@ -677,12 +677,12 @@ gq4(){return"Remove moderator rights"},
 gq3(){return"Remove admin rights"},
 gq2(){return"Power level"},
 gpF(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdN(){return"Owner"},
+gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gx,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gx":{"aD":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["69Z5SoJZBSsvtveukyuI2afdcrg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BtYxqQzUt6SS4JBGmi2bLJXpJXs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

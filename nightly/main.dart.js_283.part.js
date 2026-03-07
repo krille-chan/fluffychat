@@ -121,7 +121,7 @@ geA(d){return"Kopieren"},
 gfh(){return"In Zwischenablage kopieren"},
 ia(d){return"Nachricht konnte nicht entschl\xfcsselt werden: "+d},
 gpe(){return"Checkliste"},
-dS(d){return""+d+" Mitglieder"},
+dR(d){return""+d+" Mitglieder"},
 ls(d){return""+d+" invited"},
 gib(d){return"Erstellen"},
 ic(d){return"\ud83d\udcac "+d+" hat den Chat erstellt"},
@@ -366,7 +366,7 @@ geQ(){return"Warum willst du dies melden?"},
 goy(){return"Den Chat-Backup l\xf6schen, um einen neuen Wiederherstellungsschl\xfcssel zu erstellen?"},
 goz(){return"Mit diesen Adressen kannst du dein Passwort wiederherstellen, wenn du es vergessen hast."},
 goA(){return"Schreibe eine Nachricht \u2026"},
-gdP(){return"Ja"},
+gdO(){return"Ja"},
 goC(){return"Du"},
 gee(){return"Du bist kein Mitglied mehr in diesem Chat"},
 goF(){return"Du wurdest aus dem Chat verbannt"},
@@ -404,7 +404,7 @@ goa(){return"Benutzer"},
 go1(){return"Entsperre alte Nachrichten"},
 gk7(){return"Speicher diesen Schl\xfcssel manuell, indem du den Systemfreigabedialog oder die Zwischenablage ausl\xf6st."},
 lr(d){return""+d+" Dateien"},
-gdO(){return"Benutzer"},
+gdN(){return"Benutzer"},
 gie(){return"Benutzerdefiniert"},
 gox(){return"Warum ist diese Nachricht nicht lesbar?"},
 gmu(){return"Dies kann passieren, wenn die Nachricht gesendet wurde, bevor du dich auf diesem Ger\xe4t bei deinem Konto angemeldet hast.\n\nEs ist auch m\xf6glich, dass der Absender dein Ger\xe4t blockiert hat oder etwas mit der Internetverbindung schief gelaufen ist.\n\nKannst du die Nachricht in einer anderen Sitzung lesen? Dann kannst du die Nachricht davon \xfcbertragen! Gehe zu den Einstellungen > Ger\xe4te und vergewissere dich, dass sich deine Ger\xe4te gegenseitig verifiziert haben. Wenn du den Raum das n\xe4chste Mal \xf6ffnest und beide Sitzungen im Vordergrund sind, werden die Schl\xfcssel automatisch \xfcbertragen.\n\nDu m\xf6chtest die Schl\xfcssel beim Abmelden oder Ger\xe4tewechsel nicht verlieren? Stelle sicher, dass du das Chat-Backup in den Einstellungen aktiviert hast."},
@@ -677,12 +677,12 @@ gq4(){return"Remove moderator rights"},
 gq3(){return"Remove admin rights"},
 gq2(){return"Power level"},
 gpF(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdN(){return"Owner"},
+gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FQ,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FQ":{"aD":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["tPTN7eqAyR1T6DGwoUJqXMpVn7A="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["FFgTXzGVGPSPdi7wSwT9LArEsU8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_283.part.js.map

@@ -121,7 +121,7 @@ geA(d){return"Kopiatu"},
 gfh(){return"Kopiatu arbelera"},
 ia(d){return"Ezin izan da mezua deszifratu: "+d},
 gpe(){return"Kontrol-zerrenda"},
-dS(d){return""+d+" partaide"},
+dR(d){return""+d+" partaide"},
 ls(d){return""+d+" gonbidatu"},
 gib(d){return"Sortu"},
 ic(d){return"\ud83d\udcac "+d+"(e)k txata sortu du"},
@@ -366,7 +366,7 @@ geQ(){return"Zergatik salatu nahi duzu?"},
 goy(){return"Ezabatu txataren babeskopia berreskuratze-gako berria sortzeko?"},
 goz(){return"Helbide hauekin pasahitza berreskuratu dezakezu."},
 goA(){return"Idatzi mezua\u2026"},
-gdP(){return"Bai"},
+gdO(){return"Bai"},
 goC(){return"Zeu"},
 gee(){return"Ez duzu txat honetan parte hartzen honezkero"},
 goF(){return"Txat honetan debekua ezarri dizute"},
@@ -404,7 +404,7 @@ goa(){return"Erabiltzaileak"},
 go1(){return"Desblokeatu mezu zaharrak"},
 gk7(){return"Gorde eskuz gako hau gailuko partekatze-menua edo arbela erabiliz."},
 lr(d){return""+d+" fitxategi"},
-gdO(){return"Erabiltzailea"},
+gdN(){return"Erabiltzailea"},
 gie(){return"Neurrira egindakoa"},
 gox(){return"Zergatik ezin da mezu hau irakurri?"},
 gmu(){return"Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irekiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula."},
@@ -677,12 +677,12 @@ gq4(){return"Remove moderator rights"},
 gq3(){return"Remove admin rights"},
 gq2(){return"Power level"},
 gpF(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdN(){return"Owner"},
+gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FW,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["xWdIpZl4hSj4SWi1OK8VLRXFW74="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jrEUe5RSHLttCeYK+nIoqXDOnyg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

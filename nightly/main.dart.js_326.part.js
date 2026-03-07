@@ -121,7 +121,7 @@ geA(d){return"Salin"},
 gfh(){return"Salin ke papan klip"},
 ia(d){return"Tidak dapat mendekripsikan pesan: "+d},
 gpe(){return"Ceklis"},
-dS(d){return""+d+" anggota"},
+dR(d){return""+d+" anggota"},
 ls(d){return""+d+" diundang"},
 gib(d){return"Buat"},
 ic(d){return"\ud83d\udcac "+d+" membuat obrolan ini"},
@@ -366,7 +366,7 @@ geQ(){return"Kenapa kamu ingin melaporkannya?"},
 goy(){return"Hapus cadangan obrolan untuk membuat kunci pemulihan baru?"},
 goz(){return"Dengan alamat ini kamu bisa memulihkan kata sandimu."},
 goA(){return"Tulis pesan\u2026"},
-gdP(){return"Ya"},
+gdO(){return"Ya"},
 goC(){return"Kamu"},
 gee(){return"Kamu tidak berpartisipasi lagi di obrolan ini"},
 goF(){return"Kamu telah dicekal dari obrolan ini"},
@@ -404,7 +404,7 @@ goa(){return"Pengguna"},
 go1(){return"Akses pesan lama"},
 gk7(){return"Simpan kunci ini secara manual dengan memicu dialog pembagian atau papan klip sistem."},
 lr(d){return""+d+" file"},
-gdO(){return"Pengguna"},
+gdN(){return"Pengguna"},
 gie(){return"Kustom"},
 gox(){return"Mengapa pesan ini tidak bisa dibaca?"},
 gmu(){return"Hal ini bisa terjadi jika pesan dikirim sebelum kamu masuk ke akunmu di perangkat ini.\n\nMungkin juga pengirim telah memblokir perangkatmu atau ada yang tidak beres dengan koneksi internet.\n\nApakah kamu bisa membaca pesan pada sesi lain? Maka kamu bisa mentransfer pesan dari sesi tersebut! Buka Pengaturan > Perangkat dan pastikan bahwa perangkat Anda telah ditandatangani secara silang. Ketika kamu membuka ruangan di lain waktu dan kedua sesi berada di latar depan, kunci akan ditransmisikan secara otomatis.\n\nApakah kamu tidak mau kehilangan kunci saat keluar atau berpindah perangkat? Pastikan bahwa kamu telah mengaktifkan cadangan obrolan dalam pengaturan."},
@@ -677,12 +677,12 @@ gq4(){return"Remove moderator rights"},
 gq3(){return"Remove admin rights"},
 gq2(){return"Power level"},
 gpF(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdN(){return"Owner"},
+gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G7,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G7":{"aD":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["ZtbVStOFgBzwQTstIovmhfaYua8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["JDzCFCr9OVnwxzluKnCI38CJS9I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_326.part.js.map
