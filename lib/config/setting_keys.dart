@@ -75,6 +75,11 @@ enum AppSettings<T> {
   static SharedPreferences get store => _store!;
   static SharedPreferences? _store;
 
+  static Future<void> reset({bool loadWebConfigFile = true}) async {
+    await AppSettings._store!.clear();
+    await init(loadWebConfigFile: loadWebConfigFile);
+  }
+
   static Future<SharedPreferences> init({bool loadWebConfigFile = true}) async {
     if (AppSettings._store != null) return AppSettings.store;
 
