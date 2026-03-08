@@ -257,7 +257,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         });
     onLogoutSub[name] ??= c.onLoginStateChanged.stream
         .where((state) => state == LoginState.loggedOut)
-        .listen((state) {
+        .listen((_) {
           final loggedInWithMultipleClients = widget.clients.length > 1;
 
           _cancelSubs(c.clientName);
@@ -272,11 +272,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             ).showSnackBar(
               SnackBar(content: Text(L10n.of(context).oneClientLoggedOut)),
             );
-
-            if (state != LoginState.loggedIn) {
-              FluffyChatApp.router.go('/rooms');
-            }
+            return;
           }
+          FluffyChatApp.router.go('/');
         });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
     if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
