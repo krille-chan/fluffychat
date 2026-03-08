@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:particles_network/particles_network.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -118,7 +118,7 @@ class _PrivacyButtons extends StatelessWidget {
           mainAxisAlignment: mainAxisAlignment,
           children: [
             TextButton(
-              onPressed: () => launchUrlString(AppConfig.website),
+              onPressed: () => launchUrlString(AppSettings.website.value),
               child: Text(L10n.of(context).website, style: shadowTextStyle),
             ),
             TextButton(
@@ -126,7 +126,7 @@ class _PrivacyButtons extends StatelessWidget {
               child: Text(L10n.of(context).help, style: shadowTextStyle),
             ),
             TextButton(
-              onPressed: () => launchUrl(AppConfig.privacyUrl),
+              onPressed: () => launchUrlString(AppSettings.privacyPolicy.value),
               child: Text(L10n.of(context).privacy, style: shadowTextStyle),
             ),
             TextButton(

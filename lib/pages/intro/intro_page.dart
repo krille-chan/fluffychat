@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/intro/flows/restore_backup_flow.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -58,7 +57,7 @@ class IntroPage extends StatelessWidget {
                 ),
               ),
               PopupMenuItem(
-                onTap: () => launchUrl(AppConfig.privacyUrl),
+                onTap: () => launchUrlString(AppSettings.privacyPolicy.value),
                 child: Row(
                   mainAxisSize: .min,
                   children: [
