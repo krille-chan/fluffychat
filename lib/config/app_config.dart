@@ -21,7 +21,6 @@ abstract class AppConfig {
   static const double spaceBorderRadius = 11.0;
   static const double columnWidth = 360.0;
 
-  static const String website = 'https://fluffy.chat';
   static const String enablePushTutorial =
       'https://fluffy.chat/faq/#push_without_google_services';
   static const String encryptionTutorial =
@@ -31,7 +30,7 @@ abstract class AppConfig {
   static const String howDoIGetStickersTutorial =
       'https://fluffy.chat/faq/#how_do_i_get_stickers';
   static const String appId = 'im.fluffychat.FluffyChat';
-  static const String appOpenUrlScheme = 'im.fluffychat';
+  static const String appOpenUrlScheme = 'chat.fluffy';
 
   static const String sourceCodeUrl =
       'https://github.com/krille-chan/fluffychat';
@@ -52,12 +51,6 @@ abstract class AppConfig {
     scheme: 'https',
     host: 'raw.githubusercontent.com',
     path: 'krille-chan/fluffychat/refs/heads/main/recommended_homeservers.json',
-  );
-
-  static final Uri privacyUrl = Uri(
-    scheme: 'https',
-    host: 'fluffy.chat',
-    path: '/en/privacy',
   );
 
   static const String mainIsolatePortName = 'main_isolate';

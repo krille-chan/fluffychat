@@ -98,19 +98,11 @@ class SignInPage extends StatelessWidget {
                             final website = server.website;
                             return Semantics(
                               identifier: 'homeserver_tile_$i',
-                              child: RadioListTile.adaptive(
+                              child: RadioListTile(
                                 value: server,
                                 enabled:
                                     state.loginLoading.connectionState !=
                                     ConnectionState.waiting,
-                                radioScaleFactor:
-                                    FluffyThemes.isColumnMode(context) ||
-                                        {
-                                          TargetPlatform.iOS,
-                                          TargetPlatform.macOS,
-                                        }.contains(theme.platform)
-                                    ? 2
-                                    : 1,
                                 title: Row(
                                   children: [
                                     Expanded(

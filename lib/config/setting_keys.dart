@@ -55,7 +55,17 @@ enum AppSettings<T> {
   enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false),
   enableMatrixNativeOIDC<bool>('chat.fluffy.enable_matrix_native_oidc', false),
   presetHomeserver<String>('chat.fluffy.preset_homeserver', ''),
-  welcomeText<String>('chat.fluffy.welcome_text', '');
+  welcomeText<String>('chat.fluffy.welcome_text', ''),
+  website<String>('chat.fluffy.website_url', 'https://fluffy.chat'),
+  logoUrl<String>(
+    'chat.fluffy.logo_url',
+    'https://fluffy.chat/assets/favicon.png',
+  ),
+  privacyPolicy<String>(
+    'chat.fluffy.privacy_policy_url',
+    'https://fluffy.chat/en/privacy',
+  ),
+  tos<String>('chat.fluffy.tos_url', 'https://fluffy.chat/en/tos');
 
   final String key;
   final T defaultValue;

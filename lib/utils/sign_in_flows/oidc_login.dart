@@ -6,12 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_html/html.dart' as html;
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/oidc_session_json_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/sign_in_flows/calc_redirect_url.dart';
 
 Future<void> oidcLoginFlow(
   Client client,
@@ -19,24 +18,16 @@ Future<void> oidcLoginFlow(
   bool signUp,
 ) async {
   Logs().i('Starting Matrix Native OIDC Flow...');
-  final redirectUrl = kIsWeb
-      ? Uri.parse(html.window.location.href.split('#').first.split('?').first)
-      : (PlatformInfos.isMobile || PlatformInfos.isMacOS)
-      ? Uri.parse('${AppConfig.appOpenUrlScheme.toLowerCase()}:/login')
-      : Uri.parse('http://localhost:3001/login');
 
-  final urlScheme =
-      (PlatformInfos.isMobile || PlatformInfos.isWeb || PlatformInfos.isMacOS)
-      ? redirectUrl.scheme
-      : 'http://localhost:3001';
+  final (redirectUrl, urlScheme) = calcRedirectUrl();
 
-  final clientUri = Uri.parse(AppConfig.website);
+  final clientUri = Uri.parse(AppSettings.website.value);
   final supportWebPlatform =
       kIsWeb &&
       kReleaseMode &&
       redirectUrl.scheme == 'https' &&
       redirectUrl.host.contains(clientUri.host);
-  if (!supportWebPlatform) {
+  if (kIsWeb && !supportWebPlatform) {
     Logs().w(
       'OIDC Application Type web is not supported. Using native now. Please use this instance not in production!',
     );
@@ -50,9 +41,9 @@ Future<void> oidcLoginFlow(
     clientInformation: OidcClientInformation(
       clientName: AppSettings.applicationName.value,
       clientUri: clientUri,
-      logoUri: Uri.parse('https://fluffy.chat/assets/favicon.png'),
-      tosUri: null,
-      policyUri: AppConfig.privacyUrl,
+      logoUri: Uri.parse(AppSettings.logoUrl.value),
+      tosUri: Uri.parse(AppSettings.tos.value),
+      policyUri: Uri.parse(AppSettings.privacyPolicy.value),
     ),
   );
 
