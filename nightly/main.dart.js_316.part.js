@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKp(){return new A.G4(B.dc("hr"))},
-G4:function G4(d){this.a=d}}
+cKp(){return new A.G5(B.dc("hr"))},
+G5:function G5(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[27],A)
-A.G4.prototype={
+A.G5.prototype={
 gkP(){return"true"},
 gjF(){return"Ponovi lozinku"},
 gmy(){return"Nije slikovna datoteka."},
@@ -121,7 +121,7 @@ geA(d){return"Kopiraj"},
 gfh(){return"Kopiraj u me\u0111uspremnik"},
 ia(d){return"Neuspjelo de\u0161ifriranje poruke: "+d},
 gpe(){return"Kontrolni popis"},
-dR(d){return"Broj sudionika: "+d},
+dS(d){return"Broj sudionika: "+d},
 ls(d){return"Broj pozvanih: "+d},
 gib(d){return"Stvori"},
 ic(d){return"\ud83d\udcac "+d+" je stvorio/la chat"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G4,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G4":{"aD":[]}}'))};
-(a=>{a["xIVJMG05xYi2hvoXKIRw7L0Hnrs="]=a.current})($__dart_deferred_initializers__);
+y(A.G5,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G5":{"aD":[]}}'))};
+(a=>{a["sBn/EMQSQfYw0PhBkYIwDZsebJs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

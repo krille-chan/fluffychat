@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKj(){return new A.FZ(B.dc("fil"))},
-FZ:function FZ(d){this.a=d}}
+cKj(){return new A.G_(B.dc("fil"))},
+G_:function G_(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[21],A)
-A.FZ.prototype={
+A.G_.prototype={
 gkP(){return"false"},
 gjF(){return"Ulitin ang password"},
 gmy(){return"Hindi isang file na larawan."},
@@ -121,7 +121,7 @@ geA(d){return"Kopyahin"},
 gfh(){return"Kopyahin sa clipboard"},
 ia(d){return"Hindi ma-decrypt ang mensahe: "+d},
 gpe(){return"Check list"},
-dR(d){return""+d+" mga kasali"},
+dS(d){return""+d+" mga kasali"},
 ls(d){return""+d+" invited"},
 gib(d){return"Gumawa"},
 ic(d){return"\ud83d\udcac Ginawa ni "+d+" ang chat"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FZ,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FZ":{"aD":[]}}'))};
-(a=>{a["je+gUG+GOuWqetOaaT9qzJgM0yA="]=a.current})($__dart_deferred_initializers__);
+y(A.G_,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G_":{"aD":[]}}'))};
+(a=>{a["mnfhMyA1YrELmzPhXcVlhKOVP+M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

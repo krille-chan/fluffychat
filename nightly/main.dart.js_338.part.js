@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKx(){return new A.Gc(B.dc("kab"))},
-Gc:function Gc(d){this.a=d}}
+cKx(){return new A.Gd(B.dc("kab"))},
+Gd:function Gd(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[35],A)
-A.Gc.prototype={
+A.Gd.prototype={
 gkP(){return"false"},
 gjF(){return"Ales awal n u\u025beddi"},
 gmy(){return"Ma\u010d\u010di d afaylu n tugna."},
@@ -121,7 +121,7 @@ geA(d){return"N\u0263el"},
 gfh(){return"N\u0263el \u0263er tecfawit"},
 ia(d){return"Ur izmer ara tukksa n uwgelhen n yizen: "+d},
 gpe(){return"Senqed tabdart"},
-dR(d){return""+d+" imttekkiyen"},
+dS(d){return""+d+" imttekkiyen"},
 ls(d){return""+d+" yettwa\u025ber\u1e0den"},
 gib(d){return"Snulfu-d"},
 ic(d){return"\ud83d\udcac "+d+" yesnulfa-d adiwenni"},
@@ -681,7 +681,7 @@ gdM(){return"Amli"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gc,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gc":{"aD":[]}}'))};
-(a=>{a["oSqKAk5cGHmp2lvVLa+q/5zjsCA="]=a.current})($__dart_deferred_initializers__);
+y(A.Gd,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gd":{"aD":[]}}'))};
+(a=>{a["xkuEzR350w70R74lXonbxkui1IY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_338.part.js.map

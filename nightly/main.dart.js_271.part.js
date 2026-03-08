@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK8(){return new A.FO(B.dc("cs"))},
-FO:function FO(d){this.a=d}}
+cK8(){return new A.FP(B.dc("cs"))},
+FP:function FP(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[10],A)
-A.FO.prototype={
+A.FP.prototype={
 gkP(){return"Vypnuto"},
 gjF(){return"Zopakujte heslo"},
 gmy(){return"Nen\xed obr\xe1zek."},
@@ -121,7 +121,7 @@ geA(d){return"Kop\xedrovat"},
 gfh(){return"Zkop\xedrovat do schr\xe1nky"},
 ia(d){return"Nebylo mo\u017en\xe9 de\u0161ifrovat zpr\xe1vu: "+d},
 gpe(){return"Kontroln\xed seznam"},
-dR(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
+dS(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
 ls(d){return""+d+" pozv\xe1no"},
 gib(d){return"Vytvo\u0159it"},
 ic(d){return"\ud83d\udcac "+d+" zalo\u017eil/a chat"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FO,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FO":{"aD":[]}}'))};
-(a=>{a["Pv0vzMDLT1td5R9yi+h+Zka37V8="]=a.current})($__dart_deferred_initializers__);
+y(A.FP,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FP":{"aD":[]}}'))};
+(a=>{a["ydy4Cnciz4MkEIE39qgPZoL1dL0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_271.part.js.map

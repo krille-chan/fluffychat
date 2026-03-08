@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKN(){return new A.Gr(B.dc("sv"))},
-Gr:function Gr(d){this.a=d}}
+cKN(){return new A.Gs(B.dc("sv"))},
+Gs:function Gs(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[48],A)
-A.Gr.prototype={
+A.Gs.prototype={
 gkP(){return"falskt"},
 gjF(){return"Upprepa l\xf6senord"},
 gmy(){return"Inte en bildfil."},
@@ -121,7 +121,7 @@ geA(d){return"Kopiera"},
 gfh(){return"Kopiera till urklipp"},
 ia(d){return"Kunde ej avkoda meddelande: "+d},
 gpe(){return"Att-g\xf6ra lista"},
-dR(d){return""+d+" deltagare"},
+dS(d){return""+d+" deltagare"},
 ls(d){return""+d+" inbjudna"},
 gib(d){return"Skapa"},
 ic(d){return"\ud83d\udcac "+d+" skapade chatten"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gr,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gr":{"aD":[]}}'))};
-(a=>{a["qyMlrlbwJ5kU07gUz0u6CsphU7U="]=a.current})($__dart_deferred_initializers__);
+y(A.Gs,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gs":{"aD":[]}}'))};
+(a=>{a["hwZf8zKwodsSKUzOeMkC5l/EuRo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_356.part.js.map

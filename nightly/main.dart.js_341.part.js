@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKA(){return new A.Gf(B.dc("lv"))},
-Gf:function Gf(d){this.a=d}}
+cKA(){return new A.Gg(B.dc("lv"))},
+Gg:function Gg(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[38],A)
-A.Gf.prototype={
+A.Gg.prototype={
 gkP(){return"n\u0113"},
 gjF(){return"Atk\u0101rtot paroli"},
 gmy(){return"Nav att\u0113la datne."},
@@ -121,7 +121,7 @@ geA(d){return"Ievietot starpliktuv\u0113"},
 gfh(){return"Ievietot starpliktuv\u0113"},
 ia(d){return"Nevar\u0113ja at\u0161ifr\u0113t zi\u0146u: "+d},
 gpe(){return"P\u0101rbau\u017eu saraksts"},
-dR(d){return""+d+" dal\u012bbnieki"},
+dS(d){return""+d+" dal\u012bbnieki"},
 ls(d){return""+d+" uzaicin\u0101ti"},
 gib(d){return"Izveidot"},
 ic(d){return"\ud83d\udcac "+d+" izveidoja t\u0113rz\u0113\u0161anu"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gf,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gf":{"aD":[]}}'))};
-(a=>{a["zpWJxQ2FMDY9Qqn1NA0h+oEPr7U="]=a.current})($__dart_deferred_initializers__);
+y(A.Gg,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gg":{"aD":[]}}'))};
+(a=>{a["v28t1KwKeCyL63AjDvTmTiPOhTY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_341.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKq(){return new A.G5(B.dc("hu"))},
-G5:function G5(d){this.a=d}}
+cKq(){return new A.G6(B.dc("hu"))},
+G6:function G6(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[28],A)
-A.G5.prototype={
+A.G6.prototype={
 gkP(){return""},
 gjF(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gmy(){return"Nem k\xe9p f\xe1jl."},
@@ -121,7 +121,7 @@ geA(d){return"M\xe1sol\xe1s"},
 gfh(){return"V\xe1g\xf3lapra m\xe1sol\xe1s"},
 ia(d){return"Nem siker\xfclt visszafejteni az \xfczenetet: "+d},
 gpe(){return"Tennival\xf3k list\xe1ja"},
-dR(d){return""+d+" r\xe9sztvev\u0151"},
+dS(d){return""+d+" r\xe9sztvev\u0151"},
 ls(d){return""+d+" megh\xedvott"},
 gib(d){return"L\xe9trehoz"},
 ic(d){return"\ud83d\udcac "+d+" cseveg\xe9st hozott l\xe9tre"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G5,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G5":{"aD":[]}}'))};
-(a=>{a["WEPzz9ruc3u30YZp53YUNPcMZlU="]=a.current})($__dart_deferred_initializers__);
+y(A.G6,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G6":{"aD":[]}}'))};
+(a=>{a["/St3ir6jkcCURy06YbwazASZbfM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_323.part.js.map

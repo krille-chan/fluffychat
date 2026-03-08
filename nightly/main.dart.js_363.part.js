@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKT(){return new A.Gx(B.dc("uz"))},
-Gx:function Gx(d){this.a=d}}
+cKT(){return new A.Gy(B.dc("uz"))},
+Gy:function Gy(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[54],A)
-A.Gx.prototype={
+A.Gy.prototype={
 gkP(){return"true"},
 gjF(){return"Parolni takrorlang"},
 gmy(){return"Rasm fayli emas."},
@@ -121,7 +121,7 @@ geA(d){return"Nusxalash"},
 gfh(){return"Buferga nusxalash"},
 ia(d){return"Xabarni shifrlab bo\u02bblmadi: "+d},
 gpe(){return"Tekshirish ro\u02bbyxati"},
-dR(d){return""+d+" qatnashuvchilar"},
+dS(d){return""+d+" qatnashuvchilar"},
 ls(d){return""+d+" taklif qilindi"},
 gib(d){return"Yaratish"},
 ic(d){return"\ud83d\udcac "+d+" suhbat yaratdi"},
@@ -681,8 +681,8 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gx,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gx":{"aD":[]}}'))
+x(A.Gy,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gy":{"aD":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["BtYxqQzUt6SS4JBGmi2bLJXpJXs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["RAMCn7CUwB+HNgVAlkvw7U0Ujsk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

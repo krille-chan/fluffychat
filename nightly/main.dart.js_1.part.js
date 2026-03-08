@@ -1,9 +1,9 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
 cKW(d){return new A.Bi(B.dc(d))},
-cKX(){return new A.GA(B.dc("zh_Hant"))},
+cKX(){return new A.GB(B.dc("zh_Hant"))},
 Bi:function Bi(d){this.a=d},
-GA:function GA(d){this.a=d}},C
+GB:function GB(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[3],A)
 C=c[57]
@@ -123,7 +123,7 @@ geA(d){return"\u590d\u5236"},
 gfh(){return"\u590d\u5236\u5230\u526a\u8d34\u677f"},
 ia(d){return"\u4e0d\u80fd\u89e3\u5bc6\u6d88\u606f: "+d},
 gpe(){return"\u6e05\u5355"},
-dR(d){return""+d+" \u540d\u53c2\u4e0e\u8005"},
+dS(d){return""+d+" \u540d\u53c2\u4e0e\u8005"},
 ls(d){return"\u9080\u8bf7\u4e86 "+d},
 gib(d){return"\u521b\u5efa"},
 ic(d){return"\ud83d\udcac "+d+" \u521b\u5efa\u4e86\u804a\u5929"},
@@ -682,7 +682,7 @@ gpF(){return"\u6743\u9650\u7ea7\u522b\u5b9a\u4e49\u7fa4\u6210\u5458\u5728\u8fd9\
 gdM(){return"\u6240\u6709\u8005"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
-A.GA.prototype={
+A.GB.prototype={
 gkP(){return"false"},
 gjF(){return"\u518d\u6b21\u8f38\u5165\u5bc6\u78bc"},
 gmy(){return"\u4e0d\u662f\u5716\u7247\u6a94\u6848\u3002"},
@@ -795,7 +795,7 @@ gi9(){return"\u5df2\u8907\u88fd\u5230\u526a\u8cbc\u7c3f"},
 geA(d){return"\u8907\u88fd"},
 gfh(){return"\u8907\u88fd\u5230\u526a\u8cbc\u7c3f"},
 ia(d){return"\u4e0d\u80fd\u89e3\u5bc6\u8a0a\u606f\uff1a"+d},
-dR(d){return""+d+" \u500b\u53c3\u8207\u8005"},
+dS(d){return""+d+" \u500b\u53c3\u8207\u8005"},
 ls(d){return"\u5df2\u9080\u8acb"+d+"\u4f4d"},
 gib(d){return"\u5efa\u7acb"},
 ic(d){return"\ud83d\udcac "+d+" \u5efa\u7acb\u4e86\u804a\u5929\u5ba4"},
@@ -1284,7 +1284,7 @@ gnu(){return"\u76f4\u5230\u804a\u5929\u5ba4\u88e1\u6709\u4eba\u9080\u8acb\u60a8\
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Bi,C.aD)
-y(A.GA,A.Bi)})()
-B.dI(b.typeUniverse,JSON.parse('{"Bi":{"aD":[]},"GA":{"aD":[]}}'))};
-(a=>{a["ULOm9xecrhm/FyR3lKeYfdXmz38="]=a.current})($__dart_deferred_initializers__);
+y(A.GB,A.Bi)})()
+B.dI(b.typeUniverse,JSON.parse('{"Bi":{"aD":[]},"GB":{"aD":[]}}'))};
+(a=>{a["Pdr569n5hJS4Yg80tcZgm3+Q0M0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map

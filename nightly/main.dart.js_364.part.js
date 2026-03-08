@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKU(){return new A.Gy(B.dc("vi"))},
-Gy:function Gy(d){this.a=d}}
+cKU(){return new A.Gz(B.dc("vi"))},
+Gz:function Gz(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[55],A)
-A.Gy.prototype={
+A.Gz.prototype={
 gkP(){return"kh\xf4ng"},
 gjF(){return"Nh\u1eadp l\u1ea1i m\u1eadt kh\u1ea9u"},
 gmy(){return"Kh\xf4ng ph\u1ea3i t\u1ec7p \u1ea3nh."},
@@ -121,7 +121,7 @@ geA(d){return"Sao ch\xe9p"},
 gfh(){return"Copy to clipboard"},
 ia(d){return"Kh\xf4ng th\u1ec3 gi\u1ea3i m\xe3 tin nh\u1eafn: "+d},
 gpe(){return"Check list"},
-dR(d){return""+d+" th\xe0nh vi\xean"},
+dS(d){return""+d+" th\xe0nh vi\xean"},
 ls(d){return""+d+" invited"},
 gib(d){return"T\u1ea1o"},
 ic(d){return d+" \u0111\xe3 t\u1ea1o cu\u1ed9c tr\xf2 chuy\u1ec7n"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gy,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gy":{"aD":[]}}'))};
-(a=>{a["4hmwMAVqLNI3nuPNh0+k53Q1FQA="]=a.current})($__dart_deferred_initializers__);
+y(A.Gz,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gz":{"aD":[]}}'))};
+(a=>{a["M85yfAKP72Ff4ibBOjsq1H71TIc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_364.part.js.map

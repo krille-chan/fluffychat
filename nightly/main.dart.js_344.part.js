@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKC(){return new A.Gh(B.dc("nl"))},
-Gh:function Gh(d){this.a=d}}
+cKC(){return new A.Gi(B.dc("nl"))},
+Gi:function Gi(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[40],A)
-A.Gh.prototype={
+A.Gi.prototype={
 gkP(){return"true"},
 gjF(){return"Wachtwoord herhalen"},
 gmy(){return"Geen afbeeldingsbestand."},
@@ -121,7 +121,7 @@ geA(d){return"Bericht kopi\xebren"},
 gfh(){return"Kopieer naar klembord"},
 ia(d){return"Kan het bericht niet ontsleutelen: "+d},
 gpe(){return"Checklist"},
-dR(d){return""+d+" personen"},
+dS(d){return""+d+" personen"},
 ls(d){return""+d+" uitgenodigd"},
 gib(d){return"Aanmaken"},
 ic(d){return"\ud83d\udcac "+d+" heeft de chat gemaakt"},
@@ -681,7 +681,7 @@ gdM(){return"Eigenaar"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gh,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gh":{"aD":[]}}'))};
-(a=>{a["qC39hbWYnW8mF8mnz2my4a5Bsrs="]=a.current})($__dart_deferred_initializers__);
+y(A.Gi,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gi":{"aD":[]}}'))};
+(a=>{a["bOu4gq5SsG6uXvX9DkWqcUDz9xs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_344.part.js.map

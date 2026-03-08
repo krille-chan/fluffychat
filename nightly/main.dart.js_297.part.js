@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKf(){return new A.FV(B.dc("et"))},
-FV:function FV(d){this.a=d}}
+cKf(){return new A.FW(B.dc("et"))},
+FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[17],A)
-A.FV.prototype={
+A.FW.prototype={
 gkP(){return"false"},
 gjF(){return"Korda salas\xf5na"},
 gmy(){return"See pole pildifail."},
@@ -121,7 +121,7 @@ geA(d){return"Kopeeri"},
 gfh(){return"Kopeeri l\xf5ikelauale"},
 ia(d){return"S\xf5numi dekr\xfcptimine ei \xf5nnestunud: "+d},
 gpe(){return"Kontrollnimekiri"},
-dR(d){return""+d+" osalejat"},
+dS(d){return""+d+" osalejat"},
 ls(d){return""+d+" kutsutut"},
 gib(d){return"Loo"},
 ic(d){return"\ud83d\udcac "+d+" algatas vestluse"},
@@ -681,7 +681,7 @@ gdM(){return"Omanik"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FV,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FV":{"aD":[]}}'))};
-(a=>{a["t5cOJeVgj4lKL4h64I5I12dS4E4="]=a.current})($__dart_deferred_initializers__);
+y(A.FW,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))};
+(a=>{a["RPMIMcOna7GHUqGJO9yDiAOD3FQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

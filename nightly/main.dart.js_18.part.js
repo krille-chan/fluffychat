@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
 cKE(d){return new A.Bh(B.dc(d))},
-cKF(){return new A.Gj(B.dc("pt_BR"))},
-cKG(){return new A.Gk(B.dc("pt_PT"))},
+cKF(){return new A.Gk(B.dc("pt_BR"))},
+cKG(){return new A.Gl(B.dc("pt_PT"))},
 Bh:function Bh(d){this.a=d},
-Gj:function Gj(d){this.a=d},
-Gk:function Gk(d){this.a=d}},C
+Gk:function Gk(d){this.a=d},
+Gl:function Gl(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[57]
@@ -125,7 +125,7 @@ geA(d){return"Copy"},
 gfh(){return"Copy to clipboard"},
 ia(d){return"Could not decrypt message: "+d},
 gpe(){return"Check list"},
-dR(d){return""+d+" participants"},
+dS(d){return""+d+" participants"},
 ls(d){return""+d+" invited"},
 gib(d){return"Create"},
 ic(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -684,7 +684,7 @@ gpF(){return"Power levels define what a member is allowed to do in this room and
 gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
-A.Gj.prototype={
+A.Gk.prototype={
 gkP(){return"true"},
 gjF(){return"Repita a senha"},
 gmy(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -800,7 +800,7 @@ geA(d){return"Copiar"},
 gfh(){return"Copiar para a \xe1rea de transfer\xeancia"},
 ia(d){return"N\xe3o foi poss\xedvel descriptografar a mensagem: "+d},
 gpe(){return"Lista de tarefas"},
-dR(d){return""+d+" participantes"},
+dS(d){return""+d+" participantes"},
 ls(d){return""+d+" convidados"},
 gib(d){return"Criar"},
 ic(d){return"\ud83d\udcac "+d+" criou a conversa"},
@@ -1334,7 +1334,7 @@ pD(d){return"Vers\xe3o: "+d},
 gp0(){return""},
 gpz(){return""},
 B(d,e){return this.gba(this).$1(e)}}
-A.Gk.prototype={
+A.Gl.prototype={
 gjF(){return"Repete a palavra-passe"},
 gba(d){return"Remover"},
 gex(){return"Acerca de"},
@@ -1421,7 +1421,7 @@ gi9(){return"Copiado para a \xe1rea de transfer\xeancia"},
 geA(d){return"Copiar"},
 gfh(){return"Copiar para a \xe1rea de transfer\xeancia"},
 ia(d){return"N\xe3o foi poss\xedvel desencriptar mensagem: "+d},
-dR(d){return""+d+" participantes"},
+dS(d){return""+d+" participantes"},
 gib(d){return"Criar"},
 ic(d){return d+" criou a conversa"},
 gfj(){return"Novo espa\xe7o"},
@@ -1575,8 +1575,8 @@ h_(d){return d+" enviou um v\xeddeo"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.Bh,C.aD)
-w(A.Bh,[A.Gj,A.Gk])})()
-B.dI(b.typeUniverse,JSON.parse('{"Bh":{"aD":[]},"Gj":{"aD":[]},"Gk":{"aD":[]}}'))
+w(A.Bh,[A.Gk,A.Gl])})()
+B.dI(b.typeUniverse,JSON.parse('{"Bh":{"aD":[]},"Gk":{"aD":[]},"Gl":{"aD":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["8Bg+7+1NIWDODPA7PtYxxnw5KYQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["P+xhSrw7plQVHsrVSPO/+8ufu5M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKi(){return new A.FY(B.dc("fi"))},
-FY:function FY(d){this.a=d}}
+cKi(){return new A.FZ(B.dc("fi"))},
+FZ:function FZ(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[20],A)
-A.FY.prototype={
+A.FZ.prototype={
 gkP(){return"v\xe4\xe4r\xe4"},
 gjF(){return"Salasana uudelleen"},
 gmy(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -121,7 +121,7 @@ geA(d){return"Kopioi"},
 gfh(){return"Kopioi leikep\xf6yd\xe4lle"},
 ia(d){return"Viestin salausta ei voitu purkaa: "+d},
 gpe(){return"Tarkistuslista"},
-dR(d){return""+d+" osallistujaa"},
+dS(d){return""+d+" osallistujaa"},
 ls(d){return""+d+" kutsuttu"},
 gib(d){return"Luo"},
 ic(d){return d+" loi keskustelun"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FY,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FY":{"aD":[]}}'))};
-(a=>{a["Mri1xZLCJOqstaUeuybZRTo8ayg="]=a.current})($__dart_deferred_initializers__);
+y(A.FZ,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FZ":{"aD":[]}}'))};
+(a=>{a["P3c2eUhPDcj++PD4XS6G06/aM9E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map

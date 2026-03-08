@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKg(){return new A.FW(B.dc("eu"))},
-FW:function FW(d){this.a=d}}
+cKg(){return new A.FX(B.dc("eu"))},
+FX:function FX(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[18],A)
-A.FW.prototype={
+A.FX.prototype={
 gkP(){return"false"},
 gjF(){return"Idatzi berriro pasahitza"},
 gmy(){return"Ez da irudi-fitxategia."},
@@ -121,7 +121,7 @@ geA(d){return"Kopiatu"},
 gfh(){return"Kopiatu arbelera"},
 ia(d){return"Ezin izan da mezua deszifratu: "+d},
 gpe(){return"Kontrol-zerrenda"},
-dR(d){return""+d+" partaide"},
+dS(d){return""+d+" partaide"},
 ls(d){return""+d+" gonbidatu"},
 gib(d){return"Sortu"},
 ic(d){return"\ud83d\udcac "+d+"(e)k txata sortu du"},
@@ -681,8 +681,8 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FW,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))
+x(A.FX,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["jrEUe5RSHLttCeYK+nIoqXDOnyg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["lgeITPwiygegIO3rFlFaK0z2Zag="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

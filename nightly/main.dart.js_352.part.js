@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKK(){return new A.Go(B.dc("sl"))},
-Go:function Go(d){this.a=d}}
+cKK(){return new A.Gp(B.dc("sl"))},
+Gp:function Gp(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[45],A)
-A.Go.prototype={
+A.Gp.prototype={
 gkP(){return"false"},
 gjF(){return"Ponovite geslo"},
 gmy(){return"Not an image file."},
@@ -121,7 +121,7 @@ geA(d){return"Kopiraj"},
 gfh(){return"Kopiraj v odlo\u017ei\u0161\u010de"},
 ia(d){return"Sporo\u010dila ni bilo mogo\u010de de\u0161ifrirati: "+d},
 gpe(){return"Check list"},
-dR(d){return""+d+" udele\u017eencev"},
+dS(d){return""+d+" udele\u017eencev"},
 ls(d){return""+d+" invited"},
 gib(d){return"Ustvari"},
 ic(d){return d+" je ustvaril klepet"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Go,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Go":{"aD":[]}}'))};
-(a=>{a["PoewupSxdFQitkci4bTmXR8uryg="]=a.current})($__dart_deferred_initializers__);
+y(A.Gp,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gp":{"aD":[]}}'))};
+(a=>{a["cS2a1tbeQp9tHW8NyWMZMEq7iY8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_352.part.js.map

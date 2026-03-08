@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK7(){return new A.FN(B.dc("ca"))},
-FN:function FN(d){this.a=d}}
+cK7(){return new A.FO(B.dc("ca"))},
+FO:function FO(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[9],A)
-A.FN.prototype={
+A.FO.prototype={
 gkP(){return"true"},
 gjF(){return"Repetiu la contrasenya"},
 gmy(){return"No \xe9s un arxiu d'image."},
@@ -121,7 +121,7 @@ geA(d){return"Copia"},
 gfh(){return"Copia al porta-retalls"},
 ia(d){return"No s'ha pogut desxifrar el missatge: "+d},
 gpe(){return"Llista de tasques"},
-dR(d){return""+d+" participants"},
+dS(d){return""+d+" participants"},
 ls(d){return""+d+" convidadis"},
 gib(d){return"Crea"},
 ic(d){return"\ud83d\udcac "+d+" ha creat el xat"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FN,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FN":{"aD":[]}}'))};
-(a=>{a["pseLzI4Xr4VOPv8Sf39g9vTlvgA="]=a.current})($__dart_deferred_initializers__);
+y(A.FO,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FO":{"aD":[]}}'))};
+(a=>{a["Fs21jZTWFUP2+SJzMIbSyuhGQDY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_260.part.js.map

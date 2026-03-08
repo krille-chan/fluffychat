@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKM(){return new A.Gq(B.dc("sr"))},
-Gq:function Gq(d){this.a=d}}
+cKM(){return new A.Gr(B.dc("sr"))},
+Gr:function Gr(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[47],A)
-A.Gq.prototype={
+A.Gr.prototype={
 gkP(){return"false"},
 gjF(){return"Ponovite lozinku"},
 gmy(){return"Not an image file."},
@@ -121,7 +121,7 @@ geA(d){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458"},
 gfh(){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458 \u0443 \u043a\u043b\u0438\u043f\u0431\u043e\u0440\u0434"},
 ia(d){return"\u041d\u0435 \u043c\u043e\u0433\u0443 \u0434\u0430 \u0434\u0435\u0448\u0438\u0444\u0440\u0443\u0458\u0435\u043c \u043f\u043e\u0440\u0443\u043a\u0443: "+d},
 gpe(){return"Check list"},
-dR(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
+dS(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
 ls(d){return""+d+" invited"},
 gib(d){return"\u041d\u0430\u043f\u0440\u0430\u0432\u0438"},
 ic(d){return d+" \u043d\u0430\u043f\u0440\u0430\u0432\u0438 \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gq,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gq":{"aD":[]}}'))};
-(a=>{a["OZStGFT+sc7RzpyA6Rkqnt+GfKE="]=a.current})($__dart_deferred_initializers__);
+y(A.Gr,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gr":{"aD":[]}}'))};
+(a=>{a["a+WTEzWzr22v8lbdZBmX8N3wvSM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_354.part.js.map

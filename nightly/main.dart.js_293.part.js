@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKe(){return new A.FU(B.dc("es"))},
-FU:function FU(d){this.a=d}}
+cKe(){return new A.FV(B.dc("es"))},
+FV:function FV(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[16],A)
-A.FU.prototype={
+A.FV.prototype={
 gkP(){return"true"},
 gjF(){return"Repite la contrase\xf1a"},
 gmy(){return"El archivo no es una imagen."},
@@ -121,7 +121,7 @@ geA(d){return"Copiar"},
 gfh(){return"Copiar al portapapeles"},
 ia(d){return"No se pudo descifrar el mensaje: "+d},
 gpe(){return"Lista de tareas"},
-dR(d){return""+d+" participantes"},
+dS(d){return""+d+" participantes"},
 ls(d){return""+d+" invitado"},
 gib(d){return"Crear"},
 ic(d){return"\ud83d\udcac"+d+" cre\xf3 el chat"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FU,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FU":{"aD":[]}}'))};
-(a=>{a["4XmHQ0J95Odt6DoRRWdjyac0VRw="]=a.current})($__dart_deferred_initializers__);
+y(A.FV,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FV":{"aD":[]}}'))};
+(a=>{a["BjMglC05ufZKmfizTbRzwI+ROL4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_293.part.js.map

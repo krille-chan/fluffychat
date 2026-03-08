@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKs(){return new A.G7(B.dc("id"))},
-G7:function G7(d){this.a=d}}
+cKs(){return new A.G8(B.dc("id"))},
+G8:function G8(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[30],A)
-A.G7.prototype={
+A.G8.prototype={
 gkP(){return"tidak"},
 gjF(){return"Ulangi kata sandi"},
 gmy(){return"Bukan berkas gambar."},
@@ -121,7 +121,7 @@ geA(d){return"Salin"},
 gfh(){return"Salin ke papan klip"},
 ia(d){return"Tidak dapat mendekripsikan pesan: "+d},
 gpe(){return"Ceklis"},
-dR(d){return""+d+" anggota"},
+dS(d){return""+d+" anggota"},
 ls(d){return""+d+" diundang"},
 gib(d){return"Buat"},
 ic(d){return"\ud83d\udcac "+d+" membuat obrolan ini"},
@@ -681,8 +681,8 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.G7,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G7":{"aD":[]}}'))
+x(A.G8,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G8":{"aD":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["JDzCFCr9OVnwxzluKnCI38CJS9I="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["UtPtaj5a930jCPF2gtK1PhnTYiE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_326.part.js.map

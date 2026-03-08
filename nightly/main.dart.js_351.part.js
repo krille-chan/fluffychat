@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKJ(){return new A.Gn(B.dc("sk"))},
-Gn:function Gn(d){this.a=d}}
+cKJ(){return new A.Go(B.dc("sk"))},
+Go:function Go(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[44],A)
-A.Gn.prototype={
+A.Go.prototype={
 gkP(){return"false"},
 gjF(){return"Zopakujte heslo"},
 gmy(){return"Not an image file."},
@@ -121,7 +121,7 @@ geA(d){return"Kop\xedrova\u0165"},
 gfh(){return"Copy to clipboard"},
 ia(d){return"Nebolo mo\u017en\xe9 de\u0161ifrova\u0165 spr\xe1vu: "+d},
 gpe(){return"Check list"},
-dR(d){return""+d+" \xfa\u010dastn\xedkov"},
+dS(d){return""+d+" \xfa\u010dastn\xedkov"},
 ls(d){return""+d+" invited"},
 gib(d){return"Vytvori\u0165"},
 ic(d){return d+" zalo\u017eili chat"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gn,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gn":{"aD":[]}}'))};
-(a=>{a["KsBw7ENfU0PhOQSh41NZ8/iuZ3g="]=a.current})($__dart_deferred_initializers__);
+y(A.Go,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Go":{"aD":[]}}'))};
+(a=>{a["bp2pOpgOZ51cu07yVja7u0QsRQE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

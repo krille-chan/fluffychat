@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKL(){return new A.Gp(B.dc("sq"))},
-Gp:function Gp(d){this.a=d}}
+cKL(){return new A.Gq(B.dc("sq"))},
+Gq:function Gq(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[46],A)
-A.Gp.prototype={
+A.Gq.prototype={
 gkP(){return"false"},
 gjF(){return"Repeat password"},
 gmy(){return"Not an image file."},
@@ -121,7 +121,7 @@ geA(d){return"Copy"},
 gfh(){return"Copy to clipboard"},
 ia(d){return"Could not decrypt message: "+d},
 gpe(){return"Check list"},
-dR(d){return""+d+" participants"},
+dS(d){return""+d+" participants"},
 ls(d){return""+d+" invited"},
 gib(d){return"Create"},
 ic(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gp,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gp":{"aD":[]}}'))};
-(a=>{a["dSHlcFSmZmmV3XntFri9JdOxJJQ="]=a.current})($__dart_deferred_initializers__);
+y(A.Gq,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gq":{"aD":[]}}'))};
+(a=>{a["K4FYntXZ8NW+nPpi7G0CRROkYSY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_353.part.js.map

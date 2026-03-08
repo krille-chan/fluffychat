@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKa(){return new A.FQ(B.dc("de"))},
-FQ:function FQ(d){this.a=d}}
+cKa(){return new A.FR(B.dc("de"))},
+FR:function FR(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[12],A)
-A.FQ.prototype={
+A.FR.prototype={
 gkP(){return"true"},
 gjF(){return"Passwort wiederholen"},
 gmy(){return"Keine Bilddatei."},
@@ -121,7 +121,7 @@ geA(d){return"Kopieren"},
 gfh(){return"In Zwischenablage kopieren"},
 ia(d){return"Nachricht konnte nicht entschl\xfcsselt werden: "+d},
 gpe(){return"Checkliste"},
-dR(d){return""+d+" Mitglieder"},
+dS(d){return""+d+" Mitglieder"},
 ls(d){return""+d+" invited"},
 gib(d){return"Erstellen"},
 ic(d){return"\ud83d\udcac "+d+" hat den Chat erstellt"},
@@ -681,8 +681,8 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FQ,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FQ":{"aD":[]}}'))
+x(A.FR,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FR":{"aD":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["FFgTXzGVGPSPdi7wSwT9LArEsU8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mfP+sgJ/P4IzCJ9x5qHyss/sTFc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_283.part.js.map

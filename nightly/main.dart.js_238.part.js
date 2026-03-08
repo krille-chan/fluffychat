@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK3(){return new A.FJ(B.dc("ar"))},
-FJ:function FJ(d){this.a=d}}
+cK3(){return new A.FK(B.dc("ar"))},
+FK:function FK(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[5],A)
-A.FJ.prototype={
+A.FK.prototype={
 gkP(){return"\u0639\u0644\u0651\u0645 \u0644\u0639\u0631\u0636 \u0627\u0644\u0648\u0642\u062a \u0628\u0646\u0633\u0642 24 \u0633\u0627\u0639\u0629 \u062f\u0627\u0626\u0645\u0627.\u200f"},
 gjF(){return"\u0643\u0631\u0651\u0631 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631"},
 gmy(){return"\u0644\u064a\u0633 \u0645\u0644\u0641 \u0635\u0648\u0631\u0629."},
@@ -121,7 +121,7 @@ geA(d){return"\u0627\u0646\u0633\u062e"},
 gfh(){return"\u0627\u0646\u0633\u062e \u0627\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629"},
 ia(d){return"\u062a\u0639\u0630\u0631 \u0641\u0643 \u062a\u0634\u0641\u064a\u0631 \u0627\u0644\u0631\u0633\u0627\u0644\u0629: "+d},
 gpe(){return"Check list"},
-dR(d){return""+d+" \u0645\u0646\u062a\u0633\u0628\u0627"},
+dS(d){return""+d+" \u0645\u0646\u062a\u0633\u0628\u0627"},
 ls(d){return""+d+" invited"},
 gib(d){return"\u0623\u0646\u0634\u0626"},
 ic(d){return"\ud83d\udcac \u0623\u0646\u0634\u0623 "+d+" \u0627\u0644\u0645\u062d\u0627\u062f\u062b\u0629"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FJ,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FJ":{"aD":[]}}'))};
-(a=>{a["hMXpNnLo85v9oZZEGwZiiWLE3M4="]=a.current})($__dart_deferred_initializers__);
+y(A.FK,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FK":{"aD":[]}}'))};
+(a=>{a["fp1QWmil6yq9PYl5adbjOeN5UhU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_238.part.js.map

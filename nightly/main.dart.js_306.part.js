@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKk(){return new A.G_(B.dc("fr"))},
-G_:function G_(d){this.a=d}}
+cKk(){return new A.G0(B.dc("fr"))},
+G0:function G0(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[22],A)
-A.G_.prototype={
+A.G0.prototype={
 gkP(){return"true"},
 gjF(){return"R\xe9p\xe9tez le mot de passe"},
 gmy(){return"Pas un fichier image."},
@@ -121,7 +121,7 @@ geA(d){return"Copier"},
 gfh(){return"Copier dans le presse-papiers"},
 ia(d){return"Impossible de d\xe9chiffrer le message : "+d},
 gpe(){return"Check-list"},
-dR(d){return""+d+" participant(s)"},
+dS(d){return""+d+" participant(s)"},
 ls(d){return""+d+" invit\xe9(e/s)"},
 gib(d){return"Cr\xe9er"},
 ic(d){return"\ud83d\udcac "+d+" a cr\xe9\xe9 la discussion"},
@@ -681,7 +681,7 @@ gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G_,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G_":{"aD":[]}}'))};
-(a=>{a["r+RIm8VO3F/sfabCbQuaZRIQ39U="]=a.current})($__dart_deferred_initializers__);
+y(A.G0,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G0":{"aD":[]}}'))};
+(a=>{a["QKxVujz+cClD757N9OdTBy6F3L4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map
