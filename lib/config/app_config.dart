@@ -22,15 +22,15 @@ abstract class AppConfig {
   static const double columnWidth = 360.0;
 
   static const String enablePushTutorial =
-      'https://fluffy.chat/faq/#push_without_google_services';
+      'https://fluffychat.im/faq/#push_without_google_services';
   static const String encryptionTutorial =
-      'https://fluffy.chat/faq/#how_to_use_end_to_end_encryption';
+      'https://fluffychat.im/faq/#how_to_use_end_to_end_encryption';
   static const String startChatTutorial =
-      'https://fluffy.chat/faq/#how_do_i_find_other_users';
+      'https://fluffychat.im/faq/#how_do_i_find_other_users';
   static const String howDoIGetStickersTutorial =
-      'https://fluffy.chat/faq/#how_do_i_get_stickers';
+      'https://fluffychat.im/faq/#how_do_i_get_stickers';
   static const String appId = 'im.fluffychat.FluffyChat';
-  static const String appOpenUrlScheme = 'chat.fluffy';
+  static const String appOpenUrlScheme = 'im.fluffychat';
 
   static const String sourceCodeUrl =
       'https://github.com/krille-chan/fluffychat';

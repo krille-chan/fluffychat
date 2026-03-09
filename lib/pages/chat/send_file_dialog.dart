@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:async/async.dart' show Result;
 import 'package:cross_file/cross_file.dart';
-import 'package:matrix/matrix.dart';
+import 'package:matrix/matrix.dart' hide Result;
 import 'package:mime/mime.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -53,8 +54,9 @@ class SendFileDialogState extends State<SendFileDialog> {
       }
       scaffoldMessenger.showLoadingSnackBar(l10n.prepareSendingAttachment);
       Navigator.of(context, rootNavigator: false).pop();
-      final clientConfig = await widget.room.client.getConfig();
-      final maxUploadSize = clientConfig.mUploadSize ?? 100 * 1000 * 1000;
+      final clientConfig = await Result.capture(widget.room.client.getConfig());
+      final maxUploadSize =
+          clientConfig.asValue?.value.mUploadSize ?? 100 * 1000 * 1000;
 
       for (final xfile in widget.files) {
         final MatrixFile file;

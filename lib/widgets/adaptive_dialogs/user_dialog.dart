@@ -195,35 +195,39 @@ class UserDialog extends StatelessWidget {
                   AdaptiveIconTextButton(
                     label: L10n.of(context).block,
                     icon: Icons.block_outlined,
-                    onTap: () {
-                      final router = GoRouter.of(context);
-                      Navigator.of(context).pop();
-                      router.go(
-                        '/rooms/settings/security/ignorelist',
-                        extra: profile.userId,
-                      );
-                    },
+                    onTap: client.userID == profile.userId
+                        ? null
+                        : () {
+                            final router = GoRouter.of(context);
+                            Navigator.of(context).pop();
+                            router.go(
+                              '/rooms/settings/security/ignorelist',
+                              extra: profile.userId,
+                            );
+                          },
                   ),
                   AdaptiveIconTextButton(
                     label: L10n.of(context).report,
                     icon: Icons.gavel_outlined,
-                    onTap: () async {
-                      Navigator.of(context).pop();
-                      final reason = await showTextInputDialog(
-                        context: context,
-                        title: L10n.of(context).whyDoYouWantToReportThis,
-                        okLabel: L10n.of(context).report,
-                        cancelLabel: L10n.of(context).cancel,
-                        hintText: L10n.of(context).reason,
-                      );
-                      if (reason == null || reason.isEmpty) return;
-                      await showFutureLoadingDialog(
-                        context: context,
-                        future: () => Matrix.of(
-                          context,
-                        ).client.reportUser(profile.userId, reason),
-                      );
-                    },
+                    onTap: client.userID == profile.userId
+                        ? null
+                        : () async {
+                            Navigator.of(context).pop();
+                            final reason = await showTextInputDialog(
+                              context: context,
+                              title: L10n.of(context).whyDoYouWantToReportThis,
+                              okLabel: L10n.of(context).report,
+                              cancelLabel: L10n.of(context).cancel,
+                              hintText: L10n.of(context).reason,
+                            );
+                            if (reason == null || reason.isEmpty) return;
+                            await showFutureLoadingDialog(
+                              context: context,
+                              future: () => Matrix.of(
+                                context,
+                              ).client.reportUser(profile.userId, reason),
+                            );
+                          },
                   ),
                   AdaptiveIconTextButton(
                     label: L10n.of(context).share,
@@ -236,17 +240,19 @@ class UserDialog extends StatelessWidget {
                 ],
               ),
               AdaptiveDialogInkWell(
-                onTap: () async {
-                  final router = GoRouter.of(context);
-                  final roomIdResult = await showFutureLoadingDialog(
-                    context: context,
-                    future: () => client.startDirectChat(profile.userId),
-                  );
-                  final roomId = roomIdResult.result;
-                  if (roomId == null) return;
-                  if (context.mounted) Navigator.of(context).pop();
-                  router.go('/rooms/$roomId');
-                },
+                onTap: client.userID == profile.userId
+                    ? null
+                    : () async {
+                        final router = GoRouter.of(context);
+                        final roomIdResult = await showFutureLoadingDialog(
+                          context: context,
+                          future: () => client.startDirectChat(profile.userId),
+                        );
+                        final roomId = roomIdResult.result;
+                        if (roomId == null) return;
+                        if (context.mounted) Navigator.of(context).pop();
+                        router.go('/rooms/$roomId');
+                      },
                 child: Text(
                   directChatRoomId == null
                       ? L10n.of(context).createNewChat

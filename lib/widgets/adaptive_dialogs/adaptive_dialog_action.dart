@@ -85,7 +85,7 @@ class AdaptiveDialogAction extends StatelessWidget {
 
 class AdaptiveDialogInkWell extends StatelessWidget {
   final Widget child;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final EdgeInsets padding;
 
   const AdaptiveDialogInkWell({
@@ -125,7 +125,7 @@ class AdaptiveDialogInkWell extends StatelessWidget {
 class AdaptiveIconTextButton extends StatelessWidget {
   final String label;
   final IconData icon;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   const AdaptiveIconTextButton({
     super.key,
     required this.label,

@@ -35,7 +35,6 @@
 			<array>
 				<string>ShareMedia-$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 				<string>im.fluffychat</string>
-				<string>chat.fluffy</string>
 				<string>matrix</string>
 			</array>
 		</dict>
