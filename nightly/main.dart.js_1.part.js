@@ -680,7 +680,7 @@ gq3(){return"\u5220\u9664\u7ba1\u7406\u5458\u6743\u9650"},
 gq2(){return"\u6743\u9650\u7ea7\u522b"},
 gpG(){return"\u6743\u9650\u7ea7\u522b\u5b9a\u4e49\u7fa4\u6210\u5458\u5728\u8fd9\u4e2a\u804a\u5929\u5ba4\u4e2d\u53ef\u4ee5\u505a\u4ec0\u4e48\uff0c\u53d6\u503c\u8303\u56f4 0 \u5230 100\u3002"},
 gdM(){return"\u6240\u6709\u8005"},
-gpQ(){return"Create new chat"},
+gpQ(){return"\u65b0\u5efa\u804a\u5929"},
 gq5(d){return"Reset"},
 B(d,e){return this.gb7(this).$1(e)}}
 A.GB.prototype={
@@ -1287,5 +1287,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Bj,C.aD)
 y(A.GB,A.Bj)})()
 B.dI(b.typeUniverse,JSON.parse('{"Bj":{"aD":[]},"GB":{"aD":[]}}'))};
-(a=>{a["b2Go47kLtdFjaqoPXTzZY8y4cRg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ed1w+GSKB7S0k06zGMKAnE1NL5Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
