@@ -17,7 +17,8 @@ import 'package:fluffychat/widgets/matrix.dart';
 import '../../widgets/adaptive_dialogs/user_dialog.dart';
 
 class NewPrivateChat extends StatefulWidget {
-  const NewPrivateChat({super.key});
+  final String? deeplink;
+  const NewPrivateChat({super.key, required this.deeplink});
 
   @override
   NewPrivateChatController createState() => NewPrivateChatController();
@@ -32,6 +33,18 @@ class NewPrivateChatController extends State<NewPrivateChat> {
   Timer? _searchCoolDown;
 
   static const Duration _coolDown = Duration(milliseconds: 500);
+
+  @override
+  void initState() {
+    super.initState();
+
+    final deeplink = widget.deeplink;
+    if (deeplink != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        UrlLauncher(context, deeplink).openMatrixToUrl();
+      });
+    }
+  }
 
   Future<void> searchUsers([String? input]) async {
     final searchTerm = input ?? controller.text;

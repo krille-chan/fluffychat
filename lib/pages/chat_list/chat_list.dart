@@ -1,9 +1,9 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:app_links/app_links.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:go_router/go_router.dart';
@@ -11,6 +11,7 @@ import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -70,8 +71,6 @@ class ChatListController extends State<ChatList>
   StreamSubscription? _intentDataStreamSubscription;
 
   StreamSubscription? _intentFileStreamSubscription;
-
-  StreamSubscription? _intentUriStreamSubscription;
 
   late ActiveFilter activeFilter;
 
@@ -308,6 +307,12 @@ class ChatListController extends State<ChatList>
   void _processIncomingSharedMedia(List<SharedMediaFile> files) {
     if (files.isEmpty) return;
 
+    if (files.singleOrNull?.path.startsWith(AppConfig.deepLinkPrefix) == true) {
+      return;
+    }
+
+    inspect(files);
+
     showScaffoldDialog(
       context: context,
       builder: (context) => ShareScaffoldDialog(
@@ -326,14 +331,6 @@ class ChatListController extends State<ChatList>
     );
   }
 
-  Future<void> _processIncomingUris(Uri? uri) async {
-    if (uri == null) return;
-    context.go('/rooms');
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      UrlLauncher(context, uri.toString()).openMatrixToUrl();
-    });
-  }
-
   void _initReceiveSharingIntent() {
     if (!PlatformInfos.isMobile) return;
 
@@ -345,11 +342,6 @@ class ChatListController extends State<ChatList>
     // For sharing images coming from outside the app while the app is closed
     ReceiveSharingIntent.instance.getInitialMedia().then(
       _processIncomingSharedMedia,
-    );
-
-    // For receiving shared Uris
-    _intentUriStreamSubscription = AppLinks().uriLinkStream.listen(
-      _processIncomingUris,
     );
 
     if (PlatformInfos.isAndroid) {
@@ -394,7 +386,6 @@ class ChatListController extends State<ChatList>
   void dispose() {
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
-    _intentUriStreamSubscription?.cancel();
     scrollController.removeListener(_onScroll);
     super.dispose();
   }

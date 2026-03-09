@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -37,6 +38,12 @@ class FluffyChatApp extends StatelessWidget {
   static final GoRouter router = GoRouter(
     routes: AppRoutes.routes,
     debugLogDiagnostics: true,
+    redirect: (context, state) {
+      if (state.uri.toString().startsWith(AppConfig.deepLinkPrefix)) {
+        return '/rooms/newprivatechat?deeplink=${state.uri}';
+      }
+      return null;
+    },
   );
 
   @override

@@ -170,8 +170,14 @@ abstract class AppRoutes {
             ),
             GoRoute(
               path: 'newprivatechat',
-              pageBuilder: (context, state) =>
-                  defaultPageBuilder(context, state, const NewPrivateChat()),
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                state,
+                NewPrivateChat(
+                  key: ValueKey('new_chat_${state.uri.query}'),
+                  deeplink: state.uri.queryParameters['deeplink'],
+                ),
+              ),
               redirect: loggedOutRedirect,
             ),
             GoRoute(
