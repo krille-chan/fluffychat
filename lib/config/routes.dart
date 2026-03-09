@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fluffychat/pages/settings_profile/settings_profile_presenter.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -218,6 +219,15 @@ abstract class AppRoutes {
                         : const Settings(),
                   ),
                   routes: [
+                    GoRoute(
+                      path: 'profile_settings',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        const SettingsProfilePresenter(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
                     GoRoute(
                       path: 'notifications',
                       pageBuilder: (context, state) => defaultPageBuilder(

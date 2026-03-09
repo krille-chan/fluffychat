@@ -118,24 +118,6 @@ class SettingsView extends StatelessWidget {
                 );
               },
             ),
-            FutureBuilder(
-              future: Matrix.of(context).client.getAuthMetadata(),
-              builder: (context, snapshot) {
-                final accountManageUrl = snapshot.data?.issuer;
-                if (accountManageUrl == null) {
-                  return const SizedBox.shrink();
-                }
-                return ListTile(
-                  leading: const Icon(Icons.account_circle_outlined),
-                  title: Text(L10n.of(context).manageAccount),
-                  trailing: const Icon(Icons.open_in_new_outlined),
-                  onTap: () => launchUrl(
-                    accountManageUrl,
-                    mode: LaunchMode.inAppBrowserView,
-                  ),
-                );
-              },
-            ),
             Divider(color: theme.dividerColor),
             SwitchListTile.adaptive(
               controlAffinity: ListTileControlAffinity.trailing,
@@ -145,6 +127,34 @@ class SettingsView extends StatelessWidget {
               onChanged: controller.firstRunBootstrapAction,
             ),
             Divider(color: theme.dividerColor),
+
+            FutureBuilder(
+              future: Matrix.of(context).client.getAuthMetadata(),
+              builder: (context, snapshot) {
+                final accountManageUrl = snapshot.data?.issuer;
+                if (accountManageUrl == null) {
+                  return const SizedBox.shrink();
+                }
+                return ListTile(
+                  leading: const Icon(Icons.admin_panel_settings_outlined),
+                  title: Text(L10n.of(context).manageAccount),
+                  trailing: const Icon(Icons.open_in_new_outlined),
+                  onTap: () => launchUrl(
+                    accountManageUrl,
+                    mode: LaunchMode.inAppBrowserView,
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.account_circle_outlined),
+              title: Text(L10n.of(context).profileSettings),
+              tileColor:
+                  activeRoute.startsWith('/rooms/settings/profile_settings')
+                  ? theme.colorScheme.surfaceContainerHigh
+                  : null,
+              onTap: () => context.go('/rooms/settings/profile_settings'),
+            ),
             ListTile(
               leading: const Icon(Icons.format_paint_outlined),
               title: Text(L10n.of(context).changeTheme),
