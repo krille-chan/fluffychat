@@ -1,7 +1,7 @@
-import 'package:async/async.dart' show Result;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:async/async.dart' show Result;
 import 'package:cross_file/cross_file.dart';
 import 'package:matrix/matrix.dart' hide Result;
 import 'package:mime/mime.dart';

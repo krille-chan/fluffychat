@@ -8,6 +8,7 @@ on:
 
 jobs:
   notify:
+    if: ${{ (github.event_name == 'issues' && github.event.issue.user.login != 'krille-chan') || (github.event_name == 'pull_request_target' && github.event.pull_request.user.login != 'krille-chan') }}
     runs-on: ubuntu-latest
     steps:
       - name: Send notification to Matrix room
