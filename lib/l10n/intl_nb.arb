@@ -2794,5 +2794,10 @@
     "removeAdminRights": "Fjern admin-rettigheter",
     "powerLevel": "Styrkenivå",
     "setPowerLevelDescription": "Styrkenivåer definerer hva et medlem har lov til å gjøre i dette rommet, og varierer vanligvis mellom 0 og 100.",
-    "owner": "Eier"
+    "owner": "Eier",
+    "mute": "Demp",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Opprett ny chat"
 }
