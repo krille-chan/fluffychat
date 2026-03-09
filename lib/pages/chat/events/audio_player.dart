@@ -165,11 +165,11 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
             : null,
       );
 
-      if (!kIsWeb) {
+      final attachmentUrl = widget.event.attachmentOrThumbnailMxcUrl();
+
+      if (!kIsWeb && attachmentUrl != null) {
         final tempDir = await getTemporaryDirectory();
-        final fileName = Uri.encodeComponent(
-          widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
-        );
+        final fileName = Uri.encodeComponent(attachmentUrl.pathSegments.last);
         file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
 
         await file.writeAsBytes(matrixFile.bytes);
