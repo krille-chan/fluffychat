@@ -108,7 +108,9 @@ class AdaptiveDialogInkWell extends StatelessWidget {
       );
     }
     return Material(
-      color: theme.colorScheme.surfaceBright,
+      color: onTap == null
+          ? theme.colorScheme.surfaceContainer
+          : theme.colorScheme.surfaceBright,
       borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
       child: InkWell(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),

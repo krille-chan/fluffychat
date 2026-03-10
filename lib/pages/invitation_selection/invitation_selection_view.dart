@@ -191,10 +191,9 @@ class _InviteContactListTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         style: TextStyle(color: theme.colorScheme.secondary),
       ),
-      trailing: TextButton.icon(
+      trailing: TextButton(
         onPressed: isMember ? null : onTap,
-        label: Text(isMember ? l10n.participant : l10n.invite),
-        icon: Icon(isMember ? Icons.check : Icons.add),
+        child: Text(isMember ? l10n.participant : l10n.invite),
       ),
     );
   }

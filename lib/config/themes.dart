@@ -74,7 +74,7 @@ abstract class FluffyThemes {
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         ),
         contentPadding: const EdgeInsets.all(12),
       ),

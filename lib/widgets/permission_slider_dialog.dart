@@ -20,7 +20,7 @@ Future<int?> showPermissionChooser(
         child: Column(
           mainAxisSize: .min,
           crossAxisAlignment: .stretch,
-          spacing: 12.0,
+          spacing: 16.0,
           children: [
             Text(L10n.of(context).setPowerLevelDescription),
             ValueListenableBuilder(
