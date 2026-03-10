@@ -68,7 +68,7 @@ class IntroPage extends StatelessWidget {
                 ),
               ),
               PopupMenuItem(
-                value: () => PlatformInfos.showDialog(context),
+                onTap: () => PlatformInfos.showDialog(context),
                 child: Row(
                   mainAxisSize: .min,
                   children: [
