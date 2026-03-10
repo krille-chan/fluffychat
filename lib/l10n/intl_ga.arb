@@ -2798,5 +2798,6 @@
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    "createNewChat": "Cruthaigh comhrá nua"
+    "createNewChat": "Cruthaigh comhrá nua",
+    "reset": "Athshocraigh"
 }
