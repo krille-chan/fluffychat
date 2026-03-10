@@ -19,6 +19,17 @@
                 "All",
                 "English"
             ]
+        },
+        {
+            "name": "tchncs.de",
+            "website": "https://tchncs.de",
+            "description": "A general homeserver. Owner also hosts other FOSS services.",
+            "reg_method": "oidc",
+            "languages": [
+                "All",
+                "English",
+                "Deutsch"
+            ]
         }
     ]
 }
