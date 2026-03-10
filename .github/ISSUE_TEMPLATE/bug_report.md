@@ -7,16 +7,18 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Proposed Feature**
+> Describe the feature that should be added.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. 
 
-**Environment**
-Where was the bug encountered?
-[ ] Staging
-[ ] Production
-OS: [e.g. iOS]
-Browser [e.g. chrome, safari]
+
+---
+**Rationale**
+> Explain how the feature would improve the user experience.
+
+
+
+---
+**To Test**
+> After implementation, include a list of changes to be looked over
+
