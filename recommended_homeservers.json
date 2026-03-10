@@ -11,16 +11,6 @@
             ]
         },
         {
-            "name": "converser.eu",
-            "website": "https://converser.eu",
-            "description": "A free and decentralized communication server.",
-            "reg_method": "oidc",
-            "languages": [
-                "All",
-                "Français"
-            ]
-        },
-        {
             "name": "mozilla.org",
             "website": "https://mozilla.org",
             "description": "Matrix homeserver hosted by Mozilla.",
@@ -31,11 +21,13 @@
             ]
         },
         {
-            "name": "magdeburg.jetzt",
-            "website": "https://magdeburg.jetzt",
+            "name": "tchncs.de",
+            "website": "https://tchncs.de",
+            "description": "A general homeserver. Owner also hosts other FOSS services.",
             "reg_method": "oidc",
             "languages": [
                 "All",
+                "English",
                 "Deutsch"
             ]
         }

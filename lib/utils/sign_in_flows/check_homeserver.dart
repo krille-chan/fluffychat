@@ -52,7 +52,7 @@ Future<void> connectToHomeserverFlow(
     if (authMetadata != null && AppSettings.enableMatrixNativeOIDC.value) {
       await oidcLoginFlow(client, context, signUp);
     } else if (supportsSso) {
-      await ssoLoginFlow(client, context, signUp);
+      await ssoLoginFlow(client, context, signUp, loginFlows);
     } else {
       if (signUp && regLink != null) {
         await launchUrlString(regLink);

@@ -123,7 +123,9 @@ abstract class ClientManager {
         // To make room emotes work
         'im.ponies.room_emotes',
       },
-      customImageResizer: customImageResizer,
+      customImageResizer: PlatformInfos.supportsCustomImageResizer
+          ? customImageResizer
+          : null,
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
       database: await flutterMatrixSdkDatabaseBuilder(clientName),
       supportedLoginTypes: {
@@ -141,6 +143,9 @@ abstract class ClientManager {
       onSoftLogout: enableSoftLogout
           ? (client) => client.refreshAccessToken()
           : null,
+      sendTimelineEventTimeout: Duration(
+        seconds: AppSettings.sendTimelineEventTimeout.value,
+      ),
     );
   }
 

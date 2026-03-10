@@ -185,6 +185,7 @@ class PublicRoomDialog extends StatelessWidget {
                                           style: theme.textTheme.bodyMedium
                                               ?.copyWith(fontSize: 10),
                                         ),
+                                        maxLines: 1,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
