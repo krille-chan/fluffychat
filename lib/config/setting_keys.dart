@@ -65,7 +65,8 @@ enum AppSettings<T> {
     'chat.fluffy.privacy_policy_url',
     'https://fluffychat.im/en/privacy',
   ),
-  tos<String>('chat.fluffy.tos_url', 'https://fluffychat.im/en/tos');
+  tos<String>('chat.fluffy.tos_url', 'https://fluffychat.im/en/tos'),
+  sendTimelineEventTimeout<int>('chat.fluffy.send_timeline_event_timeout', 15);
 
   final String key;
   final T defaultValue;

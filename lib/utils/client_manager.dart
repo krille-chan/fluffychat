@@ -143,6 +143,9 @@ abstract class ClientManager {
       onSoftLogout: enableSoftLogout
           ? (client) => client.refreshAccessToken()
           : null,
+      sendTimelineEventTimeout: Duration(
+        seconds: AppSettings.sendTimelineEventTimeout.value,
+      ),
     );
   }
 
