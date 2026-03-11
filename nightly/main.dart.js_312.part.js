@@ -678,11 +678,11 @@ gq3(){return"Retirar permiso de administraci\xf3n"},
 gq2(){return"Nivel responsabilidade"},
 gpG(){return"Os niveis de responsabilidade definen o que pode facer unha usuaria na sala, normalmente var\xeda de 0 a 100."},
 gdM(){return"Propietaria"},
-gpQ(){return"Create new chat"},
+gpQ(){return"Crear nova conversa"},
 gq5(d){return"Reset"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G2,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G2":{"aD":[]}}'))};
-(a=>{a["mRKtNK9diHz9cqaUtmxogQPJj/g="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["6O1WcmQ86NviP/3PwCnzMHukMlM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

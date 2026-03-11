@@ -453,7 +453,7 @@ gjU(){return"Helaas... dit lijkt niet de correcte herstelsleutel."},
 gli(){return"Stuur kale json"},
 glB(){return"Database is geoptimaliseerd"},
 glA(){return"Een ogenblik. Dit kan even duren."},
-gmi(){return"Laat leeg om je status te resetten."},
+gmi(){return"Laat leeg om jouw status te herstellen."},
 gkb(d){return"Selecteer"},
 gk9(){return"Zoek @personen..."},
 gnt(){return"Vul je huidige wachtwoord in"},
@@ -679,10 +679,10 @@ gq2(){return"Rechtenniveau"},
 gpG(){return"Rechtenniveau's defini\xebren wat een persoon mag doen in deze chat en vari\xebren meestal tussen 0 en 100."},
 gdM(){return"Eigenaar"},
 gpQ(){return"Cre\xeber nieuw chat"},
-gq5(d){return"Reset"},
+gq5(d){return"Herstellen"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gi,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gi":{"aD":[]}}'))};
-(a=>{a["FpM9AGTC1sa0soFvHN72AIyr40Y="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9P8YFuwMY9/j0Yl3/WGLagJDsAg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

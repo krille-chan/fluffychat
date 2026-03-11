@@ -679,11 +679,11 @@ gq2(){return"Leibh\xe9al cumhachta"},
 gpG(){return"Sainmh\xedn\xedonn leibh\xe9il chumhachta cad a cheada\xedtear do bhall a dh\xe9anamh sa seomra seo agus is gn\xe1ch go mb\xedonn siad idir 0 agus 100."},
 gdM(){return"\xdain\xe9ir"},
 gpQ(){return"Cruthaigh comhr\xe1 nua"},
-gq5(d){return"Reset"},
+gq5(d){return"Athshocraigh"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G1,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G1":{"aD":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["HQE+7hF17oPvJSdvgLcp5s+3SQk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["yVCh8XK8E1TTXsZzO1XGplYz22I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_311.part.js.map

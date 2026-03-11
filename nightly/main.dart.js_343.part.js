@@ -679,10 +679,10 @@ gq2(){return"Styrkeniv\xe5"},
 gpG(){return"Styrkeniv\xe5er definerer hva et medlem har lov til \xe5 gj\xf8re i dette rommet, og varierer vanligvis mellom 0 og 100."},
 gdM(){return"Eier"},
 gpQ(){return"Opprett ny chat"},
-gq5(d){return"Reset"},
+gq5(d){return"Nullstill"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gh,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gh":{"aD":[]}}'))};
-(a=>{a["HLP1CxTE9z6SOW6GXcT0cmbH+xs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jH5EjEaiZa0GvkFhtqX7WDAzbwM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_343.part.js.map

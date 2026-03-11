@@ -678,11 +678,11 @@ gq3(){return"Eemalda peakasutaja \xf5igused"},
 gq2(){return"\xd5iguste tase"},
 gpG(){return"\xd5iguste tase on \xfcks v\xf5imalusi kirjeldamaks seda, mida kasutaja saab jututoas teha ning see tavaliselt v\xe4ljendub numbriga vahemikust 0 kuni 100."},
 gdM(){return"Omanik"},
-gpQ(){return"Create new chat"},
+gpQ(){return"Loo uus vestlus"},
 gq5(d){return"Reset"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FW,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))};
-(a=>{a["V51YEvWRrDXVEJosiG0iq7U5oUs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["C4KFGquEJ8oso+lZhlLjC1iPdUM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_298.part.js.map

@@ -679,11 +679,11 @@ gq2(){return"Power level"},
 gpG(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
 gdM(){return"Owner"},
 gpQ(){return"Create new chat"},
-gq5(d){return"Reset"},
+gq5(d){return"Zur\xfccksetzen"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FR,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FR":{"aD":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["P/pTqeVq+Fchgv3EPkw2MaUUEvE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["HWqRmsWCQSJzOL9OVscPBPM9pWg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_284.part.js.map
