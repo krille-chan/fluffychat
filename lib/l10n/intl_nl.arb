@@ -2383,7 +2383,7 @@
     "newPassword": "Nieuw wachtwoord",
     "pleaseChooseAStrongPassword": "Kies a.j.b. een sterk wachtwoord",
     "select": "Selecteer",
-    "leaveEmptyToClearStatus": "Laat leeg om je status te resetten.",
+    "leaveEmptyToClearStatus": "Laat leeg om jouw status te herstellen.",
     "addChatOrSubSpace": "Voeg chat of subspace toe",
     "pleaseEnterYourCurrentPassword": "Vul je huidige wachtwoord in",
     "passwordsDoNotMatch": "Wachtwoorden komen niet overeen",
@@ -2791,5 +2791,6 @@
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    "createNewChat": "Creëer nieuw chat"
+    "createNewChat": "Creëer nieuw chat",
+    "reset": "Herstellen"
 }

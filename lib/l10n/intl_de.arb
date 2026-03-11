@@ -2787,5 +2787,6 @@
     "clientWellKnownInformation": "Bekannte Informationen zum Client:",
     "join": "Beitreten",
     "searchOrEnterHomeserverAddress": "Homeserver-Adresse suchen oder eingeben",
-    "matrixId": "Matrix ID"
+    "matrixId": "Matrix ID",
+    "reset": "Zurücksetzen"
 }

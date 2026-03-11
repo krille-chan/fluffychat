@@ -2799,5 +2799,6 @@
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    "createNewChat": "Opprett ny chat"
+    "createNewChat": "Opprett ny chat",
+    "reset": "Nullstill"
 }

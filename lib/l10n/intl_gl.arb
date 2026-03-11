@@ -2787,5 +2787,10 @@
     "removeAdminRights": "Retirar permiso de administración",
     "powerLevel": "Nivel responsabilidade",
     "setPowerLevelDescription": "Os niveis de responsabilidade definen o que pode facer unha usuaria na sala, normalmente varía de 0 a 100.",
-    "owner": "Propietaria"
+    "owner": "Propietaria",
+    "mute": "Acalar",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Crear nova conversa"
 }

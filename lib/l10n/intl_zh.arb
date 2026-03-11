@@ -2792,5 +2792,6 @@
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    "createNewChat": "新建聊天"
+    "createNewChat": "新建聊天",
+    "reset": "重置"
 }
