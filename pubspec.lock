@@ -1877,10 +1877,10 @@ packages:
     dependency: "direct dev"
     description:
       name: translations_cleaner
-      sha256: "811f42be32f024fdf083903f198d3625f6ee6927601e3a53a29b85b90508b88c"
+      sha256: c6e5051cb5d4fe4c5b2cc1ef83a6964f27063f9cf5b6166f445709bea8f81ad3
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0"
+    version: "0.1.1"
   typed_data:
     dependency: transitive
     description:
