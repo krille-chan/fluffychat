@@ -2696,7 +2696,6 @@
             }
         }
     },
-    "donate": "Tabhair Síntiús",
     "startedAPoll": "Chuir {username} tús le pobalbhreith.",
     "@startedAPoll": {
         "type": "String",

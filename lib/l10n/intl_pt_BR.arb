@@ -2689,7 +2689,6 @@
             }
         }
     },
-    "donate": "Doar",
     "startedAPoll": "{username} iniciou uma enquete.",
     "@startedAPoll": {
         "type": "String",

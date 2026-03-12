@@ -2598,7 +2598,6 @@
             }
         }
     },
-    "donate": "Xayriya qilmoq",
     "startedAPoll": "{username} so‘rovnoma boshladi.",
     "@startedAPoll": {
         "type": "String",

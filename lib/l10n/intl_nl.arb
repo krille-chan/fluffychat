@@ -2661,7 +2661,6 @@
     "longPressToRecordVoiceMessage": "Lang drukken om een spraakbericht op te nemen.",
     "pause": "Pauzeer",
     "resume": "Hervat",
-    "donate": "Doneer",
     "removeFromSpaceDescription": "De chat zal worden verwijderd uit de space, maar blijft in je chats.",
     "countChats": "{chats} chats",
     "@countChats": {

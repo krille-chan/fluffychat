@@ -2684,7 +2684,6 @@
             }
         }
     },
-    "donate": "நன்கொடை",
     "startedAPoll": "{username} ஒரு வாக்கெடுப்பைத் தொடங்கினார்.",
     "@startedAPoll": {
         "type": "String",

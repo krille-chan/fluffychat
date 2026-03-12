@@ -2690,7 +2690,6 @@
             }
         }
     },
-    "donate": "Задонатити",
     "startedAPoll": "Нове опитування від {username}.",
     "@startedAPoll": {
         "type": "String",

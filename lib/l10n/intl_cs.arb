@@ -2560,7 +2560,6 @@
             }
         }
     },
-    "donate": "Přispět",
     "startedAPoll": "{username} spustil/a hlasování.",
     "@startedAPoll": {
         "type": "String",

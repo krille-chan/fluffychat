@@ -2681,7 +2681,6 @@
             }
         }
     },
-    "donate": "Donate",
     "startedAPoll": "{username} started a poll.",
     "@startedAPoll": {
         "type": "String",
@@ -2782,5 +2781,6 @@
         "description": "This should be a very short string because there is not much space in the button!"
     },
     "createNewChat": "Create new chat",
-    "reset": "Reset"
+    "reset": "Reset",
+    "supportFluffyChat": "Support FluffyChat"
 }

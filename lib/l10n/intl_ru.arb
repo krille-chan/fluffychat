@@ -2640,7 +2640,6 @@
             }
         }
     },
-    "donate": "Пожертвовать",
     "startedAPoll": "{username} начал опрос.",
     "@startedAPoll": {
         "type": "String",

@@ -2672,7 +2672,6 @@
             }
         }
     },
-    "donate": "Doar",
     "spaceMemberOf": "Participa no espazo {spaces}",
     "@spaceMemberOf": {
         "type": "String",

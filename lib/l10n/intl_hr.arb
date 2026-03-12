@@ -2692,7 +2692,6 @@
             }
         }
     },
-    "donate": "Doniraj",
     "startedAPoll": "{username} je pokrenuo/la anketu.",
     "@startedAPoll": {
         "type": "String",
