@@ -2779,5 +2779,19 @@
     "theProcessWasCanceled": "Eragiketa bertan behera utzi da.",
     "join": "Batu",
     "searchOrEnterHomeserverAddress": "Bilatu edo sartu zerbitzariaren helbidea",
-    "matrixId": "Matrix IDa"
+    "matrixId": "Matrix IDa",
+    "setPowerLevel": "Ezarri botere-maila",
+    "makeModerator": "Izendatu moderatzaile",
+    "makeAdmin": "Izendatu administrari",
+    "removeModeratorRights": "Kendu moderatzaile eskubideak",
+    "removeAdminRights": "Kendu administratzaile eskubideak",
+    "powerLevel": "Botere-maila",
+    "setPowerLevelDescription": "Botere-mailek zehazten dute kide batek zer egin dezakeen gela honetan, eta tartea 0tik 100era artekoa izan ohi da.",
+    "owner": "Jabea",
+    "mute": "Mututu",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Sortu txat berria",
+    "reset": "Berrezarri"
 }
