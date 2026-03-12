@@ -39,7 +39,7 @@ class SignInViewModel extends ValueNotifier<SignInState> {
             .toList() ??
         [];
     if (filterText.length >= 3 &&
-        filterText.contains('.') &&
+        (filterText.contains('.') || filterText == 'localhost') &&
         Uri.tryParse(filterText) != null &&
         !filteredPublicHomeservers.any(
           (homeserver) => homeserver.name == filterText,
