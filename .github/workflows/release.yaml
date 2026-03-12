@@ -46,13 +46,25 @@ jobs:
           asset_path: fluffychat-web.tar.gz
           asset_name: fluffychat-web.tar.gz
           asset_content_type: application/gzip
-      - name: Build Website
+      - name: Clone fluffychat website
         run: |
-          mkdir public
+          git@github.com:krille-chan/fluffychat-website.git
+          cp CHANGELOG.md fluffychat-website/
+          cp PRIVACY.md fluffychat-website/
+      - name: Build website
+        working-directory: fluffychat-website
+        run: |
+          npm install tailwindcss @tailwindcss/cli
+          npx tailwindcss -i ./src/styles.css -o ./src/assets/tailwind.css --minify
+          npx @11ty/eleventy
+          mv public ../
+      - name: Copy FluffyChat web into it
+        run: |
+          mkdir public/web
           mkdir public/nightly
-          cp -r build/web/* public/
+          cp -r build/web/* public/web/
           cp -r build/web/* public/nightly/
-          echo "app.fluffy.chat" >> public/CNAME
+          echo "fluffychat.im" >> public/CNAME
       - name: Deploy to GitHub Pages
         if: startsWith(github.ref, 'refs/tags/v')
         uses: peaceiris/actions-gh-pages@v4
@@ -60,7 +72,7 @@ jobs:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
-          cname: app.fluffy.chat
+          cname: fluffychat.im
 
   build_apk:
     runs-on: ubuntu-latest
