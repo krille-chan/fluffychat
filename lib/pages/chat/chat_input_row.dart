@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:animations/animations.dart';
 import 'package:emoji_picker_flutter/locales/default_emoji_set_locale.dart';
 import 'package:matrix/matrix.dart';
 
@@ -273,27 +272,11 @@ class ChatInputRow extends StatelessWidget {
                     child: IconButton(
                       tooltip: L10n.of(context).emojis,
                       color: theme.colorScheme.onPrimaryContainer,
-                      icon: PageTransitionSwitcher(
-                        transitionBuilder:
-                            (
-                              Widget child,
-                              Animation<double> primaryAnimation,
-                              Animation<double> secondaryAnimation,
-                            ) {
-                              return SharedAxisTransition(
-                                animation: primaryAnimation,
-                                secondaryAnimation: secondaryAnimation,
-                                transitionType: SharedAxisTransitionType.scaled,
-                                fillColor: Colors.transparent,
-                                child: child,
-                              );
-                            },
-                        child: Icon(
-                          controller.showEmojiPicker
-                              ? Icons.keyboard
-                              : Icons.add_reaction_outlined,
-                          key: ValueKey(controller.showEmojiPicker),
-                        ),
+                      icon: Icon(
+                        controller.showEmojiPicker
+                            ? Icons.keyboard
+                            : Icons.add_reaction_outlined,
+                        key: ValueKey(controller.showEmojiPicker),
                       ),
                       onPressed: controller.emojiPickerAction,
                     ),
