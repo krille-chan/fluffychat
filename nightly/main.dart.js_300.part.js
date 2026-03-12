@@ -670,20 +670,20 @@ gpz(){return"Eragiketa bertan behera utzi da."},
 gpX(d){return"Batu"},
 gpE(){return"Bilatu edo sartu zerbitzariaren helbidea"},
 gq0(){return"Matrix IDa"},
-goQ(){return"Set power level"},
-gq_(){return"Make moderator"},
-gpZ(){return"Make admin"},
-gq4(){return"Remove moderator rights"},
-gq3(){return"Remove admin rights"},
-gq2(){return"Power level"},
-gpF(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdM(){return"Owner"},
-gpP(){return"Create new chat"},
-gq5(d){return"Reset"},
+goQ(){return"Ezarri botere-maila"},
+gq_(){return"Izendatu moderatzaile"},
+gpZ(){return"Izendatu administrari"},
+gq4(){return"Kendu moderatzaile eskubideak"},
+gq3(){return"Kendu administratzaile eskubideak"},
+gq2(){return"Botere-maila"},
+gpF(){return"Botere-mailek zehazten dute kide batek zer egin dezakeen gela honetan, eta tartea 0tik 100era artekoa izan ohi da."},
+gdM(){return"Jabea"},
+gpP(){return"Sortu txat berria"},
+gq5(d){return"Berrezarri"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FV,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FV":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["p4CpJtyMxHdZnIEokfETd3FU4k4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["NtcbTR8wwbMwhSW5/EwS1H4uQ3Q="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_300.part.js.map
