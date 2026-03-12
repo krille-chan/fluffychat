@@ -1,19 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-	<title>Redirecting to fluffy.chat</title>
-	<!-- Redirecting to another page using meta tag -->
-	<meta http-equiv="refresh" content="5; url =https://fluffy.chat" />
+	<meta charset="utf-8">
+	<title>Redirecting…</title>
+	<meta http-equiv="refresh" content="0; url=/en/">
+	<script>
+		const userLang = navigator.language?.substring(0, 2) || "en";
+		const supported = ["be", "de", "en", "et", "fi", "fy", "gl", "lv", "nb_NO", "nl", "uz"]; // z. B. ["en","de"] Fallback auf Englisch, falls Sprache nicht unterstützt
+		const targetLang = supported.includes(userLang)
+			? userLang
+			: "en";
+		window.location.replace(`/${targetLang}/`);
+	</script>
 </head>
 
 <body>
-	<h3>
-		Redirecting...
-	</h3>
-	<p><strong>Note:</strong> If your browser does not redirect you, please use this link:
-	</p>
-	<a href="https://fluffy.chat">https://fluffy.chat</a>
+	<p>Redirecting…</p>
 </body>
 
 </html>
