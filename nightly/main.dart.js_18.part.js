@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cKg(d){return new A.Bh(B.dc(d))},
-cKh(){return new A.Gi(B.dc("pt_BR"))},
-cKi(){return new A.Gj(B.dc("pt_PT"))},
-Bh:function Bh(d){this.a=d},
-Gi:function Gi(d){this.a=d},
-Gj:function Gj(d){this.a=d}},C
+cKh(d){return new A.Bg(B.dc(d))},
+cKi(){return new A.Gh(B.dc("pt_BR"))},
+cKj(){return new A.Gi(B.dc("pt_PT"))},
+Bg:function Bg(d){this.a=d},
+Gh:function Gh(d){this.a=d},
+Gi:function Gi(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[57]
-A.Bh.prototype={
+A.Bg.prototype={
 gkP(){return"true"},
 gjF(){return"Repita a senha"},
 gmx(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -685,7 +685,7 @@ gdM(){return"Owner"},
 gpP(){return"Create new chat"},
 gq5(d){return"Reset"},
 A(d,e){return this.gb7(this).$1(e)}}
-A.Gi.prototype={
+A.Gh.prototype={
 gkP(){return"true"},
 gjF(){return"Repita a senha"},
 gmx(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1335,7 +1335,7 @@ pD(d){return"Vers\xe3o: "+d},
 gp0(){return""},
 gpz(){return""},
 A(d,e){return this.gb7(this).$1(e)}}
-A.Gj.prototype={
+A.Gi.prototype={
 gjF(){return"Repete a palavra-passe"},
 gb7(d){return"Remover"},
 gex(){return"Acerca de"},
@@ -1575,9 +1575,9 @@ eX(d){return d+" enviou um autocolante"},
 h_(d){return d+" enviou um v\xeddeo"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Bh,C.aD)
-w(A.Bh,[A.Gi,A.Gj])})()
-B.dI(b.typeUniverse,JSON.parse('{"Bh":{"aD":[]},"Gi":{"aD":[]},"Gj":{"aD":[]}}'))
+x(A.Bg,C.aD)
+w(A.Bg,[A.Gh,A.Gi])})()
+B.dI(b.typeUniverse,JSON.parse('{"Bg":{"aD":[]},"Gh":{"aD":[]},"Gi":{"aD":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["pwrVMvEYhbaRkYcyKOcsPUeIAjU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PuSQl5DMghrLyDfxYB242Nr6P7s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

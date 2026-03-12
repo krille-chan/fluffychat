@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKr(){return new A.Gs(B.dc("te"))},
-Gs:function Gs(d){this.a=d}}
+cKs(){return new A.Gr(B.dc("te"))},
+Gr:function Gr(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[50],A)
-A.Gs.prototype={
+A.Gr.prototype={
 gkP(){return""},
 gjF(){return"\u0c2a\u0c3e\u0c38\u0c4d\u200c\u0c35\u0c30\u0c4d\u0c21\u0c4d\u200c\u0c28\u0c41 \u0c2a\u0c41\u0c28\u0c30\u0c3e\u0c35\u0c43\u0c24\u0c02 \u0c1a\u0c47\u0c2f\u0c02\u0c21\u0c3f"},
 gmx(){return"\u0c07\u0c2e\u0c47\u0c1c\u0c4d \u0c2b\u0c48\u0c32\u0c4d \u0c15\u0c3e\u0c26\u0c41."},
@@ -682,7 +682,7 @@ gpP(){return"Create new chat"},
 gq5(d){return"Reset"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gs,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gs":{"aD":[]}}'))};
-(a=>{a["EeTT7PYsomuIDBxelRTCOe0P0+U="]=a.current})($__dart_deferred_initializers__);
+y(A.Gr,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gr":{"aD":[]}}'))};
+(a=>{a["0uEovott7eR3e60N5TnExqDJk98="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_359.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKm(){return new A.Gn(B.dc("sl"))},
-Gn:function Gn(d){this.a=d}}
+cKn(){return new A.Gm(B.dc("sl"))},
+Gm:function Gm(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[45],A)
-A.Gn.prototype={
+A.Gm.prototype={
 gkP(){return"false"},
 gjF(){return"Ponovite geslo"},
 gmx(){return"Not an image file."},
@@ -682,7 +682,7 @@ gpP(){return"Create new chat"},
 gq5(d){return"Reset"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gn,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gn":{"aD":[]}}'))};
-(a=>{a["5N4o6dAWzd+bRx0CPyrWIIaCFKM="]=a.current})($__dart_deferred_initializers__);
+y(A.Gm,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gm":{"aD":[]}}'))};
+(a=>{a["6Mckjwgyp20XdmL0HvPcj7VfJWA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_353.part.js.map

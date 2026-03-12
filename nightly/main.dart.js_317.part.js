@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK1(){return new A.G3(B.dc("hr"))},
-G3:function G3(d){this.a=d}}
+cK2(){return new A.G2(B.dc("hr"))},
+G2:function G2(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[27],A)
-A.G3.prototype={
+A.G2.prototype={
 gkP(){return"true"},
 gjF(){return"Ponovi lozinku"},
 gmx(){return"Nije slikovna datoteka."},
@@ -682,7 +682,7 @@ gpP(){return"Create new chat"},
 gq5(d){return"Reset"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G3,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G3":{"aD":[]}}'))};
-(a=>{a["jxQamKMhP6zNuOlWiG6tMFD34z4="]=a.current})($__dart_deferred_initializers__);
+y(A.G2,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G2":{"aD":[]}}'))};
+(a=>{a["m4r3QD1MWsXmRPL3a0V1BvTZZOs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

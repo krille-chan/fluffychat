@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJV(){return new A.FX(B.dc("fi"))},
-FX:function FX(d){this.a=d}}
+cJW(){return new A.FW(B.dc("fi"))},
+FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[20],A)
-A.FX.prototype={
+A.FW.prototype={
 gkP(){return"v\xe4\xe4r\xe4"},
 gjF(){return"Salasana uudelleen"},
 gmx(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -682,7 +682,7 @@ gpP(){return"Create new chat"},
 gq5(d){return"Reset"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FX,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))};
-(a=>{a["z6OYFBsHIsTo/sti+2lp8KmA9LE="]=a.current})($__dart_deferred_initializers__);
+y(A.FW,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))};
+(a=>{a["67byFJXCsNhJ7VkvUh6hjUAbB1k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map

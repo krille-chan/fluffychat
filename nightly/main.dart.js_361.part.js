@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKt(){return new A.Gu(B.dc("tr"))},
-Gu:function Gu(d){this.a=d}}
+cKu(){return new A.Gt(B.dc("tr"))},
+Gt:function Gt(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[52],A)
-A.Gu.prototype={
+A.Gt.prototype={
 gkP(){return"false"},
 gjF(){return"Parolay\u0131 tekrarlay\u0131n"},
 gmx(){return"Bir resim dosyas\u0131 de\u011fil."},
@@ -682,8 +682,8 @@ gpP(){return"Create new chat"},
 gq5(d){return"Reset"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gu,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gu":{"aD":[]}}'))
+x(A.Gt,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gt":{"aD":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["mq/qNJpAs9CtZ0Btt+1v2hKFDMY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ZLugqLDnL2xSfJgnKIY1Dzb/cI4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_361.part.js.map
