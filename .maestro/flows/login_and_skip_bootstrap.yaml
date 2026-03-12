@@ -1,0 +1,8 @@
+appId: chat.fluffy.fluffychat
+---
+- runFlow: login.yaml 
+- tapOn: "Close"
+- tapOn: "Skip"
+- tapOn: 
+    text: "Do not show again"
+    optional: true

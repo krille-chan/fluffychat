@@ -1,0 +1,17 @@
+appId: chat.fluffy.fluffychat
+---
+#- runFlow: flows/login_and_skip_bootstrap.yaml 
+- tapOn:
+    id: "start_chat_fab"
+- tapOn: "Create group"
+- inputText: "PartyGroup42"
+- pressKey: "back"
+- tapOn: "Create a group and invite users"
+- tapOn: "Back"
+- tapOn:
+    id: "chat_input_field"
+- inputText: "Hello world"
+- tapOn: "Send"
+- assertVisible: "Hello world"
+- tapOn: "Back"
+#- runFlow: flows/logout.yaml

@@ -1,0 +1,7 @@
+executionOrder:
+  continueOnFailure: false
+  flowsOrder:
+    - initial_login
+    - flows/login_and_skip_bootstrap.yaml 
+    - create_room
+    - flows/logout.yaml
