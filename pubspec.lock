@@ -25,14 +25,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.13.6"
-  animations:
-    dependency: "direct main"
-    description:
-      name: animations
-      sha256: "18938cefd7dcc04e1ecac0db78973761a01e4bc2d6bfae0cfa596bfeac9e96ab"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.1.1"
   ansicolor:
     dependency: transitive
     description:

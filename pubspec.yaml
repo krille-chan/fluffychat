@@ -11,7 +11,6 @@ environment:
   flutter: 3.41.4
 
 dependencies:
-  animations: ^2.1.1
   archive: ^4.0.7
   async: ^2.11.0
   badges: ^3.1.2
