@@ -2672,7 +2672,6 @@
             }
         }
     },
-    "donate": "Egin dohaintza",
     "spaceMemberOf": "{spaces} guneko kidea",
     "@spaceMemberOf": {
         "type": "String",

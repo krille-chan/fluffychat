@@ -37,7 +37,8 @@ abstract class AppConfig {
   static const String supportUrl =
       'https://github.com/krille-chan/fluffychat/issues';
   static const String changelogUrl = 'https://fluffy.chat/en/changelog/';
-  static const String donationUrl = 'https://ko-fi.com/krille';
+  static const String donationUrl =
+      'https://fluffychat.im/faq/#how_can_i_support_fluffychat';
 
   static const Set<String> defaultReactions = {'👍', '❤️', '😂', '😮', '😢'};
 

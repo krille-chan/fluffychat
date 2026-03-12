@@ -2691,7 +2691,6 @@
             }
         }
     },
-    "donate": "Dona",
     "startedAPoll": "{username} ha creat una enquesta.",
     "@startedAPoll": {
         "type": "String",

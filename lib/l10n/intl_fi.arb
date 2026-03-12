@@ -3003,8 +3003,6 @@
             }
         }
     },
-    "donate": "Lahjoita",
-    "@donate": {},
     "startedAPoll": "{username} aloitti kyselyn.",
     "@startedAPoll": {
         "type": "String",

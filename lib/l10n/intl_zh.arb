@@ -2690,7 +2690,6 @@
             }
         }
     },
-    "donate": "捐赠",
     "startedAPoll": "{username} 启动了投票。",
     "@startedAPoll": {
         "type": "String",

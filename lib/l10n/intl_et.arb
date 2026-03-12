@@ -2690,7 +2690,6 @@
             }
         }
     },
-    "donate": "Toeta meid rahaliselt",
     "startedAPoll": "{username} koostas küsitluse.",
     "@startedAPoll": {
         "type": "String",

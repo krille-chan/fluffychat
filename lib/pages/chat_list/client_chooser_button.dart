@@ -69,17 +69,6 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      if (Matrix.of(context).backgroundPush?.firebaseEnabled != true)
-        PopupMenuItem(
-          value: SettingsAction.support,
-          child: Row(
-            children: [
-              const Icon(Icons.favorite, color: Colors.red),
-              const SizedBox(width: 18),
-              Text(L10n.of(context).donate),
-            ],
-          ),
-        ),
       PopupMenuItem(
         value: SettingsAction.settings,
         child: Row(
@@ -87,6 +76,16 @@ class ClientChooserButton extends StatelessWidget {
             const Icon(Icons.settings_outlined),
             const SizedBox(width: 18),
             Text(L10n.of(context).settings),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: SettingsAction.support,
+        child: Row(
+          children: [
+            Icon(Icons.volunteer_activism, color: Colors.red),
+            const SizedBox(width: 18),
+            Text(L10n.of(context).supportFluffyChat),
           ],
         ),
       ),

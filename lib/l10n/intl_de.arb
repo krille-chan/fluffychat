@@ -2697,7 +2697,6 @@
             }
         }
     },
-    "donate": "Spenden",
     "resume": "Fortsetzen",
     "startedAPoll": "{username} hat eine Umfrage gestartet.",
     "@startedAPoll": {

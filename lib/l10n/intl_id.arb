@@ -2691,7 +2691,6 @@
             }
         }
     },
-    "donate": "Donasi",
     "startedAPoll": "{username} memulai polling.",
     "@startedAPoll": {
         "type": "String",

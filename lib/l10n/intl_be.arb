@@ -2992,8 +2992,6 @@
             }
         }
     },
-    "donate": "Даць грошы",
-    "@donate": {},
     "startedAPoll": "{username} пачаў апытанне.",
     "@startedAPoll": {
         "type": "String",

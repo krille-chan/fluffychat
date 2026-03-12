@@ -1392,7 +1392,6 @@
             }
         }
     },
-    "donate": "Mudd tawsa",
     "startedAPoll": "{username}yessenker tafrent.",
     "@startedAPoll": {
         "type": "String",
