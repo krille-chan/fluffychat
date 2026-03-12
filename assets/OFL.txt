@@ -35,7 +35,7 @@ copyright statement(s).
 distributed by the Copyright Holder(s).
 
 "Modified Version" refers to any derivative made by adding to, deleting,
-or substituting -- in part "../assets copy"or in whole -- any of the components of the
+or substituting -- in part or in whole -- any of the components of the
 Original Version, by changing formats or by porting the Font Software to a
 new environment.
 
@@ -69,7 +69,7 @@ Modified Version, except to acknowledge the contribution(s) of the
 Copyright Holder(s) and the Author(s) or with their explicit written
 permission.
 
-5) The Font Software, modified or unmodified, in part "../assets copy"or in whole,
+5) The Font Software, modified or unmodified, in part or in whole,
 must be distributed entirely under this license, and must not be
 distributed under any other license. The requirement for fonts to
 remain under this license does not apply to any document created
