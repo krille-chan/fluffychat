@@ -462,20 +462,17 @@ class ChatController extends State<ChatPageWithRoom>
     scrollUpBannerEventId = eventId;
   });
 
+  bool firstUpdateReceived = false;
+
   void updateView() {
     if (!mounted) return;
     setReadMarker();
-    setState(() {});
+    setState(() {
+      firstUpdateReceived = true;
+    });
   }
 
   Future<void>? loadTimelineFuture;
-
-  int? animateInEventIndex;
-
-  void onInsert(int i) {
-    // setState will be called by updateView() anyway
-    if (timeline?.allowNewEvent == true) animateInEventIndex = i;
-  }
 
   Future<void> _getTimeline({String? eventContextId}) async {
     await Matrix.of(context).client.roomsLoading;
@@ -489,15 +486,11 @@ class ChatController extends State<ChatPageWithRoom>
       timeline = await room.getTimeline(
         onUpdate: updateView,
         eventContextId: eventContextId,
-        onInsert: onInsert,
       );
     } catch (e, s) {
       Logs().w('Unable to load timeline on event ID $eventContextId', e, s);
       if (!mounted) return;
-      timeline = await room.getTimeline(
-        onUpdate: updateView,
-        onInsert: onInsert,
-      );
+      timeline = await room.getTimeline(onUpdate: updateView);
       if (!mounted) return;
       if (e is TimeoutException || e is IOException) {
         _showScrollUpMaterialBanner(eventContextId!);
