@@ -683,7 +683,7 @@ gpS(){return"\u65b0\u5efa\u804a\u5929"},
 gqa(d){return"\u91cd\u7f6e"},
 gpL(){return"Support FluffyChat"},
 gpK(){return"Support"},
-gpo(){return"FluffyChat needs YOUR help!\nFluffyChat will always be free, but development and hosting still cost money. The future of the project depends on support from people like you."},
+gpo(){return"\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f FluffyChat needs YOUR help! \u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\n\nFluffyChat will always be free, but development and hosting still cost money.\nThe future of the project depends on support from people like you."},
 gpJ(){return"Skip supporting FluffyChat"},
 gq_(){return"I do not want to support"},
 gpZ(){return"I already support FluffyChat"},
@@ -1292,5 +1292,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Bi,C.aD)
 y(A.Gz,A.Bi)})()
 B.dI(b.typeUniverse,JSON.parse('{"Bi":{"aD":[]},"Gz":{"aD":[]}}'))};
-(a=>{a["iWDCYHOB08BbWN5GxWrME8Aho3I="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["7avFUID7chVsUFfeMvmFjEMB4/A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
