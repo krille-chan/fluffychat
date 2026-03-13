@@ -595,6 +595,25 @@ class ChatListController extends State<ChatList>
               ],
             ),
           ),
+          PopupMenuItem(
+            value: ChatContextAction.lowPriority,
+            child: Row(
+              mainAxisSize: .min,
+              children: [
+                Icon(
+                  room.isLowPriority
+                      ? Icons.low_priority
+                      : Icons.low_priority_outlined,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  room.isLowPriority
+                      ? L10n.of(context).unsetLowPriority
+                      : L10n.of(context).setLowPriority,
+                ),
+              ],
+            ),
+          ),
           if (spacesWithPowerLevels.isNotEmpty)
             PopupMenuItem(
               value: ChatContextAction.addToSpace,
@@ -728,6 +747,12 @@ class ChatListController extends State<ChatList>
           context: context,
           future: () => space.setSpaceChild(room.id),
         );
+      case ChatContextAction.lowPriority:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => room.setLowPriority(!room.isLowPriority),
+        );
+        return;
     }
   }
 
@@ -937,6 +962,7 @@ enum ChatContextAction {
   open,
   goToSpace,
   favorite,
+  lowPriority,
   markUnread,
   mute,
   leave,
