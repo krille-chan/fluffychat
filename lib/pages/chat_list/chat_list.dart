@@ -408,10 +408,13 @@ class ChatListController extends State<ChatList>
 
     if (DateTime.now().difference(lastSeenSupportBanner) >=
         Duration(days: 6 * 7)) {
+      final theme = Theme.of(context);
       final messenger = ScaffoldMessenger.of(context);
       messenger.showMaterialBanner(
         MaterialBanner(
+          backgroundColor: theme.colorScheme.errorContainer,
           leading: CloseButton(
+            color: theme.colorScheme.onErrorContainer,
             onPressed: () async {
               final okCancelResult = await showOkCancelAlertDialog(
                 context: context,
@@ -436,7 +439,10 @@ class ChatListController extends State<ChatList>
           ),
           content: Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(L10n.of(context).fluffyChatSupportBannerMessage),
+            child: Text(
+              L10n.of(context).fluffyChatSupportBannerMessage,
+              style: TextStyle(color: theme.colorScheme.onErrorContainer),
+            ),
           ),
           actions: [
             TextButton(
@@ -446,7 +452,10 @@ class ChatListController extends State<ChatList>
                   'https://fluffychat.im/faq/#how_can_i_support_fluffychat',
                 );
               },
-              child: Text(L10n.of(context).support),
+              child: Text(
+                L10n.of(context).support,
+                style: TextStyle(color: theme.colorScheme.onErrorContainer),
+              ),
             ),
           ],
         ),
@@ -586,6 +595,25 @@ class ChatListController extends State<ChatList>
               ],
             ),
           ),
+          PopupMenuItem(
+            value: ChatContextAction.lowPriority,
+            child: Row(
+              mainAxisSize: .min,
+              children: [
+                Icon(
+                  room.isLowPriority
+                      ? Icons.low_priority
+                      : Icons.low_priority_outlined,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  room.isLowPriority
+                      ? L10n.of(context).unsetLowPriority
+                      : L10n.of(context).setLowPriority,
+                ),
+              ],
+            ),
+          ),
           if (spacesWithPowerLevels.isNotEmpty)
             PopupMenuItem(
               value: ChatContextAction.addToSpace,
@@ -719,6 +747,12 @@ class ChatListController extends State<ChatList>
           context: context,
           future: () => space.setSpaceChild(room.id),
         );
+      case ChatContextAction.lowPriority:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => room.setLowPriority(!room.isLowPriority),
+        );
+        return;
     }
   }
 
@@ -928,6 +962,7 @@ enum ChatContextAction {
   open,
   goToSpace,
   favorite,
+  lowPriority,
   markUnread,
   mute,
   leave,

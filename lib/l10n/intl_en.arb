@@ -2787,5 +2787,7 @@
     "fluffyChatSupportBannerMessage": "FluffyChat needs YOUR help!\n❤️❤️❤️\nFluffyChat will always be free, but development and hosting still cost money.\nThe future of the project depends on support from people like you.",
     "skipSupportingFluffyChat": "Skip supporting FluffyChat",
     "iDoNotWantToSupport": "I do not want to support",
-    "iAlreadySupportFluffyChat": "I already support FluffyChat"
+    "iAlreadySupportFluffyChat": "I already support FluffyChat",
+    "setLowPriority": "Set low priority",
+    "unsetLowPriority": "Unset low priority"
 }

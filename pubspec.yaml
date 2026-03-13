@@ -8,7 +8,6 @@ version: 2.4.0+3546
 
 environment:
   sdk: ">=3.11.1 <4.0.0"
-  flutter: "3.41.4"
 
 dependencies:
   archive: ^4.0.7
@@ -52,7 +51,7 @@ dependencies:
   just_audio: ^0.10.5
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix: ^6.1.1
+  matrix: ^6.2.0
   mime: ^2.0.0
   native_imaging: ^0.4.0
   opus_caf_converter_dart: ^1.0.1
