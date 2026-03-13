@@ -7,8 +7,8 @@ publish_to: none
 version: 2.4.0+3546
 
 environment:
-  sdk: ">=3.10.0 <4.0.0"
-  flutter: 3.41.4
+  sdk: ">=3.11.1 <4.0.0"
+  flutter: "3.41.4"
 
 dependencies:
   archive: ^4.0.7
