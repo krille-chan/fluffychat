@@ -681,12 +681,12 @@ gpF(){return"\u6743\u9650\u7ea7\u522b\u5b9a\u4e49\u7fa4\u6210\u5458\u5728\u8fd9\
 gdM(){return"\u6240\u6709\u8005"},
 gpS(){return"\u65b0\u5efa\u804a\u5929"},
 gqa(d){return"\u91cd\u7f6e"},
-gpL(){return"Support FluffyChat"},
-gpK(){return"Support"},
-gpo(){return"\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f FluffyChat needs YOUR help! \u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\n\nFluffyChat will always be free, but development and hosting still cost money.\nThe future of the project depends on support from people like you."},
-gpJ(){return"Skip supporting FluffyChat"},
-gq_(){return"I do not want to support"},
-gpZ(){return"I already support FluffyChat"},
+gpL(){return"\u652f\u6301 FluffyChat"},
+gpK(){return"\u652f\u6301"},
+gpo(){return"\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f FluffyChat \u9700\u8981\u60a8\u7684\u5e2e\u52a9\uff01 \u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\n\nFluffyChat \u5c06\u59cb\u7ec8\u514d\u8d39\uff0c\u4f46\u5f00\u53d1\u548c\u6258\u7ba1\u4ecd\u7136\u8981\u82b1\u94b1\u3002\n\u9879\u76ee\u7684\u672a\u6765\u4ef0\u8d56\u50cf\u60a8\u8fd9\u6837\u7684\u4eba\u7684\u652f\u6301\u3002"},
+gpJ(){return"\u8df3\u8fc7\u652f\u6301 FluffyChar"},
+gq_(){return"\u6211\u4e0d\u60f3\u652f\u6301"},
+gpZ(){return"\u6211\u5df2\u652f\u6301 FluffyChat"},
 A(d,e){return this.gb7(this).$1(e)}}
 A.Gz.prototype={
 gkP(){return"false"},
@@ -1292,5 +1292,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Bi,C.aD)
 y(A.Gz,A.Bi)})()
 B.dI(b.typeUniverse,JSON.parse('{"Bi":{"aD":[]},"Gz":{"aD":[]}}'))};
-(a=>{a["7avFUID7chVsUFfeMvmFjEMB4/A="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Eeuv4FhOT8Ow9NvLFWu6CgC5Gos="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
