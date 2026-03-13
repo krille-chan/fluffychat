@@ -14,7 +14,7 @@ jobs:
       - run: git diff --exit-code
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version-file: pubspec.yaml
+          flutter-version-file: .tool_versions.yaml
           cache: true
       - name: Check for unused translations
         run: flutter pub run translations_cleaner list-unused-terms -a
@@ -52,7 +52,7 @@ jobs:
       - uses: ./.github/actions/free_up_space
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version-file: pubspec.yaml
+          flutter-version-file: .tool_versions.yaml
           cache: true
       - uses: moonrepo/setup-rust@v1
         with:
@@ -80,7 +80,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version-file: pubspec.yaml
+          flutter-version-file: .tool_versions.yaml
           cache: true
       - uses: moonrepo/setup-rust@v1
       - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
@@ -104,7 +104,7 @@ jobs:
       - uses: actions/checkout@v6
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install git wget curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libwebkit2gtk-4.1-dev -y
-      - run: echo "FLUTTER_VERSION=$(yq '.environment.flutter' < pubspec.yaml)" >> $GITHUB_ENV
+      - run: echo "FLUTTER_VERSION=$(yq '.environment.flutter' < .tool_versions.yaml)" >> $GITHUB_ENV
       - name: Install Flutter
         run: |
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
@@ -120,7 +120,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version-file: pubspec.yaml
+          flutter-version-file: .tool_versions.yaml
           cache: true
       - name: Use Xcode 16.4
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
@@ -194,7 +194,7 @@ jobs:
             echo "Generated AVD snapshot for caching."
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version-file: pubspec.yaml
+          flutter-version-file: .tool_versions.yaml
           cache: true
       - uses: remarkablemark/setup-maestro-cli@v1
       - name: Load integration test env
