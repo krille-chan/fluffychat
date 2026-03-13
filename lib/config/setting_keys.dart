@@ -66,7 +66,9 @@ enum AppSettings<T> {
     'https://fluffychat.im/en/privacy',
   ),
   tos<String>('chat.fluffy.tos_url', 'https://fluffychat.im/en/tos'),
-  sendTimelineEventTimeout<int>('chat.fluffy.send_timeline_event_timeout', 15);
+  sendTimelineEventTimeout<int>('chat.fluffy.send_timeline_event_timeout', 15),
+  lastSeenSupportBanner<int>('chat.fluffy.last_seen_support_banner', 0),
+  supportBannerOptOut<bool>('chat.fluffy.support_banner_opt_out', false);
 
   final String key;
   final T defaultValue;
