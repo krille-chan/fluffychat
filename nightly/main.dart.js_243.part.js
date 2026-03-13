@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJQ(){return new A.FJ(B.dc("be"))},
-FJ:function FJ(d){this.a=d}}
+cJQ(){return new A.FK(B.dc("be"))},
+FK:function FK(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[6],A)
-A.FJ.prototype={
+A.FK.prototype={
 gkP(){return"\u0430\u0434\u043a\u043b\u044e\u0447\u0430\u043d\u0430"},
 gjF(){return"\u041f\u0430\u045e\u0442\u0430\u0440\u044b\u0446\u0435 \u043f\u0430\u0440\u043e\u043b\u044c"},
 gmx(){return"\u041d\u0435 \u0444\u0430\u0439\u043b \u0432\u044b\u044f\u0432\u044b."},
@@ -689,7 +689,7 @@ gpF(){return"Set low priority"},
 gqc(){return"Unset low priority"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FJ,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FJ":{"aD":[]}}'))};
-(a=>{a["Srl7scYi/LvFm5E1zzunYYmxcR4="]=a.current})($__dart_deferred_initializers__);
+y(A.FK,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FK":{"aD":[]}}'))};
+(a=>{a["NxXvonN3ERswZ5pnRdITxPABRII="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_243.part.js.map

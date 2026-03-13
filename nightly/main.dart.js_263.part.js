@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJT(){return new A.FM(B.dc("ca"))},
-FM:function FM(d){this.a=d}}
+cJT(){return new A.FN(B.dc("ca"))},
+FN:function FN(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[9],A)
-A.FM.prototype={
+A.FN.prototype={
 gkP(){return"true"},
 gjF(){return"Repetiu la contrasenya"},
 gmx(){return"No \xe9s un arxiu d'image."},
@@ -689,7 +689,7 @@ gpF(){return"Set low priority"},
 gqc(){return"Unset low priority"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FM,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FM":{"aD":[]}}'))};
-(a=>{a["h8U5lPYhTSWfOICkPo0cmZ4Smg4="]=a.current})($__dart_deferred_initializers__);
+y(A.FN,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FN":{"aD":[]}}'))};
+(a=>{a["Ainr+2LAsoqyUZEV092/b51EdBs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_263.part.js.map

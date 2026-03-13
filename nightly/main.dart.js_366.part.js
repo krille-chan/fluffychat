@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKE(){return new A.Gw(B.dc("uz"))},
-Gw:function Gw(d){this.a=d}}
+cKE(){return new A.Gx(B.dc("uz"))},
+Gx:function Gx(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[54],A)
-A.Gw.prototype={
+A.Gx.prototype={
 gkP(){return"true"},
 gjF(){return"Parolni takrorlang"},
 gmx(){return"Rasm fayli emas."},
@@ -689,8 +689,8 @@ gpF(){return"Set low priority"},
 gqc(){return"Unset low priority"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gw,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gw":{"aD":[]}}'))
+x(A.Gx,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gx":{"aD":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["y7wttw91DhqvyYhYSrV4VbL/ViE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3XX6FwIFSx5inqXR3KQJSyZW7Kg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_366.part.js.map

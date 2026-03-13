@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJX(){return new A.FQ(B.dc("el"))},
-FQ:function FQ(d){this.a=d}}
+cJX(){return new A.FR(B.dc("el"))},
+FR:function FR(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[13],A)
-A.FQ.prototype={
+A.FR.prototype={
 gkP(){return"\u03a8\u03b5\u03c5\u03b4\u03ae\u03c2"},
 gjF(){return"\u0395\u03c0\u03b1\u03bd\u03ac\u03bb\u03b7\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gmx(){return"\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03b5\u03b9\u03ba\u03cc\u03bd\u03b1\u03c2."},
@@ -689,7 +689,7 @@ gpF(){return"Set low priority"},
 gqc(){return"Unset low priority"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FQ,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FQ":{"aD":[]}}'))};
-(a=>{a["HHGiYTiEsLqqNA3Jsuto9gwWO8k="]=a.current})($__dart_deferred_initializers__);
+y(A.FR,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FR":{"aD":[]}}'))};
+(a=>{a["6TqbYxpDt7R143PhbI3SLJJt+B8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_292.part.js.map

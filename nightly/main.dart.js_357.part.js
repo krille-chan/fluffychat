@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKx(){return new A.Gp(B.dc("sr"))},
-Gp:function Gp(d){this.a=d}}
+cKx(){return new A.Gq(B.dc("sr"))},
+Gq:function Gq(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[47],A)
-A.Gp.prototype={
+A.Gq.prototype={
 gkP(){return"false"},
 gjF(){return"Ponovite lozinku"},
 gmx(){return"Not an image file."},
@@ -689,7 +689,7 @@ gpF(){return"Set low priority"},
 gqc(){return"Unset low priority"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gp,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gp":{"aD":[]}}'))};
-(a=>{a["0F+4uEhKne0lUVU2z6dQs/Kq3pw="]=a.current})($__dart_deferred_initializers__);
+y(A.Gq,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gq":{"aD":[]}}'))};
+(a=>{a["70zG1PW0a+epEYAMqQ2B/Jf6qds="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_357.part.js.map

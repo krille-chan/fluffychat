@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKo(){return new A.Gh(B.dc("pl"))},
-Gh:function Gh(d){this.a=d}}
+cKo(){return new A.Gi(B.dc("pl"))},
+Gi:function Gi(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[41],A)
-A.Gh.prototype={
+A.Gi.prototype={
 gkP(){return"false"},
 gjF(){return"Powt\xf3rz has\u0142o"},
 gmx(){return"To nie jest plik obrazu."},
@@ -689,7 +689,7 @@ gpF(){return"Set low priority"},
 gqc(){return"Unset low priority"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gh,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gh":{"aD":[]}}'))};
-(a=>{a["mxxFTD32b9uk033qnmG5q/q8NMQ="]=a.current})($__dart_deferred_initializers__);
+y(A.Gi,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gi":{"aD":[]}}'))};
+(a=>{a["4GtEHmeo7Q1Txco93wXBCXzYQS8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_348.part.js.map
