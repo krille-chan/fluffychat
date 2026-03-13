@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -83,7 +82,7 @@ class ClientChooserButton extends StatelessWidget {
         value: SettingsAction.support,
         child: Row(
           children: [
-            Icon(Icons.volunteer_activism, color: Colors.red),
+            Icon(Icons.favorite, color: Colors.red),
             const SizedBox(width: 18),
             Text(L10n.of(context).supportFluffyChat),
           ],
@@ -223,7 +222,9 @@ class ClientChooserButton extends StatelessWidget {
           FluffyShare.shareInviteLink(context);
           break;
         case SettingsAction.support:
-          launchUrlString(AppConfig.donationUrl);
+          launchUrlString(
+            'https://fluffychat.im/faq/#how_can_i_support_fluffychat',
+          );
           break;
         case SettingsAction.settings:
           context.go('/rooms/settings');

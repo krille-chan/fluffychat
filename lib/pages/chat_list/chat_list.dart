@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
@@ -366,6 +367,7 @@ class ChatListController extends State<ChatList>
     _hackyWebRTCFixForWeb();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
+        _showLastSeenSupportBanner();
         searchServer = Matrix.of(
           context,
         ).store.getString(_serverStoreNamespace);
@@ -388,6 +390,73 @@ class ChatListController extends State<ChatList>
     _intentFileStreamSubscription?.cancel();
     scrollController.removeListener(_onScroll);
     super.dispose();
+  }
+
+  Future<void> _showLastSeenSupportBanner() async {
+    if (AppSettings.supportBannerOptOut.value) return;
+
+    if (AppSettings.lastSeenSupportBanner.value == 0) {
+      await AppSettings.lastSeenSupportBanner.setItem(
+        DateTime.now().millisecondsSinceEpoch,
+      );
+      return;
+    }
+
+    final lastSeenSupportBanner = DateTime.fromMillisecondsSinceEpoch(
+      AppSettings.lastSeenSupportBanner.value,
+    );
+
+    if (DateTime.now().difference(lastSeenSupportBanner) >=
+        Duration(days: 6 * 7)) {
+      final messenger = ScaffoldMessenger.of(context);
+      messenger.showMaterialBanner(
+        MaterialBanner(
+          leading: CloseButton(
+            onPressed: () async {
+              final okCancelResult = await showOkCancelAlertDialog(
+                context: context,
+                title: L10n.of(context).skipSupportingFluffyChat,
+                message: L10n.of(context).fluffyChatSupportBannerMessage,
+                okLabel: L10n.of(context).iDoNotWantToSupport,
+                cancelLabel: L10n.of(context).iAlreadySupportFluffyChat,
+                isDestructive: true,
+              );
+              switch (okCancelResult) {
+                case null:
+                  return;
+                case OkCancelResult.ok:
+                  messenger.clearMaterialBanners();
+                  return;
+                case OkCancelResult.cancel:
+                  messenger.clearMaterialBanners();
+                  await AppSettings.supportBannerOptOut.setItem(true);
+                  return;
+              }
+            },
+          ),
+          content: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Text(L10n.of(context).fluffyChatSupportBannerMessage),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                messenger.clearMaterialBanners();
+                launchUrlString(
+                  'https://fluffychat.im/faq/#how_can_i_support_fluffychat',
+                );
+              },
+              child: Text(L10n.of(context).support),
+            ),
+          ],
+        ),
+      );
+      await AppSettings.lastSeenSupportBanner.setItem(
+        DateTime.now().millisecondsSinceEpoch,
+      );
+    }
+
+    return;
   }
 
   Future<void> chatContextAction(
