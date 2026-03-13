@@ -578,42 +578,44 @@ class ChatListController extends State<ChatList>
               ],
             ),
           ),
-          PopupMenuItem(
-            value: ChatContextAction.favorite,
-            child: Row(
-              mainAxisSize: .min,
-              children: [
-                Icon(
-                  room.isFavourite ? Icons.push_pin : Icons.push_pin_outlined,
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  room.isFavourite
-                      ? L10n.of(context).unpin
-                      : L10n.of(context).pin,
-                ),
-              ],
+          if (!room.isLowPriority)
+            PopupMenuItem(
+              value: ChatContextAction.favorite,
+              child: Row(
+                mainAxisSize: .min,
+                children: [
+                  Icon(
+                    room.isFavourite ? Icons.push_pin : Icons.push_pin_outlined,
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    room.isFavourite
+                        ? L10n.of(context).unpin
+                        : L10n.of(context).pin,
+                  ),
+                ],
+              ),
             ),
-          ),
-          PopupMenuItem(
-            value: ChatContextAction.lowPriority,
-            child: Row(
-              mainAxisSize: .min,
-              children: [
-                Icon(
-                  room.isLowPriority
-                      ? Icons.low_priority
-                      : Icons.low_priority_outlined,
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  room.isLowPriority
-                      ? L10n.of(context).unsetLowPriority
-                      : L10n.of(context).setLowPriority,
-                ),
-              ],
+          if (!room.isFavourite)
+            PopupMenuItem(
+              value: ChatContextAction.lowPriority,
+              child: Row(
+                mainAxisSize: .min,
+                children: [
+                  Icon(
+                    room.isLowPriority
+                        ? Icons.low_priority
+                        : Icons.low_priority_outlined,
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    room.isLowPriority
+                        ? L10n.of(context).unsetLowPriority
+                        : L10n.of(context).setLowPriority,
+                  ),
+                ],
+              ),
             ),
-          ),
           if (spacesWithPowerLevels.isNotEmpty)
             PopupMenuItem(
               value: ChatContextAction.addToSpace,
