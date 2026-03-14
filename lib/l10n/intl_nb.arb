@@ -2799,5 +2799,11 @@
         "description": "This should be a very short string because there is not much space in the button!"
     },
     "createNewChat": "Opprett ny chat",
-    "reset": "Nullstill"
+    "reset": "Nullstill",
+    "supportFluffyChat": "Støtt FluffyChat",
+    "support": "Støtte",
+    "fluffyChatSupportBannerMessage": "FluffyChat trenger DIN hjelp!\n❤️❤️❤️\nFluffyChat vil alltid være gratis, men utvikling og drift koster fortsatt penger. \nProsjektets fremtid avhenger av støtte fra folk som deg.",
+    "skipSupportingFluffyChat": "Hopp over støtte til FluffyChat",
+    "iDoNotWantToSupport": "Jeg ønsker ikke å støtte",
+    "iAlreadySupportFluffyChat": "Jeg støtter allerede FluffyChat"
 }
