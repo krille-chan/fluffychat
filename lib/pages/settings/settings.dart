@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
+import 'package:fluffychat/widgets/avatar_crop_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../../widgets/matrix.dart';
 import 'settings_view.dart';
@@ -139,10 +141,16 @@ class SettingsController extends State<Settings> {
       final result = await selectFiles(context, type: FileType.image);
       final pickedFile = result.firstOrNull;
       if (pickedFile == null) return;
-      file = MatrixFile(
-        bytes: await pickedFile.readAsBytes(),
-        name: pickedFile.name,
-      );
+      var bytes = await pickedFile.readAsBytes();
+      if (PlatformInfos.isDesktop || PlatformInfos.isWeb) {
+        final cropped = await showDialog<Uint8List>(
+          context: context,
+          builder: (context) => AvatarCropDialog(image: bytes),
+        );
+        if (cropped == null) return;
+        bytes = cropped;
+      }
+      file = MatrixFile(bytes: bytes, name: pickedFile.name);
     }
     final success = await showFutureLoadingDialog(
       context: context,

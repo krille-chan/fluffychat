@@ -217,6 +217,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.15.0"
+  crop_image:
+    dependency: "direct main"
+    description:
+      name: crop_image
+      sha256: "27cbce1685a595efee62caab81c98b49b636f765c1da86353f58f5b2bf2775d8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.17"
   cross_file:
     dependency: "direct main"
     description:
