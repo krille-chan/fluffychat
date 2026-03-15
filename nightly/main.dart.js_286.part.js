@@ -664,7 +664,7 @@ gpH(){return"Anmelden"},
 gpk(){return"Neues Konto erstellen"},
 gpJ(){return"FluffyChat ist dezentral! W\xe4hle einen Server, auf dem du dein Konto erstellen m\xf6chtest, und los geht's!"},
 gpI(){return"Du hast bereits ein Konto bei Matrix? Willkommen zur\xfcck! W\xe4hle deinen Homeserver aus und melde dich an."},
-gpO(){return"Mit FluffyChat kannst du mit deinen Freunden chatten. Es ist ein sicherer, dezentralisierter [Matrix]-Messenger! Erfahre mehr auf https://matrix.org, wenn du m\xf6chtest, oder melde dich einfach an."},
+gpO(){return"Mit FluffyChat kannst du mit deinen Freunden chatten. Es ist ein sicherer, dezentralisierter [Matrix]-Messenger! Erfahre mehr auf https://matrix.org wenn du m\xf6chtest, oder melde dich einfach an."},
 gpz(){return"Der Vorgang wurde abgebrochen."},
 gq2(d){return"Beitreten"},
 gpE(){return"Homeserver-Adresse suchen oder eingeben"},
@@ -692,5 +692,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FQ,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FQ":{"aD":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["bfgB3cdLoO+DcQ1pRaYvIu3lyIA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["AAJwcefq9Ded7x2c+kH+KxnWqRU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_286.part.js.map

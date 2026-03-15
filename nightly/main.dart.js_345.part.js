@@ -679,17 +679,17 @@ gpG(){return"Styrkeniv\xe5er definerer hva et medlem har lov til \xe5 gj\xf8re i
 gdM(){return"Eier"},
 gpT(){return"Opprett ny chat"},
 gqb(d){return"Nullstill"},
-gpM(){return"Support FluffyChat"},
-gpL(){return"Support"},
-gpo(){return"FluffyChat needs YOUR help!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat will always be free, but development and hosting still cost money.\nThe future of the project depends on support from people like you."},
-gpK(){return"Skip supporting FluffyChat"},
-gq0(){return"I do not want to support"},
-gq_(){return"I already support FluffyChat"},
+gpM(){return"St\xf8tt FluffyChat"},
+gpL(){return"St\xf8tte"},
+gpo(){return"FluffyChat trenger DIN hjelp!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat vil alltid v\xe6re gratis, men utvikling og drift koster fortsatt penger. \nProsjektets fremtid avhenger av st\xf8tte fra folk som deg."},
+gpK(){return"Hopp over st\xf8tte til FluffyChat"},
+gq0(){return"Jeg \xf8nsker ikke \xe5 st\xf8tte"},
+gq_(){return"Jeg st\xf8tter allerede FluffyChat"},
 gpF(){return"Set low priority"},
 gqc(){return"Unset low priority"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gg,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gg":{"aD":[]}}'))};
-(a=>{a["o4hU4/ZeQIqU2Q6OL2x8ArLPJLA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3AJoGE2ICs62yjcg3fnF4vNbQQ0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

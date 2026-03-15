@@ -679,9 +679,9 @@ gpG(){return"Rechtenniveau's defini\xebren wat een persoon mag doen in deze chat
 gdM(){return"Eigenaar"},
 gpT(){return"Cre\xeber nieuw chat"},
 gqb(d){return"Herstellen"},
-gpM(){return"Support FluffyChat"},
-gpL(){return"Support"},
-gpo(){return"Fluffy Chat heeft JOUW hulp nodig. _\n\nFluffyChat zal altijd gratis zijn, maar ontwikkeling en hosting kost geld.\nDe toekomst van het project hangt af van steun van mensen zoals jij."},
+gpM(){return"FluffyChat steunen"},
+gpL(){return"Steunen"},
+gpo(){return"Fluffy Chat heeft JOUW hulp nodig. _\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat zal altijd gratis zijn, maar ontwikkeling en hosting kost geld.\nDe toekomst van het project hangt af van steun van mensen zoals jij."},
 gpK(){return"FluffyChat steunen overslaan"},
 gq0(){return"Ik wil niet ondersteunen"},
 gq_(){return"Ik steun FluffyChat al"},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gh,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gh":{"aD":[]}}'))};
-(a=>{a["x3JBUQMtXILWDuqAZ1Czb/qacJs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Rpr8DOzLPJCgEHC22sWCwIURZpk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_347.part.js.map

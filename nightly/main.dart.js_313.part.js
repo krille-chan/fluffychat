@@ -679,12 +679,12 @@ gpG(){return"Sainmh\xedn\xedonn leibh\xe9il chumhachta cad a cheada\xedtear do b
 gdM(){return"\xdain\xe9ir"},
 gpT(){return"Cruthaigh comhr\xe1 nua"},
 gqb(d){return"Athshocraigh"},
-gpM(){return"Support FluffyChat"},
-gpL(){return"Support"},
-gpo(){return"FluffyChat needs YOUR help!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat will always be free, but development and hosting still cost money.\nThe future of the project depends on support from people like you."},
-gpK(){return"Skip supporting FluffyChat"},
-gq0(){return"I do not want to support"},
-gq_(){return"I already support FluffyChat"},
+gpM(){return"Tacaigh le FluffyChat"},
+gpL(){return"Taca\xedocht"},
+gpo(){return"T\xe1 DO chabhair ag teast\xe1il \xf3 FluffyChat!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nBeidh FluffyChat saor in aisce i gc\xf3na\xed, ach cosna\xedonn forbairt agus \xf3st\xe1il airgead f\xf3s.\nBraitheann todhcha\xed an tionscadail ar thaca\xedocht \xf3 dhaoine cos\xfail leatsa."},
+gpK(){return"Seachain tac\xfa le FluffyChat"},
+gq0(){return"N\xedlim ag iarraidh tac\xfa leis"},
+gq_(){return"Taca\xedm le FluffyChat cheana f\xe9in"},
 gpF(){return"Set low priority"},
 gqc(){return"Unset low priority"},
 A(d,e){return this.gb7(this).$1(e)}}
@@ -692,5 +692,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G0,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G0":{"aD":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["WXXh4QIgFfkOhvNFP6/dXPmnG7s="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BHUrgsd5osKc7mZNx6Msec1DBzU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

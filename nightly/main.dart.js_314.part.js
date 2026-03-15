@@ -678,18 +678,18 @@ gq8(){return"Nivel responsabilidade"},
 gpG(){return"Os niveis de responsabilidade definen o que pode facer unha usuaria na sala, normalmente var\xeda de 0 a 100."},
 gdM(){return"Propietaria"},
 gpT(){return"Crear nova conversa"},
-gqb(d){return"Reset"},
-gpM(){return"Support FluffyChat"},
-gpL(){return"Support"},
-gpo(){return"FluffyChat needs YOUR help!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat will always be free, but development and hosting still cost money.\nThe future of the project depends on support from people like you."},
-gpK(){return"Skip supporting FluffyChat"},
-gq0(){return"I do not want to support"},
-gq_(){return"I already support FluffyChat"},
-gpF(){return"Set low priority"},
-gqc(){return"Unset low priority"},
+gqb(d){return"Restablecer"},
+gpM(){return"Apoia a FluffyChat"},
+gpL(){return"Axuda"},
+gpo(){return"FluffyChat precisa a T\xdaA axuda!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat vai ser sempre gratu\xedta, pero o desenvolvemento e a hospedaxe costan cartos.\nO futuro do proxecto depende da axuda de persoas coma ti."},
+gpK(){return"Omitir apoiar a FluffyChat"},
+gq0(){return"Non quero axudar"},
+gq_(){return"Xa apoiei a FluffyChat"},
+gpF(){return"Establecer prioridade baixa"},
+gqc(){return"Non establecer prioridade baixa"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G1,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G1":{"aD":[]}}'))};
-(a=>{a["NmAFBg3ZBv4pPBvcdnzBHAmNuKM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["L6xKv5dNyPI0NH7upRUHvIl6eqU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map
