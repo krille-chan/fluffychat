@@ -2792,8 +2792,10 @@
     },
     "createNewChat": "Creëer nieuw chat",
     "reset": "Herstellen",
-    "fluffyChatSupportBannerMessage": "Fluffy Chat heeft JOUW hulp nodig. _\n\nFluffyChat zal altijd gratis zijn, maar ontwikkeling en hosting kost geld.\nDe toekomst van het project hangt af van steun van mensen zoals jij.",
+    "fluffyChatSupportBannerMessage": "Fluffy Chat heeft JOUW hulp nodig. _\n❤️❤️❤️\nFluffyChat zal altijd gratis zijn, maar ontwikkeling en hosting kost geld.\nDe toekomst van het project hangt af van steun van mensen zoals jij.",
     "skipSupportingFluffyChat": "FluffyChat steunen overslaan",
     "iDoNotWantToSupport": "Ik wil niet ondersteunen",
-    "iAlreadySupportFluffyChat": "Ik steun FluffyChat al"
+    "iAlreadySupportFluffyChat": "Ik steun FluffyChat al",
+    "supportFluffyChat": "FluffyChat steunen",
+    "support": "Steunen"
 }

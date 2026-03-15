@@ -98,7 +98,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "askSSSSSign": "Selleks, et teist osapoolt identifitseerivat allkirja anda, palun sisesta oma turvahoidla paroolifraas või taastevõti.",
+    "askSSSSSign": "Selleks, et teist osapoolt identifitseerivat allkirja anda, palun sisesta oma turvahoidla salafraas või taastevõti.",
     "@askSSSSSign": {
         "type": "String",
         "placeholders": {}
@@ -339,7 +339,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "changeTheNameOfTheGroup": "Muuda vestlusrühma nime",
+    "changeTheNameOfTheGroup": "Muuda jututoa nime",
     "@changeTheNameOfTheGroup": {
         "type": "String",
         "placeholders": {}
@@ -489,7 +489,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "contactHasBeenInvitedToTheGroup": "Sinu kontakt on kutsutud liituma vestlusrühma",
+    "contactHasBeenInvitedToTheGroup": "Sinu kontakt on kutsutud liituma jututoaga",
     "@contactHasBeenInvitedToTheGroup": {
         "type": "String",
         "placeholders": {}
@@ -776,22 +776,22 @@
         "type": "String",
         "placeholders": {}
     },
-    "group": "Vestlusrühm",
+    "group": "Jututuba",
     "@group": {
         "type": "String",
         "placeholders": {}
     },
-    "groupIsPublic": "Vestlusrühm on avalik",
+    "groupIsPublic": "Jututuba on avalik",
     "@groupIsPublic": {
         "type": "String",
         "placeholders": {}
     },
-    "groups": "Vestlusrühmad",
+    "groups": "Jututoad",
     "@groups": {
         "type": "String",
         "placeholders": {}
     },
-    "groupWith": "Vestlusrühm {displayname} kasutajanimega",
+    "groupWith": "Jututuba {displayname} kasutajanimega",
     "@groupWith": {
         "type": "String",
         "placeholders": {
@@ -862,7 +862,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "incorrectPassphraseOrKey": "Vigane paroolifraas või taastevõti",
+    "incorrectPassphraseOrKey": "Vigane salafraas või taastevõti",
     "@incorrectPassphraseOrKey": {
         "type": "String",
         "placeholders": {}
@@ -877,7 +877,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteContactToGroup": "Kutsu sõpru ja tuttavaid {groupName} liikmeks",
+    "inviteContactToGroup": "Kutsu sõpru ja tuttavaid {groupName} jututoa liikmeks",
     "@inviteContactToGroup": {
         "type": "String",
         "placeholders": {
@@ -1221,7 +1221,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "passphraseOrKey": "paroolifraas või taastevõti",
+    "passphraseOrKey": "salafraas või taastevõti",
     "@passphraseOrKey": {
         "type": "String",
         "placeholders": {}
@@ -1839,7 +1839,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "whoIsAllowedToJoinThisGroup": "Kes võivad selle vestlusrühmaga liituda",
+    "whoIsAllowedToJoinThisGroup": "Kes võivad selle jututoaga liituda",
     "@whoIsAllowedToJoinThisGroup": {
         "type": "String",
         "placeholders": {}
@@ -1927,7 +1927,7 @@
         "type": "String",
         "description": "Usage hint for the command /dm"
     },
-    "commandHint_create": "Loo tühi vestlusrühm\nKrüptimise keelamiseks kasuta --no-encryption võtit",
+    "commandHint_create": "Loo tühi jututuba\nKrüptimise keelamiseks kasuta --no-encryption võtit",
     "@commandHint_create": {
         "type": "String",
         "description": "Usage hint for the command /create"
@@ -2049,7 +2049,7 @@
             }
         }
     },
-    "commandHint_markasgroup": "Märgi vestlusrühmaks",
+    "commandHint_markasgroup": "Märgi jututoaks",
     "commandHint_markasdm": "Märgi otsevestusluseks antud Matrixi ID jaoks",
     "whyIsThisMessageEncrypted": "Miks see sõnum pole loetav?",
     "noKeyForThisMessage": "See võib juhtuda, kui sõnum oli saadetud enne, kui siin seadmes oma kontoga sisse logisid.\n\nSamuti võib juhtuda siis, kui saatja on lugemises selles seadmes blokeerinud või on tekkinud tõrkeid veebiühenduses.\n\nAga mõnes teises seadmes saad seda sõnumit lugeda? Siis sa võid sõnumi sealt üle tõsta. Ava Seadistused -> Seadmed ning kontrolli, et kõik sinu seadmed on omavahel verifitseeritud. Kui avad selle vestluse või jututoa ning mõlemad sessioonid on avatud, siis vajalikud krüptovõtmed saadetakse automaatset.\n\nKas sa soovid vältida krüptovõtmete kadumist väljalogimisel ja seadmete vahetusel? Siis palun kontrolli, et seadistuses on krüptovõtmete varundus sisse lülitatud.",
@@ -2130,7 +2130,7 @@
     "importNow": "Impordi kohe",
     "importEmojis": "Impordi emojid",
     "sendTypingNotifications": "Saada kirjutamise teavitusi",
-    "createGroup": "Loo vestlusrühm",
+    "createGroup": "Loo jututuba",
     "tryAgain": "Proovi uuesti",
     "chatPermissions": "Vestluse õigused",
     "chatDescription": "Vestluse kirjeldus",
@@ -2166,7 +2166,7 @@
             }
         }
     },
-    "inviteGroupChat": "📨 Kutse vestlusrühma",
+    "inviteGroupChat": "📨 Kutse jututuppa",
     "emoteKeyboardNoRecents": "Hiljuti kasutatud emotikonid kuvame siin...",
     "@emoteKeyboardNoRecents": {
         "type": "String",
@@ -2201,9 +2201,9 @@
     "pleaseEnterANumber": "Palun sisesta 0'st suurem number",
     "kickUserDescription": "See kasutaja on nüüd jutuoast välja müksatud, kuid talle pole seatud suhtluskeeldu. Avaliku jututoa puhul saab ta alati uuesti liituda.",
     "blockListDescription": "Sul on võimalik blokeerida neid kasutajaid, kes sind segavad. Oma isiklikku blokerimisloendisse lisatud kasutajad ei saa sulle saata sõnumeid ega kutseid.",
-    "createGroupAndInviteUsers": "Lisavestlusrühm ja kutsu sinna kasutajaid",
+    "createGroupAndInviteUsers": "Lisa jututuba ja kutsu sinna kasutajaid",
     "blockedUsers": "Blokeeritud kasutajad",
-    "groupCanBeFoundViaSearch": "Vestlusrühm on leitav otsinguga",
+    "groupCanBeFoundViaSearch": "Jututuba on leitav otsinguga",
     "noUsersFoundWithQuery": "Päringuga „{query}“ ei leidunud kahkus ühtegi kasutajat. Palun kontrolli, et päringus poleks vigu.",
     "@noUsersFoundWithQuery": {
         "type": "String",
@@ -2218,7 +2218,7 @@
     "commandHint_sendraw": "Saada json oma algupärasel kujul",
     "wrongRecoveryKey": "Vabandust..., see ei tundu olema korrektne taastevõti.",
     "blockUsername": "Eira kasutajanime",
-    "groupName": "Vestlusrühma nimi",
+    "groupName": "Jututoa nimi",
     "databaseMigrationTitle": "Andmebaas on optimeeritud",
     "searchChatsRooms": "Otsi #vestlusi, @kasutajaid...",
     "databaseMigrationBody": "Palun oota üks hetk. Natuke võib kuluda aega.",
@@ -2442,7 +2442,7 @@
     "changeGeneralChatSettings": "Muuda vestluse üldiseid seadistusi",
     "inviteOtherUsers": "Kutsu teisi osalejaid sellesse vestlusesse",
     "changeTheChatPermissions": "Muuda vestluse õigusi",
-    "changeTheDescriptionOfTheGroup": "Muuda vestluse kirjeldust",
+    "changeTheDescriptionOfTheGroup": "Muuda vestluse/jututoa kirjeldust",
     "chatPermissionsDescription": "Määra erinevatele kasutajatele selles vestluses vajalikud õigused. Tüüpiliselt on need 0, 50 ja 100 (vastavalt kasutajad, moderaatorid ja peakasutajad), kuid igasugused vahepealsed variatsioonid on ka võimalikud.",
     "invitedBy": "📩 Kutsujaks {user}",
     "@invitedBy": {
@@ -2791,5 +2791,12 @@
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    "createNewChat": "Loo uus vestlus"
+    "createNewChat": "Loo uus vestlus",
+    "reset": "Lähtesta",
+    "supportFluffyChat": "Toeta FluffyChati",
+    "support": "Toeta meid",
+    "iAlreadySupportFluffyChat": "Ma juba toetan FluffyChati arendust",
+    "fluffyChatSupportBannerMessage": "FluffyChat vajab SINU abi!\n❤️❤️❤️\nFluffyChat jääb alati vabaks ja vabalt saadavaks, aga arendus ja serveriteenused vajavad ikkagi rahastamist.\nMeie projekti tulevik sõltub sinust ja teistest kasutajatest, nagu sina.",
+    "skipSupportingFluffyChat": "Jäta FluffyChati toetamine vahele",
+    "iDoNotWantToSupport": "Ma ei soovi toetada"
 }

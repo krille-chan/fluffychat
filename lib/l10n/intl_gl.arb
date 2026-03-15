@@ -2791,5 +2791,14 @@
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    "createNewChat": "Crear nova conversa"
+    "createNewChat": "Crear nova conversa",
+    "reset": "Restablecer",
+    "supportFluffyChat": "Apoia a FluffyChat",
+    "support": "Axuda",
+    "fluffyChatSupportBannerMessage": "FluffyChat precisa a TÚA axuda!\n❤️❤️❤️\nFluffyChat vai ser sempre gratuíta, pero o desenvolvemento e a hospedaxe costan cartos.\nO futuro do proxecto depende da axuda de persoas coma ti.",
+    "skipSupportingFluffyChat": "Omitir apoiar a FluffyChat",
+    "iDoNotWantToSupport": "Non quero axudar",
+    "iAlreadySupportFluffyChat": "Xa apoiei a FluffyChat",
+    "setLowPriority": "Establecer prioridade baixa",
+    "unsetLowPriority": "Non establecer prioridade baixa"
 }
