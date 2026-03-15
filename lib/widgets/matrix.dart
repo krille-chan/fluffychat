@@ -339,7 +339,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   Future<void> createVoipPlugin() async {
-    if (AppSettings.experimentalVoip.value) {
+    if (!AppSettings.experimentalVoip.value) {
       voipPlugin = null;
       return;
     }
