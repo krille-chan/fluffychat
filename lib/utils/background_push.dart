@@ -124,7 +124,7 @@ class BackgroundPush {
       //<GOOGLE_SERVICES>firebase.setListeners(
       //<GOOGLE_SERVICES>  onMessage: (message) => pushHelper(
       //<GOOGLE_SERVICES>    PushNotification.fromJson(
-      //<GOOGLE_SERVICES>      Map<String, dynamic>.from(message['data'] ?? message),
+      //<GOOGLE_SERVICES>       message.tryGetMap<String, Object>('data') ?? message,
       //<GOOGLE_SERVICES>    ),
       //<GOOGLE_SERVICES>    client: client,
       //<GOOGLE_SERVICES>    l10n: l10n,
