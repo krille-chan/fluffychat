@@ -198,12 +198,12 @@ jobs:
           cache: true
       - uses: remarkablemark/setup-maestro-cli@v1
       - name: Load integration test env
-        run: cat integration_test/data/integration_users.env >> $GITHUB_ENV
+        run: cat .maestro/data/integration_users.env >> $GITHUB_ENV
       - name: Prepare Homeserver
         run: |
           docker run -d --name synapse --tmpfs /data \
-          --volume="$(pwd)/integration_test/synapse/data/homeserver.yaml":/data/homeserver.yaml:rw \
-          --volume="$(pwd)/integration_test/synapse/data/localhost.log.config":/data/localhost.log.config:rw \
+          --volume="$(pwd)/.maestro/data/synapse/homeserver.yaml":/data/homeserver.yaml:rw \
+          --volume="$(pwd)/.maestro/data/synapse/localhost.log.config":/data/localhost.log.config:rw \
           -p 80:80 matrixdotorg/synapse:latest
           while ! curl -XGET "http://$HOMESERVER/_matrix/client/v3/login" >/dev/null 2>/dev/null; do
           echo "Waiting for homeserver to be available... (GET http://$HOMESERVER/_matrix/client/v3/login)"
@@ -233,7 +233,7 @@ jobs:
           script: |
             flutter run --use-application-binary=$PWD/app-debug.apk > flutter_logs.txt 2>&1 &
             FLUTTER_PID=$!
-            maestro test integration_test/login.yaml --env HOMESERVER=10.0.2.2 --env USER1_NAME=${USER1_NAME} --env USER1_PW=${USER1_PW}
+            maestro test .maestro/ --env HOMESERVER=10.0.2.2 --env USER1_NAME=${USER1_NAME} --env USER1_PW=${USER1_PW}
             kill $FLUTTER_PID 2>/dev/null || true
             cp flutter_logs.txt ~/.maestro/tests/
       - name: Upload Flutter and Maestro logs

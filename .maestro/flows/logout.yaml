@@ -1,0 +1,9 @@
+appId: chat.fluffy.fluffychat
+---
+- tapOn:
+    id: "accounts_and_settings" # Open the popup menu
+- tapOn: "Settings"
+- scrollUntilVisible:
+    element: "Logout"
+- tapOn: "Logout"
+- tapOn: "Logout" # Confirm logout dialog

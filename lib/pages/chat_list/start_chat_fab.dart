@@ -9,13 +9,16 @@ class StartChatFab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      heroTag: 'start_chat_fab',
-      backgroundColor: Theme.of(context).colorScheme.primary,
-      foregroundColor: Theme.of(context).colorScheme.onPrimary,
-      onPressed: () => context.go('/rooms/newprivatechat'),
-      tooltip: L10n.of(context).newChat,
-      child: const Icon(Icons.edit_square),
+    return Semantics(
+      identifier: 'start_chat_fab',
+      child: FloatingActionButton(
+        heroTag: 'start_chat_fab',
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.onPrimary,
+        onPressed: () => context.go('/rooms/newprivatechat'),
+        tooltip: L10n.of(context).newChat,
+        child: const Icon(Icons.edit_square),
+      ),
     );
   }
 }

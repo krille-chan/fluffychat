@@ -1,0 +1,13 @@
+appId: chat.fluffy.fluffychat
+---
+- runFlow: flows/login.yaml 
+- tapOn:
+    id: "store_in_secure_storage"
+- tapOn: "Next"
+- tapOn:
+    text: "Close"
+    index: 1
+- tapOn: 
+    text: "Do not show again"
+    optional: true
+- runFlow: flows/logout.yaml
