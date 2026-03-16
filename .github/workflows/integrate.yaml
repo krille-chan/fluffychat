@@ -28,6 +28,10 @@ jobs:
       - name: Check license compliance
         run: dart run license_checker check-licenses -c licenses.yaml --problematic
       - run: flutter analyze
+      - name: Search unused dependencies
+        run: |
+          dart pub global activate dependency_validator
+          dart pub global run dependency_validator
       - run: dart run dart_code_linter:metrics analyze lib --reporter=github
       - run: dart run dart_code_linter:metrics check-unused-code lib
       - run: dart run dart_code_linter:metrics check-unused-files lib

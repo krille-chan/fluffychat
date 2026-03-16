@@ -1,0 +1,3 @@
+ignore:
+  - handy_window
+  - sqlcipher_flutter_libs
