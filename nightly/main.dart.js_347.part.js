@@ -685,11 +685,11 @@ gpo(){return"Fluffy Chat heeft JOUW hulp nodig. _\n\u2764\ufe0f\u2764\ufe0f\u276
 gpK(){return"FluffyChat steunen overslaan"},
 gq0(){return"Ik wil niet ondersteunen"},
 gq_(){return"Ik steun FluffyChat al"},
-gpF(){return"Set low priority"},
-gqc(){return"Unset low priority"},
+gpF(){return"Lage prioriteit instellen"},
+gqc(){return"Lage prioriteit uitschakelen"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gh,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gh":{"aD":[]}}'))};
-(a=>{a["Rpr8DOzLPJCgEHC22sWCwIURZpk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["DSODRg4xdqQTtimf/0Zw0IIdZg0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_347.part.js.map

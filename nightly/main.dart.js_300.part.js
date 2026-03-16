@@ -685,11 +685,11 @@ gpo(){return"FluffyChat vajab SINU abi!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nF
 gpK(){return"J\xe4ta FluffyChati toetamine vahele"},
 gq0(){return"Ma ei soovi toetada"},
 gq_(){return"Ma juba toetan FluffyChati arendust"},
-gpF(){return"Set low priority"},
-gqc(){return"Unset low priority"},
+gpF(){return"M\xe4rgi v\xe4het\xe4htsaks"},
+gqc(){return"Eemalda m\xe4rkimine v\xe4het\xe4htsaks"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FV,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FV":{"aD":[]}}'))};
-(a=>{a["31uX6ki9R+9xjkBedFZhYJWx8oM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["cB3dyOhte3tT/QNoXZ6LwBxAMds="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_300.part.js.map

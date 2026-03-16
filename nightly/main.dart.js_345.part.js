@@ -685,11 +685,11 @@ gpo(){return"FluffyChat trenger DIN hjelp!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f
 gpK(){return"Hopp over st\xf8tte til FluffyChat"},
 gq0(){return"Jeg \xf8nsker ikke \xe5 st\xf8tte"},
 gq_(){return"Jeg st\xf8tter allerede FluffyChat"},
-gpF(){return"Set low priority"},
-gqc(){return"Unset low priority"},
+gpF(){return"Sett lav prioritet"},
+gqc(){return"Fjern lav prioritet"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gg,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gg":{"aD":[]}}'))};
-(a=>{a["3AJoGE2ICs62yjcg3fnF4vNbQQ0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9UBpYaTA/m004J3Z9Vkqwzn2u4I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map
