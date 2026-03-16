@@ -48,7 +48,7 @@ jobs:
           asset_content_type: application/gzip
       - name: Clone fluffychat website
         run: |
-          git@github.com:krille-chan/fluffychat-website.git
+          git clone https://github.com/krille-chan/fluffychat-website.git
           cp CHANGELOG.md fluffychat-website/
           cp PRIVACY.md fluffychat-website/
       - name: Build website
