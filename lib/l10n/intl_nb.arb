@@ -2805,5 +2805,7 @@
     "fluffyChatSupportBannerMessage": "FluffyChat trenger DIN hjelp!\n❤️❤️❤️\nFluffyChat vil alltid være gratis, men utvikling og drift koster fortsatt penger. \nProsjektets fremtid avhenger av støtte fra folk som deg.",
     "skipSupportingFluffyChat": "Hopp over støtte til FluffyChat",
     "iDoNotWantToSupport": "Jeg ønsker ikke å støtte",
-    "iAlreadySupportFluffyChat": "Jeg støtter allerede FluffyChat"
+    "iAlreadySupportFluffyChat": "Jeg støtter allerede FluffyChat",
+    "setLowPriority": "Sett lav prioritet",
+    "unsetLowPriority": "Fjern lav prioritet"
 }
