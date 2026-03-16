@@ -2797,5 +2797,7 @@
     "iDoNotWantToSupport": "Ik wil niet ondersteunen",
     "iAlreadySupportFluffyChat": "Ik steun FluffyChat al",
     "supportFluffyChat": "FluffyChat steunen",
-    "support": "Steunen"
+    "support": "Steunen",
+    "setLowPriority": "Lage prioriteit instellen",
+    "unsetLowPriority": "Lage prioriteit uitschakelen"
 }
