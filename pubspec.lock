@@ -2119,10 +2119,10 @@ packages:
     dependency: "direct main"
     description:
       name: webrtc_interface
-      sha256: ad0e5786b2acd3be72a3219ef1dde9e1cac071cf4604c685f11b61d63cdd6eb3
+      sha256: c6f100eac5057d9a817a60473126f9828c796d42884d498af4f339c97b21014f
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.0"
+    version: "1.5.1"
   win32:
     dependency: transitive
     description:
