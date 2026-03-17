@@ -685,12 +685,12 @@ gpo(){return"T\xe1 DO chabhair ag teast\xe1il \xf3 FluffyChat!\n\u2764\ufe0f\u27
 gpK(){return"Seachain tac\xfa le FluffyChat"},
 gq0(){return"N\xedlim ag iarraidh tac\xfa leis"},
 gq_(){return"Taca\xedm le FluffyChat cheana f\xe9in"},
-gpF(){return"Set low priority"},
-gqc(){return"Unset low priority"},
+gpF(){return"Socraigh tosa\xedocht \xedseal"},
+gqc(){return"D\xedshuite\xe1il tosa\xedocht \xedseal"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G0,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G0":{"aD":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["XLbMIxfHeGGgeJ4/nCPOakSS9HM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["VA5q/iVSvEQOzEfH7MrohVwaXJg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map
