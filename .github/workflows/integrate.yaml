@@ -91,7 +91,7 @@ jobs:
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
-      - run: flutter build web --dart-define=WITH_SEMANTICS=true
+      - run: flutter build web
       - name: Upload Web Build
         uses: actions/upload-artifact@v7
         with:
@@ -140,7 +140,7 @@ jobs:
   integration_test:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    needs: [ build_debug_apk ]
+    needs: [ code_tests ]
     strategy:
       matrix:
         api-level: [34]
@@ -151,10 +151,6 @@ jobs:
       AVD_CONFIG_PATH: "~/.android/avd/test.avd/config.ini"
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/download-artifact@v8
-        with:
-          name: debug-apk-x64
-          path: .
       - uses: ./.github/actions/free_up_space
       # https://github.blog/changelog/2023-02-23-hardware-accelerated-android-virtualization-on-actions-windows-and-linux-larger-hosted-runners/
       - name: Enable KVM group perms
@@ -200,26 +196,20 @@ jobs:
         with:
           flutter-version-file: .tool_versions.yaml
           cache: true
-      - uses: remarkablemark/setup-maestro-cli@v1
-      - name: Load integration test env
-        run: cat integration_test/data/integration_users.env >> $GITHUB_ENV
+      - uses: moonrepo/setup-rust@v1
+        with:
+          cache: true
+      - name: Cache Gradle
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
+      - run: ./scripts/add-firebase-messaging.sh
       - name: Prepare Homeserver
-        run: |
-          docker run -d --name synapse --tmpfs /data \
-          --volume="$(pwd)/integration_test/synapse/data/homeserver.yaml":/data/homeserver.yaml:rw \
-          --volume="$(pwd)/integration_test/synapse/data/localhost.log.config":/data/localhost.log.config:rw \
-          -p 80:80 matrixdotorg/synapse:latest
-          while ! curl -XGET "http://$HOMESERVER/_matrix/client/v3/login" >/dev/null 2>/dev/null; do
-          echo "Waiting for homeserver to be available... (GET http://$HOMESERVER/_matrix/client/v3/login)"
-            sleep 2
-          done
-
-          echo "Homeserver is online!"
-
-          # create users
-          curl -fS --retry 3 -XPOST -d "{\"username\":\"$USER1_NAME\", \"password\":\"$USER1_PW\", \"inhibit_login\":true, \"auth\": {\"type\":\"m.login.dummy\"}}" "http://$HOMESERVER/_matrix/client/r0/register"
-          curl -fS --retry 3 -XPOST -d "{\"username\":\"$USER2_NAME\", \"password\":\"$USER2_PW\", \"inhibit_login\":true, \"auth\": {\"type\":\"m.login.dummy\"}}" "http://$HOMESERVER/_matrix/client/r0/register"
-
+        run: ./scripts/prepare_integration_test.sh
       - name: Integration tests
         id: integration_tests
         uses: reactivecircus/android-emulator-runner@v2
@@ -234,16 +224,4 @@ jobs:
           ram-size: 4096M
           sdcard-path-or-size: 4096M
           emulator-options: -no-snapshot-save -no-window -wipe-data -accel on -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          script: |
-            flutter run --use-application-binary=$PWD/app-debug.apk > flutter_logs.txt 2>&1 &
-            FLUTTER_PID=$!
-            maestro test integration_test/login.yaml --env HOMESERVER=10.0.2.2 --env USER1_NAME=${USER1_NAME} --env USER1_PW=${USER1_PW}
-            kill $FLUTTER_PID 2>/dev/null || true
-            cp flutter_logs.txt ~/.maestro/tests/
-      - name: Upload Flutter and Maestro logs
-        if: failure()
-        uses: actions/upload-artifact@v7
-        with:
-          name: maestro-logs
-          path: ~/.maestro/tests
-          if-no-files-found: ignore
+          script: flutter test integration_test/mobile_test.dart

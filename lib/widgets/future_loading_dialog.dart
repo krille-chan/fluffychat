@@ -85,7 +85,11 @@ class LoadingDialogState<T> extends State<LoadingDialog> {
   void initState() {
     super.initState();
     widget.future.then(
-      (result) => Navigator.of(context).pop<Result<T>>(Result.value(result)),
+      (result) {
+        if (!mounted) return;
+        if (!Navigator.of(context).canPop()) return;
+        Navigator.of(context).pop<Result<T>>(Result.value(result));
+      },
       onError: (e, s) => setState(() {
         exception = e;
         stackTrace = s;

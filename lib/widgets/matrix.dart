@@ -371,7 +371,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onKeyVerificationRequestSub.values.map((s) => s.cancel());
     onLogoutSub.values.map((s) => s.cancel());
     onNotification.values.map((s) => s.cancel());
-    client.httpClient.close();
 
     linuxNotifications?.close();
 

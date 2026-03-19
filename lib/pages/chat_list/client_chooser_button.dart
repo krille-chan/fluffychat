@@ -173,23 +173,20 @@ class ClientChooserButton extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         borderRadius: BorderRadius.circular(99),
         color: Colors.transparent,
-        child: Semantics(
-          identifier: 'accounts_and_settings',
-          child: PopupMenuButton<Object>(
-            tooltip: 'Accounts and settings',
-            popUpAnimationStyle: FluffyThemes.isColumnMode(context)
-                ? AnimationStyle.noAnimation
-                : null, // https://github.com/flutter/flutter/issues/167180
-            onSelected: (o) => _clientSelected(o, context),
-            itemBuilder: _bundleMenuItems,
-            child: Center(
-              child: Avatar(
-                mxContent: snapshot.data?.avatarUrl,
-                name:
-                    snapshot.data?.displayName ??
-                    matrix.client.userID?.localpart,
-                size: 32,
-              ),
+        child: PopupMenuButton<Object>(
+          key: Key('accounts_and_settings_buttons'),
+          tooltip: 'Accounts and settings',
+          popUpAnimationStyle: FluffyThemes.isColumnMode(context)
+              ? AnimationStyle.noAnimation
+              : null, // https://github.com/flutter/flutter/issues/167180
+          onSelected: (o) => _clientSelected(o, context),
+          itemBuilder: _bundleMenuItems,
+          child: Center(
+            child: Avatar(
+              mxContent: snapshot.data?.avatarUrl,
+              name:
+                  snapshot.data?.displayName ?? matrix.client.userID?.localpart,
+              size: 32,
             ),
           ),
         ),
