@@ -382,6 +382,7 @@ class ChatInputRow extends StatelessWidget {
                             ),
                           )
                         : IconButton(
+                            key: Key('send_button'),
                             tooltip: L10n.of(context).send,
                             onPressed: controller.send,
                             style: IconButton.styleFrom(
