@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJL(){return new A.FN(B.dc("ca"))},
+cJM(){return new A.FN(B.dc("ca"))},
 FN:function FN(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Copia"},
 gfi(){return"Copia al porta-retalls"},
 ia(d){return"No s'ha pogut desxifrar el missatge: "+d},
 gpe(){return"Llista de tasques"},
-dR(d){return""+d+" participants"},
+dQ(d){return""+d+" participants"},
 ls(d){return""+d+" convidadis"},
 gib(d){return"Crea"},
 ic(d){return"\ud83d\udcac "+d+" ha creat el xat"},
@@ -322,7 +322,7 @@ gh4(){return"Codi font"},
 gkw(){return"L\u2019espai \xe9s p\xfablic"},
 gkx(){return"Nom de l\u2019espai"},
 h7(d){return d+" ha iniciat una trucada"},
-gaK(d){return"Estat"},
+gaJ(d){return"Estat"},
 gkA(){return"Com us sentiu avui?"},
 gkD(d){return"Envia"},
 gkH(){return"S\u2019est\xe0 sincronitzant\u2026 Espereu."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FN,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FN":{"aD":[]}}'))};
-(a=>{a["8LgfEzF2OTqGtrf1VgtkENQBbuc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3PDu5JHLiepSQf0zAdzGHgvZVOk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_263.part.js.map

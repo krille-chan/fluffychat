@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKl(){return new A.Gm(B.dc("ru"))},
+cKm(){return new A.Gm(B.dc("ru"))},
 Gm:function Gm(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c"},
 gfi(){return"\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440 \u043e\u0431\u043c\u0435\u043d\u0430"},
 ia(d){return"\u041d\u0435 \u0443\u0434\u0430\u043b\u043e\u0441\u044c \u0440\u0430\u0441\u0448\u0438\u0444\u0440\u043e\u0432\u0430\u0442\u044c \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0435: "+d},
 gpe(){return"\u041a\u043e\u043d\u0442\u0440\u043e\u043b\u044c\u043d\u044b\u0439 \u0441\u043f\u0438\u0441\u043e\u043a"},
-dR(d){return""+d+" \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0430(\u043e\u0432)"},
+dQ(d){return""+d+" \u0443\u0447\u0430\u0441\u0442\u043d\u0438\u043a\u0430(\u043e\u0432)"},
 ls(d){return""+d+" \u043f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u043d\u044b\u0445"},
 gib(d){return"\u0421\u043e\u0437\u0434\u0430\u0442\u044c"},
 ic(d){return"\ud83d\udcac "+d+" \u0441\u043e\u0437\u0434\u0430\u043b(\u0430) \u0447\u0430\u0442"},
@@ -322,7 +322,7 @@ gh4(){return"\u0418\u0441\u0445\u043e\u0434\u043d\u044b\u0439 \u043a\u043e\u0434
 gkw(){return"\u041f\u0443\u0431\u043b\u0438\u0447\u043d\u043e\u0435 \u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u043e"},
 gkx(){return"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u0430"},
 h7(d){return d+" \u043d\u0430\u0447\u0430\u043b(\u0430) \u0437\u0432\u043e\u043d\u043e\u043a"},
-gaK(d){return"\u0421\u0442\u0430\u0442\u0443\u0441"},
+gaJ(d){return"\u0421\u0442\u0430\u0442\u0443\u0441"},
 gkA(){return"\u041a\u0430\u043a \u0443 \u0432\u0430\u0441 \u0441\u0435\u0433\u043e\u0434\u043d\u044f \u0434\u0435\u043b\u0430?"},
 gkD(d){return"\u041e\u0442\u043f\u0440\u0430\u0432\u0438\u0442\u044c"},
 gkH(){return"\u0421\u0438\u043d\u0445\u0440\u043e\u043d\u0438\u0437\u0430\u0446\u0438\u044f\u2026 \u041f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u043f\u043e\u0434\u043e\u0436\u0434\u0438\u0442\u0435."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gm,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gm":{"aD":[]}}'))};
-(a=>{a["iruYLaJPuKlamU5RVMlo76xncPo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["I5pbkAT4mAgZCYMxlA9mPGSDMhs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_350.part.js.map

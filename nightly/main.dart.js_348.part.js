@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKg(){return new A.Gi(B.dc("pl"))},
+cKh(){return new A.Gi(B.dc("pl"))},
 Gi:function Gi(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Kopiuj"},
 gfi(){return"Skopiuj do schowka"},
 ia(d){return"Nie mo\u017cna odszyfrowa\u0107 wiadomo\u015bci: "+d},
 gpe(){return"Lista kontrolna"},
-dR(d){return""+d+" uczestnik\xf3w"},
+dQ(d){return""+d+" uczestnik\xf3w"},
 ls(d){return""+d+" zaproszonych"},
 gib(d){return"Stw\xf3rz"},
 ic(d){return"\ud83d\udcac "+d+" utworzy\u0142/-a czat"},
@@ -322,7 +322,7 @@ gh4(){return"Kod \u017cr\xf3d\u0142owy"},
 gkw(){return"Ustaw jako publiczn\u0105"},
 gkx(){return"Nazwa przestrzeni"},
 h7(d){return d+" rozpocz\u0105\u0142/-\u0119\u0142a rozmow\u0119"},
-gaK(d){return"Status"},
+gaJ(d){return"Status"},
 gkA(){return"Jak si\u0119 masz dzi\u015b?"},
 gkD(d){return"Ode\u015blij"},
 gkH(){return"Synchronizowanie\u2026 Prosz\u0119 czeka\u0107."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gi,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gi":{"aD":[]}}'))};
-(a=>{a["6H9enIGZuSDXRDRRg5PAyYuJajA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["dIU/rdPq/jOAYlxiB+HoQojcCLM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_348.part.js.map

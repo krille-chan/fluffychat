@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK3(){return new A.G5(B.dc("hu"))},
+cK4(){return new A.G5(B.dc("hu"))},
 G5:function G5(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"M\xe1sol\xe1s"},
 gfi(){return"V\xe1g\xf3lapra m\xe1sol\xe1s"},
 ia(d){return"Nem siker\xfclt visszafejteni az \xfczenetet: "+d},
 gpe(){return"Tennival\xf3k list\xe1ja"},
-dR(d){return""+d+" r\xe9sztvev\u0151"},
+dQ(d){return""+d+" r\xe9sztvev\u0151"},
 ls(d){return""+d+" megh\xedvott"},
 gib(d){return"L\xe9trehoz"},
 ic(d){return"\ud83d\udcac "+d+" cseveg\xe9st hozott l\xe9tre"},
@@ -322,7 +322,7 @@ gh4(){return"Forr\xe1sk\xf3d"},
 gkw(){return"A t\xe9r publikus"},
 gkx(){return"T\xe9r n\xe9v"},
 h7(d){return d+" h\xedv\xe1st ind\xedtott"},
-gaK(d){return"\xc1llapot"},
+gaJ(d){return"\xc1llapot"},
 gkA(){return"Hogy \xe9rzi mag\xe1t a mai napon?"},
 gkD(d){return"Bek\xfcld\xe9s"},
 gkH(){return"Szinkroniz\xe1l\xe1s... K\xe9rem, v\xe1rjon."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G5,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G5":{"aD":[]}}'))};
-(a=>{a["BJR+JoolkT9kR29ptJgo32TMhow="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Xnrz8bkS7hUCB6pKkZoGRDg7bRk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_326.part.js.map

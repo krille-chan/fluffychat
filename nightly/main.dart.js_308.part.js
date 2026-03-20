@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJX(){return new A.FZ(B.dc("fil"))},
+cJY(){return new A.FZ(B.dc("fil"))},
 FZ:function FZ(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Kopyahin"},
 gfi(){return"Kopyahin sa clipboard"},
 ia(d){return"Hindi ma-decrypt ang mensahe: "+d},
 gpe(){return"Check list"},
-dR(d){return""+d+" mga kasali"},
+dQ(d){return""+d+" mga kasali"},
 ls(d){return""+d+" invited"},
 gib(d){return"Gumawa"},
 ic(d){return"\ud83d\udcac Ginawa ni "+d+" ang chat"},
@@ -322,7 +322,7 @@ gh4(){return"Source code"},
 gkw(){return"Space is public"},
 gkx(){return"Space name"},
 h7(d){return d+" started a call"},
-gaK(d){return"Status"},
+gaJ(d){return"Status"},
 gkA(){return"How are you today?"},
 gkD(d){return"Submit"},
 gkH(){return"Synchronizing\u2026 Please wait."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FZ,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FZ":{"aD":[]}}'))};
-(a=>{a["JLuk4C1HJdGp3PHCm5yl/ZNJwZ8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["t8NmXKIDIwdEVcqM+R1eKbVAlY0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKe(){return new A.Gg(B.dc("nb"))},
+cKf(){return new A.Gg(B.dc("nb"))},
 Gg:function Gg(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Kopier"},
 gfi(){return"Kopier til utklippstavle"},
 ia(d){return"Kunne ikke dekryptere melding: "+d},
 gpe(){return"Sjekkliste"},
-dR(d){return""+d+" deltagere"},
+dQ(d){return""+d+" deltagere"},
 ls(d){return""+d+" inviterte"},
 gib(d){return"Opprett"},
 ic(d){return d+" opprettet sludringen"},
@@ -322,7 +322,7 @@ gh4(){return"Kildekode"},
 gkw(){return"Omr\xe5det er offentlig"},
 gkx(){return"Navn p\xe5 omr\xe5de"},
 h7(d){return d+" startet en samtale"},
-gaK(d){return"Status"},
+gaJ(d){return"Status"},
 gkA(){return"Hvordan har du det i dag?"},
 gkD(d){return"Send inn"},
 gkH(){return"Synkroniserer \u2026 Vent litt."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gg,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gg":{"aD":[]}}'))};
-(a=>{a["fb9YktxI74pzk72SGNTp+F1yjLw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["w5zspKRpaMm1jkxzZj5Ka2O6C9A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKq(){return new A.Gr(B.dc("sv"))},
+cKr(){return new A.Gr(B.dc("sv"))},
 Gr:function Gr(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Kopiera"},
 gfi(){return"Kopiera till urklipp"},
 ia(d){return"Kunde ej avkoda meddelande: "+d},
 gpe(){return"Att-g\xf6ra lista"},
-dR(d){return""+d+" deltagare"},
+dQ(d){return""+d+" deltagare"},
 ls(d){return""+d+" inbjudna"},
 gib(d){return"Skapa"},
 ic(d){return"\ud83d\udcac "+d+" skapade chatten"},
@@ -322,7 +322,7 @@ gh4(){return"K\xe4llkod"},
 gkw(){return"Utrymme \xe4r publikt"},
 gkx(){return"Utrymmes namn"},
 h7(d){return d+" startade ett samtal"},
-gaK(d){return"Status"},
+gaJ(d){return"Status"},
 gkA(){return"Hur m\xe5r du i dag?"},
 gkD(d){return"Skicka in"},
 gkH(){return"Synkroniserar\u2026 Var god v\xe4nta."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gr,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gr":{"aD":[]}}'))};
-(a=>{a["2ybsStKVtF2Cq00kzddhGt+YOzA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["A6zmZRgUsoi4A4FMXawniAp++zg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_359.part.js.map

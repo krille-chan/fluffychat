@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJY(){return new A.G_(B.dc("fr"))},
+cJZ(){return new A.G_(B.dc("fr"))},
 G_:function G_(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Copier"},
 gfi(){return"Copier dans le presse-papiers"},
 ia(d){return"Impossible de d\xe9chiffrer le message : "+d},
 gpe(){return"Check-list"},
-dR(d){return""+d+" participant(s)"},
+dQ(d){return""+d+" participant(s)"},
 ls(d){return""+d+" invit\xe9(e/s)"},
 gib(d){return"Cr\xe9er"},
 ic(d){return"\ud83d\udcac "+d+" a cr\xe9\xe9 la discussion"},
@@ -322,7 +322,7 @@ gh4(){return"Code source"},
 gkw(){return"L'espace est public"},
 gkx(){return"Nom de l'espace"},
 h7(d){return d+" a d\xe9marr\xe9 un appel"},
-gaK(d){return"Statut"},
+gaJ(d){return"Statut"},
 gkA(){return"Comment allez-vous aujourd'hui ?"},
 gkD(d){return"Soumettre"},
 gkH(){return"Synchronisation... Veuillez patienter."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G_,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G_":{"aD":[]}}'))};
-(a=>{a["csjMoIhY2d65ryD2EdMFDCeWUgs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Y+ujS+KTMAQEeC8pOdduSHu4QXQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_309.part.js.map

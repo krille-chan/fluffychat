@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJM(){return new A.FO(B.dc("cs"))},
+cJN(){return new A.FO(B.dc("cs"))},
 FO:function FO(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Kop\xedrovat"},
 gfi(){return"Zkop\xedrovat do schr\xe1nky"},
 ia(d){return"Nebylo mo\u017en\xe9 de\u0161ifrovat zpr\xe1vu: "+d},
 gpe(){return"Kontroln\xed seznam"},
-dR(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
+dQ(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
 ls(d){return""+d+" pozv\xe1no"},
 gib(d){return"Vytvo\u0159it"},
 ic(d){return"\ud83d\udcac "+d+" zalo\u017eil/a chat"},
@@ -322,7 +322,7 @@ gh4(){return"Zdrojov\xe9 k\xf3dy"},
 gkw(){return"Prostor je ve\u0159ejn\xfd"},
 gkx(){return"N\xe1zev prostoru"},
 h7(d){return d+" zah\xe1jil hovor"},
-gaK(d){return"Stav"},
+gaJ(d){return"Stav"},
 gkA(){return"Jak se dneska m\xe1\u0161?"},
 gkD(d){return"Odeslat"},
 gkH(){return"Synchronizace ... \u010cekejte pros\xedm."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FO,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FO":{"aD":[]}}'))};
-(a=>{a["vxWkRqe3ArvjpdnM5vA8/RBrisU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["A0D1dFHLn/4Pi8nLpfKndBtjrTU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_274.part.js.map

@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cKh(d){return new A.Bh(B.dc(d))},
-cKi(){return new A.Gj(B.dc("pt_BR"))},
-cKj(){return new A.Gk(B.dc("pt_PT"))},
-Bh:function Bh(d){this.a=d},
+cKi(d){return new A.Bi(B.dc(d))},
+cKj(){return new A.Gj(B.dc("pt_BR"))},
+cKk(){return new A.Gk(B.dc("pt_PT"))},
+Bi:function Bi(d){this.a=d},
 Gj:function Gj(d){this.a=d},
 Gk:function Gk(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[57]
-A.Bh.prototype={
+A.Bi.prototype={
 gkP(){return"true"},
 gjF(){return"Repita a senha"},
 gmx(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -125,7 +125,7 @@ geA(d){return"Copy"},
 gfi(){return"Copy to clipboard"},
 ia(d){return"Could not decrypt message: "+d},
 gpe(){return"Check list"},
-dR(d){return""+d+" participants"},
+dQ(d){return""+d+" participants"},
 ls(d){return""+d+" invited"},
 gib(d){return"Create"},
 ic(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -326,7 +326,7 @@ gh4(){return"Source code"},
 gkw(){return"Space is public"},
 gkx(){return"Space name"},
 h7(d){return d+" started a call"},
-gaK(d){return"Status"},
+gaJ(d){return"Status"},
 gkA(){return"How are you today?"},
 gkD(d){return"Submit"},
 gkH(){return"Synchronizing\u2026 Please wait."},
@@ -808,7 +808,7 @@ geA(d){return"Copiar"},
 gfi(){return"Copiar para a \xe1rea de transfer\xeancia"},
 ia(d){return"N\xe3o foi poss\xedvel descriptografar a mensagem: "+d},
 gpe(){return"Lista de tarefas"},
-dR(d){return""+d+" participantes"},
+dQ(d){return""+d+" participantes"},
 ls(d){return""+d+" convidados"},
 gib(d){return"Criar"},
 ic(d){return"\ud83d\udcac "+d+" criou a conversa"},
@@ -1009,7 +1009,7 @@ gh4(){return"C\xf3digo-fonte"},
 gkw(){return"O espa\xe7o \xe9 p\xfablico"},
 gkx(){return"Nome do espa\xe7o"},
 h7(d){return d+" iniciou uma chamada"},
-gaK(d){return"Estado"},
+gaJ(d){return"Estado"},
 gkA(){return"Como vai voc\xea?"},
 gkD(d){return"Enviar"},
 gkH(){return"Sincronizando\u2026 Aguarde."},
@@ -1428,7 +1428,7 @@ gi9(){return"Copiado para a \xe1rea de transfer\xeancia"},
 geA(d){return"Copiar"},
 gfi(){return"Copiar para a \xe1rea de transfer\xeancia"},
 ia(d){return"N\xe3o foi poss\xedvel desencriptar mensagem: "+d},
-dR(d){return""+d+" participantes"},
+dQ(d){return""+d+" participantes"},
 gib(d){return"Criar"},
 ic(d){return d+" criou a conversa"},
 gfk(){return"Novo espa\xe7o"},
@@ -1581,9 +1581,9 @@ eX(d){return d+" enviou um autocolante"},
 h_(d){return d+" enviou um v\xeddeo"},
 A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Bh,C.aD)
-w(A.Bh,[A.Gj,A.Gk])})()
-B.dI(b.typeUniverse,JSON.parse('{"Bh":{"aD":[]},"Gj":{"aD":[]},"Gk":{"aD":[]}}'))
+x(A.Bi,C.aD)
+w(A.Bi,[A.Gj,A.Gk])})()
+B.dI(b.typeUniverse,JSON.parse('{"Bi":{"aD":[]},"Gj":{"aD":[]},"Gk":{"aD":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["k95Wd9iiA9wZIr3Zg/BDNfKGp+8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+XBWY1fOIqSYvVgw9IYOMhsvfWQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

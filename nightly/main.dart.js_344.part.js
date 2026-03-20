@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKd(){return new A.Gf(B.dc("lv"))},
+cKe(){return new A.Gf(B.dc("lv"))},
 Gf:function Gf(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Ievietot starpliktuv\u0113"},
 gfi(){return"Ievietot starpliktuv\u0113"},
 ia(d){return"Nevar\u0113ja at\u0161ifr\u0113t zi\u0146u: "+d},
 gpe(){return"P\u0101rbau\u017eu saraksts"},
-dR(d){return""+d+" dal\u012bbnieki"},
+dQ(d){return""+d+" dal\u012bbnieki"},
 ls(d){return""+d+" uzaicin\u0101ti"},
 gib(d){return"Izveidot"},
 ic(d){return"\ud83d\udcac "+d+" izveidoja t\u0113rz\u0113\u0161anu"},
@@ -322,7 +322,7 @@ gh4(){return"Pirmkods"},
 gkw(){return"Vieta ir publiska"},
 gkx(){return"Vietas nosaukums"},
 h7(d){return d+" uzs\u0101ka zvanu"},
-gaK(d){return"St\u0101voklis"},
+gaJ(d){return"St\u0101voklis"},
 gkA(){return"K\u0101 Tev \u0161odien kl\u0101jas?"},
 gkD(d){return"Iesniegt"},
 gkH(){return"Sinhroniz\u0113... L\u016bgums uzgaid\u012bt."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gf,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gf":{"aD":[]}}'))};
-(a=>{a["9GbEhFqE3hK0aRW9sJkJwMAF3NY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PrGipe8VgLIOJ8axpdBUrZMp024="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_344.part.js.map

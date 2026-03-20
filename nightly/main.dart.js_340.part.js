@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK9(){return new A.Gb(B.dc("ka"))},
+cKa(){return new A.Gb(B.dc("ka"))},
 Gb:function Gb(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"\u10d9\u10dd\u10de\u10d8\u10e0\u10d4\u10d1\u10d0"},
 gfi(){return"\u10d9\u10dd\u10de\u10d8\u10e0\u10d4\u10d1\u10d0 \u10d1\u10e3\u10e4\u10d4\u10e0\u10e8\u10d8"},
 ia(d){return"\u10e8\u10d4\u10e2\u10e7\u10dd\u10d1\u10d8\u10dc\u10d4\u10d1\u10d8\u10e1 \u10d2\u10d0\u10e8\u10d8\u10e4\u10d5\u10e0\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d3\u10dd\u10db\u10d0: "+d},
 gpe(){return"Check list"},
-dR(d){return""+d+" \u10db\u10dd\u10dc\u10d0\u10ec\u10d8\u10da\u10d4"},
+dQ(d){return""+d+" \u10db\u10dd\u10dc\u10d0\u10ec\u10d8\u10da\u10d4"},
 ls(d){return""+d+" invited"},
 gib(d){return"\u10e8\u10d4\u10e5\u10db\u10dc\u10d0"},
 ic(d){return"\ud83d\udcac "+d+" \u10e8\u10d4\u10e5\u10db\u10dc\u10d0 \u10e9\u10d0\u10e2\u10d8"},
@@ -322,7 +322,7 @@ gh4(){return"Source code"},
 gkw(){return"Space is public"},
 gkx(){return"Space name"},
 h7(d){return d+" started a call"},
-gaK(d){return"Status"},
+gaJ(d){return"Status"},
 gkA(){return"How are you today?"},
 gkD(d){return"Submit"},
 gkH(){return"Synchronizing\u2026 Please wait."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gb,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gb":{"aD":[]}}'))};
-(a=>{a["qLIRLz2ZDbYrNRRn1ORmq/obMvo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["B1QDNw/iTF//KyqkaqVFHIq5iqE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_340.part.js.map

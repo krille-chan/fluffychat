@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKa(){return new A.Gc(B.dc("kab"))},
+cKb(){return new A.Gc(B.dc("kab"))},
 Gc:function Gc(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"N\u0263el"},
 gfi(){return"N\u0263el \u0263er tecfawit"},
 ia(d){return"Ur izmer ara tukksa n uwgelhen n yizen: "+d},
 gpe(){return"Senqed tabdart"},
-dR(d){return""+d+" imttekkiyen"},
+dQ(d){return""+d+" imttekkiyen"},
 ls(d){return""+d+" yettwa\u025ber\u1e0den"},
 gib(d){return"Snulfu-d"},
 ic(d){return"\ud83d\udcac "+d+" yesnulfa-d adiwenni"},
@@ -322,7 +322,7 @@ gh4(){return"Tangalt ta\u0263balutt"},
 gkw(){return"Tallunt d tazayezt"},
 gkx(){return"Isem n tallunt"},
 h7(d){return d+" yebda-d asiwel"},
-gaK(d){return"Addad"},
+gaJ(d){return"Addad"},
 gkA(){return"Amek telli\u1e0d ass-a?"},
 gkD(d){return"Ceyye\u025b"},
 gkH(){return"Amtawi... Ttxil-k\xb7m ar\u01e7u."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gc,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gc":{"aD":[]}}'))};
-(a=>{a["yxfyLsfsBtlXTJnX6y9eh6gvw/k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["cb+Eez7i4AMYtkCfP4hCQyXXrxs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_341.part.js.map

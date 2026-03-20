@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK2(){return new A.G4(B.dc("hr"))},
+cK3(){return new A.G4(B.dc("hr"))},
 G4:function G4(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Kopiraj"},
 gfi(){return"Kopiraj u me\u0111uspremnik"},
 ia(d){return"Neuspjelo de\u0161ifriranje poruke: "+d},
 gpe(){return"Kontrolni popis"},
-dR(d){return"Broj sudionika: "+d},
+dQ(d){return"Broj sudionika: "+d},
 ls(d){return"Broj pozvanih: "+d},
 gib(d){return"Stvori"},
 ic(d){return"\ud83d\udcac "+d+" je stvorio/la chat"},
@@ -322,7 +322,7 @@ gh4(){return"Izvorni k\u020fd"},
 gkw(){return"Prostor je javan"},
 gkx(){return"Ime prostora"},
 h7(d){return d+" ja zapo\u010deo/la poziv"},
-gaK(d){return"Stanje"},
+gaJ(d){return"Stanje"},
 gkA(){return"Kako si danas?"},
 gkD(d){return"Po\u0161alji"},
 gkH(){return"Sinkronizira se \u2026 Pri\u010dekaj."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G4,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G4":{"aD":[]}}'))};
-(a=>{a["y47leZRSyzx/s6gDdxD4X+h7t9k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["DzQ2iBLCnaoPeCrAjyzuklx8VgY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_319.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJU(){return new A.FW(B.dc("eu"))},
+cJV(){return new A.FW(B.dc("eu"))},
 FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Kopiatu"},
 gfi(){return"Kopiatu arbelera"},
 ia(d){return"Ezin izan da mezua deszifratu: "+d},
 gpe(){return"Kontrol-zerrenda"},
-dR(d){return""+d+" partaide"},
+dQ(d){return""+d+" partaide"},
 ls(d){return""+d+" gonbidatu"},
 gib(d){return"Sortu"},
 ic(d){return"\ud83d\udcac "+d+"(e)k txata sortu du"},
@@ -322,7 +322,7 @@ gh4(){return"Iturburu kodea"},
 gkw(){return"Gunea publikoa da"},
 gkx(){return"Gunearen izena"},
 h7(d){return d+"(e)k deia hasi du"},
-gaK(d){return"Egoera"},
+gaJ(d){return"Egoera"},
 gkA(){return"Zer moduz zaude gaur?"},
 gkD(d){return"Bidali"},
 gkH(){return"Sinkronizatzen\u2026 itxaron."},
@@ -692,5 +692,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FW,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["1x66M2XMWVg0X3ak+I2KfPQUIcc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["cFNxTCXMJXzzJjElXm/17DFNkCo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_302.part.js.map

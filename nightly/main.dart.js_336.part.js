@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK7(){return new A.G9(B.dc("it"))},
+cK8(){return new A.G9(B.dc("it"))},
 G9:function G9(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Copia"},
 gfi(){return"Copia negli appunti"},
 ia(d){return"Impossibile decriptare messaggio: "+d},
 gpe(){return"Checklist"},
-dR(d){return""+d+" partecipanti"},
+dQ(d){return""+d+" partecipanti"},
 ls(d){return""+d+" invitati"},
 gib(d){return"Crea"},
 ic(d){return"\ud83d\udcac "+d+" ha creato la chat"},
@@ -322,7 +322,7 @@ gh4(){return"Codice sorgente"},
 gkw(){return"Lo spazio \xe8 pubblico"},
 gkx(){return"Nome dello spazio"},
 h7(d){return d+" ha iniziato una chiamata"},
-gaK(d){return"Stato"},
+gaJ(d){return"Stato"},
 gkA(){return"Come stai oggi?"},
 gkD(d){return"Invia"},
 gkH(){return"Sincronizzazione... Attendere prego."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G9,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G9":{"aD":[]}}'))};
-(a=>{a["WGHVjwzxJDhdgj55fW3bBMW4H7g="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4rn9c+R0D2FXmoS2V30gLt8NaD0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_336.part.js.map

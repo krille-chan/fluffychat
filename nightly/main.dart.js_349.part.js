@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKk(){return new A.Gl(B.dc("ro"))},
+cKl(){return new A.Gl(B.dc("ro"))},
 Gl:function Gl(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Copia\u021bi"},
 gfi(){return"Copia\u021bi \xeen clipboard"},
 ia(d){return"Dezcriptarea mesajului a e\u0219uat: "+d},
 gpe(){return"Check list"},
-dR(d){return""+d+" participan\u021bi"},
+dQ(d){return""+d+" participan\u021bi"},
 ls(d){return""+d+" invited"},
 gib(d){return"Crea\u021bi"},
 ic(d){return"\ud83d\udcac"+d+" a creat chatul"},
@@ -322,7 +322,7 @@ gh4(){return"Codul surs"},
 gkw(){return"Spa\u021biul este public"},
 gkx(){return"Numele spa\u021biului"},
 h7(d){return d+" a \xeenceput un apel"},
-gaK(d){return"Status"},
+gaJ(d){return"Status"},
 gkA(){return"Ce face\u021bi?"},
 gkD(d){return"Trimite\u021bi"},
 gkH(){return"Sincronizeaz\u0103... V\u0103 rug\u0103m s\u0103 a\u0219tepta\u021bi."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gl,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gl":{"aD":[]}}'))};
-(a=>{a["qqOb3OHGCip7UT+wbJTvGPgouJM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3vUJD2PjHKXzMEPybLfgKbSjagU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_349.part.js.map

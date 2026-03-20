@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKf(){return new A.Gh(B.dc("nl"))},
+cKg(){return new A.Gh(B.dc("nl"))},
 Gh:function Gh(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Bericht kopi\xebren"},
 gfi(){return"Kopieer naar klembord"},
 ia(d){return"Kan het bericht niet ontsleutelen: "+d},
 gpe(){return"Checklist"},
-dR(d){return""+d+" personen"},
+dQ(d){return""+d+" personen"},
 ls(d){return""+d+" uitgenodigd"},
 gib(d){return"Aanmaken"},
 ic(d){return"\ud83d\udcac "+d+" heeft de chat gemaakt"},
@@ -322,7 +322,7 @@ gh4(){return"Broncode"},
 gkw(){return"Space is publiek"},
 gkx(){return"Spacenaam"},
 h7(d){return d+" heeft een gesprek gestart"},
-gaK(d){return"Status"},
+gaJ(d){return"Status"},
 gkA(){return"Hoe gaat het met jouw vandaag?"},
 gkD(d){return"Indienen"},
 gkH(){return"Synchroniseren... Even geduld."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gh,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gh":{"aD":[]}}'))};
-(a=>{a["RjlqKnyLGoqNckbbobKbBtkvk4E="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["++NFX0a6WnCFShUwJrbByo20Ozo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_347.part.js.map

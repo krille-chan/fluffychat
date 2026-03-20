@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJW(){return new A.FY(B.dc("fi"))},
+cJX(){return new A.FY(B.dc("fi"))},
 FY:function FY(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Kopioi"},
 gfi(){return"Kopioi leikep\xf6yd\xe4lle"},
 ia(d){return"Viestin salausta ei voitu purkaa: "+d},
 gpe(){return"Tarkistuslista"},
-dR(d){return""+d+" osallistujaa"},
+dQ(d){return""+d+" osallistujaa"},
 ls(d){return""+d+" kutsuttu"},
 gib(d){return"Luo"},
 ic(d){return d+" loi keskustelun"},
@@ -322,7 +322,7 @@ gh4(){return"L\xe4hdekoodi"},
 gkw(){return"Tila on julkinen"},
 gkx(){return"Tilan nimi"},
 h7(d){return d+" aloitti puhelun"},
-gaK(d){return"Tila"},
+gaJ(d){return"Tila"},
 gkA(){return"Millainen on vointisi?"},
 gkD(d){return"L\xe4het\xe4"},
 gkH(){return"Synkronoidaan... Hetkinen."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FY,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FY":{"aD":[]}}'))};
-(a=>{a["KRA31nzhpVVIW1mPshX+LdeG5vk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["cg7f4rrQyAlCopnNf5Lm/hu4oAE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

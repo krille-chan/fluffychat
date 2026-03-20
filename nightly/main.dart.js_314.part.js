@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK_(){return new A.G1(B.dc("gl"))},
+cK0(){return new A.G1(B.dc("gl"))},
 G1:function G1(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Copiar"},
 gfi(){return"Copiar ao portapapeis"},
 ia(d){return"Non se descifrou a mensaxe: "+d},
 gpe(){return"Comprobar lista"},
-dR(d){return""+d+" participantes"},
+dQ(d){return""+d+" participantes"},
 ls(d){return""+d+" convidadas"},
 gib(d){return"Crear"},
 ic(d){return"\ud83d\udcac "+d+" creou a conversa"},
@@ -322,7 +322,7 @@ gh4(){return"C\xf3digo fonte"},
 gkw(){return"O Espazo \xe9 p\xfablico"},
 gkx(){return"Nome do Espazo"},
 h7(d){return d+" iniciou unha chamada"},
-gaK(d){return"Estado"},
+gaJ(d){return"Estado"},
 gkA(){return"\xbfQue tal est\xe1s hoxe?"},
 gkD(d){return"Enviar"},
 gkH(){return"Sincronizando... Agarda."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G1,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G1":{"aD":[]}}'))};
-(a=>{a["hj0k9NnLY8HtYt+EcZznF2h9LxY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PDwFpfhpt+U/r/Gg+s9VTRi/Hi8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

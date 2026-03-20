@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKw(){return new A.Gx(B.dc("uz"))},
+cKx(){return new A.Gx(B.dc("uz"))},
 Gx:function Gx(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Nusxalash"},
 gfi(){return"Buferga nusxalash"},
 ia(d){return"Xabarni shifrlab bo\u02bblmadi: "+d},
 gpe(){return"Tekshirish ro\u02bbyxati"},
-dR(d){return""+d+" qatnashuvchilar"},
+dQ(d){return""+d+" qatnashuvchilar"},
 ls(d){return""+d+" taklif qilindi"},
 gib(d){return"Yaratish"},
 ic(d){return"\ud83d\udcac "+d+" suhbat yaratdi"},
@@ -322,7 +322,7 @@ gh4(){return"Manba kodi"},
 gkw(){return"Guruh ochiq"},
 gkx(){return"Guruh nomi"},
 h7(d){return d+" chaqiruv boshladi"},
-gaK(d){return"Holati"},
+gaJ(d){return"Holati"},
 gkA(){return"Bugun ahvolingiz qalay?"},
 gkD(d){return"Yuborish"},
 gkH(){return"Sinxronlanmoqda... Iltimos, kuting."},
@@ -692,5 +692,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gx,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gx":{"aD":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["xijve4s3jgsTLQCW+STHTvrrXZA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/UyCXnSNiar3wCb1slnaWhOKE+M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_366.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK6(){return new A.G8(B.dc("ie"))},
+cK7(){return new A.G8(B.dc("ie"))},
 G8:function G8(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"Copiar"},
 gfi(){return"Copiar al Paperiere"},
 ia(d){return"Could not decrypt message: "+d},
 gpe(){return"Check list"},
-dR(d){return""+d+" participantes"},
+dQ(d){return""+d+" participantes"},
 ls(d){return""+d+" invited"},
 gib(d){return"Crear"},
 ic(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -322,7 +322,7 @@ gh4(){return"Code de fonte"},
 gkw(){return"Space is public"},
 gkx(){return"N\xf3mine de spacie"},
 h7(d){return d+" started a call"},
-gaK(d){return"Statu"},
+gaJ(d){return"Statu"},
 gkA(){return"How are you today?"},
 gkD(d){return"Inviar"},
 gkH(){return"Synchronizing\u2026 Please wait."},
@@ -691,5 +691,5 @@ A(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G8,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G8":{"aD":[]}}'))};
-(a=>{a["G0Mlb3lixiQK4wCqz/v3ZyEjxwQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ecVzG+RS99CBn+gN0zu5SjtPTUM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_334.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJZ(){return new A.G0(B.dc("ga"))},
+cK_(){return new A.G0(B.dc("ga"))},
 G0:function G0(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -121,7 +121,7 @@ geA(d){return"C\xf3ipe\xe1il"},
 gfi(){return"C\xf3ipe\xe1il ar an ghearrthaisce"},
 ia(d){return"N\xedorbh fh\xe9idir teachtaireacht a dh\xedchripti\xfa: "+d},
 gpe(){return"Liosta seice\xe1la"},
-dR(d){return""+d+" rannph\xe1irtithe"},
+dQ(d){return""+d+" rannph\xe1irtithe"},
 ls(d){return"cuireadh chuig "+d},
 gib(d){return"Cruthaigh"},
 ic(d){return"\ud83d\udcac chruthaigh "+d+" an comhr\xe1"},
@@ -322,7 +322,7 @@ gh4(){return"C\xf3d foinseach"},
 gkw(){return"T\xe1 an sp\xe1s poibl\xed"},
 gkx(){return"Ainm an sp\xe1is"},
 h7(d){return"Thosaigh "+d+" glao"},
-gaK(d){return"Staid"},
+gaJ(d){return"Staid"},
 gkA(){return"Conas at\xe1 t\xfa inniu?"},
 gkD(d){return"Cuir isteach"},
 gkH(){return"Ag sioncr\xf3n\xfa... Fan, le do thoil."},
@@ -692,5 +692,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G0,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G0":{"aD":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["VA5q/iVSvEQOzEfH7MrohVwaXJg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BG3/QlutubQ87oWo2TLh4zv3Xh8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map
