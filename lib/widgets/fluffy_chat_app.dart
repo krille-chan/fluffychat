@@ -39,6 +39,10 @@ class FluffyChatApp extends StatelessWidget {
     routes: AppRoutes.routes,
     debugLogDiagnostics: true,
     redirect: (context, state) {
+      // Workaround for content sharings passed to go router:
+      if (state.uri.scheme == 'content') return null;
+
+      // Pass deep links to app:
       if (state.uri.toString().startsWith(AppConfig.deepLinkPrefix)) {
         return '/rooms/newprivatechat?deeplink=${state.uri}';
       }

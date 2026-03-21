@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -306,7 +307,7 @@ class ChatListController extends State<ChatList>
 
   void _processIncomingSharedMedia(List<SharedMediaFile> files) {
     if (files.isEmpty) return;
-
+    inspect(files);
     if (files.singleOrNull?.path.startsWith(AppConfig.deepLinkPrefix) == true) {
       return;
     }
