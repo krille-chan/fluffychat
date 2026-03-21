@@ -553,6 +553,7 @@ class ChatController extends State<ChatPageWithRoom>
     timeline?.cancelSubscriptions();
     timeline = null;
     inputFocus.removeListener(_inputFocusListener);
+    if (currentlyTyping) room.setTyping(false);
     super.dispose();
   }
 
@@ -1289,6 +1290,7 @@ class ChatController extends State<ChatPageWithRoom>
     if (AppSettings.sendTypingNotifications.value) {
       typingCoolDown?.cancel();
       typingCoolDown = Timer(const Duration(seconds: 2), () {
+        if (!mounted) return;
         typingCoolDown = null;
         currentlyTyping = false;
         room.setTyping(false);
