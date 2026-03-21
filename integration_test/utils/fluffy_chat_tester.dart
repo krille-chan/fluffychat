@@ -67,10 +67,7 @@ extension type FluffyChatTester(WidgetTester tester) {
     await tester.pumpAndSettle();
   }
 
-  Future<void> goBack() async {
-    _print('🔙 Going a page back');
-    await tester.pageBack();
-  }
+  Future<void> goBack() => tapOn(find.byTooltip('Back'));
 
   Future<void> enterText(Object object, String text, {int? index}) async {
     final finder = await _ensureVisible(object, index: index);
