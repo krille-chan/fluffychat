@@ -2193,5 +2193,207 @@
     "hideInvalidOrUnknownMessageFormats": "無効であるか不明なメッセージ形式を隠す",
     "blockListDescription": "迷惑なユーザーをブロックすることができます。あなたの個人的なブロックリストに記載されたユーザーは、あらゆるメッセージやルームへの招待を受け取ることができません。",
     "invalidServerName": "無効なサーバー名",
-    "redactMessageDescription": "メッセージはこの会話のすべての参加者から削除されます。これは取り消すことができません。"
+    "redactMessageDescription": "メッセージはこの会話のすべての参加者から削除されます。これは取り消すことができません。",
+    "commandHint_op": "ユーザーの権限レベルを付与する（デフォルト：50）",
+    "@commandHint_op": {
+        "type": "String",
+        "description": "Usage hint for the command /op"
+    },
+    "optionalRedactReason": "（オプション）メッセージを削除する理由…",
+    "overview": "概観",
+    "passwordRecoverySettings": "パスワードの復元設定",
+    "setChatDescription": "チャットの説明を設定",
+    "dismiss": "棄却",
+    "invitedBy": "📩 {user}に招待されました",
+    "@invitedBy": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "hasKnocked": "🚪 {user}がノックしました",
+    "@hasKnocked": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "usersMustKnock": "ユーザーはノックする必要があります",
+    "noOneCanJoin": "誰も参加できません",
+    "knock": "ノック",
+    "saveKeyManuallyDescription": "この鍵をシステムの共有ダイアログかクリップボードから手動で保存してください。",
+    "fileIsTooBigForServer": "送信できません！このサーバーは添付数は{max}個までです。",
+    "@fileIsTooBigForServer": {
+        "type": "String",
+        "placeholders": {
+            "max": {
+                "type": "String"
+            }
+        }
+    },
+    "fileHasBeenSavedAt": "ファイルは {path} に保存されています",
+    "@fileHasBeenSavedAt": {
+        "type": "String",
+        "placeholders": {
+            "path": {
+                "type": "String"
+            }
+        }
+    },
+    "jumpToLastReadMessage": "最後に閲覧したメッセージまで移動する",
+    "readUpToHere": "ここまで既読です",
+    "jump": "移動",
+    "openLinkInBrowser": "リンクをブラウザで開く",
+    "reportErrorDescription": "😭 おっと。問題が発生しました。必要があれば、このバグを開発者に報告することができます。",
+    "setColorTheme": "カラーテーマの設定：",
+    "invite": "招待",
+    "inviteGroupChat": "📨 グループチャットへ招待する",
+    "invalidInput": "無効な入力です！",
+    "wrongPinEntered": "誤ったPINが入力されました！{seconds}秒後に再試行してください…",
+    "@wrongPinEntered": {
+        "type": "String",
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "pleaseEnterANumber": "0以上の数値を入力してください",
+    "archiveRoomDescription": "チャットはアーカイブに移動されます。他のユーザーはあなたが退出したチャットを見ることができます。",
+    "roomUpgradeDescription": "チャットは新しい部屋バージョンで再作成されます。全参加者に新しいチャットへ切り替える必要があることが通知されます。部屋バージョンについては https://spec.matrix.org/latest/rooms/ をご覧ください",
+    "removeDevicesDescription": "このデバイスからログアウトするとメッセージを受け取ることができません。",
+    "banUserDescription": "ユーザーをチャットからBANすると、BANを解除されるまで再入室することはできません。",
+    "unbanUserDescription": "ユーザーが再試行時に再入室することができます。",
+    "pushNotificationsNotAvailable": "プッシュ通知は利用できません",
+    "learnMore": "詳しく知る",
+    "yourGlobalUserIdIs": "あなたのグローバルユーザーID： ",
+    "knocking": "ノックしています",
+    "searchChatsRooms": "#チャット，@ユーザーで検索…",
+    "nothingFound": "何も見つかりませんでした…",
+    "groupName": "グループ名",
+    "createGroupAndInviteUsers": "グループを作成してユーザーを招待する",
+    "groupCanBeFoundViaSearch": "グループは検索で見つけることができます",
+    "commandHint_sendraw": "生のJSONを送信する",
+    "databaseMigrationTitle": "データベースは最適化されています",
+    "databaseMigrationBody": "しばらくお待ちください。この操作は時間がかかります。",
+    "searchForUsers": "@ユーザー で検索…",
+    "pleaseEnterYourCurrentPassword": "現在のパスワードを入力してください",
+    "newPassword": "新しいパスワード",
+    "pleaseChooseAStrongPassword": "強力なパスワードを選択してください",
+    "markAsUnread": "未読としてマーク",
+    "userLevel": "{level} - ユーザー",
+    "@userLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "moderatorLevel": "{level} - モデレーター",
+    "@moderatorLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "adminLevel": "{level} - 管理者",
+    "@adminLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "changeGeneralChatSettings": "全体のチャット設定を変更する",
+    "inviteOtherUsers": "他のユーザーをこのチャットに招待する",
+    "changeTheChatPermissions": "チャット権限を変更する",
+    "changeTheDescriptionOfTheGroup": "チャットの説明を変更する",
+    "updateInstalled": "🎉 アップデート {version} をインストールしました！",
+    "@updateInstalled": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "changelog": "変更履歴",
+    "sendCanceled": "送信を取り消しました",
+    "loginWithMatrixId": "Matrix-IDでログイン",
+    "calculatingFileSize": "ファイルサイズを計算しています…",
+    "prepareSendingAttachment": "送信する添付ファイルを準備しています…",
+    "sendingAttachment": "添付ファイルを送信しています…",
+    "generatingVideoThumbnail": "ビデオサムネイルを生成しています…",
+    "compressVideo": "ビデオを圧縮しています…",
+    "sendingAttachmentCountOfCount": "{length}個中{index}個の添付ファイルを送信しています…",
+    "@sendingAttachmentCountOfCount": {
+        "type": "integer",
+        "placeholders": {
+            "index": {
+                "type": "int"
+            },
+            "length": {
+                "type": "int"
+            }
+        }
+    },
+    "serverLimitReached": "サーバーのリミットに達しました！{seconds}秒お待ちください…",
+    "@serverLimitReached": {
+        "type": "integer",
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "oneOfYourDevicesIsNotVerified": "いずれかのデバイスが認証されていません",
+    "noticeChatBackupDeviceVerification": "注意：すべてのデバイスをチャットのバックアップに接続している場合、それらは自動的に認証されます。",
+    "continueText": "続ける",
+    "blur": "ぼかし：",
+    "opacity": "透過度：",
+    "setWallpaper": "壁紙を設定する",
+    "manageAccount": "アカウント管理",
+    "noContactInformationProvided": "サーバーから有効な連絡先情報が提供されていません",
+    "supportPage": "サポートページ",
+    "serverInformation": "サーバー情報：",
+    "name": "名前",
+    "version": "バージョン",
+    "website": "ウェブサイト",
+    "compress": "圧縮",
+    "boldText": "太字",
+    "italicText": "斜体",
+    "invalidUrl": "無効なURL",
+    "addLink": "リンクを追加",
+    "appWantsToUseForLogin": "'{server}' を使用してログインする",
+    "@appWantsToUseForLogin": {
+        "type": "String",
+        "placeholders": {
+            "server": {
+                "type": "String"
+            }
+        }
+    },
+    "open": "開く",
+    "waitingForServer": "サーバーを待機中…",
+    "newChatRequest": "📩 新しいチャットを要求",
+    "contentNotificationSettings": "コンテンツ通知設定",
+    "generalNotificationSettings": "全体通知設定",
+    "roomNotificationSettings": "部屋通知設定",
+    "userSpecificNotificationSettings": "ユーザー毎の通知設定",
+    "otherNotificationSettings": "その他の通知設定",
+    "notificationRuleContainsUserName": "ユーザー名を含む",
+    "notificationRuleContainsUserNameDescription": "ユーザー名がメッセージに含まれる場合に通知します。",
+    "notificationRuleMaster": "すべての通知をミュート",
+    "notificationRuleSuppressNotices": "自動化されたメッセージを控える",
+    "notificationRuleSuppressNoticesDescription": "Botのような自動化されたクライアントからの通知を抑制します。",
+    "notificationRuleInviteForMeDescription": "ユーザーが部屋に招待されたときに通知します。",
+    "notificationRuleMasterDescription": "全ルールを上書きして通知をすべて無効にします。",
+    "notificationRuleIsUserMention": "ユーザーの言及",
+    "notificationRuleIsUserMentionDescription": "ユーザーがメッセージ内で直接言及されたときに通知します。"
 }
