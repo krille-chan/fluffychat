@@ -903,14 +903,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.2"
-  import_sorter:
-    dependency: "direct dev"
-    description:
-      name: import_sorter
-      sha256: eb15738ccead84e62c31e0208ea4e3104415efcd4972b86906ca64a1187d0836
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.6.0"
   integration_test:
     dependency: "direct dev"
     description: flutter
@@ -1809,14 +1801,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.11.0"
-  tint:
-    dependency: transitive
-    description:
-      name: tint
-      sha256: "9652d9a589f4536d5e392cf790263d120474f15da3cf1bee7f1fdb31b4de5f46"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   translations_cleaner:
     dependency: "direct dev"
     description:

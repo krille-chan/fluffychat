@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
+import 'package:flutter/material.dart';
 
 class MarkdownContextBuilder extends StatelessWidget {
   final EditableTextState editableTextState;

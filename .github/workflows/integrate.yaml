@@ -23,8 +23,6 @@ jobs:
         run: git diff --exit-code pubspec.lock
       - name: Check formatting
         run: dart format lib/ test/ --set-exit-if-changed
-      - name: Check import formatting
-        run: dart run import_sorter:main --no-comments --exit-if-changed
       - name: Check license compliance
         run: dart run license_checker check-licenses -c licenses.yaml --problematic
       - run: flutter analyze

@@ -1,6 +1,6 @@
+import 'package:fluffychat/config/themes.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'dismiss_keyboard.dart';
 
 class PIPView extends StatefulWidget {

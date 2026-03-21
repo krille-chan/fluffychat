@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:badges/badges.dart' as b;
+import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'matrix.dart';

@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
-import 'package:go_router/go_router.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsPasswordView extends StatelessWidget {
   final SettingsPasswordController controller;

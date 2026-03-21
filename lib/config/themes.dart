@@ -1,8 +1,7 @@
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:fluffychat/config/setting_keys.dart';
-import 'app_config.dart';
 
 abstract class FluffyThemes {
   static const double columnWidth = 380.0;
