@@ -14,6 +14,7 @@ import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/encryption_button.dart';
+import 'package:fluffychat/pages/chat/jitsi_popup_button.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/utils/account_config.dart';
@@ -224,14 +225,16 @@ class ChatView extends StatelessWidget {
                         ],
                       ),
                   ] else if (!controller.room.isArchived) ...[
-                    if (AppSettings.experimentalVoip.value &&
+                    if ((AppSettings.experimentalVoip.value &&
                         Matrix.of(context).voipPlugin != null &&
-                        controller.room.isDirectChat)
+                        controller.room.isDirectChat))
                       IconButton(
                         onPressed: controller.onPhoneButtonTap,
                         icon: const Icon(Icons.call_outlined),
                         tooltip: L10n.of(context).placeCall,
-                      ),
+                      )
+                    else if (AppSettings.jitsiFeature.value)
+                      JitsiPopupButton(controller.room),
                     EncryptionButton(controller.room),
                     ChatSettingsPopupMenu(controller.room, true),
                   ],

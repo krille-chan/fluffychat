@@ -2789,5 +2789,14 @@
     "iDoNotWantToSupport": "I do not want to support",
     "iAlreadySupportFluffyChat": "I already support FluffyChat",
     "setLowPriority": "Set low priority",
-    "unsetLowPriority": "Unset low priority"
+    "unsetLowPriority": "Unset low priority",
+    "jitsiGroupCalls": "Jitsi group calls",
+    "removeCallFromChat": "Remove call from chat",
+    "removeCallFromChatDescription": "Do you want to remove the call from the chat for all members?",
+    "removeCallForEveryone": "Remove call for everyone",
+    "startVoiceCall": "Start voice call",
+    "startVideoCall": "Start video call",
+    "joinVoiceCall": "Join voice call",
+    "joinVideoCall": "Join video call",
+    "live": "Live"
 }
