@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 extension SyncStatusLocalization on SyncStatusUpdate {
   String calcLocalizedString(BuildContext context) {

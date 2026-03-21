@@ -1,13 +1,11 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:async/async.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:fluffychat/utils/platform_infos.dart';
 
 enum AppSettings<T> {
   textMessageMaxLength<int>('textMessageMaxLength', 16384),

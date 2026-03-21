@@ -2,6 +2,7 @@ include: package:flutter_lints/flutter.yaml
 
 linter:
   rules:
+    - directives_ordering
     - avoid_print
     - constant_identifier_names
     - prefer_final_locals

@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:flutter/material.dart';
 
 class SettingsSwitchListTile extends StatefulWidget {
   final AppSettings<bool> setting;

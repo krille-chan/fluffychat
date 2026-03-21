@@ -1,10 +1,7 @@
 {
-    "emeraldwalk.runonsave": {
-        "commands": [
-            {
-                "match": "\\.dart$",
-                "cmd": "dart run import_sorter:main --no-comments ${fileBasename}"
-            }
+    "[dart]": {
+        "editor.codeActionsOnSave": [
+            "source.organizeImports"
         ]
     }
 }

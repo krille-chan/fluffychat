@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_linkify/flutter_linkify.dart';
-
 import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 
 class ChatAppBarListTile extends StatelessWidget {
   final Widget? leading;

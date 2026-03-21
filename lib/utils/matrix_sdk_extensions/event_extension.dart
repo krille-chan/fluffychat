@@ -1,11 +1,10 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:async/async.dart' as async;
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/utils/size_string.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+
 import 'matrix_file_extension.dart';
 
 extension LocalizedBody on Event {

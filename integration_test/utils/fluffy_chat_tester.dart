@@ -1,6 +1,6 @@
+import 'package:fluffychat/main.dart' as app;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fluffychat/main.dart' as app;
 
 extension type FluffyChatTester(WidgetTester tester) {
   static int _printCounter = 1;
