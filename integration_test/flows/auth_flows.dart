@@ -1,8 +1,12 @@
 import 'package:fluffychat/pages/sign_in/view_model/model/public_homeserver_data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 import '../data/environment_constants.dart';
 import '../utils/fluffy_chat_tester.dart';
+
+Future<void> finalLogout(WidgetTester widgetTester) =>
+    widgetTester.startFluffyChatTest().then((tester) => tester.logout());
 
 extension AuthFlows on FluffyChatTester {
   Future<void> login() async {
@@ -18,6 +22,7 @@ extension AuthFlows on FluffyChatTester {
   }
 
   Future<void> logout() async {
+    await ensureLoggedIn();
     await tapOn(Key('accounts_and_settings_buttons'));
     await tapOn('Settings');
     await scrollUntilVisible('Logout');
