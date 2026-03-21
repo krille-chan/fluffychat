@@ -307,12 +307,10 @@ class ChatListController extends State<ChatList>
 
   void _processIncomingSharedMedia(List<SharedMediaFile> files) {
     if (files.isEmpty) return;
-
+    inspect(files);
     if (files.singleOrNull?.path.startsWith(AppConfig.deepLinkPrefix) == true) {
       return;
     }
-
-    inspect(files);
 
     showScaffoldDialog(
       context: context,

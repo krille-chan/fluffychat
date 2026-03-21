@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -51,7 +49,6 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
     } else {
       content[key] = newLevel;
     }
-    inspect(content);
     await showFutureLoadingDialog(
       context: context,
       future: () => room.client.setRoomStateWithKey(
