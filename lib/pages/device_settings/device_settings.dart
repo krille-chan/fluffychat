@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:async/async.dart' show Result;
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:matrix/encryption.dart';
-import 'package:matrix/matrix.dart';
+import 'package:matrix/matrix.dart' hide Result;
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -49,8 +50,8 @@ class DevicesSettingsController extends State<DevicesSettings> {
   Future<void> removeDevicesAction(List<Device> devices) async {
     final client = Matrix.of(context).client;
 
-    final wellKnown = await client.getWellknown();
-    final accountManageUrl = wellKnown.additionalProperties
+    final wellKnown = await Result.capture(client.getWellknown());
+    final accountManageUrl = wellKnown.asValue?.value.additionalProperties
         .tryGetMap<String, Object?>('org.matrix.msc2965.authentication')
         ?.tryGet<String>('account');
     if (accountManageUrl != null) {
