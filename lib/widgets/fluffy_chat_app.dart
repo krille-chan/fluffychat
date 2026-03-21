@@ -40,7 +40,7 @@ class FluffyChatApp extends StatelessWidget {
     debugLogDiagnostics: true,
     redirect: (context, state) {
       // Workaround for content sharings passed to go router:
-      if (state.uri.scheme == 'content') return null;
+      if (state.uri.scheme == 'content') return '/';
 
       // Pass deep links to app:
       if (state.uri.toString().startsWith(AppConfig.deepLinkPrefix)) {
