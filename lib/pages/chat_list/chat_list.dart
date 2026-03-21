@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -311,8 +310,6 @@ class ChatListController extends State<ChatList>
     if (files.singleOrNull?.path.startsWith(AppConfig.deepLinkPrefix) == true) {
       return;
     }
-
-    inspect(files);
 
     showScaffoldDialog(
       context: context,
