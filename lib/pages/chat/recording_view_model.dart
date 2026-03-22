@@ -67,7 +67,7 @@ class RecordingViewModelState extends State<RecordingViewModel> {
           ? AudioEncoder.opus
           : AudioEncoder.aacLc;
       fileName =
-          'recording${DateTime.now().microsecondsSinceEpoch}.${codec.fileExtension}';
+          'voice_message_${DateTime.now().millisecondsSinceEpoch}.${codec.fileExtension}';
       String? path;
       if (!kIsWeb) {
         final tempDir = await getTemporaryDirectory();
@@ -168,7 +168,7 @@ class RecordingViewModelState extends State<RecordingViewModel> {
       String path,
       int duration,
       List<int> waveform,
-      String? fileName,
+      String fileName,
     )
     onSend,
   ) async {
@@ -189,7 +189,7 @@ class RecordingViewModelState extends State<RecordingViewModel> {
       isSending = true;
     });
     try {
-      await onSend(path, duration.inMilliseconds, waveform, fileName);
+      await onSend(path, duration.inMilliseconds, waveform, fileName!);
     } catch (e, s) {
       Logs().e('Unable to send voice message', e, s);
       setState(() {

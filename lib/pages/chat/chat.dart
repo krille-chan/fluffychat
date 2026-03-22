@@ -34,6 +34,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
+import 'package:mime/mime.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 import '../../utils/account_bundles.dart';
@@ -700,7 +701,7 @@ class ChatController extends State<ChatPageWithRoom>
     String path,
     int duration,
     List<int> waveform,
-    String? fileName,
+    String fileName,
   ) async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     final audioFile = XFile(path);
@@ -712,9 +713,17 @@ class ChatController extends State<ChatPageWithRoom>
     final bytes = bytesResult.result;
     if (bytes == null) return;
 
+    final mimeType = lookupMimeType(fileName, headerBytes: bytes);
+    final extension = mimeType == null ? null : extensionFromMime(mimeType);
+    if (extension != null) {
+      fileName =
+          'voice_message_${DateTime.now().millisecondsSinceEpoch}.$extension';
+    }
+
     final file = MatrixAudioFile(
       bytes: bytes,
-      name: fileName ?? audioFile.path,
+      name: fileName,
+      mimeType: mimeType,
     );
 
     room

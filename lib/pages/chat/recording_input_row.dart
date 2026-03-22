@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class RecordingInputRow extends StatelessWidget {
   final RecordingViewModelState state;
-  final Future<void> Function(String, int, List<int>, String?) onSend;
+  final Future<void> Function(String, int, List<int>, String) onSend;
   const RecordingInputRow({
     required this.state,
     required this.onSend,
