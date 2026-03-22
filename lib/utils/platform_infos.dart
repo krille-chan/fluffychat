@@ -35,8 +35,8 @@ abstract class PlatformInfos {
   static bool get supportsCustomImageResizer =>
       PlatformInfos.isWeb || PlatformInfos.isMobile;
 
-  /// Web could also record in theory but currently only wav which is too large
-  static bool get platformCanRecord => (isMobile || isMacOS || isWeb);
+  /// Web could also record in theory but currently creates broken opus
+  static bool get platformCanRecord => (isMobile || isMacOS);
 
   static String get clientName =>
       '${AppSettings.applicationName.value} ${isWeb ? 'web' : Platform.operatingSystem}${kReleaseMode ? '' : 'Debug'}';
