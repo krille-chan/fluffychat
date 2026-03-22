@@ -14,6 +14,7 @@ import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/start_poll_bottom_sheet.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
+import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
@@ -78,6 +79,18 @@ class ChatPage extends StatelessWidget {
   }
 }
 
+class ScheduledMessage {
+  final String text;
+  final DateTime scheduledFor;
+  final Timer timer;
+
+  ScheduledMessage({
+    required this.text,
+    required this.scheduledFor,
+    required this.timer,
+  });
+}
+
 class ChatPageWithRoom extends StatefulWidget {
   final Room room;
   final List<ShareItem>? shareItems;
@@ -118,6 +131,8 @@ class ChatController extends State<ChatPageWithRoom>
   Timer? typingTimeout;
   bool currentlyTyping = false;
   bool dragging = false;
+
+  final List<ScheduledMessage> scheduledMessages = [];
 
   void onDragEntered(_) => setState(() => dragging = true);
 
@@ -554,6 +569,12 @@ class ChatController extends State<ChatPageWithRoom>
     timeline = null;
     inputFocus.removeListener(_inputFocusListener);
     if (currentlyTyping) room.setTyping(false);
+
+    for (final scheduled in scheduledMessages) {
+      scheduled.timer.cancel();
+    }
+    scheduledMessages.clear();
+
     super.dispose();
   }
 
@@ -626,6 +647,91 @@ class ChatController extends State<ChatPageWithRoom>
       replyEvent = null;
       editEvent = null;
       pendingText = '';
+    });
+  }
+
+  Future<void> scheduleMessage() async {
+    final text = sendController.text.trim();
+    if (text.isEmpty) return;
+
+    final now = DateTime.now();
+    final pickedDate = await showDatePicker(
+      context: context,
+      initialDate: now,
+      firstDate: now,
+      lastDate: now.add(const Duration(days: 365)),
+    );
+    if (pickedDate == null) return;
+
+    final pickedTime = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(now),
+    );
+    if (pickedTime == null) return;
+
+    final scheduledTime = DateTime(
+      pickedDate.year,
+      pickedDate.month,
+      pickedDate.day,
+      pickedTime.hour,
+      pickedTime.minute,
+    );
+
+    if (scheduledTime.isBefore(now.add(const Duration(seconds: 5)))) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please choose a date and time in the future.'),
+        ),
+      );
+      return;
+    }
+
+    final delay = scheduledTime.difference(now);
+    late Timer timer;
+    timer = Timer(delay, () async {
+      try {
+        final currentRoom = sendingClient.getRoomById(roomId) ?? widget.room;
+        await currentRoom.sendTextEvent(text);
+        if (mounted) {
+          setState(() {
+            scheduledMessages.removeWhere((sm) => sm.timer == timer);
+          });
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Scheduled message sent.')),
+          );
+        }
+      } catch (_) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Unable to send scheduled message.')),
+          );
+        }
+      }
+    });
+
+    setState(() {
+      scheduledMessages.add(
+        ScheduledMessage(text: text, scheduledFor: scheduledTime, timer: timer),
+      );
+      sendController.clear();
+      _inputTextIsEmpty = true;
+      replyEvent = null;
+      editEvent = null;
+      pendingText = '';
+    });
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Message scheduled for ${scheduledTime.localizedTime(context)}',
+        ),
+      ),
+    );
+  }
+
+  void removeScheduledMessage(ScheduledMessage message) {
+    setState(() {
+      scheduledMessages.remove(message);
     });
   }
 
