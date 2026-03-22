@@ -36,7 +36,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "همه گپ‌ها",
+    "allChats": "همه چت ها",
     "@allChats": {
         "type": "String",
         "placeholders": {}
@@ -121,7 +121,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "banFromChat": "محروم کردن از گپ",
+    "banFromChat": "بن کردن از چت",
     "@banFromChat": {
         "type": "String",
         "placeholders": {}
@@ -135,7 +135,7 @@
             }
         }
     },
-    "areGuestsAllowedToJoin": "آیا مهمانان اجازه پیوستن دارند",
+    "areGuestsAllowedToJoin": "آیا مهمانان اجازه پیوستن دارند؟",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -151,7 +151,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "changedTheChatDescriptionTo": "{username} توضیح گپ را به '{description}' تغییر داد",
+    "changedTheChatDescriptionTo": "{username} توضیح چت را به '{description}' تغییر داد",
     "@changedTheChatDescriptionTo": {
         "type": "String",
         "placeholders": {
@@ -163,7 +163,7 @@
             }
         }
     },
-    "changedTheChatPermissions": "{username} دسترسی‌های گپ را تغییر داد",
+    "changedTheChatPermissions": "{username} دسترسی‌های چت را تغییر داد",
     "@changedTheChatPermissions": {
         "type": "String",
         "placeholders": {
@@ -172,7 +172,7 @@
             }
         }
     },
-    "changedTheChatNameTo": "{username} نام گپ را به '{chatname}' تغییر داد",
+    "changedTheChatNameTo": "{username} نام چت را به '{chatname}' تغییر داد",
     "@changedTheChatNameTo": {
         "type": "String",
         "placeholders": {
@@ -232,7 +232,7 @@
             }
         }
     },
-    "changedTheChatAvatar": "{username} نماد گپ را تغییر داد",
+    "changedTheChatAvatar": "{username} نماد چت را تغییر داد",
     "@changedTheChatAvatar": {
         "type": "String",
         "placeholders": {
@@ -259,7 +259,7 @@
             }
         }
     },
-    "chats": "گپ‌ها",
+    "chats": "چت ها",
     "@chats": {
         "type": "String",
         "placeholders": {}
@@ -362,7 +362,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "پشتیبان گپ شما تنظیم شد.",
+    "yourChatBackupHasBeenSetUp": "پشتیبان چت شما تنظیم شد.",
     "changeTheme": "تغییر پوسته",
     "@changeTheme": {
         "type": "String",
@@ -384,12 +384,12 @@
         "placeholders": {}
     },
     "clearArchive": "پاک کردن بایگانی",
-    "commandHint_create": "ساختن یک گپ گروهی خالی\nاز «--no-encryption» برای غیرفعال کردن رمزنگاری استفاده کنید",
+    "commandHint_create": "ساختن یک چت گروهی خالی\nاز «--no-encryption» برای غیرفعال کردن رمزنگاری استفاده کنید",
     "@commandHint_create": {
         "type": "String",
         "description": "Usage hint for the command /create"
     },
-    "commandHint_dm": "شروع یک گپ مستقیم\nاز «--no-encryption» برای غیرفعال کردن رمزنگاری استفاده کنید",
+    "commandHint_dm": "شروع یک چت مستقیم\nاز «--no-encryption» برای غیرفعال کردن رمزنگاری استفاده کنید",
     "@commandHint_dm": {
         "type": "String",
         "description": "Usage hint for the command /dm"
@@ -409,7 +409,7 @@
             }
         }
     },
-    "chatDetails": "جزئیات گپ",
+    "chatDetails": "جزئیات چت",
     "@chatDetails": {
         "type": "String",
         "placeholders": {}
@@ -490,12 +490,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "chat": "گپ",
+    "chat": "چت",
     "@chat": {
         "type": "String",
         "placeholders": {}
     },
-    "chatBackup": "پشتیبان گپ",
+    "chatBackup": "پشتیبان چت",
     "@chatBackup": {
         "type": "String",
         "placeholders": {}
@@ -765,7 +765,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "emptyChat": "گپ خالی",
+    "emptyChat": "چت خالی",
     "@emptyChat": {
         "type": "String",
         "placeholders": {}
@@ -775,7 +775,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "createdTheChat": "💬 {username} گپ را ساخت",
+    "createdTheChat": "💬 {username} چت را ساخت",
     "@createdTheChat": {
         "type": "String",
         "placeholders": {
@@ -789,7 +789,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "directChats": "گپ‌های مستقیم",
+    "directChats": "چت های مستقیم",
     "@directChats": {
         "type": "String",
         "placeholders": {}
@@ -848,7 +848,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "configureChat": "پیکربندی گپ",
+    "configureChat": "تنظیمات چت",
     "@configureChat": {
         "type": "String",
         "placeholders": {}
@@ -1091,12 +1091,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "muteChat": "بی‌صدا کردن گپ",
+    "muteChat": "بی‌صدا کردن چت",
     "@muteChat": {
         "type": "String",
         "placeholders": {}
     },
-    "newChat": "گپ جدید",
+    "newChat": "چت جدید",
     "@newChat": {
         "type": "String",
         "placeholders": {}
@@ -1258,12 +1258,12 @@
             }
         }
     },
-    "kickFromChat": "بیرون کردن از گپ",
+    "kickFromChat": "بیرون کردن از چت",
     "@kickFromChat": {
         "type": "String",
         "placeholders": {}
     },
-    "leftTheChat": "گپ را ترک کرد",
+    "leftTheChat": "چت را ترک کرد",
     "@leftTheChat": {
         "type": "String",
         "placeholders": {}
@@ -1380,7 +1380,7 @@
             }
         }
     },
-    "joinedTheChat": "👋 {username} به گپ پیوست",
+    "joinedTheChat": "👋 {username} به چت پیوست",
     "@joinedTheChat": {
         "type": "String",
         "placeholders": {
@@ -1551,7 +1551,7 @@
             }
         }
     },
-    "unbanFromChat": "لغو محرومیت از گپ",
+    "unbanFromChat": "لغو محرومیت از چت",
     "@unbanFromChat": {
         "type": "String",
         "placeholders": {}
@@ -1665,7 +1665,7 @@
             }
         }
     },
-    "wasDirectChatDisplayName": "گپ خالی (پیش‌تر {oldDisplayName} بود)",
+    "wasDirectChatDisplayName": "چت خالی (قبلا {oldDisplayName} بود)",
     "@wasDirectChatDisplayName": {
         "type": "String",
         "placeholders": {
@@ -1674,15 +1674,15 @@
             }
         }
     },
-    "newSpaceDescription": "فضاها امکان یکپارچه‌سازی گپ‌ها و ساخت جوامع خصوصی یا عمومی را فراهم می‌کنند.",
-    "encryptThisChat": "رمزنگاری این گپ",
+    "newSpaceDescription": "فضاها امکان یکپارچه‌سازی چت ها و ساخت جوامع خصوصی یا عمومی را فراهم می‌کنند.",
+    "encryptThisChat": "رمزنگاری این چت",
     "sorryThatsNotPossible": "متأسفیم... این ممکن نیست",
     "deviceKeys": "کلیدهای دستگاه:",
     "fileIsTooBigForServer": "نمیتوان فرستاد! سرور تنها از پیوست های تا {max} پشتیبانی میکند.",
     "jumpToLastReadMessage": "پرش به آخرین پیام خوانده‌شده",
     "doNotShowAgain": "دوباره نمایش نده",
     "readUpToHere": "خوانده‌شده تا اینجا",
-    "noBackupWarning": "هشدار! بدون فعال کردن پشتیبان گپ، دسترسی به پیام‌های رمزنگاری‌شده خود را از دست خواهید داد. پیشنهاد می‌شود پیش از خروج، پشتیبان گپ را فعال کنید.",
+    "noBackupWarning": "هشدار! بدون فعال کردن پشتیبان چت، دسترسی به پیام‌های رمزنگاری‌شده خود را از دست خواهید داد. پیشنهاد می‌شود پیش از خروج، پشتیبان چت را فعال کنید.",
     "noOtherDevicesFound": "دستگاه دیگری پیدا نشد",
     "countFiles": "{count} پرونده",
     "@countFiles": {
@@ -1692,8 +1692,8 @@
             }
         }
     },
-    "noKeyForThisMessage": "اگر پیام پیش از ورود به حساب در این دستگاه فرستاده شده باشد، این مشکل ممکن است رخ دهد.\n\nهمچنین ممکن است فرستنده دستگاه شما را مسدود کرده باشد یا مشکلی در اتصال اینترنت وجود داشته باشد.\n\nآیا می‌توانید پیام را در نشست دیگری بخوانید؟ در این صورت، می‌توانید آن را منتقل کنید! به تنظیمات > دستگاه‌ها بروید و مطمئن شوید دستگاه‌هایتان یکدیگر را بازبینی کرده‌اند. هنگام باز کردن دوباره اتاق و فعال بودن هر دو نشست، کلیدها به‌صورت خودکار منتقل می‌شوند.\n\nآیا نمی‌خواهید هنگام خروج یا تغییر دستگاه کلیدها را گم کنید؟ مطمئن شوید پشتیبان گپ را در تنظیمات فعال کرده‌اید.",
-    "disableEncryptionWarning": "به دلایل امنیتی نمی‌توانید رمزنگاری را در گپی که فعال شده غیرفعال کنید.",
+    "noKeyForThisMessage": "اگر پیام پیش از ورود به حساب در این دستگاه فرستاده شده باشد، این مشکل ممکن است رخ دهد.\n\nهمچنین ممکن است فرستنده دستگاه شما را مسدود کرده باشد یا مشکلی در اتصال اینترنت وجود داشته باشد.\n\nآیا می‌توانید پیام را در نشست دیگری بخوانید؟ در این صورت، می‌توانید آن را منتقل کنید! به تنظیمات > دستگاه‌ها بروید و مطمئن شوید دستگاه‌هایتان یکدیگر را بازبینی کرده‌اند. هنگام باز کردن دوباره اتاق و فعال بودن هر دو نشست، کلیدها به‌صورت خودکار منتقل می‌شوند.\n\nآیا نمی‌خواهید هنگام خروج یا تغییر دستگاه کلیدها را گم کنید؟ مطمئن شوید پشتیبان چت را در تنظیمات فعال کرده‌اید.",
+    "disableEncryptionWarning": "به دلایل امنیتی نمی‌توانید رمزنگاری را در چتی که فعال شده غیرفعال کنید.",
     "newGroup": "گروه جدید",
     "foregroundServiceRunning": "این آگاه‌ساز زمانی ظاهر می‌شود که خدمت پیش‌زمینه فعال است.",
     "storeSecurlyOnThisDevice": "ذخیره امن در این دستگاه",
@@ -1706,8 +1706,8 @@
     "custom": "سفارشی",
     "screenSharingTitle": "هم‌رسانی صفحه‌نمایش",
     "whyIsThisMessageEncrypted": "چرا این پیام خوانا نیست؟",
-    "reopenChat": "باز کردن دوباره گپ",
-    "unmuteChat": "فعال کردن صدای گپ",
+    "reopenChat": "باز کردن دوباره چت",
+    "unmuteChat": "فعال کردن صدای چت",
     "@unmuteChat": {
         "type": "String",
         "placeholders": {}
@@ -1768,7 +1768,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "شما از این گپ محروم شده‌اید",
+    "youHaveBeenBannedFromThisChat": "شما از این چت محروم شده‌اید",
     "@youHaveBeenBannedFromThisChat": {
         "type": "String",
         "placeholders": {}
@@ -1873,7 +1873,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "youAreNoLongerParticipatingInThisChat": "شما دیگر در این گپ شرکت نمی‌کنید",
+    "youAreNoLongerParticipatingInThisChat": "شما دیگر در این چت شرکت نمی‌کنید",
     "@youAreNoLongerParticipatingInThisChat": {
         "type": "String",
         "placeholders": {}
@@ -1925,7 +1925,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "openChat": "باز کردن گپ",
+    "openChat": "باز کردن چت",
     "dismiss": "رد کردن",
     "unsupportedAndroidVersion": "نسخه اندروید پشتیبانی‌نشده",
     "youUnbannedUser": "شما محرومیت {user} را برداشتید",
@@ -1987,7 +1987,7 @@
             }
         }
     },
-    "userLeftTheChat": "👋 {username} گپ را ترک کرد",
+    "userLeftTheChat": "👋 {username} چت را ترک کرد",
     "@userLeftTheChat": {
         "type": "String",
         "placeholders": {
@@ -2001,7 +2001,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "visibilityOfTheChatHistory": "قابلیت دیدن تاریخچه گپ",
+    "visibilityOfTheChatHistory": "قابلیت دیدن تاریخچه چت",
     "@visibilityOfTheChatHistory": {
         "type": "String",
         "placeholders": {}
@@ -2016,7 +2016,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "برای ایجاد کلید بازیابی جدید، پشتیبان گپ خود را پاک می‌کنید؟",
+    "wipeChatBackup": "برای ایجاد کلید بازیابی جدید، پشتیبان چت خود را پاک می‌کنید؟",
     "@wipeChatBackup": {
         "type": "String",
         "placeholders": {}
@@ -2083,7 +2083,7 @@
     "pinMessage": "سنجاق کردن به اتاق",
     "emojis": "شکلک‌ها",
     "voiceCall": "تماس صوتی",
-    "youJoinedTheChat": "شما به گپ پیوستید",
+    "youJoinedTheChat": "شما به چت پیوستید",
     "youBannedUser": "شما {user} را محروم کردید",
     "@youBannedUser": {
         "placeholders": {
@@ -2146,8 +2146,8 @@
     "appLockDescription": "قفل کردن برنامه با رمز کوتاه هنگام عدم استفاده",
     "sendTypingNotifications": "فرستادن آگاه‌سازهای نوشتن",
     "swipeRightToLeftToReply": "کشیدن از راست به چپ برای پاسخ",
-    "noMoreChatsFound": "گپ دیگری پیدا نشد...",
-    "noChatsFoundHere": "اینجا هنوز گپی پیدا نشد. با استفاده از دکمه زیر گپ جدیدی با کسی شروع کنید. ⤵️",
+    "noMoreChatsFound": "چت دیگری پیدا نشد...",
+    "noChatsFoundHere": "اینجا هنوز چتی پیدا نشد. با استفاده از دکمه زیر چت جدیدی با کسی شروع کنید. ⤵️",
     "unread": "خوانده‌نشده",
     "space": "فضا",
     "spaces": "فضاها",
@@ -2162,28 +2162,28 @@
         }
     },
     "createGroup": "ساختن گروه",
-    "chatPermissions": "دسترسی‌های گپ",
+    "chatPermissions": "دسترسی‌های چت",
     "emoteKeyboardNoRecents": "شکلک‌هایی که به تازگی استفاده‌شده اینجا نمایش داده میشوند...",
     "@emoteKeyboardNoRecents": {
         "type": "String",
         "placeholders": {}
     },
-    "globalChatId": "شناسه گپ سراسری",
+    "globalChatId": "شناسه سراسری چت",
     "accessAndVisibility": "دسترسی و قابلیت دید",
-    "accessAndVisibilityDescription": "چه کسی اجازه پیوستن به این گپ را دارد و گپ چگونه قابل کشف است.",
+    "accessAndVisibilityDescription": "چه کسی اجازه پیوستن به این چت را دارد و چت چگونه قابل پیدا شدن است.",
     "calls": "تماس‌ها",
     "customEmojisAndStickers": "شکلک‌ها و برچسب‌های سفارشی",
-    "customEmojisAndStickersBody": "افزودن یا هم‌رسانی شکلک‌ها یا برچسب‌های سفارشی که در هر گپ قابل استفاده‌اند.",
-    "chatDescription": "توضیح گپ",
-    "chatDescriptionHasBeenChanged": "توضیح گپ تغییر کرد",
+    "customEmojisAndStickersBody": "افزودن یا اشتراک گذاری ایموجی ها یا استیکر های سفارشی که در هر چت قابل استفاده‌اند.",
+    "chatDescription": "توضیحات چت",
+    "chatDescriptionHasBeenChanged": "توضیحات چت تغییر کرد",
     "hideRedactedMessages": "پنهان کردن پیام‌های ویرایش‌شده",
-    "hideRedactedMessagesBody": "اگر کسی پیامی را ویرایش کند، دیگر نمیتوان آن پیام را در گپ دید.",
+    "hideRedactedMessagesBody": "اگر کسی پیامی را ویرایش کند، دیگر نمیتوان آن پیام را در چت دید.",
     "hideInvalidOrUnknownMessageFormats": "پنهان کردن قالب‌های پیام نامعتبر یا ناشناخته",
     "block": "مسدود کردن",
     "blockedUsers": "کاربران مسدود‌شده",
     "blockListDescription": "میتوانید کاربرانی که مزاحم شما هستند را مسدود کنید. از کاربران موجود در فهرست مسدود شخصی، پیام یا دعوت به اتاق دریافت نخواهید کرد.",
     "blockUsername": "چشم‌پوشی از نام کاربری",
-    "noChatDescriptionYet": "هنوز توضیح گپی ساخته نشده است.",
+    "noChatDescriptionYet": "هنوز توضیحات چتی نوشته نشده است.",
     "tryAgain": "تلاش دوباره",
     "invalidServerName": "نام سرور نامعتبر",
     "redactMessageDescription": "پیام برای همه شرکت‌کنندگان در این گفتگو ویرایش خواهد شد. این کار برگشت‌ناپذیر است.",
@@ -2201,7 +2201,7 @@
             }
         }
     },
-    "directChat": "گپ مستقیم",
+    "directChat": "چت مستقیم",
     "redactedByBecause": "ویرایش‌شده به‌دست {username} زیرا: «{reason}»",
     "@redactedByBecause": {
         "type": "String",
@@ -2223,7 +2223,7 @@
             }
         }
     },
-    "setChatDescription": "تنظیم توضیح گپ",
+    "setChatDescription": "تنظیم توضیحات چت",
     "presencesToggle": "نمایش پیام‌های وضعیت از دیگر کاربران",
     "@presencesToggle": {
         "type": "String",
@@ -2260,7 +2260,7 @@
     "hidePresences": "پنهان کردن فهرست وضعیت؟",
     "setColorTheme": "تنظیم پوسته رنگی:",
     "invite": "دعوت",
-    "inviteGroupChat": "📨 دعوت به گپ گروهی",
+    "inviteGroupChat": "📨 دعوت به چت گروهی",
     "invalidInput": "ورودی نامعتبر!",
     "wrongPinEntered": "رمز کوتاه نادرست وارد شد! {seconds} ثانیه دیگر دوباره تلاش کنید...",
     "@wrongPinEntered": {
@@ -2272,12 +2272,12 @@
         }
     },
     "pleaseEnterANumber": "لطفاً عددی بزرگ‌تر از ۰ وارد کنید",
-    "archiveRoomDescription": "گپ به بایگانی خواهد رفت. کاربران دیگر میتوانند ببینند که شما گپ را ترک کرده‌اید.",
-    "roomUpgradeDescription": "گپ با نگارش جدید اتاق بازسازی خواهد شد. به همه شرکت‌کنندگان آگاهی‌رسانی میشود که باید به گپ جدید بروند. داده‌های بیشتر درباره نگارش‌های اتاق در https://spec.matrix.org/latest/rooms/",
+    "archiveRoomDescription": "چت به بایگانی خواهد رفت. کاربران دیگر میتوانند ببینند که شما چت را ترک کرده‌اید.",
+    "roomUpgradeDescription": "چت با نگارش جدید اتاق بازسازی خواهد شد. به همه شرکت‌کنندگان آگاهی‌رسانی میشود که باید به چت جدید بروند. داده‌های بیشتر درباره نگارش‌های اتاق در https://spec.matrix.org/latest/rooms/",
     "removeDevicesDescription": "از این دستگاه خارج خواهید شد و دیگر نمیتوانید پیام دریافت کنید.",
-    "banUserDescription": "کاربر از گپ محروم خواهد شد و تا زمانی که محرومیت برداشته نشود، نمیتواند دوباره وارد گپ شود.",
-    "unbanUserDescription": "کاربر در صورت تلاش دوباره میتواند وارد گپ شود.",
-    "kickUserDescription": "کاربر از گپ بیرون میشود اما محروم نمیشود. در گپ‌های عمومی، کاربر میتواند هر زمان دوباره بپیوندد.",
+    "banUserDescription": "کاربر از چت محروم خواهد شد و تا زمانی که محرومیت برداشته نشود، نمیتواند دوباره وارد چت شود.",
+    "unbanUserDescription": "کاربر در صورت تلاش دوباره میتواند وارد چت شود.",
+    "kickUserDescription": "کاربر از چت بیرون میشود اما محروم نمیشود. در چت های عمومی، کاربر میتواند هر زمان دوباره بپیوندد.",
     "makeAdminDescription": "پس از مدیر کردن این کاربر، ممکن است نتوانید این کار را لغو کنید، زیرا آن‌ها همان دسترسی‌های شما را خواهند داشت.",
     "pushNotificationsNotAvailable": "آگاه‌سازهای فشاری در دسترس نیستند",
     "learnMore": "بیشتر بدانید",
@@ -2292,7 +2292,7 @@
         }
     },
     "knocking": "در زدن",
-    "chatCanBeDiscoveredViaSearchOnServer": "گپ با جستجو در {server} قابل کشف است",
+    "chatCanBeDiscoveredViaSearchOnServer": "چت با جستجو در {server} قابل کشف است",
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",
         "placeholders": {
@@ -2301,13 +2301,13 @@
             }
         }
     },
-    "searchChatsRooms": "جستجو برای #گپ‌ها، @کاربران...",
+    "searchChatsRooms": "جستجو برای #چت ها، @کاربران...",
     "nothingFound": "چیزی پیدا نشد...",
     "groupName": "نام گروه",
     "createGroupAndInviteUsers": "ساختن گروه و دعوت کاربران",
     "groupCanBeFoundViaSearch": "گروه با جستجو قابل یافتن است",
     "wrongRecoveryKey": "متأسفیم... به نظر میرسد این کلید بازیابی درست نباشد.",
-    "commandHint_sendraw": "فرستادن JSON خام",
+    "commandHint_sendraw": "فرستادن json خام",
     "databaseMigrationTitle": "پایگاه داده بهینه‌سازی شد",
     "databaseMigrationBody": "لطفاً صبر کنید. این ممکن است لحظه‌ای طول بکشد.",
     "leaveEmptyToClearStatus": "برای پاک کردن وضعیت، خالی بگذارید.",
@@ -2318,13 +2318,13 @@
     "pleaseChooseAStrongPassword": "لطفاً یک گذرواژه قوی انتخاب کنید",
     "passwordsDoNotMatch": "گذرواژه‌ها هم‌خوانی ندارند",
     "passwordIsWrong": "گذرواژه واردشده نادرست است",
-    "publicChatAddresses": "نشانی‌های گپ عمومی",
+    "publicChatAddresses": "آدرس های چت عمومی",
     "createNewAddress": "ساختن نشانی جدید",
     "joinSpace": "پیوستن به فضا",
     "publicSpaces": "فضاهای عمومی",
-    "addChatOrSubSpace": "افزودن گپ یا زیرفضا",
+    "addChatOrSubSpace": "افزودن چت یا زیرفضا",
     "thisDevice": "این دستگاه:",
-    "searchIn": "جستجو در گپ «{chat}»...",
+    "searchIn": "جستجو در چت «{chat}»...",
     "@searchIn": {
         "type": "String",
         "placeholders": {
@@ -2361,8 +2361,8 @@
         }
     },
     "sendReadReceipts": "فرستادن رسیدهای خواندن",
-    "sendTypingNotificationsDescription": "دیگر شرکت‌کنندگان در گپ میتوانند ببینند که شما در حال تایپ پیام جدید هستید.",
-    "sendReadReceiptsDescription": "دیگر شرکت‌کنندگان در گپ میتوانند ببینند که شما پیام را خوانده‌اید.",
+    "sendTypingNotificationsDescription": "دیگر شرکت‌کنندگان در چت میتوانند ببینند که شما در حال تایپ پیام جدید هستید.",
+    "sendReadReceiptsDescription": "دیگر شرکت‌کنندگان در چت میتوانند ببینند که شما پیام را خوانده‌اید.",
     "formattedMessages": "پیام‌های قالب‌بندی‌شده",
     "formattedMessagesDescription": "نمایش محتوای پیام غنی مانند متن پررنگ با استفاده از مارک‌داون.",
     "verifyOtherUser": "🔐 بازبینی کاربر دیگر",
@@ -2429,7 +2429,7 @@
     "discover": "کشف",
     "commandHint_ignore": "چشم‌پوشی از شناسه ماتریکس داده‌شده",
     "commandHint_unignore": "لغو چشم‌پوشی از شناسه ماتریکس داده‌شده",
-    "unreadChatsInApp": "{appname}: {unread} گپ خوانده‌نشده",
+    "unreadChatsInApp": "{appname}: {unread} چت خوانده‌نشده",
     "@unreadChatsInApp": {
         "type": "String",
         "placeholders": {
@@ -2482,14 +2482,14 @@
             }
         }
     },
-    "changeGeneralChatSettings": "تغییر تنظیمات عمومی گپ",
-    "inviteOtherUsers": "دعوت کاربران دیگر به این گپ",
-    "changeTheChatPermissions": "تغییر دسترسی‌های گپ",
-    "changeTheVisibilityOfChatHistory": "تغییر قابلیت دید تاریخچه گپ",
-    "changeTheCanonicalRoomAlias": "تغییر نشانی اصلی گپ عمومی",
+    "changeGeneralChatSettings": "تغییر تنظیمات عمومی چت",
+    "inviteOtherUsers": "دعوت کاربران دیگر به این چت",
+    "changeTheChatPermissions": "تغییر دسترسی‌های چت",
+    "changeTheVisibilityOfChatHistory": "تغییر قابلیت دید تاریخچه چت",
+    "changeTheCanonicalRoomAlias": "تغییر نشانی اصلی چت عمومی",
     "sendRoomNotifications": "فرستادن آگاه‌سازهای @room",
-    "changeTheDescriptionOfTheGroup": "تغییر توضیح گپ",
-    "chatPermissionsDescription": "مشخص کنید کدام سطح دسترسی برای اقدامات خاصی در این گپ لازم است. سطح‌های دسترسی ۰، ۵۰ و ۱۰۰ معمولاً نشان‌دهنده کاربران، ناظران و مدیران هستند، اما هر درجه‌بندی ممکن است.",
+    "changeTheDescriptionOfTheGroup": "تغییر توضیح چت",
+    "chatPermissionsDescription": "مشخص کنید کدام سطح دسترسی برای اقدامات خاصی در این چت لازم است. سطح‌های دسترسی ۰، ۵۰ و ۱۰۰ معمولاً نشان‌دهنده کاربران، ناظران و مدیران هستند، اما هر درجه‌بندی ممکن است.",
     "updateInstalled": "🎉 به‌روزرسانی {version} نصب شد!",
     "@updateInstalled": {
         "type": "String",
@@ -2530,9 +2530,9 @@
         }
     },
     "oneOfYourDevicesIsNotVerified": "یکی از دستگاه‌های شما بازبینی نشده است",
-    "noticeChatBackupDeviceVerification": "توجه: وقتی همه دستگاه‌های خود را به پشتیبان گپ متصل کنید، به‌صورت خودکار بازبینی میشوند.",
+    "noticeChatBackupDeviceVerification": "توجه: وقتی همه دستگاه‌های خود را به پشتیبان چت متصل کنید، به‌صورت خودکار بازبینی میشوند.",
     "continueText": "ادامه",
-    "welcomeText": "درود درود 👋 این فلافی‌چت است. میتوانید به هر سرور خانگی سازگار با https://matrix.org وارد شوید و با هر کسی گپ بزنید. این یک شبکه پیام‌رسانی غیرمتمرکز بزرگ است!",
+    "welcomeText": "درود درود 👋 این فلافی‌چت است. میتوانید به هر سرور خانگی سازگار با https://matrix.org وارد شوید و با هر کسی چت کنید. این یک شبکه پیام‌رسانی غیرمتمرکز بزرگ است!",
     "blur": "محو کردن:",
     "opacity": "شفافیت:",
     "setWallpaper": "تنظیم کاغذدیواری",
@@ -2552,7 +2552,7 @@
     "pleaseFillOut": "لطفاً پر کنید",
     "invalidUrl": "نشانی نامعتبر",
     "addLink": "افزودن پیوند",
-    "unableToJoinChat": "ناتوانی در پیوستن به گپ. شاید طرف مقابل گفتگو را بسته است.",
+    "unableToJoinChat": "ناتوانی در پیوستن به چت. شاید طرف مقابل گفتگو را بسته است.",
     "previous": "پیشین",
     "otherPartyNotLoggedIn": "طرف مقابل اکنون وارد نشده است و بنابراین نمیتواند پیام دریافت کند!",
     "appWantsToUseForLogin": "برای ورود از '{server}' استفاده کنید",
@@ -2567,7 +2567,7 @@
     "appWantsToUseForLoginDescription": "شما بدین‌وسیله به برنامه و وبگاه اجازه میدهید اطلاعات شما را هم‌رسانی کنند.",
     "open": "باز کردن",
     "waitingForServer": "در انتظار سرور...",
-    "newChatRequest": "📩 درخواست گپ جدید",
+    "newChatRequest": "📩 درخواست چت جدید",
     "contentNotificationSettings": "تنظیمات آگاه‌ساز محتوا",
     "generalNotificationSettings": "تنظیمات آگاه‌ساز عمومی",
     "roomNotificationSettings": "تنظیمات آگاه‌ساز اتاق",
@@ -2637,7 +2637,7 @@
     "deletePushRuleCanNotBeUndone": "اگر این تنظیم آگاه‌ساز را پاک کنید، این کار برگشت‌ناپذیر است.",
     "more": "بیشتر",
     "shareKeysWith": "هم‌رسانی کلیدها با...",
-    "shareKeysWithDescription": "کدام دستگاه‌ها باید مورد اعتماد باشند تا بتوانند پیام‌های شما را در گپ‌های رمزنگاری‌شده بخوانند؟",
+    "shareKeysWithDescription": "کدام دستگاه‌ها باید مورد اعتماد باشند تا بتوانند پیام‌های شما را در چت های رمزنگاری‌شده بخوانند؟",
     "allDevices": "همه دستگاه‌ها",
     "crossVerifiedDevicesIfEnabled": "دستگاه‌های بازبینی‌شده متقابل اگر فعال باشد",
     "crossVerifiedDevices": "دستگاه‌های بازبینی‌شده متقابل",
@@ -2646,7 +2646,7 @@
     "recordAVideo": "ضبط ویدئو",
     "optionalMessage": "(اختیاری) پیام...",
     "notSupportedOnThisDevice": "در این دستگاه پشتیبانی نمیشود",
-    "enterNewChat": "ورود به گپ جدید",
+    "enterNewChat": "ورود به چت جدید",
     "approve": "پذیرفتن",
     "youHaveKnocked": "شما در زده‌اید",
     "pleaseWaitUntilInvited": "لطفاً اکنون صبر کنید تا کسی از اتاق شما را دعوت کند.",
@@ -2656,9 +2656,148 @@
     "customReaction": "واکنش سفارشی",
     "moreEvents": "رویدادهای بیشتر",
     "initAppError": "خطایی هنگام آغاز برنامه رخ داد",
-    "changedTheChatDescription": "‮‭‭‮‭‬‫{username} توضیحات گپ را تغییر داد",
-    "changedTheChatName": "{username} نام گپ را تغییر داد",
+    "changedTheChatDescription": "‮‭‭‮‭‬‫{username} توضیحات چت را تغییر داد",
+    "changedTheChatName": "{username} نام چت را تغییر داد",
     "declineInvitation": "رد کردن دعوت",
     "noMessagesYet": "پیامی وجود ندارد",
-    "longPressToRecordVoiceMessage": "برای ضبط پیام صوتی، انگشت خود را نگه دارید."
+    "longPressToRecordVoiceMessage": "برای ضبط پیام صوتی، انگشت خود را نگه دارید.",
+    "pause": "توقف",
+    "resume": "ادامه",
+    "removeFromSpaceDescription": "این چت از این فضا حذف خواهد شد اما همچنان در لیست چت های شما نمایش داده میشود.",
+    "countChats": "{chats} چت",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "spaceMemberOf": "عضو فضای {spaces}",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "عضو فضای {spaces} میتواند در بزند",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "startedAPoll": "{username} یک نظرسنجی را آغاز کرد.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "نظرسنجی",
+    "startPoll": "آغاز نظرسنجی",
+    "endPoll": "پایان نظرسنجی",
+    "answersVisible": "پاسخ ها قابل رویت",
+    "pollQuestion": "سوال نظرسنجی",
+    "answerOption": "گزینه جواب",
+    "addAnswerOption": "اضافه کردن گزینه جواب",
+    "allowMultipleAnswers": "اجازه دادن چند جواب",
+    "pollHasBeenEnded": "این نظرسنجی پایان یافته است",
+    "answersWillBeVisibleWhenPollHasEnded": "پاسخ ها وقتی نظرسنجی به پایان برسد نمایش داده خواهند شد",
+    "replyInThread": "پاسخ در رشته",
+    "countReplies": "{count} پاسخ دیگر",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "thread": "رشته",
+    "backToMainChat": "بازگشت به چت اصلی",
+    "saveChanges": "ذخیره تغییرات",
+    "createSticker": "ساخت استیکر یا ایموجی",
+    "useAsSticker": "استفاده به عنوان استیکر",
+    "useAsEmoji": "استفاده به عنوان ایموجی",
+    "stickerPackNameAlreadyExists": "نام استیکرپک تکراری است",
+    "newStickerPack": "استیکر پک جدید",
+    "stickerPackName": "نام استیکر پک",
+    "attribution": "نسبت دادن",
+    "skipChatBackup": "صرف نظر از پشتیبان گیری چت",
+    "skipChatBackupWarning": "آیا مطمئنید؟ بدون فعال کردن پشتیبان گیری چت ممکن است در صورت تغییر دستگاه دسترسی خود به پیام هایتان را از دست بدهید.",
+    "loadingMessages": "در حال بارگذاری پیام ها",
+    "setupChatBackup": "فعالسازی پشتیبان گیری چت",
+    "noMoreResultsFound": "نتایج دیگری یافت نشد",
+    "chatSearchedUntil": "چت تا {time} جستجو شد",
+    "@chatSearchedUntil": {
+        "type": "String",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "federationBaseUrl": "پایه آدرس فدریشن",
+    "clientWellKnownInformation": "اطلاعات Client-Well-Known:",
+    "baseUrl": "پایه آدرس",
+    "identityServer": "سرور احراز هویت:",
+    "versionWithNumber": "ورژن: {version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "logs": "لاگ ها",
+    "advancedConfigs": "تنظیمات پیشرفته",
+    "advancedConfigurations": "تنظیمات پیشرفته",
+    "signIn": "ورود",
+    "createNewAccount": "ساخت حساب جدید",
+    "signUpGreeting": "فلافی چت غیرمتمرکز است! یک سرور که میخواهید در آن حسابتان را بسازید را انتخاب کنید و شروع کنید!",
+    "signInGreeting": "از قبل در ماتریکس حساب کاربری دارید؟ خوش برگشتید! سرور خانه خود را انتخاب و لاگین کنید.",
+    "appIntro": "فلافی چت یک پیامرسان امن غیرمتمرکز ماتریکس است که با آن میتوانید با دوستانتان چت کنید! برای اطلاعات بیشتر میتوانید به https://matrix.org مراجعه کنید یا اینکه صرفا ثبت نام کنید.",
+    "theProcessWasCanceled": "فرآیند لغو شد.",
+    "join": "عضویت",
+    "searchOrEnterHomeserverAddress": "جستجو یا وارد کردن آدرس سرور خانه",
+    "matrixId": "شناسه ماتریکس",
+    "setPowerLevel": "انتخاب سطح قدرت",
+    "makeModerator": "انتخاب به عنوان ناظر",
+    "makeAdmin": "انتخاب به عنوان مدیر",
+    "removeModeratorRights": "حذف دسترسی های نظارتی",
+    "removeAdminRights": "حذف دسترسی های مدیریتی",
+    "powerLevel": "سطح قدرت",
+    "setPowerLevelDescription": "سطح قدرت مشخص میکند که یک کاربر قادر به انجام چه کارهایی در این اتاق است. معمولا یک عدد بین ۰ تا ۱۰۰ می باشد.",
+    "owner": "صاحب",
+    "mute": "ساکت",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "ساخت چت جدید",
+    "reset": "ریست کردن",
+    "supportFluffyChat": "حمایت از فلافی چت",
+    "support": "پشتیبانی",
+    "fluffyChatSupportBannerMessage": "فلافی چت به کمک شما نیاز دارد!\n❤️❤️❤️\nفلافی چت همواره رایگان خواهد بود، اما توسعه و نگهداری از آن هزینه بر است.\nآینده این پروژه در گرو حمایت افرادی مثل شماست.",
+    "skipSupportingFluffyChat": "رد کردن حمایت از فلافی چت",
+    "iDoNotWantToSupport": "نمیخواهم حمایت کنم",
+    "iAlreadySupportFluffyChat": "از قبل از فلافی چت حمایت میکنم",
+    "setLowPriority": "تنظیم اولویت پایین",
+    "unsetLowPriority": "لغو تنظیم اولویت پایین",
+    "countVotes": "{count} رای دیگر",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    }
 }
