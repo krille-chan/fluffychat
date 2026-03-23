@@ -2395,7 +2395,7 @@
     "gallery": "Galerii",
     "files": "Failid",
     "swipeRightToLeftToReply": "Vastamiseks viipa paremalt vasakule",
-    "alwaysUse24HourFormat": "false",
+    "alwaysUse24HourFormat": "väär",
     "@alwaysUse24HourFormat": {
         "description": "Set to true to always display time of day in 24 hour format."
     },
@@ -2800,5 +2800,13 @@
     "skipSupportingFluffyChat": "Jäta FluffyChati toetamine vahele",
     "iDoNotWantToSupport": "Ma ei soovi toetada",
     "setLowPriority": "Märgi vähetähtsaks",
-    "unsetLowPriority": "Eemalda märkimine vähetähtsaks"
+    "unsetLowPriority": "Eemalda märkimine vähetähtsaks",
+    "removeCallFromChat": "Eemalda kõne vestlusest",
+    "removeCallFromChatDescription": "Kas sa soovid antud kõne selle vestluse kõikidelt kasutajatelt eemaldada?",
+    "removeCallForEveryone": "Eemalda kõne kõigilt",
+    "startVoiceCall": "Algata häälkõne",
+    "startVideoCall": "Algata videokõne",
+    "joinVoiceCall": "Liitu häälkõnega",
+    "joinVideoCall": "Liitu videokõnega",
+    "live": "Reaalajas"
 }
