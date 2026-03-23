@@ -2177,5 +2177,15 @@
     "notificationRuleSuppressEditsDescription": "Kkes ilɣa i yeznan yettwaẓergen.",
     "notificationRuleCallDescription": "Azen alɣu i useqdac ɣef isawalen.",
     "notificationRuleEncryptedRoomOneToOne": "Taxxamt yettwawgelhen s wudem n yiwen ɣer yiwen",
-    "notificationRuleRoomOneToOne": "Taxxamt s wudem n yiwen ɣer yiwen"
+    "notificationRuleRoomOneToOne": "Taxxamt s wudem n yiwen ɣer yiwen",
+    "userLevel": "{level} - Aseqdac",
+    "@userLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "startVideoCall": "Bdu asiwel n uvidyu"
 }
