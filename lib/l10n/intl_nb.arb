@@ -2807,5 +2807,13 @@
     "iDoNotWantToSupport": "Jeg ønsker ikke å støtte",
     "iAlreadySupportFluffyChat": "Jeg støtter allerede FluffyChat",
     "setLowPriority": "Sett lav prioritet",
-    "unsetLowPriority": "Fjern lav prioritet"
+    "unsetLowPriority": "Fjern lav prioritet",
+    "removeCallFromChat": "Fjern anrop fra chat",
+    "removeCallFromChatDescription": "Vil du fjerne anropet fra chatten for alle medlemmer?",
+    "removeCallForEveryone": "Fjern anrop fra alle",
+    "startVoiceCall": "Start lydsamtale",
+    "startVideoCall": "Start videosamtale",
+    "joinVoiceCall": "Bli med i lydsamtale",
+    "joinVideoCall": "Bli med i videosamtale",
+    "live": "Direkte"
 }
