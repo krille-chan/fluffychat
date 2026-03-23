@@ -627,11 +627,11 @@ goW(){return"Antwortoption hinzuf\xfcgen"},
 goY(){return"Mehrere Antworten zulassen"},
 gns(){return"Umfrage ist beendet"},
 pf(d){var x=null
-return B.bC(d,x,this.a,x,"Eine Stimme",""+d+" Stimmen",x,x)},
+return B.bG(d,x,this.a,x,"Eine Stimme",""+d+" Stimmen",x,x)},
 gp0(){return"Die Antworten werden nach Ende der Umfrage sichtbar sein"},
 gnE(){return"Im Thread antworten"},
 pe(d){var x=null
-return B.bC(d,x,this.a,x,"Eine Antwort",""+d+" Antworten",x,x)},
+return B.bG(d,x,this.a,x,"Eine Antwort",""+d+" Antworten",x,x)},
 gpu(){return"Thread"},
 gp6(){return"Zur\xfcck zum Hauptchat"},
 goL(){return"\xc4nderungen speichern"},
@@ -696,5 +696,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FL,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"FL":{"aD":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["wo7P+WoujLFhI9k+n/nVEz6+/dI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["TrF0omhIm5Bgfp5uALun2Y3AZ5Q="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_290.part.js.map

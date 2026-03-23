@@ -627,11 +627,11 @@ goW(){return"Afegeix una opci\xf3"},
 goY(){return"Permet m\xfaltiples respostes"},
 gns(){return"Ha acabat l'enquesta"},
 pf(d){var y=null
-return B.bC(d,y,this.a,y,"Un vot",""+d+" vots",y,y)},
+return B.bG(d,y,this.a,y,"Un vot",""+d+" vots",y,y)},
 gp0(){return"Les respostes seran visibles quan s'acabi l'enquesta"},
 gnE(){return"Respon en un fil"},
 pe(d){var y=null
-return B.bC(d,y,this.a,y,"Una resposta",""+d+" respostes",y,y)},
+return B.bG(d,y,this.a,y,"Una resposta",""+d+" respostes",y,y)},
 gpu(){return"Fil"},
 gp6(){return"Torna al xat principal"},
 goL(){return"Desa els canvis"},
@@ -695,5 +695,5 @@ B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FI,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"FI":{"aD":[]}}'))};
-(a=>{a["SKAmOiPEcjZMkfaOhiOjFTl1Hzw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mnrLo4CNhtobq+C3WiFRZ6Mk3n0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_267.part.js.map

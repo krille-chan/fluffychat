@@ -627,11 +627,11 @@ goW(){return"Engadir opci\xf3n"},
 goY(){return"Permitir varias respostas"},
 gns(){return"Rematou a enquisa"},
 pf(d){var y=null
-return B.bC(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
+return B.bG(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
 gp0(){return"As respostas son visibles ao finalizar a enquisa"},
 gnE(){return"Responder ao f\xedo"},
 pe(d){var y=null
-return B.bC(d,y,this.a,y,"Unha resposta",""+d+" respostas",y,y)},
+return B.bG(d,y,this.a,y,"Unha resposta",""+d+" respostas",y,y)},
 gpu(){return"F\xedo"},
 gp6(){return"Volver \xe1 conversa principal"},
 goL(){return"Gardar cambios"},
@@ -695,5 +695,5 @@ B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FX,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))};
-(a=>{a["tZa4R+o6CDHiEYP3VChC7iliMgs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["SEcf9BY/f4jgpYS2uHUHm3jopjw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map

@@ -627,11 +627,11 @@ goW(){return"Legg til svaralternativ"},
 goY(){return"Tillat flere svar"},
 gns(){return"Avstemningen er avsluttet"},
 pf(d){var y=null
-return B.bC(d,y,this.a,y,"En stemme",""+d+" stemmer",y,y)},
+return B.bG(d,y,this.a,y,"En stemme",""+d+" stemmer",y,y)},
 gp0(){return"Svarene vil v\xe6re synlige n\xe5r avstemningen er avsluttet"},
 gnE(){return"Svar i tr\xe5den"},
 pe(d){var y=null
-return B.bC(d,y,this.a,y,"Et svar",""+d+" svar",y,y)},
+return B.bG(d,y,this.a,y,"Et svar",""+d+" svar",y,y)},
 gpu(){return"Tr\xe5d"},
 gp6(){return"Tilbake til hovedchatten"},
 goL(){return"Lagre endringer"},
@@ -695,5 +695,5 @@ B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gb,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"Gb":{"aD":[]}}'))};
-(a=>{a["cpaoVER8h4RApP5GtjzVYDLJWfE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["XTVGGF/IUTmj5pcIf1mzPqxtVzo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_349.part.js.map

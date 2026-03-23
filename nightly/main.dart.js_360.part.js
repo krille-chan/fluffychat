@@ -627,11 +627,11 @@ goW(){return"Add answer option"},
 goY(){return"Allow multiple answers"},
 gns(){return"Poll has been ended"},
 pf(d){var y=null
-return B.bC(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return B.bG(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gp0(){return"Answers will be visible when poll has ended"},
 gnE(){return"Reply in thread"},
 pe(d){var y=null
-return B.bC(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return B.bG(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpu(){return"Thread"},
 gp6(){return"Back to main chat"},
 goL(){return"Save changes"},
@@ -695,5 +695,5 @@ B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gk,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"Gk":{"aD":[]}}'))};
-(a=>{a["r/pKAPeGbZQYdvFWyH83UBT6rXw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3eB3/YpTXo+l4IPYPN3LKR1cCv0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map

@@ -627,11 +627,11 @@ goW(){return"Rnu tanefrunt n tririt"},
 goY(){return"Sireg aget n tiririyin"},
 gns(){return"Tafrent tfukk"},
 pf(d){var y=null
-return B.bC(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return B.bG(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gp0(){return"Tiririyin ad banent ticki tafrent tfukk"},
 gnE(){return"Err deg udras udiwenni"},
 pe(d){var y=null
-return B.bC(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return B.bG(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpu(){return"Adras udiwenni"},
 gp6(){return"U\u0263al \u0263er udiwenni agejdan"},
 goL(){return"Sekles ibeddilen"},
@@ -695,5 +695,5 @@ B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G7,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"G7":{"aD":[]}}'))};
-(a=>{a["QQIiiBobdtOkqJ/Fd2gO9GENQnc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PEQs85DXomnAA8ahaqRvhHLGlHo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

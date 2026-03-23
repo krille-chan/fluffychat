@@ -627,11 +627,11 @@ goW(){return"Antwoord optie toevoegen"},
 goY(){return"Meerdere antwoorden toestaan"},
 gns(){return"Peiling is ge\xebindigd"},
 pf(d){var y=null
-return B.bC(d,y,this.a,y,"\xc9\xe9n stem",""+d+" stemmen",y,y)},
+return B.bG(d,y,this.a,y,"\xc9\xe9n stem",""+d+" stemmen",y,y)},
 gp0(){return"Antwoorden zullen zichtbaar zijn wanneer de peiling is ge\xebindigd"},
 gnE(){return"Antwoord in gesprek"},
 pe(d){var y=null
-return B.bC(d,y,this.a,y,"\xc9\xe9n antwoord",""+d+" antwoorden",y,y)},
+return B.bG(d,y,this.a,y,"\xc9\xe9n antwoord",""+d+" antwoorden",y,y)},
 gpu(){return"Gesprek"},
 gp6(){return"Terug naar hoofdchat"},
 goL(){return"Wijzigingen opslaan"},
@@ -695,5 +695,5 @@ B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gc,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"Gc":{"aD":[]}}'))};
-(a=>{a["lu0unfxi3nnlKA7/Cm4QCwYOVpg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mozYkKstHbypjEJymrd2JwLh038="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

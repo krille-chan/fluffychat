@@ -627,11 +627,11 @@ goW(){return"Lis\xe4\xe4 vastausvaihtoehto"},
 goY(){return"Salli useita vastauksia"},
 gns(){return"Kysely on p\xe4\xe4ttynyt"},
 pf(d){var y=null
-return B.bC(d,y,this.a,y,"One vote",""+d+" \xe4\xe4nt\xe4",y,y)},
+return B.bG(d,y,this.a,y,"One vote",""+d+" \xe4\xe4nt\xe4",y,y)},
 gp0(){return"Vastaukset n\xe4kyv\xe4t, kun kysely on p\xe4\xe4ttynyt"},
 gnE(){return"Vastaa ketjussa"},
 pe(d){var y=null
-return B.bC(d,y,this.a,y,"One reply",""+d+" vastausta",y,y)},
+return B.bG(d,y,this.a,y,"One reply",""+d+" vastausta",y,y)},
 gpu(){return"Ketju"},
 gp6(){return"Takaisin p\xe4\xe4pikakeskusteluun"},
 goL(){return"Save changes"},
@@ -695,5 +695,5 @@ B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FT,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"FT":{"aD":[]}}'))};
-(a=>{a["MeJULkvgyk5aAjtbIA2JY3Qm9D8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["8/+7WPLca2N7jd6KE5CviRASFwM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_310.part.js.map

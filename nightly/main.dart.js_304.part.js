@@ -627,11 +627,11 @@ goW(){return"Lisa valikvastus"},
 goY(){return"Luba mitu vastusevalikut"},
 gns(){return"K\xfcsitlus on l\xf5ppenud"},
 pf(d){var y=null
-return B.bC(d,y,this.a,y,"\xdcks h\xe4\xe4l",""+d+" h\xe4\xe4lt",y,y)},
+return B.bG(d,y,this.a,y,"\xdcks h\xe4\xe4l",""+d+" h\xe4\xe4lt",y,y)},
 gp0(){return"Vastused on n\xe4ha k\xfcsitluse l\xf5ppedes"},
 gnE(){return"Vasta jutul\xf5ngas"},
 pe(d){var y=null
-return B.bC(d,y,this.a,y,"\xdcks vastus",""+d+" vastust",y,y)},
+return B.bG(d,y,this.a,y,"\xdcks vastus",""+d+" vastust",y,y)},
 gpu(){return"Jutul\xf5ng"},
 gp6(){return"Tagasi p\xf5hivestlusesse"},
 goL(){return"Salvesta muudatused"},
@@ -695,5 +695,5 @@ B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FQ,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"FQ":{"aD":[]}}'))};
-(a=>{a["JZ2L1u0ah75WgYboGcigREZIXp4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zQLJobX4qni3hbGFZaN6/lQNl1I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map

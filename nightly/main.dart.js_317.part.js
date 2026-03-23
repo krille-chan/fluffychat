@@ -627,11 +627,11 @@ goW(){return"Cuir rogha freagra leis"},
 goY(){return"Ceadaigh freagra\xed iolracha"},
 gns(){return"T\xe1 deireadh leis an pobalbhreith"},
 pf(d){var x=null
-return B.bC(d,x,this.a,x,"V\xf3ta amh\xe1in",""+d+" v\xf3ta\xed",x,x)},
+return B.bG(d,x,this.a,x,"V\xf3ta amh\xe1in",""+d+" v\xf3ta\xed",x,x)},
 gp0(){return"Beidh freagra\xed le feice\xe1il nuair a bheidh an pobalbhreith thart"},
 gnE(){return"Freagra sa sn\xe1ithe"},
 pe(d){var x=null
-return B.bC(d,x,this.a,x,"Freagra amh\xe1in",""+d+" freagra\xed",x,x)},
+return B.bG(d,x,this.a,x,"Freagra amh\xe1in",""+d+" freagra\xed",x,x)},
 gpu(){return"Sn\xe1ithe"},
 gp6(){return"Ar ais chuig an bpr\xedomhchomhr\xe1"},
 goL(){return"S\xe1bh\xe1il athruithe"},
@@ -696,5 +696,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FW,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["TdyH+rNgHqLHJ9VXQHRIOl9PYLs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["stKCIzhrn0wFQDeUlVBBj6QT9Hk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

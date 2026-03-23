@@ -627,11 +627,11 @@ goW(){return"Javob variantini kiritish"},
 goY(){return"Bir nechta javobga ruxsat berish"},
 gns(){return"So\u2018rovnoma yakunlandi"},
 pf(d){var x=null
-return B.bC(d,x,this.a,x,"Bir ovoz",""+d+" ta ovoz",x,x)},
+return B.bG(d,x,this.a,x,"Bir ovoz",""+d+" ta ovoz",x,x)},
 gp0(){return"So\u2018rovnoma tugaganida javoblar chiqadi"},
 gnE(){return"Sahifada javob berish"},
 pe(d){var x=null
-return B.bC(d,x,this.a,x,"Bitta javob",""+d+" ta javob",x,x)},
+return B.bG(d,x,this.a,x,"Bitta javob",""+d+" ta javob",x,x)},
 gpu(){return"Sahifa"},
 gp6(){return"Asosiy suhbatga qaytish"},
 goL(){return"O\u2018zgarishlarni saqlash"},
@@ -696,5 +696,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gs,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"Gs":{"aD":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["f9Yt1s9PszNzvRvvTNCC0FBrNs4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["xjSz1r5y3LYX58QZAyrj/Fs+PWk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_370.part.js.map

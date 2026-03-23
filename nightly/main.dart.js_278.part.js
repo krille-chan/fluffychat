@@ -627,11 +627,11 @@ goW(){return"P\u0159idat mo\u017enost"},
 goY(){return"Povolit v\xedce odpov\u011bd\xed"},
 gns(){return"Hlasov\xe1n\xed skon\u010dilo"},
 pf(d){var y=null
-return B.bC(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return B.bG(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gp0(){return"Odpov\u011bdi budou viditeln\xe9 jakmile hlasov\xe1n\xed skon\u010d\xed"},
 gnE(){return"Odpov\u011bd\u011bt ve vl\xe1kn\u011b"},
 pe(d){var y=null
-return B.bC(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return B.bG(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpu(){return"Vl\xe1kno"},
 gp6(){return"Zp\xe1tky do hlavn\xedho chatu"},
 goL(){return"Ulo\u017eit zm\u011bny"},
@@ -695,5 +695,5 @@ B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FJ,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"FJ":{"aD":[]}}'))};
-(a=>{a["ZLbPIn9s4weTqZUT7UPW475tA7s="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["yVA5Y/1SNiuMxdkQo3YjQNORymc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_278.part.js.map
