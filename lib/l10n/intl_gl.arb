@@ -2800,5 +2800,13 @@
     "iDoNotWantToSupport": "Non quero axudar",
     "iAlreadySupportFluffyChat": "Xa apoiei a FluffyChat",
     "setLowPriority": "Establecer prioridade baixa",
-    "unsetLowPriority": "Non establecer prioridade baixa"
+    "unsetLowPriority": "Non establecer prioridade baixa",
+    "removeCallFromChat": "Eliminar a chamada da conversa",
+    "removeCallFromChatDescription": "Queres eliminar a chamada da conversa para todos os membros?",
+    "removeCallForEveryone": "Eliminar para todos a chamada",
+    "startVoiceCall": "Iniciar chamada de voz",
+    "startVideoCall": "Iniciar chamada de vídeo",
+    "joinVoiceCall": "Unirse á chamada de voz",
+    "joinVideoCall": "Unirse á chamada de vídeo",
+    "live": "En directo"
 }
