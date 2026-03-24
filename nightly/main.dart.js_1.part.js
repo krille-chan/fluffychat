@@ -685,14 +685,14 @@ gpW(){return"\u6211\u4e0d\u60f3\u652f\u6301"},
 gpV(){return"\u6211\u5df2\u652f\u6301 FluffyChat"},
 gpz(){return"\u8bbe\u7f6e\u4f4e\u4f18\u5148\u7ea7"},
 gqd(){return"\u53d6\u6d88\u8bbe\u7f6e\u4f4e\u4f18\u5148\u7ea7"},
-gq9(){return"Remove call from chat"},
-gqa(){return"Do you want to remove the call from the chat for all members?"},
-gq8(){return"Remove call for everyone"},
-gpG(){return"Start voice call"},
-gpF(){return"Start video call"},
-gq_(){return"Join voice call"},
-gpZ(){return"Join video call"},
-gq0(d){return"Live"},
+gq9(){return"\u4ece\u804a\u5929\u4e2d\u5220\u9664\u901a\u8bdd"},
+gqa(){return"\u8981\u4e3a\u6240\u6709\u6210\u5458\u4ece\u804a\u5929\u4e2d\u5220\u9664\u901a\u8bdd\u5417\uff1f"},
+gq8(){return"\u4e3a\u6240\u6709\u4eba\u5220\u9664\u901a\u8bdd"},
+gpG(){return"\u5f00\u59cb\u8bed\u97f3\u901a\u8bdd"},
+gpF(){return"\u5f00\u59cb\u89c6\u9891\u901a\u8bdd"},
+gq_(){return"\u52a0\u5165\u8bed\u97f3\u901a\u8bdd"},
+gpZ(){return"\u52a0\u5165\u89c6\u9891\u901a\u8bdd"},
+gq0(d){return"\u5b9e\u65f6"},
 B(d,e){return this.gb7(this).$1(e)}}
 A.Gv.prototype={
 gkL(){return"false"},
@@ -1297,5 +1297,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Bf,C.aD)
 y(A.Gv,A.Bf)})()
 B.dH(b.typeUniverse,JSON.parse('{"Bf":{"aD":[]},"Gv":{"aD":[]}}'))};
-(a=>{a["vdi1i5R+Dg+ffsdRwE+tHS+5a18="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zz1AlOsjKlifxQ9kuSCrEiaNSGw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
