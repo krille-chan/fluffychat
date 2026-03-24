@@ -31,6 +31,7 @@ abstract class AppConfig {
       'https://fluffychat.im/faq/#how_do_i_get_stickers';
   static const String appId = 'im.fluffychat.FluffyChat';
   static const String appOpenUrlScheme = 'im.fluffychat';
+  static const String appSsoUrlScheme = 'im.fluffychat.auth';
 
   static const String sourceCodeUrl =
       'https://github.com/krille-chan/fluffychat';
