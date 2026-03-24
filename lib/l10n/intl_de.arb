@@ -1551,7 +1551,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "skip": "Überspringe",
+    "skip": "Überspringen",
     "@skip": {
         "type": "String",
         "placeholders": {}
