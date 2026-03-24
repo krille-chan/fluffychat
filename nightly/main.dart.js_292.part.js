@@ -317,7 +317,7 @@ gdV(d){return"Teilen"},
 kr(d){return d+" hat den Standort geteilt"},
 gkq(){return"Standort teilen"},
 gnu(){return"Status-Nachrichten anderer Benutzer anzeigen"},
-geW(d){return"\xdcberspringe"},
+geW(d){return"\xdcberspringen"},
 gh0(){return"Quellcode"},
 gks(){return"Space ist \xf6ffentlich"},
 gkt(){return"Space-Name"},
@@ -696,5 +696,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FL,C.aD)})()
 B.dH(b.typeUniverse,JSON.parse('{"FL":{"aD":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["TrF0omhIm5Bgfp5uALun2Y3AZ5Q="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["aHb1u21LrTADfxHG8phtFYDzIc0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_292.part.js.map
