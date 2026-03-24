@@ -90,6 +90,7 @@ parts:
     build-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
+      - libssl-dev
       - curl
       - libpciaccess-dev
     build-snaps:
