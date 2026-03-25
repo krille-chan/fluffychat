@@ -1953,7 +1953,7 @@
     "unsupportedAndroidVersion": "Niet-ondersteunde Android-versie",
     "unsupportedAndroidVersionLong": "Voor deze functie is een nieuwe Android-versie verplicht. Controleer je updates of Lineage OS-ondersteuning.",
     "videoCallsBetaWarning": "Houd er rekening mee dat videogesprekken momenteel in bèta zijn. Ze werken misschien niet zoals je verwacht of werken niet op alle platformen.",
-    "voiceCall": "Spraakoproep",
+    "voiceCall": "Spraakgesprek",
     "confirmEventUnpin": "Weet je zeker dat je de gebeurtenis definitief wilt losmaken?",
     "experimentalVideoCalls": "Videogesprekken (experimenteel)",
     "youAcceptedTheInvitation": "👍 Je hebt de uitnodiging geaccepteerd",
@@ -2799,5 +2799,13 @@
     "supportFluffyChat": "FluffyChat steunen",
     "support": "Steunen",
     "setLowPriority": "Lage prioriteit instellen",
-    "unsetLowPriority": "Lage prioriteit uitschakelen"
+    "unsetLowPriority": "Lage prioriteit uitschakelen",
+    "removeCallFromChat": "Verwijder oproep van chat",
+    "removeCallFromChatDescription": "Wil je de oproep voor iedereen in de chat verwijderen?",
+    "removeCallForEveryone": "Verwijder oproep voor iedereen",
+    "live": "Live",
+    "startVoiceCall": "Start audio-gesprek",
+    "startVideoCall": "Start video-gesprek",
+    "joinVoiceCall": "Audio-gesprek opnemen",
+    "joinVideoCall": "Deelnemen aan video-gesprek"
 }
