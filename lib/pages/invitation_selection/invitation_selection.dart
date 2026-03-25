@@ -54,6 +54,8 @@ class InvitationSelectionController extends State<InvitationSelection> {
     String id,
     String displayname,
   ) async {
+    final l10n = L10n.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
 
     final success = await showFutureLoadingDialog(
@@ -61,10 +63,9 @@ class InvitationSelectionController extends State<InvitationSelection> {
       future: () => room.invite(id),
     );
     if (success.error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(L10n.of(context).contactHasBeenInvitedToTheGroup),
-        ),
+      if (!context.mounted) return;
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(l10n.contactHasBeenInvitedToTheGroup)),
       );
     }
   }
@@ -91,6 +92,7 @@ class InvitationSelectionController extends State<InvitationSelection> {
     try {
       response = await matrix.client.searchUserDirectory(text, limit: 10);
     } catch (e) {
+      if (!context.mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text((e).toLocalizedString(context))));

@@ -75,7 +75,8 @@ class _IntroPagePresenterState extends State<IntroPagePresenter> {
       final client = await Matrix.of(context).getLoginClient();
       await client.checkHomeserver(homeserverUrl);
       await client.oidcLogin(session: session, code: code, state: state);
-      if (context.mounted) context.go('/backup');
+      if (!mounted) return;
+      context.go('/backup');
     } catch (e, s) {
       Logs().w('Unable to login via OIDC', e, s);
       if (mounted) {

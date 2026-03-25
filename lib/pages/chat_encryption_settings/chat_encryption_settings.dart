@@ -30,38 +30,40 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
   }
 
   Future<void> enableEncryption(_) async {
+    final l10n = L10n.of(context);
     if (room.encrypted) {
       showOkAlertDialog(
         context: context,
-        title: L10n.of(context).sorryThatsNotPossible,
-        message: L10n.of(context).disableEncryptionWarning,
+        title: l10n.sorryThatsNotPossible,
+        message: l10n.disableEncryptionWarning,
       );
       return;
     }
     if (room.joinRules == JoinRules.public) {
       showOkAlertDialog(
         context: context,
-        title: L10n.of(context).sorryThatsNotPossible,
-        message: L10n.of(context).noEncryptionForPublicRooms,
+        title: l10n.sorryThatsNotPossible,
+        message: l10n.noEncryptionForPublicRooms,
       );
       return;
     }
     if (!room.canChangeStateEvent(EventTypes.Encryption)) {
       showOkAlertDialog(
         context: context,
-        title: L10n.of(context).sorryThatsNotPossible,
-        message: L10n.of(context).noPermission,
+        title: l10n.sorryThatsNotPossible,
+        message: l10n.noPermission,
       );
       return;
     }
     final consent = await showOkCancelAlertDialog(
       context: context,
-      title: L10n.of(context).areYouSure,
-      message: L10n.of(context).enableEncryptionWarning,
-      okLabel: L10n.of(context).yes,
-      cancelLabel: L10n.of(context).cancel,
+      title: l10n.areYouSure,
+      message: l10n.enableEncryptionWarning,
+      okLabel: l10n.yes,
+      cancelLabel: l10n.cancel,
     );
     if (consent != OkCancelResult.ok) return;
+    if (!mounted) return;
     await showFutureLoadingDialog(
       context: context,
       future: () => room.enableEncryption(),
@@ -69,14 +71,16 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
   }
 
   Future<void> startVerification() async {
+    final l10n = L10n.of(context);
     final consent = await showOkCancelAlertDialog(
       context: context,
-      title: L10n.of(context).verifyOtherUser,
-      message: L10n.of(context).verifyOtherUserDescription,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: l10n.verifyOtherUser,
+      message: l10n.verifyOtherUserDescription,
+      okLabel: l10n.ok,
+      cancelLabel: l10n.cancel,
     );
     if (consent != OkCancelResult.ok) return;
+    if (!mounted) return;
     final req = await room.client.userDeviceKeys[room.directChatMatrixID]!
         .startVerification();
     req.onUpdate = () {
@@ -84,6 +88,7 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
         setState(() {});
       }
     };
+    if (!mounted) return;
     await KeyVerificationDialog(request: req).show(context);
   }
 

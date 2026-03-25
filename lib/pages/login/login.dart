@@ -130,15 +130,19 @@ class LoginController extends State<Login> {
           Logs().v(
             '$newDomain is not running a homeserver, asking to use $oldHomeserver',
           );
+          if (!mounted) return;
+          final l10n = L10n.of(context);
           final dialogResult = await showOkCancelAlertDialog(
             context: context,
             useRootNavigator: false,
-            title: L10n.of(
-              context,
-            ).noMatrixServer(newDomain.toString(), oldHomeserver.toString()),
-            okLabel: L10n.of(context).ok,
-            cancelLabel: L10n.of(context).cancel,
+            title: l10n.noMatrixServer(
+              newDomain.toString(),
+              oldHomeserver.toString(),
+            ),
+            okLabel: l10n.ok,
+            cancelLabel: l10n.cancel,
           );
+          if (!mounted) return;
           if (dialogResult == OkCancelResult.ok) {
             if (mounted) setState(() => usernameError = null);
           } else {
@@ -156,26 +160,30 @@ class LoginController extends State<Login> {
       }
     } catch (e) {
       widget.client.homeserver = oldHomeserver;
+      if (!mounted) return;
       usernameError = e.toLocalizedString(context);
       if (mounted) setState(() {});
     }
   }
 
   Future<void> passwordForgotten() async {
+    final l10n = L10n.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).passwordForgotten,
-      message: L10n.of(context).enterAnEmailAddress,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: l10n.passwordForgotten,
+      message: l10n.enterAnEmailAddress,
+      okLabel: l10n.ok,
+      cancelLabel: l10n.cancel,
       initialText: usernameController.text.isEmail
           ? usernameController.text
           : '',
-      hintText: L10n.of(context).enterAnEmailAddress,
+      hintText: l10n.enterAnEmailAddress,
       keyboardType: TextInputType.emailAddress,
     );
     if (input == null) return;
+    if (!mounted) return;
     final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
     final response = await showFutureLoadingDialog(
       context: context,
@@ -186,27 +194,30 @@ class LoginController extends State<Login> {
       ),
     );
     if (response.error != null) return;
+    if (!mounted) return;
     final password = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).passwordForgotten,
-      message: L10n.of(context).chooseAStrongPassword,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: l10n.passwordForgotten,
+      message: l10n.chooseAStrongPassword,
+      okLabel: l10n.ok,
+      cancelLabel: l10n.cancel,
       hintText: '******',
       obscureText: true,
       minLines: 1,
       maxLines: 1,
     );
     if (password == null) return;
+    if (!mounted) return;
     final ok = await showOkAlertDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).weSentYouAnEmail,
-      message: L10n.of(context).pleaseClickOnLink,
-      okLabel: L10n.of(context).iHaveClickedOnLink,
+      title: l10n.weSentYouAnEmail,
+      message: l10n.pleaseClickOnLink,
+      okLabel: l10n.iHaveClickedOnLink,
     );
     if (ok != OkCancelResult.ok) return;
+    if (!mounted) return;
     final data = <String, dynamic>{
       'new_password': password,
       'logout_devices': false,
@@ -226,9 +237,10 @@ class LoginController extends State<Login> {
         data: data,
       ),
     );
+    if (!mounted) return;
     if (success.error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)),
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(l10n.passwordHasBeenChanged)),
       );
       usernameController.text = input;
       passwordController.text = password;

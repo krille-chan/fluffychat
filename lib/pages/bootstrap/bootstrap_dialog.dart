@@ -382,6 +382,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                   ).wrongRecoveryKey,
                                 );
                               } catch (e, s) {
+                                if (!context.mounted) return;
                                 ErrorReporter(
                                   context,
                                   'Unable to open SSSS with recovery key',
@@ -425,6 +426,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                 cancelLabel: L10n.of(context).cancel,
                               );
                               if (consent != OkCancelResult.ok) return;
+                              if (!context.mounted) return;
                               final req = await showFutureLoadingDialog(
                                 context: context,
                                 delay: false,
@@ -435,11 +437,12 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                                 },
                               );
                               if (req.error != null) return;
+                              if (!context.mounted) return;
                               final success = await KeyVerificationDialog(
                                 request: req.result!,
                               ).show(context);
                               if (success != true) return;
-                              if (!mounted) return;
+                              if (!context.mounted) return;
 
                               final result = await showFutureLoadingDialog(
                                 context: context,

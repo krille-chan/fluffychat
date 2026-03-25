@@ -38,6 +38,7 @@ Future<void> connectToHomeserverFlow(
 
     if ((kIsWeb || PlatformInfos.isLinux) &&
         (supportsSso || authMetadata != null || (signUp && regLink != null))) {
+      if (!context.mounted) return;
       final consent = await showOkCancelAlertDialog(
         context: context,
         title: l10n.appWantsToUseForLogin(homeserverInput),
@@ -45,7 +46,9 @@ Future<void> connectToHomeserverFlow(
         okLabel: l10n.continueText,
       );
       if (consent != OkCancelResult.ok) return;
+      if (!context.mounted) return;
     }
+    if (!context.mounted) return;
 
     if (authMetadata != null && AppSettings.enableMatrixNativeOIDC.value) {
       await oidcLoginFlow(client, context, signUp);
@@ -55,6 +58,7 @@ Future<void> connectToHomeserverFlow(
       if (signUp && regLink != null) {
         await launchUrlString(regLink);
       }
+      if (!context.mounted) return;
       final pathSegments = List.of(
         GoRouter.of(context).routeInformationProvider.value.uri.pathSegments,
       );

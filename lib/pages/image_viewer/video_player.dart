@@ -92,10 +92,12 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
         );
       });
     } on IOException catch (e) {
+      if (!mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
     } catch (e, s) {
+      if (!mounted) return;
       ErrorReporter(context, 'Unable to play video').onErrorCallback(e, s);
     }
   }

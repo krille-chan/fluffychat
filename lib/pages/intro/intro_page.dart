@@ -166,6 +166,7 @@ class IntroPage extends StatelessWidget {
                                       final client = await Matrix.of(
                                         context,
                                       ).getLoginClient();
+                                      if (!context.mounted) return;
                                       context.go(
                                         '${GoRouterState.of(context).uri.path}/login',
                                         extra: client,

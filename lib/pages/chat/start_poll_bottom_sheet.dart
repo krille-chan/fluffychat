@@ -44,6 +44,7 @@ class _StartPollBottomSheetState extends State<StartPollBottomSheet> {
         maxSelections: _allowMultipleAnswers ? _answers.length : 1,
         txid: _txid,
       );
+      if (!mounted) return;
       Navigator.of(context).pop();
     } catch (e, s) {
       Logs().w('Unable to create poll', e, s);

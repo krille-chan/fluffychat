@@ -36,6 +36,7 @@ class ChatPermissionsSettingsController extends State<ChatPermissionsSettings> {
       currentLevel: currentLevel,
     );
     if (newLevel == null) return;
+    if (!context.mounted) return;
     final content = Map<String, dynamic>.from(
       room.getState(EventTypes.RoomPowerLevels)!.content,
     );

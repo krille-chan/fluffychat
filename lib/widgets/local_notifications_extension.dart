@@ -17,6 +17,7 @@ import 'package:universal_html/html.dart' as html;
 
 extension LocalNotificationsExtension on MatrixState {
   Future<void> showLocalNotification(Event event) async {
+    final l10n = L10n.of(context);
     final roomId = event.room.id;
     if (activeRoomId == roomId) {
       if (WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
@@ -114,11 +115,11 @@ extension LocalNotificationsExtension on MatrixState {
         actions: [
           NotificationAction(
             DesktopNotificationActions.openChat.name,
-            L10n.of(context).openChat,
+            l10n.openChat,
           ),
           NotificationAction(
             DesktopNotificationActions.seen.name,
-            L10n.of(context).markAsRead,
+            l10n.markAsRead,
           ),
         ],
         hints: hints,

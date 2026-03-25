@@ -265,12 +265,19 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           InitWithRestoreExtension.deleteSessionBackup(name);
 
           if (loggedInWithMultipleClients) {
+            final snackbarContext =
+                FluffyChatApp
+                    .router
+                    .routerDelegate
+                    .navigatorKey
+                    .currentContext ??
+                context;
+
+            if (!snackbarContext.mounted) return;
+            final l10n = L10n.of(snackbarContext);
             ScaffoldMessenger.of(
-              FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
-                  context,
-            ).showSnackBar(
-              SnackBar(content: Text(L10n.of(context).oneClientLoggedOut)),
-            );
+              snackbarContext,
+            ).showSnackBar(SnackBar(content: Text(l10n.oneClientLoggedOut)));
             return;
           }
           FluffyChatApp.router.go('/');
@@ -382,15 +389,17 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   Future<void> dehydrateAction(BuildContext context) async {
+    final l10n = L10n.of(context);
     final response = await showOkCancelAlertDialog(
       context: context,
       isDestructive: true,
-      title: L10n.of(context).dehydrate,
-      message: L10n.of(context).dehydrateWarning,
+      title: l10n.dehydrate,
+      message: l10n.dehydrateWarning,
     );
     if (response != OkCancelResult.ok) {
       return;
     }
+    if (!context.mounted) return;
     final result = await showFutureLoadingDialog(
       context: context,
       future: client.exportDump,
@@ -404,6 +413,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         'fluffychat-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.fluffybackup';
 
     final file = MatrixFile(bytes: exportBytes, name: exportFileName);
+    if (!context.mounted) return;
     file.save(context);
   }
 }

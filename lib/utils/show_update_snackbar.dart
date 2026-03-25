@@ -10,6 +10,7 @@ abstract class UpdateNotifier {
 
   static Future<void> showUpdateSnackBar(BuildContext context) async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final l10n = L10n.of(context);
     final currentVersion = await PlatformInfos.getVersion();
     final store = await SharedPreferences.getInstance();
     final storedVersion = store.getString(versionStoreKey);
@@ -20,9 +21,9 @@ abstract class UpdateNotifier {
           SnackBar(
             duration: const Duration(seconds: 30),
             showCloseIcon: true,
-            content: Text(L10n.of(context).updateInstalled(currentVersion)),
+            content: Text(l10n.updateInstalled(currentVersion)),
             action: SnackBarAction(
-              label: L10n.of(context).changelog,
+              label: l10n.changelog,
               onPressed: () => launchUrlString(AppConfig.changelogUrl),
             ),
           ),

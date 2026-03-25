@@ -19,20 +19,21 @@ class SettingsSecurity extends StatefulWidget {
 
 class SettingsSecurityController extends State<SettingsSecurity> {
   Future<void> setAppLockAction() async {
+    final l10n = L10n.of(context);
     if (AppLock.of(context).isActive) {
       AppLock.of(context).showLockScreen();
     }
     final newLock = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).pleaseChooseAPasscode,
-      message: L10n.of(context).pleaseEnter4Digits,
-      cancelLabel: L10n.of(context).cancel,
+      title: l10n.pleaseChooseAPasscode,
+      message: l10n.pleaseEnter4Digits,
+      cancelLabel: l10n.cancel,
       validator: (text) {
         if (text.isEmpty || (text.length == 4 && int.tryParse(text)! >= 0)) {
           return null;
         }
-        return L10n.of(context).pleaseEnter4Digits;
+        return l10n.pleaseEnter4Digits;
       },
       keyboardType: TextInputType.number,
       obscureText: true,
@@ -41,53 +42,55 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       maxLength: 4,
     );
     if (newLock != null) {
+      if (!mounted) return;
       await AppLock.of(context).changePincode(newLock);
     }
   }
 
   Future<void> deleteAccountAction() async {
+    final l10n = L10n.of(context);
+    final matrix = Matrix.of(context);
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context).warning,
-          message: L10n.of(context).deactivateAccountWarning,
-          okLabel: L10n.of(context).ok,
-          cancelLabel: L10n.of(context).cancel,
+          title: l10n.warning,
+          message: l10n.deactivateAccountWarning,
+          okLabel: l10n.ok,
+          cancelLabel: l10n.cancel,
           isDestructive: true,
         ) ==
         OkCancelResult.cancel) {
       return;
     }
-    final supposedMxid = Matrix.of(context).client.userID!;
+    if (!mounted) return;
+    final supposedMxid = matrix.client.userID!;
     final mxid = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).confirmMatrixId,
-      validator: (text) => text == supposedMxid
-          ? null
-          : L10n.of(context).supposedMxid(supposedMxid),
+      title: l10n.confirmMatrixId,
+      validator: (text) =>
+          text == supposedMxid ? null : l10n.supposedMxid(supposedMxid),
       isDestructive: true,
-      okLabel: L10n.of(context).delete,
-      cancelLabel: L10n.of(context).cancel,
+      okLabel: l10n.delete,
+      cancelLabel: l10n.cancel,
     );
     if (mxid == null || mxid.isEmpty || mxid != supposedMxid) {
       return;
     }
+    if (!mounted) return;
     final resp = await showFutureLoadingDialog(
       context: context,
       delay: false,
-      future: () =>
-          Matrix.of(context).client.uiaRequestBackground<IdServerUnbindResult?>(
-            (auth) => Matrix.of(
-              context,
-            ).client.deactivateAccount(auth: auth, erase: true),
-          ),
+      future: () => matrix.client.uiaRequestBackground<IdServerUnbindResult?>(
+        (auth) => matrix.client.deactivateAccount(auth: auth, erase: true),
+      ),
     );
 
     if (!resp.isError) {
+      if (!mounted) return;
       await showFutureLoadingDialog(
         context: context,
-        future: () => Matrix.of(context).client.logout(),
+        future: () => matrix.client.logout(),
       );
     }
   }

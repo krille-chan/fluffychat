@@ -90,6 +90,8 @@ class ChatListController extends State<ChatList>
   });
 
   Future<void> onChatTap(Room room) async {
+    final l10n = L10n.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (room.membership == Membership.invite) {
       final joinResult = await showFutureLoadingDialog(
         context: context,
@@ -105,10 +107,11 @@ class ChatListController extends State<ChatList>
       );
       if (joinResult.error != null) return;
     }
+    if (!mounted) return;
 
     if (room.membership == Membership.ban) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context).youHaveBeenBannedFromThisChat)),
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(l10n.youHaveBeenBannedFromThisChat)),
       );
       return;
     }
@@ -156,23 +159,25 @@ class ChatListController extends State<ChatList>
   static const String _serverStoreNamespace = 'im.fluffychat.search.server';
 
   Future<void> setServer() async {
+    final matrix = Matrix.of(context);
+    final l10n = L10n.of(context);
     final newServer = await showTextInputDialog(
       useRootNavigator: false,
-      title: L10n.of(context).changeTheHomeserver,
+      title: l10n.changeTheHomeserver,
       context: context,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      okLabel: l10n.ok,
+      cancelLabel: l10n.cancel,
       prefixText: 'https://',
-      hintText: Matrix.of(context).client.homeserver?.host,
+      hintText: matrix.client.homeserver?.host,
       initialText: searchServer,
       keyboardType: TextInputType.url,
       autocorrect: false,
-      validator: (server) => server.contains('.') == true
-          ? null
-          : L10n.of(context).invalidServerName,
+      validator: (server) =>
+          server.contains('.') == true ? null : l10n.invalidServerName,
     );
     if (newServer == null) return;
-    Matrix.of(context).store.setString(_serverStoreNamespace, newServer);
+    if (!mounted) return;
+    matrix.store.setString(_serverStoreNamespace, newServer);
     setState(() {
       searchServer = newServer;
     });
@@ -185,6 +190,7 @@ class ChatListController extends State<ChatList>
 
   Future<void> _search() async {
     final client = Matrix.of(context).client;
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (!isSearching) {
       setState(() {
         isSearching = true;
@@ -227,9 +233,10 @@ class ChatListController extends State<ChatList>
       );
     } catch (e, s) {
       Logs().w('Searching has crashed', e, s);
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
+      if (!mounted) return;
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(e.toLocalizedString(context))),
+      );
     }
     if (!isSearchMode) return;
     setState(() {
@@ -293,9 +300,8 @@ class ChatListController extends State<ChatList>
 
   Future<void> editSpace(BuildContext context, String spaceId) async {
     await Matrix.of(context).client.getRoomById(spaceId)!.postLoad();
-    if (mounted) {
-      context.push('/rooms/$spaceId/details');
-    }
+    if (!context.mounted) return;
+    context.push('/rooms/$spaceId/details');
   }
 
   // Needs to match GroupsSpacesEntry for 'separate group' checking.
@@ -742,6 +748,7 @@ class ChatListController extends State<ChatList>
               .toList(),
         );
         if (space == null) return;
+        if (!mounted) return;
         await showFutureLoadingDialog(
           context: context,
           future: () => space.setSpaceChild(room.id),
@@ -767,16 +774,18 @@ class ChatListController extends State<ChatList>
   }
 
   Future<void> setStatus() async {
+    final l10n = L10n.of(context);
     final client = Matrix.of(context).client;
     final currentPresence = await client.fetchCurrentPresence(client.userID!);
+    if (!mounted) return;
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).setStatus,
-      message: L10n.of(context).leaveEmptyToClearStatus,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      hintText: L10n.of(context).statusExampleMessage,
+      title: l10n.setStatus,
+      message: l10n.leaveEmptyToClearStatus,
+      okLabel: l10n.ok,
+      cancelLabel: l10n.cancel,
+      hintText: l10n.statusExampleMessage,
       maxLines: 6,
       minLines: 1,
       maxLength: 255,
@@ -904,18 +913,21 @@ class ChatListController extends State<ChatList>
     if (action == null) return;
     switch (action) {
       case EditBundleAction.addToBundle:
+        if (!mounted) return;
         final bundle = await showTextInputDialog(
           context: context,
           title: l10n.bundleName,
           hintText: l10n.bundleName,
         );
         if (bundle == null || bundle.isEmpty || bundle.isEmpty) return;
+        if (!mounted) return;
         await showFutureLoadingDialog(
           context: context,
           future: () => client.setAccountBundle(bundle),
         );
         break;
       case EditBundleAction.removeFromBundle:
+        if (!mounted) return;
         await showFutureLoadingDialog(
           context: context,
           future: () => client.removeFromAccountBundle(activeBundle!),

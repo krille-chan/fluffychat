@@ -40,6 +40,7 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
       ],
     );
     if (delete != true) return;
+    if (!mounted) return;
 
     final success = await showFutureLoadingDialog(
       context: context,
