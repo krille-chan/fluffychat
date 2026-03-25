@@ -16,7 +16,7 @@
         <meta name="robots" content="All"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="/assets/favicon.png">
-        <link rel="preload" href="/assets/tailwind.css" as="style" onload="this.rel='stylesheet'">
+        <link rel="stylesheet" href="/assets/tailwind.css">
         <noscript><link rel="stylesheet" href="/assets/tailwind.css"></noscript>
     </head>
     <body
@@ -46,14 +46,14 @@
     
 <h1 class="text-center">Ofte stilte spørsmål</h1>
 <p class="text-center">Du kan redigere eller oversette denne FAQen på <a href='https://hosted.weblate.org/projects/fluffychat/fluffychat-website'>Weblate</a>.</p>
-<p class="text-center"><input id="searchField" type="text" placeholder="Søk 🔍" class="placeholder:text-slate-400 text-center text-slate-700 text-3xl bg-slate-100 border border-slate-200 rounded-full
+<p class="text-center"><input id="searchField" type="text" placeholder="Søk" class="placeholder:text-slate-400 text-center text-slate-700 text-3xl bg-slate-100 border border-slate-200 rounded-full
                                                                           w-full px-8 py-4 my-8"/>
 </p>
 <span id="faqEntries">
   
     <h2 id="how_can_i_support_fluffychat:question" class="question">
       <a name="how_can_i_support_fluffychat" href="#how_can_i_support_fluffychat">#</a>
-      How can I support FluffyChat?
+      Hvordan kan jeg støtte FluffyChat?
     </h2>
     <article class="mb-12 pl-5" id="how_can_i_support_fluffychat:answer"><p><strong>FluffyChat needs YOUR help!</strong></p><p>FluffyChat is developed by volunteers and will always be free for everyone. But hosting and development are not possible without financial support.</p><p>Right now I spend almost all of my free time developing FluffyChat, completely unpaid. However, this is not something I can do forever. The future of FluffyChat depends on people like you.</p><p>Most people will ignore this message. But if FluffyChat is useful to you, please consider making a small donation.</p><p>Support FluffyChat here:<br><a href="https://ko-fi.com/C1C86VN53">https://ko-fi.com/krille</a><br><a href="https://liberapay.com/KrilleChritzelius">https://liberapay.com/KrilleChritzelius</a></p><p>Thank you for helping keep FluffyChat alive and independent.</p></article>
   
@@ -67,25 +67,25 @@
       <a name="who_is_fluffychat_for" href="#who_is_fluffychat_for">#</a>
       Hvem er FluffyChat for?
     </h2>
-    <article class="mb-12 pl-5" id="who_is_fluffychat_for:answer">FluffyChat is for anyone looking for a fast, user-friendly, and secure alternative to centralized messaging apps like WhatsApp, Telegram, or WeChat.</article>
+    <article class="mb-12 pl-5" id="who_is_fluffychat_for:answer">FluffyChat er for alle som ser etter et raskt, brukervennlig og sikkert alternativ til sentraliserte meldingsapper som WhatsApp, Telegram eller WeChat.</article>
   
     <h2 id="who_created_fluffychat:question" class="question">
       <a name="who_created_fluffychat" href="#who_created_fluffychat">#</a>
       Hvem utviklet FluffyChat?
     </h2>
-    <article class="mb-12 pl-5" id="who_created_fluffychat:answer">FluffyChat is developed by the community and was initiated by Christian (<a href='https://krille-chan.github.io/'>Krille</a>) Kußowski. However there are a lot of contributors, either code or translations. You can find them <a href='https://github.com/krille-chan/fluffychat/graphs/contributors'>here</a>.</article>
+    <article class="mb-12 pl-5" id="who_created_fluffychat:answer">FluffyChat er utviklet av fellesskapet og ble startet av Christian (<a href='https://krille-chan.github.io/'>Krille</a>) Kußowski. Det er imidlertid mange bidragsytere, enten med kode eller oversettelser. Du finner dem <a href='https://github.com/krille-chan/fluffychat/graphs/contributors'>her</a>.</article>
   
     <h2 id="how_is_fluffychat_funded:question" class="question">
       <a name="how_is_fluffychat_funded" href="#how_is_fluffychat_funded">#</a>
       Hvordan finansieres FluffyChat?
     </h2>
-    <article class="mb-12 pl-5" id="how_is_fluffychat_funded:answer">FluffyChat is a non-profit project driven by volunteers and totally funded by donations.</article>
+    <article class="mb-12 pl-5" id="how_is_fluffychat_funded:answer">FluffyChat er et ideelt prosjekt som drives av frivillige og er fullstendig finansiert av donasjoner.</article>
   
     <h2 id="is_fluffychat_available_on_my_device:question" class="question">
       <a name="is_fluffychat_available_on_my_device" href="#is_fluffychat_available_on_my_device">#</a>
       Er FluffyChat tilgjengelig på min enhet?
     </h2>
-    <article class="mb-12 pl-5" id="is_fluffychat_available_on_my_device:answer">Yes! You can use FluffyChat on mobile phones, tablets, and as a web version on your PC. Available on Android (Play Store and F-Droid), iOS (App Store), as a web app and as a desktop app for Linux (Flathub, Snap Store). It even works on Linux phones by using the Arm64 version of the Flatpak/Snap. You can compile it for MacOS and Windows by yourself if you like, but that is not yet supported.</article>
+    <article class="mb-12 pl-5" id="is_fluffychat_available_on_my_device:answer">Ja! Du kan bruke FluffyChat på mobiltelefoner, nettbrett og som en nettversjon på PC-en din. Tilgjengelig på Android (Play Store og F-Droid), iOS (App Store), som en nettapp og som en skrivebordsapp for Linux (Flathub, Snap Store). Den fungerer til og med på Linux-telefoner ved å bruke Arm64-versjonen av Flatpak/Snap. Du kan kompilere den for macOS og Windows selv hvis du vil, men det er ikke støttet ennå.</article>
   
     <h2 id="how_do_i_create_an_account:question" class="question">
       <a name="how_do_i_create_an_account" href="#how_do_i_create_an_account">#</a>
@@ -109,7 +109,7 @@
       <a name="do_i_need_email" href="#do_i_need_email">#</a>
       Trenger jeg en e-postadresse for å bruke FluffyChat?
     </h2>
-    <article class="mb-12 pl-5" id="do_i_need_email:answer">No, an email address is not required. However, it is recommended if you want to reset your password or verify your account.</article>
+    <article class="mb-12 pl-5" id="do_i_need_email:answer">Nei, e-postadresse er ikke påkrevd. Det anbefales imidlertid hvis du ønsker å kunne tilbakestille passordet ditt eller verifisere kontoen din.</article>
   
     <h2 id="i_forgot_my_password:question" class="question">
       <a name="i_forgot_my_password" href="#i_forgot_my_password">#</a>
@@ -133,7 +133,7 @@
       <a name="i_found_a_bug" href="#i_found_a_bug">#</a>
       Jeg har funnet en feil. Hva gjør jeg nå?
     </h2>
-    <article class="mb-12 pl-5" id="i_found_a_bug:answer">You can report bugs directly on Github. Alternatively, there's a public group chat on Messenger (#fluffy-space:matrix.org) where you can ask questions or send feedback.</article>
+    <article class="mb-12 pl-5" id="i_found_a_bug:answer">Du kan rapportere feil direkte på GitHub. Alternativt finnes det en offentlig gruppechat (#fluffy-space:matrix.org) hvor du kan stille spørsmål eller sende tilbakemeldinger.</article>
   
     <h2 id="push_without_google_services:question" class="question">
       <a name="push_without_google_services" href="#push_without_google_services">#</a>
@@ -238,7 +238,7 @@
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/et/">eesti keel</a>
                 
-                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fi/"></a>
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fi/">English</a>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fy/">Frysk</a>
                 

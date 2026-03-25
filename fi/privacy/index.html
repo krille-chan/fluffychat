@@ -16,7 +16,7 @@
         <meta name="robots" content="All"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="/assets/favicon.png">
-        <link rel="preload" href="/assets/tailwind.css" as="style" onload="this.rel='stylesheet'">
+        <link rel="stylesheet" href="/assets/tailwind.css">
         <noscript><link rel="stylesheet" href="/assets/tailwind.css"></noscript>
     </head>
     <body
@@ -25,16 +25,16 @@
         <!--Header-->
         <div class="w-full lg:h-12 min-h-12 py-4 lg:py-0 mb-8 border-b border-gray-200 dark:border-gray-700">
             <nav class="flex flex-wrap h-full justify-center items-center space-x-6 w-full max-w-4xl m-auto">
-                <a href="/fi/" class=" text-lg"></a>
-                <a href="/fi/faq" class=" text-lg"></a>
+                <a href="/fi/" class=" text-lg">Home</a>
+                <a href="/fi/faq" class=" text-lg">FAQ</a>
                 <a href="/fi/changelog" class=" text-lg">
-                    </a>
-                <a href="https://ko-fi.com/krille/posts" target="_blank" class="text-lg">
+                    Changelog</a>
+                <a href="https://ko-fi.com/krille/posts" target="_blank" class="text-lg">Blog
                 </a>
                 <div class="lg:flex-grow"></div>
                 <a href='https://ko-fi.com/C1C86VN53' class="hover:scale-110 transition-transform" target='_blank'>
                     <div class="rounded-xl bg-slate-900 dark:bg-slate-50 p-2 flex flex-row spacing-4"><img src="/assets/ko-fi.png" class="h-5 mr-2"/>
-                        <span class="text-white dark:text-black text-xs flex items-center mr-2"></span>
+                        <span class="text-white dark:text-black text-xs flex items-center mr-2">Support me on Ko-Fi</span>
                     </div>
                 </a>
                 <a href="https://troet.cafe/@krille" rel="me" class="m-2 hover:scale-110 transition-transform "><img src="/assets/mastodon.svg" class="h-7"/>
@@ -43,130 +43,41 @@
         </div>
         
 <div class="container max-w-4xl markdown px-4 lg:px-0">
-    <h1>Privacy</h1>
-<p>FluffyChat is available on Android, iOS, Linux and as a web version. Desktop versions for Windows and macOS may follow.</p>
-<ul>
-<li><a href="#matrix">Matrix</a></li>
-<li><a href="#database">Database</a></li>
-<li><a href="#encryption">Encryption</a></li>
-<li><a href="#app-permissions">App Permissions</a></li>
-<li><a href="#push-notifications">Push Notifications</a></li>
-<li><a href="#playstore-safety">PlayStore Safety Standards</a></li>
-</ul>
-<h2><a id="matrix" href="#matrix">#</a> Matrix</h2>
-<p>FluffyChat uses the Matrix protocol. This means that FluffyChat is just a client that can be connected to any compatible matrix server. The respective data protection agreement of the server selected by the user then applies.</p>
-<p>For convenience, one or more servers are set as default that the FluffyChat developers consider trustworthy. The developers of FluffyChat do not guarantee their trustworthiness. Before the first communication, users are informed which server they are connecting to.</p>
-<p>FluffyChat only communicates with the selected server and with <a href="https://openstreetmap.org">OpenStreetMap</a> to display maps.</p>
-<p>More information is available at: <a href="https://matrix.org">https://matrix.org</a></p>
-<h2><a id="database" href="#database">#</a> Database</h2>
-<p>FluffyChat caches some data received from the server in a local sqflite database on the device of the user. On web indexedDB is used. FluffyChat always tries to encrypt the database by using SQLCipher and stores the encryption key in the <a href="https://pub.dev/packages/flutter_secure_storage">Secure Storage</a> of the device.</p>
-<p>More information is available at: <a href="https://pub.dev/packages/sqflite">https://pub.dev/packages/sqflite</a> and <a href="https://pub.dev/packages/sqlcipher_flutter_libs">https://pub.dev/packages/sqlcipher_flutter_libs</a></p>
-<h2><a id="encryption" href="#encryption">#</a> Encryption</h2>
-<p>All communication of substantive content between Fluffychat and any server is done in secure way, using transport encryption to protect it.</p>
-<p>FluffyChat also uses End-To-End-Encryption by using <a href="https://github.com/matrix-org/vodozemac">Vodozemac</a> and enables it by default for private chats.</p>
-<h2><a id="app-permissions" href="#app-permissions">#</a> App Permissions</h2>
-<p>The permissions are the same on Android and iOS but may differ in the name. This are the Android Permissions:</p>
-<h4>Internet Access</h4>
-<p>FluffyChat needs to have internet access to communicate with the Matrix Server.</p>
-<h4>Vibrate</h4>
-<p>FluffyChat uses vibration for local notifications. More informations about this are at the used package:
-<a href="https://pub.dev/packages/flutter_local_notifications">https://pub.dev/packages/flutter_local_notifications</a></p>
-<h4>Record Audio</h4>
-<p>FluffyChat can send voice messages in a chat and therefore needs to have the permission to record audio.</p>
-<h4>Write External Storage</h4>
-<p>The user is able to save received files and therefore app needs this permission.</p>
-<h4>Read External Storage</h4>
-<p>The user is able to send files from the device's file system.</p>
-<h4>Location</h4>
-<p>FluffyChat makes it possible to share the current location via the chat. When the user shares their location, FluffyChat uses the device location service and sends the geo-data via Matrix.</p>
-<h2><a id="push-notifications" href="#push-notifications">#</a> Push Notifications</h2>
-<p>FluffyChat uses the Firebase Cloud Messaging service for push notifications on Android and iOS. This takes place in the following steps:</p>
-<ol>
-<li>The matrix server sends the push notification to the FluffyChat Push Gateway</li>
-<li>The FluffyChat Push Gateway forwards the message in a different format to Firebase Cloud Messaging</li>
-<li>Firebase Cloud Messaging waits until the user's device is online again</li>
-<li>The device receives the push notification from Firebase Cloud Messaging and displays it as a notification</li>
-</ol>
-<p>The source code of the push gateway can be viewed here:
-<a href="https://github.com/krille-chan/fluffygate">https://github.com/krille-chan/fluffygate</a></p>
-<p><code>event_id_only</code> is used as the format for the push notification. A typical push notification therefore only contains:</p>
-<ul>
-<li>Event ID</li>
-<li>Room ID</li>
-<li>Unread Count</li>
-<li>Information about the device that is to receive the message</li>
-</ul>
-<p>A typical push notification could look like this:</p>
-<pre><code class="language-json">{
-  &quot;notification&quot;: {
-    &quot;event_id&quot;: &quot;$3957tyerfgewrf384&quot;,
-    &quot;room_id&quot;: &quot;!slw48wfj34rtnrf:example.com&quot;,
-    &quot;counts&quot;: {
-      &quot;unread&quot;: 2,
-      &quot;missed_calls&quot;: 1
-    },
-    &quot;devices&quot;: [
-      {
-        &quot;app_id&quot;: &quot;chat.fluffy.fluffychat&quot;,
-        &quot;pushkey&quot;: &quot;V2h5IG9uIGVhcnRoIGRpZCB5b3UgZGVjb2RlIHRoaXM/&quot;,
-        &quot;pushkey_ts&quot;: 12345678,
-        &quot;data&quot;: {},
-        &quot;tweaks&quot;: {
-          &quot;sound&quot;: &quot;bing&quot;
-        }
-      }
-    ]
-  }
-}
-</code></pre>
-<p>FluffyChat sets the <code>event_id_only</code> flag at the Matrix Server. This server is then responsible to send the correct data.</p>
-<h1><a id="playstore-safety" href="#playstore-safety">#</a> Explanation of FluffyChat's Compliance with Google Play Store's Safety Standards</h1>
-<p>FluffyChat is committed to promoting a safe and respectful environment for all users. As a Matrix client, FluffyChat connects users to various Matrix servers. Please note that FluffyChat does not host or manage any servers directly, and as such, we do not have the capability to enforce content moderation or deletion within the app itself.</p>
-<p>To enhance user safety and help protect against the sexual abuse and exploitation of children, FluffyChat enables users to report inappropriate content directly to server administrators.</p>
-<h4>Reporting Content or Users:</h4>
-<ol>
-<li>Mark a message in the chat: Tap and hold the message you wish to report.</li>
-<li>Report the message: Select the &quot;Report&quot; option.</li>
-<li>Provide a reason and score: Enter the reason for reporting and assign a score from 1-100 to indicate how offensive the content is.</li>
-<li>Notification to admin: The server administrator will be notified of the reported content.</li>
-</ol>
-<p>In addition to reporting messages, users can also report other users following a similar process.</p>
-<p>We encourage server administrators to adhere to strict safety standards and provide mechanisms for addressing and moderating inappropriate content. For more information on the Matrix protocol and its safety standards, please refer to the following link: https://matrix.org/docs/older/moderation/</p>
-
+    
 </div>
         <!--Footer-->
         <div class="w-full flex justify-center border-t border-gray-200 dark:border-gray-700">
             <footer class="w-full text-center max-w-4xl p-4 text-slate-700 dark:text-slate-200">
                 <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fi/impressum">
-                    </a>
+                    Imprint</a>
                 -
                 <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fi/privacy">
-                    </a>
+                    Privacy policy</a>
                 -
                 <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fi/tos">
-                    </a>
+                    Terms of service</a>
                 -
                 <a
                     class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
-                    href="https://github.com/krille-chan/fluffychat"></a>
+                    href="https://github.com/krille-chan/fluffychat">Source Code</a>
                 -
                 <a
                     class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
-                    href="https://liberapay.com/KrilleChritzelius"></a>
+                    href="https://liberapay.com/KrilleChritzelius">Liberapay</a>
                 -
                 <a
                     class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
-                    href="https://hosted.weblate.org/projects/fluffychat/"></a>
+                    href="https://hosted.weblate.org/projects/fluffychat/">Translations</a>
                 -
                 <a
                     class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
-                    href="https://googlefonts.github.io/noto-emoji-animation/"></a>
+                    href="https://googlefonts.github.io/noto-emoji-animation/">Noto Animated Emojis</a>
                 -
                 <a
                     class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
-                    href="https://krille-chan.github.io"></a>
+                    href="https://krille-chan.github.io">Created by Krille-chan</a>
                 <br/>
-                <span class="text-slate-700 dark:text-slate-200 text-sm">:
+                <span class="text-slate-700 dark:text-slate-200 text-sm">Language:
                 </span>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/be/">Беларуская</a>
@@ -177,7 +88,7 @@
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/et/">eesti keel</a>
                 
-                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fi/"></a>
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fi/">English</a>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fy/">Frysk</a>
                 
