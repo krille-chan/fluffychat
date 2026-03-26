@@ -2806,5 +2806,13 @@
     "iDoNotWantToSupport": "Nílim ag iarraidh tacú leis",
     "iAlreadySupportFluffyChat": "Tacaím le FluffyChat cheana féin",
     "setLowPriority": "Socraigh tosaíocht íseal",
-    "unsetLowPriority": "Díshuiteáil tosaíocht íseal"
+    "unsetLowPriority": "Díshuiteáil tosaíocht íseal",
+    "removeCallFromChat": "Bain glao den chomhrá",
+    "removeCallFromChatDescription": "Ar mhaith leat an glao a bhaint den chomhrá do gach ball?",
+    "removeCallForEveryone": "Bain glao do gach duine",
+    "startVoiceCall": "Tosaigh glao gutha",
+    "startVideoCall": "Tosaigh glao físe",
+    "joinVoiceCall": "Glac páirt i nglao gutha",
+    "joinVideoCall": "Glac páirt i nglao físe",
+    "live": "Beo"
 }
