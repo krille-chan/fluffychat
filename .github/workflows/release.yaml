@@ -49,8 +49,8 @@ jobs:
       - name: Clone fluffychat website
         run: |
           git clone https://github.com/krille-chan/fluffychat-website.git
-          cp CHANGELOG.md fluffychat-website/
-          cp PRIVACY.md fluffychat-website/
+          cp CHANGELOG.md fluffychat-website/src/
+          cp PRIVACY.md fluffychat-website/src/
       - name: Build website
         working-directory: fluffychat-website
         run: |
