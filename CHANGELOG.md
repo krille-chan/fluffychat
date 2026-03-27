@@ -1,3 +1,6 @@
+## v2.5.1
+Update to latest version of fcm_shared_isolate to fix push on iOS.
+
 ## v2.5.0
 FluffyChat 2.5.0 introduces a new homeserver picker for onboarding, better image compression performance and several smaller new features, design adjustments and bug fixes.
 
