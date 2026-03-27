@@ -49,8 +49,8 @@ jobs:
       - name: Clone fluffychat website
         run: |
           git clone https://github.com/krille-chan/fluffychat-website.git
-          cat CHANGELOG.md >> fluffychat-website/src/privacy.md
-          cat PRIVACY.md >> fluffychat-website/src/changelog.md
+          cat CHANGELOG.md >> fluffychat-website/src/changelog.md
+          cat PRIVACY.md >> fluffychat-website/src/privacy.md
       - name: Build website
         working-directory: fluffychat-website
         run: |
