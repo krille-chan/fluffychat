@@ -2333,7 +2333,7 @@
     "stickers": "Klistermärken",
     "discover": "Upptäck",
     "ignoreUser": "Ignorera användare",
-    "aboutHomeserver": "Om{homeserver}",
+    "aboutHomeserver": "Om {homeserver}",
     "@aboutHomeserver": {
         "type": "String",
         "placeholders": {
