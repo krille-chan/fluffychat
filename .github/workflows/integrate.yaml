@@ -56,7 +56,7 @@ jobs:
         with:
           flutter-version-file: .tool_versions.yaml
           cache: true
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           cache: true
       - name: Cache Gradle
@@ -84,7 +84,7 @@ jobs:
         with:
           flutter-version-file: .tool_versions.yaml
           cache: true
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - run: flutter pub get
       - name: Prepare web
@@ -111,7 +111,7 @@ jobs:
         run: |
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
           ./flutter/bin/flutter doctor
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: ./flutter/bin/flutter pub get
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
 
@@ -127,7 +127,7 @@ jobs:
       - name: Use Xcode 16.4
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
       - run: brew install sqlcipher
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: ./scripts/add-firebase-messaging.sh
       - run: flutter pub get
       - run: flutter build ios --no-codesign
@@ -191,7 +191,7 @@ jobs:
         with:
           flutter-version-file: .tool_versions.yaml
           cache: true
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           cache: true
       - name: Cache Gradle
