@@ -72,7 +72,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Es pot entrar al xat com a convidadi",
+    "areGuestsAllowedToJoin": "Es pot entrar al xat com a convidadi?",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -2774,5 +2774,38 @@
     "signUpGreeting": "El FluffyChat és descentralitzat! Tria un servidor on vulguis crear-t'hi un compte, i som-hi!",
     "signInGreeting": "Si ja tens un compte a Matrix, benvingudi! Tria el teu servidor i inicia-hi sessió.",
     "appIntro": "Pots xatejar amb lis tevis amiguis amb Fluffychat. És una app de missatgeria [matrix] descentralitzada! Llegeix-ne més a https://matrix.org si vols, o inicia sessió.",
-    "theProcessWasCanceled": "S'ha canceŀlat el procés."
+    "theProcessWasCanceled": "S'ha canceŀlat el procés.",
+    "join": "Entra",
+    "searchOrEnterHomeserverAddress": "Cerca o introdueix l'adreça del teu servidor",
+    "matrixId": "ID de Matrix",
+    "setPowerLevel": "Concedeix permisos",
+    "makeModerator": "Fes moderadori",
+    "makeAdmin": "Fes admin",
+    "removeModeratorRights": "Treu els drets de moderadori",
+    "removeAdminRights": "Treu els drets d'admin",
+    "powerLevel": "Nivell de permisos",
+    "setPowerLevelDescription": "Els nivells de permisos defineixen què pot fer uni membre d'aquesta sala, i es defineix per un número entre 0 i 100.",
+    "owner": "Propietàriï",
+    "mute": "Silencia",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Crea un nou xat",
+    "reset": "Reseteja",
+    "supportFluffyChat": "Dona suport a FluffyChat",
+    "support": "Aporta",
+    "fluffyChatSupportBannerMessage": "El FluffyChat necessita la teva ajuda!\n❤️❤️❤️\nFluffyChat serà sempre gratuït, però el seu desenvolupament i allotjament costa diners.\nEl futur del projecte depèn del suport de persones com tu.",
+    "skipSupportingFluffyChat": "Ignora el suport a FluffyChat",
+    "iDoNotWantToSupport": "No vull donar suport",
+    "iAlreadySupportFluffyChat": "Ja estic donant-hi suport",
+    "setLowPriority": "Estableix una prioritat baixa",
+    "unsetLowPriority": "Restableix la prioritat",
+    "removeCallFromChat": "Treu la trucada del xat",
+    "removeCallFromChatDescription": "Vols treure la trucada del xat per a totis lis membres?",
+    "removeCallForEveryone": "Treu la trucada per tothom",
+    "startVoiceCall": "Inicia una trucada",
+    "startVideoCall": "Fes una videotrucada",
+    "joinVoiceCall": "Fica't a la trucada",
+    "joinVideoCall": "Fica't a la videotrucada",
+    "live": "En directe"
 }
