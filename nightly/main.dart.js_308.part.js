@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJn(){return new A.FS(B.dd("eu"))},
+cJp(){return new A.FS(B.dd("eu"))},
 FS:function FS(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -668,13 +668,13 @@ gq4(){return"Matrix IDa"},
 goN(){return"Ezarri botere-maila"},
 gq3(){return"Izendatu moderatzaile"},
 gq2(){return"Izendatu administrari"},
-gqb(){return"Kendu moderatzaile eskubideak"},
-gq7(){return"Kendu administratzaile eskubideak"},
-gq6(){return"Botere-maila"},
+gqc(){return"Kendu moderatzaile eskubideak"},
+gq8(){return"Kendu administratzaile eskubideak"},
+gq7(){return"Botere-maila"},
 gpA(){return"Botere-mailek zehazten dute kide batek zer egin dezakeen gela honetan, eta tartea 0tik 100era artekoa izan ohi da."},
 gdJ(){return"Jabea"},
 gpO(){return"Sortu txat berria"},
-gqc(d){return"Berrezarri"},
+gqd(d){return"Berrezarri"},
 gpI(){return"Support FluffyChat"},
 gpH(){return"Support"},
 gpk(){return"FluffyChat needs YOUR help!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat will always be free, but development and hosting still cost money.\nThe future of the project depends on support from people like you."},
@@ -682,19 +682,20 @@ gpE(){return"Skip supporting FluffyChat"},
 gpW(){return"I do not want to support"},
 gpV(){return"I already support FluffyChat"},
 gpz(){return"Set low priority"},
-gqd(){return"Unset low priority"},
-gq9(){return"Remove call from chat"},
-gqa(){return"Do you want to remove the call from the chat for all members?"},
-gq8(){return"Remove call for everyone"},
+gqe(){return"Unset low priority"},
+gqa(){return"Remove call from chat"},
+gqb(){return"Do you want to remove the call from the chat for all members?"},
+gq9(){return"Remove call for everyone"},
 gpG(){return"Start voice call"},
 gpF(){return"Start video call"},
 gq_(){return"Join voice call"},
 gpZ(){return"Join video call"},
 gq0(d){return"Live"},
+gq6(){return"Play sound on notification"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FS,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FS":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["kqfb6SVNGJUJe88IZOUeAs3kRwQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["pP3KviA4pkxlRDLLN1ZFNwa7hho="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map

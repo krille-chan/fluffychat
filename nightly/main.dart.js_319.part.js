@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJs(){return new A.FX(B.dd("ga"))},
+cJu(){return new A.FX(B.dd("ga"))},
 FX:function FX(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -668,13 +668,13 @@ gq4(){return"Aitheantas Maitr\xeds"},
 goN(){return"Socraigh leibh\xe9al cumhachta"},
 gq3(){return"D\xe9an modhn\xf3ir"},
 gq2(){return"D\xe9an riarth\xf3ir"},
-gqb(){return"Bain cearta an mhodhn\xf3ra"},
-gq7(){return"Bain cearta riarth\xf3ra"},
-gq6(){return"Leibh\xe9al cumhachta"},
+gqc(){return"Bain cearta an mhodhn\xf3ra"},
+gq8(){return"Bain cearta riarth\xf3ra"},
+gq7(){return"Leibh\xe9al cumhachta"},
 gpA(){return"Sainmh\xedn\xedonn leibh\xe9il chumhachta cad a cheada\xedtear do bhall a dh\xe9anamh sa seomra seo agus is gn\xe1ch go mb\xedonn siad idir 0 agus 100."},
 gdJ(){return"\xdain\xe9ir"},
 gpO(){return"Cruthaigh comhr\xe1 nua"},
-gqc(d){return"Athshocraigh"},
+gqd(d){return"Athshocraigh"},
 gpI(){return"Tacaigh le FluffyChat"},
 gpH(){return"Taca\xedocht"},
 gpk(){return"T\xe1 DO chabhair ag teast\xe1il \xf3 FluffyChat!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nBeidh FluffyChat saor in aisce i gc\xf3na\xed, ach cosna\xedonn forbairt agus \xf3st\xe1il airgead f\xf3s.\nBraitheann todhcha\xed an tionscadail ar thaca\xedocht \xf3 dhaoine cos\xfail leatsa."},
@@ -682,19 +682,20 @@ gpE(){return"Seachain tac\xfa le FluffyChat"},
 gpW(){return"N\xedlim ag iarraidh tac\xfa leis"},
 gpV(){return"Taca\xedm le FluffyChat cheana f\xe9in"},
 gpz(){return"Socraigh tosa\xedocht \xedseal"},
-gqd(){return"D\xedshuite\xe1il tosa\xedocht \xedseal"},
-gq9(){return"Bain glao den chomhr\xe1"},
-gqa(){return"Ar mhaith leat an glao a bhaint den chomhr\xe1 do gach ball?"},
-gq8(){return"Bain glao do gach duine"},
+gqe(){return"D\xedshuite\xe1il tosa\xedocht \xedseal"},
+gqa(){return"Bain glao den chomhr\xe1"},
+gqb(){return"Ar mhaith leat an glao a bhaint den chomhr\xe1 do gach ball?"},
+gq9(){return"Bain glao do gach duine"},
 gpG(){return"Tosaigh glao gutha"},
 gpF(){return"Tosaigh glao f\xedse"},
 gq_(){return"Glac p\xe1irt i nglao gutha"},
 gpZ(){return"Glac p\xe1irt i nglao f\xedse"},
 gq0(d){return"Beo"},
+gq6(){return"Play sound on notification"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FX,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["3pBqz6BUOcz3m0dErC/MylY4BHg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["2NSeYOJXlqrXdggQa/X82z8UYzw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_319.part.js.map

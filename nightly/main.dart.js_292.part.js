@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJh(){return new A.FM(B.dd("de"))},
+cJj(){return new A.FM(B.dd("de"))},
 FM:function FM(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -668,13 +668,13 @@ gq4(){return"Matrix ID"},
 goN(){return"Power-Level einstellen"},
 gq3(){return"Zum Moderator machen"},
 gq2(){return"Zum Admin machen"},
-gqb(){return"Moderatorenrechte entziehen"},
-gq7(){return"Adminrechte entziehen"},
-gq6(){return"Power-Level"},
+gqc(){return"Moderatorenrechte entziehen"},
+gq8(){return"Adminrechte entziehen"},
+gq7(){return"Power-Level"},
 gpA(){return"Die Power-Level legen fest, was ein Mitglied in diesem Raum tun darf und liegen \xfcblicherweise zwischen 0 und 100."},
 gdJ(){return"Besitzer"},
 gpO(){return"Neuen Chat erstellen"},
-gqc(d){return"Zur\xfccksetzen"},
+gqd(d){return"Zur\xfccksetzen"},
 gpI(){return"FluffyChat unterst\xfctzen"},
 gpH(){return"Unterst\xfctzen"},
 gpk(){return"FluffyChat braucht DEINE Hilfe!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat wird immer kostenlos bleiben, aber Entwicklung und Hosting kosten Geld.\nDie Zukunft des Projekts h\xe4ngt von deiner Unterst\xfctzung ab."},
@@ -682,19 +682,20 @@ gpE(){return"FluffyChat unterst\xfctzen \xfcberspringen"},
 gpW(){return"Ich m\xf6chte nicht unterst\xfctzen"},
 gpV(){return"I unterst\xfctze FluffyChat bereits"},
 gpz(){return"Set low priority"},
-gqd(){return"Unset low priority"},
-gq9(){return"Remove call from chat"},
-gqa(){return"Do you want to remove the call from the chat for all members?"},
-gq8(){return"Remove call for everyone"},
+gqe(){return"Unset low priority"},
+gqa(){return"Remove call from chat"},
+gqb(){return"Do you want to remove the call from the chat for all members?"},
+gq9(){return"Remove call for everyone"},
 gpG(){return"Start voice call"},
 gpF(){return"Start video call"},
 gq_(){return"Join voice call"},
 gpZ(){return"Join video call"},
 gq0(d){return"Live"},
+gq6(){return"Play sound on notification"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FM,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FM":{"aD":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["JN9CXHDA1+jSdgW2q66ymD9Ygh0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mfpccGsWoRwfOiPOOyvnXgqp+7U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_292.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJJ(){return new A.Gd(B.dd("nl"))},
+cJL(){return new A.Gd(B.dd("nl"))},
 Gd:function Gd(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -668,13 +668,13 @@ gq4(){return"Matrix-ID"},
 goN(){return"Rechtenniveau instellen"},
 gq3(){return"Maak moderator"},
 gq2(){return"Maak beheerder"},
-gqb(){return"Verwijder moderator-rechten"},
-gq7(){return"Verwijder beheerder-rechten"},
-gq6(){return"Rechtenniveau"},
+gqc(){return"Verwijder moderator-rechten"},
+gq8(){return"Verwijder beheerder-rechten"},
+gq7(){return"Rechtenniveau"},
 gpA(){return"Rechtenniveau's defini\xebren wat een persoon mag doen in deze chat en vari\xebren meestal tussen 0 en 100."},
 gdJ(){return"Eigenaar"},
 gpO(){return"Cre\xeber nieuw chat"},
-gqc(d){return"Herstellen"},
+gqd(d){return"Herstellen"},
 gpI(){return"FluffyChat steunen"},
 gpH(){return"Steunen"},
 gpk(){return"Fluffy Chat heeft JOUW hulp nodig. _\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat zal altijd gratis zijn, maar ontwikkeling en hosting kost geld.\nDe toekomst van het project hangt af van steun van mensen zoals jij."},
@@ -682,18 +682,19 @@ gpE(){return"FluffyChat steunen overslaan"},
 gpW(){return"Ik wil niet ondersteunen"},
 gpV(){return"Ik steun FluffyChat al"},
 gpz(){return"Lage prioriteit instellen"},
-gqd(){return"Lage prioriteit uitschakelen"},
-gq9(){return"Verwijder oproep van chat"},
-gqa(){return"Wil je de oproep voor iedereen in de chat verwijderen?"},
-gq8(){return"Verwijder oproep voor iedereen"},
+gqe(){return"Lage prioriteit uitschakelen"},
+gqa(){return"Verwijder oproep van chat"},
+gqb(){return"Wil je de oproep voor iedereen in de chat verwijderen?"},
+gq9(){return"Verwijder oproep voor iedereen"},
 gpG(){return"Start audio-gesprek"},
 gpF(){return"Start video-gesprek"},
 gq_(){return"Audio-gesprek opnemen"},
 gpZ(){return"Deelnemen aan video-gesprek"},
 gq0(d){return"Live"},
+gq6(){return"Play sound on notification"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gd,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gd":{"aD":[]}}'))};
-(a=>{a["mt/e7GoCBUgefGfs4+auVUUPGPI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/aw4k3nM/bRL1mkM6nyvAewG+60="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_353.part.js.map

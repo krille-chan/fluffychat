@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJm(){return new A.FR(B.dd("et"))},
+cJo(){return new A.FR(B.dd("et"))},
 FR:function FR(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -668,13 +668,13 @@ gq4(){return"Matrixi kasutajatunnus"},
 goN(){return"Seadista \xf5igusi"},
 gq3(){return"M\xe4\xe4ra moderaatoriks"},
 gq2(){return"M\xe4\xe4ra peakasutajaks"},
-gqb(){return"Eemalda moderaatori \xf5igused"},
-gq7(){return"Eemalda peakasutaja \xf5igused"},
-gq6(){return"\xd5iguste tase"},
+gqc(){return"Eemalda moderaatori \xf5igused"},
+gq8(){return"Eemalda peakasutaja \xf5igused"},
+gq7(){return"\xd5iguste tase"},
 gpA(){return"\xd5iguste tase on \xfcks v\xf5imalusi kirjeldamaks seda, mida kasutaja saab jututoas teha ning see tavaliselt v\xe4ljendub numbriga vahemikust 0 kuni 100."},
 gdJ(){return"Omanik"},
 gpO(){return"Loo uus vestlus"},
-gqc(d){return"L\xe4htesta"},
+gqd(d){return"L\xe4htesta"},
 gpI(){return"Toeta FluffyChati"},
 gpH(){return"Toeta meid"},
 gpk(){return"FluffyChat vajab SINU abi!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat j\xe4\xe4b alati vabaks ja vabalt saadavaks, aga arendus ja serveriteenused vajavad ikkagi rahastamist.\nMeie projekti tulevik s\xf5ltub sinust ja teistest kasutajatest, nagu sina."},
@@ -682,18 +682,19 @@ gpE(){return"J\xe4ta FluffyChati toetamine vahele"},
 gpW(){return"Ma ei soovi toetada"},
 gpV(){return"Ma juba toetan FluffyChati arendust"},
 gpz(){return"M\xe4rgi v\xe4het\xe4htsaks"},
-gqd(){return"Eemalda m\xe4rkimine v\xe4het\xe4htsaks"},
-gq9(){return"Eemalda k\xf5ne vestlusest"},
-gqa(){return"Kas sa soovid antud k\xf5ne selle vestluse k\xf5ikidelt kasutajatelt eemaldada?"},
-gq8(){return"Eemalda k\xf5ne k\xf5igilt"},
+gqe(){return"Eemalda m\xe4rkimine v\xe4het\xe4htsaks"},
+gqa(){return"Eemalda k\xf5ne vestlusest"},
+gqb(){return"Kas sa soovid antud k\xf5ne selle vestluse k\xf5ikidelt kasutajatelt eemaldada?"},
+gq9(){return"Eemalda k\xf5ne k\xf5igilt"},
 gpG(){return"Algata h\xe4\xe4lk\xf5ne"},
 gpF(){return"Algata videok\xf5ne"},
 gq_(){return"Liitu h\xe4\xe4lk\xf5nega"},
 gpZ(){return"Liitu videok\xf5nega"},
 gq0(d){return"Reaalajas"},
+gq6(){return"Play sound on notification"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FR,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FR":{"aD":[]}}'))};
-(a=>{a["OfPdi/I7lks792nflYBnxQDLZsE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["CcyX7QK8P8+Zup2D/MbUkllyAfE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJV(){return new A.Go(B.dd("ta"))},
+cJX(){return new A.Go(B.dd("ta"))},
 Go:function Go(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -668,13 +668,13 @@ gq4(){return"\u0bae\u0bc7\u0b9f\u0bcd\u0bb0\u0bbf\u0b95\u0bcd\u0b9a\u0bcd \u0b85
 goN(){return"\u0b86\u0bb1\u0bcd\u0bb1\u0bb2\u0bcd \u0b85\u0bb3\u0bb5\u0bc8 \u0b85\u0bae\u0bc8\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd"},
 gq3(){return"\u0bae\u0ba4\u0bbf\u0baa\u0bcd\u0baa\u0bc0\u0b9f\u0bcd\u0b9f\u0bbe\u0bb3\u0bb0\u0bbe\u0b95 \u0b86\u0b95\u0bcd\u0b95\u0bc1\u0b99\u0bcd\u0b95\u0bb3\u0bcd"},
 gq2(){return"\u0ba8\u0bbf\u0bb0\u0bcd\u0bb5\u0bbe\u0b95\u0bbf\u0baf\u0bbe\u0b95\u0bcd\u0b95\u0bc1"},
-gqb(){return"\u0bae\u0ba4\u0bbf\u0baa\u0bcd\u0baa\u0bc0\u0b9f\u0bcd\u0b9f\u0bbe\u0bb3\u0bb0\u0bcd \u0b89\u0bb0\u0bbf\u0bae\u0bc8\u0b95\u0bb3\u0bc8 \u0b85\u0b95\u0bb1\u0bcd\u0bb1\u0bc1"},
-gq7(){return"\u0ba8\u0bbf\u0bb0\u0bcd\u0bb5\u0bbe\u0b95\u0bbf \u0b89\u0bb0\u0bbf\u0bae\u0bc8\u0b95\u0bb3\u0bc8 \u0b85\u0b95\u0bb1\u0bcd\u0bb1\u0bc1"},
-gq6(){return"\u0b86\u0bb1\u0bcd\u0bb1\u0bb2\u0bcd \u0ba8\u0bbf\u0bb2\u0bc8"},
+gqc(){return"\u0bae\u0ba4\u0bbf\u0baa\u0bcd\u0baa\u0bc0\u0b9f\u0bcd\u0b9f\u0bbe\u0bb3\u0bb0\u0bcd \u0b89\u0bb0\u0bbf\u0bae\u0bc8\u0b95\u0bb3\u0bc8 \u0b85\u0b95\u0bb1\u0bcd\u0bb1\u0bc1"},
+gq8(){return"\u0ba8\u0bbf\u0bb0\u0bcd\u0bb5\u0bbe\u0b95\u0bbf \u0b89\u0bb0\u0bbf\u0bae\u0bc8\u0b95\u0bb3\u0bc8 \u0b85\u0b95\u0bb1\u0bcd\u0bb1\u0bc1"},
+gq7(){return"\u0b86\u0bb1\u0bcd\u0bb1\u0bb2\u0bcd \u0ba8\u0bbf\u0bb2\u0bc8"},
 gpA(){return"\u0b87\u0ba8\u0bcd\u0ba4 \u0b85\u0bb1\u0bc8\u0baf\u0bbf\u0bb2\u0bcd \u0b92\u0bb0\u0bc1 \u0b89\u0bb1\u0bc1\u0baa\u0bcd\u0baa\u0bbf\u0ba9\u0bb0\u0bcd \u0b8e\u0ba9\u0bcd\u0ba9 \u0b9a\u0bc6\u0baf\u0bcd\u0baf \u0b85\u0ba9\u0bc1\u0bae\u0ba4\u0bbf\u0b95\u0bcd\u0b95\u0baa\u0bcd\u0baa\u0b9f\u0bc1\u0b95\u0bbf\u0bb1\u0bbe\u0bb0\u0bcd \u0b8e\u0ba9\u0bcd\u0baa\u0ba4\u0bc8 \u0b85\u0ba4\u0bbf\u0b95\u0bbe\u0bb0 \u0ba8\u0bbf\u0bb2\u0bc8\u0b95\u0bb3\u0bcd \u0bb5\u0bb0\u0bc8\u0baf\u0bb1\u0bc1\u0b95\u0bcd\u0b95\u0bbf\u0ba9\u0bcd\u0bb1\u0ba9 \u0bae\u0bb1\u0bcd\u0bb1\u0bc1\u0bae\u0bcd \u0baa\u0bca\u0ba4\u0bc1\u0bb5\u0bbe\u0b95 0 \u0bae\u0bc1\u0ba4\u0bb2\u0bcd 100 \u0bb5\u0bb0\u0bc8 \u0b87\u0bb0\u0bc1\u0b95\u0bcd\u0b95\u0bc1\u0bae\u0bcd."},
 gdJ(){return"\u0b89\u0bb0\u0bbf\u0bae\u0bc8\u0baf\u0bbe\u0bb3\u0bb0\u0bcd"},
 gpO(){return"\u0baa\u0bc1\u0ba4\u0bbf\u0baf \u0b85\u0bb0\u0b9f\u0bcd\u0b9f\u0bc8\u0baf\u0bc8 \u0b89\u0bb0\u0bc1\u0bb5\u0bbe\u0b95\u0bcd\u0b95\u0bc1"},
-gqc(d){return"Reset"},
+gqd(d){return"Reset"},
 gpI(){return"Support FluffyChat"},
 gpH(){return"Support"},
 gpk(){return"FluffyChat needs YOUR help!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat will always be free, but development and hosting still cost money.\nThe future of the project depends on support from people like you."},
@@ -682,19 +682,20 @@ gpE(){return"Skip supporting FluffyChat"},
 gpW(){return"I do not want to support"},
 gpV(){return"I already support FluffyChat"},
 gpz(){return"Set low priority"},
-gqd(){return"Unset low priority"},
-gq9(){return"Remove call from chat"},
-gqa(){return"Do you want to remove the call from the chat for all members?"},
-gq8(){return"Remove call for everyone"},
+gqe(){return"Unset low priority"},
+gqa(){return"Remove call from chat"},
+gqb(){return"Do you want to remove the call from the chat for all members?"},
+gq9(){return"Remove call for everyone"},
 gpG(){return"Start voice call"},
 gpF(){return"Start video call"},
 gq_(){return"Join voice call"},
 gpZ(){return"Join video call"},
 gq0(d){return"Live"},
+gq6(){return"Play sound on notification"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Go,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Go":{"aD":[]}}'))
 var y={d:" \u0b87\u0bb2\u0bcd \u0b9f\u0bc6\u0bb5\u0bb2\u0baa\u0bcd\u0baa\u0bb0\u0bcd\u0b95\u0bb3\u0bbf\u0b9f\u0bae\u0bcd \u0b87\u0ba8\u0bcd\u0ba4\u0baa\u0bcd \u0baa\u0bbf\u0bb4\u0bc8\u0baf\u0bc8\u0baa\u0bcd \u0baa\u0bc1\u0b95\u0bbe\u0bb0\u0bb3\u0bbf\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd. \u0baa\u0bbf\u0bb4\u0bc8 \u0b9a\u0bc6\u0baf\u0bcd\u0ba4\u0bbf: "}};
-(a=>{a["LYp0k5Oudbifi/AWHv/cyG5oN4I="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["VW5e7Ek0IbXzWP4sLGETBK5UcLE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_366.part.js.map

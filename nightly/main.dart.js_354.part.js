@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJK(){return new A.Ge(B.dd("pl"))},
+cJM(){return new A.Ge(B.dd("pl"))},
 Ge:function Ge(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -668,13 +668,13 @@ gq4(){return"Matrix ID"},
 goN(){return"Set power level"},
 gq3(){return"Make moderator"},
 gq2(){return"Make admin"},
-gqb(){return"Remove moderator rights"},
-gq7(){return"Remove admin rights"},
-gq6(){return"Power level"},
+gqc(){return"Remove moderator rights"},
+gq8(){return"Remove admin rights"},
+gq7(){return"Power level"},
 gpA(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
 gdJ(){return"Owner"},
 gpO(){return"Create new chat"},
-gqc(d){return"Reset"},
+gqd(d){return"Reset"},
 gpI(){return"Support FluffyChat"},
 gpH(){return"Support"},
 gpk(){return"FluffyChat needs YOUR help!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat will always be free, but development and hosting still cost money.\nThe future of the project depends on support from people like you."},
@@ -682,18 +682,19 @@ gpE(){return"Skip supporting FluffyChat"},
 gpW(){return"I do not want to support"},
 gpV(){return"I already support FluffyChat"},
 gpz(){return"Set low priority"},
-gqd(){return"Unset low priority"},
-gq9(){return"Remove call from chat"},
-gqa(){return"Do you want to remove the call from the chat for all members?"},
-gq8(){return"Remove call for everyone"},
+gqe(){return"Unset low priority"},
+gqa(){return"Remove call from chat"},
+gqb(){return"Do you want to remove the call from the chat for all members?"},
+gq9(){return"Remove call for everyone"},
 gpG(){return"Start voice call"},
 gpF(){return"Start video call"},
 gq_(){return"Join voice call"},
 gpZ(){return"Join video call"},
 gq0(d){return"Live"},
+gq6(){return"Play sound on notification"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ge,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Ge":{"aD":[]}}'))};
-(a=>{a["zBXfAIriCmNh/PgZqCXePRPS0I8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["GxOpyaaeeuqSf3WJWn68BviZ5O4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_354.part.js.map

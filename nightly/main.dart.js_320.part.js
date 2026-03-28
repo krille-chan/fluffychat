@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJt(){return new A.FY(B.dd("gl"))},
+cJv(){return new A.FY(B.dd("gl"))},
 FY:function FY(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -668,13 +668,13 @@ gq4(){return"ID en Matrix"},
 goN(){return"Establecer responsabilidade"},
 gq3(){return"Facer moderadora"},
 gq2(){return"Facer admin"},
-gqb(){return"Retirar permiso de moderaci\xf3n"},
-gq7(){return"Retirar permiso de administraci\xf3n"},
-gq6(){return"Nivel responsabilidade"},
+gqc(){return"Retirar permiso de moderaci\xf3n"},
+gq8(){return"Retirar permiso de administraci\xf3n"},
+gq7(){return"Nivel responsabilidade"},
 gpA(){return"Os niveis de responsabilidade definen o que pode facer unha usuaria na sala, normalmente var\xeda de 0 a 100."},
 gdJ(){return"Propietaria"},
 gpO(){return"Crear nova conversa"},
-gqc(d){return"Restablecer"},
+gqd(d){return"Restablecer"},
 gpI(){return"Apoia a FluffyChat"},
 gpH(){return"Axuda"},
 gpk(){return"FluffyChat precisa a T\xdaA axuda!\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat vai ser sempre gratu\xedta, pero o desenvolvemento e a hospedaxe costan cartos.\nO futuro do proxecto depende da axuda de persoas coma ti."},
@@ -682,18 +682,19 @@ gpE(){return"Omitir apoiar a FluffyChat"},
 gpW(){return"Non quero axudar"},
 gpV(){return"Xa apoiei a FluffyChat"},
 gpz(){return"Establecer prioridade baixa"},
-gqd(){return"Non establecer prioridade baixa"},
-gq9(){return"Eliminar a chamada da conversa"},
-gqa(){return"Queres eliminar a chamada da conversa para todos os membros?"},
-gq8(){return"Eliminar para todos a chamada"},
+gqe(){return"Non establecer prioridade baixa"},
+gqa(){return"Eliminar a chamada da conversa"},
+gqb(){return"Queres eliminar a chamada da conversa para todos os membros?"},
+gq9(){return"Eliminar para todos a chamada"},
 gpG(){return"Iniciar chamada de voz"},
 gpF(){return"Iniciar chamada de v\xeddeo"},
 gq_(){return"Unirse \xe1 chamada de voz"},
 gpZ(){return"Unirse \xe1 chamada de v\xeddeo"},
 gq0(d){return"En directo"},
+gq6(){return"Play sound on notification"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FY,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FY":{"aD":[]}}'))};
-(a=>{a["x9WsJsFFpwyaKNlofTxJdK65Qck="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["IdCVSeZ+5iDyNqO6eqe3534QqaA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_320.part.js.map

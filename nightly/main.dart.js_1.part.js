@@ -1,7 +1,7 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cK2(d){return new A.Be(B.dd(d))},
-cK3(){return new A.Gw(B.dd("zh_Hant"))},
+cK4(d){return new A.Be(B.dd(d))},
+cK5(){return new A.Gw(B.dd("zh_Hant"))},
 Be:function Be(d){this.a=d},
 Gw:function Gw(d){this.a=d}},C
 B=c[0]
@@ -670,13 +670,13 @@ gq4(){return"Matrix ID"},
 goN(){return"\u8bbe\u7f6e\u6743\u9650\u7ea7\u522b"},
 gq3(){return"\u534f\u7ba1\u5458"},
 gq2(){return"\u7ba1\u7406\u5458"},
-gqb(){return"\u5220\u9664\u534f\u7ba1\u5458\u6743\u9650"},
-gq7(){return"\u5220\u9664\u7ba1\u7406\u5458\u6743\u9650"},
-gq6(){return"\u6743\u9650\u7ea7\u522b"},
+gqc(){return"\u5220\u9664\u534f\u7ba1\u5458\u6743\u9650"},
+gq8(){return"\u5220\u9664\u7ba1\u7406\u5458\u6743\u9650"},
+gq7(){return"\u6743\u9650\u7ea7\u522b"},
 gpA(){return"\u6743\u9650\u7ea7\u522b\u5b9a\u4e49\u7fa4\u6210\u5458\u5728\u8fd9\u4e2a\u804a\u5929\u5ba4\u4e2d\u53ef\u4ee5\u505a\u4ec0\u4e48\uff0c\u53d6\u503c\u8303\u56f4 0 \u5230 100\u3002"},
 gdJ(){return"\u6240\u6709\u8005"},
 gpO(){return"\u65b0\u5efa\u804a\u5929"},
-gqc(d){return"\u91cd\u7f6e"},
+gqd(d){return"\u91cd\u7f6e"},
 gpI(){return"\u652f\u6301 FluffyChat"},
 gpH(){return"\u652f\u6301"},
 gpk(){return"FluffyChat \u9700\u8981\u60a8\u7684\u5e2e\u52a9\uff01\n\u2764\ufe0f\u2764\ufe0f\u2764\ufe0f\nFluffyChat \u5c06\u59cb\u7ec8\u514d\u8d39\uff0c\u4f46\u5f00\u53d1\u548c\u6258\u7ba1\u4ecd\u7136\u8981\u82b1\u94b1\u3002\n\u9879\u76ee\u7684\u672a\u6765\u4ef0\u8d56\u50cf\u60a8\u8fd9\u6837\u7684\u4eba\u7684\u652f\u6301\u3002"},
@@ -684,15 +684,16 @@ gpE(){return"\u8df3\u8fc7\u652f\u6301 FluffyChar"},
 gpW(){return"\u6211\u4e0d\u60f3\u652f\u6301"},
 gpV(){return"\u6211\u5df2\u652f\u6301 FluffyChat"},
 gpz(){return"\u8bbe\u7f6e\u4f4e\u4f18\u5148\u7ea7"},
-gqd(){return"\u53d6\u6d88\u8bbe\u7f6e\u4f4e\u4f18\u5148\u7ea7"},
-gq9(){return"\u4ece\u804a\u5929\u4e2d\u5220\u9664\u901a\u8bdd"},
-gqa(){return"\u8981\u4e3a\u6240\u6709\u6210\u5458\u4ece\u804a\u5929\u4e2d\u5220\u9664\u901a\u8bdd\u5417\uff1f"},
-gq8(){return"\u4e3a\u6240\u6709\u4eba\u5220\u9664\u901a\u8bdd"},
+gqe(){return"\u53d6\u6d88\u8bbe\u7f6e\u4f4e\u4f18\u5148\u7ea7"},
+gqa(){return"\u4ece\u804a\u5929\u4e2d\u5220\u9664\u901a\u8bdd"},
+gqb(){return"\u8981\u4e3a\u6240\u6709\u6210\u5458\u4ece\u804a\u5929\u4e2d\u5220\u9664\u901a\u8bdd\u5417\uff1f"},
+gq9(){return"\u4e3a\u6240\u6709\u4eba\u5220\u9664\u901a\u8bdd"},
 gpG(){return"\u5f00\u59cb\u8bed\u97f3\u901a\u8bdd"},
 gpF(){return"\u5f00\u59cb\u89c6\u9891\u901a\u8bdd"},
 gq_(){return"\u52a0\u5165\u8bed\u97f3\u901a\u8bdd"},
 gpZ(){return"\u52a0\u5165\u89c6\u9891\u901a\u8bdd"},
 gq0(d){return"\u5b9e\u65f6"},
+gq6(){return"Play sound on notification"},
 B(d,e){return this.gb7(this).$1(e)}}
 A.Gw.prototype={
 gkL(){return"false"},
@@ -1297,5 +1298,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Be,C.aD)
 y(A.Gw,A.Be)})()
 B.dI(b.typeUniverse,JSON.parse('{"Be":{"aD":[]},"Gw":{"aD":[]}}'))};
-(a=>{a["VSc1Brj0Q10hM6aVPE7Qz9ImFp8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["MA5YceM8guWrPpNhmShc+lEFJGg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
