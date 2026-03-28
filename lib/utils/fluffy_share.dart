@@ -12,6 +12,8 @@ abstract class FluffyShare {
     BuildContext context, {
     bool copyOnly = false,
   }) async {
+    final l10n = L10n.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (PlatformInfos.isMobile && !copyOnly) {
       final box = context.findRenderObject() as RenderBox;
       await SharePlus.instance.share(
@@ -24,21 +26,20 @@ abstract class FluffyShare {
     }
     await Clipboard.setData(ClipboardData(text: text));
     if (!PlatformInfos.isMobile) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          showCloseIcon: true,
-          content: Text(L10n.of(context).copiedToClipboard),
-        ),
+      scaffoldMessenger.showSnackBar(
+        SnackBar(showCloseIcon: true, content: Text(l10n.copiedToClipboard)),
       );
     }
     return;
   }
 
   static Future<void> shareInviteLink(BuildContext context) async {
+    final l10n = L10n.of(context);
     final client = Matrix.of(context).client;
     final ownProfile = await client.fetchOwnProfile();
+    if (!context.mounted) return;
     await FluffyShare.share(
-      L10n.of(context).inviteText(
+      l10n.inviteText(
         ownProfile.displayName ?? client.userID!,
         'https://matrix.to/#/${client.userID}?client=im.fluffychat',
       ),

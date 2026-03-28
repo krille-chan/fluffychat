@@ -14,6 +14,8 @@ Future<void> showMemberActionsPopupMenu({
   required User user,
   void Function()? onMention,
 }) async {
+  final l10n = L10n.of(context);
+  final scaffoldMessenger = ScaffoldMessenger.of(context);
   final theme = Theme.of(context);
   final displayname = user.calcDisplayname();
   final isMe = user.room.client.userID == user.id;
@@ -245,12 +247,13 @@ Future<void> showMemberActionsPopupMenu({
     case _MemberActions.kick:
       if (await showOkCancelAlertDialog(
             context: context,
-            title: L10n.of(context).areYouSure,
-            okLabel: L10n.of(context).yes,
-            cancelLabel: L10n.of(context).no,
-            message: L10n.of(context).kickUserDescription,
+            title: l10n.areYouSure,
+            okLabel: l10n.yes,
+            cancelLabel: l10n.no,
+            message: l10n.kickUserDescription,
           ) ==
           OkCancelResult.ok) {
+        if (!context.mounted) return;
         await showFutureLoadingDialog(
           context: context,
           future: () => user.kick(),
@@ -260,12 +263,13 @@ Future<void> showMemberActionsPopupMenu({
     case _MemberActions.ban:
       if (await showOkCancelAlertDialog(
             context: context,
-            title: L10n.of(context).areYouSure,
-            okLabel: L10n.of(context).yes,
-            cancelLabel: L10n.of(context).no,
-            message: L10n.of(context).banUserDescription,
+            title: l10n.areYouSure,
+            okLabel: l10n.yes,
+            cancelLabel: l10n.no,
+            message: l10n.banUserDescription,
           ) ==
           OkCancelResult.ok) {
+        if (!context.mounted) return;
         await showFutureLoadingDialog(
           context: context,
           future: () => user.ban(),
@@ -275,20 +279,22 @@ Future<void> showMemberActionsPopupMenu({
     case _MemberActions.report:
       final reason = await showTextInputDialog(
         context: context,
-        title: L10n.of(context).whyDoYouWantToReportThis,
-        okLabel: L10n.of(context).report,
-        cancelLabel: L10n.of(context).cancel,
-        hintText: L10n.of(context).reason,
+        title: l10n.whyDoYouWantToReportThis,
+        okLabel: l10n.report,
+        cancelLabel: l10n.cancel,
+        hintText: l10n.reason,
       );
       if (reason == null || reason.isEmpty) return;
+      if (!context.mounted) return;
 
       final result = await showFutureLoadingDialog(
         context: context,
         future: () => user.room.client.reportUser(user.id, reason),
       );
       if (result.error != null) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context).contentHasBeenReported)),
+      if (!context.mounted) return;
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(l10n.contentHasBeenReported)),
       );
       return;
     case _MemberActions.info:
@@ -304,12 +310,13 @@ Future<void> showMemberActionsPopupMenu({
     case _MemberActions.unban:
       if (await showOkCancelAlertDialog(
             context: context,
-            title: L10n.of(context).areYouSure,
-            okLabel: L10n.of(context).yes,
-            cancelLabel: L10n.of(context).no,
-            message: L10n.of(context).unbanUserDescription,
+            title: l10n.areYouSure,
+            okLabel: l10n.yes,
+            cancelLabel: l10n.no,
+            message: l10n.unbanUserDescription,
           ) ==
           OkCancelResult.ok) {
+        if (!context.mounted) return;
         await showFutureLoadingDialog(
           context: context,
           future: () => user.unban(),

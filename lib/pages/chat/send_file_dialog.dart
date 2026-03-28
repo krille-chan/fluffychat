@@ -146,6 +146,7 @@ class SendFileDialogState extends State<SendFileDialog> {
       scaffoldMessenger.clearSnackBars();
     } catch (e) {
       scaffoldMessenger.clearSnackBars();
+      if (!mounted || !widget.outerContext.mounted) rethrow;
       final theme = Theme.of(context);
       scaffoldMessenger.showSnackBar(
         SnackBar(

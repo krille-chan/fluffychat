@@ -220,6 +220,7 @@ class UserDialog extends StatelessWidget {
                               hintText: L10n.of(context).reason,
                             );
                             if (reason == null || reason.isEmpty) return;
+                            if (!context.mounted) return;
                             await showFutureLoadingDialog(
                               context: context,
                               future: () => Matrix.of(

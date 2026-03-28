@@ -29,6 +29,7 @@ class SettingsStyleController extends State<SettingsStyle> {
     final picked = await selectFiles(context, type: FileType.image);
     final pickedFile = picked.firstOrNull;
     if (pickedFile == null) return;
+    if (!mounted) return;
 
     await showFutureLoadingDialog(
       context: context,

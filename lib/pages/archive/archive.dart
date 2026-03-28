@@ -48,6 +48,7 @@ class ArchiveController extends State<Archive> {
         OkCancelResult.ok) {
       return;
     }
+    if (!mounted) return;
     await showFutureLoadingDialog(
       context: context,
       futureWithProgress: (onProgress) async {

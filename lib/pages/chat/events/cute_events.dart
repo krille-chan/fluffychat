@@ -50,6 +50,7 @@ class _CuteContentState extends State<CuteContent> {
   Future<void> addOverlay() async {
     _isOverlayShown = true;
     await Future.delayed(const Duration(milliseconds: 50));
+    if (!mounted) return;
 
     OverlayEntry? overlay;
     overlay = OverlayEntry(

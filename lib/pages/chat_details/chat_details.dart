@@ -37,69 +37,78 @@ class ChatDetailsController extends State<ChatDetails> {
   String? get roomId => widget.roomId;
 
   Future<void> setDisplaynameAction() async {
+    final l10n = L10n.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
     final input = await showTextInputDialog(
       context: context,
-      title: L10n.of(context).changeTheNameOfTheGroup,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      initialText: room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+      title: l10n.changeTheNameOfTheGroup,
+      okLabel: l10n.ok,
+      cancelLabel: l10n.cancel,
+      initialText: room.getLocalizedDisplayname(MatrixLocals(l10n)),
     );
     if (input == null) return;
+    if (!mounted) return;
     final success = await showFutureLoadingDialog(
       context: context,
       future: () => room.setName(input),
     );
+    if (!mounted) return;
     if (success.error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context).displaynameHasBeenChanged)),
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(l10n.displaynameHasBeenChanged)),
       );
     }
   }
 
   Future<void> setTopicAction() async {
+    final l10n = L10n.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
     final input = await showTextInputDialog(
       context: context,
-      title: L10n.of(context).setChatDescription,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      hintText: L10n.of(context).noChatDescriptionYet,
+      title: l10n.setChatDescription,
+      okLabel: l10n.ok,
+      cancelLabel: l10n.cancel,
+      hintText: l10n.noChatDescriptionYet,
       initialText: room.topic,
       minLines: 4,
       maxLines: 8,
     );
     if (input == null) return;
+    if (!mounted) return;
     final success = await showFutureLoadingDialog(
       context: context,
       future: () => room.setDescription(input),
     );
+    if (!mounted) return;
     if (success.error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context).chatDescriptionHasBeenChanged)),
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(l10n.chatDescriptionHasBeenChanged)),
       );
     }
   }
 
   Future<void> setAvatarAction() async {
+    final l10n = L10n.of(context);
     final room = Matrix.of(context).client.getRoomById(roomId!);
     final actions = [
       if (PlatformInfos.isMobile)
         AdaptiveModalAction(
           value: AvatarAction.camera,
-          label: L10n.of(context).openCamera,
+          label: l10n.openCamera,
           isDefaultAction: true,
           icon: const Icon(Icons.camera_alt_outlined),
         ),
       AdaptiveModalAction(
         value: AvatarAction.file,
-        label: L10n.of(context).openGallery,
+        label: l10n.openGallery,
         icon: const Icon(Icons.photo_outlined),
       ),
       if (room?.avatar != null)
         AdaptiveModalAction(
           value: AvatarAction.remove,
-          label: L10n.of(context).delete,
+          label: l10n.delete,
           isDestructive: true,
           icon: const Icon(Icons.delete_outlined),
         ),
@@ -108,11 +117,12 @@ class ChatDetailsController extends State<ChatDetails> {
         ? actions.single.value
         : await showModalActionPopup<AvatarAction>(
             context: context,
-            title: L10n.of(context).editRoomAvatar,
-            cancelLabel: L10n.of(context).cancel,
+            title: l10n.editRoomAvatar,
+            cancelLabel: l10n.cancel,
             actions: actions,
           );
     if (action == null) return;
+    if (!mounted) return;
     if (action == AvatarAction.remove) {
       await showFutureLoadingDialog(
         context: context,
@@ -131,6 +141,7 @@ class ChatDetailsController extends State<ChatDetails> {
       if (result == null) return;
       file = MatrixFile(bytes: await result.readAsBytes(), name: result.path);
     } else {
+      if (!mounted) return;
       final picked = await selectFiles(
         context,
         allowMultiple: false,
@@ -143,6 +154,7 @@ class ChatDetailsController extends State<ChatDetails> {
         name: pickedFile.name,
       );
     }
+    if (!mounted) return;
     await showFutureLoadingDialog(
       context: context,
       future: () => room!.setAvatar(file),

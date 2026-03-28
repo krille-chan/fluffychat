@@ -170,14 +170,17 @@ class _SpaceViewState extends State<SpaceView> {
     switch (action) {
       case SpaceActions.settings:
         await space?.postLoad();
+        if (!mounted) return;
         context.push('/rooms/${widget.spaceId}/details');
         break;
       case SpaceActions.invite:
         await space?.postLoad();
+        if (!mounted) return;
         context.push('/rooms/${widget.spaceId}/invite');
         break;
       case SpaceActions.members:
         await space?.postLoad();
+        if (!mounted) return;
         context.push('/rooms/${widget.spaceId}/details/members');
         break;
       case SpaceActions.leave:

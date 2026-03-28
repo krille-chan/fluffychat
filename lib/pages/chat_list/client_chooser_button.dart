@@ -209,6 +209,7 @@ class ClientChooserButton extends StatelessWidget {
             cancelLabel: L10n.of(context).cancel,
           );
           if (consent != OkCancelResult.ok) return;
+          if (!context.mounted) return;
           context.go('/rooms/settings/addaccount');
           break;
         case SettingsAction.newGroup:

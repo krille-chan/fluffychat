@@ -61,9 +61,11 @@ class MessageContent extends StatelessWidget {
     final client = Matrix.of(context).client;
     final state = await client.getCryptoIdentityState();
     if (!state.connected) {
+      if (!context.mounted) return;
       final success = await context.push('/backup');
       if (success != true) return;
     }
+    if (!context.mounted) return;
     event.requestKey();
     final sender = event.senderFromMemoryOrFallback;
     await showAdaptiveBottomSheet(

@@ -293,6 +293,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
   }
 
   Future<void> createStickers() async {
+    final matrix = Matrix.of(context);
     final pickedFiles = await selectFiles(
       context,
       type: FileType.image,
@@ -315,7 +316,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
                 nativeImplementations: ClientManager.nativeImplementations,
               ) ??
               file;
-          final uri = await Matrix.of(context).client.uploadContent(
+          final uri = await matrix.client.uploadContent(
             file.bytes,
             filename: file.name,
             contentType: file.mimeType,
@@ -361,6 +362,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
     final buffer = InputMemoryStream(await result.single.readAsBytes());
 
     final archive = ZipDecoder().decodeStream(buffer);
+    if (!mounted) return;
 
     await showDialog(
       context: context,
@@ -375,7 +377,7 @@ class EmotesSettingsController extends State<EmotesSettings> {
   Future<void> exportAsZip() async {
     final client = Matrix.of(context).client;
 
-    await showFutureLoadingDialog(
+    final result = await showFutureLoadingDialog<MatrixFile>(
       context: context,
       future: () async {
         final pack = _getPack();
@@ -397,11 +399,12 @@ class EmotesSettingsController extends State<EmotesSettings> {
             '${pack.pack.displayName ?? client.userID?.localpart ?? 'emotes'}.zip';
         final output = ZipEncoder().encode(archive);
 
-        MatrixFile(
-          name: fileName,
-          bytes: Uint8List.fromList(output),
-        ).save(context);
+        return MatrixFile(name: fileName, bytes: Uint8List.fromList(output));
       },
     );
+    final file = result.result;
+    if (file == null) return;
+    if (!mounted) return;
+    file.save(context);
   }
 }

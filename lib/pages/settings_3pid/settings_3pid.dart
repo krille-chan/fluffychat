@@ -19,41 +19,48 @@ class Settings3Pid extends StatefulWidget {
 
 class Settings3PidController extends State<Settings3Pid> {
   Future<void> add3PidAction() async {
+    final l10n = L10n.of(context);
+    final matrix = Matrix.of(context);
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).enterAnEmailAddress,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      hintText: L10n.of(context).enterAnEmailAddress,
+      title: l10n.enterAnEmailAddress,
+      okLabel: l10n.ok,
+      cancelLabel: l10n.cancel,
+      hintText: l10n.enterAnEmailAddress,
       keyboardType: TextInputType.emailAddress,
     );
     if (input == null) return;
+    if (!mounted) return;
     final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
     final response = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.requestTokenToRegisterEmail(
+      future: () => matrix.client.requestTokenToRegisterEmail(
         clientSecret,
         input,
         Settings3Pid.sendAttempt++,
       ),
     );
     if (response.error != null) return;
+    if (!mounted) return;
     final ok = await showOkAlertDialog(
       useRootNavigator: false,
       context: context,
-      title: L10n.of(context).weSentYouAnEmail,
-      message: L10n.of(context).pleaseClickOnLink,
-      okLabel: L10n.of(context).iHaveClickedOnLink,
+      title: l10n.weSentYouAnEmail,
+      message: l10n.pleaseClickOnLink,
+      okLabel: l10n.iHaveClickedOnLink,
     );
     if (ok != OkCancelResult.ok) return;
+    if (!mounted) return;
     final success = await showFutureLoadingDialog(
       context: context,
       delay: false,
-      future: () => Matrix.of(context).client.uiaRequestBackground(
-        (auth) => Matrix.of(
-          context,
-        ).client.add3PID(clientSecret, response.result!.sid, auth: auth),
+      future: () => matrix.client.uiaRequestBackground(
+        (auth) => matrix.client.add3PID(
+          clientSecret,
+          response.result!.sid,
+          auth: auth,
+        ),
       ),
     );
     if (success.error != null) return;
@@ -63,21 +70,25 @@ class Settings3PidController extends State<Settings3Pid> {
   Future<List<ThirdPartyIdentifier>?>? request;
 
   Future<void> delete3Pid(ThirdPartyIdentifier identifier) async {
+    final l10n = L10n.of(context);
+    final matrix = Matrix.of(context);
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context).areYouSure,
-          okLabel: L10n.of(context).yes,
-          cancelLabel: L10n.of(context).cancel,
+          title: l10n.areYouSure,
+          okLabel: l10n.yes,
+          cancelLabel: l10n.cancel,
         ) !=
         OkCancelResult.ok) {
       return;
     }
+    if (!mounted) return;
     final success = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(
-        context,
-      ).client.delete3pidFromAccount(identifier.address, identifier.medium),
+      future: () => matrix.client.delete3pidFromAccount(
+        identifier.address,
+        identifier.medium,
+      ),
     );
     if (success.error != null) return;
     setState(() => request = null);

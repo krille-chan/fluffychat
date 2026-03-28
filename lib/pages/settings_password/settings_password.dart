@@ -24,6 +24,8 @@ class SettingsPasswordController extends State<SettingsPassword> {
   bool loading = false;
 
   Future<void> changePassword() async {
+    final l10n = L10n.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     setState(() {
       oldPasswordError = newPassword1Error = newPassword2Error = null;
     });
@@ -51,13 +53,13 @@ class SettingsPasswordController extends State<SettingsPassword> {
       loading = true;
     });
     try {
-      final scaffoldMessenger = ScaffoldMessenger.of(context);
       await Matrix.of(context).client.changePassword(
         newPassword1Controller.text,
         oldPassword: oldPasswordController.text,
       );
+      if (!mounted) return;
       scaffoldMessenger.showSnackBar(
-        SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)),
+        SnackBar(content: Text(l10n.passwordHasBeenChanged)),
       );
       if (mounted) context.pop();
     } catch (e) {

@@ -81,6 +81,7 @@ class SendLocationDialogState extends State<SendLocationDialog> {
       context: context,
       future: () => widget.room.sendLocation(body, uri),
     );
+    if (!mounted) return;
     Navigator.of(context, rootNavigator: false).pop();
   }
 

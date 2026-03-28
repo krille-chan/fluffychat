@@ -41,12 +41,15 @@ class DevicesSettingsController extends State<DevicesSettings> {
   Future<void> _checkChatBackup() async {
     final client = Matrix.of(context).client;
     final state = await client.getCryptoIdentityState();
+    if (!mounted) return;
     setState(() {
       chatBackupEnabled = state.initialized && !state.connected;
     });
   }
 
   Future<void> removeDevicesAction(List<Device> devices) async {
+    final l10n = L10n.of(context);
+    final matrix = Matrix.of(context);
     final client = Matrix.of(context).client;
 
     final wellKnown = await Result.capture(client.getWellknown());
@@ -57,18 +60,19 @@ class DevicesSettingsController extends State<DevicesSettings> {
       launchUrlString(accountManageUrl, mode: LaunchMode.inAppBrowserView);
       return;
     }
+    if (!mounted) return;
     if (await showOkCancelAlertDialog(
           context: context,
-          title: L10n.of(context).areYouSure,
-          okLabel: L10n.of(context).remove,
-          cancelLabel: L10n.of(context).cancel,
-          message: L10n.of(context).removeDevicesDescription,
+          title: l10n.areYouSure,
+          okLabel: l10n.remove,
+          cancelLabel: l10n.cancel,
+          message: l10n.removeDevicesDescription,
           isDestructive: true,
         ) ==
         OkCancelResult.cancel) {
       return;
     }
-    final matrix = Matrix.of(context);
+    if (!mounted) return;
     final deviceIds = <String>[];
     for (final userDevice in devices) {
       deviceIds.add(userDevice.deviceId);
@@ -85,19 +89,21 @@ class DevicesSettingsController extends State<DevicesSettings> {
   }
 
   Future<void> renameDeviceAction(Device device) async {
+    final l10n = L10n.of(context);
+    final matrix = Matrix.of(context);
     final displayName = await showTextInputDialog(
       context: context,
-      title: L10n.of(context).changeDeviceName,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: l10n.changeDeviceName,
+      okLabel: l10n.ok,
+      cancelLabel: l10n.cancel,
       hintText: device.displayName,
     );
     if (displayName == null) return;
+    if (!mounted) return;
     final success = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(
-        context,
-      ).client.updateDevice(device.deviceId, displayName: displayName),
+      future: () =>
+          matrix.client.updateDevice(device.deviceId, displayName: displayName),
     );
     if (success.error == null) {
       reload();
@@ -105,17 +111,20 @@ class DevicesSettingsController extends State<DevicesSettings> {
   }
 
   Future<void> verifyDeviceAction(Device device) async {
+    final l10n = L10n.of(context);
+    final matrix = Matrix.of(context);
     final consent = await showOkCancelAlertDialog(
       context: context,
-      title: L10n.of(context).verifyOtherDevice,
-      message: L10n.of(context).verifyOtherDeviceDescription,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: l10n.verifyOtherDevice,
+      message: l10n.verifyOtherDeviceDescription,
+      okLabel: l10n.ok,
+      cancelLabel: l10n.cancel,
     );
     if (consent != OkCancelResult.ok) return;
-    final req = await Matrix.of(context)
+    if (!mounted) return;
+    final req = await matrix
         .client
-        .userDeviceKeys[Matrix.of(context).client.userID!]!
+        .userDeviceKeys[matrix.client.userID!]!
         .deviceKeys[device.deviceId]!
         .startVerification();
     req.onUpdate = () {
@@ -126,6 +135,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
         setState(() {});
       }
     };
+    if (!mounted) return;
     await KeyVerificationDialog(request: req).show(context);
   }
 

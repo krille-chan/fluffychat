@@ -189,6 +189,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       });
     } catch (e, s) {
       Logs().v('Could not download audio file', e, s);
+      if (!mounted) rethrow;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
@@ -208,6 +209,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
         ),
       );
     }
+    if (!mounted) return;
 
     audioPlayer.play().onError(
       ErrorReporter(context, 'Unable to play audio message').onErrorCallback,
