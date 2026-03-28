@@ -2797,5 +2797,6 @@
     "startVideoCall": "Start video call",
     "joinVoiceCall": "Join voice call",
     "joinVideoCall": "Join video call",
-    "live": "Live"
+    "live": "Live",
+    "playSoundOnNotification": "Play sound on notification"
 }
