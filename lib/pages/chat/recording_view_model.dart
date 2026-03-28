@@ -1,20 +1,19 @@
 import 'dart:async';
 
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path/path.dart' as path_lib;
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
-import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'events/audio_player.dart';
 
 class RecordingViewModel extends StatefulWidget {
@@ -45,6 +44,7 @@ class RecordingViewModelState extends State<RecordingViewModel> {
     room.client.getConfig(); // Preload server file configuration.
     if (PlatformInfos.isAndroid) {
       final info = await DeviceInfoPlugin().androidInfo;
+      if (!mounted) return;
       if (info.version.sdkInt < 19) {
         showOkAlertDialog(
           context: context,
@@ -61,18 +61,14 @@ class RecordingViewModelState extends State<RecordingViewModel> {
     setState(() {});
 
     try {
-      final codec = kIsWeb
-          // Web seems to create webm instead of ogg when using opus encoder
-          // which does not play on iOS right now. So we use wav for now:
-          ? AudioEncoder.wav
-          // Everywhere else we use opus if supported by the platform:
-          : !PlatformInfos
-                    .isIOS && // Blocked by https://github.com/llfbandit/record/issues/560
-                await audioRecorder.isEncoderSupported(AudioEncoder.opus)
+      final codec =
+          !PlatformInfos
+                  .isIOS && // Blocked by https://github.com/llfbandit/record/issues/560
+              await audioRecorder.isEncoderSupported(AudioEncoder.opus)
           ? AudioEncoder.opus
           : AudioEncoder.aacLc;
       fileName =
-          'recording${DateTime.now().microsecondsSinceEpoch}.${codec.fileExtension}';
+          'voice_message_${DateTime.now().millisecondsSinceEpoch}.${codec.fileExtension}';
       String? path;
       if (!kIsWeb) {
         final tempDir = await getTemporaryDirectory();
@@ -81,6 +77,7 @@ class RecordingViewModelState extends State<RecordingViewModel> {
 
       final result = await audioRecorder.hasPermission();
       if (result != true) {
+        if (!mounted) return;
         showOkAlertDialog(
           context: context,
           title: L10n.of(context).oopsSomethingWentWrong,
@@ -102,10 +99,12 @@ class RecordingViewModelState extends State<RecordingViewModel> {
         ),
         path: path ?? '',
       );
+      if (!mounted) return;
       setState(() => duration = Duration.zero);
       _subscribe();
     } catch (e, s) {
       Logs().w('Unable to start voice message recording', e, s);
+      if (!mounted) return;
       showOkAlertDialog(
         context: context,
         title: L10n.of(context).oopsSomethingWentWrong,
@@ -149,9 +148,7 @@ class RecordingViewModelState extends State<RecordingViewModel> {
   }
 
   void cancel() {
-    setState(() {
-      _reset();
-    });
+    setState(_reset);
   }
 
   void pause() {
@@ -170,12 +167,12 @@ class RecordingViewModelState extends State<RecordingViewModel> {
     });
   }
 
-  void stopAndSend(
+  Future<void> stopAndSend(
     Future<void> Function(
       String path,
       int duration,
       List<int> waveform,
-      String? fileName,
+      String fileName,
     )
     onSend,
   ) async {
@@ -196,7 +193,7 @@ class RecordingViewModelState extends State<RecordingViewModel> {
       isSending = true;
     });
     try {
-      await onSend(path, duration.inMilliseconds, waveform, fileName);
+      await onSend(path, duration.inMilliseconds, waveform, fileName!);
     } catch (e, s) {
       Logs().e('Unable to send voice message', e, s);
       setState(() {

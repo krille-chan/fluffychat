@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../widgets/adaptive_dialogs/user_dialog.dart';
 
 class StatusMessageList extends StatelessWidget {
@@ -123,8 +122,8 @@ class PresenceAvatar extends StatelessWidget {
         final statusMsg = presence.statusMsg;
 
         const statusMsgBubbleElevation = 6.0;
-        final statusMsgBubbleShadowColor = theme.colorScheme.surface;
-        final statusMsgBubbleColor = Colors.white.withAlpha(230);
+        final statusMsgBubbleShadowColor = theme.colorScheme.surfaceBright;
+        final statusMsgBubbleColor = Colors.white.withAlpha(212);
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: SizedBox(
@@ -197,7 +196,7 @@ class PresenceAvatar extends StatelessWidget {
                                 Positioned(
                                   left: 0,
                                   top: 0,
-                                  right: 8,
+                                  right: 0,
                                   child: Column(
                                     spacing: 2,
                                     crossAxisAlignment: .start,

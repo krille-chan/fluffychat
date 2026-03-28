@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../widgets/adaptive_dialogs/user_dialog.dart';
 
 class InvitationSelectionView extends StatelessWidget {
@@ -191,10 +190,9 @@ class _InviteContactListTile extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         style: TextStyle(color: theme.colorScheme.secondary),
       ),
-      trailing: TextButton.icon(
+      trailing: TextButton(
         onPressed: isMember ? null : onTap,
-        label: Text(isMember ? l10n.participant : l10n.invite),
-        icon: Icon(isMember ? Icons.check : Icons.add),
+        child: Text(isMember ? l10n.participant : l10n.invite),
       ),
     );
   }

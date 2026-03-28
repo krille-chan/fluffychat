@@ -10,7 +10,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   file_selector_linux
   flutter_secure_storage_linux
   flutter_webrtc
-  gtk
   handy_window
   record_linux
   screen_retriever_linux

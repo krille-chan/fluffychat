@@ -1,18 +1,16 @@
 import 'dart:io';
 
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
-
 import 'package:matrix/matrix.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:universal_html/html.dart' as html;
 
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'cipher.dart';
-
 import 'sqlcipher_stub.dart'
     if (dart.library.io) 'package:sqlcipher_flutter_libs/sqlcipher_flutter_libs.dart';
 
@@ -62,7 +60,10 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
 
   Directory? fileStorageLocation;
   try {
-    fileStorageLocation = await getTemporaryDirectory();
+    final temporaryDirectory = await getTemporaryDirectory();
+    fileStorageLocation = await Directory(
+      join(temporaryDirectory.path, 'fluffychat_download_cache'),
+    ).create(recursive: true);
   } on MissingPlatformDirectoryException catch (_) {
     Logs().w(
       'No temporary directory for file cache available on this platform.',

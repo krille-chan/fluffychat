@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/themes.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class UnreadBubble extends StatelessWidget {
   final Room room;
@@ -48,7 +46,7 @@ class UnreadBubble extends StatelessWidget {
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
               ),
-              textAlign: TextAlign.center,
+              textAlign: .center,
             )
           : const SizedBox.shrink(),
     );

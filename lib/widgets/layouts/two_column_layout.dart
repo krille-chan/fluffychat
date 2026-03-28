@@ -1,15 +1,16 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/themes.dart';
+import 'package:flutter/material.dart';
 
 class TwoColumnLayout extends StatelessWidget {
   final Widget mainView;
   final Widget sideView;
+  final bool hasNavigationRail;
 
   const TwoColumnLayout({
     super.key,
     required this.mainView,
     required this.sideView,
+    this.hasNavigationRail = true,
   });
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,9 @@ class TwoColumnLayout extends StatelessWidget {
             Container(
               clipBehavior: Clip.antiAlias,
               decoration: const BoxDecoration(),
-              width: FluffyThemes.columnWidth + FluffyThemes.navRailWidth,
+              width:
+                  FluffyThemes.columnWidth +
+                  (hasNavigationRail ? FluffyThemes.navRailWidth : 0),
               child: mainView,
             ),
             Container(width: 1.0, color: theme.dividerColor),

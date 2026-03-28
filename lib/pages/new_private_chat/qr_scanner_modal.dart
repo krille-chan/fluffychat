@@ -1,11 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
-import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:flutter/material.dart';
+import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 
 class QrScannerModal extends StatefulWidget {
   final void Function(String) onScan;
@@ -68,6 +66,7 @@ class QrScannerModalState extends State<QrScannerModal> {
     late StreamSubscription sub;
     sub = controller.scannedDataStream.listen((scanData) {
       sub.cancel();
+      if (!mounted) return;
       Navigator.of(context).pop();
       final data = scanData.code;
       if (data != null) widget.onScan(data);

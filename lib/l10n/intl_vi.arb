@@ -167,33 +167,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "dateWithYear": "{day}/{month}/{year}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithoutYear": "{day}/{month}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
     "dateAndTimeOfDay": "{date}, {timeOfDay}",
     "@dateAndTimeOfDay": {
         "type": "String",
@@ -250,16 +223,6 @@
     },
     "contactHasBeenInvitedToTheGroup": "Liên hệ đã được mời vào nhóm",
     "@contactHasBeenInvitedToTheGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "Kết nối",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "confirm": "Xác nhận",
-    "@confirm": {
         "type": "String",
         "placeholders": {}
     },
@@ -445,18 +408,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "badServerVersionsException": "Máy chủ hỗ trợ Spec phiên bản:\n{serverVerions}\nNhưng ứng dụng này chỉ hỗ trợ {supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
     "badServerLoginTypesException": "Máy chủ nhà hỗ trợ kiểu đăng nhập:\n{serverVersions}\nNhưng ứng dụng này chỉ hỗ trợ:\n{supportedVersions}",
     "@badServerLoginTypesException": {
         "type": "String",
@@ -505,14 +456,8 @@
     "@makeAdminDescription": {},
     "setColorTheme": "Chọn màu giao diện:",
     "@setColorTheme": {},
-    "callingAccount": "Gọi tài khoản",
-    "@callingAccount": {},
     "openLinkInBrowser": "Mở đường dẫn trong trình duyệt",
     "@openLinkInBrowser": {},
-    "setTheme": "Chọn giao diện:",
-    "@setTheme": {},
-    "invitePrivateChat": "📨 Mời trò chuyện riêng tư",
-    "@invitePrivateChat": {},
     "inviteGroupChat": "📨 Mời nhóm trò chuyện",
     "@inviteGroupChat": {},
     "addToSpace": "Thêm vào không gian",
@@ -523,12 +468,8 @@
     "@importFromZipFile": {},
     "exportEmotePack": "Xuất gói biểu cảm bằng tệp .zip",
     "@exportEmotePack": {},
-    "hideUnimportantStateEvents": "Ẩn các sự kiện không quan trọng",
-    "@hideUnimportantStateEvents": {},
     "replace": "Thay thế",
     "@replace": {},
-    "addChatDescription": "Thêm mô tả hội thoại...",
-    "@addChatDescription": {},
     "report": "báo cáo",
     "@report": {},
     "remove": "Loại bỏ",
@@ -540,10 +481,6 @@
     "@restricted": {},
     "newSpace": "Không gian mới",
     "@newSpace": {},
-    "enterRoom": "Nhập phòng",
-    "@enterRoom": {},
-    "signInWithPassword": "Đăng nhập với mật khẩu",
-    "@signInWithPassword": {},
     "all": "Tất cả",
     "@all": {
         "type": "String",
@@ -587,8 +524,6 @@
     },
     "reportErrorDescription": "😭 Ôi. Có lỗi xảy ra. Bạn có thể báo cáo lỗi tới nhà phát triển nếu muốn.",
     "@reportErrorDescription": {},
-    "profileNotFound": "Không tìm thấy người dùng này tại máy chủ. Có thể do lỗi kết nối hoặc người dùng không tồn tại.",
-    "@profileNotFound": {},
     "banUserDescription": "Người dùng sẽ bị cấm khỏi cuộc trò chuyện và không thể tham gia lại cho tới khi được gỡ cấm.",
     "@banUserDescription": {},
     "learnMore": "Tìm hiểu thêm",
@@ -601,40 +536,20 @@
     "@noOtherDevicesFound": {},
     "fileIsTooBigForServer": "Máy chủ báo cáo rằng tệp tin quá lớn để gửi.",
     "@fileIsTooBigForServer": {},
-    "signInWith": "Đăng nhập với {provider}",
-    "@signInWith": {
-        "type": "String",
-        "placeholders": {
-            "provider": {
-                "type": "String"
-            }
-        }
-    },
     "notAnImage": "Không phải tệp ảnh.",
     "@notAnImage": {},
     "importNow": "Nhập vào",
     "@importNow": {},
     "allSpaces": "Tất cả không gian",
     "@allSpaces": {},
-    "enterSpace": "Nhập không gian",
-    "@enterSpace": {},
-    "pleaseTryAgainLaterOrChooseDifferentServer": "Hãy thử lại sau hoặc chọn 1 máy chủ khác.",
-    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
     "jumpToLastReadMessage": "Đi tới tin nhắn đã đọc mới nhất",
     "@jumpToLastReadMessage": {},
     "commandHint_ignore": "Phớt lờ matrix ID này",
     "@commandHint_ignore": {},
     "appLockDescription": "Khoá ứng dụng khi không dùng bằng mã pin",
     "@appLockDescription": {},
-    "notifyMeFor": "Bật thông báo cho",
-    "@notifyMeFor": {},
     "settings": "Cài đặt",
     "@settings": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendSticker": "Gửi nhãn dán",
-    "@sendSticker": {
         "type": "String",
         "placeholders": {}
     },
@@ -651,17 +566,6 @@
     "@readUpToHere": {},
     "jump": "Đi tới",
     "@jump": {},
-    "callingPermissions": "Quyền gọi điện",
-    "@callingPermissions": {},
-    "numChats": "{number} cuộc hội thoại",
-    "@numChats": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
     "hidePresences": "Ẩn danh sách trạng thái?",
     "@hidePresences": {},
     "sorryThatsNotPossible": "Xin lỗi... không khả dụng",
@@ -732,14 +636,8 @@
             }
         }
     },
-    "setCustomPermissionLevel": "Cài mức phân quyền",
-    "@setCustomPermissionLevel": {},
-    "setPermissionsLevelDescription": "Vui lòng chọn vai trò được xác định trước bên dưới hoặc nhập mức quyền tùy chỉnh từ 0 đến 100.",
-    "@setPermissionsLevelDescription": {},
     "ignoreUser": "Chặn người dùng",
     "@ignoreUser": {},
-    "normalUser": "Người dùng thường",
-    "@normalUser": {},
     "commandHint_roomupgrade": "Nâng cấp phòng lên phiên bản mặc định",
     "@commandHint_roomupgrade": {},
     "commandHint_cuddle": "Gửi cái ôm",
@@ -780,15 +678,6 @@
     "@sendOnEnter": {},
     "continueText": "Tiếp",
     "@continueText": {},
-    "videoWithSize": "Video ({size})",
-    "@videoWithSize": {
-        "type": "String",
-        "placeholders": {
-            "size": {
-                "type": "String"
-            }
-        }
-    },
     "markAsRead": "Đánh dấu đã đọc",
     "@markAsRead": {},
     "reportUser": "Báo cáo người dùng",

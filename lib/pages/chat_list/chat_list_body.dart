@@ -1,8 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
@@ -14,6 +9,10 @@ import 'package:fluffychat/pages/chat_list/status_msg_list.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../config/themes.dart';
 import '../../widgets/adaptive_dialogs/user_dialog.dart';
 import '../../widgets/matrix.dart';
@@ -35,7 +34,7 @@ class ChatListViewBody extends StatelessWidget {
         key: ValueKey(activeSpace),
         spaceId: activeSpace,
         onBack: controller.clearActiveSpace,
-        onChatTab: (room) => controller.onChatTap(room),
+        onChatTab: controller.onChatTap,
         activeChat: controller.activeChat,
       );
     }
@@ -123,7 +122,7 @@ class ChatListViewBody extends StatelessWidget {
                   if (!controller.isSearchMode &&
                       AppSettings.showPresences.value)
                     GestureDetector(
-                      onLongPress: () => controller.dismissStatusList(),
+                      onLongPress: controller.dismissStatusList,
                       child: StatusMessageList(
                         onStatusEdit: controller.setStatus,
                       ),
@@ -132,17 +131,14 @@ class ChatListViewBody extends StatelessWidget {
                     SizedBox(
                       height: 64,
                       child: ListView(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0,
-                          vertical: 12.0,
-                        ),
+                        padding: const EdgeInsets.all(12.0),
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         children:
                             [
                                   ActiveFilter.allChats,
 
-                                  if (spaceDelegateCandidates.isNotEmpty &&
+                                  if (spaces.isNotEmpty &&
                                       !AppSettings
                                           .displayNavigationRail
                                           .value &&

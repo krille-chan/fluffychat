@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/member_actions_popup_menu_button.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../widgets/avatar.dart';
 
 class ParticipantListItem extends StatelessWidget {
@@ -24,7 +23,9 @@ class ParticipantListItem extends StatelessWidget {
       Membership.leave => L10n.of(context).leftTheChat,
     };
 
-    final permissionBatch = user.powerLevel >= 100
+    final permissionBatch = user.room.creatorUserIds.contains(user.id)
+        ? L10n.of(context).owner
+        : user.powerLevel >= 100
         ? L10n.of(context).admin
         : user.powerLevel >= 50
         ? L10n.of(context).moderator

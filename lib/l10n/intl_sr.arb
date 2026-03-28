@@ -118,18 +118,6 @@
             }
         }
     },
-    "badServerVersionsException": "Домаћи сервер подржава верзије:\n{serverVersions}\nали ова апликација подржава само {supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
     "banFromChat": "Забрани у ћаскању",
     "@banFromChat": {
         "type": "String",
@@ -159,11 +147,6 @@
     },
     "blocked": "Блокиран",
     "@blocked": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "botMessages": "Поруке Бота",
-    "@botMessages": {
         "type": "String",
         "placeholders": {}
     },
@@ -468,28 +451,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "confirm": "Потврди",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "Повежи се",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
     "contactHasBeenInvitedToTheGroup": "Особа је позвана у групу",
     "@contactHasBeenInvitedToTheGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsDisplayName": "Садржи приказно име",
-    "@containsDisplayName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsUserName": "Садржи корисничко име",
-    "@containsUserName": {
         "type": "String",
         "placeholders": {}
     },
@@ -563,33 +526,6 @@
                 "type": "String"
             },
             "timeOfDay": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithoutYear": "{day} {month}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithYear": "{day} {month} {year}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
                 "type": "String"
             }
         }
@@ -699,11 +635,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteWarnNeedToPick": "Морате да изаберете скраћеницу и слику за емоти!",
-    "@emoteWarnNeedToPick": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emptyChat": "празно ћаскање",
     "@emptyChat": {
         "type": "String",
@@ -753,11 +684,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "enterYourHomeserver": "Унесите свој домаћи сервер",
-    "@enterYourHomeserver": {
-        "type": "String",
-        "placeholders": {}
-    },
     "everythingReady": "Све је спремно!",
     "@everythingReady": {
         "type": "String",
@@ -795,11 +721,6 @@
     },
     "fromTheInvitation": "од позивања",
     "@fromTheInvitation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "goToTheNewRoom": "Иди у нову собу",
-    "@goToTheNewRoom": {
         "type": "String",
         "placeholders": {}
     },
@@ -874,11 +795,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "identity": "Идентитет",
-    "@identity": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ignore": "Игнориши",
     "@ignore": {
         "type": "String",
@@ -937,11 +853,6 @@
     },
     "invitedUsersOnly": "само позвани корисници",
     "@invitedUsersOnly": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "inviteForMe": "Позивнице за мене",
-    "@inviteForMe": {
         "type": "String",
         "placeholders": {}
     },
@@ -1024,11 +935,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "license": "Лиценца",
-    "@license": {
-        "type": "String",
-        "placeholders": {}
-    },
     "lightTheme": "светли",
     "@lightTheme": {
         "type": "String",
@@ -1069,11 +975,6 @@
     },
     "logout": "Одјава",
     "@logout": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "memberChanges": "Измене чланова",
-    "@memberChanges": {
         "type": "String",
         "placeholders": {}
     },
@@ -1172,11 +1073,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "notificationsEnabledForThisAccount": "Обавештења укључена за овај налог",
-    "@notificationsEnabledForThisAccount": {
-        "type": "String",
-        "placeholders": {}
-    },
     "numUsersTyping": "{count} корисника куца…",
     "@numUsersTyping": {
         "type": "String",
@@ -1266,11 +1162,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "people": "Људи",
-    "@people": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pickImage": "Избор слике",
     "@pickImage": {
         "type": "String",
@@ -1289,11 +1180,6 @@
                 "type": "String"
             }
         }
-    },
-    "pleaseChoose": "Изаберите",
-    "@pleaseChoose": {
-        "type": "String",
-        "placeholders": {}
     },
     "pleaseChooseAPasscode": "Изаберите код за пролаз",
     "@pleaseChooseAPasscode": {
@@ -1388,11 +1274,6 @@
             }
         }
     },
-    "rejoin": "Поново се придружи",
-    "@rejoin": {
-        "type": "String",
-        "placeholders": {}
-    },
     "remove": "Уклони",
     "@remove": {
         "type": "String",
@@ -1411,11 +1292,6 @@
                 "type": "String"
             }
         }
-    },
-    "removeDevice": "Уклони уређај",
-    "@removeDevice": {
-        "type": "String",
-        "placeholders": {}
     },
     "unbanFromChat": "Уклони изгнанство",
     "@unbanFromChat": {
@@ -1467,15 +1343,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "seenByUser": "{username} прегледа",
-    "@seenByUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "send": "Пошаљи",
     "@send": {
         "type": "String",
@@ -1503,11 +1370,6 @@
     },
     "sendMessages": "Слање порука",
     "@sendMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendOriginal": "Пошаљи оригинал",
-    "@sendOriginal": {
         "type": "String",
         "placeholders": {}
     },
@@ -1575,21 +1437,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "setCustomEmotes": "постави посебне емотије",
-    "@setCustomEmotes": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setInvitationLink": "Поставља везу позивнице",
-    "@setInvitationLink": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setPermissionsLevel": "Одреди ниво дозволе",
-    "@setPermissionsLevel": {
-        "type": "String",
-        "placeholders": {}
-    },
     "setStatus": "Постави статус",
     "@setStatus": {
         "type": "String",
@@ -1616,11 +1463,6 @@
     },
     "showPassword": "Прикажи лозинку",
     "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "singlesignon": "Јединствена пријава",
-    "@singlesignon": {
         "type": "String",
         "placeholders": {}
     },
@@ -1676,21 +1518,6 @@
     "title": "FluffyChat",
     "@title": {
         "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleFavorite": "Мењај омиљеност",
-    "@toggleFavorite": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleMuted": "Мењај ућутканост",
-    "@toggleMuted": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleUnread": "Означи не/прочитано",
-    "@toggleUnread": {
         "type": "String",
         "placeholders": {}
     },
@@ -1759,15 +1586,6 @@
     "@unpin": {
         "type": "String",
         "placeholders": {}
-    },
-    "unreadChats": "{unreadCount, plural, other{непрочитаних ћаскања: {unreadCount}}}",
-    "@unreadChats": {
-        "type": "String",
-        "placeholders": {
-            "unreadCount": {
-                "type": "int"
-            }
-        }
     },
     "userAndOthersAreTyping": "{username} и {count} корисника куцају…",
     "@userAndOthersAreTyping": {
@@ -1890,11 +1708,6 @@
     },
     "waitingPartnerNumbers": "Чекам да саговорник прихвати бројеве…",
     "@waitingPartnerNumbers": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wallpaper": "Тапета",
-    "@wallpaper": {
         "type": "String",
         "placeholders": {}
     },

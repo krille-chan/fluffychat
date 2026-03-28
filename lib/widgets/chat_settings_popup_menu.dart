@@ -1,13 +1,12 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+
 import 'matrix.dart';
 
 enum ChatPopupMenuActions { details, mute, unmute, emote, leave, search }
@@ -54,16 +53,18 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
           onSelected: (choice) async {
             switch (choice) {
               case ChatPopupMenuActions.leave:
+                final l10n = L10n.of(context);
                 final router = GoRouter.of(context);
                 final confirmed = await showOkCancelAlertDialog(
                   context: context,
-                  title: L10n.of(context).areYouSure,
-                  message: L10n.of(context).archiveRoomDescription,
-                  okLabel: L10n.of(context).leave,
-                  cancelLabel: L10n.of(context).cancel,
+                  title: l10n.areYouSure,
+                  message: l10n.archiveRoomDescription,
+                  okLabel: l10n.leave,
+                  cancelLabel: l10n.cancel,
                   isDestructive: true,
                 );
                 if (confirmed != OkCancelResult.ok) return;
+                if (!context.mounted) return;
                 final result = await showFutureLoadingDialog(
                   context: context,
                   future: () => widget.room.leave(),

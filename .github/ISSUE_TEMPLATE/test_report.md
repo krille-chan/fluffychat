@@ -39,3 +39,6 @@ labels: test
 10. Drag&Drop to send a file into a chat still works:
 	- [ ] Web
 	- [ ] Linux
+11. Deeplinks are still working? https://matrix.to/#/@krille:janian.de
+	- [ ] Android
+	- [ ] iOS

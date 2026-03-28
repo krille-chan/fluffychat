@@ -81,10 +81,10 @@ extension on LogEvent {
   String toDisplayString() {
     var str = '# [${level.toString().split('.').last.toUpperCase()}] $title';
     if (exception != null) {
-      str += ' - ${exception.toString()}';
+      str += ' - $exception';
     }
     if (stackTrace != null) {
-      str += '\n${stackTrace.toString()}';
+      str += '\n$stackTrace';
     }
     return str;
   }

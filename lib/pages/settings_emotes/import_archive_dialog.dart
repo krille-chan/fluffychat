@@ -1,17 +1,15 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:archive/archive.dart';
 import 'package:collection/collection.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_emotes/settings_emotes.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:matrix/matrix.dart';
 
 class ImportEmoteArchiveDialog extends StatefulWidget {
   final EmotesSettingsController controller;
@@ -93,6 +91,7 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
   }
 
   Future<void> _addEmotePack() async {
+    final matrix = Matrix.of(context);
     setState(() {
       _loading = true;
       _progress = 0;
@@ -150,7 +149,7 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
         } else {
           mxcFile = thumbnail;
         }
-        final uri = await Matrix.of(context).client.uploadContent(
+        final uri = await matrix.client.uploadContent(
           mxcFile.bytes,
           filename: mxcFile.name,
           contentType: mxcFile.mimeType,
@@ -180,6 +179,7 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
       }
     }
 
+    if (!mounted) return;
     await widget.controller.save(context);
     _importMap.removeWhere(
       (key, value) => successfulUploads.contains(key.name),

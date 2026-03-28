@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
+import '../../../config/app_config.dart';
+
 class MapBubble extends StatelessWidget {
   final double latitude;
   final double longitude;
@@ -43,6 +45,7 @@ class MapBubble extends StatelessWidget {
                     minZoom: 0,
                     urlTemplate:
                         'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    userAgentPackageName: AppConfig.appId,
                     subdomains: const ['a', 'b', 'c'],
                   ),
                   MarkerLayer(

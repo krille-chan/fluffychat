@@ -131,11 +131,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "botMessages": "Botova sporočila",
-  "@botMessages": {
-    "type": "String",
-    "placeholders": {}
-  },
   "cancel": "Prekliči",
   "@cancel": {
     "type": "String",
@@ -303,8 +298,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "Klepet je bil dodan v ta prostor",
-  "@chatHasBeenAddedToThisSpace": {},
   "chats": "Klepeti",
   "@chats": {
     "type": "String",
@@ -406,21 +399,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "confirm": "Potrdi",
-  "@confirm": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "containsDisplayName": "Vsebuje prikazno ime",
-  "@containsDisplayName": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "containsUserName": "Vsebuje uporabniško ime",
-  "@containsUserName": {
-    "type": "String",
-    "placeholders": {}
-  },
   "archive": "Arhiv",
   "@archive": {
     "type": "String",
@@ -467,18 +445,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "badServerVersionsException": "Domači strežnik podpira različice Spec:\n{serverVersions}\nToda ta aplikacija podpira samo {supportedVersions}",
-  "@badServerVersionsException": {
-    "type": "String",
-    "placeholders": {
-      "serverVersions": {
-        "type": "String"
-      },
-      "supportedVersions": {
-        "type": "String"
-      }
-    }
-  },
   "changedTheChatNameTo": "{username} je spremenil ime klepeta v: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "String",
@@ -524,11 +490,6 @@
   "@commandHint_myroomnick": {
     "type": "String",
     "description": "Usage hint for the command /myroomnick"
-  },
-  "connect": "Povežite se",
-  "@connect": {
-    "type": "String",
-    "placeholders": {}
   },
   "contactHasBeenInvitedToTheGroup": "Kontakt je bil povabljen v skupino",
   "@contactHasBeenInvitedToTheGroup": {
@@ -602,33 +563,6 @@
   "@defaultPermissionLevel": {
     "type": "String",
     "placeholders": {}
-  },
-  "dateWithYear": "{day}-{month}-{year}",
-  "@dateWithYear": {
-    "type": "String",
-    "placeholders": {
-      "year": {
-        "type": "String"
-      },
-      "month": {
-        "type": "String"
-      },
-      "day": {
-        "type": "String"
-      }
-    }
-  },
-  "dateWithoutYear": "{month}-{day}",
-  "@dateWithoutYear": {
-    "type": "String",
-    "placeholders": {
-      "month": {
-        "type": "String"
-      },
-      "day": {
-        "type": "String"
-      }
-    }
   },
   "createdTheChat": "{username} je ustvaril klepet",
   "@createdTheChat": {

@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:file_picker/file_picker.dart';
-
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/theme_builder.dart';
+import 'package:flutter/material.dart';
+
 import '../../widgets/matrix.dart';
 import 'settings_style_view.dart';
 
@@ -19,18 +17,19 @@ class SettingsStyle extends StatefulWidget {
 }
 
 class SettingsStyleController extends State<SettingsStyle> {
-  void setChatColor(Color? color) async {
+  void setChatColor(Color? color) {
     AppSettings.colorSchemeSeedInt.setItem(
       color?.toARGB32() ?? AppSettings.colorSchemeSeedInt.defaultValue,
     );
     ThemeController.of(context).setPrimaryColor(color);
   }
 
-  void setWallpaper() async {
+  Future<void> setWallpaper() async {
     final client = Matrix.of(context).client;
     final picked = await selectFiles(context, type: FileType.image);
     final pickedFile = picked.firstOrNull;
     if (pickedFile == null) return;
+    if (!mounted) return;
 
     await showFutureLoadingDialog(
       context: context,
@@ -53,7 +52,7 @@ class SettingsStyleController extends State<SettingsStyle> {
 
   double? _wallpaperOpacity;
 
-  void saveWallpaperOpacity(double opacity) async {
+  Future<void> saveWallpaperOpacity(double opacity) async {
     final client = Matrix.of(context).client;
     final result = await showFutureLoadingDialog(
       context: context,
@@ -80,7 +79,7 @@ class SettingsStyleController extends State<SettingsStyle> {
       0.5;
   double? _wallpaperBlur;
 
-  void saveWallpaperBlur(double blur) async {
+  Future<void> saveWallpaperBlur(double blur) async {
     final client = Matrix.of(context).client;
     final result = await showFutureLoadingDialog(
       context: context,
@@ -111,32 +110,6 @@ class SettingsStyleController extends State<SettingsStyle> {
   ThemeMode get currentTheme => ThemeController.of(context).themeMode;
   Color? get currentColor => ThemeController.of(context).primaryColor;
 
-  static final List<Color?> customColors = [
-    null,
-    AppConfig.chatColor,
-    Colors.indigo,
-    Colors.blue,
-    Colors.blueAccent,
-    Colors.teal,
-    Colors.tealAccent,
-    Colors.green,
-    Colors.greenAccent,
-    Colors.yellow,
-    Colors.yellowAccent,
-    Colors.orange,
-    Colors.orangeAccent,
-    Colors.red,
-    Colors.redAccent,
-    Colors.pink,
-    Colors.pinkAccent,
-    Colors.purple,
-    Colors.purpleAccent,
-    Colors.blueGrey,
-    Colors.grey,
-    Colors.white,
-    Colors.black,
-  ];
-
   void switchTheme(ThemeMode? newTheme) {
     if (newTheme == null) return;
     switch (newTheme) {
@@ -153,7 +126,7 @@ class SettingsStyleController extends State<SettingsStyle> {
     setState(() {});
   }
 
-  void changeFontSizeFactor(double d) async {
+  Future<void> changeFontSizeFactor(double d) async {
     await AppSettings.fontSizeFactor.setItem(d);
     setState(() {});
   }

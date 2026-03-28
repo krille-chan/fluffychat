@@ -1,16 +1,15 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:image/image.dart';
-import 'package:matrix/matrix.dart';
-import 'package:pretty_qr_code/pretty_qr_code.dart';
-import 'package:qr_image/qr_image.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:image/image.dart';
+import 'package:matrix/matrix.dart';
+import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:qr_image/qr_image.dart';
+
 import '../config/themes.dart';
 
 Future<void> showQrCodeViewer(BuildContext context, String content) =>
@@ -24,10 +23,10 @@ class QrCodeViewer extends StatelessWidget {
 
   const QrCodeViewer({required this.content, super.key});
 
-  void _save(BuildContext context) async {
+  Future<void> _save(BuildContext context) async {
     final imageResult = await showFutureLoadingDialog(
       context: context,
-      future: () async {
+      future: () {
         final inviteLink = 'https://matrix.to/#/$content';
         final image = QRImage(inviteLink, size: 256, radius: 1).generate();
         return compute(encodePng, image);
@@ -91,7 +90,11 @@ class QrCodeViewer extends StatelessWidget {
           margin: const EdgeInsets.all(32.0),
           padding: const EdgeInsets.all(32.0),
           decoration: BoxDecoration(
-            color: theme.colorScheme.primaryContainer,
+            border: Border.all(
+              color: theme.colorScheme.onPrimaryContainer,
+              width: 4,
+            ),
+            color: theme.colorScheme.surfaceBright,
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
           ),
           child: Column(

@@ -131,18 +131,6 @@
             }
         }
     },
-    "badServerVersionsException": "Le serveur d'accueil prend en charge les versions des spécifications :\n{serverVersions}\nMais cette application ne prend en charge que {supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
     "banFromChat": "Bannir de la discussion",
     "@banFromChat": {
         "type": "String",
@@ -172,11 +160,6 @@
     },
     "blocked": "Bloqué",
     "@blocked": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "botMessages": "Messages de bot",
-    "@botMessages": {
         "type": "String",
         "placeholders": {}
     },
@@ -393,8 +376,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatHasBeenAddedToThisSpace": "La discussion a été ajoutée à cet espace",
-    "@chatHasBeenAddedToThisSpace": {},
     "chats": "Discussions",
     "@chats": {
         "type": "String",
@@ -511,28 +492,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "confirm": "Confirmer",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "Se connecter",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
     "contactHasBeenInvitedToTheGroup": "Le contact a été invité au groupe",
     "@contactHasBeenInvitedToTheGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsDisplayName": "Contient un nom d'affichage",
-    "@containsDisplayName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsUserName": "Contient un nom d'utilisateur·ice",
-    "@containsUserName": {
         "type": "String",
         "placeholders": {}
     },
@@ -611,33 +572,6 @@
                 "type": "String"
             },
             "timeOfDay": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithoutYear": "{day}/{month}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithYear": "{day}/{month}/{year}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
                 "type": "String"
             }
         }
@@ -747,11 +681,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteWarnNeedToPick": "Vous devez sélectionner un raccourci d'émoticône et une image !",
-    "@emoteWarnNeedToPick": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emptyChat": "Discussion vide",
     "@emptyChat": {
         "type": "String",
@@ -801,11 +730,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "enterYourHomeserver": "Renseignez votre serveur d'accueil",
-    "@enterYourHomeserver": {
-        "type": "String",
-        "placeholders": {}
-    },
     "errorObtainingLocation": "Erreur lors de l'obtention de la localisation : {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -852,11 +776,6 @@
     },
     "fromTheInvitation": "À partir de l'invitation",
     "@fromTheInvitation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "goToTheNewRoom": "Aller dans le nouveau salon",
-    "@goToTheNewRoom": {
         "type": "String",
         "placeholders": {}
     },
@@ -931,11 +850,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "identity": "Identité",
-    "@identity": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ignore": "Ignorer",
     "@ignore": {
         "type": "String",
@@ -994,11 +908,6 @@
     },
     "invitedUsersOnly": "Uniquement les utilisateur·ices invité·es",
     "@invitedUsersOnly": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "inviteForMe": "Inviter pour moi",
-    "@inviteForMe": {
         "type": "String",
         "placeholders": {}
     },
@@ -1081,11 +990,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "license": "Licence",
-    "@license": {
-        "type": "String",
-        "placeholders": {}
-    },
     "lightTheme": "Clair",
     "@lightTheme": {
         "type": "String",
@@ -1136,11 +1040,6 @@
     },
     "logout": "Se déconnecter",
     "@logout": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "memberChanges": "Changements de membres",
-    "@memberChanges": {
         "type": "String",
         "placeholders": {}
     },
@@ -1251,11 +1150,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "notificationsEnabledForThisAccount": "Notifications activées pour ce compte",
-    "@notificationsEnabledForThisAccount": {
-        "type": "String",
-        "placeholders": {}
-    },
     "numUsersTyping": "{count} utilisateur·ices écrivent…",
     "@numUsersTyping": {
         "type": "String",
@@ -1355,11 +1249,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "people": "Personnes",
-    "@people": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pickImage": "Choisir une image",
     "@pickImage": {
         "type": "String",
@@ -1378,11 +1267,6 @@
                 "type": "String"
             }
         }
-    },
-    "pleaseChoose": "Veuillez choisir",
-    "@pleaseChoose": {
-        "type": "String",
-        "placeholders": {}
     },
     "pleaseChooseAPasscode": "Veuillez choisir un code d’accès",
     "@pleaseChooseAPasscode": {
@@ -1477,11 +1361,6 @@
             }
         }
     },
-    "rejoin": "Rejoindre de nouveau",
-    "@rejoin": {
-        "type": "String",
-        "placeholders": {}
-    },
     "remove": "Supprimer",
     "@remove": {
         "type": "String",
@@ -1500,11 +1379,6 @@
                 "type": "String"
             }
         }
-    },
-    "removeDevice": "Supprimer l'appareil",
-    "@removeDevice": {
-        "type": "String",
-        "placeholders": {}
     },
     "unbanFromChat": "Débannissement de la discussion",
     "@unbanFromChat": {
@@ -1561,15 +1435,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "seenByUser": "Vu par {username}",
-    "@seenByUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "send": "Envoyer",
     "@send": {
         "type": "String",
@@ -1601,16 +1466,6 @@
     },
     "sendMessages": "Envoyer des messages",
     "@sendMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendOriginal": "Envoyer le fichier original",
-    "@sendOriginal": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendSticker": "Envoyer un autocollant",
-    "@sendSticker": {
         "type": "String",
         "placeholders": {}
     },
@@ -1678,21 +1533,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "setCustomEmotes": "Définir des émoticônes personnalisées",
-    "@setCustomEmotes": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setInvitationLink": "Créer un lien d'invitation",
-    "@setInvitationLink": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setPermissionsLevel": "Définir le niveau de permissions",
-    "@setPermissionsLevel": {
-        "type": "String",
-        "placeholders": {}
-    },
     "setStatus": "Définir le statut",
     "@setStatus": {
         "type": "String",
@@ -1724,11 +1564,6 @@
     },
     "showPassword": "Afficher le mot de passe",
     "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "singlesignon": "Authentification unique",
-    "@singlesignon": {
         "type": "String",
         "placeholders": {}
     },
@@ -1802,21 +1637,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "toggleFavorite": "Activer/désactiver en favori",
-    "@toggleFavorite": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleMuted": "Activer/désactiver la sourdine",
-    "@toggleMuted": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleUnread": "Marquer comme lu / non lu",
-    "@toggleUnread": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tooManyRequestsWarning": "Trop de requêtes. Veuillez réessayer plus tard !",
     "@tooManyRequestsWarning": {
         "type": "String",
@@ -1882,15 +1702,6 @@
     "@unpin": {
         "type": "String",
         "placeholders": {}
-    },
-    "unreadChats": "{unreadCount, plural, =1{1 discussion non lue} other{{unreadCount} discussions non lues}}",
-    "@unreadChats": {
-        "type": "String",
-        "placeholders": {
-            "unreadCount": {
-                "type": "int"
-            }
-        }
     },
     "userAndOthersAreTyping": "{username} et {count} autres sont en train d'écrire…",
     "@userAndOthersAreTyping": {
@@ -2016,11 +1827,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wallpaper": "Image de fond :",
-    "@wallpaper": {
-        "type": "String",
-        "placeholders": {}
-    },
     "warning": "Attention !",
     "@warning": {
         "type": "String",
@@ -2128,8 +1934,6 @@
     "@messageInfo": {},
     "removeFromSpace": "Supprimer de l’espace",
     "@removeFromSpace": {},
-    "addToSpaceDescription": "Sélectionnez un espace pour y ajouter cette discussion.",
-    "@addToSpaceDescription": {},
     "start": "Commencer",
     "@start": {},
     "commandHint_create": "Créer un groupe de discussion vide\nUtilisez --no-encryption pour désactiver le chiffrement",
@@ -2151,22 +1955,6 @@
     "@commandHint_dm": {
         "type": "String",
         "description": "Usage hint for the command /dm"
-    },
-    "openVideoCamera": "Ouvrir la caméra pour une vidéo",
-    "@openVideoCamera": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "publish": "Publier",
-    "@publish": {},
-    "videoWithSize": "Vidéo ({size})",
-    "@videoWithSize": {
-        "type": "String",
-        "placeholders": {
-            "size": {
-                "type": "String"
-            }
-        }
     },
     "dismiss": "Rejeter",
     "@dismiss": {},
@@ -2206,39 +1994,6 @@
     "@videoCallsBetaWarning": {},
     "experimentalVideoCalls": "Appels vidéo expérimentaux",
     "@experimentalVideoCalls": {},
-    "emailOrUsername": "Courriel ou identifiant",
-    "@emailOrUsername": {},
-    "switchToAccount": "Passer au compte {number}",
-    "@switchToAccount": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "nextAccount": "Compte suivant",
-    "@nextAccount": {},
-    "previousAccount": "Compte précédent",
-    "@previousAccount": {},
-    "widgetJitsi": "Jitsi Meet",
-    "@widgetJitsi": {},
-    "widgetCustom": "Personnalisé",
-    "@widgetCustom": {},
-    "widgetUrlError": "Ceci n'est pas un lien valide.",
-    "@widgetUrlError": {},
-    "widgetNameError": "Veuillez fournir un nom d'affichage.",
-    "@widgetNameError": {},
-    "errorAddingWidget": "Erreur lors de l'ajout du widget.",
-    "@errorAddingWidget": {},
-    "widgetEtherpad": "Note textuelle",
-    "@widgetEtherpad": {},
-    "addWidget": "Ajouter un widget",
-    "@addWidget": {},
-    "widgetName": "Nom",
-    "@widgetName": {},
-    "widgetVideo": "Vidéo",
-    "@widgetVideo": {},
     "youRejectedTheInvitation": "Vous avez rejeté l'invitation",
     "@youRejectedTheInvitation": {},
     "youJoinedTheChat": "Vous avez rejoint la discussion",
@@ -2301,11 +2056,6 @@
             }
         }
     },
-    "separateChatTypes": "Séparer les discussions directes et les groupes",
-    "@separateChatTypes": {
-        "type": "String",
-        "placeholders": {}
-    },
     "users": "Utilisateurs/trices",
     "@users": {},
     "storeInAndroidKeystore": "Stocker dans Android KeyStore",
@@ -2320,30 +2070,16 @@
     "@hydrate": {},
     "dehydrateWarning": "Cette action ne peut pas être annulée. Assurez-vous d'enregistrer convenablement le fichier de sauvegarde.",
     "@dehydrateWarning": {},
-    "dehydrateTorLong": "Pour les utilisateurs/trices de TOR, il est recommandé d'exporter la session avant de fermer la fenêtre.",
-    "@dehydrateTorLong": {},
     "recoveryKey": "Clé de récupération",
     "@recoveryKey": {},
     "recoveryKeyLost": "Clé de récupération perdue ?",
     "@recoveryKeyLost": {},
-    "indexedDbErrorLong": "Le stockage des messages n'est malheureusement pas activé par défaut en mode privé.\nVeuillez consulter :\n - about:config\n - Définir dom.indexedDB.privateBrowsing.enabled à « vrai ».\nSinon, il n'est pas possible d'exécuter FluffyChat.",
-    "@indexedDbErrorLong": {},
     "saveKeyManuallyDescription": "Enregistrer cette clé manuellement en déclenchant la boîte de dialogue de partage du système ou le presse-papiers.",
     "@saveKeyManuallyDescription": {},
     "storeInSecureStorageDescription": "Stocker la clé de récupération dans un espace sécurisé de cet appareil.",
     "@storeInSecureStorageDescription": {},
-    "indexedDbErrorTitle": "Problèmes relatifs au mode privé",
-    "@indexedDbErrorTitle": {},
     "dehydrate": "Exporter la session et effacer l'appareil",
     "@dehydrate": {},
-    "dehydrateTor": "Utilisateurs/trices de TOR : Exporter la session",
-    "@dehydrateTor": {},
-    "hydrateTor": "Utilisateurs/trices de TOR : Importer une session exportée",
-    "@hydrateTor": {},
-    "hydrateTorLong": "Vous avez exporté votre session la dernière fois sur TOR ? Importez-la rapidement et continuez à discuter.",
-    "@hydrateTorLong": {},
-    "pleaseEnterRecoveryKey": "Veuillez saisir votre clé de récupération :",
-    "@pleaseEnterRecoveryKey": {},
     "pleaseEnterRecoveryKeyDescription": "Pour déverrouiller vos anciens messages, veuillez entrer votre clé de récupération qui a été générée lors d'une session précédente. Votre clé de récupération n'est PAS votre mot de passe.",
     "@pleaseEnterRecoveryKeyDescription": {},
     "unlockOldMessages": "Déverrouiller les anciens messages",
@@ -2360,8 +2096,6 @@
     },
     "noKeyForThisMessage": "Cela peut se produire si le message a été envoyé avant que vous ne vous soyez connecté à votre compte sur cet appareil.\n\nIl est également possible que l'expéditeur ait bloqué votre appareil ou qu'un problème de connexion Internet se soit produit.\n\nÊtes-vous capable de lire le message sur une autre session ? Vous pouvez alors transférer le message à partir de celle-ci ! Allez dans Paramètres > Appareils et assurez-vous que vos appareils se sont vérifiés mutuellement. Lorsque vous ouvrirez le salon la fois suivante et que les deux sessions seront au premier plan, les clés seront transmises automatiquement.\n\nVous ne voulez pas perdre les clés en vous déconnectant ou en changeant d'appareil ? Assurez-vous que vous avez activé la sauvegarde de la discussion dans les paramètres.",
     "@noKeyForThisMessage": {},
-    "enterRoom": "Entrer dans le salon",
-    "@enterRoom": {},
     "allSpaces": "Tous les espaces",
     "@allSpaces": {},
     "commandHint_markasdm": "Marquer comme salon de messages directs pour l'identifiant Matrix indiqué",
@@ -2387,35 +2121,10 @@
     "@screenSharingTitle": {},
     "screenSharingDetail": "Vous partagez votre écran dans FuffyChat",
     "@screenSharingDetail": {},
-    "callingPermissions": "Permissions d'appel",
-    "@callingPermissions": {},
-    "callingAccount": "Compte d'appel",
-    "@callingAccount": {},
-    "callingAccountDetails": "Permet à FluffyChat d'utiliser l'application de numérotation native d'Android.",
-    "@callingAccountDetails": {},
-    "appearOnTop": "Apparaître en haut",
-    "@appearOnTop": {},
-    "appearOnTopDetails": "Permet à l'application d'apparaître en haut de l'écran (non nécessaire si vous avez déjà configuré Fluffychat comme compte d'appel)",
-    "@appearOnTopDetails": {},
-    "otherCallingPermissions": "Microphone, caméra et autres autorisations de FluffyChat",
-    "@otherCallingPermissions": {},
     "newGroup": "Nouveau groupe",
     "@newGroup": {},
     "newSpace": "Nouvel espace",
     "@newSpace": {},
-    "enterSpace": "Entrer dans l’espace",
-    "@enterSpace": {},
-    "numChats": "{number} discussions",
-    "@numChats": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "hideUnimportantStateEvents": "Masquer les événements d'état sans importance",
-    "@hideUnimportantStateEvents": {},
     "doNotShowAgain": "Ne plus afficher",
     "@doNotShowAgain": {},
     "commandHint_googly": "Envoyer des yeux écarquillés",
@@ -2466,8 +2175,6 @@
     "@sorryThatsNotPossible": {},
     "deviceKeys": "Clés de l’appareil :",
     "@deviceKeys": {},
-    "startFirstChat": "Commencez votre première discussion",
-    "@startFirstChat": {},
     "newSpaceDescription": "Les espaces vous permettent de consolider vos conversations et de construire des communautés privées ou publiques.",
     "@newSpaceDescription": {},
     "disableEncryptionWarning": "Pour des raisons de sécurité, vous ne pouvez pas désactiver le chiffrement dans une discussion s'il a été activé avant.",
@@ -2493,17 +2200,10 @@
     "@jumpToLastReadMessage": {},
     "readUpToHere": "Lisez jusqu’ici",
     "@readUpToHere": {},
-    "allRooms": "Tous les groupes de discussion",
-    "@allRooms": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatPermissions": "Permissions du salon",
     "@chatPermissions": {},
     "importFromZipFile": "Importer depuis un fichier .zip",
     "@importFromZipFile": {},
-    "inviteContactToGroupQuestion": "Voulez-vous inviter {contact} au salon \"{groupName}\" ?",
-    "@inviteContactToGroupQuestion": {},
     "importEmojis": "Importer des Emojis",
     "@importEmojis": {},
     "notAnImage": "Pas un fichier image.",
@@ -2533,8 +2233,6 @@
     "@directChat": {},
     "optionalRedactReason": "(Facultatif) Raison de la suppression de ce message...",
     "@optionalRedactReason": {},
-    "subspace": "Sous-espace",
-    "@subspace": {},
     "sendTypingNotifications": "Envoyer des notifications de frappe",
     "@sendTypingNotifications": {},
     "replace": "Remplacer",
@@ -2550,14 +2248,10 @@
     "@chatDescription": {},
     "invalidServerName": "Nom de serveur invalide",
     "@invalidServerName": {},
-    "addChatDescription": "Ajouter une description à la discussion...",
-    "@addChatDescription": {},
     "shareInviteLink": "Partager un lien d'invitation",
     "@shareInviteLink": {},
     "openLinkInBrowser": "Ouvrir le lien dans le navigateur",
     "@openLinkInBrowser": {},
-    "setTheme": "Définir le thème :",
-    "@setTheme": {},
     "setColorTheme": "Définir la couleur du thème :",
     "@setColorTheme": {},
     "databaseMigrationBody": "Veuillez patienter. Cela peut prendre un moment.",
@@ -2568,8 +2262,6 @@
     "@passwordsDoNotMatch": {},
     "passwordIsWrong": "Votre mot de passe saisi est erroné",
     "@passwordIsWrong": {},
-    "publicLink": "Lien public",
-    "@publicLink": {},
     "joinSpace": "Rejoindre l'espace",
     "@joinSpace": {},
     "publicSpaces": "Espaces publics",
@@ -2584,20 +2276,6 @@
     "@sendTypingNotificationsDescription": {},
     "verifyOtherDevice": "🔐 Vérifier l'autre appareil",
     "@verifyOtherDevice": {},
-    "databaseBuildErrorBody": "La base de données SQlite ne peut pas être créée. L'application essaie d'utiliser la base de données existante pour le moment. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
-    "@databaseBuildErrorBody": {
-        "type": "String",
-        "placeholders": {
-            "url": {
-                "type": "String"
-            },
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "startConversation": "Démarrer la conversation",
-    "@startConversation": {},
     "formattedMessagesDescription": "Affichez le contenu formaté des messages comme du texte en gras à l'aide de markdown.",
     "@formattedMessagesDescription": {},
     "incomingMessages": "Messages entrants",
@@ -2611,24 +2289,12 @@
             }
         }
     },
-    "pleaseTryAgainLaterOrChooseDifferentServer": "Veuillez réessayer plus tard ou choisir un autre serveur.",
-    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
     "inviteGroupChat": "📨 Inviter à une discussion de groupe",
     "@inviteGroupChat": {},
-    "invitePrivateChat": "📨 Inviter à une discussion privée",
-    "@invitePrivateChat": {},
     "jump": "Sauter",
     "@jump": {},
-    "signInWithPassword": "Se connecter avec mot de passe",
-    "@signInWithPassword": {},
-    "hideMemberChangesInPublicChats": "Masquer les modifications de membres dans les discussions publiques",
-    "@hideMemberChangesInPublicChats": {},
-    "hideMemberChangesInPublicChatsBody": "Ne pas afficher dans la chronologie de la discussion si quelqu'un rejoint ou quitte une discussion publique afin d'améliorer la lisibilité.",
-    "@hideMemberChangesInPublicChatsBody": {},
     "overview": "Aperçu",
     "@overview": {},
-    "notifyMeFor": "Me notifier pour",
-    "@notifyMeFor": {},
     "passwordRecoverySettings": "Paramètres de récupération de mot de passe",
     "@passwordRecoverySettings": {},
     "hasKnocked": "🚪 {user} a frappé",
@@ -2736,34 +2402,11 @@
     },
     "setChatDescription": "Définir la description de la discussion",
     "@setChatDescription": {},
-    "presenceStyle": "Statut :",
-    "@presenceStyle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "presencesToggle": "Afficher les messages de statut des autres utilisateurs/trices",
     "@presencesToggle": {
         "type": "String",
         "placeholders": {}
     },
-    "youInvitedToBy": "📩 Vous avez été invité par lien à :\n{alias}",
-    "@youInvitedToBy": {
-        "placeholders": {
-            "alias": {
-                "type": "String"
-            }
-        }
-    },
-    "userWouldLikeToChangeTheChat": "{user} souhaite rejoindre la discussion.",
-    "@userWouldLikeToChangeTheChat": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "noPublicLinkHasBeenCreatedYet": "Aucun lien public n'a encore été crée",
-    "@noPublicLinkHasBeenCreatedYet": {},
     "gallery": "Galerie",
     "@gallery": {},
     "files": "Fichiers",
@@ -2785,15 +2428,6 @@
         "type": "String",
         "placeholders": {
             "chat": {
-                "type": "String"
-            }
-        }
-    },
-    "forwardMessageTo": "Transférer le message à {roomName} ?",
-    "@forwardMessageTo": {
-        "type": "String",
-        "placeholders": {
-            "roomName": {
                 "type": "String"
             }
         }
@@ -2847,15 +2481,6 @@
     "@restricted": {},
     "knockRestricted": "Frapper à la porte limité",
     "@knockRestricted": {},
-    "signInWith": "Se connecter avec {provider}",
-    "@signInWith": {
-        "type": "String",
-        "placeholders": {
-            "provider": {
-                "type": "String"
-            }
-        }
-    },
     "groupCanBeFoundViaSearch": "Le groupe peut être trouvé via la recherche",
     "@groupCanBeFoundViaSearch": {},
     "groupName": "Nom du groupe",
@@ -2866,24 +2491,10 @@
     "@block": {},
     "removeDevicesDescription": "Vous serez déconnecté de cet appareil et ne pourrez plus recevoir de messages.",
     "@removeDevicesDescription": {},
-    "userRole": "Rôle de l'utilisateur/trice",
-    "@userRole": {},
     "createNewAddress": "Créer une nouvelle adresse",
     "@createNewAddress": {},
     "publicChatAddresses": "Addresses de discussion publiques",
     "@publicChatAddresses": {},
-    "countChatsAndCountParticipants": "{chats} discussions et {participants} participants",
-    "@countChatsAndCountParticipants": {
-        "type": "String",
-        "placeholders": {
-            "chats": {
-                "type": "int"
-            },
-            "participants": {
-                "type": "int"
-            }
-        }
-    },
     "space": "Espace",
     "@space": {},
     "spaces": "Espaces",
@@ -2892,8 +2503,6 @@
     "@noMoreChatsFound": {},
     "unread": "Non lu",
     "@unread": {},
-    "joinedChats": "Discussions rejointes",
-    "@joinedChats": {},
     "commandHint_sendraw": "Envoyer du JSON brut",
     "@commandHint_sendraw": {},
     "databaseMigrationTitle": "La base de données est optimisée",
@@ -2942,8 +2551,6 @@
     "@newPassword": {},
     "pleaseChooseAStrongPassword": "Veuillez choisir un mot de passe fort",
     "@pleaseChooseAStrongPassword": {},
-    "decline": "Refuser",
-    "@decline": {},
     "initAppError": "Une erreur est survenue pendant l'initialisation de l'application",
     "@initAppError": {},
     "markAsUnread": "Marquer comme non lu",
@@ -2971,15 +2578,6 @@
     "@roomUpgradeDescription": {},
     "learnMore": "En savoir plus",
     "@learnMore": {},
-    "minimumPowerLevel": "{level} est le niveau minimum de droits.",
-    "@minimumPowerLevel": {
-        "type": "String",
-        "placeholders": {
-            "level": {
-                "type": "String"
-            }
-        }
-    },
     "restoreSessionBody": "L'application tente maintenant de restaurer votre session depuis la sauvegarde. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
     "@restoreSessionBody": {
         "type": "String",
@@ -2992,8 +2590,6 @@
             }
         }
     },
-    "profileNotFound": "Cet utilisateur/trice n'a pu être trouvé sur le serveur. Peut-être est-ce un problème de connexion ou l'utilisateur/trice n'existe pas.",
-    "@profileNotFound": {},
     "archiveRoomDescription": "La discussion sera déplacée dans les archives. Les autres utilisateurs/trices pourront voir que vous avez quitté la discussion.",
     "@archiveRoomDescription": {},
     "noUsersFoundWithQuery": "Malheureusement, aucun utilisateur/trice n'a pu être trouvé avec \"{query}\". Veuillez vérifier si vous n'avez pas fait de faute de frappe.",
@@ -3089,14 +2685,8 @@
     },
     "loginWithMatrixId": "Connexion avec l'identifiant Matrix",
     "@loginWithMatrixId": {},
-    "setCustomPermissionLevel": "Définir un niveau d’autorisation",
-    "@setCustomPermissionLevel": {},
-    "setPermissionsLevelDescription": "Veuillez choisir un rôle prédéfini ci-dessous ou saisir un niveau d’autorisation entre 0 et 100.",
-    "@setPermissionsLevelDescription": {},
     "ignoreUser": "Ignorer l'utilisateur",
     "@ignoreUser": {},
-    "normalUser": "Utilisateur standard",
-    "@normalUser": {},
     "checkList": "Check-list",
     "@checkList": {},
     "countInvited": "{count} invité(e/s)",
@@ -3117,8 +2707,6 @@
             }
         }
     },
-    "homeserverDescription": "Toutes vos données sont stockées sur le serveur de votre fournisseur matrix, comme chez un fournisseur d'e-mails. Vous pouvez choisir le serveur que vous souhaitez utiliser, tout en pouvant communiquer avec tout le monde. Pour en savoir plus, rendez-vous sur https://matrix.org.",
-    "@homeserverDescription": {},
     "calculatingFileSize": "Calcul en cours...",
     "@calculatingFileSize": {},
     "prepareSendingAttachment": "Préparation à l'envoi...",

@@ -1,18 +1,17 @@
+import 'package:collection/collection.dart';
+import 'package:fluffychat/utils/code_highlight_theme.dart';
+import 'package:fluffychat/utils/event_checkbox_extension.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:collection/collection.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:highlight/highlight.dart' show highlight;
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/code_highlight_theme.dart';
-import 'package:fluffychat/utils/event_checkbox_extension.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../utils/url_launcher.dart';
 
 class HtmlMessage extends StatelessWidget {
@@ -253,9 +252,8 @@ class HtmlMessage extends StatelessWidget {
             : checkboxCheckedEvents?.firstWhereOrNull(
                 (event) => event.checkedCheckboxId == checkboxIndex,
               );
-        final staticallyChecked = !isCheckbox
-            ? false
-            : node.children.first.attributes['checked'] == 'true';
+        final staticallyChecked =
+            isCheckbox && node.children.first.attributes['checked'] == 'true';
 
         return WidgetSpan(
           child: Padding(

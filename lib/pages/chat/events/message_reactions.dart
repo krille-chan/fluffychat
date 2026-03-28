@@ -1,13 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class MessageReactions extends StatelessWidget {
   final Event event;
@@ -26,7 +24,7 @@ class MessageReactions extends StatelessWidget {
 
     for (final e in allReactionEvents) {
       final key = e.content
-          .tryGetMap<String, dynamic>('m.relates_to')
+          .tryGetMap<String, Object?>('m.relates_to')
           ?.tryGet<String>('key');
       if (key != null) {
         if (!reactionMap.containsKey(key)) {
@@ -66,7 +64,7 @@ class MessageReactions extends StatelessWidget {
                 if (evt != null) {
                   showFutureLoadingDialog(
                     context: context,
-                    future: () => evt.redactEvent(),
+                    future: evt.redactEvent,
                   );
                 }
               } else {

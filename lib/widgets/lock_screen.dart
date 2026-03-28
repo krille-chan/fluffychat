@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LockScreen extends StatefulWidget {
   const LockScreen({super.key});
@@ -20,7 +19,7 @@ class _LockScreenState extends State<LockScreen> {
   bool _inputBlocked = false;
   final TextEditingController _textEditingController = TextEditingController();
 
-  void tryUnlock(String text) async {
+  Future<void> tryUnlock(String text) async {
     text = text.trim();
     setState(() {
       _errorText = null;

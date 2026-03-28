@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/dialog_text_field.dart';
+import 'package:flutter/material.dart';
 
 Future<int?> showPermissionChooser(
   BuildContext context, {
   int currentLevel = 0,
   int maxLevel = 100,
 }) async {
-  final controller = TextEditingController();
+  final controller = TextEditingController(text: currentLevel.toString());
   final error = ValueNotifier<String?>(null);
   return await showAdaptiveDialog<int>(
     context: context,
@@ -20,9 +19,9 @@ Future<int?> showPermissionChooser(
         child: Column(
           mainAxisSize: .min,
           crossAxisAlignment: .stretch,
-          spacing: 12.0,
+          spacing: 16.0,
           children: [
-            Text(L10n.of(context).setPermissionsLevelDescription),
+            Text(L10n.of(context).setPowerLevelDescription),
             ValueListenableBuilder(
               valueListenable: error,
               builder: (context, errorText, _) => DialogTextField(
@@ -38,8 +37,6 @@ Future<int?> showPermissionChooser(
       ),
       actions: [
         AdaptiveDialogAction(
-          bigButtons: true,
-          borderRadius: AdaptiveDialogAction.topRadius,
           onPressed: () {
             final level = int.tryParse(controller.text.trim());
             if (level == null) {
@@ -52,31 +49,12 @@ Future<int?> showPermissionChooser(
             }
             Navigator.of(context).pop<int>(level);
           },
-          child: Text(L10n.of(context).setCustomPermissionLevel),
+          child: Text(L10n.of(context).setPowerLevel),
         ),
-        if (maxLevel >= 100 && currentLevel != 100)
-          AdaptiveDialogAction(
-            borderRadius: AdaptiveDialogAction.centerRadius,
-            bigButtons: true,
-            onPressed: () => Navigator.of(context).pop<int>(100),
-            child: Text(L10n.of(context).admin),
-          ),
-        if (maxLevel >= 50 && currentLevel != 50)
-          AdaptiveDialogAction(
-            borderRadius: maxLevel != 0
-                ? AdaptiveDialogAction.centerRadius
-                : AdaptiveDialogAction.bottomRadius,
-            bigButtons: true,
-            onPressed: () => Navigator.of(context).pop<int>(50),
-            child: Text(L10n.of(context).moderator),
-          ),
-        if (currentLevel != 0)
-          AdaptiveDialogAction(
-            borderRadius: AdaptiveDialogAction.bottomRadius,
-            bigButtons: true,
-            onPressed: () => Navigator.of(context).pop<int>(0),
-            child: Text(L10n.of(context).normalUser),
-          ),
+        AdaptiveDialogAction(
+          onPressed: () => Navigator.of(context).pop<int>(null),
+          child: Text(L10n.of(context).cancel),
+        ),
       ],
     ),
   );

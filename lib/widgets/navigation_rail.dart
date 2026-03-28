@@ -1,16 +1,15 @@
-import 'package:flutter/material.dart';
-
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/navi_rail_item.dart';
+import 'package:fluffychat/pages/chat_list/start_chat_fab.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 class SpacesNavigationRail extends StatelessWidget {
   final String? activeSpaceId;
@@ -27,9 +26,6 @@ class SpacesNavigationRail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
-    final isSettings = GoRouter.of(
-      context,
-    ).routeInformationProvider.value.uri.path.startsWith('/rooms/settings');
     return Material(
       child: SafeArea(
         child: StreamBuilder(
@@ -55,7 +51,7 @@ class SpacesNavigationRail extends StatelessWidget {
                       itemBuilder: (context, i) {
                         if (i == 0) {
                           return NaviRailItem(
-                            isSelected: activeSpaceId == null && !isSettings,
+                            isSelected: activeSpaceId == null,
                             onTap: onGoToChats,
                             icon: const Padding(
                               padding: EdgeInsets.all(10.0),
@@ -98,31 +94,28 @@ class SpacesNavigationRail extends StatelessWidget {
                           icon: Avatar(
                             mxContent: allSpaces[i].avatar,
                             name: displayname,
-                            border: BorderSide(
-                              width: 1,
-                              color: Theme.of(context).dividerColor,
+                            shapeBorder: RoundedSuperellipseBorder(
+                              side: BorderSide(
+                                width: 1,
+                                color: Theme.of(context).dividerColor,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                AppConfig.spaceBorderRadius,
+                              ),
                             ),
                             borderRadius: BorderRadius.circular(
-                              AppConfig.borderRadius / 2,
+                              AppConfig.spaceBorderRadius,
                             ),
                           ),
                         );
                       },
                     ),
                   ),
-                  NaviRailItem(
-                    isSelected: isSettings,
-                    onTap: () => context.go('/rooms/settings'),
-                    icon: const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Icon(Icons.settings_outlined),
+                  if (FluffyThemes.isColumnMode(context))
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: StartChatFab(),
                     ),
-                    selectedIcon: const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Icon(Icons.settings),
-                    ),
-                    toolTip: L10n.of(context).settings,
-                  ),
                 ],
               ),
             );

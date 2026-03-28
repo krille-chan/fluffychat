@@ -17,27 +17,27 @@ abstract class AppConfig {
   static const String schemePrefix = 'matrix:';
   static const String pushNotificationsChannelId = 'fluffychat_push';
   static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
-  static const double borderRadius = 18.0;
+  static const double borderRadius = 16.0;
+  static const double spaceBorderRadius = 11.0;
   static const double columnWidth = 360.0;
 
-  static const String website = 'https://fluffy.chat';
   static const String enablePushTutorial =
-      'https://fluffy.chat/faq/#push_without_google_services';
+      'https://fluffychat.im/faq/#push_without_google_services';
   static const String encryptionTutorial =
-      'https://fluffy.chat/faq/#how_to_use_end_to_end_encryption';
+      'https://fluffychat.im/faq/#how_to_use_end_to_end_encryption';
   static const String startChatTutorial =
-      'https://fluffy.chat/faq/#how_do_i_find_other_users';
+      'https://fluffychat.im/faq/#how_do_i_find_other_users';
   static const String howDoIGetStickersTutorial =
-      'https://fluffy.chat/faq/#how_do_i_get_stickers';
+      'https://fluffychat.im/faq/#how_do_i_get_stickers';
   static const String appId = 'im.fluffychat.FluffyChat';
   static const String appOpenUrlScheme = 'im.fluffychat';
+  static const String appSsoUrlScheme = 'im.fluffychat.auth';
 
   static const String sourceCodeUrl =
       'https://github.com/krille-chan/fluffychat';
   static const String supportUrl =
       'https://github.com/krille-chan/fluffychat/issues';
   static const String changelogUrl = 'https://fluffy.chat/en/changelog/';
-  static const String donationUrl = 'https://ko-fi.com/krille';
 
   static const Set<String> defaultReactions = {'👍', '❤️', '😂', '😮', '😢'};
 
@@ -49,14 +49,8 @@ abstract class AppConfig {
 
   static final Uri homeserverList = Uri(
     scheme: 'https',
-    host: 'servers.joinmatrix.org',
-    path: 'servers.json',
-  );
-
-  static final Uri privacyUrl = Uri(
-    scheme: 'https',
-    host: 'fluffy.chat',
-    path: '/en/privacy',
+    host: 'raw.githubusercontent.com',
+    path: 'krille-chan/fluffychat/refs/heads/main/recommended_homeservers.json',
   );
 
   static const String mainIsolatePortName = 'main_isolate';

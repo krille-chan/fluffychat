@@ -96,7 +96,7 @@ flutter build web --release
 #### Install custom dependencies (Linux)
 
 ```bash
-sudo apt install libjsoncpp1 libsecret-1-dev libsecret-1-0 librhash0 libwebkit2gtk-4.0-dev
+sudo apt install libjsoncpp1 libsecret-1-dev libsecret-1-0 librhash0 libwebkit2gtk-4.0-dev lld
 ```
 
 * Build with one of these:
@@ -104,6 +104,20 @@ sudo apt install libjsoncpp1 libsecret-1-dev libsecret-1-0 librhash0 libwebkit2g
 flutter build linux --release
 flutter build windows --release
 flutter build macos --release
+```
+
+## How to run integration tests
+
+You need to have docker installed locally! Run the preparation script before every test run:
+
+```sh
+./scripts/prepare_integration_test.sh
+```
+
+Then run all tests with:
+
+```sh
+flutter test integration_test/mobile_test.dart
 ```
 
 

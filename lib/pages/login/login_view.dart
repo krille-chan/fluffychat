@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
+import 'package:flutter/material.dart';
+
 import 'login.dart';
 
 class LoginView extends StatelessWidget {
@@ -56,7 +56,7 @@ class LoginView extends StatelessWidget {
                       errorText: controller.usernameError,
                       errorStyle: const TextStyle(color: Colors.orange),
                       hintText: '@username:domain',
-                      labelText: L10n.of(context).emailOrUsername,
+                      labelText: L10n.of(context).matrixId,
                     ),
                   ),
                 ),

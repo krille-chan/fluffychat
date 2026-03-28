@@ -29,7 +29,7 @@ class ChatMembersController extends State<ChatMembersPage> {
     setFilter();
   }
 
-  void setFilter([dynamic _]) async {
+  Future<void> setFilter([_]) async {
     final filter = filterController.text.toLowerCase().trim();
 
     final members = this.members
@@ -56,7 +56,7 @@ class ChatMembersController extends State<ChatMembersPage> {
     });
   }
 
-  void refreshMembers([dynamic _]) async {
+  Future<void> refreshMembers([_]) async {
     Logs().d('Load room members from', widget.roomId);
     try {
       setState(() {

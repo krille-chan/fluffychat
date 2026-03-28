@@ -1,22 +1,21 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:async/async.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:just_audio/just_audio.dart';
-import 'package:matrix/matrix.dart';
-import 'package:opus_caf_converter_dart/opus_caf_converter_dart.dart';
-import 'package:path_provider/path_provider.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:matrix/matrix.dart';
+import 'package:opus_caf_converter_dart/opus_caf_converter_dart.dart';
+import 'package:path_provider/path_provider.dart';
+
 import '../../../utils/matrix_sdk_extensions/event_extension.dart';
 import '../../../widgets/fluffy_chat_app.dart';
 import '../../../widgets/matrix.dart';
@@ -123,7 +122,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     }
   }
 
-  void _onButtonTap() async {
+  Future<void> _onButtonTap() async {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ScaffoldMessenger.of(matrix.context).clearMaterialBanners();
     });
@@ -131,10 +130,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
         matrix.voiceMessageEventId.value != widget.event.eventId
         ? null
         : matrix.audioPlayer;
-    if (currentPlayer != null) {
-      if (currentPlayer.isAtEndPosition) {
-        currentPlayer.seek(Duration.zero);
-      } else if (currentPlayer.playing) {
+    if (currentPlayer != null && !currentPlayer.isAtEndPosition) {
+      if (currentPlayer.playing) {
         currentPlayer.pause();
       } else {
         currentPlayer.play();
@@ -152,7 +149,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     setState(() => status = AudioPlayerStatus.downloading);
     try {
       final fileSize = widget.event.content
-          .tryGetMap<String, dynamic>('info')
+          .tryGetMap<String, Object?>('info')
           ?.tryGet<int>('size');
       matrixFile = await widget.event.downloadAndDecryptAttachment(
         onDownloadProgress: fileSize != null && fileSize > 0
@@ -167,11 +164,11 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
             : null,
       );
 
-      if (!kIsWeb) {
+      final attachmentUrl = widget.event.attachmentOrThumbnailMxcUrl();
+
+      if (!kIsWeb && attachmentUrl != null) {
         final tempDir = await getTemporaryDirectory();
-        final fileName = Uri.encodeComponent(
-          widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
-        );
+        final fileName = Uri.encodeComponent(attachmentUrl.pathSegments.last);
         file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
 
         await file.writeAsBytes(matrixFile.bytes);
@@ -192,6 +189,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       });
     } catch (e, s) {
       Logs().v('Could not download audio file', e, s);
+      if (!mounted) rethrow;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
@@ -205,15 +203,20 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     if (file != null) {
       audioPlayer.setFilePath(file.path);
     } else {
-      await audioPlayer.setAudioSource(MatrixFileAudioSource(matrixFile));
+      await audioPlayer.setAudioSource(
+        AudioSource.uri(
+          Uri.dataFromBytes(matrixFile.bytes, mimeType: matrixFile.mimeType),
+        ),
+      );
     }
+    if (!mounted) return;
 
     audioPlayer.play().onError(
       ErrorReporter(context, 'Unable to play audio message').onErrorCallback,
     );
   }
 
-  void _toggleSpeed() async {
+  Future<void> _toggleSpeed() async {
     final audioPlayer = matrix.audioPlayer;
     if (audioPlayer == null) return;
     switch (audioPlayer.speed) {
@@ -239,7 +242,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   List<int>? _getWaveform() {
     final eventWaveForm = widget.event.content
-        .tryGetMap<String, dynamic>('org.matrix.msc1767.audio')
+        .tryGetMap<String, Object?>('org.matrix.msc1767.audio')
         ?.tryGetList<int>('waveform');
     if (eventWaveForm == null || eventWaveForm.isEmpty) {
       return null;
@@ -272,7 +275,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     }
 
     final durationInt = widget.event.content
-        .tryGetMap<String, dynamic>('info')
+        .tryGetMap<String, Object?>('info')
         ?.tryGet<int>('duration');
     if (durationInt != null) {
       final duration = Duration(milliseconds: durationInt);
@@ -456,7 +459,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                                 height: 20,
                                 child: Center(
                                   child: Text(
-                                    '${audioPlayer?.speed.toString()}x',
+                                    '${audioPlayer?.speed}x',
                                     style: TextStyle(
                                       color: widget.color,
                                       fontSize: 9,
@@ -509,26 +512,6 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           },
         );
       },
-    );
-  }
-}
-
-/// To use a MatrixFile as an AudioSource for the just_audio package
-class MatrixFileAudioSource extends StreamAudioSource {
-  final MatrixFile file;
-
-  MatrixFileAudioSource(this.file);
-
-  @override
-  Future<StreamAudioResponse> request([int? start, int? end]) async {
-    start ??= 0;
-    end ??= file.bytes.length;
-    return StreamAudioResponse(
-      sourceLength: file.bytes.length,
-      contentLength: end - start,
-      offset: start,
-      stream: Stream.value(file.bytes.sublist(start, end)),
-      contentType: file.mimeType,
     );
   }
 }

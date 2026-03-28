@@ -194,18 +194,6 @@
         "type": "String",
         "placeholder": {}
     },
-    "badServerVersionsException": "שרת הבית תומך בגרסאות:\n{serverVersions}\nאבל האפליקציה הזו תומכת רק ב-{supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
     "banFromChat": "צאט חסום",
     "@banFromChat": {
         "type": "String",
@@ -230,11 +218,6 @@
     },
     "blocked": "חסום",
     "@blocked": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "botMessages": "הודעות בוט",
-    "@botMessages": {
         "type": "String",
         "placeholders": {}
     },
@@ -451,8 +434,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatHasBeenAddedToThisSpace": "צ'אט נוסף למרחב הזה",
-    "@chatHasBeenAddedToThisSpace": {},
     "chats": "צ'אטים",
     "@chats": {
         "type": "String",
@@ -532,18 +513,6 @@
             }
         }
     },
-    "dateWithoutYear": "{month}-{day}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
     "defaultPermissionLevel": "רמת הרשאת ברירת מחדל",
     "@defaultPermissionLevel": {
         "type": "String",
@@ -614,11 +583,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "enterYourHomeserver": "הזן את שרת הבית שלך",
-    "@enterYourHomeserver": {
-        "type": "String",
-        "placeholders": {}
-    },
     "everythingReady": "הכל מוכן!",
     "@everythingReady": {
         "type": "String",
@@ -654,11 +618,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "goToTheNewRoom": "עבור לחדר החדש",
-    "@goToTheNewRoom": {
-        "type": "String",
-        "placeholders": {}
-    },
     "groupIsPublic": "הקבוצה ציבורית",
     "@groupIsPublic": {
         "type": "String",
@@ -685,11 +644,6 @@
     },
     "id": "מזהה",
     "@id": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "identity": "זהות",
-    "@identity": {
         "type": "String",
         "placeholders": {}
     },
@@ -727,11 +681,6 @@
     },
     "invitedUsersOnly": "משתמשים מוזמנים בלבד",
     "@invitedUsersOnly": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "inviteForMe": "הזמנה בשבילי",
-    "@inviteForMe": {
         "type": "String",
         "placeholders": {}
     },
@@ -849,11 +798,6 @@
         "type": "String",
         "description": "Usage hint for the command /react"
     },
-    "containsUserName": "מכיל שם משתמש",
-    "@containsUserName": {
-        "type": "String",
-        "placeholders": {}
-    },
     "createNewSpace": "חלל חדש",
     "@createNewSpace": {
         "type": "String",
@@ -869,21 +813,6 @@
         "type": "String",
         "placeholders": {
             "groupName": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithYear": "{year}-{month}-{day}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
                 "type": "String"
             }
         }
@@ -1009,11 +938,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "license": "רשיון",
-    "@license": {
-        "type": "String",
-        "placeholders": {}
-    },
     "lightTheme": "בהיר",
     "@lightTheme": {
         "type": "String",
@@ -1034,23 +958,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "confirm": "לאשר",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "התחבר",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
     "contactHasBeenInvitedToTheGroup": "איש הקשר הוזמן לקבוצה",
     "@contactHasBeenInvitedToTheGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsDisplayName": "מכיל שם תצוגה",
-    "@containsDisplayName": {
         "type": "String",
         "placeholders": {}
     },
@@ -1259,11 +1168,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "people": "אנשים",
-    "@people": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pickImage": "בחר תמונה",
     "@pickImage": {
         "type": "String",
@@ -1277,11 +1181,6 @@
                 "type": "String"
             }
         }
-    },
-    "pleaseChoose": "אנא בחר",
-    "@pleaseChoose": {
-        "type": "String",
-        "placeholders": {}
     },
     "pleaseChooseAPasscode": "אנא בחר קוד גישה",
     "@pleaseChooseAPasscode": {
@@ -1345,20 +1244,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "notificationsEnabledForThisAccount": "התראות הופעלו עבור חשבון זה",
-    "@notificationsEnabledForThisAccount": {
-        "type": "String",
-        "placeholders": {}
-    },
     "bundleName": "שם החבילה",
     "@bundleName": {},
     "offline": "לא מקוון",
     "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "openVideoCamera": "פתח את המצלמה לסרטון",
-    "@openVideoCamera": {
         "type": "String",
         "placeholders": {}
     },
@@ -1405,11 +1294,6 @@
                 "type": "String"
             }
         }
-    },
-    "memberChanges": "שינויים בחבר",
-    "@memberChanges": {
-        "type": "String",
-        "placeholders": {}
     },
     "mention": "הזכיר",
     "@mention": {

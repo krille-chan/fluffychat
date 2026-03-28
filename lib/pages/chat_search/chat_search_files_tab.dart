@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_search/search_footer.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class ChatSearchFilesTab extends StatelessWidget {
   final Room room;
@@ -49,15 +47,15 @@ class ChatSearchFilesTab extends StatelessWidget {
           final filetype = (filename.contains('.')
               ? filename.split('.').last.toUpperCase()
               : event.content
-                        .tryGetMap<String, dynamic>('info')
+                        .tryGetMap<String, Object?>('info')
                         ?.tryGet<String>('mimetype')
                         ?.toUpperCase() ??
                     'UNKNOWN');
           final sizeString = event.sizeString;
           final prevEvent = i > 0 ? events[i - 1] : null;
-          final sameEnvironment = prevEvent == null
-              ? false
-              : prevEvent.originServerTs.sameEnvironment(event.originServerTs);
+          final sameEnvironment =
+              prevEvent != null &&
+              prevEvent.originServerTs.sameEnvironment(event.originServerTs);
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(

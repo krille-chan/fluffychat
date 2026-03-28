@@ -1,7 +1,7 @@
 class PublicHomeserverData {
   final String? name;
   final String? clientDomain;
-  final String? homepage;
+  final String? website;
   final String? isp;
   final String? staffJur;
   final String? rules;
@@ -26,7 +26,7 @@ class PublicHomeserverData {
   PublicHomeserverData({
     this.name,
     this.clientDomain,
-    this.homepage,
+    this.website,
     this.isp,
     this.staffJur,
     this.rules,
@@ -53,7 +53,7 @@ class PublicHomeserverData {
     return PublicHomeserverData(
       name: json['name'],
       clientDomain: json['client_domain'],
-      homepage: json['homepage'],
+      website: json['website'],
       isp: json['isp'],
       staffJur: json['staff_jur'],
       rules: json['rules'],
