@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJj(){return new A.FS(B.dd("fa"))},
-FS:function FS(d){this.a=d}}
+cJo(){return new A.FT(B.dd("fa"))},
+FT:function FT(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[19],A)
-A.FS.prototype={
+A.FT.prototype={
 gkL(){return"false"},
 gjB(){return"\u062a\u06a9\u0631\u0627\u0631 \u06af\u0630\u0631\u0648\u0627\u0698\u0647"},
 gmv(){return"\u06cc\u06a9 \u0641\u0627\u06cc\u0644 \u062a\u0635\u0648\u06cc\u0631\u06cc \u0646\u06cc\u0633\u062a."},
@@ -691,7 +691,7 @@ gpZ(){return"Join video call"},
 gq0(d){return"Live"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FS,C.aD)})()
-B.dH(b.typeUniverse,JSON.parse('{"FS":{"aD":[]}}'))};
-(a=>{a["wgQXZUDW7AaDN6rUZkleNTpcYoE="]=a.current})($__dart_deferred_initializers__);
+y(A.FT,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FT":{"aD":[]}}'))};
+(a=>{a["ZZh1jy16kteLjAEax3WvfpH0j70="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_310.part.js.map

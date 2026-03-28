@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJD(){return new A.Gb(B.dd("nb"))},
-Gb:function Gb(d){this.a=d}}
+cJI(){return new A.Gc(B.dd("nb"))},
+Gc:function Gc(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[39],A)
-A.Gb.prototype={
+A.Gc.prototype={
 gkL(){return"false"},
 gjB(){return"Gjenta passord"},
 gmv(){return"Ikke en bildefil."},
@@ -693,7 +693,7 @@ gpZ(){return"Bli med i videosamtale"},
 gq0(d){return"Direkte"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gb,C.aD)})()
-B.dH(b.typeUniverse,JSON.parse('{"Gb":{"aD":[]}}'))};
-(a=>{a["5vPVDOPSuY7naPoQjbb/ieZJGxA="]=a.current})($__dart_deferred_initializers__);
+y(A.Gc,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gc":{"aD":[]}}'))};
+(a=>{a["u6icfkL84qIngp9p7NtTcRpG3Kg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

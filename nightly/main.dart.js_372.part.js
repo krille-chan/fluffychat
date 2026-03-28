@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJV(){return new A.Gs(B.dd("uz"))},
-Gs:function Gs(d){this.a=d}}
+cK_(){return new A.Gt(B.dd("uz"))},
+Gt:function Gt(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[54],A)
-A.Gs.prototype={
+A.Gt.prototype={
 gkL(){return"true"},
 gjB(){return"Parolni takrorlang"},
 gmv(){return"Rasm fayli emas."},
@@ -693,8 +693,8 @@ gpZ(){return"Join video call"},
 gq0(d){return"Live"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gs,C.aD)})()
-B.dH(b.typeUniverse,JSON.parse('{"Gs":{"aD":[]}}'))
+x(A.Gt,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gt":{"aD":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["xjSz1r5y3LYX58QZAyrj/Fs+PWk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["KPkw2bHbX07At6ueDwIG37H7m6c="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_372.part.js.map

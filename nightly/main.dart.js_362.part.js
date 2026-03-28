@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJN(){return new A.Gk(B.dd("sq"))},
-Gk:function Gk(d){this.a=d}}
+cJS(){return new A.Gl(B.dd("sq"))},
+Gl:function Gl(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[46],A)
-A.Gk.prototype={
+A.Gl.prototype={
 gkL(){return"false"},
 gjB(){return"Repeat password"},
 gmv(){return"Not an image file."},
@@ -693,7 +693,7 @@ gpZ(){return"Join video call"},
 gq0(d){return"Live"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gk,C.aD)})()
-B.dH(b.typeUniverse,JSON.parse('{"Gk":{"aD":[]}}'))};
-(a=>{a["3eB3/YpTXo+l4IPYPN3LKR1cCv0="]=a.current})($__dart_deferred_initializers__);
+y(A.Gl,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gl":{"aD":[]}}'))};
+(a=>{a["X3KEvPME4Wk+zk8blc+ZiaTCP8U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_362.part.js.map

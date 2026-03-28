@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cJG(d){return new A.Be(B.dd(d))},
-cJH(){return new A.Ge(B.dd("pt_BR"))},
-cJI(){return new A.Gf(B.dd("pt_PT"))},
-Be:function Be(d){this.a=d},
-Ge:function Ge(d){this.a=d},
-Gf:function Gf(d){this.a=d}},C
+cJL(d){return new A.Bd(B.dd(d))},
+cJM(){return new A.Gf(B.dd("pt_BR"))},
+cJN(){return new A.Gg(B.dd("pt_PT"))},
+Bd:function Bd(d){this.a=d},
+Gf:function Gf(d){this.a=d},
+Gg:function Gg(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[57]
-A.Be.prototype={
+A.Bd.prototype={
 gkL(){return"true"},
 gjB(){return"Repita a senha"},
 gmv(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -696,7 +696,7 @@ gq_(){return"Join voice call"},
 gpZ(){return"Join video call"},
 gq0(d){return"Live"},
 B(d,e){return this.gb7(this).$1(e)}}
-A.Ge.prototype={
+A.Gf.prototype={
 gkL(){return"true"},
 gjB(){return"Repita a senha"},
 gmv(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1341,7 +1341,7 @@ px(d){return"Vers\xe3o: "+d},
 goX(){return""},
 gpt(){return""},
 B(d,e){return this.gb7(this).$1(e)}}
-A.Gf.prototype={
+A.Gg.prototype={
 gjB(){return"Repete a palavra-passe"},
 gb7(d){return"Remover"},
 geu(){return"Acerca de"},
@@ -1581,9 +1581,9 @@ eT(d){return d+" enviou um autocolante"},
 fW(d){return d+" enviou um v\xeddeo"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Be,C.aD)
-w(A.Be,[A.Ge,A.Gf])})()
-B.dH(b.typeUniverse,JSON.parse('{"Be":{"aD":[]},"Ge":{"aD":[]},"Gf":{"aD":[]}}'))
+x(A.Bd,C.aD)
+w(A.Bd,[A.Gf,A.Gg])})()
+B.dI(b.typeUniverse,JSON.parse('{"Bd":{"aD":[]},"Gf":{"aD":[]},"Gg":{"aD":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["+DeQBRyBifX2t9hBZtjrlhxQqIk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["WT72hGOX5jAUODuxS3OTZeQ0zBA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJs(){return new A.G0(B.dd("hu"))},
-G0:function G0(d){this.a=d}}
+cJx(){return new A.G1(B.dd("hu"))},
+G1:function G1(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[28],A)
-A.G0.prototype={
+A.G1.prototype={
 gkL(){return""},
 gjB(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gmv(){return"Nem k\xe9p f\xe1jl."},
@@ -693,7 +693,7 @@ gpZ(){return"Join video call"},
 gq0(d){return"Live"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G0,C.aD)})()
-B.dH(b.typeUniverse,JSON.parse('{"G0":{"aD":[]}}'))};
-(a=>{a["kjZYv2ZqPbedaoxU2blkKzfvkY8="]=a.current})($__dart_deferred_initializers__);
+y(A.G1,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G1":{"aD":[]}}'))};
+(a=>{a["aTNFSug7vbWRl14PsJWcJDlaiEY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_332.part.js.map

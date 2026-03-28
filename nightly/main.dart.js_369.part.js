@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJT(){return new A.Gq(B.dd("tr"))},
-Gq:function Gq(d){this.a=d}}
+cJY(){return new A.Gr(B.dd("tr"))},
+Gr:function Gr(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[52],A)
-A.Gq.prototype={
+A.Gr.prototype={
 gkL(){return"false"},
 gjB(){return"Parolay\u0131 tekrarlay\u0131n"},
 gmv(){return"Bir resim dosyas\u0131 de\u011fil."},
@@ -693,8 +693,8 @@ gpZ(){return"Join video call"},
 gq0(d){return"Live"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gq,C.aD)})()
-B.dH(b.typeUniverse,JSON.parse('{"Gq":{"aD":[]}}'))
+x(A.Gr,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gr":{"aD":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["4fgIXLs7Xx5GMfX1dGnYjV53TBM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["JroTuoh9uYJmPLTXcFq/TDbCLdo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_369.part.js.map

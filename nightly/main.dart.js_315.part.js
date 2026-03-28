@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cJm(){return new A.FV(B.dd("fr"))},
-FV:function FV(d){this.a=d}}
+cJr(){return new A.FW(B.dd("fr"))},
+FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[22],A)
-A.FV.prototype={
+A.FW.prototype={
 gkL(){return"true"},
 gjB(){return"R\xe9p\xe9tez le mot de passe"},
 gmv(){return"Pas un fichier image."},
@@ -693,7 +693,7 @@ gpZ(){return"Join video call"},
 gq0(d){return"Live"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FV,C.aD)})()
-B.dH(b.typeUniverse,JSON.parse('{"FV":{"aD":[]}}'))};
-(a=>{a["f50KHrXYXKdxHpuxCG4tb0lQXNw="]=a.current})($__dart_deferred_initializers__);
+y(A.FW,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))};
+(a=>{a["o/4+AtahWuk893EVgfuxMc4fo4I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_315.part.js.map
