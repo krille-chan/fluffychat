@@ -16,6 +16,10 @@ import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
 
 extension LocalNotificationsExtension on MatrixState {
+  static final html.AudioElement _audioPlayer = html.AudioElement()
+    ..src = 'assets/assets/sounds/notification.ogg'
+    ..load();
+
   Future<void> showLocalNotification(Event event) async {
     final l10n = L10n.of(context);
     final roomId = event.room.id;
@@ -68,6 +72,8 @@ extension LocalNotificationsExtension on MatrixState {
               method: thumbnailMethod,
             );
       }
+
+      if (AppSettings.webNotificationSound.value) _audioPlayer.play();
 
       html.Notification(
         title,
