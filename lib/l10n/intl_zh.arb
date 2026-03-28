@@ -2808,5 +2808,6 @@
     "startVideoCall": "开始视频通话",
     "joinVoiceCall": "加入语音通话",
     "joinVideoCall": "加入视频通话",
-    "live": "实时"
+    "live": "实时",
+    "playSoundOnNotification": "播放通知声音"
 }
