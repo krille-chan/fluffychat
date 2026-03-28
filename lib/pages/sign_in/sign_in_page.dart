@@ -108,6 +108,7 @@ class SignInPage extends StatelessWidget {
                                     SizedBox.square(
                                       dimension: 32,
                                       child: IconButton(
+                                        tooltip: website,
                                         icon: const Icon(
                                           Icons.open_in_new_outlined,
                                           size: 16,
