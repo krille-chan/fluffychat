@@ -1781,7 +1781,7 @@
         "type": "String",
         "description": "Usage hint for the command /clearcache"
     },
-    "commandHint_join": "Uneix-te a la sala",
+    "commandHint_join": "Uneix-te a la sala indicada",
     "@commandHint_join": {
         "type": "String",
         "description": "Usage hint for the command /join"
@@ -2754,7 +2754,7 @@
         }
     },
     "federationBaseUrl": "URL base de federació",
-    "clientWellKnownInformation": "Informació de",
+    "clientWellKnownInformation": "Informació coneguda del client:",
     "baseUrl": "URL base",
     "identityServer": "Servidor d'identitats:",
     "versionWithNumber": "Versió: {version}",
@@ -2807,5 +2807,6 @@
     "startVideoCall": "Fes una videotrucada",
     "joinVoiceCall": "Fica't a la trucada",
     "joinVideoCall": "Fica't a la videotrucada",
-    "live": "En directe"
+    "live": "En directe",
+    "playSoundOnNotification": "Notificacions sonores"
 }

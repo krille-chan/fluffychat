@@ -2808,5 +2808,6 @@
     "startVideoCall": "Algata videokõne",
     "joinVoiceCall": "Liitu häälkõnega",
     "joinVideoCall": "Liitu videokõnega",
-    "live": "Reaalajas"
+    "live": "Reaalajas",
+    "playSoundOnNotification": "Lisa teavitusele helimärguanne"
 }

@@ -2815,5 +2815,6 @@
     "startVideoCall": "Start videosamtale",
     "joinVoiceCall": "Bli med i lydsamtale",
     "joinVideoCall": "Bli med i videosamtale",
-    "live": "Direkte"
+    "live": "Direkte",
+    "playSoundOnNotification": "Spill av lyd ved varsling"
 }
