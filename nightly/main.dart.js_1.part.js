@@ -693,7 +693,7 @@ gpF(){return"\u5f00\u59cb\u89c6\u9891\u901a\u8bdd"},
 gq_(){return"\u52a0\u5165\u8bed\u97f3\u901a\u8bdd"},
 gpZ(){return"\u52a0\u5165\u89c6\u9891\u901a\u8bdd"},
 gq0(d){return"\u5b9e\u65f6"},
-gq6(){return"Play sound on notification"},
+gq6(){return"\u64ad\u653e\u901a\u77e5\u58f0\u97f3"},
 B(d,e){return this.gb7(this).$1(e)}}
 A.Gw.prototype={
 gkL(){return"false"},
@@ -1298,5 +1298,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Be,C.aD)
 y(A.Gw,A.Be)})()
 B.dI(b.typeUniverse,JSON.parse('{"Be":{"aD":[]},"Gw":{"aD":[]}}'))};
-(a=>{a["MA5YceM8guWrPpNhmShc+lEFJGg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3+B8JdeFAOpTxgI6HZX6GNfnVrw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
