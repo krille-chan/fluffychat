@@ -43,7 +43,7 @@ class FluffyChatApp extends StatelessWidget {
 
       // Pass deep links to app:
       if (state.uri.toString().startsWith(AppConfig.deepLinkPrefix)) {
-        return '/rooms/newprivatechat?deeplink=${state.uri}';
+        return '/rooms/newprivatechat#${state.uri}';
       }
       return null;
     },
