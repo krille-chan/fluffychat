@@ -2814,5 +2814,6 @@
     "startVideoCall": "Tosaigh glao físe",
     "joinVoiceCall": "Glac páirt i nglao gutha",
     "joinVideoCall": "Glac páirt i nglao físe",
-    "live": "Beo"
+    "live": "Beo",
+    "playSoundOnNotification": "Seinn fuaim ar fhógra"
 }
