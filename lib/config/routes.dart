@@ -172,8 +172,8 @@ abstract class AppRoutes {
                 context,
                 state,
                 NewPrivateChat(
-                  key: ValueKey('new_chat_${state.uri.query}'),
-                  deeplink: state.uri.queryParameters['deeplink'],
+                  key: ValueKey('new_chat_${state.uri.fragment}'),
+                  deeplink: state.uri.fragment,
                 ),
               ),
               redirect: loggedOutRedirect,

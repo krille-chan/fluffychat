@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:cross_file/cross_file.dart';
 import 'package:fluffychat/config/app_config.dart';
@@ -311,11 +310,10 @@ class ChatListController extends State<ChatList>
   String? get activeChat => widget.activeChat;
 
   void _processIncomingSharedMedia(List<SharedMediaFile> files) {
+    files.removeWhere(
+      (file) => file.path.startsWith(AppConfig.deepLinkPrefix) == true,
+    );
     if (files.isEmpty) return;
-    inspect(files);
-    if (files.singleOrNull?.path.startsWith(AppConfig.deepLinkPrefix) == true) {
-      return;
-    }
 
     showScaffoldDialog(
       context: context,
