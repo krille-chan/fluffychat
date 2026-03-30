@@ -527,14 +527,16 @@ class _SpaceViewState extends State<SpaceView> {
                           );
                         }
                         final item = _discoveredChildren[i];
+                        var joinedRoom = room.client.getRoomById(item.roomId);
                         final displayname =
                             item.name ??
                             item.canonicalAlias ??
+                            joinedRoom?.getLocalizedDisplayname() ??
                             L10n.of(context).emptyChat;
+                        final avatarUrl = item.avatarUrl ?? joinedRoom?.avatar;
                         if (!displayname.toLowerCase().contains(filter)) {
                           return const SizedBox.shrink();
                         }
-                        var joinedRoom = room.client.getRoomById(item.roomId);
                         if (joinedRoom?.membership == Membership.leave) {
                           joinedRoom = null;
                         }
@@ -598,7 +600,7 @@ class _SpaceViewState extends State<SpaceView> {
                                       )
                                     : Avatar(
                                         size: avatarSize,
-                                        mxContent: item.avatarUrl,
+                                        mxContent: avatarUrl,
                                         name: '#',
                                         backgroundColor:
                                             theme.colorScheme.surfaceContainer,
