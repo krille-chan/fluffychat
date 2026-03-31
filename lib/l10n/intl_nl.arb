@@ -2807,5 +2807,6 @@
     "startVoiceCall": "Start audio-gesprek",
     "startVideoCall": "Start video-gesprek",
     "joinVoiceCall": "Audio-gesprek opnemen",
-    "joinVideoCall": "Deelnemen aan video-gesprek"
+    "joinVideoCall": "Deelnemen aan video-gesprek",
+    "playSoundOnNotification": "Melding geluid afspelen"
 }
