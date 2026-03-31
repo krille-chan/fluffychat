@@ -35,6 +35,27 @@ jobs:
           publish_branch: gh-pages
           destination_dir: nightly
 
+
+  deploy_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .tool_versions.yaml
+          cache: true
+      - uses: moonrepo/setup-rust@v1
+      - run: flutter pub get
+      - name: Build Windows
+        run: flutter build windows --release
+      - name: Compress
+        run: Compress-Archive -Path "build\windows\x64\runner\Release\*" -DestinationPath "fluffychat-windows-${{ github.sha }}.zip"
+        shell: pwsh
+      - name: Upload Windows
+        uses: actions/upload-artifact@v7
+        with:
+          name: windows-release-x64
+          path: fluffychat-windows-*.zip
   deploy_playstore_internal:
     runs-on: ubuntu-latest
     steps:
