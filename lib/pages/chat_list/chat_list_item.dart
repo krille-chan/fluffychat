@@ -219,7 +219,15 @@ class ChatListItem extends StatelessWidget {
                         room.latestEventReceivedTime.localizedTimeShort(
                           context,
                         ),
-                        style: TextStyle(fontSize: 11),
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: room.hasNewMessages
+                              ? FontWeight.bold
+                              : null,
+                          color: hasNotifications
+                              ? theme.colorScheme.primary
+                              : null,
+                        ),
                       ),
                     ),
                 ],
