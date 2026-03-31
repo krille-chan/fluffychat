@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
@@ -359,7 +360,11 @@ class ChatListController extends State<ChatList>
 
   @override
   void initState() {
-    activeFilter = ActiveFilter.allChats;
+    activeFilter =
+        ActiveFilter.values.singleWhereOrNull(
+          (filter) => AppSettings.chatFilter.value == filter.name,
+        ) ??
+        ActiveFilter.allChats;
     _initReceiveSharingIntent();
     _activeSpaceId = widget.activeSpace;
 
@@ -857,6 +862,7 @@ class ChatListController extends State<ChatList>
     setState(() {
       activeFilter = filter;
     });
+    AppSettings.chatFilter.setItem(filter.name);
   }
 
   void setActiveClient(Client client) {
