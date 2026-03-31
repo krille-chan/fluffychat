@@ -132,9 +132,16 @@ jobs:
         run: flutter build windows --debug
       - name: Include MSVC Runtime
         run: |
-          Copy-Item -Path "C:\Windows\System32\msvcp140.dll" -Destination "build\windows\x64\runner\Debug\"
-          Copy-Item -Path "C:\Windows\System32\vcruntime140.dll" -Destination "build\windows\x64\runner\Debug\"
-          Copy-Item -Path "C:\Windows\System32\vcruntime140_1.dll" -Destination "build\windows\x64\runner\Debug\"
+          Copy-Item -Path "C:\Windows\System32\msvcp140.dll" -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue
+          Copy-Item -Path "C:\Windows\System32\vcruntime140.dll" -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue
+          Copy-Item -Path "C:\Windows\System32\vcruntime140_1.dll" -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue
+          
+          $vsInstallPath = &"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
+          $msvcD = Get-ChildItem "$vsInstallPath\VC\Redist\MSVC\*\debug_nonredist\x64\Microsoft.VC*.DebugCRT\*.dll"
+          foreach ($dll in $msvcD) { Copy-Item -Path $dll.FullName -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue }
+          
+          $ucrt = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\*\x64\ucrt\ucrtbased.dll" | Select-Object -First 1
+          if ($ucrt) { Copy-Item -Path $ucrt.FullName -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue }
         shell: pwsh
       - name: Compress
         run: Compress-Archive -Path "build\windows\x64\runner\Debug\*" -DestinationPath "fluffychat-windows-debug.zip"
