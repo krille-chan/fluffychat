@@ -3,6 +3,7 @@ name: Pull Request Workflow
 on:
   pull_request:
   merge_group:
+  workflow_dispatch:
 
 jobs:
   code_tests:
