@@ -691,11 +691,11 @@ gpF(){return"Tosaigh glao f\xedse"},
 gq_(){return"Glac p\xe1irt i nglao gutha"},
 gpZ(){return"Glac p\xe1irt i nglao f\xedse"},
 gq0(d){return"Beo"},
-gq6(){return"Play sound on notification"},
+gq6(){return"Seinn fuaim ar fh\xf3gra"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FX,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["lvbG84JDMdudNI0W341mcTletNw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["X7iZwRe27ncLNdA/nzkceKIPExE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map

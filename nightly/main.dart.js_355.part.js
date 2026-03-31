@@ -691,10 +691,10 @@ gpF(){return"Start video-gesprek"},
 gq_(){return"Audio-gesprek opnemen"},
 gpZ(){return"Deelnemen aan video-gesprek"},
 gq0(d){return"Live"},
-gq6(){return"Play sound on notification"},
+gq6(){return"Melding geluid afspelen"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gd,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gd":{"aD":[]}}'))};
-(a=>{a["OTkV4M3MtDKh/uX1V7mJiPpevCg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["f+3bH1EKzURcd7VswNslCVXQEao="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_355.part.js.map

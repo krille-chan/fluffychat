@@ -691,10 +691,10 @@ gpF(){return"Iniciar chamada de v\xeddeo"},
 gq_(){return"Unirse \xe1 chamada de voz"},
 gpZ(){return"Unirse \xe1 chamada de v\xeddeo"},
 gq0(d){return"En directo"},
-gq6(){return"Play sound on notification"},
+gq6(){return"Reproducir son coas notificaci\xf3ns"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FY,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FY":{"aD":[]}}'))};
-(a=>{a["oBSc2tC49DE9XabHmUo5Ze/hJIo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/eY0nmf1LvhH/fH+XkqazZnB+VI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_322.part.js.map
