@@ -69,7 +69,8 @@ enum AppSettings<T> {
   sendTimelineEventTimeout<int>('chat.fluffy.send_timeline_event_timeout', 15),
   lastSeenSupportBanner<int>('chat.fluffy.last_seen_support_banner', 0),
   supportBannerOptOut<bool>('chat.fluffy.support_banner_opt_out', false),
-  webNotificationSound<bool>('chat.fluffy.web_notification_sound', true);
+  webNotificationSound<bool>('chat.fluffy.web_notification_sound', true),
+  chatFilter<String>('chat.fluffy.chat_filter', 'allChats');
 
   final String key;
   final T defaultValue;
