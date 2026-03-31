@@ -115,6 +115,29 @@ jobs:
       - run: ./flutter/bin/flutter pub get
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
 
+  build_debug_winses: actions/checkout@v6
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .tool_versions.yaml
+          cache: true
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - uses: ./.github/actions/free_up_space
+      - uses: moonrepo/sdows:
+    needs: [ code_tests ]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .tool_versions.yaml
+          cache: true
+      - uses: moonrepo/setup-rust@v1
+      - run: flutter pub get
+      - run: flutter build windows
+
   build_debug_ios:
     needs: [ code_tests ]
     runs-on: macos-15

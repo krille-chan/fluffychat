@@ -106,6 +106,32 @@ jobs:
           asset_name: fluffychat.apk
           asset_content_type: application/vnd.android.package-archive
 
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .tool_versions.yaml
+          cache: true
+      - name: Install Rust
+        uses: moonrepo/setup-rust@v1
+      - run: flutter pub get
+      - name: Build Windows Release
+        run: flutter build windows --release
+      - name: Create archive
+        run: Compress-Archive -Path "build\windows\x64\runner\Release\*" -DestinationPath "fluffychat-windows.zip"
+        shell: pwsh
+      - name: Upload to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: fluffychat-windows.zip
+          asset_name: fluffychat-windows.zip
+          asset_content_type: application/zip
+
   build_linux:
     strategy:
       matrix:
