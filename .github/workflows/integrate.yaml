@@ -130,11 +130,20 @@ jobs:
       - run: flutter pub get
       - name: Build Debug Windows
         run: flutter build windows --debug
+      - name: Include MSVC Runtime
+        run: |
+          Copy-Item -Path "C:\Windows\System32\msvcp140.dll" -Destination "build\windows\x64\runner\Debug\"
+          Copy-Item -Path "C:\Windows\System32\vcruntime140.dll" -Destination "build\windows\x64\runner\Debug\"
+          Copy-Item -Path "C:\Windows\System32\vcruntime140_1.dll" -Destination "build\windows\x64\runner\Debug\"
+        shell: pwsh
+      - name: Compress
+        run: Compress-Archive -Path "build\windows\x64\runner\Debug\*" -DestinationPath "fluffychat-windows-debug.zip"
+        shell: pwsh
       - name: Upload Debug Windows
         uses: actions/upload-artifact@v7
         with:
           name: debug-windows-x64
-          path: build\windows\x64\runner\Debug\*
+          path: fluffychat-windows-debug.zip
   build_debug_ios:
     needs: [ code_tests ]
     runs-on: macos-15
