@@ -35,8 +35,6 @@ jobs:
           publish_branch: gh-pages
           destination_dir: nightly
 
-
-
   deploy_playstore_internal:
     runs-on: ubuntu-latest
     steps:
