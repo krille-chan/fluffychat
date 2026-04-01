@@ -11,7 +11,7 @@ environment:
 
 dependencies:
   archive: ^4.0.7
-  async: ^2.11.0
+  async: ^2.13.1
   badges: ^3.1.2
   blurhash_dart: ^1.2.1
   chewie: ^1.13.0
