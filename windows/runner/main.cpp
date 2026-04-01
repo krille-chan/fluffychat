@@ -14,7 +14,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   }
 #if defined(_DEBUG)
   else {
-    // 在 Debug 编译模式下，即使是直接双击运行（没有挂载 C++ 调试器），也强制打开一个控制台输出日志
     CreateAndAttachConsole();
   }
 #endif
