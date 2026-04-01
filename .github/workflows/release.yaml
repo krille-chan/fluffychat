@@ -106,7 +106,6 @@ jobs:
           asset_name: fluffychat.apk
           asset_content_type: application/vnd.android.package-archive
 
-
   build_windows:
     runs-on: windows-latest
     steps:
@@ -126,6 +125,12 @@ jobs:
           Copy-Item -Path "C:\Windows\System32\vcruntime140_1.dll" -Destination "build\windows\x64\runner\Release\"
           Copy-Item -Path "build\windows\x64\runner\Release\sqlite3.dll" -Destination "build\windows\x64\runner\Release\libsqlcipher.dll" -ErrorAction SilentlyContinue
         shell: pwsh
+      - name: Build Windows Installer (Inno Setup)
+        run: |
+          $ver = (Select-String -Path pubspec.yaml -Pattern '^version:\s*(.+)').Matches.Groups[1].Value
+          $ver = $ver -replace '\+.*', ''
+          iscc /dMyAppVersion="$ver" windows/inno_setup.iss
+        shell: pwsh
       - name: Create archive
         run: Compress-Archive -Path "build\windows\x64\runner\Release\*" -DestinationPath "fluffychat-windows.zip"
         shell: pwsh
@@ -134,7 +139,12 @@ jobs:
         with:
           name: fluffychat-windows.zip
           path: fluffychat-windows.zip
-      - name: Upload to release
+      - name: Upload Windows Installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: fluffychat-windows-setup.exe
+          path: build/fluffychat-windows-setup.exe
+      - name: Upload zip to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
@@ -143,6 +153,16 @@ jobs:
           asset_path: fluffychat-windows.zip
           asset_name: fluffychat-windows.zip
           asset_content_type: application/zip
+      - name: Upload Installer to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/fluffychat-windows-setup.exe
+          asset_name: fluffychat-windows-setup.exe
+          asset_content_type: application/vnd.microsoft.portable-executable
+          
   build_linux:
     strategy:
       matrix:
