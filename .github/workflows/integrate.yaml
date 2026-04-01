@@ -116,7 +116,6 @@ jobs:
       - run: ./flutter/bin/flutter pub get
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
 
-
   build_debug_windows:
     needs: [ code_tests ]
     runs-on: windows-latest
@@ -163,6 +162,7 @@ jobs:
         with:
           name: fluffychat-windows-debug-setup.exe
           path: build\fluffychat-windows-setup.exe
+
   build_debug_ios:
     needs: [ code_tests ]
     runs-on: macos-15
