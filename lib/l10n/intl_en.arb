@@ -2798,5 +2798,9 @@
     "joinVoiceCall": "Join voice call",
     "joinVideoCall": "Join video call",
     "live": "Live",
-    "playSoundOnNotification": "Play sound on notification"
+    "playSoundOnNotification": "Play sound on notification",
+    "addTag": "Add tag",
+    "removeTag": "Remove tag",
+    "tagName": "Tag name",
+    "createNewTag": "Create new tag"
 }
