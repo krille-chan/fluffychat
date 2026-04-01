@@ -16,6 +16,14 @@ SetupIconFile=runner\resources\app_icon.ico
 UninstallDisplayIcon={app}\fluffychat.exe
 WizardStyle=modern
 
+[Languages]
+Name: "english"; MessagesFile: "compiler:Default.isl"
+Name: "chinesesimplified"; MessagesFile: "compiler:Languages\ChineseSimplified.isl"
+Name: "chinesetraditional"; MessagesFile: "compiler:Languages\ChineseTraditional.isl"
+Name: "french"; MessagesFile: "compiler:Languages\French.isl"
+Name: "german"; MessagesFile: "compiler:Languages\German.isl"
+Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
+
 [Code]
 procedure KillOldProcess;
 var ResultCode: Integer;
