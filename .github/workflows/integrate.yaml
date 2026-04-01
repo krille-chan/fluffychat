@@ -135,6 +135,7 @@ jobs:
           Copy-Item -Path "C:\Windows\System32\msvcp140.dll" -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue
           Copy-Item -Path "C:\Windows\System32\vcruntime140.dll" -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue
           Copy-Item -Path "C:\Windows\System32\vcruntime140_1.dll" -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue
+          Copy-Item -Path "build\windows\x64\runner\Debug\sqlite3.dll" -Destination "build\windows\x64\runner\Debug\libsqlcipher.dll" -ErrorAction SilentlyContinue
           
           $vsInstallPath = &"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
           $msvcD = Get-ChildItem "$vsInstallPath\VC\Redist\MSVC\*\debug_nonredist\x64\Microsoft.VC*.DebugCRT\*.dll"

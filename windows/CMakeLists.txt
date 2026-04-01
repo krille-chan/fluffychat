@@ -84,6 +84,13 @@ if(PLUGIN_BUNDLED_LIBRARIES)
   install(FILES "${PLUGIN_BUNDLED_LIBRARIES}"
     DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
     COMPONENT Runtime)
+
+  # Workaround for matrix SDK expecting libsqlcipher.dll instead of sqlite3.dll on Windows
+  install(CODE "
+    if(EXISTS \"\${INSTALL_BUNDLE_LIB_DIR}/sqlite3.dll\")
+      execute_process(COMMAND \${CMAKE_COMMAND} -E copy \"\${INSTALL_BUNDLE_LIB_DIR}/sqlite3.dll\" \"\${INSTALL_BUNDLE_LIB_DIR}/libsqlcipher.dll\")
+    endif()
+  " COMPONENT Runtime)
 endif()
 
 # Fully re-copy the assets directory on each build to avoid having stale files
