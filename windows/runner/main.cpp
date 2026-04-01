@@ -7,14 +7,17 @@
 
 int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
                       _In_ wchar_t *command_line, _In_ int show_command) {
-  // FORCE CONSOLE FOR DEBUGGING WHITE SCREEN
-  CreateAndAttachConsole();
-  
   // Attach to console when present (e.g., 'flutter run') or create a
   // new console when running with a debugger.
-  // if (!::AttachConsole(ATTACH_PARENT_PROCESS) && ::IsDebuggerPresent()) {
-  //   CreateAndAttachConsole();
-  // }
+  if (!::AttachConsole(ATTACH_PARENT_PROCESS) && ::IsDebuggerPresent()) {
+    CreateAndAttachConsole();
+  }
+#if defined(_DEBUG)
+  else {
+    // 在 Debug 编译模式下，即使是直接双击运行（没有挂载 C++ 调试器），也强制打开一个控制台输出日志
+    CreateAndAttachConsole();
+  }
+#endif
 
   // Initialize COM, so that it is available for use in the library and/or
   // plugins.
