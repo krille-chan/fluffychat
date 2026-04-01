@@ -134,37 +134,40 @@ class ChatListViewBody extends StatelessWidget {
                         padding: const EdgeInsets.all(12.0),
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
-                        children:
-                            [
-                                  ActiveFilter.allChats,
-
-                                  if (spaces.isNotEmpty &&
-                                      !AppSettings
-                                          .displayNavigationRail
-                                          .value &&
-                                      !FluffyThemes.isColumnMode(context))
-                                    ActiveFilter.spaces,
-                                  ActiveFilter.unread,
-                                  ActiveFilter.groups,
-                                  ActiveFilter.messages,
-                                ]
-                                .map(
-                                  (filter) => Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0,
-                                    ),
-                                    child: FilterChip(
-                                      selected:
-                                          filter == controller.activeFilter,
-                                      onSelected: (_) =>
-                                          controller.setActiveFilter(filter),
-                                      label: Text(
-                                        filter.toLocalizedString(context),
-                                      ),
+                        children: [
+                          ...ActiveFilter.values
+                              .where((filter) => filter != ActiveFilter.tag)
+                              .map(
+                                (filter) => Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 4.0,
+                                  ),
+                                  child: FilterChip(
+                                    selected: filter == controller.activeFilter,
+                                    onSelected: (_) => controller
+                                        .setActiveFilter(filter, null),
+                                    label: Text(
+                                      filter.toLocalizedString(context),
                                     ),
                                   ),
-                                )
-                                .toList(),
+                                ),
+                              ),
+                          ...controller.roomTags.entries.map(
+                            (entry) => Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 4.0,
+                              ),
+                              child: FilterChip(
+                                selected: entry.key == controller.activeTag,
+                                onSelected: (_) => controller.setActiveFilter(
+                                  ActiveFilter.tag,
+                                  entry.key,
+                                ),
+                                label: Text(entry.key.replaceFirst('u.', '')),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   if (controller.isSearchMode)
