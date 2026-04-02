@@ -83,7 +83,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Разрешено ли гостям присоединяться",
+    "areGuestsAllowedToJoin": "Разрешено ли гостям присоединяться?",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -2694,5 +2694,21 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "versionWithNumber": "Версия: {version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "logs": "Архивные записи",
+    "advancedConfigs": "Расширенные Настройки",
+    "advancedConfigurations": "Расширенные конфигурации",
+    "signUpGreeting": "FluffyChat децентрализорован! Выберите сервер, где вы хотите сделать свой аккаунт и заходите!",
+    "signInGreeting": "У вас есть уже аккаунт в Matrix? Добро пожаловать! Выберите свой сервер и войдите.",
+    "appIntro": "С FluffyChat'ом вы можете говорить со своими друзьями. Это защищённый децентрализорованный [matrix] мессенджер! Узнайте больше на https://matrix.org, если вам нравится или просто зарегистрироваться.",
+    "join": "Присоединиться"
 }
