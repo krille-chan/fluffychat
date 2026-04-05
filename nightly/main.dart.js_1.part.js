@@ -694,10 +694,10 @@ gq1(){return"\u52a0\u5165\u8bed\u97f3\u901a\u8bdd"},
 gq0(){return"\u52a0\u5165\u89c6\u9891\u901a\u8bdd"},
 gq2(d){return"\u5b9e\u65f6"},
 gq8(){return"\u64ad\u653e\u901a\u77e5\u58f0\u97f3"},
-goX(){return"Add tag"},
-gqf(){return"Remove tag"},
-gqh(d){return"Tag name"},
-gpQ(){return"Create new tag"},
+goX(){return"\u6dfb\u52a0\u6807\u7b7e"},
+gqf(){return"\u5220\u9664\u6807\u7b7e"},
+gqh(d){return"\u6807\u7b7e\u540d"},
+gpQ(){return"\u521b\u5efa\u65b0\u6807\u7b7e"},
 B(d,e){return this.gb7(this).$1(e)}}
 A.Gw.prototype={
 gkM(){return"false"},
@@ -1302,5 +1302,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Be,C.aD)
 y(A.Gw,A.Be)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Be":{"aD":[]},"Gw":{"aD":[]}}'))};
-(a=>{a["UBnUl+MkvYhmmJN7AKDoz3SCCFo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3iMrZcg2nYJPhM0S/I8sOhRLUI8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
