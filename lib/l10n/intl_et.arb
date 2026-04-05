@@ -2809,5 +2809,9 @@
     "joinVoiceCall": "Liitu häälkõnega",
     "joinVideoCall": "Liitu videokõnega",
     "live": "Reaalajas",
-    "playSoundOnNotification": "Lisa teavitusele helimärguanne"
+    "playSoundOnNotification": "Lisa teavitusele helimärguanne",
+    "addTag": "Lisa silt",
+    "removeTag": "Eemalda silt",
+    "tagName": "Sildi nimi",
+    "createNewTag": "Lisa uus silt"
 }

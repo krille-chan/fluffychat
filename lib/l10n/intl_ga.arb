@@ -2815,5 +2815,9 @@
     "joinVoiceCall": "Glac páirt i nglao gutha",
     "joinVideoCall": "Glac páirt i nglao físe",
     "live": "Beo",
-    "playSoundOnNotification": "Seinn fuaim ar fhógra"
+    "playSoundOnNotification": "Seinn fuaim ar fhógra",
+    "addTag": "Cuir clib leis",
+    "removeTag": "Bain an chlib",
+    "tagName": "Ainm an chlib",
+    "createNewTag": "Cruthaigh clib nua"
 }

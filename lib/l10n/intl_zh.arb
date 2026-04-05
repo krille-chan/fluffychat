@@ -2809,5 +2809,9 @@
     "joinVoiceCall": "加入语音通话",
     "joinVideoCall": "加入视频通话",
     "live": "实时",
-    "playSoundOnNotification": "播放通知声音"
+    "playSoundOnNotification": "播放通知声音",
+    "addTag": "添加标签",
+    "removeTag": "删除标签",
+    "tagName": "标签名",
+    "createNewTag": "创建新标签"
 }
