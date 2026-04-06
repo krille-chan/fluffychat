@@ -2809,5 +2809,9 @@
     "joinVoiceCall": "Unirse á chamada de voz",
     "joinVideoCall": "Unirse á chamada de vídeo",
     "live": "En directo",
-    "playSoundOnNotification": "Reproducir son coas notificacións"
+    "playSoundOnNotification": "Reproducir son coas notificacións",
+    "addTag": "Engadir etiqueta",
+    "removeTag": "Retirar etiqueta",
+    "tagName": "Nome da etiqueta",
+    "createNewTag": "Crear nova etiqueta"
 }
