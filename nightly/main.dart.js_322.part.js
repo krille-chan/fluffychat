@@ -692,13 +692,13 @@ gq1(){return"Unirse \xe1 chamada de voz"},
 gq0(){return"Unirse \xe1 chamada de v\xeddeo"},
 gq2(d){return"En directo"},
 gq8(){return"Reproducir son coas notificaci\xf3ns"},
-goX(){return"Add tag"},
-gqf(){return"Remove tag"},
-gqh(d){return"Tag name"},
-gpQ(){return"Create new tag"},
+goX(){return"Engadir etiqueta"},
+gqf(){return"Retirar etiqueta"},
+gqh(d){return"Nome da etiqueta"},
+gpQ(){return"Crear nova etiqueta"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FY,C.aD)})()
 B.dJ(b.typeUniverse,JSON.parse('{"FY":{"aD":[]}}'))};
-(a=>{a["Oz3CW7hbxTG67GhUB75LgxD2oYM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["vepuSHuxWP/FvGsxTqzJQP3nD+I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_322.part.js.map
