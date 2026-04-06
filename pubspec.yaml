@@ -81,7 +81,7 @@ dependencies:
   webrtc_interface: ^1.5.1
 
 dev_dependencies:
-  dart_code_linter: ^3.2.1
+  dart_code_linter: ^4.0.1
   flutter_lints: ^6.0.0
   flutter_native_splash: ^2.4.7
   flutter_test:
