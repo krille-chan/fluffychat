@@ -2710,5 +2710,76 @@
     "signUpGreeting": "FluffyChat децентрализорован! Выберите сервер, где вы хотите сделать свой аккаунт и заходите!",
     "signInGreeting": "У вас есть уже аккаунт в Matrix? Добро пожаловать! Выберите свой сервер и войдите.",
     "appIntro": "С FluffyChat'ом вы можете говорить со своими друзьями. Это защищённый децентрализорованный [matrix] мессенджер! Узнайте больше на https://matrix.org, если вам нравится или просто зарегистрироваться.",
-    "join": "Присоединиться"
+    "join": "Присоединиться",
+    "countFiles": "{count} файлов",
+    "@countFiles": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "unreadChatsInApp": "{appname}: {unread} непрочитанных чатов",
+    "@unreadChatsInApp": {
+        "type": "String",
+        "placeholders": {
+            "appname": {
+                "type": "String"
+            },
+            "unread": {
+                "type": "String"
+            }
+        }
+    },
+    "thereAreCountUsersBlocked": "Сейчас {count} пользователей заблокировано.",
+    "@thereAreCountUsersBlocked": {
+        "type": "String",
+        "count": {}
+    },
+    "serverLimitReached": "Достигнут серверный лимит! Подождите {seconds} секунд...",
+    "@serverLimitReached": {
+        "type": "integer",
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "countVotes": "{count, plural, =1{Один голос} other{{count} голоса(-ов)}}",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "countReplies": "{count, plural, =1{Один ответ} other{{count} ответа(-ов)}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "chatSearchedUntil": "Чат индексируется до {time}",
+    "@chatSearchedUntil": {
+        "type": "String",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "federationBaseUrl": "Основной URL федерации",
+    "clientWellKnownInformation": "Client-Well-Known Информация:",
+    "baseUrl": "Базовый URL",
+    "identityServer": "Сервер профилей:",
+    "signIn": "Войти",
+    "searchOrEnterHomeserverAddress": "Поищите или введите адрес домашнего сервера",
+    "matrixId": "Matrix ID",
+    "setPowerLevel": "Установить уровень возможностей",
+    "makeModerator": "Назначить модератором",
+    "makeAdmin": "Назначить администратором"
 }
