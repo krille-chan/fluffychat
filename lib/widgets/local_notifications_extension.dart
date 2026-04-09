@@ -5,6 +5,7 @@ import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/event_plain_text_body.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
@@ -32,15 +33,13 @@ extension LocalNotificationsExtension on MatrixState {
     final title = event.room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)),
     );
-    final body = await event.calcLocalizedBody(
+    final body = await event.calcLocalizedBodyFixed(
       MatrixLocals(L10n.of(context)),
       withSenderNamePrefix:
           !event.room.isDirectChat ||
           event.room.lastEvent?.senderId == client.userID,
-      plaintextBody: true,
       hideReply: true,
       hideEdit: true,
-      removeMarkdown: true,
     );
 
     if (kIsWeb) {

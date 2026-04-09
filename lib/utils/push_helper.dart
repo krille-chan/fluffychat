@@ -7,6 +7,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/event_plain_text_body.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -145,13 +146,11 @@ Future<void> _tryPushHelper(
   // Calculate the body
   final body = event.type == EventTypes.Encrypted
       ? l10n.newMessageInFluffyChat
-      : await event.calcLocalizedBody(
+      : await event.calcLocalizedBodyFixed(
           matrixLocals,
-          plaintextBody: true,
           withSenderNamePrefix: false,
           hideReply: true,
           hideEdit: true,
-          removeMarkdown: true,
         );
 
   // The person object for the android message style notification
