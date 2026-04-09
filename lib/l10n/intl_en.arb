@@ -1673,6 +1673,18 @@
             }
         }
     },
+    "sentAStickerBody": "🗒️ {username} sent {stickerBody}",
+    "@sentAStickerBody": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "stickerBody": {
+                "type": "String"
+            }
+        }
+    },
     "sentAVideo": "🎥 {username} sent a video",
     "@sentAVideo": {
         "type": "String",
