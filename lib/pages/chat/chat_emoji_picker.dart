@@ -24,6 +24,7 @@ class ChatEmojiPicker extends StatelessWidget {
           : 0,
       child: controller.showEmojiPicker
           ? DefaultTabController(
+              initialIndex: controller.emojiPickerInitialTab,
               length: 2,
               child: Column(
                 children: [
