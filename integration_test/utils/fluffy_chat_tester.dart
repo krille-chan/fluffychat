@@ -1,4 +1,5 @@
 import 'package:fluffychat/main.dart' as app;
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -89,6 +90,18 @@ extension type FluffyChatTester(WidgetTester tester) {
       500.0,
       scrollable: scrollable?.toFinder() ?? find.byType(Scrollable).last,
     );
+    await tester.pumpAndSettle();
+  }
+
+  Future<void> sendKeyCombo(
+    LogicalKeyboardKey modifier,
+    LogicalKeyboardKey key,
+  ) async {
+    _print('➕ Sending ${modifier.keyLabel}+${key.keyLabel}');
+    await tester.sendKeyDownEvent(modifier);
+    await tester.sendKeyDownEvent(key);
+    await tester.sendKeyUpEvent(key);
+    await tester.sendKeyUpEvent(modifier);
     await tester.pumpAndSettle();
   }
 }

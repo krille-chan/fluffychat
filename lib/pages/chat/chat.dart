@@ -350,8 +350,7 @@ class ChatController extends State<ChatPageWithRoom>
   KeyEventResult _customEnterKeyHandling(FocusNode node, KeyEvent evt) {
     if (evt is KeyDownEvent &&
         (HardwareKeyboard.instance.isControlPressed ||
-            HardwareKeyboard.instance.isMetaPressed) &&
-        !PlatformInfos.isMobile) {
+            HardwareKeyboard.instance.isMetaPressed)) {
       if (evt.logicalKey == LogicalKeyboardKey.keyB) {
         _wrapSelectedText('**', '**');
         return KeyEventResult.handled;
