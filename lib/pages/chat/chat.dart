@@ -1135,34 +1135,41 @@ class ChatController extends State<ChatPageWithRoom>
     }
   }
 
-  void editSelectedEventAction() {
+  void _startEditingEvent(Event event, {bool clearSelection = false}) {
+    final timeline = this.timeline;
+    if (timeline == null) return;
+
     final client = currentRoomBundle.firstWhere(
-      (cl) => selectedEvents.first.senderId == cl!.userID,
+      (c) => c?.userID == event.senderId,
       orElse: () => null,
     );
-    if (client == null) {
-      return;
-    }
+    if (client == null) return;
+
     setSendingClient(client);
     setState(() {
       pendingText = sendController.text;
-      editEvent = selectedEvents.first;
-      sendController.text = editEvent!
-          .getDisplayEvent(timeline!)
+      editEvent = event;
+      sendController.text = event
+          .getDisplayEvent(timeline)
           .calcLocalizedBodyFallback(
             MatrixLocals(L10n.of(context)),
             withSenderNamePrefix: false,
             hideReply: true,
           );
-      selectedEvents.clear();
+      if (clearSelection) selectedEvents.clear();
     });
     inputFocus.requestFocus();
   }
 
+  void editSelectedEventAction() {
+    _startEditingEvent(selectedEvents.first, clearSelection: true);
+  }
+
   void _editLastSentMessage() {
+    final timeline = this.timeline;
     if (timeline == null) return;
 
-    final events = timeline!.events.filterByVisibleInGui(
+    final events = timeline.events.filterByVisibleInGui(
       threadId: activeThreadId,
     );
 
@@ -1177,25 +1184,7 @@ class ChatController extends State<ChatPageWithRoom>
 
     if (lastOwnMessage == null) return;
 
-    final client = currentRoomBundle.firstWhere(
-      (c) => c?.userID == lastOwnMessage.senderId,
-      orElse: () => null,
-    );
-    if (client == null) return;
-
-    setSendingClient(client);
-    setState(() {
-      pendingText = sendController.text;
-      editEvent = lastOwnMessage;
-      sendController.text = editEvent!
-          .getDisplayEvent(timeline!)
-          .calcLocalizedBodyFallback(
-            MatrixLocals(L10n.of(context)),
-            withSenderNamePrefix: false,
-            hideReply: true,
-          );
-    });
-    inputFocus.requestFocus();
+    _startEditingEvent(lastOwnMessage);
   }
 
   Future<void> goToNewRoomAction() async {
