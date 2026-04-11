@@ -4286,7 +4286,7 @@
 4285:\28anonymous\20namespace\29::_getStringOrCopyKey\28char\20const*\2c\20char\20const*\2c\20char\20const*\2c\20char\20const*\2c\20char\20const*\2c\20char\20const*\2c\20char16_t*\2c\20int\2c\20UErrorCode&\29
 4286:\28anonymous\20namespace\29::TriangulatingPathOp::CreateMesh\28GrMeshDrawTarget*\2c\20sk_sp<GrBuffer\20const>\2c\20int\2c\20int\29
 4287:\28anonymous\20namespace\29::TransformedMaskSubRun::~TransformedMaskSubRun\28\29
-4288:\28anonymous\20namespace\29::TransformedMaskSubRun::testingOnly_packedGlyphIDToGlyph\28sktext::gpu::StrikeCache*\29\20const
+4288:\28anonymous\20namespace\29::TransformedMaskSubRun::testingOnly_packedGlyphIDToGlyph\28sktext::gpu::StrikeCache*\2c\20skgpu::MaskFormat\29\20const
 4289:\28anonymous\20namespace\29::StaticVertexAllocator::~StaticVertexAllocator\28\29
 4290:\28anonymous\20namespace\29::SkwasmParagraphPainter::ToDlPaint\28skia::textlayout::ParagraphPainter::DecorationStyle\20const&\2c\20flutter::DlDrawStyle\29
 4291:\28anonymous\20namespace\29::SkMorphologyImageFilter::radii\28skif::Mapping\20const&\29\20const
@@ -5685,7 +5685,7 @@
 5684:sktext::gpu::StrikeCache::internalPurge\28unsigned\20long\29
 5685:sktext::gpu::StrikeCache::freeAll\28\29
 5686:sktext::gpu::SlugImpl::~SlugImpl\28\29
-5687:sktext::gpu::GlyphVector::packedGlyphIDToGlyph\28sktext::gpu::StrikeCache*\29
+5687:sktext::gpu::GlyphVector::packedGlyphIDToGlyph\28sktext::gpu::StrikeCache*\2c\20skgpu::MaskFormat\29
 5688:sktext::gpu::AtlasSubRun::~AtlasSubRun\28\29
 5689:sktext::SkStrikePromise::resetStrike\28\29
 5690:sktext::GlyphRunList::maxGlyphRunSize\28\29\20const
@@ -5712,7 +5712,7 @@
 5711:skia_private::THashTable<std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20skia_private::THashSet<std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20SkGoodHash>::Traits>::uncheckedSet\28std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>&&\29
 5712:skia_private::THashTable<std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20skia_private::THashSet<std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20SkGoodHash>::Traits>::set\28std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\29
 5713:skia_private::THashTable<std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20skia_private::THashSet<std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20SkGoodHash>::Traits>::resize\28int\29
-5714:skia_private::THashTable<sktext::gpu::Glyph*\2c\20SkPackedGlyphID\2c\20sktext::gpu::TextStrike::HashTraits>::uncheckedSet\28sktext::gpu::Glyph*&&\29
+5714:skia_private::THashTable<sktext::gpu::Glyph*\2c\20sktext::gpu::GlyphEntryKey\2c\20sktext::gpu::TextStrike::HashTraits>::uncheckedSet\28sktext::gpu::Glyph*&&\29
 5715:skia_private::THashTable<skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair\2c\20unsigned\20int\2c\20skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair>::uncheckedSet\28skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair&&\29
 5716:skia_private::THashTable<skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair\2c\20unsigned\20int\2c\20skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair>::resize\28int\29
 5717:skia_private::THashTable<skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair\2c\20unsigned\20int\2c\20skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair>::removeIfExists\28unsigned\20int\20const&\29
