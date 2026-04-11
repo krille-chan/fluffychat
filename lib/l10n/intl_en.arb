@@ -1673,7 +1673,7 @@
             }
         }
     },
-    "sentAStickerBody": "🗒️ {username} sent {stickerBody}",
+    "sentAStickerBody": "🗒️ {username} sent sticker {stickerBody}",
     "@sentAStickerBody": {
         "type": "String",
         "placeholders": {

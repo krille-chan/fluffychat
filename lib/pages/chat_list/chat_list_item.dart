@@ -310,20 +310,7 @@ class ChatListItem extends StatelessWidget {
                             key: ValueKey(
                               '${lastEvent?.eventId}_${lastEvent?.type}_${lastEvent?.redacted}',
                             ),
-                            future: lastEvent?.type == EventTypes.Sticker
-                                ? Future.value(
-                                    L10n.of(context).sentAStickerBody(
-                                      lastEvent!
-                                          .senderFromMemoryOrFallback
-                                          .calcDisplayname(
-                                            i18n: MatrixLocals(
-                                              L10n.of(context),
-                                            ),
-                                          ),
-                                      lastEvent.body,
-                                    ),
-                                  )
-                                : needLastEventSender
+                            future: needLastEventSender
                                 ? lastEvent.calcLocalizedBody(
                                     MatrixLocals(L10n.of(context)),
                                     hideReply: true,
@@ -336,18 +323,7 @@ class ChatListItem extends StatelessWidget {
                                             room.lastEvent?.senderId),
                                   )
                                 : null,
-                            initialData: lastEvent?.type == EventTypes.Sticker
-                                ? L10n.of(context).sentAStickerBody(
-                                    lastEvent!
-                                        .senderFromMemoryOrFallback
-                                        .calcDisplayname(
-                                          i18n: MatrixLocals(
-                                            L10n.of(context),
-                                          ),
-                                        ),
-                                    lastEvent.body,
-                                  )
-                                : lastEvent?.calcLocalizedBodyFallback(
+                            initialData: lastEvent?.calcLocalizedBodyFallback(
                               MatrixLocals(L10n.of(context)),
                               hideReply: true,
                               hideEdit: true,
