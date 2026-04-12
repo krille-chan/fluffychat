@@ -1374,8 +1374,13 @@ class ChatController extends State<ChatPageWithRoom>
     if (!mounted) return;
 
     final voipPlugin = Matrix.of(context).voipPlugin;
+    final directChatMatrixId = room.directChatMatrixID;
     try {
-      await voipPlugin!.voip.inviteToCall(room, callType);
+      await voipPlugin!.voip.inviteToCall(
+        room,
+        callType,
+        userId: directChatMatrixId,
+      );
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(

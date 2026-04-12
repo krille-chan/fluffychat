@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:just_audio/just_audio.dart';
 
 class UserMediaManager {
@@ -12,17 +14,25 @@ class UserMediaManager {
   AudioPlayer? _assetsAudioPlayer;
 
   Future<void> startRingingTone() async {
+    await stopRingingTone();
     const path = 'assets/sounds/phone.ogg';
-    final player = _assetsAudioPlayer = AudioPlayer();
-    player.setAsset(path);
-    player.play();
-
-    return;
+    final player = AudioPlayer();
+    _assetsAudioPlayer = player;
+    try {
+      await player.setAsset(path);
+      await player.setLoopMode(LoopMode.one);
+      unawaited(player.play());
+    } catch (_) {
+      // Ringtone failures are non-fatal; ignore silently
+    }
   }
 
   Future<void> stopRingingTone() async {
-    await _assetsAudioPlayer?.stop();
+    final player = _assetsAudioPlayer;
     _assetsAudioPlayer = null;
-    return;
+    try {
+      await player?.stop();
+      await player?.dispose();
+    } catch (_) {}
   }
 }

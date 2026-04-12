@@ -37,7 +37,7 @@ enum AppSettings<T> {
   sendOnEnter<bool>('chat.fluffy.send_on_enter', false),
   showPresences<bool>('chat.fluffy.show_presences', true),
   displayNavigationRail<bool>('chat.fluffy.display_navigation_rail', false),
-  experimentalVoip<bool>('chat.fluffy.experimental_voip', false),
+  experimentalVoip<bool>('chat.fluffy.experimental_voip', true),
   jitsiFeature<bool>('chat.fluffy.enable_jitsi', false),
   jitsiDomain<String>('chat.fluffy.jitsi_domain', 'meet.jit.si'),
   shareKeysWith<String>('chat.fluffy.share_keys_with_2', 'all'),

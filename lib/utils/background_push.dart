@@ -23,7 +23,7 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
-//<GOOGLE_SERVICES>import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/main.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
@@ -45,8 +45,7 @@ import 'platform_infos.dart';
 
 class BackgroundPush {
   static BackgroundPush? _instance;
-  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
+  final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   Client client;
   MatrixState? matrix;
   String? _fcmToken;
@@ -56,22 +55,20 @@ class BackgroundPush {
   Future<void> loadLocale() async {
     final context = matrix?.context;
     // inspired by _lookupL10n in .dart_tool/flutter_gen/gen_l10n/l10n.dart
-    l10n ??=
-        (context != null ? L10n.of(context) : null) ??
-        (await L10n.delegate.load(PlatformDispatcher.instance.locale));
+    l10n ??= (context != null ? L10n.of(context) : null) ?? (await L10n.delegate.load(PlatformDispatcher.instance.locale));
   }
 
   final pendingTests = <String, Completer<void>>{};
   bool firebaseEnabled = false;
 
-  //<GOOGLE_SERVICES>final firebase = FcmSharedIsolate();
+  final firebase = FcmSharedIsolate();
 
   DateTime? lastReceivedPush;
 
   bool upAction = false;
 
   Future<void> _init() async {
-    //<GOOGLE_SERVICES>firebaseEnabled = true;
+    firebaseEnabled = true;
     try {
       mainIsolateReceivePort?.listen((message) async {
         try {
@@ -88,10 +85,7 @@ class BackgroundPush {
       if (PlatformInfos.isAndroid) {
         final port = ReceivePort();
         IsolateNameServer.removePortNameMapping('background_tab_port');
-        IsolateNameServer.registerPortWithName(
-          port.sendPort,
-          'background_tab_port',
-        );
+        IsolateNameServer.registerPortWithName(port.sendPort, 'background_tab_port');
         port.listen((message) async {
           try {
             await notificationTap(
@@ -110,26 +104,20 @@ class BackgroundPush {
           android: AndroidInitializationSettings('notifications_icon'),
           iOS: DarwinInitializationSettings(),
         ),
-        onDidReceiveNotificationResponse: (response) => notificationTap(
-          response,
-          client: client,
-          router: FluffyChatApp.router,
-          l10n: l10n,
-        ),
+        onDidReceiveNotificationResponse: (response) =>
+            notificationTap(response, client: client, router: FluffyChatApp.router, l10n: l10n),
         onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
       );
       Logs().v('Flutter Local Notifications initialized');
-      //<GOOGLE_SERVICES>firebase.setListeners(
-      //<GOOGLE_SERVICES>  onMessage: (message) => pushHelper(
-      //<GOOGLE_SERVICES>    PushNotification.fromJson(
-      //<GOOGLE_SERVICES>       message.tryGetMap<String, Object>('data') ?? message,
-      //<GOOGLE_SERVICES>    ),
-      //<GOOGLE_SERVICES>    client: client,
-      //<GOOGLE_SERVICES>    l10n: l10n,
-      //<GOOGLE_SERVICES>    activeRoomId: matrix?.activeRoomId,
-      //<GOOGLE_SERVICES>    flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
-      //<GOOGLE_SERVICES>  ),
-      //<GOOGLE_SERVICES>);
+      firebase.setListeners(
+        onMessage: (message) => pushHelper(
+          PushNotification.fromJson(message.tryGetMap<String, Object>('data') ?? message),
+          client: client,
+          l10n: l10n,
+          activeRoomId: matrix?.activeRoomId,
+          flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
+        ),
+      );
       if (Platform.isAndroid) {
         await UnifiedPush.initialize(
           onNewEndpoint: _newUpEndpoint,
@@ -151,10 +139,7 @@ class BackgroundPush {
     return _instance ??= BackgroundPush._(client);
   }
 
-  factory BackgroundPush(
-    MatrixState matrix, {
-    final void Function(String errorMsg, {Uri? link})? onFcmError,
-  }) {
+  factory BackgroundPush(MatrixState matrix, {final void Function(String errorMsg, {Uri? link})? onFcmError}) {
     final instance = BackgroundPush.clientOnly(matrix.client);
     instance.matrix = matrix;
     // ignore: prefer_initializing_formals
@@ -168,9 +153,7 @@ class BackgroundPush {
 
     // Workaround for app icon badge not updating
     if (Platform.isIOS) {
-      final unreadCount = client.rooms
-          .where((room) => room.isUnreadOrInvited && room.id != roomId)
-          .length;
+      final unreadCount = client.rooms.where((room) => room.isUnreadOrInvited && room.id != roomId).length;
       if (unreadCount == 0) {
         FlutterNewBadger.removeBadge();
       } else {
@@ -187,13 +170,11 @@ class BackgroundPush {
     bool useDeviceSpecificAppId = false,
   }) async {
     if (PlatformInfos.isIOS) {
-      //<GOOGLE_SERVICES>await firebase.requestPermission();
+      await firebase.requestPermission();
     }
     if (PlatformInfos.isAndroid) {
       _flutterLocalNotificationsPlugin
-          .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin
-          >()
+          .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
           ?.requestNotificationsPermission();
     }
     final clientName = PlatformInfos.clientName;
@@ -226,11 +207,8 @@ class BackgroundPush {
           currentPushers.first.deviceDisplayName == client.deviceName &&
           currentPushers.first.lang == 'en' &&
           currentPushers.first.data.url.toString() == gatewayUrl &&
-          currentPushers.first.data.format ==
-              AppSettings.pushNotificationsPusherFormat.value &&
-          mapEquals(currentPushers.single.data.additionalProperties, {
-            'data_message': pusherDataMessageFormat,
-          })) {
+          currentPushers.first.data.format == AppSettings.pushNotificationsPusherFormat.value &&
+          mapEquals(currentPushers.single.data.additionalProperties, {'data_message': pusherDataMessageFormat})) {
         Logs().i('[Push] Pusher already set');
       } else {
         Logs().i('Need to set new pusher');
@@ -243,10 +221,7 @@ class BackgroundPush {
       Logs().w('[Push] Missing required push credentials');
     }
     for (final pusher in pushers) {
-      if ((token != null &&
-              pusher.pushkey != token &&
-              deviceAppId == pusher.appId) ||
-          oldTokens.contains(pusher.pushkey)) {
+      if ((token != null && pusher.pushkey != token && deviceAppId == pusher.appId) || oldTokens.contains(pusher.pushkey)) {
         try {
           await client.deletePusher(pusher);
           Logs().i('[Push] Removed legacy pusher for this device');
@@ -289,9 +264,7 @@ class BackgroundPush {
 
   Future<void> setupPush() async {
     Logs().d('SetupPush');
-    if (client.onLoginStateChanged.value != LoginState.loggedIn ||
-        !PlatformInfos.isMobile ||
-        matrix == null) {
+    if (client.onLoginStateChanged.value != LoginState.loggedIn || !PlatformInfos.isMobile || matrix == null) {
       return;
     }
     // Do not setup unifiedpush if this has been initialized by
@@ -299,31 +272,21 @@ class BackgroundPush {
     if (upAction) {
       return;
     }
-    if (!PlatformInfos.isIOS &&
-        (await UnifiedPush.getDistributors()).isNotEmpty) {
+    if (!PlatformInfos.isIOS && (await UnifiedPush.getDistributors()).isNotEmpty) {
       await setupUp();
     } else {
       await setupFirebase();
     }
 
     // ignore: unawaited_futures
-    _flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails().then((
-      details,
-    ) {
-      if (details == null ||
-          !details.didNotificationLaunchApp ||
-          _wentToRoomOnStartup) {
+    _flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails().then((details) {
+      if (details == null || !details.didNotificationLaunchApp || _wentToRoomOnStartup) {
         return;
       }
       _wentToRoomOnStartup = true;
       final response = details.notificationResponse;
       if (response != null) {
-        notificationTap(
-          response,
-          client: client,
-          router: FluffyChatApp.router,
-          l10n: l10n,
-        );
+        notificationTap(response, client: client, router: FluffyChatApp.router, l10n: l10n);
       }
     });
   }
@@ -338,10 +301,7 @@ class BackgroundPush {
     await loadLocale();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (PlatformInfos.isAndroid) {
-        onFcmError?.call(
-          l10n!.noGoogleServicesWarning,
-          link: Uri.parse(AppConfig.enablePushTutorial),
-        );
+        onFcmError?.call(l10n!.noGoogleServicesWarning, link: Uri.parse(AppConfig.enablePushTutorial));
         return;
       }
       onFcmError?.call(l10n!.oopsPushError);
@@ -352,10 +312,11 @@ class BackgroundPush {
     Logs().v('Setup firebase');
     if (_fcmToken?.isEmpty ?? true) {
       if (PlatformInfos.isIOS) {
-        //<GOOGLE_SERVICES>await firebase.requestPermission();
+        await firebase.requestPermission();
       }
       try {
-        //<GOOGLE_SERVICES>_fcmToken = await firebase.getToken();
+        _fcmToken = await firebase.getToken();
+        Logs().v(_fcmToken ?? '');
         if (_fcmToken == null) throw ('PushToken is null');
       } catch (e, s) {
         Logs().w('[Push] cannot get token', e, e is String ? null : s);
@@ -363,10 +324,7 @@ class BackgroundPush {
         return;
       }
     }
-    await setupPusher(
-      gatewayUrl: AppSettings.pushNotificationsGatewayUrl.value,
-      token: _fcmToken,
-    );
+    await setupPusher(gatewayUrl: AppSettings.pushNotificationsGatewayUrl.value, token: _fcmToken);
   }
 
   Future<void> setupUp() async {
@@ -386,39 +344,23 @@ class BackgroundPush {
       await _upUnregistered(i);
       return;
     }
-    var endpoint =
-        'https://matrix.gateway.unifiedpush.org/_matrix/push/v1/notify';
+    var endpoint = 'https://matrix.gateway.unifiedpush.org/_matrix/push/v1/notify';
     try {
-      final url = Uri.parse(newEndpoint)
-          .replace(path: '/_matrix/push/v1/notify', query: '')
-          .toString()
-          .split('?')
-          .first;
-      final res = json.decode(
-        utf8.decode((await http.get(Uri.parse(url))).bodyBytes),
-      );
-      if (res['gateway'] == 'matrix' ||
-          (res['unifiedpush'] is Map &&
-              res['unifiedpush']['gateway'] == 'matrix')) {
+      final url = Uri.parse(newEndpoint).replace(path: '/_matrix/push/v1/notify', query: '').toString().split('?').first;
+      final res = json.decode(utf8.decode((await http.get(Uri.parse(url))).bodyBytes));
+      if (res['gateway'] == 'matrix' || (res['unifiedpush'] is Map && res['unifiedpush']['gateway'] == 'matrix')) {
         endpoint = url;
       }
     } catch (e) {
-      Logs().i(
-        '[Push] No self-hosted unified push gateway present: $newEndpoint',
-      );
+      Logs().i('[Push] No self-hosted unified push gateway present: $newEndpoint');
     }
     Logs().i('[Push] UnifiedPush using endpoint $endpoint');
     final oldTokens = <String?>{};
     try {
-      //<GOOGLE_SERVICES>final fcmToken = await firebase.getToken();
-      //<GOOGLE_SERVICES>oldTokens.add(fcmToken);
+      final fcmToken = await firebase.getToken();
+      oldTokens.add(fcmToken);
     } catch (_) {}
-    await setupPusher(
-      gatewayUrl: endpoint,
-      token: newEndpoint,
-      oldTokens: oldTokens,
-      useDeviceSpecificAppId: true,
-    );
+    await setupPusher(gatewayUrl: endpoint, token: newEndpoint, oldTokens: oldTokens, useDeviceSpecificAppId: true);
     await AppSettings.unifiedPushEndpoint.setItem(newEndpoint);
     await AppSettings.unifiedPushRegistered.setItem(true);
   }
@@ -427,9 +369,7 @@ class BackgroundPush {
     upAction = true;
     Logs().i('[Push] Removing UnifiedPush endpoint...');
     final oldEndpoint = AppSettings.unifiedPushEndpoint.value;
-    await AppSettings.unifiedPushEndpoint.setItem(
-      AppSettings.unifiedPushEndpoint.defaultValue,
-    );
+    await AppSettings.unifiedPushEndpoint.setItem(AppSettings.unifiedPushEndpoint.defaultValue);
     await AppSettings.unifiedPushRegistered.setItem(false);
     if (oldEndpoint.isNotEmpty) {
       // remove the old pusher
@@ -441,9 +381,7 @@ class BackgroundPush {
     Logs().wtf('Push Notification from UP received', pushMessage);
     final message = pushMessage.content;
     upAction = true;
-    final data = Map<String, dynamic>.from(
-      json.decode(utf8.decode(message))['notification'],
-    );
+    final data = Map<String, dynamic>.from(json.decode(utf8.decode(message))['notification']);
     // UP may strip the devices list
     data['devices'] ??= [];
     await pushHelper(
@@ -452,8 +390,7 @@ class BackgroundPush {
       l10n: l10n,
       activeRoomId: matrix?.activeRoomId,
       flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
-      useNotificationActions:
-          false, // Buggy with UP: https://codeberg.org/UnifiedPush/flutter-connector/issues/34
+      useNotificationActions: false, // Buggy with UP: https://codeberg.org/UnifiedPush/flutter-connector/issues/34
     );
   }
 }

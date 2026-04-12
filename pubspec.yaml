@@ -22,6 +22,7 @@ dependencies:
   device_info_plus: ^12.3.0
   dynamic_color: ^1.8.1
   emoji_picker_flutter: ^4.4.0
+  fcm_shared_isolate: ^1.0.2
   file_picker: ^10.3.10
   file_selector: ^1.1.0
   flutter:
@@ -52,6 +53,7 @@ dependencies:
   matrix: ^6.2.0
   mime: ^2.0.0
   native_imaging: ^0.4.0
+  olm: ^3.1.0
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^9.0.1
   particles_network: ^1.9.3

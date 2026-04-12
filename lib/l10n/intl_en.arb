@@ -5,7 +5,18 @@
     "@alwaysUse24HourFormat": {
         "description": "Set to true to always display time of day in 24 hour format."
     },
+    "hangUp": "Hang up",
+    "answer": "Answer",
+    "speakerphoneOff": "Speakerphone off",
+    "speakerphoneOn": "Speakerphone on",
+    "heldTheCall": "Held the call",
+    "youHeldTheCall": "You held the call",
     "repeatPassword": "Repeat password",
+    "callingTitle": "Calling...",
+    "incomingCall": "Incoming call",
+    "connecting": "Connecting...",
+    "callEnded": "Call ended",
+    "missedCall": "Missed call",
     "notAnImage": "Not an image file.",
     "ignoreUser": "Ignore user",
     "remove": "Remove",
