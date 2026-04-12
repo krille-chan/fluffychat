@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/code_highlight_theme.dart';
 import 'package:fluffychat/utils/event_checkbox_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -509,11 +510,15 @@ class HtmlMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final element = parser.parse(html).body ?? dom.Element.html('');
+    final configuredMaxLines = AppSettings.messagePreviewMaxLines.value;
+    final maxLines = !limitHeight || configuredMaxLines <= 0
+        ? null
+        : configuredMaxLines;
     return Text.rich(
       _renderHtml(element, context),
       style: TextStyle(fontSize: fontSize, color: textColor),
-      maxLines: limitHeight ? 64 : null,
-      overflow: TextOverflow.fade,
+      maxLines: maxLines,
+      overflow: maxLines == null ? TextOverflow.visible : TextOverflow.fade,
       selectionColor: textColor.withAlpha(128),
     );
   }
