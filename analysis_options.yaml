@@ -69,7 +69,7 @@ dart_code_linter:
     - prefer-media-query-direct-access
     - avoid-wrapping-in-padding
     - prefer-correct-edge-insets-constructor
-    - avoid-returning-widgets
+    # - avoid-returning-widgets
     # TODO:
     # - prefer-single-widget-per-file:
     #    ignore-private-widgets: true

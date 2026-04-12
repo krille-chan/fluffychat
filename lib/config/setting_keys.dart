@@ -18,14 +18,8 @@ enum AppSettings<T> {
   showNoGoogle<bool>('chat.fluffy.show_no_google', false),
   unifiedPushRegistered<bool>('chat.fluffy.unifiedpush.registered', false),
   unifiedPushEndpoint<String>('chat.fluffy.unifiedpush.endpoint', ''),
-  pushNotificationsGatewayUrl<String>(
-    'pushNotificationsGatewayUrl',
-    'https://push.fluffychat.im/_matrix/push/v1/notify',
-  ),
-  pushNotificationsPusherFormat<String>(
-    'pushNotificationsPusherFormat',
-    'event_id_only',
-  ),
+  pushNotificationsGatewayUrl<String>('pushNotificationsGatewayUrl', 'https://push.fluffychat.im/_matrix/push/v1/notify'),
+  pushNotificationsPusherFormat<String>('pushNotificationsPusherFormat', 'event_id_only'),
   renderHtml<bool>('chat.fluffy.renderHtml', true),
   fontSizeFactor<double>('chat.fluffy.font_size_factor', 1.0),
   hideRedactedEvents<bool>('chat.fluffy.hideRedactedEvents', false),
@@ -41,14 +35,11 @@ enum AppSettings<T> {
   jitsiFeature<bool>('chat.fluffy.enable_jitsi', false),
   jitsiDomain<String>('chat.fluffy.jitsi_domain', 'meet.jit.si'),
   shareKeysWith<String>('chat.fluffy.share_keys_with_2', 'all'),
-  noEncryptionWarningShown<bool>(
-    'chat.fluffy.no_encryption_warning_shown',
-    false,
-  ),
+  noEncryptionWarningShown<bool>('chat.fluffy.no_encryption_warning_shown', false),
   displayChatDetailsColumn('chat.fluffy.display_chat_details_column', false),
   // AppConfig-mirrored settings
   applicationName<String>('chat.fluffy.application_name', 'FluffyChat'),
-  defaultHomeserver<String>('chat.fluffy.default_homeserver', 'matrix.org'),
+  defaultHomeserver<String>('chat.fluffy.default_homeserver', 'm.ssf.gov.sy'),
   // colorSchemeSeed stored as ARGB int
   colorSchemeSeedInt<int>('chat.fluffy.color_scheme_seed', 0xFF5625BA),
   emojiSuggestionLocale<String>('emoji_suggestion_locale', ''),
@@ -57,14 +48,8 @@ enum AppSettings<T> {
   presetHomeserver<String>('chat.fluffy.preset_homeserver', ''),
   welcomeText<String>('chat.fluffy.welcome_text', ''),
   website<String>('chat.fluffy.website_url', 'https://fluffychat.im'),
-  logoUrl<String>(
-    'chat.fluffy.logo_url',
-    'https://fluffychat.im/assets/favicon.png',
-  ),
-  privacyPolicy<String>(
-    'chat.fluffy.privacy_policy_url',
-    'https://fluffychat.im/en/privacy',
-  ),
+  logoUrl<String>('chat.fluffy.logo_url', 'https://fluffychat.im/assets/favicon.png'),
+  privacyPolicy<String>('chat.fluffy.privacy_policy_url', 'https://fluffychat.im/en/privacy'),
   tos<String>('chat.fluffy.tos_url', 'https://fluffychat.im/en/tos'),
   sendTimelineEventTimeout<int>('chat.fluffy.send_timeline_event_timeout', 15),
   lastSeenSupportBanner<int>('chat.fluffy.last_seen_support_banner', 0),
@@ -91,9 +76,7 @@ enum AppSettings<T> {
     final store = AppSettings._store = await SharedPreferences.getInstance();
 
     // Migrate wrong datatype for fontSizeFactor
-    final fontSizeFactorString = Result(
-      () => store.getString(AppSettings.fontSizeFactor.key),
-    ).asValue?.value;
+    final fontSizeFactorString = Result(() => store.getString(AppSettings.fontSizeFactor.key)).asValue?.value;
     if (fontSizeFactorString != null) {
       Logs().i('Migrate wrong datatype for fontSizeFactor!');
       await store.remove(AppSettings.fontSizeFactor.key);
@@ -108,11 +91,8 @@ enum AppSettings<T> {
     }
     if (kIsWeb && loadWebConfigFile) {
       try {
-        final configJsonString = utf8.decode(
-          (await http.get(Uri.parse('config.json'))).bodyBytes,
-        );
-        final configJson =
-            json.decode(configJsonString) as Map<String, Object?>;
+        final configJsonString = utf8.decode((await http.get(Uri.parse('config.json'))).bodyBytes);
+        final configJson = json.decode(configJsonString) as Map<String, Object?>;
         for (final setting in AppSettings.values) {
           if (store.get(setting.key) != null) continue;
           final configValue = configJson[setting.name];
@@ -146,11 +126,7 @@ extension AppSettingsBoolExtension on AppSettings<bool> {
     final value = Result(() => AppSettings.store.getBool(key));
     final error = value.asError;
     if (error != null) {
-      Logs().e(
-        'Unable to fetch $key from storage. Removing entry...',
-        error.error,
-        error.stackTrace,
-      );
+      Logs().e('Unable to fetch $key from storage. Removing entry...', error.error, error.stackTrace);
     }
     return value.asValue?.value ?? defaultValue;
   }
@@ -163,11 +139,7 @@ extension AppSettingsStringExtension on AppSettings<String> {
     final value = Result(() => AppSettings.store.getString(key));
     final error = value.asError;
     if (error != null) {
-      Logs().e(
-        'Unable to fetch $key from storage. Removing entry...',
-        error.error,
-        error.stackTrace,
-      );
+      Logs().e('Unable to fetch $key from storage. Removing entry...', error.error, error.stackTrace);
     }
     return value.asValue?.value ?? defaultValue;
   }
@@ -180,11 +152,7 @@ extension AppSettingsIntExtension on AppSettings<int> {
     final value = Result(() => AppSettings.store.getInt(key));
     final error = value.asError;
     if (error != null) {
-      Logs().e(
-        'Unable to fetch $key from storage. Removing entry...',
-        error.error,
-        error.stackTrace,
-      );
+      Logs().e('Unable to fetch $key from storage. Removing entry...', error.error, error.stackTrace);
     }
     return value.asValue?.value ?? defaultValue;
   }
@@ -197,11 +165,7 @@ extension AppSettingsDoubleExtension on AppSettings<double> {
     final value = Result(() => AppSettings.store.getDouble(key));
     final error = value.asError;
     if (error != null) {
-      Logs().e(
-        'Unable to fetch $key from storage. Removing entry...',
-        error.error,
-        error.stackTrace,
-      );
+      Logs().e('Unable to fetch $key from storage. Removing entry...', error.error, error.stackTrace);
     }
     return value.asValue?.value ?? defaultValue;
   }
