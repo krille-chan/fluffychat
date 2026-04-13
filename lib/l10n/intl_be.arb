@@ -1307,7 +1307,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "presencesToggle": "Паказваць паведасленні статусаў іншых карыстальнікаў",
+    "presencesToggle": "Паказваць паведамленні статусаў іншых карыстальнікаў",
     "@presencesToggle": {
         "type": "String",
         "placeholders": {}
@@ -1706,7 +1706,7 @@
     "notificationRuleInviteForMe": "Запрашэнне мяне",
     "notificationRuleInviteForMeDescription": "Паведамляе карыстальніка, калі яго запрашаюць у пакой.",
     "allDevices": "Усе прылады",
-    "crossVerifiedDevicesIfEnabled": "З перакрыжаваным спраўджваннем прылад, калі ўключана",
+    "crossVerifiedDevicesIfEnabled": "Перакрыжавана спраўджаныя прылады, калі ўключаны",
     "crossVerifiedDevices": "Перакрыжавана спраўджаныя прылады",
     "verifiedDevicesOnly": "Толькі спраўджаныя прылады",
     "takeAPhoto": "Зрабіць здымак",
