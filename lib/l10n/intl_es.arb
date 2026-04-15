@@ -1709,7 +1709,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "oopsPushError": "¡UPS¡ Desafortunadamente, se produjo un error al configurar las notificaciones push.",
+    "oopsPushError": "¡Ups! Desafortunadamente, se produjo un error al configurar las notificaciones push.",
     "@oopsPushError": {
         "type": "String",
         "placeholders": {}
@@ -1867,7 +1867,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnterYourPin": "Por favor ingrese su PIN",
+    "pleaseEnterYourPin": "Por favor ingrese su pin",
     "@pleaseEnterYourPin": {
         "type": "String",
         "placeholders": {}
@@ -2576,7 +2576,7 @@
     "contactServerAdmin": "Contactar con el administrador del servidor",
     "contactServerSecurity": "Contactar con seguridad del servidor",
     "supportPage": "Página de atención",
-    "invalidUrl": "URL incorrecta",
+    "invalidUrl": "Url incorrecto",
     "addLink": "Añadir enlace",
     "unableToJoinChat": "No se puede entrar al chat. Puede que la otra parte ya haya cerrado la conversación.",
     "waitingForServer": "Esperando al servidor...",
@@ -2718,7 +2718,7 @@
     "addAnswerOption": "Añadir respuesta",
     "allowMultipleAnswers": "Permitir varias respuestas",
     "pollHasBeenEnded": "La encuesta ha terminado",
-    "countVotes": "{count, plural, =1{One vote} other{{count} votes}}",
+    "countVotes": "{count, plural, =1{Un voto} other{{count} votos}}",
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -2786,5 +2786,40 @@
     "theProcessWasCanceled": "El proceso se ha cancelado.",
     "join": "Unirse",
     "searchOrEnterHomeserverAddress": "Buscar o pon la dirección de tu servidor local",
-    "matrixId": "Matrix ID"
+    "matrixId": "Matrix ID",
+    "setPowerLevel": "Establecer nivel de poder",
+    "makeModerator": "Convertir en Moderador",
+    "makeAdmin": "Convertir en administrador",
+    "removeModeratorRights": "Remover derechos de moderador",
+    "removeAdminRights": "Remover derechos de administrador",
+    "powerLevel": "Nivel de Poder",
+    "setPowerLevelDescription": "El nivel de poder define el nivel de acciones de un miembro, usualmente esta en el rango entre 0 a 100.",
+    "owner": "Dueño",
+    "mute": "Silenciar",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Crear nuevo chat",
+    "reset": "Resetear",
+    "supportFluffyChat": "Apoyar FluffyChat",
+    "support": "Apoyar",
+    "fluffyChatSupportBannerMessage": "FluffyChat necesita TU ayuda!\n❤️❤️❤️\nFluffyChat siempre sera gratis, pero el desarrollo y mantenimiento cuesta dinero.\nEl futuro del proyecto depende del apoyo de personas como tu.",
+    "skipSupportingFluffyChat": "Omitir apoyo a FluffyChat",
+    "iDoNotWantToSupport": "No quiero apoyar",
+    "iAlreadySupportFluffyChat": "Ya apoyo FluffyChat",
+    "setLowPriority": "Colocar baja prioridad",
+    "unsetLowPriority": "Desactivar baja prioridad",
+    "removeCallFromChat": "Remover llamadas del chat",
+    "removeCallFromChatDescription": "Deseas remover la llamada del chat para todos los miembros?",
+    "removeCallForEveryone": "Remover llamadas para todos",
+    "startVoiceCall": "Iniciar llamada",
+    "startVideoCall": "Iniciar videollamada",
+    "joinVoiceCall": "Ingresar a llamada",
+    "joinVideoCall": "Ingresar a videollamada",
+    "live": "En Vivo",
+    "playSoundOnNotification": "Sonido en notificación",
+    "addTag": "Agregar etiqueta",
+    "removeTag": "Remover etiqueta",
+    "tagName": "Nombre de etiqueta",
+    "createNewTag": "Crear nueva etiqueta"
 }
