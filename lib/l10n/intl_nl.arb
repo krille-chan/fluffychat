@@ -2128,7 +2128,7 @@
     "replace": "Vervang",
     "report": "Rapporteer",
     "reportErrorDescription": "😭 Oh nee. Er is iets misgegaan. Probeer het later nog eens. Als je wilt, kun je de bug rapporteren aan de ontwikkelaars.",
-    "sendTypingNotifications": "Typemeldingen verzenden",
+    "sendTypingNotifications": "Toon 'aan het typen'-meldingen",
     "chatPermissions": "Chatrechten",
     "chatDescription": "Onderwerp",
     "chatDescriptionHasBeenChanged": "Onderwerp gewijzigd",
@@ -2808,5 +2808,9 @@
     "startVideoCall": "Start video-gesprek",
     "joinVoiceCall": "Audio-gesprek opnemen",
     "joinVideoCall": "Deelnemen aan video-gesprek",
-    "playSoundOnNotification": "Melding geluid afspelen"
+    "playSoundOnNotification": "Meldingsgeluid afspelen",
+    "addTag": "Tag toevoegen",
+    "removeTag": "Tag verwijderen",
+    "tagName": "Tagnaam",
+    "createNewTag": "Nieuwe tag maken"
 }
