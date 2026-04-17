@@ -44,7 +44,7 @@ ghk(){return"Weet je zeker dat je wilt uitloggen?"},
 ghl(){return"Voer je beveiligde opslag wachtwoordzin of herstelsleutel in om de andere persoon te kunnen ondertekenen."},
 hm(d){return"Accepteer je dit verificatieverzoek van "+d+"?"},
 hn(d,e,f){return"De homeserver ondersteunt de login types:\n"+d+"\nMaar deze app ondersteunt alleen:\n"+e},
-gke(){return"Typemeldingen verzenden"},
+gke(){return"Toon 'aan het typen'-meldingen"},
 gkD(){return"Veeg van rechts naar links om te reageren"},
 gfU(){return"Verstuur met enter"},
 gms(){return"Geen chats gevonden..."},
@@ -691,14 +691,14 @@ gpH(){return"Start video-gesprek"},
 gq2(){return"Audio-gesprek opnemen"},
 gq1(){return"Deelnemen aan video-gesprek"},
 gq3(d){return"Live"},
-gq9(){return"Melding geluid afspelen"},
-goX(){return"Add tag"},
-gqg(){return"Remove tag"},
-gqi(d){return"Tag name"},
-gpR(){return"Create new tag"},
+gq9(){return"Meldingsgeluid afspelen"},
+goX(){return"Tag toevoegen"},
+gqg(){return"Tag verwijderen"},
+gqi(d){return"Tagnaam"},
+gpR(){return"Nieuwe tag maken"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gf,C.aD)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Gf":{"aD":[]}}'))};
-(a=>{a["cc4VxfOEl3tFkYNz1fvITYEGjpY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ST3fc/Ey6t9ySBb9zbQRfxVIauY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_350.part.js.map
