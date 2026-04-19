@@ -385,17 +385,20 @@ class Message extends StatelessWidget {
                                       ? const SizedBox(height: 12)
                                       : Row(
                                           children: [
-                                            if (sender.powerLevel >= 50)
+                                            if (sender.powerLevel.role !=
+                                                PowerLevelRole.user)
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                   right: 2.0,
                                                 ),
                                                 child: Icon(
-                                                  sender.powerLevel >= 100
+                                                  sender.powerLevel.role ==
+                                                          PowerLevelRole
+                                                              .moderator
                                                       ? Icons
-                                                            .admin_panel_settings
+                                                            .add_moderator_outlined
                                                       : Icons
-                                                            .add_moderator_outlined,
+                                                            .admin_panel_settings,
                                                   size: 14,
                                                   color: theme
                                                       .colorScheme
