@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cKD(d){return new A.Bf(B.dd(d))},
-cKE(){return new A.Gh(B.dd("pt_BR"))},
-cKF(){return new A.Gi(B.dd("pt_PT"))},
-Bf:function Bf(d){this.a=d},
-Gh:function Gh(d){this.a=d},
-Gi:function Gi(d){this.a=d}},C
+cKq(d){return new A.Bg(B.dd(d))},
+cKr(){return new A.Gi(B.dd("pt_BR"))},
+cKs(){return new A.Gj(B.dd("pt_PT"))},
+Bg:function Bg(d){this.a=d},
+Gi:function Gi(d){this.a=d},
+Gj:function Gj(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[57]
-A.Bf.prototype={
+A.Bg.prototype={
 gkM(){return"true"},
 gjC(){return"Repita a senha"},
 gmv(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -43,7 +43,7 @@ hi(d){return d+" answered the call"},
 geY(){return"Anyone can join"},
 geZ(){return"Archive"},
 ghj(){return"Are guest users allowed to join?"},
-gd6(){return"Tens a certeza?"},
+gd7(){return"Tens a certeza?"},
 ghk(){return"Are you sure you want to log out?"},
 ghl(){return"To be able to sign the other person, please enter your secure store passphrase or recovery key."},
 hm(d){return"Accept this verification request from "+d+"?"},
@@ -701,7 +701,7 @@ gqg(){return"Remove tag"},
 gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
-A.Gh.prototype={
+A.Gi.prototype={
 gkM(){return"true"},
 gjC(){return"Repita a senha"},
 gmv(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -735,7 +735,7 @@ hi(d){return d+" atendeu \xe0 chamada"},
 geY(){return"Qualquer pessoa pode entrar"},
 geZ(){return"Arquivo"},
 ghj(){return"Visitantes podem entrar"},
-gd6(){return"Tem certeza?"},
+gd7(){return"Tem certeza?"},
 ghk(){return"Tem certeza que deseja se desconectar?"},
 ghl(){return"Para poder validar a outra pessoa, digite sua frase secreta ou chave de recupera\xe7\xe3o."},
 hm(d){return"Aceitar esta solicita\xe7\xe3o de verifica\xe7\xe3o de "+d+"?"},
@@ -1346,7 +1346,7 @@ pz(d){return"Vers\xe3o: "+d},
 goY(){return""},
 gpv(){return""},
 B(d,e){return this.gb7(this).$1(e)}}
-A.Gi.prototype={
+A.Gj.prototype={
 gjC(){return"Repete a palavra-passe"},
 gb7(d){return"Remover"},
 geu(){return"Acerca de"},
@@ -1363,7 +1363,7 @@ hi(d){return d+" atendeu a chamada"},
 geY(){return"Qualquer pessoa pode entrar"},
 geZ(){return"Arquivo"},
 ghj(){return"Todos os visitantes podem entrar"},
-gd6(){return"Tens a certeza?"},
+gd7(){return"Tens a certeza?"},
 ghk(){return"Tens a certeza que queres sair?"},
 ghl(){return"Para poderes assinar a outra pessoa, por favor, insere a tua senha de armazenamento seguro ou a chave de recupera\xe7\xe3o."},
 hm(d){return"Aceitar este pedido de verifica\xe7\xe3o de "+d+"?"},
@@ -1586,9 +1586,9 @@ eT(d){return d+" enviou um autocolante"},
 fX(d){return d+" enviou um v\xeddeo"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Bf,C.aD)
-w(A.Bf,[A.Gh,A.Gi])})()
-B.dJ(b.typeUniverse,JSON.parse('{"Bf":{"aD":[]},"Gh":{"aD":[]},"Gi":{"aD":[]}}'))
+x(A.Bg,C.aD)
+w(A.Bg,[A.Gi,A.Gj])})()
+B.dJ(b.typeUniverse,JSON.parse('{"Bg":{"aD":[]},"Gi":{"aD":[]},"Gj":{"aD":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["29Z1eWpjbZynx+k/Y1ttHpxS5Fk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["N47JZzgWlTHs4jGo6gQQ3Kcozcw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

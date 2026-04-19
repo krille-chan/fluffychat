@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKl(){return new A.G_(B.dd("gl"))},
-G_:function G_(d){this.a=d}}
+cK8(){return new A.G0(B.dd("gl"))},
+G0:function G0(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[24],A)
-A.G_.prototype={
+A.G0.prototype={
 gkM(){return"falso"},
 gjC(){return"Repite o contrasinal"},
 gmv(){return"Non \xe9 un ficheiro de imaxe."},
@@ -39,7 +39,7 @@ hi(d){return d+" respondeu \xe1 chamada"},
 geY(){return"Calquera pode unirse"},
 geZ(){return"Arquivo"},
 ghj(){return"Poden entrar as usuarias convidadas?"},
-gd6(){return"Tes a certeza?"},
+gd7(){return"Tes a certeza?"},
 ghk(){return"Tes a certeza de querer sa\xedr?"},
 ghl(){return"Para poder asinar a outra persoa, escribe a t\xfaa frase de paso ou chave de recuperaci\xf3n."},
 hm(d){return"Aceptar a solicitude de verificaci\xf3n de "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Nome da etiqueta"},
 gpR(){return"Crear nova etiqueta"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G_,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G_":{"aD":[]}}'))};
-(a=>{a["UsMheDQh6VzKBqs/1RcGJL0ZKWQ="]=a.current})($__dart_deferred_initializers__);
+y(A.G0,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"G0":{"aD":[]}}'))};
+(a=>{a["hJmiaG3wLSkeeGeBvYxngBoC4CQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

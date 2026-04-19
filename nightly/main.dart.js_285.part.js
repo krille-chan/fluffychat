@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK8(){return new A.FN(B.dd("da"))},
-FN:function FN(d){this.a=d}}
+cJW(){return new A.FO(B.dd("da"))},
+FO:function FO(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[11],A)
-A.FN.prototype={
+A.FO.prototype={
 gkM(){return"true"},
 gjC(){return"Gentag password"},
 gmv(){return"Ikke en billedfil."},
@@ -39,7 +39,7 @@ hi(d){return d+" svarer p\xe5 dit opkald"},
 geY(){return"Enhver kan deltage"},
 geZ(){return"Archive"},
 ghj(){return"Are guest users allowed to join?"},
-gd6(){return"Are you sure?"},
+gd7(){return"Are you sure?"},
 ghk(){return"Are you sure you want to log out?"},
 ghl(){return"To be able to sign the other person, please enter your secure store passphrase or recovery key."},
 hm(d){return"Accept this verification request from "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FN,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FN":{"aD":[]}}'))};
-(a=>{a["OjPyYKX51bYQgMy7Oy0dTQ7KJHY="]=a.current})($__dart_deferred_initializers__);
+y(A.FO,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FO":{"aD":[]}}'))};
+(a=>{a["gSrjbM95i0kDLbopJn7BOH8ZNEg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_285.part.js.map

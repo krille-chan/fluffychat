@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKA(){return new A.Ge(B.dd("nb"))},
-Ge:function Ge(d){this.a=d}}
+cKn(){return new A.Gf(B.dd("nb"))},
+Gf:function Gf(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[39],A)
-A.Ge.prototype={
+A.Gf.prototype={
 gkM(){return"false"},
 gjC(){return"Gjenta passord"},
 gmv(){return"Ikke en bildefil."},
@@ -39,7 +39,7 @@ hi(d){return d+" besvarte anropet"},
 geY(){return"Hvem som helst kan delta"},
 geZ(){return"Arkiv"},
 ghj(){return"Kan gjester bli med?"},
-gd6(){return"Er du sikker?"},
+gd7(){return"Er du sikker?"},
 ghk(){return"Er du sikker p\xe5 at du vil logge ut?"},
 ghl(){return"For \xe5 kunne signere den andre personen, skriv inn ditt sikre lagerpassord eller gjenopprettingsn\xf8kkel."},
 hm(d){return"Godta denne bekreftelsesforesp\xf8rselen fra "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Navn p\xe5 emneknagg"},
 gpR(){return"Opprett ny emneknagg"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ge,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Ge":{"aD":[]}}'))};
-(a=>{a["0rh7iseD7AfOkVmlxj+ZUINxu6o="]=a.current})($__dart_deferred_initializers__);
+y(A.Gf,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gf":{"aD":[]}}'))};
+(a=>{a["OSjeTMo5avifJRD14ckD1KFPeHM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_348.part.js.map

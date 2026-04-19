@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKL(){return new A.Go(B.dd("sr"))},
-Go:function Go(d){this.a=d}}
+cKy(){return new A.Gp(B.dd("sr"))},
+Gp:function Gp(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[47],A)
-A.Go.prototype={
+A.Gp.prototype={
 gkM(){return"false"},
 gjC(){return"Ponovite lozinku"},
 gmv(){return"Not an image file."},
@@ -39,7 +39,7 @@ hi(d){return d+" \u043e\u0434\u0433\u043e\u0432\u043e\u0440\u0438 \u043d\u0430 \
 geY(){return"\u0441\u0432\u0430\u043a\u043e \u043c\u043e\u0436\u0435 \u0434\u0430 \u0441\u0435 \u043f\u0440\u0438\u0434\u0440\u0443\u0436\u0438"},
 geZ(){return"\u0410\u0440\u0445\u0438\u0432\u0430"},
 ghj(){return"\u0414\u0430 \u043b\u0438 \u0458\u0435 \u0433\u043e\u0441\u0442\u0438\u043c\u0430 \u0434\u043e\u0437\u0432\u043e\u0459\u0435\u043d \u043f\u0440\u0438\u0441\u0442\u0443\u043f"},
-gd6(){return"\u0421\u0438\u0433\u0443\u0440\u043d\u0438 \u0441\u0442\u0435?"},
+gd7(){return"\u0421\u0438\u0433\u0443\u0440\u043d\u0438 \u0441\u0442\u0435?"},
 ghk(){return"\u0417\u0430\u0438\u0441\u0442\u0430 \u0436\u0435\u043b\u0438\u0442\u0435 \u0434\u0430 \u0441\u0435 \u043e\u0434\u0458\u0430\u0432\u0438\u0442\u0435?"},
 ghl(){return"\u0414\u0430 \u0431\u0438\u0441\u0442\u0435 \u043c\u043e\u0433\u043b\u0438 \u0434\u0430 \u043f\u0440\u0438\u0458\u0430\u0432\u0438\u0442\u0435 \u0434\u0440\u0443\u0433\u0443 \u043e\u0441\u043e\u0431\u0443, \u0443\u043d\u0435\u0441\u0438\u0442\u0435 \u0441\u0432\u043e\u0458\u0443 \u0431\u0435\u0437\u0431\u0435\u0434\u043d\u043e\u0441\u043d\u0443 \u0444\u0440\u0430\u0437\u0443 \u0438\u043b\u0438 \u043a\u0459\u0443\u0447 \u043e\u043f\u043e\u0440\u0430\u0432\u043a\u0430."},
 hm(d){return"\u041f\u0440\u0438\u0445\u0432\u0430\u0442\u0430\u0442\u0435 \u043b\u0438 \u0437\u0430\u0445\u0442\u0435\u0432 \u0437\u0430 \u0432\u0435\u0440\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0458\u0443 \u043e\u0434 \u043a\u043e\u0440\u0438\u0441\u043d\u0438\u043a\u0430 "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Go,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Go":{"aD":[]}}'))};
-(a=>{a["RN+dxCITq1j4PWVw/qeOROH6fqw="]=a.current})($__dart_deferred_initializers__);
+y(A.Gp,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gp":{"aD":[]}}'))};
+(a=>{a["u7HtprUvdkbM/IymgzffNePBDl0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map

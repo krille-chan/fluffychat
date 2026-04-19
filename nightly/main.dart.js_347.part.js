@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKz(){return new A.Gd(B.dd("lv"))},
-Gd:function Gd(d){this.a=d}}
+cKm(){return new A.Ge(B.dd("lv"))},
+Ge:function Ge(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[38],A)
-A.Gd.prototype={
+A.Ge.prototype={
 gkM(){return"true"},
 gjC(){return"Atk\u0101rtot paroli"},
 gmv(){return"Nav att\u0113la datne."},
@@ -39,7 +39,7 @@ hi(d){return d+" atbild\u0113ja uz zvanu"},
 geY(){return"Ikviens var pievienoties"},
 geZ(){return"Arh\u012bvs"},
 ghj(){return"Vai vieslietot\u0101ji dr\u012bkst pievienoties?"},
-gd6(){return"Vai tie\u0161\u0101m?"},
+gd7(){return"Vai tie\u0161\u0101m?"},
 ghk(){return"Vai tie\u0161\u0101m atteikties?"},
 ghl(){return"Lai var\u0113tu parakst\u012bt otru cilv\u0113ku, l\u016bgums ievad\u012bt savu dro\u0161o kr\u0101tuves paroles v\u0101rdkopu vai atkopes atsl\u0113gu."},
 hm(d){return"Pie\u0146emt apliecin\u0101\u0161anas piepras\u012bjumu no "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gd,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gd":{"aD":[]}}'))};
-(a=>{a["TGSEn++gc/RCfwS754iSm1zfq5k="]=a.current})($__dart_deferred_initializers__);
+y(A.Ge,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Ge":{"aD":[]}}'))};
+(a=>{a["62EGMD4VY6nRIuDc38U5DvIKeX4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_347.part.js.map

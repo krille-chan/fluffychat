@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKt(){return new A.G7(B.dd("it"))},
-G7:function G7(d){this.a=d}}
+cKg(){return new A.G8(B.dd("it"))},
+G8:function G8(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[32],A)
-A.G7.prototype={
+A.G8.prototype={
 gkM(){return"disattivato"},
 gjC(){return"Ripeti password"},
 gmv(){return"Non \xe8 un file immagine."},
@@ -39,7 +39,7 @@ hi(d){return d+" ha risposto alla chiamata"},
 geY(){return"Tutti possono partecipare"},
 geZ(){return"Archivia"},
 ghj(){return"Gli utenti ospiti possono partecipare"},
-gd6(){return"Sei sicuro/a?"},
+gd7(){return"Sei sicuro/a?"},
 ghk(){return"Sei sicuro/a di voler uscire?"},
 ghl(){return"Per far accedere l'altra persona, per favore inserisci la tua frase segreta o chiave di recupero."},
 hm(d){return"Accettare questa richiesta di verifica da "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G7,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G7":{"aD":[]}}'))};
-(a=>{a["8bQWCdymJgO2Xul6o5fCiFJT3V4="]=a.current})($__dart_deferred_initializers__);
+y(A.G8,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"G8":{"aD":[]}}'))};
+(a=>{a["LwbCCYJOf9O/XtHrFfMb0Sruu4Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_339.part.js.map

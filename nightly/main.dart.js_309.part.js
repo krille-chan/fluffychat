@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKh(){return new A.FW(B.dd("fi"))},
-FW:function FW(d){this.a=d}}
+cK4(){return new A.FX(B.dd("fi"))},
+FX:function FX(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[20],A)
-A.FW.prototype={
+A.FX.prototype={
 gkM(){return"v\xe4\xe4r\xe4"},
 gjC(){return"Salasana uudelleen"},
 gmv(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -39,7 +39,7 @@ hi(d){return d+" vastasi puheluun"},
 geY(){return"Kuka tahansa voi liitty\xe4"},
 geZ(){return"Arkisto"},
 ghj(){return"Sallitaanko vieraiden liittyminen"},
-gd6(){return"Oletko varma?"},
+gd7(){return"Oletko varma?"},
 ghk(){return"Haluatko varmasti kirjautua ulos?"},
 ghl(){return"Voidaksesi allekirjoittaa toisen henkil\xf6n, sy\xf6t\xe4 turvavaraston salalause tai palautusavain."},
 hm(d){return"Hyv\xe4ksyt\xe4\xe4nk\xf6 t\xe4m\xe4 varmennuspyynt\xf6 k\xe4ytt\xe4j\xe4lt\xe4 "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FW,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))};
-(a=>{a["G0hDAl2kcfpBkZsZMjsxb38ePxA="]=a.current})($__dart_deferred_initializers__);
+y(A.FX,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))};
+(a=>{a["C54hVHR4fOdgpQFNfHRdekRHNZM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_309.part.js.map

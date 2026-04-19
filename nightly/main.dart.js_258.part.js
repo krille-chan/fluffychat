@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK5(){return new A.FK(B.dd("bo"))},
-FK:function FK(d){this.a=d}}
+cJT(){return new A.FL(B.dd("bo"))},
+FL:function FL(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[8],A)
-A.FK.prototype={
+A.FL.prototype={
 gkM(){return"false"},
 gjC(){return"Repeat password"},
 gmv(){return"Not an image file."},
@@ -39,7 +39,7 @@ hi(d){return d+" answered the call"},
 geY(){return"Anyone can join"},
 geZ(){return"Archive"},
 ghj(){return"Are guest users allowed to join?"},
-gd6(){return"Are you sure?"},
+gd7(){return"Are you sure?"},
 ghk(){return"Are you sure you want to log out?"},
 ghl(){return"To be able to sign the other person, please enter your secure store passphrase or recovery key."},
 hm(d){return"Accept this verification request from "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FK,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FK":{"aD":[]}}'))};
-(a=>{a["5WyrIOI9QABzz9iREpiBo1id18k="]=a.current})($__dart_deferred_initializers__);
+y(A.FL,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FL":{"aD":[]}}'))};
+(a=>{a["emEgy0DNStG7B6TPaNFblSWp5YQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_258.part.js.map

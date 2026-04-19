@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK6(){return new A.FL(B.dd("ca"))},
-FL:function FL(d){this.a=d}}
+cJU(){return new A.FM(B.dd("ca"))},
+FM:function FM(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[9],A)
-A.FL.prototype={
+A.FM.prototype={
 gkM(){return"true"},
 gjC(){return"Repetiu la contrasenya"},
 gmv(){return"No \xe9s un arxiu d'image."},
@@ -39,7 +39,7 @@ hi(d){return d+" ha respost a la trucada"},
 geY(){return"Qualsevol pot unir-se"},
 geZ(){return"Arxiu"},
 ghj(){return"Es pot entrar al xat com a convidadi?"},
-gd6(){return"N\u2019esteu seguri?"},
+gd7(){return"N\u2019esteu seguri?"},
 ghk(){return"Segur que voleu finalitzar la sessi\xf3?"},
 ghl(){return"Per a poder donar acc\xe9s a l\u2019altra persona, introdu\xefu la frase de seguretat o clau de recuperaci\xf3."},
 hm(d){return"Voleu acceptar aquesta sol\xb7licitud de verificaci\xf3 de: "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FL,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FL":{"aD":[]}}'))};
-(a=>{a["szPUUCZj/RnU5+MVVsE95vpq5Bo="]=a.current})($__dart_deferred_initializers__);
+y(A.FM,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FM":{"aD":[]}}'))};
+(a=>{a["ke0CAgGV0Fx9Hs6OYAXMam1x5Z8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_265.part.js.map

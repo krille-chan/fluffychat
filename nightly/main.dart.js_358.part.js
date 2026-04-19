@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKJ(){return new A.Gm(B.dd("sl"))},
-Gm:function Gm(d){this.a=d}}
+cKw(){return new A.Gn(B.dd("sl"))},
+Gn:function Gn(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[45],A)
-A.Gm.prototype={
+A.Gn.prototype={
 gkM(){return"false"},
 gjC(){return"Ponovite geslo"},
 gmv(){return"Not an image file."},
@@ -39,7 +39,7 @@ hi(d){return"Oseba "+d+" je odgovorila na klic"},
 geY(){return"Pridru\u017ei se lahko vsak"},
 geZ(){return"Arhiv"},
 ghj(){return"Ali se lahko gostujo\u010di uporabniki pridru\u017eijo"},
-gd6(){return"Ali si prepri\u010dan?"},
+gd7(){return"Ali si prepri\u010dan?"},
 ghk(){return"Ali ste prepri\u010dani, da se \u017eelite odjaviti?"},
 ghl(){return"\u010ce \u017eelite podpisati drugo osebo, vnesite geslo za varno trgovino ali obnovitveni klju\u010d."},
 hm(d){return"Ali \u017eelite sprejeti to zahtevo za preverjanje od "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gm,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gm":{"aD":[]}}'))};
-(a=>{a["FDtrGFuJ80rJpx3YtqFgTuQLIF0="]=a.current})($__dart_deferred_initializers__);
+y(A.Gn,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gn":{"aD":[]}}'))};
+(a=>{a["39H6+pI8uqcs8yImwsWJV0PSDsU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_358.part.js.map

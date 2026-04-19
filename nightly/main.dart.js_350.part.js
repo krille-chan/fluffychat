@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKB(){return new A.Gf(B.dd("nl"))},
-Gf:function Gf(d){this.a=d}}
+cKo(){return new A.Gg(B.dd("nl"))},
+Gg:function Gg(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[40],A)
-A.Gf.prototype={
+A.Gg.prototype={
 gkM(){return"true"},
 gjC(){return"Wachtwoord herhalen"},
 gmv(){return"Geen afbeeldingsbestand."},
@@ -39,7 +39,7 @@ hi(d){return d+" heeft de oproep beantwoord"},
 geY(){return"Iedereen kan toetreden"},
 geZ(){return"Archief"},
 ghj(){return"Mogen gasten deelnemen?"},
-gd6(){return"Weet je het zeker?"},
+gd7(){return"Weet je het zeker?"},
 ghk(){return"Weet je zeker dat je wilt uitloggen?"},
 ghl(){return"Voer je beveiligde opslag wachtwoordzin of herstelsleutel in om de andere persoon te kunnen ondertekenen."},
 hm(d){return"Accepteer je dit verificatieverzoek van "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tagnaam"},
 gpR(){return"Nieuwe tag maken"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gf,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gf":{"aD":[]}}'))};
-(a=>{a["ST3fc/Ey6t9ySBb9zbQRfxVIauY="]=a.current})($__dart_deferred_initializers__);
+y(A.Gg,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gg":{"aD":[]}}'))};
+(a=>{a["CybHCuL3WOYXdQKfIR9pQ9x7uM8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_350.part.js.map

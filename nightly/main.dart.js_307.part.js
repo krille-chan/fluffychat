@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKg(){return new A.FV(B.dd("fa"))},
-FV:function FV(d){this.a=d}}
+cK3(){return new A.FW(B.dd("fa"))},
+FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[19],A)
-A.FV.prototype={
+A.FW.prototype={
 gkM(){return"false"},
 gjC(){return"\u062a\u06a9\u0631\u0627\u0631 \u06af\u0630\u0631\u0648\u0627\u0698\u0647"},
 gmv(){return"\u06cc\u06a9 \u0641\u0627\u06cc\u0644 \u062a\u0635\u0648\u06cc\u0631\u06cc \u0646\u06cc\u0633\u062a."},
@@ -39,7 +39,7 @@ hi(d){return d+" \u0628\u0647 \u062a\u0645\u0627\u0633 \u067e\u0627\u0633\u062e 
 geY(){return"\u0647\u0631\u06a9\u0633\u06cc \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u0628\u067e\u06cc\u0648\u0646\u062f\u062f"},
 geZ(){return"\u0628\u0627\u06cc\u06af\u0627\u0646\u06cc"},
 ghj(){return"\u0622\u06cc\u0627 \u0645\u0647\u0645\u0627\u0646\u0627\u0646 \u0627\u062c\u0627\u0632\u0647 \u067e\u06cc\u0648\u0633\u062a\u0646 \u062f\u0627\u0631\u0646\u062f\u061f"},
-gd6(){return"\u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f\u061f"},
+gd7(){return"\u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f\u061f"},
 ghk(){return"\u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f \u0645\u06cc\u200c\u062e\u0648\u0627\u0647\u06cc\u062f \u062e\u0627\u0631\u062c \u0634\u0648\u06cc\u062f\u061f"},
 ghl(){return"\u0644\u0637\u0641\u0627\u064b \u0639\u0628\u0627\u0631\u062a \u0639\u0628\u0648\u0631 \u06cc\u0627 \u06a9\u0644\u06cc\u062f \u0628\u0627\u0632\u06cc\u0627\u0628\u06cc \u062d\u0627\u0641\u0638\u0647 \u0627\u0645\u0646 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f \u062a\u0627 \u0634\u062e\u0635 \u062f\u06cc\u06af\u0631\u06cc \u0631\u0627 \u0627\u0645\u0636\u0627 \u06a9\u0646\u06cc\u062f."},
 hm(d){return"\u0622\u06cc\u0627 \u062f\u0631\u062e\u0648\u0627\u0633\u062a \u0628\u0627\u0632\u0628\u06cc\u0646\u06cc "+d+" \u0631\u0627 \u0645\u06cc\u200c\u067e\u0630\u06cc\u0631\u06cc\u062f\u061f"},
@@ -696,7 +696,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FV,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FV":{"aD":[]}}'))};
-(a=>{a["30VVAhPRcy12DsKEJGf55VYnzdo="]=a.current})($__dart_deferred_initializers__);
+y(A.FW,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))};
+(a=>{a["Ts/CUG9RWoUV9p7OQs0ZpOf5NPw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_307.part.js.map

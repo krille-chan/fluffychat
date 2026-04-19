@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKj(){return new A.FY(B.dd("fr"))},
-FY:function FY(d){this.a=d}}
+cK6(){return new A.FZ(B.dd("fr"))},
+FZ:function FZ(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[22],A)
-A.FY.prototype={
+A.FZ.prototype={
 gkM(){return"true"},
 gjC(){return"R\xe9p\xe9tez le mot de passe"},
 gmv(){return"Pas un fichier image."},
@@ -39,7 +39,7 @@ hi(d){return d+" a r\xe9pondu \xe0 l'appel"},
 geY(){return"Tout le monde peut rejoindre"},
 geZ(){return"Archiver"},
 ghj(){return"Les invit\xe9s peuvent-i\xb7e\xb7ls rejoindre"},
-gd6(){return"\xcates-vous s\xfbr\xb7e\xa0?"},
+gd7(){return"\xcates-vous s\xfbr\xb7e\xa0?"},
 ghk(){return"Voulez-vous vraiment vous d\xe9connecter ?"},
 ghl(){return"Pour pouvoir faire signer l'autre personne, veuillez entrer la phrase de passe de votre trousseau s\xe9curis\xe9 ou votre cl\xe9 de r\xe9cup\xe9ration."},
 hm(d){return"Accepter cette demande de v\xe9rification de la part de "+d+" ?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FY,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FY":{"aD":[]}}'))};
-(a=>{a["kjRyEL3T4085SBNnDruGGbUswGE="]=a.current})($__dart_deferred_initializers__);
+y(A.FZ,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FZ":{"aD":[]}}'))};
+(a=>{a["dPo7EEATy/U4Nqfa1AGHKDyrxBE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

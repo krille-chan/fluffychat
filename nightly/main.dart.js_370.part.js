@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKT(){return new A.Gw(B.dd("vi"))},
-Gw:function Gw(d){this.a=d}}
+cKG(){return new A.Gx(B.dd("vi"))},
+Gx:function Gx(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[55],A)
-A.Gw.prototype={
+A.Gx.prototype={
 gkM(){return"kh\xf4ng"},
 gjC(){return"Nh\u1eadp l\u1ea1i m\u1eadt kh\u1ea9u"},
 gmv(){return"Kh\xf4ng ph\u1ea3i t\u1ec7p \u1ea3nh."},
@@ -39,7 +39,7 @@ hi(d){return d+" \u0111\xe3 tr\u1ea3 l\u1eddi cu\u1ed9c g\u1ecdi"},
 geY(){return"M\u1ecdi ng\u01b0\u1eddi \u0111\u1ec1u c\xf3 th\u1ec3 gia nh\u1eadp"},
 geZ(){return"L\u01b0u tr\u1eef"},
 ghj(){return"Kh\xe1ch v\xe3ng lai c\xf3 \u0111\u01b0\u1ee3c tham gia kh\xf4ng"},
-gd6(){return"B\u1ea1n ch\u1eafc ch\u1ee9?"},
+gd7(){return"B\u1ea1n ch\u1eafc ch\u1ee9?"},
 ghk(){return"B\u1ea1n c\xf3 ch\u1eafc b\u1ea1n mu\u1ed1n \u0111\u0103ng xu\u1ea5t kh\xf4ng?"},
 ghl(){return"\u0110\u1ec3 c\xf3 th\u1ec3 k\xfd t\xean cho ng\u01b0\u1eddi kh\xe1c, vui l\xf2ng nh\u1eadp m\u1eadt kh\u1ea9u l\u01b0u tr\u1eef an to\xe0n ho\u1eb7c kh\xf3a kh\xf4i ph\u1ee5c c\u1ee7a b\u1ea1n."},
 hm(d){return"B\u1ea1n c\xf3 \u0111\u1ed3ng \xfd y\xeau c\u1ea7u ch\u1ee9ng th\u1ef1c t\u1eeb "+d+" kh\xf4ng?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gw,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gw":{"aD":[]}}'))};
-(a=>{a["mbH7BBYGMJPps5Aylot1L0D8gLU="]=a.current})($__dart_deferred_initializers__);
+y(A.Gx,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gx":{"aD":[]}}'))};
+(a=>{a["FXWvfpCJEbvY8cjKoi7GlwQjlxI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_370.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKS(){return new A.Gv(B.dd("uz"))},
-Gv:function Gv(d){this.a=d}}
+cKF(){return new A.Gw(B.dd("uz"))},
+Gw:function Gw(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[54],A)
-A.Gv.prototype={
+A.Gw.prototype={
 gkM(){return"true"},
 gjC(){return"Parolni takrorlang"},
 gmv(){return"Rasm fayli emas."},
@@ -39,7 +39,7 @@ hi(d){return d+" chaqiruvga javob berdi"},
 geY(){return"Har kim qo\u2018shilishi mumkin"},
 geZ(){return"Arxiv"},
 ghj(){return"Mehmon foydalanuvchilarga qo\u2018shilishga ruxsat berilganmi"},
-gd6(){return"Ishonchingiz komilmi?"},
+gd7(){return"Ishonchingiz komilmi?"},
 ghk(){return"Haqiqatan ham hisobingizdan chiqamoqchimisiz?"},
 ghl(){return"Narigi foydalanuvchini imzolash uchun xavfsiz do\u2018kon parol iborasi yoki tiklash kalitini kiriting."},
 hm(d){return d+"dan ushbu tasdiqlash so\u2018rovi qabul qilinsinmi?"},
@@ -698,8 +698,8 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gv,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gv":{"aD":[]}}'))
+x(A.Gw,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gw":{"aD":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["+LwLMzHoJ0aSfAQ/mjrb9WdWD0E="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["HZT7Z7vWa2IrPGvt/P7zXk7YDV0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_369.part.js.map

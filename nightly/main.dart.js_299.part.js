@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKd(){return new A.FS(B.dd("es"))},
-FS:function FS(d){this.a=d}}
+cK0(){return new A.FT(B.dd("es"))},
+FT:function FT(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[16],A)
-A.FS.prototype={
+A.FT.prototype={
 gkM(){return"true"},
 gjC(){return"Repite la contrase\xf1a"},
 gmv(){return"El archivo no es una imagen."},
@@ -39,7 +39,7 @@ hi(d){return d+" respondi\xf3 a la llamada"},
 geY(){return"Cualquiera puede unirse"},
 geZ(){return"Archivo"},
 ghj(){return"\xbfPueden los usuarios invitados unirse?"},
-gd6(){return"\xbfEst\xe1s seguro?"},
+gd7(){return"\xbfEst\xe1s seguro?"},
 ghk(){return"\xbfConfirma que quiere cerrar sesi\xf3n?"},
 ghl(){return"Para poder confirmar a la otra persona, ingrese su contrase\xf1a de almacenamiento segura o la clave de recuperaci\xf3n."},
 hm(d){return"\xbfAceptar esta solicitud de verificaci\xf3n de "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Nombre de etiqueta"},
 gpR(){return"Crear nueva etiqueta"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FS,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FS":{"aD":[]}}'))};
-(a=>{a["w9JCyDt7xlO+jd0GXE9HMCOMnns="]=a.current})($__dart_deferred_initializers__);
+y(A.FT,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FT":{"aD":[]}}'))};
+(a=>{a["luGbtWoR8HIKFf+zvUYplFUbmqU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

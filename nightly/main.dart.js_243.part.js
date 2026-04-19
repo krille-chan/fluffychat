@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK2(){return new A.FH(B.dd("ar"))},
-FH:function FH(d){this.a=d}}
+cJQ(){return new A.FI(B.dd("ar"))},
+FI:function FI(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[5],A)
-A.FH.prototype={
+A.FI.prototype={
 gkM(){return"\u0639\u0644\u0651\u0645 \u0644\u0639\u0631\u0636 \u0627\u0644\u0648\u0642\u062a \u0628\u0646\u0633\u0642 24 \u0633\u0627\u0639\u0629 \u062f\u0627\u0626\u0645\u0627.\u200f"},
 gjC(){return"\u0643\u0631\u0651\u0631 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631"},
 gmv(){return"\u0644\u064a\u0633 \u0645\u0644\u0641 \u0635\u0648\u0631\u0629."},
@@ -39,7 +39,7 @@ hi(d){return d+" \u0623\u062c\u0627\u0628 \u0639\u0644\u0649 \u0627\u0644\u0645\
 geY(){return"\u064a\u0645\u0643\u0646 \u0644\u0623\u064a \u0623\u062d\u062f \u0627\u0644\u062f\u062e\u0648\u0644"},
 geZ(){return"\u0627\u0644\u0623\u0631\u0634\u064a\u0641"},
 ghj(){return"\u0647\u0644 \u064a\u064f\u0633\u0645\u062d \u0644\u0644\u0632\u0648\u0627\u0631 \u0627\u0644\u062f\u062e\u0648\u0644"},
-gd6(){return"\u0623\u0645\u062a\u0623\u0643\u062f\u061f"},
+gd7(){return"\u0623\u0645\u062a\u0623\u0643\u062f\u061f"},
 ghk(){return"\u0623\u0645\u062a\u0623\u0643\u062f \u0645\u0646 \u0627\u0644\u062e\u0631\u0648\u062c\u061f"},
 ghl(){return"\u0644\u062a\u062a\u0645\u0643\u0646 \u0645\u0646 \u0627\u0644\u062a\u0623\u0643\u062f \u0645\u0646 \u0627\u0644\u0634\u062e\u0635 \u0627\u0644\u0622\u062e\u0631\u060c \u064a\u0631\u062c\u0649 \u0625\u062f\u062e\u0627\u0644 \u0639\u0628\u0627\u0631\u0629 \u0627\u0644\u0645\u0631\u0648\u0631 \u0623\u0648 \u0645\u0641\u062a\u0627\u062d \u0627\u0644\u0627\u0633\u062a\u0631\u062f\u0627\u062f."},
 hm(d){return"\u0623\u062a\u0642\u0628\u0644 \u0637\u0644\u0628 \u062a\u062d\u0642\u0642 "+d+"\u061f"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FH,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FH":{"aD":[]}}'))};
-(a=>{a["o6WyWevYFrIgq8eaIW2MBLGhnk8="]=a.current})($__dart_deferred_initializers__);
+y(A.FI,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FI":{"aD":[]}}'))};
+(a=>{a["TY2xnrzoVBqpEYiied93e5DOkLQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_243.part.js.map

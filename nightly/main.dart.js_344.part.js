@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKw(){return new A.Ga(B.dd("kab"))},
-Ga:function Ga(d){this.a=d}}
+cKj(){return new A.Gb(B.dd("kab"))},
+Gb:function Gb(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[35],A)
-A.Ga.prototype={
+A.Gb.prototype={
 gkM(){return"false"},
 gjC(){return"Ales awal n u\u025beddi"},
 gmv(){return"Ma\u010d\u010di d afaylu n tugna."},
@@ -39,7 +39,7 @@ hi(d){return d+" yerra-d i usiwel"},
 geY(){return"Yal yiwen yezmer ad yettekki"},
 geZ(){return"A\u0263ba\u1e5b"},
 ghj(){return"Iseqdacen inebgiwen ttusirgen ad ttekkin"},
-gd6(){return"Tet\u1e25eqqe\u1e0d?"},
+gd7(){return"Tet\u1e25eqqe\u1e0d?"},
 ghk(){return"D tidet teb\u0263i\u1e0d ad teff\u0263e\u1e0d?"},
 ghl(){return"Iwakken ad teszmele\u1e0d amdan-nni\u1e0den, ttxil-k\xb7m sekcem tafyirt-ik\xb7im n u\u1e25raz s wudem a\u0263elsan ne\u0263 tasarut n tririt."},
 hm(d){return"Qbel asuter-agi n usenqed seg "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ga,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Ga":{"aD":[]}}'))};
-(a=>{a["NH+ao/sdkXwLiVIl3uatj06prQA="]=a.current})($__dart_deferred_initializers__);
+y(A.Gb,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gb":{"aD":[]}}'))};
+(a=>{a["ZXVc2KaU+Gn/OTDhJ2MkLuAc0S8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_344.part.js.map

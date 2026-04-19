@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKe(){return new A.FT(B.dd("et"))},
-FT:function FT(d){this.a=d}}
+cK1(){return new A.FU(B.dd("et"))},
+FU:function FU(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[17],A)
-A.FT.prototype={
+A.FU.prototype={
 gkM(){return"v\xe4\xe4r"},
 gjC(){return"Korda salas\xf5na"},
 gmv(){return"See pole pildifail."},
@@ -39,7 +39,7 @@ hi(d){return d+" vastas k\xf5nele"},
 geY(){return"K\xf5ik v\xf5ivad liituda"},
 geZ(){return"Arhiiv"},
 ghj(){return"Kas k\xfclalised v\xf5ivad liituda?"},
-gd6(){return"Kas sa oled kindel?"},
+gd7(){return"Kas sa oled kindel?"},
 ghk(){return"Kas sa oled kindel, et soovid v\xe4lja logida?"},
 ghl(){return"Selleks, et teist osapoolt identifitseerivat allkirja anda, palun sisesta oma turvahoidla salafraas v\xf5i taastev\xf5ti."},
 hm(d){return"Kas v\xf5tad vastu selle verifitseerimispalve kasutajalt "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Sildi nimi"},
 gpR(){return"Lisa uus silt"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FT,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FT":{"aD":[]}}'))};
-(a=>{a["L18E7rGc5eVk2R6VxP4AwINOBeM="]=a.current})($__dart_deferred_initializers__);
+y(A.FU,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FU":{"aD":[]}}'))};
+(a=>{a["NNHqpf+ij0xv6POJN+1SgAb7g1o="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map

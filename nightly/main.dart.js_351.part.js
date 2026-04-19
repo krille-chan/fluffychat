@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKC(){return new A.Gg(B.dd("pl"))},
-Gg:function Gg(d){this.a=d}}
+cKp(){return new A.Gh(B.dd("pl"))},
+Gh:function Gh(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[41],A)
-A.Gg.prototype={
+A.Gh.prototype={
 gkM(){return"false"},
 gjC(){return"Powt\xf3rz has\u0142o"},
 gmv(){return"To nie jest plik obrazu."},
@@ -39,7 +39,7 @@ hi(d){return d+" odebra\u0142/-a po\u0142\u0105czenie"},
 geY(){return"Ka\u017cdy mo\u017ce do\u0142\u0105czy\u0107"},
 geZ(){return"Archiwum"},
 ghj(){return"Czy go\u015bcie mog\u0105 do\u0142\u0105czy\u0107?"},
-gd6(){return"Czy na pewno?"},
+gd7(){return"Czy na pewno?"},
 ghk(){return"Czy na pewno chcesz si\u0119 wylogowa\u0107?"},
 ghl(){return"Aby zalogowa\u0107 inn\u0105 osob\u0119, prosz\u0119 wpisa\u0107 has\u0142o przechowywania lub klucz odzyskiwania."},
 hm(d){return"Zaakceptowa\u0107 t\u0105 pro\u015bb\u0119 weryfikacji od "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gg,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gg":{"aD":[]}}'))};
-(a=>{a["ziz9SyhFv+Ru9x6W6Od2OxMo5TM="]=a.current})($__dart_deferred_initializers__);
+y(A.Gh,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gh":{"aD":[]}}'))};
+(a=>{a["GYWWeQtxVbLZz4cAauUL1jwC34E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

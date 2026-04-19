@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKi(){return new A.FX(B.dd("fil"))},
-FX:function FX(d){this.a=d}}
+cK5(){return new A.FY(B.dd("fil"))},
+FY:function FY(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[21],A)
-A.FX.prototype={
+A.FY.prototype={
 gkM(){return"false"},
 gjC(){return"Ulitin ang password"},
 gmv(){return"Hindi isang file na larawan."},
@@ -39,7 +39,7 @@ hi(d){return"Sinagot ni "+d+" ang tawag"},
 geY(){return"Pwede sumali ang anumang tao"},
 geZ(){return"Archive"},
 ghj(){return"Pwede ba sumali ang mga bisita"},
-gd6(){return"Sigurado ka?"},
+gd7(){return"Sigurado ka?"},
 ghk(){return"Sigurado kang gusto mong mag-log out?"},
 ghl(){return"Para i-sign ang isa pang tao, pakilagay ang iyong secure store passphrase o recovery key."},
 hm(d){return"Tanggapin ang hiling ng verification mula sa "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FX,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))};
-(a=>{a["EfCNoFlSYuDxVPrg6B6HzPsP1lU="]=a.current})($__dart_deferred_initializers__);
+y(A.FY,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FY":{"aD":[]}}'))};
+(a=>{a["wSV61g2VP9C27sqza9xm4VbnIqQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_311.part.js.map

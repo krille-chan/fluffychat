@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKo(){return new A.G2(B.dd("hr"))},
-G2:function G2(d){this.a=d}}
+cKb(){return new A.G3(B.dd("hr"))},
+G3:function G3(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[27],A)
-A.G2.prototype={
+A.G3.prototype={
 gkM(){return"true"},
 gjC(){return"Ponovi lozinku"},
 gmv(){return"Nije slikovna datoteka."},
@@ -39,7 +39,7 @@ hi(d){return d+" je odgovorio/la na poziv"},
 geY(){return"Svatko se mo\u017ee pridru\u017eiti"},
 geZ(){return"Arhiv"},
 ghj(){return"Smiju li se gosti pridru\u017eiti"},
-gd6(){return"Stvarno to \u017eeli\u0161?"},
+gd7(){return"Stvarno to \u017eeli\u0161?"},
 ghk(){return"Stvarno se \u017eeli\u0161 odjaviti?"},
 ghl(){return"Za potpisivanje druge osobe, upi\u0161i svoju sigurnosnu lozinku ili klju\u010d za oporavak."},
 hm(d){return"Prihvatiti ovaj zahtjev za potvr\u0111ivanje od "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G2,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G2":{"aD":[]}}'))};
-(a=>{a["Jz1sG3r7hWg6rXK/lJBmrvpxfh4="]=a.current})($__dart_deferred_initializers__);
+y(A.G3,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"G3":{"aD":[]}}'))};
+(a=>{a["wnCrfJyh5fEkDDG+U4rO7q+54fs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_322.part.js.map

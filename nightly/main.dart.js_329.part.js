@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKp(){return new A.G3(B.dd("hu"))},
-G3:function G3(d){this.a=d}}
+cKc(){return new A.G4(B.dd("hu"))},
+G4:function G4(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[28],A)
-A.G3.prototype={
+A.G4.prototype={
 gkM(){return""},
 gjC(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gmv(){return"Nem k\xe9p f\xe1jl."},
@@ -39,7 +39,7 @@ hi(d){return d+" v\xe1laszolt a h\xedv\xe1sra"},
 geY(){return"B\xe1rki csatlakozhat"},
 geZ(){return"Arch\xedvum"},
 ghj(){return"Csatlakozhatnak-e vend\xe9gek"},
-gd6(){return"Biztos benne?"},
+gd7(){return"Biztos benne?"},
 ghk(){return"Biztosan kijelentkezik?"},
 ghl(){return"A m\xe1sik f\xe9l igazol\xe1s\xe1hoz meg kell adnia a biztons\xe1gos t\xe1rol\xf3 jelmondat\xe1t vagy a vissza\xe1ll\xedt\xe1si kulcsot\xe1t."},
 hm(d){return"Elfogadja "+d+" hiteles\xedt\xe9si k\xe9relm\xe9t?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G3,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"G3":{"aD":[]}}'))};
-(a=>{a["ymaj8puTE9b7SmToKUyuI5kO6dU="]=a.current})($__dart_deferred_initializers__);
+y(A.G4,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"G4":{"aD":[]}}'))};
+(a=>{a["ZRva5qupuH3DAnrHiOOZ8ElHmbE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_329.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKf(){return new A.FU(B.dd("eu"))},
-FU:function FU(d){this.a=d}}
+cK2(){return new A.FV(B.dd("eu"))},
+FV:function FV(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[18],A)
-A.FU.prototype={
+A.FV.prototype={
 gkM(){return"false"},
 gjC(){return"Idatzi berriro pasahitza"},
 gmv(){return"Ez da irudi-fitxategia."},
@@ -39,7 +39,7 @@ hi(d){return d+"(e)k deia erantzun du"},
 geY(){return"Edonor batu daiteke"},
 geZ(){return"Fitxategia"},
 ghj(){return"Batu al daitezke bisitan dauden erabiltzaileak"},
-gd6(){return"Ziur zaude?"},
+gd7(){return"Ziur zaude?"},
 ghk(){return"Ziur zaude saioa amaitu nahi duzula?"},
 ghl(){return"Beste pertsona egiaztatzeko, sartu zure biltegiratze segururako pasaesaldia edo berreskuratze-gakoa."},
 hm(d){return d+"(r)en egiaztaketa-eskaera onartu?"},
@@ -698,8 +698,8 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FU,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FU":{"aD":[]}}'))
+x(A.FV,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FV":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["Qai+X1wOcnWmpmX7XNHXQVWlJyM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["siCd28vqIeDOljTJqSmrg7nRCjI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

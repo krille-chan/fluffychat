@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKk(){return new A.FZ(B.dd("ga"))},
-FZ:function FZ(d){this.a=d}}
+cK7(){return new A.G_(B.dd("ga"))},
+G_:function G_(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[23],A)
-A.FZ.prototype={
+A.G_.prototype={
 gkM(){return"br\xe9agach"},
 gjC(){return"Scr\xedobh an pasfhocal ar\xeds"},
 gmv(){return"N\xed comhad \xedomh\xe1 \xe9."},
@@ -39,7 +39,7 @@ hi(d){return"D'fhreagair "+d+" an glao"},
 geY(){return"Is f\xe9idir le aon duine dul isteach"},
 geZ(){return"Cartlann"},
 ghj(){return"An bhfuil cead ag \xfas\xe1ideoir\xed aoi p\xe1irt a ghlacadh?"},
-gd6(){return"An bhfuil t\xfa cinnte?"},
+gd7(){return"An bhfuil t\xfa cinnte?"},
 ghk(){return"An bhfuil t\xfa cinnte gur mhaith leat log\xe1il amach?"},
 ghl(){return"Chun a bheith in ann an duine eile a sh\xedni\xfa, cuir isteach do phasfhr\xe1sa st\xf3ir s\xe1bh\xe1ilte n\xf3 d'eochair t\xe9arnaimh."},
 hm(d){return"Glac leis an iarratas f\xedoraithe seo \xf3 "+d+"?"},
@@ -698,8 +698,8 @@ gqi(d){return"Ainm an chlib"},
 gpR(){return"Cruthaigh clib nua"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FZ,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FZ":{"aD":[]}}'))
+x(A.G_,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"G_":{"aD":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["dQuDoB6PaR0eE2G1CgQu3xivtpM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["dZqum5lBGIWcigCvlSLOOEvQL6s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

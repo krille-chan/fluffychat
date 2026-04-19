@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cK4(){return new A.FJ(B.dd("bn"))},
-FJ:function FJ(d){this.a=d}}
+cJS(){return new A.FK(B.dd("bn"))},
+FK:function FK(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[7],A)
-A.FJ.prototype={
+A.FK.prototype={
 gkM(){return"\u09a8\u09be"},
 gjC(){return"\u09aa\u09be\u09b8\u0993\u09df\u09be\u09b0\u09cd\u09a1 \u0986\u09ac\u09be\u09b0 \u09b2\u09bf\u0996\u09cb"},
 gmv(){return"\u0987\u09ae\u09c7\u099c \u09ab\u09be\u0987\u09b2 \u09a8\u09be\u0964"},
@@ -39,7 +39,7 @@ hi(d){return d+" answered the call"},
 geY(){return"Anyone can join"},
 geZ(){return"\u0986\u09b0\u09cd\u0995\u09be\u0987\u09ad"},
 ghj(){return"Are guest users allowed to join?"},
-gd6(){return"Are you sure?"},
+gd7(){return"Are you sure?"},
 ghk(){return"Are you sure you want to log out?"},
 ghl(){return"To be able to sign the other person, please enter your secure store passphrase or recovery key."},
 hm(d){return"Accept this verification request from "+d+"?"},
@@ -698,7 +698,7 @@ gqi(d){return"Tag name"},
 gpR(){return"Create new tag"},
 B(d,e){return this.gb7(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FJ,C.aD)})()
-B.dJ(b.typeUniverse,JSON.parse('{"FJ":{"aD":[]}}'))};
-(a=>{a["9ZE1xMA4wsrycWN/Fe2A1BxweV8="]=a.current})($__dart_deferred_initializers__);
+y(A.FK,C.aD)})()
+B.dJ(b.typeUniverse,JSON.parse('{"FK":{"aD":[]}}'))};
+(a=>{a["7sQ+Ttv5nWh/DcuaFVdnWHOSP3c="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_251.part.js.map
