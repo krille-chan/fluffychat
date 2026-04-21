@@ -20,7 +20,9 @@ Future<void> showMemberActionsPopupMenu({
   final displayname = user.calcDisplayname();
   final isMe = user.room.client.userID == user.id;
 
-  final overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
+  final overlay = Overlay.of(context, rootOverlay: true)
+      .context
+      .findRenderObject() as RenderBox;
 
   final button = context.findRenderObject() as RenderBox;
 
@@ -38,6 +40,7 @@ Future<void> showMemberActionsPopupMenu({
   const defaultPowerLevels = {0, 50, 100, 9007199254740991};
 
   final action = await showMenu<_MemberActions>(
+    useRootNavigator: true,
     context: context,
     position: position,
     items: <PopupMenuEntry<_MemberActions>>[
