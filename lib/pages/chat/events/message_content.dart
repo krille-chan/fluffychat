@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/dsl/extensions/dsl_event_extension.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/events/poll.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
@@ -105,6 +106,15 @@ class MessageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dslWidget = event.buildDSLWidget();
+
+    if (dslWidget != null) {
+      return Padding(
+        padding: const EdgeInsets.all(4),
+        child: dslWidget,
+      );
+    }
+
     final fontSize =
         AppConfig.messageFontSize * AppSettings.fontSizeFactor.value;
     final buttonTextColor = textColor;

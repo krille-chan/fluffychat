@@ -15,6 +15,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/universal_html.dart' as web;
 
 import 'config/setting_keys.dart';
+import 'dsl/handlers/menu_handler.dart';
+import 'dsl/models/dsl_registry.dart';
 import 'utils/background_push.dart';
 import 'widgets/fluffy_chat_app.dart';
 
@@ -83,9 +85,14 @@ void main() async {
   Logs().i(
     '${AppSettings.applicationName.value} started in foreground mode. Rendering GUI...',
   );
+  setupDSL();
   await startGui(clients, store);
 }
 
+// todo(ammar): this is a bit hacky, we should find a better way to register the handlers before the GUI starts.
+void setupDSL() {
+  DSLRegistry.instance.register(MenuDSLHandler());
+}
 /// Fetch the pincode for the applock and start the flutter engine.
 Future<void> startGui(List<Client> clients, SharedPreferences store) async {
   // Fetch the pin for the applock if existing for mobile applications.
