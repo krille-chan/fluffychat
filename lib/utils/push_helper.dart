@@ -333,6 +333,7 @@ Future<void> _tryPushHelper(
             contentTitle: title,
             summaryText: title,
           ),
+          autoCancel: false,
         ),
       ),
     );
