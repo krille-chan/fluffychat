@@ -35,6 +35,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 import 'package:mime/mime.dart';
+import 'package:pasteboard/pasteboard.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 import '../../utils/account_bundles.dart';
@@ -344,9 +345,37 @@ class ChatController extends State<ChatPageWithRoom>
       }
 
       return KeyEventResult.ignored;
+    } else if (evt is KeyDownEvent &&
+        evt.logicalKey == LogicalKeyboardKey.keyV &&
+        (HardwareKeyboard.instance.isControlPressed ||
+            HardwareKeyboard.instance.isMetaPressed)) {
+      _sendFileFromClipboard();
+      return KeyEventResult.handled;
     } else {
       return KeyEventResult.ignored;
     }
+  }
+
+  Future<void> _sendFileFromClipboard() async {
+    final image = await Pasteboard.image;
+    if (image == null) return;
+    if (!mounted) return;
+
+    final mimeType = lookupMimeType('', headerBytes: image);
+    final fileType = mimeType == null ? null : extensionFromMime(mimeType);
+    final extension = fileType == null ? '' : '.$fileType';
+    final fileName = 'clipboard-image$extension';
+
+    await showAdaptiveDialog(
+      context: context,
+      builder: (c) => SendFileDialog(
+        files: [XFile.fromData(image, name: fileName, mimeType: mimeType)],
+        room: room,
+        outerContext: context,
+        threadRootEventId: activeThreadId,
+        threadLastEventId: threadLastEventId,
+      ),
+    );
   }
 
   @override
