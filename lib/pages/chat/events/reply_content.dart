@@ -1,4 +1,3 @@
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:flutter/material.dart';
@@ -31,8 +30,7 @@ class ReplyContent extends StatelessWidget {
     final displayEvent = timeline != null
         ? replyEvent.getDisplayEvent(timeline)
         : replyEvent;
-    final fontSize =
-        AppConfig.messageFontSize * AppSettings.fontSizeFactor.value;
+    final fontSize = AppConfig.messageFontSize;
     final color = theme.brightness == Brightness.dark
         ? theme.colorScheme.onTertiaryContainer
         : ownMessage
@@ -71,6 +69,7 @@ class ReplyContent extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: color,
                         fontSize: fontSize,
+                        height: AppConfig.messageLineHeight,
                       ),
                     );
                   },
@@ -91,6 +90,7 @@ class ReplyContent extends StatelessWidget {
                         ? theme.colorScheme.onTertiary
                         : theme.colorScheme.onSurface,
                     fontSize: fontSize,
+                    height: AppConfig.messageLineHeight,
                   ),
                 ),
               ],

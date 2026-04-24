@@ -76,7 +76,7 @@ class ChatAppBarTitle extends StatelessWidget {
                               builder: (context, presence) {
                                 final lastActiveTimestamp =
                                     presence?.lastActiveTimestamp;
-                                final style = TextStyle(fontSize: 11);
+                                final style = TextStyle(fontSize: 12);
                                 if (presence?.currentlyActive == true) {
                                   return Text(
                                     L10n.of(context).currentlyActive,
@@ -109,7 +109,7 @@ class ChatAppBarTitle extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     status.calcLocalizedString(context),
-                                    style: TextStyle(fontSize: 12),
+                                    style: TextStyle(fontSize: 13),
                                   ),
                                 ),
                               ],

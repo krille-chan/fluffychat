@@ -73,16 +73,14 @@ class PollWidget extends StatelessWidget {
               textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
               style: TextStyle(
                 color: textColor,
-                fontSize:
-                    AppSettings.fontSizeFactor.value *
-                    AppConfig.messageFontSize,
+                fontSize: AppConfig.messageFontSize,
+                height: AppConfig.messageLineHeight,
               ),
               options: const LinkifyOptions(humanize: false),
               linkStyle: TextStyle(
                 color: linkColor,
-                fontSize:
-                    AppSettings.fontSizeFactor.value *
-                    AppConfig.messageFontSize,
+                fontSize: AppConfig.messageFontSize,
+                height: AppConfig.messageLineHeight,
                 decoration: TextDecoration.underline,
                 decorationColor: linkColor,
               ),
@@ -120,9 +118,8 @@ class PollWidget extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: textColor,
-                    fontSize:
-                        AppConfig.messageFontSize *
-                        AppSettings.fontSizeFactor.value,
+                    fontSize: AppConfig.messageFontSize,
+                    height: AppConfig.messageLineHeight,
                   ),
                 ),
                 subtitle: answersVisible
@@ -142,8 +139,7 @@ class PollWidget extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: linkColor,
-                                    fontSize:
-                                        12 * AppSettings.fontSizeFactor.value,
+                                    fontSize: 12,
                                   ),
                                 ),
                                 const SizedBox(width: 2),
@@ -204,7 +200,7 @@ class PollWidget extends StatelessWidget {
                 L10n.of(context).answersWillBeVisibleWhenPollHasEnded,
                 style: TextStyle(
                   color: linkColor,
-                  fontSize: 12 * AppSettings.fontSizeFactor.value,
+                  fontSize: 12,
                   fontStyle: FontStyle.italic,
                 ),
               ),
@@ -216,7 +212,7 @@ class PollWidget extends StatelessWidget {
                 L10n.of(context).pollHasBeenEnded,
                 style: TextStyle(
                   color: linkColor,
-                  fontSize: 12 * AppSettings.fontSizeFactor.value,
+                  fontSize: 12,
                   fontStyle: FontStyle.italic,
                 ),
               ),

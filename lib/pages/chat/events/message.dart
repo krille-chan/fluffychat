@@ -253,7 +253,7 @@ class Message extends StatelessWidget {
                             child: Text(
                               event.originServerTs.localizedTime(context),
                               style: TextStyle(
-                                fontSize: 12 * AppSettings.fontSizeFactor.value,
+                                fontSize: 13,
                                 fontWeight: FontWeight.bold,
                                 color: theme.colorScheme.secondary,
                               ),
@@ -416,7 +416,7 @@ class Message extends StatelessWidget {
                                                   return Text(
                                                     displayname,
                                                     style: TextStyle(
-                                                      fontSize: 11,
+                                                      fontSize: 12,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color:
@@ -606,7 +606,7 @@ class Message extends StatelessWidget {
                                                         style: TextStyle(
                                                           color: textColor
                                                               .withAlpha(164),
-                                                          fontSize: 11,
+                                                          fontSize: 12,
                                                         ),
                                                       ),
                                                     ],
@@ -887,9 +887,7 @@ class Message extends StatelessWidget {
                         ),
                         child: Text(
                           L10n.of(context).readUpToHere,
-                          style: TextStyle(
-                            fontSize: 12 * AppSettings.fontSizeFactor.value,
-                          ),
+                          style: const TextStyle(fontSize: 13),
                         ),
                       ),
                       Expanded(

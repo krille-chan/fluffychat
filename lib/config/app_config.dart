@@ -1,4 +1,7 @@
+import 'dart:io' show Platform;
 import 'dart:ui';
+
+import 'package:flutter/foundation.dart';
 
 abstract class AppConfig {
   // Const and final configuration values (immutable)
@@ -7,7 +10,20 @@ abstract class AppConfig {
   static const Color secondaryColor = Color(0xFF41a2bc);
 
   static const Color chatColor = primaryColor;
-  static const double messageFontSize = 16.0;
+  // Chat body base size. macOS native chat apps (Telegram, Messages, Mail)
+  // render body around 14pt, noticeably tighter than Material 3's 16sp.
+  // Everywhere else we keep Material/HIG defaults (16sp on Android,
+  // ~17pt on iOS via Dynamic Type).
+  static final double messageFontSize = (!kIsWeb && Platform.isMacOS)
+      ? 14.0
+      : 16.0;
+
+  // Line-height for message body. macOS/SF Pro feels natural at 1.25×,
+  // which is tighter than the default Material/font leading. On other
+  // platforms we leave it null so each font uses its own intrinsic leading.
+  static final double? messageLineHeight = (!kIsWeb && Platform.isMacOS)
+      ? 1.25
+      : null;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
   static const bool hideTypingUsernames = false;

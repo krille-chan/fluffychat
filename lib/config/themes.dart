@@ -1,5 +1,6 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -45,11 +46,17 @@ abstract class FluffyThemes {
       seedColor: seed ?? Color(AppSettings.colorSchemeSeedInt.value),
     );
     final isColumnMode = FluffyThemes.isColumnMode(context);
+    final isApple = PlatformInfos.isCupertinoStyle;
     return ThemeData(
       visualDensity: VisualDensity.standard,
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
+      // SF Pro Text on Apple platforms; Material default elsewhere.
+      // 'CupertinoSystemText' is resolved by the Flutter engine to
+      // .AppleSystemUIFont, with the Display↔Text split handled natively
+      // at the 20pt boundary.
+      fontFamily: isApple ? 'CupertinoSystemText' : null,
       dividerColor: brightness == Brightness.dark
           ? colorScheme.surfaceContainerHighest
           : colorScheme.surfaceContainer,
@@ -132,6 +139,63 @@ abstract class FluffyThemes {
           padding: const EdgeInsets.all(16),
           textStyle: const TextStyle(fontSize: 16),
         ),
+      ),
+      textTheme: isApple
+          ? _appleTextTheme(null, isIOS: PlatformInfos.isIOS)
+          : null,
+    );
+  }
+
+  /// Applies Apple HIG letter-spacing to Material 3 text styles so SF Pro
+  /// renders with native tracking on iOS/macOS. Sizes and weights stay at
+  /// Material 3 defaults; only [TextStyle.letterSpacing] is replaced.
+  ///
+  /// When [base] is null, an empty [TextTheme] is used; `ThemeData` merges
+  /// the resulting styles on top of the default Material 3 [TextTheme], so
+  /// every Material-size remains intact.
+  static TextTheme _appleTextTheme(TextTheme? base, {required bool isIOS}) {
+    // Values from Apple HIG:
+    //   iOS: https://developer.apple.com/design/human-interface-guidelines/typography
+    //   macOS: same page, macOS typography table.
+    final titleLarge = isIOS ? -0.41 : 0.34;
+    final titleMedium = isIOS ? -0.32 : 0.38;
+    final titleSmall = isIOS ? -0.24 : 0.0;
+    final bodyLarge = isIOS ? -0.41 : 0.08;
+    final bodyMedium = isIOS ? -0.08 : 0.0;
+    final bodySmall = isIOS ? 0.0 : 0.06;
+    final labelLarge = isIOS ? -0.41 : -0.08;
+    final labelMedium = isIOS ? 0.06 : 0.12;
+    final labelSmall = isIOS ? 0.06 : 0.4;
+    final b = base ?? const TextTheme();
+    return b.copyWith(
+      titleLarge: (b.titleLarge ?? const TextStyle()).copyWith(
+        letterSpacing: titleLarge,
+      ),
+      titleMedium: (b.titleMedium ?? const TextStyle()).copyWith(
+        letterSpacing: titleMedium,
+      ),
+      titleSmall: (b.titleSmall ?? const TextStyle()).copyWith(
+        letterSpacing: titleSmall,
+      ),
+      bodyLarge: (b.bodyLarge ?? const TextStyle()).copyWith(
+        letterSpacing: bodyLarge,
+      ),
+      bodyMedium: (b.bodyMedium ?? const TextStyle()).copyWith(
+        letterSpacing: bodyMedium,
+      ),
+      bodySmall: (b.bodySmall ?? const TextStyle()).copyWith(
+        fontSize: 13,
+        letterSpacing: bodySmall,
+      ),
+      labelLarge: (b.labelLarge ?? const TextStyle()).copyWith(
+        letterSpacing: labelLarge,
+      ),
+      labelMedium: (b.labelMedium ?? const TextStyle()).copyWith(
+        letterSpacing: labelMedium,
+      ),
+      labelSmall: (b.labelSmall ?? const TextStyle()).copyWith(
+        fontSize: 12,
+        letterSpacing: labelSmall,
       ),
     );
   }

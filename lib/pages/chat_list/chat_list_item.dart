@@ -220,7 +220,7 @@ class ChatListItem extends StatelessWidget {
                           context,
                         ),
                         style: TextStyle(
-                          fontSize: 11,
+                          fontSize: 12,
                           fontWeight: room.hasNewMessages
                               ? FontWeight.bold
                               : null,
@@ -285,7 +285,7 @@ class ChatListItem extends StatelessWidget {
                                 const SizedBox(width: 4),
                                 Text(
                                   L10n.of(context).thread,
-                                  style: TextStyle(fontSize: 11),
+                                  style: TextStyle(fontSize: 12),
                                 ),
                               ],
                             ),

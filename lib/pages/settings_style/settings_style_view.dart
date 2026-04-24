@@ -227,9 +227,8 @@ class SettingsStyleView extends StatelessWidget {
                                       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor',
                                       style: TextStyle(
                                         color: theme.onBubbleColor,
-                                        fontSize:
-                                            AppConfig.messageFontSize *
-                                            AppSettings.fontSizeFactor.value,
+                                        fontSize: AppConfig.messageFontSize,
+                                        height: AppConfig.messageLineHeight,
                                       ),
                                     ),
                                   ),
@@ -261,9 +260,8 @@ class SettingsStyleView extends StatelessWidget {
                                         'Lorem ipsum dolor sit amet',
                                         style: TextStyle(
                                           color: theme.colorScheme.onSurface,
-                                          fontSize:
-                                              AppConfig.messageFontSize *
-                                              AppSettings.fontSizeFactor.value,
+                                          fontSize: AppConfig.messageFontSize,
+                                          height: AppConfig.messageLineHeight,
                                         ),
                                       ),
                                     ),

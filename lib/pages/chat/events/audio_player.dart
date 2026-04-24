@@ -493,11 +493,13 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                         style: TextStyle(
                           color: widget.color,
                           fontSize: widget.fontSize,
+                          height: AppConfig.messageLineHeight,
                         ),
                         options: const LinkifyOptions(humanize: false),
                         linkStyle: TextStyle(
                           color: widget.linkColor,
                           fontSize: widget.fontSize,
+                          height: AppConfig.messageLineHeight,
                           decoration: TextDecoration.underline,
                           decorationColor: widget.linkColor,
                         ),

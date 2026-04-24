@@ -1,4 +1,5 @@
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/app_font_size.dart';
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -65,16 +66,29 @@ class FluffyChatApp extends StatelessWidget {
         localizationsDelegates: L10n.localizationsDelegates,
         supportedLocales: L10n.supportedLocales,
         routerConfig: router,
-        builder: (context, child) => AppLockWidget(
-          pincode: pincode,
-          clients: clients,
-          // Need a navigator above the Matrix widget for
-          // displaying dialogs
-          child: Matrix(
-            clients: clients,
-            store: store,
-            child: testWidget ?? child,
-          ),
+        builder: (context, child) => ValueListenableBuilder<double>(
+          valueListenable: fontSizeFactorNotifier,
+          builder: (context, factor, _) {
+            final system = MediaQuery.textScalerOf(context);
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(
+                textScaler: factor == 1.0
+                    ? system
+                    : ScaledTextScaler(system, factor),
+              ),
+              child: AppLockWidget(
+                pincode: pincode,
+                clients: clients,
+                // Need a navigator above the Matrix widget for
+                // displaying dialogs
+                child: Matrix(
+                  clients: clients,
+                  store: store,
+                  child: testWidget ?? child,
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
