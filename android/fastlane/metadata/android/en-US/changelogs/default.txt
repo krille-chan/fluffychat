@@ -1,3 +1,0 @@
-FluffyChat 2.5.0 introduces a new homeserver picker for onboarding,
-better image compression performance and several smaller new features,
-design adjustments and bug fixes.
