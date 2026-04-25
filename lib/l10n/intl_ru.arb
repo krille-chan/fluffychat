@@ -2054,10 +2054,10 @@
             }
         }
     },
-    "commandHint_cuddle": "Отправить улыбку",
+    "commandHint_cuddle": "Отправить объятия",
     "readUpToHere": "Непрочитанное",
     "commandHint_hug": "Отправить обнимашки",
-    "cuddleContent": "{senderName} обнимает вас",
+    "cuddleContent": "{senderName} нежно обнимает вас",
     "@cuddleContent": {
         "type": "String",
         "placeholders": {
@@ -2066,7 +2066,7 @@
             }
         }
     },
-    "hugContent": "{senderName} обнял(а) Вас",
+    "hugContent": "{senderName} обнимает Вас",
     "@hugContent": {
         "type": "String",
         "placeholders": {
@@ -2097,11 +2097,11 @@
     "encryptThisChat": "Зашифровать этот чат",
     "reopenChat": "Открыть чат заново",
     "commandHint_googly": "Отправить выпученные глаза",
-    "notAnImage": "Это не картинка.",
+    "notAnImage": "Это не изображение.",
     "importNow": "Импортировать сейчас",
     "importEmojis": "Импортировать эмодзи",
-    "importFromZipFile": "Импортировать из zip-файла",
-    "exportEmotePack": "Экспортировать набор эмодзи как zip",
+    "importFromZipFile": "Импортировать из .zip файла",
+    "exportEmotePack": "Экспортировать набор эмодзи как .zip",
     "replace": "Заменить",
     "googlyEyesContent": "{senderName} выпучил глаза",
     "@googlyEyesContent": {
