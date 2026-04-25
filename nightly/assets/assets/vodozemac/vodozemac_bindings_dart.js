@@ -1528,6 +1528,11 @@ let wasm_bindgen;
         return ret;
     };
 
+    function takeFromExternrefTable0(idx) {
+        const value = wasm.__wbindgen_export_2.get(idx);
+        wasm.__externref_table_dealloc(idx);
+        return value;
+    }
     /**
      * # Safety
      *
@@ -1545,11 +1550,6 @@ let wasm_bindgen;
         wasm.wasm_start_callback();
     };
 
-    function takeFromExternrefTable0(idx) {
-        const value = wasm.__wbindgen_export_2.get(idx);
-        wasm.__externref_table_dealloc(idx);
-        return value;
-    }
     /**
      * @param {number} ptr
      */
