@@ -91,11 +91,13 @@ Future<void> _tryPushHelper(
     initialize: false,
     store: await AppSettings.init(),
   )).first;
-  final awaitingOneShotSync = client.oneShotSync();
+
   final event = await client.getEventByPushNotification(
     notification,
     storeInDatabase: false,
   );
+
+  final awaitingOneShotSync = client.oneShotSync();
 
   if (event == null) {
     Logs().v('Notification is a clearing indicator.');
