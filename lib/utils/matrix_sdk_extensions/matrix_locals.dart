@@ -5,7 +5,26 @@ import 'package:matrix/matrix.dart';
 class MatrixLocals extends MatrixLocalizations {
   final L10n l10n;
 
-  MatrixLocals(this.l10n);
+  static bool _stickerLocalizationPatched = false;
+
+  /// Patches the SDK's sticker localization to include the sticker body text.
+  static void _patchStickerLocalization() {
+    if (_stickerLocalizationPatched) return;
+    _stickerLocalizationPatched = true;
+    EventLocalizations.localizationsMap[EventTypes.Sticker] =
+        (event, i18n, body) {
+      final senderName =
+          event.senderFromMemoryOrFallback.calcDisplayname(i18n: i18n);
+      if (i18n is MatrixLocals && body.isNotEmpty) {
+        return i18n.l10n.sentAStickerBody(senderName, body);
+      }
+      return i18n.sentASticker(senderName);
+    };
+  }
+
+  MatrixLocals(this.l10n) {
+    _patchStickerLocalization();
+  }
 
   @override
   String acceptedTheInvitation(String targetName) {
