@@ -1619,7 +1619,6 @@
         "placeholders": {}
     },
     "yourChatBackupHasBeenSetUp": "Kopia zapasowa Twojego czatu została ustawiona.",
-    "@yourChatBackupHasBeenSetUp": {},
     "contentHasBeenReported": "Treść została zgłoszona administratorom serwera",
     "@contentHasBeenReported": {
         "type": "String",
@@ -1790,7 +1789,6 @@
     "messageInfo": "Informacje o wiadomości",
     "time": "Czas",
     "messageType": "Rodzaj wiadomości",
-    "@messageType": {},
     "waitingPartnerAcceptRequest": "Oczekiwanie na zaakceptowanie prośby przez drugą osobę…",
     "@waitingPartnerAcceptRequest": {
         "type": "String",
@@ -1876,7 +1874,6 @@
     "openGallery": "Otwórz galerię",
     "start": "Start",
     "pleaseEnterRecoveryKeyDescription": "Aby odblokować wcześniejsze wiadomości, wprowadź swój klucz odzyskiwania, który został wygenerowany w poprzedniej sesji. Twój klucz odzyskiwania NIE jest Twoim hasłem.",
-    "@pleaseEnterRecoveryKeyDescription": {},
     "hydrate": "Przywracanie z pliku kopii zapasowej",
     "noMatrixServer": "{server1} nie jest serwerem Matriksa, czy chcesz zamiast niego użyć {server2}?",
     "@noMatrixServer": {
@@ -1934,7 +1931,6 @@
         "placeholders": {}
     },
     "openChat": "Otwórz czat",
-    "@openChat": {},
     "supposedMxid": "To powinno być {mxid}",
     "@supposedMxid": {
         "type": "String",
@@ -1954,9 +1950,7 @@
     },
     "dehydrate": "Eksportuj sesję i wymaż urządzenie",
     "dehydrateWarning": "Tego nie można cofnąć. Upewnij się, że plik kopii zapasowej jest bezpiecznie przechowywany.",
-    "@dehydrateWarning": {},
     "unsupportedAndroidVersion": "Nieobsługiwana wersja systemu Android",
-    "@unsupportedAndroidVersion": {},
     "pinMessage": "Przypnij do pokoju",
     "confirmEventUnpin": "Czy na pewno chcesz trwale odpiąć wydarzenie?",
     "youJoinedTheChat": "Dołączono do czatu",
@@ -1983,19 +1977,15 @@
         }
     },
     "noOtherDevicesFound": "Nie znaleziono innych urządzeń",
-    "@noOtherDevicesFound": {},
     "encryptThisChat": "Zaszyfruj ten czat",
     "disableEncryptionWarning": "Ze względów bezpieczeństwa nie można wyłączyć szyfrowania w czacie, w którym zostało ono wcześniej włączone.",
     "deviceKeys": "Klucze urządzenia:",
-    "@deviceKeys": {},
     "saveKeyManuallyDescription": "Zapisz ten klucz ręcznie, uruchamiając systemowe okno dialogowe udostępniania lub schowek.",
     "screenSharingTitle": "udostępnianie ekranu",
-    "@screenSharingTitle": {},
     "noKeyForThisMessage": "Może się to zdarzyć, jeśli wiadomość została wysłana przed zalogowaniem się na to konto na tym urządzeniu.\n\nMożliwe jest również, że nadawca zablokował Twoje urządzenie lub coś poszło nie tak z połączeniem internetowym.\n\nJesteś w stanie odczytać wiadomość na innej sesji? W takim razie możesz przenieść z niej wiadomość! Wejdź w Ustawienia > Urządzenia i upewnij się, że Twoje urządzenia zweryfikowały się wzajemnie. Gdy następnym razem otworzysz pokój i obie sesje będą włączone, klucze zostaną przekazane automatycznie.\n\nNie chcesz stracić kluczy podczas wylogowania lub przełączania urządzeń? Upewnij się, że w ustawieniach masz włączoną kopię zapasową czatu.",
     "sorryThatsNotPossible": "Przepraszamy... to nie jest możliwe",
     "noBackupWarning": "Uwaga! Bez włączenia kopii zapasowej czatu, stracisz dostęp do swoich zaszyfrowanych wiadomości. Zaleca się włączenie kopii zapasowej czatu przed wylogowaniem.",
     "commandHint_googly": "Wyślij kręcące się oczka",
-    "@commandHint_googly": {},
     "storeInAndroidKeystore": "Przechowaj w Android KeyStore",
     "commandHint_cuddle": "Wyślij przytulenie",
     "googlyEyesContent": "{senderName} wysyła ci kręcące się oczka",
@@ -2044,7 +2034,6 @@
     "unsupportedAndroidVersionLong": "Ta funkcja wymaga nowszej wersji systemu Android. Sprawdź aktualizacje lub wsparcie Lineage OS.",
     "videoCallsBetaWarning": "Należy pamiętać, że połączenia wideo są obecnie w fazie beta. Mogą nie działać zgodnie z oczekiwaniami lub nie działać w ogóle na wszystkich platformach.",
     "experimentalVideoCalls": "Eksperymentalne połączenia wideo",
-    "@experimentalVideoCalls": {},
     "youRejectedTheInvitation": "Odrzucono zaproszenie",
     "youAcceptedTheInvitation": "👍 Zaakceptowałeś/-aś zaproszenie",
     "youHaveWithdrawnTheInvitationFor": "Wycofano zaproszenie dla {user}",
@@ -2101,11 +2090,8 @@
     "storeSecurlyOnThisDevice": "Przechowaj bezpiecznie na tym urządzeniu",
     "foregroundServiceRunning": "To powiadomienie pojawia się, gdy usługa w tle jest uruchomiona.",
     "screenSharingDetail": "Udostępniasz swój ekran w FluffyChat",
-    "@screenSharingDetail": {},
     "whyIsThisMessageEncrypted": "Dlaczego nie można odczytać tej wiadomości?",
-    "@whyIsThisMessageEncrypted": {},
     "allSpaces": "Wszystkie przestrzenie",
-    "@allSpaces": {},
     "doNotShowAgain": "Nie pokazuj ponownie",
     "wasDirectChatDisplayName": "Pusty czat (wcześniej {oldDisplayName})",
     "@wasDirectChatDisplayName": {
@@ -2135,7 +2121,6 @@
     "jump": "Przejdź",
     "removeFromBundle": "Usuń z tego pakietu",
     "openLinkInBrowser": "Otwórz link w przeglądarce",
-    "@openLinkInBrowser": {},
     "reportErrorDescription": "😭 O nie! Coś poszło nie tak. Spróbuj ponownie później. Jeśli chcesz, możesz zgłosić ten błąd autorom programu.",
     "setColorTheme": "Ustal styl kolorów:",
     "tryAgain": "Spróbuj ponownie",
@@ -2143,7 +2128,6 @@
     "chatDescription": "Opis czatu",
     "invalidServerName": "Nieprawidłowa nazwa serwera",
     "chatPermissions": "Uprawnienia w czacie",
-    "@chatPermissions": {},
     "setChatDescription": "Ustaw opis czatu",
     "importFromZipFile": "Zaimportuj z pliku .zip",
     "redactedBy": "Usunięte przez {username}",
@@ -2157,7 +2141,6 @@
     },
     "optionalRedactReason": "(Opcjonalnie) Powód usunięcia tej wiadomości...",
     "exportEmotePack": "Eksportuj pakiet emotikonów jako .zip",
-    "@exportEmotePack": {},
     "redactedByBecause": "Usunięte przez {username} z powodu „{reason}”",
     "@redactedByBecause": {
         "type": "String",
@@ -2173,7 +2156,6 @@
     "redactMessageDescription": "Wiadomość zostanie usunięta u wszystkich uczestników tej rozmowy. Tego nie można cofnąć.",
     "invalidInput": "Nieprawidłowe dane!",
     "report": "zgłoś",
-    "@report": {},
     "directChat": "Czat bezpośredni",
     "wrongPinEntered": "Wprowadzono nieprawidłowy kod PIN! Spróbuj ponownie za {seconds} sekund...",
     "@wrongPinEntered": {
@@ -2186,12 +2168,10 @@
     },
     "sendTypingNotifications": "Wysyłaj powiadomienie o pisaniu",
     "inviteGroupChat": "📨 Zaproszenie do rozmowy grupowej",
-    "@inviteGroupChat": {},
     "importEmojis": "Zaimportuj emotikony",
     "noChatDescriptionYet": "Nie utworzono jeszcze opisu czatu.",
     "notAnImage": "To nie jest plik obrazu.",
     "chatDescriptionHasBeenChanged": "Zmieniono opis czatu",
-    "@chatDescriptionHasBeenChanged": {},
     "shareInviteLink": "Udostępnij link z zaproszeniem",
     "emoteKeyboardNoRecents": "Tutaj pojawiają się ostatnio używane emotikony...",
     "@emoteKeyboardNoRecents": {
@@ -2199,35 +2179,29 @@
         "placeholders": {}
     },
     "replace": "Zastąp",
-    "@replace": {},
     "createGroup": "Utwórz grupę",
     "importNow": "Zaimportuj",
     "invite": "Zaproszenie",
     "block": "Zablokuj",
     "blockedUsers": "Zablokowani użytkownicy",
     "blockUsername": "Ignoruj użytkownika",
-    "@blockUsername": {},
     "transparent": "Przezroczystość",
     "select": "Zaznacz",
     "calls": "Połączenia",
     "overview": "Podsumowanie",
     "learnMore": "Dowiedz się więcej",
     "groupName": "Nazwa grupy",
-    "@groupName": {},
     "newPassword": "Nowe hasło",
     "thisDevice": "To urządzenie:",
     "gallery": "Galeria",
     "files": "Pliki",
     "discover": "Odkrywaj",
     "restricted": "Ograniczone",
-    "@restricted": {},
     "nothingFound": "Nic nie odnaleziono...",
     "stickers": "Naklejki",
     "noChatsFoundHere": "Nie jeszcze ma żadnych czatów. Wciśnij poniższy przycisk, aby rozpocząć nowy czat. ⤵️",
     "hideRedactedMessagesBody": "Usunięte wiadomości nie będą widoczne w czacie.",
-    "@hideRedactedMessagesBody": {},
     "passwordRecoverySettings": "Ustawienia odzyskiwania hasła",
-    "@passwordRecoverySettings": {},
     "invitedBy": "Zaproszony/-a przez {user}",
     "@invitedBy": {
         "placeholders": {
@@ -2264,7 +2238,6 @@
     "blockListDescription": "Możesz zablokować uciążliwych użytkowników. Nie będziesz widzieć ani otrzymywać wiadomości oraz zaproszeń od nich.",
     "formattedMessages": "Sformatowane wiadomości",
     "banUserDescription": "Użytkownik zostanie zbanowany w czacie i nie będzie w stanie dołączyć do czatu do momentu odbanowania.",
-    "@banUserDescription": {},
     "sendReadReceipts": "Wysyłaj powiadomienia o przeczytaniu wiadomości",
     "verifyOtherDevice": "🔐 Zweryfikuj inne urządzenie",
     "prepareSendingAttachment": "Przygotuj wysyłanie załącznika...",
@@ -2306,7 +2279,6 @@
         }
     },
     "knock": "Zapukaj",
-    "@knock": {},
     "restoreSessionBody": "Aplikacja spróbuje teraz odzyskać Twoją sesję z kopii zapasowej. Prosimy zgłosić ten błąd autorom aplikacji na {url}. Treść błędu to: {error}",
     "@restoreSessionBody": {
         "type": "String",
@@ -2365,7 +2337,6 @@
     "changeTheCanonicalRoomAlias": "Zmień główny publiczny czatu",
     "changeTheDescriptionOfTheGroup": "Zmień opis czatu",
     "sendCanceled": "Anulowano wysyłanie",
-    "@sendCanceled": {},
     "doesNotSeemToBeAValidHomeserver": "Wydaje się nie być kompatybilnym serwerem domowym. Niepoprawny adres URL?",
     "calculatingFileSize": "Obliczanie rozmiaru pliku...",
     "sendingAttachment": "Wysyłanie załącznika...",
@@ -2437,7 +2408,6 @@
     "customEmojisAndStickersBody": "Dodaj lub podziel się własnymi emotikonami i naklejkami, które będą mogły być użyte w dowolnym czacie.",
     "hideRedactedMessages": "Nie pokazuj usuniętych wiadomości",
     "hideInvalidOrUnknownMessageFormats": "Ukryj niepoprawne lub nieznane typy wiadomości",
-    "@hideInvalidOrUnknownMessageFormats": {},
     "pushNotificationsNotAvailable": "Powiadomienia push nie są dostępne",
     "noUsersFoundWithQuery": "Niestety nie udało się nikogo znaleźć poprzez \"{query}\". Proszę sprawdzić, czy w zapytaniu nie ma literówek.",
     "@noUsersFoundWithQuery": {
@@ -2496,7 +2466,6 @@
     },
     "publicChatAddresses": "Adresy publicznych czatów",
     "createNewAddress": "Utwórz nowy adres",
-    "@createNewAddress": {},
     "completedKeyVerification": "{sender} zakończył/-a weryfikację kluczy",
     "@completedKeyVerification": {
         "type": "String",
@@ -2510,12 +2479,10 @@
     "boldText": "Pogrubienie",
     "strikeThrough": "Przekreślenie",
     "incomingMessages": "Wiadomości przychodzące",
-    "@incomingMessages": {},
     "loginWithMatrixId": "Zaloguj się identyfikatorem Matrix",
     "passwordsDoNotMatch": "Hasła się nie zgadzają",
     "unbanUserDescription": "Użytkownik będzie w stanie dołączyć do czatu ponownie.",
     "roomUpgradeDescription": "Czat zostanie przeniesiony do pokoju w nowej wersji. Wszyscy użytkownicy zostaną powiadomieni o konieczności dołączenia do nowego czatu. Możesz dowiedzieć się więcej o wersjach pokojów na https://spec.matrix.org/latest/rooms/",
-    "@roomUpgradeDescription": {},
     "requestedKeyVerification": "{sender} poprosił/-a o weryfikację kluczy",
     "@requestedKeyVerification": {
         "type": "String",
@@ -2526,7 +2493,6 @@
         }
     },
     "changeGeneralChatSettings": "Zmień ogólne ustawienia czatu",
-    "@changeGeneralChatSettings": {},
     "verifyOtherUserDescription": "Jeśli zweryfikujesz innego użytkownika, możesz być pewien/-na z kim naprawdę piszesz. 💪\n\nKiedy rozpoczniesz weryfikację, Ty i ta druga osoba zobaczycie okienko dialogowe. Zobaczycie w nim serię emotikonów lub numery do porównania.\n\nNajlepiej potwierdzić ich zgodność osobiście lub przez wideorozmowę. 👭",
     "verifyOtherDeviceDescription": "Jeśli zweryfikujesz inne urządzenie, będzie mogło ono wymienić klucze z dotychczasowym, zwiększając ogólne bezpieczeństwo. 💪 Kiedy rozpoczniesz weryfikację, na obu urządzeniach wyświetli się okno dialogowe. Zobaczysz w nim serię emotikonów lub numery do porównania. Najlepiej mieć oba urządzenia pod ręką przed rozpoczęciem weryfikacji. 🤳",
     "unreadChatsInApp": "{appname}: {unread} nieprzeczytanych czatów",
@@ -2545,9 +2511,7 @@
     "unread": "Nieprzeczytane",
     "space": "Przestrzeń",
     "spaces": "Przestrzenie",
-    "@spaces": {},
     "noMoreChatsFound": "Nie znaleziono więcej czatów...",
-    "@noMoreChatsFound": {},
     "removeDevicesDescription": "Nastąpi wylogowanie z tego urządzenia. Nie będziesz w stanie odbierać na nim wiadomości.",
     "makeAdminDescription": "Kiedy użytkownik zostanie adminem, nie będziesz móc tego cofnąć, bo nabierze takich samych uprawnień, jak Ty.",
     "searchChatsRooms": "Szukaj #czatów, @użytkowników...",
@@ -2560,7 +2524,6 @@
     "joinSpace": "Dołącz do przestrzeni",
     "addChatOrSubSpace": "Dodaj czat lub podprzestrzeń",
     "initAppError": "Wystąpił błąd podczas inicjalizacji aplikacji",
-    "@initAppError": {},
     "searchIn": "Szukaj w czacie \"{chat}\"...",
     "@searchIn": {
         "type": "String",
@@ -2647,7 +2610,6 @@
         }
     },
     "waitingForServer": "Oczekiwanie na serwer...",
-    "@waitingForServer": {},
     "previous": "Poprzedni",
     "otherPartyNotLoggedIn": "Druga strona nie jest obecnie zalogowana i dlatego nie może odbierać wiadomości!",
     "deletePushRuleCanNotBeUndone": "Jeśli skasujesz to ustawienie powiadomień, nie będzie się dało tego cofnąć.",
@@ -2686,9 +2648,7 @@
         }
     },
     "checkList": "Lista kontrolna",
-    "@checkList": {},
     "ignoreUser": "Ignoruj użytkownika",
-    "@ignoreUser": {},
     "approve": "Zaakceptuj",
     "youHaveKnocked": "Zapukałeś/-aś",
     "pleaseWaitUntilInvited": "Proszę zaczekać na zaproszenie przez kogoś z pokoju.",
@@ -2698,5 +2658,21 @@
     "customReaction": "Własna reakcja",
     "moreEvents": "Więcej zdarzeń",
     "declineInvitation": "Odrzuć zaproszenie",
-    "@declineInvitation": {}
+    "changedTheChatDescription": "{username} zmienił(a) opis czatu",
+    "changedTheChatName": "{username} zmienił(a) nazwę czatu",
+    "noMessagesYet": "Brak wiadomości",
+    "longPressToRecordVoiceMessage": "Naciśnij i przytrzymaj, aby nagrać wiadomość głosową.",
+    "pause": "Pauza",
+    "resume": "Wznów",
+    "removeFromSpaceDescription": "Czat zostanie usunięty z pokoju, ale nadal będzie widoczny na liście czatów.",
+    "countChats": "{chats} czaty",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "createNewTag": "Utwórz nową etykietę"
 }
