@@ -416,7 +416,7 @@
         "type": "String",
         "description": "Usage hint for the command /react"
     },
-    "commandHint_send": "Wyślij wiadomość",
+    "commandHint_send": "Wyślij tekst",
     "@commandHint_send": {
         "type": "String",
         "description": "Usage hint for the command /send"
@@ -903,7 +903,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "login": "Zaloguj się",
+    "login": "Login",
     "@login": {
         "type": "String",
         "placeholders": {}
@@ -2674,5 +2674,144 @@
             }
         }
     },
-    "createNewTag": "Utwórz nową etykietę"
+    "createNewTag": "Utwórz nową etykietę",
+    "spaceMemberOf": "Członek przestrzeni {spaces}",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "Członek przestrzeni {spaces} może kołatać",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "attribution": "Uznanie autorstwa",
+    "skipChatBackup": "Pomiń kopię zapasową czatów",
+    "skipChatBackupWarning": "Czy na pewno? Bez włączenia kopii zapasowej czatów możesz stracić dostęp do swoich wiadomości w przypadku zmiany urządzenia.",
+    "loadingMessages": "Ładowanie wiadomości",
+    "setupChatBackup": "Skonfiguruj kopię zapasową czatów",
+    "noMoreResultsFound": "Nie znaleziono więcej wyników",
+    "chatSearchedUntil": "Czat przeszukany do {time}",
+    "@chatSearchedUntil": {
+        "type": "String",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "federationBaseUrl": "Podstawowy adres URL federacji",
+    "clientWellKnownInformation": "Informacje Client-Well-Known:",
+    "baseUrl": "Podstawowy adres URL",
+    "identityServer": "Serwer tożsamości:",
+    "versionWithNumber": "Wersja: {version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "logs": "Logi",
+    "advancedConfigs": "Konfiguracje zaawansowane",
+    "advancedConfigurations": "Zaawansowane konfiguracje",
+    "signIn": "Zaloguj się",
+    "createNewAccount": "Utwórz nowe konto",
+    "signUpGreeting": "FluffyChat jest zdecentralizowany! Wybierz serwer, na którym chcesz utworzyć konto i zaczynamy!",
+    "signInGreeting": "Masz już konto w sieci Matrix? Witaj z powrotem! Wybierz swój serwer macierzysty i zaloguj się.",
+    "appIntro": "Dzięki FluffyChat możesz rozmawiać ze znajomymi. To bezpieczny, zdecentralizowany komunikator oparty na sieci [matrix]! Dowiedz się więcej na https://matrix.org lub po prostu się zarejestruj.",
+    "theProcessWasCanceled": "Proces został anulowany.",
+    "join": "Dołącz",
+    "searchOrEnterHomeserverAddress": "Wyszukaj lub wprowadź adres serwera macierzystego",
+    "matrixId": "Identyfikator Matrix",
+    "setPowerLevel": "Ustaw poziom uprawnień",
+    "makeModerator": "Mianuj moderatorem",
+    "makeAdmin": "Mianuj administratorem",
+    "removeModeratorRights": "Odbierz uprawnienia moderatora",
+    "removeAdminRights": "Odbierz uprawnienia administratora",
+    "powerLevel": "Poziom uprawnień",
+    "setPowerLevelDescription": "Poziomy uprawnień określają, co członek może robić w tym pokoju i zazwyczaj mieszczą się w zakresie od 0 do 100.",
+    "owner": "Właściciel",
+    "mute": "Wycisz",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Utwórz nowy czat",
+    "reset": "Resetuj",
+    "supportFluffyChat": "Wesprzyj FluffyChat",
+    "support": "Wsparcie",
+    "fluffyChatSupportBannerMessage": "FluffyChat potrzebuje TWOJEJ pomocy!\n❤️❤️❤️\nFluffyChat zawsze będzie darmowy, ale rozwój i hosting nadal kosztują.\nPrzyszłość projektu zależy od wsparcia osób takich jak Ty.",
+    "skipSupportingFluffyChat": "Pomiń wspieranie FluffyChat",
+    "iDoNotWantToSupport": "Nie chcę wspierać",
+    "iAlreadySupportFluffyChat": "Już wspieram FluffyChat",
+    "setLowPriority": "Ustaw niski priorytet",
+    "unsetLowPriority": "Cofnij niski priorytet",
+    "removeCallFromChat": "Usuń połączenie z czatu",
+    "removeCallFromChatDescription": "Czy chcesz usunąć połączenie z czatu dla wszystkich członków?",
+    "removeCallForEveryone": "Usuń połączenie dla wszystkich",
+    "startVoiceCall": "Rozpocznij połączenie głosowe",
+    "startVideoCall": "Rozpocznij połączenie wideo",
+    "joinVoiceCall": "Dołącz do połączenia głosowego",
+    "joinVideoCall": "Dołącz do połączenia wideo",
+    "live": "Na żywo",
+    "playSoundOnNotification": "Odtwórz dźwięk powiadomienia",
+    "addTag": "Dodaj znacznik",
+    "removeTag": "Usuń znacznik",
+    "tagName": "Nazwa znacznika",
+    "startedAPoll": "{username} rozpoczął głosowanie.",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "poll": "Ankieta",
+    "startPoll": "Rozpocznij ankietę",
+    "endPoll": "Zakończ ankietę",
+    "answersVisible": "Widoczne odpowiedzi",
+    "pollQuestion": "Pytanie ankiety",
+    "answerOption": "Opcja odpowiedzi",
+    "addAnswerOption": "Dodaj opcję odpowiedzi",
+    "allowMultipleAnswers": "Zezwalaj na wiele odpowiedzi",
+    "pollHasBeenEnded": "Ankieta została zakończona",
+    "countVotes": "{count, plural, one {{count} głos} few {{count} głosy} many {{count} głosów} other {{count} głosu}}",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "answersWillBeVisibleWhenPollHasEnded": "Wyniki będą widoczne po zakończeniu ankiety",
+    "replyInThread": "Odpowiedz w wątku",
+    "countReplies": "{count, plural, one {{count} odpowiedź} few {{count} odpowiedzi} many {{count} odpowiedzi} other {{count} odpowiedzi}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "thread": "Wątek",
+    "backToMainChat": "Wróć do czatu głównego",
+    "saveChanges": "Zapisz zmiany",
+    "createSticker": "Utwórz naklejkę lub emoji",
+    "useAsSticker": "Użyj naklejki",
+    "useAsEmoji": "Użyj emoji",
+    "stickerPackNameAlreadyExists": "Paczka naklejek o tej nazwie już istnieje",
+    "newStickerPack": "Nowy pakiet naklejek",
+    "stickerPackName": "Nazwa paczki naklejek"
 }
