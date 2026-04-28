@@ -11,7 +11,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-
+import 'package:fluffychat/dsl/extensions/dsl_event_extension.dart';
 class ChatEventList extends StatelessWidget {
   final ChatController controller;
 
@@ -131,6 +131,93 @@ class ChatEventList extends StatelessWidget {
                 event.isCollapsedState &&
                 previousEvent?.isCollapsedState == true &&
                 !controller.expandedEventIds.contains(event.eventId);
+                final isMenuCard = event.content['com.jaino.dsl'] != null ||
+    event.body == "Here's our menu! 🍽️";
+
+if (isMenuCard) {
+  return AutoScrollTag(
+    key: ValueKey(event.transactionId ?? event.eventId),
+    index: i,
+    controller: controller.scrollController,
+    child: Align(
+      alignment: Alignment.centerLeft,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 12, right: 60, top: 4, bottom: 4),
+        child: GestureDetector(
+          onTap: () => controller.showMenuSheet(),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(
+                color: Theme.of(context).dividerColor,
+                width: 0.5,
+              ),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // ── Icon ─────────────────────────────────────────
+                Container(
+                  width: 42, height: 42,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surfaceVariant,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Center(
+                    child: Text('🍽️', style: TextStyle(fontSize: 20)),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                // ── Text ──────────────────────────────────────────
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      controller.lastMenuTitle,
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      'Tap to view full menu',
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 12),
+                // ── Arrow ─────────────────────────────────────────
+                Container(
+                  width: 28, height: 28,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surfaceVariant,
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Theme.of(context).dividerColor,
+                      width: 0.5,
+                    ),
+                  ),
+                  child: Icon(
+                    Icons.arrow_forward_ios,
+                    size: 12,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
 
             return AutoScrollTag(
               key: ValueKey(event.transactionId ?? event.eventId),
