@@ -1858,7 +1858,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnterYourPin": "Введіть свій PIN-код",
+    "pleaseEnterYourPin": "Будь ласка, введіть свій PIN-код",
     "@pleaseEnterYourPin": {
         "type": "String",
         "placeholders": {}
@@ -2173,7 +2173,7 @@
         "placeholders": {}
     },
     "invalidInput": "Недійсний ввід!",
-    "wrongPinEntered": "Введено неправильний PIN! Повторіть спробу за {seconds} секунд...",
+    "wrongPinEntered": "Введено невірний PIN-код! Спробуйте знову через {seconds} секунд...",
     "@wrongPinEntered": {
         "type": "String",
         "placeholders": {
@@ -2354,7 +2354,7 @@
     "createNewAddress": "Створити нову адресу",
     "commandHint_unignore": "Не ігнорувати цей Matrix ID",
     "knockRestricted": "Стук обмежено",
-    "appLockDescription": "Блокувати застосунок, коли не використовується ПІН-код",
+    "appLockDescription": "Блокувати додаток, коли не використовується ПІН-код",
     "hideRedactedMessages": "Сховати змінені повідомлення",
     "hideRedactedMessagesBody": "Якщо хтось змінить повідомлення, його більше не буде видно в бесіді.",
     "hideInvalidOrUnknownMessageFormats": "Сховати недійсні або невідомі формати повідомлень",
@@ -2521,7 +2521,7 @@
     "italicText": "Курсивний текст",
     "strikeThrough": "Перекреслений текст",
     "pleaseFillOut": "Будь ласка, заповніть",
-    "invalidUrl": "Недійсний URL",
+    "invalidUrl": "Недійсна URL-адреса",
     "addLink": "Додати посилання",
     "unableToJoinChat": "Неможливо приєднатися до бесіди. Можливо, інша сторона вже закрила розмову.",
     "sendImages": "Надіслати {count} зображення",
