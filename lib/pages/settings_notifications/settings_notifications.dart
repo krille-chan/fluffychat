@@ -1,9 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_notifications/push_rule_extensions.dart';
@@ -12,6 +8,9 @@ import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart'
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../widgets/matrix.dart';
 import 'settings_notifications_view.dart';
 
@@ -26,7 +25,7 @@ class SettingsNotifications extends StatefulWidget {
 class SettingsNotificationsController extends State<SettingsNotifications> {
   bool isLoading = false;
 
-  void onPusherTap(Pusher pusher) async {
+  Future<void> onPusherTap(Pusher pusher) async {
     final delete = await showModalActionPopup<bool>(
       context: context,
       title: pusher.deviceDisplayName,
@@ -41,6 +40,7 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
       ],
     );
     if (delete != true) return;
+    if (!mounted) return;
 
     final success = await showFutureLoadingDialog(
       context: context,
@@ -58,7 +58,7 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
 
   Future<List<Pusher>?>? pusherFuture;
 
-  void togglePushRule(PushRuleKind kind, PushRule pushRule) async {
+  Future<void> togglePushRule(PushRuleKind kind, PushRule pushRule) async {
     setState(() {
       isLoading = true;
     });
@@ -91,7 +91,7 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
     }
   }
 
-  void editPushRule(PushRule rule, PushRuleKind kind) async {
+  Future<void> editPushRule(PushRule rule, PushRuleKind kind) async {
     final theme = Theme.of(context);
     final action = await showAdaptiveDialog<PushRuleDialogAction>(
       context: context,

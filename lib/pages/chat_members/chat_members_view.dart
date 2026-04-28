@@ -1,10 +1,9 @@
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:flutter/material.dart';
-
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../widgets/layouts/max_width_body.dart';
 import '../../widgets/matrix.dart';
 import '../chat_details/participant_list_item.dart';
@@ -124,10 +123,7 @@ class ChatMembersView extends StatelessWidget {
                           SizedBox(
                             height: 64,
                             child: ListView.builder(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12.0,
-                                vertical: 12.0,
-                              ),
+                              padding: const EdgeInsets.all(12.0),
                               scrollDirection: Axis.horizontal,
                               itemCount: availableFilters.length,
                               itemBuilder: (context, i) => Padding(

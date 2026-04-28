@@ -1,16 +1,16 @@
-import 'package:flutter/material.dart';
-
+import 'package:async/async.dart' show Result;
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:matrix/encryption/utils/key_verification.dart';
-import 'package:matrix/matrix.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/device_settings/device_settings_view.dart';
 import 'package:fluffychat/pages/key_verification/key_verification_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/encryption.dart';
+import 'package:matrix/matrix.dart' hide Result;
+import 'package:url_launcher/url_launcher_string.dart';
+
 import '../../widgets/matrix.dart';
 
 class DevicesSettings extends StatefulWidget {
@@ -38,43 +38,41 @@ class DevicesSettingsController extends State<DevicesSettings> {
     super.initState();
   }
 
-  void _checkChatBackup() async {
+  Future<void> _checkChatBackup() async {
     final client = Matrix.of(context).client;
-    if (client.encryption?.keyManager.enabled == true) {
-      if (await client.encryption?.keyManager.isCached() == false ||
-          await client.encryption?.crossSigning.isCached() == false ||
-          client.isUnknownSession && !mounted) {
-        setState(() {
-          chatBackupEnabled = false;
-        });
-        return;
-      }
-    }
+    final state = await client.getCryptoIdentityState();
+    if (!mounted) return;
+    setState(() {
+      chatBackupEnabled = state.initialized && !state.connected;
+    });
   }
 
-  void removeDevicesAction(List<Device> devices) async {
+  Future<void> removeDevicesAction(List<Device> devices) async {
+    final l10n = L10n.of(context);
+    final matrix = Matrix.of(context);
     final client = Matrix.of(context).client;
 
-    final wellKnown = await client.getWellknown();
-    final accountManageUrl = wellKnown.additionalProperties
+    final wellKnown = await Result.capture(client.getWellknown());
+    final accountManageUrl = wellKnown.asValue?.value.additionalProperties
         .tryGetMap<String, Object?>('org.matrix.msc2965.authentication')
         ?.tryGet<String>('account');
     if (accountManageUrl != null) {
       launchUrlString(accountManageUrl, mode: LaunchMode.inAppBrowserView);
       return;
     }
+    if (!mounted) return;
     if (await showOkCancelAlertDialog(
           context: context,
-          title: L10n.of(context).areYouSure,
-          okLabel: L10n.of(context).remove,
-          cancelLabel: L10n.of(context).cancel,
-          message: L10n.of(context).removeDevicesDescription,
+          title: l10n.areYouSure,
+          okLabel: l10n.remove,
+          cancelLabel: l10n.cancel,
+          message: l10n.removeDevicesDescription,
           isDestructive: true,
         ) ==
         OkCancelResult.cancel) {
       return;
     }
-    final matrix = Matrix.of(context);
+    if (!mounted) return;
     final deviceIds = <String>[];
     for (final userDevice in devices) {
       deviceIds.add(userDevice.deviceId);
@@ -90,38 +88,43 @@ class DevicesSettingsController extends State<DevicesSettings> {
     reload();
   }
 
-  void renameDeviceAction(Device device) async {
+  Future<void> renameDeviceAction(Device device) async {
+    final l10n = L10n.of(context);
+    final matrix = Matrix.of(context);
     final displayName = await showTextInputDialog(
       context: context,
-      title: L10n.of(context).changeDeviceName,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: l10n.changeDeviceName,
+      okLabel: l10n.ok,
+      cancelLabel: l10n.cancel,
       hintText: device.displayName,
     );
     if (displayName == null) return;
+    if (!mounted) return;
     final success = await showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(
-        context,
-      ).client.updateDevice(device.deviceId, displayName: displayName),
+      future: () =>
+          matrix.client.updateDevice(device.deviceId, displayName: displayName),
     );
     if (success.error == null) {
       reload();
     }
   }
 
-  void verifyDeviceAction(Device device) async {
+  Future<void> verifyDeviceAction(Device device) async {
+    final l10n = L10n.of(context);
+    final matrix = Matrix.of(context);
     final consent = await showOkCancelAlertDialog(
       context: context,
-      title: L10n.of(context).verifyOtherDevice,
-      message: L10n.of(context).verifyOtherDeviceDescription,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
+      title: l10n.verifyOtherDevice,
+      message: l10n.verifyOtherDeviceDescription,
+      okLabel: l10n.ok,
+      cancelLabel: l10n.cancel,
     );
     if (consent != OkCancelResult.ok) return;
-    final req = await Matrix.of(context)
+    if (!mounted) return;
+    final req = await matrix
         .client
-        .userDeviceKeys[Matrix.of(context).client.userID!]!
+        .userDeviceKeys[matrix.client.userID!]!
         .deviceKeys[device.deviceId]!
         .startVerification();
     req.onUpdate = () {
@@ -132,10 +135,11 @@ class DevicesSettingsController extends State<DevicesSettings> {
         setState(() {});
       }
     };
+    if (!mounted) return;
     await KeyVerificationDialog(request: req).show(context);
   }
 
-  void blockDeviceAction(Device device) async {
+  Future<void> blockDeviceAction(Device device) async {
     final key = Matrix.of(context)
         .client
         .userDeviceKeys[Matrix.of(context).client.userID!]!
@@ -147,7 +151,7 @@ class DevicesSettingsController extends State<DevicesSettings> {
     setState(() {});
   }
 
-  void unblockDeviceAction(Device device) async {
+  Future<void> unblockDeviceAction(Device device) async {
     final key = Matrix.of(context)
         .client
         .userDeviceKeys[Matrix.of(context).client.userID!]!

@@ -1,8 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -11,6 +6,9 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/sync_status_localization.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 class ChatAppBarTitle extends StatelessWidget {
   final ChatController controller;
@@ -78,10 +76,7 @@ class ChatAppBarTitle extends StatelessWidget {
                               builder: (context, presence) {
                                 final lastActiveTimestamp =
                                     presence?.lastActiveTimestamp;
-                                final style = TextStyle(
-                                  fontSize: 12,
-                                  color: Theme.of(context).colorScheme.outline,
-                                );
+                                final style = TextStyle(fontSize: 11);
                                 if (presence?.currentlyActive == true) {
                                   return Text(
                                     L10n.of(context).currentlyActive,
@@ -108,23 +103,13 @@ class ChatAppBarTitle extends StatelessWidget {
                                   child: CircularProgressIndicator.adaptive(
                                     strokeWidth: 1,
                                     value: status.progress,
-                                    valueColor: status.error != null
-                                        ? AlwaysStoppedAnimation<Color>(
-                                            Theme.of(context).colorScheme.error,
-                                          )
-                                        : null,
                                   ),
                                 ),
                                 const SizedBox(width: 4),
                                 Expanded(
                                   child: Text(
                                     status.calcLocalizedString(context),
-                                    style: TextStyle(
-                                      fontSize: 12,
-                                      color: status.error != null
-                                          ? Theme.of(context).colorScheme.error
-                                          : null,
-                                    ),
+                                    style: TextStyle(fontSize: 12),
                                   ),
                                 ),
                               ],

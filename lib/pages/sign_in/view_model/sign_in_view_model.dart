@@ -1,16 +1,13 @@
 import 'dart:convert';
 
-import 'package:flutter/widgets.dart';
-
 import 'package:collection/collection.dart';
-import 'package:matrix/matrix_api_lite/utils/logs.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/pages/sign_in/view_model/flows/sort_homeservers.dart';
 import 'package:fluffychat/pages/sign_in/view_model/model/public_homeserver_data.dart';
 import 'package:fluffychat/pages/sign_in/view_model/sign_in_state.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/widgets.dart';
+import 'package:matrix/matrix_api_lite/utils/logs.dart';
 
 class SignInViewModel extends ValueNotifier<SignInState> {
   final MatrixState matrixService;
@@ -39,20 +36,21 @@ class SignInViewModel extends ValueNotifier<SignInState> {
             )
             .toList() ??
         [];
-    final splitted = filterText.split('.');
-    if (splitted.length >= 2 && !splitted.any((part) => part.isEmpty)) {
-      if (!filteredPublicHomeservers.any(
-        (homeserver) => homeserver.name == filterText,
-      )) {
-        filteredPublicHomeservers.add(PublicHomeserverData(name: filterText));
-      }
+    if (filterText.length >= 3 &&
+        (filterText.contains('.') || filterText == 'localhost') &&
+        Uri.tryParse(filterText) != null &&
+        !filteredPublicHomeservers.any(
+          (homeserver) => homeserver.name == filterText,
+        )) {
+      filteredPublicHomeservers.add(PublicHomeserverData(name: filterText));
     }
+
     value = value.copyWith(
       filteredPublicHomeservers: filteredPublicHomeservers,
     );
   }
 
-  void refreshPublicHomeservers() async {
+  Future<void> refreshPublicHomeservers() async {
     value = value.copyWith(publicHomeservers: AsyncSnapshot.waiting());
     final defaultHomeserverData = PublicHomeserverData(
       name: AppSettings.defaultHomeserver.value,
@@ -73,15 +71,13 @@ class SignInViewModel extends ValueNotifier<SignInState> {
         });
       }
 
-      publicHomeservers.sort(sortHomeservers);
+      final defaultServer = publicHomeservers.singleWhereOrNull(
+        (server) => server.name == AppSettings.defaultHomeserver.value,
+      );
 
-      final defaultServer =
-          publicHomeservers.singleWhereOrNull(
-            (server) => server.name == AppSettings.defaultHomeserver.value,
-          ) ??
-          defaultHomeserverData;
-
-      publicHomeservers.insert(0, defaultServer);
+      if (defaultServer == null) {
+        publicHomeservers.insert(0, defaultHomeserverData);
+      }
 
       value = value.copyWith(
         selectedHomeserver: value.selectedHomeserver ?? publicHomeservers.first,

@@ -1,17 +1,16 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart' show IterableExtension;
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-import 'package:punycode/punycode.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+import 'package:punycode/punycode.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
 import '../widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'platform_infos.dart';
 
@@ -27,7 +26,9 @@ class UrlLauncher {
 
   const UrlLauncher(this.context, this.url, [this.name]);
 
-  void launchUrl() async {
+  Future<void> launchUrl() async {
+    final l10n = L10n.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (url!.toLowerCase().startsWith(AppConfig.deepLinkPrefix) ||
         url!.toLowerCase().startsWith(AppConfig.inviteLinkPrefix) ||
         {'#', '@', '!', '+', '\$'}.contains(url![0]) ||
@@ -37,8 +38,8 @@ class UrlLauncher {
     final uri = Uri.tryParse(url!);
     if (uri == null) {
       // we can't open this thing
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context).cantOpenUri(url!))),
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(l10n.cantOpenUri(url!))),
       );
       return;
     }
@@ -48,10 +49,10 @@ class UrlLauncher {
       // that the user can see the actual url before opening the browser.
       final consent = await showOkCancelAlertDialog(
         context: context,
-        title: L10n.of(context).openLinkInBrowser,
+        title: l10n.openLinkInBrowser,
         message: url,
-        okLabel: L10n.of(context).open,
-        cancelLabel: L10n.of(context).cancel,
+        okLabel: l10n.open,
+        cancelLabel: l10n.cancel,
       );
       if (consent != OkCancelResult.ok) return;
     }
@@ -66,7 +67,7 @@ class UrlLauncher {
             .split(';')
             .first
             .split(',')
-            .map((s) => double.tryParse(s))
+            .map(double.tryParse)
             .toList();
         if (latlong.length == 2 &&
             latlong.first != null &&
@@ -91,8 +92,8 @@ class UrlLauncher {
       return;
     }
     if (uri.host.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context).cantOpenUri(url!))),
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(l10n.cantOpenUri(url!))),
       );
       return;
     }
@@ -117,7 +118,7 @@ class UrlLauncher {
     );
   }
 
-  void openMatrixToUrl() async {
+  Future<void> openMatrixToUrl() async {
     final matrix = Matrix.of(context);
     final url = this.url!.replaceFirst(
       AppConfig.deepLinkPrefix,
@@ -162,6 +163,7 @@ class UrlLauncher {
         }
       }
       servers.addAll(identityParts.via);
+      if (!context.mounted) return;
       if (room != null) {
         if (room.isSpace) {
           // TODO: Implement navigate to space
@@ -179,6 +181,7 @@ class UrlLauncher {
         }
         return;
       } else {
+        if (!context.mounted) return;
         await showAdaptiveDialog(
           context: context,
           builder: (c) =>
@@ -186,6 +189,7 @@ class UrlLauncher {
         );
       }
       if (roomIdOrAlias.sigil == '!') {
+        if (!context.mounted) return;
         if (await showOkCancelAlertDialog(
               useRootNavigator: false,
               context: context,
@@ -193,6 +197,7 @@ class UrlLauncher {
             ) ==
             OkCancelResult.ok) {
           roomId = roomIdOrAlias;
+          if (!context.mounted) return;
           final response = await showFutureLoadingDialog(
             context: context,
             future: () => matrix.client.joinRoom(
@@ -201,11 +206,13 @@ class UrlLauncher {
             ),
           );
           if (response.error != null) return;
+          if (!context.mounted) return;
           // wait for two seconds so that it probably came down /sync
           await showFutureLoadingDialog(
             context: context,
             future: () => Future.delayed(const Duration(seconds: 2)),
           );
+          if (!context.mounted) return;
           if (event != null) {
             context.go(
               Uri(
@@ -229,6 +236,7 @@ class UrlLauncher {
               return Profile(userId: userId);
             }),
       );
+      if (!context.mounted) return;
       await UserDialog.show(
         context: context,
         profile: profileResult.result!,

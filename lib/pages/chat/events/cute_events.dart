@@ -1,11 +1,9 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class CuteContent extends StatefulWidget {
   final Event event;
@@ -52,6 +50,7 @@ class _CuteContentState extends State<CuteContent> {
   Future<void> addOverlay() async {
     _isOverlayShown = true;
     await Future.delayed(const Duration(milliseconds: 50));
+    if (!mounted) return;
 
     OverlayEntry? overlay;
     overlay = OverlayEntry(

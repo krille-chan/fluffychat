@@ -18,13 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: .tool_versions.yaml
           cache: true
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install nodejs -y
       - uses: moonrepo/setup-rust@v1
       - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - run: flutter pub get
@@ -36,7 +33,7 @@ jobs:
       - name: Create archive
         run: tar -czf fluffychat-web.tar.gz build/web/
       - name: Upload Web Build
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: Web Build
           path: fluffychat-web.tar.gz
@@ -49,17 +46,25 @@ jobs:
           asset_path: fluffychat-web.tar.gz
           asset_name: fluffychat-web.tar.gz
           asset_content_type: application/gzip
-      - name: Install and build tailwindcss
-        working-directory: docs
+      - name: Clone fluffychat website
+        run: |
+          git clone https://github.com/krille-chan/fluffychat-website.git
+          cat CHANGELOG.md >> fluffychat-website/src/changelog.md
+          cat PRIVACY.md >> fluffychat-website/src/privacy.md
+      - name: Build website
+        working-directory: fluffychat-website
         run: |
           npm install tailwindcss @tailwindcss/cli
-          npx tailwindcss -o ./tailwind.css
-      - name: Build Website
+          npx tailwindcss -i ./src/styles.css -o ./src/assets/tailwind.css --minify
+          npx @11ty/eleventy
+          mv public ../
+      - name: Copy FluffyChat web into it
         run: |
-          mv docs public
-          mv repo public || true
-          mv build/web/ public/web
-          cp public/web -r public/nightly
+          mkdir public/web
+          mkdir public/nightly
+          cp -r build/web/* public/web/
+          cp -r build/web/* public/nightly/
+          echo "fluffychat.im" >> public/CNAME
       - name: Deploy to GitHub Pages
         if: startsWith(github.ref, 'refs/tags/v')
         uses: peaceiris/actions-gh-pages@v4
@@ -73,14 +78,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: actions/setup-java@v5
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'zulu'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: .tool_versions.yaml
           cache: true
       - name: Add Firebase Messaging
         run: |
@@ -113,9 +113,9 @@ jobs:
     runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
+      - run: echo "FLUTTER_VERSION=$(yq '.environment.flutter' < .tool_versions.yaml)" >> $GITHUB_ENV
       - name: Install Flutter
         run: |
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
@@ -139,14 +139,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: actions/setup-java@v5
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'zulu'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: .tool_versions.yaml
           cache: true
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -197,18 +192,18 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v6
       - name: Log in to the Container registry
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v6
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
       - name: Build and push Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           push: true

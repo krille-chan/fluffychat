@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat_input_row.dart';
 import 'package:fluffychat/pages/chat/recording_view_model.dart';
+import 'package:flutter/material.dart';
 
 class RecordingInputRow extends StatelessWidget {
   final RecordingViewModelState state;
-  final Future<void> Function(String, int, List<int>, String?) onSend;
+  final Future<void> Function(String, int, List<int>, String) onSend;
   const RecordingInputRow({
     required this.state,
     required this.onSend,
@@ -26,7 +25,7 @@ class RecordingInputRow extends StatelessWidget {
         crossAxisAlignment: .center,
         mainAxisAlignment: .spaceBetween,
         children: [
-          const SizedBox(width: 4),
+          const SizedBox(width: 8),
           Container(
             alignment: .center,
             width: 48,

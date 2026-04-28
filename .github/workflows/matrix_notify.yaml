@@ -1,0 +1,60 @@
+name: Matrix Notification
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+
+jobs:
+  notify:
+    if: ${{ (github.event_name == 'issues' && github.event.issue.user.login != 'krille-chan') || (github.event_name == 'pull_request_target' && github.event.pull_request.user.login != 'krille-chan') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send notification to Matrix room
+        env:
+          HOMESERVER: ${{ secrets.MATRIX_HOMESERVER }}
+          ACCESS_TOKEN: ${{ secrets.MATRIX_ACCESS_TOKEN }}
+          ROOM_ID: ${{ secrets.MATRIX_ROOM_ID }}
+          EVENT_NAME: ${{ github.event_name }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ', ') }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_LABELS: ${{ join(github.event.pull_request.labels.*.name, ', ') }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+        run: |
+          if [ "${EVENT_NAME}" = "issues" ]; then
+            EMOJI="📝"
+            PREFIX="New Issue"
+            TITLE="${ISSUE_TITLE}"
+            URL="${ISSUE_URL}"
+            LABELS="${ISSUE_LABELS}"
+            AUTHOR="${ISSUE_AUTHOR}"
+          else
+            EMOJI="🔀"
+            PREFIX="New Pull Request"
+            TITLE="${PR_TITLE}"
+            URL="${PR_URL}"
+            LABELS="${PR_LABELS}"
+            AUTHOR="${PR_AUTHOR}"
+          fi
+
+          AUTHOR_URL="https://github.com/${AUTHOR}"
+          PLAIN="${EMOJI} ${PREFIX} by ${AUTHOR}: ${TITLE} - ${URL}"
+          HTML="<h3>${EMOJI} ${PREFIX}</h3>"
+          HTML="${HTML}<b><a href='${URL}'>${TITLE}</a></b><br/>"
+          HTML="${HTML}👤 <a href='${AUTHOR_URL}'>${AUTHOR}</a>"
+          if [ -n "${LABELS}" ]; then
+            HTML="${HTML}<br/>🏷️ ${LABELS}"
+          fi
+          TXN_ID=$(date +%s%N)
+
+          curl -s -o /dev/null -w "%{http_code}" -X PUT \
+            "${HOMESERVER}/_matrix/client/v3/rooms/${ROOM_ID}/send/m.room.message/${TXN_ID}" \
+            -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -n --arg body "$PLAIN" --arg html "$HTML" \
+              '{"msgtype":"m.notice","body":$body,"format":"org.matrix.custom.html","formatted_body":$html}')"

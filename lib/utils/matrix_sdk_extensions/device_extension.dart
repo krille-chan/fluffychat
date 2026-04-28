@@ -4,10 +4,10 @@ import 'package:matrix/matrix.dart';
 
 IconData _getIconFromName(String displayname) {
   final name = displayname.toLowerCase();
-  if ({'android'}.any((s) => name.contains(s))) {
+  if ({'android'}.any(name.contains)) {
     return Icons.phone_android_outlined;
   }
-  if ({'ios', 'ipad', 'iphone', 'ipod'}.any((s) => name.contains(s))) {
+  if ({'ios', 'ipad', 'iphone', 'ipod'}.any(name.contains)) {
     return Icons.phone_iphone_outlined;
   }
   if ({
@@ -19,16 +19,10 @@ IconData _getIconFromName(String displayname) {
     '/_matrix',
     'safari',
     'opera',
-  }.any((s) => name.contains(s))) {
+  }.any(name.contains)) {
     return Icons.web_outlined;
   }
-  if ({
-    'desktop',
-    'windows',
-    'macos',
-    'linux',
-    'ubuntu',
-  }.any((s) => name.contains(s))) {
+  if ({'desktop', 'windows', 'macos', 'linux', 'ubuntu'}.any(name.contains)) {
     return Icons.desktop_mac_outlined;
   }
   return Icons.device_unknown_outlined;

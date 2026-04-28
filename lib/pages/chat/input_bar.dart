@@ -1,15 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:matrix/matrix.dart';
-import 'package:slugify/slugify.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/markdown_context_builder.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:matrix/matrix.dart';
+import 'package:slugify/slugify.dart';
+
 import '../../widgets/avatar.dart';
 import '../../widgets/matrix.dart';
 import 'command_hints.dart';
@@ -159,7 +158,7 @@ class InputBar extends StatelessWidget {
                     slugify(
                       user.displayName!.toLowerCase(),
                     ).contains(userSearch))) ||
-            user.id.split(':')[0].toLowerCase().contains(userSearch)) {
+            user.id.localpart!.toLowerCase().contains(userSearch)) {
           ret.add({
             'type': 'user',
             'mxid': user.id,
@@ -185,17 +184,14 @@ class InputBar extends StatelessWidget {
                 ((state.content['alias'] is String &&
                         state.content
                             .tryGet<String>('alias')!
-                            .split(':')[0]
+                            .localpart!
                             .toLowerCase()
                             .contains(roomSearch)) ||
                     (state.content['alt_aliases'] is List &&
                         (state.content['alt_aliases'] as List).any(
                           (l) =>
                               l is String &&
-                              l
-                                  .split(':')[0]
-                                  .toLowerCase()
-                                  .contains(roomSearch),
+                              l.localpart!.toLowerCase().contains(roomSearch),
                         )))) ||
             (r.name.toLowerCase().contains(roomSearch))) {
           ret.add({
@@ -388,6 +384,7 @@ class InputBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Autocomplete<Map<String, String?>>(
+      key: Key('chat_input_field'),
       focusNode: focusNode,
       textEditingController: controller,
       optionsBuilder: getSuggestions,
@@ -395,7 +392,14 @@ class InputBar extends StatelessWidget {
         controller: controller,
         focusNode: focusNode,
         readOnly: readOnly,
-        contextMenuBuilder: (c, e) => markdownContextBuilder(c, e, controller),
+        onEditingComplete: () {
+          // To not lose focus on iOS:
+          // https://github.com/krille-chan/fluffychat/issues/2784
+        },
+        contextMenuBuilder: (c, e) => MarkdownContextBuilder(
+          editableTextState: e,
+          controller: controller,
+        ),
         contentInsertionConfiguration: ContentInsertionConfiguration(
           onContentInserted: (KeyboardInsertedContent content) {
             final data = content.data;
@@ -411,7 +415,7 @@ class InputBar extends StatelessWidget {
         ),
         minLines: minLines,
         maxLines: maxLines,
-        keyboardType: keyboardType!,
+        keyboardType: keyboardType,
         textInputAction: textInputAction,
         autofocus: autofocus!,
         inputFormatters: [

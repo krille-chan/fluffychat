@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_linkify/flutter_linkify.dart';
-
 import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 
 class ChatAppBarListTile extends StatelessWidget {
   final Widget? leading;
@@ -31,7 +29,7 @@ class ChatAppBarListTile extends StatelessWidget {
         onTap: onTap,
         child: Row(
           children: [
-            if (leading != null) leading,
+            ?leading,
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
@@ -56,7 +54,7 @@ class ChatAppBarListTile extends StatelessWidget {
                 ),
               ),
             ),
-            if (trailing != null) trailing,
+            ?trailing,
           ],
         ),
       ),

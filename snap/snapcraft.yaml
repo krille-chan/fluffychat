@@ -1,7 +1,7 @@
 name: fluffychat
 title: FluffyChat
 base: core24
-version: 2.4.0
+version: 2.5.1
 license: AGPL-3.0
 summary: The cutest messenger in the Matrix network
 description: |
@@ -53,7 +53,7 @@ platforms:
 parts:
   flutter-git:
     source: https://github.com/flutter/flutter.git
-    source-tag: 3.38.4
+    source-tag: 3.41.7
     source-depth: 1
     plugin: nil
     override-build: |
@@ -72,6 +72,8 @@ parts:
       - unzip
       - xz-utils
       - zip
+      - lld
+      - llvm-18
     override-prime: ''
 
   fluffychat:

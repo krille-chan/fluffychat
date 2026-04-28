@@ -1,15 +1,13 @@
 import 'dart:convert';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
-
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:matrix/matrix.dart';
 
 const _passwordStorageKey = 'database_password';
 
@@ -47,7 +45,7 @@ Future<String?> getDatabaseCipher() async {
   return password;
 }
 
-void _sendNoEncryptionWarning(Object exception) async {
+Future<void> _sendNoEncryptionWarning(Object exception) async {
   final isStored = AppSettings.noEncryptionWarningShown.value;
 
   if (isStored == true) return;

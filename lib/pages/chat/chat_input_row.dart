@@ -1,10 +1,4 @@
-import 'package:fluffychat/widgets/hover_builder.dart';
-import 'package:flutter/material.dart';
-
-import 'package:animations/animations.dart';
 import 'package:emoji_picker_flutter/locales/default_emoji_set_locale.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/recording_input_row.dart';
@@ -12,7 +6,11 @@ import 'package:fluffychat/pages/chat/recording_view_model.dart';
 import 'package:fluffychat/utils/other_party_can_receive.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../config/themes.dart';
 import 'chat.dart';
 import 'input_bar.dart';
@@ -129,7 +127,7 @@ class ChatInputRow extends StatelessWidget {
                       : const SizedBox.shrink(),
                 ]
               : <Widget>[
-                  const SizedBox(width: 4),
+                  const SizedBox(width: 8),
                   AnimatedContainer(
                     duration: FluffyThemes.animationDuration,
                     curve: FluffyThemes.animationCurve,
@@ -273,27 +271,11 @@ class ChatInputRow extends StatelessWidget {
                     child: IconButton(
                       tooltip: L10n.of(context).emojis,
                       color: theme.colorScheme.onPrimaryContainer,
-                      icon: PageTransitionSwitcher(
-                        transitionBuilder:
-                            (
-                              Widget child,
-                              Animation<double> primaryAnimation,
-                              Animation<double> secondaryAnimation,
-                            ) {
-                              return SharedAxisTransition(
-                                animation: primaryAnimation,
-                                secondaryAnimation: secondaryAnimation,
-                                transitionType: SharedAxisTransitionType.scaled,
-                                fillColor: Colors.transparent,
-                                child: child,
-                              );
-                            },
-                        child: Icon(
-                          controller.showEmojiPicker
-                              ? Icons.keyboard
-                              : Icons.add_reaction_outlined,
-                          key: ValueKey(controller.showEmojiPicker),
-                        ),
+                      icon: Icon(
+                        controller.showEmojiPicker
+                            ? Icons.keyboard
+                            : Icons.add_reaction_outlined,
+                        key: ValueKey(controller.showEmojiPicker),
                       ),
                       onPressed: controller.emojiPickerAction,
                     ),
@@ -399,6 +381,7 @@ class ChatInputRow extends StatelessWidget {
                             ),
                           )
                         : IconButton(
+                            key: Key('send_button'),
                             tooltip: L10n.of(context).send,
                             onPressed: controller.send,
                             style: IconButton.styleFrom(

@@ -29,8 +29,6 @@
   },
   "confirmMatrixId": "Paki-kumpirma ang iyong Matrix ID para burahin ang iyong account.",
   "@confirmMatrixId": {},
-  "addChatDescription": "Magdagdag ng deskripsyon ng chat...",
-  "@addChatDescription": {},
   "admin": "Admin",
   "@admin": {
     "type": "String",
@@ -207,8 +205,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "chatHasBeenAddedToThisSpace": "Nadagdag ang chat sa space na ito",
-  "@chatHasBeenAddedToThisSpace": {},
   "chats": "Mga Chat",
   "@chats": {
     "type": "String",
@@ -317,18 +313,6 @@
   },
   "sendOnEnter": "Ipadala sa pagpindot ng enter",
   "@sendOnEnter": {},
-  "badServerVersionsException": "Ang homeserver ay sinusuportahan ang mga Spec bersyon:\n{serverVersions}\nNgunit sinusuportahan lang ng app ang {supportedVersions}",
-  "@badServerVersionsException": {
-    "type": "String",
-    "placeholders": {
-      "serverVersions": {
-        "type": "String"
-      },
-      "supportedVersions": {
-        "type": "String"
-      }
-    }
-  },
   "banFromChat": "Pagbawalan sa chat",
   "@banFromChat": {
     "type": "String",
@@ -336,11 +320,6 @@
   },
   "banned": "Pinagbawalan",
   "@banned": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "botMessages": "Mga mensahe ng bot",
-  "@botMessages": {
     "type": "String",
     "placeholders": {}
   },
@@ -510,11 +489,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "confirm": "Kumpirmahin",
-  "@confirm": {
-    "type": "String",
-    "placeholders": {}
-  },
   "compareNumbersMatch": "Paki-kumpara ang mga numero",
   "@compareNumbersMatch": {
     "type": "String",
@@ -577,11 +551,6 @@
   },
   "directChats": "Mga Direktang Chat",
   "@directChats": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "allRooms": "Lahat ng Mga Group Chat",
-  "@allRooms": {
     "type": "String",
     "placeholders": {}
   },
@@ -728,16 +697,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "connect": "Kumonekta",
-  "@connect": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "containsDisplayName": "Naglalaman ng display name",
-  "@containsDisplayName": {
-    "type": "String",
-    "placeholders": {}
-  },
   "create": "Gumawa",
   "@create": {
     "type": "String",
@@ -751,33 +710,6 @@
         "type": "String"
       },
       "timeOfDay": {
-        "type": "String"
-      }
-    }
-  },
-  "dateWithoutYear": "{month}/{day}",
-  "@dateWithoutYear": {
-    "type": "String",
-    "placeholders": {
-      "month": {
-        "type": "String"
-      },
-      "day": {
-        "type": "String"
-      }
-    }
-  },
-  "dateWithYear": "{month}/{day}/{year}",
-  "@dateWithYear": {
-    "type": "String",
-    "placeholders": {
-      "year": {
-        "type": "String"
-      },
-      "month": {
-        "type": "String"
-      },
-      "day": {
         "type": "String"
       }
     }
@@ -833,11 +765,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "emoteWarnNeedToPick": "Kailangan mong pumili ng emote shortcode at isang larawan!",
-  "@emoteWarnNeedToPick": {
-    "type": "String",
-    "placeholders": {}
-  },
   "enableEmotesGlobally": "I-enable ang emote pack globally",
   "@enableEmotesGlobally": {
     "type": "String",
@@ -859,11 +786,6 @@
   },
   "homeserver": "Homeserver",
   "@homeserver": {},
-  "enterYourHomeserver": "Ilagay ang iyong homeserver",
-  "@enterYourHomeserver": {
-    "type": "String",
-    "placeholders": {}
-  },
   "extremeOffensive": "Lubhang nakakasakit",
   "@extremeOffensive": {
     "type": "String",
@@ -886,11 +808,6 @@
   },
   "contactHasBeenInvitedToTheGroup": "Inimbita ang contact sa group",
   "@contactHasBeenInvitedToTheGroup": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "containsUserName": "Naglalaman ng username",
-  "@containsUserName": {
     "type": "String",
     "placeholders": {}
   },
@@ -976,18 +893,6 @@
   },
   "space": "Espasyo",
   "@space": {},
-  "countChatsAndCountParticipants": "{chats} mga chat at {participants} mga kasali",
-  "@countChatsAndCountParticipants": {
-    "type": "String",
-    "placeholders": {
-      "chats": {
-        "type": "int"
-      },
-      "participants": {
-        "type": "int"
-      }
-    }
-  },
   "guestsAreForbidden": "Pinagbabawal ang mga bisita",
   "@guestsAreForbidden": {
     "type": "String",
@@ -1013,11 +918,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "goToTheNewRoom": "Pumunta sa bagong room",
-  "@goToTheNewRoom": {
-    "type": "String",
-    "placeholders": {}
-  },
   "group": "Grupo",
   "@group": {
     "type": "String",
@@ -1027,8 +927,6 @@
   "@swipeRightToLeftToReply": {},
   "noMoreChatsFound": "Wala nang mga chat na nahanap…",
   "@noMoreChatsFound": {},
-  "joinedChats": "Mga nasaling chat",
-  "@joinedChats": {},
   "unread": "Hindi nabasa",
   "@unread": {},
   "spaces": "Mga Espasyo",

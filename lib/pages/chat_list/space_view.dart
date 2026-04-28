@@ -1,32 +1,32 @@
+import 'dart:async';
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart' as sdk;
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/unread_bubble.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart' as sdk;
+import 'package:matrix/matrix.dart';
 
-enum AddRoomType { chat, subspace }
-
-enum SpaceChildAction { edit, moveToSpace, removeFromSpace }
+enum SpaceChildAction {
+  mute,
+  unmute,
+  markAsUnread,
+  markAsRead,
+  removeFromSpace,
+  leave,
+}
 
 enum SpaceActions { settings, invite, members, leave }
 
@@ -55,13 +55,30 @@ class _SpaceViewState extends State<SpaceView> {
   bool _noMoreRooms = false;
   bool _isLoading = false;
 
+  StreamSubscription? _childStateSub;
+
   @override
   void initState() {
     _loadHierarchy();
+    _childStateSub = Matrix.of(context).client.onSync.stream
+        .where(
+          (syncUpdate) =>
+              syncUpdate.rooms?.join?[widget.spaceId]?.timeline?.events?.any(
+                (event) => event.type == EventTypes.SpaceChild,
+              ) ??
+              false,
+        )
+        .listen(_loadHierarchy);
     super.initState();
   }
 
-  void _loadHierarchy() async {
+  @override
+  void dispose() {
+    _childStateSub?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _loadHierarchy([_]) async {
     final matrix = Matrix.of(context);
     final room = matrix.client.getRoomById(widget.spaceId);
     if (room == null) return;
@@ -128,38 +145,42 @@ class _SpaceViewState extends State<SpaceView> {
     }
   }
 
-  void _joinChildRoom(SpaceRoomsChunk$2 item) async {
+  Future<void> _joinChildRoom(SpaceRoomsChunk$2 item) async {
     final client = Matrix.of(context).client;
     final space = client.getRoomById(widget.spaceId);
-
-    final joined = await showAdaptiveDialog<bool>(
+    final via = space?.spaceChildren
+        .firstWhereOrNull((child) => child.roomId == item.roomId)
+        ?.via;
+    final roomResult = await showFutureLoadingDialog(
       context: context,
-      builder: (_) => PublicRoomDialog(
-        chunk: item,
-        via: space?.spaceChildren
-            .firstWhereOrNull((child) => child.roomId == item.roomId)
-            ?.via,
-      ),
+      future: () async {
+        final waitForRoom = client.waitForRoomInSync(item.roomId, join: true);
+        await client.joinRoom(item.roomId, via: via);
+        await waitForRoom;
+        return client.getRoomById(item.roomId)!;
+      },
     );
-    if (mounted && joined == true) {
-      setState(() {});
-    }
+    final room = roomResult.result;
+    if (room != null) widget.onChatTab(room);
   }
 
-  void _onSpaceAction(SpaceActions action) async {
+  Future<void> _onSpaceAction(SpaceActions action) async {
     final space = Matrix.of(context).client.getRoomById(widget.spaceId);
 
     switch (action) {
       case SpaceActions.settings:
         await space?.postLoad();
+        if (!mounted) return;
         context.push('/rooms/${widget.spaceId}/details');
         break;
       case SpaceActions.invite:
         await space?.postLoad();
+        if (!mounted) return;
         context.push('/rooms/${widget.spaceId}/invite');
         break;
       case SpaceActions.members:
         await space?.postLoad();
+        if (!mounted) return;
         context.push('/rooms/${widget.spaceId}/details/members');
         break;
       case SpaceActions.leave:
@@ -184,84 +205,14 @@ class _SpaceViewState extends State<SpaceView> {
     }
   }
 
-  void _addChatOrSubspace(AddRoomType roomType) async {
-    final names = await showTextInputDialog(
-      context: context,
-      title: roomType == AddRoomType.subspace
-          ? L10n.of(context).newSubSpace
-          : L10n.of(context).createGroup,
-      hintText: roomType == AddRoomType.subspace
-          ? L10n.of(context).spaceName
-          : L10n.of(context).groupName,
-      minLines: 1,
-      maxLines: 1,
-      maxLength: 64,
-      validator: (text) {
-        if (text.isEmpty) {
-          return L10n.of(context).pleaseChoose;
-        }
-        return null;
-      },
-      okLabel: L10n.of(context).create,
-      cancelLabel: L10n.of(context).cancel,
-    );
-    if (names == null) return;
+  Future<void> _showSpaceChildEditMenu(
+    BuildContext posContext,
+    String roomId,
+  ) async {
     final client = Matrix.of(context).client;
-    final result = await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        late final String roomId;
-        final activeSpace = client.getRoomById(widget.spaceId)!;
-        await activeSpace.postLoad();
-        final isPublicSpace = activeSpace.joinRules == JoinRules.public;
-
-        if (roomType == AddRoomType.subspace) {
-          roomId = await client.createSpace(
-            name: names,
-            visibility: isPublicSpace
-                ? sdk.Visibility.public
-                : sdk.Visibility.private,
-          );
-        } else {
-          roomId = await client.createGroupChat(
-            enableEncryption: !isPublicSpace,
-            groupName: names,
-            preset: isPublicSpace
-                ? CreateRoomPreset.publicChat
-                : CreateRoomPreset.privateChat,
-            visibility: isPublicSpace
-                ? sdk.Visibility.public
-                : sdk.Visibility.private,
-            initialState: isPublicSpace
-                ? null
-                : [
-                    StateEvent(
-                      content: {
-                        'join_rule': 'restricted',
-                        'allow': [
-                          {
-                            'room_id': widget.spaceId,
-                            'type': 'm.room_membership',
-                          },
-                        ],
-                      },
-                      type: EventTypes.RoomJoinRules,
-                    ),
-                  ],
-          );
-        }
-        await activeSpace.setSpaceChild(roomId);
-      },
-    );
-    if (result.error != null) return;
-    setState(() {
-      _nextBatch = null;
-      _discoveredChildren.clear();
-    });
-    _loadHierarchy();
-  }
-
-  void _showSpaceChildEditMenu(BuildContext posContext, String roomId) async {
+    final space = client.getRoomById(widget.spaceId);
+    final room = client.getRoomById(roomId);
+    if (space == null) return;
     final overlay =
         Overlay.of(posContext).context.findRenderObject() as RenderBox;
 
@@ -282,85 +233,94 @@ class _SpaceViewState extends State<SpaceView> {
       context: posContext,
       position: position,
       items: [
-        PopupMenuItem(
-          value: SpaceChildAction.moveToSpace,
-          child: Row(
-            mainAxisSize: .min,
-            children: [
-              const Icon(Icons.move_down_outlined),
-              const SizedBox(width: 12),
-              Text(L10n.of(context).moveToDifferentSpace),
-            ],
+        if (room != null && room.membership == Membership.join) ...[
+          PopupMenuItem(
+            value: room.pushRuleState == PushRuleState.notify
+                ? SpaceChildAction.mute
+                : SpaceChildAction.unmute,
+            child: Row(
+              mainAxisSize: .min,
+              children: [
+                Icon(
+                  room.pushRuleState == PushRuleState.notify
+                      ? Icons.notifications_off_outlined
+                      : Icons.notifications_on_outlined,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  room.pushRuleState == PushRuleState.notify
+                      ? L10n.of(context).muteChat
+                      : L10n.of(context).unmuteChat,
+                ),
+              ],
+            ),
           ),
-        ),
-        PopupMenuItem(
-          value: SpaceChildAction.edit,
-          child: Row(
-            mainAxisSize: .min,
-            children: [
-              const Icon(Icons.edit_outlined),
-              const SizedBox(width: 12),
-              Text(L10n.of(context).edit),
-            ],
+          PopupMenuItem(
+            value: room.markedUnread
+                ? SpaceChildAction.markAsRead
+                : SpaceChildAction.markAsUnread,
+            child: Row(
+              mainAxisSize: .min,
+              children: [
+                Icon(
+                  room.markedUnread
+                      ? Icons.mark_as_unread
+                      : Icons.mark_as_unread_outlined,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  room.isUnread
+                      ? L10n.of(context).markAsRead
+                      : L10n.of(context).markAsUnread,
+                ),
+              ],
+            ),
           ),
-        ),
-        PopupMenuItem(
-          value: SpaceChildAction.removeFromSpace,
-          child: Row(
-            mainAxisSize: .min,
-            children: [
-              const Icon(Icons.group_remove_outlined),
-              const SizedBox(width: 12),
-              Text(L10n.of(context).removeFromSpace),
-            ],
+          PopupMenuItem(
+            value: SpaceChildAction.leave,
+            child: Row(
+              mainAxisSize: .min,
+              children: [
+                Icon(
+                  Icons.delete_outlined,
+                  color: Theme.of(context).colorScheme.onErrorContainer,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  L10n.of(context).leave,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onErrorContainer,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
+        if (space.canChangeStateEvent(EventTypes.SpaceChild) == true)
+          PopupMenuItem(
+            value: SpaceChildAction.removeFromSpace,
+            child: Row(
+              mainAxisSize: .min,
+              children: [
+                Icon(
+                  Icons.remove,
+                  color: Theme.of(context).colorScheme.onErrorContainer,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  L10n.of(context).removeFromSpace,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onErrorContainer,
+                  ),
+                ),
+              ],
+            ),
+          ),
       ],
     );
     if (action == null) return;
     if (!mounted) return;
-    final space = Matrix.of(context).client.getRoomById(widget.spaceId);
-    if (space == null) return;
     switch (action) {
-      case SpaceChildAction.edit:
-        context.push('/rooms/${widget.spaceId}/details');
-      case SpaceChildAction.moveToSpace:
-        final spacesWithPowerLevels = space.client.rooms
-            .where(
-              (room) =>
-                  room.isSpace &&
-                  room.canChangeStateEvent(EventTypes.SpaceChild) &&
-                  room.id != widget.spaceId,
-            )
-            .toList();
-        final newSpace = await showModalActionPopup(
-          context: context,
-          title: L10n.of(context).space,
-          actions: spacesWithPowerLevels
-              .map(
-                (space) => AdaptiveModalAction(
-                  value: space,
-                  label: space.getLocalizedDisplayname(
-                    MatrixLocals(L10n.of(context)),
-                  ),
-                ),
-              )
-              .toList(),
-        );
-        if (newSpace == null) return;
-        final result = await showFutureLoadingDialog(
-          context: context,
-          future: () async {
-            await newSpace.setSpaceChild(newSpace.id);
-            await space.removeSpaceChild(roomId);
-          },
-        );
-        if (result.isError) return;
-        if (!mounted) return;
-        _nextBatch = null;
-        _loadHierarchy();
-        return;
-
       case SpaceChildAction.removeFromSpace:
         final consent = await showOkCancelAlertDialog(
           context: context,
@@ -376,8 +336,32 @@ class _SpaceViewState extends State<SpaceView> {
         if (result.isError) return;
         if (!mounted) return;
         _nextBatch = null;
-        _loadHierarchy();
         return;
+      case SpaceChildAction.mute:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => room!.setPushRuleState(PushRuleState.mentionsOnly),
+        );
+      case SpaceChildAction.unmute:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => room!.setPushRuleState(PushRuleState.notify),
+        );
+      case SpaceChildAction.markAsUnread:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => room!.markUnread(true),
+        );
+      case SpaceChildAction.markAsRead:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => room!.markUnread(false),
+        );
+      case SpaceChildAction.leave:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => room!.leave(),
+        );
     }
   }
 
@@ -403,8 +387,11 @@ class _SpaceViewState extends State<SpaceView> {
             size: avatarSize,
             mxContent: room?.avatar,
             name: displayname,
-            border: BorderSide(width: 1, color: theme.dividerColor),
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+            shapeBorder: RoundedSuperellipseBorder(
+              side: BorderSide(width: 1, color: theme.dividerColor),
+              borderRadius: BorderRadius.circular(AppConfig.spaceBorderRadius),
+            ),
+            borderRadius: BorderRadius.circular(AppConfig.spaceBorderRadius),
           ),
           title: Text(
             displayname,
@@ -414,34 +401,11 @@ class _SpaceViewState extends State<SpaceView> {
         ),
         actions: [
           if (isAdmin)
-            PopupMenuButton<AddRoomType>(
-              icon: const Icon(Icons.add_outlined),
-              onSelected: _addChatOrSubspace,
+            IconButton(
+              icon: Icon(Icons.add_outlined),
               tooltip: L10n.of(context).addChatOrSubSpace,
-              itemBuilder: (context) => [
-                PopupMenuItem(
-                  value: AddRoomType.chat,
-                  child: Row(
-                    mainAxisSize: .min,
-                    children: [
-                      const Icon(Icons.group_add_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context).newGroup),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: AddRoomType.subspace,
-                  child: Row(
-                    mainAxisSize: .min,
-                    children: [
-                      const Icon(Icons.workspaces_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context).newSubSpace),
-                    ],
-                  ),
-                ),
-              ],
+              onPressed: () =>
+                  context.go('/rooms/newgroup?space_id=${widget.spaceId}'),
             ),
           PopupMenuButton<SpaceActions>(
             useRootNavigator: true,
@@ -563,17 +527,20 @@ class _SpaceViewState extends State<SpaceView> {
                           );
                         }
                         final item = _discoveredChildren[i];
+                        var joinedRoom = room.client.getRoomById(item.roomId);
                         final displayname =
                             item.name ??
                             item.canonicalAlias ??
+                            joinedRoom?.getLocalizedDisplayname() ??
                             L10n.of(context).emptyChat;
+                        final avatarUrl = item.avatarUrl ?? joinedRoom?.avatar;
                         if (!displayname.toLowerCase().contains(filter)) {
                           return const SizedBox.shrink();
                         }
-                        var joinedRoom = room.client.getRoomById(item.roomId);
                         if (joinedRoom?.membership == Membership.leave) {
                           joinedRoom = null;
                         }
+
                         return Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 8,
@@ -594,19 +561,20 @@ class _SpaceViewState extends State<SpaceView> {
                                 visualDensity: const VisualDensity(
                                   vertical: -0.5,
                                 ),
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 8,
+                                contentPadding: EdgeInsets.only(
+                                  left: 8,
+                                  right: joinedRoom == null ? 0 : 8,
                                 ),
                                 onTap: joinedRoom != null
                                     ? () => widget.onChatTab(joinedRoom!)
-                                    : () => _joinChildRoom(item),
-                                onLongPress: isAdmin
+                                    : null,
+                                onLongPress: joinedRoom != null
                                     ? () => _showSpaceChildEditMenu(
                                         context,
                                         item.roomId,
                                       )
                                     : null,
-                                leading: hovered && isAdmin
+                                leading: hovered
                                     ? SizedBox.square(
                                         dimension: avatarSize,
                                         child: IconButton(
@@ -620,28 +588,37 @@ class _SpaceViewState extends State<SpaceView> {
                                                 .colorScheme
                                                 .tertiaryContainer,
                                           ),
-                                          onPressed: () =>
-                                              _showSpaceChildEditMenu(
-                                                context,
-                                                item.roomId,
-                                              ),
+                                          onPressed:
+                                              isAdmin || joinedRoom != null
+                                              ? () => _showSpaceChildEditMenu(
+                                                  context,
+                                                  item.roomId,
+                                                )
+                                              : null,
                                           icon: const Icon(Icons.edit_outlined),
                                         ),
                                       )
                                     : Avatar(
                                         size: avatarSize,
-                                        mxContent: item.avatarUrl,
+                                        mxContent: avatarUrl,
                                         name: '#',
                                         backgroundColor:
                                             theme.colorScheme.surfaceContainer,
                                         textColor:
                                             item.name?.darkColor ??
                                             theme.colorScheme.onSurface,
-                                        border: item.roomType == 'm.space'
-                                            ? BorderSide(
-                                                color: theme
-                                                    .colorScheme
-                                                    .surfaceContainerHighest,
+                                        shapeBorder: item.roomType == 'm.space'
+                                            ? RoundedSuperellipseBorder(
+                                                side: BorderSide(
+                                                  color: theme
+                                                      .colorScheme
+                                                      .surfaceContainerHighest,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                      AppConfig.borderRadius /
+                                                          4,
+                                                    ),
                                               )
                                             : null,
                                         borderRadius: item.roomType == 'm.space'
@@ -662,10 +639,23 @@ class _SpaceViewState extends State<SpaceView> {
                                         ),
                                       ),
                                     ),
+                                    if (joinedRoom != null &&
+                                        joinedRoom.pushRuleState !=
+                                            PushRuleState.notify)
+                                      const Padding(
+                                        padding: EdgeInsets.only(left: 4.0),
+                                        child: Icon(
+                                          Icons.notifications_off_outlined,
+                                          size: 16,
+                                        ),
+                                      ),
                                     if (joinedRoom != null)
                                       UnreadBubble(room: joinedRoom)
                                     else
-                                      const Icon(Icons.chevron_right_outlined),
+                                      TextButton(
+                                        onPressed: () => _joinChildRoom(item),
+                                        child: Text(L10n.of(context).join),
+                                      ),
                                   ],
                                 ),
                               ),

@@ -1,0 +1,7 @@
+{
+    "[dart]": {
+        "editor.codeActionsOnSave": [
+            "source.organizeImports"
+        ]
+    }
+}

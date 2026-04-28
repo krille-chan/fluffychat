@@ -9,53 +9,80 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: webiny/action-conventional-commits@v1.4.2
       - run: ./scripts/generate-locale-config.sh
       - run: git diff --exit-code
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: .tool_versions.yaml
           cache: true
+      - name: Check for unused translations
+        run: flutter pub run translations_cleaner list-unused-terms -a
       - run: flutter pub get
-      - run: flutter gen-l10n
+      - name: Check if pubspec.lock is up to date
+        run: git diff --exit-code pubspec.lock
       - name: Check formatting
         run: dart format lib/ test/ --set-exit-if-changed
-      - name: Check import formatting
-        run: dart run import_sorter:main --no-comments --exit-if-changed
       - name: Check license compliance
         run: dart run license_checker check-licenses -c licenses.yaml --problematic
       - run: flutter analyze
+      - name: Search unused dependencies
+        run: |
+          dart pub global activate dependency_validator
+          dart pub global run dependency_validator
+      - run: dart run dart_code_linter:metrics analyze lib --reporter=github
+      - run: dart run dart_code_linter:metrics check-unused-code lib
+      - run: dart run dart_code_linter:metrics check-unused-files lib
+      - run: dart run dart_code_linter:metrics check-unused-l10n lib
+      - name: Check for commented-out Dart code with semicolons
+        run: |
+          if grep -R --include="*.dart" -nE '^[[:space:]]*//[^/<].*;[[:space:]]*$' lib/; then
+            echo ""
+            echo "❌ Found commented-out Dart code ending with semicolon."
+            exit 1
+          fi
       - name: Add Firebase Messaging
         run: ./scripts/add-firebase-messaging.sh
       - run: flutter analyze
       - run: flutter test
 
   build_debug_apk:
+    needs: [ code_tests ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: actions/setup-java@v5
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: "zulu"
+      - uses: ./.github/actions/free_up_space
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: .tool_versions.yaml
           cache: true
-      - uses: ./.github/actions/free_up_space
       - uses: moonrepo/setup-rust@v1
-      - run: flutter pub get
-      - run: flutter build apk --debug --target-platform android-arm64
+        with:
+          cache: true
+      - name: Cache Gradle
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
+      - run: ./scripts/add-firebase-messaging.sh
+      - run: flutter build apk --debug --target-platform android-x64
+      - name: Upload Debug APK
+        uses: actions/upload-artifact@v7
+        with:
+          name: debug-apk-x64
+          path: build/app/outputs/flutter-apk/app-debug.apk
 
   build_debug_web:
+    needs: [ code_tests ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: .tool_versions.yaml
           cache: true
       - uses: moonrepo/setup-rust@v1
       - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
@@ -63,17 +90,23 @@ jobs:
       - name: Prepare web
         run: ./scripts/prepare-web.sh
       - run: flutter build web
+      - name: Upload Web Build
+        uses: actions/upload-artifact@v7
+        with:
+          name: Web Build
+          path: build/web
 
   build_debug_linux:
+    needs: [ code_tests ]
     strategy:
       matrix:
         arch: [ x64, arm64 ]
     runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install git wget curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
+      - run: echo "FLUTTER_VERSION=$(yq '.environment.flutter' < .tool_versions.yaml)" >> $GITHUB_ENV
       - name: Install Flutter
         run: |
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
@@ -83,21 +116,107 @@ jobs:
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
 
   build_debug_ios:
+    needs: [ code_tests ]
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v6
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
+          flutter-version-file: .tool_versions.yaml
           cache: true
       - name: Use Xcode 16.4
         run: sudo xcode-select --switch /Applications/Xcode_16.4.app
       - run: brew install sqlcipher
       - uses: moonrepo/setup-rust@v1
-      - name: Add Firebase Messaging
-        run: |
-          flutter pub add fcm_shared_isolate:0.1.0
-          sed -i '' 's,//<GOOGLE_SERVICES>,,g' lib/utils/background_push.dart
+      - run: ./scripts/add-firebase-messaging.sh
       - run: flutter pub get
       - run: flutter build ios --no-codesign
+
+  integration_test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: [ code_tests ]
+    strategy:
+      matrix:
+        api-level: [34]
+    env:
+      ANDROID_USER_HOME: /home/runner/.android
+      ANDROID_EMULATOR_HOME: /home/runner/.android
+      ANDROID_AVD_HOME: /home/runner/.android/avd
+      AVD_CONFIG_PATH: "~/.android/avd/test.avd/config.ini"
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/free_up_space
+      # https://github.blog/changelog/2023-02-23-hardware-accelerated-android-virtualization-on-actions-windows-and-linux-larger-hosted-runners/
+      - name: Enable KVM group perms
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: AVD cache
+        uses: actions/cache@v5
+        id: avd-cache
+        with:
+          path: ~/.android/*
+          key: avd-${{ matrix.api-level }}-integration_docker
+      - name: create AVD and generate snapshot for caching
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: reactivecircus/android-emulator-runner@d94c3fbe4fe6a29e4a5ba47c12fb47677c73656b
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: google_apis
+          arch: x86_64
+          cores: 16
+          ndk: 28.2.13676358
+          force-avd-creation: false
+          disk-size: 4096M
+          ram-size: 4096M
+          sdcard-path-or-size: 4096M
+          emulator-options: -no-window -wipe-data -accel on -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: |
+            cat ${{ env.AVD_CONFIG_PATH }}
+
+            sed -i.bak 's/hw.lcd.density = .*/hw.lcd.density=420/' ${{ env.AVD_CONFIG_PATH }}
+            sed -i.bak 's/hw.lcd.height = .*/hw.lcd.height=1920/' ${{ env.AVD_CONFIG_PATH }}
+            sed -i.bak 's/hw.lcd.width = .*/hw.lcd.width=1080/' ${{ env.AVD_CONFIG_PATH }}
+
+            if ! grep -q "hw.lcd.density"  ${{ env.AVD_CONFIG_PATH }} && echo "hw.lcd.density = 420" >>  ${{ env.AVD_CONFIG_PATH }}; then :; fi
+            if ! grep -q "hw.lcd.height"  ${{ env.AVD_CONFIG_PATH }} && echo "hw.lcd.height = 1920" >>  ${{ env.AVD_CONFIG_PATH }}; then :; fi
+            if ! grep -q "hw.lcd.width"  ${{ env.AVD_CONFIG_PATH }} && echo "hw.lcd.width = 1080" >>  ${{ env.AVD_CONFIG_PATH }}; then :; fi
+
+            echo "Emulator settings (${{ env.AVD_CONFIG_PATH }})"
+            cat ${{ env.AVD_CONFIG_PATH }}
+            echo "Generated AVD snapshot for caching."
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .tool_versions.yaml
+          cache: true
+      - uses: moonrepo/setup-rust@v1
+        with:
+          cache: true
+      - name: Cache Gradle
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
+      - run: ./scripts/add-firebase-messaging.sh
+      - name: Prepare Homeserver
+        run: ./scripts/prepare_integration_test.sh
+      - name: Integration tests
+        id: integration_tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api-level }}
+          target: google_apis
+          arch: x86_64
+          cores: 16
+          ndk: 28.2.13676358
+          force-avd-creation: false
+          disk-size: 4096M
+          ram-size: 4096M
+          sdcard-path-or-size: 4096M
+          emulator-options: -no-snapshot-save -no-window -wipe-data -accel on -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: flutter test integration_test/mobile_test.dart

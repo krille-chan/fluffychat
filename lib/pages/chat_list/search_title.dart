@@ -52,7 +52,7 @@ class SearchTitle extends StatelessWidget {
                     Expanded(
                       child: Align(
                         alignment: Alignment.centerRight,
-                        child: trailing!,
+                        child: trailing,
                       ),
                     ),
                 ],

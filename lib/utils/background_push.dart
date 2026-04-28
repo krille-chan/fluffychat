@@ -23,9 +23,14 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
+//<GOOGLE_SERVICES>import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/main.dart';
+import 'package:fluffychat/utils/notification_background_handler.dart';
+import 'package:fluffychat/utils/push_helper.dart';
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:http/http.dart' as http;
@@ -33,21 +38,10 @@ import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
 import 'package:unifiedpush_ui/unifiedpush_ui.dart';
 
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/main.dart';
-import 'package:fluffychat/utils/notification_background_handler.dart';
-import 'package:fluffychat/utils/push_helper.dart';
-import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../widgets/matrix.dart';
 import 'platform_infos.dart';
-
-//<GOOGLE_SERVICES>import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
-
-class NoTokenException implements Exception {
-  String get cause => 'Cannot get firebase token';
-}
 
 class BackgroundPush {
   static BackgroundPush? _instance;
@@ -76,7 +70,7 @@ class BackgroundPush {
 
   bool upAction = false;
 
-  void _init() async {
+  Future<void> _init() async {
     //<GOOGLE_SERVICES>firebaseEnabled = true;
     try {
       mainIsolateReceivePort?.listen((message) async {
@@ -128,7 +122,7 @@ class BackgroundPush {
       //<GOOGLE_SERVICES>firebase.setListeners(
       //<GOOGLE_SERVICES>  onMessage: (message) => pushHelper(
       //<GOOGLE_SERVICES>    PushNotification.fromJson(
-      //<GOOGLE_SERVICES>      Map<String, dynamic>.from(message['data'] ?? message),
+      //<GOOGLE_SERVICES>       message.tryGetMap<String, Object>('data') ?? message,
       //<GOOGLE_SERVICES>    ),
       //<GOOGLE_SERVICES>    client: client,
       //<GOOGLE_SERVICES>    l10n: l10n,
@@ -235,7 +229,7 @@ class BackgroundPush {
           currentPushers.first.data.format ==
               AppSettings.pushNotificationsPusherFormat.value &&
           mapEquals(currentPushers.single.data.additionalProperties, {
-            "data_message": pusherDataMessageFormat,
+            'data_message': pusherDataMessageFormat,
           })) {
         Logs().i('[Push] Pusher already set');
       } else {
@@ -273,7 +267,7 @@ class BackgroundPush {
             data: PusherData(
               url: Uri.parse(gatewayUrl!),
               format: AppSettings.pushNotificationsPusherFormat.value,
-              additionalProperties: {"data_message": pusherDataMessageFormat},
+              additionalProperties: {'data_message': pusherDataMessageFormat},
             ),
             kind: 'http',
           ),
@@ -294,7 +288,7 @@ class BackgroundPush {
   static bool _wentToRoomOnStartup = false;
 
   Future<void> setupPush() async {
-    Logs().d("SetupPush");
+    Logs().d('SetupPush');
     if (client.onLoginStateChanged.value != LoginState.loggedIn ||
         !PlatformInfos.isMobile ||
         matrix == null) {
@@ -357,6 +351,9 @@ class BackgroundPush {
   Future<void> setupFirebase() async {
     Logs().v('Setup firebase');
     if (_fcmToken?.isEmpty ?? true) {
+      if (PlatformInfos.isIOS) {
+        //<GOOGLE_SERVICES>await firebase.requestPermission();
+      }
       try {
         //<GOOGLE_SERVICES>_fcmToken = await firebase.getToken();
         if (_fcmToken == null) throw ('PushToken is null');
@@ -375,7 +372,7 @@ class BackgroundPush {
   Future<void> setupUp() async {
     await UnifiedPushUi(
       context: matrix!.context,
-      instances: ["default"],
+      instances: ['default'],
       unifiedPushFunctions: UPFunctions(),
       showNoDistribDialog: false,
       onNoDistribDialogDismissed: () {}, // TODO: Implement me

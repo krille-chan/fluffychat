@@ -22,7 +22,7 @@ extension ClientDownloadContentExtension on Client {
             width: width,
             height: height,
             animated: animated,
-            method: thumbnailMethod!,
+            method: thumbnailMethod,
           )
         : mxc;
 

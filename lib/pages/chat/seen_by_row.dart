@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class SeenByRow extends StatelessWidget {
   final Event event;
@@ -26,7 +24,11 @@ class SeenByRow extends StatelessWidget {
       builder: (context, asyncSnapshot) {
         final seenByUsers = event.receipts
             .map((r) => r.user)
-            .where((user) => user.id != event.room.client.userID)
+            .where(
+              (user) =>
+                  user.id != event.room.client.userID &&
+                  user.id != event.senderId,
+            )
             .toList();
         return Container(
           width: double.infinity,

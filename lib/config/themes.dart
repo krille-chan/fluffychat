@@ -1,8 +1,7 @@
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'package:fluffychat/config/setting_keys.dart';
-import 'app_config.dart';
 
 abstract class FluffyThemes {
   static const double columnWidth = 380.0;
@@ -74,7 +73,7 @@ abstract class FluffyThemes {
       ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         ),
         contentPadding: const EdgeInsets.all(12),
       ),

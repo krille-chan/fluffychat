@@ -5,9 +5,7 @@
         "placeholders": {}
     },
     "appLockDescription": "პინკოდის გამოყენების გარეშე აპლიკაციის ბლოკირება",
-    "@appLockDescription": {},
     "commandHint_hug": "მეგობრული ჩახუტვის გაგზავნა",
-    "@commandHint_hug": {},
     "areYouSure": "დარწმუნებული ხართ?",
     "@areYouSure": {
         "type": "String",
@@ -60,7 +58,6 @@
         }
     },
     "sendOnEnter": "გაგზავნა enter-ის დაჭერისას",
-    "@sendOnEnter": {},
     "bannedUser": "{username} დაბლოკა {targetName}",
     "@bannedUser": {
         "type": "String",
@@ -80,11 +77,6 @@
     },
     "blocked": "დაბლოკილია",
     "@blocked": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "botMessages": "ბოტის შეტყობინებები",
-    "@botMessages": {
         "type": "String",
         "placeholders": {}
     },
@@ -134,7 +126,6 @@
         "placeholders": {}
     },
     "yourChatBackupHasBeenSetUp": "თქვენი ჩატის სარეზერვო საშუალება კონფიგურირებული იქნა.",
-    "@yourChatBackupHasBeenSetUp": {},
     "channelCorruptedDecryptError": "დაშიფვრა დაზიანდა",
     "@channelCorruptedDecryptError": {
         "type": "String",
@@ -175,16 +166,6 @@
         },
         "description": "State that {command} is not a valid /command."
     },
-    "confirm": "დადასტურება",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "დაკავშირება",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
     "countParticipants": "{count} მონაწილე",
     "@countParticipants": {
         "type": "String",
@@ -195,7 +176,6 @@
         }
     },
     "createGroup": "ჯგუფის შექმნა",
-    "@createGroup": {},
     "deactivateAccountWarning": "ეს გააუქმებს თქვენს ანგარიშს. ამის გაუქმება შეუძლებელია. დარწმუნებული ხართ?",
     "@deactivateAccountWarning": {
         "type": "String",
@@ -212,7 +192,6 @@
         "placeholders": {}
     },
     "chatPermissions": "ჩატის უფლებები",
-    "@chatPermissions": {},
     "dateAndTimeOfDay": "{date}, {timeOfDay}",
     "@dateAndTimeOfDay": {
         "type": "String",
@@ -240,22 +219,17 @@
         "type": "String",
         "placeholders": {}
     },
-    "importNow": "იმპორტი",
-    "@importNow": {},
-    "importEmojis": "ემოჯის იმპორტი",
-    "@importEmojis": {},
+    "importNow": "დაიმპორტება",
+    "importEmojis": "ემოჯის დაიმპორტება",
     "importFromZipFile": "იმპორტი .zip ფაილიდან",
-    "@importFromZipFile": {},
     "exportEmotePack": "ემოციების .zip ფაილში ექსპორტი",
-    "@exportEmotePack": {},
     "replace": "ჩანაცვლება",
-    "@replace": {},
     "accept": "თანხმობა",
     "@accept": {
         "type": "String",
         "placeholders": {}
     },
-    "acceptedTheInvitation": "👍 {username} მიიღო მოწვევა",
+    "acceptedTheInvitation": "👍 {username}-მ(ა) მიიღო მოწვევა",
     "@acceptedTheInvitation": {
         "type": "String",
         "placeholders": {
@@ -275,11 +249,7 @@
         "placeholders": {}
     },
     "confirmMatrixId": "გთხოვთ, დაადასტუროთ თქვენი Matrix ID ანგარიშის წაშლისათვის.",
-    "@confirmMatrixId": {},
-    "addChatDescription": "ჩატის აღწერილობის დამატება...",
-    "@addChatDescription": {},
     "addToSpace": "სივრცეში დამატება",
-    "@addToSpace": {},
     "admin": "ადმინი",
     "@admin": {
         "type": "String",
@@ -296,7 +266,6 @@
         "placeholders": {}
     },
     "commandHint_cuddle": "ჩახუტების გაგზავნა",
-    "@commandHint_cuddle": {},
     "answeredTheCall": "{senderName} უპასუხა ზარს",
     "@answeredTheCall": {
         "type": "String",
@@ -322,7 +291,6 @@
         "placeholders": {}
     },
     "commandHint_googly": "გამოშტერილი თვალების გაგზავნა",
-    "@commandHint_googly": {},
     "googlyEyesContent": "{senderName} გამოშტერილ თვალებს გიგზავნის",
     "@googlyEyesContent": {
         "type": "String",
@@ -341,7 +309,7 @@
             }
         }
     },
-    "areGuestsAllowedToJoin": "შეუძლიათ თუ არა სტუმარ მომხმარებლებს გაწევრიანება",
+    "areGuestsAllowedToJoin": "შეუძლიათ სტუმარ მომხმარებლებს გაწევრება?",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -356,7 +324,6 @@
         }
     },
     "sendTypingNotifications": "წერის შეტყობინების გაგზავნა",
-    "@sendTypingNotifications": {},
     "cantOpenUri": "ვერ იხსნება ბმული {uri}",
     "@cantOpenUri": {
         "type": "String",
@@ -503,8 +470,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatHasBeenAddedToThisSpace": "ჩატი დაემატა ამ სივრცეს",
-    "@chatHasBeenAddedToThisSpace": {},
     "chats": "ჩატები",
     "@chats": {
         "type": "String",
@@ -516,14 +481,12 @@
         "placeholders": {}
     },
     "clearArchive": "არქივის გაწმენდა",
-    "@clearArchive": {},
     "close": "დახურვა",
     "@close": {
         "type": "String",
         "placeholders": {}
     },
     "commandHint_markasgroup": "აღნიშვნა, როგორც ჯგუფის",
-    "@commandHint_markasgroup": {},
     "commandHint_ban": "მოცემული მომხმარებლის ბლოკირება ამ ოთახში",
     "@commandHint_ban": {
         "type": "String",
@@ -583,11 +546,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "containsUserName": "შეიცავს სახელს",
-    "@containsUserName": {
-        "type": "String",
-        "placeholders": {}
-    },
     "copiedToClipboard": "კოპირებულია ბუფერში",
     "@copiedToClipboard": {
         "type": "String",
@@ -636,33 +594,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "dateWithoutYear": "{day}-{month}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithYear": "{day}-{month}-{year}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
     "delete": "წაშლა",
     "@delete": {
         "type": "String",
@@ -693,11 +624,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allRooms": "ყველა ჯგუფური ჩატები",
-    "@allRooms": {
-        "type": "String",
-        "placeholders": {}
-    },
     "downloadFile": "ფაილის ჩატვირთვა",
     "@downloadFile": {
         "type": "String",
@@ -724,17 +650,14 @@
         "placeholders": {}
     },
     "globalChatId": "გლობალური ჩატის ID",
-    "@globalChatId": {},
     "repeatPassword": "გაიმეორეთ პაროლი",
-    "@repeatPassword": {},
     "notAnImage": "ფაილი არაა სურათი.",
-    "@notAnImage": {},
     "remove": "წაშლა",
     "@remove": {
         "type": "String",
         "placeholders": {}
     },
-    "activatedEndToEndEncryption": "🔐 {username} გააქტიურა end to end დაშიფვრა",
+    "activatedEndToEndEncryption": "🔐 {username}-მ(ა) გააქტიურა end to end დაშიფვრა",
     "@activatedEndToEndEncryption": {
         "type": "String",
         "placeholders": {
@@ -804,11 +727,6 @@
         "type": "String",
         "description": "Usage hint for the command /react"
     },
-    "containsDisplayName": "ნაჩვენებ სახელს შეიცავს",
-    "@containsDisplayName": {
-        "type": "String",
-        "placeholders": {}
-    },
     "contentHasBeenReported": "ეს კონტენტი გაგზავნილ იქნა სერვერის ადმინისტრატორებთან",
     "@contentHasBeenReported": {
         "type": "String",
@@ -828,5 +746,15 @@
     "@editDisplayname": {
         "type": "String",
         "placeholders": {}
+    },
+    "ignoreUser": "დაიგნორება",
+    "aboutHomeserver": "{homeserver}-ის შესახებ",
+    "@aboutHomeserver": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
     }
 }

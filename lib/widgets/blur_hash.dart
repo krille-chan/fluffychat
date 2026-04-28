@@ -1,7 +1,6 @@
+import 'package:blurhash_dart/blurhash_dart.dart' as b;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-import 'package:blurhash_dart/blurhash_dart.dart' as b;
 import 'package:image/image.dart' as image;
 
 class BlurHash extends StatefulWidget {

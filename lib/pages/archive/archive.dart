@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/archive/archive_view.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class Archive extends StatefulWidget {
   const Archive({super.key});
@@ -23,7 +21,7 @@ class ArchiveController extends State<Archive> {
     return archive = await Matrix.of(context).client.loadArchive();
   }
 
-  void forgetRoomAction(int i) async {
+  Future<void> forgetRoomAction(int i) async {
     await showFutureLoadingDialog(
       context: context,
       future: () async {
@@ -35,7 +33,7 @@ class ArchiveController extends State<Archive> {
     setState(() {});
   }
 
-  void forgetAllAction() async {
+  Future<void> forgetAllAction() async {
     final archive = this.archive;
     final client = Matrix.of(context).client;
     if (archive.isEmpty) return;
@@ -50,6 +48,7 @@ class ArchiveController extends State<Archive> {
         OkCancelResult.ok) {
       return;
     }
+    if (!mounted) return;
     await showFutureLoadingDialog(
       context: context,
       futureWithProgress: (onProgress) async {

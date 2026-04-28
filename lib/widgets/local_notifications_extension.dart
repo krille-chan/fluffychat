@@ -1,14 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
-import 'package:image/image.dart';
-import 'package:matrix/matrix.dart';
-import 'package:universal_html/html.dart' as html;
-
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
@@ -16,13 +9,19 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:image/image.dart';
+import 'package:matrix/matrix.dart';
+import 'package:universal_html/html.dart' as html;
 
 extension LocalNotificationsExtension on MatrixState {
   static final html.AudioElement _audioPlayer = html.AudioElement()
     ..src = 'assets/assets/sounds/notification.ogg'
     ..load();
 
-  void showLocalNotification(Event event) async {
+  Future<void> showLocalNotification(Event event) async {
+    final l10n = L10n.of(context);
     final roomId = event.room.id;
     if (activeRoomId == roomId) {
       if (WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
@@ -74,7 +73,7 @@ extension LocalNotificationsExtension on MatrixState {
             );
       }
 
-      _audioPlayer.play();
+      if (AppSettings.webNotificationSound.value) _audioPlayer.play();
 
       html.Notification(
         title,
@@ -122,11 +121,11 @@ extension LocalNotificationsExtension on MatrixState {
         actions: [
           NotificationAction(
             DesktopNotificationActions.openChat.name,
-            L10n.of(context).openChat,
+            l10n.openChat,
           ),
           NotificationAction(
             DesktopNotificationActions.seen.name,
-            L10n.of(context).markAsRead,
+            l10n.markAsRead,
           ),
         ],
         hints: hints,
@@ -135,7 +134,7 @@ extension LocalNotificationsExtension on MatrixState {
         var action = DesktopNotificationActions.values.singleWhereOrNull(
           (a) => a.name == actionStr,
         );
-        if (action == null && actionStr == "default") {
+        if (action == null && actionStr == 'default') {
           action = DesktopNotificationActions.openChat;
         }
         switch (action!) {

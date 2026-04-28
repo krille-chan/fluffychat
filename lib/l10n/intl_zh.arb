@@ -78,7 +78,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "是否允许访客加入",
+    "areGuestsAllowedToJoin": "允许访客加入吗？",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -119,18 +119,6 @@
             }
         }
     },
-    "badServerVersionsException": "主服务器支持的 Spec 版本：\n{serverVersions}\n但此应用仅支持 {supportedVersions} 版本",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
-    },
     "banFromChat": "从聊天中封禁",
     "@banFromChat": {
         "type": "String",
@@ -160,11 +148,6 @@
     },
     "blocked": "已屏蔽",
     "@blocked": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "botMessages": "机器人消息",
-    "@botMessages": {
         "type": "String",
         "placeholders": {}
     },
@@ -487,28 +470,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "confirm": "确认",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "连接",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
     "contactHasBeenInvitedToTheGroup": "联系人已被邀请至群组",
     "@contactHasBeenInvitedToTheGroup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsDisplayName": "包含昵称",
-    "@containsDisplayName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "containsUserName": "包含用户名",
-    "@containsUserName": {
         "type": "String",
         "placeholders": {}
     },
@@ -582,33 +545,6 @@
                 "type": "String"
             },
             "timeOfDay": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithoutYear": "{month}-{day}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithYear": "{year}-{month}-{day}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
                 "type": "String"
             }
         }
@@ -718,11 +654,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteWarnNeedToPick": "你需要选择一个表情快捷码和一张图片！",
-    "@emoteWarnNeedToPick": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emptyChat": "空聊天",
     "@emptyChat": {
         "type": "String",
@@ -772,11 +703,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "enterYourHomeserver": "输入你的主服务器地址",
-    "@enterYourHomeserver": {
-        "type": "String",
-        "placeholders": {}
-    },
     "everythingReady": "一切就绪！",
     "@everythingReady": {
         "type": "String",
@@ -814,11 +740,6 @@
     },
     "fromTheInvitation": "自邀请起",
     "@fromTheInvitation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "goToTheNewRoom": "前往新的聊天室",
-    "@goToTheNewRoom": {
         "type": "String",
         "placeholders": {}
     },
@@ -893,11 +814,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "identity": "身份",
-    "@identity": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ignore": "忽略",
     "@ignore": {
         "type": "String",
@@ -956,11 +872,6 @@
     },
     "invitedUsersOnly": "仅被邀请用户",
     "@invitedUsersOnly": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "inviteForMe": "发给我的邀请",
-    "@inviteForMe": {
         "type": "String",
         "placeholders": {}
     },
@@ -1043,11 +954,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "license": "许可证",
-    "@license": {
-        "type": "String",
-        "placeholders": {}
-    },
     "lightTheme": "浅色",
     "@lightTheme": {
         "type": "String",
@@ -1088,11 +994,6 @@
     },
     "logout": "退出登录",
     "@logout": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "memberChanges": "成员变更",
-    "@memberChanges": {
         "type": "String",
         "placeholders": {}
     },
@@ -1191,11 +1092,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "notificationsEnabledForThisAccount": "已为此账户启用通知",
-    "@notificationsEnabledForThisAccount": {
-        "type": "String",
-        "placeholders": {}
-    },
     "numUsersTyping": "{count} 人正在输入…",
     "@numUsersTyping": {
         "type": "String",
@@ -1285,11 +1181,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "people": "联系人",
-    "@people": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pickImage": "选择图像",
     "@pickImage": {
         "type": "String",
@@ -1308,11 +1199,6 @@
                 "type": "String"
             }
         }
-    },
-    "pleaseChoose": "请选择",
-    "@pleaseChoose": {
-        "type": "String",
-        "placeholders": {}
     },
     "pleaseChooseAPasscode": "请选择一个密码",
     "@pleaseChooseAPasscode": {
@@ -1407,11 +1293,6 @@
             }
         }
     },
-    "rejoin": "重新加入",
-    "@rejoin": {
-        "type": "String",
-        "placeholders": {}
-    },
     "remove": "移除",
     "@remove": {
         "type": "String",
@@ -1430,11 +1311,6 @@
                 "type": "String"
             }
         }
-    },
-    "removeDevice": "移除设备",
-    "@removeDevice": {
-        "type": "String",
-        "placeholders": {}
     },
     "unbanFromChat": "从聊天中解封",
     "@unbanFromChat": {
@@ -1491,15 +1367,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "seenByUser": "被 {username} 看见",
-    "@seenByUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "send": "发送",
     "@send": {
         "type": "String",
@@ -1531,16 +1398,6 @@
     },
     "sendMessages": "发送消息",
     "@sendMessages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendOriginal": "发送原图",
-    "@sendOriginal": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "sendSticker": "发送贴纸",
-    "@sendSticker": {
         "type": "String",
         "placeholders": {}
     },
@@ -1608,21 +1465,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "setCustomEmotes": "设置自定义表情",
-    "@setCustomEmotes": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setInvitationLink": "设置邀请链接",
-    "@setInvitationLink": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setPermissionsLevel": "设置权限级别",
-    "@setPermissionsLevel": {
-        "type": "String",
-        "placeholders": {}
-    },
     "setStatus": "设置状态",
     "@setStatus": {
         "type": "String",
@@ -1649,11 +1491,6 @@
     },
     "showPassword": "显示密码",
     "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "singlesignon": "单点登录",
-    "@singlesignon": {
         "type": "String",
         "placeholders": {}
     },
@@ -1714,21 +1551,6 @@
     "title": "FluffyChat",
     "@title": {
         "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleFavorite": "切换收藏",
-    "@toggleFavorite": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleMuted": "切换静音",
-    "@toggleMuted": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "toggleUnread": "标记已读/未读",
-    "@toggleUnread": {
         "type": "String",
         "placeholders": {}
     },
@@ -1797,15 +1619,6 @@
     "@unpin": {
         "type": "String",
         "placeholders": {}
-    },
-    "unreadChats": "{unreadCount, plural, =1{1 个未读聊天} other{{unreadCount} 个未读聊天}}",
-    "@unreadChats": {
-        "type": "String",
-        "placeholders": {
-            "unreadCount": {
-                "type": "int"
-            }
-        }
     },
     "userAndOthersAreTyping": "{username} 和其他 {count} 人正在输入…",
     "@userAndOthersAreTyping": {
@@ -1928,11 +1741,6 @@
     },
     "waitingPartnerNumbers": "等待对方接受数字…",
     "@waitingPartnerNumbers": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wallpaper": "壁纸：",
-    "@wallpaper": {
         "type": "String",
         "placeholders": {}
     },
@@ -2085,7 +1893,6 @@
     "sendOnEnter": "按 Enter 键发送",
     "yourChatBackupHasBeenSetUp": "你的聊天记录备份已设置。",
     "scanQrCode": "扫描二维码",
-    "chatHasBeenAddedToThisSpace": "聊天已添加到此空间",
     "homeserver": "服务器",
     "oneClientLoggedOut": "你的一个客户端已登出",
     "removeFromBundle": "从此集合中移除",
@@ -2103,7 +1910,6 @@
     "openGallery": "打开图库",
     "messageInfo": "消息信息",
     "time": "时间",
-    "addToSpaceDescription": "选择一个空间以添加此聊天。",
     "removeFromSpace": "从此空间中移除",
     "start": "开始",
     "commandHint_discardsession": "丢弃会话",
@@ -2125,21 +1931,6 @@
     "@commandHint_create": {
         "type": "String",
         "description": "Usage hint for the command /create"
-    },
-    "openVideoCamera": "打开相机拍摄视频",
-    "@openVideoCamera": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "publish": "发布",
-    "videoWithSize": "视频 ({size})",
-    "@videoWithSize": {
-        "type": "String",
-        "placeholders": {
-            "size": {
-                "type": "String"
-            }
-        }
     },
     "dismiss": "忽略",
     "markAsRead": "标为已读",
@@ -2166,32 +1957,6 @@
     "placeCall": "发起通话",
     "videoCallsBetaWarning": "请注意，视频通话目前处于测试阶段。它们可能不能像预期的那样工作，或者在所有平台上都不能工作。",
     "experimentalVideoCalls": "实验性的视频通话",
-    "emailOrUsername": "电子邮箱或用户名",
-    "switchToAccount": "切换到账户 {number}",
-    "@switchToAccount": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "nextAccount": "下个账户",
-    "previousAccount": "上个账户",
-    "widgetVideo": "视频",
-    "widgetJitsi": "Jitsi Meet",
-    "widgetCustom": "自定义",
-    "widgetNameError": "请提供昵称。",
-    "errorAddingWidget": "添加小部件出错。",
-    "addWidget": "添加小部件",
-    "widgetEtherpad": "文本笔记",
-    "widgetName": "名称",
-    "widgetUrlError": "这不是有效的 URL。",
-    "separateChatTypes": "分开私聊和群组",
-    "@separateChatTypes": {
-        "type": "String",
-        "placeholders": {}
-    },
     "youRejectedTheInvitation": "你拒绝了邀请",
     "youJoinedTheChat": "你加入了聊天",
     "youBannedUser": "你封禁了 {user}",
@@ -2254,7 +2019,6 @@
     "storeInSecureStorageDescription": "将恢复密钥存储在此设备的安全存储中。",
     "storeInAppleKeyChain": "存储在 Apple KeyChain 中",
     "unlockOldMessages": "解锁旧消息",
-    "pleaseEnterRecoveryKey": "请输入你的恢复密钥：",
     "recoveryKey": "恢复密钥",
     "recoveryKeyLost": "丢失了恢复密钥？",
     "pleaseEnterRecoveryKeyDescription": "要解锁你的旧邮件，请输入你在之前会话中生成的恢复密钥。 你的恢复密钥不是你的密码。",
@@ -2270,15 +2034,9 @@
             }
         }
     },
-    "dehydrateTor": "TOR 用户：导出会话",
-    "dehydrateTorLong": "建议 TOR 用户在关闭窗口之前导出会话。",
-    "hydrateTor": "TOR 用户：导入会话导出",
     "hydrate": "从备份文件恢复",
     "dehydrate": "导出会话并擦除设备",
     "dehydrateWarning": "此操作无法撤消。 确保你安全地存储备份文件。",
-    "indexedDbErrorTitle": "私有模式问题",
-    "indexedDbErrorLong": "遗憾的是，默认情况下未在私有模式下启用消息存储。\n请访问\n - about:config\n - 将 dom.indexedDB.privateBrowsing.enabled 设置为 true\n否则，无法运行 FluffyChat。",
-    "hydrateTorLong": "你上次是否导出 TOR 会话？ 快速导入它并继续聊天。",
     "user": "用户",
     "custom": "自定义",
     "confirmMatrixId": "请确认你的 Matrix ID 以删除账户。",
@@ -2297,28 +2055,10 @@
     "noKeyForThisMessage": "如果消息是在你在此设备上登录账户前发送的，就可能发生这种情况。\n\n也有可能是发送者屏蔽了你的设备或网络连接出了问题。\n\n你能在另一个会话中读取消息吗？如果是的话，你可以从它那里传递信息！点击设置 > 设备，并确保你的设备已经相互验证。当你下次打开聊天室，且两个会话都在前台，密钥就会自动传输。\n\n你不想在退出登录或切换设备时丢失密钥？请确保在设置中启用了聊天备份。",
     "newGroup": "新群组",
     "newSpace": "新的空间",
-    "enterSpace": "进入空间",
-    "enterRoom": "进入聊天室",
     "allSpaces": "所有空间",
-    "appearOnTop": "显示在其它应用上方",
-    "appearOnTopDetails": "允许应用显示在顶部（如果你已经将 Fluffychat 设置为呼叫账户，则不需要授予此权限）",
-    "otherCallingPermissions": "麦克风、摄像头和其它 FluffyChat 权限",
-    "callingPermissions": "呼叫权限",
-    "callingAccountDetails": "允许 FluffyChat 使用本机 android 拨号器应用。",
     "foregroundServiceRunning": "此通知在前台服务运行时出现。",
     "screenSharingTitle": "屏幕共享",
-    "callingAccount": "呼叫账户",
     "screenSharingDetail": "你正在 FluffyChat 中共享屏幕",
-    "numChats": "{number} 个聊天",
-    "@numChats": {
-        "type": "number",
-        "placeholders": {
-            "number": {
-                "type": "String"
-            }
-        }
-    },
-    "hideUnimportantStateEvents": "隐藏不重要的状态事件",
     "doNotShowAgain": "不再显示",
     "googlyEyesContent": "{senderName} 向你发送了“大眼”表情",
     "@googlyEyesContent": {
@@ -2359,7 +2099,6 @@
             }
         }
     },
-    "startFirstChat": "发起你的第一个聊天",
     "newSpaceDescription": "空间让你可以整合聊天并建立私人或公共社区。",
     "encryptThisChat": "加密此聊天",
     "disableEncryptionWarning": "出于安全考虑 ，你不能在之前已启用加密的聊天中禁用加密。",
@@ -2372,20 +2111,6 @@
     "readUpToHere": "读到此处",
     "jump": "跳转",
     "openLinkInBrowser": "在浏览器中打开链接",
-    "signInWith": "使用 {provider} 登录",
-    "@signInWith": {
-        "type": "String",
-        "placeholders": {
-            "provider": {
-                "type": "String"
-            }
-        }
-    },
-    "allRooms": "所有群聊",
-    "@allRooms": {
-        "type": "String",
-        "placeholders": {}
-    },
     "fileHasBeenSavedAt": "文件已保存在 {path}",
     "@fileHasBeenSavedAt": {
         "type": "String",
@@ -2397,8 +2122,6 @@
     },
     "reportErrorDescription": "😭 哦不。出了点差错。如果你愿意，可以向开发人员报告此错误。",
     "noBackupWarning": "警告！如果不启用聊天备份，你将无法访问加密消息。强烈建议在退出登录前先启用聊天备份。",
-    "signInWithPassword": "使用密码登录",
-    "pleaseTryAgainLaterOrChooseDifferentServer": "请稍后再试或选择其它服务器。",
     "reopenChat": "重新打开聊天",
     "importEmojis": "导入表情包",
     "notAnImage": "不是图像文件。",
@@ -2409,10 +2132,7 @@
     "sendTypingNotifications": "发送正在输入通知",
     "createGroup": "创建群组",
     "shareInviteLink": "分享邀请链接",
-    "profileNotFound": "服务器上找不到此用户。可能是连接有问题或者用户不存在。",
-    "inviteContactToGroupQuestion": "你是否要邀请 {contact} 参与聊天 \"{groupName}\"？",
     "tryAgain": "重试",
-    "addChatDescription": "添加聊天说明…",
     "chatPermissions": "聊天权限",
     "chatDescription": "聊天描述",
     "chatDescriptionHasBeenChanged": "聊天描述已被更改",
@@ -2421,7 +2141,6 @@
     "redactMessageDescription": "消息将为此对话中所有参与者删除。此操作无法撤销。",
     "optionalRedactReason": "（可选）删除此消息的原因...",
     "setChatDescription": "设置聊天描述",
-    "setTheme": "设置主题：",
     "setColorTheme": "设置主题颜色：",
     "invite": "邀请",
     "messagesStyle": "消息：",
@@ -2448,7 +2167,6 @@
         }
     },
     "inviteGroupChat": "📨 群聊邀请",
-    "invitePrivateChat": "📨 私聊邀请",
     "emoteKeyboardNoRecents": "最近使用过的表情会出现在这里...",
     "@emoteKeyboardNoRecents": {
         "type": "String",
@@ -2484,7 +2202,6 @@
     "kickUserDescription": "该用户会被踢出聊天但没被封禁。在公开聊天中，该用户可以随时重新加入。",
     "blockListDescription": "你可以屏蔽打扰你的用户。你将不会收到来自屏蔽列表中用户的任何消息或聊天室邀请。",
     "createGroupAndInviteUsers": "创建群组并邀请用户",
-    "startConversation": "开始对话",
     "blockedUsers": "已屏蔽的用户",
     "groupCanBeFoundViaSearch": "可通过搜索找到该群组",
     "noUsersFoundWithQuery": "很遗憾，没有找到有关\"{query}\"的用户。请检查是否输入错误。",
@@ -2509,30 +2226,15 @@
     "publicSpaces": "公开空间",
     "passwordIsWrong": "你输入的密码有误",
     "pleaseEnterYourCurrentPassword": "请输入你当前的密码",
-    "publicLink": "公开链接",
     "nothingFound": "未找到任何内容…",
-    "decline": "拒绝",
     "newPassword": "新的密码",
     "passwordsDoNotMatch": "密码不匹配",
-    "subspace": "子空间",
     "select": "选择",
     "pleaseChooseAStrongPassword": "请选择一个强密码",
     "addChatOrSubSpace": "添加聊天或子空间",
     "leaveEmptyToClearStatus": "留空以清除你的状态。",
     "joinSpace": "加入空间",
     "searchForUsers": "搜索 @用户…",
-    "databaseBuildErrorBody": "无法构建 SQLite 数据库。目前应用尝试使用旧数据库。请将此错误报告给开发者，网址为 {url}。错误消息为：{error}",
-    "@databaseBuildErrorBody": {
-        "type": "String",
-        "placeholders": {
-            "url": {
-                "type": "String"
-            },
-            "error": {
-                "type": "String"
-            }
-        }
-    },
     "initAppError": "在初始化应用时发生错误",
     "sessionLostBody": "你的会话已丢失。请将此错误报告给开发者，网址为 {url}。错误消息为：{error}",
     "@sessionLostBody": {
@@ -2575,15 +2277,6 @@
     "formattedMessages": "格式化的消息",
     "verifyOtherDevice": "🔐 验证其它设备",
     "verifyOtherUser": "🔐 验证其他用户",
-    "forwardMessageTo": "转发消息至 {roomName} ？",
-    "@forwardMessageTo": {
-        "type": "String",
-        "placeholders": {
-            "roomName": {
-                "type": "String"
-            }
-        }
-    },
     "sendReadReceiptsDescription": "聊天中的其他参与者可以看到你是否读过消息。",
     "acceptedKeyVerification": "{sender} 接受了密钥验证",
     "@acceptedKeyVerification": {
@@ -2631,21 +2324,8 @@
         }
     },
     "transparent": "透明",
-    "youInvitedToBy": "📩 你已通过链接被邀请到：\n{alias}",
-    "@youInvitedToBy": {
-        "placeholders": {
-            "alias": {
-                "type": "String"
-            }
-        }
-    },
     "presencesToggle": "显示其他用户的状态消息",
     "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "presenceStyle": "是否在线：",
-    "@presenceStyle": {
         "type": "String",
         "placeholders": {}
     },
@@ -2675,9 +2355,7 @@
     "customEmojisAndStickers": "自定义表情符号和贴纸",
     "hideRedactedMessages": "隐藏被涂黑的消息",
     "overview": "概览",
-    "notifyMeFor": "提示内容",
     "passwordRecoverySettings": "密码发现设置",
-    "noPublicLinkHasBeenCreatedYet": "尚未创建公开链接",
     "knock": "请求",
     "noOneCanJoin": "无人可以加入",
     "knocking": "正在请求",
@@ -2697,29 +2375,9 @@
     },
     "hideRedactedMessagesBody": "如果某人涂黑了一条消息，那么在聊天中再也看不到这条消息。",
     "hideInvalidOrUnknownMessageFormats": "隐藏无效或未知的消息格式",
-    "hideMemberChangesInPublicChats": "在公开聊天中隐藏成员变化",
-    "hideMemberChangesInPublicChatsBody": "不在聊天时间线中显示某人是否加入或离开了公开聊天来改进可读性。",
-    "userWouldLikeToChangeTheChat": "{user} 想加入聊天。",
-    "@userWouldLikeToChangeTheChat": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "customEmojisAndStickersBody": "添加或分享可用于任何聊天的表情符号或贴纸。",
     "usersMustKnock": "用户必须请求加入",
     "noDatabaseEncryption": "数据库加密在此平台上不受支持",
-    "userRole": "用户角色",
-    "minimumPowerLevel": "{level} 是最低权限等级。",
-    "@minimumPowerLevel": {
-        "type": "String",
-        "placeholders": {
-            "level": {
-                "type": "String"
-            }
-        }
-    },
     "publicChatAddresses": "公开聊天的地址",
     "createNewAddress": "新建地址",
     "searchMore": "搜索更多…",
@@ -2742,7 +2400,6 @@
         "description": "Set to true to always display time of day in 24 hour format."
     },
     "noMoreChatsFound": "找不到更多聊天…",
-    "joinedChats": "已加入的聊天",
     "space": "空间",
     "spaces": "空间",
     "goToSpace": "转到空间：{space}",
@@ -2751,18 +2408,6 @@
         "space": {}
     },
     "markAsUnread": "标为未读",
-    "countChatsAndCountParticipants": "{chats} 个聊天和 {participants} 名参与者",
-    "@countChatsAndCountParticipants": {
-        "type": "String",
-        "placeholders": {
-            "chats": {
-                "type": "int"
-            },
-            "participants": {
-                "type": "int"
-            }
-        }
-    },
     "unread": "未读",
     "userLevel": "{level} - 用户",
     "@userLevel": {
@@ -2820,9 +2465,6 @@
     "sendCanceled": "发送被取消",
     "noChatsFoundHere": "此处尚未找到聊天。使用下方按钮 ⤵️ 开始和某人的新聊天",
     "loginWithMatrixId": "使用 Matrix-ID 登录",
-    "discoverHomeservers": "发现主服务器",
-    "whatIsAHomeserver": "什么是主服务器？",
-    "homeserverDescription": "主服务器上就像电子邮件提供商，你的所有数据都存储在上面。你可以选择你想使用哪个主服务器。在 https://matrix.org 上了解更多信息。",
     "doesNotSeemToBeAValidHomeserver": "似乎不是兼容的主服务器。URL 不正确？",
     "prepareSendingAttachment": "准备发送附件…",
     "sendingAttachment": "发送附件中…",
@@ -2915,7 +2557,6 @@
             }
         }
     },
-    "appIntroduction": "FluffyChat 让使用不同即时通信工具的你和你的好友得以聊天。 访问 https://matrix.org 了解详情或轻按 *继续*。",
     "newChatRequest": "📩 新的聊天请求",
     "generalNotificationSettings": "常规通知设置",
     "userSpecificNotificationSettings": "使用特定通知设置",
@@ -2985,10 +2626,7 @@
     "notSupportedOnThisDevice": "此设备上不受支持",
     "enterNewChat": "进入新聊天",
     "commandHint_roomupgrade": "将此聊天室升级到给定的聊天室版本",
-    "setCustomPermissionLevel": "设置自定义权限等级",
-    "setPermissionsLevelDescription": "请在下方选择预定义的角色或输入 0 到 100 间的自定义权限等级。",
     "ignoreUser": "忽略用户",
-    "normalUser": "正常用户",
     "approve": "批准",
     "youHaveKnocked": "你已请求加入",
     "pleaseWaitUntilInvited": "在来自该聊天室的某人邀请你之前请等待。",
@@ -3024,10 +2662,6 @@
     "longPressToRecordVoiceMessage": "长按录制语音消息。",
     "pause": "暂停",
     "resume": "继续",
-    "newSubSpace": "新建子空间",
-    "moveToDifferentSpace": "移动到别的空间",
-    "moveUp": "上移",
-    "moveDown": "下移",
     "removeFromSpaceDescription": "将从空间移除该聊天，但仍出现在聊天列表中。",
     "countChats": "{chats} 个聊天",
     "@countChats": {
@@ -3056,7 +2690,6 @@
             }
         }
     },
-    "donate": "捐赠",
     "startedAPoll": "{username} 启动了投票。",
     "@startedAPoll": {
         "type": "String",
@@ -3070,7 +2703,6 @@
     "startPoll": "启动投票",
     "endPoll": "结束投票",
     "answersVisible": "结果可见",
-    "answersHidden": "结果隐藏",
     "pollQuestion": "投票问题",
     "answerOption": "结果选项",
     "addAnswerOption": "添加结果选项",
@@ -3138,5 +2770,48 @@
     "logs": "日志",
     "advancedConfigs": "高级配置",
     "advancedConfigurations": "高级配置",
-    "signInWithLabel": "登录方式："
+    "signIn": "登录",
+    "createNewAccount": "创建新账户",
+    "signUpGreeting": "FluffyChat 是去中心化的！选择您希望创建账户的服务器！",
+    "signInGreeting": "已经有 Matrix 账户了？欢迎回来！选择 homeserver 登录。",
+    "appIntro": "借助 FluffyChat，您可以和好友聊天。它是安全的去中心化 [matrix] 消息收发应用！如果愿意，可以在 https://matrix.org 了解更多信息，也可直接注册账户。",
+    "theProcessWasCanceled": "过程被取消。",
+    "join": "加入",
+    "searchOrEnterHomeserverAddress": "搜索或输入 homeserver 地址",
+    "matrixId": "Matrix ID",
+    "setPowerLevel": "设置权限级别",
+    "makeModerator": "协管员",
+    "makeAdmin": "管理员",
+    "removeModeratorRights": "删除协管员权限",
+    "removeAdminRights": "删除管理员权限",
+    "powerLevel": "权限级别",
+    "setPowerLevelDescription": "权限级别定义群成员在这个聊天室中可以做什么，取值范围 0 到 100。",
+    "owner": "所有者",
+    "mute": "静音",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "新建聊天",
+    "reset": "重置",
+    "supportFluffyChat": "支持 FluffyChat",
+    "support": "支持",
+    "fluffyChatSupportBannerMessage": "FluffyChat 需要您的帮助！\n❤️❤️❤️\nFluffyChat 将始终免费，但开发和托管仍然要花钱。\n项目的未来仰赖像您这样的人的支持。",
+    "skipSupportingFluffyChat": "跳过支持 FluffyChar",
+    "iDoNotWantToSupport": "我不想支持",
+    "iAlreadySupportFluffyChat": "我已支持 FluffyChat",
+    "setLowPriority": "设置低优先级",
+    "unsetLowPriority": "取消设置低优先级",
+    "removeCallFromChat": "从聊天中删除通话",
+    "removeCallFromChatDescription": "要为所有成员从聊天中删除通话吗？",
+    "removeCallForEveryone": "为所有人删除通话",
+    "startVoiceCall": "开始语音通话",
+    "startVideoCall": "开始视频通话",
+    "joinVoiceCall": "加入语音通话",
+    "joinVideoCall": "加入视频通话",
+    "live": "实时",
+    "playSoundOnNotification": "播放通知声音",
+    "addTag": "添加标签",
+    "removeTag": "删除标签",
+    "tagName": "标签名",
+    "createNewTag": "创建新标签"
 }

@@ -1,8 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
@@ -12,6 +7,9 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 class SpacesNavigationRail extends StatelessWidget {
   final String? activeSpaceId;
@@ -56,11 +54,11 @@ class SpacesNavigationRail extends StatelessWidget {
                             isSelected: activeSpaceId == null,
                             onTap: onGoToChats,
                             icon: const Padding(
-                              padding: EdgeInsets.all(10.0),
+                              padding: EdgeInsets.all(8.0),
                               child: Icon(Icons.forum_outlined),
                             ),
                             selectedIcon: const Padding(
-                              padding: EdgeInsets.all(10.0),
+                              padding: EdgeInsets.all(8.0),
                               child: Icon(Icons.forum),
                             ),
                             toolTip: L10n.of(context).chats,
@@ -73,7 +71,7 @@ class SpacesNavigationRail extends StatelessWidget {
                             isSelected: false,
                             onTap: () => context.go('/rooms/newspace'),
                             icon: const Padding(
-                              padding: EdgeInsets.all(8.0),
+                              padding: EdgeInsets.all(6.0),
                               child: Icon(Icons.add),
                             ),
                             toolTip: L10n.of(context).createNewSpace,
@@ -96,22 +94,29 @@ class SpacesNavigationRail extends StatelessWidget {
                           icon: Avatar(
                             mxContent: allSpaces[i].avatar,
                             name: displayname,
-                            border: BorderSide(
-                              width: 1,
-                              color: Theme.of(context).dividerColor,
+                            size: 36,
+                            shapeBorder: RoundedSuperellipseBorder(
+                              side: BorderSide(
+                                width: 1,
+                                color: Theme.of(context).dividerColor,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                AppConfig.spaceBorderRadius,
+                              ),
                             ),
                             borderRadius: BorderRadius.circular(
-                              AppConfig.borderRadius / 2,
+                              AppConfig.spaceBorderRadius,
                             ),
                           ),
                         );
                       },
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: StartChatFab(),
-                  ),
+                  if (FluffyThemes.isColumnMode(context))
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: StartChatFab(),
+                    ),
                 ],
               ),
             );

@@ -1,16 +1,15 @@
-import 'package:flutter/material.dart';
-
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
-
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
 import '../../widgets/mxc_image_viewer.dart';
 import 'settings.dart';
 
@@ -22,7 +21,6 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final showChatBackupBanner = controller.showChatBackupBanner;
     final activeRoute = GoRouter.of(
       context,
     ).routeInformationProvider.value.uri.path;
@@ -120,13 +118,9 @@ class SettingsView extends StatelessWidget {
               },
             ),
             FutureBuilder(
-              future: Matrix.of(context).client.getWellknown(),
+              future: Matrix.of(context).client.getAuthMetadata(),
               builder: (context, snapshot) {
-                final accountManageUrl = snapshot.data?.additionalProperties
-                    .tryGetMap<String, Object?>(
-                      'org.matrix.msc2965.authentication',
-                    )
-                    ?.tryGet<String>('account');
+                final accountManageUrl = snapshot.data?.issuer;
                 if (accountManageUrl == null) {
                   return const SizedBox.shrink();
                 }
@@ -134,7 +128,7 @@ class SettingsView extends StatelessWidget {
                   leading: const Icon(Icons.account_circle_outlined),
                   title: Text(L10n.of(context).manageAccount),
                   trailing: const Icon(Icons.open_in_new_outlined),
-                  onTap: () => launchUrlString(
+                  onTap: () => launchUrl(
                     accountManageUrl,
                     mode: LaunchMode.inAppBrowserView,
                   ),
@@ -142,20 +136,13 @@ class SettingsView extends StatelessWidget {
               },
             ),
             Divider(color: theme.dividerColor),
-            if (showChatBackupBanner == null)
-              ListTile(
-                leading: const Icon(Icons.backup_outlined),
-                title: Text(L10n.of(context).chatBackup),
-                trailing: const CircularProgressIndicator.adaptive(),
-              )
-            else
-              SwitchListTile.adaptive(
-                controlAffinity: ListTileControlAffinity.trailing,
-                value: controller.showChatBackupBanner == false,
-                secondary: const Icon(Icons.backup_outlined),
-                title: Text(L10n.of(context).chatBackup),
-                onChanged: controller.firstRunBootstrapAction,
-              ),
+            SwitchListTile.adaptive(
+              controlAffinity: ListTileControlAffinity.trailing,
+              value: controller.cryptoIdentityConnected == true,
+              secondary: const Icon(Icons.backup_outlined),
+              title: Text(L10n.of(context).chatBackup),
+              onChanged: controller.firstRunBootstrapAction,
+            ),
             Divider(color: theme.dividerColor),
             ListTile(
               leading: const Icon(Icons.format_paint_outlined),
@@ -213,7 +200,7 @@ class SettingsView extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.privacy_tip_outlined),
               title: Text(L10n.of(context).privacy),
-              onTap: () => launchUrl(AppConfig.privacyUrl),
+              onTap: () => launchUrlString(AppSettings.privacyPolicy.value),
             ),
             ListTile(
               leading: const Icon(Icons.info_outline_rounded),

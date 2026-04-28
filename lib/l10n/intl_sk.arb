@@ -304,16 +304,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "confirm": "Potvrdiť",
-    "@confirm": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "connect": "Pripojiť",
-    "@connect": {
-        "type": "String",
-        "placeholders": {}
-    },
     "contactHasBeenInvitedToTheGroup": "Kontakt bol pozvaný do skupiny",
     "@contactHasBeenInvitedToTheGroup": {
         "type": "String",
@@ -383,33 +373,6 @@
             }
         }
     },
-    "dateWithoutYear": "{day}.{month}",
-    "@dateWithoutYear": {
-        "type": "String",
-        "placeholders": {
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
-    "dateWithYear": "{day}.{month}.{year}",
-    "@dateWithYear": {
-        "type": "String",
-        "placeholders": {
-            "year": {
-                "type": "String"
-            },
-            "month": {
-                "type": "String"
-            },
-            "day": {
-                "type": "String"
-            }
-        }
-    },
     "delete": "Odstrániť",
     "@delete": {
         "type": "String",
@@ -465,11 +428,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteWarnNeedToPick": "Musíte zvoliť kód emotikonu a obrázok!",
-    "@emoteWarnNeedToPick": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emptyChat": "Prázdny chat",
     "@emptyChat": {
         "type": "String",
@@ -487,11 +445,6 @@
     },
     "encryptionNotEnabled": "Šifrovanie nie je aktívne",
     "@encryptionNotEnabled": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "enterYourHomeserver": "Zadajte svoj homeserver",
-    "@enterYourHomeserver": {
         "type": "String",
         "placeholders": {}
     },
@@ -568,11 +521,6 @@
     },
     "id": "ID",
     "@id": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "identity": "Identita",
-    "@identity": {
         "type": "String",
         "placeholders": {}
     },
@@ -688,11 +636,6 @@
     },
     "leftTheChat": "Opustili chat",
     "@leftTheChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "license": "Licencia",
-    "@license": {
         "type": "String",
         "placeholders": {}
     },
@@ -881,11 +824,6 @@
             }
         }
     },
-    "rejoin": "Vrátiť sa",
-    "@rejoin": {
-        "type": "String",
-        "placeholders": {}
-    },
     "remove": "Odstrániť",
     "@remove": {
         "type": "String",
@@ -904,11 +842,6 @@
                 "type": "String"
             }
         }
-    },
-    "removeDevice": "Odstráňiť zariadenie",
-    "@removeDevice": {
-        "type": "String",
-        "placeholders": {}
     },
     "unbanFromChat": "Odblokovať",
     "@unbanFromChat": {
@@ -929,15 +862,6 @@
     "@roomHasBeenUpgraded": {
         "type": "String",
         "placeholders": {}
-    },
-    "seenByUser": "Videné užívateľom {username}",
-    "@seenByUser": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "send": "Odoslať",
     "@send": {
@@ -1003,11 +927,6 @@
                 "type": "String"
             }
         }
-    },
-    "setInvitationLink": "Nastaviť odkaz pre pozvánku",
-    "@setInvitationLink": {
-        "type": "String",
-        "placeholders": {}
     },
     "setStatus": "Nastaviť status",
     "@setStatus": {
@@ -1119,15 +1038,6 @@
     "@unmuteChat": {
         "type": "String",
         "placeholders": {}
-    },
-    "unreadChats": "{unreadCount, plural, other{{unreadCount} neprečítaných chatov}}",
-    "@unreadChats": {
-        "type": "String",
-        "placeholders": {
-            "unreadCount": {
-                "type": "int"
-            }
-        }
     },
     "userAndOthersAreTyping": "{username} a {count} dalších píšu…",
     "@userAndOthersAreTyping": {
@@ -1248,11 +1158,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wallpaper": "Pozadie",
-    "@wallpaper": {
-        "type": "String",
-        "placeholders": {}
-    },
     "whoIsAllowedToJoinThisGroup": "Kto môže vstúpiť do tejto skupiny",
     "@whoIsAllowedToJoinThisGroup": {
         "type": "String",
@@ -1283,11 +1188,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "people": "Ľudia",
-    "@people": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chats": "Čety",
     "@chats": {
         "type": "String",
@@ -1302,18 +1202,6 @@
     "@changeDeviceName": {
         "type": "String",
         "placeholders": {}
-    },
-    "badServerVersionsException": "Domovský server podporuje verzie špecifikácie:\n{serverVersions}\nAle táto aplikácie podporuje iba {supportedVersions}",
-    "@badServerVersionsException": {
-        "type": "String",
-        "placeholders": {
-            "serverVersions": {
-                "type": "String"
-            },
-            "supportedVersions": {
-                "type": "String"
-            }
-        }
     },
     "answeredTheCall": "{senderName} prevzal hovor",
     "@answeredTheCall": {
@@ -1349,11 +1237,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "sendSticker": "Poslať nálepku",
-    "@sendSticker": {
-        "type": "String",
-        "placeholders": {}
-    },
     "roomVersion": "Verzia miestnosti",
     "@roomVersion": {
         "type": "String",
@@ -1366,11 +1249,6 @@
     },
     "joinRoom": "Pripojiť sa k miestnosti",
     "@joinRoom": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "setPermissionsLevel": "Nastaviť úroveň oprávnení",
-    "@setPermissionsLevel": {
         "type": "String",
         "placeholders": {}
     },
@@ -1441,11 +1319,6 @@
     "sendAsText": "Poslať ako text",
     "@sendAsText": {
         "type": "String"
-    },
-    "sendOriginal": "Poslať originál",
-    "@sendOriginal": {
-        "type": "String",
-        "placeholders": {}
     },
     "sendVideo": "Poslať video",
     "@sendVideo": {
