@@ -36,6 +36,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 import 'package:mime/mime.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:fluffychat/dsl/handlers/menu_handler.dart'; // correct path
 
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -99,6 +100,14 @@ class ChatController extends State<ChatPageWithRoom>
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
 
   late Client sendingClient;
+  String _lastMenuTitle = 'Menu';
+List<Map<String, String>> _lastMenuItems = [];
+bool _menuReady = false;
+
+  // Add these getters
+String get lastMenuTitle => _lastMenuTitle;
+List<Map<String, String>> get lastMenuItems => _lastMenuItems;
+bool get menuReady => _menuReady;  
 
   Timeline? timeline;
 
@@ -119,6 +128,7 @@ class ChatController extends State<ChatPageWithRoom>
   bool currentlyTyping = false;
   bool dragging = false;
 
+   StreamSubscription? _menuTriggerSub; 
   void onDragEntered(_) => setState(() => dragging = true);
 
   void onDragExited(_) => setState(() => dragging = false);
@@ -138,7 +148,152 @@ class ChatController extends State<ChatPageWithRoom>
       ),
     );
   }
+  // Add with other declarations
+final Set<String> _processedMenuEventIds = {};
 
+  void _listenForMenuTrigger() {
+  _menuTriggerSub = room.client.onEvent.stream.listen((eventUpdate) {
+    if (eventUpdate.roomID != roomId) return;
+
+    final raw = eventUpdate.content;
+    final eventId = raw['event_id']?.toString() ?? '';
+    final rawType = raw['type']?.toString() ?? '';
+    final content = raw['content'] as Map<String, dynamic>? ?? {};
+
+    if (eventId.isEmpty || _processedMenuEventIds.contains(eventId)) return;
+    _processedMenuEventIds.add(eventId);
+
+    if (rawType == 'com.dotcafe.menu') {
+  final dsl = content['com.jaino.dsl'] as Map<String, dynamic>?;
+  if (dsl != null && dsl['type'] == 'menu') {
+    final data = dsl['data'] as Map<String, dynamic>? ?? {};
+    final title = data['title']?.toString() ?? 'Menu';
+    final rawItems = data['items'] as List<dynamic>? ?? [];
+    final items = rawItems.map<Map<String, String>>((i) => {
+      'name': i['name']?.toString() ?? '',
+      'price': i['price']?.toString() ?? '',
+      'image': i['image']?.toString() ?? '',
+    }).toList();
+
+    // ── Store items ───────────────────────────────────────────
+    setState(() {
+      _lastMenuTitle = title;
+      _lastMenuItems = items;
+      _menuReady = true;
+    });
+    print('✅ Menu stored: $_lastMenuTitle with ${_lastMenuItems.length} items');
+
+    // ── Auto-open modal ───────────────────────────────────────
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _showMenuBottomSheet(title: title, items: items);
+      }
+    });
+  }
+}
+
+
+  });
+}
+
+
+void _showMenuBottomSheet({
+  String title = 'Dot Cafe Menu',
+  List<dynamic> items = const [],
+}) {
+  final menuItems = items.isNotEmpty ? items : <Map<String, String>>[];
+
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (_) => DraggableScrollableSheet(
+      initialChildSize: 0.75,
+      minChildSize: 0.4,
+      maxChildSize: 0.95,
+      builder: (_, scrollController) => Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        child: Column(
+          children: [
+            const SizedBox(height: 12),
+            Container(
+              width: 40, height: 4,
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Expanded(
+              child: SingleChildScrollView(
+                controller: scrollController,
+                padding: const EdgeInsets.all(16),
+                child: MenuWidget(
+  title: title,
+  items: menuItems,
+  onOrder: (cart) {
+  final itemNames = cart.entries
+      .map((e) => '${e.key} x${e.value}')
+      .join(', ');
+
+  print('🛒 Order: $itemNames');
+  room.sendTextEvent('I want to order: $itemNames');
+},
+),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+
+
+ void sendQuickReply(String text) {
+  room.sendTextEvent(text, threadRootEventId: activeThreadId);
+}
+void showMenuSheet() {
+  print('🎯 showMenuSheet called, items: ${_lastMenuItems.length}');
+  
+  if (_lastMenuItems.isNotEmpty) {
+    // ── Use stored items ──────────────────────────────────────
+    _showMenuBottomSheet(title: _lastMenuTitle, items: _lastMenuItems);
+    return;
+  }
+
+  // ── Fallback: search timeline for latest DSL menu ─────────
+  final events = timeline?.events ?? [];
+  for (final event in events) {
+    final dsl = event.content['com.jaino.dsl'] as Map<String, dynamic>?;
+    if (dsl != null && dsl['type'] == 'menu') {
+      final data = dsl['data'] as Map<String, dynamic>? ?? {};
+      final title = data['title']?.toString() ?? 'Menu';
+      final rawItems = data['items'] as List<dynamic>? ?? [];
+      final items = rawItems.map<Map<String, String>>((i) => {
+        'name': i['name']?.toString() ?? '',
+        'price': i['price']?.toString() ?? '',
+        'image': i['image']?.toString() ?? '',
+      }).toList();
+      
+      if (items.isNotEmpty) {
+        _lastMenuTitle = title;
+        _lastMenuItems = items;
+        print('✅ Found menu in timeline: ${items.length} items');
+        _showMenuBottomSheet(title: title, items: items);
+        return;
+      }
+    }
+  }
+
+  // ── Last resort: static menu ──────────────────────────────
+  print('⚠️ No menu found, showing static');
+  _showMenuBottomSheet();
+}
   bool get canSaveSelectedEvent =>
       selectedEvents.length == 1 &&
       {
@@ -381,6 +536,8 @@ class ChatController extends State<ChatPageWithRoom>
         : '';
     WidgetsBinding.instance.addObserver(this);
     _tryLoadTimeline();
+     _listenForMenuTrigger();   
+
   }
 
   final Set<String> expandedEventIds = {};
@@ -560,6 +717,7 @@ class ChatController extends State<ChatPageWithRoom>
     timeline = null;
     inputFocus.removeListener(_inputFocusListener);
     if (currentlyTyping) room.setTyping(false);
+    _menuTriggerSub?.cancel(); 
     super.dispose();
   }
 
