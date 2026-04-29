@@ -1528,6 +1528,11 @@ let wasm_bindgen;
         return ret;
     };
 
+    function takeFromExternrefTable0(idx) {
+        const value = wasm.__wbindgen_export_2.get(idx);
+        wasm.__externref_table_dealloc(idx);
+        return value;
+    }
     /**
      * # Safety
      *
@@ -1545,11 +1550,6 @@ let wasm_bindgen;
         wasm.wasm_start_callback();
     };
 
-    function takeFromExternrefTable0(idx) {
-        const value = wasm.__wbindgen_export_2.get(idx);
-        wasm.__externref_table_dealloc(idx);
-        return value;
-    }
     /**
      * @param {number} ptr
      */
@@ -1954,7 +1954,7 @@ let wasm_bindgen;
             const ret = false;
             return ret;
         };
-        imports.wbg.__wbindgen_closure_wrapper1758 = function(arg0, arg1, arg2) {
+        imports.wbg.__wbindgen_closure_wrapper1759 = function(arg0, arg1, arg2) {
             const ret = makeMutClosure(arg0, arg1, 597, __wbg_adapter_40);
             return ret;
         };
