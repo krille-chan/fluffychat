@@ -1184,10 +1184,10 @@ packages:
     dependency: "direct main"
     description:
       name: particles_network
-      sha256: fbaead7961925946ff83e5b441bdbc8628139ea161ce901547e6f1190a6161de
+      sha256: f35f4e2bbd6872c6cff1d13628853d2fb2df6cc83b88c4f4757afe70333f5c6a
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.3"
+    version: "1.9.4"
   path:
     dependency: "direct main"
     description:

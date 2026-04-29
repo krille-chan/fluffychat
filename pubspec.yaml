@@ -54,7 +54,7 @@ dependencies:
   native_imaging: ^0.4.0
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^9.0.1
-  particles_network: ^1.9.3
+  particles_network: ^1.9.4
   path: ^1.9.0
   path_provider: ^2.1.2
   pretty_qr_code: ^3.6.0
