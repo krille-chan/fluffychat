@@ -115,6 +115,53 @@ jobs:
       - run: ./flutter/bin/flutter pub get
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
 
+  build_debug_windows:
+    needs: [ code_tests ]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .tool_versions.yaml
+          cache: true
+      - uses: moonrepo/setup-rust@v1
+      - run: flutter pub get
+      - name: Build Debug Windows
+        run: flutter build windows --debug
+      - name: Include MSVC Runtime
+        run: |
+          Copy-Item -Path "C:\Windows\System32\msvcp140.dll" -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue
+          Copy-Item -Path "C:\Windows\System32\vcruntime140.dll" -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue
+          Copy-Item -Path "C:\Windows\System32\vcruntime140_1.dll" -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue
+          Copy-Item -Path "build\windows\x64\runner\Debug\sqlite3.dll" -Destination "build\windows\x64\runner\Debug\libsqlcipher.dll" -ErrorAction SilentlyContinue
+          
+          $vsInstallPath = &"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property installationPath
+          $msvcD = Get-ChildItem "$vsInstallPath\VC\Redist\MSVC\*\debug_nonredist\x64\Microsoft.VC*.DebugCRT\*.dll"
+          foreach ($dll in $msvcD) { Copy-Item -Path $dll.FullName -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue }
+          
+          $ucrt = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\*\x64\ucrt\ucrtbased.dll" | Select-Object -First 1
+          if ($ucrt) { Copy-Item -Path $ucrt.FullName -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue }
+        shell: pwsh
+      - name: Build Windows Installer (Inno Setup)
+        run: |
+          $ver = (Select-String -Path pubspec.yaml -Pattern '^version:\s*(.+)').Matches.Groups[1].Value
+          $ver = $ver -replace '\+.*', ''
+          iscc /dMyAppVersion="$ver" /dBuildType="Debug" windows/inno_setup.iss
+        shell: pwsh
+      - name: Compress
+        run: Compress-Archive -Path "build\windows\x64\runner\Debug\*" -DestinationPath "fluffychat-windows-debug.zip"
+        shell: pwsh
+      - name: Upload Debug Windows
+        uses: actions/upload-artifact@v7
+        with:
+          name: debug-windows-x64
+          path: fluffychat-windows-debug.zip
+      - name: Upload Debug Windows Installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: fluffychat-windows-debug-setup.exe
+          path: build\fluffychat-windows-setup.exe
+
   build_debug_ios:
     needs: [ code_tests ]
     runs-on: macos-15
