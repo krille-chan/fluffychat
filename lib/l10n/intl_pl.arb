@@ -1654,7 +1654,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnterYourPin": "Podaj swój PIN",
+    "pleaseEnterYourPin": "Podaj swój pin",
     "@pleaseEnterYourPin": {
         "type": "String",
         "placeholders": {}
@@ -2157,7 +2157,7 @@
     "invalidInput": "Nieprawidłowe dane!",
     "report": "zgłoś",
     "directChat": "Czat bezpośredni",
-    "wrongPinEntered": "Wprowadzono nieprawidłowy kod PIN! Spróbuj ponownie za {seconds} sekund...",
+    "wrongPinEntered": "Wprowadzono nieprawidłowy kod pin! Spróbuj ponownie za {seconds} sekund...",
     "@wrongPinEntered": {
         "type": "String",
         "placeholders": {
@@ -2363,7 +2363,7 @@
     "contactServerAdmin": "Skontaktuj się z administratorem serwera",
     "compress": "Skompresuj",
     "pleaseFillOut": "Proszę wypełnić",
-    "invalidUrl": "Niepoprawny adres URL",
+    "invalidUrl": "Niepoprawny adres url",
     "unableToJoinChat": "Nie udało się dołączyć do czatu. Rozmowa mogła zostać zakończona przez drugą stronę.",
     "aboutHomeserver": "O {homeserver}",
     "@aboutHomeserver": {
@@ -2449,7 +2449,7 @@
     },
     "hidePresences": "Ukryć listę statusów?",
     "pleaseEnterANumber": "Proszę podać liczbę większą od 0",
-    "commandHint_sendraw": "Wyślij zwykły JSON",
+    "commandHint_sendraw": "Wyślij zwykły json",
     "databaseMigrationBody": "Proszę czekać. Może to potrwać chwilę.",
     "leaveEmptyToClearStatus": "Pozostaw puste, aby wyczyścić swój status.",
     "sessionLostBody": "Twoja sesja została utracona. Prosimy zgłosić ten błąd autorom aplikacji na {url}. Treść błędu to: {error}",
