@@ -10,6 +10,7 @@ abstract class UpdateNotifier {
 
   static Future<void> showUpdateSnackBar(BuildContext context) async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final theme = Theme.of(context);
     final l10n = L10n.of(context);
     final currentVersion = await PlatformInfos.getVersion();
     final store = await SharedPreferences.getInstance();
@@ -17,15 +18,43 @@ abstract class UpdateNotifier {
 
     if (currentVersion != storedVersion) {
       if (storedVersion != null) {
-        scaffoldMessenger.showSnackBar(
-          SnackBar(
-            duration: const Duration(seconds: 30),
-            showCloseIcon: true,
-            content: Text(l10n.updateInstalled(currentVersion)),
-            action: SnackBarAction(
-              label: l10n.changelog,
-              onPressed: () => launchUrlString(AppConfig.changelogUrl),
+        scaffoldMessenger.showMaterialBanner(
+          MaterialBanner(
+            content: Column(
+              mainAxisSize: .min,
+              crossAxisAlignment: .stretch,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        l10n.updateInstalled(currentVersion),
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    CloseButton(
+                      onPressed: scaffoldMessenger.clearMaterialBanners,
+                    ),
+                  ],
+                ),
+                Text(l10n.fluffyChatSupportBannerMessage),
+              ],
             ),
+            actions: [
+              TextButton(
+                onPressed: () => launchUrlString(AppConfig.changelogUrl),
+                child: Text(l10n.changelog),
+              ),
+              TextButton.icon(
+                style: TextButton.styleFrom(
+                  backgroundColor: theme.colorScheme.errorContainer,
+                  foregroundColor: theme.colorScheme.onErrorContainer,
+                ),
+                onPressed: () => launchUrlString(AppConfig.supportUrl),
+                icon: Icon(Icons.favorite),
+                label: Text(l10n.support),
+              ),
+            ],
           ),
         );
       }
