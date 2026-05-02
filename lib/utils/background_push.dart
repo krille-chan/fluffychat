@@ -230,6 +230,7 @@ class BackgroundPush {
               AppSettings.pushNotificationsPusherFormat.value &&
           mapEquals(currentPushers.single.data.additionalProperties, {
             'data_message': pusherDataMessageFormat,
+            'client_name': client.clientName,
           })) {
         Logs().i('[Push] Pusher already set');
       } else {
@@ -267,7 +268,10 @@ class BackgroundPush {
             data: PusherData(
               url: Uri.parse(gatewayUrl!),
               format: AppSettings.pushNotificationsPusherFormat.value,
-              additionalProperties: {'data_message': pusherDataMessageFormat},
+              additionalProperties: {
+                'data_message': pusherDataMessageFormat,
+                'client_name': client.clientName,
+              },
             ),
             kind: 'http',
           ),
