@@ -1713,7 +1713,6 @@
         "placeholders": {}
     },
     "addAccount": "Додати обліковий запис",
-    "enableMultiAccounts": "(БЕТА) Увімкнути кілька облікових записів на цьому пристрої",
     "openInMaps": "Відкрити в картах",
     "@openInMaps": {
         "type": "String",

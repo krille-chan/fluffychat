@@ -1253,8 +1253,6 @@
     },
     "removeFromBundle": "הסר מחבילה זו",
     "@removeFromBundle": {},
-    "enableMultiAccounts": "(בטא) אפשר ריבוי חשבונות במכשיר זה",
-    "@enableMultiAccounts": {},
     "openInMaps": "פתיחה במפות",
     "@openInMaps": {
         "type": "String",

@@ -2484,8 +2484,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "enableMultiAccounts": "（實驗性功能）在此裝置上啟用多個帳號",
-    "@enableMultiAccounts": {},
     "recoveryKeyLost": "遺失恢復金鑰？",
     "@recoveryKeyLost": {},
     "sendAsText": "以文字傳送",

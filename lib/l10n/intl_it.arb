@@ -2308,8 +2308,6 @@
     "@pinMessage": {},
     "invite": "Invitare",
     "@invite": {},
-    "enableMultiAccounts": "(BETA) Abilita account multipli su questo dispositivo",
-    "@enableMultiAccounts": {},
     "unsupportedAndroidVersionLong": "Questa funzionalità richiede una versione di Android più recente. Si prega di verificare la presenza di aggiornamenti o supporto per Lineage OS.",
     "@unsupportedAndroidVersionLong": {},
     "storeSecurlyOnThisDevice": "Salva in modo sicuro su questo dispositivo",

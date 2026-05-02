@@ -1335,7 +1335,6 @@
     "addToBundle": "Toʻplamga qoʻshish",
     "removeFromBundle": "Bu toʻplamdan oʻchirish",
     "bundleName": "Toʻplam nomi",
-    "enableMultiAccounts": "(BETA) Ushbu qurilmada bir nechta hisoblarni yoqish",
     "openInMaps": "Xaritalarda ochish",
     "@openInMaps": {
         "type": "String",

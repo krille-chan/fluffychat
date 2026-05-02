@@ -1437,7 +1437,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "enableMultiAccounts": "(آزمایشی) فعال کردن چند حساب در این دستگاه",
     "pleaseClickOnLink": "لطفاً روی پیوند در رایانامه کلیک کنید و ادامه دهید.",
     "@pleaseClickOnLink": {
         "type": "String",

@@ -23,6 +23,7 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
+//<GOOGLE_SERVICES>import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/main.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
@@ -126,7 +127,7 @@ class BackgroundPush {
       //<GOOGLE_SERVICES>    PushNotification.fromJson(
       //<GOOGLE_SERVICES>       message.tryGetMap<String, Object>('data') ?? message,
       //<GOOGLE_SERVICES>    ),
-      //<GOOGLE_SERVICES>    client: client,
+      //<GOOGLE_SERVICES>    clients: clients,
       //<GOOGLE_SERVICES>    l10n: l10n,
       //<GOOGLE_SERVICES>    activeRoomId: matrix?.activeRoomId,
       //<GOOGLE_SERVICES>    flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,

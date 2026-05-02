@@ -1839,7 +1839,6 @@
     "placeholders": {}
   },
   "@invite": {},
-  "@enableMultiAccounts": {},
   "@anyoneCanJoin": {
     "type": "String",
     "placeholders": {}
