@@ -2796,8 +2796,6 @@
     "supportFluffyChat": "Eman babesa FluffyChat-i",
     "support": "Lagundu",
     "fluffyChatSupportBannerMessage": "FluffyChat-ek ZURE laguntza behar du!\n❤️❤️❤️\nFluffyChat beti izango da doakoa, baina garapenak eta ostatatzeak dirua eskatzen du.\nProiektuaren etorkizuna zu bezalako pertsonen babesaren menpe dago.",
-    "iDoNotWantToSupport": "Ez diot babesik eman nahi",
-    "iAlreadySupportFluffyChat": "Laguntzen ari naiz dagoeneko FluffyChat",
     "setLowPriority": "Ezarri lehentasun baxua",
     "unsetLowPriority": "Kendu lehentasun baxua",
     "removeCallFromChat": "Kendu deia txatetik",
@@ -2808,6 +2806,5 @@
     "joinVoiceCall": "Batu ahots-deira",
     "joinVideoCall": "Batu bideo-deira",
     "live": "Zuzenean",
-    "playSoundOnNotification": "Jo soinua jakinarazpenekin",
-    "skipSupportingFluffyChat": "Muzin egin FluffyChat-en laguntza eskaerari"
+    "playSoundOnNotification": "Jo soinua jakinarazpenekin"
 }
