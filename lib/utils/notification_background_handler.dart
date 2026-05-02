@@ -76,10 +76,14 @@ Future<void> notificationTapBackground(
     _vodInitialized = true;
   }
   final store = await AppSettings.init();
-  final client = (await ClientManager.getClients(
-    initialize: false,
-    store: store,
-  )).first;
+
+  final payload = FluffyChatPushPayload.fromString(
+    notificationResponse.payload ?? '',
+  );
+  final clientName = payload.clientName;
+  final client = clientName == null
+      ? (await ClientManager.getClients(store: store, initialize: false)).first
+      : (await ClientManager.createClient(clientName, store));
   await client.abortSync();
   await client.init(
     waitForFirstSync: false,
@@ -90,7 +94,7 @@ Future<void> notificationTapBackground(
     throw Exception('Notification tab in background but not logged in!');
   }
   try {
-    await notificationTap(notificationResponse, client: client);
+    await notificationTap(notificationResponse, clients: [client]);
   } finally {
     await client.dispose(closeDatabase: false);
     pushIsolateReceivePort.sendPort.send('DONE');
@@ -102,7 +106,7 @@ Future<void> notificationTapBackground(
 Future<void> notificationTap(
   NotificationResponse notificationResponse, {
   GoRouter? router,
-  required Client client,
+  required List<Client> clients,
   L10n? l10n,
 }) async {
   Logs().d(
@@ -112,6 +116,12 @@ Future<void> notificationTap(
   final payload = FluffyChatPushPayload.fromString(
     notificationResponse.payload ?? '',
   );
+  final client =
+      clients.firstWhereOrNull(
+        (client) => client.clientName == payload.clientName,
+      ) ??
+      clients.first;
+
   switch (notificationResponse.notificationResponseType) {
     case NotificationResponseType.selectedNotification:
       final roomId = payload.roomId;

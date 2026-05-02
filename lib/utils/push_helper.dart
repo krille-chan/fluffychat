@@ -22,7 +22,7 @@ const int summaryId = -1;
 
 Future<void> pushHelper(
   PushNotification notification, {
-  Client? client,
+  List<Client>? clients,
   L10n? l10n,
   String? activeRoomId,
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
@@ -31,7 +31,7 @@ Future<void> pushHelper(
   try {
     await _tryPushHelper(
       notification,
-      client: client,
+      clients: clients,
       l10n: l10n,
       activeRoomId: activeRoomId,
       flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
@@ -68,13 +68,13 @@ Future<void> pushHelper(
 
 Future<void> _tryPushHelper(
   PushNotification notification, {
-  Client? client,
+  List<Client>? clients,
   L10n? l10n,
   String? activeRoomId,
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
   bool useNotificationActions = true,
 }) async {
-  final isBackgroundMessage = client == null;
+  final isBackgroundMessage = clients == null;
   Logs().v(
     'Push helper has been started (background=$isBackgroundMessage).',
     notification.toJson(),
@@ -87,10 +87,21 @@ Future<void> _tryPushHelper(
     return;
   }
 
-  client ??= (await ClientManager.getClients(
-    initialize: false,
-    store: await AppSettings.init(),
-  )).first;
+  final clientName = notification.devices?.first.data?.tryGet<String>(
+    'client_name',
+  );
+  final store = await AppSettings.init();
+
+  final client = clientName == null
+      ? (clients?.first ??
+            (await ClientManager.getClients(
+              initialize: false,
+              store: store,
+            )).first)
+      : (clients?.firstWhereOrNull(
+              (client) => client.clientName == clientName,
+            ) ??
+            await ClientManager.createClient(clientName, store));
 
   final event = await client.getEventByPushNotification(
     notification,
