@@ -34,7 +34,7 @@ abstract class ClientManager {
       await store.remove(clientNamespace);
     }
     if (clientNames.isEmpty) {
-      clientNames.add(PlatformInfos.clientName);
+      clientNames.add(PlatformInfos.appDisplayName);
       await store.setStringList(clientNamespace, clientNames.toList());
     }
     final clients = await Future.wait(

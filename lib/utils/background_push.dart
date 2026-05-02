@@ -196,7 +196,7 @@ class BackgroundPush {
           >()
           ?.requestNotificationsPermission();
     }
-    final clientName = PlatformInfos.clientName;
+    final appDisplayName = PlatformInfos.appDisplayName;
     oldTokens ??= <String>{};
     final pushers =
         await (client.getPushers().catchError((e) {
@@ -222,7 +222,7 @@ class BackgroundPush {
       if (currentPushers.length == 1 &&
           currentPushers.first.kind == 'http' &&
           currentPushers.first.appId == thisAppId &&
-          currentPushers.first.appDisplayName == clientName &&
+          currentPushers.first.appDisplayName == appDisplayName &&
           currentPushers.first.deviceDisplayName == client.deviceName &&
           currentPushers.first.lang == 'en' &&
           currentPushers.first.data.url.toString() == gatewayUrl &&
@@ -261,7 +261,7 @@ class BackgroundPush {
           Pusher(
             pushkey: token!,
             appId: thisAppId,
-            appDisplayName: clientName,
+            appDisplayName: appDisplayName,
             deviceDisplayName: client.deviceName!,
             lang: 'en',
             data: PusherData(

@@ -79,7 +79,7 @@ class LoginController extends State<Login> {
             ? username
             : null,
         password: passwordController.text,
-        initialDeviceDisplayName: PlatformInfos.clientName,
+        initialDeviceDisplayName: PlatformInfos.appDisplayName,
       );
       if (mounted) {
         context.go('/backup');

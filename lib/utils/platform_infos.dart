@@ -38,7 +38,7 @@ abstract class PlatformInfos {
   /// Web could also record in theory but currently creates broken opus
   static bool get platformCanRecord => (isMobile || isMacOS);
 
-  static String get clientName =>
+  static String get appDisplayName =>
       '${AppSettings.applicationName.value} ${isWeb ? 'web' : Platform.operatingSystem}${kReleaseMode ? '' : 'Debug'}';
 
   static Future<String> getVersion() async {
