@@ -39,7 +39,7 @@ dependencies:
   flutter_web_auth_2: ^5.0.2
   flutter_webrtc: ^1.4.1
   geolocator: ^14.0.2
-  go_router: ^17.2.2
+  go_router: ^17.2.3
   handy_window: ^0.4.2
   highlight: ^0.7.0
   html: ^0.15.4
