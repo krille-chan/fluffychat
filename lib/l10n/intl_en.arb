@@ -158,6 +158,11 @@
         "type": "String",
         "placeholders": {}
     },
+    "discardEdits": "You have unsaved changes. Discard your edits?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
     "areYouSureYouWantToLogout": "Are you sure you want to log out?",
     "@areYouSureYouWantToLogout": {
         "type": "String",

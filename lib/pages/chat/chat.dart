@@ -309,6 +309,23 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   KeyEventResult _customEnterKeyHandling(FocusNode node, KeyEvent evt) {
+    if (evt is KeyDownEvent &&
+        evt.logicalKey == LogicalKeyboardKey.arrowUp &&
+        !PlatformInfos.isMobile &&
+        editEvent == null &&
+        replyEvent == null &&
+        sendController.text.isEmpty) {
+      _editLastSentMessage();
+      return KeyEventResult.handled;
+    }
+
+    if (evt is KeyDownEvent &&
+        evt.logicalKey == LogicalKeyboardKey.escape &&
+        editEvent != null) {
+      _cancelEditWithConfirmation();
+      return KeyEventResult.handled;
+    }
+
     if (!HardwareKeyboard.instance.isShiftPressed &&
         evt.logicalKey.keyLabel == 'Enter' &&
         AppSettings.sendOnEnter.value) {
@@ -1122,28 +1139,56 @@ class ChatController extends State<ChatPageWithRoom>
     }
   }
 
-  void editSelectedEventAction() {
+  void _startEditingEvent(Event event, {bool clearSelection = false}) {
+    final timeline = this.timeline;
+    if (timeline == null) return;
+
     final client = currentRoomBundle.firstWhere(
-      (cl) => selectedEvents.first.senderId == cl!.userID,
+      (c) => c?.userID == event.senderId,
       orElse: () => null,
     );
-    if (client == null) {
-      return;
-    }
+    if (client == null) return;
+
     setSendingClient(client);
     setState(() {
       pendingText = sendController.text;
-      editEvent = selectedEvents.first;
-      sendController.text = editEvent!
-          .getDisplayEvent(timeline!)
+      editEvent = event;
+      sendController.text = event
+          .getDisplayEvent(timeline)
           .calcLocalizedBodyFallback(
             MatrixLocals(L10n.of(context)),
             withSenderNamePrefix: false,
             hideReply: true,
           );
-      selectedEvents.clear();
+      if (clearSelection) selectedEvents.clear();
     });
     inputFocus.requestFocus();
+  }
+
+  void editSelectedEventAction() {
+    _startEditingEvent(selectedEvents.first, clearSelection: true);
+  }
+
+  void _editLastSentMessage() {
+    final timeline = this.timeline;
+    if (timeline == null) return;
+
+    final events = timeline.events.filterByVisibleInGui(
+      threadId: activeThreadId,
+    );
+
+    final lastOwnMessage = events.firstWhereOrNull(
+      (e) =>
+          e.type == EventTypes.Message &&
+          e.messageType == MessageTypes.Text &&
+          e.status.isSent &&
+          !e.redacted &&
+          currentRoomBundle.any((c) => c?.userID == e.senderId),
+    );
+
+    if (lastOwnMessage == null) return;
+
+    _startEditingEvent(lastOwnMessage);
   }
 
   Future<void> goToNewRoomAction() async {
@@ -1396,6 +1441,29 @@ class ChatController extends State<ChatPageWithRoom>
     replyEvent = null;
     editEvent = null;
   });
+
+  Future<void> _cancelEditWithConfirmation() async {
+    final originalText = editEvent!
+        .getDisplayEvent(timeline!)
+        .calcLocalizedBodyFallback(
+          MatrixLocals(L10n.of(context)),
+          withSenderNamePrefix: false,
+          hideReply: true,
+        );
+
+    if (sendController.text != originalText) {
+      final result = await showOkCancelAlertDialog(
+        context: context,
+        title: L10n.of(context).areYouSure,
+        message: L10n.of(context).discardEdits,
+        okLabel: L10n.of(context).ok,
+        cancelLabel: L10n.of(context).cancel,
+      );
+      if (result == OkCancelResult.cancel) return;
+    }
+
+    cancelReplyEventAction();
+  }
 
   late final ValueNotifier<bool> _displayChatDetailsColumn;
 
