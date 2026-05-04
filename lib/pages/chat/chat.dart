@@ -35,6 +35,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 import 'package:mime/mime.dart';
+import 'package:pasteboard/pasteboard.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 import '../../utils/account_bundles.dart';
@@ -309,6 +310,15 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   KeyEventResult _customEnterKeyHandling(FocusNode node, KeyEvent evt) {
+    if (evt is KeyDownEvent &&
+        evt.logicalKey == LogicalKeyboardKey.keyV &&
+        (HardwareKeyboard.instance.isControlPressed ||
+            HardwareKeyboard.instance.isMetaPressed) &&
+        !PlatformInfos.isMobile) {
+      _handleClipboardImagePaste();
+      return KeyEventResult.handled;
+    }
+
     if (!HardwareKeyboard.instance.isShiftPressed &&
         evt.logicalKey.keyLabel == 'Enter' &&
         AppSettings.sendOnEnter.value) {
@@ -682,6 +692,47 @@ class ChatController extends State<ChatPageWithRoom>
         threadLastEventId: threadLastEventId,
       ),
     );
+  }
+
+  Future<void> _handleClipboardImagePaste() async {
+    final files = await Pasteboard.files();
+    if (files.isNotEmpty) {
+      if (!mounted) return;
+      await showAdaptiveDialog(
+        context: context,
+        builder: (c) => SendFileDialog(
+          files: files.map(XFile.new).toList(),
+          room: room,
+          outerContext: context,
+          threadRootEventId: activeThreadId,
+          threadLastEventId: threadLastEventId,
+        ),
+      );
+      return;
+    }
+    final image = await Pasteboard.image;
+    if (image != null) {
+      await sendImageFromClipBoard(image);
+      return;
+    }
+    // No image in clipboard — fall back to pasting text
+    final textData = await Clipboard.getData('text/plain');
+    if (textData?.text != null) {
+      final selection = sendController.selection;
+      final text = sendController.text;
+      final newText = text.replaceRange(
+        selection.start,
+        selection.end,
+        textData!.text!,
+      );
+      sendController.value = TextEditingValue(
+        text: newText,
+        selection: TextSelection.collapsed(
+          offset: selection.start + textData.text!.length,
+        ),
+      );
+      onInputBarChanged(sendController.text);
+    }
   }
 
   Future<void> openVideoCameraAction() async {
