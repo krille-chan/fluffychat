@@ -691,6 +691,21 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   Future<void> _handleClipboardImagePaste() async {
+    final files = await Pasteboard.files();
+    if (files.isNotEmpty) {
+      if (!mounted) return;
+      await showAdaptiveDialog(
+        context: context,
+        builder: (c) => SendFileDialog(
+          files: files.map(XFile.new).toList(),
+          room: room,
+          outerContext: context,
+          threadRootEventId: activeThreadId,
+          threadLastEventId: threadLastEventId,
+        ),
+      );
+      return;
+    }
     final image = await Pasteboard.image;
     if (image != null) {
       await sendImageFromClipBoard(image);
