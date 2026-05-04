@@ -2054,10 +2054,10 @@
             }
         }
     },
-    "commandHint_cuddle": "Отправить улыбку",
+    "commandHint_cuddle": "Отправить объятия",
     "readUpToHere": "Непрочитанное",
     "commandHint_hug": "Отправить обнимашки",
-    "cuddleContent": "{senderName} обнимает вас",
+    "cuddleContent": "{senderName} нежно обнимает вас",
     "@cuddleContent": {
         "type": "String",
         "placeholders": {
@@ -2066,7 +2066,7 @@
             }
         }
     },
-    "hugContent": "{senderName} обнял(а) Вас",
+    "hugContent": "{senderName} обнимает Вас",
     "@hugContent": {
         "type": "String",
         "placeholders": {
@@ -2097,11 +2097,11 @@
     "encryptThisChat": "Зашифровать этот чат",
     "reopenChat": "Открыть чат заново",
     "commandHint_googly": "Отправить выпученные глаза",
-    "notAnImage": "Это не картинка.",
+    "notAnImage": "Это не изображение.",
     "importNow": "Импортировать сейчас",
     "importEmojis": "Импортировать эмодзи",
-    "importFromZipFile": "Импортировать из ZIP-файла",
-    "exportEmotePack": "Экспортировать набор эмодзи как ZIP",
+    "importFromZipFile": "Импортировать из .zip файла",
+    "exportEmotePack": "Экспортировать набор эмодзи как .zip",
     "replace": "Заменить",
     "googlyEyesContent": "{senderName} выпучил глаза",
     "@googlyEyesContent": {
@@ -2466,7 +2466,7 @@
     "boldText": "Жирный шрифт",
     "strikeThrough": "Перечёркнутый",
     "pleaseFillOut": "Пожалуйста, заполните",
-    "invalidUrl": "Не верный URL",
+    "invalidUrl": "Неверный url-адрес",
     "addLink": "Добавить ссылку",
     "italicText": "Italic",
     "unableToJoinChat": "Невозможно присоединиться к чату. Возможно, другая сторона уже закончила разговор.",
@@ -2477,7 +2477,7 @@
     "manageAccount": "Управление аккаунтом",
     "contactServerAdmin": "Админ сервера",
     "contactServerSecurity": "Безопасность контактов сервера",
-    "supportPage": "Поддержка",
+    "supportPage": "Страница поддержки",
     "name": "Имя",
     "version": "Версия",
     "website": "Сайт",
@@ -2781,5 +2781,34 @@
     "matrixId": "Matrix ID",
     "setPowerLevel": "Установить уровень возможностей",
     "makeModerator": "Назначить модератором",
-    "makeAdmin": "Назначить администратором"
+    "makeAdmin": "Назначить администратором",
+    "removeModeratorRights": "Удалить права модератора",
+    "removeAdminRights": "Удалить права администратора",
+    "powerLevel": "Уровень энергии",
+    "setPowerLevelDescription": "Уровни прав определяют, что участнику разрешено делать в этой комнате, и обычно варьируются от 0 до 100.",
+    "owner": "Владелец",
+    "mute": "Мут",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Создать новый чат",
+    "reset": "Сброс",
+    "supportFluffyChat": "Поддержите FluffyChat",
+    "support": "Поддержка",
+    "fluffyChatSupportBannerMessage": "FluffyChat нуждается в ВАШЕЙ помощи!\n❤️❤️❤️\nFluffyChat всегда будет бесплатным, но разработка и хостинг всё равно требуют затрат.\nБудущее проекта зависит от поддержки таких людей, как вы.",
+    "setLowPriority": "Установить низкий приоритет",
+    "unsetLowPriority": "Неопределенный приоритет",
+    "removeCallFromChat": "Удалить сообщение из чата",
+    "removeCallFromChatDescription": "Вы хотите удалить это сообщение из чата для всех участников?",
+    "removeCallForEveryone": "Отменить вызов для всех",
+    "startVoiceCall": "Начать голосовой вызов",
+    "startVideoCall": "Начать видеозвонок",
+    "joinVoiceCall": "Присоединиться к голосовому звонку",
+    "joinVideoCall": "Присоединиться к видеозвонку",
+    "live": "Прямой эфир",
+    "playSoundOnNotification": "Воспроизвести звук при получении уведомления",
+    "addTag": "Добавить тег",
+    "removeTag": "Удалить тег",
+    "tagName": "Название тега",
+    "createNewTag": "Создать новый тег"
 }

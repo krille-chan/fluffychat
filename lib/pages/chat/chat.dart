@@ -7,7 +7,6 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/config/setting_keys.dart';
-import 'package:pasteboard/pasteboard.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
@@ -36,6 +35,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 import 'package:mime/mime.dart';
+import 'package:pasteboard/pasteboard.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 import '../../utils/account_bundles.dart';
@@ -473,14 +473,17 @@ class ChatController extends State<ChatPageWithRoom>
     scrollUpBannerEventId = eventId;
   });
 
-  bool firstUpdateReceived = false;
+  String? animateInEventId;
+
+  void _insert(int index) {
+    if (index > 0) return;
+    animateInEventId = timeline?.events.firstOrNull?.eventId;
+  }
 
   void updateView() {
     if (!mounted) return;
     setReadMarker();
-    setState(() {
-      firstUpdateReceived = true;
-    });
+    setState(() {});
   }
 
   Future<void>? loadTimelineFuture;
@@ -497,6 +500,7 @@ class ChatController extends State<ChatPageWithRoom>
       timeline?.cancelSubscriptions();
       timeline = await room.getTimeline(
         onUpdate: updateView,
+        onInsert: _insert,
         eventContextId: eventContextId,
       );
     } catch (e, s) {
@@ -1202,7 +1206,7 @@ class ChatController extends State<ChatPageWithRoom>
           true,
           false,
         );
-        users.sort((a, b) => a.powerLevel.compareTo(b.powerLevel));
+        users.sort((a, b) => a.powerLevel.level.compareTo(b.powerLevel.level));
         final via = users
             .map((user) => user.id.domain)
             .whereType<String>()

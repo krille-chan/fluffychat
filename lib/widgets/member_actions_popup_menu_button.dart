@@ -81,7 +81,7 @@ Future<void> showMemberActionsPopupMenu({
           ),
         ),
       if (user.canChangeUserPowerLevel) ...[
-        if (user.powerLevel < 100)
+        if (user.powerLevel.level < 100)
           PopupMenuItem(
             value: _MemberActions.makeAdmin,
             child: Row(
@@ -92,7 +92,7 @@ Future<void> showMemberActionsPopupMenu({
               ],
             ),
           ),
-        if (user.powerLevel < 50)
+        if (user.powerLevel.level < 50)
           PopupMenuItem(
             value: _MemberActions.makeModerator,
             child: Row(
@@ -103,7 +103,7 @@ Future<void> showMemberActionsPopupMenu({
               ],
             ),
           ),
-        if (user.powerLevel >= 100)
+        if (user.powerLevel.role == PowerLevelRole.admin)
           PopupMenuItem(
             value: _MemberActions.removeAdmin,
             child: Row(
@@ -114,7 +114,7 @@ Future<void> showMemberActionsPopupMenu({
               ],
             ),
           )
-        else if (user.powerLevel >= 50)
+        else if (user.powerLevel.role == PowerLevelRole.moderator)
           PopupMenuItem(
             value: _MemberActions.removeModerator,
             child: Row(
@@ -127,7 +127,7 @@ Future<void> showMemberActionsPopupMenu({
           ),
       ],
       if (user.canChangeUserPowerLevel ||
-          !defaultPowerLevels.contains(user.powerLevel))
+          !defaultPowerLevels.contains(user.powerLevel.level))
         PopupMenuItem(
           value: _MemberActions.setPowerLevel,
           enabled: user.canChangeUserPowerLevel,
@@ -140,7 +140,7 @@ Future<void> showMemberActionsPopupMenu({
                     ? L10n.of(context).setPowerLevel
                     : L10n.of(context).powerLevel,
               ),
-              if (!defaultPowerLevels.contains(user.powerLevel))
+              if (!defaultPowerLevels.contains(user.powerLevel.level))
                 Text(' (${user.powerLevel})'),
             ],
           ),
@@ -219,8 +219,8 @@ Future<void> showMemberActionsPopupMenu({
     case _MemberActions.setPowerLevel:
       final power = await showPermissionChooser(
         context,
-        currentLevel: user.powerLevel,
-        maxLevel: user.room.ownPowerLevel,
+        currentLevel: user.powerLevel.level,
+        maxLevel: user.room.ownPowerLevel.level,
       );
       if (power == null) return;
       if (!context.mounted) return;
@@ -323,7 +323,7 @@ Future<void> showMemberActionsPopupMenu({
         );
       }
     case _MemberActions.makeAdmin:
-      if (user.room.ownPowerLevel <= 100) {
+      if (user.room.ownPowerLevel.level <= 100) {
         final consent = await showOkCancelAlertDialog(
           context: context,
           title: L10n.of(context).areYouSure,

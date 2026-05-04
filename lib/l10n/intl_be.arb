@@ -1307,7 +1307,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "presencesToggle": "Паказваць паведасленні статусаў іншых карыстальнікаў",
+    "presencesToggle": "Паказваць паведамленні статусаў іншых карыстальнікаў",
     "@presencesToggle": {
         "type": "String",
         "placeholders": {}
@@ -1706,7 +1706,7 @@
     "notificationRuleInviteForMe": "Запрашэнне мяне",
     "notificationRuleInviteForMeDescription": "Паведамляе карыстальніка, калі яго запрашаюць у пакой.",
     "allDevices": "Усе прылады",
-    "crossVerifiedDevicesIfEnabled": "З перакрыжаваным спраўджваннем прылад, калі ўключана",
+    "crossVerifiedDevicesIfEnabled": "Перакрыжавана спраўджаныя прылады, калі ўключаны",
     "crossVerifiedDevices": "Перакрыжавана спраўджаныя прылады",
     "verifiedDevicesOnly": "Толькі спраўджаныя прылады",
     "takeAPhoto": "Зрабіць здымак",
@@ -2783,9 +2783,6 @@
     "supportFluffyChat": "Падтрымаць FluffyChat",
     "support": "Падтрымаць",
     "fluffyChatSupportBannerMessage": "FluffyChat патрэбна ВАША дапамога!\n❤️❤️❤️\nFluffyChat будзе заўсёды бясплатным, bале распрацоўка і арэнда сервероў мае свой кошт.\nБудучыня праекту залежыць ад падтрымкі людзей як вы.",
-    "skipSupportingFluffyChat": "Прапусціць падтрымку FluffyChat",
-    "iDoNotWantToSupport": "Я не хачу падтрымаць",
-    "iAlreadySupportFluffyChat": "Я ўжо падтрымаў FluffyChat",
     "setLowPriority": "Прызначыць нізкі прыярытэт",
     "unsetLowPriority": "Скасаваць нізкі прыярытэт",
     "removeCallFromChat": "Прыбраць выклік з чату",

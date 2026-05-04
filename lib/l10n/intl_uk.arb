@@ -63,7 +63,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Чи дозволено гостям приєднуватись",
+    "areGuestsAllowedToJoin": "Чи дозволено гостям приєднуватись?",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -1858,7 +1858,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnterYourPin": "Введіть свій PIN-код",
+    "pleaseEnterYourPin": "Будь ласка, введіть свій PIN-код",
     "@pleaseEnterYourPin": {
         "type": "String",
         "placeholders": {}
@@ -2173,7 +2173,7 @@
         "placeholders": {}
     },
     "invalidInput": "Недійсний ввід!",
-    "wrongPinEntered": "Введено неправильний PIN! Повторіть спробу за {seconds} секунд...",
+    "wrongPinEntered": "Введено невірний PIN-код! Спробуйте знову через {seconds} секунд...",
     "@wrongPinEntered": {
         "type": "String",
         "placeholders": {
@@ -2354,7 +2354,7 @@
     "createNewAddress": "Створити нову адресу",
     "commandHint_unignore": "Не ігнорувати цей Matrix ID",
     "knockRestricted": "Стук обмежено",
-    "appLockDescription": "Блокувати застосунок, коли не використовується ПІН-код",
+    "appLockDescription": "Блокувати додаток, коли не використовується ПІН-код",
     "hideRedactedMessages": "Сховати змінені повідомлення",
     "hideRedactedMessagesBody": "Якщо хтось змінить повідомлення, його більше не буде видно в бесіді.",
     "hideInvalidOrUnknownMessageFormats": "Сховати недійсні або невідомі формати повідомлень",
@@ -2521,7 +2521,7 @@
     "italicText": "Курсивний текст",
     "strikeThrough": "Перекреслений текст",
     "pleaseFillOut": "Будь ласка, заповніть",
-    "invalidUrl": "Недійсний URL",
+    "invalidUrl": "Недійсна URL-адреса",
     "addLink": "Додати посилання",
     "unableToJoinChat": "Неможливо приєднатися до бесіди. Можливо, інша сторона вже закрила розмову.",
     "sendImages": "Надіслати {count} зображення",
@@ -2776,5 +2776,39 @@
     "signInGreeting": "Ви вже маєте обліковий запис у Matrix? Ласкаво просимо! Виберіть свій домашній сервер і ввійдіть.",
     "appIntro": "За допомогою FluffyChat ви можете спілкуватися зі своїми друзями. Це безпечний децентралізований месенджер [matrix]! Дізнайтеся більше на сайті https://matrix.org або просто зареєструйтеся.",
     "theProcessWasCanceled": "Процес скасовано.",
-    "join": "Приєднатись"
+    "join": "Приєднатись",
+    "searchOrEnterHomeserverAddress": "Знайдіть або введіть адресу домашнього сервера",
+    "matrixId": "Matrix-ідентифікатор",
+    "setPowerLevel": "Встановити рівень можливостей",
+    "makeModerator": "Зробити модератором",
+    "makeAdmin": "Зробити адміністратором",
+    "removeModeratorRights": "Позбавити прав модератора",
+    "removeAdminRights": "Позбавити прав адміністратора",
+    "powerLevel": "Рівень можливостей",
+    "setPowerLevelDescription": "Рівні можливостей визначають, що користувач може робити в цій кімнаті та, зазвичай, мають діапазон від 0 до 100.",
+    "owner": "Власник",
+    "mute": "Мут",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Створити новий чат",
+    "reset": "Скинути",
+    "supportFluffyChat": "Підтримати FluffyChat",
+    "support": "Підтримка",
+    "fluffyChatSupportBannerMessage": "FluffyChat потребує Вашої підтримки!\n❤️❤️❤️\nFluffyChat завжди залишатиметься безкоштовним, однак розробка та хостинг потребують коштів.\nМайбутнє проєкту залежить від підтримки людей, як Ви.",
+    "setLowPriority": "Встановити низький пріоритет",
+    "unsetLowPriority": "Скинути низький пріоритет",
+    "removeCallFromChat": "Видалити виклик з чату",
+    "removeCallFromChatDescription": "Видалити виклик із чату для всіх учасників?",
+    "removeCallForEveryone": "Видалити виклик для всіх",
+    "startVoiceCall": "Почати голосовий дзвінок",
+    "startVideoCall": "Почати відеодзвінок",
+    "joinVoiceCall": "Приєднатись до голосового дзвінку",
+    "joinVideoCall": "Приєднатись до відеодзвінку",
+    "live": "Наживо",
+    "playSoundOnNotification": "Відтворити звук при сповіщенні",
+    "addTag": "Додати тег",
+    "removeTag": "Видалити тег",
+    "tagName": "Назва тегу",
+    "createNewTag": "Створити новий тег"
 }

@@ -23,13 +23,16 @@ class ParticipantListItem extends StatelessWidget {
       Membership.leave => L10n.of(context).leftTheChat,
     };
 
-    final permissionBatch = user.room.creatorUserIds.contains(user.id)
-        ? L10n.of(context).owner
-        : user.powerLevel >= 100
-        ? L10n.of(context).admin
-        : user.powerLevel >= 50
-        ? L10n.of(context).moderator
-        : '';
+    final permissionBatch = switch (user.powerLevel.role) {
+      PowerLevelRole.user => '',
+      PowerLevelRole.moderator => L10n.of(context).moderator,
+      PowerLevelRole.admin => L10n.of(context).admin,
+      PowerLevelRole.owner => L10n.of(context).owner,
+    };
+
+    final isAdminOrOwner =
+        user.powerLevel.role == PowerLevelRole.admin ||
+        user.powerLevel.role == PowerLevelRole.owner;
 
     return ListTile(
       onTap: () => showMemberActionsPopupMenu(context: context, user: user),
@@ -45,7 +48,7 @@ class ParticipantListItem extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
-                color: user.powerLevel >= 100
+                color: isAdminOrOwner
                     ? theme.colorScheme.tertiary
                     : theme.colorScheme.tertiaryContainer,
                 borderRadius: BorderRadius.circular(AppConfig.borderRadius),
@@ -53,7 +56,7 @@ class ParticipantListItem extends StatelessWidget {
               child: Text(
                 permissionBatch,
                 style: theme.textTheme.labelSmall?.copyWith(
-                  color: user.powerLevel >= 100
+                  color: isAdminOrOwner
                       ? theme.colorScheme.onTertiary
                       : theme.colorScheme.onTertiaryContainer,
                 ),

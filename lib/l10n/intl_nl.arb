@@ -2128,7 +2128,7 @@
     "replace": "Vervang",
     "report": "Rapporteer",
     "reportErrorDescription": "😭 Oh nee. Er is iets misgegaan. Probeer het later nog eens. Als je wilt, kun je de bug rapporteren aan de ontwikkelaars.",
-    "sendTypingNotifications": "Typemeldingen verzenden",
+    "sendTypingNotifications": "Toon 'aan het typen'-meldingen",
     "chatPermissions": "Chatrechten",
     "chatDescription": "Onderwerp",
     "chatDescriptionHasBeenChanged": "Onderwerp gewijzigd",
@@ -2793,9 +2793,6 @@
     "createNewChat": "Creëer nieuw chat",
     "reset": "Herstellen",
     "fluffyChatSupportBannerMessage": "Fluffy Chat heeft JOUW hulp nodig. _\n❤️❤️❤️\nFluffyChat zal altijd gratis zijn, maar ontwikkeling en hosting kost geld.\nDe toekomst van het project hangt af van steun van mensen zoals jij.",
-    "skipSupportingFluffyChat": "FluffyChat steunen overslaan",
-    "iDoNotWantToSupport": "Ik wil niet ondersteunen",
-    "iAlreadySupportFluffyChat": "Ik steun FluffyChat al",
     "supportFluffyChat": "FluffyChat steunen",
     "support": "Steunen",
     "setLowPriority": "Lage prioriteit instellen",
@@ -2808,5 +2805,9 @@
     "startVideoCall": "Start video-gesprek",
     "joinVoiceCall": "Audio-gesprek opnemen",
     "joinVideoCall": "Deelnemen aan video-gesprek",
-    "playSoundOnNotification": "Melding geluid afspelen"
+    "playSoundOnNotification": "Meldingsgeluid afspelen",
+    "addTag": "Tag toevoegen",
+    "removeTag": "Tag verwijderen",
+    "tagName": "Tagnaam",
+    "createNewTag": "Nieuwe tag maken"
 }
