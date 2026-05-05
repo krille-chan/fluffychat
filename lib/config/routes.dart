@@ -504,11 +504,19 @@ abstract class AppRoutes {
     BuildContext context,
     GoRouterState state,
     Widget child,
-  ) => FluffyThemes.isColumnMode(context)
-      ? noTransitionPageBuilder(context, state, child)
-      : MaterialPage(
-          key: state.pageKey,
-          restorationId: state.pageKey.value,
-          child: child,
-        );
+  ) {
+    final clientName = state.uri.queryParameters['client'];
+    if (clientName != null) {
+      final matrix = Matrix.of(context);
+      final client = matrix.getClientByName(clientName);
+      if (client != null) matrix.setActiveClient(client);
+    }
+    return FluffyThemes.isColumnMode(context)
+        ? noTransitionPageBuilder(context, state, child)
+        : MaterialPage(
+            key: state.pageKey,
+            restorationId: state.pageKey.value,
+            child: child,
+          );
+  }
 }

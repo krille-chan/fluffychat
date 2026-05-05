@@ -141,8 +141,8 @@ Future<void> notificationTap(
       }
       router.go(
         client.getRoomById(roomId)?.membership == Membership.invite
-            ? '/rooms'
-            : '/rooms/$roomId',
+            ? '/rooms?client=${client.clientName}'
+            : '/rooms/$roomId?client=${client.clientName}',
       );
     case NotificationResponseType.selectedNotificationAction:
       final actionType = FluffyChatNotificationActions.values.singleWhereOrNull(

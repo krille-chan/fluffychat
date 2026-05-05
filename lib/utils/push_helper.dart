@@ -17,8 +17,6 @@ import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:matrix/matrix.dart';
 
 const notificationAvatarDimension = 128;
-const String groupKey = 'im.fluffychat.messages';
-const int summaryId = -1;
 
 Future<void> pushHelper(
   PushNotification notification, {
@@ -42,7 +40,7 @@ Future<void> pushHelper(
 
     l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
     await flutterLocalNotificationsPlugin.show(
-      id: notification.roomId?.hashCode ?? 0,
+      id: notification.hashCode,
       title: l10n.newMessageInFluffyChat,
       body: l10n.openAppToReadMessages,
       notificationDetails: NotificationDetails(
@@ -55,7 +53,6 @@ Future<void> pushHelper(
             AppSettings.applicationName.value,
             (notification.counts?.unread ?? 0).toString(),
           ),
-          groupKey: groupKey,
           importance: Importance.high,
           priority: Priority.max,
           shortcutId: notification.roomId,
@@ -112,8 +109,9 @@ Future<void> _tryPushHelper(
 
   if (event == null) {
     Logs().v('Notification is a clearing indicator.');
-    if (notification.counts?.unread == null ||
-        notification.counts?.unread == 0) {
+    if (clients?.length == 1 &&
+        (notification.counts?.unread == null ||
+            notification.counts?.unread == 0)) {
       await flutterLocalNotificationsPlugin.cancelAll();
     } else {
       // Make sure client is fully loaded and synced before dismiss notifications:
@@ -121,6 +119,9 @@ Future<void> _tryPushHelper(
       await awaitingOneShotSync;
       final activeNotifications = await flutterLocalNotificationsPlugin
           .getActiveNotifications();
+      activeNotifications.removeWhere(
+        (notification) => notification.groupKey != client.clientName,
+      );
       for (final activeNotification in activeNotifications) {
         final room = client.rooms.singleWhereOrNull(
           (room) => room.id.hashCode == activeNotification.id,
@@ -187,7 +188,7 @@ Future<void> _tryPushHelper(
     senderAvatar,
   );
 
-  final id = notification.roomId.hashCode;
+  final id = '${client.clientName}_${notification.roomId}'.hashCode;
 
   final senderName = event.senderFromMemoryOrFallback.calcDisplayname();
   // Show notification
@@ -269,7 +270,7 @@ Future<void> _tryPushHelper(
     ),
     importance: Importance.high,
     priority: Priority.max,
-    groupKey: groupKey,
+    groupKey: client.clientName,
     actions: event.type == EventTypes.RoomMember || !useNotificationActions
         ? null
         : <AndroidNotificationAction>[
@@ -322,7 +323,7 @@ Future<void> _tryPushHelper(
   if (PlatformInfos.isAndroid) {
     final activeNotifications =
         (await flutterLocalNotificationsPlugin.getActiveNotifications())
-            .where((n) => n.groupKey == groupKey)
+            .where((n) => n.groupKey == client.clientName)
             .toList();
 
     if (activeNotifications.isEmpty) {
@@ -335,12 +336,12 @@ Future<void> _tryPushHelper(
     );
 
     await flutterLocalNotificationsPlugin.show(
-      id: summaryId,
+      id: client.clientName.hashCode,
       notificationDetails: NotificationDetails(
         android: AndroidNotificationDetails(
           AppConfig.pushNotificationsChannelId,
           l10n.incomingMessages,
-          groupKey: groupKey,
+          groupKey: client.clientName,
           setAsGroupSummary: true,
           styleInformation: InboxStyleInformation(
             activeNotifications.map((n) => n.body ?? '').toList(),
