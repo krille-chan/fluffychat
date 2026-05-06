@@ -1,6 +1,5 @@
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -201,14 +200,6 @@ class ClientChooserButton extends StatelessWidget {
     } else if (object is SettingsAction) {
       switch (object) {
         case SettingsAction.addAccount:
-          final consent = await showOkCancelAlertDialog(
-            context: context,
-            title: L10n.of(context).addAccount,
-            message: L10n.of(context).enableMultiAccounts,
-            okLabel: L10n.of(context).next,
-            cancelLabel: L10n.of(context).cancel,
-          );
-          if (consent != OkCancelResult.ok) return;
           if (!context.mounted) return;
           context.go('/rooms/settings/addaccount');
           break;

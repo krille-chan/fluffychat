@@ -1913,7 +1913,6 @@
     },
     "storeSecurlyOnThisDevice": "このデバイスに安全に保管する",
     "whyIsThisMessageEncrypted": "このメッセージが読めない理由",
-    "enableMultiAccounts": "(ベータ版) このデバイスで複数のアカウントを有効にする",
     "serverRequiresEmail": "このサーバーは、登録のためにメールアドレスを検証する必要があります。",
     "synchronizingPleaseWait": "同期中...お待ちください。",
     "@synchronizingPleaseWait": {

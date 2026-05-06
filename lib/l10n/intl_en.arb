@@ -1339,7 +1339,6 @@
     "addToBundle": "Add to bundle",
     "removeFromBundle": "Remove from this bundle",
     "bundleName": "Bundle name",
-    "enableMultiAccounts": "(BETA) Enable multi accounts on this device",
     "openInMaps": "Open in maps",
     "@openInMaps": {
         "type": "String",

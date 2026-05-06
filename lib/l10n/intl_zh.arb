@@ -1900,7 +1900,6 @@
     "repeatPassword": "重复输入密码",
     "addAccount": "添加账户",
     "editBundlesForAccount": "编辑此账户的集合",
-    "enableMultiAccounts": "（测试功能）在此设备上添加多个账户",
     "addToBundle": "添加到集合",
     "bundleName": "集合名称",
     "link": "链接",

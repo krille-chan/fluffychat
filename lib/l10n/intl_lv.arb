@@ -2163,7 +2163,6 @@
         "placeholders": {}
     },
     "invite": "Uzaicināt",
-    "enableMultiAccounts": "(BETA) Iespējot vairākus kontus šajā ierīcē",
     "anyoneCanJoin": "Ikviens var pievienoties",
     "@anyoneCanJoin": {
         "type": "String",

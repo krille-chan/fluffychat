@@ -431,8 +431,6 @@
     },
     "removeFromBundle": "Stergeți din acest pachet",
     "@removeFromBundle": {},
-    "enableMultiAccounts": "(BETA) Activați multiple conturi pe acest dispozitiv",
-    "@enableMultiAccounts": {},
     "participant": "Participant",
     "@participant": {
         "type": "String",

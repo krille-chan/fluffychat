@@ -1892,7 +1892,6 @@
     "placeholders": {}
   },
   "@invite": {},
-  "@enableMultiAccounts": {},
   "@emotePacks": {
     "type": "String",
     "placeholders": {}

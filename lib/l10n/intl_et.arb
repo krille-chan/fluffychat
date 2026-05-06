@@ -1894,7 +1894,6 @@
     "sendOnEnter": "Saada sõnum sisestusklahvi vajutusel",
     "homeserver": "Koduserver",
     "serverRequiresEmail": "See koduserver eeldab registreerimisel kasutatava e-postiaadressi kinnitamist.",
-    "enableMultiAccounts": "(KATSELINE) Pruugi selles seadmes mitut Matrix'i kasutajakontot",
     "bundleName": "Köite nimi",
     "removeFromBundle": "Eemalda sellest köitest",
     "addToBundle": "Lisa köitesse",

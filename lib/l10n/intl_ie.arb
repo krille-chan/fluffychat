@@ -2051,7 +2051,6 @@
   "@pinMessage": {},
   "@screenSharingDetail": {},
   "@invite": {},
-  "@enableMultiAccounts": {},
   "@emotePacks": {
     "type": "String",
     "placeholders": {}

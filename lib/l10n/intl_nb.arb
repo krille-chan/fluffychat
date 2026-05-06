@@ -1892,7 +1892,6 @@
     "hydrate": "Gjenopprett fra sikkerhetskopifil",
     "oneClientLoggedOut": "En av klientene dine har blitt logget ut",
     "addAccount": "Legg til konto",
-    "enableMultiAccounts": "(BETA) Aktiver flere kontoer på denne enheten",
     "openInMaps": "Åpne i kart",
     "@openInMaps": {
         "type": "String",

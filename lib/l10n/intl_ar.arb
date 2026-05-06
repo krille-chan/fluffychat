@@ -1672,8 +1672,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "enableMultiAccounts": "(ميزة تجربية) فعّل تعدد الحسابات",
-    "@enableMultiAccounts": {},
     "bundleName": "اسم الحزمة",
     "@bundleName": {},
     "removeFromBundle": "أزله من الحزمة",

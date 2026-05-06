@@ -541,7 +541,6 @@
         "placeholders": {}
     },
     "bundleName": "மூட்டை பெயர்",
-    "enableMultiAccounts": "(பீட்டா) இந்த சாதனத்தில் பல கணக்குகளை இயக்கவும்",
     "remove": "அகற்று",
     "@remove": {
         "type": "String",
