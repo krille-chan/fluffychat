@@ -142,6 +142,13 @@ jobs:
           $ucrt = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\*\x64\ucrt\ucrtbased.dll" | Select-Object -First 1
           if ($ucrt) { Copy-Item -Path $ucrt.FullName -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue }
         shell: pwsh
+      - name: Download Inno Setup Chinese language packs
+        run: |
+          New-Item -ItemType Directory -Force -Path windows\languages | Out-Null
+          $base = "https://raw.githubusercontent.com/jrsoftware/issrc/main/Files/Languages"
+          Invoke-WebRequest -Uri "$base/ChineseSimplified.isl" -OutFile "windows\languages\ChineseSimplified.isl"
+          Invoke-WebRequest -Uri "$base/ChineseTraditional.isl" -OutFile "windows\languages\ChineseTraditional.isl"
+        shell: pwsh
       - name: Build Windows Installer (Inno Setup)
         run: |
           $ver = (Select-String -Path pubspec.yaml -Pattern '^version:\s*(.+)').Matches.Groups[1].Value
