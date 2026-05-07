@@ -106,6 +106,70 @@ jobs:
           asset_name: fluffychat.apk
           asset_content_type: application/vnd.android.package-archive
 
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .tool_versions.yaml
+          cache: true
+      - uses: moonrepo/setup-rust@v1
+      - run: flutter pub get
+      - name: Build Windows
+        run: flutter build windows --release
+      - name: Include MSVC Runtime
+        run: |
+          Copy-Item -Path "C:\Windows\System32\msvcp140.dll" -Destination "build\windows\x64\runner\Release\"
+          Copy-Item -Path "C:\Windows\System32\vcruntime140.dll" -Destination "build\windows\x64\runner\Release\"
+          Copy-Item -Path "C:\Windows\System32\vcruntime140_1.dll" -Destination "build\windows\x64\runner\Release\"
+          Copy-Item -Path "build\windows\x64\runner\Release\sqlite3.dll" -Destination "build\windows\x64\runner\Release\libsqlcipher.dll" -ErrorAction SilentlyContinue
+        shell: pwsh
+      - name: Download Inno Setup Chinese language packs
+        run: |
+          New-Item -ItemType Directory -Force -Path windows\languages | Out-Null
+          $base = "https://raw.githubusercontent.com/jrsoftware/issrc/main/Files/Languages"
+          Invoke-WebRequest -Uri "$base/ChineseSimplified.isl" -OutFile "windows\languages\ChineseSimplified.isl"
+          Invoke-WebRequest -Uri "$base/ChineseTraditional.isl" -OutFile "windows\languages\ChineseTraditional.isl"
+        shell: pwsh
+      - name: Build Windows Installer (Inno Setup)
+        run: |
+          $ver = (Select-String -Path pubspec.yaml -Pattern '^version:\s*(.+)').Matches.Groups[1].Value
+          $ver = $ver -replace '\+.*', ''
+          iscc /dMyAppVersion="$ver" windows/inno_setup.iss
+        shell: pwsh
+      - name: Create archive
+        run: Compress-Archive -Path "build\windows\x64\runner\Release\*" -DestinationPath "fluffychat-windows.zip"
+        shell: pwsh
+      - name: Upload Windows
+        uses: actions/upload-artifact@v7
+        with:
+          name: fluffychat-windows.zip
+          path: fluffychat-windows.zip
+      - name: Upload Windows Installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: fluffychat-windows-setup.exe
+          path: build/fluffychat-windows-setup.exe
+      - name: Upload zip to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: fluffychat-windows.zip
+          asset_name: fluffychat-windows.zip
+          asset_content_type: application/zip
+      - name: Upload Installer to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/fluffychat-windows-setup.exe
+          asset_name: fluffychat-windows-setup.exe
+          asset_content_type: application/vnd.microsoft.portable-executable
+          
   build_linux:
     strategy:
       matrix:

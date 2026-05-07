@@ -162,6 +162,10 @@ abstract class ClientManager {
       );
       return;
     }
+    if (Platform.isWindows) {
+      // Temporary stub for Windows to avoid 'Windows settings must be set' crash
+      return;
+    }
 
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
