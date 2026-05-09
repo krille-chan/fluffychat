@@ -1900,8 +1900,6 @@
     "@homeserver": {},
     "serverRequiresEmail": "Bu sunucunun kayıt için e-posta adresinizi doğrulaması gerekiyor.",
     "@serverRequiresEmail": {},
-    "enableMultiAccounts": "(BETA) Bu aygıtta çoklu hesapları etkinleştir",
-    "@enableMultiAccounts": {},
     "bundleName": "Paket adı",
     "@bundleName": {},
     "removeFromBundle": "Bu paketten kaldır",

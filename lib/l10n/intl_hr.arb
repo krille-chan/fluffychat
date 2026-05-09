@@ -1890,7 +1890,6 @@
     "homeserver": "Homeserver",
     "sendOnEnter": "Pošalji pritiskom tipke enter",
     "link": "Poveznica",
-    "enableMultiAccounts": "(BETA) Omogući korištenje više računa na ovom uređaju",
     "bundleName": "Ime paketa",
     "removeFromBundle": "Ukloni iz ovog paketa",
     "addToBundle": "Dodaj u paket",

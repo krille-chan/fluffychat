@@ -840,7 +840,6 @@
             }
         }
     },
-    "enableMultiAccounts": "(БЭТА) Уключыць некалькі ўліковых запісаў на гэтай прыладзе",
     "enterAnEmailAddress": "Увядзіце электроную пошту (email)",
     "@enterAnEmailAddress": {
         "type": "String",

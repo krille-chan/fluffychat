@@ -1900,8 +1900,6 @@
     "@homeserver": {},
     "serverRequiresEmail": "Ce serveur doit valider votre adresse électronique pour l'inscription.",
     "@serverRequiresEmail": {},
-    "enableMultiAccounts": "(BETA) Activer les comptes multiples sur cet appareil",
-    "@enableMultiAccounts": {},
     "bundleName": "Nom du groupe",
     "@bundleName": {},
     "removeFromBundle": "Retirer de ce groupe",

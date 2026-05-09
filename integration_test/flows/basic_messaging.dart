@@ -19,5 +19,6 @@ extension on FluffyChatTester {
     await enterText(Key('chat_input_field'), testMessage);
     await tapOn(Key('send_button'));
     await waitFor(testMessage);
+    await goBack();
   }
 }

@@ -2309,8 +2309,6 @@
     "@pinMessage": {},
     "invite": "Meghívás",
     "@invite": {},
-    "enableMultiAccounts": "(BÉTA) Több fiók bekapcsolása az eszközön",
-    "@enableMultiAccounts": {},
     "unsupportedAndroidVersionLong": "Ehhez a funkcióhoz egy újabb Android verzió kell. Kérem ellenőrizze be van e frissítve teljesen készüléke, esetlegesen van e LineageOS támogatás hozzá.",
     "@unsupportedAndroidVersionLong": {},
     "storeSecurlyOnThisDevice": "Biztonságos tárolás az eszközön",

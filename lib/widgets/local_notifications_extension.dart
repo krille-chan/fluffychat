@@ -148,7 +148,9 @@ extension LocalNotificationsExtension on MatrixState {
           case DesktopNotificationActions.openChat:
             setActiveClient(event.room.client);
 
-            FluffyChatApp.router.go('/rooms/${event.room.id}');
+            FluffyChatApp.router.go(
+              '/rooms/${event.room.id}?client=${event.room.client.clientName}',
+            );
             break;
         }
       });

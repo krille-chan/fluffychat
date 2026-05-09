@@ -1,6 +1,5 @@
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -116,33 +115,35 @@ class ClientChooserButton extends StatelessWidget {
                 value: client,
                 child: FutureBuilder<Profile?>(
                   future: client.fetchOwnProfile(),
-                  builder: (context, snapshot) => Row(
-                    children: [
-                      Avatar(
-                        mxContent: snapshot.data?.avatarUrl,
-                        name:
-                            snapshot.data?.displayName ??
-                            client.userID!.localpart,
-                        size: 32,
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          snapshot.data?.displayName ??
-                              client.userID!.localpart!,
-                          overflow: TextOverflow.ellipsis,
+                  builder: (context, snapshot) {
+                    final displayname =
+                        snapshot.data?.displayName ?? client.userID!.localpart!;
+                    return Row(
+                      key: ValueKey('switch_account_$displayname'),
+                      children: [
+                        Avatar(
+                          mxContent: snapshot.data?.avatarUrl,
+                          name: displayname,
+                          size: 32,
                         ),
-                      ),
-                      const SizedBox(width: 12),
-                      IconButton(
-                        icon: const Icon(Icons.edit_outlined),
-                        onPressed: () => controller.editBundlesForAccount(
-                          client.userID,
-                          bundle,
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            displayname,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                        const SizedBox(width: 12),
+                        IconButton(
+                          icon: const Icon(Icons.edit_outlined),
+                          onPressed: () => controller.editBundlesForAccount(
+                            client.userID,
+                            bundle,
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
               ),
             ),
@@ -201,14 +202,6 @@ class ClientChooserButton extends StatelessWidget {
     } else if (object is SettingsAction) {
       switch (object) {
         case SettingsAction.addAccount:
-          final consent = await showOkCancelAlertDialog(
-            context: context,
-            title: L10n.of(context).addAccount,
-            message: L10n.of(context).enableMultiAccounts,
-            okLabel: L10n.of(context).next,
-            cancelLabel: L10n.of(context).cancel,
-          );
-          if (consent != OkCancelResult.ok) return;
           if (!context.mounted) return;
           context.go('/rooms/settings/addaccount');
           break;

@@ -84,6 +84,7 @@ class ChatView extends StatelessWidget {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
             return Scaffold(
+              key: Key('chat_page'),
               appBar: AppBar(
                 actionsIconTheme: IconThemeData(
                   color: controller.selectedEvents.isEmpty

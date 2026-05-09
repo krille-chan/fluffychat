@@ -80,6 +80,8 @@ class SettingsController extends State<Settings> {
       context: context,
       future: () => matrix.client.logout(),
     );
+    if (!mounted) return;
+    context.go('/');
   }
 
   Future<void> setAvatarAction() async {

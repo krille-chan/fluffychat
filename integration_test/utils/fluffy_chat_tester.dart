@@ -120,7 +120,7 @@ extension on Object {
 
 extension StartTest on WidgetTester {
   Future<FluffyChatTester> startFluffyChatTest() async {
-    app.main();
+    app.main(['integration_test']);
 
     return FluffyChatTester(this);
   }

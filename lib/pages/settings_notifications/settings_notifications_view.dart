@@ -2,6 +2,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_notifications/push_rule_extensions.dart';
+import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'package:flutter/foundation.dart';
@@ -47,9 +48,18 @@ class SettingsNotificationsView extends StatelessWidget {
           ),
           builder: (BuildContext context, _) {
             final theme = Theme.of(context);
+            final lastReceivedPush =
+                lastReceivedPushNotification[Matrix.of(
+                  context,
+                ).client.clientName];
             return SelectionArea(
               child: Column(
                 children: [
+                  if (kDebugMode && lastReceivedPush != null)
+                    ListTile(
+                      title: Text('Last received push notification'),
+                      subtitle: Text(lastReceivedPush.toIso8601String()),
+                    ),
                   if (kIsWeb)
                     SettingsSwitchListTile.adaptive(
                       title: L10n.of(context).playSoundOnNotification,

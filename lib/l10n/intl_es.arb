@@ -1856,7 +1856,6 @@
     },
     "removeFromBundle": "Quitar de este paquete",
     "link": "Link",
-    "enableMultiAccounts": "(BETA) habilite varias cuenta en este dispositivo",
     "pleaseEnter4Digits": "Ingrese 4 dígitos o déjelo en blanco para deshabilitar el bloqueo de la aplicación.",
     "@pleaseEnter4Digits": {
         "type": "String",

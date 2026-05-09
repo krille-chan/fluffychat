@@ -1893,7 +1893,6 @@
         "placeholders": {}
     },
     "addAccount": "Breisigh cuntas",
-    "enableMultiAccounts": "(BÉITE) Cumasaigh cuntais iomadúla ar an gléas seo",
     "commandHint_create": "Cruthaigh comhrá grúpa folamh\nÚsáid --no-encryption chun criptiúchán a dhíchumasú",
     "@commandHint_create": {
         "type": "String",

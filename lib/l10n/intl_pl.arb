@@ -1543,7 +1543,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "enableMultiAccounts": "(BETA) Włącza obsługę wielu kont na tym urządzeniu",
     "pickImage": "Wybierz obraz",
     "@pickImage": {
         "type": "String",

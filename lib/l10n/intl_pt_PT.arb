@@ -1236,8 +1236,6 @@
     "@removeFromBundle": {},
     "bundleName": "Nome do pacote",
     "@bundleName": {},
-    "enableMultiAccounts": "(BETA) Ativar múltiplas contas neste dispositivo",
-    "@enableMultiAccounts": {},
     "openInMaps": "Abrir nos mapas",
     "@openInMaps": {
         "type": "String",

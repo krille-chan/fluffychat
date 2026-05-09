@@ -1339,7 +1339,6 @@
     "addToBundle": "Add to bundle",
     "removeFromBundle": "Remove from this bundle",
     "bundleName": "Bundle name",
-    "enableMultiAccounts": "(BETA) Enable multi accounts on this device",
     "openInMaps": "Open in maps",
     "@openInMaps": {
         "type": "String",
@@ -2799,5 +2798,6 @@
     "addTag": "Add tag",
     "removeTag": "Remove tag",
     "tagName": "Tag name",
-    "createNewTag": "Create new tag"
+    "createNewTag": "Create new tag",
+    "hideRoomsInSpaces": "Hide rooms that are in a space"
 }

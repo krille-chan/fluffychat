@@ -1192,8 +1192,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "enableMultiAccounts": "(BETA) Ota käyttöön tuki usealle tilille tällä laitteella",
-    "@enableMultiAccounts": {},
     "onlineKeyBackupEnabled": "Verkkkoavainvarmuuskopio on käytössä",
     "@onlineKeyBackupEnabled": {
         "type": "String",

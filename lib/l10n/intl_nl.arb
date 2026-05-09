@@ -1894,7 +1894,6 @@
     "homeserver": "Server",
     "serverRequiresEmail": "Deze server wil je email laten bevestigen bij de registratie.",
     "oneClientLoggedOut": "Één van jouw apparaten is uitgelogd",
-    "enableMultiAccounts": "(BETA) Meerdere accounts op dit apparaat inschakelen",
     "bundleName": "Bundelnaam",
     "removeFromBundle": "Van bundel verwijderen",
     "addToBundle": "Aan bundel toevoegen",

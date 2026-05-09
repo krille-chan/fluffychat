@@ -1544,7 +1544,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "enableMultiAccounts": "(BETA) Aktifkan multi-akun di perangkat ini",
     "bundleName": "Nama bundel",
     "removeFromBundle": "Hilangkan dari bundel ini",
     "addToBundle": "Tambah ke bundel",

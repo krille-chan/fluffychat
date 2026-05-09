@@ -1896,7 +1896,6 @@
     },
     "addToSpace": "Zum Space hinzufügen",
     "serverRequiresEmail": "Dieser Server muss deine E-Mail-Adresse für die Registrierung überprüfen.",
-    "enableMultiAccounts": "(BETA) Aktiviere Multi-Accounts für dieses Gerät",
     "bundleName": "Name des Bundles",
     "removeFromBundle": "Von diesem Bundle entfernen",
     "addToBundle": "Zu einem Bundle hinzufügen",

@@ -1431,8 +1431,6 @@
     },
     "serverRequiresEmail": "이 서버는 가입을 위해 당신의 이메일을 확인해야 합니다.",
     "@serverRequiresEmail": {},
-    "enableMultiAccounts": "(베타) 이 기기에서 다중 계정 활성화",
-    "@enableMultiAccounts": {},
     "bundleName": "번들 이름",
     "@bundleName": {},
     "removeFromBundle": "이 번들에서 삭제",

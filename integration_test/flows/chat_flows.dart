@@ -26,6 +26,7 @@ extension ChatFlows on FluffyChatTester {
   Future<void> _archiveChats() async {
     await ensureLoggedIn();
     await ensureGroupChatCreated();
+    await tapOn(groupChatName);
     await tapOn(ChatSettingsPopupMenu);
     await tapOn('Leave');
     await waitFor('Are you sure?');

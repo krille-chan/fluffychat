@@ -71,7 +71,8 @@ enum AppSettings<T> {
   tos<String>('chat.fluffy.tos_url', 'https://fluffychat.im/en/tos'),
   sendTimelineEventTimeout<int>('chat.fluffy.send_timeline_event_timeout', 15),
   webNotificationSound<bool>('chat.fluffy.web_notification_sound', true),
-  chatFilter<String>('chat.fluffy.chat_filter', 'allChats');
+  chatFilter<String>('chat.fluffy.chat_filter', 'allChats'),
+  hideRoomsInSpaces<bool>('chat.fluffy.hideRoomsInSpaces', false);
 
   final String key;
   final T defaultValue;

@@ -64,6 +64,6 @@ Future<void> ssoLoginFlow(
   await client.login(
     LoginType.mLoginToken,
     token: token,
-    initialDeviceDisplayName: PlatformInfos.clientName,
+    initialDeviceDisplayName: PlatformInfos.appDisplayName,
   );
 }
