@@ -202,7 +202,6 @@ jobs:
             ~/.gradle/wrapper
           key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: gradle-${{ runner.os }}-
-      - run: ./scripts/add-firebase-messaging.sh
       - name: Prepare Homeserver
         run: ./scripts/prepare_integration_test.sh
       - name: Integration tests

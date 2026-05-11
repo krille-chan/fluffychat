@@ -1,9 +1,10 @@
+import 'package:async/async.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
+import 'package:matrix/matrix.dart' hide Result;
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../utils/fluffy_share.dart';
@@ -163,11 +164,12 @@ class ClientChooserButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final matrix = Matrix.of(context);
+    final client = Result(() => matrix.client).asValue?.value;
 
     var clientCount = 0;
     matrix.accountBundles.forEach((key, value) => clientCount += value.length);
     return FutureBuilder<Profile>(
-      future: matrix.client.isLogged() ? matrix.client.fetchOwnProfile() : null,
+      future: client?.isLogged() == true ? client?.fetchOwnProfile() : null,
       builder: (context, snapshot) => Material(
         clipBehavior: Clip.hardEdge,
         borderRadius: BorderRadius.circular(99),
@@ -180,8 +182,7 @@ class ClientChooserButton extends StatelessWidget {
           child: Center(
             child: Avatar(
               mxContent: snapshot.data?.avatarUrl,
-              name:
-                  snapshot.data?.displayName ?? matrix.client.userID?.localpart,
+              name: snapshot.data?.displayName ?? client?.userID?.localpart,
               size: 32,
             ),
           ),

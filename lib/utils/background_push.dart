@@ -59,7 +59,7 @@ class BackgroundPush {
     final context = matrix?.context;
     // inspired by _lookupL10n in .dart_tool/flutter_gen/gen_l10n/l10n.dart
     l10n ??=
-        (context != null ? L10n.of(context) : null) ??
+        (context != null && context.mounted ? L10n.of(context) : null) ??
         (await L10n.delegate.load(PlatformDispatcher.instance.locale));
   }
 
