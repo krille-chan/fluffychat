@@ -85,7 +85,7 @@ Future<void> _tryPushHelper(
     return;
   }
 
-  final clientName = notification.devices?.first.data?.tryGet<String>(
+  final clientName = notification.devices?.firstOrNull?.data?.tryGet<String>(
     'client_name',
   );
   final store = await AppSettings.init();
