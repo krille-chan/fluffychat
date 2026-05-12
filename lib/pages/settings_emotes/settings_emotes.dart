@@ -40,6 +40,8 @@ class EmotesSettingsController extends State<EmotesSettings> {
     return keys;
   }
 
+  String giphyApiKey = '';
+
   @override
   void initState() {
     super.initState();
@@ -47,6 +49,27 @@ class EmotesSettingsController extends State<EmotesSettings> {
         ? Matrix.of(context).client.getRoomById(widget.roomId!)
         : null;
     setStateKey(packKeys?.firstOrNull, reset: false);
+
+    _loadApiKey();
+  }
+
+  void _loadApiKey() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final client = Matrix.of(context).client;
+      final content = client.accountData['im.ponies.gif_api_key']?.content;
+      if (content != null && content['api_key'] is String) {
+        setState(() {
+          giphyApiKey = content.tryGet<String>('api_key') ?? '';
+        });
+      }
+    });
+  }
+
+  void updateApiKey(String value) {
+    setState(() {
+      giphyApiKey = value;
+      showSave = true;
+    });
   }
 
   void setStateKey(String? key, {reset = true}) {
@@ -93,19 +116,30 @@ class EmotesSettingsController extends State<EmotesSettings> {
     final client = Matrix.of(context).client;
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () => room != null
-          ? client.setRoomStateWithKey(
-              room!.id,
-              'im.ponies.room_emotes',
-              stateKey ?? '',
-              pack!.toJson(),
-            )
-          : client.setAccountData(
-              client.userID!,
-              'im.ponies.user_emotes',
-              pack!.toJson(),
-            ),
+      future: () async {
+        if (room != null) {
+          await client.setRoomStateWithKey(
+            room!.id,
+            'im.ponies.room_emotes',
+            stateKey ?? '',
+            pack!.toJson(),
+          );
+        } else {
+          await client.setAccountData(
+            client.userID!,
+            'im.ponies.user_emotes',
+            pack!.toJson(),
+          );
+        }
+
+        await client.setAccountData(
+          client.userID!,
+          'im.ponies.gif_api_key',
+          <String, dynamic>{'api_key': giphyApiKey.trim()},
+        );
+      },
     );
+
     if (!result.isError) {
       setState(() {
         showSave = false;
