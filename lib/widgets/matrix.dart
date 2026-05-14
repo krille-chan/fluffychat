@@ -313,14 +313,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       backgroundPush = BackgroundPush(
         this,
         onFcmError: (errorMsg, {Uri? link}) async {
+          final context =
+              FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
+              this.context;
+          if (!context.mounted) return;
           final result = await showOkCancelAlertDialog(
-            context:
-                FluffyChatApp
-                    .router
-                    .routerDelegate
-                    .navigatorKey
-                    .currentContext ??
-                context,
+            context: context,
             title: L10n.of(context).pushNotificationsNotAvailable,
             message: errorMsg,
             okLabel: link == null
