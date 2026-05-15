@@ -124,8 +124,8 @@ jobs:
         with:
           flutter-version-file: .tool_versions.yaml
           cache: true
-      - name: Use Xcode 16.4
-        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
+      - name: Use specific XCode version
+        run: sudo xcode-select --switch /Applications/Xcode_26.3.app
       - run: brew install sqlcipher
       - uses: moonrepo/setup-rust@v1
       - run: ./scripts/add-firebase-messaging.sh
