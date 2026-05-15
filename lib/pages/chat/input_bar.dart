@@ -28,6 +28,7 @@ class InputBar extends StatelessWidget {
   final bool? autofocus;
   final bool readOnly;
   final List<Emoji> suggestionEmojis;
+  final UndoHistoryController? undoController;
 
   const InputBar({
     required this.room,
@@ -44,6 +45,7 @@ class InputBar extends StatelessWidget {
     this.textInputAction,
     this.readOnly = false,
     required this.suggestionEmojis,
+    this.undoController,
     super.key,
   });
 
@@ -391,6 +393,7 @@ class InputBar extends StatelessWidget {
       fieldViewBuilder: (context, controller, focusNode, _) => TextField(
         controller: controller,
         focusNode: focusNode,
+        undoController: undoController,
         readOnly: readOnly,
         onEditingComplete: () {
           // To not lose focus on iOS:
