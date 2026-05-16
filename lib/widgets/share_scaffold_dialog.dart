@@ -133,37 +133,40 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Opacity(
                   opacity: filterOut ? 0.5 : 1,
-                  child: CheckboxListTile.adaptive(
-                    checkboxShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(90),
-                    ),
-                    controlAffinity: ListTileControlAffinity.trailing,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                        AppConfig.borderRadius,
+                  child: FutureBuilder(
+                    future: room.loadHeroUsers(),
+                    builder: (context, _) => CheckboxListTile.adaptive(
+                      checkboxShape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(90),
                       ),
+                      controlAffinity: ListTileControlAffinity.trailing,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          AppConfig.borderRadius,
+                        ),
+                      ),
+                      secondary: Avatar(
+                        mxContent: room.avatar,
+                        name: displayname,
+                        size: Avatar.defaultSize * 0.75,
+                      ),
+                      title: Text(
+                        displayname,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      subtitle: Text(
+                        room.directChatMatrixID ??
+                            L10n.of(context).countParticipants(
+                              (room.summary.mJoinedMemberCount ?? 0) +
+                                  (room.summary.mInvitedMemberCount ?? 0),
+                            ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      value: selectedRoomId == room.id,
+                      onChanged: (_) => _toggleRoom(room.id),
                     ),
-                    secondary: Avatar(
-                      mxContent: room.avatar,
-                      name: displayname,
-                      size: Avatar.defaultSize * 0.75,
-                    ),
-                    title: Text(
-                      displayname,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    subtitle: Text(
-                      room.directChatMatrixID ??
-                          L10n.of(context).countParticipants(
-                            (room.summary.mJoinedMemberCount ?? 0) +
-                                (room.summary.mInvitedMemberCount ?? 0),
-                          ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    value: selectedRoomId == room.id,
-                    onChanged: (_) => _toggleRoom(room.id),
                   ),
                 ),
               );
@@ -171,15 +174,15 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
           ),
         ],
       ),
-      bottomNavigationBar: SafeArea(
-        child: AnimatedSize(
-          duration: FluffyThemes.animationDuration,
-          curve: FluffyThemes.animationCurve,
-          child: selectedRoomId == null
-              ? const SizedBox.shrink()
-              : Material(
-                  elevation: 8,
-                  shadowColor: theme.appBarTheme.shadowColor,
+      bottomNavigationBar: AnimatedSize(
+        duration: FluffyThemes.animationDuration,
+        curve: FluffyThemes.animationCurve,
+        child: selectedRoomId == null
+            ? const SizedBox.shrink()
+            : Material(
+                elevation: 8,
+                shadowColor: theme.appBarTheme.shadowColor,
+                child: SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: ElevatedButton(
@@ -188,7 +191,7 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
                     ),
                   ),
                 ),
-        ),
+              ),
       ),
     );
   }
