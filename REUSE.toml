@@ -1,0 +1,66 @@
+# SPDX-FileCopyrightText: 2019-Present Christian Kußowski
+# SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+version = 1
+
+[[annotations]]
+path = [
+    ".mailmap",
+    ".tool_versions.yaml",
+    "pubspec.lock",
+    "*.json",
+    ".vscode/**",
+    "lib/l10n/**",
+    "assets/vodozemac/**",
+    ".github/**",
+    ".gitignore",
+    ".metadata",
+    "android/**",
+    "ios/**",
+    "linux/**",
+    "macos/**",
+    "integration_test/.gitignore",
+    "integration_test/data/**",
+    "integration_test/synapse/**",
+    "snap/**",
+    "windows/**",
+    "web/**"
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2019-Present Christian Kußowski"
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
+[[annotations]]
+path = [
+    "assets/sounds/**"
+]
+SPDX-FileCopyrightText = "Pixabay"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+[[annotations]]
+path = [
+    "assets/sas-emoji.json"
+]
+SPDX-FileCopyrightText = "Matrix Foundation"
+SPDX-License-Identifier = "Apache-2.0"
+
+# App Logo
+[[annotations]]
+path = [
+    "assets/*.png",
+    "assets/*.svg",
+    "android/app/src/main/res/mipmap**/**",
+    "ios/Runner/Assets.xcassets/AppIcon.appiconset/**",
+    "macos/Runner/Assets.xcassets/AppIcon.appiconset/**",
+    "web/icons/**",
+    "web/splash/**",
+    "web/favicon.png",
+    "linux/flutter/assets/**",
+    "snap/gui/fluffychat.png",
+    "windows/runner/resources/**"
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2019-Present Fabimayada"
+SPDX-License-Identifier = "CC-BY-4.0"

@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2019-Present Christian Kußowski
+SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 ## v2.6.0
 - feat: Option to hide thumbnails of images and videos (Christian Kußowski)
 - feat(chat): make messagePreviewMaxLines configurable, with default 128 (Halil Kaskavalci)

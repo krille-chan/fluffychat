@@ -1,5 +1,10 @@
 #!/bin/sh -ve
 
+# SPDX-FileCopyrightText: 2019-Present Christian Kußowski
+# SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 # Compile Vodozemac for web
 version=$(yq ".dependencies.flutter_vodozemac" < pubspec.yaml)
 version=$(printf "%s" "$version" | tr -d '"^')
