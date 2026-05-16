@@ -49,18 +49,15 @@ SPDX-License-Identifier = "Apache-2.0"
 # App Logo
 [[annotations]]
 path = [
-    "assets/*.png",
-    "assets/*.svg",
+    "assets/logo",
     "android/app/src/main/res/mipmap**/**",
     "ios/Runner/Assets.xcassets/AppIcon.appiconset/**",
     "macos/Runner/Assets.xcassets/AppIcon.appiconset/**",
     "web/icons/**",
     "web/splash/**",
-    "web/favicon.png",
-    "linux/flutter/assets/**",
-    "snap/gui/fluffychat.png",
-    "windows/runner/resources/**"
+    "snap/gui/*.png",
+    "windows/runner/resources/app_icon.ico"
 ]
 precedence = "aggregate"
-SPDX-FileCopyrightText = "2019-Present Fabimayada"
-SPDX-License-Identifier = "CC-BY-4.0"
+SPDX-FileCopyrightText = "2019-Present Christian Kußowski"
+SPDX-License-Identifier = "LicenseRef-AllRightsReserved.txt"

@@ -93,7 +93,7 @@ abstract class PlatformInfos {
         ),
       ],
       applicationIcon: Image.asset(
-        'assets/logo.png',
+        'assets/logo/img/logo_standalone.png',
         width: 64,
         height: 64,
         filterQuality: FilterQuality.medium,
