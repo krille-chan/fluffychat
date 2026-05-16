@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKV(){return new A.Gn(B.de("ru"))},
+cKS(){return new A.Gn(B.de("ru"))},
 Gn:function Gn(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -691,6 +691,6 @@ gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gn,C.aD)})()
-B.dK(b.typeUniverse,JSON.parse('{"Gn":{"aD":[]}}'))};
-(a=>{a["xNL8OdopzSOw8+kDVdOnCtYxzuU="]=a.current})($__dart_deferred_initializers__);
+B.dI(b.typeUniverse,JSON.parse('{"Gn":{"aD":[]}}'))};
+(a=>{a["JWdTTR4fL7ZPTAuo1zA3kex7dNg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_349.part.js.map
