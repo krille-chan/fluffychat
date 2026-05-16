@@ -42,6 +42,7 @@ import 'package:matrix/matrix.dart';
 import 'package:mime/mime.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:universal_html/html.dart' as web;
 
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -381,6 +382,7 @@ class ChatController extends State<ChatPageWithRoom>
 
     _loadDraft();
     WidgetsBinding.instance.addPostFrameCallback(_shareItems);
+    web.window.addEventListener('paste', _handleClipboardFilePasteWeb);
     super.initState();
     _displayChatDetailsColumn = ValueNotifier(
       AppSettings.displayChatDetailsColumn.value,
@@ -584,6 +586,7 @@ class ChatController extends State<ChatPageWithRoom>
     timeline?.cancelSubscriptions();
     timeline = null;
     inputFocus.removeListener(_inputFocusListener);
+    web.window.removeEventListener('paste', _handleClipboardFilePasteWeb);
     if (currentlyTyping) room.setTyping(false);
     super.dispose();
   }
@@ -701,6 +704,36 @@ class ChatController extends State<ChatPageWithRoom>
       context: context,
       builder: (c) => SendFileDialog(
         files: [file],
+        room: room,
+        outerContext: context,
+        threadRootEventId: activeThreadId,
+        threadLastEventId: threadLastEventId,
+      ),
+    );
+  }
+
+  void _handleClipboardFilePasteWeb(web.Event event) {
+    if (event is! web.ClipboardEvent) return;
+
+    final files = event.clipboardData?.files;
+    if (files == null || files.isEmpty) return;
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (!mounted) return;
+    showAdaptiveDialog(
+      context: context,
+      builder: (c) => SendFileDialog(
+        files: files
+            .map(
+              (file) => XFile(
+                file.relativePath!,
+                name: file.name,
+                mimeType: file.type,
+              ),
+            )
+            .toList(),
         room: room,
         outerContext: context,
         threadRootEventId: activeThreadId,
@@ -1512,11 +1545,14 @@ class ChatController extends State<ChatPageWithRoom>
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Actions(
-      actions: <Type, Action<Intent>>{
-        PasteTextIntent: CallbackAction<PasteTextIntent>(
-          onInvoke: (PasteTextIntent intent) => _handleClipboardImagePaste(),
-        ),
-      },
+      actions: kIsWeb
+          ? {}
+          : <Type, Action<Intent>>{
+              PasteTextIntent: CallbackAction<PasteTextIntent>(
+                onInvoke: (PasteTextIntent intent) =>
+                    _handleClipboardImagePaste(),
+              ),
+            },
       child: Row(
         children: [
           Expanded(child: ChatView(this)),
