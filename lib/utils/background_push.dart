@@ -368,15 +368,29 @@ class BackgroundPush {
 
   Future<void> setupFirebase(Client client) async {
     Logs().v('Setup firebase');
+    if (!firebaseEnabled) {
+      await _noFcmWarning();
+      return;
+    }
     if (_fcmToken?.isEmpty ?? true) {
       if (PlatformInfos.isIOS) {
         //<GOOGLE_SERVICES>await firebase.requestPermission();
       }
-      try {
-        //<GOOGLE_SERVICES>_fcmToken = await firebase.getToken();
-        if (_fcmToken == null) throw ('PushToken is null');
-      } catch (e, s) {
-        Logs().w('[Push] cannot get token', e, e is String ? null : s);
+      const max = 5;
+      for (var i = 0; i < max; i++) {
+        try {
+          await Future.delayed(const Duration(seconds: 1));
+          //<GOOGLE_SERVICES>_fcmToken = await firebase.getToken();
+          if (_fcmToken != null) break;
+        } catch (e, s) {
+          Logs().w(
+            '[Push] cannot get token - try ($i/$max)',
+            e,
+            e is String ? null : s,
+          );
+        }
+      }
+      if (_fcmToken == null) {
         await _noFcmWarning();
         return;
       }

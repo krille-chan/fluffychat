@@ -298,7 +298,9 @@ Future<void> _tryPushHelper(
             ),
           ],
   );
-  const iOSPlatformChannelSpecifics = DarwinNotificationDetails();
+  final iOSPlatformChannelSpecifics = DarwinNotificationDetails(
+    threadIdentifier: event.room.id,
+  );
   final platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
     iOS: iOSPlatformChannelSpecifics,
