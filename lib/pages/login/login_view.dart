@@ -38,9 +38,15 @@ class LoginView extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               children: <Widget>[
-                Hero(
-                  tag: 'info-logo',
-                  child: Image.asset('assets/banner_transparent.png'),
+                Center(
+                  child: Hero(
+                    tag: 'info-logo',
+                    child: Image.asset(
+                      './assets/logo/img/logo_favicon.png',
+                      width: 192,
+                      height: 192,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Padding(

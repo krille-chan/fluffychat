@@ -2728,7 +2728,6 @@
     "createNewAccount": "Crea un compte nou",
     "signUpGreeting": "El FluffyChat és descentralitzat! Tria un servidor on vulguis crear-t'hi un compte, i som-hi!",
     "signInGreeting": "Si ja tens un compte a Matrix, benvingudi! Tria el teu servidor i inicia-hi sessió.",
-    "appIntro": "Pots xatejar amb lis tevis amiguis amb Fluffychat. És una app de missatgeria [matrix] descentralitzada! Llegeix-ne més a https://matrix.org si vols, o inicia sessió.",
     "theProcessWasCanceled": "S'ha canceŀlat el procés.",
     "join": "Entra",
     "searchOrEnterHomeserverAddress": "Cerca o introdueix l'adreça del teu servidor",

@@ -10,7 +10,6 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -39,11 +38,7 @@ class IntroPage extends StatelessWidget {
     return LoginScaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          addMultiAccount
-              ? L10n.of(context).addAccount
-              : L10n.of(context).login,
-        ),
+        title: addMultiAccount ? Text(L10n.of(context).addAccount) : null,
         actions: [
           PopupMenuButton(
             useRootNavigator: true,
@@ -114,32 +109,36 @@ class IntroPage extends StatelessWidget {
                             child: Hero(
                               tag: 'info-logo',
                               child: Image.asset(
-                                './assets/banner_transparent.png',
-                                fit: BoxFit.fitWidth,
+                                './assets/logo/img/logo_favicon.png',
+                                width: 156,
+                                height: 156,
                               ),
                             ),
                           ),
-                          const SizedBox(height: 32),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 32.0,
+                          Center(
+                            child: Image.asset(
+                              './assets/logo/img/logo_font.png',
+                              width: 156,
                             ),
-                            child: SelectableLinkify(
-                              text: welcomeText ?? L10n.of(context).appIntro,
-                              textScaleFactor: MediaQuery.textScalerOf(
-                                context,
-                              ).scale(1),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            L10n.of(context).appSubtitle,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          const SizedBox(height: 8),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
+                            child: Text(
+                              L10n.of(context).appDescription,
                               textAlign: TextAlign.center,
-                              linkStyle: TextStyle(
-                                color: theme.colorScheme.secondary,
-                                decorationColor: theme.colorScheme.secondary,
-                              ),
-                              onOpen: (link) => launchUrlString(link.url),
+                              style: TextStyle(fontSize: 12),
                             ),
                           ),
                           const Spacer(),
                           Padding(
-                            padding: const EdgeInsets.all(32.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
                             child: Column(
                               mainAxisSize: .min,
                               crossAxisAlignment: .stretch,
@@ -184,6 +183,7 @@ class IntroPage extends StatelessWidget {
                               ],
                             ),
                           ),
+                          const SizedBox(height: 36),
                         ],
                       ),
                     ),

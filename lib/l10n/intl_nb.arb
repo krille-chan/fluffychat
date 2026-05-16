@@ -2736,7 +2736,6 @@
     "createNewAccount": "Opprett ny konto",
     "signUpGreeting": "FluffyChat er desentralisert! Velg en server der du vil opprette kontoen din, så kjører vi på!",
     "signInGreeting": "Har du allerede en Matrix-konto? Velkommen tilbake! Velg hjemmeserveren din og logg inn.",
-    "appIntro": "Med FluffyChat kan du chatte med vennene dine. Det er en sikker, desentralisert [matrix]-meldingsapp! Les mer på https://matrix.org hvis du vil, eller bare registrer deg.",
     "theProcessWasCanceled": "Prosessen ble avbrutt.",
     "join": "Bli med",
     "searchOrEnterHomeserverAddress": "Søk eller angi adresse til hjemmeserver",

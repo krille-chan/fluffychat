@@ -2728,7 +2728,6 @@
     "createNewAccount": "Buat akun baru",
     "signUpGreeting": "FluffyChat terdesentralisasi! Pilih server tempat Anda ingin membuat akun dan mari kita mulai!",
     "signInGreeting": "Anda sudah memiliki akun di Matrix? Selamat datang kembali! Pilih homeserver Anda dan masuk.",
-    "appIntro": "Dengan FluffyChat Anda dapat mengobrol dengan teman-teman Anda. Ini adalah messenger [matrix] terdesentralisasi yang aman! Pelajari lebih lanjut di https://matrix.org jika Anda suka atau cukup daftar.",
     "theProcessWasCanceled": "Proses dibatalkan.",
     "join": "Bergabung",
     "searchOrEnterHomeserverAddress": "Cari atau masukkan alamat homeserver",

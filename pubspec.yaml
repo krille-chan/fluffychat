@@ -87,8 +87,8 @@ dependencies:
 
 dev_dependencies:
   dart_code_linter: ^4.0.3
+  flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
-  flutter_native_splash: ^2.4.7
   flutter_test:
     sdk: flutter
   integration_test:
@@ -96,18 +96,32 @@ dev_dependencies:
   license_checker: ^1.6.2
   translations_cleaner: ^0.1.1
 
-flutter_native_splash:
-  color: "#ffffff"
-  color_dark: "#000000"
-  image: "assets/info-logo.png"
-
 flutter:
   generate: true
   uses-material-design: true
   assets:
     - assets/
+    - assets/logo/img/
     - assets/sounds/
     - assets/vodozemac/
+
+flutter_launcher_icons:
+  image_path: assets/logo/img/logo.png
+  android: true
+  adaptive_icon_foreground: assets/logo/img/logo_mono.png
+  adaptive_icon_background: assets/logo/img/logo_background.png
+  adaptive_icon_monochrome: assets/logo/img/logo_mono.png
+  adaptive_icon_foreground_inset: 24
+  ios: true
+  macos:
+    generate: true
+  windows:
+    generate: true
+  web:
+    generate: true
+    image_path: assets/logo/img/logo_standalone.png
+    background_color: "#FFFFFF"
+    theme_color: "#41a2bc"
 
 # Guidelines for adding a dependency override:
 # 1. Don't do it if you can avoid it or fix it upstream in a manageable time
