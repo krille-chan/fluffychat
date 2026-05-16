@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKW(){return new A.Gw(B.dd("uz"))},
+cL1(){return new A.Gw(B.dd("uz"))},
 Gw:function Gw(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -690,7 +690,7 @@ gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gw,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gw":{"aD":[]}}'))
+B.dK(b.typeUniverse,JSON.parse('{"Gw":{"aD":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["9AYb+QKnRp+CIrKiW8mZDXWsswI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["E2TrgU/yhzTNQ4pYWarTH7t9RXc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_365.part.js.map
