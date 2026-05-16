@@ -65,7 +65,6 @@ class SendFileDialogState extends State<SendFileDialog> {
         for (final xfile in widget.files) {
           final MatrixFile file;
           MatrixImageFile? thumbnail;
-          final length = await xfile.length();
           final mimeType = xfile.mimeType ?? lookupMimeType(xfile.path);
 
           // Generate video thumbnail
@@ -81,13 +80,13 @@ class SendFileDialogState extends State<SendFileDialog> {
               mimeType != null &&
               mimeType.startsWith('video')) {
             setProgress(sentFiles / widget.files.length + 0.2);
+            final lengthResult = await Result.capture(xfile.length());
+            final length = lengthResult.asValue?.value;
             file = await xfile.getVideoInfo(
-              compress: length > minSizeToCompress && compress,
+              compress:
+                  length != null && length > minSizeToCompress && compress,
             );
           } else {
-            if (length > maxUploadSize) {
-              throw FileTooBigMatrixException(length, maxUploadSize);
-            }
             // Else we just create a MatrixFile
             file = MatrixFile(
               bytes: await xfile.readAsBytes(),
@@ -97,7 +96,7 @@ class SendFileDialogState extends State<SendFileDialog> {
           }
 
           if (file.bytes.length > maxUploadSize) {
-            throw FileTooBigMatrixException(length, maxUploadSize);
+            throw FileTooBigMatrixException(file.bytes.length, maxUploadSize);
           }
 
           if (widget.files.length > 1) {
