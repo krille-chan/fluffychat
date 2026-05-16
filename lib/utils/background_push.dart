@@ -236,7 +236,8 @@ class BackgroundPush {
 
     if (!client.isLogged()) return;
 
-    for (final pusher in pushers) {
+    final legacyPushers = pushers.where((pusher) => pusher.pushkey == token);
+    for (final pusher in legacyPushers) {
       try {
         await client.deletePusher(pusher);
         Logs().i('[Push] Removed legacy pusher for ${client.clientName}');
