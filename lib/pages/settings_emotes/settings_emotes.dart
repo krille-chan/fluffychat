@@ -330,7 +330,10 @@ class EmotesSettingsController extends State<EmotesSettings> {
           setState(() {
             final info = <String, dynamic>{...file.info};
             // normalize width / height to 256, required for stickers
-            if (info['w'] is int && info['h'] is int) {
+            if (info['w'] is int &&
+                info['h'] is int &&
+                info['w'] > 0 &&
+                info['h'] > 0) {
               final ratio = info['w'] / info['h'];
               if (info['w'] > info['h']) {
                 info['w'] = 256;

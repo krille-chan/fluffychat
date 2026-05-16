@@ -18,10 +18,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
-import 'package:universal_html/html.dart' as html;
+import 'package:universal_web/web.dart' as html;
 
 extension LocalNotificationsExtension on MatrixState {
-  static final html.AudioElement _audioPlayer = html.AudioElement()
+  static final html.HTMLAudioElement _audioPlayer = html.HTMLAudioElement()
     ..src = 'assets/assets/sounds/notification.ogg'
     ..load();
 
@@ -82,9 +82,11 @@ extension LocalNotificationsExtension on MatrixState {
 
       html.Notification(
         title,
-        body: body,
-        icon: thumbnailUri?.toString(),
-        tag: event.room.id,
+        html.NotificationOptions(
+          body: body,
+          icon: thumbnailUri?.toString() ?? '',
+          tag: event.room.id,
+        ),
       );
     } else if (Platform.isLinux) {
       final avatarUrl = event.room.avatar;

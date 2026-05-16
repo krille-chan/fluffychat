@@ -5,6 +5,7 @@
 
 import 'dart:async';
 import 'dart:io';
+import 'dart:js_interop';
 
 import 'package:collection/collection.dart';
 import 'package:desktop_drop/desktop_drop.dart';
@@ -42,7 +43,7 @@ import 'package:matrix/matrix.dart';
 import 'package:mime/mime.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-import 'package:universal_html/html.dart' as web;
+import 'package:universal_web/web.dart' as web;
 
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -382,7 +383,7 @@ class ChatController extends State<ChatPageWithRoom>
 
     _loadDraft();
     WidgetsBinding.instance.addPostFrameCallback(_shareItems);
-    web.window.addEventListener('paste', _handleClipboardFilePasteWeb);
+    web.window.addEventListener('paste', _handleClipboardFilePasteWeb.toJS);
     super.initState();
     _displayChatDetailsColumn = ValueNotifier(
       AppSettings.displayChatDetailsColumn.value,
@@ -586,7 +587,7 @@ class ChatController extends State<ChatPageWithRoom>
     timeline?.cancelSubscriptions();
     timeline = null;
     inputFocus.removeListener(_inputFocusListener);
-    web.window.removeEventListener('paste', _handleClipboardFilePasteWeb);
+    web.window.removeEventListener('paste', _handleClipboardFilePasteWeb.toJS);
     if (currentlyTyping) room.setTyping(false);
     super.dispose();
   }
@@ -713,27 +714,37 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void _handleClipboardFilePasteWeb(web.Event event) {
-    if (event is! web.ClipboardEvent) return;
+    if (!event.isA<web.ClipboardEvent>()) return;
+    final clipboardEvent = event as web.ClipboardEvent;
 
-    final files = event.clipboardData?.files;
-    if (files == null || files.isEmpty) return;
+    final files = clipboardEvent.clipboardData?.files;
+    if (files == null || files.length == 0) return;
 
     event.preventDefault();
     event.stopPropagation();
 
     if (!mounted) return;
+
+    final xfiles = <XFile>[];
+    for (var i = 0; i < files.length; i++) {
+      final file = files.item(i);
+      if (file != null) {
+        xfiles.add(
+          XFile(
+            file.webkitRelativePath.isNotEmpty
+                ? file.webkitRelativePath
+                : file.name,
+            name: file.name,
+            mimeType: file.type,
+          ),
+        );
+      }
+    }
+
     showAdaptiveDialog(
       context: context,
       builder: (c) => SendFileDialog(
-        files: files
-            .map(
-              (file) => XFile(
-                file.relativePath!,
-                name: file.name,
-                mimeType: file.type,
-              ),
-            )
-            .toList(),
+        files: xfiles,
         room: room,
         outerContext: context,
         threadRootEventId: activeThreadId,

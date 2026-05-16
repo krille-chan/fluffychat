@@ -18,7 +18,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
 import 'package:matrix/msc_extensions/msc_2964_oidc_login_flow/msc_2964_oidc_login_flow.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_html/universal_html.dart' as web;
+import 'package:universal_web/web.dart' as web;
 
 class IntroPagePresenter extends StatefulWidget {
   const IntroPagePresenter({super.key});

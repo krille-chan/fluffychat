@@ -17,7 +17,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_vodozemac/flutter_vodozemac.dart' as vod;
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_html/universal_html.dart' as web;
+import 'package:universal_web/web.dart' as web;
 
 import 'config/setting_keys.dart';
 import 'utils/background_push.dart';
