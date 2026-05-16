@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2019-Present Christian Kußowski
+// SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 import 'package:fluffychat/widgets/lock_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';

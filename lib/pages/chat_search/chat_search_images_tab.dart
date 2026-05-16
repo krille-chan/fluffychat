@@ -1,3 +1,8 @@
+// SPDX-FileCopyrightText: 2019-Present Christian Kußowski
+// SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pages/chat_search/search_footer.dart';

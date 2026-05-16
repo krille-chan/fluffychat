@@ -46,6 +46,7 @@ path = [
 SPDX-FileCopyrightText = "Matrix Foundation"
 SPDX-License-Identifier = "Apache-2.0"
 
+# App Logo
 [[annotations]]
 path = [
     "assets/*.png",
@@ -61,5 +62,5 @@ path = [
     "windows/runner/resources/**"
 ]
 precedence = "aggregate"
-SPDX-FileCopyrightText = "2019-Present Christian Kußowski"
-SPDX-License-Identifier = "LicenseRef-AllRightsReserved"
+SPDX-FileCopyrightText = "2019-Present Fabimayada"
+SPDX-License-Identifier = "CC-BY-4.0"

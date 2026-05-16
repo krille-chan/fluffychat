@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2019-Present Christian Kußowski
+# SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 git apply ./scripts/enable-android-google-services.patch
 FLUFFYCHAT_ORIG_GROUP="im.fluffychat"
 FLUFFYCHAT_ORIG_TEAM="4NXF6Z997G"
