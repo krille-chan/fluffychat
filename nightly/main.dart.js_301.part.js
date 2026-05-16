@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKs(){return new A.FW(B.dd("eu"))},
-FW:function FW(d){this.a=d}}
+cKt(){return new A.FX(B.de("eu"))},
+FX:function FX(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[18],A)
-A.FW.prototype={
+A.FX.prototype={
 gkF(){return"false"},
 gjw(){return"Idatzi berriro pasahitza"},
 gmo(){return"Ez da irudi-fitxategia."},
@@ -690,8 +690,8 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FW,C.aD)})()
-B.dK(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))
+x(A.FX,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["cuHOHZaTmfwSZd33bZP7je2S8tg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["SNhDexRyxgxMdesp2wYLK+VTBcU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map

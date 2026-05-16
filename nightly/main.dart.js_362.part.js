@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cL2(){return new A.Gv(B.dd("tr"))},
-Gv:function Gv(d){this.a=d}}
+cL3(){return new A.Gw(B.de("tr"))},
+Gw:function Gw(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[52],A)
-A.Gv.prototype={
+A.Gw.prototype={
 gkF(){return"false"},
 gjw(){return"Parolay\u0131 tekrarlay\u0131n"},
 gmo(){return"Bir resim dosyas\u0131 de\u011fil."},
@@ -690,8 +690,8 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gv,C.aD)})()
-B.dK(b.typeUniverse,JSON.parse('{"Gv":{"aD":[]}}'))
+x(A.Gw,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"Gw":{"aD":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["9cK16hQNYBoH2LtGnDPsYfPT5U8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["2dH4DEWZbsOrvdXxkkh/89AxW3s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_362.part.js.map
