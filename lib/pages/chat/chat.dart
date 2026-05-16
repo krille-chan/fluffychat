@@ -719,10 +719,22 @@ class ChatController extends State<ChatPageWithRoom>
     final files = event.clipboardData?.files;
     if (files == null || files.isEmpty) return;
 
+    final xFilesResult = await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        // Convert one after another seems to be more stable
+        final xFiles = <XFile>[];
+        for (final file in files) {
+          xFiles.add(await webToXFile(file));
+        }
+        return xFiles;
+      },
+    );
+    final xFiles = xFilesResult.result;
+    if (xFiles == null || xFiles.isEmpty) return;
+
     event.preventDefault();
     event.stopPropagation();
-
-    final xFiles = await Future.wait(files.map(webToXFile));
 
     if (!mounted) return;
     showAdaptiveDialog(
