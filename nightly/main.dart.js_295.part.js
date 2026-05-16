@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKr(){return new A.FW(B.de("es"))},
+cKs(){return new A.FW(B.de("es"))},
 FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"A\xf1adir respuesta"},
 goR(){return"Permitir varias respuestas"},
 gnl(){return"La encuesta ha terminado"},
 p8(d){var y=null
-return B.bG(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
+return B.bH(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
 goU(){return"Las respuestas ser\xe1n visibles cuando termine la encuesta"},
 gnw(){return"Contestar en el hilo"},
 p7(d){var y=null
-return B.bG(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return B.bH(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpm(){return"Hilo"},
 goW(){return"Volver al chat pricipal"},
 goD(){return"Guardar cambios"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FW,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))};
-(a=>{a["ZorVjU8gcDp3wvY7WyiLjNqrmZ4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4RHw+GOTB2wyN+R7p3REWWywuIg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

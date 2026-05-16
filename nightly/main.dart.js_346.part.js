@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKP(){return new A.Gj(B.de("nl"))},
+cKQ(){return new A.Gj(B.de("nl"))},
 Gj:function Gj(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"Antwoord optie toevoegen"},
 goR(){return"Meerdere antwoorden toestaan"},
 gnl(){return"Peiling is ge\xebindigd"},
 p8(d){var y=null
-return B.bG(d,y,this.a,y,"\xc9\xe9n stem",""+d+" stemmen",y,y)},
+return B.bH(d,y,this.a,y,"\xc9\xe9n stem",""+d+" stemmen",y,y)},
 goU(){return"Antwoorden zullen zichtbaar zijn wanneer de peiling is ge\xebindigd"},
 gnw(){return"Antwoord in gesprek"},
 p7(d){var y=null
-return B.bG(d,y,this.a,y,"\xc9\xe9n antwoord",""+d+" antwoorden",y,y)},
+return B.bH(d,y,this.a,y,"\xc9\xe9n antwoord",""+d+" antwoorden",y,y)},
 gpm(){return"Gesprek"},
 goW(){return"Terug naar hoofdchat"},
 goD(){return"Wijzigingen opslaan"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gj,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gj":{"aD":[]}}'))};
-(a=>{a["5+9COC0pxkC55r44cJDjY9d/Hzo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Yc482UnVbCjOFyaqxdn2p1wZP5A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_346.part.js.map

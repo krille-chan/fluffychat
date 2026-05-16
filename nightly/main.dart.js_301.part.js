@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKt(){return new A.FY(B.de("eu"))},
+cKu(){return new A.FY(B.de("eu"))},
 FY:function FY(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"Gehitu erantzun-aukera"},
 goR(){return"Baimendu erantzun bat baino gehiago"},
 gnl(){return"Bozketa amaitu da"},
 p8(d){var x=null
-return B.bG(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
+return B.bH(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
 goU(){return"Emaitzak bozketak amaitu duenean egongo dira ikusgai"},
 gnw(){return"Erantzun harian"},
 p7(d){var x=null
-return B.bG(d,x,this.a,x,"Erantzun bat",""+d+" erantzun",x,x)},
+return B.bH(d,x,this.a,x,"Erantzun bat",""+d+" erantzun",x,x)},
 gpm(){return"Haria"},
 goW(){return"Joan txat nagusira"},
 goD(){return"Gorde aldaketak"},
@@ -693,5 +693,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FY,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FY":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["uSxci6LP54qPJ5ow9hansPAoRzk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["k08utpACVfNGodfxVcJo1O7pnnU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map

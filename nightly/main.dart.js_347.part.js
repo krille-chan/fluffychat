@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKQ(){return new A.Gk(B.de("pl"))},
+cKR(){return new A.Gk(B.de("pl"))},
 Gk:function Gk(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"Dodaj opcj\u0119 odpowiedzi"},
 goR(){return"Zezwalaj na wiele odpowiedzi"},
 gnl(){return"Ankieta zosta\u0142a zako\u0144czona"},
 p8(d){var y=""+d
-return B.bG(d,y+" g\u0142osy",this.a,y+" g\u0142os\xf3w",y+" g\u0142os",y+" g\u0142osu",null,null)},
+return B.bH(d,y+" g\u0142osy",this.a,y+" g\u0142os\xf3w",y+" g\u0142os",y+" g\u0142osu",null,null)},
 goU(){return"Wyniki b\u0119d\u0105 widoczne po zako\u0144czeniu ankiety"},
 gnw(){return"Odpowiedz w w\u0105tku"},
 p7(d){var y=""+d,x=y+" odpowiedzi"
-return B.bG(d,x,this.a,x,y+" odpowied\u017a",x,null,null)},
+return B.bH(d,x,this.a,x,y+" odpowied\u017a",x,null,null)},
 gpm(){return"W\u0105tek"},
 goW(){return"Wr\xf3\u0107 do czatu g\u0142\xf3wnego"},
 goD(){return"Zapisz zmiany"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gk,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gk":{"aD":[]}}'))};
-(a=>{a["aFCMP95y/Z+cyzMv4rta443phW0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zpo8+kLqMuxBCZLszWUkOp6gdOM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_347.part.js.map

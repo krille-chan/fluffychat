@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKK(){return new A.Ge(B.de("kab"))},
+cKL(){return new A.Ge(B.de("kab"))},
 Ge:function Ge(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"Rnu tanefrunt n tririt"},
 goR(){return"Sireg aget n tiririyin"},
 gnl(){return"Tafrent tfukk"},
 p8(d){var y=null
-return B.bG(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return B.bH(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goU(){return"Tiririyin ad banent ticki tafrent tfukk"},
 gnw(){return"Err deg udras udiwenni"},
 p7(d){var y=null
-return B.bG(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return B.bH(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpm(){return"Adras udiwenni"},
 goW(){return"U\u0263al \u0263er udiwenni agejdan"},
 goD(){return"Sekles ibeddilen"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ge,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Ge":{"aD":[]}}'))};
-(a=>{a["Gh0XSmxJQJsxiX++yax8A2Zt5+M="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["g+0XQzypG/dtsIjV2n8XegQ5eMs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_340.part.js.map

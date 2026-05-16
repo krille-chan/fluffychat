@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKO(){return new A.Gi(B.de("nb"))},
+cKP(){return new A.Gi(B.de("nb"))},
 Gi:function Gi(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"Legg til svaralternativ"},
 goR(){return"Tillat flere svar"},
 gnl(){return"Avstemningen er avsluttet"},
 p8(d){var y=null
-return B.bG(d,y,this.a,y,"En stemme",""+d+" stemmer",y,y)},
+return B.bH(d,y,this.a,y,"En stemme",""+d+" stemmer",y,y)},
 goU(){return"Svarene vil v\xe6re synlige n\xe5r avstemningen er avsluttet"},
 gnw(){return"Svar i tr\xe5den"},
 p7(d){var y=null
-return B.bG(d,y,this.a,y,"Et svar",""+d+" svar",y,y)},
+return B.bH(d,y,this.a,y,"Et svar",""+d+" svar",y,y)},
 gpm(){return"Tr\xe5d"},
 goW(){return"Tilbake til hovedchatten"},
 goD(){return"Lagre endringer"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gi,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gi":{"aD":[]}}'))};
-(a=>{a["iJeIXUERUP/az2EMp8S7zGeb51o="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["lWcCUf6+85hZAkfwPySmW2xlZt4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_344.part.js.map

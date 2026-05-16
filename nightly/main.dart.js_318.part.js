@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKC(){return new A.G6(B.de("hr"))},
+cKD(){return new A.G6(B.de("hr"))},
 G6:function G6(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"Dodaj opciju za odgovor"},
 goR(){return"Dopusti vi\u0161e odgovora"},
 gnl(){return"Anketa je zavr\u0161ena"},
 p8(d){var y=""+d
-return B.bG(d,y+" glasa",this.a,null,"Jedan glas",y+" glasova",null,null)},
+return B.bH(d,y+" glasa",this.a,null,"Jedan glas",y+" glasova",null,null)},
 goU(){return"Odgovori \u0107e biti vidljivi nakon zavr\u0161etka ankete"},
 gnw(){return"Odgovori u temi"},
 p7(d){var y=""+d+" odgovora"
-return B.bG(d,y,this.a,null,"Jedan odgovor",y,null,null)},
+return B.bH(d,y,this.a,null,"Jedan odgovor",y,null,null)},
 gpm(){return"Tema"},
 goW(){return"Natrag na glavni chat"},
 goD(){return"Spremi promjene"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G6,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G6":{"aD":[]}}'))};
-(a=>{a["fgQlUoMRXURzmqu8jBrKrZdDu3k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BD7ZZQn45RBiMSaBtzJFdsCwEa0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map

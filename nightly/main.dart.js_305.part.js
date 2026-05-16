@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKv(){return new A.G_(B.de("fi"))},
+cKw(){return new A.G_(B.de("fi"))},
 G_:function G_(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"Lis\xe4\xe4 vastausvaihtoehto"},
 goR(){return"Salli useita vastauksia"},
 gnl(){return"Kysely on p\xe4\xe4ttynyt"},
 p8(d){var y=null
-return B.bG(d,y,this.a,y,"One vote",""+d+" \xe4\xe4nt\xe4",y,y)},
+return B.bH(d,y,this.a,y,"One vote",""+d+" \xe4\xe4nt\xe4",y,y)},
 goU(){return"Vastaukset n\xe4kyv\xe4t, kun kysely on p\xe4\xe4ttynyt"},
 gnw(){return"Vastaa ketjussa"},
 p7(d){var y=null
-return B.bG(d,y,this.a,y,"One reply",""+d+" vastausta",y,y)},
+return B.bH(d,y,this.a,y,"One reply",""+d+" vastausta",y,y)},
 gpm(){return"Ketju"},
 goW(){return"Takaisin p\xe4\xe4pikakeskusteluun"},
 goD(){return"Save changes"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G_,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G_":{"aD":[]}}'))};
-(a=>{a["nh5PeLiG8ZzvYnL1aTGrXo3V5qY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["n89nsaDKU4Yqpe497qC18sW3wNY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

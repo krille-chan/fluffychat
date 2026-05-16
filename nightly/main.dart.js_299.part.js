@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKs(){return new A.FX(B.de("et"))},
+cKt(){return new A.FX(B.de("et"))},
 FX:function FX(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"Lisa valikvastus"},
 goR(){return"Luba mitu vastusevalikut"},
 gnl(){return"K\xfcsitlus on l\xf5ppenud"},
 p8(d){var y=null
-return B.bG(d,y,this.a,y,"\xdcks h\xe4\xe4l",""+d+" h\xe4\xe4lt",y,y)},
+return B.bH(d,y,this.a,y,"\xdcks h\xe4\xe4l",""+d+" h\xe4\xe4lt",y,y)},
 goU(){return"Vastused on n\xe4ha k\xfcsitluse l\xf5ppedes"},
 gnw(){return"Vasta jutul\xf5ngas"},
 p7(d){var y=null
-return B.bG(d,y,this.a,y,"\xdcks vastus",""+d+" vastust",y,y)},
+return B.bH(d,y,this.a,y,"\xdcks vastus",""+d+" vastust",y,y)},
 gpm(){return"Jutul\xf5ng"},
 goW(){return"Tagasi p\xf5hivestlusesse"},
 goD(){return"Salvesta muudatused"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FX,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))};
-(a=>{a["n9vmOBDOzG8EPGCRePvR6kU6abc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["YygpzSF+o+NFRqul1jHA/Sa8Zu4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

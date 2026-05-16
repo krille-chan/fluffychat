@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cL2(){return new A.Gw(B.de("th"))},
+cL3(){return new A.Gw(B.de("th"))},
 Gw:function Gw(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"Add answer option"},
 goR(){return"Allow multiple answers"},
 gnl(){return"Poll has been ended"},
 p8(d){var y=null
-return B.bG(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return B.bH(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goU(){return"Answers will be visible when poll has ended"},
 gnw(){return"Reply in thread"},
 p7(d){var y=null
-return B.bG(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return B.bH(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpm(){return"Thread"},
 goW(){return"Back to main chat"},
 goD(){return"Save changes"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gw,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gw":{"aD":[]}}'))};
-(a=>{a["wJ/durXmE40PB31vXEj2qxQ6b8A="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3By79vOjgrU6smOaidTSDH0yu5k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_361.part.js.map

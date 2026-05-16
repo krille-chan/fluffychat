@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cL_(){return new A.Gt(B.de("sv"))},
+cL0(){return new A.Gt(B.de("sv"))},
 Gt:function Gt(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"L\xe4gg till svarsalternativ"},
 goR(){return"Till\xe5t flera svar"},
 gnl(){return"Poll has been ended"},
 p8(d){var y=null
-return B.bG(d,y,this.a,y,"En r\xf6st",""+d+" r\xf6ster",y,y)},
+return B.bH(d,y,this.a,y,"En r\xf6st",""+d+" r\xf6ster",y,y)},
 goU(){return"Answers will be visible when poll has ended"},
 gnw(){return"Svara i tr\xe5d"},
 p7(d){var y=null
-return B.bG(d,y,this.a,y,"Ett svar",""+d+" svar",y,y)},
+return B.bH(d,y,this.a,y,"Ett svar",""+d+" svar",y,y)},
 gpm(){return"Tr\xe5d"},
 goW(){return"Back to main chat"},
 goD(){return"Spara \xe4ndringar"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gt,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gt":{"aD":[]}}'))};
-(a=>{a["Yzbi33V37uFZyVPz3bvvUsAEV3s="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["VIr2tcoCUrwuVKCAyVwzA+ZW6gI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_358.part.js.map

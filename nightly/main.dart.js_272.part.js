@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKl(){return new A.FQ(B.de("cs"))},
+cKm(){return new A.FQ(B.de("cs"))},
 FQ:function FQ(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"P\u0159idat mo\u017enost"},
 goR(){return"Povolit v\xedce odpov\u011bd\xed"},
 gnl(){return"Hlasov\xe1n\xed skon\u010dilo"},
 p8(d){var y=null
-return B.bG(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return B.bH(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goU(){return"Odpov\u011bdi budou viditeln\xe9 jakmile hlasov\xe1n\xed skon\u010d\xed"},
 gnw(){return"Odpov\u011bd\u011bt ve vl\xe1kn\u011b"},
 p7(d){var y=null
-return B.bG(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return B.bH(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpm(){return"Vl\xe1kno"},
 goW(){return"Zp\xe1tky do hlavn\xedho chatu"},
 goD(){return"Ulo\u017eit zm\u011bny"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FQ,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FQ":{"aD":[]}}'))};
-(a=>{a["1ubZxNd5nVmxwf1nTlRYz+nqXhM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["LTw1gteLhL3Si5YHlfCzSjh5Kek="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_272.part.js.map

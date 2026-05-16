@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKz(){return new A.G3(B.de("gl"))},
+cKA(){return new A.G3(B.de("gl"))},
 G3:function G3(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -620,11 +620,11 @@ goO(){return"Engadir opci\xf3n"},
 goR(){return"Permitir varias respostas"},
 gnl(){return"Rematou a enquisa"},
 p8(d){var y=null
-return B.bG(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
+return B.bH(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
 goU(){return"As respostas son visibles ao finalizar a enquisa"},
 gnw(){return"Responder ao f\xedo"},
 p7(d){var y=null
-return B.bG(d,y,this.a,y,"Unha resposta",""+d+" respostas",y,y)},
+return B.bH(d,y,this.a,y,"Unha resposta",""+d+" respostas",y,y)},
 gpm(){return"F\xedo"},
 goW(){return"Volver \xe1 conversa principal"},
 goD(){return"Gardar cambios"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G3,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G3":{"aD":[]}}'))};
-(a=>{a["nCRr2dmbyu9rO9w/A83oQ0rVCPA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["JPUCqJVXDhBe/mZIeVlH53hSLcc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map
