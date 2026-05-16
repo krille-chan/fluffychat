@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKC(){return new A.G8(B.de("id"))},
-G8:function G8(d){this.a=d}}
+cKF(){return new A.G9(B.de("id"))},
+G9:function G9(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[30],A)
-A.G8.prototype={
+A.G9.prototype={
 gkF(){return"tidak"},
 gjw(){return"Ulangi kata sandi"},
 gmo(){return"Bukan berkas gambar."},
@@ -361,7 +361,7 @@ geO(){return"Kenapa kamu ingin melaporkannya?"},
 gom(){return"Hapus cadangan obrolan untuk membuat kunci pemulihan baru?"},
 gon(){return"Dengan alamat ini kamu bisa memulihkan kata sandimu."},
 goo(){return"Tulis pesan\u2026"},
-gdK(){return"Ya"},
+gdL(){return"Ya"},
 goq(){return"Kamu"},
 geb(){return"Kamu tidak berpartisipasi lagi di obrolan ini"},
 got(){return"Kamu telah dicekal dari obrolan ini"},
@@ -399,7 +399,7 @@ go_(){return"Pengguna"},
 gnR(){return"Akses pesan lama"},
 gjW(){return"Simpan kunci ini secara manual dengan memicu dialog pembagian atau papan klip sistem."},
 li(d){return""+d+" file"},
-gdJ(){return"Pengguna"},
+gdK(){return"Pengguna"},
 gia(){return"Kustom"},
 gol(){return"Mengapa pesan ini tidak bisa dibaca?"},
 gmk(){return"Hal ini bisa terjadi jika pesan dikirim sebelum kamu masuk ke akunmu di perangkat ini.\n\nMungkin juga pengirim telah memblokir perangkatmu atau ada yang tidak beres dengan koneksi internet.\n\nApakah kamu bisa membaca pesan pada sesi lain? Maka kamu bisa mentransfer pesan dari sesi tersebut! Buka Pengaturan > Perangkat dan pastikan bahwa perangkat Anda telah ditandatangani secara silang. Ketika kamu membuka ruangan di lain waktu dan kedua sesi berada di latar depan, kunci akan ditransmisikan secara otomatis.\n\nApakah kamu tidak mau kehilangan kunci saat keluar atau berpindah perangkat? Pastikan bahwa kamu telah mengaktifkan cadangan obrolan dalam pengaturan."},
@@ -665,7 +665,7 @@ gq6(){return"Hapus hak moderator"},
 gq2(){return"Hapus hak admin"},
 gq1(){return"Level kekuasaan"},
 gps(){return"Level kekuasaan menentukan apa yang boleh dilakukan seorang anggota di ruangan ini dan biasanya berkisar antara 0 hingga 100."},
-gdI(){return"Pemilik"},
+gdJ(){return"Pemilik"},
 gpG(){return"Buat obrolan baru"},
 gq8(d){return"Atur ulang"},
 gpA(){return"Dukung FluffyChat"},
@@ -690,8 +690,8 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.G8,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G8":{"aD":[]}}'))
+x(A.G9,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G9":{"aD":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["qrEA8ouqtKV6kX7XchgeBr3tAnA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["I3Ik+OePDPpA/xCCtQAtz3cSeKg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_328.part.js.map

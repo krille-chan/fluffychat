@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKw(){return new A.G2(B.de("gl"))},
-G2:function G2(d){this.a=d}}
+cKz(){return new A.G3(B.de("gl"))},
+G3:function G3(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[24],A)
-A.G2.prototype={
+A.G3.prototype={
 gkF(){return"falso"},
 gjw(){return"Repite o contrasinal"},
 gmo(){return"Non \xe9 un ficheiro de imaxe."},
@@ -361,7 +361,7 @@ geO(){return"Por que queres denunciar esto?"},
 gom(){return"Queres eliminar a copia de apoio e crear unha nova chave de recuperaci\xf3n?"},
 gon(){return"Con estos enderezos podes recuperar o contrasinal."},
 goo(){return"Escribe unha mensaxe\u2026"},
-gdK(){return"Si"},
+gdL(){return"Si"},
 goq(){return"Ti"},
 geb(){return"Xa non participas desta conversa"},
 got(){return"Foches vetada nesta conversa"},
@@ -399,7 +399,7 @@ go_(){return"Usuarias"},
 gnR(){return"Desbloquear mensaxes antigas"},
 gjW(){return"Garda esta chave manualmente usando o sistema para compartir do dispositivo ou portapapeis."},
 li(d){return""+d+" ficheiros"},
-gdJ(){return"Usuaria"},
+gdK(){return"Usuaria"},
 gia(){return"Personal"},
 gol(){return"Por que non podo ler esta mensaxe?"},
 gmk(){return"Pode ser que a mensaxe fose enviada antes de que ti accedeses \xe1 t\xfaa conta neste dispositivo.\n\nTam\xe9n \xe9 posible que a remitente non validase o teu dispositivo ou tam\xe9n que algo fallase na conexi\xf3n a internet.\n\nPodes ler a mensaxe noutro dispositivo? Ent\xf3n podes transferila desde el! Vai a Axustes > Dispositivos e comproba que tes t\xf3dolos dispositivos verificados. Ent\xf3n cando abras a sala a pr\xf3xima vez a sincronizaci\xf3n realizarase e as chaves transmitiranse autom\xe1ticamente.\n\nNon desexas perder as chaves cando pechas sesi\xf3n ou cambias de dispositivo? Comproba nos axustes que activaches a copia de apoio das conversas."},
@@ -665,7 +665,7 @@ gq6(){return"Retirar permiso de moderaci\xf3n"},
 gq2(){return"Retirar permiso de administraci\xf3n"},
 gq1(){return"Nivel responsabilidade"},
 gps(){return"Os niveis de responsabilidade definen o que pode facer unha usuaria na sala, normalmente var\xeda de 0 a 100."},
-gdI(){return"Propietaria"},
+gdJ(){return"Propietaria"},
 gpG(){return"Crear nova conversa"},
 gq8(d){return"Restablecer"},
 gpA(){return"Apoia a FluffyChat"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G2,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G2":{"aD":[]}}'))};
-(a=>{a["pDeu/WuLc5MqzIQ59c0XaL20gRc="]=a.current})($__dart_deferred_initializers__);
+y(A.G3,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G3":{"aD":[]}}'))};
+(a=>{a["nCRr2dmbyu9rO9w/A83oQ0rVCPA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

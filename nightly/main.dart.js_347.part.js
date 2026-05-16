@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKN(){return new A.Gj(B.de("pl"))},
-Gj:function Gj(d){this.a=d}}
+cKQ(){return new A.Gk(B.de("pl"))},
+Gk:function Gk(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[41],A)
-A.Gj.prototype={
+A.Gk.prototype={
 gkF(){return"false"},
 gjw(){return"Powt\xf3rz has\u0142o"},
 gmo(){return"To nie jest plik obrazu."},
@@ -361,7 +361,7 @@ geO(){return"Dlaczego chcesz to zg\u0142osi\u0107?"},
 gom(){return"Wymaza\u0107 kopi\u0119 zapasow\u0105 czatu, aby utworzy\u0107 nowy klucz odzyskiwania?"},
 gon(){return"Dzi\u0119ki tym adresom mo\u017cesz odzyska\u0107 swoje has\u0142o."},
 goo(){return"Napisz wiadomo\u015b\u0107\u2026"},
-gdK(){return"Tak"},
+gdL(){return"Tak"},
 goq(){return"Ty"},
 geb(){return"Nie uczestniczysz ju\u017c w tym czacie"},
 got(){return"Zosta\u0142e\u015b/-a\u015b zbanowany/-a w tym czacie"},
@@ -399,7 +399,7 @@ go_(){return"U\u017cytkownicy"},
 gnR(){return"Odblokuj stare wiadomo\u015bci"},
 gjW(){return"Zapisz ten klucz r\u0119cznie, uruchamiaj\u0105c systemowe okno dialogowe udost\u0119pniania lub schowek."},
 li(d){return""+d+" plik\xf3w"},
-gdJ(){return"U\u017cytkownik"},
+gdK(){return"U\u017cytkownik"},
 gia(){return"W\u0142asne"},
 gol(){return"Dlaczego nie mo\u017cna odczyta\u0107 tej wiadomo\u015bci?"},
 gmk(){return"Mo\u017ce si\u0119 to zdarzy\u0107, je\u015bli wiadomo\u015b\u0107 zosta\u0142a wys\u0142ana przed zalogowaniem si\u0119 na to konto na tym urz\u0105dzeniu.\n\nMo\u017cliwe jest r\xf3wnie\u017c, \u017ce nadawca zablokowa\u0142 Twoje urz\u0105dzenie lub co\u015b posz\u0142o nie tak z po\u0142\u0105czeniem internetowym.\n\nJeste\u015b w stanie odczyta\u0107 wiadomo\u015b\u0107 na innej sesji? W takim razie mo\u017cesz przenie\u015b\u0107 z niej wiadomo\u015b\u0107! Wejd\u017a w Ustawienia > Urz\u0105dzenia i upewnij si\u0119, \u017ce Twoje urz\u0105dzenia zweryfikowa\u0142y si\u0119 wzajemnie. Gdy nast\u0119pnym razem otworzysz pok\xf3j i obie sesje b\u0119d\u0105 w\u0142\u0105czone, klucze zostan\u0105 przekazane automatycznie.\n\nNie chcesz straci\u0107 kluczy podczas wylogowania lub prze\u0142\u0105czania urz\u0105dze\u0144? Upewnij si\u0119, \u017ce w ustawieniach masz w\u0142\u0105czon\u0105 kopi\u0119 zapasow\u0105 czatu."},
@@ -665,7 +665,7 @@ gq6(){return"Odbierz uprawnienia moderatora"},
 gq2(){return"Odbierz uprawnienia administratora"},
 gq1(){return"Poziom uprawnie\u0144"},
 gps(){return"Poziomy uprawnie\u0144 okre\u015blaj\u0105, co cz\u0142onek mo\u017ce robi\u0107 w tym pokoju i zazwyczaj mieszcz\u0105 si\u0119 w zakresie od 0 do 100."},
-gdI(){return"W\u0142a\u015bciciel"},
+gdJ(){return"W\u0142a\u015bciciel"},
 gpG(){return"Utw\xf3rz nowy czat"},
 gq8(d){return"Resetuj"},
 gpA(){return"Wesprzyj FluffyChat"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gj,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gj":{"aD":[]}}'))};
-(a=>{a["vmuD8TLx3XqwU7TwZQKogYpGzuQ="]=a.current})($__dart_deferred_initializers__);
+y(A.Gk,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gk":{"aD":[]}}'))};
+(a=>{a["aFCMP95y/Z+cyzMv4rta443phW0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_347.part.js.map

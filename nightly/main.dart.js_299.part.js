@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKp(){return new A.FW(B.de("et"))},
-FW:function FW(d){this.a=d}}
+cKs(){return new A.FX(B.de("et"))},
+FX:function FX(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[17],A)
-A.FW.prototype={
+A.FX.prototype={
 gkF(){return"v\xe4\xe4r"},
 gjw(){return"Korda salas\xf5na"},
 gmo(){return"See pole pildifail."},
@@ -361,7 +361,7 @@ geO(){return"Miks sa soovid sellest teatada?"},
 gom(){return"Kas kustutame sinu vestluste varukoopia ja loome uue taastamiseks m\xf5eldud kr\xfcptov\xf5tme?"},
 gon(){return"Nende e-posti aadresside abil saad taastada oma salas\xf5na."},
 goo(){return"Koosta s\xf5num\u2026"},
-gdK(){return"Jah"},
+gdL(){return"Jah"},
 goq(){return"Sina"},
 geb(){return"Sa enam ei osale selles vestluses"},
 got(){return"Sinule on selles vestluses seatud suhtluskeeld"},
@@ -399,7 +399,7 @@ go_(){return"Kasutajad"},
 gnR(){return"Muuda vanad s\xf5numid loetavaks"},
 gjW(){return"Salvesta see kr\xfcptov\xf5ti kasutades selle s\xfcsteemi jagamisvalikuid v\xf5i l\xf5ikelauda."},
 li(d){return""+d+" faili"},
-gdJ(){return"Kasutaja"},
+gdK(){return"Kasutaja"},
 gia(){return"Kohandatud"},
 gol(){return"Miks see s\xf5num pole loetav?"},
 gmk(){return"See v\xf5ib juhtuda, kui s\xf5num oli saadetud enne, kui siin seadmes oma kontoga sisse logisid.\n\nSamuti v\xf5ib juhtuda siis, kui saatja on lugemises selles seadmes blokeerinud v\xf5i on tekkinud t\xf5rkeid veebi\xfchenduses.\n\nAga m\xf5nes teises seadmes saad seda s\xf5numit lugeda? Siis sa v\xf5id s\xf5numi sealt \xfcle t\xf5sta. Ava Seadistused -> Seadmed ning kontrolli, et k\xf5ik sinu seadmed on omavahel verifitseeritud. Kui avad selle vestluse v\xf5i jututoa ning m\xf5lemad sessioonid on avatud, siis vajalikud kr\xfcptov\xf5tmed saadetakse automaatset.\n\nKas sa soovid v\xe4ltida kr\xfcptov\xf5tmete kadumist v\xe4ljalogimisel ja seadmete vahetusel? Siis palun kontrolli, et seadistuses on kr\xfcptov\xf5tmete varundus sisse l\xfclitatud."},
@@ -665,7 +665,7 @@ gq6(){return"Eemalda moderaatori \xf5igused"},
 gq2(){return"Eemalda peakasutaja \xf5igused"},
 gq1(){return"\xd5iguste tase"},
 gps(){return"\xd5iguste tase on \xfcks v\xf5imalusi kirjeldamaks seda, mida kasutaja saab jututoas teha ning see tavaliselt v\xe4ljendub numbriga vahemikust 0 kuni 100."},
-gdI(){return"Omanik"},
+gdJ(){return"Omanik"},
 gpG(){return"Loo uus vestlus"},
 gq8(d){return"L\xe4htesta"},
 gpA(){return"Toeta FluffyChati"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FW,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))};
-(a=>{a["PxqufJOfR4C6qvVHE1GQIkzMkyc="]=a.current})($__dart_deferred_initializers__);
+y(A.FX,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))};
+(a=>{a["n9vmOBDOzG8EPGCRePvR6kU6abc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

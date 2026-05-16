@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKK(){return new A.Gg(B.de("lv"))},
-Gg:function Gg(d){this.a=d}}
+cKN(){return new A.Gh(B.de("lv"))},
+Gh:function Gh(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[38],A)
-A.Gg.prototype={
+A.Gh.prototype={
 gkF(){return"true"},
 gjw(){return"Atk\u0101rtot paroli"},
 gmo(){return"Nav att\u0113la datne."},
@@ -361,7 +361,7 @@ geO(){return"K\u0101d\u0113\u013c v\u0113lies zi\u0146ot par \u0161o?"},
 gom(){return"Not\u012br\u012bt t\u0113rz\u0113\u0161anu rezerves kopiju, lai izveidotu jaunu atkopes atsl\u0113gu?"},
 gon(){return"Ar \u0161\u012bm adres\u0113m var atjaunot savu paroli."},
 goo(){return"Rakst\u012bt zi\u0146u\u2026"},
-gdK(){return"J\u0101"},
+gdL(){return"J\u0101"},
 goq(){return"Tu"},
 geb(){return"Tu vairs nepiedalies \u0161aj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 got(){return"Tev tika liegta piek\u013cuve \u0161ai t\u0113rz\u0113\u0161anai"},
@@ -399,7 +399,7 @@ go_(){return"Lietot\u0101ji"},
 gnR(){return"Atsl\u0113gt vec\u0101s zi\u0146as"},
 gjW(){return"\u0160o atsl\u0113gu var pa\u0161roc\u012bgi saglab\u0101t ar sist\u0113mas kop\u012bgo\u0161anas dialogloga vai starpliktuves izsauk\u0161anu."},
 li(d){return""+d+" datnes"},
-gdJ(){return"Lietot\u0101js"},
+gdK(){return"Lietot\u0101js"},
 gia(){return"Piel\u0101gots"},
 gol(){return"K\u0101d\u0113\u013c \u0161\u012b zi\u0146a ir nelas\u0101ma?"},
 gmk(){return"T\u0101 var notikt, ja zi\u0146a tika nos\u016bt\u012bta, pirms pieteicies sav\u0101 kont\u0101 \u0161aj\u0101 ier\u012bc\u0113.\n\nIr ar\u012b iesp\u0113jams, ka s\u016bt\u012bt\u0101js noliedza Tavu ier\u012bci vai kaut kas nog\u0101ja greizi ar interneta savienojumu.\n\nVai zi\u0146as ir las\u0101mas cit\u0101 sesij\u0101? Tad Tu vari p\u0101rs\u016bt\u012bt zi\u0146u no t\u0101s. J\u0101dodas uz Iestat\u012bjumi > Ier\u012bces un j\u0101p\u0101rliecin\u0101s, ka ier\u012bces viena otru ir apliecin\u0101ju\u0161as. Kad n\u0101kamreiz atv\u0113rsi istabu un abas sesijas b\u016bs priek\u0161pl\u0101n\u0101, atsl\u0113gas tiks autom\u0101tiski p\u0101rs\u016bt\u012btas.\n\nVai nev\u0113lies zaud\u0113t atsl\u0113gas, kad atsakies vai maini ier\u012bces? J\u0101p\u0101rliecin\u0101s, ka iestat\u012bjumos ir iesp\u0113jota t\u0113rz\u0113\u0161anu rezerves kopija."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdI(){return"Owner"},
+gdJ(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gg,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gg":{"aD":[]}}'))};
-(a=>{a["Vyx/dKcBV71UGkDWyw7aO5tN0iI="]=a.current})($__dart_deferred_initializers__);
+y(A.Gh,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gh":{"aD":[]}}'))};
+(a=>{a["m7emzOkZgsnmsW7yvdyqlKzFk7c="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_343.part.js.map

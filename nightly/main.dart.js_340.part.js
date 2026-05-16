@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKH(){return new A.Gd(B.de("kab"))},
-Gd:function Gd(d){this.a=d}}
+cKK(){return new A.Ge(B.de("kab"))},
+Ge:function Ge(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[35],A)
-A.Gd.prototype={
+A.Ge.prototype={
 gkF(){return"false"},
 gjw(){return"Ales awal n u\u025beddi"},
 gmo(){return"Ma\u010d\u010di d afaylu n tugna."},
@@ -361,7 +361,7 @@ geO(){return"Ay\u0263er teb\u0263i\u1e0d ad temle\u1e0d aya?"},
 gom(){return"Sfe\u1e0d a\u1e25raz-ik\xb7im n udiwenni akken ad d-tesnulfu\u1e0d tasarut tamaynut n tririt?"},
 gon(){return"S tansiwin-agi i tzemre\u1e0d ad terre\u1e0d awal-ik\xb7im n u\u025beddi."},
 goo(){return"Aru izen\u2026"},
-gdK(){return"Ih"},
+gdL(){return"Ih"},
 goq(){return"ke\u010d\u010d\xb7em"},
 geb(){return"Ur mazal ara tettekka\u1e0d deg udiwenni-a"},
 got(){return"Tettwagedle\u1e0d seg udiwenni-agi"},
@@ -399,7 +399,7 @@ go_(){return"Iseqdacen"},
 gnR(){return"Kkes asekke\u1e5b i yiznan iqbu\u1e5ben"},
 gjW(){return"Sekles tasarut-agi s ufus deg udiwenni n be\u1e6d\u1e6du n unagraw ne\u0263 \u0263ef tecfawit."},
 li(d){return""+d+" n yifuyla"},
-gdJ(){return"Aseqdac"},
+gdK(){return"Aseqdac"},
 gia(){return"Yugnen"},
 gol(){return"Acu\u0263er izen-agi ur yettwa\u0263ri ara?"},
 gmk(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Kkes izerfan n unedbal"},
 gq1(){return"Aswir n tezmert"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdI(){return"Amli"},
+gdJ(){return"Amli"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gd,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gd":{"aD":[]}}'))};
-(a=>{a["oWDhFhbE22Xnw7UgmG/0OAo1kzU="]=a.current})($__dart_deferred_initializers__);
+y(A.Ge,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Ge":{"aD":[]}}'))};
+(a=>{a["Gh0XSmxJQJsxiX++yax8A2Zt5+M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_340.part.js.map

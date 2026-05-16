@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKD(){return new A.G9(B.de("ie"))},
-G9:function G9(d){this.a=d}}
+cKG(){return new A.Ga(B.de("ie"))},
+Ga:function Ga(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[31],A)
-A.G9.prototype={
+A.Ga.prototype={
 gkF(){return"false"},
 gjw(){return"Repetir li contrasigne"},
 gmo(){return"Not an image file."},
@@ -361,7 +361,7 @@ geO(){return"Why do you want to report this?"},
 gom(){return"Wipe your chat backup to create a new recovery key?"},
 gon(){return"With these addresses you can recover your password."},
 goo(){return"Write a message\u2026"},
-gdK(){return"Yes"},
+gdL(){return"Yes"},
 goq(){return"Vu"},
 geb(){return"You are no longer participating in this chat"},
 got(){return"You have been banned from this chat"},
@@ -399,7 +399,7 @@ go_(){return"Usatores"},
 gnR(){return"Unlock old messages"},
 gjW(){return"Save this key manually by triggering the system share dialog or clipboard."},
 li(d){return""+d+" files"},
-gdJ(){return"Usator"},
+gdK(){return"Usator"},
 gia(){return"Personalisat"},
 gol(){return"Why is this message unreadable?"},
 gmk(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdI(){return"Owner"},
+gdJ(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G9,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G9":{"aD":[]}}'))};
-(a=>{a["DsHhITPsuwY6QnA0DGZhFUbR/78="]=a.current})($__dart_deferred_initializers__);
+y(A.Ga,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Ga":{"aD":[]}}'))};
+(a=>{a["HDbc0KLvnEdRTw+9XkZ/wrXMl1k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_333.part.js.map

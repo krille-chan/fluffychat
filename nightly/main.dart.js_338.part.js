@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKF(){return new A.Gb(B.de("ja"))},
-Gb:function Gb(d){this.a=d}}
+cKI(){return new A.Gc(B.de("ja"))},
+Gc:function Gc(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[33],A)
-A.Gb.prototype={
+A.Gc.prototype={
 gkF(){return"false"},
 gjw(){return"\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u7e70\u308a\u8fd4\u305d"},
 gmo(){return"\u753b\u50cf\u30d5\u30a1\u30a4\u30eb\u3067\u306f\u3042\u308a\u307e\u305b\u3093\u3002"},
@@ -361,7 +361,7 @@ geO(){return"\u3053\u308c\u3092\u901a\u5831\u3059\u308b\u7406\u7531"},
 gom(){return"\u30c1\u30e3\u30c3\u30c8\u306e\u30d0\u30c3\u30af\u30a2\u30c3\u30d7\u3092\u6d88\u53bb\u3057\u3066\u3001\u65b0\u3057\u3044\u30ea\u30ab\u30d0\u30ea\u30fc\u30ad\u30fc\u3092\u4f5c\u308a\u307e\u3059\u304b\uff1f"},
 gon(){return"\u3053\u308c\u3089\u306e\u30a2\u30c9\u30ec\u30b9\u3092\u4f7f\u7528\u3059\u308b\u3068\u3001\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u56de\u5fa9\u3059\u308b\u3053\u3068\u304c\u3067\u304d\u307e\u3059\u3002"},
 goo(){return"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044\u2026"},
-gdK(){return"\u306f\u3044"},
+gdL(){return"\u306f\u3044"},
 goq(){return"\u3042\u306a\u305f"},
 geb(){return"\u3042\u306a\u305f\u306f\u3082\u3046\u3053\u306e\u30c1\u30e3\u30c3\u30c8\u306e\u53c2\u52a0\u8005\u3067\u306f\u3042\u308a\u307e\u305b\u3093"},
 got(){return"\u30c1\u30e3\u30c3\u30c8\u304b\u3089BAN\u3055\u308c\u3066\u3057\u307e\u3044\u307e\u3057\u305f"},
@@ -399,7 +399,7 @@ go_(){return"\u30e6\u30fc\u30b6\u30fc"},
 gnR(){return"\u53e4\u3044\u30e1\u30c3\u30bb\u30fc\u30b8\u306e\u30ed\u30c3\u30af\u3092\u89e3\u9664\u3059\u308b"},
 gjW(){return"\u3053\u306e\u9375\u3092\u30b7\u30b9\u30c6\u30e0\u306e\u5171\u6709\u30c0\u30a4\u30a2\u30ed\u30b0\u304b\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u304b\u3089\u624b\u52d5\u3067\u4fdd\u5b58\u3057\u3066\u304f\u3060\u3055\u3044\u3002"},
 li(d){return""+d+"\u500b\u306e\u30d5\u30a1\u30a4\u30eb"},
-gdJ(){return"\u30e6\u30fc\u30b6\u30fc"},
+gdK(){return"\u30e6\u30fc\u30b6\u30fc"},
 gia(){return"\u30ab\u30b9\u30bf\u30e0"},
 gol(){return"\u3053\u306e\u30e1\u30c3\u30bb\u30fc\u30b8\u304c\u8aad\u3081\u306a\u3044\u7406\u7531"},
 gmk(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdI(){return"Owner"},
+gdJ(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gb,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gb":{"aD":[]}}'))};
-(a=>{a["+DfratvWWWI6o04Q/b2kkKuFpn4="]=a.current})($__dart_deferred_initializers__);
+y(A.Gc,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gc":{"aD":[]}}'))};
+(a=>{a["u9o8Z+kfugAFl6oqRd1wS5Ib73U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_338.part.js.map

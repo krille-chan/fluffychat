@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKL(){return new A.Gh(B.de("nb"))},
-Gh:function Gh(d){this.a=d}}
+cKO(){return new A.Gi(B.de("nb"))},
+Gi:function Gi(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[39],A)
-A.Gh.prototype={
+A.Gi.prototype={
 gkF(){return"false"},
 gjw(){return"Gjenta passord"},
 gmo(){return"Ikke en bildefil."},
@@ -361,7 +361,7 @@ geO(){return"Hvorfor \xf8nsker du \xe5 rapportere dette?"},
 gom(){return"Vil du slette sikkerhetskopien av chatten din for \xe5 opprette en ny gjenopprettingsn\xf8kkel?"},
 gon(){return"Med disse adressene kan du gjenopprette passordet ditt hvis du trenger det."},
 goo(){return"Skriv en melding \u2026"},
-gdK(){return"Ja"},
+gdL(){return"Ja"},
 goq(){return"Deg"},
 geb(){return"Du deltar ikke lenger i denne sludringen"},
 got(){return"Du har blitt bannlyst fra denne sludringen"},
@@ -399,7 +399,7 @@ go_(){return"Brukere"},
 gnR(){return"L\xe5s opp gamle meldinger"},
 gjW(){return"Lagre denne n\xf8kkelen manuelt ved \xe5 \xe5pne systemets delingsmeny eller kopiere til utklippstavlen."},
 li(d){return""+d+" filer"},
-gdJ(){return"Bruker"},
+gdK(){return"Bruker"},
 gia(){return"Egendefinert"},
 gol(){return"Hvorfor er denne meldingen uleselig?"},
 gmk(){return"Dette kan skje hvis meldingen ble sendt f\xf8r du logget inn p\xe5 kontoen din p\xe5 denne enheten.\n\nDet er ogs\xe5 mulig at senderen har blokkert enheten din, eller at noe gikk galt med internettforbindelsen.\n\nEr du i stand til \xe5 lese meldingen i en annen sesjon? Da kan du overf\xf8re meldingen fra den! G\xe5 til Innstillinger > Enheter og s\xf8rg for at enhetene dine har verifisert hverandre. Neste gang du \xe5pner rommet og begge sesjonene er i forgrunnen, vil n\xf8klene bli overf\xf8rt automatisk.\n\nVil du unng\xe5 \xe5 miste n\xf8klene n\xe5r du logger ut eller bytter enhet? S\xf8rg for at du har aktivert sikkerhetskopiering av chat i innstillingene."},
@@ -665,7 +665,7 @@ gq6(){return"Fjern moderator-rettigheter"},
 gq2(){return"Fjern admin-rettigheter"},
 gq1(){return"Styrkeniv\xe5"},
 gps(){return"Styrkeniv\xe5er definerer hva et medlem har lov til \xe5 gj\xf8re i dette rommet, og varierer vanligvis mellom 0 og 100."},
-gdI(){return"Eier"},
+gdJ(){return"Eier"},
 gpG(){return"Opprett ny chat"},
 gq8(d){return"Nullstill"},
 gpA(){return"St\xf8tt FluffyChat"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gh,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gh":{"aD":[]}}'))};
-(a=>{a["vFKQ7OcdlBxUXmEhUQEi/Eg857w="]=a.current})($__dart_deferred_initializers__);
+y(A.Gi,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gi":{"aD":[]}}'))};
+(a=>{a["iJeIXUERUP/az2EMp8S7zGeb51o="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_344.part.js.map

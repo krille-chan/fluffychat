@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKq(){return new A.FX(B.de("eu"))},
-FX:function FX(d){this.a=d}}
+cKt(){return new A.FY(B.de("eu"))},
+FY:function FY(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[18],A)
-A.FX.prototype={
+A.FY.prototype={
 gkF(){return"false"},
 gjw(){return"Idatzi berriro pasahitza"},
 gmo(){return"Ez da irudi-fitxategia."},
@@ -361,7 +361,7 @@ geO(){return"Zergatik salatu nahi duzu?"},
 gom(){return"Ezabatu txataren babeskopia berreskuratze-gako berria sortzeko?"},
 gon(){return"Helbide hauekin pasahitza berreskuratu dezakezu."},
 goo(){return"Idatzi mezua\u2026"},
-gdK(){return"Bai"},
+gdL(){return"Bai"},
 goq(){return"Zeu"},
 geb(){return"Ez duzu txat honetan parte hartzen honezkero"},
 got(){return"Txat honetan debekua ezarri dizute"},
@@ -399,7 +399,7 @@ go_(){return"Erabiltzaileak"},
 gnR(){return"Desblokeatu mezu zaharrak"},
 gjW(){return"Gorde eskuz gako hau gailuko partekatze-menua edo arbela erabiliz."},
 li(d){return""+d+" fitxategi"},
-gdJ(){return"Erabiltzailea"},
+gdK(){return"Erabiltzailea"},
 gia(){return"Neurrira egindakoa"},
 gol(){return"Zergatik ezin da mezu hau irakurri?"},
 gmk(){return"Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irekiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula."},
@@ -665,7 +665,7 @@ gq6(){return"Kendu moderatzaile eskubideak"},
 gq2(){return"Kendu administratzaile eskubideak"},
 gq1(){return"Botere-maila"},
 gps(){return"Botere-mailek zehazten dute kide batek zer egin dezakeen gela honetan, eta tartea 0tik 100era artekoa izan ohi da."},
-gdI(){return"Jabea"},
+gdJ(){return"Jabea"},
 gpG(){return"Sortu txat berria"},
 gq8(d){return"Berrezarri"},
 gpA(){return"Eman babesa FluffyChat-i"},
@@ -690,8 +690,8 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FX,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))
+x(A.FY,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FY":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["+yT+yKolLJGoKozhf5Zmcx/fdFY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["uSxci6LP54qPJ5ow9hansPAoRzk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map

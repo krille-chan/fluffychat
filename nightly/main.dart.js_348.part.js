@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKR(){return new A.Gm(B.de("ro"))},
-Gm:function Gm(d){this.a=d}}
+cKU(){return new A.Gn(B.de("ro"))},
+Gn:function Gn(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[42],A)
-A.Gm.prototype={
+A.Gn.prototype={
 gkF(){return"false"},
 gjw(){return"Repeta\u021bi parola"},
 gmo(){return"Not an image file."},
@@ -361,7 +361,7 @@ geO(){return"De ce dori\u021bi s\u0103 reporta\u021bi acest con\u021binut?"},
 gom(){return"\u0218terge\u021bi backup-ul vostru de chat s\u0103 crea\u021bi o nou\u0103 cheie de recuperare?"},
 gon(){return"Cu acestea adrese pute\u021bi s\u0103 v\u0103 recupera\u021bi parola."},
 goo(){return"Scrie\u021bi un mesaj\u2026"},
-gdK(){return"Da"},
+gdL(){return"Da"},
 goq(){return"Voi"},
 geb(){return"Nu mai participa\u021bi \xeen acest chat"},
 got(){return"A\u021bi fost interzis din acest chat"},
@@ -399,7 +399,7 @@ go_(){return"Utilizatori"},
 gnR(){return"Debloca\u021bi mesajele vechi"},
 gjW(){return"Activa\u021bi dialogul de partajare sistemului sau folosi\u021bi clipboard-ul s\u0103 salva\u021bi manual aceast\u0103 cheie."},
 li(d){return""+d+" fi\u0219iere"},
-gdJ(){return"Utilizator"},
+gdK(){return"Utilizator"},
 gia(){return"Personalizat"},
 gol(){return"De ce este acest mesaj ilizibil?"},
 gmk(){return"Aceast\u0103 chestie poate s\u0103 se \xeent\xe2mple c\xe2nd mesajul a fost trimis \xeenainte s\u0103 v\u0103 conecta\u021bi contul cu acest dispozitiv.\n\nO alt\u0103 explica\u021bie ar fi dac\u0103 trimi\u021b\u0103torul a blocat dispozitivul vostru sau ceva s-a \xeent\xe2mplat cu conexiunea la internet\n\nPute\u021bi s\u0103 citi\u021bi mesajul \xeen o alt\u0103 se\u0219iune? Atunci pute\u021bi s\u0103 transfera\u021bi mesajul de acolo! Merge\u021bi la Configur\u0103ri > Dispozitive \u0219i verifica\u021bi c\u0103 dispozitivele s-au verificat. C\xe2nd deschide\u021bi camera \xeen viitor \u0219i ambele se\u0219iune sunt \xeen foreground, cheile va fi transmise automat. \n\nDori\u021bi s\u0103 \xee\u021bi p\u0103stra\u021bi cheile c\xe2nd deconecta\u021bi sau schimba\u021bi dispozitive? Fi\u021bi aten\u021bi s\u0103 activa\u021bi backup de chat \xeen configur\u0103ri."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdI(){return"Owner"},
+gdJ(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gm,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gm":{"aD":[]}}'))};
-(a=>{a["1sexpZ+UAFWepqFW9/4IKFQbdn4="]=a.current})($__dart_deferred_initializers__);
+y(A.Gn,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gn":{"aD":[]}}'))};
+(a=>{a["47/0fJSmsw/spcq8uUZVu+L/rao="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_348.part.js.map

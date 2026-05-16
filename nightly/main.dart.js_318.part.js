@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKz(){return new A.G5(B.de("hr"))},
-G5:function G5(d){this.a=d}}
+cKC(){return new A.G6(B.de("hr"))},
+G6:function G6(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[27],A)
-A.G5.prototype={
+A.G6.prototype={
 gkF(){return"true"},
 gjw(){return"Ponovi lozinku"},
 gmo(){return"Nije slikovna datoteka."},
@@ -361,7 +361,7 @@ geO(){return"Za\u0161to \u017eeli\u0161 ovo prijaviti?"},
 gom(){return"Izbrisati sigurnosnu kopiju chata za stvaranje novog sigurnosnog klju\u010da za obnavljanje?"},
 gon(){return"Lozinku mo\u017ee\u0161 obnoviti pomo\u0107u ovih adresa."},
 goo(){return"Napi\u0161i poruku \u2026"},
-gdK(){return"Da"},
+gdL(){return"Da"},
 goq(){return"Ti"},
 geb(){return"Vi\u0161e ne sudjeluje\u0161 u ovom chatu"},
 got(){return"Isklju\u010den/a si iz ovog chata"},
@@ -399,7 +399,7 @@ go_(){return"Korisnici"},
 gnR(){return"Otklju\u010daj stare poruke"},
 gjW(){return"Spremi ovaj klju\u010d ru\u010dno pokretanjem dijaloga za dijeljenje sustava ili me\u0111uspremnika."},
 li(d){return"Broj datoteka: "+d},
-gdJ(){return"Korisnik"},
+gdK(){return"Korisnik"},
 gia(){return"Prilago\u0111eno"},
 gol(){return"Za\u0161to nije mogu\u0107e \u010ditati ovu poruku?"},
 gmk(){return"To se mo\u017ee dogoditi ako je poruka poslana prije prijave na tvoj ra\u010dun na ovom ure\u0111aju.\n\nTako\u0111er je mogu\u0107e da je po\u0161iljatelj blokirao tvoj ure\u0111aj ili je do\u0161lo do gre\u0161ke s internetskom vezom.\n\nMo\u017ee\u0161 li pro\u010ditati poruku na jednoj drugoj sesiji? U tom slu\u010daju mo\u017ee\u0161 prenijeti poruku iz nje! Idi na Postavke > Ure\u0111aji i uvjeri se da su se tvoji ure\u0111aji me\u0111usobno potvrdili. Kada sljede\u0107i put otvori\u0161 sobu i obje sesije su u prednjem planu, klju\u010devi \u0107e se automatski prenijeti.\n\nNe \u017eeli\u0161 izgubiti klju\u010deve kada se odjavi\u0161 ili zamijeni\u0161 ure\u0111aje? Aktiviraj spremanje sigurnosne kopije chata u postavkama."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdI(){return"Owner"},
+gdJ(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G5,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G5":{"aD":[]}}'))};
-(a=>{a["M+YqzwFYNKyieaFwDGyYguIKilk="]=a.current})($__dart_deferred_initializers__);
+y(A.G6,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G6":{"aD":[]}}'))};
+(a=>{a["fgQlUoMRXURzmqu8jBrKrZdDu3k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map

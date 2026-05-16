@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cKO(d){return new A.Bf(B.de(d))},
-cKP(){return new A.Gk(B.de("pt_BR"))},
-cKQ(){return new A.Gl(B.de("pt_PT"))},
-Bf:function Bf(d){this.a=d},
-Gk:function Gk(d){this.a=d},
-Gl:function Gl(d){this.a=d}},C
+cKR(d){return new A.Bg(B.de(d))},
+cKS(){return new A.Gl(B.de("pt_BR"))},
+cKT(){return new A.Gm(B.de("pt_PT"))},
+Bg:function Bg(d){this.a=d},
+Gl:function Gl(d){this.a=d},
+Gm:function Gm(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[57]
-A.Bf.prototype={
+A.Bg.prototype={
 gkF(){return"true"},
 gjw(){return"Repita a senha"},
 gmo(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -365,7 +365,7 @@ geO(){return"Why do you want to report this?"},
 gom(){return"Wipe your chat backup to create a new recovery key?"},
 gon(){return"With these addresses you can recover your password."},
 goo(){return"Write a message\u2026"},
-gdK(){return"Yes"},
+gdL(){return"Yes"},
 goq(){return"You"},
 geb(){return"You are no longer participating in this chat"},
 got(){return"You have been banned from this chat"},
@@ -403,7 +403,7 @@ go_(){return"Utilizadores"},
 gnR(){return"Unlock old messages"},
 gjW(){return"Save this key manually by triggering the system share dialog or clipboard."},
 li(d){return""+d+" files"},
-gdJ(){return"User"},
+gdK(){return"User"},
 gia(){return"Custom"},
 gol(){return"Why is this message unreadable?"},
 gmk(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -669,7 +669,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdI(){return"Owner"},
+gdJ(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -693,7 +693,7 @@ gpP(){return"Hide rooms that are in a space"},
 gq0(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
-A.Gk.prototype={
+A.Gl.prototype={
 gkF(){return"true"},
 gjw(){return"Repita a senha"},
 gmo(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1048,7 +1048,7 @@ geO(){return"Por que quer denunciar isto?"},
 gom(){return"Apagar o backup de conversas para criar uma nova chave de recupera\xe7\xe3o?"},
 gon(){return"Voc\xea pode recuperar a sua senha com estes endere\xe7os."},
 goo(){return"Digite sua mensagem\u2026"},
-gdK(){return"Sim"},
+gdL(){return"Sim"},
 goq(){return"Voc\xea"},
 geb(){return"Voc\xea n\xe3o est\xe1 mais participando desta conversa"},
 got(){return"Voc\xea foi banido desta conversa"},
@@ -1086,7 +1086,7 @@ go_(){return"Usu\xe1rios"},
 gnR(){return"Desbloquear mensagens antigas"},
 gjW(){return"Salvar esta chave manualmente via compartilhamento do sistema ou \xe1rea de transfer\xeancia."},
 li(d){return""+d+" arquivos"},
-gdJ(){return"Usu\xe1rio"},
+gdK(){return"Usu\xe1rio"},
 gia(){return"Personalizado"},
 gol(){return"Por que n\xe3o consigo ler esta mensagem?"},
 gmk(){return"Isto pode ocorrer caso a mensagem tenha sido enviada antes de voc\xea ter se conectado \xe0 sua conta com este dispositivo.\n\nTamb\xe9m \xe9 poss\xedvel que o remetente tenha bloqueado o seu dispositivo ou ocorreu algum problema com a conex\xe3o.\n\nVoc\xea consegue ler as mensagens em outra sess\xe3o? Ent\xe3o, pode transferir as mensagens de l\xe1! V\xe1 em Configura\xe7\xf5es > Dispositivos e confira se os dispositivos verificaram um ao outro. Quando abrir a sala da pr\xf3xima vez e ambas as sess\xf5es estiverem abertas, as chaves ser\xe3o transmitidas automaticamente.\n\nN\xe3o gostaria de perder suas chaves ao desconectar ou trocar de dispositivos? Certifique-se que o backup de conversas esteja ativado nas configura\xe7\xf5es."},
@@ -1330,7 +1330,7 @@ pp(d){return"Vers\xe3o: "+d},
 goQ(){return""},
 gpl(){return""},
 B(d,e){return this.gb5(this).$1(e)}}
-A.Gl.prototype={
+A.Gm.prototype={
 gjw(){return"Repete a palavra-passe"},
 gb5(d){return"Remover"},
 geu(){return"Acerca de"},
@@ -1565,9 +1565,9 @@ eT(d){return d+" enviou um autocolante"},
 fX(d){return d+" enviou um v\xeddeo"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Bf,C.aD)
-w(A.Bf,[A.Gk,A.Gl])})()
-B.dI(b.typeUniverse,JSON.parse('{"Bf":{"aD":[]},"Gk":{"aD":[]},"Gl":{"aD":[]}}'))
+x(A.Bg,C.aD)
+w(A.Bg,[A.Gl,A.Gm])})()
+B.dI(b.typeUniverse,JSON.parse('{"Bg":{"aD":[]},"Gl":{"aD":[]},"Gm":{"aD":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["7tuG1EfScsZHisuV10WM6DOuJOA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["SpENOdOQ6pIzj52Stpcd3MawD5k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

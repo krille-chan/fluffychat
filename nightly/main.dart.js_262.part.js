@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKh(){return new A.FO(B.de("ca"))},
-FO:function FO(d){this.a=d}}
+cKk(){return new A.FP(B.de("ca"))},
+FP:function FP(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[9],A)
-A.FO.prototype={
+A.FP.prototype={
 gkF(){return"true"},
 gjw(){return"Repetiu la contrasenya"},
 gmo(){return"No \xe9s un arxiu d'image."},
@@ -361,7 +361,7 @@ geO(){return"Per qu\xe8 voleu denunciar aix\xf2?"},
 gom(){return"Voleu suprimir la c\xf2pia de seguretat dels xats per a crear una clau de recuperaci\xf3 nova?"},
 gon(){return"Amb aquestes adreces, si ho necessiteu, podeu recuperar la vostra contrasenya."},
 goo(){return"Escriviu un missatge\u2026"},
-gdK(){return"S\xed"},
+gdL(){return"S\xed"},
 goq(){return"V\xf3s"},
 geb(){return"Ja no participeu en aquest xat"},
 got(){return"T'han vetat en aquest xat"},
@@ -399,7 +399,7 @@ go_(){return"Usu\xe0r\xefis"},
 gnR(){return"Desbloqueja els missatges antics"},
 gjW(){return"Per desar aquesta clau manualment, pica l'eina de compartir o copia-la al porta-retalls."},
 li(d){return""+d+" arxius"},
-gdJ(){return"Usu\xe0r\xefi"},
+gdK(){return"Usu\xe0r\xefi"},
 gia(){return"Personalitzat"},
 gol(){return"Per qu\xe8 no es pot llegir aquest missatge?"},
 gmk(){return"Aix\xf2 pot passar si el missatge es va enviar abans que haguessis iniciat sessi\xf3 al teu compte des d'aquest dispositiu.\n\nTamb\xe9 pot ser que l'emissor hagi bloquejat el teu dispositiu o que la connexi\xf3 a internet an\xe9s malament.\n\nQue pots llegir el missatge des d'una altra sessi\xf3? Si \xe9s aix\xed, llavors pots transferir-lo! Ves a Par\xe0metres \u2192 Dispositius i assegura't que els teus dispositius s'ha verificat m\xfatuament. Quan obris la sala la propera vegada i totes dues sessions estiguin executant-se, en primer pla, llavors les claus es trasnsmetran autom\xe0ticament.\n\nVols evitar perdre les claus en tancar la sessi\xf3 o en canviar de dispositiu? Llavors assegura't que has activat la c\xf2pia de seguretat del xat als par\xe0metres."},
@@ -665,7 +665,7 @@ gq6(){return"Treu els drets de moderadori"},
 gq2(){return"Treu els drets d'admin"},
 gq1(){return"Nivell de permisos"},
 gps(){return"Els nivells de permisos defineixen qu\xe8 pot fer uni membre d'aquesta sala, i es defineix per un n\xfamero entre 0 i 100."},
-gdI(){return"Propiet\xe0ri\xef"},
+gdJ(){return"Propiet\xe0ri\xef"},
 gpG(){return"Crea un nou xat"},
 gq8(d){return"Reseteja"},
 gpA(){return"Dona suport a FluffyChat"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FO,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FO":{"aD":[]}}'))};
-(a=>{a["lP9J8is9KQQT5hOxDoU/823klMI="]=a.current})($__dart_deferred_initializers__);
+y(A.FP,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FP":{"aD":[]}}'))};
+(a=>{a["oMNPIi7xL+95WyJGp7ig6YNUfVo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_262.part.js.map
