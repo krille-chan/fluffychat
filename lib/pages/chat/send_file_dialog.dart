@@ -47,7 +47,7 @@ class SendFileDialogState extends State<SendFileDialog> {
     final l10n = L10n.of(context);
 
     showFutureLoadingDialog(
-      context: context,
+      context: widget.outerContext,
       title: l10n.sendingAttachment,
       futureWithProgress: (setProgress) async {
         if (!widget.room.otherPartyCanReceiveMessages) {
