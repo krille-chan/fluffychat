@@ -310,15 +310,6 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   KeyEventResult _customEnterKeyHandling(FocusNode node, KeyEvent evt) {
-    if (evt is KeyDownEvent &&
-        evt.logicalKey == LogicalKeyboardKey.keyV &&
-        (HardwareKeyboard.instance.isControlPressed ||
-            HardwareKeyboard.instance.isMetaPressed) &&
-        !PlatformInfos.isMobile) {
-      _handleClipboardImagePaste();
-      return KeyEventResult.handled;
-    }
-
     if (!HardwareKeyboard.instance.isShiftPressed &&
         evt.logicalKey.keyLabel == 'Enter' &&
         AppSettings.sendOnEnter.value) {
@@ -1447,34 +1438,41 @@ class ChatController extends State<ChatPageWithRoom>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Row(
-      children: [
-        Expanded(child: ChatView(this)),
-        ValueListenableBuilder(
-          valueListenable: _displayChatDetailsColumn,
-          builder: (context, displayChatDetailsColumn, _) =>
-              !FluffyThemes.isThreeColumnMode(context) ||
-                  room.membership != Membership.join ||
-                  !displayChatDetailsColumn
-              ? const SizedBox(height: double.infinity, width: 0)
-              : Container(
-                  width: FluffyThemes.columnWidth,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      left: BorderSide(width: 1, color: theme.dividerColor),
-                    ),
-                  ),
-                  child: ChatDetails(
-                    roomId: roomId,
-                    embeddedCloseButton: IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: toggleDisplayChatDetailsColumn,
-                    ),
-                  ),
-                ),
+    return Actions(
+      actions: <Type, Action<Intent>>{
+        PasteTextIntent: CallbackAction<PasteTextIntent>(
+          onInvoke: (PasteTextIntent intent) => _handleClipboardImagePaste(),
         ),
-      ],
+      },
+      child: Row(
+        children: [
+          Expanded(child: ChatView(this)),
+          ValueListenableBuilder(
+            valueListenable: _displayChatDetailsColumn,
+            builder: (context, displayChatDetailsColumn, _) =>
+                !FluffyThemes.isThreeColumnMode(context) ||
+                    room.membership != Membership.join ||
+                    !displayChatDetailsColumn
+                ? const SizedBox(height: double.infinity, width: 0)
+                : Container(
+                    width: FluffyThemes.columnWidth,
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        left: BorderSide(width: 1, color: theme.dividerColor),
+                      ),
+                    ),
+                    child: ChatDetails(
+                      roomId: roomId,
+                      embeddedCloseButton: IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: toggleDisplayChatDetailsColumn,
+                      ),
+                    ),
+                  ),
+          ),
+        ],
+      ),
     );
   }
 }
