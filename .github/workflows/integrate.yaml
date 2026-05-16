@@ -10,6 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: webiny/action-conventional-commits@v1.4.2
+      - name: Check licenses
+        uses: fsfe/reuse-action@v5
       - run: ./scripts/generate-locale-config.sh
       - run: git diff --exit-code
       - uses: subosito/flutter-action@v2
