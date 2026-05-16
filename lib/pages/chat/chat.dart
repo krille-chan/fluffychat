@@ -17,6 +17,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/start_poll_bottom_sheet.dart';
+import 'package:fluffychat/pages/chat/utils/web_file_to_x_file.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
@@ -42,7 +43,7 @@ import 'package:matrix/matrix.dart';
 import 'package:mime/mime.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
-import 'package:universal_html/html.dart' as web;
+import 'package:universal_html/universal_html.dart' as web;
 
 import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
@@ -712,7 +713,7 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
-  void _handleClipboardFilePasteWeb(web.Event event) {
+  Future<void> _handleClipboardFilePasteWeb(web.Event event) async {
     if (event is! web.ClipboardEvent) return;
 
     final files = event.clipboardData?.files;
@@ -721,19 +722,13 @@ class ChatController extends State<ChatPageWithRoom>
     event.preventDefault();
     event.stopPropagation();
 
+    final xFiles = await Future.wait(files.map(webToXFile));
+
     if (!mounted) return;
     showAdaptiveDialog(
       context: context,
       builder: (c) => SendFileDialog(
-        files: files
-            .map(
-              (file) => XFile(
-                file.relativePath!,
-                name: file.name,
-                mimeType: file.type,
-              ),
-            )
-            .toList(),
+        files: xFiles,
         room: room,
         outerContext: context,
         threadRootEventId: activeThreadId,
