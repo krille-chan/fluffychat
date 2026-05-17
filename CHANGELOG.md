@@ -13,6 +13,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 - feat: hide rooms in spaces add a setting to hide rooms that are in spaces from the main chat list (twoneis)
 - feat: Implement room tags (Christian Kußowski)
 - feat: Persist chat filters (Christian Kußowski)
+- feat: Paste files in chat (ION606)
 - fix: add prepare-web.sh support for both python and go yq versions (Vitalii)
 - fix: Chat view crashes if events list empty (Christian Kußowski)
 - fix: DMs in spaces are displayed as empty chats (Christian Kußowski)
