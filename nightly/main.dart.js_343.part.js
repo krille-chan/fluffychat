@@ -620,11 +620,11 @@ goO(){return"Pievienot atbildes iesp\u0113ju"},
 goR(){return"At\u013caut vair\u0101kas atbildes"},
 gnl(){return"Aptauja ir nosl\u0113gusies"},
 p8(d){var y=""+d
-return B.bH(d,null,this.a,null,y+" balss",y+" balsis",null,y+" balsu")},
+return B.bG(d,null,this.a,null,y+" balss",y+" balsis",null,y+" balsu")},
 goU(){return"Atbildes b\u016bs redzams, kad aptauja nosl\u0113gsies"},
 gnw(){return"Atbild\u0113t pavedien\u0101"},
 p7(d){var y=""+d
-return B.bH(d,null,this.a,null,y+" atbilde",y+" atbildes",null,y+" atbil\u017eu")},
+return B.bG(d,null,this.a,null,y+" atbilde",y+" atbildes",null,y+" atbil\u017eu")},
 gpm(){return"Pavediens"},
 goW(){return"Atgriezties galvenaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 goD(){return"Saglab\u0101t izmai\u0146as"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gi,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gi":{"aD":[]}}'))};
-(a=>{a["zjyBZuYCtSuXd85raD1kKhyhoVI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zRn3/VJ39BN96ptqtDjWCh6+86I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_343.part.js.map

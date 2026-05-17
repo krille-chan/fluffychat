@@ -620,11 +620,11 @@ goO(){return"Tambah opsi jawaban"},
 goR(){return"Izinkan beberapa jawaban"},
 gnl(){return"Polling telah diakhiri"},
 p8(d){var x=null
-return B.bH(d,x,this.a,x,"Satu suara",""+d+" suara",x,x)},
+return B.bG(d,x,this.a,x,"Satu suara",""+d+" suara",x,x)},
 goU(){return"Jawaban akan terlihat saat polling telah diakhiri"},
 gnw(){return"Balas dalam thread"},
 p7(d){var x=null
-return B.bH(d,x,this.a,x,"Satu balasan",""+d+" balasan",x,x)},
+return B.bG(d,x,this.a,x,"Satu balasan",""+d+" balasan",x,x)},
 gpm(){return"Thread"},
 goW(){return"Kembali ke obrolan utama"},
 goD(){return"Simpan perubahan"},
@@ -693,5 +693,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Ga,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Ga":{"aD":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["NhPXy+54ungbG2lKiaNY814Lm04="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["z8vPy1ifojaqSiag9AdVLJCfePU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_328.part.js.map
