@@ -31,7 +31,10 @@ class SpacesNavigationRail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
+    final coloredMode = !FluffyThemes.isColumnMode(context);
+    final theme = Theme.of(context);
     return Material(
+      color: coloredMode ? theme.colorScheme.surfaceContainer : null,
       child: SafeArea(
         child: StreamBuilder(
           key: ValueKey(client.userID.toString()),
