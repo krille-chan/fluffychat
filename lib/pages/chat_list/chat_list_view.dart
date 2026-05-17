@@ -3,6 +3,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
@@ -19,6 +20,9 @@ class ChatListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final oneColumnSpacesMode =
+        !FluffyThemes.isColumnMode(context) &&
+        AppSettings.displayNavigationRail.value;
     return PopScope(
       canPop: !controller.isSearchMode && controller.activeSpaceId == null,
       onPopInvokedWithResult: (pop, _) {
@@ -41,7 +45,6 @@ class ChatListView extends StatelessWidget {
               onGoToChats: controller.clearActiveSpace,
               onGoToSpaceId: controller.setActiveSpace,
             ),
-            Container(color: Theme.of(context).dividerColor, width: 1),
           ],
           Expanded(
             child: GestureDetector(
@@ -49,7 +52,17 @@ class ChatListView extends StatelessWidget {
               excludeFromSemantics: true,
               behavior: HitTestBehavior.translucent,
               child: Scaffold(
-                body: ChatListViewBody(controller),
+                backgroundColor: oneColumnSpacesMode
+                    ? Theme.of(context).colorScheme.surfaceContainer
+                    : null,
+                body: SafeArea(
+                  child: Material(
+                    clipBehavior: Clip.hardEdge,
+                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                    color: Theme.of(context).colorScheme.surface,
+                    child: ChatListViewBody(controller),
+                  ),
+                ),
                 floatingActionButton:
                     !controller.isSearchMode &&
                         controller.activeSpaceId == null &&

@@ -8,6 +8,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/unread_bubble.dart';
@@ -381,11 +382,17 @@ class _SpaceViewState extends State<SpaceView> {
     final isAdmin = room?.canChangeStateEvent(EventTypes.SpaceChild) == true;
     return Scaffold(
       appBar: AppBar(
-        leading: FluffyThemes.isColumnMode(context)
+        leading:
+            FluffyThemes.isColumnMode(context) ||
+                AppSettings.displayNavigationRail.value
             ? null
             : Center(child: CloseButton(onPressed: widget.onBack)),
         automaticallyImplyLeading: false,
-        titleSpacing: FluffyThemes.isColumnMode(context) ? null : 0,
+        titleSpacing:
+            FluffyThemes.isColumnMode(context) ||
+                AppSettings.displayNavigationRail.value
+            ? null
+            : 0,
         title: ListTile(
           contentPadding: EdgeInsets.zero,
           leading: Avatar(

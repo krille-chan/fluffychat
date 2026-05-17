@@ -34,7 +34,7 @@ import '../../config/setting_keys.dart';
 import '../../utils/url_launcher.dart';
 import '../../widgets/matrix.dart';
 
-enum ActiveFilter { allChats, messages, groups, unread, spaces, tag }
+enum ActiveFilter { allChats, spaces, messages, groups, unread, tag }
 
 extension LocalizedActiveFilter on ActiveFilter {
   String toLocalizedString(BuildContext context) {
