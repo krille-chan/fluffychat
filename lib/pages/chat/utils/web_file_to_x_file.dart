@@ -11,19 +11,13 @@ import 'package:universal_html/universal_html.dart' as web;
 
 Future<XFile> webToXFile(web.File file) async {
   final reader = web.FileReader();
-  final completer = Completer<Uint8List>();
-
-  reader.onLoad.listen((_) {
-    completer.complete(reader.result as Uint8List);
-  });
   reader.readAsArrayBuffer(file);
-
-  final bytes = await completer.future;
+  await reader.onLoad.first;
 
   return XFile(
     file.relativePath ?? file.name,
     name: file.name,
     mimeType: file.type,
-    bytes: bytes,
+    bytes: reader.result as Uint8List,
   );
 }

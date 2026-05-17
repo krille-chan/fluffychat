@@ -719,6 +719,9 @@ class ChatController extends State<ChatPageWithRoom>
     final files = event.clipboardData?.files;
     if (files == null || files.isEmpty) return;
 
+    event.preventDefault();
+    event.stopPropagation();
+
     final xFilesResult = await showFutureLoadingDialog(
       context: context,
       future: () async {
@@ -732,9 +735,6 @@ class ChatController extends State<ChatPageWithRoom>
     );
     final xFiles = xFilesResult.result;
     if (xFiles == null || xFiles.isEmpty) return;
-
-    event.preventDefault();
-    event.stopPropagation();
 
     if (!mounted) return;
     showAdaptiveDialog(
