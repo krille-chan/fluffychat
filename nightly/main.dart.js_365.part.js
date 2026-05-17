@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cL5(){return new A.Gz(B.de("uz"))},
-Gz:function Gz(d){this.a=d}}
+cL5(){return new A.GA(B.de("uz"))},
+GA:function GA(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[54],A)
-A.Gz.prototype={
+A.GA.prototype={
 gkF(){return"true"},
 gjw(){return"Parolni takrorlang"},
 gmo(){return"Rasm fayli emas."},
@@ -690,8 +690,8 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gz,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gz":{"aD":[]}}'))
+x(A.GA,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"GA":{"aD":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["EzbMw/I613MYyJfXmX8xLPc9iiA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["f4WPnXcBmVLiitRv5FAbeR8ZZbQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_365.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKi(){return new A.FN(B.de("bn"))},
-FN:function FN(d){this.a=d}}
+cKi(){return new A.FO(B.de("bn"))},
+FO:function FO(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[7],A)
-A.FN.prototype={
+A.FO.prototype={
 gkF(){return"\u09a8\u09be"},
 gjw(){return"\u09aa\u09be\u09b8\u0993\u09df\u09be\u09b0\u09cd\u09a1 \u0986\u09ac\u09be\u09b0 \u09b2\u09bf\u0996\u09cb"},
 gmo(){return"\u0987\u09ae\u09c7\u099c \u09ab\u09be\u0987\u09b2 \u09a8\u09be\u0964"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FN,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FN":{"aD":[]}}'))};
-(a=>{a["Ald8c47t7AU8j/S0+vz1rH+ygjA="]=a.current})($__dart_deferred_initializers__);
+y(A.FO,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FO":{"aD":[]}}'))};
+(a=>{a["i5PcIeeHTnHYO9MpGYew7SSJH4A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_247.part.js.map

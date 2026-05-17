@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKZ(){return new A.Gs(B.de("sr"))},
-Gs:function Gs(d){this.a=d}}
+cKZ(){return new A.Gt(B.de("sr"))},
+Gt:function Gt(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[47],A)
-A.Gs.prototype={
+A.Gt.prototype={
 gkF(){return"false"},
 gjw(){return"Ponovite lozinku"},
 gmo(){return"Not an image file."},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gs,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gs":{"aD":[]}}'))};
-(a=>{a["QVdy1N9dLbT6Mbh+lJJSZYVYLv8="]=a.current})($__dart_deferred_initializers__);
+y(A.Gt,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gt":{"aD":[]}}'))};
+(a=>{a["Q1PzkcqZfZ4FHbpvN9d/iElusgw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_356.part.js.map

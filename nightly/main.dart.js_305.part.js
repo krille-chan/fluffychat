@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKv(){return new A.G_(B.de("fi"))},
-G_:function G_(d){this.a=d}}
+cKv(){return new A.G0(B.de("fi"))},
+G0:function G0(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[20],A)
-A.G_.prototype={
+A.G0.prototype={
 gkF(){return"v\xe4\xe4r\xe4"},
 gjw(){return"Salasana uudelleen"},
 gmo(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G_,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G_":{"aD":[]}}'))};
-(a=>{a["usg8g1mDnBCUmBEVto+ZN3Od1jw="]=a.current})($__dart_deferred_initializers__);
+y(A.G0,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"G0":{"aD":[]}}'))};
+(a=>{a["fYdLqjIYRR2/XKmUN1BTK6ZnZY0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKn(){return new A.FS(B.de("de"))},
-FS:function FS(d){this.a=d}}
+cKn(){return new A.FT(B.de("de"))},
+FT:function FT(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[12],A)
-A.FS.prototype={
+A.FT.prototype={
 gkF(){return"true"},
 gjw(){return"Passwort wiederholen"},
 gmo(){return"Keine Bilddatei."},
@@ -690,8 +690,8 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FS,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FS":{"aD":[]}}'))
+x(A.FT,C.aD)})()
+B.dI(b.typeUniverse,JSON.parse('{"FT":{"aD":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["Qc1NBxBXkkAwMfyEvwcenj6ghUs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["GxOsEyGX2o415AutWWBXf4RyfrA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_285.part.js.map
