@@ -12,6 +12,7 @@ import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:path_provider_foundation/path_provider_foundation.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -117,12 +118,27 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
   );
 }
 
-Future<String> _getDatabasePath(String clientName) async {
-  final databaseDirectory = PlatformInfos.isIOS || PlatformInfos.isMacOS
-      ? await getLibraryDirectory()
-      : await getApplicationSupportDirectory();
+Future<String> _getDatabaseDirectory() async {
+  if (PlatformInfos.isIOS) {
+    final containerPath = await PathProviderFoundation().getContainerPath(
+      appGroupIdentifier: 'group.im.fluffychat.app',
+    );
+    if (containerPath == null) {
+      Logs().w('No container path found for iOS app!');
+      return (await getLibraryDirectory()).path;
+    }
+    return containerPath;
+  }
+  if (PlatformInfos.isMacOS) {
+    return (await getLibraryDirectory()).path;
+  }
+  return (await getApplicationSupportDirectory()).path;
+}
 
-  return join(databaseDirectory.path, '$clientName.sqlite');
+Future<String> _getDatabasePath(String clientName) async {
+  final databaseDirectory = await _getDatabaseDirectory();
+
+  return join(databaseDirectory, '$clientName.sqlite');
 }
 
 Future<void> _migrateLegacyLocation(
@@ -131,9 +147,11 @@ Future<void> _migrateLegacyLocation(
 ) async {
   final oldPath = PlatformInfos.isDesktop
       ? (await getApplicationSupportDirectory()).path
+      : PlatformInfos.isIOS
+      ? (await getLibraryDirectory()).path
       : await getDatabasesPath();
 
-  final oldFilePath = join(oldPath, clientName);
+  final oldFilePath = join(oldPath, '$clientName.sqlite');
   if (oldFilePath == sqlFilePath) return;
 
   final maybeOldFile = File(oldFilePath);

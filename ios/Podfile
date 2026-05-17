@@ -37,6 +37,12 @@ target 'Runner' do
   target 'FluffyChat Share' do
     inherit! :search_paths
   end
+
+  # Add SQLite support to Notification Extension
+  target 'Notification Service Extension' do
+    inherit! :search_paths
+    pod 'FMDB/SQLCipher'
+  end
 end
 
 post_install do |installer|
