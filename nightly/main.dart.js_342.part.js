@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKN(){return new A.Gg(B.de("lt"))},
+cKM(){return new A.Gg(B.de("lt"))},
 Gg:function Gg(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -361,7 +361,7 @@ geO(){return"Kod\u0117l norite apie tai prane\u0161ti?"},
 gom(){return"I\u0161trinti atsargin\u0119 pokalbi\u0173 kopij\u0105, kad sukurti nauj\u0105 atk\u016brimo rakt\u0105?"},
 gon(){return"Naudodami \u0161iuos adresus galite atkurti savo slapta\u017eod\u012f."},
 goo(){return"Ra\u0161yti \u017einut\u0119\u2026"},
-gdL(){return"Taip"},
+gdK(){return"Taip"},
 goq(){return"J\u016bs"},
 geb(){return"J\u016bs nebedalyvaujate \u0161iame pokalbyje"},
 got(){return"Jums buvo u\u017edrausta dalyvauti \u0161iame pokalbyje"},
@@ -399,7 +399,7 @@ go_(){return"Vartotojai"},
 gnR(){return"Atrakinti senas \u017einutes"},
 gjW(){return"\u012era\u0161ykite \u0161\u012f rakt\u0105 rankiniu b\u016bdu, \u012fjung\u0119 sistemos bendrinimo dialogo lang\u0105 arba i\u0161karpin\u0119."},
 li(d){return""+d+" failai"},
-gdK(){return"Vartotojas"},
+gdJ(){return"Vartotojas"},
 gia(){return"Pasirinktinis"},
 gol(){return"Kod\u0117l \u0161i \u017einut\u0117 neperskaitoma?"},
 gmk(){return"Taip gali atsitikti, jei \u017einut\u0117 buvo i\u0161si\u0173sta prie\u0161 prisijungiant prie paskyros \u0161iame prietaise.\n\nTaip pat gali b\u016bti, kad siunt\u0117jas u\u017eblokavo j\u016bs\u0173 prietais\u0105 arba ka\u017ekas sutriko su interneto ry\u0161iu.\n\nAr galite perskaityti \u017einut\u0119 kitoje sesijoje? Tada galite perkelti \u017einut\u0119 i\u0161 jos! Eikite \u012f Nustatymai > Prietaisai ir \u012fsitikinkite, kad j\u016bs\u0173 prietaisai patvirtino vienas kit\u0105. Kai kit\u0105 kart\u0105 atidarysite kambar\u012f ir abi sesijos bus pirmame plane, raktai bus perduoti automati\u0161kai.\n\nNenorite prarasti rakt\u0173 atsijungdami arba keisdami \u012frenginius? \u012esitikinkite, kad nustatymuose \u012fjung\u0117te pokalbi\u0173 atsargin\u0119 kopij\u0105."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdI(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gg,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gg":{"aD":[]}}'))};
-(a=>{a["W5Na9BjGwtyuijBi6svt97BE5nw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Kv/t6vdUBV1G8e9xTMTpnhIAud8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_342.part.js.map

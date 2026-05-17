@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKs(){return new A.FW(B.de("es"))},
+cKr(){return new A.FW(B.de("es"))},
 FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -361,7 +361,7 @@ geO(){return"\xbfPor qu\xe9 quieres denunciar esto?"},
 gom(){return"\xbfLimpiar la copia de seguridad de tu chat para crear una nueva clave de recuperaci\xf3n?"},
 gon(){return"Con esta direcci\xf3n puede recuperar su contrase\xf1a."},
 goo(){return"Escribe un mensaje\u2026"},
-gdL(){return"S\xed"},
+gdK(){return"S\xed"},
 goq(){return"T\xfa"},
 geb(){return"Ya no est\xe1s participando en este chat"},
 got(){return"Has sido vetado de este chat"},
@@ -399,7 +399,7 @@ go_(){return"Usuarios"},
 gnR(){return"Desbloquear mensajes viejos"},
 gjW(){return"Compartir esta clave manualmente usando el di\xe1logo de compartir del sistema o el portapapeles."},
 li(d){return""+d+" archivos"},
-gdK(){return"Usuario"},
+gdJ(){return"Usuario"},
 gia(){return"Personalizado"},
 gol(){return"\xbfPor qu\xe9 no se puede leer este mensaje?"},
 gmk(){return"Esto puede ocurrir si el mensaje se envi\xf3 antes de que entraras en tu cuenta en este dispositivo.\n\nTambi\xe9n puede que el remitente haya bloqueado tu dispositivo o haya fallado algo en la conexi\xf3n a Internet.\n\n\xbfPuedes leer el mensaje en otra sesi\xf3n? Entonces, \xa1puedes transferir el mensaje desde all\xed! Ve a Ajustes > Dispositivos y aseg\xfarate de que tus dispositivos se han verificado mutuamente. Cuando abras la sala la pr\xf3xima vez y ambas sesiones est\xe9n en primer plano, las claves se transmitir\xe1n autom\xe1ticamente.\n\n\xbfNo quieres perder las claves al salir o al cambiar de dispositivo? Aseg\xfarate de que has habilitado la copia de seguridad del chat en los ajustes."},
@@ -665,7 +665,7 @@ gq6(){return"Remover derechos de moderador"},
 gq2(){return"Remover derechos de administrador"},
 gq1(){return"Nivel de Poder"},
 gps(){return"El nivel de poder define el nivel de acciones de un miembro, usualmente esta en el rango entre 0 a 100."},
-gdJ(){return"Due\xf1o"},
+gdI(){return"Due\xf1o"},
 gpG(){return"Crear nuevo chat"},
 gq8(d){return"Resetear"},
 gpA(){return"Apoyar FluffyChat"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FW,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FW":{"aD":[]}}'))};
-(a=>{a["4RHw+GOTB2wyN+R7p3REWWywuIg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["VrE53MYKuBlQ3nNMsgLwBGkjpls="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

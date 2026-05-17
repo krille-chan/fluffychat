@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cL6(){return new A.Gz(B.de("uz"))},
+cL5(){return new A.Gz(B.de("uz"))},
 Gz:function Gz(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -361,7 +361,7 @@ geO(){return"Nima uchun bu haqda xabar bermoqchisiz?"},
 gom(){return"Yangi tiklash kalitini yaratish uchun suhbat zaxirasi tozalansinmi?"},
 gon(){return"Ushbu manzillar yordamida parolingizni tiklashingiz mumkin."},
 goo(){return"Xabar yozish\u2026"},
-gdL(){return"Ha"},
+gdK(){return"Ha"},
 goq(){return"Siz"},
 geb(){return"Siz ortiq bu suhbatda qatnashmayapsiz"},
 got(){return"Bu suhbatdan bloklandingiz"},
@@ -399,7 +399,7 @@ go_(){return"Foydalanuvchilar"},
 gnR(){return"Eski xabarlarni qulfdan chiqaring"},
 gjW(){return"Tizim ulashish dialog oynasi yoki buferni ishga tushirish orqali ushbu kalitni qo\u02bblda saqlang."},
 li(d){return""+d+" fayllar"},
-gdK(){return"Foydalanuvchi"},
+gdJ(){return"Foydalanuvchi"},
 gia(){return"Maxsus"},
 gol(){return"Nima uchun bu xabarni o\u02bbqib bo\u02bblmaydi?"},
 gmk(){return"Bu xabar siz ushbu qurilmada hisobingizga kirishdan oldin yuborilgan bo\u02bblsa sodir bo\u02bblishi mumkin.\n\nShuningdek, jo\u02bbnatuvchi qurilmangizni bloklagan yoki internet ulanishida biron bir muammo yuzaga kelgan bo\u02bblishi mumkin.\n\nXabarni boshqa sessiyada o\u02bbqiy olasizmi? Keyin xabarni undan uzatishingiz mumkin! Sozlamalar > Qurilmalar bo\u02bblimiga o\u02bbting va qurilmalaringiz bir-birini tasdiqlaganligiga ishonch hosil qiling. Keyingi safar xonani ochganingizda va ikkala sessiya ham oldinda bo\u02bblganda, kalitlar avtomatik ravishda uzatiladi.\n\nTizimdan chiqishda yoki qurilmalarni almashtirishda kalitlarni yo\u02bbqotishni xohlamaysizmi? Sozlamalarda suhbatning zaxira nusxasini yoqganingizga ishonch hosil qiling."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdI(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -693,5 +693,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gz,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gz":{"aD":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["I2nrCPP1WrDIgh8gXmVYhz9JVPo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["EzbMw/I613MYyJfXmX8xLPc9iiA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_365.part.js.map

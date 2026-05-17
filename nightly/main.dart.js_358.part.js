@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cL0(){return new A.Gt(B.de("sv"))},
+cL_(){return new A.Gt(B.de("sv"))},
 Gt:function Gt(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -361,7 +361,7 @@ geO(){return"Varf\xf6r vill du rapportera detta?"},
 gom(){return"Radera din chatt-backup f\xf6r att skapa en ny \xe5terst\xe4llningsnyckel?"},
 gon(){return"Med dessa addresser kan du \xe5terst\xe4lla ditt l\xf6senord."},
 goo(){return"Skriv ett meddelande\u2026"},
-gdL(){return"Ja"},
+gdK(){return"Ja"},
 goq(){return"Du"},
 geb(){return"Du deltar inte l\xe4ngre i denna chatt"},
 got(){return"Du har blivit bannad fr\xe5n denna chatt"},
@@ -399,7 +399,7 @@ go_(){return"Anv\xe4ndare"},
 gnR(){return"L\xe5s upp \xe4ldre meddelanden"},
 gjW(){return"Spara nyckeln manuellt genom att aktivera dela-funktionen eller urklippshanteraren p\xe5 enheten."},
 li(d){return""+d+" filer"},
-gdK(){return"Anv\xe4ndare"},
+gdJ(){return"Anv\xe4ndare"},
 gia(){return"Anpassad"},
 gol(){return"Varf\xf6r kan inte detta meddelande l\xe4sas?"},
 gmk(){return"Detta kan h\xe4nda om meddelandet skickades innan du loggade in p\xe5 ditt konto i den h\xe4r enheten.\n\nDet kan ocks\xe5 vara s\xe5 att avs\xe4ndaren har blockerat din enhet eller att n\xe5got gick fel med internetanslutningen.\n\nKan du l\xe4sa meddelandet i en annan session? I s\xe5dana fall kan du \xf6verf\xf6ra meddelandet fr\xe5n den sessionen! G\xe5 till Inst\xe4llningar > Enhet och s\xe4kerst\xe4ll att dina enheter har verifierat varandra. N\xe4r du \xf6ppnar rummet n\xe4sta g\xe5ng och b\xe5da sessionerna \xe4r i f\xf6rgrunden, s\xe5 kommer nycklarna att \xf6verf\xf6ras automatiskt.\n\nVill du inte f\xf6rlora nycklarna vid utloggning eller n\xe4r du byter enhet? S\xe4kerst\xe4ll att du har aktiverat s\xe4kerhetskopiering f\xf6r chatten i inst\xe4llningarna."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdI(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gt,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gt":{"aD":[]}}'))};
-(a=>{a["VIr2tcoCUrwuVKCAyVwzA+ZW6gI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["IpaKUQ/qt9ajPZ0jks2KzNmij+c="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_358.part.js.map

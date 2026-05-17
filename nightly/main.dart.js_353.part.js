@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKX(){return new A.Gp(B.de("sk"))},
+cKW(){return new A.Gp(B.de("sk"))},
 Gp:function Gp(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -361,7 +361,7 @@ geO(){return"Why do you want to report this?"},
 gom(){return"Wipe your chat backup to create a new recovery key?"},
 gon(){return"With these addresses you can recover your password."},
 goo(){return"Nap\xedsa\u0165 spr\xe1vu\u2026"},
-gdL(){return"\xc1no"},
+gdK(){return"\xc1no"},
 goq(){return"Vy"},
 geb(){return"U\u017e sa nez\xfa\u010dast\u0148ujete tohto chatu"},
 got(){return"M\xe1te zablokovan\xfd pr\xedstup k tomuto chatu"},
@@ -399,7 +399,7 @@ go_(){return"Users"},
 gnR(){return"Unlock old messages"},
 gjW(){return"Save this key manually by triggering the system share dialog or clipboard."},
 li(d){return""+d+" files"},
-gdK(){return"User"},
+gdJ(){return"User"},
 gia(){return"Custom"},
 gol(){return"Why is this message unreadable?"},
 gmk(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdI(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gp,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gp":{"aD":[]}}'))};
-(a=>{a["Wohm1LToNwO/zhehqt1dohB+a3A="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ZI2I7QqxVDxX5jUjcxIAsJxbcg4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_353.part.js.map

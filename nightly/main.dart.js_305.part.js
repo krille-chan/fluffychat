@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKw(){return new A.G_(B.de("fi"))},
+cKv(){return new A.G_(B.de("fi"))},
 G_:function G_(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -361,7 +361,7 @@ geO(){return"Miksi haluat ilmoittaa t\xe4m\xe4n?"},
 gom(){return"Pyyhi keskusteluvarmuuskopio luodaksesi uuden palautusavaimen?"},
 gon(){return"N\xe4ill\xe4 osoitteilla voit palauttaa salasanasi."},
 goo(){return"Kirjoita viesti\u2026"},
-gdL(){return"Kyll\xe4"},
+gdK(){return"Kyll\xe4"},
 goq(){return"Sin\xe4"},
 geb(){return"Et en\xe4\xe4 osallistu t\xe4h\xe4n keskusteluun"},
 got(){return"Sinulle on annettu porttikielto t\xe4h\xe4n keskusteluun"},
@@ -399,7 +399,7 @@ go_(){return"K\xe4ytt\xe4j\xe4t"},
 gnR(){return"Pura vanhojen viestien salaus"},
 gjW(){return"Tallenna t\xe4m\xe4 avain manuaalisesti k\xe4ytt\xe4en j\xe4rjestelm\xe4n jakodialogia tai leikep\xf6yt\xe4\xe4."},
 li(d){return""+d+" tiedostoa"},
-gdK(){return"K\xe4ytt\xe4j\xe4"},
+gdJ(){return"K\xe4ytt\xe4j\xe4"},
 gia(){return"Mukautettu"},
 gol(){return"Miksei t\xe4t\xe4 viesti\xe4 voida lukea?"},
 gmk(){return"T\xe4m\xe4 voi tapahtua mik\xe4li viesti l\xe4hetettiin ennen sis\xe4\xe4nkirjautumistasi t\xe4lle laitteelle.\n\nOn my\xf6s mahdollista, ett\xe4 l\xe4hett\xe4j\xe4 on est\xe4nyt t\xe4m\xe4n laitteen tai jokin meni pieleen verkkoyhteyden kanssa.\n\nPystytk\xf6 lukemaan viestin toisella istunnolla? Siin\xe4 tapauksessa voit siirt\xe4\xe4 viestin silt\xe4! Mene Asetukset > Laitteet ja varmista, ett\xe4 laitteesi ovat varmistaneet toisensa. Seuraavankerran avatessasi huoneen ja molempien istuntojen ollessa etualalla, avaimet siirret\xe4\xe4n automaattisesti.\n\nHaluatko varmistaa ettet menet\xe4 avaimia uloskirjautuessa tai laitteita vaihtaessa? Varmista avainvarmuuskopion k\xe4yt\xf6ss\xe4olo asetuksista."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdI(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G_,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G_":{"aD":[]}}'))};
-(a=>{a["n89nsaDKU4Yqpe497qC18sW3wNY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["usg8g1mDnBCUmBEVto+ZN3Od1jw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

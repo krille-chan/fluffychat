@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKE(){return new A.G7(B.de("hu"))},
+cKD(){return new A.G7(B.de("hu"))},
 G7:function G7(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -361,7 +361,7 @@ geO(){return"Mi\xe9rt k\xedv\xe1nja ezt bejelenteni?"},
 gom(){return"Le k\xedv\xe1nja t\xf6r\xf6lni a chat ment\xe9s\xe9t, hogy l\xe9trehozhasson egy \xfaj vissza\xe1ll\xedt\xe1si kulcsot?"},
 gon(){return"Ezekkel a c\xedmekkel vissza tudja \xe1ll\xedtani a jelszav\xe1t."},
 goo(){return"\xcdrjon egy \xfczenetet\u2026"},
-gdL(){return"Igen"},
+gdK(){return"Igen"},
 goq(){return"\xd6n"},
 geb(){return"Imm\xe1ron nem vesz r\xe9szt ebben a cseveg\xe9sben"},
 got(){return"Kitiltott\xe1k ebb\u0151l a cseveg\xe9sb\u0151l"},
@@ -399,7 +399,7 @@ go_(){return"Felhaszn\xe1l\xf3k"},
 gnR(){return"R\xe9gi \xfczenetek felold\xe1sa"},
 gjW(){return"A kulcs manu\xe1lis ment\xe9se rendszer megoszt\xe1s vagy v\xe1g\xf3lap m\xe1sol\xe1s seg\xedts\xe9g\xe9vel."},
 li(d){return""+d+" f\xe1jl"},
-gdK(){return"Felhaszn\xe1l\xf3"},
+gdJ(){return"Felhaszn\xe1l\xf3"},
 gia(){return"Egyedi"},
 gol(){return"Mi\xe9rt olvashatatlan ez az \xfczenet?"},
 gmk(){return"Akkor fordulhat el\u0151, ha az \xfczenet az eszk\xf6zre val\xf3 bejelentkez\xe9s el\u0151tt ker\xfclt k\xfcld\xe9sre.\n\nAz is elk\xe9pzelhet\u0151, hogy a k\xfcld\u0151 blokkolta az eszk\xf6z\xe9t, vagy valami probl\xe9ma l\xe9pett fel az internet kapcsolatban.\n\nM\xe1s helyen l\xe1tja az \xfczenetet? Akkor \xe1t tudja m\xe1solni ide is! Menjen a Be\xe1ll\xedt\xe1sok > Eszk\xf6z\xf6k r\xe9szbe, \xe9s gy\u0151z\u0151dj\xf6n meg r\xf3la, hogy az eszk\xf6zei meger\u0151s\xedtett\xe9k egym\xe1st. Legk\xf6zelebb amikor ezt a szob\xe1t megnyitja, \xe9s mind a k\xe9t kliens az el\u0151t\xe9rben van, akkor szikroniz\xe1l\xf3dni fognak.\n\nNem akarja elvesz\xedteni a kulcsokat amikor kijelentkezik, vagy eszk\xf6zt cser\xe9l? Gy\u0151z\u0151dj\xf6n meg r\xf3la, hogy bekapcsolta a chat ment\xe9st a be\xe1ll\xedt\xe1sokban."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdI(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G7,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G7":{"aD":[]}}'))};
-(a=>{a["MKs8tmhgZ4vaBWtRc5+Gxfy4D54="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BLnojS5+DDEAbosKvaCIp189ufA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_325.part.js.map

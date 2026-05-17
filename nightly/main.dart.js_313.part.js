@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKA(){return new A.G3(B.de("gl"))},
+cKz(){return new A.G3(B.de("gl"))},
 G3:function G3(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -361,7 +361,7 @@ geO(){return"Por que queres denunciar esto?"},
 gom(){return"Queres eliminar a copia de apoio e crear unha nova chave de recuperaci\xf3n?"},
 gon(){return"Con estos enderezos podes recuperar o contrasinal."},
 goo(){return"Escribe unha mensaxe\u2026"},
-gdL(){return"Si"},
+gdK(){return"Si"},
 goq(){return"Ti"},
 geb(){return"Xa non participas desta conversa"},
 got(){return"Foches vetada nesta conversa"},
@@ -399,7 +399,7 @@ go_(){return"Usuarias"},
 gnR(){return"Desbloquear mensaxes antigas"},
 gjW(){return"Garda esta chave manualmente usando o sistema para compartir do dispositivo ou portapapeis."},
 li(d){return""+d+" ficheiros"},
-gdK(){return"Usuaria"},
+gdJ(){return"Usuaria"},
 gia(){return"Personal"},
 gol(){return"Por que non podo ler esta mensaxe?"},
 gmk(){return"Pode ser que a mensaxe fose enviada antes de que ti accedeses \xe1 t\xfaa conta neste dispositivo.\n\nTam\xe9n \xe9 posible que a remitente non validase o teu dispositivo ou tam\xe9n que algo fallase na conexi\xf3n a internet.\n\nPodes ler a mensaxe noutro dispositivo? Ent\xf3n podes transferila desde el! Vai a Axustes > Dispositivos e comproba que tes t\xf3dolos dispositivos verificados. Ent\xf3n cando abras a sala a pr\xf3xima vez a sincronizaci\xf3n realizarase e as chaves transmitiranse autom\xe1ticamente.\n\nNon desexas perder as chaves cando pechas sesi\xf3n ou cambias de dispositivo? Comproba nos axustes que activaches a copia de apoio das conversas."},
@@ -665,7 +665,7 @@ gq6(){return"Retirar permiso de moderaci\xf3n"},
 gq2(){return"Retirar permiso de administraci\xf3n"},
 gq1(){return"Nivel responsabilidade"},
 gps(){return"Os niveis de responsabilidade definen o que pode facer unha usuaria na sala, normalmente var\xeda de 0 a 100."},
-gdJ(){return"Propietaria"},
+gdI(){return"Propietaria"},
 gpG(){return"Crear nova conversa"},
 gq8(d){return"Restablecer"},
 gpA(){return"Apoia a FluffyChat"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G3,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G3":{"aD":[]}}'))};
-(a=>{a["JPUCqJVXDhBe/mZIeVlH53hSLcc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["5ohKfmv9XAmrCJmWSxHnM54fSsM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

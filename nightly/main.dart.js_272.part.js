@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKm(){return new A.FQ(B.de("cs"))},
+cKl(){return new A.FQ(B.de("cs"))},
 FQ:function FQ(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -361,7 +361,7 @@ geO(){return"Pro\u010d to chcete nahl\xe1sit?"},
 gom(){return"Chcete vymazat z\xe1lohu chatu a vytvo\u0159it nov\xfd bezpe\u010dnostn\xed kl\xed\u010d?"},
 gon(){return"S t\u011bmito adresami m\u016f\u017eete obnovit sv\xe9 heslo."},
 goo(){return"Napi\u0161te zpr\xe1vu\u2026"},
-gdL(){return"Ano"},
+gdK(){return"Ano"},
 goq(){return"Vy"},
 geb(){return"Tohoto chatu se nad\xe1le ne\xfa\u010dastn\xedte"},
 got(){return"Byl v\xe1m zablokov\xe1n p\u0159\xedstup k tomuto chatu"},
@@ -399,7 +399,7 @@ go_(){return"U\u017eivatel\xe9"},
 gnR(){return"Odemknout star\xe9 zpr\xe1vy"},
 gjW(){return"Ulo\u017ete tento kl\xed\u010d manu\xe1ln\u011b pomoc\xed syst\xe9mov\xe9ho dialogu sd\xedlen\xed nebo zkop\xedrov\xe1n\xedm do schr\xe1nky."},
 li(d){return""+d+" soubor\u016f"},
-gdK(){return"U\u017eivatel"},
+gdJ(){return"U\u017eivatel"},
 gia(){return"Vlastn\xed"},
 gol(){return"Pro\u010d nelze p\u0159e\u010d\xedst tuto zpr\xe1vu?"},
 gmk(){return"K tomuto m\u016f\u017ee doj\xedt, pokud byla zpr\xe1va odesl\xe1na p\u0159ed p\u0159ihl\xe1\u0161en\xedm k \xfa\u010dtu v tomto za\u0159\xedzen\xed.\n\nJe tak\xe9 mo\u017en\xe9, \u017ee odes\xedlatel zablokoval va\u0161e za\u0159\xedzen\xed nebo se n\u011bco pokazilo s internetov\xfdm p\u0159ipojen\xedm.\n\nJste schopni si zpr\xe1vu p\u0159e\u010d\xedst v jin\xe9 relaci? Pak m\u016f\u017eete zpr\xe1vu p\u0159en\xe9st z n\u011bj! P\u0159ejd\u011bte do Nastaven\xed > Za\u0159\xedzen\xed a zkontrolujte, zda se Va\u0161e za\u0159\xedzen\xed vz\xe1jemn\u011b ov\u011b\u0159ila. P\u0159i p\u0159\xed\u0161t\xedm otev\u0159en\xed m\xedstnosti, kdy budou ob\u011b relace v pop\u0159ed\xed, se kl\xed\u010de p\u0159enesou automaticky.\n\nNechcete kl\xed\u010de ztratit p\u0159i odhla\u0161ov\xe1n\xed nebo p\u0159ep\xedn\xe1n\xed za\u0159\xedzen\xed? Ujist\u011bte se, \u017ee jste v nastaven\xedch povolili z\xe1lohov\xe1n\xed konverzac\xed."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdI(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FQ,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FQ":{"aD":[]}}'))};
-(a=>{a["LTw1gteLhL3Si5YHlfCzSjh5Kek="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["O1Hu40/pct82O1sqa6BTQCHyUYQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_272.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKy(){return new A.G1(B.de("fr"))},
+cKx(){return new A.G1(B.de("fr"))},
 G1:function G1(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -361,7 +361,7 @@ geO(){return"Pourquoi voulez-vous le signaler ?"},
 gom(){return"Effacer la sauvegarde de votre discussion pour cr\xe9er une nouvelle cl\xe9 de r\xe9cup\xe9ration ?"},
 gon(){return"Gr\xe2ce \xe0 ces adresses, vous pouvez r\xe9cup\xe9rer votre mot de passe si vous en avez besoin."},
 goo(){return"\xc9crivez un message\u2026"},
-gdL(){return"Oui"},
+gdK(){return"Oui"},
 goq(){return"Vous"},
 geb(){return"Vous ne participez plus \xe0 cette discussion"},
 got(){return"Vous avez \xe9t\xe9 banni\xb7e de cette discussion"},
@@ -399,7 +399,7 @@ go_(){return"Utilisateurs/trices"},
 gnR(){return"D\xe9verrouiller les anciens messages"},
 gjW(){return"Enregistrer cette cl\xe9 manuellement en d\xe9clenchant la bo\xeete de dialogue de partage du syst\xe8me ou le presse-papiers."},
 li(d){return""+d+" fichiers"},
-gdK(){return"Utilisateur/trice"},
+gdJ(){return"Utilisateur/trice"},
 gia(){return"Personnalis\xe9"},
 gol(){return"Pourquoi ce message est-il illisible ?"},
 gmk(){return"Cela peut se produire si le message a \xe9t\xe9 envoy\xe9 avant que vous ne vous soyez connect\xe9 \xe0 votre compte sur cet appareil.\n\nIl est \xe9galement possible que l'exp\xe9diteur ait bloqu\xe9 votre appareil ou qu'un probl\xe8me de connexion Internet se soit produit.\n\n\xcates-vous capable de lire le message sur une autre session ? Vous pouvez alors transf\xe9rer le message \xe0 partir de celle-ci ! Allez dans Param\xe8tres > Appareils et assurez-vous que vos appareils se sont v\xe9rifi\xe9s mutuellement. Lorsque vous ouvrirez le salon la fois suivante et que les deux sessions seront au premier plan, les cl\xe9s seront transmises automatiquement.\n\nVous ne voulez pas perdre les cl\xe9s en vous d\xe9connectant ou en changeant d'appareil ? Assurez-vous que vous avez activ\xe9 la sauvegarde de la discussion dans les param\xe8tres."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdI(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.G1,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G1":{"aD":[]}}'))};
-(a=>{a["fqmEJu3Cp7uRw+087MLuYUSTdNY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3w3FVDXS5HcpJHTYK4iinFA6liA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map

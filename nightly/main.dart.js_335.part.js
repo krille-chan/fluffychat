@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKI(){return new A.Gb(B.de("it"))},
+cKH(){return new A.Gb(B.de("it"))},
 Gb:function Gb(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -361,7 +361,7 @@ geO(){return"Perch\xe9 vuoi segnalarlo?"},
 gom(){return"Cancellare il backup della discussione per creare una nuova chiave di ripristino?"},
 gon(){return"Con questi indirizzi puoi recuperare la tua password se necessario."},
 goo(){return"Scrivi un messaggio\u2026"},
-gdL(){return"S\xec"},
+gdK(){return"S\xec"},
 goq(){return"Tu"},
 geb(){return"Non stai pi\xf9 partecipando a questa chat"},
 got(){return"Sei stato/a bandito/a da questa chat"},
@@ -399,7 +399,7 @@ go_(){return"Utenti"},
 gnR(){return"Sblocca i vecchi messaggi"},
 gjW(){return"Salva questa chiave manualmente attivando la finestra di condivisione o gli appunti."},
 li(d){return""+d+" file"},
-gdK(){return"Utente"},
+gdJ(){return"Utente"},
 gia(){return"Personalizzato"},
 gol(){return"Perch\xe9 questo messaggio \xe8 illeggibile?"},
 gmk(){return"Questo pu\xf2 accadere se il messaggio \xe8 stato inviato prima che hai fatto l'accesso in questo dispositivo.\n\n\xc8 anche possibile che il mittente abbia bloccato il tuo dispositivo o che qualcosa sia andato storto con la tua connessione ad internet.\n\nSei in grado di leggere il messaggio su altre sessioni? Allora puoi trasferire il messaggio da l\xec! Vai su Impostazioni > Dispositivi e verifica che i tuoi dispositivi siano verificati l'un l'altro. Quando aprirai la stanza la prossima volta ed entrambe le sessioni sono in primo piano, le chiavi saranno trasmesse automaticamente.\n\nNon vuoi perdere le chiavi quando ti disconnetti o cambi dispositivo? Assicurati di aver attivato il backup delle chat nelle impostazioni."},
@@ -665,7 +665,7 @@ gq6(){return"Remove moderator rights"},
 gq2(){return"Remove admin rights"},
 gq1(){return"Power level"},
 gps(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdI(){return"Owner"},
 gpG(){return"Create new chat"},
 gq8(d){return"Reset"},
 gpA(){return"Support FluffyChat"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gb,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gb":{"aD":[]}}'))};
-(a=>{a["Wsq2mFgoJEkglSv74UurXhGrw1M="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/W4SzhWnj3CRrVkR3zo5tPHIZHk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_335.part.js.map
