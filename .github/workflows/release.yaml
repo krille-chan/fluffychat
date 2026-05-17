@@ -22,7 +22,7 @@ jobs:
         with:
           flutter-version-file: .tool_versions.yaml
           cache: true
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - run: flutter pub get
       - name: Prepare web
@@ -87,7 +87,7 @@ jobs:
           echo '${{secrets.GOOGLE_SERVICES_JSON}}' | base64 -d > android/app/google-services.json
           ./scripts/add-firebase-messaging.sh
       - uses: ./.github/actions/free_up_space
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
@@ -120,7 +120,7 @@ jobs:
         run: |
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
           ./flutter/bin/flutter doctor
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: ./flutter/bin/flutter pub get
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
       - name: Create archive
@@ -148,7 +148,7 @@ jobs:
         with:
           ruby-version: '3.3'
       - uses: ./.github/actions/free_up_space
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - name: Install Fastlane
         working-directory: android
         run: gem install fastlane -NV

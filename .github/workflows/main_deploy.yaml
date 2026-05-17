@@ -18,7 +18,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version-file: .tool_versions.yaml
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - name: Prepare web
         run: ./scripts/prepare-web.sh
@@ -48,7 +48,7 @@ jobs:
         with:
           ruby-version: '3.3'
       - uses: ./.github/actions/free_up_space
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions-rust-lang/setup-rust-toolchain@v1
       - name: Install Fastlane
         run: gem install fastlane -NV
       - name: Add Firebase Messaging
