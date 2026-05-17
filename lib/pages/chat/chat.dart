@@ -716,8 +716,15 @@ class ChatController extends State<ChatPageWithRoom>
   Future<void> _handleClipboardFilePasteWeb(web.Event event) async {
     if (event is! web.ClipboardEvent) return;
 
-    final files = event.clipboardData?.files;
-    if (files == null || files.isEmpty) return;
+    final clipboardFiles = event.clipboardData?.files;
+    final length = clipboardFiles?.length ?? 0;
+    if (clipboardFiles == null || length < 1) return;
+
+    // Browser will clear clipboardData when we await!
+    // We MUST extract the files synchronously first.
+    final localFiles = clipboardFiles.toList();
+
+    if (localFiles.isEmpty) return;
 
     event.preventDefault();
     event.stopPropagation();
@@ -727,7 +734,7 @@ class ChatController extends State<ChatPageWithRoom>
       future: () async {
         // Convert one after another seems to be more stable
         final xFiles = <XFile>[];
-        for (final file in files) {
+        for (final file in localFiles) {
           xFiles.add(await webToXFile(file));
         }
         return xFiles;
