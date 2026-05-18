@@ -64,11 +64,14 @@ class StatusMessageList extends StatelessWidget {
                 return const SizedBox.shrink();
               }
 
-              // Make sure own entry is at the first position. Sort by last
-              // active instead.
               presences.sort((a, b) {
+                // Make sure own entry is at the first position:
                 if (a.userid == client.userID) return -1;
                 if (b.userid == client.userID) return 1;
+                // Sort presences with statusMsg first:
+                if (a.statusMsg != null && b.statusMsg == null) return -1;
+                if (a.statusMsg == null && b.statusMsg != null) return 1;
+                // Sort by creation date:
                 return b.sortOrderDateTime.compareTo(a.sortOrderDateTime);
               });
 

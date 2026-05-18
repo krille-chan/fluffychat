@@ -45,6 +45,8 @@ class ChatListView extends StatelessWidget {
               onGoToChats: controller.clearActiveSpace,
               onGoToSpaceId: controller.setActiveSpace,
             ),
+            if (FluffyThemes.isColumnMode(context))
+              Container(width: 1, color: Theme.of(context).dividerColor),
           ],
           Expanded(
             child: GestureDetector(
