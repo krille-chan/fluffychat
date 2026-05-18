@@ -620,11 +620,11 @@ goO(){return"A\xf1adir respuesta"},
 goR(){return"Permitir varias respuestas"},
 gnl(){return"La encuesta ha terminado"},
 p8(d){var y=null
-return B.bG(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
+return B.bH(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
 goU(){return"Las respuestas ser\xe1n visibles cuando termine la encuesta"},
 gnw(){return"Contestar en el hilo"},
 p7(d){var y=null
-return B.bG(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return B.bH(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpm(){return"Hilo"},
 goW(){return"Volver al chat pricipal"},
 goD(){return"Guardar cambios"},
@@ -692,5 +692,5 @@ B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FX,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))};
-(a=>{a["1+/shpx11A/aXkD3Hcnf+RTobfc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["tFm9XNSiXzJNteZ4fxp3Xfzlvas="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

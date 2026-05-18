@@ -620,11 +620,11 @@ goO(){return"Gehitu erantzun-aukera"},
 goR(){return"Baimendu erantzun bat baino gehiago"},
 gnl(){return"Bozketa amaitu da"},
 p8(d){var x=null
-return B.bG(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
+return B.bH(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
 goU(){return"Emaitzak bozketak amaitu duenean egongo dira ikusgai"},
 gnw(){return"Erantzun harian"},
 p7(d){var x=null
-return B.bG(d,x,this.a,x,"Erantzun bat",""+d+" erantzun",x,x)},
+return B.bH(d,x,this.a,x,"Erantzun bat",""+d+" erantzun",x,x)},
 gpm(){return"Haria"},
 goW(){return"Joan txat nagusira"},
 goD(){return"Gorde aldaketak"},
@@ -693,5 +693,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FZ,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"FZ":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["CwPvyvQ8i9TzqWIHXNFtZEtAmMk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["UfShu+UY6S8oBogrXFeOlwYSD8U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map

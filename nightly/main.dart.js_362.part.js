@@ -620,11 +620,11 @@ goO(){return"Add answer option"},
 goR(){return"Allow multiple answers"},
 gnl(){return"Poll has been ended"},
 p8(d){var x=null
-return B.bG(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
+return B.bH(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 goU(){return"Answers will be visible when poll has ended"},
 gnw(){return"Reply in thread"},
 p7(d){var x=null
-return B.bG(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+return B.bH(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
 gpm(){return"Thread"},
 goW(){return"Back to main chat"},
 goD(){return"Save changes"},
@@ -693,5 +693,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gy,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gy":{"aD":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["iOhlSrctNAKA5OUU8Yy71Z8LCTI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["aT3YwnpWcVHSY7HBLfkVjwHV9lQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_362.part.js.map

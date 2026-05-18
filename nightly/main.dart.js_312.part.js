@@ -620,11 +620,11 @@ goO(){return"Cuir rogha freagra leis"},
 goR(){return"Ceadaigh freagra\xed iolracha"},
 gnl(){return"T\xe1 deireadh leis an pobalbhreith"},
 p8(d){var x=null
-return B.bG(d,x,this.a,x,"V\xf3ta amh\xe1in",""+d+" v\xf3ta\xed",x,x)},
+return B.bH(d,x,this.a,x,"V\xf3ta amh\xe1in",""+d+" v\xf3ta\xed",x,x)},
 goU(){return"Beidh freagra\xed le feice\xe1il nuair a bheidh an pobalbhreith thart"},
 gnw(){return"Freagra sa sn\xe1ithe"},
 p7(d){var x=null
-return B.bG(d,x,this.a,x,"Freagra amh\xe1in",""+d+" freagra\xed",x,x)},
+return B.bH(d,x,this.a,x,"Freagra amh\xe1in",""+d+" freagra\xed",x,x)},
 gpm(){return"Sn\xe1ithe"},
 goW(){return"Ar ais chuig an bpr\xedomhchomhr\xe1"},
 goD(){return"S\xe1bh\xe1il athruithe"},
@@ -693,5 +693,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G3,C.aD)})()
 B.dI(b.typeUniverse,JSON.parse('{"G3":{"aD":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["M8QeQ2IJlo1H6qoSQJTon4eQ50o="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["o0Cr3FxfUC5qhxPui8PGc/Hc2HE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map
