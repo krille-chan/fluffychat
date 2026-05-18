@@ -16,7 +16,7 @@ Future<T?> showScaffoldDialog<T>({
   required Widget Function(BuildContext context) builder,
 }) => showDialog<T>(
   context: context,
-  useSafeArea: false,
+  useSafeArea: true,
   builder: FluffyThemes.isColumnMode(context)
       ? (context) => Center(
           child: Container(
