@@ -214,22 +214,22 @@ class BackgroundPush {
       return;
     }
 
-    final currentPusher = pushers.singleOrNull;
-
-    if (currentPusher != null &&
-        currentPusher.pushkey == token &&
-        currentPusher.data.additionalProperties['client_name'] ==
-            client.clientName &&
-        currentPusher.kind == 'http' &&
-        currentPusher.appId == thisAppId &&
-        currentPusher.appDisplayName == appDisplayName &&
-        currentPusher.deviceDisplayName == client.deviceName &&
-        currentPusher.lang == 'en' &&
-        currentPusher.data.url.toString() == gatewayUrl &&
-        currentPusher.data.format ==
-            AppSettings.pushNotificationsPusherFormat.value &&
-        currentPusher.data.additionalProperties['data_message'] ==
-            pusherDataMessageFormat) {
+    if (pushers.any(
+      (currentPusher) =>
+          currentPusher.pushkey == token &&
+          currentPusher.data.additionalProperties['client_name'] ==
+              client.clientName &&
+          currentPusher.kind == 'http' &&
+          currentPusher.appId == thisAppId &&
+          currentPusher.appDisplayName == appDisplayName &&
+          currentPusher.deviceDisplayName == client.deviceName &&
+          currentPusher.lang == 'en' &&
+          currentPusher.data.url.toString() == gatewayUrl &&
+          currentPusher.data.format ==
+              AppSettings.pushNotificationsPusherFormat.value &&
+          currentPusher.data.additionalProperties['data_message'] ==
+              pusherDataMessageFormat,
+    )) {
       Logs().i('[Push] Pusher already set for ${client.clientName}');
       return;
     }
