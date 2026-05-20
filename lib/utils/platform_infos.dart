@@ -41,7 +41,7 @@ abstract class PlatformInfos {
       PlatformInfos.isWeb || PlatformInfos.isMobile;
 
   /// Web could also record in theory but currently creates broken opus
-  static bool get platformCanRecord => (isMobile || isMacOS);
+  static bool get platformCanRecord => (isMobile || isMacOS || isLinux);
 
   static String get appDisplayName =>
       '${AppSettings.applicationName.value} ${isWeb ? 'web' : Platform.operatingSystem}${kReleaseMode ? '' : 'Debug'}';
