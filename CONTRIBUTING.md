@@ -66,7 +66,7 @@ FluffyChat tries to be as minimal as possible even in the code style. We try to 
   - main.dart
 
 
-Most of the business model is in the Famedly Matrix Dart SDK. We try to not keep a model inside of the source code but extend it under `/utils`.
+Most of the business model is in the Matrix Dart SDK. We try to not keep a model inside of the source code but extend it under `/utils`.
 
 ### Separation of Controllers and Views
 

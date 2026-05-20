@@ -14,7 +14,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 - 🌐 [[Weblate] Translate FluffyChat into your language](https://hosted.weblate.org/projects/fluffychat/)
 - 🌍 [[m] Join the community](https://matrix.to/#/#fluffy-space:matrix.org)
 - 📰 [[Mastodon] Get updates on social media](https://troet.cafe/@krille)
-- 🖥️ [[Famedly] Server hosting and professional support](https://famedly.com/kontakt)
 - 💝 [[Liberapay] Support FluffyChat development](https://de.liberapay.com/KrilleChritzelius)
 
 <a href='https://ko-fi.com/C1C86VN53' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
