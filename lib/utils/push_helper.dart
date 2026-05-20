@@ -114,6 +114,7 @@ Future<void> _tryPushHelper(
   );
 
   final awaitingOneShotSync = client.oneShotSync();
+  l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
 
   if (event == null) {
     Logs().v('Notification is a clearing indicator.');
@@ -130,13 +131,22 @@ Future<void> _tryPushHelper(
       activeNotifications.removeWhere(
         (notification) => notification.groupKey != client.clientName,
       );
+      var needsUpdateForSummaryNotification = false;
       for (final activeNotification in activeNotifications) {
         final room = client.rooms.singleWhereOrNull(
           (room) => room.id.hashCode == activeNotification.id,
         );
         if (room == null || !room.isUnreadOrInvited) {
           flutterLocalNotificationsPlugin.cancel(id: activeNotification.id!);
+          if (PlatformInfos.isAndroid) needsUpdateForSummaryNotification = true;
         }
+      }
+      if (needsUpdateForSummaryNotification) {
+        await _updateSummaryNotification(
+          clientName: client.clientName,
+          l10n: l10n,
+          flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
+        );
       }
     }
     return;
@@ -165,7 +175,6 @@ Future<void> _tryPushHelper(
     return;
   }
 
-  l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
   final matrixLocals = MatrixLocals(l10n);
 
   // Calculate the body
@@ -331,39 +340,52 @@ Future<void> _tryPushHelper(
 
   // Send summary notification on Android
   if (PlatformInfos.isAndroid) {
-    final activeNotifications =
-        (await flutterLocalNotificationsPlugin.getActiveNotifications())
-            .where((n) => n.groupKey == client.clientName)
-            .toList();
-
-    if (activeNotifications.isEmpty) {
-      return;
-    }
-
-    final title = l10n.unreadChatsInApp(
-      AppSettings.applicationName.value,
-      activeNotifications.length.toString(),
-    );
-
-    await flutterLocalNotificationsPlugin.show(
-      id: client.clientName.hashCode,
-      notificationDetails: NotificationDetails(
-        android: AndroidNotificationDetails(
-          AppConfig.pushNotificationsChannelId,
-          l10n.incomingMessages,
-          groupKey: client.clientName,
-          setAsGroupSummary: true,
-          styleInformation: InboxStyleInformation(
-            activeNotifications.map((n) => n.body ?? '').toList(),
-            contentTitle: title,
-            summaryText: title,
-          ),
-          autoCancel: false,
-        ),
-      ),
+    await _updateSummaryNotification(
+      clientName: client.clientName,
+      l10n: l10n,
+      flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
     );
   }
   Logs().v('Push helper has been completed!');
+}
+
+Future<void> _updateSummaryNotification({
+  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
+  required String clientName,
+  required L10n l10n,
+}) async {
+  final activeNotifications =
+      (await flutterLocalNotificationsPlugin.getActiveNotifications())
+          .where((n) => n.groupKey == clientName)
+          .toList();
+
+  if (activeNotifications.length <= 1) {
+    await flutterLocalNotificationsPlugin.cancel(id: clientName.hashCode);
+    return;
+  }
+
+  final title = l10n.unreadChatsInApp(
+    AppSettings.applicationName.value,
+    activeNotifications.length.toString(),
+  );
+
+  await flutterLocalNotificationsPlugin.show(
+    id: clientName.hashCode,
+    notificationDetails: NotificationDetails(
+      android: AndroidNotificationDetails(
+        AppConfig.pushNotificationsChannelId,
+        l10n.incomingMessages,
+        groupKey: clientName,
+        setAsGroupSummary: true,
+        styleInformation: InboxStyleInformation(
+          activeNotifications.map((n) => n.body ?? '').toList(),
+          contentTitle: title,
+          summaryText: title,
+        ),
+        autoCancel: false,
+      ),
+    ),
+  );
 }
 
 class FluffyChatPushPayload {
