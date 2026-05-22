@@ -60,4 +60,5 @@ abstract class AppConfig {
 
   static const String mainIsolatePortName = 'main_isolate';
   static const String pushIsolatePortName = 'push_isolate';
+  static const String pushHelperCrashReportKey = 'push_helper_crash_report';
 }
