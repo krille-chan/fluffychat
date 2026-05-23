@@ -1913,7 +1913,6 @@
     "dismiss": "Abaikan",
     "markAsRead": "Tandai sebagai dibaca",
     "reportUser": "Laporkan pengguna",
-    "openChat": "Buka Chat",
     "reactedWith": "{sender} bereaksi dengan {reaction}",
     "@reactedWith": {
         "type": "String",

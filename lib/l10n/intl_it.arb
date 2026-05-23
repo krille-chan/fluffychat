@@ -2278,8 +2278,6 @@
     "@noBackupWarning": {},
     "storeInSecureStorageDescription": "Salva la chiave di recupero nell'archivio sicuro di questo dispositivo.",
     "@storeInSecureStorageDescription": {},
-    "openChat": "Apri la Chat",
-    "@openChat": {},
     "kickUserDescription": "L'utente è stato rimosso, ma non bannato. Nelle chat pubbliche, l'utente potrà rientrare quando vuole.",
     "@kickUserDescription": {},
     "importNow": "Importa ora",

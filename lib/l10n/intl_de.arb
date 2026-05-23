@@ -1937,7 +1937,6 @@
     },
     "markAsRead": "Als gelesen markiert",
     "reportUser": "Benutzer melden",
-    "openChat": "Chat öffnen",
     "confirmEventUnpin": "Möchtest du das Ereignis wirklich dauerhaft lösen?",
     "dismiss": "Verwerfen",
     "youKicked": "👞 Du hast {user} rausgeworfen",

@@ -2063,7 +2063,6 @@
     "removeFromSpace": "Remove from space",
     "start": "Start",
     "pleaseEnterRecoveryKeyDescription": "To unlock your old messages, please enter your recovery key that has been generated in a previous session. Your recovery key is NOT your password.",
-    "openChat": "Open Chat",
     "markAsRead": "Mark as read",
     "reportUser": "Report user",
     "dismiss": "Dismiss",

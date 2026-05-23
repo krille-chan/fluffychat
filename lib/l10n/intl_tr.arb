@@ -1940,8 +1940,6 @@
     "@markAsRead": {},
     "reportUser": "Kullanıcıyı bildir",
     "@reportUser": {},
-    "openChat": "Sohbeti Aç",
-    "@openChat": {},
     "reactedWith": "{sender}, {reaction} ile tepki verdi",
     "@reactedWith": {
         "type": "String",

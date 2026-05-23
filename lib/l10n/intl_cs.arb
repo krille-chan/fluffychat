@@ -1913,7 +1913,6 @@
     },
     "markAsRead": "Označit jako přečtené",
     "reportUser": "Nahlásit uživatele",
-    "openChat": "Otevřete chat",
     "dismiss": "Zavrhnout",
     "reactedWith": "{sender} reagoval s {reaction}",
     "@reactedWith": {

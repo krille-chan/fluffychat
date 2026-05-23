@@ -1940,8 +1940,6 @@
     "@markAsRead": {},
     "reportUser": "Signaler l'utilisateur/trice",
     "@reportUser": {},
-    "openChat": "Ouvrir la discussion",
-    "@openChat": {},
     "reactedWith": "{sender} a réagi avec {reaction}",
     "@reactedWith": {
         "type": "String",

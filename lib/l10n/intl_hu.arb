@@ -2279,8 +2279,6 @@
     "@noBackupWarning": {},
     "storeInSecureStorageDescription": "Tárolja a visszaállítási kulcsot az eszköz biztonsági tárjában.",
     "@storeInSecureStorageDescription": {},
-    "openChat": "Csevegés megnyitása",
-    "@openChat": {},
     "kickUserDescription": "A felhasználó kirúgásra került a csevegésből, de nincs kitiltva. Publikus csevegés esetén a felhasználó bármikor visszatérhet.",
     "@kickUserDescription": {},
     "importNow": "Importálás most",

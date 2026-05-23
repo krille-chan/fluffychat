@@ -1939,8 +1939,6 @@
     "@markAsRead": {},
     "reportUser": "유저 신고",
     "@reportUser": {},
-    "openChat": "채팅 열기",
-    "@openChat": {},
     "reactedWith": "{sender}가 {reaction}로 반응함",
     "@reactedWith": {
         "type": "String",

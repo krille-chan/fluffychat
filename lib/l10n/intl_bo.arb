@@ -1801,7 +1801,6 @@
     "placeholders": {}
   },
   "@storeInSecureStorageDescription": {},
-  "@openChat": {},
   "@kickUserDescription": {},
   "@sendAMessage": {
     "type": "String",

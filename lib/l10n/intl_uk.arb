@@ -1914,7 +1914,6 @@
     "dismiss": "Відхилити",
     "markAsRead": "Позначити прочитаним",
     "reportUser": "Поскаржився на користувача",
-    "openChat": "Відкрити бесіду",
     "reactedWith": "{sender} реагує з {reaction}",
     "@reactedWith": {
         "type": "String",

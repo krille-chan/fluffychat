@@ -1904,7 +1904,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "openChat": "باز کردن چت",
     "dismiss": "رد کردن",
     "unsupportedAndroidVersion": "نسخه اندروید پشتیبانی‌نشده",
     "youUnbannedUser": "شما محرومیت {user} را برداشتید",

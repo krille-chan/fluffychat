@@ -2117,7 +2117,6 @@
         "placeholders": {}
     },
     "storeInSecureStorageDescription": "Glabāt atkopes atslēgu šīs ierīces drošajā krātuvē.",
-    "openChat": "Atvērt tērzēšanu",
     "kickUserDescription": "Lietotājs ir izmests no tērzēšanas, bet piekļuve nav liegta. Publiskās tērzēšanās lietotājs var atkārtoti pievienoties jebkurā laikā.",
     "sendAMessage": "Nosūtīt ziņu",
     "@sendAMessage": {

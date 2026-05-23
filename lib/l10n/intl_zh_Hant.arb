@@ -2564,8 +2564,6 @@
     "@spaces": {},
     "start": "開始",
     "@start": {},
-    "openChat": "開啟聊天室",
-    "@openChat": {},
     "unreadChatsInApp": "{appname}：{unread} 未讀聊天室",
     "@unreadChatsInApp": {
         "type": "String",
