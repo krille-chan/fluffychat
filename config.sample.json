@@ -12,6 +12,7 @@
   "audioRecordingSamplingRate": 44100,
   "renderHtml": true,
   "fontSizeFactor": 1,
+  "messagePreviewMaxLines": 128,
   "hideRedactedEvents": false,
   "hideUnknownEvents": true,
   "separateChatTypes": false,

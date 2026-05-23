@@ -13,7 +13,7 @@ Future<List<XFile>> selectFiles(
   final result = await AppLock.of(context).pauseWhile(
     showFutureLoadingDialog(
       context: context,
-      future: () => FilePicker.platform.pickFiles(
+      future: () => FilePicker.pickFiles(
         compressionQuality: 0,
         allowMultiple: allowMultiple,
         type: type,

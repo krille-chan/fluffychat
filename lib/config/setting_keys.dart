@@ -9,6 +9,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 enum AppSettings<T> {
   textMessageMaxLength<int>('textMessageMaxLength', 16384),
+
+  /// Max lines for unselected HTML/text bubbles; 0 = unlimited (no fade).
+  messagePreviewMaxLines<int>('chat.fluffy.message_preview_max_lines', 128),
   audioRecordingNumChannels<int>('audioRecordingNumChannels', 1),
   audioRecordingAutoGain<bool>('audioRecordingAutoGain', true),
   audioRecordingEchoCancel<bool>('audioRecordingEchoCancel', false),
@@ -67,8 +70,6 @@ enum AppSettings<T> {
   ),
   tos<String>('chat.fluffy.tos_url', 'https://fluffychat.im/en/tos'),
   sendTimelineEventTimeout<int>('chat.fluffy.send_timeline_event_timeout', 15),
-  lastSeenSupportBanner<int>('chat.fluffy.last_seen_support_banner', 0),
-  supportBannerOptOut<bool>('chat.fluffy.support_banner_opt_out', false),
   webNotificationSound<bool>('chat.fluffy.web_notification_sound', true),
   chatFilter<String>('chat.fluffy.chat_filter', 'allChats');
 

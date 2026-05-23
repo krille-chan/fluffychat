@@ -463,14 +463,17 @@ class ChatController extends State<ChatPageWithRoom>
     scrollUpBannerEventId = eventId;
   });
 
-  bool firstUpdateReceived = false;
+  String? animateInEventId;
+
+  void _insert(int index) {
+    if (index > 0) return;
+    animateInEventId = timeline?.events.firstOrNull?.eventId;
+  }
 
   void updateView() {
     if (!mounted) return;
     setReadMarker();
-    setState(() {
-      firstUpdateReceived = true;
-    });
+    setState(() {});
   }
 
   Future<void>? loadTimelineFuture;
@@ -487,6 +490,7 @@ class ChatController extends State<ChatPageWithRoom>
       timeline?.cancelSubscriptions();
       timeline = await room.getTimeline(
         onUpdate: updateView,
+        onInsert: _insert,
         eventContextId: eventContextId,
       );
     } catch (e, s) {
@@ -1151,7 +1155,7 @@ class ChatController extends State<ChatPageWithRoom>
           true,
           false,
         );
-        users.sort((a, b) => a.powerLevel.compareTo(b.powerLevel));
+        users.sort((a, b) => a.powerLevel.level.compareTo(b.powerLevel.level));
         final via = users
             .map((user) => user.id.domain)
             .whereType<String>()

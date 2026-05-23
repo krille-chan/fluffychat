@@ -9,7 +9,7 @@ extension MatrixFileExtension on MatrixFile {
   Future<void> save(BuildContext context) async {
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     final l10n = L10n.of(context);
-    final downloadPath = await FilePicker.platform.saveFile(
+    final downloadPath = await FilePicker.saveFile(
       dialogTitle: l10n.saveFile,
       fileName: name,
       type: filePickerFileType,

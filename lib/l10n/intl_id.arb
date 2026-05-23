@@ -692,7 +692,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Apakah pengguna tamu diizinkan untuk bergabung",
+    "areGuestsAllowedToJoin": "Apakah pengguna tamu diizinkan untuk bergabung?",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -2774,5 +2774,40 @@
     "signUpGreeting": "FluffyChat terdesentralisasi! Pilih server tempat Anda ingin membuat akun dan mari kita mulai!",
     "signInGreeting": "Anda sudah memiliki akun di Matrix? Selamat datang kembali! Pilih homeserver Anda dan masuk.",
     "appIntro": "Dengan FluffyChat Anda dapat mengobrol dengan teman-teman Anda. Ini adalah messenger [matrix] terdesentralisasi yang aman! Pelajari lebih lanjut di https://matrix.org jika Anda suka atau cukup daftar.",
-    "theProcessWasCanceled": "Proses dibatalkan."
+    "theProcessWasCanceled": "Proses dibatalkan.",
+    "join": "Bergabung",
+    "searchOrEnterHomeserverAddress": "Cari atau masukkan alamat homeserver",
+    "matrixId": "Matrix ID",
+    "setPowerLevel": "Atur level kekuasaan",
+    "makeModerator": "Jadikan moderator",
+    "makeAdmin": "Jadikan admin",
+    "removeModeratorRights": "Hapus hak moderator",
+    "removeAdminRights": "Hapus hak admin",
+    "powerLevel": "Level kekuasaan",
+    "setPowerLevelDescription": "Level kekuasaan menentukan apa yang boleh dilakukan seorang anggota di ruangan ini dan biasanya berkisar antara 0 hingga 100.",
+    "owner": "Pemilik",
+    "mute": "Bisukan",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Buat obrolan baru",
+    "reset": "Atur ulang",
+    "supportFluffyChat": "Dukung FluffyChat",
+    "support": "Dukungan",
+    "fluffyChatSupportBannerMessage": "FluffyChat membutuhkan bantuan ANDA!\n❤️❤️❤️\nFluffyChat akan selalu gratis, tetapi pengembangan dan hosting tetap membutuhkan biaya.\nMasa depan proyek ini bergantung pada dukungan dari orang-orang seperti Anda.",
+    "setLowPriority": "Atur prioritas rendah",
+    "unsetLowPriority": "Batalkan prioritas rendah",
+    "removeCallFromChat": "Hapus panggilan dari obrolan",
+    "removeCallFromChatDescription": "Apakah Anda ingin menghapus panggilan dari obrolan untuk semua anggota?",
+    "removeCallForEveryone": "Hapus panggilan untuk semua orang",
+    "startVoiceCall": "Mulai panggilan suara",
+    "startVideoCall": "Mulai panggilan video",
+    "joinVoiceCall": "Bergabung ke panggilan suara",
+    "joinVideoCall": "Bergabung ke panggilan video",
+    "live": "Langsung",
+    "playSoundOnNotification": "Putar suara saat notifikasi",
+    "addTag": "Tambah tag",
+    "removeTag": "Hapus tag",
+    "tagName": "Nama tag",
+    "createNewTag": "Buat tag baru"
 }

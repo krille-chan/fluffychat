@@ -2803,9 +2803,6 @@
     "supportFluffyChat": "Støtt FluffyChat",
     "support": "Støtte",
     "fluffyChatSupportBannerMessage": "FluffyChat trenger DIN hjelp!\n❤️❤️❤️\nFluffyChat vil alltid være gratis, men utvikling og drift koster fortsatt penger. \nProsjektets fremtid avhenger av støtte fra folk som deg.",
-    "skipSupportingFluffyChat": "Hopp over støtte til FluffyChat",
-    "iDoNotWantToSupport": "Jeg ønsker ikke å støtte",
-    "iAlreadySupportFluffyChat": "Jeg støtter allerede FluffyChat",
     "setLowPriority": "Sett lav prioritet",
     "unsetLowPriority": "Fjern lav prioritet",
     "removeCallFromChat": "Fjern anrop fra chat",
@@ -2816,5 +2813,9 @@
     "joinVoiceCall": "Bli med i lydsamtale",
     "joinVideoCall": "Bli med i videosamtale",
     "live": "Direkte",
-    "playSoundOnNotification": "Spill av lyd ved varsling"
+    "playSoundOnNotification": "Spill av lyd ved varsling",
+    "addTag": "Legg til emneknagg",
+    "removeTag": "Fjern emneknagg",
+    "tagName": "Navn på emneknagg",
+    "createNewTag": "Opprett ny emneknagg"
 }
