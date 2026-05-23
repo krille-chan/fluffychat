@@ -403,6 +403,74 @@ class HtmlMessage extends StatelessWidget {
             ),
           ),
         );
+      case 'table':
+        return WidgetSpan(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Table(
+              defaultColumnWidth: const IntrinsicColumnWidth(),
+              border: TableBorder.all(color: textColor.withAlpha(100)),
+              children: node.nodes
+                  .whereType<dom.Element>()
+                  .expand(
+                    (e) =>
+                        e.localName == 'thead' ||
+                            e.localName == 'tbody' ||
+                            e.localName == 'tfoot'
+                        ? e.nodes.whereType<dom.Element>()
+                        : [e],
+                  )
+                  .where((e) => e.localName == 'tr')
+                  .map(
+                    (tr) => TableRow(
+                      children: tr.nodes
+                          .whereType<dom.Element>()
+                          .where(
+                            (e) => e.localName == 'td' || e.localName == 'th',
+                          )
+                          .map(
+                            (cell) => Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                                vertical: 3,
+                              ),
+                              child: Text.rich(
+                                TextSpan(
+                                  children: _renderWithLineBreaks(
+                                    cell.nodes,
+                                    context,
+                                    depth: depth,
+                                  ),
+                                  style: cell.localName == 'th'
+                                      ? const TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        )
+                                      : null,
+                                ),
+                                style: TextStyle(
+                                  fontSize: fontSize,
+                                  color: textColor,
+                                ),
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  )
+                  .toList(),
+            ),
+          ),
+        );
+      case 'thead':
+      case 'tbody':
+      case 'tfoot':
+      case 'tr':
+      case 'th':
+      case 'td':
+      case 'caption':
+        return TextSpan(
+          children: _renderWithLineBreaks(node.nodes, context, depth: depth),
+        );
       case 'hr':
         return const WidgetSpan(child: Divider());
       case 'details':
