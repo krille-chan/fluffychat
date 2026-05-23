@@ -20,6 +20,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:matrix/matrix.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 const notificationAvatarDimension = 128;
 final Map<String, DateTime> lastReceivedPushNotification = {};
@@ -65,6 +66,12 @@ Future<void> pushHelper(
         ),
       ),
     );
+
+    final store = await SharedPreferences.getInstance();
+    await store.setStringList(AppConfig.pushHelperCrashReportKey, [
+      e.toString(),
+      s.toString(),
+    ]);
     rethrow;
   }
 }
