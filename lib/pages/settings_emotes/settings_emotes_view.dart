@@ -12,6 +12,8 @@ import 'package:fluffychat/widgets/mxc_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:matrix/matrix.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 
 import '../../widgets/matrix.dart';
 import 'settings_emotes.dart';
@@ -198,6 +200,41 @@ class EmotesSettingsView extends StatelessWidget {
               ),
             ],
             if (!controller.readonly) ...[
+              ListTile(
+                title: Text(
+                  L10n.of(context).giphyGuide,
+                  style: TextStyle(
+                    color: theme.colorScheme.secondary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              ListTile(
+                title: Text(L10n.of(context).enterGiphyApiKey),
+                subtitle: Linkify(
+                  text: "https://developers.giphy.com/dashboard/?create=true",
+                  textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
+                  options: const LinkifyOptions(humanize: false),
+                  linkStyle: TextStyle(
+                    color: theme.colorScheme.primary,
+                    decorationColor: theme.colorScheme.primary,
+                  ),
+                  onOpen: (link) => launchUrlString(link.url),
+                ),
+              ),
+              TextFormField(
+                initialValue: controller.giphyApiKey,
+                onChanged: controller.updateApiKey,
+                obscureText: true,
+                autocorrect: false,
+                autofocus: true,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.lock_outlined),
+                  hintText: '********',
+                  labelText: L10n.of(context).enterGiphyApiKey,
+                ),
+              ),
+              const Divider(),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton.icon(
