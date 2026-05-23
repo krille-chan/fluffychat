@@ -2762,5 +2762,7 @@
     "createNewTag": "Create new tag",
     "hideRoomsInSpaces": "Hide rooms that are in a space",
     "possibleByYou": "This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven.",
-    "showThumbnailsInTimeline": "Show thumbnails of images and videos"
+    "showThumbnailsInTimeline": "Show thumbnails of images and videos",
+    "showMore": "Show more",
+    "showLess": "Show less"
 }

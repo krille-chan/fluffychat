@@ -5,6 +5,7 @@
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/code_highlight_theme.dart';
 import 'package:fluffychat/utils/event_checkbox_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -516,16 +517,164 @@ class HtmlMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     final element = parser.parse(html).body ?? dom.Element.html('');
     final configuredMaxLines = AppSettings.messagePreviewMaxLines.value;
-    final maxLines = !limitHeight || configuredMaxLines <= 0
-        ? null
-        : configuredMaxLines;
-    return Text.rich(
-      _renderHtml(element, context),
+    if (!limitHeight || configuredMaxLines <= 0) {
+      return Text.rich(
+        _renderHtml(element, context),
+        style: TextStyle(fontSize: fontSize, color: textColor),
+        selectionColor: textColor.withAlpha(128),
+      );
+    }
+    return _CollapsibleText(
+      content: _renderHtml(element, context),
       style: TextStyle(fontSize: fontSize, color: textColor),
-      maxLines: maxLines,
-      overflow: maxLines == null ? TextOverflow.visible : TextOverflow.fade,
+      maxLines: configuredMaxLines,
       selectionColor: textColor.withAlpha(128),
+      labelShowMore: L10n.of(context).showMore,
+      labelShowLess: L10n.of(context).showLess,
     );
+  }
+}
+
+/// A [StatefulWidget] that renders a [TextSpan] with expand/collapse toggle.
+/// Uses a DOM-text heuristic to detect overflow since [TextPainter] cannot
+/// measure widgets containing [WidgetSpan]s.
+class _CollapsibleText extends StatefulWidget {
+  final TextSpan content;
+  final TextStyle style;
+  final int maxLines;
+  final Color selectionColor;
+  final String labelShowMore;
+  final String labelShowLess;
+
+  const _CollapsibleText({
+    required this.content,
+    required this.style,
+    required this.maxLines,
+    required this.selectionColor,
+    required this.labelShowMore,
+    required this.labelShowLess,
+  });
+
+  @override
+  State<_CollapsibleText> createState() => _CollapsibleTextState();
+}
+
+class _CollapsibleTextState extends State<_CollapsibleText> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final textSpan = _expanded
+        ? widget.content
+        : TextSpan(
+            children: [
+              ...widget.content.children!.take(
+                widget.content.children!.length - 1,
+              ),
+              TextSpan(
+                text: widget.labelShowMore,
+                style: TextStyle(
+                  color: Colors.blue,
+                  decoration: TextDecoration.underline,
+                ),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = _toggle,
+              ),
+            ],
+          );
+
+    final scrollController = ScrollController();
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final painter = TextPainter(
+          text: textSpan,
+          textDirection: TextDirection.ltr,
+          maxLines: widget.maxLines,
+          textScaler: TextScaler.linear(
+            MediaQuery.textScalerOf(context).scale(1),
+          ),
+        );
+        painter.layout(maxWidth: constraints.maxWidth);
+
+        final needsToggle = painter.didExceedMaxLines;
+        final collapsedTextSpan = TextSpan(
+          children: [
+            ...widget.content.children!.take(
+              widget.content.children!.length - 1,
+            ),
+            TextSpan(
+              text: widget.labelShowMore,
+              style: TextStyle(
+                color: Colors.blue,
+                decoration: TextDecoration.underline,
+              ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = _toggle,
+            ),
+          ],
+        );
+
+        final collapsedPainter = TextPainter(
+          text: collapsedTextSpan,
+          textDirection: TextDirection.ltr,
+          maxLines: widget.maxLines,
+          textScaler: TextScaler.linear(
+            MediaQuery.textScalerOf(context).scale(1),
+          ),
+        );
+        collapsedPainter.layout(maxWidth: constraints.maxWidth);
+
+        return NotificationListener<ScrollNotification>(
+          onNotification: (notification) {
+            if (notification is ScrollUpdateNotification &&
+                _expanded) {
+              // Preserve scroll position when expanding in reversed lists.
+            }
+            return false;
+          },
+          child: SingleChildScrollView(
+            controller: scrollController,
+            reverse: true,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text.rich(
+                  TextSpan(
+                    children: needsToggle
+                        ? [
+                            ...widget.content.children!
+                                .take(widget.content.children!.length - 1),
+                            TextSpan(
+                              text: widget.labelShowMore,
+                              style: TextStyle(
+                                color: Colors.blue,
+                                decoration: TextDecoration.underline,
+                              ),
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = _toggle,
+                            ),
+                          ]
+                        : widget.content.children!,
+                  ),
+                  style: widget.style,
+                  maxLines: widget.maxLines,
+                  overflow: TextOverflow.fade,
+                  selectionColor: widget.selectionColor,
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _toggle() {
+    setState(() {
+      _expanded = !_expanded;
+    });
   }
 }
 

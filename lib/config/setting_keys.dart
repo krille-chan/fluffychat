@@ -16,7 +16,7 @@ enum AppSettings<T> {
   textMessageMaxLength<int>('textMessageMaxLength', 16384),
 
   /// Max lines for unselected HTML/text bubbles; 0 = unlimited (no fade).
-  messagePreviewMaxLines<int>('chat.fluffy.message_preview_max_lines', 128),
+  messagePreviewMaxLines<int>('chat.fluffy.message_preview_max_lines', 20),
   audioRecordingNumChannels<int>('audioRecordingNumChannels', 1),
   audioRecordingAutoGain<bool>('audioRecordingAutoGain', true),
   audioRecordingEchoCancel<bool>('audioRecordingEchoCancel', false),
