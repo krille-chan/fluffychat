@@ -540,8 +540,6 @@
             }
         }
     },
-    "openChat": "Deschideți Chat",
-    "@openChat": {},
     "youBannedUser": "Ați interzis pe {user}",
     "@youBannedUser": {
         "placeholders": {

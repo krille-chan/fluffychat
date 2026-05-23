@@ -1905,7 +1905,6 @@
     "dismiss": "Отклонить",
     "markAsRead": "Отметить как прочитанное",
     "reportUser": "Сообщить о пользователе",
-    "openChat": "Открыть чат",
     "reactedWith": "{sender} реагирует с {reaction}",
     "@reactedWith": {
         "type": "String",

@@ -23,7 +23,6 @@ dependencies:
   collection: ^1.18.0
   cross_file: ^0.3.5
   desktop_drop: ^0.7.1
-  desktop_notifications: ^0.6.3
   device_info_plus: ^12.4.0
   dynamic_color: ^1.8.1
   emoji_picker_flutter: ^4.4.0

@@ -1914,7 +1914,6 @@
     "dismiss": "忽略",
     "markAsRead": "标为已读",
     "reportUser": "举报用户",
-    "openChat": "打开聊天",
     "reactedWith": "{sender} 回应了 {reaction}",
     "@reactedWith": {
         "type": "String",

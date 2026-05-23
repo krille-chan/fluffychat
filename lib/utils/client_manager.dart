@@ -3,10 +3,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import 'dart:io';
-
 import 'package:collection/collection.dart';
-import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/custom_http_client.dart';
@@ -156,15 +153,6 @@ abstract class ClientManager {
   static Future<void> sendInitNotification(String title, String body) async {
     if (kIsWeb) {
       html.Notification(title, body: body);
-      return;
-    }
-    if (Platform.isLinux) {
-      await NotificationsClient().notify(
-        title,
-        body: body,
-        appName: AppSettings.applicationName.value,
-        hints: [NotificationHint.soundName('message-new-instant')],
-      );
       return;
     }
 

@@ -578,8 +578,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "openChat": "Aperter li conversation",
-  "@openChat": {},
   "reportMessage": "Raportar li missage",
   "@reportMessage": {
     "type": "String",

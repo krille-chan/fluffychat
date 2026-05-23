@@ -1913,7 +1913,6 @@
     },
     "markAsRead": "Märgi loetuks",
     "reportUser": "Teata kasutajast",
-    "openChat": "Ava vestlus",
     "dismiss": "Loobu",
     "reactedWith": "{sender} reageeris nii {reaction}",
     "@reactedWith": {

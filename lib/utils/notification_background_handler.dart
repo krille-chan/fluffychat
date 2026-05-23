@@ -191,8 +191,14 @@ Future<void> notificationTap(
           );
         case FluffyChatNotificationActions.mute:
           await room.setPushRuleState(PushRuleState.mentionsOnly);
+        case FluffyChatNotificationActions.open:
+          router?.go(
+            client.getRoomById(roomId)?.membership == Membership.invite
+                ? '/rooms?client=${client.clientName}'
+                : '/rooms/$roomId?client=${client.clientName}',
+          );
       }
   }
 }
 
-enum FluffyChatNotificationActions { markAsRead, reply, mute }
+enum FluffyChatNotificationActions { markAsRead, reply, mute, open }

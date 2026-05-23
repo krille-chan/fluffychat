@@ -1909,7 +1909,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "openChat": "Otwórz czat",
     "supposedMxid": "To powinno być {mxid}",
     "@supposedMxid": {
         "type": "String",

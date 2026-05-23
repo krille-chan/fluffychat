@@ -2169,7 +2169,6 @@
     "custom": "Personalitzat",
     "noBackupWarning": "Compte! Si no actives la còpia de seguretat dels xats, perdràs accés als teus missatges xifrats. És molt recomanable activar-ho abans de tancar la sessió.",
     "storeInSecureStorageDescription": "Desa la clau de recuperació en l'emmagatzematge segur d'aquest dispositiu.",
-    "openChat": "Obre el xat",
     "kickUserDescription": "Li usuàrïi ha estat expulsadi però no vetadi. Als xats públics, pot tornar-hi a entrar en qualsevol moment.",
     "importNow": "Importa-ho ara",
     "pinMessage": "Fixa a la sala",
