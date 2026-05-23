@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKw(){return new A.G1(B.de("fil"))},
-G1:function G1(d){this.a=d}}
+cKG(){return new A.G2(B.de("fil"))},
+G2:function G2(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[21],A)
-A.G1.prototype={
+A.G2.prototype={
 gkF(){return"false"},
 gjw(){return"Ulitin ang password"},
 gmo(){return"Hindi isang file na larawan."},
@@ -39,7 +39,7 @@ hi(d){return"Sinagot ni "+d+" ang tawag"},
 geZ(){return"Pwede sumali ang anumang tao"},
 gf_(){return"Archive"},
 ghj(){return"Pwede ba sumali ang mga bisita"},
-gd2(){return"Sigurado ka?"},
+gd4(){return"Sigurado ka?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Sigurado kang gusto mong mag-log out?"},
 ghl(){return"Para i-sign ang isa pang tao, pakilagay ang iyong secure store passphrase o recovery key."},
@@ -133,7 +133,7 @@ gib(){return"Madilim"},
 ic(d,e){return d+", "+e},
 gie(){return"Ide-deactivate nito ang iyong user account. Hindi na ito maaaring bawiin! Sigurado ka?"},
 gig(){return"Default na antas ng pahintulot para sa mga bagong user"},
-gdc(d){return"Burahin"},
+gdf(d){return"Burahin"},
 gii(){return"Burahin ang account"},
 gij(){return"Burahin ang mensahe"},
 gex(){return"Mga Device"},
@@ -207,7 +207,7 @@ giN(){return"Join room"},
 iO(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfs(){return"Kick from chat"},
 eF(d){return"Last active: "+d},
-gdj(){return"Leave"},
+gdk(){return"Leave"},
 gft(){return"Left the chat"},
 giQ(){return"Light"},
 iR(d){return"Load "+d+" more participants"},
@@ -228,7 +228,7 @@ giZ(){return"Moderator"},
 geI(){return"Mute chat"},
 gfz(){return"New chat"},
 gj_(){return"New verification request!"},
-gd7(d){return"Next"},
+gd9(d){return"Next"},
 gej(){return"No"},
 gj1(){return"No connection to the server"},
 gfA(){return"No emotes found. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G1,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G1":{"aD":[]}}'))};
-(a=>{a["E865vumUjPeG9vQJQ+Lxwd8JAhA="]=a.current})($__dart_deferred_initializers__);
+y(A.G2,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"G2":{"aD":[]}}'))};
+(a=>{a["TjOgqEU+uwtrricxvGYFzmZC0VY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_307.part.js.map

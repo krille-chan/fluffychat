@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKF(){return new A.Ga(B.de("id"))},
-Ga:function Ga(d){this.a=d}}
+cKP(){return new A.Gb(B.de("id"))},
+Gb:function Gb(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[30],A)
-A.Ga.prototype={
+A.Gb.prototype={
 gkF(){return"tidak"},
 gjw(){return"Ulangi kata sandi"},
 gmo(){return"Bukan berkas gambar."},
@@ -39,7 +39,7 @@ hi(d){return d+" menjawab panggilan"},
 geZ(){return"Siapa saja dapat bergabung"},
 gf_(){return"Arsip"},
 ghj(){return"Apakah pengguna tamu diizinkan untuk bergabung?"},
-gd2(){return"Apakah kamu yakin?"},
+gd4(){return"Apakah kamu yakin?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Apakah kamu yakin ingin keluar?"},
 ghl(){return"Untuk dapat menandatangani orang lain, silakan masukkan frasa sandi atau kunci pemulihan penyimpanan aman kamu."},
@@ -133,7 +133,7 @@ gib(){return"Gelap"},
 ic(d,e){return e+", "+d},
 gie(){return"Ini akan menonaktifkan akun penggunamu. Ini tidak bisa dibatalkan! Apakah kamu yakin?"},
 gig(){return"Level izin bawaan untuk pengguna baru"},
-gdc(d){return"Hapus"},
+gdf(d){return"Hapus"},
 gii(){return"Hapus akun"},
 gij(){return"Hapus pesan"},
 gex(){return"Perangkat"},
@@ -207,7 +207,7 @@ giN(){return"Bergabung dengan ruangan"},
 iO(d,e){return"\ud83d\udc5e "+d+" mengeluarkan "+e},
 gfs(){return"Keluarkan dari obrolan"},
 eF(d){return"Terakhir aktif: "+d},
-gdj(){return"Tinggalkan"},
+gdk(){return"Tinggalkan"},
 gft(){return"Keluar dari obrolan"},
 giQ(){return"Terang"},
 iR(d){return"Muat "+d+" anggota"},
@@ -228,7 +228,7 @@ giZ(){return"Moderator"},
 geI(){return"Bisukan obrolan"},
 gfz(){return"Chat baru"},
 gj_(){return"Permintaan verifikasi baru!"},
-gd7(d){return"Lanjut"},
+gd9(d){return"Lanjut"},
 gej(){return"Tidak"},
 gj1(){return"Tidak ada koneksi ke server"},
 gfA(){return"Tidak ada emote yang ditemukan. \ud83d\ude15"},
@@ -690,8 +690,8 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Ga,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Ga":{"aD":[]}}'))
+x(A.Gb,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"Gb":{"aD":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["NhPXy+54ungbG2lKiaNY814Lm04="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["hoePF2EATHkJBnX9+fH93oVQ7/0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_328.part.js.map

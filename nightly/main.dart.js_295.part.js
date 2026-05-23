@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKr(){return new A.FX(B.de("es"))},
-FX:function FX(d){this.a=d}}
+cKB(){return new A.FY(B.de("es"))},
+FY:function FY(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[16],A)
-A.FX.prototype={
+A.FY.prototype={
 gkF(){return"true"},
 gjw(){return"Repite la contrase\xf1a"},
 gmo(){return"El archivo no es una imagen."},
@@ -39,7 +39,7 @@ hi(d){return d+" respondi\xf3 a la llamada"},
 geZ(){return"Cualquiera puede unirse"},
 gf_(){return"Archivo"},
 ghj(){return"\xbfPueden los usuarios invitados unirse?"},
-gd2(){return"\xbfEst\xe1s seguro?"},
+gd4(){return"\xbfEst\xe1s seguro?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"\xbfConfirma que quiere cerrar sesi\xf3n?"},
 ghl(){return"Para poder confirmar a la otra persona, ingrese su contrase\xf1a de almacenamiento segura o la clave de recuperaci\xf3n."},
@@ -133,7 +133,7 @@ gib(){return"Oscuro"},
 ic(d,e){return d+", "+e},
 gie(){return"Se desactivar\xe1 su cuenta de usuario. \xa1La operaci\xf3n no se puede cancelar! \xbfEst\xe1 seguro?"},
 gig(){return"Nivel de permiso predeterminado para nuevo usuarios"},
-gdc(d){return"Eliminar"},
+gdf(d){return"Eliminar"},
 gii(){return"Cancelar cuenta"},
 gij(){return"Eliminar mensaje"},
 gex(){return"Dispositivos"},
@@ -207,7 +207,7 @@ giN(){return"Unirse a la sala"},
 iO(d,e){return"\ud83d\udc5e"+d+" ech\xf3 a "+e},
 gfs(){return"Echar del chat"},
 eF(d){return"\xdaltima vez activo: "+d},
-gdj(){return"Abandonar"},
+gdk(){return"Abandonar"},
 gft(){return"Abandon\xf3 el chat"},
 giQ(){return"Claro"},
 iR(d){return"Mostrar "+d+" participantes m\xe1s"},
@@ -228,7 +228,7 @@ giZ(){return"Moderador"},
 geI(){return"Silenciar chat"},
 gfz(){return"Nuevo chat"},
 gj_(){return"\xa1Nueva solicitud de verificaci\xf3n!"},
-gd7(d){return"Siguiente"},
+gd9(d){return"Siguiente"},
 gej(){return"No"},
 gj1(){return"Sin conexi\xf3n al servidor"},
 gfA(){return"Ning\xfan emote encontrado. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FX,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FX":{"aD":[]}}'))};
-(a=>{a["tFm9XNSiXzJNteZ4fxp3Xfzlvas="]=a.current})($__dart_deferred_initializers__);
+y(A.FY,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"FY":{"aD":[]}}'))};
+(a=>{a["E5ePyORAQ8ReGHarJjnHHTqhfqE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

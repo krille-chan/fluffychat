@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKx(){return new A.G2(B.de("fr"))},
-G2:function G2(d){this.a=d}}
+cKH(){return new A.G3(B.de("fr"))},
+G3:function G3(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[22],A)
-A.G2.prototype={
+A.G3.prototype={
 gkF(){return"true"},
 gjw(){return"R\xe9p\xe9tez le mot de passe"},
 gmo(){return"Pas un fichier image."},
@@ -39,7 +39,7 @@ hi(d){return d+" a r\xe9pondu \xe0 l'appel"},
 geZ(){return"Tout le monde peut rejoindre"},
 gf_(){return"Archiver"},
 ghj(){return"Les invit\xe9s peuvent-i\xb7e\xb7ls rejoindre"},
-gd2(){return"\xcates-vous s\xfbr\xb7e\xa0?"},
+gd4(){return"\xcates-vous s\xfbr\xb7e\xa0?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Voulez-vous vraiment vous d\xe9connecter ?"},
 ghl(){return"Pour pouvoir faire signer l'autre personne, veuillez entrer la phrase de passe de votre trousseau s\xe9curis\xe9 ou votre cl\xe9 de r\xe9cup\xe9ration."},
@@ -133,7 +133,7 @@ gib(){return"Sombre"},
 ic(d,e){return d+", "+e},
 gie(){return"Cette op\xe9ration va d\xe9sactiver votre compte. Une fois cette action effectu\xe9e, aucun retour en arri\xe8re n'est possible\xa0! \xcates-vous s\xfbr\xb7e\xa0?"},
 gig(){return"Niveau d'autorisation par d\xe9faut pour les arrivants"},
-gdc(d){return"Supprimer"},
+gdf(d){return"Supprimer"},
 gii(){return"Supprimer le compte"},
 gij(){return"Supprimer le message"},
 gex(){return"Appareils"},
@@ -207,7 +207,7 @@ giN(){return"Rejoindre le salon"},
 iO(d,e){return"\ud83d\udc5e "+d+" a expuls\xe9 "+e},
 gfs(){return"Expulser de la discussion"},
 eF(d){return"Vu\xb7e pour la derni\xe8re fois\u202f: "+d},
-gdj(){return"Partir"},
+gdk(){return"Partir"},
 gft(){return"A quitt\xe9 la discussion"},
 giQ(){return"Clair"},
 iR(d){return"Charger "+d+" participant\xb7es de plus"},
@@ -228,7 +228,7 @@ giZ(){return"Mod\xe9rateur\xb7rice"},
 geI(){return"Mettre la discussion en sourdine"},
 gfz(){return"Nouvelle discussion"},
 gj_(){return"Nouvelle demande de v\xe9rification !"},
-gd7(d){return"Suivant"},
+gd9(d){return"Suivant"},
 gej(){return"Non"},
 gj1(){return"Aucune connexion au serveur"},
 gfA(){return"Aucune \xe9motic\xf4ne trouv\xe9e. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G2,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G2":{"aD":[]}}'))};
-(a=>{a["5MV/yOHuvK/MhQ9/gKpY7eI8jqM="]=a.current})($__dart_deferred_initializers__);
+y(A.G3,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"G3":{"aD":[]}}'))};
+(a=>{a["aEEiKsJUUm/Dg7GfmmEUFB/6drw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKl(){return new A.FR(B.de("cs"))},
-FR:function FR(d){this.a=d}}
+cKv(){return new A.FS(B.de("cs"))},
+FS:function FS(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[10],A)
-A.FR.prototype={
+A.FS.prototype={
 gkF(){return"Vypnuto"},
 gjw(){return"Zopakujte heslo"},
 gmo(){return"Nen\xed obr\xe1zek."},
@@ -39,7 +39,7 @@ hi(d){return d+" odpov\u011bd\u011bl na hovor"},
 geZ(){return"Kdokoliv se m\u016f\u017ee p\u0159ipojit"},
 gf_(){return"Archivovat"},
 ghj(){return"Mohou se p\u0159ipojit host\xe9"},
-gd2(){return"Jste si jist\xfd?"},
+gd4(){return"Jste si jist\xfd?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Opravdu se chcete odhl\xe1sit?"},
 ghl(){return"Pro ov\u011b\u0159en\xed t\xe9to osoby zadejte pros\xedm p\u0159\xedstupovou fr\xe1zi k \u201ebezpe\u010dn\xe9mu \xfalo\u017ei\u0161ti\u201c anebo \u201ekl\xed\u010d pro obnovu\u201c."},
@@ -133,7 +133,7 @@ gib(){return"Tmav\xe9"},
 ic(d,e){return d+", "+e},
 gie(){return"T\xedmto krokem se deaktivuje v\xe1\u0161 u\u017eivatelsk\xfd \xfa\u010det. Akci nelze vr\xe1tit zp\u011bt! Jste si jist\xed?"},
 gig(){return"V\xfdchoz\xed \xfarove\u0148 opr\xe1vn\u011bn\xed nov\xfdch u\u017eivatel\u016f"},
-gdc(d){return"Smazat"},
+gdf(d){return"Smazat"},
 gii(){return"Smazat \xfa\u010det"},
 gij(){return"Smazat zpr\xe1vu"},
 gex(){return"Za\u0159\xedzen\xed"},
@@ -207,7 +207,7 @@ giN(){return"P\u0159ipojte se k m\xedstnosti"},
 iO(d,e){return"\ud83d\udc5e "+d+" vyhodil/a "+e},
 gfs(){return"Vyhodit z chatu"},
 eF(d){return"Naposledy aktivn\xed: "+d},
-gdj(){return"Opustit"},
+gdk(){return"Opustit"},
 gft(){return"Opustil chat"},
 giQ(){return"Sv\u011btl\xe9"},
 iR(d){return"Na\u010d\xedst dal\u0161\xedch "+d+" \xfa\u010dastn\xedk\u016f"},
@@ -228,7 +228,7 @@ giZ(){return"Moder\xe1tor"},
 geI(){return"Ztlumit chat"},
 gfz(){return"Nov\xfd chat"},
 gj_(){return"Nov\xe1 \u017e\xe1dost o ov\u011b\u0159en\xed!"},
-gd7(d){return"Dal\u0161\xed"},
+gd9(d){return"Dal\u0161\xed"},
 gej(){return"Ne"},
 gj1(){return"\u017d\xe1dn\xe9 p\u0159ipojen\xed k serveru"},
 gfA(){return"Nebyly nalezeny \u017e\xe1dn\xe9 emotikony. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FR,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FR":{"aD":[]}}'))};
-(a=>{a["jkq8LvgVrzSMEIi8SmJHGOMCvWQ="]=a.current})($__dart_deferred_initializers__);
+y(A.FS,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"FS":{"aD":[]}}'))};
+(a=>{a["Sw8qkar6CPRvn+ZptKiRcCNu2nE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_272.part.js.map

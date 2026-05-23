@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKz(){return new A.G4(B.de("gl"))},
-G4:function G4(d){this.a=d}}
+cKJ(){return new A.G5(B.de("gl"))},
+G5:function G5(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[24],A)
-A.G4.prototype={
+A.G5.prototype={
 gkF(){return"falso"},
 gjw(){return"Repite o contrasinal"},
 gmo(){return"Non \xe9 un ficheiro de imaxe."},
@@ -39,7 +39,7 @@ hi(d){return d+" respondeu \xe1 chamada"},
 geZ(){return"Calquera pode unirse"},
 gf_(){return"Arquivo"},
 ghj(){return"Poden entrar as usuarias convidadas?"},
-gd2(){return"Tes a certeza?"},
+gd4(){return"Tes a certeza?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Tes a certeza de querer sa\xedr?"},
 ghl(){return"Para poder asinar a outra persoa, escribe a t\xfaa frase de paso ou chave de recuperaci\xf3n."},
@@ -133,7 +133,7 @@ gib(){return"Escuro"},
 ic(d,e){return d+", "+e},
 gie(){return"Esto desactivar\xe1 a conta. Esto non ten volta atr\xe1s. Est\xe1s segura?"},
 gig(){return"Nivel de permisos por defecto para novas usuarias"},
-gdc(d){return"Eliminar"},
+gdf(d){return"Eliminar"},
 gii(){return"Eliminar conta"},
 gij(){return"Eliminar mensaxe"},
 gex(){return"Dispositivos"},
@@ -207,7 +207,7 @@ giN(){return"Unirse \xe1 sala"},
 iO(d,e){return"\ud83d\udc5e "+d+" expulsou a "+e},
 gfs(){return"Expulsar da conversa"},
 eF(d){return"\xdaltima actividade: "+d},
-gdj(){return"Sa\xedr"},
+gdk(){return"Sa\xedr"},
 gft(){return"Deixar a conversa"},
 giQ(){return"Claro"},
 iR(d){return"Cargar "+d+" participantes m\xe1is"},
@@ -228,7 +228,7 @@ giZ(){return"Moderadora"},
 geI(){return"Acalar conversa"},
 gfz(){return"Nova conversa"},
 gj_(){return"Nova solicitude de verificaci\xf3n!"},
-gd7(d){return"Seguinte"},
+gd9(d){return"Seguinte"},
 gej(){return"Non"},
 gj1(){return"Sen conexi\xf3n co servidor"},
 gfA(){return"Non hai emotes. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G4,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G4":{"aD":[]}}'))};
-(a=>{a["9Z9sTFktgZENxGiu+wNVChpZgFQ="]=a.current})($__dart_deferred_initializers__);
+y(A.G5,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"G5":{"aD":[]}}'))};
+(a=>{a["V6yTOjtvAVFFaH3ech8Emt99E0I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

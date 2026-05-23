@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKv(){return new A.G0(B.de("fi"))},
-G0:function G0(d){this.a=d}}
+cKF(){return new A.G1(B.de("fi"))},
+G1:function G1(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[20],A)
-A.G0.prototype={
+A.G1.prototype={
 gkF(){return"v\xe4\xe4r\xe4"},
 gjw(){return"Salasana uudelleen"},
 gmo(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -39,7 +39,7 @@ hi(d){return d+" vastasi puheluun"},
 geZ(){return"Kuka tahansa voi liitty\xe4"},
 gf_(){return"Arkisto"},
 ghj(){return"Sallitaanko vieraiden liittyminen"},
-gd2(){return"Oletko varma?"},
+gd4(){return"Oletko varma?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Haluatko varmasti kirjautua ulos?"},
 ghl(){return"Voidaksesi allekirjoittaa toisen henkil\xf6n, sy\xf6t\xe4 turvavaraston salalause tai palautusavain."},
@@ -133,7 +133,7 @@ gib(){return"Tumma"},
 ic(d,e){return d+", "+e},
 gie(){return"T\xe4m\xe4 poistaa tunnuksesi k\xe4yt\xf6st\xe4. T\xe4t\xe4 ei voi kumota! Oletko varma?"},
 gig(){return"Uusien k\xe4ytt\xe4jien oikeuksien oletustaso"},
-gdc(d){return"Poista"},
+gdf(d){return"Poista"},
 gii(){return"Poista tunnus"},
 gij(){return"Poista viesti"},
 gex(){return"Laitteet"},
@@ -207,7 +207,7 @@ giN(){return"Liity huoneeseen"},
 iO(d,e){return"\ud83d\udc5e "+d+" potki k\xe4ytt\xe4j\xe4n "+e},
 gfs(){return"Potki keskustelusta"},
 eF(d){return"Aktiivinen viimeksi: "+d},
-gdj(){return"Poistu"},
+gdk(){return"Poistu"},
 gft(){return"Poistui keskustelusta"},
 giQ(){return"Vaalea"},
 iR(d){return"Lataa viel\xe4 "+d+" osallistujaa"},
@@ -228,7 +228,7 @@ giZ(){return"Valvoja"},
 geI(){return"Vaienna keskustelu"},
 gfz(){return"Uusi keskustelu"},
 gj_(){return"Uusi varmennuspyynt\xf6!"},
-gd7(d){return"Seuraava"},
+gd9(d){return"Seuraava"},
 gej(){return"Ei"},
 gj1(){return"Ei yhteytt\xe4 palvelimeen"},
 gfA(){return"Emoteja ei l\xf6ytynyt. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G0,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G0":{"aD":[]}}'))};
-(a=>{a["fYdLqjIYRR2/XKmUN1BTK6ZnZY0="]=a.current})($__dart_deferred_initializers__);
+y(A.G1,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"G1":{"aD":[]}}'))};
+(a=>{a["eCs1w5V05fehQDTV9H3LpMOAzIg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

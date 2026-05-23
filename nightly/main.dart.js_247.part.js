@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKi(){return new A.FO(B.de("bn"))},
-FO:function FO(d){this.a=d}}
+cKs(){return new A.FP(B.de("bn"))},
+FP:function FP(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[7],A)
-A.FO.prototype={
+A.FP.prototype={
 gkF(){return"\u09a8\u09be"},
 gjw(){return"\u09aa\u09be\u09b8\u0993\u09df\u09be\u09b0\u09cd\u09a1 \u0986\u09ac\u09be\u09b0 \u09b2\u09bf\u0996\u09cb"},
 gmo(){return"\u0987\u09ae\u09c7\u099c \u09ab\u09be\u0987\u09b2 \u09a8\u09be\u0964"},
@@ -39,7 +39,7 @@ hi(d){return d+" answered the call"},
 geZ(){return"Anyone can join"},
 gf_(){return"\u0986\u09b0\u09cd\u0995\u09be\u0987\u09ad"},
 ghj(){return"Are guest users allowed to join?"},
-gd2(){return"Are you sure?"},
+gd4(){return"Are you sure?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Are you sure you want to log out?"},
 ghl(){return"To be able to sign the other person, please enter your secure store passphrase or recovery key."},
@@ -133,7 +133,7 @@ gib(){return"Dark"},
 ic(d,e){return d+", "+e},
 gie(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 gig(){return"Default permission level for new users"},
-gdc(d){return"\u0985\u09aa\u09b8\u09be\u09b0\u09a3"},
+gdf(d){return"\u0985\u09aa\u09b8\u09be\u09b0\u09a3"},
 gii(){return"Delete account"},
 gij(){return"Delete message"},
 gex(){return"\u09a1\u09bf\u09ad\u09be\u0987\u09b8"},
@@ -207,7 +207,7 @@ giN(){return"Join room"},
 iO(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfs(){return"Kick from chat"},
 eF(d){return"Last active: "+d},
-gdj(){return"\u099b\u09c7\u09dc\u09c7 \u09af\u09be\u0993"},
+gdk(){return"\u099b\u09c7\u09dc\u09c7 \u09af\u09be\u0993"},
 gft(){return"Left the chat"},
 giQ(){return"Light"},
 iR(d){return"Load "+d+" more participants"},
@@ -228,7 +228,7 @@ giZ(){return"Moderator"},
 geI(){return"Mute chat"},
 gfz(){return"New chat"},
 gj_(){return"New verification request!"},
-gd7(d){return"Next"},
+gd9(d){return"Next"},
 gej(){return"No"},
 gj1(){return"No connection to the server"},
 gfA(){return"No emotes found. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FO,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FO":{"aD":[]}}'))};
-(a=>{a["i5PcIeeHTnHYO9MpGYew7SSJH4A="]=a.current})($__dart_deferred_initializers__);
+y(A.FP,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"FP":{"aD":[]}}'))};
+(a=>{a["WT9b5EdX7qR+ZWCmmFuqWoyqvIw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_247.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKB(){return new A.G6(B.de("hi"))},
-G6:function G6(d){this.a=d}}
+cKL(){return new A.G7(B.de("hi"))},
+G7:function G7(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[26],A)
-A.G6.prototype={
+A.G7.prototype={
 gkF(){return"false"},
 gjw(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
 gmo(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
@@ -39,7 +39,7 @@ hi(d){return d+" answered the call"},
 geZ(){return"Anyone can join"},
 gf_(){return"Archive"},
 ghj(){return"Are guest users allowed to join?"},
-gd2(){return"Are you sure?"},
+gd4(){return"Are you sure?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Are you sure you want to log out?"},
 ghl(){return"To be able to sign the other person, please enter your secure store passphrase or recovery key."},
@@ -133,7 +133,7 @@ gib(){return"Dark"},
 ic(d,e){return d+", "+e},
 gie(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 gig(){return"Default permission level for new users"},
-gdc(d){return"Delete"},
+gdf(d){return"Delete"},
 gii(){return"Delete account"},
 gij(){return"Delete message"},
 gex(){return"Devices"},
@@ -207,7 +207,7 @@ giN(){return"Join room"},
 iO(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfs(){return"Kick from chat"},
 eF(d){return"Last active: "+d},
-gdj(){return"Leave"},
+gdk(){return"Leave"},
 gft(){return"Left the chat"},
 giQ(){return"Light"},
 iR(d){return"Load "+d+" more participants"},
@@ -228,7 +228,7 @@ giZ(){return"Moderator"},
 geI(){return"Mute chat"},
 gfz(){return"New chat"},
 gj_(){return"New verification request!"},
-gd7(d){return"Next"},
+gd9(d){return"Next"},
 gej(){return"No"},
 gj1(){return"No connection to the server"},
 gfA(){return"No emotes found. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G6,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G6":{"aD":[]}}'))};
-(a=>{a["uEeokHqfoFH73GJLfm2gwt2IPjw="]=a.current})($__dart_deferred_initializers__);
+y(A.G7,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"G7":{"aD":[]}}'))};
+(a=>{a["9Y+iAsYYDdJly+Xxj7raNKHpv5Q="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

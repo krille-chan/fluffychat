@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKC(){return new A.G7(B.de("hr"))},
-G7:function G7(d){this.a=d}}
+cKM(){return new A.G8(B.de("hr"))},
+G8:function G8(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[27],A)
-A.G7.prototype={
+A.G8.prototype={
 gkF(){return"true"},
 gjw(){return"Ponovi lozinku"},
 gmo(){return"Nije slikovna datoteka."},
@@ -39,7 +39,7 @@ hi(d){return d+" je odgovorio/la na poziv"},
 geZ(){return"Svatko se mo\u017ee pridru\u017eiti"},
 gf_(){return"Arhiv"},
 ghj(){return"Smiju li se gosti pridru\u017eiti"},
-gd2(){return"Stvarno to \u017eeli\u0161?"},
+gd4(){return"Stvarno to \u017eeli\u0161?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Stvarno se \u017eeli\u0161 odjaviti?"},
 ghl(){return"Za potpisivanje druge osobe, upi\u0161i svoju sigurnosnu lozinku ili klju\u010d za oporavak."},
@@ -133,7 +133,7 @@ gib(){return"Tamna"},
 ic(d,e){return d+", "+e},
 gie(){return"Ovo \u0107e nepovratno deaktivirati tvoj korisni\u010dki ra\u010dun. Stvarno to \u017eeli\u0161?"},
 gig(){return"Standardna razina dozvole za nove korisnike"},
-gdc(d){return"Izbri\u0161i"},
+gdf(d){return"Izbri\u0161i"},
 gii(){return"Izbri\u0161i ra\u010dun"},
 gij(){return"Izbri\u0161i poruku"},
 gex(){return"Ure\u0111aji"},
@@ -207,7 +207,7 @@ giN(){return"Pridru\u017ei se sobi"},
 iO(d,e){return"\ud83d\udc5e "+d+" je izbacio/la "+e},
 gfs(){return"Izbaci iz chata"},
 eF(d){return"Zadnja aktivnost: "+d},
-gdj(){return"Napusti"},
+gdk(){return"Napusti"},
 gft(){return"Napustio/la je chat"},
 giQ(){return"Svijetla"},
 iR(d){return"U\u010ditaj jo\u0161 "+d+" sudionika"},
@@ -228,7 +228,7 @@ giZ(){return"Voditelj"},
 geI(){return"Isklju\u010di zvuk chata"},
 gfz(){return"Novi chat"},
 gj_(){return"Novi zahtjev za potvr\u0111ivanje!"},
-gd7(d){return"Dalje"},
+gd9(d){return"Dalje"},
 gej(){return"Ne"},
 gj1(){return"Ne postoji veza sa serverom"},
 gfA(){return"Nema emotikona. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G7,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G7":{"aD":[]}}'))};
-(a=>{a["4T6RD24wHNH6g92atT/JNEZJw7M="]=a.current})($__dart_deferred_initializers__);
+y(A.G8,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"G8":{"aD":[]}}'))};
+(a=>{a["pHkqhuAj6JXI0aOR/jLNxx0tuO0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map

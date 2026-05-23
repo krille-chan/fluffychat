@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKo(){return new A.FU(B.de("el"))},
-FU:function FU(d){this.a=d}}
+cKy(){return new A.FV(B.de("el"))},
+FV:function FV(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[13],A)
-A.FU.prototype={
+A.FV.prototype={
 gkF(){return"\u03a8\u03b5\u03c5\u03b4\u03ae\u03c2"},
 gjw(){return"\u0395\u03c0\u03b1\u03bd\u03ac\u03bb\u03b7\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gmo(){return"\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03b5\u03b9\u03ba\u03cc\u03bd\u03b1\u03c2."},
@@ -39,7 +39,7 @@ hi(d){return d+" \u03b1\u03c0\u03ac\u03bd\u03c4\u03b7\u03c3\u03b5 \u03c3\u03c4\u
 geZ(){return"\u039f\u03c0\u03bf\u03b9\u03bf\u03c3\u03b4\u03ae\u03c0\u03bf\u03c4\u03b5 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03c3\u03c5\u03bc\u03bc\u03b5\u03c4\u03ac\u03c3\u03c7\u03b5\u03b9"},
 gf_(){return"\u0391\u03c1\u03c7\u03b5\u03af\u03bf"},
 ghj(){return"\u0395\u03c0\u03b9\u03c4\u03c1\u03ad\u03c0\u03b5\u03c4\u03b1\u03b9 \u03c3\u03c4\u03bf\u03c5\u03c2 \u03b5\u03c0\u03b9\u03c3\u03ba\u03ad\u03c0\u03c4\u03b5\u03c2 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b5\u03c2 \u03bd\u03b1 \u03c3\u03c5\u03bc\u03bc\u03b5\u03c4\u03ac\u03c3\u03c7\u03bf\u03c5\u03bd"},
-gd2(){return"\u03a3\u03af\u03b3\u03bf\u03c5\u03c1\u03b1;"},
+gd4(){return"\u03a3\u03af\u03b3\u03bf\u03c5\u03c1\u03b1;"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"\u03a3\u03af\u03b3\u03bf\u03c5\u03c1\u03b1 \u03b8\u03b5\u03c2 \u03bd\u03b1 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af\u03c2;"},
 ghl(){return"\u0393\u03b9\u03b1 \u03bd\u03b1 \u03bc\u03c0\u03bf\u03c1\u03ad\u03c3\u03b5\u03b9\u03c2 \u03bd\u03b1 \u03c5\u03c0\u03bf\u03b3\u03c1\u03ac\u03c8\u03b5\u03b9\u03c2 \u03c4\u03bf \u03ac\u03bb\u03bb\u03bf \u03ac\u03c4\u03bf\u03bc\u03bf, \u03c0\u03bb\u03b7\u03ba\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03b7\u03c3\u03b5 \u03c4\u03b7 \u03c3\u03c5\u03bd\u03b8\u03b7\u03bc\u03b1\u03c4\u03b9\u03ba\u03ae \u03c6\u03c1\u03ac\u03c3\u03b7 \u03b1\u03c3\u03c6\u03b1\u03bb\u03bf\u03cd\u03c2 \u03b1\u03c0\u03bf\u03b8\u03ae\u03ba\u03b5\u03c5\u03c3\u03b7\u03c2 \u03ae \u03c4\u03bf \u03ba\u03bb\u03b5\u03b9\u03b4\u03af \u03b1\u03bd\u03ac\u03ba\u03c4\u03b7\u03c3\u03b7\u03c2."},
@@ -133,7 +133,7 @@ gib(){return"Dark"},
 ic(d,e){return d+", "+e},
 gie(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 gig(){return"Default permission level for new users"},
-gdc(d){return"Delete"},
+gdf(d){return"Delete"},
 gii(){return"Delete account"},
 gij(){return"Delete message"},
 gex(){return"Devices"},
@@ -207,7 +207,7 @@ giN(){return"Join room"},
 iO(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfs(){return"Kick from chat"},
 eF(d){return"Last active: "+d},
-gdj(){return"Leave"},
+gdk(){return"Leave"},
 gft(){return"Left the chat"},
 giQ(){return"Light"},
 iR(d){return"Load "+d+" more participants"},
@@ -228,7 +228,7 @@ giZ(){return"Moderator"},
 geI(){return"Mute chat"},
 gfz(){return"New chat"},
 gj_(){return"New verification request!"},
-gd7(d){return"Next"},
+gd9(d){return"Next"},
 gej(){return"No"},
 gj1(){return"No connection to the server"},
 gfA(){return"No emotes found. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FU,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FU":{"aD":[]}}'))};
-(a=>{a["fjRuay6KTO0oUPHEpwX/WWBbSV4="]=a.current})($__dart_deferred_initializers__);
+y(A.FV,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"FV":{"aD":[]}}'))};
+(a=>{a["6uVUgaPdWMxz8+NNb5LikVBlFYM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_291.part.js.map

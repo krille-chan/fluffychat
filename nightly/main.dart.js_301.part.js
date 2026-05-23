@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKt(){return new A.FZ(B.de("eu"))},
-FZ:function FZ(d){this.a=d}}
+cKD(){return new A.G_(B.de("eu"))},
+G_:function G_(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[18],A)
-A.FZ.prototype={
+A.G_.prototype={
 gkF(){return"false"},
 gjw(){return"Idatzi berriro pasahitza"},
 gmo(){return"Ez da irudi-fitxategia."},
@@ -39,7 +39,7 @@ hi(d){return d+"(e)k deia erantzun du"},
 geZ(){return"Edonor batu daiteke"},
 gf_(){return"Fitxategia"},
 ghj(){return"Batu al daitezke bisitan dauden erabiltzaileak"},
-gd2(){return"Ziur zaude?"},
+gd4(){return"Ziur zaude?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Ziur zaude saioa amaitu nahi duzula?"},
 ghl(){return"Beste pertsona egiaztatzeko, sartu zure biltegiratze segururako pasaesaldia edo berreskuratze-gakoa."},
@@ -133,7 +133,7 @@ gib(){return"Iluna"},
 ic(d,e){return d+", "+e},
 gie(){return"Honek zure kontua desaktibatuko du. Ezin da desegin! Ziur zaude?"},
 gig(){return"Erabiltzaile berrien defektuzko botere-maila"},
-gdc(d){return"Ezabatu"},
+gdf(d){return"Ezabatu"},
 gii(){return"Ezabatu kontua"},
 gij(){return"Mezuak ezabatu"},
 gex(){return"Gailuak"},
@@ -207,7 +207,7 @@ giN(){return"Batu gelara"},
 iO(d,e){return"\ud83d\udc5e "+d+"(e)k "+e+" kanporatu du"},
 gfs(){return"Txatetik kanporatu"},
 eF(d){return"Azkenekoz aktibo: "+d},
-gdj(){return"Irten"},
+gdk(){return"Irten"},
 gft(){return"Txatetik irten da"},
 giQ(){return"Argia"},
 iR(d){return"Kargatu "+d+" partaide gehiago"},
@@ -228,7 +228,7 @@ giZ(){return"Moderatzailea"},
 geI(){return"Mututu txata"},
 gfz(){return"Txat berria"},
 gj_(){return"Egiaztaketa-eskaera berria!"},
-gd7(d){return"Hurrengoa"},
+gd9(d){return"Hurrengoa"},
 gej(){return"Ez"},
 gj1(){return"Ez dago konexiorik zerbitzariarekin"},
 gfA(){return"Ez da emoterik aurkitu. \ud83d\ude15"},
@@ -690,8 +690,8 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FZ,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FZ":{"aD":[]}}'))
+x(A.G_,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"G_":{"aD":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["UfShu+UY6S8oBogrXFeOlwYSD8U="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["UxX82jbgw23yNWMolWR+Z5AQ7/A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map

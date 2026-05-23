@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKE(){return new A.G9(B.de("ia"))},
-G9:function G9(d){this.a=d}}
+cKO(){return new A.Ga(B.de("ia"))},
+Ga:function Ga(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[29],A)
-A.G9.prototype={
+A.Ga.prototype={
 gkF(){return"false"},
 gjw(){return"Repeter le contrasigno"},
 gmo(){return"Non es un file de imagine."},
@@ -39,7 +39,7 @@ hi(d){return d+" answered the call"},
 geZ(){return"Anyone can join"},
 gf_(){return"Archive"},
 ghj(){return"Are guest users allowed to join?"},
-gd2(){return"Are you sure?"},
+gd4(){return"Are you sure?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Are you sure you want to log out?"},
 ghl(){return"To be able to sign the other person, please enter your secure store passphrase or recovery key."},
@@ -133,7 +133,7 @@ gib(){return"Dark"},
 ic(d,e){return d+", "+e},
 gie(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 gig(){return"Default permission level for new users"},
-gdc(d){return"Delete"},
+gdf(d){return"Delete"},
 gii(){return"Delete account"},
 gij(){return"Delete message"},
 gex(){return"Devices"},
@@ -207,7 +207,7 @@ giN(){return"Join room"},
 iO(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfs(){return"Kick from chat"},
 eF(d){return"Last active: "+d},
-gdj(){return"Leave"},
+gdk(){return"Leave"},
 gft(){return"Left the chat"},
 giQ(){return"Light"},
 iR(d){return"Load "+d+" more participants"},
@@ -228,7 +228,7 @@ giZ(){return"Moderator"},
 geI(){return"Mute chat"},
 gfz(){return"New chat"},
 gj_(){return"New verification request!"},
-gd7(d){return"Next"},
+gd9(d){return"Next"},
 gej(){return"No"},
 gj1(){return"No connection to the server"},
 gfA(){return"No emotes found. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G9,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G9":{"aD":[]}}'))};
-(a=>{a["qYqORL0Cg4PXN2QmmDpULWiL9KI="]=a.current})($__dart_deferred_initializers__);
+y(A.Ga,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"Ga":{"aD":[]}}'))};
+(a=>{a["Yy0FRWodGcxLpUxgxGgYY9WI/h8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_326.part.js.map

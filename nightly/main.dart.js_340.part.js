@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKK(){return new A.Gf(B.de("kab"))},
-Gf:function Gf(d){this.a=d}}
+cKU(){return new A.Gg(B.de("kab"))},
+Gg:function Gg(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[35],A)
-A.Gf.prototype={
+A.Gg.prototype={
 gkF(){return"false"},
 gjw(){return"Ales awal n u\u025beddi"},
 gmo(){return"Ma\u010d\u010di d afaylu n tugna."},
@@ -39,7 +39,7 @@ hi(d){return d+" yerra-d i usiwel"},
 geZ(){return"Yal yiwen yezmer ad yettekki"},
 gf_(){return"A\u0263ba\u1e5b"},
 ghj(){return"Iseqdacen inebgiwen ttusirgen ad ttekkin"},
-gd2(){return"Tet\u1e25eqqe\u1e0d?"},
+gd4(){return"Tet\u1e25eqqe\u1e0d?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"D tidet teb\u0263i\u1e0d ad teff\u0263e\u1e0d?"},
 ghl(){return"Iwakken ad teszmele\u1e0d amdan-nni\u1e0den, ttxil-k\xb7m sekcem tafyirt-ik\xb7im n u\u1e25raz s wudem a\u0263elsan ne\u0263 tasarut n tririt."},
@@ -133,7 +133,7 @@ gib(){return"Ubrik"},
 ic(d,e){return e+", "+d},
 gie(){return"Ayagi ad yekkes armed i umi\u1e0dan-ik\xb7im n useqdac. Aya ur yezmir ara ad yettwasefsex. Tet\u1e25eqqe\u1e0d s tidet?"},
 gig(){return"Aswir n turagt amezwer i yiseqdacen imaynuten"},
-gdc(d){return"kkes"},
+gdf(d){return"kkes"},
 gii(){return"kkes ami\u1e0dan"},
 gij(){return"kkes izen"},
 gex(){return"Ibenkan"},
@@ -207,7 +207,7 @@ giN(){return"Tekki deg texxamt"},
 iO(d,e){return"\ud83d\udc5e"+d+" yessuffe\u0263-d "+e},
 gfs(){return"Suffe\u0263 seg udiwenni"},
 eF(d){return"Yermed i tikkelt taneggarut: "+d},
-gdj(){return"E\u01e7\u01e7"},
+gdk(){return"E\u01e7\u01e7"},
 gft(){return"Ffe\u0263 seg udiwenni"},
 giQ(){return"Ace\u025blal"},
 iR(d){return"Sali-d ugar n "+d+" yimttekkiyen"},
@@ -228,7 +228,7 @@ giZ(){return"Moderator"},
 geI(){return"Sgugem adiwenni"},
 gfz(){return"Adiwenni Amaynut"},
 gj_(){return"Asuter amaynut n uselken!"},
-gd7(d){return"U\u1e0dfir"},
+gd9(d){return"U\u1e0dfir"},
 gej(){return"Ala"},
 gj1(){return"Ulac tuqqna \u0263er uqeddac"},
 gfA(){return"Ulac izamulen u\u1e25ulfu yettwafen. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gf,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gf":{"aD":[]}}'))};
-(a=>{a["MPGluENDO6Thl5ygHfFUvYD28Rc="]=a.current})($__dart_deferred_initializers__);
+y(A.Gg,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"Gg":{"aD":[]}}'))};
+(a=>{a["YWXnQCZ4sm0HgIRZvM+DiJ+e68k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_340.part.js.map

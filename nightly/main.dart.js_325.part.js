@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKD(){return new A.G8(B.de("hu"))},
-G8:function G8(d){this.a=d}}
+cKN(){return new A.G9(B.de("hu"))},
+G9:function G9(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[28],A)
-A.G8.prototype={
+A.G9.prototype={
 gkF(){return""},
 gjw(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gmo(){return"Nem k\xe9p f\xe1jl."},
@@ -39,7 +39,7 @@ hi(d){return d+" v\xe1laszolt a h\xedv\xe1sra"},
 geZ(){return"B\xe1rki csatlakozhat"},
 gf_(){return"Arch\xedvum"},
 ghj(){return"Csatlakozhatnak-e vend\xe9gek"},
-gd2(){return"Biztos benne?"},
+gd4(){return"Biztos benne?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Biztosan kijelentkezik?"},
 ghl(){return"A m\xe1sik f\xe9l igazol\xe1s\xe1hoz meg kell adnia a biztons\xe1gos t\xe1rol\xf3 jelmondat\xe1t vagy a vissza\xe1ll\xedt\xe1si kulcsot\xe1t."},
@@ -133,7 +133,7 @@ gib(){return"S\xf6t\xe9t"},
 ic(d,e){return d+", "+e},
 gie(){return"Ez deaktiv\xe1lja a felhaszn\xe1l\xf3i fi\xf3kj\xe1t. Ez nem vonhat\xf3 vissza! Biztos benne?"},
 gig(){return"Alap\xe9rtelmezett hozz\xe1f\xe9r\xe9si szint \xfaj felhaszn\xe1l\xf3kn\xe1l"},
-gdc(d){return"T\xf6rl\xe9s"},
+gdf(d){return"T\xf6rl\xe9s"},
 gii(){return"Fi\xf3k t\xf6rl\xe9se"},
 gij(){return"\xdczenet t\xf6rl\xe9se"},
 gex(){return"Eszk\xf6z\xf6k"},
@@ -207,7 +207,7 @@ giN(){return"Csatlakoz\xe1s a szob\xe1hoz"},
 iO(d,e){return"\ud83d\udc5e "+d+" kir\xfagta "+e+"-t"},
 gfs(){return"Kir\xfag\xe1s a cseveg\xe9sb\u0151l"},
 eF(d){return"Utolj\xe1ra akt\xedv: "+d},
-gdj(){return"Elhagy"},
+gdk(){return"Elhagy"},
 gft(){return"Elhagyta a cseveg\xe9st"},
 giQ(){return"Vil\xe1gos"},
 iR(d){return"Tov\xe1bbi "+d+" r\xe9sztvev\u0151 bet\xf6lt\xe9se"},
@@ -228,7 +228,7 @@ giZ(){return"Moder\xe1tor"},
 geI(){return"Cseveg\xe9s n\xe9m\xedt\xe1sa"},
 gfz(){return"\xdaj cseveg\xe9s"},
 gj_(){return"\xdaj hiteles\xedt\xe9si k\xe9relem!"},
-gd7(d){return"K\xf6vetkez\u0151"},
+gd9(d){return"K\xf6vetkez\u0151"},
 gej(){return"Nem"},
 gj1(){return"Nem el\xe9rhet\u0151 a szerver"},
 gfA(){return"Nem tal\xe1lhat\xf3ak hangulatjelek. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G8,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"G8":{"aD":[]}}'))};
-(a=>{a["KxFxd/p3mieBF9dzfXGeo0hTlGw="]=a.current})($__dart_deferred_initializers__);
+y(A.G9,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"G9":{"aD":[]}}'))};
+(a=>{a["TNTIWIUYfWww0fBGPYocbTrjwdU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_325.part.js.map

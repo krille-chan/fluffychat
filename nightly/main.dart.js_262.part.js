@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKk(){return new A.FQ(B.de("ca"))},
-FQ:function FQ(d){this.a=d}}
+cKu(){return new A.FR(B.de("ca"))},
+FR:function FR(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[9],A)
-A.FQ.prototype={
+A.FR.prototype={
 gkF(){return"true"},
 gjw(){return"Repetiu la contrasenya"},
 gmo(){return"No \xe9s un arxiu d'image."},
@@ -39,7 +39,7 @@ hi(d){return d+" ha respost a la trucada"},
 geZ(){return"Qualsevol pot unir-se"},
 gf_(){return"Arxiu"},
 ghj(){return"Es pot entrar al xat com a convidadi?"},
-gd2(){return"N\u2019esteu seguri?"},
+gd4(){return"N\u2019esteu seguri?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Segur que voleu finalitzar la sessi\xf3?"},
 ghl(){return"Per a poder donar acc\xe9s a l\u2019altra persona, introdu\xefu la frase de seguretat o clau de recuperaci\xf3."},
@@ -133,7 +133,7 @@ gib(){return"Fosc"},
 ic(d,e){return d+", "+e},
 gie(){return"Es desactivar\xe0 el vostre compte d\u2019usu\xe0ri\xef. \xc9s irreversible! Voleu fer-ho igualment?"},
 gig(){return"Nivell de permisos per defecte per nous membres"},
-gdc(d){return"Suprimeix"},
+gdf(d){return"Suprimeix"},
 gii(){return"Suprimeix el compte"},
 gij(){return"Suprimeix el missatge"},
 gex(){return"Dispositius"},
@@ -207,7 +207,7 @@ giN(){return"Uneix-te a la sala"},
 iO(d,e){return"\ud83d\udc5e "+d+" ha expulsat a "+e},
 gfs(){return"Expulsa del xat"},
 eF(d){return"Actiu per \xfaltima vegada: "+d},
-gdj(){return"Abandona"},
+gdk(){return"Abandona"},
 gft(){return"Ha marxat del xat"},
 giQ(){return"Clar"},
 iR(d){return"Carrega "+d+" participants m\xe9s"},
@@ -228,7 +228,7 @@ giZ(){return"Moderador"},
 geI(){return"Silencia el xat"},
 gfz(){return"Xat nou"},
 gj_(){return"Nova sol\xb7licitud de verificaci\xf3!"},
-gd7(d){return"Seg\xfcent"},
+gd9(d){return"Seg\xfcent"},
 gej(){return"No"},
 gj1(){return"Sense connexi\xf3 al servidor"},
 gfA(){return"No s\u2019ha trobat cap emoticona. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FQ,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"FQ":{"aD":[]}}'))};
-(a=>{a["guqmSfsGNN6FSIUAx2jQRw84rBE="]=a.current})($__dart_deferred_initializers__);
+y(A.FR,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"FR":{"aD":[]}}'))};
+(a=>{a["Lwfzcrl2x7gF0iCP5WUthwvoaRo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_262.part.js.map

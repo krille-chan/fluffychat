@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cKN(){return new A.Gi(B.de("lv"))},
-Gi:function Gi(d){this.a=d}}
+cKX(){return new A.Gj(B.de("lv"))},
+Gj:function Gj(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[38],A)
-A.Gi.prototype={
+A.Gj.prototype={
 gkF(){return"true"},
 gjw(){return"Atk\u0101rtot paroli"},
 gmo(){return"Nav att\u0113la datne."},
@@ -39,7 +39,7 @@ hi(d){return d+" atbild\u0113ja uz zvanu"},
 geZ(){return"Ikviens var pievienoties"},
 gf_(){return"Arh\u012bvs"},
 ghj(){return"Vai vieslietot\u0101ji dr\u012bkst pievienoties?"},
-gd2(){return"Vai tie\u0161\u0101m?"},
+gd4(){return"Vai tie\u0161\u0101m?"},
 gpI(){return"You have unsaved changes. Discard your edits?"},
 ghk(){return"Vai tie\u0161\u0101m atteikties?"},
 ghl(){return"Lai var\u0113tu parakst\u012bt otru cilv\u0113ku, l\u016bgums ievad\u012bt savu dro\u0161o kr\u0101tuves paroles v\u0101rdkopu vai atkopes atsl\u0113gu."},
@@ -133,7 +133,7 @@ gib(){return"Tum\u0161s"},
 ic(d,e){return d+", "+e},
 gie(){return"Tas atsp\u0113jos Tavu lietot\u0101ja kontu. To nevar atdar\u012bt. Vai tie\u0161\u0101m?"},
 gig(){return"Noklus\u0113juma at\u013cauju l\u012bmenis jauniem lietot\u0101jiem"},
-gdc(d){return"Izdz\u0113st"},
+gdf(d){return"Izdz\u0113st"},
 gii(){return"Izdz\u0113st kontu"},
 gij(){return"Izdz\u0113st zi\u0146u"},
 gex(){return"Ier\u012bces"},
@@ -207,7 +207,7 @@ giN(){return"Pievienoties istabai"},
 iO(d,e){return"\ud83d\udc5e "+d+" izmeta "+e},
 gfs(){return"Izmest no t\u0113rz\u0113\u0161anas"},
 eF(d){return"P\u0113d\u0113joreiz tie\u0161saist\u0113: "+d},
-gdj(){return"Pamest"},
+gdk(){return"Pamest"},
 gft(){return"Pameta t\u0113rz\u0113\u0161anu"},
 giQ(){return"Gai\u0161s"},
 iR(d){return"Iel\u0101d\u0113t v\u0113l "+d+" dal\u012bbniekus"},
@@ -228,7 +228,7 @@ giZ(){return"Moderators"},
 geI(){return"Apklusin\u0101t t\u0113rz\u0113\u0161anu"},
 gfz(){return"Jauna t\u0113rz\u0113\u0161ana"},
 gj_(){return"Jauns apliecin\u0101\u0161anas piepras\u012bjums."},
-gd7(d){return"N\u0101kamais"},
+gd9(d){return"N\u0101kamais"},
 gej(){return"N\u0113"},
 gj1(){return"Nav savienojuma ar serveri"},
 gfA(){return"Netika atrasta neviena emocija. \ud83d\ude15"},
@@ -690,7 +690,7 @@ gq0(){return"This release was only possible thanks to your support. FluffyChat r
 gpt(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gi,C.aD)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gi":{"aD":[]}}'))};
-(a=>{a["zjyBZuYCtSuXd85raD1kKhyhoVI="]=a.current})($__dart_deferred_initializers__);
+y(A.Gj,C.aD)})()
+B.dK(b.typeUniverse,JSON.parse('{"Gj":{"aD":[]}}'))};
+(a=>{a["oLgmj1qeh7pu3cus228FdF22V34="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_343.part.js.map
