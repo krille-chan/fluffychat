@@ -116,6 +116,26 @@ jobs:
           cache: true
       - uses: moonrepo/setup-rust@v1
       - run: flutter pub get
+      - name: Compute MSIX version
+        run: |
+          $versionLine = (Select-String -Path pubspec.yaml -Pattern '^version:\s*(.+)$').Matches.Groups[1].Value
+          $parts = $versionLine -split '\+'
+          $base = $parts[0]
+          $build = if ($parts.Length -gt 1 -and $parts[1]) { $parts[1] } else { "0" }
+          $msixVersion = "$base.$build"
+          echo "MSIX_VERSION=$msixVersion" >> $env:GITHUB_ENV
+        shell: pwsh
+      - name: Decode MSIX signing certificate
+        env:
+          MSIX_CERT_BASE64: ${{ secrets.MSIX_CERT_BASE64 }}
+        run: |
+          if (-not $env:MSIX_CERT_BASE64) {
+            throw "MSIX_CERT_BASE64 is not set"
+          }
+          $certPath = Join-Path $env:RUNNER_TEMP "msix.pfx"
+          [IO.File]::WriteAllBytes($certPath, [Convert]::FromBase64String($env:MSIX_CERT_BASE64))
+          echo "MSIX_CERT_PATH=$certPath" >> $env:GITHUB_ENV
+        shell: pwsh
       - name: Build Windows
         run: flutter build windows --release
       - name: Include MSVC Runtime
@@ -125,19 +145,49 @@ jobs:
           Copy-Item -Path "C:\Windows\System32\vcruntime140_1.dll" -Destination "build\windows\x64\runner\Release\"
           Copy-Item -Path "build\windows\x64\runner\Release\sqlite3.dll" -Destination "build\windows\x64\runner\Release\libsqlcipher.dll" -ErrorAction SilentlyContinue
         shell: pwsh
-      - name: Download Inno Setup Chinese language packs
+      - name: Prepare MSIX config
+        env:
+          MSIX_PUBLISHER_DISPLAY_NAME: ${{ secrets.MSIX_PUBLISHER_DISPLAY_NAME }}
+          MSIX_PUBLISHER: ${{ secrets.MSIX_PUBLISHER }}
+          MSIX_IDENTITY_NAME: ${{ secrets.MSIX_IDENTITY_NAME }}
+          MSIX_CERT_PASSWORD: ${{ secrets.MSIX_CERT_PASSWORD }}
         run: |
-          New-Item -ItemType Directory -Force -Path windows\languages | Out-Null
-          $base = "https://raw.githubusercontent.com/jrsoftware/issrc/main/Files/Languages"
-          Invoke-WebRequest -Uri "$base/ChineseSimplified.isl" -OutFile "windows\languages\ChineseSimplified.isl"
-          Invoke-WebRequest -Uri "$base/ChineseTraditional.isl" -OutFile "windows\languages\ChineseTraditional.isl"
+          if (-not $env:MSIX_PUBLISHER_DISPLAY_NAME) { throw "MSIX_PUBLISHER_DISPLAY_NAME is not set" }
+          if (-not $env:MSIX_PUBLISHER) { throw "MSIX_PUBLISHER is not set" }
+          if (-not $env:MSIX_IDENTITY_NAME) { throw "MSIX_IDENTITY_NAME is not set" }
+          if (-not $env:MSIX_CERT_PASSWORD) { throw "MSIX_CERT_PASSWORD is not set" }
+          python - <<'PY'
+          import os
+          from pathlib import Path
+
+          path = Path("pubspec.yaml")
+          text = path.read_text(encoding="utf-8")
+          replacements = {
+              "__MSIX_PUBLISHER_DISPLAY_NAME__": os.environ["MSIX_PUBLISHER_DISPLAY_NAME"],
+              "__MSIX_PUBLISHER__": os.environ["MSIX_PUBLISHER"],
+              "__MSIX_IDENTITY_NAME__": os.environ["MSIX_IDENTITY_NAME"],
+              "__MSIX_VERSION__": os.environ["MSIX_VERSION"],
+              "__MSIX_CERT_PATH__": os.environ["MSIX_CERT_PATH"].replace("\\\\", "/"),
+              "__MSIX_CERT_PASSWORD__": os.environ["MSIX_CERT_PASSWORD"],
+          }
+          for key, value in replacements.items():
+              text = text.replace(key, value)
+          path.write_text(text, encoding="utf-8")
+          PY
         shell: pwsh
-      - name: Build Windows Installer (Inno Setup)
+      - name: Build MSIX package
+        run: flutter pub run msix:create
+      - name: Locate MSIX package
         run: |
-          $ver = (Select-String -Path pubspec.yaml -Pattern '^version:\s*(.+)').Matches.Groups[1].Value
-          $ver = $ver -replace '\+.*', ''
-          iscc /dMyAppVersion="$ver" windows/inno_setup.iss
+          $msix = Get-ChildItem -Path "build\windows\runner\Release" -Filter *.msix | Select-Object -First 1
+          if (-not $msix) { throw "MSIX package not found" }
+          echo "MSIX_PATH=$($msix.FullName)" >> $env:GITHUB_ENV
         shell: pwsh
+      - name: Upload MSIX
+        uses: actions/upload-artifact@v7
+        with:
+          name: fluffychat.msix
+          path: ${{ env.MSIX_PATH }}
       - name: Create archive
         run: Compress-Archive -Path "build\windows\x64\runner\Release\*" -DestinationPath "fluffychat-windows.zip"
         shell: pwsh
@@ -146,11 +196,15 @@ jobs:
         with:
           name: fluffychat-windows.zip
           path: fluffychat-windows.zip
-      - name: Upload Windows Installer
-        uses: actions/upload-artifact@v7
+      - name: Upload MSIX to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         with:
-          name: fluffychat-windows-setup.exe
-          path: build/fluffychat-windows-setup.exe
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ${{ env.MSIX_PATH }}
+          asset_name: fluffychat.msix
+          asset_content_type: application/vnd.ms-appx
       - name: Upload zip to release
         uses: actions/upload-release-asset@v1
         env:
@@ -160,16 +214,16 @@ jobs:
           asset_path: fluffychat-windows.zip
           asset_name: fluffychat-windows.zip
           asset_content_type: application/zip
-      - name: Upload Installer to release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+      - name: Submit MSIX to Microsoft Store
+        uses: microsoft/store-submission@v1
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/fluffychat-windows-setup.exe
-          asset_name: fluffychat-windows-setup.exe
-          asset_content_type: application/vnd.microsoft.portable-executable
-          
+          tenantId: ${{ secrets.MS_STORE_TENANT_ID }}
+          clientId: ${{ secrets.MS_STORE_CLIENT_ID }}
+          clientSecret: ${{ secrets.MS_STORE_CLIENT_SECRET }}
+          sellerId: ${{ secrets.MS_STORE_SELLER_ID }}
+          productId: ${{ secrets.MS_STORE_PRODUCT_ID }}
+          packagePath: ${{ env.MSIX_PATH }}
+
   build_linux:
     strategy:
       matrix:

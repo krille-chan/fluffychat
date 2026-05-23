@@ -142,19 +142,6 @@ jobs:
           $ucrt = Get-ChildItem "C:\Program Files (x86)\Windows Kits\10\bin\*\x64\ucrt\ucrtbased.dll" | Select-Object -First 1
           if ($ucrt) { Copy-Item -Path $ucrt.FullName -Destination "build\windows\x64\runner\Debug\" -ErrorAction SilentlyContinue }
         shell: pwsh
-      - name: Download Inno Setup Chinese language packs
-        run: |
-          New-Item -ItemType Directory -Force -Path windows\languages | Out-Null
-          $base = "https://raw.githubusercontent.com/jrsoftware/issrc/main/Files/Languages"
-          Invoke-WebRequest -Uri "$base/ChineseSimplified.isl" -OutFile "windows\languages\ChineseSimplified.isl"
-          Invoke-WebRequest -Uri "$base/ChineseTraditional.isl" -OutFile "windows\languages\ChineseTraditional.isl"
-        shell: pwsh
-      - name: Build Windows Installer (Inno Setup)
-        run: |
-          $ver = (Select-String -Path pubspec.yaml -Pattern '^version:\s*(.+)').Matches.Groups[1].Value
-          $ver = $ver -replace '\+.*', ''
-          iscc /dMyAppVersion="$ver" /dBuildType="Debug" windows/inno_setup.iss
-        shell: pwsh
       - name: Compress
         run: Compress-Archive -Path "build\windows\x64\runner\Debug\*" -DestinationPath "fluffychat-windows-debug.zip"
         shell: pwsh
@@ -163,11 +150,6 @@ jobs:
         with:
           name: debug-windows-x64
           path: fluffychat-windows-debug.zip
-      - name: Upload Debug Windows Installer
-        uses: actions/upload-artifact@v7
-        with:
-          name: fluffychat-windows-debug-setup.exe
-          path: build\fluffychat-windows-setup.exe
 
   build_debug_ios:
     needs: [ code_tests ]

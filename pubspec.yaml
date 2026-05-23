@@ -89,6 +89,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   license_checker: ^1.6.2
+  msix: ^3.16.2
   translations_cleaner: ^0.1.1
 
 flutter_native_splash:
@@ -103,6 +104,17 @@ flutter:
     - assets/
     - assets/sounds/
     - assets/vodozemac/
+
+msix_config:
+  display_name: FluffyChat
+  publisher_display_name: __MSIX_PUBLISHER_DISPLAY_NAME__
+  publisher: __MSIX_PUBLISHER__
+  identity_name: __MSIX_IDENTITY_NAME__
+  msix_version: __MSIX_VERSION__
+  logo_path: assets/logo.png
+  capabilities: internetClient, microphone, webcam
+  certificate_path: __MSIX_CERT_PATH__
+  certificate_password: __MSIX_CERT_PASSWORD__
 
 # Guidelines for adding a dependency override:
 # 1. Don't do it if you can avoid it or fix it upstream in a manageable time
