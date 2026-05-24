@@ -2169,11 +2169,6 @@
     "unread": "Nepřečtené",
     "space": "Prostor",
     "spaces": "Prostory",
-    "presencesToggle": "Zobrazení stavových zpráv od jiných uživatelů",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "aboutHomeserver": "O {homeserver}",
     "@aboutHomeserver": {
         "type": "String",
@@ -2214,7 +2209,6 @@
     "changedTheChatName": "{username} změnil/a název konverzace",
     "checkList": "Kontrolní seznam",
     "knock": "Zaklepat",
-    "hidePresences": "Skrýt seznam událostí?",
     "noBackupWarning": "Pozor! Bez povolení zálohování konverzací ztratíte přístup k zašifrovaným zprávám. Důrazně doporučujeme zálohování konverzací před odhlášením povolit.",
     "readUpToHere": "Čtěte až sem",
     "reportErrorDescription": "😭 Ale ne, něco se porouchalo. Pokud chcete, můžete tento bug nahlásit vývojářům.",

@@ -2328,8 +2328,6 @@
     "@noOneCanJoin": {},
     "knock": "Frapper à la porte",
     "@knock": {},
-    "hidePresences": "Cacher la liste des statuts ?",
-    "@hidePresences": {},
     "appLockDescription": "Verrouiller l'application avec un code PIN lorsqu'elle n'est pas utilisée",
     "@appLockDescription": {},
     "globalChatId": "Identifiant global de la discussion",
@@ -2378,11 +2376,6 @@
     },
     "setChatDescription": "Définir la description de la discussion",
     "@setChatDescription": {},
-    "presencesToggle": "Afficher les messages de statut des autres utilisateurs/trices",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "gallery": "Galerie",
     "@gallery": {},
     "files": "Fichiers",

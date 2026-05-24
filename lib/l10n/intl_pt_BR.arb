@@ -2250,14 +2250,8 @@
     "sendReadReceipts": "Enviar recibos de leitura",
     "sendTypingNotificationsDescription": "Outros participantes nesta conversa podem ver quando você está digitando uma nova mensagem.",
     "formattedMessages": "Mensagens formatadas",
-    "presencesToggle": "Mostrar as mensagens de estado de outros usuários",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "commandHint_ignore": "Ignorar o ID Matrix especificado",
     "commandHint_unignore": "Parar de ignorar o ID Matrix especificado",
-    "hidePresences": "Ocultar lista de estado?",
     "sessionLostBody": "Sua sessão foi desconectada. Relate este ao desenvolvedor em {url}. A mensagem de erro é: {error}",
     "@sessionLostBody": {
         "type": "String",

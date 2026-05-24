@@ -2348,8 +2348,6 @@
     "@sendReadReceiptsDescription": {},
     "verifyOtherUser": "🔐 다른 유저 확인",
     "@verifyOtherUser": {},
-    "hidePresences": "상태 목록을 숨길까요?",
-    "@hidePresences": {},
     "searchChatsRooms": "#chats, @users 검색...",
     "@searchChatsRooms": {},
     "groupCanBeFoundViaSearch": "검색으로 그룹 채팅을 찾을 수 있음",
@@ -2374,11 +2372,6 @@
                 "type": "String"
             }
         }
-    },
-    "presencesToggle": "다른 유저의 상태 메시지 표시",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
     },
     "wrongRecoveryKey": "죄송합니다... 올바른 복구키가 아닌것 같습니다.",
     "@wrongRecoveryKey": {},

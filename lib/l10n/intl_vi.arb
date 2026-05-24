@@ -566,8 +566,6 @@
     "@readUpToHere": {},
     "jump": "Đi tới",
     "@jump": {},
-    "hidePresences": "Ẩn danh sách trạng thái?",
-    "@hidePresences": {},
     "sorryThatsNotPossible": "Xin lỗi... không khả dụng",
     "@sorryThatsNotPossible": {},
     "reopenChat": "Mở lại cuộc trò chuyện",

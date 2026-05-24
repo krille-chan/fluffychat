@@ -1960,11 +1960,6 @@
             }
         }
     },
-    "presencesToggle": "Vis statusmeldinger fra andre brukere",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "voiceCall": "Taleanrop",
     "accessAndVisibilityDescription": "Hvem som har lov til å bli med i denne chatten og hvordan chatten kan oppdages.",
     "calls": "Anrop",
@@ -2142,7 +2137,6 @@
             }
         }
     },
-    "hidePresences": "Skjul statuslisten?",
     "noMessagesYet": "Ingen meldinger enda",
     "notificationRuleMasterDescription": "Overstyrer alle andre regler og deaktiverer alle varsler.",
     "notificationRuleSuppressNotices": "Undertrykk automatiserte meldinger",

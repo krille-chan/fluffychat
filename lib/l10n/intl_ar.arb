@@ -2456,15 +2456,8 @@
             }
         }
     },
-    "hidePresences": "إخفاء قائمة الحالة؟",
-    "@hidePresences": {},
     "incomingMessages": "الرسائل الواردة",
     "@incomingMessages": {},
-    "presencesToggle": "إظهار رسائل الحالة من المستخدمين الآخرين",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "stickers": "الملصقات",
     "@stickers": {},
     "discover": "استكشف",

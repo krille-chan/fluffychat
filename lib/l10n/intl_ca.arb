@@ -2209,7 +2209,6 @@
     "verifyOtherUser": "🔐 Verifica uni altri usuàrïi",
     "verifyOtherDevice": "🔐 Verifica un altre dispositiu",
     "initAppError": "S'ha produït un error mentre s'inicialitzava l'aplicació",
-    "hidePresences": "Amagar la llista de Status?",
     "noUsersFoundWithQuery": "No s'ha trobat cap usuàrïi amb \"{query}\". Revisa si ho has escrit malament.",
     "@noUsersFoundWithQuery": {
         "type": "String",
@@ -2302,11 +2301,6 @@
                 "type": "String"
             }
         }
-    },
-    "presencesToggle": "Mostra els missatges d'estat d'altres usuàrïis",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
     },
     "stickers": "Enganxines",
     "discover": "Descobreix",

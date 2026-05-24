@@ -2103,11 +2103,6 @@
             }
         }
     },
-    "presencesToggle": "他のユーザーからのステータスメッセージを表示する",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "synchronizingPleaseWaitCounter": " 同期中…（{percentage}%）",
     "@synchronizingPleaseWaitCounter": {
         "type": "String",

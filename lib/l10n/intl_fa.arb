@@ -2202,11 +2202,6 @@
         }
     },
     "setChatDescription": "تنظیم توضیحات چت",
-    "presencesToggle": "نمایش پیام‌های وضعیت از دیگر کاربران",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "synchronizingPleaseWaitCounter": " در حال همگام‌سازی... ({percentage}%)",
     "@synchronizingPleaseWaitCounter": {
         "type": "String",
@@ -2235,7 +2230,6 @@
     "usersMustKnock": "کاربران باید در بزنند",
     "noOneCanJoin": "هیچ‌کس نمیتواند بپیوندد",
     "knock": "در زدن",
-    "hidePresences": "پنهان کردن فهرست وضعیت؟",
     "setColorTheme": "تنظیم پوسته رنگی:",
     "invite": "دعوت",
     "inviteGroupChat": "📨 دعوت به چت گروهی",

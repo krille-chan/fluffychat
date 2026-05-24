@@ -2302,12 +2302,6 @@
             }
         }
     },
-    "presencesToggle": "Показувати повідомлення про стан від інших користувачів",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "hidePresences": "Сховати список станів?",
     "incomingMessages": "Вхідні повідомлення",
     "discover": "Огляд",
     "stickers": "Наліпки",

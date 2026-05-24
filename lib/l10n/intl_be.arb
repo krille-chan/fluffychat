@@ -1291,11 +1291,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "presencesToggle": "Паказваць паведамленні статусаў іншых карыстальнікаў",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "skip": "Прапусціць",
     "@skip": {
         "type": "String",
@@ -1600,7 +1595,6 @@
     "newGroup": "Новая група",
     "newSpace": "Новая прастора",
     "allSpaces": "Усе прасторы",
-    "hidePresences": "Хаваць спіс статусаў?",
     "doNotShowAgain": "Не паказваць зноў",
     "wasDirectChatDisplayName": "Пусты чат (быў {oldDisplayName})",
     "@wasDirectChatDisplayName": {

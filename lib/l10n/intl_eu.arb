@@ -2302,13 +2302,7 @@
             }
         }
     },
-    "presencesToggle": "Erakutsi beste erabiltzaileen egoera-mezuak",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "incomingMessages": "Jasotako mezuak",
-    "hidePresences": "Ezkutatu Egoeren Zerrenda?",
     "discover": "Arakatu",
     "stickers": "Pegatinak",
     "commandHint_unignore": "Utzi Matrix ID honi muzin egiteari",

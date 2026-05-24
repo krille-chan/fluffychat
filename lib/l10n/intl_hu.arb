@@ -2303,11 +2303,6 @@
     "@blockListDescription": {},
     "blockUsername": "Felhasználónév ignorálása",
     "@blockUsername": {},
-    "presencesToggle": "Más felhasználók állapot üzeneteinek megjelenítése",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourGlobalUserIdIs": "A globális felhasználó-ID-je: ",
     "@yourGlobalUserIdIs": {},
     "noUsersFoundWithQuery": "\"{query}\"-vel nem található felhasználó. Ellenőrizze nincs e elírás.",
@@ -2390,8 +2385,6 @@
             }
         }
     },
-    "hidePresences": "El kívánja rejteni a státusz listát?",
-    "@hidePresences": {},
     "searchChatsRooms": "Keressen #csevegéseket, @felhasználókat...",
     "@searchChatsRooms": {},
     "wrongRecoveryKey": "Sajnos, úgy tűnik hibásan adta meg a visszaállítási kulcsot.",

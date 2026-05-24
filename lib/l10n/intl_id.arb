@@ -2272,11 +2272,6 @@
             }
         }
     },
-    "presencesToggle": "Tampilkan pesan status dari pengguna lain",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "publicSpaces": "Space publik",
     "commandHint_sendraw": "Kirim JSON mentah",
     "sendReadReceiptsDescription": "Anggota lain dalam percakapan dapat melihat ketika kamu membaca sebuah pesan.",
@@ -2284,7 +2279,6 @@
     "blockedUsers": "Pengguna yang terblokir",
     "blockListDescription": "Kamu bisa memblokir pengguna yang sedang menganggumu. Kamu tidak akan mendapatkan pesan atau undangan ruangan dari pengguna dalam daftar blokiran pribadimu.",
     "blockUsername": "Abaikan nama pengguna",
-    "hidePresences": "Sembunyikan Daftar Status?",
     "transparent": "Transparan",
     "stickers": "Stiker",
     "discover": "Jelajahi",

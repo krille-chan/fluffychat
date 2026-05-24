@@ -2302,12 +2302,6 @@
         }
     },
     "transparent": "透明",
-    "presencesToggle": "显示其他用户的状态消息",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "hidePresences": "隐藏状态列表？",
     "incomingMessages": "传入消息",
     "stickers": "贴纸",
     "discover": "发现",

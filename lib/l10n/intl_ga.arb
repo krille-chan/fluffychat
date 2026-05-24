@@ -1970,7 +1970,6 @@
     "sendReadReceipts": "Seol admhálacha léite",
     "formattedMessagesDescription": "Taispeáin ábhar saibhir teachtaireachta cosúil le téacs trom ag baint úsáide as marcáil síos.",
     "verifyOtherUser": "🔐 Fíoraigh úsáideoir eile",
-    "hidePresences": "Folaigh Liosta Stádais?",
     "jump": "Léim",
     "reportErrorDescription": "😭 Ó, a mhac go deo. Chuaigh rud éigin mícheart. Más mian leat, is féidir leat an fabht seo a thuairisciú do na forbróirí.",
     "invalidInput": "Ionchur neamhbhailí!",
@@ -2307,11 +2306,6 @@
     },
     "recoveryKey": "Eochair athshlánaithe",
     "setChatDescription": "Socraigh cur síos ar an gcomhrá",
-    "presencesToggle": "Taispeáin teachtaireachtaí stádais ó úsáideoirí eile",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "time": "Am",
     "removeFromSpace": "Bain as spás",
     "placeCall": "Cuir glaoch",
