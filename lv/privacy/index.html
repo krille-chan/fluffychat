@@ -25,16 +25,16 @@
         <!--Header-->
         <div class="w-full lg:h-12 min-h-12 py-4 lg:py-0 mb-8 border-b border-gray-200 dark:border-gray-700">
             <nav class="flex flex-wrap h-full justify-center items-center space-x-6 w-full max-w-4xl m-auto">
-                <a href="/lv/" class=" text-lg">Home</a>
-                <a href="/lv/faq" class=" text-lg">FAQ</a>
+                <a href="/lv/" class=" text-lg">Sākums</a>
+                <a href="/lv/faq" class=" text-lg">BUJ</a>
                 <a href="/lv/changelog" class=" text-lg">
                     Izmaiņu žurnāls</a>
-                <a href="https://ko-fi.com/krille/posts" target="_blank" class="text-lg">Blog
+                <a href="https://ko-fi.com/krille/posts" target="_blank" class="text-lg">Emuārs
                 </a>
                 <div class="lg:flex-grow"></div>
                 <a href='https://ko-fi.com/C1C86VN53' class="hover:scale-110 transition-transform" target='_blank'>
                     <div class="rounded-xl bg-slate-900 dark:bg-slate-50 p-2 flex flex-row spacing-4"><img src="/assets/ko-fi.png" class="h-5 mr-2"/>
-                        <span class="text-white dark:text-black text-xs flex items-center mr-2">Support me on Ko-Fi</span>
+                        <span class="text-white dark:text-black text-xs flex items-center mr-2">Atbalstiet mani Ko-Fi</span>
                     </div>
                 </a>
                 <a href="https://troet.cafe/@krille" rel="me" class="m-2 hover:scale-110 transition-transform "><img src="/assets/mastodon.svg" class="h-7"/>
@@ -43,7 +43,13 @@
         </div>
         
 <div class="container max-w-4xl markdown px-4 lg:px-0">
-    <h1>Privacy</h1>
+    <!--
+SPDX-FileCopyrightText: 2019-Present Christian Kußowski
+SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<h1>Privacy</h1>
 <p>FluffyChat is available on Android, iOS, Linux and as a web version. Desktop versions for Windows and macOS may follow.</p>
 <ul>
 <li><a href="#matrix">Matrix</a></li>
@@ -110,7 +116,9 @@
         &quot;app_id&quot;: &quot;chat.fluffy.fluffychat&quot;,
         &quot;pushkey&quot;: &quot;V2h5IG9uIGVhcnRoIGRpZCB5b3UgZGVjb2RlIHRoaXM/&quot;,
         &quot;pushkey_ts&quot;: 12345678,
-        &quot;data&quot;: {},
+        &quot;data&quot;: {
+          &quot;client_name&quot;: &quot;&lt;random-identifier-for-the-client-in-case-of-multi-account-usage&gt;&quot;  
+        },
         &quot;tweaks&quot;: {
           &quot;sound&quot;: &quot;bing&quot;
         }
@@ -132,6 +140,13 @@
 </ol>
 <p>In addition to reporting messages, users can also report other users following a similar process.</p>
 <p>We encourage server administrators to adhere to strict safety standards and provide mechanisms for addressing and moderating inappropriate content. For more information on the Matrix protocol and its safety standards, please refer to the following link: https://matrix.org/docs/older/moderation/</p>
+<h2>Impressum</h2>
+<p>krille-chan - Christian Kußowski<br>
+c/o Online-Impressum #8198<br>
+Europaring 90<br>
+53757 St Augustin</p>
+<p>E-Mail: christian-kussowski[at)posteo.de<br>
+<a href="https://mein.online-impressum.de/krille-chan/#Zweiter_Kontaktweg">Zweiter Kontaktweg</a></p>
 
 </div>
         <!--Footer-->
@@ -144,11 +159,11 @@
                     Privātuma pamatnostādnes</a>
                 -
                 <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/lv/tos">
-                    Terms of service</a>
+                    Pakalpojuma lietošanas noteikumi</a>
                 -
                 <a
                     class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
-                    href="https://github.com/krille-chan/fluffychat">Source Code</a>
+                    href="https://github.com/krille-chan/fluffychat">Pirmkods</a>
                 -
                 <a
                     class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
@@ -156,7 +171,7 @@
                 -
                 <a
                     class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
-                    href="https://hosted.weblate.org/projects/fluffychat/">Translations</a>
+                    href="https://hosted.weblate.org/projects/fluffychat/">Tulkojumi</a>
                 -
                 <a
                     class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
@@ -164,9 +179,9 @@
                 -
                 <a
                     class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
-                    href="https://krille-chan.github.io">Created by Krille-chan</a>
+                    href="https://krille-chan.github.io">Izstrādāja Krille-chan</a>
                 <br/>
-                <span class="text-slate-700 dark:text-slate-200 text-sm">Language:
+                <span class="text-slate-700 dark:text-slate-200 text-sm">Valoda:
                 </span>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/be/">Беларуская</a>
@@ -177,11 +192,17 @@
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/et/">eesti keel</a>
                 
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fa/">انگلیسی</a>
+                
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fi/">English</a>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fy/">Frysk</a>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/gl/">Galego</a>
+                
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/id/">Indonesia</a>
+                
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/lt/">English</a>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/lv/">Latviešu</a>
                 
@@ -189,7 +210,13 @@
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/nl/">Nederlands</a>
                 
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/pl/">Polski</a>
+                
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/ru/">Русский</a>
+                
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/ta/">ஆங்கிலம்</a>
+                
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/uk/">Українська</a>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/uz/">O&#39;zbekcha</a>
                 

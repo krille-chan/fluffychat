@@ -44,6 +44,95 @@
         
 <div class="container max-w-4xl markdown px-4 lg:px-0">
     <h1>Oʻzgarishlar jurnali</h1>
+<!--
+SPDX-FileCopyrightText: 2019-Present Christian Kußowski
+SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<h2>v2.6.0</h2>
+<ul>
+<li>feat: Option to hide thumbnails of images and videos (Christian Kußowski)</li>
+<li>feat(chat): make messagePreviewMaxLines configurable, with default 128 (Halil Kaskavalci)</li>
+<li>feat: Add Android summary notification (krille-chan)</li>
+<li>feat: Enable push notifications for multi account (krille-chan)</li>
+<li>feat: hide rooms in spaces add a setting to hide rooms that are in spaces from the main chat list (twoneis)</li>
+<li>feat: Implement room tags (Christian Kußowski)</li>
+<li>feat: Persist chat filters (Christian Kußowski)</li>
+<li>feat: Paste files in chat (ION606)</li>
+<li>fix: add prepare-web.sh support for both python and go yq versions (Vitalii)</li>
+<li>fix: Chat view crashes if events list empty (Christian Kußowski)</li>
+<li>fix: DMs in spaces are displayed as empty chats (Christian Kußowski)</li>
+<li>fix: Getting logged out on dialog dismissed (Christian Kußowski)</li>
+<li>fix: Open deep link on android (Christian Kußowski)</li>
+<li>fix: Send on enter broken on iOS (Christian Kußowski)</li>
+<li>fix: UX feedback for sending events (krille-chan)</li>
+<li>refactor: Bring back notification web sound but make configurable (Christian Kußowski)</li>
+<li>refactor: Enable lint use_build_context_synchronously (Christian Kußowski)</li>
+<li>refactor: Populate client name in push notification additional properties (krille-chan)</li>
+<li>refactor: Rename clientName to appDisplayName (krille-chan)</li>
+<li>refactor: Summarize notifications per account (Christian Kußowski)</li>
+<li>build: (deps): bump async from 2.13.0 to 2.13.1 (dependabot[bot])</li>
+<li>build: (deps): bump badges from 3.1.2 to 3.2.0 (dependabot[bot])</li>
+<li>build: (deps): bump chewie from 1.13.0 to 1.13.1 (dependabot[bot])</li>
+<li>build: (deps): bump dart_code_linter from 3.2.1 to 4.0.1 (dependabot[bot])</li>
+<li>build: (deps): bump dart_code_linter from 4.0.1 to 4.0.2 (dependabot[bot])</li>
+<li>build: (deps): bump dart_code_linter from 4.0.2 to 4.0.3 (dependabot[bot])</li>
+<li>build: (deps): bump desktop_drop from 0.7.0 to 0.7.1 (dependabot[bot])</li>
+<li>build: (deps): bump file_picker from 10.3.10 to 11.0.2 (dependabot[bot])</li>
+<li>build: (deps): bump flutter_foreground_task from 9.2.1 to 9.2.2 (dependabot[bot])</li>
+<li>build: (deps): bump flutter_map from 8.2.2 to 8.3.0 (dependabot[bot])</li>
+<li>build: (deps): bump flutter_webrtc from 1.3.1 to 1.4.1 (dependabot[bot])</li>
+<li>build: (deps): bump flutter_web_auth_2 from 5.0.1 to 5.0.2 (dependabot[bot])</li>
+<li>build: (deps): bump go_router from 17.1.0 to 17.2.0 (dependabot[bot])</li>
+<li>build: (deps): bump go_router from 17.2.0 to 17.2.1 (dependabot[bot])</li>
+<li>build: (deps): bump go_router from 17.2.1 to 17.2.2 (dependabot[bot])</li>
+<li>build: (deps): bump go_router from 17.2.2 to 17.2.3 (dependabot[bot])</li>
+<li>build: (deps): bump image_picker from 1.2.1 to 1.2.2 (dependabot[bot])</li>
+<li>build: (deps): bump matrix from 6.2.0 to 7.0.0 (dependabot[bot])</li>
+<li>build: (deps): bump matrix from 7.0.0 to 7.1.0 (dependabot[bot])</li>
+<li>build: (deps): bump package_info_plus from 9.0.0 to 9.0.1 (dependabot[bot])</li>
+<li>build: (deps): bump particles_network from 1.9.3 to 1.9.4 (dependabot[bot])</li>
+<li>build: (deps): bump record from 6.1.2 to 6.2.0 (dependabot[bot])</li>
+<li>build: (deps): bump shared_preferences from 2.5.4 to 2.5.5 (dependabot[bot])</li>
+<li>build: (deps): bump share_plus from 12.0.1 to 12.0.2 (dependabot[bot])</li>
+<li>build: (deps): bump wakelock_plus from 1.5.0 to 1.5.1 (dependabot[bot])</li>
+<li>build: (deps): bump wakelock_plus from 1.5.1 to 1.5.2 (dependabot[bot])</li>
+<li>build: (deps): bump webiny/action-conventional-commits (dependabot[bot])</li>
+<li>build: (deps): bump webrtc_interface from 1.4.0 to 1.5.1 (dependabot[bot])</li>
+<li>build: bump addressable in /ios in the bundler group across 1 directory (dependabot[bot])</li>
+<li>build: Update to flutter 3.41.9 (krille-chan)</li>
+<li>chore(translations): Translated using Weblate (Basque) (xabirequejo)</li>
+<li>chore(translations): Translated using Weblate (Belarusian) (Alex Katon)</li>
+<li>chore(translations): Translated using Weblate (Catalan) (fadelkon)</li>
+<li>chore(translations): Translated using Weblate (Chinese (Simplified Han script)) (大王叫我来巡山)</li>
+<li>chore(translations): Translated using Weblate (Dutch) (Jelv)</li>
+<li>chore(translations): Translated using Weblate (Estonian) (Priit Jõerüüt)</li>
+<li>chore(translations): Translated using Weblate (Galician) (josé m.)</li>
+<li>chore(translations): Translated using Weblate (Indonesian) (Arif Budiman)</li>
+<li>chore(translations): Translated using Weblate (Irish) (Aindriú Mac Giolla Eoin)</li>
+<li>chore(translations): Translated using Weblate (Latvian) (ℂ𝕠𝕠𝕠𝕝 (𝕘𝕚𝕥𝕙𝕦𝕓.𝕔𝕠𝕞/ℂ𝕠𝕠𝕠𝕝))</li>
+<li>chore(translations): Translated using Weblate (Norwegian Bokmål) (Frank Paul Silye)</li>
+<li>chore(translations): Translated using Weblate (Polish) (gedeade)</li>
+<li>chore(translations): Translated using Weblate (Russian) (Alex Katon)</li>
+<li>chore(translations): Translated using Weblate (Russian) (alexander kozlev)</li>
+<li>chore(translations): Translated using Weblate (Russian) (Entar)</li>
+<li>chore(translations): Translated using Weblate (Russian) (PuppyLo)</li>
+<li>chore(translations): Translated using Weblate (Spanish) (Kimby)</li>
+<li>chore(translations): Translated using Weblate (Swedish) (Lennart Ochel)</li>
+<li>chore(translations): Translated using Weblate (Ukrainian) (Vadym Nekhai)</li>
+<li>chore(translations): Translated using Weblate (Ukrainian) (Vitalii Knysh)</li>
+<li>chore(translations): Translated using Weblate (Ukrainian) (XblateX)</li>
+<li>chore: Add integration tests (Christian Kußowski)</li>
+<li>chore: Highlight unread chats at timestamp (Christian Kußowski)</li>
+<li>chore: Move support banner to changelog notification (krille-chan)</li>
+<li>chore: Perform a one shot sync in every push helper execution (krille-chan)</li>
+<li>chore: Remove multi account beta warning (krille-chan)</li>
+<li>chore: Small design adjustments (Christian Kußowski)</li>
+<li>chore: Allow localhost with scheme as homeserver (Christian Kußowski)</li>
+<li>chore: Remove workaround for popup menu crash bug (Christian Kußowski)</li>
+<li>chore: no longer send deprecated score when reporting an event</li>
+</ul>
 <h2>v2.5.1</h2>
 <p>Update to latest version of fcm_shared_isolate to fix push on iOS.</p>
 <h2>v2.5.0</h2>
@@ -3700,11 +3789,17 @@ stop [25b2997]</li>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/et/">eesti keel</a>
                 
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fa/">انگلیسی</a>
+                
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fi/">English</a>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/fy/">Frysk</a>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/gl/">Galego</a>
+                
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/id/">Indonesia</a>
+                
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/lt/">English</a>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/lv/">Latviešu</a>
                 
@@ -3712,7 +3807,13 @@ stop [25b2997]</li>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/nl/">Nederlands</a>
                 
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/pl/">Polski</a>
+                
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/ru/">Русский</a>
+                
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/ta/">ஆங்கிலம்</a>
+                
+                    <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/uk/">Українська</a>
                 
                     <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/uz/">O&#39;zbekcha</a>
                 

@@ -3759,7 +3759,7 @@
 3758:\28anonymous\20namespace\29::bloat_quad\28SkPoint\20const*\2c\20SkMatrix\20const*\2c\20SkMatrix\20const*\2c\20\28anonymous\20namespace\29::BezierVertex*\29
 3759:\28anonymous\20namespace\29::TriangulatingPathOp::CreateMesh\28GrMeshDrawTarget*\2c\20sk_sp<GrBuffer\20const>\2c\20int\2c\20int\29
 3760:\28anonymous\20namespace\29::TransformedMaskSubRun::~TransformedMaskSubRun\28\29
-3761:\28anonymous\20namespace\29::TransformedMaskSubRun::testingOnly_packedGlyphIDToGlyph\28sktext::gpu::StrikeCache*\29\20const
+3761:\28anonymous\20namespace\29::TransformedMaskSubRun::testingOnly_packedGlyphIDToGlyph\28sktext::gpu::StrikeCache*\2c\20skgpu::MaskFormat\29\20const
 3762:\28anonymous\20namespace\29::StaticVertexAllocator::~StaticVertexAllocator\28\29
 3763:\28anonymous\20namespace\29::SkwasmParagraphPainter::ToDlPaint\28skia::textlayout::ParagraphPainter::DecorationStyle\20const&\2c\20flutter::DlDrawStyle\29
 3764:\28anonymous\20namespace\29::SkMorphologyImageFilter::radii\28skif::Mapping\20const&\29\20const
@@ -5055,7 +5055,7 @@
 5054:sktext::gpu::StrikeCache::internalPurge\28unsigned\20long\29
 5055:sktext::gpu::StrikeCache::freeAll\28\29
 5056:sktext::gpu::SlugImpl::~SlugImpl\28\29
-5057:sktext::gpu::GlyphVector::packedGlyphIDToGlyph\28sktext::gpu::StrikeCache*\29
+5057:sktext::gpu::GlyphVector::packedGlyphIDToGlyph\28sktext::gpu::StrikeCache*\2c\20skgpu::MaskFormat\29
 5058:sktext::gpu::AtlasSubRun::~AtlasSubRun\28\29
 5059:sktext::SkStrikePromise::resetStrike\28\29
 5060:sktext::GlyphRunList::maxGlyphRunSize\28\29\20const
@@ -5082,7 +5082,7 @@
 5081:skia_private::THashTable<std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20skia_private::THashSet<std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20SkGoodHash>::Traits>::uncheckedSet\28std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>&&\29
 5082:skia_private::THashTable<std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20skia_private::THashSet<std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20SkGoodHash>::Traits>::set\28std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\29
 5083:skia_private::THashTable<std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20skia_private::THashSet<std::__2::basic_string_view<char\2c\20std::__2::char_traits<char>>\2c\20SkGoodHash>::Traits>::resize\28int\29
-5084:skia_private::THashTable<sktext::gpu::Glyph*\2c\20SkPackedGlyphID\2c\20sktext::gpu::TextStrike::HashTraits>::uncheckedSet\28sktext::gpu::Glyph*&&\29
+5084:skia_private::THashTable<sktext::gpu::Glyph*\2c\20sktext::gpu::GlyphEntryKey\2c\20sktext::gpu::TextStrike::HashTraits>::uncheckedSet\28sktext::gpu::Glyph*&&\29
 5085:skia_private::THashTable<skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair\2c\20unsigned\20int\2c\20skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair>::uncheckedSet\28skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair&&\29
 5086:skia_private::THashTable<skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair\2c\20unsigned\20int\2c\20skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair>::resize\28int\29
 5087:skia_private::THashTable<skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair\2c\20unsigned\20int\2c\20skia_private::THashMap<unsigned\20int\2c\20sktext::gpu::TextBlobRedrawCoordinator::BlobIDCacheEntry\2c\20SkGoodHash>::Pair>::removeIfExists\28unsigned\20int\20const&\29
