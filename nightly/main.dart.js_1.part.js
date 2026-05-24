@@ -1,13 +1,13 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cLW(d){return new A.Bn(B.df(d))},
-cLX(){return new A.GM(B.df("zh_Hant"))},
-Bn:function Bn(d){this.a=d},
-GM:function GM(d){this.a=d}},C
+cLW(d){return new A.Bm(B.df(d))},
+cLX(){return new A.GL(B.df("zh_Hant"))},
+Bm:function Bm(d){this.a=d},
+GL:function GL(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[3],A)
 C=c[57]
-A.Bn.prototype={
+A.Bm.prototype={
 gkK(){return"\u5426"},
 gjB(){return"\u91cd\u590d\u8f93\u5165\u5bc6\u7801"},
 gmr(){return"\u4e0d\u662f\u56fe\u50cf\u6587\u4ef6\u3002"},
@@ -691,7 +691,7 @@ gpQ(){return"Hide rooms that are in a space"},
 gq1(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
 gpv(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
-A.GM.prototype={
+A.GL.prototype={
 gkK(){return"false"},
 gjB(){return"\u518d\u6b21\u8f38\u5165\u5bc6\u78bc"},
 gmr(){return"\u4e0d\u662f\u5716\u7247\u6a94\u6848\u3002"},
@@ -1283,8 +1283,8 @@ gox(){return"\u60a8\u5df2\u8acb\u6c42\u52a0\u5165"},
 gnn(){return"\u76f4\u5230\u804a\u5929\u5ba4\u88e1\u6709\u4eba\u9080\u8acb\u60a8\u524d\uff0c\u8acb\u7b49\u5019\u3002"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Bn,C.aD)
-y(A.GM,A.Bn)})()
-B.dL(b.typeUniverse,JSON.parse('{"Bn":{"aD":[]},"GM":{"aD":[]}}'))};
-(a=>{a["lU2Zva+iGDW5yFsmdOqCD4ev/gE="]=a.current})($__dart_deferred_initializers__);
+y(A.Bm,C.aD)
+y(A.GL,A.Bm)})()
+B.dL(b.typeUniverse,JSON.parse('{"Bm":{"aD":[]},"GL":{"aD":[]}}'))};
+(a=>{a["4dSUH9AWDX/LuPKwApsTaJFma54="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map

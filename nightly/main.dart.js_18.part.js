@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cLE(d){return new A.Bm(B.df(d))},
-cLF(){return new A.Gv(B.df("pt_BR"))},
-cLG(){return new A.Gw(B.df("pt_PT"))},
-Bm:function Bm(d){this.a=d},
-Gv:function Gv(d){this.a=d},
-Gw:function Gw(d){this.a=d}},C
+cLE(d){return new A.Bl(B.df(d))},
+cLF(){return new A.Gu(B.df("pt_BR"))},
+cLG(){return new A.Gv(B.df("pt_PT"))},
+Bl:function Bl(d){this.a=d},
+Gu:function Gu(d){this.a=d},
+Gv:function Gv(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[57]
-A.Bm.prototype={
+A.Bl.prototype={
 gkK(){return"true"},
 gjB(){return"Repita a senha"},
 gmr(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -693,7 +693,7 @@ gpQ(){return"Hide rooms that are in a space"},
 gq1(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
 gpv(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
-A.Gv.prototype={
+A.Gu.prototype={
 gkK(){return"true"},
 gjB(){return"Repita a senha"},
 gmr(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1330,7 +1330,7 @@ pr(d){return"Vers\xe3o: "+d},
 goT(){return""},
 gpn(){return""},
 B(d,e){return this.gb5(this).$1(e)}}
-A.Gw.prototype={
+A.Gv.prototype={
 gjB(){return"Repete a palavra-passe"},
 gb5(d){return"Remover"},
 gev(){return"Acerca de"},
@@ -1565,9 +1565,9 @@ eU(d){return d+" enviou um autocolante"},
 h0(d){return d+" enviou um v\xeddeo"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Bm,C.aD)
-w(A.Bm,[A.Gv,A.Gw])})()
-B.dL(b.typeUniverse,JSON.parse('{"Bm":{"aD":[]},"Gv":{"aD":[]},"Gw":{"aD":[]}}'))
+x(A.Bl,C.aD)
+w(A.Bl,[A.Gu,A.Gv])})()
+B.dL(b.typeUniverse,JSON.parse('{"Bl":{"aD":[]},"Gu":{"aD":[]},"Gv":{"aD":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["bln7qHYOnW5S8aLEdh94hbaoLog="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["z1Of/DOPNem3cd07MH8aVf08dS8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cLR(){return new A.GH(B.df("tr"))},
-GH:function GH(d){this.a=d}}
+cLR(){return new A.GG(B.df("tr"))},
+GG:function GG(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[52],A)
-A.GH.prototype={
+A.GG.prototype={
 gkK(){return"false"},
 gjB(){return"Parolay\u0131 tekrarlay\u0131n"},
 gmr(){return"Bir resim dosyas\u0131 de\u011fil."},
@@ -690,8 +690,8 @@ gq1(){return"This release was only possible thanks to your support. FluffyChat r
 gpv(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.GH,C.aD)})()
-B.dL(b.typeUniverse,JSON.parse('{"GH":{"aD":[]}}'))
+x(A.GG,C.aD)})()
+B.dL(b.typeUniverse,JSON.parse('{"GG":{"aD":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["w6dLy+vAJOpxU/Cmz0UyLICP+SY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["01HVIbu1Pt96mT7Gi7Wx3FPSOjE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cLl(){return new A.Gc(B.df("ga"))},
-Gc:function Gc(d){this.a=d}}
+cLl(){return new A.Gb(B.df("ga"))},
+Gb:function Gb(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[23],A)
-A.Gc.prototype={
+A.Gb.prototype={
 gkK(){return"br\xe9agach"},
 gjB(){return"Scr\xedobh an pasfhocal ar\xeds"},
 gmr(){return"N\xed comhad \xedomh\xe1 \xe9."},
@@ -690,8 +690,8 @@ gq1(){return"This release was only possible thanks to your support. FluffyChat r
 gpv(){return"Show thumbnails of images and videos"},
 B(d,e){return this.gb5(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gc,C.aD)})()
-B.dL(b.typeUniverse,JSON.parse('{"Gc":{"aD":[]}}'))
+x(A.Gb,C.aD)})()
+B.dL(b.typeUniverse,JSON.parse('{"Gb":{"aD":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["S7esmEdNtzmPWkvrKWJuFUHCR1o="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["KcTEnvaV3xFFeY7lIHXTHYpcogg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map
