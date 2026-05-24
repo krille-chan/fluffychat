@@ -2683,7 +2683,6 @@
     "createNewAccount": "Utwórz nowe konto",
     "signUpGreeting": "FluffyChat jest zdecentralizowany! Wybierz serwer, na którym chcesz utworzyć konto i zaczynamy!",
     "signInGreeting": "Masz już konto w sieci Matrix? Witaj z powrotem! Wybierz swój serwer macierzysty i zaloguj się.",
-    "appIntro": "Dzięki FluffyChat możesz rozmawiać ze znajomymi. To bezpieczny, zdecentralizowany komunikator oparty na sieci [matrix]! Dowiedz się więcej na https://matrix.org lub po prostu się zarejestruj.",
     "theProcessWasCanceled": "Proces został anulowany.",
     "join": "Dołącz",
     "searchOrEnterHomeserverAddress": "Wyszukaj lub wprowadź adres serwera macierzystego",

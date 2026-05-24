@@ -2576,7 +2576,6 @@
     "createNewAccount": "Vytvořit nový účet",
     "signUpGreeting": "FluffyChat je decentralizovaný! Vyberte server, kde si chcete vytvořit účet, a jdeme na věc!",
     "signInGreeting": "Již máte účet na Matrixu? Vítejte zpět! Vyberte svůj domácí server a přihlaste se.",
-    "appIntro": "S FluffyChatem můžeme chatovat s přáteli. Je to decentralizovaná chatovací aplikace pro [matrix]! Zjistěte více na https://matrix.org nebo se zaregistrujte.",
     "theProcessWasCanceled": "Proces byl zrušen.",
     "sendImages": "Poslat {count} obrazků",
     "@sendImages": {

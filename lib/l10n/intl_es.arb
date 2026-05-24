@@ -2737,7 +2737,6 @@
     "createNewAccount": "Crear nueva cuenta",
     "signUpGreeting": "¡FluffyChat está descentralizado! ¡Selecciona un servidor donde quieres crear tu cuenta y sigamos!",
     "signInGreeting": "¿Ya tienes una cuenta en Matrix? ¡Bienvenido de nuevo! Selecciona tu servidor e inicia sesión.",
-    "appIntro": "Con FluffyChat puedes hablar con tus amigos ¡Es un sistema de mensajería de [matrix] seguro y descentralizado! Aprende más en https://matrix.org si quieres o simplemente inicia sesión.",
     "theProcessWasCanceled": "El proceso se ha cancelado.",
     "join": "Unirse",
     "searchOrEnterHomeserverAddress": "Buscar o pon la dirección de tu servidor local",
