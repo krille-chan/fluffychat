@@ -52,8 +52,8 @@ class ChatEventList extends StatelessWidget {
     return SelectionArea(
       child: ListView.custom(
         padding: EdgeInsets.only(
-          top: 16,
-          bottom: 8,
+          top: 8 + (theme.appBarTheme.toolbarHeight ?? 56),
+          bottom: 8 + 72,
           left: horizontalPadding,
           right: horizontalPadding,
         ),
