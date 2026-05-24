@@ -419,7 +419,7 @@ class ChatListController extends State<ChatList>
           ActiveFilter.allChats;
     }
 
-    _processPushHelperCrashReport();
+    if (AppSettings.debugPush.value) _processPushHelperCrashReport();
 
     super.initState();
   }
