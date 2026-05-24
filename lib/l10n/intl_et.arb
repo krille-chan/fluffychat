@@ -2729,7 +2729,6 @@
     "createNewAccount": "Loo uus kasutajakonto",
     "signUpGreeting": "FluffyChat kasutab hajutatud võrku! Vali server, kuhu tahad oma kasutajakonto lisada ning alustame!",
     "signInGreeting": "Sul juba on Matrixi kasutajakonto olemas? Tere tulemast tagasi! Vali oma koduserver ja logi sisse.",
-    "appIntro": "FluffyChati abil saad suhelda oma sõpradega. See on turvaline ja hajutatud sõnumiklient [matrix]-i võrgus! Lisateavet leiad https://matrix.org saidist või lihtsalt liitu.",
     "theProcessWasCanceled": "Protsess on katkestatud.",
     "join": "Liitu",
     "searchOrEnterHomeserverAddress": "Otsi koduserveri aadressi või sisesta see",

@@ -2723,7 +2723,6 @@
     "createNewAccount": "Create new account",
     "signUpGreeting": "FluffyChat is decentralized! Select a server where you want to create your account and let's go!",
     "signInGreeting": "You already have an account in Matrix? Welcome back! Select your homeserver and sign in.",
-    "appIntro": "With FluffyChat you can chat with your friends. It's a secure decentralized [matrix] messenger! Learn more on https://matrix.org if you like or just sign up.",
     "theProcessWasCanceled": "The process was canceled.",
     "join": "Join",
     "searchOrEnterHomeserverAddress": "Search or enter homeserver address",
@@ -2761,5 +2760,7 @@
     "createNewTag": "Create new tag",
     "hideRoomsInSpaces": "Hide rooms that are in a space",
     "possibleByYou": "This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven.",
-    "showThumbnailsInTimeline": "Show thumbnails of images and videos"
+    "showThumbnailsInTimeline": "Show thumbnails of images and videos",
+    "appSubtitle": "Secure [matrix] Communication",
+    "appDescription": "Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."
 }

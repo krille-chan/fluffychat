@@ -25,7 +25,7 @@ class EmptyPage extends StatelessWidget {
       body: Container(
         alignment: Alignment.center,
         child: Image.asset(
-          'assets/logo_transparent.png',
+          'assets/logo/img/logo_mono.png',
           color: theme.colorScheme.surfaceContainerHigh,
           width: width,
           height: width,
