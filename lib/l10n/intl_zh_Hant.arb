@@ -2016,8 +2016,6 @@
     "@user": {},
     "custom": "自訂",
     "@custom": {},
-    "hidePresences": "隱藏狀態列表？",
-    "@hidePresences": {},
     "setColorTheme": "設定主題顏色：",
     "@setColorTheme": {},
     "makeAdminDescription": "一旦您讓這個使用者成為管理員，您可能無法撤銷此操作，因為他們將擁有與您相同的權限。",
@@ -2323,11 +2321,6 @@
     },
     "removeYourAvatar": "移除您的頭像",
     "@removeYourAvatar": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "presencesToggle": "顯示其他使用者的狀態訊息",
-    "@presencesToggle": {
         "type": "String",
         "placeholders": {}
     },

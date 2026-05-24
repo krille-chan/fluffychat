@@ -1715,11 +1715,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "presencesToggle": "Show status messages from other users",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "skip": "Skip",
     "@skip": {
         "type": "String",
@@ -2190,7 +2185,6 @@
     "newGroup": "New group",
     "newSpace": "New space",
     "allSpaces": "All spaces",
-    "hidePresences": "Hide Status List?",
     "doNotShowAgain": "Do not show again",
     "wasDirectChatDisplayName": "Empty chat (was {oldDisplayName})",
     "@wasDirectChatDisplayName": {

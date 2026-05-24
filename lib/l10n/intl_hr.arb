@@ -2196,12 +2196,6 @@
     "unbanUserDescription": "Korisnik će se ponovo moći pridružiti chatu ako pokuša.",
     "publicSpaces": "Javni prostori",
     "thisDevice": "Ovaj uređaj:",
-    "presencesToggle": "Prikaži poruke stanja od drugih korisnika",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "hidePresences": "Sakriti popis stanja?",
     "pleaseEnterYourCurrentPassword": "Upiši svoju trenutačnu lozinku",
     "passwordIsWrong": "Tvoja upisana lozinka je kriva",
     "initAppError": "Dogodila se greška prilikom inicijaliziranja aplikacije",

@@ -2286,12 +2286,6 @@
         }
     },
     "incomingMessages": "Входящие сообщения",
-    "presencesToggle": "Показывать сообщения в статусах других пользователей",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "hidePresences": "Скрыть список статусов?",
     "stickers": "Стикеры",
     "discover": "Исследовать",
     "globalChatId": "ID глобального чата",

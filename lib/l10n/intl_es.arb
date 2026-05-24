@@ -2154,11 +2154,6 @@
     "blockedUsers": "Usuarios bloqueados",
     "blockUsername": "Ignorar nombre de usuario",
     "noMoreChatsFound": "No se encontraron más chats...",
-    "presencesToggle": "Mostrar mensajes de estado de otros usuarios",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "placeCall": "Llamar",
     "disableEncryptionWarning": "Por motivos de seguridad no es posible deshabilitar el cifrado en un chat si ha sido habilitado previamente.",
     "setColorTheme": "Poner tema de color:",
@@ -2297,7 +2292,6 @@
     "usersMustKnock": "Los usuarios han de avisar",
     "noOneCanJoin": "Nadie puede unirse",
     "reopenChat": "Reabrir chat",
-    "hidePresences": "¿Esconder la lista de estado?",
     "fileIsTooBigForServer": "¡No se pudo mandar! El servidor solamente permite adjuntos de hasta {max}.",
     "@fileIsTooBigForServer": {
         "type": "String",

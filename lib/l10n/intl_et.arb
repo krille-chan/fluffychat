@@ -2302,13 +2302,7 @@
             }
         }
     },
-    "presencesToggle": "Näita teiste kasutajate olekuteateid",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "incomingMessages": "Saabuvad sõnumid",
-    "hidePresences": "Peida olekute loend?",
     "stickers": "Kleepsud",
     "discover": "Otsi ja leia",
     "commandHint_ignore": "Eira seda Matrixi kasutajatunnust",

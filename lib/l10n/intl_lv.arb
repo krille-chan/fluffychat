@@ -2248,7 +2248,6 @@
     "stickers": "Uzlīmes",
     "usersMustKnock": "Lietotājiem jāpieklauvē",
     "noOneCanJoin": "Neviens nevar pievienoties",
-    "hidePresences": "Paslēpt stāvokļu sarakstu?",
     "knocking": "Klauvē",
     "chatCanBeDiscoveredViaSearchOnServer": "Tērzēšana var tikt atklāta ar meklēšanu {server}",
     "@chatCanBeDiscoveredViaSearchOnServer": {
@@ -2275,11 +2274,6 @@
         }
     },
     "noDatabaseEncryption": "Šajā platformā datubāzes šifrēšana netiek nodrošināta",
-    "presencesToggle": "Rādīt citu lietotāju stāvokļa ziņas",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "databaseMigrationBody": "Lūgums uzgaidīt. Tas var aizņemt kādu brīdi.",
     "passwordsDoNotMatch": "Paroles nesakrīt",
     "publicChatAddresses": "Publiskas tērzēšanas adreses",

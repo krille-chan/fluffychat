@@ -2397,12 +2397,6 @@
         "description": "Set to true to always display time of day in 24 hour format."
     },
     "swipeRightToLeftToReply": "Przeciągnij w lewo, by odpowiedzieć",
-    "presencesToggle": "Pokazuj zmiany statusów innych użytkowników",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "hidePresences": "Ukryć listę statusów?",
     "pleaseEnterANumber": "Proszę podać liczbę większą od 0",
     "commandHint_sendraw": "Wyślij zwykły json",
     "databaseMigrationBody": "Proszę czekać. Może to potrwać chwilę.",

@@ -1706,11 +1706,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "presencesToggle": "Boshqa foydalanuvchilarning holat xabarlarini ko‘rsatish",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "skip": "Tashlab ketish",
     "@skip": {
         "type": "String",
@@ -2081,7 +2076,6 @@
     "newGroup": "Yangi guruh",
     "newSpace": "Yangi maydon",
     "allSpaces": "Barcha maydonlar",
-    "hidePresences": "Holat roʻyxati yashirilsinmi?",
     "doNotShowAgain": "Qaytib koʻrsatilmasin",
     "wasDirectChatDisplayName": "Boʻsh suhbat ({oldDisplayName} edi)",
     "@wasDirectChatDisplayName": {

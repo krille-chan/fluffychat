@@ -2196,7 +2196,6 @@
     "passwordRecoverySettings": "Wachtwoordherstel-instellingen",
     "knock": "Klop",
     "overview": "Overzicht",
-    "hidePresences": "Verberg statuslijst?",
     "noOneCanJoin": "Niemand kan deelnemen",
     "yourGlobalUserIdIs": "Je Matrix-ID is: ",
     "appLockDescription": "Vergendel de app wanneer het niet gebruikt wordt met een pincode",
@@ -2317,11 +2316,6 @@
                 "type": "int"
             }
         }
-    },
-    "presencesToggle": "Statusberichten van andere personen tonen",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
     },
     "website": "Website",
     "usersMustKnock": "Personen moeten kloppen",

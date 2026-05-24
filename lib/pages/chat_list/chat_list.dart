@@ -818,17 +818,6 @@ class ChatListController extends State<ChatList>
     });
   }
 
-  Future<void> dismissStatusList() async {
-    final result = await showOkCancelAlertDialog(
-      title: L10n.of(context).hidePresences,
-      context: context,
-    );
-    if (result == OkCancelResult.ok) {
-      AppSettings.showPresences.setItem(false);
-      setState(() {});
-    }
-  }
-
   Future<void> setStatus() async {
     final l10n = L10n.of(context);
     final client = Matrix.of(context).client;

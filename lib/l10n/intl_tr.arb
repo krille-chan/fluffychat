@@ -2367,11 +2367,6 @@
     "@formattedMessagesDescription": {},
     "verifyOtherDevice": "🔐 Diğer aygıtı doğrula",
     "@verifyOtherDevice": {},
-    "presencesToggle": "Diğer kullanıcıların durum mesajlarını göster",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
     "searchForUsers": "@kullanıcıları ara...",
     "@searchForUsers": {},
     "commandHint_ignore": "Verilen matrix kimliğini görmezden gel",
@@ -2425,8 +2420,6 @@
     "@initAppError": {},
     "hideInvalidOrUnknownMessageFormats": "Geçersiz veya bilinmeyen mesaj biçimlerini gizle",
     "@hideInvalidOrUnknownMessageFormats": {},
-    "hidePresences": "Durum listesi gizlensin mi?",
-    "@hidePresences": {},
     "overview": "Genel görünüm",
     "@overview": {},
     "chatCanBeDiscoveredViaSearchOnServer": "Sohbet {server} üzerinde aranarak keşfedilebilir",

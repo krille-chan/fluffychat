@@ -349,10 +349,6 @@ class SettingsStyleView extends StatelessWidget {
               ),
             ),
             SettingsSwitchListTile.adaptive(
-              title: L10n.of(context).presencesToggle,
-              setting: AppSettings.showPresences,
-            ),
-            SettingsSwitchListTile.adaptive(
               title: L10n.of(context).displayNavigationRail,
               setting: AppSettings.displayNavigationRail,
             ),

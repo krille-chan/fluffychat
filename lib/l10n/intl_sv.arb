@@ -2278,12 +2278,6 @@
             }
         }
     },
-    "presencesToggle": "Visa statusmeddelanden från andra användare",
-    "@presencesToggle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "hidePresences": "Dölj statuslista?",
     "sendReadReceipts": "Skicka läskvitton",
     "verifyOtherDevice": "🔐 Verifiera enhet",
     "acceptedKeyVerification": "{sender} accepterade nyckelverifieringen",
