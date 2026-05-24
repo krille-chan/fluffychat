@@ -2602,6 +2602,8 @@
     "displayNavigationRail": "Show navigation rail on mobile",
     "customReaction": "Custom reaction",
     "moreEvents": "More events",
+    "showMore": "Show more",
+    "showLess": "Show less",
     "declineInvitation": "Decline invitation",
     "noMessagesYet": "No messages yet",
     "longPressToRecordVoiceMessage": "Long press to record voice message.",
