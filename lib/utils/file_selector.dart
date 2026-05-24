@@ -7,6 +7,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 Future<List<XFile>> selectFiles(
@@ -18,12 +19,16 @@ Future<List<XFile>> selectFiles(
   final result = await AppLock.of(context).pauseWhile(
     showFutureLoadingDialog(
       context: context,
-      future: () => FilePicker.pickFiles(
-        compressionQuality: 0,
-        allowMultiple: allowMultiple,
-        type: type,
-      ),
+      future: () async {
+        final result = await FilePicker.pickFiles(
+          compressionQuality: 0,
+          allowMultiple: allowMultiple,
+          type: type,
+          withData: kIsWeb,
+        );
+        return result?.xFiles;
+      },
     ),
   );
-  return result.result?.xFiles ?? [];
+  return result.result ?? [];
 }
