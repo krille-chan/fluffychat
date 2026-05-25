@@ -30,7 +30,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
 
     return SliverAppBar(
       floating: true,
-      toolbarHeight: 72,
+      toolbarHeight: 88,
       pinned: FluffyThemes.isColumnMode(context),
       scrolledUnderElevation: 0,
       backgroundColor: Colors.transparent,
@@ -58,7 +58,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(99),
               ),
-              contentPadding: EdgeInsets.zero,
+              contentPadding: EdgeInsets.all(16),
               hintText: hide
                   ? L10n.of(context).searchChatsRooms
                   : status.calcLocalizedString(context),
