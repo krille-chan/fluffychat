@@ -2756,5 +2756,7 @@
     "possibleByYou": "This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven.",
     "showThumbnailsInTimeline": "Show thumbnails of images and videos",
     "appSubtitle": "Secure [matrix] Communication",
-    "appDescription": "Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."
+    "appDescription": "Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone.",
+    "interactiveVerification": "Interactive verification",
+    "interactiveVerificationDescription": "If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."
 }
