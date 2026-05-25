@@ -69,7 +69,11 @@ class ChatListView extends StatelessWidget {
                     !controller.isSearchMode &&
                         controller.activeSpaceId == null &&
                         !FluffyThemes.isColumnMode(context)
-                    ? StartChatFab()
+                    ? ValueListenableBuilder(
+                        valueListenable: controller.scrolledToTop,
+                        builder: (context, scrolledToTop, _) =>
+                            StartChatFab(extended: scrolledToTop),
+                      )
                     : const SizedBox.shrink(),
               ),
             ),
