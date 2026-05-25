@@ -306,7 +306,9 @@ class ChatInputRow extends StatelessWidget {
                             top: 3.0,
                           ),
                           counter: const SizedBox.shrink(),
-                          hintText: L10n.of(context).writeAMessage,
+                          hintText: controller.room.encrypted
+                              ? L10n.of(context).encryptedMessage
+                              : L10n.of(context).unencryptedMessage,
                           hintMaxLines: 1,
                           border: InputBorder.none,
                           enabledBorder: InputBorder.none,

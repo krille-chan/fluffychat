@@ -100,7 +100,11 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
   void toggleVerified(DeviceKeys key) {
     setState(() {
       if (!key.verified && key.blocked) key.setBlocked(false);
-      key.setVerified(!key.verified);
+      if (key.crossVerified) {
+        room.client.userDeviceKeys[key.userId]?.masterKey?.setVerified(false);
+      } else {
+        key.setVerified(!key.verified);
+      }
     });
   }
 

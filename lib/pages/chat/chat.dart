@@ -17,6 +17,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/start_poll_bottom_sheet.dart';
+import 'package:fluffychat/pages/chat/trust_user_key_dialog.dart';
 import 'package:fluffychat/pages/chat/utils/web_file_to_x_file.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
@@ -276,7 +277,7 @@ class ChatController extends State<ChatPageWithRoom>
     }
   }
 
-  void _shareItems([_]) {
+  Future<void> _shareItems([_]) async {
     final shareItems = widget.shareItems;
     if (shareItems == null || shareItems.isEmpty) return;
     if (!room.otherPartyCanReceiveMessages) {
@@ -294,6 +295,8 @@ class ChatController extends State<ChatPageWithRoom>
       );
       return;
     }
+    final proceed = await showTrustUserInRoomDialog(context, room);
+    if (!mounted || !proceed) return;
     for (final item in shareItems) {
       if (item is FileShareItem) continue;
       if (item is TextShareItem) room.sendTextEvent(item.value);
@@ -621,6 +624,8 @@ class ChatController extends State<ChatPageWithRoom>
   });
 
   Future<void> send() async {
+    final proceed = await showTrustUserInRoomDialog(context, room);
+    if (!mounted || !proceed) return;
     if (sendController.text.trim().isEmpty) return;
     _storeInputTimeoutTimer?.cancel();
     final prefs = Matrix.of(context).store;
@@ -825,6 +830,8 @@ class ChatController extends State<ChatPageWithRoom>
     List<int> waveform,
     String fileName,
   ) async {
+    final proceed = await showTrustUserInRoomDialog(context, room);
+    if (!mounted || !proceed) return;
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     final audioFile = XFile(path);
 

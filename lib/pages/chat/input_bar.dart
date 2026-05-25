@@ -7,6 +7,7 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/chat/trust_user_key_dialog.dart';
 import 'package:fluffychat/utils/markdown_context_builder.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:flutter/material.dart';
@@ -406,7 +407,9 @@ class InputBar extends StatelessWidget {
           controller: controller,
         ),
         contentInsertionConfiguration: ContentInsertionConfiguration(
-          onContentInserted: (KeyboardInsertedContent content) {
+          onContentInserted: (KeyboardInsertedContent content) async {
+            final proceed = await showTrustUserInRoomDialog(context, room);
+            if (!proceed) return;
             final data = content.data;
             if (data == null) return;
 

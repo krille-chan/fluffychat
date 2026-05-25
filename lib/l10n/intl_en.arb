@@ -2758,5 +2758,37 @@
     "appSubtitle": "Secure [matrix] Communication",
     "appDescription": "Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone.",
     "interactiveVerification": "Interactive verification",
-    "interactiveVerificationDescription": "If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."
+    "interactiveVerificationDescription": "If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis.",
+    "countUnverifiedDevices": "{count} unverified devices in the chat.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "check": "Check",
+    "encryptedMessage": "Encrypted message",
+    "unencryptedMessage": "Unencrypted message",
+    "allow": "Allow",
+    "allowEncryptedCommunicationWith": "Allow encrypted communication with {name}?",
+    "@allowEncryptedCommunicationWith": {
+        "type": "String",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "publicKey": "Public key: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "onlyThisTime": "Only this time"
 }
