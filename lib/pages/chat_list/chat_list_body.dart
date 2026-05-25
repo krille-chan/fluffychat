@@ -131,8 +131,8 @@ class ChatListViewBody extends StatelessWidget {
                 ],
                 if (client.rooms.isNotEmpty && !controller.isSearchMode)
                   Container(
-                    height: 40,
-                    padding: EdgeInsets.only(bottom: 4),
+                    height: 36 + 16,
+                    padding: EdgeInsets.only(bottom: 16),
                     child: ListView(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       shrinkWrap: true,
@@ -363,7 +363,7 @@ class _FilterChip extends StatelessWidget {
         side: BorderSide(
           color: selected
               ? theme.colorScheme.secondaryContainer
-              : theme.colorScheme.surfaceContainerHighest,
+              : theme.dividerColor,
         ),
       ),
       child: InkWell(

@@ -54,7 +54,7 @@ class ChatEventList extends StatelessWidget {
       child: ListView.custom(
         padding: EdgeInsets.only(
           top: 8 + (theme.appBarTheme.toolbarHeight ?? 56),
-          bottom: 8 + 72,
+          bottom: controller.inputBarHeight,
           left: horizontalPadding,
           right: horizontalPadding,
         ),
