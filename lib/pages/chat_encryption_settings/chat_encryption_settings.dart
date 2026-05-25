@@ -97,8 +97,16 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
     await KeyVerificationDialog(request: req).show(context);
   }
 
-  void toggleDeviceKey(DeviceKeys key) {
+  void toggleVerified(DeviceKeys key) {
     setState(() {
+      if (!key.verified && key.blocked) key.setBlocked(false);
+      key.setVerified(!key.verified);
+    });
+  }
+
+  void toggleBlocked(DeviceKeys key) {
+    setState(() {
+      if (!key.blocked && key.verified) key.setVerified(false);
       key.setBlocked(!key.blocked);
     });
   }

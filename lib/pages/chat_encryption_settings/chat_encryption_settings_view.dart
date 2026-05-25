@@ -7,9 +7,8 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
-import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
@@ -47,35 +46,66 @@ class ChatEncryptionSettingsView extends StatelessWidget {
           child: Column(
             mainAxisSize: .min,
             children: [
-              SwitchListTile(
-                secondary: CircleAvatar(
-                  foregroundColor: theme.colorScheme.onPrimaryContainer,
-                  backgroundColor: theme.colorScheme.primaryContainer,
-                  child: const Icon(Icons.lock_outlined),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Material(
+                  color: theme.colorScheme.surfaceContainer,
+                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                  clipBehavior: Clip.hardEdge,
+                  child: SwitchListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                    title: Text(L10n.of(context).encryptThisChat),
+                    value: room.encrypted,
+                    onChanged: controller.enableEncryption,
+                  ),
                 ),
-                title: Text(L10n.of(context).encryptThisChat),
-                value: room.encrypted,
-                onChanged: controller.enableEncryption,
               ),
-              Icon(
-                CupertinoIcons.lock_shield,
-                size: 128,
-                color: theme.colorScheme.onInverseSurface,
-              ),
-              if (room.isDirectChat)
+              if (room.isDirectChat) ...[
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      onPressed: controller.startVerification,
-                      icon: const Icon(Icons.verified_outlined),
-                      label: Text(L10n.of(context).verifyStart),
+                  padding: EdgeInsets.all(16),
+                  child: Material(
+                    color: theme.colorScheme.surfaceContainer,
+                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                    clipBehavior: Clip.hardEdge,
+                    child: Column(
+                      mainAxisSize: .min,
+                      crossAxisAlignment: .stretch,
+                      children: [
+                        ListTile(
+                          title: Text(L10n.of(context).interactiveVerification),
+                          subtitle: Text(
+                            L10n.of(context).interactiveVerificationDescription,
+                            style: TextStyle(fontSize: 11),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            bottom: 16.0,
+                            left: 16,
+                            right: 16,
+                          ),
+                          child: OutlinedButton.icon(
+                            style: OutlinedButton.styleFrom(
+                              backgroundColor:
+                                  theme.colorScheme.primaryContainer,
+                              foregroundColor:
+                                  theme.colorScheme.onPrimaryContainer,
+                              side: BorderSide(
+                                color: theme.colorScheme.onPrimaryContainer,
+                                width: 1,
+                              ),
+                            ),
+                            onPressed: controller.startVerification,
+                            icon: const Icon(Icons.verified_outlined),
+                            label: Text(L10n.of(context).verifyStart),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
+              ],
               if (room.encrypted) ...[
-                const SizedBox(height: 16),
                 ListTile(
                   title: Text(
                     L10n.of(context).deviceKeys,
@@ -107,80 +137,114 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                       return SelectionArea(
                         child: ListView.builder(
                           shrinkWrap: true,
+                          padding: EdgeInsets.symmetric(horizontal: 16),
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: deviceKeys.length,
-                          itemBuilder: (BuildContext context, int i) => Column(
-                            mainAxisSize: .min,
-                            children: [
-                              if (i == 0 ||
-                                  deviceKeys[i].userId !=
-                                      deviceKeys[i - 1].userId) ...[
-                                const Divider(),
-                                FutureBuilder(
-                                  future: room.client.getUserProfile(
-                                    deviceKeys[i].userId,
-                                  ),
-                                  builder: (context, snapshot) {
-                                    final displayname =
-                                        snapshot.data?.displayname ??
-                                        deviceKeys[i].userId.localpart ??
-                                        deviceKeys[i].userId;
-                                    return ListTile(
-                                      leading: Avatar(
-                                        name: displayname,
-                                        mxContent: snapshot.data?.avatarUrl,
-                                      ),
-                                      title: Text(displayname),
-                                      subtitle: Text(deviceKeys[i].userId),
-                                    );
-                                  },
-                                ),
-                              ],
-                              ListTile(
-                                leading: Switch.adaptive(
-                                  value: !deviceKeys[i].blocked,
-                                  activeThumbColor: deviceKeys[i].verified
-                                      ? Colors.green
-                                      : Colors.orange,
-                                  onChanged: (_) =>
-                                      controller.toggleDeviceKey(deviceKeys[i]),
-                                ),
+                          itemBuilder: (BuildContext context, int i) => Padding(
+                            padding: EdgeInsets.only(bottom: 16),
+                            child: Material(
+                              color: deviceKeys[i].verified
+                                  ? theme.brightness == Brightness.light
+                                        ? Colors.green.shade50
+                                        : Colors.green.shade900
+                                  : deviceKeys[i].blocked
+                                  ? theme.colorScheme.errorContainer
+                                  : theme.colorScheme.surfaceContainer,
+                              borderRadius: BorderRadius.circular(
+                                AppConfig.borderRadius,
+                              ),
+                              child: ListTile(
                                 title: Row(
+                                  spacing: 8,
                                   children: [
-                                    Text(
-                                      deviceKeys[i].verified
-                                          ? L10n.of(context).verified
-                                          : deviceKeys[i].blocked
-                                          ? L10n.of(context).blocked
-                                          : L10n.of(context).unverified,
-                                      style: TextStyle(
-                                        color: deviceKeys[i].verified
-                                            ? Colors.green
+                                    Expanded(
+                                      child: Text(
+                                        deviceKeys[i].verified
+                                            ? L10n.of(context).verified
                                             : deviceKeys[i].blocked
-                                            ? Colors.red
-                                            : Colors.orange,
+                                            ? L10n.of(context).blocked
+                                            : L10n.of(context).unverified,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: deviceKeys[i].verified
+                                              ? Colors.green
+                                              : theme.colorScheme.error,
+                                        ),
                                       ),
                                     ),
-                                    const Text(' | ID: '),
-                                    Text(
-                                      deviceKeys[i].deviceId ??
-                                          L10n.of(context).unknownDevice,
+                                    IconButton(
+                                      icon: Icon(
+                                        deviceKeys[i].verified
+                                            ? Icons.verified
+                                            : Icons.verified_outlined,
+                                        color: deviceKeys[i].verified
+                                            ? Colors.green
+                                            : null,
+                                      ),
+                                      tooltip: L10n.of(context).verify,
+                                      onPressed: () => controller
+                                          .toggleVerified(deviceKeys[i]),
+                                    ),
+                                    IconButton(
+                                      icon: Icon(
+                                        deviceKeys[i].blocked
+                                            ? Icons.block
+                                            : Icons.block_outlined,
+
+                                        color: deviceKeys[i].blocked
+                                            ? theme.colorScheme.error
+                                            : null,
+                                      ),
+                                      tooltip: L10n.of(context).block,
+                                      onPressed: () => controller.toggleBlocked(
+                                        deviceKeys[i],
+                                      ),
                                     ),
                                   ],
                                 ),
-                                subtitle: Text(
-                                  deviceKeys[i].ed25519Key?.beautified ??
-                                      L10n.of(
+                                subtitle: Column(
+                                  crossAxisAlignment: .start,
+                                  mainAxisSize: .min,
+                                  spacing: 2,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () => UrlLauncher(
                                         context,
-                                      ).unknownEncryptionAlgorithm,
-                                  style: TextStyle(
-                                    fontFamily: 'RobotoMono',
-                                    color: theme.colorScheme.secondary,
-                                    fontSize: 11,
-                                  ),
+                                        'https://matrix.to/#/${deviceKeys[i].userId}',
+                                      ).openMatrixToUrl(),
+                                      child: Text(
+                                        deviceKeys[i].userId,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 11,
+                                          color: theme.colorScheme.primary,
+                                          decoration: TextDecoration.underline,
+                                          decorationColor:
+                                              theme.colorScheme.primary,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      'ID: ${deviceKeys[i].deviceId}',
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+
+                                    Text(
+                                      '${deviceKeys[i].ed25519Key?.beautified}',
+                                      style: TextStyle(
+                                        fontFamily: 'RobotoMono',
+                                        fontSize: 11,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       );
