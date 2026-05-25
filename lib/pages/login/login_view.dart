@@ -43,8 +43,8 @@ class LoginView extends StatelessWidget {
                     tag: 'info-logo',
                     child: Image.asset(
                       './assets/logo/img/logo_favicon_mini.png',
-                      width: 192,
-                      height: 192,
+                      width: 156,
+                      height: 156,
                     ),
                   ),
                 ),

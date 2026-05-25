@@ -130,8 +130,9 @@ class ChatListViewBody extends StatelessWidget {
                   ),
                 ],
                 if (client.rooms.isNotEmpty && !controller.isSearchMode)
-                  SizedBox(
-                    height: 46,
+                  Container(
+                    height: 44,
+                    padding: EdgeInsets.only(bottom: 8),
                     child: ListView(
                       padding: const EdgeInsets.symmetric(horizontal: 12.0),
                       shrinkWrap: true,

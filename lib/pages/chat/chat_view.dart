@@ -317,49 +317,50 @@ class ChatView extends StatelessWidget {
                 onDragDone: controller.onDragDone,
                 onDragEntered: controller.onDragEntered,
                 onDragExited: controller.onDragExited,
-                child: Stack(
-                  children: <Widget>[
-                    if (accountConfig.wallpaperUrl != null)
-                      Opacity(
-                        opacity: accountConfig.wallpaperOpacity ?? 0.5,
-                        child: ImageFiltered(
-                          imageFilter: ui.ImageFilter.blur(
-                            sigmaX: accountConfig.wallpaperBlur ?? 0.0,
-                            sigmaY: accountConfig.wallpaperBlur ?? 0.0,
-                          ),
-                          child: MxcImage(
-                            cacheKey: accountConfig.wallpaperUrl.toString(),
-                            uri: accountConfig.wallpaperUrl,
-                            fit: BoxFit.cover,
-                            height: MediaQuery.sizeOf(context).height,
-                            width: MediaQuery.sizeOf(context).width,
-                            isThumbnail: false,
-                            placeholder: (_) => Container(),
+                child: SafeArea(
+                  top: false,
+                  child: Stack(
+                    children: <Widget>[
+                      if (accountConfig.wallpaperUrl != null)
+                        Opacity(
+                          opacity: accountConfig.wallpaperOpacity ?? 0.5,
+                          child: ImageFiltered(
+                            imageFilter: ui.ImageFilter.blur(
+                              sigmaX: accountConfig.wallpaperBlur ?? 0.0,
+                              sigmaY: accountConfig.wallpaperBlur ?? 0.0,
+                            ),
+                            child: MxcImage(
+                              cacheKey: accountConfig.wallpaperUrl.toString(),
+                              uri: accountConfig.wallpaperUrl,
+                              fit: BoxFit.cover,
+                              height: MediaQuery.sizeOf(context).height,
+                              width: MediaQuery.sizeOf(context).width,
+                              isThumbnail: false,
+                              placeholder: (_) => Container(),
+                            ),
                           ),
                         ),
+                      GestureDetector(
+                        onTap: controller.clearSingleSelectedEvent,
+                        child: ChatEventList(controller: controller),
                       ),
-                    GestureDetector(
-                      onTap: controller.clearSingleSelectedEvent,
-                      child: ChatEventList(controller: controller),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              theme.colorScheme.surfaceBright.withAlpha(0),
-                              theme.colorScheme.surfaceBright,
-                              theme.colorScheme.surfaceBright,
-                            ],
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                theme.colorScheme.surface.withAlpha(0),
+                                theme.colorScheme.surface,
+                                theme.colorScheme.surface,
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            ),
                           ),
-                        ),
-                        alignment: Alignment.center,
-                        child: SafeArea(
+                          alignment: Alignment.center,
                           child: Container(
                             margin: EdgeInsets.all(bottomSheetPadding),
                             constraints: const BoxConstraints(
@@ -432,14 +433,14 @@ class ChatView extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
-                    if (controller.dragging)
-                      Container(
-                        color: theme.scaffoldBackgroundColor.withAlpha(230),
-                        alignment: Alignment.center,
-                        child: const Icon(Icons.upload_outlined, size: 100),
-                      ),
-                  ],
+                      if (controller.dragging)
+                        Container(
+                          color: theme.scaffoldBackgroundColor.withAlpha(230),
+                          alignment: Alignment.center,
+                          child: const Icon(Icons.upload_outlined, size: 100),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             );
