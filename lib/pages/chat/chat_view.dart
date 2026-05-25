@@ -5,7 +5,6 @@
 
 import 'dart:ui' as ui;
 
-import 'package:badges/badges.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -24,7 +23,6 @@ import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
-import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -120,16 +118,7 @@ class ChatView extends StatelessWidget {
                       )
                     : FluffyThemes.isColumnMode(context)
                     ? null
-                    : StreamBuilder<Object>(
-                        stream: Matrix.of(context).client.onSync.stream.where(
-                          (syncUpdate) => syncUpdate.hasRoomUpdate,
-                        ),
-                        builder: (context, _) => UnreadRoomsBadge(
-                          filter: (r) => r.id != controller.roomId,
-                          badgePosition: BadgePosition.topEnd(end: 8, top: 4),
-                          child: const Center(child: BackButton()),
-                        ),
-                      ),
+                    : const Center(child: BackButton()),
                 titleSpacing: FluffyThemes.isColumnMode(context) ? 24 : 0,
                 title: ChatAppBarTitle(controller),
                 actions: [
