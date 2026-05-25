@@ -128,6 +128,8 @@ class ChatController extends State<ChatPageWithRoom>
   bool currentlyTyping = false;
   bool dragging = false;
 
+  final GlobalKey inputBarKey = GlobalKey();
+
   void onDragEntered(_) => setState(() => dragging = true);
 
   void onDragExited(_) => setState(() => dragging = false);
@@ -1416,6 +1418,22 @@ class ChatController extends State<ChatPageWithRoom>
 
   Timer? _storeInputTimeoutTimer;
   static const Duration _storeInputTimeout = Duration(milliseconds: 500);
+
+  double inputBarHeight = 72.0;
+
+  void updateInputBarHeight() {
+    RenderBox? renderBox;
+    if (inputBarKey.currentContext?.findRenderObject() != null) {
+      renderBox = inputBarKey.currentContext!.findRenderObject() as RenderBox;
+    }
+
+    final height = renderBox?.size.height ?? 72.0;
+    if (height != inputBarHeight) {
+      setState(() {
+        inputBarHeight = height;
+      });
+    }
+  }
 
   void onInputBarChanged(String text) {
     if (_inputTextIsEmpty != text.isEmpty) {
