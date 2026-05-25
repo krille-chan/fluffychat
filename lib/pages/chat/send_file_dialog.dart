@@ -7,6 +7,7 @@ import 'package:async/async.dart' show Result;
 import 'package:cross_file/cross_file.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/chat/trust_user_key_dialog.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/other_party_can_receive.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -50,6 +51,9 @@ class SendFileDialogState extends State<SendFileDialog> {
 
   Future<void> _send() async {
     final l10n = L10n.of(context);
+
+    final proceed = await showTrustUserInRoomDialog(context, widget.room);
+    if (!context.mounted || !proceed) return;
 
     showFutureLoadingDialog(
       context: widget.outerContext,
