@@ -236,22 +236,25 @@ class ChatListViewBody extends StatelessWidget {
                 ),
               ),
             if (client.prevBatch != null)
-              SliverList.builder(
-                itemCount: rooms.length,
-                itemBuilder: (BuildContext context, int i) {
-                  final room = rooms[i];
-                  final space = spaceDelegateCandidates[room.id];
-                  return ChatListItem(
-                    room,
-                    space: space,
-                    key: Key('chat_list_item_${room.id}'),
-                    filter: filter,
-                    onTap: () => controller.onChatTap(room),
-                    onLongPress: (context) =>
-                        controller.chatContextAction(room, context, space),
-                    activeChat: controller.activeChat == room.id,
-                  );
-                },
+              SliverSafeArea(
+                top: false,
+                sliver: SliverList.builder(
+                  itemCount: rooms.length,
+                  itemBuilder: (BuildContext context, int i) {
+                    final room = rooms[i];
+                    final space = spaceDelegateCandidates[room.id];
+                    return ChatListItem(
+                      room,
+                      space: space,
+                      key: Key('chat_list_item_${room.id}'),
+                      filter: filter,
+                      onTap: () => controller.onChatTap(room),
+                      onLongPress: (context) =>
+                          controller.chatContextAction(room, context, space),
+                      activeChat: controller.activeChat == room.id,
+                    );
+                  },
+                ),
               ),
           ],
         );
