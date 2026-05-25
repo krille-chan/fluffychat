@@ -57,7 +57,6 @@ extension LocalizedActiveFilter on ActiveFilter {
 }
 
 class ChatList extends StatefulWidget {
-  static BuildContext? contextForVoip;
   final String? activeChat;
   final String? activeSpace;
   final bool displayNavigationRail;
@@ -377,7 +376,7 @@ class ChatListController extends State<ChatList>
 
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
-    _hackyWebRTCFixForWeb();
+    Matrix.of(context).voipPlugin?.context = context;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         searchServer = Matrix.of(
@@ -1011,10 +1010,6 @@ class ChatListController extends State<ChatList>
 
   @override
   Widget build(BuildContext context) => ChatListView(this);
-
-  void _hackyWebRTCFixForWeb() {
-    ChatList.contextForVoip = context;
-  }
 
   Future<void> dehydrate() => Matrix.of(context).dehydrateAction(context);
 }
