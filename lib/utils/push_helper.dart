@@ -160,6 +160,11 @@ Future<void> _tryPushHelper(
   }
   Logs().v('Push helper got notification event of type ${event.type}.');
 
+  if (!client.pushruleEvaluator.match(event).notify) {
+    Logs().i('Push helper: filtered by client-side push rules.');
+    return;
+  }
+
   if (event.type.startsWith('m.call')) {
     // make sure bg sync is on (needed to update hold, unhold events)
     // prevent over write from app life cycle change
