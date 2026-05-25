@@ -352,9 +352,9 @@ class ChatView extends StatelessWidget {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                theme.colorScheme.surfaceBright.withAlpha(0),
-                                theme.colorScheme.surfaceBright,
-                                theme.colorScheme.surfaceBright,
+                                theme.colorScheme.surface.withAlpha(0),
+                                theme.colorScheme.surface,
+                                theme.colorScheme.surface,
                               ],
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
