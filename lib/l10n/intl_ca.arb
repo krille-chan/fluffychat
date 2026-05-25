@@ -2744,13 +2744,5 @@
     "support": "Aporta",
     "setLowPriority": "Estableix una prioritat baixa",
     "unsetLowPriority": "Restableix la prioritat",
-    "removeCallFromChat": "Treu la trucada del xat",
-    "removeCallFromChatDescription": "Vols treure la trucada del xat per a totis lis membres?",
-    "removeCallForEveryone": "Treu la trucada per tothom",
-    "startVoiceCall": "Inicia una trucada",
-    "startVideoCall": "Fes una videotrucada",
-    "joinVoiceCall": "Fica't a la trucada",
-    "joinVideoCall": "Fica't a la videotrucada",
-    "live": "En directe",
     "playSoundOnNotification": "Notificacions sonores"
 }

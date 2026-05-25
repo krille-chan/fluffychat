@@ -2745,13 +2745,5 @@
     "support": "Lagundu",
     "setLowPriority": "Ezarri lehentasun baxua",
     "unsetLowPriority": "Kendu lehentasun baxua",
-    "removeCallFromChat": "Kendu deia txatetik",
-    "removeCallFromChatDescription": "Kide guztientzat kendu nahi al duzu deia txatetik?",
-    "removeCallForEveryone": "Kendu deia guztientzat",
-    "startVoiceCall": "Hasi ahots-deia",
-    "startVideoCall": "Hasi bideo-deia",
-    "joinVoiceCall": "Batu ahots-deira",
-    "joinVideoCall": "Batu bideo-deira",
-    "live": "Zuzenean",
     "playSoundOnNotification": "Jo soinua jakinarazpenekin"
 }
