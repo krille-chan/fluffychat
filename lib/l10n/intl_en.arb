@@ -2782,5 +2782,6 @@
             }
         }
     },
-    "onlyThisTime": "Only this time"
+    "onlyThisTime": "Only this time",
+    "deviceIdentityKey": "Device identity key"
 }

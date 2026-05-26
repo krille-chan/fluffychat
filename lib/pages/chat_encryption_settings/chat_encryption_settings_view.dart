@@ -46,64 +46,46 @@ class ChatEncryptionSettingsView extends StatelessWidget {
           child: Column(
             mainAxisSize: .min,
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Material(
-                  color: theme.colorScheme.surfaceContainer,
-                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                  clipBehavior: Clip.hardEdge,
-                  child: SwitchListTile(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 16),
-                    title: Text(L10n.of(context).encryptThisChat),
-                    value: room.encrypted,
-                    onChanged: controller.enableEncryption,
+              SwitchListTile(
+                contentPadding: EdgeInsets.symmetric(horizontal: 16),
+                title: Text(L10n.of(context).encryptThisChat),
+                value: room.encrypted,
+                onChanged: controller.enableEncryption,
+              ),
+              Divider(color: theme.dividerColor, height: 1),
+              if (room.isDirectChat) ...[
+                const SizedBox(height: 16),
+                ListTile(
+                  title: Text(L10n.of(context).interactiveVerification),
+                  subtitle: Text(
+                    L10n.of(context).interactiveVerificationDescription,
+                    style: TextStyle(fontSize: 11),
                   ),
                 ),
-              ),
-              if (room.isDirectChat) ...[
                 Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Material(
-                    color: theme.colorScheme.surfaceContainer,
-                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                    clipBehavior: Clip.hardEdge,
-                    child: Column(
-                      mainAxisSize: .min,
-                      crossAxisAlignment: .stretch,
-                      children: [
-                        ListTile(
-                          title: Text(L10n.of(context).interactiveVerification),
-                          subtitle: Text(
-                            L10n.of(context).interactiveVerificationDescription,
-                            style: TextStyle(fontSize: 11),
-                          ),
+                  padding: const EdgeInsets.only(
+                    bottom: 16.0,
+                    left: 16,
+                    right: 16,
+                  ),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton.icon(
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: theme.colorScheme.primaryContainer,
+                        foregroundColor: theme.colorScheme.onPrimaryContainer,
+                        side: BorderSide(
+                          color: theme.colorScheme.onPrimaryContainer,
+                          width: 1,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            bottom: 16.0,
-                            left: 16,
-                            right: 16,
-                          ),
-                          child: OutlinedButton.icon(
-                            style: OutlinedButton.styleFrom(
-                              backgroundColor:
-                                  theme.colorScheme.primaryContainer,
-                              foregroundColor:
-                                  theme.colorScheme.onPrimaryContainer,
-                              side: BorderSide(
-                                color: theme.colorScheme.onPrimaryContainer,
-                                width: 1,
-                              ),
-                            ),
-                            onPressed: controller.startVerification,
-                            icon: const Icon(Icons.verified_outlined),
-                            label: Text(L10n.of(context).verifyStart),
-                          ),
-                        ),
-                      ],
+                      ),
+                      onPressed: controller.startVerification,
+                      icon: const Icon(Icons.verified_outlined),
+                      label: Text(L10n.of(context).verifyStart),
                     ),
                   ),
                 ),
+                Divider(color: theme.dividerColor, height: 1),
               ],
               if (room.encrypted) ...[
                 ListTile(
@@ -233,7 +215,6 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-
                                     Text(
                                       '${deviceKeys[i].ed25519Key?.beautified}',
                                       style: TextStyle(

@@ -80,14 +80,14 @@ class ChatAppBarTitle extends StatelessWidget {
                               builder: (context, presence) {
                                 final statusMessage = presence?.statusMsg;
                                 final style = TextStyle(fontSize: 11);
+                                if (statusMessage != null) {
+                                  return Text(statusMessage, style: style);
+                                }
                                 if (presence?.currentlyActive == true) {
                                   return Text(
                                     L10n.of(context).currentlyActive,
                                     style: style,
                                   );
-                                }
-                                if (statusMessage != null) {
-                                  return Text(statusMessage, style: style);
                                 }
                                 return const SizedBox.shrink();
                               },

@@ -464,10 +464,6 @@ class ChatListController extends State<ChatList>
       Offset.zero & overlay.size,
     );
 
-    final displayname = room.getLocalizedDisplayname(
-      MatrixLocals(L10n.of(context)),
-    );
-
     final spacesWithPowerLevels = room.client.rooms
         .where(
           (space) =>
@@ -477,23 +473,10 @@ class ChatListController extends State<ChatList>
         )
         .toList();
 
-    final action = await showMenu<ChatContextAction>(
+    var action = await showMenu<ChatContextAction>(
       context: posContext,
       position: position,
       items: [
-        PopupMenuItem(
-          value: ChatContextAction.open,
-          child: Row(
-            spacing: 12.0,
-            children: [
-              Avatar(mxContent: room.avatar, name: displayname, size: 24),
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 200),
-                child: Text(displayname, maxLines: 1, overflow: .ellipsis),
-              ),
-            ],
-          ),
-        ),
         if (space != null)
           PopupMenuItem(
             value: ChatContextAction.goToSpace,
@@ -506,10 +489,8 @@ class ChatListController extends State<ChatList>
                   name: space.getLocalizedDisplayname(),
                 ),
                 const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    L10n.of(context).goToSpace(space.getLocalizedDisplayname()),
-                  ),
+                Text(
+                  L10n.of(context).goToSpace(space.getLocalizedDisplayname()),
                 ),
               ],
             ),
@@ -571,6 +552,68 @@ class ChatListController extends State<ChatList>
                 ],
               ),
             ),
+        ],
+        PopupMenuItem(
+          value: ChatContextAction.leave,
+          child: Row(
+            mainAxisSize: .min,
+            children: [
+              Icon(
+                Icons.delete_outlined,
+                color: Theme.of(context).colorScheme.onErrorContainer,
+              ),
+              const SizedBox(width: 12),
+              Text(
+                room.membership == Membership.invite
+                    ? L10n.of(context).delete
+                    : L10n.of(context).leave,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onErrorContainer,
+                ),
+              ),
+            ],
+          ),
+        ),
+        if (room.membership == Membership.invite)
+          PopupMenuItem(
+            value: ChatContextAction.block,
+            child: Row(
+              mainAxisSize: .min,
+              children: [
+                Icon(
+                  Icons.block_outlined,
+                  color: Theme.of(context).colorScheme.onErrorContainer,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  L10n.of(context).block,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onErrorContainer,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        if (room.membership == Membership.join)
+          PopupMenuItem(
+            value: ChatContextAction.showMore,
+            child: Row(
+              mainAxisSize: .min,
+              children: [
+                Icon(Icons.adaptive.more_outlined),
+                const SizedBox(width: 12),
+                Text(L10n.of(context).more),
+              ],
+            ),
+          ),
+      ],
+    );
+    if (!posContext.mounted || !mounted) return;
+    if (action == ChatContextAction.showMore) {
+      action = await showMenu<ChatContextAction>(
+        context: posContext,
+        position: position,
+        items: [
           if (!room.isFavourite)
             PopupMenuItem(
               value: ChatContextAction.lowPriority,
@@ -628,57 +671,13 @@ class ChatListController extends State<ChatList>
               ),
             ),
         ],
-        PopupMenuItem(
-          value: ChatContextAction.leave,
-          child: Row(
-            mainAxisSize: .min,
-            children: [
-              Icon(
-                Icons.delete_outlined,
-                color: Theme.of(context).colorScheme.onErrorContainer,
-              ),
-              const SizedBox(width: 12),
-              Text(
-                room.membership == Membership.invite
-                    ? L10n.of(context).delete
-                    : L10n.of(context).leave,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onErrorContainer,
-                ),
-              ),
-            ],
-          ),
-        ),
-        if (room.membership == Membership.invite)
-          PopupMenuItem(
-            value: ChatContextAction.block,
-            child: Row(
-              mainAxisSize: .min,
-              children: [
-                Icon(
-                  Icons.block_outlined,
-                  color: Theme.of(context).colorScheme.onErrorContainer,
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  L10n.of(context).block,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onErrorContainer,
-                  ),
-                ),
-              ],
-            ),
-          ),
-      ],
-    );
+      );
+    }
 
     if (action == null) return;
     if (!mounted) return;
 
     switch (action) {
-      case ChatContextAction.open:
-        onChatTap(room);
-        return;
       case ChatContextAction.goToSpace:
         setActiveSpace(space!.id);
         return;
@@ -797,6 +796,8 @@ class ChatListController extends State<ChatList>
           future: () => room.removeTag(activeTag!),
         );
         return;
+      case ChatContextAction.showMore:
+        throw ('Should not be handled!');
     }
   }
 
@@ -1017,7 +1018,6 @@ class ChatListController extends State<ChatList>
 enum EditBundleAction { addToBundle, removeFromBundle }
 
 enum ChatContextAction {
-  open,
   goToSpace,
   favorite,
   lowPriority,
@@ -1028,4 +1028,5 @@ enum ChatContextAction {
   leave,
   addToSpace,
   block,
+  showMore,
 }
