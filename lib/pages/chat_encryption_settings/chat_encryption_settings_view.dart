@@ -233,7 +233,6 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-
                                     Text(
                                       '${deviceKeys[i].ed25519Key?.beautified}',
                                       style: TextStyle(

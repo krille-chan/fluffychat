@@ -26,6 +26,9 @@ class SettingsSecurityView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final client = Matrix.of(context).client;
+    final publicMasterKey =
+        client.userDeviceKeys[client.userID]?.masterKey?.publicKey;
 
     return Scaffold(
       appBar: AppBar(
@@ -141,9 +144,18 @@ class SettingsSecurityView extends StatelessWidget {
                       ),
                     ),
                   ),
+                  if (publicMasterKey != null)
+                    ListTile(
+                      title: Text(L10n.of(context).yourPublicKey),
+                      leading: const Icon(Icons.verified_user_outlined),
+                      subtitle: SelectableText(
+                        publicMasterKey.beautified,
+                        style: const TextStyle(fontFamily: 'RobotoMono'),
+                      ),
+                    ),
                   ListTile(
-                    title: Text(L10n.of(context).yourPublicKey),
-                    leading: const Icon(Icons.vpn_key_outlined),
+                    title: Text(L10n.of(context).deviceIdentityKey),
+                    leading: const Icon(Icons.mobile_friendly_outlined),
                     subtitle: SelectableText(
                       Matrix.of(context).client.fingerprintKey.beautified,
                       style: const TextStyle(fontFamily: 'RobotoMono'),
@@ -158,6 +170,7 @@ class SettingsSecurityView extends StatelessWidget {
                       onTap: () =>
                           context.go('/rooms/settings/security/password'),
                     ),
+                  Divider(color: theme.dividerColor),
                   ListTile(
                     iconColor: Colors.orange,
                     leading: const Icon(Icons.delete_sweep_outlined),
@@ -167,7 +180,6 @@ class SettingsSecurityView extends StatelessWidget {
                     ),
                     onTap: controller.dehydrateAction,
                   ),
-                  Divider(color: theme.dividerColor),
                   ListTile(
                     iconColor: Colors.red,
                     leading: const Icon(Icons.delete_outlined),
