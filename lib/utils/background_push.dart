@@ -256,7 +256,7 @@ class BackgroundPush {
           pushkey: token,
           appId: thisAppId,
           appDisplayName: appDisplayName,
-          deviceDisplayName: client.deviceName!,
+          deviceDisplayName: PlatformInfos.appDisplayName,
           lang: 'en',
           data: PusherData(
             url: Uri.parse(gatewayUrl),
