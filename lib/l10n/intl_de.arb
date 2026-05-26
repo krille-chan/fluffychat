@@ -2750,9 +2750,5 @@
     },
     "createNewChat": "Neuen Chat erstellen",
     "supportFluffyChat": "FluffyChat unterstützen",
-    "support": "Unterstützen",
-    "startVoiceCall": "Sprachanruf starten",
-    "joinVoiceCall": "Sprachanruf beitreten",
-    "startVideoCall": "Videoanruf starten",
-    "joinVideoCall": "Videoanruf beitreten"
+    "support": "Unterstützen"
 }

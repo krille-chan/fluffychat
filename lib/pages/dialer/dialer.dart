@@ -331,59 +331,42 @@ class MyCallingPage extends State<Calling> {
     return PIPView(
       builder: (context, isFloating) {
         // Build action buttons
-        final switchCameraButton = FloatingActionButton(
-          heroTag: 'switchCamera',
+        final switchCameraButton = IconButton(
           onPressed: _switchCamera,
-          backgroundColor: Colors.black45,
-          child: const Icon(Icons.switch_camera),
+          icon: const Icon(Icons.switch_camera),
         );
-        final hangupButton = FloatingActionButton(
-          heroTag: 'hangup',
+        final hangupButton = IconButton(
           onPressed: _hangUp,
           tooltip: 'Hangup',
-          backgroundColor: _state == CallState.kEnded
-              ? Colors.black45
-              : Colors.red,
-          child: const Icon(Icons.call_end),
+          style: IconButton.styleFrom(
+            backgroundColor: Theme.of(context).colorScheme.error,
+          ),
+          icon: const Icon(Icons.call_end),
         );
-        final answerButton = FloatingActionButton(
-          heroTag: 'answer',
+        final answerButton = IconButton(
           onPressed: _answerCall,
           tooltip: 'Answer',
-          backgroundColor: Colors.green,
-          child: const Icon(Icons.phone),
+          icon: const Icon(Icons.phone),
         );
-        final muteMicButton = FloatingActionButton(
-          heroTag: 'muteMic',
+        final muteMicButton = IconButton(
           onPressed: _muteMic,
-          foregroundColor: isMicrophoneMuted ? Colors.black26 : Colors.white,
-          backgroundColor: isMicrophoneMuted ? Colors.white : Colors.black45,
-          child: Icon(isMicrophoneMuted ? Icons.mic_off : Icons.mic),
+          icon: Icon(isMicrophoneMuted ? Icons.mic_off : Icons.mic),
         );
-        final screenSharingButton = FloatingActionButton(
-          heroTag: 'screenSharing',
+        final screenSharingButton = IconButton(
           onPressed: _screenSharing,
-          foregroundColor: isScreensharingEnabled
-              ? Colors.black26
-              : Colors.white,
-          backgroundColor: isScreensharingEnabled
-              ? Colors.white
-              : Colors.black45,
-          child: const Icon(Icons.desktop_mac),
+          icon: Icon(
+            isScreensharingEnabled
+                ? Icons.desktop_mac
+                : Icons.desktop_mac_outlined,
+          ),
         );
-        final holdButton = FloatingActionButton(
-          heroTag: 'hold',
+        final holdButton = IconButton(
           onPressed: _remoteOnHold,
-          foregroundColor: isRemoteOnHold ? Colors.black26 : Colors.white,
-          backgroundColor: isRemoteOnHold ? Colors.white : Colors.black45,
-          child: const Icon(Icons.pause),
+          icon: Icon(Icons.pause),
         );
-        final muteCameraButton = FloatingActionButton(
-          heroTag: 'muteCam',
+        final muteCameraButton = IconButton(
           onPressed: _muteCamera,
-          foregroundColor: isLocalVideoMuted ? Colors.black26 : Colors.white,
-          backgroundColor: isLocalVideoMuted ? Colors.white : Colors.black45,
-          child: Icon(isLocalVideoMuted ? Icons.videocam_off : Icons.videocam),
+          icon: Icon(isLocalVideoMuted ? Icons.videocam_off : Icons.videocam),
         );
 
         late final List<Widget> actionButtons;
@@ -424,14 +407,19 @@ class MyCallingPage extends State<Calling> {
         }
 
         return Scaffold(
+          extendBodyBehindAppBar: true,
           resizeToAvoidBottomInset: !isFloating,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          floatingActionButton: SizedBox(
-            width: 320.0,
-            height: 150.0,
+          floatingActionButton: IconButtonTheme(
+            data: IconButtonThemeData(
+              style: IconButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.inverseSurface,
+                foregroundColor: Theme.of(context).colorScheme.onInverseSurface,
+              ),
+            ),
             child: Row(
-              mainAxisAlignment: .spaceAround,
+              mainAxisAlignment: .spaceEvenly,
               children: actionButtons,
             ),
           ),
@@ -471,15 +459,10 @@ class MyCallingPage extends State<Calling> {
                     ),
                   );
                 } else {
-                  var primaryStream =
+                  final primaryStream =
                       call.remoteScreenSharingStream ??
                       call.localScreenSharingStream ??
-                      call.remoteUserMediaStream ??
-                      call.localUserMediaStream;
-
-                  if (!connected) {
-                    primaryStream = call.localUserMediaStream;
-                  }
+                      call.remoteUserMediaStream;
 
                   if (primaryStream != null) {
                     stackWidgets.add(
@@ -488,6 +471,16 @@ class MyCallingPage extends State<Calling> {
                           primaryStream,
                           mainView: true,
                           matrixClient: widget.client,
+                        ),
+                      ),
+                    );
+                  } else {
+                    stackWidgets.add(
+                      Center(
+                        child: Avatar(
+                          size: 80,
+                          name: call.remoteUser?.calcDisplayname(),
+                          mxContent: call.remoteUser?.avatarUrl,
                         ),
                       ),
                     );
