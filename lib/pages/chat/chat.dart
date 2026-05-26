@@ -1419,7 +1419,7 @@ class ChatController extends State<ChatPageWithRoom>
   Timer? _storeInputTimeoutTimer;
   static const Duration _storeInputTimeout = Duration(milliseconds: 500);
 
-  double inputBarHeight = 72.0;
+  double? inputBarHeight;
 
   void updateInputBarHeight() {
     RenderBox? renderBox;

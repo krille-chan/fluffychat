@@ -54,7 +54,10 @@ class ChatEventList extends StatelessWidget {
       child: ListView.custom(
         padding: EdgeInsets.only(
           top: 8 + MediaQuery.paddingOf(context).top,
-          bottom: 8 + controller.inputBarHeight,
+          bottom:
+              8 +
+              (controller.inputBarHeight ??
+                  (72 + (FluffyThemes.isColumnMode(context) ? 16 : 0))),
           left: horizontalPadding,
           right: horizontalPadding,
         ),
