@@ -3,7 +3,6 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
@@ -146,14 +145,13 @@ class ChatListViewBody extends StatelessWidget {
                                   horizontal: 4.0,
                                 ),
                                 child: Center(
-                                  child: _FilterChip(
-                                    filter: filter,
-                                    onSelect: () => controller.setActiveFilter(
-                                      filter,
-                                      null,
+                                  child: FilterChip(
+                                    selected: filter == controller.activeFilter,
+                                    onSelected: (_) => controller
+                                        .setActiveFilter(filter, null),
+                                    label: Text(
+                                      filter.toLocalizedString(context),
                                     ),
-                                    selected: controller.activeFilter == filter,
-                                    tagName: null,
                                   ),
                                 ),
                               ),
@@ -164,14 +162,13 @@ class ChatListViewBody extends StatelessWidget {
                               horizontal: 4.0,
                             ),
                             child: Center(
-                              child: _FilterChip(
-                                filter: ActiveFilter.tag,
+                              child: FilterChip(
                                 selected: entry.key == controller.activeTag,
-                                onSelect: () => controller.setActiveFilter(
+                                onSelected: (_) => controller.setActiveFilter(
                                   ActiveFilter.tag,
                                   entry.key,
                                 ),
-                                tagName: entry.key.replaceFirst('u.', ''),
+                                label: Text(entry.key.replaceFirst('u.', '')),
                               ),
                             ),
                           ),
@@ -338,45 +335,4 @@ class _SearchItem extends StatelessWidget {
       ),
     ),
   );
-}
-
-class _FilterChip extends StatelessWidget {
-  final ActiveFilter filter;
-  final VoidCallback onSelect;
-  final bool selected;
-  final String? tagName;
-
-  const _FilterChip({
-    required this.filter,
-    required this.onSelect,
-    required this.selected,
-    required this.tagName,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Material(
-      color: selected ? theme.colorScheme.secondaryContainer : null,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppConfig.borderRadius * 2),
-        side: BorderSide(
-          color: selected
-              ? theme.colorScheme.secondaryContainer
-              : theme.dividerColor,
-        ),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-        onTap: onSelect,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: Text(
-            tagName ?? filter.toLocalizedString(context),
-            style: TextStyle(color: theme.colorScheme.onPrimaryContainer),
-          ),
-        ),
-      ),
-    );
-  }
 }
