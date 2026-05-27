@@ -1080,10 +1080,10 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: "734eae63fa4b707999ee9165e0fc7e1205d1fcb37fef9727bb4f79cda460e1ab"
+      sha256: "383cc4471e1bee44e2211c01e7282fbf4ccd56746211e08f5379fd9d8345fb3e"
       url: "https://pub.dev"
     source: hosted
-    version: "7.1.2"
+    version: "7.2.1"
   meta:
     dependency: transitive
     description:
