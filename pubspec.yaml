@@ -101,7 +101,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/logo/img/
+    - assets/logo/mini/
     - assets/sounds/
     - assets/vodozemac/
 
