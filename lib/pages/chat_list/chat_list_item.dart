@@ -75,6 +75,7 @@ class ChatListItem extends StatelessWidget {
           future: room.name.isEmpty ? room.loadHeroUsers() : null,
           builder: (context, _) => HoverBuilder(
             builder: (context, listTileHovered) => ListTile(
+              minVerticalPadding: 16,
               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
               onLongPress: () => onLongPress?.call(context),
               leading: HoverBuilder(
@@ -228,7 +229,9 @@ class ChatListItem extends StatelessWidget {
                           fontWeight: room.hasNewMessages
                               ? FontWeight.bold
                               : null,
-                          color: hasNotifications
+                          color: room.highlightCount >= 1
+                              ? theme.colorScheme.error
+                              : room.hasNewMessages
                               ? theme.colorScheme.primary
                               : null,
                         ),
