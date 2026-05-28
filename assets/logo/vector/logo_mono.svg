@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" xmlns:bx="https://boxy-svg.com">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="75 75 350 350" xmlns:bx="https://boxy-svg.com">
   <path style="fill: none; stroke-width: 40px; stroke: white; transform-origin: 251.023px 245.593px 0px;"
     transform="matrix(1, 0, 0, 1, -1.023454, 4.40666)" d="M 99.512 139.509 C 102.058 120.868 121.22 102.817 139.822 100 C 212.532 88.99 287.744 88.894 360.439 100 C 419.192 108.976 408.004 218.887 400 240.345 C 357.679 353.802 284.458 265.489 200 300 C 162.353 315.383 113.743 399.265 109.609 399.48 C 105.475 399.694 87.779 225.434 99.512 139.509 Z 
            M 119.573 120.364 L 236.724 192.036 Q 249.741 200 262.722 191.958 L 379.554 119.582" />
