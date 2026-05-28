@@ -93,7 +93,7 @@ abstract class PlatformInfos {
         ),
       ],
       applicationIcon: Image.asset(
-        'assets/logo/img/logo_standalone.png',
+        'assets/logo/mini/logo_favicon_mini.png',
         width: 64,
         height: 64,
         filterQuality: FilterQuality.medium,

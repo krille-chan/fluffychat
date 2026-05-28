@@ -109,7 +109,7 @@ class IntroPage extends StatelessWidget {
                             child: Hero(
                               tag: 'info-logo',
                               child: Image.asset(
-                                './assets/logo/img/logo_favicon_mini.png',
+                                './assets/logo/mini/logo_favicon_mini.png',
                                 width: 156,
                                 height: 156,
                               ),
@@ -117,7 +117,7 @@ class IntroPage extends StatelessWidget {
                           ),
                           Center(
                             child: Image.asset(
-                              './assets/logo/img/logo_font_mini.png',
+                              './assets/logo/mini/logo_font_mini.png',
                               width: 156,
                             ),
                           ),
