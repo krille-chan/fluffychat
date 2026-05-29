@@ -2747,5 +2747,6 @@
         }
     },
     "sendReadReceiptsDescription": "",
-    "block": ""
+    "block": "",
+    "inviteGroupChat": ""
 }
