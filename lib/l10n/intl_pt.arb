@@ -2701,5 +2701,10 @@
                 "type": "String"
             }
         }
+    },
+    "areGuestsAllowedToJoin": "",
+    "@areGuestsAllowedToJoin": {
+        "type": "String",
+        "placeholders": {}
     }
 }
