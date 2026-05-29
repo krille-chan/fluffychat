@@ -2706,5 +2706,31 @@
     "signIn": "Pieteikties",
     "createNewAccount": "Izveidot jaunu kontu",
     "signUpGreeting": "FluffyChat ir decentralizēta. Jāatlasa serveris, kurā ir vēlēšanās izveidot savu kontu, un aiziet!",
-    "signInGreeting": "Jau ir Matrix konts? Laipni lūdzam atpakaļ! Jāatlasa savs mājasserveris un jāpiesakās."
+    "signInGreeting": "Jau ir Matrix konts? Laipni lūdzam atpakaļ! Jāatlasa savs mājasserveris un jāpiesakās.",
+    "reset": "",
+    "createNewTag": "",
+    "join": "",
+    "createNewChat": "",
+    "makeModerator": "",
+    "tagName": "",
+    "setPowerLevelDescription": "",
+    "matrixId": "",
+    "support": "",
+    "setPowerLevel": "",
+    "mute": "",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "removeModeratorRights": "",
+    "addTag": "",
+    "removeAdminRights": "",
+    "owner": "",
+    "powerLevel": "",
+    "playSoundOnNotification": "",
+    "makeAdmin": "",
+    "searchOrEnterHomeserverAddress": "",
+    "unsetLowPriority": "",
+    "setLowPriority": "",
+    "removeTag": "",
+    "supportFluffyChat": ""
 }
