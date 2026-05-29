@@ -2749,5 +2749,50 @@
     "addTag": "添加标签",
     "removeTag": "删除标签",
     "tagName": "标签名",
-    "createNewTag": "创建新标签"
+    "createNewTag": "创建新标签",
+    "discardEdits": "有未保存的更改。放弃编辑吗？",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "hideRoomsInSpaces": "隐藏位于空间中的聊天室",
+    "possibleByYou": "没有您的支持不会有这个版本。FluffyChat 依旧免费、开源、完全由社区驱动。",
+    "showThumbnailsInTimeline": "显示图片和视频的缩略图",
+    "appSubtitle": "安全的 [matrix] 通信",
+    "appDescription": "以对所有人简单易得的方式通过去中心化 [matrix] 网络加密通信。",
+    "interactiveVerification": "互动式验证",
+    "interactiveVerificationDescription": "如果你和联系人就在一起或通过安全渠道通信，你们可以通过比较安全号码或绘文字同时验证所有设备。",
+    "countUnverifiedDevices": "该聊天中有 {count} 台未验证设备。",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "check": "检查",
+    "encryptedMessage": "加密的消息",
+    "unencryptedMessage": "未加密的消息",
+    "allow": "允许",
+    "allowEncryptedCommunicationWith": "允许和 {name} 的加密通信？",
+    "@allowEncryptedCommunicationWith": {
+        "type": "String",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "publicKey": "公钥：{key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "onlyThisTime": "仅本次",
+    "deviceIdentityKey": "设备身份密钥"
 }
