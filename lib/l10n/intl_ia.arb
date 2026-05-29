@@ -2738,5 +2738,6 @@
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "block": ""
 }
