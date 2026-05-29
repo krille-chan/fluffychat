@@ -9,7 +9,7 @@ import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/dummy_chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
-import 'package:fluffychat/pages/chat_list/space_view.dart';
+import 'package:fluffychat/pages/chat_list/space_header.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -33,15 +33,6 @@ class ChatListViewBody extends StatelessWidget {
 
     final client = Matrix.of(context).client;
     final activeSpace = controller.activeSpaceId;
-    if (activeSpace != null) {
-      return SpaceView(
-        key: ValueKey(activeSpace),
-        spaceId: activeSpace,
-        onBack: controller.clearActiveSpace,
-        onChatTab: controller.onChatTap,
-        activeChat: controller.activeChat,
-      );
-    }
     final spaces = client.rooms.where((r) => r.isSpace);
     final spaceDelegateCandidates = <String, Room>{};
     for (final space in spaces) {
@@ -61,24 +52,34 @@ class ChatListViewBody extends StatelessWidget {
     final userSearchResult = controller.userSearchResult;
     const dummyChatCount = 4;
     final filter = controller.searchController.text.toLowerCase();
+    final header = activeSpace == null
+        ? ChatListHeader(controller: controller)
+        : SpaceHeader(
+            key: ValueKey(activeSpace),
+            spaceId: activeSpace,
+            onBack: controller.clearActiveSpace,
+            activeChat: controller.activeChat,
+          );
+
     return StreamBuilder(
       key: ValueKey(client.userID.toString()),
       stream: client.onSync.stream
           .where((s) => s.hasRoomUpdate)
           .rateLimit(const Duration(seconds: 1)),
       builder: (context, _) {
-        final rooms = controller.filteredRooms
-            .where(
-              (room) =>
-                  !AppSettings.hideRoomsInSpaces.value ||
-                  spaceDelegateCandidates[room.id] == null,
-            )
-            .toList();
+        final rooms = controller.filteredRooms.where((room) {
+          if (activeSpace == null) {
+            return !AppSettings.hideRoomsInSpaces.value ||
+                spaceDelegateCandidates[room.id]?.id == activeSpace;
+          } else {
+            return spaceDelegateCandidates[room.id]?.id == activeSpace;
+          }
+        }).toList();
 
         return CustomScrollView(
           controller: controller.scrollController,
           slivers: [
-            ChatListHeader(controller: controller),
+            header,
             SliverList(
               delegate: SliverChildListDelegate([
                 if (controller.isSearchMode) ...[
