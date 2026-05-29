@@ -2588,5 +2588,147 @@
                 "type": "String"
             }
         }
+    },
+    "userAndOthersAreTyping": "",
+    "@userAndOthersAreTyping": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "userIsTyping": "",
+    "@userIsTyping": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "waitingPartnerAcceptRequest": "",
+    "@waitingPartnerAcceptRequest": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "writeAMessage": "",
+    "@writeAMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "userAndUserAreTyping": "",
+    "@userAndUserAreTyping": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "username2": {
+                "type": "String"
+            }
+        }
+    },
+    "pickImage": "",
+    "@pickImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fileName": "",
+    "@fileName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadMore": "",
+    "@loadMore": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passwordHasBeenChanged": "",
+    "@passwordHasBeenChanged": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadingPleaseWait": "",
+    "@loadingPleaseWait": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingPartnerEmoji": "",
+    "@waitingPartnerEmoji": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noRoomsFound": "",
+    "@noRoomsFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "withTheseAddressesRecoveryDescription": "",
+    "@withTheseAddressesRecoveryDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "isTyping": "",
+    "@isTyping": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noPasswordRecoveryDescription": "",
+    "@noPasswordRecoveryDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "onlineKeyBackupEnabled": "",
+    "@onlineKeyBackupEnabled": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "groupIsPublic": "",
+    "@groupIsPublic": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sentCallInformations": "",
+    "@sentCallInformations": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "encryptionNotEnabled": "",
+    "@encryptionNotEnabled": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "logout": "",
+    "@logout": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "oopsSomethingWentWrong": "",
+    "@oopsSomethingWentWrong": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "login": "",
+    "@login": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingPartnerNumbers": "",
+    "@waitingPartnerNumbers": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passwordForgotten": "",
+    "@passwordForgotten": {
+        "type": "String",
+        "placeholders": {}
     }
 }
