@@ -2720,5 +2720,34 @@
         }
     },
     "unsupportedAndroidVersionLong": "",
-    "inviteGroupChat": ""
+    "inviteGroupChat": "",
+    "passwordHasBeenChanged": "",
+    "@passwordHasBeenChanged": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "withTheseAddressesRecoveryDescription": "",
+    "@withTheseAddressesRecoveryDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noPasswordRecoveryDescription": "",
+    "@noPasswordRecoveryDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sentCallInformations": "",
+    "@sentCallInformations": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "passwordForgotten": "",
+    "@passwordForgotten": {
+        "type": "String",
+        "placeholders": {}
+    }
 }
