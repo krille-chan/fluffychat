@@ -580,11 +580,6 @@ class ChatController extends State<ChatPageWithRoom>
         .then((_) {
           _setReadMarkerFuture = null;
         });
-    if (eventId == null || eventId == timeline.room.lastEvent?.eventId) {
-      Matrix.of(
-        context,
-      ).backgroundPush?.cancelNotification(room.client, roomId);
-    }
   }
 
   @override

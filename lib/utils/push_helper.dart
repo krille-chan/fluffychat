@@ -18,6 +18,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -122,6 +123,8 @@ Future<void> _tryPushHelper(
 
   final awaitingOneShotSync = client.oneShotSync();
   l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
+
+  updateAppBadge(notification.counts?.unread ?? 0);
 
   if (event == null) {
     Logs().v('Notification is a clearing indicator.');
@@ -354,6 +357,17 @@ Future<void> _tryPushHelper(
     );
   }
   Logs().v('Push helper has been completed!');
+}
+
+void updateAppBadge(int unreadCount) {
+  if (PlatformInfos.isAndroid || PlatformInfos.isMacOS || PlatformInfos.isIOS) {
+    if (unreadCount == 0) {
+      FlutterNewBadger.removeBadge();
+    } else {
+      FlutterNewBadger.setBadge(unreadCount);
+    }
+    return;
+  }
 }
 
 Future<void> _updateSummaryNotification({
