@@ -2729,5 +2729,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "passwordsDoNotMatch": ""
+    "passwordsDoNotMatch": "",
+    "areGuestsAllowedToJoin": "",
+    "@areGuestsAllowedToJoin": {
+        "type": "String",
+        "placeholders": {}
+    }
 }
