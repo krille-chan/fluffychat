@@ -2716,5 +2716,7 @@
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "sendReadReceiptsDescription": "",
+    "block": ""
 }
