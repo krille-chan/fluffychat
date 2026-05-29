@@ -2718,5 +2718,27 @@
         "placeholders": {}
     },
     "sendReadReceiptsDescription": "",
-    "block": ""
+    "block": "",
+    "storeSecurlyOnThisDevice": "",
+    "ok": "",
+    "@ok": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passwordsDoNotMatch": "",
+    "sharedTheLocation": "",
+    "@sharedTheLocation": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "unbanFromChat": "",
+    "@unbanFromChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "screenSharingDetail": ""
 }
