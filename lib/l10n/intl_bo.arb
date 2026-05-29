@@ -2734,5 +2734,7 @@
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "sendReadReceiptsDescription": "",
+    "block": ""
 }
