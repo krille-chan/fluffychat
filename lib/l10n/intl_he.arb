@@ -2729,5 +2729,7 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "unsupportedAndroidVersionLong": "",
+    "inviteGroupChat": ""
 }
