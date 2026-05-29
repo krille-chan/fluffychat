@@ -445,42 +445,26 @@
         "placeholders": {}
     },
     "newGroup": "Nhóm mới",
-    "@newGroup": {},
     "pleaseEnterANumber": "Hãy nhập số lớn hơn 0",
-    "@pleaseEnterANumber": {},
     "newSpaceDescription": "Không gian cho phép bạn hợp nhất các cuộc trò chuyện của mình và xây dựng cộng đồng riêng tư hoặc công khai.",
-    "@newSpaceDescription": {},
     "disableEncryptionWarning": "Vì lý do bảo mật, bạn không thể tắt tính năng mã hóa trong cuộc trò chuyện đã được bật tính năng này trước đó.",
-    "@disableEncryptionWarning": {},
     "makeAdminDescription": "Khi bạn đặt người dùng này làm quản trị viên, bạn không thể hoàn tác việc này vì khi đó họ sẽ có quyền ngang bạn.",
-    "@makeAdminDescription": {},
     "setColorTheme": "Chọn màu giao diện:",
-    "@setColorTheme": {},
     "openLinkInBrowser": "Mở đường dẫn trong trình duyệt",
-    "@openLinkInBrowser": {},
     "inviteGroupChat": "📨 Mời nhóm trò chuyện",
-    "@inviteGroupChat": {},
     "addToSpace": "Thêm vào không gian",
-    "@addToSpace": {},
     "importEmojis": "Nhập Biểu cảm",
-    "@importEmojis": {},
     "importFromZipFile": "Nhập vào từ tệp .zip",
-    "@importFromZipFile": {},
     "exportEmotePack": "Xuất gói biểu cảm bằng tệp .zip",
-    "@exportEmotePack": {},
     "replace": "Thay thế",
-    "@replace": {},
     "report": "báo cáo",
-    "@report": {},
     "remove": "Loại bỏ",
     "@remove": {
         "type": "String",
         "placeholders": {}
     },
     "restricted": "Bị hạn chế",
-    "@restricted": {},
     "newSpace": "Không gian mới",
-    "@newSpace": {},
     "all": "Tất cả",
     "@all": {
         "type": "String",
@@ -497,9 +481,7 @@
         "placeholders": {}
     },
     "repeatPassword": "Nhập lại mật khẩu",
-    "@repeatPassword": {},
     "confirmMatrixId": "Hãy xác nhận Matrix ID để xoá tài khoản.",
-    "@confirmMatrixId": {},
     "supposedMxid": "Đây nên là {mxid}",
     "@supposedMxid": {
         "type": "String",
@@ -510,9 +492,7 @@
         }
     },
     "noBackupWarning": "Cẩn thận! Nếu không bật sao lưu trò chuyện, bạn sẽ mất quyền truy cập vào tin nhắn được mã hóa của mình. Chúng tôi khuyên bạn nên bật sao lưu trò chuyện trước khi đăng xuất.",
-    "@noBackupWarning": {},
     "doNotShowAgain": "Không hiện lại nữa",
-    "@doNotShowAgain": {},
     "wasDirectChatDisplayName": "Hội thoại trống (từng là {oldDisplayName})",
     "@wasDirectChatDisplayName": {
         "type": "String",
@@ -523,31 +503,18 @@
         }
     },
     "reportErrorDescription": "😭 Ôi. Có lỗi xảy ra. Bạn có thể báo cáo lỗi tới nhà phát triển nếu muốn.",
-    "@reportErrorDescription": {},
     "banUserDescription": "Người dùng sẽ bị cấm khỏi cuộc trò chuyện và không thể tham gia lại cho tới khi được gỡ cấm.",
-    "@banUserDescription": {},
     "learnMore": "Tìm hiểu thêm",
-    "@learnMore": {},
     "incomingMessages": "Tin nhắn đến",
-    "@incomingMessages": {},
     "encryptThisChat": "Mã hóa cuộc trò chuyện này",
-    "@encryptThisChat": {},
     "noOtherDevicesFound": "Không tìm thấy thiết bị khác",
-    "@noOtherDevicesFound": {},
     "fileIsTooBigForServer": "Máy chủ báo cáo rằng tệp tin quá lớn để gửi.",
-    "@fileIsTooBigForServer": {},
     "notAnImage": "Không phải tệp ảnh.",
-    "@notAnImage": {},
     "importNow": "Nhập vào",
-    "@importNow": {},
     "allSpaces": "Tất cả không gian",
-    "@allSpaces": {},
     "jumpToLastReadMessage": "Đi tới tin nhắn đã đọc mới nhất",
-    "@jumpToLastReadMessage": {},
     "commandHint_ignore": "Phớt lờ matrix ID này",
-    "@commandHint_ignore": {},
     "appLockDescription": "Khoá ứng dụng khi không dùng bằng mã pin",
-    "@appLockDescription": {},
     "settings": "Cài đặt",
     "@settings": {
         "type": "String",
@@ -563,13 +530,9 @@
         }
     },
     "readUpToHere": "Đọc tới đây",
-    "@readUpToHere": {},
     "jump": "Đi tới",
-    "@jump": {},
     "sorryThatsNotPossible": "Xin lỗi... không khả dụng",
-    "@sorryThatsNotPossible": {},
     "reopenChat": "Mở lại cuộc trò chuyện",
-    "@reopenChat": {},
     "wrongPinEntered": "Nhập sai mã pin! Thử lại sau {seconds} giây...",
     "@wrongPinEntered": {
         "type": "String",
@@ -580,19 +543,12 @@
         }
     },
     "archiveRoomDescription": "Cuộc trò chuyện sẽ được chuyển tới mục lưu trữ. Người dùng khác sẽ thấy được bạn đã rời khỏi cuộc trò chuyện.",
-    "@archiveRoomDescription": {},
     "kickUserDescription": "Người dùng bị đuổi khỏi cuộc trò chuyện nhưng không bị cấm. Trong các cuộc trò chuyện công khai, người dùng có thể vào lại bất cứ lúc nào.",
-    "@kickUserDescription": {},
     "unbanUserDescription": "Người dùng sẽ có thể vào lại cuộc trò chuyện nếu họ thử.",
-    "@unbanUserDescription": {},
     "pushNotificationsNotAvailable": "Thông báo đẩy không khả dụng",
-    "@pushNotificationsNotAvailable": {},
     "invite": "Mời",
-    "@invite": {},
     "invalidInput": "Dữ liệu nhập không hợp lệ!",
-    "@invalidInput": {},
     "removeDevicesDescription": "Bạn sẽ đăng xuất khỏi thiết bị này và không nhận được tin nhắn nữa.",
-    "@removeDevicesDescription": {},
     "noUsersFoundWithQuery": "Không tìm thấy người dùng nào với \"{query}\". Hãy kiểm tra xem bạn có nhập nhầm không.",
     "@noUsersFoundWithQuery": {
         "type": "String",
@@ -603,15 +559,10 @@
         }
     },
     "commandHint_unignore": "Bỏ phớt lờ matrix ID này",
-    "@commandHint_unignore": {},
     "discover": "Khám phá",
-    "@discover": {},
     "stickers": "Nhãn dán",
-    "@stickers": {},
     "roomUpgradeDescription": "Cuộc trò chuyện sẽ được tạo lại với phiên bản phòng mới. Tất cả những người tham gia sẽ được thông báo rằng họ cần chuyển sang cuộc trò chuyện mới. Bạn có thể tìm hiểu thêm về các phiên bản phòng tại https://spec.matrix.org/latest/rooms/",
-    "@roomUpgradeDescription": {},
     "commandHint_hug": "Gửi một cái ôm",
-    "@commandHint_hug": {},
     "aboutHomeserver": "Về {homeserver}",
     "@aboutHomeserver": {
         "type": "String",
@@ -635,11 +586,8 @@
         }
     },
     "ignoreUser": "Chặn người dùng",
-    "@ignoreUser": {},
     "commandHint_roomupgrade": "Nâng cấp phòng lên phiên bản mặc định",
-    "@commandHint_roomupgrade": {},
     "commandHint_cuddle": "Gửi cái ôm",
-    "@commandHint_cuddle": {},
     "googlyEyesContent": "{senderName} gửi nháy mắt",
     "@googlyEyesContent": {
         "type": "String",
@@ -669,19 +617,12 @@
         "placeholder": {}
     },
     "sendTypingNotifications": "Gửi thông báo đang nhập",
-    "@sendTypingNotifications": {},
     "swipeRightToLeftToReply": "Gạt từ phải sang trái để trả lời",
-    "@swipeRightToLeftToReply": {},
     "sendOnEnter": "Gửi bằng Enter",
-    "@sendOnEnter": {},
     "continueText": "Tiếp",
-    "@continueText": {},
     "markAsRead": "Đánh dấu đã đọc",
-    "@markAsRead": {},
     "reportUser": "Báo cáo người dùng",
-    "@reportUser": {},
     "dismiss": "Bỏ",
-    "@dismiss": {},
     "reactedWith": "{sender} bày tỏ {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -695,7 +636,27 @@
         }
     },
     "pinMessage": "Ghim phòng",
-    "@pinMessage": {},
     "confirmEventUnpin": "Bạn có muốn bỏ ghim sự kiện?",
-    "@confirmEventUnpin": {}
+    "storeSecurlyOnThisDevice": "",
+    "ok": "",
+    "@ok": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passwordsDoNotMatch": "",
+    "sharedTheLocation": "",
+    "@sharedTheLocation": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "unbanFromChat": "",
+    "@unbanFromChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "screenSharingDetail": ""
 }
