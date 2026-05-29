@@ -2609,5 +2609,144 @@
     "noMessagesYet": "Ancora nessun messaggio",
     "longPressToRecordVoiceMessage": "Premi a lungo per registrare un messaggio vocale.",
     "pause": "Pausa",
-    "resume": "Riprendi"
+    "resume": "Riprendi",
+    "answersVisible": "",
+    "logs": "",
+    "signIn": "",
+    "pollQuestion": "",
+    "reset": "",
+    "thread": "",
+    "poll": "",
+    "stickerPackName": "",
+    "createNewTag": "",
+    "countReplies": "",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "versionWithNumber": "",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "useAsEmoji": "",
+    "join": "",
+    "countChats": "",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "advancedConfigurations": "",
+    "signUpGreeting": "",
+    "baseUrl": "",
+    "allowMultipleAnswers": "",
+    "answersWillBeVisibleWhenPollHasEnded": "",
+    "createNewChat": "",
+    "backToMainChat": "",
+    "makeModerator": "",
+    "addAnswerOption": "",
+    "skipChatBackup": "",
+    "answerOption": "",
+    "tagName": "",
+    "clientWellKnownInformation": "",
+    "federationBaseUrl": "",
+    "setPowerLevelDescription": "",
+    "stickerPackNameAlreadyExists": "",
+    "matrixId": "",
+    "identityServer": "",
+    "support": "",
+    "createNewAccount": "",
+    "setPowerLevel": "",
+    "pollHasBeenEnded": "",
+    "replyInThread": "",
+    "mute": "",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "useAsSticker": "",
+    "noMoreResultsFound": "",
+    "createSticker": "",
+    "removeModeratorRights": "",
+    "addTag": "",
+    "startPoll": "",
+    "spaceMemberOfCanKnock": "",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "removeAdminRights": "",
+    "loadingMessages": "",
+    "removeFromSpaceDescription": "",
+    "owner": "",
+    "powerLevel": "",
+    "playSoundOnNotification": "",
+    "changedTheChatDescription": "",
+    "skipChatBackupWarning": "",
+    "makeAdmin": "",
+    "searchOrEnterHomeserverAddress": "",
+    "unsetLowPriority": "",
+    "setLowPriority": "",
+    "chatSearchedUntil": "",
+    "@chatSearchedUntil": {
+        "type": "String",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "endPoll": "",
+    "theProcessWasCanceled": "",
+    "saveChanges": "",
+    "newStickerPack": "",
+    "signInGreeting": "",
+    "advancedConfigs": "",
+    "removeTag": "",
+    "countVotes": "",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "attribution": "",
+    "supportFluffyChat": "",
+    "startedAPoll": "",
+    "@startedAPoll": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "setupChatBackup": "",
+    "changedTheChatName": "",
+    "spaceMemberOf": "",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    }
 }
