@@ -390,10 +390,12 @@ Future<void> _updateSummaryNotification({
     return;
   }
 
-  final title = l10n.unreadChatsInApp(
-    AppSettings.applicationName.value,
-    activeNotifications.length.toString(),
-  );
+  if (activeNotifications.any(
+    (notification) => notification.id == clientName.hashCode,
+  )) {
+    // Already have a visible summary notification!
+    return;
+  }
 
   await flutterLocalNotificationsPlugin.show(
     id: clientName.hashCode,
@@ -405,8 +407,6 @@ Future<void> _updateSummaryNotification({
         setAsGroupSummary: true,
         styleInformation: InboxStyleInformation(
           activeNotifications.map((n) => n.body ?? '').toList(),
-          contentTitle: title,
-          summaryText: title,
         ),
         autoCancel: false,
       ),
