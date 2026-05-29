@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cNh(d){return new A.Bz(B.di(d))},
-cNi(){return new A.GO(B.di("pt_BR"))},
-cNj(){return new A.GP(B.di("pt_PT"))},
-Bz:function Bz(d){this.a=d},
-GO:function GO(d){this.a=d},
-GP:function GP(d){this.a=d}},C
+cNh(d){return new A.Bx(B.di(d))},
+cNi(){return new A.GM(B.di("pt_BR"))},
+cNj(){return new A.GN(B.di("pt_PT"))},
+Bx:function Bx(d){this.a=d},
+GM:function GM(d){this.a=d},
+GN:function GN(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[57]
-A.Bz.prototype={
+A.Bx.prototype={
 gkI(){return"true"},
 gjB(){return"Repita a senha"},
 gml(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -694,7 +694,7 @@ q2(d){return"Public key: "+d},
 gpZ(){return"Only this time"},
 gpI(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
-A.GO.prototype={
+A.GM.prototype={
 gkI(){return"true"},
 gjB(){return"Repita a senha"},
 gml(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1329,7 +1329,7 @@ pn(d){return"Vers\xe3o: "+d},
 goO(){return""},
 gpj(){return""},
 C(d,e){return this.gb8(this).$1(e)}}
-A.GP.prototype={
+A.GN.prototype={
 gjB(){return"Repete a palavra-passe"},
 gb8(d){return"Remover"},
 ges(){return"Acerca de"},
@@ -1564,9 +1564,9 @@ eP(d){return d+" enviou um autocolante"},
 fX(d){return d+" enviou um v\xeddeo"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Bz,C.aE)
-w(A.Bz,[A.GO,A.GP])})()
-B.dN(b.typeUniverse,JSON.parse('{"Bz":{"aE":[]},"GO":{"aE":[]},"GP":{"aE":[]}}'))
+x(A.Bx,C.aE)
+w(A.Bx,[A.GM,A.GN])})()
+B.dN(b.typeUniverse,JSON.parse('{"Bx":{"aE":[]},"GM":{"aE":[]},"GN":{"aE":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["gdYK+5fWjFbHg6IaacW9qQGqpdw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["6IPIDCmXbS+u9xew92cBVCZDX0A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

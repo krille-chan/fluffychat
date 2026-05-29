@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cN0(){return new A.Gx(B.di("he"))},
-Gx:function Gx(d){this.a=d}}
+cN0(){return new A.Gv(B.di("he"))},
+Gv:function Gv(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[25],A)
-A.Gx.prototype={
+A.Gv.prototype={
 gkI(){return""},
 gjB(){return"\u05db\u05ea\u05d5\u05d1 \u05e9\u05d5\u05d1 \u05d0\u05ea \u05d4\u05e1\u05d9\u05e1\u05de\u05d4"},
 gml(){return"\u05d4\u05e7\u05d5\u05d1\u05e5 \u05d0\u05d9\u05e0\u05d5 \u05ea\u05de\u05d5\u05e0\u05d4."},
@@ -691,7 +691,7 @@ gpZ(){return"Only this time"},
 gpI(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gx,C.aE)})()
-B.dN(b.typeUniverse,JSON.parse('{"Gx":{"aE":[]}}'))};
-(a=>{a["xwilKfLx+vwA5XAFyDFOHgCiR3w="]=a.current})($__dart_deferred_initializers__);
+y(A.Gv,C.aE)})()
+B.dN(b.typeUniverse,JSON.parse('{"Gv":{"aE":[]}}'))};
+(a=>{a["jcxhKvT8/+Csjkhl/AupKJbJzFw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

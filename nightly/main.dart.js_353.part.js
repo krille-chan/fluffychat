@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cNp(){return new A.GV(B.di("sr"))},
-GV:function GV(d){this.a=d}}
+cNp(){return new A.GT(B.di("sr"))},
+GT:function GT(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[47],A)
-A.GV.prototype={
+A.GT.prototype={
 gkI(){return"false"},
 gjB(){return"Ponovite lozinku"},
 gml(){return"Not an image file."},
@@ -691,7 +691,7 @@ gpZ(){return"Only this time"},
 gpI(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GV,C.aE)})()
-B.dN(b.typeUniverse,JSON.parse('{"GV":{"aE":[]}}'))};
-(a=>{a["zyhSJJMXghq33Kiezyu8oCDPANQ="]=a.current})($__dart_deferred_initializers__);
+y(A.GT,C.aE)})()
+B.dN(b.typeUniverse,JSON.parse('{"GT":{"aE":[]}}'))};
+(a=>{a["N6KTxbQb934sN8M6ZkpcsDosF00="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_353.part.js.map

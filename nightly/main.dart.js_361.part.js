@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cNv(){return new A.H0(B.di("uk"))},
-H0:function H0(d){this.a=d}}
+cNv(){return new A.GZ(B.di("uk"))},
+GZ:function GZ(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[53],A)
-A.H0.prototype={
+A.GZ.prototype={
 gkI(){return"false"},
 gjB(){return"\u041f\u043e\u0432\u0442\u043e\u0440\u0456\u0442\u044c \u043f\u0430\u0440\u043e\u043b\u044c"},
 gml(){return"\u041d\u0435 \u0444\u0430\u0439\u043b \u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u043d\u044f."},
@@ -691,7 +691,7 @@ gpZ(){return"Only this time"},
 gpI(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.H0,C.aE)})()
-B.dN(b.typeUniverse,JSON.parse('{"H0":{"aE":[]}}'))};
-(a=>{a["m+MhW+7yVTj+Nd6BsWM3oFmaXL4="]=a.current})($__dart_deferred_initializers__);
+y(A.GZ,C.aE)})()
+B.dN(b.typeUniverse,JSON.parse('{"GZ":{"aE":[]}}'))};
+(a=>{a["cRZOCjI3/nVYeZZnijf89jthEW8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_361.part.js.map

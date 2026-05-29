@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cN3(){return new A.GA(B.di("hu"))},
-GA:function GA(d){this.a=d}}
+cN3(){return new A.Gy(B.di("hu"))},
+Gy:function Gy(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[28],A)
-A.GA.prototype={
+A.Gy.prototype={
 gkI(){return""},
 gjB(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gml(){return"Nem k\xe9p f\xe1jl."},
@@ -691,7 +691,7 @@ gpZ(){return"Only this time"},
 gpI(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GA,C.aE)})()
-B.dN(b.typeUniverse,JSON.parse('{"GA":{"aE":[]}}'))};
-(a=>{a["9fMofeCviu0vcSAWR7RqiXsGWeQ="]=a.current})($__dart_deferred_initializers__);
+y(A.Gy,C.aE)})()
+B.dN(b.typeUniverse,JSON.parse('{"Gy":{"aE":[]}}'))};
+(a=>{a["BTYNDmhjdBQkyGxs1TNBg6eQp8o="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map

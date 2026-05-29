@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cNn(){return new A.GT(B.di("sl"))},
-GT:function GT(d){this.a=d}}
+cNn(){return new A.GR(B.di("sl"))},
+GR:function GR(d){this.a=d}}
 B=c[0]
 C=c[57]
 A=a.updateHolder(c[45],A)
-A.GT.prototype={
+A.GR.prototype={
 gkI(){return"false"},
 gjB(){return"Ponovite geslo"},
 gml(){return"Not an image file."},
@@ -691,7 +691,7 @@ gpZ(){return"Only this time"},
 gpI(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GT,C.aE)})()
-B.dN(b.typeUniverse,JSON.parse('{"GT":{"aE":[]}}'))};
-(a=>{a["0KDXUrt/FZAL2prX23+iBYKlXhk="]=a.current})($__dart_deferred_initializers__);
+y(A.GR,C.aE)})()
+B.dN(b.typeUniverse,JSON.parse('{"GR":{"aE":[]}}'))};
+(a=>{a["INs7qNl51MEctGPavFhgBF8bib0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map
