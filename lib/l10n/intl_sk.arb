@@ -2749,5 +2749,7 @@
     "@passwordForgotten": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "sendReadReceiptsDescription": "",
+    "block": ""
 }
