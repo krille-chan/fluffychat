@@ -2702,5 +2702,51 @@
         }
     },
     "advancedConfigs": "",
-    "theProcessWasCanceled": ""
+    "theProcessWasCanceled": "",
+    "logs": "",
+    "signIn": "",
+    "reset": "",
+    "createNewTag": "",
+    "join": "",
+    "advancedConfigurations": "",
+    "signUpGreeting": "",
+    "baseUrl": "",
+    "createNewChat": "",
+    "makeModerator": "",
+    "tagName": "",
+    "clientWellKnownInformation": "",
+    "federationBaseUrl": "",
+    "setPowerLevelDescription": "",
+    "matrixId": "",
+    "identityServer": "",
+    "support": "",
+    "createNewAccount": "",
+    "setPowerLevel": "",
+    "mute": "",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "noMoreResultsFound": "",
+    "removeModeratorRights": "",
+    "addTag": "",
+    "removeAdminRights": "",
+    "owner": "",
+    "powerLevel": "",
+    "playSoundOnNotification": "",
+    "makeAdmin": "",
+    "searchOrEnterHomeserverAddress": "",
+    "unsetLowPriority": "",
+    "setLowPriority": "",
+    "chatSearchedUntil": "",
+    "@chatSearchedUntil": {
+        "type": "String",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "signInGreeting": "",
+    "removeTag": "",
+    "supportFluffyChat": ""
 }
