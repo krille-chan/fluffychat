@@ -2752,5 +2752,7 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "sendReadReceiptsDescription": "",
+    "block": ""
 }
