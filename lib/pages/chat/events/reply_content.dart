@@ -3,7 +3,6 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:flutter/material.dart';
@@ -36,8 +35,7 @@ class ReplyContent extends StatelessWidget {
     final displayEvent = timeline != null
         ? replyEvent.getDisplayEvent(timeline)
         : replyEvent;
-    final fontSize =
-        AppConfig.messageFontSize * AppSettings.fontSizeFactor.value;
+    const fontSize = AppConfig.messageFontSize;
     final color = theme.brightness == Brightness.dark
         ? theme.colorScheme.onTertiaryContainer
         : ownMessage

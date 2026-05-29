@@ -394,54 +394,59 @@ class InputBar extends StatelessWidget {
       focusNode: focusNode,
       textEditingController: controller,
       optionsBuilder: getSuggestions,
-      fieldViewBuilder: (context, controller, focusNode, _) => TextField(
-        controller: controller,
-        focusNode: focusNode,
-        readOnly: readOnly,
-        onEditingComplete: () {
-          // To not lose focus on iOS:
-          // https://github.com/krille-chan/fluffychat/issues/2784
-        },
-        contextMenuBuilder: (c, e) => MarkdownContextBuilder(
-          editableTextState: e,
+      fieldViewBuilder: (context, controller, focusNode, _) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(
+          textScaler: TextScaler.linear(AppSettings.fontSizeFactor.value),
+        ),
+        child: TextField(
           controller: controller,
-        ),
-        contentInsertionConfiguration: ContentInsertionConfiguration(
-          onContentInserted: (KeyboardInsertedContent content) async {
-            final proceed = await showTrustUserInRoomDialog(context, room);
-            if (!proceed) return;
-            final data = content.data;
-            if (data == null) return;
-
-            final file = MatrixFile(
-              mimeType: content.mimeType,
-              bytes: data,
-              name: content.uri.split('/').last,
-            );
-            room.sendFileEvent(file, shrinkImageMaxDimension: 1600);
+          focusNode: focusNode,
+          readOnly: readOnly,
+          onEditingComplete: () {
+            // To not lose focus on iOS:
+            // https://github.com/krille-chan/fluffychat/issues/2784
           },
+          contextMenuBuilder: (c, e) => MarkdownContextBuilder(
+            editableTextState: e,
+            controller: controller,
+          ),
+          contentInsertionConfiguration: ContentInsertionConfiguration(
+            onContentInserted: (KeyboardInsertedContent content) async {
+              final proceed = await showTrustUserInRoomDialog(context, room);
+              if (!proceed) return;
+              final data = content.data;
+              if (data == null) return;
+
+              final file = MatrixFile(
+                mimeType: content.mimeType,
+                bytes: data,
+                name: content.uri.split('/').last,
+              );
+              room.sendFileEvent(file, shrinkImageMaxDimension: 1600);
+            },
+          ),
+          minLines: minLines,
+          maxLines: maxLines,
+          keyboardType: keyboardType,
+          textInputAction: textInputAction,
+          autofocus: autofocus!,
+          inputFormatters: [
+            LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+          ],
+          onSubmitted: (text) {
+            // fix for library for now
+            // it sets the types for the callback incorrectly
+            onSubmitted!(text);
+          },
+          maxLength: AppSettings.textMessageMaxLength.value,
+          decoration: decoration,
+          onChanged: (text) {
+            // fix for the library for now
+            // it sets the types for the callback incorrectly
+            onChanged!(text);
+          },
+          textCapitalization: TextCapitalization.sentences,
         ),
-        minLines: minLines,
-        maxLines: maxLines,
-        keyboardType: keyboardType,
-        textInputAction: textInputAction,
-        autofocus: autofocus!,
-        inputFormatters: [
-          LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
-        ],
-        onSubmitted: (text) {
-          // fix for library for now
-          // it sets the types for the callback incorrectly
-          onSubmitted!(text);
-        },
-        maxLength: AppSettings.textMessageMaxLength.value,
-        decoration: decoration,
-        onChanged: (text) {
-          // fix for the library for now
-          // it sets the types for the callback incorrectly
-          onChanged!(text);
-        },
-        textCapitalization: TextCapitalization.sentences,
       ),
       optionsViewBuilder: (c, onSelected, s) {
         final suggestions = s.toList();

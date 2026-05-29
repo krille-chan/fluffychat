@@ -149,16 +149,12 @@ class EventVideoPlayer extends StatelessWidget {
                 textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
                 style: TextStyle(
                   color: textColor,
-                  fontSize:
-                      AppSettings.fontSizeFactor.value *
-                      AppConfig.messageFontSize,
+                  fontSize: AppConfig.messageFontSize,
                 ),
                 options: const LinkifyOptions(humanize: false),
                 linkStyle: TextStyle(
                   color: linkColor,
-                  fontSize:
-                      AppSettings.fontSizeFactor.value *
-                      AppConfig.messageFontSize,
+                  fontSize: AppConfig.messageFontSize,
                   decoration: TextDecoration.underline,
                   decorationColor: linkColor,
                 ),

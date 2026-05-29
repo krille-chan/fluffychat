@@ -4,7 +4,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:flutter/gestures.dart';
@@ -91,9 +90,7 @@ class EncryptionInfo extends StatelessWidget {
                         ],
                       ),
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 11 * AppSettings.fontSizeFactor.value,
-                      ),
+                      style: TextStyle(fontSize: 11),
                     ),
                   ),
                 ),
