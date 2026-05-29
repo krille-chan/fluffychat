@@ -341,10 +341,12 @@ Future<void> _tryPushHelper(
     await _setShortcut(event, l10n, title, roomAvatarFile);
   }
 
+  final needsTitleAndBody = !PlatformInfos.isAndroid;
+
   await flutterLocalNotificationsPlugin.show(
     id: id,
-    title: title,
-    body: body,
+    title: needsTitleAndBody ? title : null,
+    body: needsTitleAndBody ? body : null,
     notificationDetails: platformChannelSpecifics,
     payload: FluffyChatPushPayload(
       client.clientName,
@@ -468,7 +470,6 @@ extension on Client {
         height: notificationAvatarDimension,
         animated: false,
         isThumbnail: true,
-        rounded: true,
       ).timeout(const Duration(seconds: 3));
     } catch (e, s) {
       Logs().e('Unable to get avatar picture', e, s);
