@@ -70,14 +70,12 @@
         "placeholders": {}
     },
     "time": "Laikas",
-    "@time": {},
     "settings": "Nustatytmai",
     "@settings": {
         "type": "String",
         "placeholders": {}
     },
     "sender": "Siuntėjas",
-    "@sender": {},
     "yes": "Taip",
     "@yes": {
         "type": "String",
@@ -99,14 +97,12 @@
         "placeholders": {}
     },
     "scanQrCode": "Nuskanuokite QR kodą",
-    "@scanQrCode": {},
     "ok": "OK",
     "@ok": {
         "type": "String",
         "placeholders": {}
     },
     "addAccount": "Pridėti paskyrą",
-    "@addAccount": {},
     "or": "Arba",
     "@or": {
         "type": "String",
@@ -173,7 +169,6 @@
         "placeholders": {}
     },
     "homeserver": "Namų serveris",
-    "@homeserver": {},
     "everythingReady": "Viskas paruošta!",
     "@everythingReady": {
         "type": "String",
@@ -185,7 +180,6 @@
         "placeholders": {}
     },
     "clearArchive": "Išvalyti archyvą",
-    "@clearArchive": {},
     "create": "Sukurti",
     "@create": {
         "type": "String",
@@ -257,7 +251,6 @@
         "placeholders": {}
     },
     "link": "Nuoroda",
-    "@link": {},
     "participant": "Dalyvis",
     "@participant": {
         "type": "String",
@@ -394,7 +387,6 @@
         "placeholders": {}
     },
     "repeatPassword": "Pakartokite slaptažodį",
-    "@repeatPassword": {},
     "addEmail": "Pridėti el. paštą",
     "@addEmail": {
         "type": "String",
@@ -680,7 +672,6 @@
         "placeholders": {}
     },
     "sendOnEnter": "Išsiųsti paspaudus Enter",
-    "@sendOnEnter": {},
     "banFromChat": "Užblokuoti iš pokalbio",
     "@banFromChat": {
         "type": "String",
@@ -697,7 +688,6 @@
         "placeholders": {}
     },
     "yourChatBackupHasBeenSetUp": "Jūsų pokalbio atsarginė kopija buvo nustatyta.",
-    "@yourChatBackupHasBeenSetUp": {},
     "chatBackup": "Pokalbio atsargine kopija",
     "@chatBackup": {
         "type": "String",
@@ -909,9 +899,7 @@
         "placeholders": {}
     },
     "messageInfo": "Žinutės informacija",
-    "@messageInfo": {},
     "removeFromSpace": "Pašalinti iš erdvės",
-    "@removeFromSpace": {},
     "security": "Apsauga",
     "@security": {
         "type": "String",
@@ -997,7 +985,6 @@
         "placeholders": {}
     },
     "unverified": "Nepatvirtinta",
-    "@unverified": {},
     "verified": "Patvirtinta",
     "@verified": {
         "type": "String",
@@ -1014,14 +1001,12 @@
         "placeholders": {}
     },
     "start": "Pradžia",
-    "@start": {},
     "account": "Paskyra",
     "@account": {
         "type": "String",
         "placeholders": {}
     },
     "addToSpace": "Pridėti į erdvę",
-    "@addToSpace": {},
     "appLock": "Programos užraktas",
     "@appLock": {
         "type": "String",
@@ -1138,9 +1123,7 @@
         "placeholders": {}
     },
     "messageType": "Žinutės tipas",
-    "@messageType": {},
     "openGallery": "Atverti galeriją",
-    "@openGallery": {},
     "unknownDevice": "Nežinomas įrenginys",
     "@unknownDevice": {
         "type": "String",
@@ -1198,7 +1181,6 @@
         "placeholders": {}
     },
     "oneClientLoggedOut": "Vienas iš jūsų klientų atsijungė",
-    "@oneClientLoggedOut": {},
     "onlineKeyBackupEnabled": "Internetinė atsarginė raktų kopija įjungta",
     "@onlineKeyBackupEnabled": {
         "type": "String",
@@ -1210,15 +1192,10 @@
         "placeholders": {}
     },
     "editBundlesForAccount": "Redaguoti šios paskyros paketus",
-    "@editBundlesForAccount": {},
     "serverRequiresEmail": "Šis serveris turi patvirtinti jūsų el. pašto adresą registracijai.",
-    "@serverRequiresEmail": {},
     "addToBundle": "Pridėti prie paketų",
-    "@addToBundle": {},
     "removeFromBundle": "Pašalinkite iš šio paketo",
-    "@removeFromBundle": {},
     "bundleName": "Paketo vardas",
-    "@bundleName": {},
     "play": "Groti {fileName}",
     "@play": {
         "type": "String",
@@ -1392,9 +1369,7 @@
         }
     },
     "reportUser": "Pranešti apie vartotoją",
-    "@reportUser": {},
     "dismiss": "Atsisakyti",
-    "@dismiss": {},
     "reactedWith": "{sender} sureagavo su {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -1408,7 +1383,6 @@
         }
     },
     "unsupportedAndroidVersion": "Nepalaikoma Android versija",
-    "@unsupportedAndroidVersion": {},
     "acceptedTheInvitation": "👍 {username} priėmė kvietimą",
     "@acceptedTheInvitation": {
         "type": "String",
@@ -1857,27 +1831,16 @@
         }
     },
     "pinMessage": "Prisegti prie kambario",
-    "@pinMessage": {},
     "confirmEventUnpin": "Ar tikrai norite visam laikui atsegti įvykį?",
-    "@confirmEventUnpin": {},
     "emojis": "Jaustukai",
-    "@emojis": {},
     "placeCall": "Skambinti",
-    "@placeCall": {},
     "voiceCall": "Balso skambutis",
-    "@voiceCall": {},
     "unsupportedAndroidVersionLong": "Šiai funkcijai reikalinga naujesnė Android versija. Patikrinkite, ar nėra naujinimų arba Lineage OS palaikymo.",
-    "@unsupportedAndroidVersionLong": {},
     "videoCallsBetaWarning": "Atminkite, kad vaizdo skambučiai šiuo metu yra beta versijos. Jie gali neveikti taip kaip tikėtasi, arba iš viso neveikti visose platformose.",
-    "@videoCallsBetaWarning": {},
     "experimentalVideoCalls": "Eksperimentiniai vaizdo skambučiai",
-    "@experimentalVideoCalls": {},
     "youRejectedTheInvitation": "Jūs atmetėte kvietimą",
-    "@youRejectedTheInvitation": {},
     "youJoinedTheChat": "Jūs prisijungėte prie pokalbio",
-    "@youJoinedTheChat": {},
     "youAcceptedTheInvitation": "👍 Jūs priėmėte kvietimą",
-    "@youAcceptedTheInvitation": {},
     "youBannedUser": "Jūs užblokavote {user}",
     "@youBannedUser": {
         "placeholders": {
@@ -2014,7 +1977,6 @@
         }
     },
     "markAsRead": "Žymėti kaip skaitytą",
-    "@markAsRead": {},
     "pushRules": "Tiesioginių pranešimų taisyklės",
     "@pushRules": {
         "type": "String",
@@ -2031,25 +1993,15 @@
         "placeholder": {}
     },
     "commandHint_markasdm": "Pažymėti kaip tiesioginio pokalbio kambarį",
-    "@commandHint_markasdm": {},
     "dehydrateWarning": "Šio veiksmo negalima atšaukti. Įsitikinkite, kad saugiai saugote atsarginę kopiją.",
-    "@dehydrateWarning": {},
     "commandHint_markasgroup": "Pažymėti kaip grupę",
-    "@commandHint_markasgroup": {},
     "pleaseEnterRecoveryKeyDescription": "Norėdami atrakinti senas žinutes, įveskite atkūrimo raktą, kuris buvo sukurtas ankstesnės sesijos metu. Atkūrimo raktas NĖRA jūsų slaptažodis.",
-    "@pleaseEnterRecoveryKeyDescription": {},
     "storeInAppleKeyChain": "Saugoti Apple raktų grandinėje",
-    "@storeInAppleKeyChain": {},
     "newSpace": "Nauja erdvė",
-    "@newSpace": {},
     "allSpaces": "Visos erdvės",
-    "@allSpaces": {},
     "user": "Vartotojas",
-    "@user": {},
     "custom": "Pasirinktinis",
-    "@custom": {},
     "confirmMatrixId": "Norėdami ištrinti savo paskyrą, patvirtinkite savo Matrix ID.",
-    "@confirmMatrixId": {},
     "supposedMxid": "Tai turėtų būti {mxid}",
     "@supposedMxid": {
         "type": "String",
@@ -2060,13 +2012,9 @@
         }
     },
     "dehydrate": "Eksportuoti sesiją ir išvalyti įrenginį",
-    "@dehydrate": {},
     "hydrate": "Atkurti iš atsarginės kopijos failo",
-    "@hydrate": {},
     "recoveryKey": "Atkūrimo raktas",
-    "@recoveryKey": {},
     "recoveryKeyLost": "Pamestas atkūrimo raktas?",
-    "@recoveryKeyLost": {},
     "countFiles": "{count} failai",
     "@countFiles": {
         "placeholders": {
@@ -2076,27 +2024,16 @@
         }
     },
     "storeInSecureStorageDescription": "Atkūrimo raktą laikyti saugioje šio prietaiso saugykloje.",
-    "@storeInSecureStorageDescription": {},
     "saveKeyManuallyDescription": "Įrašykite šį raktą rankiniu būdu, įjungę sistemos bendrinimo dialogo langą arba iškarpinę.",
-    "@saveKeyManuallyDescription": {},
     "users": "Vartotojai",
-    "@users": {},
     "storeSecurlyOnThisDevice": "Saugiai laikyti šiame prietaise",
-    "@storeSecurlyOnThisDevice": {},
     "unlockOldMessages": "Atrakinti senas žinutes",
-    "@unlockOldMessages": {},
     "storeInAndroidKeystore": "Saugoti Android raktų saugykloje",
-    "@storeInAndroidKeystore": {},
     "noKeyForThisMessage": "Taip gali atsitikti, jei žinutė buvo išsiųsta prieš prisijungiant prie paskyros šiame prietaise.\n\nTaip pat gali būti, kad siuntėjas užblokavo jūsų prietaisą arba kažkas sutriko su interneto ryšiu.\n\nAr galite perskaityti žinutę kitoje sesijoje? Tada galite perkelti žinutę iš jos! Eikite į Nustatymai > Prietaisai ir įsitikinkite, kad jūsų prietaisai patvirtino vienas kitą. Kai kitą kartą atidarysite kambarį ir abi sesijos bus pirmame plane, raktai bus perduoti automatiškai.\n\nNenorite prarasti raktų atsijungdami arba keisdami įrenginius? Įsitikinkite, kad nustatymuose įjungėte pokalbių atsarginę kopiją.",
-    "@noKeyForThisMessage": {},
     "foregroundServiceRunning": "Šis pranešimas rodomas, kai veikia pirmojo plano paslauga.",
-    "@foregroundServiceRunning": {},
     "screenSharingTitle": "ekrano bendrinimas",
-    "@screenSharingTitle": {},
     "whyIsThisMessageEncrypted": "Kodėl ši žinutė neperskaitoma?",
-    "@whyIsThisMessageEncrypted": {},
     "newGroup": "Nauja grupė",
-    "@newGroup": {},
     "screenSharingDetail": "Bendrinate savo ekraną per FuffyChat",
-    "@screenSharingDetail": {}
+    "passwordsDoNotMatch": ""
 }
