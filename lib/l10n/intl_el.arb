@@ -2687,5 +2687,12 @@
                 "type": "String"
             }
         }
+    },
+    "unsupportedAndroidVersionLong": "",
+    "inviteGroupChat": "",
+    "noGoogleServicesWarning": "",
+    "@noGoogleServicesWarning": {
+        "type": "String",
+        "placeholders": {}
     }
 }
