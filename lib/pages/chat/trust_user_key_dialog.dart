@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/key_verification/key_verification_dialog.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/dialog_text_field.dart';
@@ -31,7 +32,7 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
   final l10n = L10n.of(context);
   final theme = Theme.of(context);
 
-  final allow = await showAdaptiveDialog<bool>(
+  final action = await showAdaptiveDialog<_Action>(
     context: context,
     builder: (context) => AlertDialog.adaptive(
       title: Center(
@@ -103,29 +104,43 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
       actions: [
         AdaptiveDialogAction(
           bigButtons: true,
-          onPressed: () {
-            for (final user in users) {
-              room.client.userDeviceKeys[user.id]?.masterKey?.setVerified(true);
-            }
-            Navigator.of(context).pop(true);
-          },
+          onPressed: () => Navigator.of(context).pop(_Action.allow),
           child: Text(L10n.of(context).allow),
         ),
+        if (room.isDirectChat)
+          AdaptiveDialogAction(
+            bigButtons: true,
+            onPressed: () => Navigator.of(context).pop(_Action.verification),
+            child: Text(L10n.of(context).interactiveVerification),
+          ),
         AdaptiveDialogAction(
           bigButtons: true,
-          onPressed: () => Navigator.of(context).pop(true),
-          child: Text(L10n.of(context).onlyThisTime),
-        ),
-        AdaptiveDialogAction(
-          bigButtons: true,
-          onPressed: () => Navigator.of(context).pop(false),
+          onPressed: () => Navigator.of(context).pop(_Action.deny),
           child: Text(l10n.cancel),
         ),
       ],
     ),
   );
 
-  if (allow != true) return false;
+  if (action == null) return false;
+
+  switch (action) {
+    case _Action.allow:
+      for (final user in users) {
+        room.client.userDeviceKeys[user.id]?.masterKey?.setVerified(true);
+      }
+    case _Action.deny:
+      return false;
+    case _Action.verification:
+      final req = await room.client.userDeviceKeys[room.directChatMatrixID]
+          ?.startVerification();
+      if (req == null) return false;
+      if (!context.mounted) return false;
+      final success = await KeyVerificationDialog(request: req).show(context);
+      return success == true;
+  }
 
   return true;
 }
+
+enum _Action { allow, deny, verification }
