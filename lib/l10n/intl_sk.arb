@@ -2706,5 +2706,8 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "storeSecurlyOnThisDevice": "",
+    "passwordsDoNotMatch": "",
+    "screenSharingDetail": ""
 }
