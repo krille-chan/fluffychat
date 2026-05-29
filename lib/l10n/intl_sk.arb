@@ -2751,5 +2751,6 @@
         "placeholders": {}
     },
     "sendReadReceiptsDescription": "",
-    "block": ""
+    "block": "",
+    "placeCall": ""
 }
