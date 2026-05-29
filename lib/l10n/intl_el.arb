@@ -2694,5 +2694,7 @@
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "sendReadReceiptsDescription": "",
+    "block": ""
 }
