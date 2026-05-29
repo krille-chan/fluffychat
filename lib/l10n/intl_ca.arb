@@ -2744,5 +2744,9 @@
     "support": "Aporta",
     "setLowPriority": "Estableix una prioritat baixa",
     "unsetLowPriority": "Restableix la prioritat",
-    "playSoundOnNotification": "Notificacions sonores"
+    "playSoundOnNotification": "Notificacions sonores",
+    "createNewTag": "",
+    "tagName": "",
+    "addTag": "",
+    "removeTag": ""
 }
