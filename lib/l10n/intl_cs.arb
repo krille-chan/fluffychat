@@ -2740,5 +2740,14 @@
     "notificationRuleJitsiDescription": "",
     "incomingMessages": "",
     "supportFluffyChat": "",
-    "notificationRuleEncrypted": ""
+    "notificationRuleEncrypted": "",
+    "searchIn": "",
+    "@searchIn": {
+        "type": "String",
+        "placeholders": {
+            "chat": {
+                "type": "String"
+            }
+        }
+    }
 }
