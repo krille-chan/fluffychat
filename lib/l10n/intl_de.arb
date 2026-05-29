@@ -2750,5 +2750,12 @@
     },
     "createNewChat": "Neuen Chat erstellen",
     "supportFluffyChat": "FluffyChat unterstützen",
-    "support": "Unterstützen"
+    "support": "Unterstützen",
+    "createNewTag": "",
+    "tagName": "",
+    "addTag": "",
+    "playSoundOnNotification": "",
+    "unsetLowPriority": "",
+    "setLowPriority": "",
+    "removeTag": ""
 }
