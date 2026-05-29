@@ -2739,5 +2739,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "block": ""
+    "block": "",
+    "custom": ""
 }
