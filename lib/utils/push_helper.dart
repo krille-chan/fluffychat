@@ -18,6 +18,7 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -123,11 +124,11 @@ Future<void> _tryPushHelper(
   final awaitingOneShotSync = client.oneShotSync();
   l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
 
+  updateAppBadge(notification.counts?.unread ?? 0);
+
   if (event == null) {
     Logs().v('Notification is a clearing indicator.');
-    if (clients?.length == 1 &&
-        (notification.counts?.unread == null ||
-            notification.counts?.unread == 0)) {
+    if (clients?.length == 1 && (notification.counts?.unread == 0)) {
       await flutterLocalNotificationsPlugin.cancelAll();
     } else {
       // Make sure client is fully loaded and synced before dismiss notifications:
@@ -141,9 +142,11 @@ Future<void> _tryPushHelper(
       var needsUpdateForSummaryNotification = false;
       for (final activeNotification in activeNotifications) {
         final room = client.rooms.singleWhereOrNull(
-          (room) => room.id.hashCode == activeNotification.id,
+          (room) =>
+              '${client.clientName}_${room.id}'.hashCode ==
+              activeNotification.id,
         );
-        if (room == null || !room.isUnreadOrInvited) {
+        if (room != null && !room.isUnreadOrInvited) {
           flutterLocalNotificationsPlugin.cancel(id: activeNotification.id!);
           if (PlatformInfos.isAndroid) needsUpdateForSummaryNotification = true;
         }
@@ -359,6 +362,17 @@ Future<void> _tryPushHelper(
     );
   }
   Logs().v('Push helper has been completed!');
+}
+
+void updateAppBadge(int unreadCount) {
+  if (PlatformInfos.isAndroid || PlatformInfos.isMacOS || PlatformInfos.isIOS) {
+    if (unreadCount == 0) {
+      FlutterNewBadger.removeBadge();
+    } else {
+      FlutterNewBadger.setBadge(unreadCount);
+    }
+    return;
+  }
 }
 
 Future<void> _updateSummaryNotification({
