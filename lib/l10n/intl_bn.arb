@@ -2711,5 +2711,10 @@
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
+    },
+    "pickImage": "",
+    "@pickImage": {
+        "type": "String",
+        "placeholders": {}
     }
 }
