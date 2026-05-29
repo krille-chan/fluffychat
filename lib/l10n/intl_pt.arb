@@ -2706,5 +2706,15 @@
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
+    },
+    "pickImage": "",
+    "@pickImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "withTheseAddressesRecoveryDescription": "",
+    "@withTheseAddressesRecoveryDescription": {
+        "type": "String",
+        "placeholders": {}
     }
 }
