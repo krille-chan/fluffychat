@@ -379,7 +379,6 @@
         "placeholders": {}
     },
     "clearArchive": "Vakigi arĥivon",
-    "@clearArchive": {},
     "close": "Fermi",
     "@close": {
         "type": "String",
@@ -1855,9 +1854,6 @@
         "placeholder": {}
     },
     "addToSpace": "Aldoni al aro",
-    "@addToSpace": {},
     "homeserver": "Hejmservilo",
-    "@homeserver": {},
-    "sendOnEnter": "Sendi per eniga klavo",
-    "@sendOnEnter": {}
+    "sendOnEnter": "Sendi per eniga klavo"
 }
