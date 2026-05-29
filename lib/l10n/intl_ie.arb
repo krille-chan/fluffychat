@@ -2748,5 +2748,10 @@
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
+    },
+    "areGuestsAllowedToJoin": "",
+    "@areGuestsAllowedToJoin": {
+        "type": "String",
+        "placeholders": {}
     }
 }
