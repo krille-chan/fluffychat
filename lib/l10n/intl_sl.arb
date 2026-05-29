@@ -2739,5 +2739,6 @@
     "block": "",
     "storeSecurlyOnThisDevice": "",
     "passwordsDoNotMatch": "",
-    "screenSharingDetail": ""
+    "screenSharingDetail": "",
+    "placeCall": ""
 }
