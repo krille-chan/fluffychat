@@ -57,11 +57,26 @@ class ChatListView extends StatelessWidget {
                 backgroundColor: oneColumnSpacesMode
                     ? Theme.of(context).colorScheme.surfaceContainer
                     : null,
-                body: Material(
-                  clipBehavior: Clip.hardEdge,
-                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                  color: Theme.of(context).colorScheme.surface,
-                  child: ChatListViewBody(controller),
+
+                body: SafeArea(
+                  top: oneColumnSpacesMode,
+                  bottom: false,
+                  left: false,
+                  right: false,
+                  child: Material(
+                    clipBehavior: oneColumnSpacesMode
+                        ? Clip.hardEdge
+                        : Clip.none,
+                    borderRadius: oneColumnSpacesMode
+                        ? BorderRadius.only(
+                            topLeft: Radius.circular(AppConfig.borderRadius),
+                          )
+                        : null,
+                    color: oneColumnSpacesMode
+                        ? Theme.of(context).colorScheme.surface
+                        : null,
+                    child: ChatListViewBody(controller),
+                  ),
                 ),
                 floatingActionButton:
                     !controller.isSearchMode &&
