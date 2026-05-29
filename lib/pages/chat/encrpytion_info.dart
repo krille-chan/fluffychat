@@ -32,7 +32,10 @@ class EncryptionInfo extends StatelessWidget {
     return devices
         .where(
           (device) =>
-              !device.verified && !device.blocked && device.encryptToDevice,
+              !device.verified &&
+              !device.blocked &&
+              !device.hasValidSignatureChain(verifiedByTheirMasterKey: true) &&
+              device.encryptToDevice,
         )
         .length;
   }

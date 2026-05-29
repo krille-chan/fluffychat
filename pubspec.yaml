@@ -53,7 +53,10 @@ dependencies:
   intl: any
   just_audio: ^0.10.5
   latlong2: ^0.9.1
-  matrix: ^7.2.2
+  matrix: #^7.2.2
+    git:
+      url: https://github.com/famedly/matrix-dart-sdk.git
+      ref: krille/flag-cross-signing-keys-as-tofu-since
   mime: ^2.0.0
   native_imaging: ^0.4.0
   open_file: ^3.5.11

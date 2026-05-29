@@ -23,7 +23,12 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
     final keys = room.client.userDeviceKeys[user.id];
     final masterKey = keys?.masterKey;
 
-    if (keys == null || masterKey == null || masterKey.verified) return true;
+    if (keys == null ||
+        masterKey == null ||
+        masterKey.verified ||
+        masterKey.trustOnFirstUseSince != null) {
+      return true;
+    }
     return false;
   });
 
@@ -104,7 +109,12 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
       actions: [
         AdaptiveDialogAction(
           bigButtons: true,
-          onPressed: () => Navigator.of(context).pop(_Action.allow),
+          onPressed: () {
+            for (final user in users) {
+              room.client.userDeviceKeys[user.id]?.masterKey?.trustOnFirstUse();
+            }
+            Navigator.of(context).pop(true);
+          },
           child: Text(L10n.of(context).allow),
         ),
         if (room.isDirectChat)
@@ -127,7 +137,7 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
   switch (action) {
     case _Action.allow:
       for (final user in users) {
-        room.client.userDeviceKeys[user.id]?.masterKey?.setVerified(true);
+        room.client.userDeviceKeys[user.id]?.masterKey?.trustOnFirstUse();
       }
     case _Action.deny:
       return false;
