@@ -230,7 +230,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "allSpaces": "Visas kopienas",
+    "allSpaces": "Visas vietas",
     "supposedMxid": "Tam būtu jābūt {mxid}",
     "@supposedMxid": {
         "type": "String",
@@ -542,7 +542,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "spaceIsPublic": "Kopiena ir publiska",
+    "spaceIsPublic": "Vieta ir publiska",
     "@spaceIsPublic": {
         "type": "String",
         "placeholders": {}
@@ -780,7 +780,7 @@
             }
         }
     },
-    "spaceName": "Kopienas nosaukums",
+    "spaceName": "Vietas nosaukums",
     "@spaceName": {
         "type": "String",
         "placeholders": {}
@@ -1341,7 +1341,7 @@
             }
         }
     },
-    "addToSpace": "Pievienot kopienai",
+    "addToSpace": "Pievienot vietai",
     "unbanFromChat": "Atcelt liegumu tērzēšanā",
     "@unbanFromChat": {
         "type": "String",
@@ -1593,7 +1593,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "wrongPinEntered": "Ievadīts nepareizs PIN. Lūgums mēģināt vēlreiz pēc {seconds} sekundēm...",
+    "wrongPinEntered": "Ievadīts nepareizs PIN. Jāmēģina vēlreiz pēc {seconds} sekundēm...",
     "@wrongPinEntered": {
         "type": "String",
         "placeholders": {
@@ -1631,7 +1631,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "createNewSpace": "Jauna kopiena",
+    "createNewSpace": "Jauna vieta",
     "@createNewSpace": {
         "type": "String",
         "placeholders": {}
@@ -1710,7 +1710,7 @@
     },
     "newGroup": "Jauna kopa",
     "bundleName": "Komplekta nosaukums",
-    "removeFromSpace": "Noņemt no kopienas",
+    "removeFromSpace": "Noņemt no vietas",
     "dateAndTimeOfDay": "{date}, {timeOfDay}",
     "@dateAndTimeOfDay": {
         "type": "String",
@@ -2040,7 +2040,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "newSpace": "Jauna kopiena",
+    "newSpace": "Jauna vieta",
     "changePassword": "Nomainīt paroli",
     "@changePassword": {
         "type": "String",
@@ -2181,8 +2181,8 @@
     "transparent": "Caurspīdīgs",
     "searchForUsers": "Meklēt @lietotājus...",
     "pleaseEnterYourCurrentPassword": "Lūgums ievadīt savu pašreizējo paroli",
-    "publicSpaces": "Publiskas kopienas",
-    "joinSpace": "Pievienoties kopienai",
+    "publicSpaces": "Publiskas vietas",
+    "joinSpace": "Pievienoties vietai",
     "createGroupAndInviteUsers": "Izveidot kopu un uzaicināt lietotājus",
     "groupCanBeFoundViaSearch": "Kopu var atrast meklēšanā",
     "commandHint_sendraw": "Nosūtīt neapstrādātu JSON",
@@ -2395,7 +2395,7 @@
             }
         }
     },
-    "goToSpace": "Doties uz kopienu: {space}",
+    "goToSpace": "Doties uz vietu: {space}",
     "@goToSpace": {
         "type": "String",
         "space": {}
@@ -2418,8 +2418,8 @@
     "changelog": "Izmaiņu žurnāls",
     "noMoreChatsFound": "Vairs netika atrasta neviena tērzēšana...",
     "unread": "Nelasītas",
-    "space": "Kopiena",
-    "spaces": "Kopienas",
+    "space": "Vieta",
+    "spaces": "Vietas",
     "markAsUnread": "Atzīmēt kā nelasītu",
     "sendingAttachment": "Nosūta pielikumu...",
     "calculatingFileSize": "Aprēķina datnes lielumu...",
@@ -2594,7 +2594,7 @@
     "longPressToRecordVoiceMessage": "Ilga piespiešana, lai ierakstītu balss ziņu.",
     "pause": "Apturēt",
     "resume": "Atsākt",
-    "removeFromSpaceDescription": "Tērzēšana tiks noņemta no kopienas, bet tā joprojām būs redzama tērzēšanu sarakstā.",
+    "removeFromSpaceDescription": "Tērzēšana tiks noņemta no vietas, bet tā joprojām būs redzama tērzēšanu sarakstā.",
     "countChats": "{chats} tērzēšanas",
     "@countChats": {
         "type": "String",
@@ -2707,30 +2707,36 @@
     "createNewAccount": "Izveidot jaunu kontu",
     "signUpGreeting": "FluffyChat ir decentralizēta. Jāatlasa serveris, kurā ir vēlēšanās izveidot savu kontu, un aiziet!",
     "signInGreeting": "Jau ir Matrix konts? Laipni lūdzam atpakaļ! Jāatlasa savs mājasserveris un jāpiesakās.",
-    "reset": "",
-    "createNewTag": "",
-    "join": "",
-    "createNewChat": "",
-    "makeModerator": "",
-    "tagName": "",
+    "reset": "Atiestatīt",
+    "createNewTag": "Izveidot jaunu birku",
+    "join": "Pievienoties",
+    "createNewChat": "Izveidot jaunu tērzēšanu",
+    "makeModerator": "Padarīt par satura pārraudzītāju",
+    "tagName": "Birkas nosaukums",
     "setPowerLevelDescription": "",
-    "matrixId": "",
-    "support": "",
-    "setPowerLevel": "",
-    "mute": "",
+    "matrixId": "Matrix Id",
+    "support": "Atbalstīt",
+    "setPowerLevel": "Iestatīt tiesību līmeni",
+    "mute": "Apklusināt",
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    "removeModeratorRights": "",
-    "addTag": "",
-    "removeAdminRights": "",
-    "owner": "",
-    "powerLevel": "",
-    "playSoundOnNotification": "",
-    "makeAdmin": "",
-    "searchOrEnterHomeserverAddress": "",
-    "unsetLowPriority": "",
-    "setLowPriority": "",
-    "removeTag": "",
-    "supportFluffyChat": ""
+    "removeModeratorRights": "Noņemt satura pārraudzītāja tiesības",
+    "addTag": "Pievienot birku",
+    "removeAdminRights": "Noņemt pārvaldītāja tiesības",
+    "owner": "Īpašnieks",
+    "powerLevel": "Tiesību līmenis",
+    "playSoundOnNotification": "Atskaņot paziņojuma skaņu",
+    "makeAdmin": "Padarīt par pārvaldītāju",
+    "searchOrEnterHomeserverAddress": "Meklēt vai ievadīt mājasservera adresi",
+    "unsetLowPriority": "Noņemt zemu svatīgumu",
+    "setLowPriority": "Iestatīt zemu svarīgumu",
+    "removeTag": "Noņemt birku",
+    "supportFluffyChat": "Atbalstīt FluffyChat",
+    "discardEdits": "Ir nesaglabātas izmaiņas. Atmest labojumus?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "possibleByYou": "Šis laidiens bija iespējams pateicoties Tavam atbalstam. FluffyChat joprojām ir brīva, atvērta pirmkoda un pilnībā kopienas virzīta."
 }
