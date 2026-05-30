@@ -2489,7 +2489,7 @@
     "notificationRuleInviteForMeDescription": "",
     "notificationRuleMemberEventDescription": "",
     "doesNotSeemToBeAValidHomeserver": "Aucun hôte compatible ne semble exister. URL incorrecte ?",
-    "notificationRuleMaster": "",
+    "notificationRuleMaster": "Désactiver toutes les notifications",
     "shareKeysWithDescription": "",
     "logs": "",
     "compress": "Compresser",
