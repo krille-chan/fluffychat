@@ -2745,5 +2745,9 @@
     "support": "Lagundu",
     "setLowPriority": "Ezarri lehentasun baxua",
     "unsetLowPriority": "Kendu lehentasun baxua",
-    "playSoundOnNotification": "Jo soinua jakinarazpenekin"
+    "playSoundOnNotification": "Jo soinua jakinarazpenekin",
+    "createNewTag": "",
+    "tagName": "",
+    "addTag": "",
+    "removeTag": ""
 }
