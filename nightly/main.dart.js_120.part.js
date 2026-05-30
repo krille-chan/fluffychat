@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cN5(){return new A.Gn(B.dh("et"))},
+cN9(){return new A.Gn(B.dh("et"))},
 Gn:function Gn(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[17],A)
@@ -40,7 +40,7 @@ gfe(){return"K\xf5ik v\xf5ivad liituda"},
 gff(){return"Arhiiv"},
 gje(){return"Kas k\xfclalised v\xf5ivad liituda?"},
 gda(){return"Kas sa oled kindel?"},
-gq_(){return"You have unsaved changes. Discard your edits?"},
+gq1(){return"You have unsaved changes. Discard your edits?"},
 gjf(){return"Kas sa oled kindel, et soovid v\xe4lja logida?"},
 gjg(){return"Selleks, et teist osapoolt identifitseerivat allkirja anda, palun sisesta oma turvahoidla salafraas v\xf5i taastev\xf5ti."},
 jh(d){return"Kas v\xf5tad vastu selle verifitseerimispalve kasutajalt "+d+"?"},
@@ -603,6 +603,8 @@ gkk(){return"Logi k\xf5ikidest aktiivsetest seadmetest v\xe4lja"},
 glg(){return"N\xe4ita mobiilis k\xfclgmist t\xf6\xf6riistariba"},
 gfE(){return"Kohandatud reaktsioon"},
 gmy(){return"Veel s\xfcndmusi"},
+gpU(){return"Show more"},
+gpT(){return"Show less"},
 gfF(){return"Keeldu kutsest"},
 gmL(){return"Pole veel \xfchtegi s\xf5numit"},
 gog(){return"See vestlus eemaldatakse n\xfc\xfcd kogukonnast, kuid on j\xe4tkuvalt n\xe4htav sinu vestluste loendis."},
@@ -674,23 +676,23 @@ gfd(){return"Lisa silt"},
 goi(){return"Eemalda silt"},
 goy(d){return"Sildi nimi"},
 gkW(){return"Lisa uus silt"},
-gq4(){return"Hide rooms that are in a space"},
-gq6(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
-gpT(){return"Show thumbnails of images and videos"},
-gpX(){return"Secure [matrix] Communication"},
-gpW(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
+gq6(){return"Hide rooms that are in a space"},
+gq8(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
+gpV(){return"Show thumbnails of images and videos"},
+gpZ(){return"Secure [matrix] Communication"},
+gpY(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
 gpQ(){return"Interactive verification"},
-gq5(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
-pY(d){return""+d+" unverified devices in the chat."},
-gq0(){return"Encrypted message"},
-gq8(){return"Unencrypted message"},
-gpU(d){return"Allow"},
-pV(d){return"Allow encrypted communication with "+d+"?"},
-q7(d){return"Public key: "+d},
-gpZ(){return"Device identity key"},
+gq7(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
+q_(d){return""+d+" unverified devices in the chat."},
+gq2(){return"Encrypted message"},
+gqa(){return"Unencrypted message"},
+gpW(d){return"Allow"},
+pX(d){return"Allow encrypted communication with "+d+"?"},
+q9(d){return"Public key: "+d},
+gq0(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gn,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Gn":{"aE":[]}}'))};
-(a=>{a["goY/CWSqEVbfxJ0emKokhC24wAk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["SbPMZDKoYe1DJRFVpZQZRtZL5RU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_120.part.js.map

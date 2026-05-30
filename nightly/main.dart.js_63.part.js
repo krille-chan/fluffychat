@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cMZ(){return new A.Gg(B.dh("cs"))},
+cN2(){return new A.Gg(B.dh("cs"))},
 Gg:function Gg(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -40,7 +40,7 @@ gfe(){return"Kdokoliv se m\u016f\u017ee p\u0159ipojit"},
 gff(){return"Archivovat"},
 gje(){return"Mohou se p\u0159ipojit host\xe9"},
 gda(){return"Jste si jist\xfd?"},
-gq_(){return"You have unsaved changes. Discard your edits?"},
+gq1(){return"You have unsaved changes. Discard your edits?"},
 gjf(){return"Opravdu se chcete odhl\xe1sit?"},
 gjg(){return"Pro ov\u011b\u0159en\xed t\xe9to osoby zadejte pros\xedm p\u0159\xedstupovou fr\xe1zi k \u201ebezpe\u010dn\xe9mu \xfalo\u017ei\u0161ti\u201c anebo \u201ekl\xed\u010d pro obnovu\u201c."},
 jh(d){return"P\u0159ijmout \u017e\xe1dost o ov\u011b\u0159en\xed od "+d+"?"},
@@ -603,6 +603,8 @@ gkk(){return"Odhl\xe1sit se ze v\u0161ech aktivn\xedch za\u0159\xedzen\xed"},
 glg(){return"Zobrazit naviga\u010dn\xed li\u0161tu na mobilu"},
 gfE(){return"Vlastn\xed reakce"},
 gmy(){return"V\xedce ud\xe1lost\xed"},
+gpU(){return"Show more"},
+gpT(){return"Show less"},
 gfF(){return"Odm\xedtnout pozv\xe1nku"},
 gmL(){return"Zat\xedm tu nejsou \u017e\xe1dn\xe9 zpr\xe1vy"},
 gog(){return"Tato konverzace bude odstran\u011bna z tohoto prostoru, st\xe1le v\u0161ak bude dostupn\xe1 ve va\u0161em seznamu konverzac\xed."},
@@ -672,23 +674,23 @@ gfd(){return""},
 goi(){return""},
 goy(d){return""},
 gkW(){return""},
-gq4(){return"Hide rooms that are in a space"},
-gq6(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
-gpT(){return"Show thumbnails of images and videos"},
-gpX(){return"Secure [matrix] Communication"},
-gpW(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
+gq6(){return"Hide rooms that are in a space"},
+gq8(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
+gpV(){return"Show thumbnails of images and videos"},
+gpZ(){return"Secure [matrix] Communication"},
+gpY(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
 gpQ(){return"Interactive verification"},
-gq5(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
-pY(d){return""+d+" unverified devices in the chat."},
-gq0(){return"Encrypted message"},
-gq8(){return"Unencrypted message"},
-gpU(d){return"Allow"},
-pV(d){return"Allow encrypted communication with "+d+"?"},
-q7(d){return"Public key: "+d},
-gpZ(){return"Device identity key"},
+gq7(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
+q_(d){return""+d+" unverified devices in the chat."},
+gq2(){return"Encrypted message"},
+gqa(){return"Unencrypted message"},
+gpW(d){return"Allow"},
+pX(d){return"Allow encrypted communication with "+d+"?"},
+q9(d){return"Public key: "+d},
+gq0(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gg,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Gg":{"aE":[]}}'))};
-(a=>{a["JK2yHZrF0bzkwrihZoysnLCtylk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["47IjNYGDSBAnmEp6XAAooeO/dbE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_63.part.js.map

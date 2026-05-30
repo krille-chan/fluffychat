@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cNI(){return new A.GZ(B.dh("uk"))},
+cNM(){return new A.GZ(B.dh("uk"))},
 GZ:function GZ(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[53],A)
@@ -40,7 +40,7 @@ gfe(){return"\u0411\u0443\u0434\u044c-\u0445\u0442\u043e \u043c\u043e\u0436\u043
 gff(){return"\u0410\u0440\u0445\u0456\u0432"},
 gje(){return"\u0427\u0438 \u0434\u043e\u0437\u0432\u043e\u043b\u0435\u043d\u043e \u0433\u043e\u0441\u0442\u044f\u043c \u043f\u0440\u0438\u0454\u0434\u043d\u0443\u0432\u0430\u0442\u0438\u0441\u044c?"},
 gda(){return"\u0412\u0438 \u0432\u043f\u0435\u0432\u043d\u0435\u043d\u0456?"},
-gq_(){return"You have unsaved changes. Discard your edits?"},
+gq1(){return"You have unsaved changes. Discard your edits?"},
 gjf(){return"\u0412\u0438 \u0432\u043f\u0435\u0432\u043d\u0435\u043d\u0456, \u0449\u043e \u0445\u043e\u0447\u0435\u0442\u0435 \u0432\u0438\u0439\u0442\u0438?"},
 gjg(){return"\u0414\u043b\u044f \u043f\u0456\u0434\u043f\u0438\u0441\u0443 \u043a\u043b\u044e\u0447\u0430 \u0456\u043d\u0448\u043e\u0433\u043e \u043a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0447\u0430 \u0432\u0432\u0435\u0434\u0456\u0442\u044c \u0441\u0432\u043e\u044e \u043f\u0430\u0440\u043e\u043b\u044c\u043d\u0443 \u0444\u0440\u0430\u0437\u0443 \u0430\u0431\u043e \u043a\u043b\u044e\u0447 \u0432\u0456\u0434\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u044f."},
 jh(d){return"\u041f\u0440\u0438\u0439\u043d\u044f\u0442\u0438 \u0446\u0435\u0439 \u0437\u0430\u043f\u0438\u0442 \u043d\u0430 \u043f\u0456\u0434\u0442\u0432\u0435\u0440\u0434\u0436\u0435\u043d\u043d\u044f \u0432\u0456\u0434 "+d+"?"},
@@ -603,6 +603,8 @@ gkk(){return"\u0412\u0438\u0439\u0442\u0438 \u043d\u0430 \u0432\u0441\u0456\u044
 glg(){return"\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u0438 \u043d\u0430\u0432\u0456\u0433\u0430\u0446\u0456\u0439\u043d\u0443 \u043a\u0430\u0440\u0442\u0443 \u043d\u0430 \u043c\u043e\u0431\u0456\u043b\u044c\u043d\u043e\u043c\u0443"},
 gfE(){return"\u0412\u043b\u0430\u0441\u043d\u0456 \u0440\u0435\u0430\u043a\u0446\u0456\u0457"},
 gmy(){return"\u0406\u043d\u0448\u0456 \u043f\u043e\u0434\u0456\u0457"},
+gpU(){return"Show more"},
+gpT(){return"Show less"},
 gfF(){return"\u0412\u0456\u0434\u0445\u0438\u043b\u0438\u0442\u0438 \u0437\u0430\u043f\u0440\u043e\u0448\u0435\u043d\u043d\u044f"},
 gmL(){return"\u041f\u043e\u043a\u0438 \u043d\u0435\u043c\u0430\u0454 \u043f\u043e\u0432\u0456\u0434\u043e\u043c\u043b\u0435\u043d\u044c"},
 gog(){return"\u0411\u0435\u0441\u0456\u0434\u0443 \u0431\u0443\u0434\u0435 \u0432\u0438\u0434\u0430\u043b\u0435\u043d\u043e \u0437 \u043f\u0440\u043e\u0441\u0442\u043e\u0440\u0443, \u0442\u0430 \u0432\u043e\u043d\u0430 \u0437\u0430\u043b\u0438\u0448\u0438\u0442\u044c\u0441\u044f \u0443 \u0432\u0430\u0448\u043e\u043c\u0443 \u0441\u043f\u0438\u0441\u043a\u0443 \u0431\u0435\u0441\u0456\u0434."},
@@ -674,23 +676,23 @@ gfd(){return"\u0414\u043e\u0434\u0430\u0442\u0438 \u0442\u0435\u0433"},
 goi(){return"\u0412\u0438\u0434\u0430\u043b\u0438\u0442\u0438 \u0442\u0435\u0433"},
 goy(d){return"\u041d\u0430\u0437\u0432\u0430 \u0442\u0435\u0433\u0443"},
 gkW(){return"\u0421\u0442\u0432\u043e\u0440\u0438\u0442\u0438 \u043d\u043e\u0432\u0438\u0439 \u0442\u0435\u0433"},
-gq4(){return"Hide rooms that are in a space"},
-gq6(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
-gpT(){return"Show thumbnails of images and videos"},
-gpX(){return"Secure [matrix] Communication"},
-gpW(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
+gq6(){return"Hide rooms that are in a space"},
+gq8(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
+gpV(){return"Show thumbnails of images and videos"},
+gpZ(){return"Secure [matrix] Communication"},
+gpY(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
 gpQ(){return"Interactive verification"},
-gq5(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
-pY(d){return""+d+" unverified devices in the chat."},
-gq0(){return"Encrypted message"},
-gq8(){return"Unencrypted message"},
-gpU(d){return"Allow"},
-pV(d){return"Allow encrypted communication with "+d+"?"},
-q7(d){return"Public key: "+d},
-gpZ(){return"Device identity key"},
+gq7(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
+q_(d){return""+d+" unverified devices in the chat."},
+gq2(){return"Encrypted message"},
+gqa(){return"Unencrypted message"},
+gpW(d){return"Allow"},
+pX(d){return"Allow encrypted communication with "+d+"?"},
+q9(d){return"Public key: "+d},
+gq0(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GZ,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"GZ":{"aE":[]}}'))};
-(a=>{a["TBdCmLF0U2BqyGLnxj8n+aptYjc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["eWgGUJ0LFxWNzBJdva44/UfZg/I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_186.part.js.map

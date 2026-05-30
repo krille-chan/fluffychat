@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cNy(){return new A.GP(B.dh("ru"))},
+cNC(){return new A.GP(B.dh("ru"))},
 GP:function GP(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[43],A)
@@ -40,7 +40,7 @@ gfe(){return"\u041a\u0430\u0436\u0434\u044b\u0439 \u043c\u043e\u0436\u0435\u0442
 gff(){return"\u0410\u0440\u0445\u0438\u0432"},
 gje(){return"\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u043e \u043b\u0438 \u0433\u043e\u0441\u0442\u044f\u043c \u043f\u0440\u0438\u0441\u043e\u0435\u0434\u0438\u043d\u044f\u0442\u044c\u0441\u044f?"},
 gda(){return"\u0412\u044b \u0443\u0432\u0435\u0440\u0435\u043d\u044b?"},
-gq_(){return"You have unsaved changes. Discard your edits?"},
+gq1(){return"You have unsaved changes. Discard your edits?"},
 gjf(){return"\u0412\u044b \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u043e \u0445\u043e\u0442\u0438\u0442\u0435 \u0432\u044b\u0439\u0442\u0438?"},
 gjg(){return"\u0414\u043b\u044f \u043f\u043e\u0434\u043f\u0438\u0441\u0438 \u043a\u043b\u044e\u0447\u0430 \u0434\u0440\u0443\u0433\u043e\u0433\u043e \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f, \u043f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u0432\u0430\u0448\u0443 \u043f\u0430\u0440\u043e\u043b\u044c\u043d\u0443\u044e \u0444\u0440\u0430\u0437\u0443 \u0438\u043b\u0438 \u043a\u043b\u044e\u0447 \u0432\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f."},
 jh(d){return"\u041f\u0440\u0438\u043d\u044f\u0442\u044c \u044d\u0442\u043e\u0442 \u0437\u0430\u043f\u0440\u043e\u0441 \u043f\u043e\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0435\u043d\u0438\u044f \u043e\u0442 "+d+"?"},
@@ -603,6 +603,8 @@ gkk(){return"\u0412\u044b\u0439\u0442\u0438 \u0438\u0437 \u0432\u0441\u0435\u044
 glg(){return"\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u044c \u043d\u0430\u0432\u0438\u0433\u0430\u0446\u0438\u043e\u043d\u043d\u044b\u0439 \u0440\u0435\u043b\u044c\u0441 \u043d\u0430 \u043c\u043e\u0431\u0438\u043b\u044c\u043d\u043e\u043c \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u0435"},
 gfE(){return"\u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u0441\u043a\u0430\u044f \u0440\u0435\u0430\u043a\u0446\u0438\u044f"},
 gmy(){return"\u0411\u043e\u043b\u044c\u0448\u0435 \u0441\u043e\u0431\u044b\u0442\u0438\u0439"},
+gpU(){return"Show more"},
+gpT(){return"Show less"},
 gfF(){return"\u041e\u0442\u043a\u0430\u0437\u0430\u0442\u044c\u0441\u044f \u043e\u0442 \u043f\u0440\u0438\u0433\u043b\u0430\u0448\u0435\u043d\u0438\u044f"},
 gmL(){return"\u041f\u043e\u043a\u0430 \u043d\u0435\u0442 \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0439"},
 gog(){return"\u0427\u0430\u0442 \u0431\u0443\u0434\u0435\u0442 \u0443\u0434\u0430\u043b\u0435\u043d \u0438\u0437 \u043f\u0440\u043e\u0441\u0442\u0440\u0430\u043d\u0441\u0442\u0432\u0430, \u043d\u043e \u0432\u0441\u0435 \u0440\u0430\u0432\u043d\u043e \u043f\u043e\u044f\u0432\u0438\u0442\u0441\u044f \u0432 \u0432\u0430\u0448\u0435\u043c \u0441\u043f\u0438\u0441\u043a\u0435 \u0447\u0430\u0442\u043e\u0432."},
@@ -674,23 +676,23 @@ gfd(){return"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0442\u0435\u0433
 goi(){return"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0442\u0435\u0433"},
 goy(d){return"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0442\u0435\u0433\u0430"},
 gkW(){return"\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u043d\u043e\u0432\u044b\u0439 \u0442\u0435\u0433"},
-gq4(){return"Hide rooms that are in a space"},
-gq6(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
-gpT(){return"Show thumbnails of images and videos"},
-gpX(){return"Secure [matrix] Communication"},
-gpW(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
+gq6(){return"Hide rooms that are in a space"},
+gq8(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
+gpV(){return"Show thumbnails of images and videos"},
+gpZ(){return"Secure [matrix] Communication"},
+gpY(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
 gpQ(){return"Interactive verification"},
-gq5(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
-pY(d){return""+d+" unverified devices in the chat."},
-gq0(){return"Encrypted message"},
-gq8(){return"Unencrypted message"},
-gpU(d){return"Allow"},
-pV(d){return"Allow encrypted communication with "+d+"?"},
-q7(d){return"Public key: "+d},
-gpZ(){return"Device identity key"},
+gq7(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
+q_(d){return""+d+" unverified devices in the chat."},
+gq2(){return"Encrypted message"},
+gqa(){return"Unencrypted message"},
+gpW(d){return"Allow"},
+pX(d){return"Allow encrypted communication with "+d+"?"},
+q9(d){return"Public key: "+d},
+gq0(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GP,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"GP":{"aE":[]}}'))};
-(a=>{a["CTZwxRqLA5y/qxPi2UBvStmq428="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["7htcXzxQHC5QTSP0WgTpa3xRRcE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_171.part.js.map

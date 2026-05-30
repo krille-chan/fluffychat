@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cNC(){return new A.GT(B.dh("sr"))},
+cNG(){return new A.GT(B.dh("sr"))},
 GT:function GT(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[47],A)
@@ -40,7 +40,7 @@ gfe(){return"\u0441\u0432\u0430\u043a\u043e \u043c\u043e\u0436\u0435 \u0434\u043
 gff(){return"\u0410\u0440\u0445\u0438\u0432\u0430"},
 gje(){return"\u0414\u0430 \u043b\u0438 \u0458\u0435 \u0433\u043e\u0441\u0442\u0438\u043c\u0430 \u0434\u043e\u0437\u0432\u043e\u0459\u0435\u043d \u043f\u0440\u0438\u0441\u0442\u0443\u043f"},
 gda(){return"\u0421\u0438\u0433\u0443\u0440\u043d\u0438 \u0441\u0442\u0435?"},
-gq_(){return"You have unsaved changes. Discard your edits?"},
+gq1(){return"You have unsaved changes. Discard your edits?"},
 gjf(){return"\u0417\u0430\u0438\u0441\u0442\u0430 \u0436\u0435\u043b\u0438\u0442\u0435 \u0434\u0430 \u0441\u0435 \u043e\u0434\u0458\u0430\u0432\u0438\u0442\u0435?"},
 gjg(){return"\u0414\u0430 \u0431\u0438\u0441\u0442\u0435 \u043c\u043e\u0433\u043b\u0438 \u0434\u0430 \u043f\u0440\u0438\u0458\u0430\u0432\u0438\u0442\u0435 \u0434\u0440\u0443\u0433\u0443 \u043e\u0441\u043e\u0431\u0443, \u0443\u043d\u0435\u0441\u0438\u0442\u0435 \u0441\u0432\u043e\u0458\u0443 \u0431\u0435\u0437\u0431\u0435\u0434\u043d\u043e\u0441\u043d\u0443 \u0444\u0440\u0430\u0437\u0443 \u0438\u043b\u0438 \u043a\u0459\u0443\u0447 \u043e\u043f\u043e\u0440\u0430\u0432\u043a\u0430."},
 jh(d){return"\u041f\u0440\u0438\u0445\u0432\u0430\u0442\u0430\u0442\u0435 \u043b\u0438 \u0437\u0430\u0445\u0442\u0435\u0432 \u0437\u0430 \u0432\u0435\u0440\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0458\u0443 \u043e\u0434 \u043a\u043e\u0440\u0438\u0441\u043d\u0438\u043a\u0430 "+d+"?"},
@@ -603,6 +603,8 @@ gkk(){return""},
 glg(){return""},
 gfE(){return""},
 gmy(){return""},
+gpU(){return"Show more"},
+gpT(){return"Show less"},
 gfF(){return""},
 gmL(){return""},
 gog(){return""},
@@ -672,23 +674,23 @@ gfd(){return""},
 goi(){return""},
 goy(d){return""},
 gkW(){return""},
-gq4(){return"Hide rooms that are in a space"},
-gq6(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
-gpT(){return"Show thumbnails of images and videos"},
-gpX(){return"Secure [matrix] Communication"},
-gpW(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
+gq6(){return"Hide rooms that are in a space"},
+gq8(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
+gpV(){return"Show thumbnails of images and videos"},
+gpZ(){return"Secure [matrix] Communication"},
+gpY(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
 gpQ(){return"Interactive verification"},
-gq5(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
-pY(d){return""+d+" unverified devices in the chat."},
-gq0(){return"Encrypted message"},
-gq8(){return"Unencrypted message"},
-gpU(d){return"Allow"},
-pV(d){return"Allow encrypted communication with "+d+"?"},
-q7(d){return"Public key: "+d},
-gpZ(){return"Device identity key"},
+gq7(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
+q_(d){return""+d+" unverified devices in the chat."},
+gq2(){return"Encrypted message"},
+gqa(){return"Unencrypted message"},
+gpW(d){return"Allow"},
+pX(d){return"Allow encrypted communication with "+d+"?"},
+q9(d){return"Public key: "+d},
+gq0(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GT,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"GT":{"aE":[]}}'))};
-(a=>{a["YYJ58wly53YrINFDp9MJjFC9crU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+/KOfK6/raRAqzVCxarGghaa708="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_178.part.js.map

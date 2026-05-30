@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cNJ(){return new A.H_(B.dh("uz"))},
+cNN(){return new A.H_(B.dh("uz"))},
 H_:function H_(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[54],A)
@@ -40,7 +40,7 @@ gfe(){return"Har kim qo\u2018shilishi mumkin"},
 gff(){return"Arxiv"},
 gje(){return"Mehmon foydalanuvchilarga qo\u2018shilishga ruxsat berilganmi"},
 gda(){return"Ishonchingiz komilmi?"},
-gq_(){return"You have unsaved changes. Discard your edits?"},
+gq1(){return"You have unsaved changes. Discard your edits?"},
 gjf(){return"Haqiqatan ham hisobingizdan chiqamoqchimisiz?"},
 gjg(){return"Narigi foydalanuvchini imzolash uchun xavfsiz do\u2018kon parol iborasi yoki tiklash kalitini kiriting."},
 jh(d){return d+"dan ushbu tasdiqlash so\u2018rovi qabul qilinsinmi?"},
@@ -603,6 +603,8 @@ gkk(){return"Barcha faol qurilmalardan chiqish"},
 glg(){return"Mobilda navigatsiya temir yo\u2018lini ko\u2018rsatish"},
 gfE(){return"Maxsus reaksiya"},
 gmy(){return"Boshqa hodisalar"},
+gpU(){return"Show more"},
+gpT(){return"Show less"},
 gfF(){return"Taklifni rad etish"},
 gmL(){return"Hozircha xabarlar yo\u2018q"},
 gog(){return"Suhbat maydondan olib tashlanadi, lekin hali ham suhbatlarlar ro\u2018yxatida chiqadi."},
@@ -674,24 +676,24 @@ gfd(){return""},
 goi(){return""},
 goy(d){return""},
 gkW(){return""},
-gq4(){return"Hide rooms that are in a space"},
-gq6(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
-gpT(){return"Show thumbnails of images and videos"},
-gpX(){return"Secure [matrix] Communication"},
-gpW(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
+gq6(){return"Hide rooms that are in a space"},
+gq8(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
+gpV(){return"Show thumbnails of images and videos"},
+gpZ(){return"Secure [matrix] Communication"},
+gpY(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
 gpQ(){return"Interactive verification"},
-gq5(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
-pY(d){return""+d+" unverified devices in the chat."},
-gq0(){return"Encrypted message"},
-gq8(){return"Unencrypted message"},
-gpU(d){return"Allow"},
-pV(d){return"Allow encrypted communication with "+d+"?"},
-q7(d){return"Public key: "+d},
-gpZ(){return"Device identity key"},
+gq7(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
+q_(d){return""+d+" unverified devices in the chat."},
+gq2(){return"Encrypted message"},
+gqa(){return"Unencrypted message"},
+gpW(d){return"Allow"},
+pX(d){return"Allow encrypted communication with "+d+"?"},
+q9(d){return"Public key: "+d},
+gq0(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.H_,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"H_":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["hMKK/ZODk0c6vacXcj/UbErYCN8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["7QWjl98J9UlJK+r2miR2I2FGoBo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_187.part.js.map

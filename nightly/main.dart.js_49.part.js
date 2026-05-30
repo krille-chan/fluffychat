@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cMY(){return new A.Gf(B.dh("ca"))},
+cN1(){return new A.Gf(B.dh("ca"))},
 Gf:function Gf(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -40,7 +40,7 @@ gfe(){return"Qualsevol pot unir-se"},
 gff(){return"Arxiu"},
 gje(){return"Es pot entrar al xat com a convidadi?"},
 gda(){return"N\u2019esteu seguri?"},
-gq_(){return"You have unsaved changes. Discard your edits?"},
+gq1(){return"You have unsaved changes. Discard your edits?"},
 gjf(){return"Segur que voleu finalitzar la sessi\xf3?"},
 gjg(){return"Per a poder donar acc\xe9s a l\u2019altra persona, introdu\xefu la frase de seguretat o clau de recuperaci\xf3."},
 jh(d){return"Voleu acceptar aquesta sol\xb7licitud de verificaci\xf3 de: "+d+"?"},
@@ -603,6 +603,8 @@ gkk(){return"Tanca totes les sessions actives"},
 glg(){return"Mostra la barra de navegaci\xf3 al m\xf2bil"},
 gfE(){return"Reacci\xf3 personalitzada"},
 gmy(){return"Altres esdeveniments"},
+gpU(){return"Show more"},
+gpT(){return"Show less"},
 gfF(){return"Rebutja la invitaci\xf3"},
 gmL(){return"No hi ha cap missatge"},
 gog(){return"S'esborrar\xe0 de l'espai el xat, per\xf2 encara apareixer\xe0 a la llista de xats."},
@@ -674,23 +676,23 @@ gfd(){return""},
 goi(){return""},
 goy(d){return""},
 gkW(){return""},
-gq4(){return"Hide rooms that are in a space"},
-gq6(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
-gpT(){return"Show thumbnails of images and videos"},
-gpX(){return"Secure [matrix] Communication"},
-gpW(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
+gq6(){return"Hide rooms that are in a space"},
+gq8(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
+gpV(){return"Show thumbnails of images and videos"},
+gpZ(){return"Secure [matrix] Communication"},
+gpY(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
 gpQ(){return"Interactive verification"},
-gq5(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
-pY(d){return""+d+" unverified devices in the chat."},
-gq0(){return"Encrypted message"},
-gq8(){return"Unencrypted message"},
-gpU(d){return"Allow"},
-pV(d){return"Allow encrypted communication with "+d+"?"},
-q7(d){return"Public key: "+d},
-gpZ(){return"Device identity key"},
+gq7(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
+q_(d){return""+d+" unverified devices in the chat."},
+gq2(){return"Encrypted message"},
+gqa(){return"Unencrypted message"},
+gpW(d){return"Allow"},
+pX(d){return"Allow encrypted communication with "+d+"?"},
+q9(d){return"Public key: "+d},
+gq0(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gf,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Gf":{"aE":[]}}'))};
-(a=>{a["+ARX3XMbjxQ9dxXmEkPisB5Uh7I="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["q17y5dp1S1q9pF0CwaDEF/DkL+8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_49.part.js.map

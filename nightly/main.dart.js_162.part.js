@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cNo(){return new A.GG(B.dh("ko"))},
+cNs(){return new A.GG(B.dh("ko"))},
 GG:function GG(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[36],A)
@@ -40,7 +40,7 @@ gfe(){return"\ub204\uad6c\ub098 \ucc38\uac00\ud560 \uc218 \uc788\uc74c"},
 gff(){return"\uc800\uc7a5"},
 gje(){return"\uac8c\uc2a4\ud2b8 \uc720\uc800\uc758 \ucc38\uac00 \uc5ec\ubd80"},
 gda(){return"\ud655\uc2e4\ud55c\uac00\uc694?"},
-gq_(){return"You have unsaved changes. Discard your edits?"},
+gq1(){return"You have unsaved changes. Discard your edits?"},
 gjf(){return"\ub85c\uadf8\uc544\uc6c3\ud558\uace0 \uc2f6\uc740 \uac83\uc774 \ud655\uc2e4\ud55c\uac00\uc694?"},
 gjg(){return"\ub2e4\ub978 \uc0ac\ub78c\uc744 \uc11c\uba85\ud558\uae30 \uc704\ud574\uc11c, \uc800\uc7a5 \ube44\ubc00\ubc88\ud638\ub098 \ubcf5\uad6c \ud0a4\ub97c \uc785\ub825\ud574\uc8fc\uc138\uc694."},
 jh(d){return d+"\ub2d8\uc758 \uc778\uc99d \uc694\uccad\uc744 \uc218\ub77d\ud560\uae4c\uc694?"},
@@ -603,6 +603,8 @@ gkk(){return""},
 glg(){return""},
 gfE(){return""},
 gmy(){return""},
+gpU(){return"Show more"},
+gpT(){return"Show less"},
 gfF(){return""},
 gmL(){return""},
 gog(){return""},
@@ -672,23 +674,23 @@ gfd(){return""},
 goi(){return""},
 goy(d){return""},
 gkW(){return""},
-gq4(){return"Hide rooms that are in a space"},
-gq6(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
-gpT(){return"Show thumbnails of images and videos"},
-gpX(){return"Secure [matrix] Communication"},
-gpW(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
+gq6(){return"Hide rooms that are in a space"},
+gq8(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
+gpV(){return"Show thumbnails of images and videos"},
+gpZ(){return"Secure [matrix] Communication"},
+gpY(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
 gpQ(){return"Interactive verification"},
-gq5(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
-pY(d){return""+d+" unverified devices in the chat."},
-gq0(){return"Encrypted message"},
-gq8(){return"Unencrypted message"},
-gpU(d){return"Allow"},
-pV(d){return"Allow encrypted communication with "+d+"?"},
-q7(d){return"Public key: "+d},
-gpZ(){return"Device identity key"},
+gq7(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
+q_(d){return""+d+" unverified devices in the chat."},
+gq2(){return"Encrypted message"},
+gqa(){return"Unencrypted message"},
+gpW(d){return"Allow"},
+pX(d){return"Allow encrypted communication with "+d+"?"},
+q9(d){return"Public key: "+d},
+gq0(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GG,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"GG":{"aE":[]}}'))};
-(a=>{a["61Vsd2U4icAqJc9IWsITFyInhOs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["f4nRnsQ4OoBIwKc1hXTgYIAYD7k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_162.part.js.map

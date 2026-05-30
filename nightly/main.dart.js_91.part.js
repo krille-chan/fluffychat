@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cN1(){return new A.Gj(B.dh("el"))},
+cN5(){return new A.Gj(B.dh("el"))},
 Gj:function Gj(d){this.a=d}}
 B=c[0]
 C=c[57]
@@ -40,7 +40,7 @@ gfe(){return"\u039f\u03c0\u03bf\u03b9\u03bf\u03c3\u03b4\u03ae\u03c0\u03bf\u03c4\
 gff(){return"\u0391\u03c1\u03c7\u03b5\u03af\u03bf"},
 gje(){return"\u0395\u03c0\u03b9\u03c4\u03c1\u03ad\u03c0\u03b5\u03c4\u03b1\u03b9 \u03c3\u03c4\u03bf\u03c5\u03c2 \u03b5\u03c0\u03b9\u03c3\u03ba\u03ad\u03c0\u03c4\u03b5\u03c2 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b5\u03c2 \u03bd\u03b1 \u03c3\u03c5\u03bc\u03bc\u03b5\u03c4\u03ac\u03c3\u03c7\u03bf\u03c5\u03bd"},
 gda(){return"\u03a3\u03af\u03b3\u03bf\u03c5\u03c1\u03b1;"},
-gq_(){return"You have unsaved changes. Discard your edits?"},
+gq1(){return"You have unsaved changes. Discard your edits?"},
 gjf(){return"\u03a3\u03af\u03b3\u03bf\u03c5\u03c1\u03b1 \u03b8\u03b5\u03c2 \u03bd\u03b1 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af\u03c2;"},
 gjg(){return"\u0393\u03b9\u03b1 \u03bd\u03b1 \u03bc\u03c0\u03bf\u03c1\u03ad\u03c3\u03b5\u03b9\u03c2 \u03bd\u03b1 \u03c5\u03c0\u03bf\u03b3\u03c1\u03ac\u03c8\u03b5\u03b9\u03c2 \u03c4\u03bf \u03ac\u03bb\u03bb\u03bf \u03ac\u03c4\u03bf\u03bc\u03bf, \u03c0\u03bb\u03b7\u03ba\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03b7\u03c3\u03b5 \u03c4\u03b7 \u03c3\u03c5\u03bd\u03b8\u03b7\u03bc\u03b1\u03c4\u03b9\u03ba\u03ae \u03c6\u03c1\u03ac\u03c3\u03b7 \u03b1\u03c3\u03c6\u03b1\u03bb\u03bf\u03cd\u03c2 \u03b1\u03c0\u03bf\u03b8\u03ae\u03ba\u03b5\u03c5\u03c3\u03b7\u03c2 \u03ae \u03c4\u03bf \u03ba\u03bb\u03b5\u03b9\u03b4\u03af \u03b1\u03bd\u03ac\u03ba\u03c4\u03b7\u03c3\u03b7\u03c2."},
 jh(d){return"\u0391\u03c0\u03bf\u03b4\u03bf\u03c7\u03ae \u03b1\u03c5\u03c4\u03bf\u03cd \u03c4\u03bf\u03c5 \u03b1\u03b9\u03c4\u03ae\u03bc\u03b1\u03c4\u03bf\u03c2 \u03b5\u03c0\u03b1\u03bb\u03ae\u03b8\u03b5\u03c5\u03c3\u03b7\u03c2 \u03b1\u03c0\u03cc "+d+";"},
@@ -603,6 +603,8 @@ gkk(){return""},
 glg(){return""},
 gfE(){return""},
 gmy(){return""},
+gpU(){return"Show more"},
+gpT(){return"Show less"},
 gfF(){return""},
 gmL(){return""},
 gog(){return""},
@@ -672,23 +674,23 @@ gfd(){return""},
 goi(){return""},
 goy(d){return""},
 gkW(){return""},
-gq4(){return"Hide rooms that are in a space"},
-gq6(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
-gpT(){return"Show thumbnails of images and videos"},
-gpX(){return"Secure [matrix] Communication"},
-gpW(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
+gq6(){return"Hide rooms that are in a space"},
+gq8(){return"This release was only possible thanks to your support. FluffyChat remains free, open-source, and entirely community-driven."},
+gpV(){return"Show thumbnails of images and videos"},
+gpZ(){return"Secure [matrix] Communication"},
+gpY(){return"Communicate encrypted over the decentralized [matrix] network in an easy and accessible way for everyone."},
 gpQ(){return"Interactive verification"},
-gq5(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
-pY(d){return""+d+" unverified devices in the chat."},
-gq0(){return"Encrypted message"},
-gq8(){return"Unencrypted message"},
-gpU(d){return"Allow"},
-pV(d){return"Allow encrypted communication with "+d+"?"},
-q7(d){return"Public key: "+d},
-gpZ(){return"Device identity key"},
+gq7(){return"If you are next to each other or communicate via a secure channel then you can verify all devices at once by comparing a security number or emojis."},
+q_(d){return""+d+" unverified devices in the chat."},
+gq2(){return"Encrypted message"},
+gqa(){return"Unencrypted message"},
+gpW(d){return"Allow"},
+pX(d){return"Allow encrypted communication with "+d+"?"},
+q9(d){return"Public key: "+d},
+gq0(){return"Device identity key"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gj,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Gj":{"aE":[]}}'))};
-(a=>{a["+S6pt2zu2KO6u4kf7ihUnYHDGkQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["hnL7xC6gdA1t7g0T30/YXSqslyo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_91.part.js.map
