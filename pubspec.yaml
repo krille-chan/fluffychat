@@ -53,9 +53,10 @@ dependencies:
   intl: any
   just_audio: ^0.10.5
   latlong2: ^0.9.1
-  matrix: ^7.2.1
+  matrix: ^7.2.2
   mime: ^2.0.0
   native_imaging: ^0.4.0
+  open_file: ^3.5.11
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^9.0.1
   particles_network: ^1.9.4

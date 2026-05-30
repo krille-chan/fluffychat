@@ -175,6 +175,7 @@ class SettingsController extends State<Settings> {
   Future<void> checkBootstrap() async {
     final client = Matrix.of(context).client;
     if (!client.encryptionEnabled) return;
+    if (!client.isLogged()) return;
     await client.accountDataLoading;
     await client.userDeviceKeysLoading;
     if (client.prevBatch == null) {

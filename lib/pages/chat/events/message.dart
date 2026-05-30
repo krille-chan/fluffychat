@@ -256,7 +256,7 @@ class Message extends StatelessWidget {
                             child: Text(
                               event.originServerTs.localizedTime(context),
                               style: TextStyle(
-                                fontSize: 12 * AppSettings.fontSizeFactor.value,
+                                fontSize: 12,
                                 fontWeight: FontWeight.bold,
                                 color: theme.colorScheme.secondary,
                               ),
@@ -862,9 +862,7 @@ class Message extends StatelessWidget {
                         ),
                         child: Text(
                           L10n.of(context).readUpToHere,
-                          style: TextStyle(
-                            fontSize: 12 * AppSettings.fontSizeFactor.value,
-                          ),
+                          style: TextStyle(fontSize: 12),
                         ),
                       ),
                       Expanded(
