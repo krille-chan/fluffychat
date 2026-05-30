@@ -5,26 +5,26 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: "1dd467c7e56541bea70bbd35d537e3aa12dfba81f39e2a75bb6a61fc5595985b"
+      sha256: "8d7ff3948166b8ec5da0fbb5962000926b8e02f2ed9b3e51d1738905fbd4c98d"
       url: "https://pub.dev"
     source: hosted
-    version: "97.0.0"
+    version: "93.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
-      sha256: "041602214e3ec5a02ba85c08fe8e381aa25ac5367db17d03fbb6d22d851d4bba"
+      sha256: de7148ed2fcec579b19f122c1800933dfa028f6d9fd38a152b04b1516cec120b
       url: "https://pub.dev"
     source: hosted
-    version: "11.0.0"
+    version: "10.0.1"
   analyzer_plugin:
     dependency: transitive
     description:
       name: analyzer_plugin
-      sha256: "06d68a8c9e7302fa44c45aba77d792b6926430a47e0cf82abf6b90436a70d9f4"
+      sha256: "7df504f0c9d6891bacc9f73a5a8c5f6fe4fc49c90ec8e3379916372906ba0b32"
       url: "https://pub.dev"
     source: hosted
-    version: "0.14.5"
+    version: "0.14.1"
   ansicolor:
     dependency: transitive
     description:
@@ -2202,13 +2202,12 @@ packages:
     source: hosted
     version: "3.0.3"
   webcrypto:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "."
-      ref: master
-      resolved-ref: "38823650e7d1b675d07c1d2ea975d955c356cffe"
-      url: "https://github.com/google/webcrypto.dart.git"
-    source: git
+      name: webcrypto
+      sha256: "9885ed99a846191542dd6ca820c83a098117df56be57453832233a3fef68f3f2"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.6.1"
   webdriver:
     dependency: transitive
