@@ -1595,7 +1595,7 @@ let wasm_bindgen;
     };
 
     function __wbg_adapter_40(arg0, arg1, arg2) {
-        wasm.closure590_externref_shim(arg0, arg1, arg2);
+        wasm.closure589_externref_shim(arg0, arg1, arg2);
     }
 
     const WorkerPoolFinalization = (typeof FinalizationRegistry === 'undefined')
@@ -1955,8 +1955,8 @@ let wasm_bindgen;
             const ret = false;
             return ret;
         };
-        imports.wbg.__wbindgen_closure_wrapper1747 = function(arg0, arg1, arg2) {
-            const ret = makeMutClosure(arg0, arg1, 591, __wbg_adapter_40);
+        imports.wbg.__wbindgen_closure_wrapper1744 = function(arg0, arg1, arg2) {
+            const ret = makeMutClosure(arg0, arg1, 590, __wbg_adapter_40);
             return ret;
         };
         imports.wbg.__wbindgen_debug_string = function(arg0, arg1) {
