@@ -5,6 +5,7 @@
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/code_highlight_theme.dart';
 import 'package:fluffychat/utils/event_checkbox_extension.dart';
@@ -30,7 +31,6 @@ class HtmlMessage extends StatelessWidget {
   final void Function(LinkableElement) onOpen;
   final String? eventId;
   final Set<Event>? checkboxCheckedEvents;
-  final bool limitHeight;
 
   const HtmlMessage({
     super.key,
@@ -42,7 +42,6 @@ class HtmlMessage extends StatelessWidget {
     required this.onOpen,
     this.eventId,
     this.checkboxCheckedEvents,
-    this.limitHeight = true,
   });
 
   /// Keep in sync with: https://spec.matrix.org/latest/client-server-api/#mroommessage-msgtypes
@@ -587,9 +586,7 @@ class HtmlMessage extends StatelessWidget {
   Widget build(BuildContext context) {
     final element = parser.parse(html).body ?? dom.Element.html('');
     final configuredMaxLines = AppSettings.messagePreviewMaxLines.value;
-    final maxLines = !limitHeight || configuredMaxLines <= 0
-        ? null
-        : configuredMaxLines;
+    final maxLines = configuredMaxLines <= 0 ? null : configuredMaxLines;
     final span = _renderHtml(element, context);
     final style = TextStyle(fontSize: fontSize, color: textColor);
 
@@ -658,7 +655,8 @@ class _CollapsibleTextState extends State<_CollapsibleText> {
       mainAxisSize: MainAxisSize.min,
       children: [
         AnimatedSize(
-          duration: const Duration(milliseconds: 200),
+          duration: FluffyThemes.animationDuration,
+          curve: FluffyThemes.animationCurve,
           alignment: Alignment.topLeft,
           child: Text.rich(
             widget.span,
@@ -668,17 +666,12 @@ class _CollapsibleTextState extends State<_CollapsibleText> {
             selectionColor: widget.textColor.withAlpha(128),
           ),
         ),
-        GestureDetector(
-          onTap: () => setState(() => _expanded = !_expanded),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 4),
-            child: Text(
-              _expanded ? '↑ ${l10n.showLess}' : '↓ ${l10n.showMore}',
-              style: TextStyle(
-                color: widget.linkColor,
-                fontSize: widget.fontSize * 0.85,
-              ),
-            ),
+        Center(
+          child: TextButton.icon(
+            onPressed: () => setState(() => _expanded = !_expanded),
+            style: TextButton.styleFrom(foregroundColor: widget.linkColor),
+            icon: Icon(_expanded ? Icons.arrow_drop_up : Icons.arrow_drop_down),
+            label: Text(_expanded ? l10n.showLess : l10n.showMore),
           ),
         ),
       ],
