@@ -458,7 +458,7 @@
         "placeholders": {}
     },
     "link": "Saite",
-    "newSpaceDescription": "Kopienas ļauj apvienot tērzēšanas un būvēt privātas vai publiskas cilvēku grupas, kurus vieno kaut kas kopīgs, piemēram, zinātne, matemātika, valoda, reliģija, ķīmija, medicīna, kosmoss, datori, ceļošana, grāmatu lasīšana, kriptovalūta, kiberdrošība, aparātprogrammatūra.",
+    "newSpaceDescription": "Vietas ļauj apvienot tērzēšanas un veidot privātas vai publiskas kopienas.",
     "chatDescription": "Tērzēšanas apraksts",
     "next": "Nākamais",
     "@next": {
@@ -1821,7 +1821,7 @@
         }
     },
     "sorryThatsNotPossible": "Atvaino! Tas nav iespējams",
-    "oopsSomethingWentWrong": "Ups! Kaut kas nogāja greizi…",
+    "oopsSomethingWentWrong": "Ak vai! Kaut kas nogāja greizi…",
     "@oopsSomethingWentWrong": {
         "type": "String",
         "placeholders": {}
@@ -1998,7 +1998,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "oopsPushError": "Ups! Diemžēl atgadījās kļūda pašpiegādes paziņojumu iestatīšanas laikā.",
+    "oopsPushError": "Ak vai! Diemžēl atgadījās kļūda pašpiegādes paziņojumu iestatīšanas laikā.",
     "@oopsPushError": {
         "type": "String",
         "placeholders": {}
@@ -2713,7 +2713,7 @@
     "createNewChat": "Izveidot jaunu tērzēšanu",
     "makeModerator": "Padarīt par satura pārraudzītāju",
     "tagName": "Birkas nosaukums",
-    "setPowerLevelDescription": "",
+    "setPowerLevelDescription": "Tiesību līmeņi nosaka, ko dalībniekam ir ļauts darīt šajā istabā, un parasti ir starp 0 un 100.",
     "matrixId": "Matrix Id",
     "support": "Atbalstīt",
     "setPowerLevel": "Iestatīt tiesību līmeni",
@@ -2738,5 +2738,43 @@
         "type": "String",
         "placeholders": {}
     },
-    "possibleByYou": "Šis laidiens bija iespējams pateicoties Tavam atbalstam. FluffyChat joprojām ir brīva, atvērta pirmkoda un pilnībā kopienas virzīta."
+    "possibleByYou": "Šis laidiens bija iespējams pateicoties Tavam atbalstam. FluffyChat joprojām ir brīva, atvērta pirmkoda un pilnībā kopienas virzīta.",
+    "hideRoomsInSpaces": "Paslēpt istabas, kas ir vietā",
+    "showThumbnailsInTimeline": "Rādīt attēlu un video sīktēlus",
+    "appSubtitle": "Droša [matrix] saziņa",
+    "appDescription": "Šifrēta saziņa decentralizētā [matrix] tīklā visiem vienkāršā un pieejamā veidā.",
+    "interactiveVerification": "Mijiedarbība apliecināšana",
+    "interactiveVerificationDescription": "Ja esat viens otram blakus vai sazināties drošā veidā, tad varat apliecināt visas ierīces uzreiz ar drošības skaitļa vai emocijzīmju salīdzināšanu.",
+    "countUnverifiedDevices": "Tērzēšanā ir {count} neapliecinātas ierīces.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "check": "Pārbaudīt",
+    "encryptedMessage": "Šifrēta ziņa",
+    "unencryptedMessage": "Nešifrēta ziņa",
+    "allow": "Ļaut",
+    "allowEncryptedCommunicationWith": "Ļaut šifrētu saziņu ar {name}?",
+    "@allowEncryptedCommunicationWith": {
+        "type": "String",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "publicKey": "Publiskā atslēga: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "deviceIdentityKey": "Ierīces identificēšanas atslēga"
 }
