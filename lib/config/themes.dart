@@ -59,14 +59,6 @@ abstract class FluffyThemes {
       dividerColor: brightness == Brightness.dark
           ? colorScheme.surfaceContainerHighest
           : colorScheme.surfaceContainer,
-      popupMenuTheme: PopupMenuThemeData(
-        color: colorScheme.surfaceContainerLow,
-        iconColor: colorScheme.onSurface,
-        textStyle: TextStyle(color: colorScheme.onSurface),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-        ),
-      ),
       segmentedButtonTheme: SegmentedButtonThemeData(
         style: SegmentedButton.styleFrom(
           iconColor: colorScheme.onSurface,
