@@ -2755,5 +2755,51 @@
     "addTag": "Cuir clib leis",
     "removeTag": "Bain an chlib",
     "tagName": "Ainm an chlib",
-    "createNewTag": "Cruthaigh clib nua"
+    "createNewTag": "Cruthaigh clib nua",
+    "discardEdits": "Tá athruithe neamhshábháilte agat. Ar mhaith leat do chuid eagarthóireachtaí a chaitheamh amach?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showMore": "Taispeáin níos mó",
+    "showLess": "Taispeáin níos lú",
+    "hideRoomsInSpaces": "Folaigh seomraí atá i spás",
+    "possibleByYou": "Níorbh fhéidir an scaoileadh seo a dhéanamh ach amháin a bhuíochas le do thacaíocht. Tá FluffyChat fós saor in aisce, foinse oscailte, agus dírithe go hiomlán ar an bpobal.",
+    "showThumbnailsInTimeline": "Taispeáin mionsamhlacha d'íomhánna agus físeáin",
+    "appSubtitle": "Cumarsáid [maitrís] Shlán",
+    "appDescription": "Cumarsáid chriptithe thar an líonra díláraithe [maitrís] ar bhealach éasca agus inrochtana do gach duine.",
+    "interactiveVerification": "Fíorú idirghníomhach",
+    "interactiveVerificationDescription": "Má tá sibh in aice le chéile nó má bhíonn sibh ag cumarsáid trí chainéal slán, is féidir libh gach gléas a fhíorú ag an am céanna trí uimhir slándála nó emoji a chur i gcomparáid.",
+    "countUnverifiedDevices": "{count} gléasanna neamhfhíoraithe sa chomhrá.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "check": "Seiceáil",
+    "encryptedMessage": "Teachtaireacht chriptithe",
+    "unencryptedMessage": "Teachtaireacht neamhchriptithe",
+    "allow": "Ceadaigh",
+    "allowEncryptedCommunicationWith": "Cumarsáid chriptithe le {name} a cheadú?",
+    "@allowEncryptedCommunicationWith": {
+        "type": "String",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "publicKey": "Eochair phoiblí: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "deviceIdentityKey": "Eochair aitheantais gléis"
 }
