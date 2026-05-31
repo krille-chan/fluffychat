@@ -2793,5 +2793,7 @@
         }
     },
     "onlyThisTime": "Alleen deze keer",
-    "deviceIdentityKey": "Apparaatidentificatiesleutel"
+    "deviceIdentityKey": "Apparaatidentificatiesleutel",
+    "showMore": "Toon meer",
+    "showLess": "Toon minder"
 }
