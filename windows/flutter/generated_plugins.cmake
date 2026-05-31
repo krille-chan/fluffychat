@@ -12,6 +12,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   flutter_webrtc
   geolocator_windows
   pasteboard
+  pdfx
   record_windows
   screen_retriever_windows
   share_plus

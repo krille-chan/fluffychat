@@ -20,6 +20,8 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 
+import '../../../attachment/attachment_style.dart';
+import '../../../attachment/default_attachment_renderer.dart';
 import '../../../config/app_config.dart';
 import '../../../utils/event_checkbox_extension.dart';
 import '../../../utils/platform_infos.dart';
@@ -191,10 +193,14 @@ class MessageContent extends StatelessWidget {
               timeline: timeline,
             );
           case MessageTypes.File:
-            return MessageDownloadContent(
+            return const DefaultAttachmentRenderer().build(
+              context,
               event,
-              textColor: textColor,
-              linkColor: linkColor,
+              AttachmentStyle(
+                textColor: textColor,
+                linkColor: linkColor,
+                borderRadius: borderRadius,
+              ),
             );
           case MessageTypes.BadEncrypted:
           case EventTypes.Encrypted:
