@@ -39,6 +39,36 @@ class SettingsChatView extends StatelessWidget {
                 subtitle: L10n.of(context).formattedMessagesDescription,
                 setting: AppSettings.renderHtml,
               ),
+              Builder(
+                builder: (context) {
+                  final min = AppSettings.messagePreviewMaxLines.defaultValue;
+                  const max = 100;
+                  final value = AppSettings.messagePreviewMaxLines.value.clamp(
+                    min,
+                    max,
+                  );
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      ListTile(
+                        title: Text(L10n.of(context).messagePreviewMaxLines),
+                        subtitle: Text(
+                          L10n.of(context).messagePreviewMaxLinesDescription,
+                        ),
+                        trailing: Text(value.toString()),
+                      ),
+                      Slider.adaptive(
+                        min: min.toDouble(),
+                        max: max.toDouble(),
+                        divisions: max - min,
+                        value: value.toDouble(),
+                        semanticFormatterCallback: (d) => d.round().toString(),
+                        onChanged: controller.changeMessagePreviewMaxLines,
+                      ),
+                    ],
+                  );
+                },
+              ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).hideRedactedMessages,
                 subtitle: L10n.of(context).hideRedactedMessagesBody,

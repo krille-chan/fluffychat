@@ -3,6 +3,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/material.dart';
 
 import 'settings_chat_view.dart';
@@ -15,6 +16,11 @@ class SettingsChat extends StatefulWidget {
 }
 
 class SettingsChatController extends State<SettingsChat> {
+  Future<void> changeMessagePreviewMaxLines(double value) async {
+    await AppSettings.messagePreviewMaxLines.setItem(value.round());
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) => SettingsChatView(this);
 }
