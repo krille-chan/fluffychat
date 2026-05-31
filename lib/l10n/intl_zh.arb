@@ -2794,5 +2794,7 @@
         }
     },
     "onlyThisTime": "仅本次",
-    "deviceIdentityKey": "设备身份密钥"
+    "deviceIdentityKey": "设备身份密钥",
+    "showMore": "显示更多",
+    "showLess": "显示较少"
 }
