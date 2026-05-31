@@ -2794,5 +2794,7 @@
         }
     },
     "onlyThisTime": "Vaid sel korral",
-    "deviceIdentityKey": "Seadme identiteedi võti"
+    "deviceIdentityKey": "Seadme identiteedi võti",
+    "showMore": "Näita veel",
+    "showLess": "Näita vähem"
 }
