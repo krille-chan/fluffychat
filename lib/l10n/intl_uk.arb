@@ -2794,5 +2794,7 @@
         }
     },
     "onlyThisTime": "Лише цього разу",
-    "deviceIdentityKey": "Ключ пристрою"
+    "deviceIdentityKey": "Ключ пристрою",
+    "showMore": "Показати ще",
+    "showLess": "Показати менше"
 }
