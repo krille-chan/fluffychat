@@ -2757,5 +2757,6 @@
     "playSoundOnNotification": "",
     "unsetLowPriority": "",
     "setLowPriority": "",
-    "removeTag": ""
+    "removeTag": "",
+    "appDescription": "Schreibe mir anderen mithilfe des dezentralisierten [matrix] Netzwerks auf eine einfache und zugängliche Art für jeden."
 }
