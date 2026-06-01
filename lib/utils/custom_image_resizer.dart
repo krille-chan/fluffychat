@@ -5,11 +5,15 @@
 
 import 'dart:ui';
 
+import 'package:cross_file/cross_file.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
-
+import 'package:heif_converter/heif_converter.dart';
 import 'package:matrix/matrix.dart';
+import 'package:mime/mime.dart';
 import 'package:native_imaging/native_imaging.dart' as native;
+import 'package:path_provider/path_provider.dart';
 
 (int, int) _scaleToBox(int width, int height, {required int boxSize}) {
   final fit = applyBoxFit(
@@ -23,9 +27,26 @@ import 'package:native_imaging/native_imaging.dart' as native;
 Future<MatrixImageFileResizedResponse?> customImageResizer(
   MatrixImageFileResizeArguments arguments,
 ) async {
+  var imageBytes = arguments.bytes;
+  if (PlatformInfos.isMobile) {
+    final mimeType = lookupMimeType(arguments.fileName);
+    if (mimeType == 'image/heic') {
+      Logs().d('Convert heic file to jpeg before sending...');
+      final tmpDir = await getTemporaryDirectory();
+      final file = XFile.fromData(arguments.bytes, name: arguments.fileName);
+      await file.saveTo('${tmpDir.path}/${arguments.fileName}');
+      final outputPath = await HeifConverter.convert(
+        '${tmpDir.path}/${arguments.fileName}.jpg',
+        format: 'jpg',
+      );
+      if (outputPath != null) {
+        imageBytes = await XFile(outputPath).readAsBytes();
+      }
+    }
+  }
+
   await native.init();
 
-  var imageBytes = arguments.bytes;
   String? blurhash;
 
   var originalWidth = 0;

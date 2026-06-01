@@ -775,6 +775,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.2"
+  heif_converter:
+    dependency: "direct main"
+    description:
+      name: heif_converter
+      sha256: b1711482dc4f08c05ba86e251d6331a3b7a6fd01a7514f0491dd0b10fe1712a3
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.6"
   highlight:
     dependency: "direct main"
     description:

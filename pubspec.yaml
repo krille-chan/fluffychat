@@ -45,6 +45,7 @@ dependencies:
   geolocator: ^14.0.2
   go_router: ^17.2.3
   handy_window: ^0.4.2
+  heif_converter: ^1.0.6
   highlight: ^0.7.0
   html: ^0.15.4
   http: ^1.6.0
