@@ -2748,5 +2748,51 @@
     "addTag": "Tag toevoegen",
     "removeTag": "Tag verwijderen",
     "tagName": "Tagnaam",
-    "createNewTag": "Nieuwe tag maken"
+    "createNewTag": "Nieuwe tag maken",
+    "discardEdits": "Je hebt wijzigingen die nog niet zijn opgeslagen. Wil je de wijzigingen ongedaan maken?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "hideRoomsInSpaces": "Kamers in een space verbergen",
+    "possibleByYou": "Deze versie was alleen mogelijk dankzij jullie steun. FluffyChat blijft gratis, open source en volledig door de community gedreven.",
+    "showThumbnailsInTimeline": "Miniatuurafbeeldingen van foto’s en video’s weergeven",
+    "appSubtitle": "Veilige [matrix]-communicatie",
+    "appDescription": "Communiceer op een eenvoudige en voor iedereen toegankelijke manier via het gedecentraliseerde [matrix]-netwerk.",
+    "interactiveVerification": "Interactieve verificatie",
+    "interactiveVerificationDescription": "Als jullie naast elkaar zitten of via een beveiligd kanaal communiceren, kun je alle apparaten in één keer verifiëren door een beveiligingscode of emoji’s te vergelijken.",
+    "countUnverifiedDevices": "{count} niet-geverifieerde apparaten in de chat.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "check": "Controleer",
+    "encryptedMessage": "Versleuteld bericht",
+    "unencryptedMessage": "Niet-versleuteld bericht",
+    "allow": "Toestaan",
+    "allowEncryptedCommunicationWith": "Versleutelde communicatie met {name} toestaan?",
+    "@allowEncryptedCommunicationWith": {
+        "type": "String",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "publicKey": "Publieke sleutel: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "deviceIdentityKey": "Apparaatidentificatiesleutel",
+    "showMore": "Toon meer",
+    "showLess": "Toon minder"
 }

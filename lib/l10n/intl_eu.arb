@@ -63,7 +63,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Batu al daitezke bisitan dauden erabiltzaileak",
+    "areGuestsAllowedToJoin": "Batu al daitezke bisitan dauden erabiltzaileak?",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -2746,8 +2746,53 @@
     "setLowPriority": "Ezarri lehentasun baxua",
     "unsetLowPriority": "Kendu lehentasun baxua",
     "playSoundOnNotification": "Jo soinua jakinarazpenekin",
-    "createNewTag": "",
-    "tagName": "",
-    "addTag": "",
-    "removeTag": ""
+    "createNewTag": "Sortu etiketa berria",
+    "tagName": "Etiketaren izena",
+    "addTag": "Gehitu etiketa",
+    "removeTag": "Kendu etiketa",
+    "discardEdits": "Gorde gabeko aldaketak daude. Baztertu nahi dituzu?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showMore": "Erakutsi gehiago",
+    "showLess": "Erakutsi gutxiago",
+    "hideRoomsInSpaces": "Ezkutatu gune batean dauden gelak",
+    "possibleByYou": "Bertsio hau zure laguntzari esker izan da posible. FluffyChat-ek doakoa, kode irekikoa eta guztiz komunitarioa izaten jarraitzen du.",
+    "showThumbnailsInTimeline": "Erakutsi irudi eta bideoen iruditxoa",
+    "appSubtitle": "[matrix] komunikazio segurua",
+    "appDescription": "Komunikatu [matrix] sare deszentralizatuaren bidez, era zifratuan, mundu guztiarentzat modu erraz eta eskuragarrian.",
+    "interactiveVerification": "Egiaztapen interaktiboa",
+    "interactiveVerificationDescription": "Elkarren ondoan bazaudete edo kanal seguru baten bidez komunikatzen bazarete, gailu guztiak batera egiazta ditzakezu, segurtasun-zenbaki bat edo emoji bat konparatuz.",
+    "countUnverifiedDevices": "Egiaztatu gabeko {count} gailu txatean.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "encryptedMessage": "Zifratutako mezua",
+    "unencryptedMessage": "Zifratu gabeko mezua",
+    "allow": "Baimendu",
+    "allowEncryptedCommunicationWith": "Baimendu zifratutako komunikazioa {name}(r)ekin?",
+    "@allowEncryptedCommunicationWith": {
+        "type": "String",
+        "placeholders": {
+            "name": {
+                "type": "String"
+            }
+        }
+    },
+    "publicKey": "Gako publikoa: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "deviceIdentityKey": "Gailuaren identitate-gakoa"
 }
