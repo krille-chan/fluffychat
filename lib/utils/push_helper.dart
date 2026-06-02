@@ -470,6 +470,7 @@ extension on Client {
         height: notificationAvatarDimension,
         animated: false,
         isThumbnail: true,
+        rounded: true,
       ).timeout(const Duration(seconds: 3));
     } catch (e, s) {
       Logs().e('Unable to get avatar picture', e, s);
