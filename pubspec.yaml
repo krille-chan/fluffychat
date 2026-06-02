@@ -100,6 +100,7 @@ dev_dependencies:
   license_checker: ^1.6.2
   translations_cleaner: ^0.1.1
 
+  test: any
 flutter:
   generate: true
   uses-material-design: true
