@@ -341,7 +341,7 @@ oZ(d){return d+" g\xe9pel\u2026"},
 p_(d){return"\ud83d\udeaa "+d+" elhagyta a cseveg\xe9st"},
 hq(d,e){return d+" felhaszn\xe1l\xf3 "+e+" esem\xe9nyt k\xfcld\xf6tt"},
 ghp(){return"Hiteles\xedtetlen"},
-gcN(){return"Hiteles\xedtett"},
+gcM(){return"Hiteles\xedtett"},
 gp9(){return"Hiteles\xedt"},
 ght(){return"Hiteles\xedt\xe9s megkezd\xe9se"},
 gpc(){return"Sikeres hiteles\xedt\xe9s!"},
@@ -692,5 +692,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gy,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Gy":{"aE":[]}}'))};
-(a=>{a["Qf3d3hUEkPVkm3FHf+shYVn0mvI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["lwkO7l9xpVT6MPCTXeiCy0HtNo0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_146.part.js.map

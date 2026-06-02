@@ -341,7 +341,7 @@ oZ(d){return d+" ra\u0161o\u2026"},
 p_(d){return"\ud83d\udeaa "+d+" paliko pokalb\u012f"},
 hq(d,e){return d+" i\u0161siunt\u0117 "+e+" \u012fvyk\u012f"},
 ghp(){return"Nepatvirtinta"},
-gcN(){return"Patvirtinta"},
+gcM(){return"Patvirtinta"},
 gp9(){return"Patvirtinti"},
 ght(){return"Prad\u0117ti patvirtinim\u0105"},
 gpc(){return"J\u016bs s\u0117kmingai patvirtinote!"},
@@ -692,5 +692,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GH,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"GH":{"aE":[]}}'))};
-(a=>{a["TnW8LZVZHs57YsNMrh2TD46oZhY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4HODuxCk6l60GK6G4AYsuAwnB2M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_163.part.js.map

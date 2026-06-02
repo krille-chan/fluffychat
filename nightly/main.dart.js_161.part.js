@@ -341,7 +341,7 @@ oZ(d){return d+" la yettaru\u2026"},
 p_(d){return"\ud83d\udeaa"+d+" yeffe\u0263 seg udiwenni"},
 hq(d,e){return d+" yuzen-d tadyant "+e},
 ghp(){return"Ur yettwaselken ara"},
-gcN(){return"Yettwaselken"},
+gcM(){return"Yettwaselken"},
 gp9(){return"Selken"},
 ght(){return"Bdu Aselken"},
 gpc(){return"Yedda uselken-ik\xb7im akken iwata!"},
@@ -692,5 +692,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GF,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"GF":{"aE":[]}}'))};
-(a=>{a["VW6Sb91ksGx0wSmctXx2EHmyZYU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["wR4te5VgrL0z3WdGusWvptNfLmc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_161.part.js.map

@@ -341,7 +341,7 @@ oZ(d){return d+" kirjoittaa\u2026"},
 p_(d){return"\ud83d\udeaa "+d+" poistui keskustelusta"},
 hq(d,e){return d+" l\xe4hetti "+e+"-tapahtuman"},
 ghp(){return"Varmistamaton"},
-gcN(){return"Varmistettu"},
+gcM(){return"Varmistettu"},
 gp9(){return"Varmista"},
 ght(){return"Aloita varmennus"},
 gpc(){return"Varmensit onnistuneesti!"},
@@ -694,5 +694,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gq,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Gq":{"aE":[]}}'))};
-(a=>{a["bNkdRw9ufzr7a8qU5B4hJaRrnbE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["grN5EyBd2oyGTHSPcP9CpPY4IMs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_126.part.js.map

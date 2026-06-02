@@ -341,7 +341,7 @@ oZ(d){return d+" sta scrivendo\u2026"},
 p_(d){return"\ud83d\udeaa "+d+" ha abbandonato la chat"},
 hq(d,e){return d+" ha inviato un evento "+e},
 ghp(){return"Non verificato"},
-gcN(){return"Verificato"},
+gcM(){return"Verificato"},
 gp9(){return"Verifica"},
 ght(){return"Avvia la verifica"},
 gpc(){return"Hai verificato con successo!"},
@@ -692,5 +692,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GC,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"GC":{"aE":[]}}'))};
-(a=>{a["i1En53Xr2dE0MyYOl7ARlQIB+jk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["5Pd0vN6Ak/WeRa3MWUdSGlHsCcQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_156.part.js.map

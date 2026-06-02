@@ -341,7 +341,7 @@ oZ(d){return d+" raksta\u2026"},
 p_(d){return"\ud83d\udeaa "+d+" pameta t\u0113rz\u0113\u0161anu"},
 hq(d,e){return d+" nos\u016bt\u012bja notikumu "+e},
 ghp(){return"Neapliecin\u0101ta"},
-gcN(){return"Apliecin\u0101ta"},
+gcM(){return"Apliecin\u0101ta"},
 gp9(){return"Apliecin\u0101t"},
 ght(){return"Uzs\u0101kt apliecin\u0101\u0161anu"},
 gpc(){return"Apliecin\u0101\u0161ana bija sekm\u012bga."},
@@ -694,5 +694,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GI,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"GI":{"aE":[]}}'))};
-(a=>{a["k4jcFg7BKCnCvGS+Hn0jAJ58mEE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9MGMAzxaKWP/S0ApNJjdZcaeKxs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_164.part.js.map

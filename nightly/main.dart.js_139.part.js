@@ -341,7 +341,7 @@ oZ(d){return d+" tipka \u2026"},
 p_(d){return"\ud83d\udeaa "+d+" je napustio/la chat"},
 hq(d,e){return d+" ja poslao/la "+e+" doga\u0111aj"},
 ghp(){return"Nepotvr\u0111eno"},
-gcN(){return"Potvr\u0111eno"},
+gcM(){return"Potvr\u0111eno"},
 gp9(){return"Potvrdi"},
 ght(){return"Pokreni potvr\u0111ivanje"},
 gpc(){return"Uspje\u0161no si potvrdio/la!"},
@@ -694,5 +694,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gx,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Gx":{"aE":[]}}'))};
-(a=>{a["Vc0NlWouuHT7Bkx+1BW7vIq+BqY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["10RDghSQE00KctO91nsHzTWXZS8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_139.part.js.map

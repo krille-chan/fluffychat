@@ -341,7 +341,7 @@ oZ(d){return d+" skriver\u2026"},
 p_(d){return d+" har forlatt sludringen"},
 hq(d,e){return d+" sendte en "+e+"-hendelse"},
 ghp(){return"Ikke verifisert"},
-gcN(){return"Verifisert"},
+gcM(){return"Verifisert"},
 gp9(){return"Bekreft"},
 ght(){return"Start bekreftelse"},
 gpc(){return"Du har bekreftet!"},
@@ -694,5 +694,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GJ,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"GJ":{"aE":[]}}'))};
-(a=>{a["pu+1LUovQRke9qMknL77Sz8y2FE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zjSffzqML7iTzyhTBPE/yRJohog="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_165.part.js.map

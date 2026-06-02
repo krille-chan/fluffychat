@@ -341,7 +341,7 @@ oZ(d){return d+" tajpas\u2026"},
 p_(d){return d+" foriris de la babilo"},
 hq(d,e){return d+" sendis eventon de speco "+e},
 ghp(){return""},
-gcN(){return"Kontrolita"},
+gcM(){return"Kontrolita"},
 gp9(){return"Kontroli"},
 ght(){return"Komenci kontrolon"},
 gpc(){return"Vi sukcese kontrolis!"},
@@ -692,5 +692,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gl,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Gl":{"aE":[]}}'))};
-(a=>{a["fkdj6chu34rgzcgKFIIg9Quh5g8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BfgTrvsvNFktsrAooosuG7Ix9ZA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_114.part.js.map

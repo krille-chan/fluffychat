@@ -341,7 +341,7 @@ oZ(d){return d+" est\xe0 escrivint\u2026"},
 p_(d){return"\ud83d\udeaa "+d+" ha marxat del xat"},
 hq(d,e){return d+" ha enviat un esdeveniment "+e},
 ghp(){return"No verificat"},
-gcN(){return"Verificat"},
+gcM(){return"Verificat"},
 gp9(){return"Verifica"},
 ght(){return"Inicia la verificaci\xf3"},
 gpc(){return"T'has verificat correctament!"},
@@ -694,5 +694,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gf,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Gf":{"aE":[]}}'))};
-(a=>{a["q17y5dp1S1q9pF0CwaDEF/DkL+8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["XakuyJQb+hlU7MYEsQSTTKpW4l0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_49.part.js.map

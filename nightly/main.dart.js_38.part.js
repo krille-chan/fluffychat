@@ -341,7 +341,7 @@ oZ(d){return d+" \u064a\u0643\u062a\u0628\u2026"},
 p_(d){return"\ud83d\udeaa "+d+" \u063a\u0627\u062f\u0631 \u0627\u0644\u0645\u062d\u0627\u062f\u062b\u0629"},
 hq(d,e){return"\u0623\u0631\u0633\u0644 "+d+" \u062d\u062f\u062b "+e},
 ghp(){return"\u063a\u064a\u0631 \u0645\u0624\u0643\u062f"},
-gcN(){return"\u0645\u0648\u062b\u0651\u0642"},
+gcM(){return"\u0645\u0648\u062b\u0651\u0642"},
 gp9(){return"\u062a\u062d\u0642\u0642"},
 ght(){return"\u0627\u0628\u062f\u0623 \u0627\u0644\u062a\u062d\u0642\u0642"},
 gpc(){return"\u062a\u064f\u062d\u0642\u0642 \u0645\u0646\u0643 \u0628\u0646\u062c\u0627\u062d!"},
@@ -692,5 +692,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gb,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Gb":{"aE":[]}}'))};
-(a=>{a["FMIroyfzLeMCyNZBsWWyMVui1fM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jhvmYd8TsLXSWZGnEGiZXAcqVSw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_38.part.js.map

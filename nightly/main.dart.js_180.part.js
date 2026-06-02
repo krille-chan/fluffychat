@@ -341,7 +341,7 @@ oZ(d){return d+" skriver\u2026"},
 p_(d){return"\ud83d\udeaa "+d+" l\xe4mnade chatten"},
 hq(d,e){return d+" skickade en "+e+" h\xe4ndelse"},
 ghp(){return"Ej verifierad"},
-gcN(){return"Verifierad"},
+gcM(){return"Verifierad"},
 gp9(){return"Verifiera"},
 ght(){return"Starta verifiering"},
 gpc(){return"Du har lyckats verifiera!"},
@@ -694,5 +694,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GU,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"GU":{"aE":[]}}'))};
-(a=>{a["LDCtA3G6ZPwAAtuL99N/8APxF4Q="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["nWF/zRom3Kzinb5Vpk46U1UKpE0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_180.part.js.map

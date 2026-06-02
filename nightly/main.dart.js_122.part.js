@@ -341,7 +341,7 @@ oZ(d){return d+" idazten ari da\u2026"},
 p_(d){return"\ud83d\udeaa "+d+"(e)k txata utzi du"},
 hq(d,e){return d+"(e)k "+e+" gertaera bat bidali du"},
 ghp(){return"Egiaztatu gabe(a)"},
-gcN(){return"Egiaztatuta"},
+gcM(){return"Egiaztatuta"},
 gp9(){return"Egiaztatu"},
 ght(){return"Abiarazi egiaztaketa"},
 gpc(){return"Ondo egiaztatu duzu!"},
@@ -695,5 +695,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Go,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Go":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["qtWHGqHbduJpcoJRvMRYXxM7cgI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["wnNssJdtvxFwdc8eXRY4xA3jXhI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_122.part.js.map

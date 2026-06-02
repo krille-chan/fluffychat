@@ -341,7 +341,7 @@ oZ(d){return"T\xe1 "+d+" ag cl\xf3scr\xedobh\u2026"},
 p_(d){return"\ud83d\udeaa D'fh\xe1g "+d+" an comhr\xe1"},
 hq(d,e){return"Sheol "+d+" imeacht "+e},
 ghp(){return"Neamhfh\xedoraithe"},
-gcN(){return"Deimhnithe"},
+gcM(){return"Deimhnithe"},
 gp9(){return"Deimhnigh"},
 ght(){return"Tosaigh F\xedor\xfa"},
 gpc(){return"D'fh\xedoraigh t\xfa go rath\xfail!"},
@@ -695,5 +695,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gt,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Gt":{"aE":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["CgrlKjyJdgLDoVSF/r9sPHHkuHI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["77BhIPh52gNt4oqCqI+1U3tmwnU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_133.part.js.map

@@ -341,7 +341,7 @@ oZ(d){return d+" yozmoqda\u2026"},
 p_(d){return"\ud83d\udeaa "+d+" suhbatni tark etdi"},
 hq(d,e){return d+" "+e+" tadbirini yubordi"},
 ghp(){return"Tasdiqlanmagan"},
-gcN(){return"Tasdiqlangan"},
+gcM(){return"Tasdiqlangan"},
 gp9(){return"Tasdiqlash"},
 ght(){return"Tasdiqlashni boshlash"},
 gpc(){return"Siz tasdiqladingiz!"},
@@ -695,5 +695,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.H_,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"H_":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["7QWjl98J9UlJK+r2miR2I2FGoBo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["CREFiyCvMpvP0WtiuCE2eOlm5+A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_187.part.js.map

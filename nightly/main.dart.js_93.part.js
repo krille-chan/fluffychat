@@ -341,7 +341,7 @@ oZ(d){return d+" is typing\u2026"},
 p_(d){return"\ud83d\udeaa "+d+" left the chat"},
 hq(d,e){return d+" sent a "+e+" event"},
 ghp(){return"Unverified"},
-gcN(){return"Verified"},
+gcM(){return"Verified"},
 gp9(){return"Verify"},
 ght(){return"Start Verification"},
 gpc(){return"You successfully verified!"},
@@ -694,5 +694,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gk,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Gk":{"aE":[]}}'))};
-(a=>{a["VGJtKr+R1v1pUD3CfbUlFP5xGRs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["QgabW2z/4FFUxZ79a1483M+jcjs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_93.part.js.map

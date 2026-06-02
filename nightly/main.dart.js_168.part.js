@@ -341,7 +341,7 @@ oZ(d){return d+" is aan het typen \u2026"},
 p_(d){return"\ud83d\udeaa "+d+" is vertrokken uit de chat"},
 hq(d,e){return d+" heeft een "+e+" -gebeurtenis gestuurd"},
 ghp(){return"Niet geverifieerd"},
-gcN(){return"Geverifieerd"},
+gcM(){return"Geverifieerd"},
 gp9(){return"Verifieer"},
 ght(){return"Verificatie starten"},
 gpc(){return"Je bent succesvol geverifieerd!"},
@@ -694,5 +694,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GK,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"GK":{"aE":[]}}'))};
-(a=>{a["fpUh5p/f5BOQcSj076ZrKiZ9TUs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["SduK8yLTTTDNfwDeyQpmsjBKok8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_168.part.js.map
