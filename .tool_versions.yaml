@@ -1,2 +1,2 @@
 environment:
-  flutter: 3.44.0 # Keep in sync with snap/snapcraft.yaml
+  flutter: 3.44.1 # Keep in sync with snap/snapcraft.yaml
