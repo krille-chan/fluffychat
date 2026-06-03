@@ -45,6 +45,7 @@ enum AppSettings<T> {
   sendOnEnter<bool>('chat.fluffy.send_on_enter', false),
   displayNavigationRail<bool>('chat.fluffy.display_navigation_rail', false),
   experimentalVoip<bool>('chat.fluffy.experimental_voip', false),
+  appSwitcherPrivacy<String>('chat.fluffy.app_switcher_privacy', 'always'),
   shareKeysWith<String>('chat.fluffy.share_keys_with_2', 'all'),
   noEncryptionWarningShown<bool>(
     'chat.fluffy.no_encryption_warning_shown',

@@ -143,6 +143,31 @@
         "placeholders": {}
     },
     "appLockDescription": "Lock the app when not using with a pin code",
+    "appSwitcherPrivacy": "App switcher privacy",
+    "@appSwitcherPrivacy": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "appSwitcherPrivacyDescription": "Hide app content in the app switcher and recents screen",
+    "@appSwitcherPrivacyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "appSwitcherPrivacyOff": "Off",
+    "@appSwitcherPrivacyOff": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "appSwitcherPrivacyAppLock": "When app lock is enabled",
+    "@appSwitcherPrivacyAppLock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "appSwitcherPrivacyAlways": "Always",
+    "@appSwitcherPrivacyAlways": {
+        "type": "String",
+        "placeholders": {}
+    },
     "archive": "Archive",
     "@archive": {
         "type": "String",

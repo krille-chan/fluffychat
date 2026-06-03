@@ -7,6 +7,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/app_switcher_privacy.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -27,6 +28,8 @@ class SettingsSecurityView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final client = Matrix.of(context).client;
+    final appSwitcherPrivacyMode =
+        AppSettings.appSwitcherPrivacy.appSwitcherPrivacyMode;
     final publicMasterKey =
         client.userDeviceKeys[client.userID]?.masterKey?.publicKey;
 
@@ -77,6 +80,42 @@ class SettingsSecurityView extends StatelessWidget {
                     subtitle: L10n.of(context).sendReadReceiptsDescription,
                     setting: AppSettings.sendPublicReadReceipts,
                   ),
+                  if (PlatformInfos.isMobile) ...[
+                    ListTile(
+                      title: Text(L10n.of(context).appSwitcherPrivacy),
+                      subtitle: Text(
+                        L10n.of(context).appSwitcherPrivacyDescription,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Material(
+                        borderRadius: BorderRadius.circular(
+                          AppConfig.borderRadius / 2,
+                        ),
+                        color: theme.colorScheme.onInverseSurface,
+                        child: DropdownButton<AppSwitcherPrivacyMode>(
+                          isExpanded: true,
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          borderRadius: BorderRadius.circular(
+                            AppConfig.borderRadius / 2,
+                          ),
+                          underline: const SizedBox.shrink(),
+                          value: appSwitcherPrivacyMode,
+                          items: [
+                            for (final mode in AppSwitcherPrivacyMode.values)
+                              DropdownMenuItem<AppSwitcherPrivacyMode>(
+                                value: mode,
+                                child: Text(
+                                  _appSwitcherPrivacyModeLabel(context, mode),
+                                ),
+                              ),
+                          ],
+                          onChanged: controller.setAppSwitcherPrivacyMode,
+                        ),
+                      ),
+                    ),
+                  ],
                   ListTile(
                     trailing: const Icon(Icons.chevron_right_outlined),
                     title: Text(L10n.of(context).blockedUsers),
@@ -196,6 +235,20 @@ class SettingsSecurityView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String _appSwitcherPrivacyModeLabel(
+    BuildContext context,
+    AppSwitcherPrivacyMode mode,
+  ) {
+    switch (mode) {
+      case AppSwitcherPrivacyMode.off:
+        return L10n.of(context).appSwitcherPrivacyOff;
+      case AppSwitcherPrivacyMode.appLock:
+        return L10n.of(context).appSwitcherPrivacyAppLock;
+      case AppSwitcherPrivacyMode.always:
+        return L10n.of(context).appSwitcherPrivacyAlways;
+    }
   }
 }
 
