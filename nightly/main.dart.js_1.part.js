@@ -1,13 +1,13 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cNQ(d){return new A.Bz(B.dh(d))},
-cNR(){return new A.H2(B.dh("zh_Hant"))},
-Bz:function Bz(d){this.a=d},
+cNT(d){return new A.BA(B.dg(d))},
+cNU(){return new A.H2(B.dg("zh_Hant"))},
+BA:function BA(d){this.a=d},
 H2:function H2(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[3],A)
 C=c[57]
-A.Bz.prototype={
+A.BA.prototype={
 gj6(){return"\u5426"},
 gom(){return"\u91cd\u590d\u8f93\u5165\u5bc6\u7801"},
 gmR(){return"\u4e0d\u662f\u56fe\u50cf\u6587\u4ef6\u3002"},
@@ -1361,8 +1361,8 @@ goy(d){return""},
 gkW(){return""},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Bz,C.aE)
-y(A.H2,A.Bz)})()
-B.dM(b.typeUniverse,JSON.parse('{"Bz":{"aE":[]},"H2":{"aE":[]}}'))};
-(a=>{a["vUZuxZglS0M5tvp3fPfhZbHeG5Y="]=a.current})($__dart_deferred_initializers__);
+y(A.BA,C.aE)
+y(A.H2,A.BA)})()
+B.dM(b.typeUniverse,JSON.parse('{"BA":{"aE":[]},"H2":{"aE":[]}}'))};
+(a=>{a["j/ZVr3tTz5Sb/W/+fmr2t0IUvPw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
