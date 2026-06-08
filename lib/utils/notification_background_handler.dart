@@ -127,6 +127,12 @@ Future<void> notificationTap(
       ) ??
       clients.first;
 
+  updateSummaryNotification(
+    flutterLocalNotificationsPlugin: FlutterLocalNotificationsPlugin(),
+    clientName: client.clientName,
+    l10n: await lookupL10n(PlatformDispatcher.instance.locale),
+  );
+
   switch (notificationResponse.notificationResponseType) {
     case NotificationResponseType.selectedNotification:
       final roomId = payload.roomId;
