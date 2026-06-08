@@ -2251,7 +2251,7 @@
     "reopenChat": "",
     "notificationRuleServerAcl": "",
     "addToBundle": "",
-    "passwordIsWrong": "",
+    "passwordIsWrong": "Ur iṣeḥḥa ara wawal-ik n uɛeddi i d-teskecmeḍ",
     "pleaseEnterYourCurrentPassword": "",
     "noKeyForThisMessage": "",
     "groupCanBeFoundViaSearch": "",
@@ -2286,7 +2286,7 @@
         }
     },
     "makeAdminDescription": "",
-    "createNewChat": "",
+    "createNewChat": "Snulfu-d adiwenni amaynut",
     "pushRules": "",
     "@pushRules": {
         "type": "String",
@@ -2347,7 +2347,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "tagName": "",
+    "tagName": "Isem n tebzimt",
     "startedKeyVerification": "",
     "@startedKeyVerification": {
         "type": "String",
@@ -2470,7 +2470,7 @@
         }
     },
     "chatPermissionsDescription": "",
-    "addTag": "",
+    "addTag": "Rnu tabzimt",
     "changedTheProfileAvatar": "",
     "@changedTheProfileAvatar": {
         "type": "String",
@@ -2568,7 +2568,7 @@
         }
     },
     "disableEncryptionWarning": "",
-    "pleaseChooseAStrongPassword": "",
+    "pleaseChooseAStrongPassword": "Ttxil, fren awal n uɛeddi iǧehden, ma ulac aɣilif",
     "alwaysUse24HourFormat": "",
     "@alwaysUse24HourFormat": {
         "description": "Set to true to always display time of day in 24 hour format."
@@ -2690,7 +2690,7 @@
             }
         }
     },
-    "removeTag": "",
+    "removeTag": "Kkes tabzimt",
     "countVotes": "",
     "@countVotes": {
         "type": "int",
@@ -2734,6 +2734,16 @@
         "type": "String",
         "placeholders": {
             "sender": {
+                "type": "String"
+            }
+        }
+    },
+    "showMore": "Sken-d ugar",
+    "publicKey": "Tasarut tazayazt: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
                 "type": "String"
             }
         }
