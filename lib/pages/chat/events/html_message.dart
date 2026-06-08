@@ -105,6 +105,7 @@ class HtmlMessage extends StatelessWidget {
     'table',
     'details',
     'blockquote',
+    'li',  // required so consecutive <li> items do not collapse onto one line
   };
 
   /// We add line breaks before these tags:
@@ -115,7 +116,8 @@ class HtmlMessage extends StatelessWidget {
     'h4',
     'h5',
     'h6',
-    'li',
+    // 'li' intentionally omitted: list items are now separated by the
+    // blockHtmlTags '\n' delimiter below, instead of a full-line break.
   };
 
   /// Adding line breaks before block elements.
@@ -134,7 +136,7 @@ class HtmlMessage extends StatelessWidget {
             onlyElements.indexOf(nodes[i] as dom.Element) <
                 onlyElements.length - 1) ...[
           if (blockHtmlTags.contains((nodes[i] as dom.Element).localName))
-            const TextSpan(text: '\n\n'),
+            const TextSpan(text: '\n'),  // single empty line between blocks
           if (fullLineHtmlTag.contains((nodes[i] as dom.Element).localName))
             const TextSpan(text: '\n'),
         ],
@@ -182,7 +184,14 @@ class HtmlMessage extends StatelessWidget {
 
     switch (node.localName) {
       case 'br':
-        return const TextSpan(text: '\n');
+        // Fixed-height WidgetSpan so soft breaks are not inflated by the
+        // line-height multiplier (which would treat a plain '\n' as a
+        // full line and double the gap).
+        return WidgetSpan(
+          alignment: PlaceholderAlignment.baseline,
+          baseline: TextBaseline.alphabetic,
+          child: SizedBox(width: 0, height: fontSize * 0.4),
+        );
       case 'a':
         final href = node.attributes['href'];
         if (href == null) continue block;
