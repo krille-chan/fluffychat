@@ -152,7 +152,7 @@ Future<void> _tryPushHelper(
         }
       }
       if (needsUpdateForSummaryNotification) {
-        await _updateSummaryNotification(
+        await updateSummaryNotification(
           clientName: client.clientName,
           l10n: l10n,
           flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
@@ -357,7 +357,7 @@ Future<void> _tryPushHelper(
 
   // Send summary notification on Android
   if (PlatformInfos.isAndroid) {
-    await _updateSummaryNotification(
+    await updateSummaryNotification(
       clientName: client.clientName,
       l10n: l10n,
       flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
@@ -377,7 +377,7 @@ void updateAppBadge(int unreadCount) {
   }
 }
 
-Future<void> _updateSummaryNotification({
+Future<void> updateSummaryNotification({
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
   required String clientName,
   required L10n l10n,
