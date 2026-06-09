@@ -2713,7 +2713,7 @@
     },
     "recordAVideo": "Enregistrer une vidéo",
     "removeTag": "Retirer l'étiquette",
-    "countVotes": "count, plural, =1{Un vote} other{{count} votes}}",
+    "countVotes": "{count, plural, =1{Un vote} other{{count} votes}}",
     "@countVotes": {
         "type": "int",
         "placeholders": {
