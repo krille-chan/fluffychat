@@ -5,6 +5,7 @@
 
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/app_switcher_privacy.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
@@ -50,6 +51,14 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       if (!mounted) return;
       await AppLock.of(context).changePincode(newLock);
     }
+  }
+
+  Future<void> setAppSwitcherPrivacyMode(AppSwitcherPrivacyMode? mode) async {
+    if (mode == null) return;
+    await AppSettings.appSwitcherPrivacy.setAppSwitcherPrivacyMode(mode);
+    if (!mounted) return;
+    await AppLock.of(context).syncAppSwitcherPrivacy();
+    setState(() {});
   }
 
   Future<void> deleteAccountAction() async {
