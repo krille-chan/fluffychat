@@ -1307,11 +1307,11 @@ giT(){return"Adicionar op\xe7\xe3o de resposta"},
 gj5(){return"Permitir v\xe1rias respostas"},
 ghg(){return"A enquete terminou"},
 kR(d){var x=null
-return B.eh(d,x,this.a,x,"Um voto",""+d+" votos",x,x)},
+return B.e9(d,x,this.a,x,"Um voto",""+d+" votos",x,x)},
 gja(){return"As respostas ficar\xe3o vis\xedveis quando a enquete terminar"},
 ghm(){return"Responder no t\xf3pico"},
 kQ(d){var x=null
-return B.eh(d,x,this.a,x,"Uma resposta",""+d+" respostas",x,x)},
+return B.e9(d,x,this.a,x,"Uma resposta",""+d+" respostas",x,x)},
 goF(){return"T\xf3pico"},
 gjj(){return"Voltar \xe0 conversa principal"},
 ghJ(){return"Salvar altera\xe7\xf5es"},
@@ -2037,5 +2037,5 @@ x(A.BA,C.aE)
 w(A.BA,[A.GN,A.GO])})()
 B.dN(b.typeUniverse,JSON.parse('{"BA":{"aE":[]},"GN":{"aE":[]},"GO":{"aE":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["kvRv0CS+DZdRzr4vi7bF5jbEkOA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["XMJ0vSsVG2Sm3loCwU6X6Q15GCg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map
