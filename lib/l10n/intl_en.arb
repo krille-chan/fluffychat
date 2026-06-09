@@ -2784,5 +2784,6 @@
             }
         }
     },
-    "deviceIdentityKey": "Device identity key"
+    "deviceIdentityKey": "Device identity key",
+    "rooms": "Rooms"
 }
