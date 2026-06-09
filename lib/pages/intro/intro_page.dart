@@ -109,7 +109,7 @@ class IntroPage extends StatelessWidget {
                             child: Hero(
                               tag: 'info-logo',
                               child: Image.asset(
-                                './assets/logo/mini/logo_favicon_mini.png',
+                                './assets/logo/mini/logo_standalone_mini.png',
                                 width: 156,
                                 height: 156,
                               ),
