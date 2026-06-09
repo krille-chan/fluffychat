@@ -546,7 +546,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "recoveryKeyLost": "மீட்பு விசை இழந்ததா?",
     "sendAMessage": "ஒரு செய்தியை அனுப்பவும்",
     "@sendAMessage": {
         "type": "String",
@@ -554,11 +553,6 @@
     },
     "spaceIsPublic": "இடம் பொது",
     "@spaceIsPublic": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "transferFromAnotherDevice": "மற்றொரு சாதனத்திலிருந்து மாற்றவும்",
-    "@transferFromAnotherDevice": {
         "type": "String",
         "placeholders": {}
     },
@@ -616,7 +610,6 @@
         "placeholders": {}
     },
     "pinMessage": "அறைக்கு முள்",
-    "unlockOldMessages": "பழைய செய்திகளைத் திறக்கவும்",
     "acceptedKeyVerification": "{sender} ஏற்றுக்கொள்ளப்பட்ட விசை சரிபார்ப்பு",
     "@acceptedKeyVerification": {
         "type": "String",
@@ -1422,12 +1415,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "உங்கள் அரட்டை காப்புப்பிரதி அமைக்கப்பட்டுள்ளது.",
-    "chatBackupDescription": "உங்கள் செய்திகள் மீட்பு விசையுடன் பாதுகாக்கப்பட்டுள்ளன. தயவு செய்து அதை இழக்காமல் பார்த்துக் கொள்ளுங்கள்.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "commandHint_markasdm": "கொடுக்கப்பட்ட மேட்ரிக்சிற்கான நேரடி செய்தி அறையாக குறிக்கவும்",
     "commandHint_ban": "கொடுக்கப்பட்ட பயனரை இந்த அறையிலிருந்து தடை செய்யுங்கள்",
     "@commandHint_ban": {
@@ -1589,11 +1576,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "எல்லாம் தயாராக!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "group": "குழு",
     "@group": {
@@ -1969,11 +1951,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "புதிய மீட்பு விசையை உருவாக்க உங்கள் அரட்டை காப்புப்பிரதியைத் துடைக்கவா?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "இந்த முகவரிகள் மூலம் உங்கள் கடவுச்சொல்லை மீட்டெடுக்கலாம்.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1990,7 +1967,6 @@
         "placeholders": {}
     },
     "removeFromSpace": "இடத்திலிருந்து அகற்று",
-    "pleaseEnterRecoveryKeyDescription": "உங்கள் பழைய செய்திகளைத் திறக்க, முந்தைய அமர்வில் உருவாக்கப்பட்ட உங்கள் மீட்பு விசையை உள்ளிடவும். உங்கள் மீட்பு விசை உங்கள் கடவுச்சொல் அல்ல.",
     "confirmEventUnpin": "நிகழ்வை நிரந்தரமாக அவிழ்ப்பது உறுதி?",
     "youJoinedTheChat": "நீங்கள் அரட்டையில் சேர்ந்தீர்கள்",
     "youAcceptedTheInvitation": "👍 நீங்கள் அழைப்பை ஏற்றுக்கொண்டீர்கள்",
@@ -2044,8 +2020,6 @@
     },
     "knock": "தட்டவும்",
     "users": "பயனர்கள்",
-    "storeInSecureStorageDescription": "மீட்பு விசையை இந்த சாதனத்தின் பாதுகாப்பான சேமிப்பகத்தில் சேமிக்கவும்.",
-    "saveKeyManuallyDescription": "கணினி பகிர்வு உரையாடல் அல்லது கிளிப்போர்டைத் தூண்டுவதன் மூலம் இந்த விசையை கைமுறையாக சேமிக்கவும்.",
     "storeInAndroidKeystore": "ஆண்ட்ராய்டு கீச்டோரில் சேமிக்கவும்",
     "countFiles": "{count} கோப்புகள்",
     "@countFiles": {
@@ -2683,8 +2657,6 @@
     "attribution": "பண்புக்கூறு",
     "skipChatBackup": "அரட்டை காப்புப்பிரதியைத் தவிர்க்கவும்",
     "skipChatBackupWarning": "நீங்கள் உறுதியாக இருக்கிறீர்களா? அரட்டை காப்புப்பிரதியை இயக்காமல், உங்கள் சாதனத்தை மாற்றினால், உங்கள் செய்திகளுக்கான அணுகலை இழக்க நேரிடும்.",
-    "loadingMessages": "செய்திகளை ஏற்றுகிறது",
-    "setupChatBackup": "அரட்டை காப்புப்பிரதியை அமைக்கவும்",
     "noMoreResultsFound": "மேலும் முடிவுகள் கிடைக்கவில்லை",
     "chatSearchedUntil": "அரட்டை {time} வரை தேடப்பட்டது",
     "@chatSearchedUntil": {

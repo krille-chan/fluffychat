@@ -364,11 +364,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Vaše zprávy jsou zabezpečeny bezpečnostním klíčem. Ujistěte se, prosím, že klíč neztratíte.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Bližší údaje o chatu",
     "@chatDetails": {
         "type": "String",
@@ -735,11 +730,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Vše připraveno!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "Název souboru",
     "@fileName": {
@@ -1619,11 +1609,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Přenos z jiného zařízení",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Zkuste odeslat znovu",
     "@tryToSendAgain": {
         "type": "String",
@@ -1829,11 +1814,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Chcete vymazat zálohu chatu a vytvořit nový bezpečnostní klíč?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "S těmito adresami můžete obnovit své heslo.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1878,7 +1858,6 @@
     "addAccount": "Přidat účet",
     "bundleName": "Název balíčku",
     "link": "Odkaz",
-    "yourChatBackupHasBeenSetUp": "Vaše záloha chatu byla nastavena.",
     "editBundlesForAccount": "Upravit balíčky pro tento účet",
     "oneClientLoggedOut": "Jeden z vašich klientů byl odhlášen",
     "removeFromBundle": "Odstranit z tohoto balíčku",
@@ -2049,7 +2028,6 @@
     "hydrate": "Obnovit ze souboru zálohy",
     "createGroup": "Vytvořit skupinu",
     "shareInviteLink": "Sdílet pozvánku",
-    "pleaseEnterRecoveryKeyDescription": "K odemknutí vašich starých zpráv prosím vložte váš klíč k obnovení vygenerovaný v předchozím sezení. Váš klíč k obnovení NENÍ vaše heslo.",
     "setColorTheme": "Nastavit barvy:",
     "importEmojis": "Importovat emodži",
     "importFromZipFile": "Importovat ze .zip souboru",
@@ -2093,8 +2071,6 @@
     "newSpaceDescription": "Prostory umožňují organizovat Vaše konverzace a vytvářet soukromé nebo veřejné komunity.",
     "sendTypingNotifications": "Posílat oznámení o psaní",
     "commandHint_markasgroup": "Označit jako skupinu",
-    "recoveryKeyLost": "Ztracený klíč k obnovení?",
-    "unlockOldMessages": "Odemknout staré zprávy",
     "foregroundServiceRunning": "Toto oznámení se zobrazuje když běží služba na pozadí.",
     "screenSharingDetail": "Sdílíte svou obrazovku přes FluffyChat",
     "encryptThisChat": "Zašifrovat tuto konverzaci",
@@ -2127,8 +2103,6 @@
     },
     "custom": "Vlastní",
     "dehydrateWarning": "Tuto akci nelze vzít zpět. Ujistěte se, že máte bezpečně uložený soubor zálohy.",
-    "storeInSecureStorageDescription": "Klíč k obnovení uložte v zabezpečeném úložišti tohoto zařízení.",
-    "saveKeyManuallyDescription": "Uložte tento klíč manuálně pomocí systémového dialogu sdílení nebo zkopírováním do schránky.",
     "storeSecurlyOnThisDevice": "Uložit bezpečně na tomto zařízení",
     "countFiles": "{count} souborů",
     "@countFiles": {
@@ -2541,8 +2515,6 @@
     "attribution": "Zdroj",
     "skipChatBackup": "Přeskočit zálohu konverzací",
     "skipChatBackupWarning": "Jste si jistí? Pokud nepovolíte zálohu konverzací, můžete ztratit přístup ke svým zprávám v případě změny zařízení.",
-    "loadingMessages": "Načítám zprávy",
-    "setupChatBackup": "Nastavit zálohování konverzací",
     "noMoreResultsFound": "Žádné další výsledky nenalezeny",
     "chatSearchedUntil": "Konverzace prohledána do {time}",
     "@chatSearchedUntil": {

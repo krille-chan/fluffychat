@@ -14,6 +14,22 @@ Future<void> finalLogout(WidgetTester widgetTester) =>
     widgetTester.startFluffyChatTest().then((tester) => tester.logout());
 
 extension AuthFlows on FluffyChatTester {
+  Future<void> initCryptoIdentity({String username = user1Name}) async {
+    final passphrase = userPassphrases[username];
+    if (passphrase != null) {
+      await waitFor('Restore Crypto Identity');
+      await enterText(TextField, passphrase);
+      await tapOn('Unlock');
+    } else {
+      await waitFor('Set Up Crypto Identity');
+      await enterText(TextField, passphrase1, index: 0);
+      await enterText(TextField, passphrase1, index: 1);
+      await tapOn('Continue');
+      await tapOn('Continue');
+      userPassphrases[username] = passphrase1;
+    }
+  }
+
   Future<void> login({
     String username = user1Name,
     String password = user1Pw,
@@ -45,12 +61,14 @@ extension AuthFlows on FluffyChatTester {
     }
   }
 
+  static final Map<String, String> userPassphrases = {};
+
   Future<bool> ensureLoggedIn() async {
     if (await isVisible('Sign in') == false) return false;
 
     await login();
-    await tapOn(CloseButton);
-    await tapOn('Skip');
+    await initCryptoIdentity();
+
     await skipNoNotificationsDialog();
     return true;
   }

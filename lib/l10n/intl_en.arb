@@ -439,14 +439,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "Your chat backup has been set up.",
     "chatBackup": "Chat backup",
     "@chatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatBackupDescription": "Your messages are secured with a recovery key. Please make sure you don't lose it.",
-    "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
     },
@@ -862,11 +856,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Everything ready!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "File name",
     "@fileName": {
@@ -1572,7 +1561,6 @@
         "placeholders": {}
     },
     "recoveryKey": "Recovery key",
-    "recoveryKeyLost": "Recovery key lost?",
     "send": "Send",
     "@send": {
         "type": "String",
@@ -1799,11 +1787,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Transfer from another device",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Try to send again",
     "@tryToSendAgain": {
         "type": "String",
@@ -2010,11 +1993,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Wipe your chat backup to create a new recovery key?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "With these addresses you can recover your password.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -2057,7 +2035,6 @@
     "openGallery": "Open gallery",
     "removeFromSpace": "Remove from space",
     "start": "Start",
-    "pleaseEnterRecoveryKeyDescription": "To unlock your old messages, please enter your recovery key that has been generated in a previous session. Your recovery key is NOT your password.",
     "markAsRead": "Mark as read",
     "reportUser": "Report user",
     "dismiss": "Dismiss",
@@ -2161,9 +2138,6 @@
     "noOneCanJoin": "No one can join",
     "knock": "Knock",
     "users": "Users",
-    "unlockOldMessages": "Unlock old messages",
-    "storeInSecureStorageDescription": "Store the recovery key in the secure storage of this device.",
-    "saveKeyManuallyDescription": "Save this key manually by triggering the system share dialog or clipboard.",
     "storeInAndroidKeystore": "Store in Android KeyStore",
     "storeInAppleKeyChain": "Store in Apple KeyChain",
     "storeSecurlyOnThisDevice": "Store securely on this device",
@@ -2687,8 +2661,6 @@
     "attribution": "Attribution",
     "skipChatBackup": "Skip chat backup",
     "skipChatBackupWarning": "Are you sure? Without enabling the chat backup you may lose access to your messages if you switch your device.",
-    "loadingMessages": "Loading messages",
-    "setupChatBackup": "Set up chat backup",
     "noMoreResultsFound": "No more results found",
     "chatSearchedUntil": "Chat searched until {time}",
     "@chatSearchedUntil": {
@@ -2784,5 +2756,116 @@
             }
         }
     },
-    "deviceIdentityKey": "Device identity key"
+    "deviceIdentityKey": "Device identity key",
+    "restoreBootstrapEmptyDevicesDescription": "Please enter your passphrase or recovery key to verify this device and get access to your encrypted message backup.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Please pick one of your other devices, to verify this session:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapHintText": "Passphrase or recovery key",
+    "@restoreBootstrapHintText": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Reset account",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Restore Crypto Identity",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Reset Crypto Identity",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Set Up Crypto Identity",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Waiting for keys... Please keep the other device active.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "No keys transmitted. Please try again.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Unlock",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Open file",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "When you reset your account you will lose the access to your old messages forever. All your current devices need to be verified again. Please only perform this action when you have no other devices left to verify your session and you have lost your recovery key and passphrase!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat uses end to end encryption. To not lose your messages, please choose a strong passphrase to secure your crypto identity and your encrypted message backup.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "New passphrase",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Repeat passphrase",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Passphrases match",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "At least 12 characters long.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Contains uppercase and lowercase characters.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Contains special characters.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Contains one numbers.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Please note down your recovery key to be able to restore your encrypted messages and your crypto identity on.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Save as file",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "You are ready to start!"
 }

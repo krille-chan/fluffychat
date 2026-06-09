@@ -292,14 +292,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "A cópia de segurança foi configurada.",
     "chatBackup": "Cópia de segurança de conversas",
     "@chatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatBackupDescription": "A tuas mensagens antigas estão protegidas com uma chave de recuperação. Por favor, certifica-te que não a perdes.",
-    "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
     },
@@ -670,11 +664,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Tudo a postos!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "Nome do ficheiro",
     "@fileName": {
@@ -1838,11 +1827,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pause": "",
     "allowMultipleAnswers": "",
     "sender": "",
@@ -1874,17 +1858,11 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pushRules": "",
     "@pushRules": {
         "type": "String",
         "placeholders": {}
     },
-    "saveKeyManuallyDescription": "",
     "makeModerator": "",
     "italicText": "",
     "addAnswerOption": "",
@@ -2033,7 +2011,6 @@
     "readUpToHere": "",
     "start": "",
     "customEmojisAndStickers": "",
-    "unlockOldMessages": "",
     "identityServer": "",
     "accessAndVisibilityDescription": "",
     "support": "",
@@ -2096,7 +2073,6 @@
     "notificationRuleTombstone": "",
     "experimentalVideoCalls": "",
     "removeModeratorRights": "",
-    "pleaseEnterRecoveryKeyDescription": "",
     "supportPage": "",
     "welcomeText": "",
     "withTheseAddressesRecoveryDescription": "",
@@ -2195,7 +2171,6 @@
     },
     "removeAdminRights": "",
     "redactMessageDescription": "",
-    "loadingMessages": "",
     "recoveryKey": "",
     "invalidInput": "",
     "removeFromSpaceDescription": "",
@@ -2467,7 +2442,6 @@
     "crossVerifiedDevices": "",
     "shareInviteLink": "",
     "commandHint_markasdm": "",
-    "recoveryKeyLost": "",
     "cuddleContent": "",
     "@cuddleContent": {
         "type": "String",
@@ -2693,7 +2667,6 @@
     "formattedMessagesDescription": "",
     "supportFluffyChat": "",
     "databaseMigrationBody": "",
-    "storeInSecureStorageDescription": "",
     "kickUserDescription": "",
     "startedAPoll": "",
     "@startedAPoll": {
@@ -2706,7 +2679,6 @@
     },
     "notificationRuleEncrypted": "",
     "importNow": "",
-    "setupChatBackup": "",
     "pinMessage": "",
     "noChatsFoundHere": "",
     "pleaseFillOut": "",

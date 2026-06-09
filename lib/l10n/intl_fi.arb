@@ -335,14 +335,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "Keskustelujesi varmuuskopiointi on asetettu.",
     "chatBackup": "Keskustelun varmuuskopiointi",
     "@chatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatBackupDescription": "Vanhat viestisi on suojattu palautusavaimella. Varmistathan ettet hävitä sitä.",
-    "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
     },
@@ -590,11 +584,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Kaikki on valmista!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "Tiedostonimi",
     "@fileName": {
@@ -1461,11 +1450,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Siirrä toiselta laitteelta",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Yritä uudelleenlähettämistä",
     "@tryToSendAgain": {
         "type": "String",
@@ -1639,11 +1623,6 @@
     },
     "whyDoYouWantToReportThis": "Miksi haluat ilmoittaa tämän?",
     "@whyDoYouWantToReportThis": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wipeChatBackup": "Pyyhi keskusteluvarmuuskopio luodaksesi uuden palautusavaimen?",
-    "@wipeChatBackup": {
         "type": "String",
         "placeholders": {}
     },
@@ -1993,15 +1972,11 @@
         }
     },
     "recoveryKey": "Palautusavain",
-    "recoveryKeyLost": "Kadonnut palautusavain?",
     "hydrate": "Palauta varmuuskopiotiedostosta",
     "dehydrate": "Vie istunto ja tyhjennä laite",
     "dehydrateWarning": "Tätä toimenpidettä ei voi kumota. Varmista varmuuskopiotiedoston turvallinen tallennus.",
     "users": "Käyttäjät",
     "storeSecurlyOnThisDevice": "Tallenna turvallisesti tälle laitteelle",
-    "pleaseEnterRecoveryKeyDescription": "Avataksesi vanhojen viestiesi salauksen, syötä palautusavaimesi, joka luotiin edellisessä istunnossa. Palautusavaimesi EI OLE salasanasi.",
-    "unlockOldMessages": "Pura vanhojen viestien salaus",
-    "saveKeyManuallyDescription": "Tallenna tämä avain manuaalisesti käyttäen järjestelmän jakodialogia tai leikepöytää.",
     "storeInAndroidKeystore": "Tallenna Android KeyStoreen",
     "storeInAppleKeyChain": "Tallenna Applen avainnippuun",
     "countFiles": "{count} tiedostoa",
@@ -2012,7 +1987,6 @@
             }
         }
     },
-    "storeInSecureStorageDescription": "Tallenna palautusavain tämän laitteen turvavarastoon.",
     "user": "Käyttäjä",
     "custom": "Mukautettu",
     "confirmMatrixId": "Kirjoita Matrix IDsi uudelleen poistaaksesi tunnuksesi.",
@@ -2718,7 +2692,6 @@
     "removeModeratorRights": "",
     "addTag": "",
     "removeAdminRights": "",
-    "loadingMessages": "",
     "owner": "",
     "powerLevel": "",
     "playSoundOnNotification": "",
@@ -2746,6 +2719,5 @@
     "removeTag": "",
     "attribution": "",
     "supportFluffyChat": "",
-    "setupChatBackup": "",
     "changedTheChatName": ""
 }

@@ -421,14 +421,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "Suhbat zaxirangiz sozlandi.",
     "chatBackup": "Suhbat zaxirasi",
     "@chatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatBackupDescription": "Eski xabarlaringiz tiklash kaliti bilan himoyalangan. Uni yo‘qotib qo‘ymasligingizga ishonch hosil qiling.",
-    "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
     },
@@ -1017,11 +1011,6 @@
             }
         }
     },
-    "everythingReady": "Hammasi tayyor!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
     "fileName": "Fayl nomi",
     "@fileName": {
         "type": "String",
@@ -1563,7 +1552,6 @@
         "placeholders": {}
     },
     "recoveryKey": "Tiklash kaliti",
-    "recoveryKeyLost": "Tiklash kaliti yo‘qolib qoldimi?",
     "send": "Yuborish",
     "@send": {
         "type": "String",
@@ -1790,11 +1778,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Boshqa qurilmadan uzatish",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Qayta yuborishga urining",
     "@tryToSendAgain": {
         "type": "String",
@@ -2001,11 +1984,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Yangi tiklash kalitini yaratish uchun suhbat zaxirasi tozalansinmi?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "Ushbu manzillar yordamida parolingizni tiklashingiz mumkin.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -2052,9 +2030,6 @@
     "noOneCanJoin": "Hech kim qoʻshila olmaydi",
     "knock": "Taqillating",
     "users": "Foydalanuvchilar",
-    "unlockOldMessages": "Eski xabarlarni qulfdan chiqaring",
-    "storeInSecureStorageDescription": "Qayta tiklash kalitini ushbu qurilmaning xavfsiz xotirasida saqlang.",
-    "saveKeyManuallyDescription": "Tizim ulashish dialog oynasi yoki buferni ishga tushirish orqali ushbu kalitni qoʻlda saqlang.",
     "storeInAndroidKeystore": "Android KeyStoreʼda saqlang",
     "storeInAppleKeyChain": "Apple KeyChainʼda saqlang",
     "storeSecurlyOnThisDevice": "Ushbu qurilmada xavfsiz saqlang",
@@ -2157,7 +2132,6 @@
         }
     },
     "backToMainChat": "Asosiy suhbatga qaytish",
-    "pleaseEnterRecoveryKeyDescription": "Eski xabarlaringizni qulfdan chiqarish uchun, iltimos, avvalgi seansdan yaratilgan tiklash kalitingizni kiriting. Sizning tiklash kalitingiz parolingiz EMAS.",
     "markAsRead": "Oʻqilgan sifatida belgilash",
     "reportUser": "Foydalanuvchi haqida xabar berish",
     "dismiss": "Rad qilmoq",
@@ -2678,8 +2652,6 @@
     "attribution": "Atributsiya",
     "skipChatBackup": "Chat zaxirasini tashlab ketish",
     "skipChatBackupWarning": "Ishonchingiz komilmi? Chat zaxirasini yoqmasdan qurilmangizni almashtirsangiz, xabarlaringizga kira olmay qolishingiz mumkin.",
-    "loadingMessages": "Xabarlar yuklanmoqda",
-    "setupChatBackup": "Chat zaxirasini sozlash",
     "noMoreResultsFound": "Boshqa natijalar topilmadi",
     "chatSearchedUntil": "Chat {time} gacha qidirildi",
     "@chatSearchedUntil": {

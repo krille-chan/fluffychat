@@ -365,11 +365,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Vos anciens messages sont sécurisés par une clé de récupération. Veillez à ne pas la perdre.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Détails de la discussion",
     "@chatDetails": {
         "type": "String",
@@ -736,11 +731,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Tout est prêt !",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "Nom du ficher",
     "@fileName": {
@@ -1620,11 +1610,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Transfert à partir d'un autre appareil",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Retenter l'envoi",
     "@tryToSendAgain": {
         "type": "String",
@@ -1830,11 +1815,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Effacer la sauvegarde de votre discussion pour créer une nouvelle clé de récupération ?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "Grâce à ces adresses, vous pouvez récupérer votre mot de passe si vous en avez besoin.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1881,7 +1861,6 @@
     "addAccount": "Ajouter un compte",
     "oneClientLoggedOut": "Un de vos clients a été déconnecté",
     "link": "Lien",
-    "yourChatBackupHasBeenSetUp": "Votre sauvegarde de la discussion a été mise en place.",
     "unverified": "Non vérifié",
     "repeatPassword": "Répétez le mot de passe",
     "messageType": "Type de message",
@@ -2002,12 +1981,7 @@
     "hydrate": "Restaurer à partir du fichier de sauvegarde",
     "dehydrateWarning": "Cette action ne peut pas être annulée. Assurez-vous d'enregistrer convenablement le fichier de sauvegarde.",
     "recoveryKey": "Clé de récupération",
-    "recoveryKeyLost": "Clé de récupération perdue ?",
-    "saveKeyManuallyDescription": "Enregistrer cette clé manuellement en déclenchant la boîte de dialogue de partage du système ou le presse-papiers.",
-    "storeInSecureStorageDescription": "Stocker la clé de récupération dans un espace sécurisé de cet appareil.",
     "dehydrate": "Exporter la session et effacer l'appareil",
-    "pleaseEnterRecoveryKeyDescription": "Pour déverrouiller vos anciens messages, veuillez entrer votre clé de récupération qui a été générée lors d'une session précédente. Votre clé de récupération n'est PAS votre mot de passe.",
-    "unlockOldMessages": "Déverrouiller les anciens messages",
     "storeSecurlyOnThisDevice": "Stocker de manière sécurisé sur cet appareil",
     "countFiles": "{count} fichiers",
     "@countFiles": {
@@ -2639,7 +2613,6 @@
         }
     },
     "removeAdminRights": "Révoquer les droits administrateur",
-    "loadingMessages": "Chargement des messages",
     "removeFromSpaceDescription": "La discussion sera retirée de l'espace mais apparaitra toujours dans votre liste de discussion.",
     "newChatRequest": "📩 Nouvelle demande de discussion",
     "boldText": "Gras",
@@ -2738,7 +2711,6 @@
         }
     },
     "notificationRuleEncrypted": "Chiffré",
-    "setupChatBackup": "Configurer la sauvegarde des messages",
     "pleaseFillOut": "Veuillez remplir",
     "changedTheChatName": "{username} a changé le nom de la discussion",
     "spaceMemberOf": "Membre de l'espace de {spaces}",

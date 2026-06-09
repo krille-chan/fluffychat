@@ -364,11 +364,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "As mensaxes están protexidas cunha clave de recuperación. Pon coidado e non a perdas.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Detalles da conversa",
     "@chatDetails": {
         "type": "String",
@@ -735,11 +730,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Todo preparado!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "Nome do ficheiro",
     "@fileName": {
@@ -1619,11 +1609,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Transferir desde outro dispositivo",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Inténtao outra vez",
     "@tryToSendAgain": {
         "type": "String",
@@ -1829,11 +1814,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Queres eliminar a copia de apoio e crear unha nova chave de recuperación?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "Con estos enderezos podes recuperar o contrasinal.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1877,7 +1857,6 @@
     "addAccount": "Engadir conta",
     "oneClientLoggedOut": "Un dos teus clientes foi desconectado",
     "link": "Ligazón",
-    "yourChatBackupHasBeenSetUp": "Configurouse a copia de apoio da charla.",
     "unverified": "Sen verificar",
     "repeatPassword": "Repite o contrasinal",
     "messageInfo": "Info da mensaxe",
@@ -1994,15 +1973,11 @@
             }
         }
     },
-    "saveKeyManuallyDescription": "Garda esta chave manualmente usando o sistema para compartir do dispositivo ou portapapeis.",
     "storeInAndroidKeystore": "Gardar en Android KeyStore",
     "storeInAppleKeyChain": "Gardar en Apple KeyChain",
-    "recoveryKeyLost": "Perdeches a chave de recuperación?",
     "recoveryKey": "Chave de recuperación",
     "storeSecurlyOnThisDevice": "Gardar de xeito seguro no dispositivo",
-    "pleaseEnterRecoveryKeyDescription": "Para desbloquear as mensaxes antigas, escribe a chave de recuperación creada nunha sesión existente. A chave de recuperación NON é o teu contrasinal.",
     "users": "Usuarias",
-    "storeInSecureStorageDescription": "Gardar a chave de recuperación na almacenaxe segura deste dispositivo.",
     "countFiles": "{count} ficheiros",
     "@countFiles": {
         "placeholders": {
@@ -2011,7 +1986,6 @@
             }
         }
     },
-    "unlockOldMessages": "Desbloquear mensaxes antigas",
     "hydrate": "Restablecer desde copia de apoio",
     "dehydrateWarning": "Esta acción non é reversible. Pon coidado en gardar o ficheiro de apoio.",
     "dehydrate": "Exportar sesión e eliminar dispositivo",
@@ -2689,8 +2663,6 @@
     "stickerPackName": "Nome do paquete de adhesivos",
     "skipChatBackup": "Omitir copia da conversa",
     "skipChatBackupWarning": "Tes certeza? A non activar a copia de apoio da conversa poderías perder o acceso ás mensaxes se cambias de dispositivo.",
-    "loadingMessages": "Cargando mensaxes",
-    "setupChatBackup": "Configurar copia de apoio",
     "changedTheChatDescription": "{username} cambiou a descrición da sala",
     "changedTheChatName": "{username} cambiou o nome da sala",
     "noMoreResultsFound": "Non hai máis resultados",

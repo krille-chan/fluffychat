@@ -345,11 +345,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "你的消息受恢复密钥保护。请确保你不会丢失它。",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "聊天详情",
     "@chatDetails": {
         "type": "String",
@@ -700,11 +695,6 @@
     },
     "enterAnEmailAddress": "输入一个电子邮件地址",
     "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "一切就绪！",
-    "@everythingReady": {
         "type": "String",
         "placeholders": {}
     },
@@ -1539,11 +1529,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "从其它设备传输",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "尝试重新发送",
     "@tryToSendAgain": {
         "type": "String",
@@ -1749,11 +1734,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "确定要清除你的聊天记录备份以创建新的恢复密钥吗？",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "通过这些地址，你可以恢复密码。",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1871,7 +1851,6 @@
         "placeholders": {}
     },
     "sendOnEnter": "按 Enter 键发送",
-    "yourChatBackupHasBeenSetUp": "你的聊天记录备份已设置。",
     "scanQrCode": "扫描二维码",
     "homeserver": "服务器",
     "oneClientLoggedOut": "你的一个客户端已登出",
@@ -1994,13 +1973,8 @@
             }
         }
     },
-    "storeInSecureStorageDescription": "将恢复密钥存储在此设备的安全存储中。",
     "storeInAppleKeyChain": "存储在 Apple KeyChain 中",
-    "unlockOldMessages": "解锁旧消息",
     "recoveryKey": "恢复密钥",
-    "recoveryKeyLost": "丢失了恢复密钥？",
-    "pleaseEnterRecoveryKeyDescription": "要解锁你的旧邮件，请输入你在之前会话中生成的恢复密钥。 你的恢复密钥不是你的密码。",
-    "saveKeyManuallyDescription": "通过触发系统共享对话框或剪贴板手动保存此密钥。",
     "storeInAndroidKeystore": "存储在 Android KeyStore 中",
     "storeSecurlyOnThisDevice": "安全地存储在此设备上",
     "users": "用户",
@@ -2689,8 +2663,6 @@
     "attribution": "作者",
     "skipChatBackup": "跳过聊天备份",
     "skipChatBackupWarning": "确定吗？不开启聊天备份，如果切换设备可能无法访问消息。",
-    "loadingMessages": "加载消息中",
-    "setupChatBackup": "设置聊天备份",
     "changedTheChatDescription": "{username} 更改了聊天描述",
     "changedTheChatName": "{username} 更改了聊天名",
     "noMoreResultsFound": "未找到更多结果",

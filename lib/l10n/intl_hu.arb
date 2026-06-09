@@ -1498,11 +1498,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "everythingReady": "Minden kész!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
     "groups": "Csoportok",
     "@groups": {
         "type": "String",
@@ -1552,12 +1547,6 @@
     },
     "next": "Következő",
     "@next": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "yourChatBackupHasBeenSetUp": "A csevegés biztonsági mentés beállításra került.",
-    "chatBackupDescription": "A régebbi beszélgetései egy biztonsági kulccsal vannak védve. Bizonyosodjon meg róla, hogy nem veszíti el.",
-    "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
     },
@@ -1923,11 +1912,6 @@
     },
     "invalidServerName": "Hibás szerver név",
     "chatPermissions": "Csevegés engedélyek",
-    "wipeChatBackup": "Le kívánja törölni a chat mentését, hogy létrehozhasson egy új visszaállítási kulcsot?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "sender": "Küldő",
     "storeInAndroidKeystore": "Tárolás az Android KeyStore-ba",
     "makeAdminDescription": "Miután a felhasználót aminisztrátorrá lépteti elő, nem fogja tudni visszavonni döntését, mivel azonos jogosultsági szinttel fognak rendelkezni.",
@@ -1936,17 +1920,11 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Átvitel másik eszközről",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pushRules": "Push szabályok",
     "@pushRules": {
         "type": "String",
         "placeholders": {}
     },
-    "saveKeyManuallyDescription": "A kulcs manuális mentése rendszer megosztás vagy vágólap másolás segítségével.",
     "editBundlesForAccount": "Fiókcsoportok szerkesztése ehhez a fiókhoz",
     "whyIsThisMessageEncrypted": "Miért olvashatatlan ez az üzenet?",
     "setChatDescription": "Csevegés leírás beállítása",
@@ -1975,7 +1953,6 @@
     },
     "readUpToHere": "Olvasás idáig",
     "start": "Kezdés",
-    "unlockOldMessages": "Régi üzenetek feloldása",
     "optionalRedactReason": "(Választható) A szerkesztés oka...",
     "sendAsText": "Küldés szövegként",
     "@sendAsText": {
@@ -1994,7 +1971,6 @@
         "placeholders": {}
     },
     "experimentalVideoCalls": "Kísérleti videó hívások",
-    "pleaseEnterRecoveryKeyDescription": "A régi üzenetei feloldásához adja meg a korábban generált visszaállítási jelszavát. A visszaállítási jelszó NEM EGYEZIK MEG a jelszóval.",
     "redactedByBecause": "{username} által szerkesztve, mivel: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
@@ -2145,7 +2121,6 @@
     "sorryThatsNotPossible": "Ez sajnos nem lehetséges",
     "shareInviteLink": "Meghívó link megosztása",
     "commandHint_markasdm": "Szoba megjelölése mint közvetlen csevegő szoba az adott Matrix ID-nél",
-    "recoveryKeyLost": "Elveszett visszaállító kulcs?",
     "deviceKeys": "Eszköz kulcsok:",
     "emoteKeyboardNoRecents": "A nemrég használt hangulatjelek fognak itt megjelenni...",
     "@emoteKeyboardNoRecents": {
@@ -2169,7 +2144,6 @@
     "time": "Idő",
     "custom": "Egyedi",
     "noBackupWarning": "Figyelem! Ha nem kapcsolja be a csevegés mentést, elveszíti a hozzáférést a tikosított üzeneteihez. Erősen ajánlott a csevegés mentés bekapcsolása kijelentkezés előtt.",
-    "storeInSecureStorageDescription": "Tárolja a visszaállítási kulcsot az eszköz biztonsági tárjában.",
     "kickUserDescription": "A felhasználó kirúgásra került a csevegésből, de nincs kitiltva. Publikus csevegés esetén a felhasználó bármikor visszatérhet.",
     "importNow": "Importálás most",
     "pinMessage": "Kitűzés a szobában",
@@ -2690,7 +2664,6 @@
         }
     },
     "removeAdminRights": "",
-    "loadingMessages": "",
     "removeFromSpaceDescription": "",
     "owner": "",
     "powerLevel": "",
@@ -2739,7 +2712,6 @@
             }
         }
     },
-    "setupChatBackup": "",
     "changedTheChatName": "",
     "spaceMemberOf": "",
     "@spaceMemberOf": {

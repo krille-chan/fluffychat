@@ -364,11 +364,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Je berichten zijn beveiligd met een herstelsleutel. Zorg ervoor dat je deze niet verliest.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Chatdetails",
     "@chatDetails": {
         "type": "String",
@@ -735,11 +730,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Alles klaar!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "Bestandsnaam",
     "@fileName": {
@@ -1619,11 +1609,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Overzetten vanaf een ander apparaat",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Probeer nogmaals te verzenden",
     "@tryToSendAgain": {
         "type": "String",
@@ -1829,11 +1814,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Wil je de chatback-up wissen om een nieuwe herstelsleutel te kunnen maken?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "Met deze adressen kun je je wachtwoord herstellen.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1880,7 +1860,6 @@
     "editBundlesForAccount": "Bundels voor dit account wijzigen",
     "addAccount": "Account toevoegen",
     "link": "Link",
-    "yourChatBackupHasBeenSetUp": "Jouw chatback-up is ingesteld.",
     "unverified": "Niet geverifieerd",
     "repeatPassword": "Wachtwoord herhalen",
     "messageInfo": "Berichtinfo",
@@ -1994,14 +1973,9 @@
         }
     },
     "recoveryKey": "Herstelsleutel",
-    "recoveryKeyLost": "Herstelsleutel verloren?",
     "users": "Personen",
-    "unlockOldMessages": "Oude berichten ontgrendelen",
     "storeInAndroidKeystore": "In Android KeyStore opslaan",
     "storeInAppleKeyChain": "In Apple KeyChain opslaan",
-    "saveKeyManuallyDescription": "Sla deze sleutel handmatig op via delen of het klembord.",
-    "pleaseEnterRecoveryKeyDescription": "Om je oude berichten te ontgrendelen voer je jouw herstelsleutel in die gemaakt is in je vorige sessie. Je sleutel is niet je wachtwoord.",
-    "storeInSecureStorageDescription": "Sla de herstelsleutel op in de beveiligde opslag van dit apparaat.",
     "storeSecurlyOnThisDevice": "Veilig opslaan op dit apparaat",
     "dehydrate": "Sessie exporteren en apparaat wissen",
     "dehydrateWarning": "Deze actie kan niet ongedaan worden gemaakt. Zorg ervoor dat je het back-upbestand veilig opslaat.",
@@ -2688,8 +2662,6 @@
     "attribution": "Toeschrijving",
     "skipChatBackup": "Chatback-up overslaan",
     "skipChatBackupWarning": "Weet je het zeker? Zonder chat back-up verlies je toegang tot je berichten als je van apparaat wisselt.",
-    "loadingMessages": "Berichten laden",
-    "setupChatBackup": "Chatback-up instellen",
     "changedTheChatDescription": "{username} heeft het onderwerp gewijzigd",
     "changedTheChatName": "{username} heeft de chatnaam gewijzigd",
     "noMoreResultsFound": "Geen resultaten meer gevonden",

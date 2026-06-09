@@ -339,11 +339,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "您的過往聊天室記錄已被恢復金鑰加密。請您確保不會弄丟它。",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "對話詳細",
     "@chatDetails": {
         "type": "String",
@@ -599,11 +594,6 @@
     },
     "enterAnEmailAddress": "輸入一個電子郵件位址",
     "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "一切就緒！",
-    "@everythingReady": {
         "type": "String",
         "placeholders": {}
     },
@@ -1389,11 +1379,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "從其他裝置傳輸",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "再次嘗試傳送",
     "@tryToSendAgain": {
         "type": "String",
@@ -1599,11 +1584,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "是否清除您的聊天室記錄備份以建立新的安全金鑰嗎？",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "有了這些位址，您就可以恢復密碼。",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1720,7 +1700,6 @@
         }
     },
     "repeatPassword": "再次輸入密碼",
-    "yourChatBackupHasBeenSetUp": "您的聊天室記錄備份已設定。",
     "commandHint_myroomavatar": "設定您的聊天室頭貼（通過 mxc-uri）",
     "@commandHint_myroomavatar": {
         "type": "String",
@@ -1889,7 +1868,6 @@
             }
         }
     },
-    "unlockOldMessages": "解鎖舊消息",
     "noOtherDevicesFound": "未找到其他裝置",
     "noUsersFoundWithQuery": "很遺憾，找不到與「{query}」相符的使用者。請檢查是否有打錯字。",
     "@noUsersFoundWithQuery": {
@@ -2050,7 +2028,6 @@
     },
     "messageInfo": "訊息資訊",
     "removeFromSpace": "從空間中移除",
-    "pleaseEnterRecoveryKeyDescription": "要解鎖您的舊訊息，請輸入在之前的會話中生成的恢復密鑰。您的恢復密鑰不是您的密碼。",
     "emojis": "表情符號",
     "placeCall": "發起通話",
     "unsupportedAndroidVersion": "不支持的Android版本",
@@ -2216,7 +2193,6 @@
     },
     "confirmEventUnpin": "您確定要永久取消釘選該事件嗎？",
     "noOneCanJoin": "沒有人可以加入",
-    "saveKeyManuallyDescription": "通過觸發系統分享對話框或剪貼板手動保存此密鑰。",
     "storeInAndroidKeystore": "存儲在 Android KeyStore",
     "storeInAppleKeyChain": "存儲在 Apple KeyChain",
     "foregroundServiceRunning": "當前景服務正在運行時會顯示此通知。",
@@ -2300,7 +2276,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "recoveryKeyLost": "遺失恢復金鑰？",
     "sendAsText": "以文字傳送",
     "@sendAsText": {
         "type": "String"
@@ -2347,7 +2322,6 @@
     "unsupportedAndroidVersionLong": "此功能需要較新的 Android 版本。請檢查更新或 Lineage OS 支持。",
     "usersMustKnock": "使用者必須敲門",
     "knock": "敲門",
-    "storeInSecureStorageDescription": "將恢復密鑰存儲在此裝置的安全存儲中。",
     "whyIsThisMessageEncrypted": "為什麼這條訊息無法讀取？",
     "noKeyForThisMessage": "如果訊息是在您登入此裝置之前傳送的，就可能會發生這種情況。\n\n也有可能是傳送者已經封鎖了您的裝置，或者網絡連接出了問題。\n\n如果您能在另一個會話中讀取該訊息，那麼您可以從中轉移訊息！前往設定 > 裝置，並確保您的裝置已相互驗證。當您下次打開房間且兩個會話都在前景時，密鑰將自動傳輸。\n\n不想在登出或切換裝置時丟失密鑰？請確保您已在設定中啟用了聊天室備份。",
     "newSpaceDescription": "空間允許您整合您的聊天室並建立私人或公開社群。",
@@ -2688,7 +2662,6 @@
         }
     },
     "removeAdminRights": "",
-    "loadingMessages": "",
     "removeFromSpaceDescription": "",
     "owner": "",
     "powerLevel": "",
@@ -2738,7 +2711,6 @@
             }
         }
     },
-    "setupChatBackup": "",
     "changedTheChatName": "",
     "spaceMemberOf": "",
     "@spaceMemberOf": {

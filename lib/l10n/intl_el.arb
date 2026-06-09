@@ -1057,11 +1057,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pause": "",
     "allowMultipleAnswers": "",
     "sender": "",
@@ -1132,11 +1127,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "passwordHasBeenChanged": "",
     "@passwordHasBeenChanged": {
         "type": "String",
@@ -1157,7 +1147,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "saveKeyManuallyDescription": "",
     "makeModerator": "",
     "italicText": "",
     "addAnswerOption": "",
@@ -1246,7 +1235,6 @@
     },
     "notificationRuleEncryptedRoomOneToOne": "",
     "storeSecurlyOnThisDevice": "",
-    "yourChatBackupHasBeenSetUp": "",
     "redactedBy": "",
     "@redactedBy": {
         "type": "String",
@@ -1419,7 +1407,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unlockOldMessages": "",
     "identityServer": "",
     "recording": "",
     "@recording": {
@@ -1573,7 +1560,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnterRecoveryKeyDescription": "",
     "guestsAreForbidden": "",
     "@guestsAreForbidden": {
         "type": "String",
@@ -1770,7 +1756,6 @@
         "description": "State that {command} is not a valid /command."
     },
     "redactMessageDescription": "",
-    "loadingMessages": "",
     "recoveryKey": "",
     "redactMessage": "",
     "@redactMessage": {
@@ -2255,7 +2240,6 @@
     "crossVerifiedDevices": "",
     "shareInviteLink": "",
     "commandHint_markasdm": "",
-    "recoveryKeyLost": "",
     "passwordRecoverySettings": "",
     "createNewAddress": "",
     "messages": "",
@@ -2276,11 +2260,6 @@
     },
     "saveChanges": "",
     "commandHint_logout": "",
-    "everythingReady": "",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newStickerPack": "",
     "signInGreeting": "",
     "oneOfYourDevicesIsNotVerified": "",
@@ -2600,7 +2579,6 @@
     },
     "supportFluffyChat": "",
     "databaseMigrationBody": "",
-    "storeInSecureStorageDescription": "",
     "kickUserDescription": "",
     "startedAPoll": "",
     "@startedAPoll": {
@@ -2627,7 +2605,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "setupChatBackup": "",
     "pinMessage": "",
     "screenSharingDetail": "",
     "pleaseFillOut": "",

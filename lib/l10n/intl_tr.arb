@@ -365,11 +365,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Eski mesajlarınız bir kurtarma anahtarı ile güvence altına alındı. Lütfen kaybetmediğinizden emin olun.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Sohbet ayrıntıları",
     "@chatDetails": {
         "type": "String",
@@ -736,11 +731,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Herşey hazır!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "Dosya adı",
     "@fileName": {
@@ -1620,11 +1610,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Başka bir aygıttan aktar",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Tekrar göndermeyi deneyin",
     "@tryToSendAgain": {
         "type": "String",
@@ -1830,11 +1815,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Yeni bir kurtarma anahtarı oluşturmak için sohbet yedeğiniz silinsin mi?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "Bu adresler ile parolanızı kurtarabilirsiniz.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1881,7 +1861,6 @@
     "addAccount": "Hesap ekle",
     "oneClientLoggedOut": "İstemcilerinizden birinin oturumu kapatıldı",
     "link": "Bağlantı",
-    "yourChatBackupHasBeenSetUp": "Sohbet yedeklemeniz ayarlandı.",
     "unverified": "Doğrulanmadı",
     "repeatPassword": "Parolayı tekrarlayın",
     "messageInfo": "Mesaj bilgileri",
@@ -1995,14 +1974,9 @@
         }
     },
     "storeInAppleKeyChain": "Apple KeyChain'de sakla",
-    "recoveryKeyLost": "Kurtarma anahtarı kayıp mı?",
-    "pleaseEnterRecoveryKeyDescription": "Eski mesajlarınızın kilidini açmak için lütfen önceki bir oturumda oluşturulan kurtarma anahtarınızı girin. Kurtarma anahtarınız parolanız DEĞİLDİR.",
     "users": "Kullanıcılar",
-    "storeInSecureStorageDescription": "Kurtarma anahtarını bu aygıtın güvenli deposunda saklayın.",
     "recoveryKey": "Kurtarma anahtarı",
     "storeInAndroidKeystore": "Android KeyStore'da sakla",
-    "unlockOldMessages": "Eski mesajların kilidini aç",
-    "saveKeyManuallyDescription": "Sistem paylaşımı iletişim kutusunu veya panoyu tetikleyerek bu anahtarı elle kaydedin.",
     "storeSecurlyOnThisDevice": "Bu aygıtta güvenli bir şekilde sakla",
     "countFiles": "{count} dosya",
     "@countFiles": {
@@ -2646,7 +2620,6 @@
         }
     },
     "removeAdminRights": "",
-    "loadingMessages": "",
     "removeFromSpaceDescription": "",
     "newChatRequest": "",
     "owner": "",
@@ -2739,7 +2712,6 @@
         }
     },
     "notificationRuleEncrypted": "",
-    "setupChatBackup": "",
     "changedTheChatName": "",
     "spaceMemberOf": "",
     "@spaceMemberOf": {

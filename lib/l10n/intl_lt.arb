@@ -169,11 +169,6 @@
         "placeholders": {}
     },
     "homeserver": "Namų serveris",
-    "everythingReady": "Viskas paruošta!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
     "fontSize": "Šrifto dydis",
     "@fontSize": {
         "type": "String",
@@ -687,7 +682,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "Jūsų pokalbio atsarginė kopija buvo nustatyta.",
     "chatBackup": "Pokalbio atsargine kopija",
     "@chatBackup": {
         "type": "String",
@@ -840,11 +834,6 @@
     },
     "synchronizingPleaseWait": "Sinchronizuojama… Prašome palaukti.",
     "@synchronizingPleaseWait": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "transferFromAnotherDevice": "Perkėlimas iš kito įrenginio",
-    "@transferFromAnotherDevice": {
         "type": "String",
         "placeholders": {}
     },
@@ -1109,11 +1098,6 @@
     },
     "whyDoYouWantToReportThis": "Kodėl norite apie tai pranešti?",
     "@whyDoYouWantToReportThis": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wipeChatBackup": "Ištrinti atsarginę pokalbių kopiją, kad sukurti naują atkūrimo raktą?",
-    "@wipeChatBackup": {
         "type": "String",
         "placeholders": {}
     },
@@ -1463,11 +1447,6 @@
                 "type": "String"
             }
         }
-    },
-    "chatBackupDescription": "Jūsų senos žinutės yra apsaugotos atkūrimo raktu. Pasirūpinkite, kad jo neprarastumėte.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
     },
     "commandHint_create": "Sukurti tuščią grupinį pokalbį\nNaudokite --no-encryption kad išjungti šifravimą",
     "@commandHint_create": {
@@ -1995,7 +1974,6 @@
     "commandHint_markasdm": "Pažymėti kaip tiesioginio pokalbio kambarį",
     "dehydrateWarning": "Šio veiksmo negalima atšaukti. Įsitikinkite, kad saugiai saugote atsarginę kopiją.",
     "commandHint_markasgroup": "Pažymėti kaip grupę",
-    "pleaseEnterRecoveryKeyDescription": "Norėdami atrakinti senas žinutes, įveskite atkūrimo raktą, kuris buvo sukurtas ankstesnės sesijos metu. Atkūrimo raktas NĖRA jūsų slaptažodis.",
     "storeInAppleKeyChain": "Saugoti Apple raktų grandinėje",
     "newSpace": "Nauja erdvė",
     "allSpaces": "Visos erdvės",
@@ -2014,7 +1992,6 @@
     "dehydrate": "Eksportuoti sesiją ir išvalyti įrenginį",
     "hydrate": "Atkurti iš atsarginės kopijos failo",
     "recoveryKey": "Atkūrimo raktas",
-    "recoveryKeyLost": "Pamestas atkūrimo raktas?",
     "countFiles": "{count} failai",
     "@countFiles": {
         "placeholders": {
@@ -2023,11 +2000,8 @@
             }
         }
     },
-    "storeInSecureStorageDescription": "Atkūrimo raktą laikyti saugioje šio prietaiso saugykloje.",
-    "saveKeyManuallyDescription": "Įrašykite šį raktą rankiniu būdu, įjungę sistemos bendrinimo dialogo langą arba iškarpinę.",
     "users": "Vartotojai",
     "storeSecurlyOnThisDevice": "Saugiai laikyti šiame prietaise",
-    "unlockOldMessages": "Atrakinti senas žinutes",
     "storeInAndroidKeystore": "Saugoti Android raktų saugykloje",
     "noKeyForThisMessage": "Taip gali atsitikti, jei žinutė buvo išsiųsta prieš prisijungiant prie paskyros šiame prietaise.\n\nTaip pat gali būti, kad siuntėjas užblokavo jūsų prietaisą arba kažkas sutriko su interneto ryšiu.\n\nAr galite perskaityti žinutę kitoje sesijoje? Tada galite perkelti žinutę iš jos! Eikite į Nustatymai > Prietaisai ir įsitikinkite, kad jūsų prietaisai patvirtino vienas kitą. Kai kitą kartą atidarysite kambarį ir abi sesijos bus pirmame plane, raktai bus perduoti automatiškai.\n\nNenorite prarasti raktų atsijungdami arba keisdami įrenginius? Įsitikinkite, kad nustatymuose įjungėte pokalbių atsarginę kopiją.",
     "foregroundServiceRunning": "Šis pranešimas rodomas, kai veikia pirmojo plano paslauga.",
@@ -2397,7 +2371,6 @@
     },
     "removeAdminRights": "",
     "redactMessageDescription": "",
-    "loadingMessages": "",
     "invalidInput": "",
     "removeFromSpaceDescription": "",
     "newChatRequest": "",
@@ -2712,7 +2685,6 @@
     },
     "notificationRuleEncrypted": "",
     "importNow": "",
-    "setupChatBackup": "",
     "noChatsFoundHere": "",
     "pleaseFillOut": "",
     "changedTheChatName": "",

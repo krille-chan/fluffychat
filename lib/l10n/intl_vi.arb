@@ -82,11 +82,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Chuyển từ thiết bị khác",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "showPassword": "Hiển thị mật khẩu",
     "@showPassword": {
         "type": "String",
@@ -104,11 +99,6 @@
     },
     "next": "Tiếp",
     "@next": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "Mọi thứ đã sẵn sàng!",
-    "@everythingReady": {
         "type": "String",
         "placeholders": {}
     },
@@ -248,11 +238,6 @@
     },
     "chatDetails": "Chi tiết cuộc trò chuyện",
     "@chatDetails": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatBackupDescription": "Bản sao lưu cuộc trò chuyện của bạn được bảo mật bằng một khoá bảo mật. Bạn đừng làm mất nó.",
-    "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
     },
@@ -1170,11 +1155,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pause": "",
     "cantOpenUri": "",
     "@cantOpenUri": {
@@ -1258,7 +1238,6 @@
         "type": "String",
         "description": "Usage hint for the command /clearcache"
     },
-    "saveKeyManuallyDescription": "",
     "makeModerator": "",
     "italicText": "",
     "addAnswerOption": "",
@@ -1334,7 +1313,6 @@
         "placeholders": {}
     },
     "notificationRuleEncryptedRoomOneToOne": "",
-    "yourChatBackupHasBeenSetUp": "",
     "redactedBy": "",
     "@redactedBy": {
         "type": "String",
@@ -1475,7 +1453,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unlockOldMessages": "",
     "changedTheJoinRulesTo": "",
     "@changedTheJoinRulesTo": {
         "type": "String",
@@ -1619,7 +1596,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnterRecoveryKeyDescription": "",
     "guestsAreForbidden": "",
     "@guestsAreForbidden": {
         "type": "String",
@@ -1770,7 +1746,6 @@
         "description": "State that {command} is not a valid /command."
     },
     "redactMessageDescription": "",
-    "loadingMessages": "",
     "recoveryKey": "",
     "redactMessage": "",
     "@redactMessage": {
@@ -2189,7 +2164,6 @@
     "crossVerifiedDevices": "",
     "shareInviteLink": "",
     "commandHint_markasdm": "",
-    "recoveryKeyLost": "",
     "passwordRecoverySettings": "",
     "createNewAddress": "",
     "messages": "",
@@ -2491,7 +2465,6 @@
     },
     "supportFluffyChat": "",
     "databaseMigrationBody": "",
-    "storeInSecureStorageDescription": "",
     "startedAPoll": "",
     "@startedAPoll": {
         "type": "String",
@@ -2512,7 +2485,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "setupChatBackup": "",
     "noChatsFoundHere": "",
     "pleaseFillOut": "",
     "changedTheChatName": "",

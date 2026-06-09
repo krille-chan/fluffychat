@@ -339,11 +339,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "I tuoi vecchi messaggi sono protetti da una chiave di sicurezza. Assicurati di non perderla.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Dettagli chat",
     "@chatDetails": {
         "type": "String",
@@ -604,11 +599,6 @@
     },
     "enterAnEmailAddress": "Inserisci un indirizzo e-mail",
     "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "Tutto pronto!",
-    "@everythingReady": {
         "type": "String",
         "placeholders": {}
     },
@@ -1399,11 +1389,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Trasferimento da un altro dispositivo",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Prova a inviare di nuovo",
     "@tryToSendAgain": {
         "type": "String",
@@ -1609,11 +1594,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Cancellare il backup della discussione per creare una nuova chiave di ripristino?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "Con questi indirizzi puoi recuperare la tua password se necessario.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1769,7 +1749,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "Il tuo backup delle chat è stato configurato.",
     "hugContent": "{senderName} ti abbraccia",
     "@hugContent": {
         "type": "String",
@@ -1891,7 +1870,6 @@
         "type": "String",
         "description": "Usage hint for the command /clearcache"
     },
-    "saveKeyManuallyDescription": "Salva questa chiave manualmente attivando la finestra di condivisione o gli appunti.",
     "editBundlesForAccount": "Modifica i bundle per questo account",
     "whyIsThisMessageEncrypted": "Perché questo messaggio è illeggibile?",
     "setChatDescription": "Imposta la descrizione della chat",
@@ -1917,7 +1895,6 @@
     "homeserver": "Homeserver",
     "readUpToHere": "Letto fino a qui",
     "start": "Inizio",
-    "unlockOldMessages": "Sblocca i vecchi messaggi",
     "optionalRedactReason": "(Opzionale) Ragione per rimuovere questo messaggio...",
     "dehydrate": "Esporta la sessione e cancella il dispositivo",
     "locationPermissionDeniedNotice": "Permesso per accedere alla posizione negato. Per favore concedilo per essere in grado di condividere la tua posizione.",
@@ -1928,7 +1905,6 @@
     "archiveRoomDescription": "Questa chat sarà archiviata. Gli altri utenti saranno in grado di vedere che hai abbandonato la chat.",
     "exportEmotePack": "Esporta pack di Emote come .zip",
     "experimentalVideoCalls": "Video chiamate sperimentali",
-    "pleaseEnterRecoveryKeyDescription": "Per sbloccare i tuoi vecchi messaggi, per favore inserisci la tua chiave di recupero che è stata generata nella tua sessione precedente. La tua chiave di recupero NON è la tua password.",
     "redactedByBecause": "Rimosso da {username} per: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
@@ -2128,7 +2104,6 @@
     "sorryThatsNotPossible": "Scusa... questo non è possibile",
     "shareInviteLink": "Condividi link d'invito",
     "commandHint_markasdm": "Contrassegna questo Matrix ID come stanza di messaggi diretti",
-    "recoveryKeyLost": "Chiave di recupero smarrita?",
     "cuddleContent": "{senderName} ti coccola",
     "@cuddleContent": {
         "type": "String",
@@ -2168,7 +2143,6 @@
     "time": "Tempo",
     "custom": "Personalizzato",
     "noBackupWarning": "Attenzione! Senza abilitare il backup della chat, perderai l'accesso ai tuoi messaggi crittografati. Si consiglia vivamente di abilitare il backup della chat prima di disconnettersi.",
-    "storeInSecureStorageDescription": "Salva la chiave di recupero nell'archivio sicuro di questo dispositivo.",
     "kickUserDescription": "L'utente è stato rimosso, ma non bannato. Nelle chat pubbliche, l'utente potrà rientrare quando vuole.",
     "importNow": "Importa ora",
     "pinMessage": "Fissa alla stanza",
@@ -2691,7 +2665,6 @@
         }
     },
     "removeAdminRights": "",
-    "loadingMessages": "",
     "removeFromSpaceDescription": "",
     "owner": "",
     "powerLevel": "",
@@ -2738,7 +2711,6 @@
             }
         }
     },
-    "setupChatBackup": "",
     "changedTheChatName": "",
     "spaceMemberOf": "",
     "@spaceMemberOf": {

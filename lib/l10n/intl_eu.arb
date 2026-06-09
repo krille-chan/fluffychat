@@ -1339,11 +1339,6 @@
             }
         }
     },
-    "everythingReady": "Dena prest!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
     "groups": "Taldeak",
     "@groups": {
         "type": "String",
@@ -1520,11 +1515,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Txat zaharrak berreskuratze-gako batekin daude babestuta. Ez galdu gako hori.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "configureChat": "Txata konfiguratu",
     "@configureChat": {
         "type": "String",
@@ -1668,7 +1658,6 @@
     },
     "confirmEventUnpin": "Ziur zaude gertaera finaktzeari utzi nahi diozula?",
     "markAsRead": "Markatu irakurritzat",
-    "yourChatBackupHasBeenSetUp": "Txaten babeskopiak ezarri dira.",
     "clearArchive": "Ezabatu artxiboa",
     "commandHint_html": "Bidali testua HTML formatuan",
     "@commandHint_html": {
@@ -1894,11 +1883,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Beste gailu batetik transferitu",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "unavailable": "Ez dago eskuragai",
     "@unavailable": {
         "type": "String",
@@ -1922,11 +1906,6 @@
     },
     "whoCanPerformWhichAction": "Nork zer egin dezakeen",
     "@whoCanPerformWhichAction": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wipeChatBackup": "Ezabatu txataren babeskopia berreskuratze-gako berria sortzeko?",
-    "@wipeChatBackup": {
         "type": "String",
         "placeholders": {}
     },
@@ -1995,13 +1974,11 @@
     },
     "youRejectedTheInvitation": "Gonbidapena baztertu duzu",
     "recoveryKey": "Berreskuratze-gakoa",
-    "recoveryKeyLost": "Berreskuratze-gakoa galdu duzu?",
     "users": "Erabiltzaileak",
     "storeInAndroidKeystore": "Gorde Android KeyStore-n",
     "dehydrate": "Esportatu saioa eta ezabatu gailua",
     "dehydrateWarning": "Ekintza hau ezin da desegin. Egiaztatu babeskopia toki seguruan gorde duzula.",
     "hydrate": "Lehengoratu babeskopia bat erabiliz",
-    "pleaseEnterRecoveryKeyDescription": "Mezu zaharrak ikusi ahal izateko, sartu aurreko saioan sortu zen berreskuratze-gakoa. Berreskuratze-gakoa EZ da zure pasahitza.",
     "storeSecurlyOnThisDevice": "Gorde gailu honetan modu seguruan",
     "countFiles": "{count} fitxategi",
     "@countFiles": {
@@ -2013,10 +1990,7 @@
     },
     "user": "Erabiltzailea",
     "custom": "Neurrira egindakoa",
-    "storeInSecureStorageDescription": "Gorde berreskuratze-gakoa gailu honetako biltegiratze seguruan.",
     "storeInAppleKeyChain": "Gorde Apple KeyChain-en",
-    "unlockOldMessages": "Desblokeatu mezu zaharrak",
-    "saveKeyManuallyDescription": "Gorde eskuz gako hau gailuko partekatze-menua edo arbela erabiliz.",
     "confirmMatrixId": "Baieztatu zure Matrix IDa kontua ezabatu ahal izateko.",
     "newSpace": "Gune berria",
     "whyIsThisMessageEncrypted": "Zergatik ezin da mezu hau irakurri?",
@@ -2686,8 +2660,6 @@
     "attribution": "Sortzailea",
     "skipChatBackup": "Ez egin txataren babeskopia",
     "skipChatBackupWarning": "Ziur? Txataren babeskopia gaitzen ez baduzu, gailuz aldatuz gero mezuen sarbidea gal zenezake.",
-    "loadingMessages": "Mezuak kargatzen",
-    "setupChatBackup": "Ezarri txataren babeskopia",
     "useAsSticker": "Erabili pegatina gisa",
     "stickerPackNameAlreadyExists": "Pegatina-sortaren izena badago lehendik ere",
     "newStickerPack": "Pegatina-sorta berria",

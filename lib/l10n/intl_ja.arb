@@ -340,11 +340,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "古いメッセージはリカバリーキーで保護されます。紛失しないようにご注意ください。",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "チャットの詳細",
     "@chatDetails": {
         "type": "String",
@@ -611,11 +606,6 @@
     },
     "enterAnEmailAddress": "メールアドレスを入力してください",
     "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "すべての準備は完了しました！",
-    "@everythingReady": {
         "type": "String",
         "placeholders": {}
     },
@@ -1416,11 +1406,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "違うデバイスから移行する",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "送信し直してみる",
     "@tryToSendAgain": {
         "type": "String",
@@ -1626,11 +1611,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "チャットのバックアップを消去して、新しいリカバリーキーを作りますか？",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "これらのアドレスを使用すると、パスワードを回復することができます。",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1687,7 +1667,6 @@
         "type": "String",
         "placeholder": {}
     },
-    "yourChatBackupHasBeenSetUp": "チャットバックアップを設定ました。",
     "sendOnEnter": "Enterで送信",
     "changeYourAvatar": "アバタるを変化しする",
     "@changeYourAvatar": {
@@ -1840,7 +1819,6 @@
     "messageInfo": "メッセージの情報",
     "openGallery": "ギャラリーを開く",
     "removeFromSpace": "スペースから削除",
-    "pleaseEnterRecoveryKeyDescription": "古いメッセージを解除するには、以前のセッションで生成されたリカバリーキーを入力してください。リカバリーキーはパスワードではありません。",
     "experimentalVideoCalls": "実験的なビデオ通話",
     "youAcceptedTheInvitation": "👍 招待を承諾しました",
     "youUnbannedUser": "{user} の禁止を解除しました",
@@ -1877,8 +1855,6 @@
     },
     "storeInAppleKeyChain": "Apple KeyChainに保存",
     "storeInAndroidKeystore": "Android KeyStoreに保存する",
-    "storeInSecureStorageDescription": "このデバイスの安全なストレージにリカバリーキーを保存。",
-    "unlockOldMessages": "古いメッセージのロックを解除する",
     "screenSharingTitle": "画面共有",
     "foregroundServiceRunning": "この通知は、フォアグラウンド サービスの実行中に表示されます。",
     "custom": "カスタム",
@@ -1949,7 +1925,6 @@
         "placeholders": {}
     },
     "noOtherDevicesFound": "他のデバイスが見つかりません",
-    "recoveryKeyLost": "リカバリーキーを紛失した場合",
     "shareLocation": "位置情報の共有",
     "@shareLocation": {
         "type": "String",
@@ -2196,7 +2171,6 @@
     "usersMustKnock": "ユーザーはノックする必要があります",
     "noOneCanJoin": "誰も参加できません",
     "knock": "ノック",
-    "saveKeyManuallyDescription": "この鍵をシステムの共有ダイアログかクリップボードから手動で保存してください。",
     "fileIsTooBigForServer": "送信できません！このサーバーは添付数は{max}個までです。",
     "@fileIsTooBigForServer": {
         "type": "String",
@@ -2555,7 +2529,6 @@
         }
     },
     "removeAdminRights": "",
-    "loadingMessages": "",
     "removeFromSpaceDescription": "",
     "wrongRecoveryKey": "",
     "owner": "",
@@ -2725,7 +2698,6 @@
         }
     },
     "notificationRuleEncrypted": "",
-    "setupChatBackup": "",
     "pleaseFillOut": "",
     "spaceMemberOf": "",
     "@spaceMemberOf": {

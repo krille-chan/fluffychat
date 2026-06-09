@@ -363,11 +363,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Suas mensagens são protegidas com sua chave de recuperação. Evite perdê-la.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Detalhes da conversa",
     "@chatDetails": {
         "type": "String",
@@ -734,11 +729,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Tudo pronto!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "Nome do arquivo",
     "@fileName": {
@@ -1618,11 +1608,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Transferir de outro dispositivo",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Tentar enviar novamente",
     "@tryToSendAgain": {
         "type": "String",
@@ -1828,11 +1813,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Apagar o backup de conversas para criar uma nova chave de recuperação?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "Você pode recuperar a sua senha com estes endereços.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1871,7 +1851,6 @@
     "oneClientLoggedOut": "Um dos seus clientes foi desconectado",
     "addAccount": "Adicionar conta",
     "unverified": "Não verificado",
-    "yourChatBackupHasBeenSetUp": "Seu backup de conversas foi configurado.",
     "editBundlesForAccount": "Editar coleções para esta conta",
     "serverRequiresEmail": "Este servidor precisa validar seu e-mail para efetuar o cadastro.",
     "messageInfo": "Informações da mensagem",
@@ -2002,7 +1981,6 @@
             }
         }
     },
-    "pleaseEnterRecoveryKeyDescription": "Para desbloquear as suas mensagens antigas, digite a sua chave de recuperação gerada numa sessão prévia. Sua chave de recuperação NÃO é sua senha.",
     "users": "Usuários",
     "confirmMatrixId": "Confirme seu ID Matrix para apagar sua conta.",
     "supposedMxid": "Isto deveria ser {mxid}",
@@ -2015,7 +1993,6 @@
         }
     },
     "recoveryKey": "Chave de recuperação",
-    "recoveryKeyLost": "Perdeu a chave de recuperação?",
     "commandHint_cuddle": "Enviar um afago",
     "commandHint_hug": "Enviar um abraço",
     "commandHint_googly": "Enviar olhos arregalados",
@@ -2040,8 +2017,6 @@
     "commandHint_markasdm": "Marcar como sala de mensagens diretas para o ID Matrix fornecido",
     "commandHint_markasgroup": "Marcar como grupo",
     "hydrate": "Restaurar a partir de um arquivo de backup",
-    "storeInSecureStorageDescription": "Guardar a chave de recuperação no armazenamento seguro deste dispositivo.",
-    "saveKeyManuallyDescription": "Salvar esta chave manualmente via compartilhamento do sistema ou área de transferência.",
     "storeInAndroidKeystore": "Guardar no cofre do Android (KeyStore)",
     "storeInAppleKeyChain": "Guardar no chaveiro da Apple",
     "storeSecurlyOnThisDevice": "Guardar de modo seguro neste dispositivo",
@@ -2060,7 +2035,6 @@
         }
     },
     "doNotShowAgain": "Não mostrar novamente",
-    "unlockOldMessages": "Desbloquear mensagens antigas",
     "dehydrate": "Exportar sessão e apagar dispositivo",
     "dehydrateWarning": "Esta ação não pode ser desfeita. Certifique-se de que o arquivo de backup está guardado e seguro.",
     "whyIsThisMessageEncrypted": "Por que não consigo ler esta mensagem?",
@@ -2688,8 +2662,6 @@
     "attribution": "Créditos",
     "skipChatBackup": "Pular backup de conversas",
     "skipChatBackupWarning": "Tem certeza? Se não ativar o backup de conversas, você pode perder o acesso às suas mensagens se trocar de dispositivo.",
-    "loadingMessages": "Carregando mensagens",
-    "setupChatBackup": "Configurar backup de conversas",
     "changedTheChatDescription": "{username} alterou a descrição da conversa",
     "changedTheChatName": "{username} alterou o nome da conversa",
     "versionWithNumber": "Versão: {version}",

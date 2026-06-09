@@ -12,3 +12,8 @@ const user2Pw = String.fromEnvironment(
   'USER2_PW',
   defaultValue: 'JoWirSchaffenDas',
 );
+
+const passphrase1 = String.fromEnvironment(
+  'PASSPHRASE_1',
+  defaultValue: '1234567890aB%',
+);
