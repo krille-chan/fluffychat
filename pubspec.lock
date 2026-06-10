@@ -1104,8 +1104,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "krille/flag-cross-signing-keys-as-tofu-since"
-      resolved-ref: "9dd583808aec634582cc6842220e13a1ca9ebf8e"
+      ref: main
+      resolved-ref: "280bc342135bfb2b43ce13df036a77b49f4129c3"
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "7.2.2"
