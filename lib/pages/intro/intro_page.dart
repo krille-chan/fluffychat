@@ -38,7 +38,9 @@ class IntroPage extends StatelessWidget {
     return LoginScaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: addMultiAccount ? Text(L10n.of(context).addAccount) : null,
+        title: addMultiAccount
+            ? Text(L10n.of(context).addAccount)
+            : Text(AppSettings.applicationName.value),
         actions: [
           PopupMenuButton(
             useRootNavigator: true,
@@ -109,16 +111,12 @@ class IntroPage extends StatelessWidget {
                             child: Hero(
                               tag: 'info-logo',
                               child: Image.asset(
-                                './assets/logo/mini/logo_standalone_mini.png',
+                                './assets/logo/mini/logo_mono_mini.png',
                                 width: 156,
                                 height: 156,
+                                color:
+                                    theme.colorScheme.surfaceContainerHighest,
                               ),
-                            ),
-                          ),
-                          Center(
-                            child: Image.asset(
-                              './assets/logo/mini/logo_font_mini.png',
-                              width: 156,
                             ),
                           ),
                           const SizedBox(height: 8),
