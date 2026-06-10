@@ -59,7 +59,7 @@ dependencies:
       ref: main
   mime: ^2.0.0
   native_imaging: ^0.4.0
-  open_file: ^3.5.11
+  open_file: ^4.0.0
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^10.1.0
   particles_network: ^1.9.4
