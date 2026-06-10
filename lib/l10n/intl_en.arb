@@ -2867,5 +2867,34 @@
         "type": "String",
         "placeholders": {}
     },
-    "youAreReadyToStart": "You are ready to start!"
+    "youAreReadyToStart": "You are ready to start!",
+    "noUserKeyFound": "No user key found",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Known since: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "Unsigned device",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Signed device",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "No curve25519 key found",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    }
 }

@@ -7,11 +7,10 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
-import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class ChatEncryptionSettingsView extends StatelessWidget {
@@ -88,98 +87,40 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                 Divider(color: theme.dividerColor, height: 1),
               ],
               if (room.encrypted) ...[
-                ListTile(
-                  title: Text(
-                    L10n.of(context).deviceKeys,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                StreamBuilder(
-                  stream: room.client.onRoomState.stream.where(
-                    (update) => update.roomId == controller.room.id,
-                  ),
-                  builder: (context, snapshot) => FutureBuilder<List<DeviceKeys>>(
-                    future: room.getUserDeviceKeys(),
-                    builder: (BuildContext context, snapshot) {
-                      if (snapshot.hasError) {
+                // TODO: Display device keys
+                SelectionArea(
+                  child: FutureBuilder(
+                    future: room.requestParticipants(),
+                    builder: (context, snapshot) {
+                      final users = snapshot.data;
+                      if (users == null) {
                         return Center(
-                          child: Text(
-                            '${L10n.of(context).oopsSomethingWentWrong}: ${snapshot.error}',
-                          ),
+                          child: CircularProgressIndicator.adaptive(),
                         );
                       }
-                      if (!snapshot.hasData) {
-                        return const Center(
-                          child: CircularProgressIndicator.adaptive(
-                            strokeWidth: 2,
-                          ),
-                        );
-                      }
-                      final deviceKeys = snapshot.data!;
-                      return SelectionArea(
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          padding: EdgeInsets.symmetric(horizontal: 16),
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: deviceKeys.length,
-                          itemBuilder: (BuildContext context, int i) => Padding(
-                            padding: EdgeInsets.only(bottom: 16),
-                            child: Material(
-                              color: deviceKeys[i].verified
-                                  ? theme.brightness == Brightness.light
-                                        ? Colors.green.shade50
-                                        : Colors.green.shade900
-                                  : deviceKeys[i].blocked
-                                  ? theme.colorScheme.errorContainer
-                                  : theme.colorScheme.surfaceContainer,
-                              borderRadius: BorderRadius.circular(
-                                AppConfig.borderRadius,
-                              ),
-                              child: ListTile(
+                      return Column(
+                        children: users.map((user) {
+                          final userDeviceKeys =
+                              room.client.userDeviceKeys[user.id];
+                          final masterKey = userDeviceKeys?.masterKey;
+                          final tofuSince = masterKey?.trustOnFirstUseSince;
+                          return Column(
+                            mainAxisSize: .min,
+                            children: [
+                              ListTile(
+                                leading: CircleAvatar(
+                                  child: Text(
+                                    (userDeviceKeys?.deviceKeys.length ?? 0)
+                                        .toString(),
+                                  ),
+                                ),
                                 title: Row(
-                                  spacing: 8,
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        deviceKeys[i].verified
-                                            ? L10n.of(context).verified
-                                            : deviceKeys[i].blocked
-                                            ? L10n.of(context).blocked
-                                            : L10n.of(context).unverified,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: deviceKeys[i].verified
-                                              ? Colors.green
-                                              : theme.colorScheme.error,
-                                        ),
-                                      ),
-                                    ),
-                                    IconButton(
-                                      icon: Icon(
-                                        deviceKeys[i].verified
-                                            ? Icons.verified
-                                            : Icons.verified_outlined,
-                                        color: deviceKeys[i].verified
-                                            ? Colors.green
-                                            : null,
-                                      ),
-                                      tooltip: L10n.of(context).verify,
-                                      onPressed: () => controller
-                                          .toggleVerified(deviceKeys[i]),
-                                    ),
-                                    IconButton(
-                                      icon: Icon(
-                                        deviceKeys[i].blocked
-                                            ? Icons.block
-                                            : Icons.block_outlined,
-
-                                        color: deviceKeys[i].blocked
-                                            ? theme.colorScheme.error
-                                            : null,
-                                      ),
-                                      tooltip: L10n.of(context).block,
-                                      onPressed: () => controller.toggleBlocked(
-                                        deviceKeys[i],
+                                        user.calcDisplayname(),
+                                        maxLines: 1,
+                                        overflow: .ellipsis,
                                       ),
                                     ),
                                   ],
@@ -187,47 +128,101 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                 subtitle: Column(
                                   crossAxisAlignment: .start,
                                   mainAxisSize: .min,
-                                  spacing: 2,
                                   children: [
-                                    GestureDetector(
-                                      onTap: () => UrlLauncher(
-                                        context,
-                                        'https://matrix.to/#/${deviceKeys[i].userId}',
-                                      ).openMatrixToUrl(),
-                                      child: Text(
-                                        deviceKeys[i].userId,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize: 11,
-                                          color: theme.colorScheme.primary,
-                                          decoration: TextDecoration.underline,
-                                          decorationColor:
-                                              theme.colorScheme.primary,
-                                        ),
-                                      ),
-                                    ),
                                     Text(
-                                      'ID: ${deviceKeys[i].deviceId}',
+                                      user.id,
                                       maxLines: 1,
+                                      overflow: .ellipsis,
                                       style: TextStyle(
-                                        fontSize: 11,
-                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FontStyle.italic,
                                       ),
                                     ),
                                     Text(
-                                      '${deviceKeys[i].ed25519Key?.beautified}',
+                                      masterKey == null
+                                          ? L10n.of(context).noUserKeyFound
+                                          : masterKey.verified == true
+                                          ? L10n.of(context).verified
+                                          : tofuSince != null
+                                          ? L10n.of(context).knownSince(
+                                              tofuSince.localizedTime(context),
+                                            )
+                                          : L10n.of(context).unverified,
                                       style: TextStyle(
-                                        fontFamily: 'RobotoMono',
-                                        fontSize: 11,
+                                        color: masterKey == null
+                                            ? theme.colorScheme.onErrorContainer
+                                            : masterKey.verified
+                                            ? Colors.green
+                                            : tofuSince != null
+                                            ? theme.colorScheme.primary
+                                            : null,
                                       ),
                                     ),
                                   ],
                                 ),
+                                trailing: IconButton(
+                                  onPressed: () =>
+                                      controller.uncollapse(user.id),
+                                  icon: Icon(
+                                    controller.uncollapsedUserId == user.id
+                                        ? Icons.keyboard_arrow_up_outlined
+                                        : Icons.keyboard_arrow_down_outlined,
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
+                              if (controller.uncollapsedUserId == user.id &&
+                                  userDeviceKeys != null) ...[
+                                ...userDeviceKeys.deviceKeys.values.map((
+                                  device,
+                                ) {
+                                  final signedDevice = device
+                                      .hasValidSignatureChain(
+                                        verifiedOnly: false,
+                                        verifiedByTheirMasterKey: true,
+                                      );
+                                  return ListTile(
+                                    title: Text(
+                                      device.verified
+                                          ? L10n.of(context).verified
+                                          : device.blocked
+                                          ? L10n.of(context).blocked
+                                          : !signedDevice
+                                          ? L10n.of(context).unsignedDevice
+                                          : L10n.of(context).signedDevice,
+                                      style: TextStyle(
+                                        color: device.verified
+                                            ? Colors.green
+                                            : device.blocked
+                                            ? theme.colorScheme.error
+                                            : !signedDevice
+                                            ? theme.colorScheme.onErrorContainer
+                                            : theme.colorScheme.primary,
+                                      ),
+                                    ),
+                                    subtitle: Text(
+                                      device.curve25519Key?.beautified ??
+                                          L10n.of(context).noCurve25519KeyFound,
+                                    ),
+                                    trailing: IconButton(
+                                      icon: Icon(Icons.block_outlined),
+                                      style: IconButton.styleFrom(
+                                        foregroundColor: device.blocked
+                                            ? theme.colorScheme.error
+                                            : null,
+                                      ),
+                                      tooltip: device.blocked
+                                          ? L10n.of(context).unblockDevice
+                                          : L10n.of(context).blockDevice,
+
+                                      onPressed: () =>
+                                          controller.toggleBlocked(device),
+                                    ),
+                                  );
+                                }),
+                                Divider(color: theme.dividerColor),
+                              ],
+                            ],
+                          );
+                        }).toList(),
                       );
                     },
                   ),

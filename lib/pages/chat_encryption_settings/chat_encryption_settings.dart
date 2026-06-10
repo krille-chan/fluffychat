@@ -34,6 +34,18 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
     }
   }
 
+  String? uncollapsedUserId;
+
+  void uncollapse(String? userId) {
+    setState(() {
+      if (uncollapsedUserId == userId) {
+        uncollapsedUserId = null;
+      } else {
+        uncollapsedUserId = userId;
+      }
+    });
+  }
+
   Future<void> enableEncryption(_) async {
     final l10n = L10n.of(context);
     if (room.encrypted) {
@@ -95,17 +107,6 @@ class ChatEncryptionSettingsController extends State<ChatEncryptionSettings> {
     };
     if (!mounted) return;
     await KeyVerificationDialog(request: req).show(context);
-  }
-
-  void toggleVerified(DeviceKeys key) {
-    setState(() {
-      if (!key.verified && key.blocked) key.setBlocked(false);
-      if (key.crossVerified) {
-        room.client.userDeviceKeys[key.userId]?.masterKey?.setVerified(false);
-      } else {
-        key.setVerified(!key.verified);
-      }
-    });
   }
 
   void toggleBlocked(DeviceKeys key) {
