@@ -317,11 +317,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Meldingene dine er sikret med en gjenopprettingsnøkkel. Pass på at du ikke mister den.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Sludringsdetaljer",
     "@chatDetails": {
         "type": "String",
@@ -577,11 +572,6 @@
     },
     "enterAnEmailAddress": "Skriv inn en e-postadresse",
     "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "Alt er klart!",
-    "@everythingReady": {
         "type": "String",
         "placeholders": {}
     },
@@ -1337,11 +1327,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Overfør fra en annen enhet",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Prøv å sende igjen",
     "@tryToSendAgain": {
         "type": "String",
@@ -1856,7 +1841,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "Sikkerhetskopien av chatten din er konfigurert.",
     "discover": "Oppdag",
     "thereAreCountUsersBlocked": "Akkurat nå er det {count} blokkerte brukere.",
     "@thereAreCountUsersBlocked": {
@@ -2293,7 +2277,6 @@
     "generalNotificationSettings": "Generelle varslingsinnstillinger",
     "notificationRuleContainsUserNameDescription": "Varsler bruker når en melding inneholder ens brukernavn.",
     "removeFromSpace": "Fjern fra området",
-    "pleaseEnterRecoveryKeyDescription": "For å låse opp gamle meldinger, vennligst skriv inn gjenopprettingsnøkkelen som ble generert i en tidligere økt. Gjenopprettingsnøkkelen er IKKE passordet ditt.",
     "reactedWith": "{sender} reagerte med {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -2412,11 +2395,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Vil du slette sikkerhetskopien av chatten din for å opprette en ny gjenopprettingsnøkkel?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noOneCanJoin": "Ingen kan bli med",
     "commandHint_html": "Send HTML-formatert tekst",
     "@commandHint_html": {
@@ -2506,7 +2484,6 @@
     "kickUserDescription": "Brukeren blir kastet ut av chatten, men ikke utestengt. I offentlige chatter kan brukeren bli med på nytt når som helst.",
     "sendTypingNotifications": "Send varsler ved skriving",
     "swipeRightToLeftToReply": "Sveip fra høyre mot venstre for å svare",
-    "unlockOldMessages": "Lås opp gamle meldinger",
     "storeInAndroidKeystore": "Lagre i Android KeyStore",
     "storeInAppleKeyChain": "Lagre i Apple nøkkelring",
     "storeSecurlyOnThisDevice": "Lagre sikkert på denne enheten",
@@ -2527,7 +2504,6 @@
     "notificationRuleJitsiDescription": "Varsler brukeren om hendelser i Jitsi-widgeten.",
     "customReaction": "Egendefinert reaksjon",
     "pause": "Pause",
-    "storeInSecureStorageDescription": "Oppbevar gjenopprettingsnøkkelen på en sikker lagringsplass på denne enheten.",
     "foregroundServiceRunning": "Denne varslingen vises når forgrunnstjenesten kjører.",
     "longPressToRecordVoiceMessage": "Langt trykk for å spille inn talemelding.",
     "startedAPoll": "{username} startet en avstemning.",
@@ -2570,8 +2546,6 @@
     "backToMainChat": "Tilbake til hovedchatten",
     "saveChanges": "Lagre endringer",
     "skipChatBackup": "Hopp over sikkerhetskopiering av chat",
-    "loadingMessages": "Laster inn meldinger",
-    "setupChatBackup": "Konfigurer sikkerhetskopi av chat",
     "commandHint_googly": "Send noen googly-eyes",
     "commandHint_cuddle": "Send en kos",
     "googlyEyesContent": "{senderName} sender deg googly-eyes",
@@ -2587,7 +2561,6 @@
     "changedTheChatDescription": "{username} endret beskrivelsen av chatten",
     "changedTheChatName": "{username} endret navnet på chatten",
     "commandHint_markasdm": "Marker som rom for direktemeldinger for den angitte Matrix-IDen",
-    "recoveryKeyLost": "Mistet gjenopprettingsnøkkel?",
     "setAsCanonicalAlias": "Angi som hovedalias",
     "@setAsCanonicalAlias": {
         "type": "String",
@@ -2715,7 +2688,6 @@
         }
     },
     "confirmEventUnpin": "Er du sikker på at du vil løsne hendelsen permanent?",
-    "saveKeyManuallyDescription": "Lagre denne nøkkelen manuelt ved å åpne systemets delingsmeny eller kopiere til utklippstavlen.",
     "newSpaceDescription": "Områder lar deg samle chattene dine og bygge private eller offentlige fellesskap.",
     "chatPermissionsDescription": "Definer hvilket tilgangsnivå som kreves for bestemte handlinger i denne chatten. Nivåene 0, 50 og 100 representerer vanligvis brukere, moderatorer og administratorer, men alle mellomtrinn er mulige.",
     "knocking": "Banker på",

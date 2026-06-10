@@ -1531,11 +1531,6 @@
     },
     "sendOnEnter": "Envia en prémer Retorn",
     "clearArchive": "Neteja l’arxiu",
-    "chatBackupDescription": "Els teus xats estan protegits amb una clau de recuperació. Assegura't de no perdre-la.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "autoplayImages": "Reprodueix automàticament enganxines i emoticones animades",
     "@autoplayImages": {
         "type": "String",
@@ -1548,11 +1543,6 @@
     },
     "blocked": "Blocat",
     "@blocked": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "Tot és a punt!",
-    "@everythingReady": {
         "type": "String",
         "placeholders": {}
     },
@@ -1596,7 +1586,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "S’ha configurat la còpia de seguretat del xat.",
     "contentHasBeenReported": "El contingut s’ha denunciat als administradors del servidor",
     "@contentHasBeenReported": {
         "type": "String",
@@ -1648,11 +1637,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Transfereix des d’un altre dispositiu",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "whoCanPerformWhichAction": "Qui pot efectuar quina acció",
     "@whoCanPerformWhichAction": {
         "type": "String",
@@ -1660,11 +1644,6 @@
     },
     "whyDoYouWantToReportThis": "Per què voleu denunciar això?",
     "@whyDoYouWantToReportThis": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wipeChatBackup": "Voleu suprimir la còpia de seguretat dels xats per a crear una clau de recuperació nova?",
-    "@wipeChatBackup": {
         "type": "String",
         "placeholders": {}
     },
@@ -1935,7 +1914,6 @@
     "sender": "Remitent",
     "storeInAndroidKeystore": "Desa en la Android KeyStore",
     "makeAdminDescription": "Un cop hagis fet admin aquesta persona ja no podràs desfer-ho, ja que llavors tindrà els mateixos permisos que tu.",
-    "saveKeyManuallyDescription": "Per desar aquesta clau manualment, pica l'eina de compartir o copia-la al porta-retalls.",
     "editBundlesForAccount": "Edita paquets per aquest compte",
     "whyIsThisMessageEncrypted": "Per què no es pot llegir aquest missatge?",
     "setChatDescription": "Posa una descripció de xat",
@@ -1966,13 +1944,11 @@
         "type": "String",
         "placeholders": {}
     },
-    "unlockOldMessages": "Desbloqueja els missatges antics",
     "optionalRedactReason": "(Opcional) El motiu per estripar el missatge...",
     "dehydrate": "Exporta la sessió i neteja el dispositiu",
     "archiveRoomDescription": "Aquest xat serà arxivat. Els altres contactes del grup ho veuran com si haguessis abandonat el xat.",
     "exportEmotePack": "Exporta com un pack Emote en .zip",
     "experimentalVideoCalls": "Trucades de vídeo experimentals",
-    "pleaseEnterRecoveryKeyDescription": "Per desbloquejar els missatges antics, introdueix la clau de recuperació que vas generar en una sessió anterior. La clau de recuperació NO és la teva contrasenya.",
     "openInMaps": "Obre als mapes",
     "@openInMaps": {
         "type": "String",
@@ -2123,7 +2099,6 @@
     "sorryThatsNotPossible": "Aquesta acció no és possible",
     "shareInviteLink": "Comparteix un enllaç d'invitació",
     "commandHint_markasdm": "Marca com a conversa directa la sala amb aquesta ID de Matrix",
-    "recoveryKeyLost": "Que has perdut la clau de recuperació?",
     "cuddleContent": "{senderName} et fa una carícia",
     "@cuddleContent": {
         "type": "String",
@@ -2168,7 +2143,6 @@
     "time": "Temps",
     "custom": "Personalitzat",
     "noBackupWarning": "Compte! Si no actives la còpia de seguretat dels xats, perdràs accés als teus missatges xifrats. És molt recomanable activar-ho abans de tancar la sessió.",
-    "storeInSecureStorageDescription": "Desa la clau de recuperació en l'emmagatzematge segur d'aquest dispositiu.",
     "kickUserDescription": "Li usuàrïi ha estat expulsadi però no vetadi. Als xats públics, pot tornar-hi a entrar en qualsevol moment.",
     "importNow": "Importa-ho ara",
     "pinMessage": "Fixa a la sala",
@@ -2690,8 +2664,6 @@
     "attribution": "Atribució",
     "skipChatBackup": "Omet la còpia de seguretat del xat",
     "skipChatBackupWarning": "N'estàs seguri? Si no actives la còpia de seguretat pots perdre accés als teus missatges si canvies de dispositiu.",
-    "loadingMessages": "S'estan carregant més missatges",
-    "setupChatBackup": "Activa la còpia de seguretat del xat",
     "noMoreResultsFound": "No s'han trobat més resultats",
     "chatSearchedUntil": "S'ha cercat fins a {time}",
     "@chatSearchedUntil": {

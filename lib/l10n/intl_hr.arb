@@ -354,11 +354,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Tvoje poruke su osigurane s ključem za obnavljanje. Pazi da ga ne izgubiš.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Detalji chata",
     "@chatDetails": {
         "type": "String",
@@ -714,11 +709,6 @@
     },
     "enterAnEmailAddress": "Upiši e-mail adresu",
     "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "Sve je spremno!",
-    "@everythingReady": {
         "type": "String",
         "placeholders": {}
     },
@@ -1558,11 +1548,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Prenesi s jednog drugog uređaja",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Pokušaj ponovo poslati",
     "@tryToSendAgain": {
         "type": "String",
@@ -1768,11 +1753,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Izbrisati sigurnosnu kopiju chata za stvaranje novog sigurnosnog ključa za obnavljanje?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "Lozinku možeš obnoviti pomoću ovih adresa.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1877,7 +1857,6 @@
     "addAccount": "Dodaj račun",
     "oneClientLoggedOut": "Jedan od tvojih klijenata je odjavljen",
     "unverified": "Nepotvrđeno",
-    "yourChatBackupHasBeenSetUp": "Sigurnosna kopija tvog chata je postavljena.",
     "repeatPassword": "Ponovi lozinku",
     "messageInfo": "Informacija poruke",
     "messageType": "Vrsta poruke",
@@ -1912,7 +1891,6 @@
     "unsupportedAndroidVersion": "Nepodržana Android verzija",
     "unsupportedAndroidVersionLong": "Ova funkcija zahtijeva noviju verziju Androida. Provjeri, postoje li nove verzije ili podrška za Lineage OS.",
     "recoveryKey": "Ključ za obnavljanje",
-    "recoveryKeyLost": "Izgubio/la si ključ za obnavljanje?",
     "youKickedAndBanned": "🙅 Izbacio/la i isključio/la si korisnika {user}",
     "@youKickedAndBanned": {
         "placeholders": {
@@ -1994,13 +1972,9 @@
         }
     },
     "dehydrate": "Izvezi sesiju i izbriši uređaj",
-    "unlockOldMessages": "Otključaj stare poruke",
-    "storeInSecureStorageDescription": "Ključ za obnavljanje spremi u sigurno spremište na ovom uređaju.",
-    "saveKeyManuallyDescription": "Spremi ovaj ključ ručno pokretanjem dijaloga za dijeljenje sustava ili međuspremnika.",
     "storeInAndroidKeystore": "Spremi u Android KeyStore",
     "hydrate": "Obnovi pomoću sigurnosne kopije",
     "users": "Korisnici",
-    "pleaseEnterRecoveryKeyDescription": "Za otključavanje starih poruka upiši ključ za obnavljanje koji je generiran u prethodnoj sesiji. Tvoj ključ za obnavljanje NIJE tvoja lozinka.",
     "youBannedUser": "Isključio/la si korisnika {user}",
     "@youBannedUser": {
         "placeholders": {
@@ -2691,8 +2665,6 @@
     "attribution": "Atribucija",
     "skipChatBackup": "Preskoči sigurnosno kopiranje chata",
     "skipChatBackupWarning": "Sigurno? Bez aktiviranja sigurnosne kopije chata možeš izgubiti pristup svojim porukama ako promijeniš uređaj.",
-    "loadingMessages": "Učitavanje poruka",
-    "setupChatBackup": "Postavi sigurnosno kopiranje chata",
     "noMoreResultsFound": "Nema više rezultata",
     "chatSearchedUntil": "Chat je pretražen do {time}",
     "@chatSearchedUntil": {

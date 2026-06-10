@@ -362,7 +362,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "پشتیبان چت شما تنظیم شد.",
     "changeTheme": "تغییر پوسته",
     "@changeTheme": {
         "type": "String",
@@ -828,11 +827,6 @@
             }
         }
     },
-    "chatBackupDescription": "پیام‌های شما با کلید بازیابی محافظت می‌شوند. حتماً آن را نزد خود نگه دارید.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "deactivateAccountWarning": "این کار حساب شما را غیرفعال می‌کند. این کنش برگشت‌ناپذیر است! آیا مطمئن هستید؟",
     "@deactivateAccountWarning": {
         "type": "String",
@@ -994,11 +988,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "همه‌چیز آماده است!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "نام پرونده",
     "@fileName": {
@@ -1634,7 +1623,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "recoveryKeyLost": "کلید بازیابی گم شد؟",
     "fileHasBeenSavedAt": "پرونده در {path} ذخیره شد",
     "@fileHasBeenSavedAt": {
         "type": "String",
@@ -1678,7 +1666,6 @@
     "storeSecurlyOnThisDevice": "ذخیره امن در این دستگاه",
     "screenSharingDetail": "شما در حال هم‌رسانی صفحه‌نمایش خود در فلافی‌چت هستید",
     "newSpace": "فضای جدید",
-    "saveKeyManuallyDescription": "این کلید را با استفاده از هم‌رسانی یا بریده‌دان به‌طور دستی ذخیره کنید.",
     "storeInAndroidKeystore": "ذخیره در Android KeyStore",
     "storeInAppleKeyChain": "ذخیره در Apple KeyChain",
     "user": "کاربر",
@@ -1691,7 +1678,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unlockOldMessages": "گشودن پیام‌های قدیمی",
     "share": "هم‌رسانی",
     "@share": {
         "type": "String",
@@ -1994,11 +1980,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "برای ایجاد کلید بازیابی جدید، پشتیبان چت خود را پاک می‌کنید؟",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "با این آدرس‌ها می‌توانید رمز خود را بازیابی کنید.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -2006,7 +1987,6 @@
     },
     "openGallery": "بازکردن گالری",
     "removeFromSpace": "حذف از فضا",
-    "pleaseEnterRecoveryKeyDescription": "برای گشودن قفل پیام‌های قدیمیتان، لطفا کلید بازیابی‌ای که در یک نشست پیشین تولید شده را وارد کنید. کلید بازیابی شما، رمز عبور شما نیست.",
     "confirmEventUnpin": "آیا از برداشتن سنجاق رویداد به صورت دائمی مطمئن هستید؟",
     "youKickedAndBanned": "🙅 شما {user} را بیرون و محروم کردید",
     "@youKickedAndBanned": {
@@ -2028,11 +2008,6 @@
     },
     "youRejectedTheInvitation": "شما دعوت را رد کردید",
     "youAcceptedTheInvitation": "👍 شما دعوت را پذیرفتید",
-    "transferFromAnotherDevice": "انتقال از دستگاهی دیگر",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "videoCallsBetaWarning": "لطفا توجه داشته باشید که تماس‌های تصویری در حال حاضر آزمایشی هستند. ممکن است طبق انتظار کار نکنند یا روی همه پلتفرم‌ها اصلا کار نکنند.",
     "experimentalVideoCalls": "تماس‌های تصویری آزمایشی",
     "placeCall": "برقراری تماس",
@@ -2095,7 +2070,6 @@
         }
     },
     "users": "کاربرها",
-    "storeInSecureStorageDescription": "کلید بازیابی را در محل ذخیره‌سازی امن این دستگاه ذخیره کنید.",
     "jump": "پرش",
     "report": "گزارش",
     "openLinkInBrowser": "بازکردن پیوند در مرورگر",
@@ -2681,8 +2655,6 @@
     "attribution": "نسبت دادن",
     "skipChatBackup": "صرف نظر از پشتیبان گیری چت",
     "skipChatBackupWarning": "آیا مطمئنید؟ بدون فعال کردن پشتیبان گیری چت ممکن است در صورت تغییر دستگاه دسترسی خود به پیام هایتان را از دست بدهید.",
-    "loadingMessages": "در حال بارگذاری پیام ها",
-    "setupChatBackup": "فعالسازی پشتیبان گیری چت",
     "noMoreResultsFound": "نتایج دیگری یافت نشد",
     "chatSearchedUntil": "چت تا {time} جستجو شد",
     "@chatSearchedUntil": {

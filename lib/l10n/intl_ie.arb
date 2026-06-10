@@ -75,11 +75,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "everythingReady": "Omni es pret!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
     "fileName": "Nómine de file",
     "@fileName": {
         "type": "String",
@@ -1425,11 +1420,6 @@
     "chatPermissions": "",
     "notificationRuleCall": "",
     "baseUrl": "",
-    "wipeChatBackup": "",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pause": "",
     "allowMultipleAnswers": "",
     "storeInAndroidKeystore": "",
@@ -1487,17 +1477,11 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "passwordHasBeenChanged": "",
     "@passwordHasBeenChanged": {
         "type": "String",
         "placeholders": {}
     },
-    "saveKeyManuallyDescription": "",
     "makeModerator": "",
     "italicText": "",
     "addAnswerOption": "",
@@ -1563,7 +1547,6 @@
     },
     "notificationRuleEncryptedRoomOneToOne": "",
     "storeSecurlyOnThisDevice": "",
-    "yourChatBackupHasBeenSetUp": "",
     "redactedBy": "",
     "@redactedBy": {
         "type": "String",
@@ -1686,7 +1669,6 @@
     },
     "readUpToHere": "",
     "customEmojisAndStickers": "",
-    "unlockOldMessages": "",
     "changedTheJoinRulesTo": "",
     "@changedTheJoinRulesTo": {
         "type": "String",
@@ -1838,7 +1820,6 @@
     "notificationRuleTombstone": "",
     "experimentalVideoCalls": "",
     "removeModeratorRights": "",
-    "pleaseEnterRecoveryKeyDescription": "",
     "guestsAreForbidden": "",
     "@guestsAreForbidden": {
         "type": "String",
@@ -2003,7 +1984,6 @@
         "description": "State that {command} is not a valid /command."
     },
     "redactMessageDescription": "",
-    "loadingMessages": "",
     "commandHint_discardsession": "",
     "@commandHint_discardsession": {
         "type": "String",
@@ -2412,7 +2392,6 @@
     "crossVerifiedDevices": "",
     "shareInviteLink": "",
     "commandHint_markasdm": "",
-    "recoveryKeyLost": "",
     "cuddleContent": "",
     "@cuddleContent": {
         "type": "String",
@@ -2479,11 +2458,6 @@
     "youJoinedTheChat": "",
     "customEmojisAndStickersBody": "",
     "declineInvitation": "",
-    "chatBackupDescription": "",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatCanBeDiscoveredViaSearchOnServer": "",
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",
@@ -2667,7 +2641,6 @@
     "formattedMessagesDescription": "",
     "supportFluffyChat": "",
     "databaseMigrationBody": "",
-    "storeInSecureStorageDescription": "",
     "kickUserDescription": "",
     "startedAPoll": "",
     "@startedAPoll": {
@@ -2685,7 +2658,6 @@
         "placeholders": {}
     },
     "importNow": "",
-    "setupChatBackup": "",
     "pinMessage": "",
     "screenSharingDetail": "",
     "noChatsFoundHere": "",

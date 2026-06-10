@@ -22,8 +22,7 @@ extension on FluffyChatTester {
     await tapOn(Key('accounts_and_settings_buttons'));
     await tapOn('Add account');
     await login(username: user2Name, password: user2Pw);
-    await tapOn(CloseButton);
-    await tapOn('Skip');
+    await initCryptoIdentity(username: user2Name);
 
     // Logout user 2
     await tapOn(Key('accounts_and_settings_buttons'));

@@ -1347,11 +1347,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "everythingReady": "كل شيء جاهز!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
     "homeserver": "الخادم",
     "enterAnEmailAddress": "أدخل عنوان بريد إلكتروني",
     "@enterAnEmailAddress": {
@@ -1608,11 +1603,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "يتم تأمين رسائلك القديمة باستخدام مفتاح الاسترداد. يرجى التأكد من أنك لا تضيعه.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "shareLocation": "شارك الموقع",
     "@shareLocation": {
         "type": "String",
@@ -1734,16 +1724,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "أنقله من جهاز آخر",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wipeChatBackup": "مسح نسخة المحادثة الاحتياطية لإنشاء مفتاح استرداد جديد؟",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "saveFile": "احفظ الملف",
     "@saveFile": {
         "type": "String",
@@ -1859,7 +1839,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "تم إعداد النسخ الاحتياطي لمحادثاتك.",
     "noEncryptionForPublicRooms": "يمكنك فقط تفعيل التشفير عندما تصبح الغرفة غير متاحة للعامة.",
     "@noEncryptionForPublicRooms": {
         "type": "String",
@@ -1955,8 +1934,6 @@
             }
         }
     },
-    "recoveryKeyLost": "هل فقدت مفتاح الاسترداد؟",
-    "pleaseEnterRecoveryKeyDescription": "لإلغاء قفل رسائلك القديمة ، يرجى إدخال مفتاح الاسترداد الذي تم إنشاؤه في جلسة سابقة. مفتاح الاسترداد ليس كلمة المرور الخاصة بك.",
     "confirmMatrixId": "يرجى تأكيد معرف Matrix الخاص بك من أجل حذف حسابك.",
     "supposedMxid": "يجب أن يكون هذا {mxid}",
     "@supposedMxid": {
@@ -1979,7 +1956,6 @@
             }
         }
     },
-    "unlockOldMessages": "إلغاء قفل الرسائل القديمة",
     "commandHint_markasdm": "وضع علامة على أنها غرفة رسائل مباشرة لمعرف المصفوفة",
     "dehydrate": "تصدير الجلسة ومسح الجهاز",
     "dehydrateWarning": "لا يمكن التراجع عن هذا الإجراء. تأكد من تخزين ملف النسخ الاحتياطي بأمان.",
@@ -2065,7 +2041,6 @@
             }
         }
     },
-    "saveKeyManuallyDescription": "احفظ هذا المفتاح يدويا عن طريق تشغيل مربع حوار مشاركة النظام أو الحافظة.",
     "youInvitedUser": "📩 قمت بدعوة {user}",
     "@youInvitedUser": {
         "placeholders": {
@@ -2074,7 +2049,6 @@
             }
         }
     },
-    "storeInSecureStorageDescription": "قم بتخزين مفتاح الاسترداد في التخزين الآمن لهذا الجهاز.",
     "users": "المستخدمون",
     "jump": "قفز",
     "report": "الإبلاغ",
@@ -2636,7 +2610,6 @@
         }
     },
     "removeAdminRights": "",
-    "loadingMessages": "",
     "removeFromSpaceDescription": "",
     "newChatRequest": "",
     "owner": "",
@@ -2730,7 +2703,6 @@
         }
     },
     "notificationRuleEncrypted": "",
-    "setupChatBackup": "",
     "changedTheChatName": "",
     "countInvited": "",
     "@countInvited": {

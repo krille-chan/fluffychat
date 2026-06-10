@@ -255,14 +255,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "Aḥraz n udiwenni-ik·im yettusbadu.",
     "chatBackup": "Aḥraz n udiwenni",
     "@chatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatBackupDescription": "Iznan-ik·im d iɣelsanen s tsarut n tririt. Ɣur-k·m ad k·em-truḥ.",
-    "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
     },
@@ -490,11 +484,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Kullec ihegga!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "Isem n ufaylu",
     "@fileName": {
@@ -1136,11 +1125,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Sfeḍ aḥraz-ik·im n udiwenni akken ad d-tesnulfuḍ tasarut tamaynut n tririt?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "S tansiwin-agi i tzemreḍ ad terreḍ awal-ik·im n uɛeddi.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1553,9 +1537,6 @@
     "usersMustKnock": "Iseqdacen yessefk ad sṭebṭben",
     "noOneCanJoin": "Yiwen ur yezmir ad d-yernu",
     "users": "Iseqdacen",
-    "unlockOldMessages": "Kkes asekkeṛ i yiznan iqbuṛen",
-    "storeInSecureStorageDescription": "Ḥrez tasarut n tririt deg usekles aɣelsan n yibenk-a.",
-    "saveKeyManuallyDescription": "Sekles tasarut-agi s ufus deg udiwenni n beṭṭu n unagraw neɣ ɣef tecfawit.",
     "storeInAndroidKeystore": "Sekles deg Android KeyStore",
     "storeInAppleKeyChain": "Sekles deg uzrar n tsura n Apple",
     "storeSecurlyOnThisDevice": "Ḥrez s wudem aɣelsan ɣef yibenk-a",
@@ -1573,7 +1554,6 @@
     "screenSharingTitle": "beṭṭu n ugdil",
     "screenSharingDetail": "Tbeṭṭuḍ agdil-ik·im deg FluffyChat",
     "whyIsThisMessageEncrypted": "Acuɣer izen-agi ur yettwaɣri ara?",
-    "recoveryKeyLost": "Tasarut n tririt teɛreq?",
     "send": "Azen",
     "@send": {
         "type": "String",
@@ -1796,11 +1776,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Asiweḍ seg yibenk nniḍen",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Ɛreḍ ad tazneḍ tikkelt nniḍen",
     "@tryToSendAgain": {
         "type": "String",
@@ -1862,7 +1837,6 @@
             }
         }
     },
-    "pleaseEnterRecoveryKeyDescription": "Akken ad tekkseḍ asekkeṛ i yiznan-ik·im iqburen, ttxil-k·m sekcem tasarut n tririt i d-yenulfan di tɣimit tuzwirt. Tasarut-ik·im n tririt UR TELLI ARA d awal-ik·im n uɛeddi.",
     "experimentalVideoCalls": "Isawalen uvidya s wudem armitan",
     "newGroup": "Agraw amaynut",
     "newSpace": "Tallunt tamaynut",
@@ -1886,8 +1860,6 @@
     "stickerPackName": "Isem ukemmus n tcṛeṭ n tesfift",
     "skipChatBackup": "Zgel aḥraz n udiwenni",
     "skipChatBackupWarning": "tetḥeqqeḍ? S war armad n weḥraz n udiwenni, tzemreḍ ad tesruḥeḍ anekcum ɣer yiznan-ik·im ma tbeddeleḍ ibenk-ik·im.",
-    "loadingMessages": "Asali n yiznan",
-    "setupChatBackup": "Sbadu aḥraz n udiwenni",
     "noMoreResultsFound": "Ulac ugar n igmaḍ yettwafen",
     "clientWellKnownInformation": "Talɣut yettwasnen ɣef umsaɣ:",
     "advancedConfigs": "Tawila leqqayen",

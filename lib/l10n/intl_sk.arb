@@ -1279,7 +1279,6 @@
             }
         }
     },
-    "yourChatBackupHasBeenSetUp": "Záloha vašich chatov bola nastavená.",
     "repeatPassword": "Zopakujte heslo",
     "all": "Všetky",
     "@all": {
@@ -1667,11 +1666,6 @@
     "chatPermissions": "",
     "notificationRuleCall": "",
     "baseUrl": "",
-    "wipeChatBackup": "",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pause": "",
     "allowMultipleAnswers": "",
     "sender": "",
@@ -1718,11 +1712,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pushRules": "",
     "@pushRules": {
         "type": "String",
@@ -1733,7 +1722,6 @@
         "type": "String",
         "description": "Usage hint for the command /clearcache"
     },
-    "saveKeyManuallyDescription": "",
     "makeModerator": "",
     "italicText": "",
     "addAnswerOption": "",
@@ -1876,7 +1864,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unlockOldMessages": "",
     "identityServer": "",
     "accessAndVisibilityDescription": "",
     "support": "",
@@ -1959,7 +1946,6 @@
     },
     "experimentalVideoCalls": "",
     "removeModeratorRights": "",
-    "pleaseEnterRecoveryKeyDescription": "",
     "mention": "",
     "@mention": {
         "type": "String",
@@ -2067,7 +2053,6 @@
         "description": "State that {command} is not a valid /command."
     },
     "redactMessageDescription": "",
-    "loadingMessages": "",
     "recoveryKey": "",
     "redactMessage": "",
     "@redactMessage": {
@@ -2406,7 +2391,6 @@
     "crossVerifiedDevices": "",
     "shareInviteLink": "",
     "commandHint_markasdm": "",
-    "recoveryKeyLost": "",
     "cuddleContent": "",
     "@cuddleContent": {
         "type": "String",
@@ -2426,11 +2410,6 @@
     "deviceKeys": "",
     "saveChanges": "",
     "commandHint_logout": "",
-    "everythingReady": "",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newStickerPack": "",
     "signInGreeting": "",
     "oneOfYourDevicesIsNotVerified": "",
@@ -2468,11 +2447,6 @@
     "youJoinedTheChat": "",
     "customEmojisAndStickersBody": "",
     "declineInvitation": "",
-    "chatBackupDescription": "",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatCanBeDiscoveredViaSearchOnServer": "",
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",
@@ -2638,7 +2612,6 @@
     "formattedMessagesDescription": "",
     "supportFluffyChat": "",
     "databaseMigrationBody": "",
-    "storeInSecureStorageDescription": "",
     "kickUserDescription": "",
     "startedAPoll": "",
     "@startedAPoll": {
@@ -2660,7 +2633,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "setupChatBackup": "",
     "pinMessage": "",
     "noChatsFoundHere": "",
     "pleaseFillOut": "",

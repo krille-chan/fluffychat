@@ -237,11 +237,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "everythingReady": "Semua siap!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
     "enterAnEmailAddress": "Masukkan alamat email",
     "@enterAnEmailAddress": {
         "type": "String",
@@ -754,11 +749,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Pesan Anda diamankan dengan kunci pemulihan. Pastikan Anda tidak kehilangannya.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "activatedEndToEndEncryption": "🔐 {username} mengaktifkan enkripsi ujung ke ujung",
     "@activatedEndToEndEncryption": {
         "type": "String",
@@ -962,11 +952,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Transfer dari perangkat lain",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "showPassword": "Tampilkan kata sandi",
     "@showPassword": {
         "type": "String",
@@ -1054,11 +1039,6 @@
     },
     "withTheseAddressesRecoveryDescription": "Dengan alamat ini kamu bisa memulihkan kata sandimu.",
     "@withTheseAddressesRecoveryDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wipeChatBackup": "Hapus cadangan obrolan untuk membuat kunci pemulihan baru?",
-    "@wipeChatBackup": {
         "type": "String",
         "placeholders": {}
     },
@@ -1880,7 +1860,6 @@
         "placeholders": {}
     },
     "link": "Tautan",
-    "yourChatBackupHasBeenSetUp": "Cadangan obrolanmu telah disiapkan.",
     "unverified": "Tidak terverifikasi",
     "repeatPassword": "Ulangi kata sandi",
     "messageInfo": "Informasi pesan",
@@ -1993,14 +1972,9 @@
             }
         }
     },
-    "pleaseEnterRecoveryKeyDescription": "Untuk mengakses pesan lamamu, mohon masukkan kunci pemulihanmu yang telah dibuat di sesi sebelumnya. Kunci pemulihanmu BUKAN kata sandimu.",
     "users": "Pengguna",
-    "storeInSecureStorageDescription": "Simpan kunci pemulihan di penyimpanan aman perangkat ini.",
-    "saveKeyManuallyDescription": "Simpan kunci ini secara manual dengan memicu dialog pembagian atau papan klip sistem.",
     "recoveryKey": "Kunci pemulihan",
     "storeInAppleKeyChain": "Simpan di Apple KeyChain",
-    "unlockOldMessages": "Akses pesan lama",
-    "recoveryKeyLost": "Kunci pemulihan hilang?",
     "storeInAndroidKeystore": "Simpan di Android KeyStore",
     "storeSecurlyOnThisDevice": "Simpan secara aman di perangkat ini",
     "countFiles": "{count} file",
@@ -2690,8 +2664,6 @@
     "attribution": "Atribusi",
     "skipChatBackup": "Lewati cadangan obrolan",
     "skipChatBackupWarning": "Anda yakin? Tanpa mengaktifkan cadangan obrolan, Anda mungkin kehilangan akses ke pesan Anda jika Anda mengganti perangkat.",
-    "loadingMessages": "Memuat pesan",
-    "setupChatBackup": "Siapkan cadangan obrolan",
     "noMoreResultsFound": "Tidak ada hasil lagi yang ditemukan",
     "chatSearchedUntil": "Obrolan dicari hingga {time}",
     "@chatSearchedUntil": {

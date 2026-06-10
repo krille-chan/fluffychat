@@ -364,11 +364,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Sinu vestluste varukoopia on krüptitud taastamiseks mõeldud turvavõtmega. Palun vaata, et sa seda ei kaota.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Vestluse teave",
     "@chatDetails": {
         "type": "String",
@@ -735,11 +730,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Kõik on valmis!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "Failinimi",
     "@fileName": {
@@ -1619,11 +1609,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Tõsta teisest seadmest",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Proovi uuesti saata",
     "@tryToSendAgain": {
         "type": "String",
@@ -1829,11 +1814,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Kas kustutame sinu vestluste varukoopia ja loome uue taastamiseks mõeldud krüptovõtme?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "Nende e-posti aadresside abil saad taastada oma salasõna.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1881,7 +1861,6 @@
     "addAccount": "Lisa kasutajakonto",
     "oneClientLoggedOut": "Üks sinu klientrakendustest on Matrix'i võrgust välja loginud",
     "link": "Link",
-    "yourChatBackupHasBeenSetUp": "Sinu vestluste varundus on seadistatud.",
     "unverified": "Verifitseerimata",
     "repeatPassword": "Korda salasõna",
     "messageInfo": "Sõnumi teave",
@@ -1996,14 +1975,9 @@
     },
     "recoveryKey": "Taastevõti",
     "users": "Kasutajad",
-    "storeInSecureStorageDescription": "Salvesta taastevõti selle seadme turvahoidlas.",
-    "saveKeyManuallyDescription": "Salvesta see krüptovõti kasutades selle süsteemi jagamisvalikuid või lõikelauda.",
     "storeInAndroidKeystore": "Vali salvestuskohaks Android KeyStore",
     "storeInAppleKeyChain": "Vali salvestuskohaks Apple KeyChain",
-    "recoveryKeyLost": "Kas taasetvõti on kadunud?",
-    "pleaseEnterRecoveryKeyDescription": "Vanade sõnumite lugemiseks palun siseta oma varasemas sessioonis loodud taastevõti. Taastamiseks mõeldud krüptovõti EI OLE sinu salasõna.",
     "storeSecurlyOnThisDevice": "Salvesta turvaliselt selles seadmes",
-    "unlockOldMessages": "Muuda vanad sõnumid loetavaks",
     "countFiles": "{count} faili",
     "@countFiles": {
         "placeholders": {
@@ -2689,8 +2663,6 @@
     "attribution": "Autoriõigused",
     "skipChatBackup": "Jäta vestluse varundamine vahele",
     "skipChatBackupWarning": "Kas oled kindel? Kui sa pole lülitanud sisse vestluste krüptovõtmete varundust, siis võid oma seadme vahetamisel kaotada ligipääsu oma senistele sõnumitele.",
-    "loadingMessages": "Laadin sõnumeid",
-    "setupChatBackup": "Võta kasutusele vestluste varundus",
     "changedTheChatDescription": "{username} muutis vestluse kirjeldust",
     "changedTheChatName": "{username} muutis vestluse nime",
     "noMoreResultsFound": "Rohkem tulemusi ei leidu",

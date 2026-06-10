@@ -330,11 +330,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Twoje wiadomości są zabezpieczone kluczem odzyskiwania. Uważaj żeby go nie zgubić.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Szczegóły czatu",
     "@chatDetails": {
         "type": "String",
@@ -655,11 +650,6 @@
     },
     "enterAnEmailAddress": "Wpisz adres e-mail",
     "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "Wszystko gotowe!",
-    "@everythingReady": {
         "type": "String",
         "placeholders": {}
     },
@@ -1258,11 +1248,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Przenieś z innego urządzenia",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Spróbuj wysłać ponownie",
     "@tryToSendAgain": {
         "type": "String",
@@ -1617,7 +1602,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "Kopia zapasowa Twojego czatu została ustawiona.",
     "contentHasBeenReported": "Treść została zgłoszona administratorom serwera",
     "@contentHasBeenReported": {
         "type": "String",
@@ -1819,7 +1803,6 @@
         }
     },
     "recoveryKey": "Klucz odzyskiwania",
-    "recoveryKeyLost": "Utracono klucz odzyskiwania?",
     "sentCallInformations": "{senderName} wysłał/-a informacje o połączeniu",
     "@sentCallInformations": {
         "type": "String",
@@ -1852,7 +1835,6 @@
     "sender": "Nadawca",
     "openGallery": "Otwórz galerię",
     "start": "Start",
-    "pleaseEnterRecoveryKeyDescription": "Aby odblokować wcześniejsze wiadomości, wprowadź swój klucz odzyskiwania, który został wygenerowany w poprzedniej sesji. Twój klucz odzyskiwania NIE jest Twoim hasłem.",
     "hydrate": "Przywracanie z pliku kopii zapasowej",
     "noMatrixServer": "{server1} nie jest serwerem Matriksa, czy chcesz zamiast niego użyć {server2}?",
     "@noMatrixServer": {
@@ -1891,11 +1873,6 @@
         "placeholders": {}
     },
     "unverified": "Niezweryfikowane",
-    "wipeChatBackup": "Wymazać kopię zapasową czatu, aby utworzyć nowy klucz odzyskiwania?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "whoCanPerformWhichAction": "Kto może wykonywać jakie czynności",
     "@whoCanPerformWhichAction": {
         "type": "String",
@@ -1958,7 +1935,6 @@
     "encryptThisChat": "Zaszyfruj ten czat",
     "disableEncryptionWarning": "Ze względów bezpieczeństwa nie można wyłączyć szyfrowania w czacie, w którym zostało ono wcześniej włączone.",
     "deviceKeys": "Klucze urządzenia:",
-    "saveKeyManuallyDescription": "Zapisz ten klucz ręcznie, uruchamiając systemowe okno dialogowe udostępniania lub schowek.",
     "screenSharingTitle": "udostępnianie ekranu",
     "noKeyForThisMessage": "Może się to zdarzyć, jeśli wiadomość została wysłana przed zalogowaniem się na to konto na tym urządzeniu.\n\nMożliwe jest również, że nadawca zablokował Twoje urządzenie lub coś poszło nie tak z połączeniem internetowym.\n\nJesteś w stanie odczytać wiadomość na innej sesji? W takim razie możesz przenieść z niej wiadomość! Wejdź w Ustawienia > Urządzenia i upewnij się, że Twoje urządzenia zweryfikowały się wzajemnie. Gdy następnym razem otworzysz pokój i obie sesje będą włączone, klucze zostaną przekazane automatycznie.\n\nNie chcesz stracić kluczy podczas wylogowania lub przełączania urządzeń? Upewnij się, że w ustawieniach masz włączoną kopię zapasową czatu.",
     "sorryThatsNotPossible": "Przepraszamy... to nie jest możliwe",
@@ -2062,8 +2038,6 @@
             }
         }
     },
-    "unlockOldMessages": "Odblokuj stare wiadomości",
-    "storeInSecureStorageDescription": "Przechowaj klucz odzyskiwania w bezpiecznym magazynie tego urządzenia.",
     "storeInAppleKeyChain": "Przechowaj w pęku kluczy Apple",
     "storeSecurlyOnThisDevice": "Przechowaj bezpiecznie na tym urządzeniu",
     "foregroundServiceRunning": "To powiadomienie pojawia się, gdy usługa w tle jest uruchomiona.",
@@ -2645,8 +2619,6 @@
     "attribution": "Uznanie autorstwa",
     "skipChatBackup": "Pomiń kopię zapasową czatów",
     "skipChatBackupWarning": "Czy na pewno? Bez włączenia kopii zapasowej czatów możesz stracić dostęp do swoich wiadomości w przypadku zmiany urządzenia.",
-    "loadingMessages": "Ładowanie wiadomości",
-    "setupChatBackup": "Skonfiguruj kopię zapasową czatów",
     "noMoreResultsFound": "Nie znaleziono więcej wyników",
     "chatSearchedUntil": "Czat przeszukany do {time}",
     "@chatSearchedUntil": {

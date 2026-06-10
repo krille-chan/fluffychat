@@ -364,11 +364,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Ваши сообщения защищены ключом восстановления. Пожалуйста, не потеряйте его.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Детали чата",
     "@chatDetails": {
         "type": "String",
@@ -735,11 +730,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Всё готово!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "Имя файла",
     "@fileName": {
@@ -1610,11 +1600,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Перенос с другого устройства",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Попробуйте отправить ещё раз",
     "@tryToSendAgain": {
         "type": "String",
@@ -1820,11 +1805,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Удалить резервную копию чата, чтобы создать новый ключ восстановления?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "По этим адресам вы можете восстановить свой пароль.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1872,7 +1852,6 @@
     "addAccount": "Добавить учетную запись",
     "link": "Ссылка",
     "oneClientLoggedOut": "Один из ваших клиентов вышел",
-    "yourChatBackupHasBeenSetUp": "Резервное копирование чата настроено.",
     "unverified": "Не проверено",
     "commandHint_clearcache": "Очистить кэш",
     "@commandHint_clearcache": {
@@ -1985,14 +1964,9 @@
             }
         }
     },
-    "recoveryKeyLost": "Ключ восстановления утерян?",
     "users": "Пользователи",
-    "unlockOldMessages": "Разблокировать старые сообщения",
-    "storeInSecureStorageDescription": "Сохраните ключ восстановления в безопасном хранилище этого устройства.",
     "storeSecurlyOnThisDevice": "Сохранить на этом устройстве",
-    "saveKeyManuallyDescription": "Сохраните этот ключ вручную, вызвав диалог общего доступа системы или буфера обмена.",
     "recoveryKey": "Ключ восстановления",
-    "pleaseEnterRecoveryKeyDescription": "Чтобы разблокировать старые сообщения, введите ключ восстановления, сгенерированный в предыдущем сеансе. Ваш ключ восстановления НЕ является вашим паролем.",
     "storeInAndroidKeystore": "Сохранить в Android KeyStore",
     "storeInAppleKeyChain": "Сохранить в Apple KeyChain",
     "user": "Пользователь",
@@ -2630,8 +2604,6 @@
     "attribution": "Атрибуция",
     "skipChatBackup": "Пропустить резервную копию чата",
     "skipChatBackupWarning": "Вы уверены? Без включения резервного копирования чата вы можете потерять доступ к своим сообщениям, если переключите устройство.",
-    "loadingMessages": "Загрузка сообщений",
-    "setupChatBackup": "Настроить резервную копию чата",
     "createNewAccount": "Создать новый аккаунт",
     "theProcessWasCanceled": "Процесс был отменен.",
     "noMoreResultsFound": "Ничего не найдено",

@@ -1037,11 +1037,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Ștergeți backup-ul vostru de chat să creați o nouă cheie de recuperare?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "Cu acestea adrese puteți să vă recuperați parola.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -1079,7 +1074,6 @@
             }
         }
     },
-    "unlockOldMessages": "Deblocați mesajele vechi",
     "youInvitedUser": "📩Ați invitat pe {user}",
     "@youInvitedUser": {
         "placeholders": {
@@ -1252,11 +1246,6 @@
                 "type": "String"
             }
         }
-    },
-    "transferFromAnotherDevice": "Transfera de la alt dispozitiv",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
     },
     "synchronizingPleaseWait": "Sincronizează... Vă rugăm să așteptați.",
     "@synchronizingPleaseWait": {
@@ -1439,8 +1428,6 @@
             }
         }
     },
-    "storeInSecureStorageDescription": "Păstrați cheia de recuperare în stocarea sigură a acestui dispozitiv.",
-    "saveKeyManuallyDescription": "Activați dialogul de partajare sistemului sau folosiți clipboard-ul să salvați manual această cheie.",
     "countFiles": "{count} fișiere",
     "@countFiles": {
         "placeholders": {
@@ -1526,7 +1513,6 @@
             }
         }
     },
-    "yourChatBackupHasBeenSetUp": "Backup-ul vostru de chat a fost configurat.",
     "cantOpenUri": "Nu se poate deschide URI-ul {uri}",
     "@cantOpenUri": {
         "type": "String",
@@ -1559,11 +1545,6 @@
     },
     "changeTheHomeserver": "Schimbați homeserver-ul",
     "@changeTheHomeserver": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatBackupDescription": "Mesajele voastre vechi sunt sigurate cu o cheie de recuperare. Vă rugăm să nu o pierdeți.",
-    "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
     },
@@ -1638,11 +1619,6 @@
     },
     "enableEmotesGlobally": "Activați pachet de emote global",
     "@enableEmotesGlobally": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "Totul e gata!",
-    "@everythingReady": {
         "type": "String",
         "placeholders": {}
     },
@@ -1776,7 +1752,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnterRecoveryKeyDescription": "Să vă deblocați mesajele vechi, vă rugăm să introduceți cheia de recuperare creată de o seșiune anterioră. Cheia de recuperare NU este parola voastră.",
     "setAsCanonicalAlias": "Stabiliți ca pseudonimul primar",
     "@setAsCanonicalAlias": {
         "type": "String",
@@ -1926,7 +1901,6 @@
         "placeholders": {}
     },
     "recoveryKey": "Cheie de recuperare",
-    "recoveryKeyLost": "Cheia de recuperare pierdută?",
     "muteChat": "Amuțați chatul",
     "@muteChat": {
         "type": "String",
@@ -2427,7 +2401,6 @@
     },
     "removeAdminRights": "",
     "redactMessageDescription": "",
-    "loadingMessages": "",
     "invalidInput": "",
     "removeFromSpaceDescription": "",
     "newChatRequest": "",
@@ -2705,7 +2678,6 @@
     },
     "notificationRuleEncrypted": "",
     "importNow": "",
-    "setupChatBackup": "",
     "noChatsFoundHere": "",
     "pleaseFillOut": "",
     "changedTheChatName": "",

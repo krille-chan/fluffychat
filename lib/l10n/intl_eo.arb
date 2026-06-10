@@ -358,11 +358,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Via savkopio de babilo estas sekurigita per sekureca ŝlosilo. Bonvolu certigi, ke vi ne perdos ĝin.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatDetails": "Detaloj pri babilo",
     "@chatDetails": {
         "type": "String",
@@ -724,11 +719,6 @@
                 "type": "String"
             }
         }
-    },
-    "everythingReady": "Ĉio pretas!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileName": "Dosiernomo",
     "@fileName": {
@@ -1577,11 +1567,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Transporti de alia aparato",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Reprovi sendi",
     "@tryToSendAgain": {
         "type": "String",
@@ -1784,11 +1769,6 @@
     },
     "whyDoYouWantToReportThis": "Kial vi volas tion ĉi raporti?",
     "@whyDoYouWantToReportThis": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "wipeChatBackup": "Ĉu forviŝi la savkopion de via babilo por krei novan sekurecan ŝlosilon?",
-    "@wipeChatBackup": {
         "type": "String",
         "placeholders": {}
     },
@@ -2096,7 +2076,6 @@
         "type": "String",
         "description": "Usage hint for the command /clearcache"
     },
-    "saveKeyManuallyDescription": "",
     "makeModerator": "",
     "italicText": "",
     "addAnswerOption": "",
@@ -2138,7 +2117,6 @@
     "dehydrateWarning": "",
     "noOtherDevicesFound": "",
     "notificationRuleEncryptedRoomOneToOne": "",
-    "yourChatBackupHasBeenSetUp": "",
     "redactedBy": "",
     "@redactedBy": {
         "type": "String",
@@ -2200,7 +2178,6 @@
     "readUpToHere": "",
     "start": "",
     "customEmojisAndStickers": "",
-    "unlockOldMessages": "",
     "identityServer": "",
     "accessAndVisibilityDescription": "",
     "support": "",
@@ -2249,7 +2226,6 @@
     "notificationRuleTombstone": "",
     "experimentalVideoCalls": "",
     "removeModeratorRights": "",
-    "pleaseEnterRecoveryKeyDescription": "",
     "supportPage": "",
     "welcomeText": "",
     "openInMaps": "",
@@ -2322,7 +2298,6 @@
     },
     "removeAdminRights": "",
     "redactMessageDescription": "",
-    "loadingMessages": "",
     "recoveryKey": "",
     "commandHint_discardsession": "",
     "@commandHint_discardsession": {
@@ -2526,7 +2501,6 @@
     "crossVerifiedDevices": "",
     "shareInviteLink": "",
     "commandHint_markasdm": "",
-    "recoveryKeyLost": "",
     "cuddleContent": "",
     "@cuddleContent": {
         "type": "String",
@@ -2694,7 +2668,6 @@
     "formattedMessagesDescription": "",
     "supportFluffyChat": "",
     "databaseMigrationBody": "",
-    "storeInSecureStorageDescription": "",
     "kickUserDescription": "",
     "startedAPoll": "",
     "@startedAPoll": {
@@ -2707,7 +2680,6 @@
     },
     "notificationRuleEncrypted": "",
     "importNow": "",
-    "setupChatBackup": "",
     "pinMessage": "",
     "noChatsFoundHere": "",
     "pleaseFillOut": "",

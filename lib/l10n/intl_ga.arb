@@ -686,11 +686,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Tá do theachtaireachtaí slán le heochair aisghabhála. Déan cinnte nach gcaillfidh tú í.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "channelCorruptedDecryptError": "Truaillíodh an criptiú",
     "@channelCorruptedDecryptError": {
         "type": "String",
@@ -1088,11 +1083,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "everythingReady": "Gach rud réidh!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emptyChat": "Comhrá folamh",
     "@emptyChat": {
         "type": "String",
@@ -1464,11 +1454,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "An bhfuil fonn ort cúltaca do chomhrá a scriosadh chun eochair athshlánaithe nua a chruthú?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "whyDoYouWantToReportThis": "Cén fáth ar mhaith leat é seo a thuairisciú?",
     "@whyDoYouWantToReportThis": {
         "type": "String",
@@ -1541,11 +1526,6 @@
     },
     "tryToSendAgain": "Déan iarracht a sheoladh arís",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "transferFromAnotherDevice": "Aistriú ó ghléas eile",
-    "@transferFromAnotherDevice": {
         "type": "String",
         "placeholders": {}
     },
@@ -1886,7 +1866,6 @@
     },
     "videoCallsBetaWarning": "Tabhair faoi deara go bhfuil físglaonna i béite. B'fhéidir nach bhfeidhmíonn siad ar gach ardán chomh atá súil aige ná ar bith.",
     "repeatPassword": "Scríobh an pasfhocal arís",
-    "yourChatBackupHasBeenSetUp": "Bunaíodh do chúltaca comhrá.",
     "fileHasBeenSavedAt": "Sábháladh an comhad ag {path}",
     "@fileHasBeenSavedAt": {
         "type": "String",
@@ -1941,7 +1920,6 @@
     "allSpaces": "Gach spás",
     "searchForUsers": "Cuardaigh @users...",
     "removeFromBundle": "Bain as an mbeart seo",
-    "recoveryKeyLost": "Eochair athshlánaithe caillte?",
     "reactedWith": "D'fhreagair {sender} le {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -2022,7 +2000,6 @@
     "noChatsFoundHere": "Níor aimsíodh aon chomhrá anseo fós. Cuir tús le comhrá nua le duine éigin tríd an gcnaipe thíos a úsáid. ⤵️",
     "messageInfo": "Eolas teachtaireachta",
     "messageType": "Cineál Teachtaireachta",
-    "pleaseEnterRecoveryKeyDescription": "Chun do sheanteachtaireachtaí a dhíghlasáil, cuir isteach d'eochair athshlánaithe a gineadh i seisiún eile. NÍ do phasfhocal í d'eochair athshlánaithe.",
     "unsupportedAndroidVersionLong": "Éilíonn an ghné seo leagan Android níos nuaí. Seiceáil le haghaidh nuashonruithe nó tacaíocht Lineage OS.",
     "experimentalVideoCalls": "Glaonna físe turgnamhacha",
     "invitedBy": "📩 Cuireadh ó {user}",
@@ -2050,7 +2027,6 @@
         }
     },
     "knock": "Cnoc Mhuire",
-    "storeInSecureStorageDescription": "Stóráil an eochair aisghabhála i stóráil slán an ghléis seo.",
     "countFiles": "Comhaid {count}",
     "@countFiles": {
         "placeholders": {
@@ -2377,8 +2353,6 @@
             }
         }
     },
-    "unlockOldMessages": "Díghlasáil seanteachtaireachtaí",
-    "saveKeyManuallyDescription": "Sábháil an eochair seo de láimh trí dialóg nó gearrthaisce comhroinnte an chórais a spreagadh.",
     "storeInAndroidKeystore": "Stóráil i Android KeyStore",
     "storeInAppleKeyChain": "Stóráil i Apple KeyChain",
     "newSpaceDescription": "Ligeann spásanna duit do chomhráite a chomhdhlúthú agus pobail phríobháideacha nó phoiblí a thógáil.",
@@ -2695,8 +2669,6 @@
     "attribution": "Atribution",
     "skipChatBackup": "Seachain cúltaca comhrá",
     "skipChatBackupWarning": "An bhfuil tú cinnte? Mura gcumasaíonn tú an cúltaca comhrá, d’fhéadfá rochtain ar do theachtaireachtaí a chailleadh má athraíonn tú do ghléas.",
-    "loadingMessages": "Ag lódáil teachtaireachtaí",
-    "setupChatBackup": "Socraigh cúltaca comhrá",
     "changedTheChatDescription": "D'athraigh {username} cur síos an chomhrá",
     "changedTheChatName": "D'athraigh {username} ainm an chomhrá",
     "noMoreResultsFound": "Ní bhfuarthas aon torthaí eile",

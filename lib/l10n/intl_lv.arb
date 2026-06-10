@@ -640,11 +640,6 @@
             }
         }
     },
-    "wipeChatBackup": "Notīrīt tērzēšanu rezerves kopiju, lai izveidotu jaunu atkopes atslēgu?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "cantOpenUri": "Nevar atvērt adresi {uri}",
     "@cantOpenUri": {
         "type": "String",
@@ -718,11 +713,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Pārnest no citas ierīces",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "passwordHasBeenChanged": "Parole tikai nomainīta",
     "@passwordHasBeenChanged": {
         "type": "String",
@@ -748,7 +738,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "saveKeyManuallyDescription": "Šo atslēgu var pašrocīgi saglabāt ar sistēmas kopīgošanas dialogloga vai starpliktuves izsaukšanu.",
     "none": "Neviens",
     "@none": {
         "type": "String",
@@ -804,7 +793,6 @@
         "placeholders": {}
     },
     "storeSecurlyOnThisDevice": "Droši uzglabāt šajā ierīcē",
-    "yourChatBackupHasBeenSetUp": "Tērzēšanu rezerves kopēšana iestatīta.",
     "chatBackup": "Tērzēšanu rezerves kopēšana",
     "@chatBackup": {
         "type": "String",
@@ -967,7 +955,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unlockOldMessages": "Atslēgt vecās ziņas",
     "changedTheJoinRulesTo": "{username} nomainīja pievienošanās nosacījumus uz {joinRules}",
     "@changedTheJoinRulesTo": {
         "type": "String",
@@ -1164,7 +1151,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnterRecoveryKeyDescription": "Lai atslēgtu savas vecās ziņas, lūgums ievadīt savu atkopes atslēgu, kas tika izveidota iepriekšējā sesijā. Atkopes atslēga NAV parole.",
     "guestsAreForbidden": "Viesi nav ļauti",
     "@guestsAreForbidden": {
         "type": "String",
@@ -1837,7 +1823,6 @@
     },
     "shareInviteLink": "Kopīgot uzaicinājuma saiti",
     "commandHint_markasdm": "Atzīmēt kā tiešo ziņu istabu norādītajam Matrix Id",
-    "recoveryKeyLost": "Pazaudēta atkopes atslēga?",
     "cuddleContent": "{senderName} samīļo Tevi",
     "@cuddleContent": {
         "type": "String",
@@ -1874,11 +1859,6 @@
     },
     "noGoogleServicesWarning": "Izskatās, ka Firebase mākoņziņojumapmaiņa nav pieejama šajā ierīcē. Lai joprojām saņemtu pašpiegādes paziņojumus, mēs iesakām uzstādīt ntfy. Ar ntfy vai citu UnifiedPush nodrošinātāju ir iespējams saņemt pašpiegādes paziņojumus drošā veidā. ntfy var lejupielādēt no Play Store vai F-Droid.",
     "@noGoogleServicesWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "Viss ir gatavs!",
-    "@everythingReady": {
         "type": "String",
         "placeholders": {}
     },
@@ -1940,11 +1920,6 @@
                 "type": "String"
             }
         }
-    },
-    "chatBackupDescription": "Ziņas ir aizsargātas ar atkopes atslēgu. Lūgums nodrošināt, ka tā netiek pazaudēta.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
     },
     "changeDeviceName": "Mainīt ierīces nosaukumu",
     "@changeDeviceName": {
@@ -2116,7 +2091,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "storeInSecureStorageDescription": "Glabāt atkopes atslēgu šīs ierīces drošajā krātuvē.",
     "kickUserDescription": "Lietotājs ir izmests no tērzēšanas, bet piekļuve nav liegta. Publiskās tērzēšanās lietotājs var atkārtoti pievienoties jebkurā laikā.",
     "sendAMessage": "Nosūtīt ziņu",
     "@sendAMessage": {
@@ -2672,8 +2646,6 @@
     "attribution": "Piedēvējums",
     "skipChatBackup": "Izlaist tērzēšanu rezerves kopēšanu",
     "skipChatBackupWarning": "Vai tiešām? Bez tērzēšanu rezerves kopēšanas var tikt zaudēta piekļuve savām ziņām, kad tiks mainīta ierīce.",
-    "loadingMessages": "Ielādē ziņas",
-    "setupChatBackup": "Iestatīt tērzēšanu rezerves kopēšanu",
     "changedTheChatDescription": "{username} nomainīja tērzēšanas aprakstu",
     "changedTheChatName": "{username} nomainīja tērzēšanas nosaukumu",
     "noMoreResultsFound": "Vairs nekas netika atrasts",

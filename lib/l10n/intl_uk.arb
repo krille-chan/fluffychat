@@ -1427,11 +1427,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "Стерти резервну копію бесіди, щоб створити новий ключ відновлення?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "addToSpace": "Додати простір",
     "roomVersion": "Версія кімнати",
     "@roomVersion": {
@@ -1594,11 +1589,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "Перенесення з іншого пристрою",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "sendMessages": "Надсилати повідомлення",
     "@sendMessages": {
         "type": "String",
@@ -1624,11 +1614,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "everythingReady": "Усе готово!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
     "homeserver": "Домашній сервер",
     "groups": "Групи",
     "@groups": {
@@ -1640,17 +1625,11 @@
         "type": "String",
         "placeholders": {}
     },
-    "chatBackupDescription": "Ваші повідомлення захищені ключем відновлення. Переконайтеся, що ви не втратите його.",
-    "@chatBackupDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chatBackup": "Резервне копіювання бесіди",
     "@chatBackup": {
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "Рез. копію чату налаштовано.",
     "clearArchive": "Очистити архів",
     "commandHint_html": "Надіслати текст у форматі HTML",
     "@commandHint_html": {
@@ -1994,16 +1973,11 @@
             }
         }
     },
-    "saveKeyManuallyDescription": "Збережіть цей ключ вручну, запустивши діалогове вікно спільного доступу до системи або буфер обміну.",
     "storeInAndroidKeystore": "Зберегти в Android KeyStore",
     "storeInAppleKeyChain": "Зберегти в Apple KeyChain",
     "storeSecurlyOnThisDevice": "Зберегти безпечно на цей пристрій",
-    "pleaseEnterRecoveryKeyDescription": "Щоб розблокувати старі повідомлення, введіть ключ відновлення, згенерований у попередньому сеансі. Ваш ключ відновлення це НЕ ваш пароль.",
     "recoveryKey": "Ключ відновлення",
-    "recoveryKeyLost": "Ключ відновлення втрачено?",
     "users": "Користувачі",
-    "unlockOldMessages": "Розблокувати старі повідомлення",
-    "storeInSecureStorageDescription": "Збережіть ключ відновлення в безпечному сховищі цього пристрою.",
     "countFiles": "{count} файлів",
     "@countFiles": {
         "placeholders": {
@@ -2658,8 +2632,6 @@
     "allowMultipleAnswers": "Дозволити декілька варіантів відповіді",
     "pollHasBeenEnded": "Опитування завершилось",
     "skipChatBackupWarning": "Ви впевнені? Без резервного копіювання бесід ви можете втратити доступ до повідомлень, якщо ви зміните пристрій.",
-    "loadingMessages": "Завантажуються повідомлення",
-    "setupChatBackup": "Налаштувати резервне копіювання бесід",
     "replyInThread": "Відповісти у вітці",
     "saveChanges": "Зберегти зміни",
     "createSticker": "Створити наліпку чи емодзі",

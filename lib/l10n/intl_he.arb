@@ -360,7 +360,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "yourChatBackupHasBeenSetUp": "גיבוי הצ'אט שלך הוגדר.",
     "chatBackup": "גיבוי צ'אט",
     "@chatBackup": {
         "type": "String",
@@ -423,11 +422,6 @@
     },
     "chatDetails": "פרטי צ'אט",
     "@chatDetails": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatBackupDescription": "גיבוי הצ'אט שלך מאובטח באמצעות מפתח אבטחה. אנא וודא שאתה לא מאבד אותו.",
-    "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
     },
@@ -575,11 +569,6 @@
     },
     "enterAnEmailAddress": "הזן כתובת דואר אלקטרוני",
     "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "everythingReady": "הכל מוכן!",
-    "@everythingReady": {
         "type": "String",
         "placeholders": {}
     },
@@ -1699,11 +1688,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pause": "",
     "allowMultipleAnswers": "",
     "sender": "",
@@ -1740,17 +1724,11 @@
         "type": "String",
         "placeholders": {}
     },
-    "transferFromAnotherDevice": "",
-    "@transferFromAnotherDevice": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pushRules": "",
     "@pushRules": {
         "type": "String",
         "placeholders": {}
     },
-    "saveKeyManuallyDescription": "",
     "makeModerator": "",
     "italicText": "",
     "addAnswerOption": "",
@@ -1923,7 +1901,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unlockOldMessages": "",
     "identityServer": "",
     "recording": "",
     "@recording": {
@@ -2015,7 +1992,6 @@
     },
     "experimentalVideoCalls": "",
     "removeModeratorRights": "",
-    "pleaseEnterRecoveryKeyDescription": "",
     "supportPage": "",
     "welcomeText": "",
     "withTheseAddressesRecoveryDescription": "",
@@ -2115,7 +2091,6 @@
     },
     "removeAdminRights": "",
     "redactMessageDescription": "",
-    "loadingMessages": "",
     "recoveryKey": "",
     "redactMessage": "",
     "@redactMessage": {
@@ -2400,7 +2375,6 @@
     "crossVerifiedDevices": "",
     "shareInviteLink": "",
     "commandHint_markasdm": "",
-    "recoveryKeyLost": "",
     "cuddleContent": "",
     "@cuddleContent": {
         "type": "String",
@@ -2665,7 +2639,6 @@
     },
     "supportFluffyChat": "",
     "databaseMigrationBody": "",
-    "storeInSecureStorageDescription": "",
     "kickUserDescription": "",
     "startedAPoll": "",
     "@startedAPoll": {
@@ -2683,7 +2656,6 @@
         "placeholders": {}
     },
     "importNow": "",
-    "setupChatBackup": "",
     "pinMessage": "",
     "noChatsFoundHere": "",
     "pleaseFillOut": "",

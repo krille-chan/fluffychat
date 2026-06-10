@@ -143,11 +143,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "everythingReady": "모든 것이 준비됐어요!",
-    "@everythingReady": {
-        "type": "String",
-        "placeholders": {}
-    },
     "homeserver": "홈서버",
     "enterAnEmailAddress": "이메일 주소 입력",
     "@enterAnEmailAddress": {
@@ -432,11 +427,6 @@
     },
     "chatDetails": "채팅 정보",
     "@chatDetails": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "chatBackupDescription": "당신의 오래된 메시지는 보안 키로 보호됩니다. 이 키를 잃어버리지 마세요.",
-    "@chatBackupDescription": {
         "type": "String",
         "placeholders": {}
     },
@@ -873,11 +863,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "wipeChatBackup": "새로운 복구키를 생성하기 위해 채팅 백업을 초기화할까요?",
-    "@wipeChatBackup": {
-        "type": "String",
-        "placeholders": {}
-    },
     "whyDoYouWantToReportThis": "왜 이것을 신고하려고 하나요?",
     "@whyDoYouWantToReportThis": {
         "type": "String",
@@ -1282,11 +1267,6 @@
     },
     "tryToSendAgain": "다시 보내도록 시도",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "transferFromAnotherDevice": "다른 기기에서 가져오기",
-    "@transferFromAnotherDevice": {
         "type": "String",
         "placeholders": {}
     },
@@ -1881,7 +1861,6 @@
     },
     "link": "링크",
     "unverified": "확인되지 않음",
-    "yourChatBackupHasBeenSetUp": "당신의 채팅 백업이 설정되었습니다.",
     "time": "시간",
     "messageType": "메시지 유형",
     "openGallery": "갤러리 열기",
@@ -2015,7 +1994,6 @@
     "chatPermissions": "채팅 권한",
     "storeInAndroidKeystore": "Android KeyStore에 저장하기",
     "makeAdminDescription": "유저를 한 번 관리자로 만들면, 당신과 같은 권한을 가지기때문에 권한 회수가 불가능합니다.",
-    "saveKeyManuallyDescription": "공유나 클립보드를 이용해 수동으로 키를 저장합니다.",
     "whyIsThisMessageEncrypted": "왜 이 메시지를 읽을 수 없나요?",
     "setChatDescription": "채팅 설명 설정",
     "importFromZipFile": ".zip 파일에서 불러오기",
@@ -2031,11 +2009,9 @@
     },
     "fileIsTooBigForServer": "전송에 실패했습니다. 서버는 {max}가 넘는 파일을 지원하지 않습니다.",
     "readUpToHere": "여기까지 읽음",
-    "unlockOldMessages": "오래된 메시지 잠금 해제하기",
     "optionalRedactReason": "(선택) 이 메시지를 편집하는 이유...",
     "archiveRoomDescription": "채팅이 보관함으로 이동합니다. 다른 유저들은 당신이 떠난다는것을 볼 수 있습니다.",
     "exportEmotePack": ".zip 파일로 이모트 내보내기",
-    "pleaseEnterRecoveryKeyDescription": "오래된 메시지를 잠금 해제하려면, 이전 세션에서 생성된 복호화 키를 입력하세요. 복호화 키는 비밀번호가 아닙니다.",
     "redactedByBecause": "{username}님이 삭제함. 사유: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
@@ -2140,7 +2116,6 @@
     "sorryThatsNotPossible": "죄송합니다...그것은 불가능합니다",
     "shareInviteLink": "초대 링크 공유",
     "commandHint_markasdm": "Matrix ID를 위한 다이렉트 메시지 방으로 표시",
-    "recoveryKeyLost": "복구키를 분실하셨나요?",
     "cuddleContent": "{senderName} 님이 당신에게 미소짓습니다",
     "@cuddleContent": {
         "type": "String",
@@ -2171,7 +2146,6 @@
     "createGroup": "새 그룹 채팅",
     "custom": "커스텀",
     "noBackupWarning": "경고! 채팅 백업을 켜지 않을경우, 당신은 암호화된 메시지에 대한 접근권한을 잃을것 입니다. 로그아웃 하기 전에 채팅을 백업하는것이 강력히 권장됩니다.",
-    "storeInSecureStorageDescription": "이 기기의 보안 스토리지에 복구키를 저장합니다.",
     "kickUserDescription": "유저는 채팅에서 추방되지만 영구 추방되지 않습니다. 공개 채팅의 경우, 언제든 유저가 다시 참가할 수 있습니다.",
     "importNow": "지금 불러오기",
     "invite": "초대",
@@ -2671,7 +2645,6 @@
         }
     },
     "removeAdminRights": "",
-    "loadingMessages": "",
     "removeFromSpaceDescription": "",
     "owner": "",
     "powerLevel": "",
@@ -2738,7 +2711,6 @@
         }
     },
     "notificationRuleEncrypted": "",
-    "setupChatBackup": "",
     "changedTheChatName": "",
     "spaceMemberOf": "",
     "@spaceMemberOf": {
