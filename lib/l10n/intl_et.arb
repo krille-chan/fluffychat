@@ -2747,15 +2747,6 @@
     "encryptedMessage": "Krüptitud sõnum",
     "unencryptedMessage": "Krüptimata sõnum",
     "allow": "Luba",
-    "allowEncryptedCommunicationWith": "Kas lubad krüptimata suhtlust kasutajaga {name}?",
-    "@allowEncryptedCommunicationWith": {
-        "type": "String",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
     "publicKey": "Avalik võti: {key}",
     "@publicKey": {
         "type": "String",

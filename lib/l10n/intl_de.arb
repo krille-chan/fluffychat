@@ -2757,15 +2757,6 @@
     "encryptedMessage": "Verschlüsselte Nachricht",
     "unencryptedMessage": "Unverschlüsselte Nachricht",
     "allow": "Erlauben",
-    "allowEncryptedCommunicationWith": "Verschlüsselte Kommunikation mit {name} zulassen?",
-    "@allowEncryptedCommunicationWith": {
-        "type": "String",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
     "publicKey": "Öffentlicher Schlüssel: {key}",
     "@publicKey": {
         "type": "String",

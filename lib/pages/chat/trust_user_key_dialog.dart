@@ -58,10 +58,8 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
               Center(
                 child: Text(
                   users.length == 1
-                      ? l10n.allowEncryptedCommunicationWith(
-                          users.single.calcDisplayname(),
-                        )
-                      : 'Allow encrypted communication with ${users.length} users?',
+                      ? l10n.messageCanOnlyBeReadByUser
+                      : l10n.messageCanOnlyBeReadByUsers,
                   style: TextStyle(fontSize: 16),
                   textAlign: .center,
                 ),
@@ -117,7 +115,7 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
             }
             Navigator.of(context).pop(_Action.allow);
           },
-          child: Text(L10n.of(context).allow),
+          child: Text(L10n.of(context).continueText),
         ),
         if (room.isDirectChat)
           AdaptiveDialogAction(

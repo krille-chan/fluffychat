@@ -52,7 +52,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                 onChanged: controller.enableEncryption,
               ),
               Divider(color: theme.dividerColor, height: 1),
-              if (room.isDirectChat) ...[
+              if (room.isDirectChat && room.encrypted) ...[
                 const SizedBox(height: 16),
                 ListTile(
                   title: Text(L10n.of(context).interactiveVerification),
@@ -218,8 +218,8 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                     ),
                                   );
                                 }),
-                                Divider(color: theme.dividerColor),
                               ],
+                              Divider(color: theme.dividerColor, height: 1),
                             ],
                           );
                         }).toList(),

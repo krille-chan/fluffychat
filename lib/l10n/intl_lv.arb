@@ -2730,15 +2730,6 @@
     "encryptedMessage": "Šifrēta ziņa",
     "unencryptedMessage": "Nešifrēta ziņa",
     "allow": "Ļaut",
-    "allowEncryptedCommunicationWith": "Ļaut šifrētu saziņu ar {name}?",
-    "@allowEncryptedCommunicationWith": {
-        "type": "String",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
     "publicKey": "Publiskā atslēga: {key}",
     "@publicKey": {
         "type": "String",

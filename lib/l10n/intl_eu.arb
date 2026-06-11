@@ -2748,15 +2748,6 @@
     "encryptedMessage": "Zifratutako mezua",
     "unencryptedMessage": "Zifratu gabeko mezua",
     "allow": "Baimendu",
-    "allowEncryptedCommunicationWith": "Baimendu zifratutako komunikazioa {name}(r)ekin?",
-    "@allowEncryptedCommunicationWith": {
-        "type": "String",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
     "publicKey": "Gako publikoa: {key}",
     "@publicKey": {
         "type": "String",

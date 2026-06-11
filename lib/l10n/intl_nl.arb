@@ -2746,15 +2746,6 @@
     "encryptedMessage": "Versleuteld bericht",
     "unencryptedMessage": "Niet-versleuteld bericht",
     "allow": "Toestaan",
-    "allowEncryptedCommunicationWith": "Versleutelde communicatie met {name} toestaan?",
-    "@allowEncryptedCommunicationWith": {
-        "type": "String",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
     "publicKey": "Publieke sleutel: {key}",
     "@publicKey": {
         "type": "String",
