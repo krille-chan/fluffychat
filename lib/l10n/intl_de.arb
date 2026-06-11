@@ -2488,7 +2488,7 @@
         }
     },
     "appWantsToUseForLoginDescription": "Hiermit erlaubst du der App und der Website, Informationen über dich weiterzugeben.",
-    "open": "Offen",
+    "open": "Öffnen",
     "notificationRuleContainsUserName": "Enthält Benutzernamen",
     "notificationRuleContainsUserNameDescription": "Benachrichtigt den Benutzer, wenn eine Nachricht seinen Benutzernamen enthält.",
     "notificationRuleMaster": "Alle Benachrichtigungen stummschalten",
@@ -2730,7 +2730,7 @@
     "unsetLowPriority": "Niedrige Priorität aufheben",
     "setLowPriority": "Niedrige Priorität festlegen",
     "removeTag": "Tag entfernen",
-    "appDescription": "Schreibe mir anderen mithilfe des dezentralisierten [matrix] Netzwerks auf eine einfache und zugängliche Art für jeden.",
+    "appDescription": "Kommuniziere verschlüsselt über das dezentrale [matrix]-Netzwerk, so dass es einfach und zugänglich für jeden ist.",
     "discardEdits": "Du hast ungespeicherte Änderungen. Möchtest du deine Änderungen verwerfen?",
     "@discardEdits": {
         "type": "String",
