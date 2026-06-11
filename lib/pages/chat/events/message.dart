@@ -87,7 +87,6 @@ class Message extends StatelessWidget {
     if (!{
       EventTypes.Message,
       EventTypes.Sticker,
-      EventTypes.Encrypted,
       EventTypes.CallInvite,
       PollEventContent.startType,
     }.contains(event.type)) {
@@ -113,11 +112,7 @@ class Message extends StatelessWidget {
         !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
     final nextEventSameSender =
         nextEvent != null &&
-        {
-          EventTypes.Message,
-          EventTypes.Sticker,
-          EventTypes.Encrypted,
-        }.contains(nextEvent!.type) &&
+        {EventTypes.Message, EventTypes.Sticker}.contains(nextEvent!.type) &&
         nextEvent!.senderId == event.senderId &&
         !displayTime;
 
@@ -126,7 +121,6 @@ class Message extends StatelessWidget {
         {
           EventTypes.Message,
           EventTypes.Sticker,
-          EventTypes.Encrypted,
         }.contains(previousEvent!.type) &&
         previousEvent!.senderId == event.senderId &&
         previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
@@ -437,11 +431,7 @@ class Message extends StatelessWidget {
                                   child: AnimatedOpacity(
                                     duration: FluffyThemes.animationDuration,
                                     curve: FluffyThemes.animationCurve,
-                                    opacity:
-                                        event.status.isSending ||
-                                            event.type == EventTypes.Encrypted
-                                        ? 0.5
-                                        : 1,
+                                    opacity: event.status.isSending ? 0.5 : 1,
                                     child: Container(
                                       decoration: BoxDecoration(
                                         color: noBubble

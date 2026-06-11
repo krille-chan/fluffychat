@@ -82,7 +82,8 @@ class EventInfoDialog extends StatelessWidget {
               ),
             ),
           ),
-          if (originalSource != null) ...[
+          if (event.messageType != MessageTypes.BadEncrypted &&
+              originalSource != null) ...[
             ListTile(title: Text('${L10n.of(context).encrypted}:')),
             Padding(
               padding: const EdgeInsets.all(12.0),

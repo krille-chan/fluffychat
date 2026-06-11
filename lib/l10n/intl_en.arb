@@ -2896,5 +2896,6 @@
     "@noCurve25519KeyFound": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "messageNotDecryptable": "Message not decryptable"
 }
