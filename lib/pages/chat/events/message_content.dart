@@ -10,14 +10,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/events/poll.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
-import 'package:fluffychat/utils/date_time_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../../config/app_config.dart';
@@ -52,61 +45,6 @@ class MessageContent extends StatelessWidget {
     required this.selected,
     required this.bigEmojis,
   });
-
-  Future<void> _verifyOrRequestKey(BuildContext context) async {
-    final l10n = L10n.of(context);
-    if (event.content['can_request_session'] != true) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(event.calcLocalizedBodyFallback(MatrixLocals(l10n))),
-        ),
-      );
-      return;
-    }
-    final client = Matrix.of(context).client;
-    final state = await client.getCryptoIdentityState();
-    if (!state.connected) {
-      if (!context.mounted) return;
-      final success = await context.push('/backup');
-      if (success != true) return;
-    }
-    if (!context.mounted) return;
-    event.requestKey();
-    final sender = event.senderFromMemoryOrFallback;
-    await showAdaptiveBottomSheet(
-      context: context,
-      builder: (context) => Scaffold(
-        appBar: AppBar(
-          leading: CloseButton(onPressed: Navigator.of(context).pop),
-          title: Text(
-            l10n.whyIsThisMessageEncrypted,
-            style: const TextStyle(fontSize: 16),
-          ),
-        ),
-        body: SafeArea(
-          child: ListView(
-            padding: const EdgeInsets.all(16),
-            children: [
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: Avatar(
-                  mxContent: sender.avatarUrl,
-                  name: sender.calcDisplayname(),
-                  presenceUserId: sender.stateKey,
-                  client: event.room.client,
-                ),
-                title: Text(sender.calcDisplayname()),
-                subtitle: Text(event.originServerTs.localizedTime(context)),
-                trailing: const Icon(Icons.lock_outlined),
-              ),
-              const Divider(),
-              Text(event.calcLocalizedBodyFallback(MatrixLocals(l10n))),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -195,15 +133,6 @@ class MessageContent extends StatelessWidget {
               event,
               textColor: textColor,
               linkColor: linkColor,
-            );
-          case MessageTypes.BadEncrypted:
-          case EventTypes.Encrypted:
-            return _ButtonContent(
-              textColor: buttonTextColor,
-              onPressed: () => _verifyOrRequestKey(context),
-              icon: '🔒',
-              label: L10n.of(context).encrypted,
-              fontSize: fontSize,
             );
           case MessageTypes.Location:
             final geoUri = Uri.tryParse(
