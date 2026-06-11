@@ -76,6 +76,7 @@ enum AppSettings<T> {
   chatFilter<String>('chat.fluffy.chat_filter', 'allChats'),
   hideRoomsInSpaces<bool>('chat.fluffy.hideRoomsInSpaces', false),
   showThumbnailsInTimeline<bool>('chat.fluffy.showThumbnailsInTimeline', true),
+  showMessageTimestamp<bool>('chat.fluffy.showMessageTimestamp', true),
   debugPush<bool>('chat.fluffy.debug_push', false);
 
   final String key;

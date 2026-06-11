@@ -131,6 +131,11 @@ class Message extends StatelessWidget {
         previousEvent!.senderId == event.senderId &&
         previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
 
+    final sameTimestampAsPrevious =
+        previousEventSameSender &&
+        previousEvent!.originServerTs.hour == event.originServerTs.hour &&
+        previousEvent!.originServerTs.minute == event.originServerTs.minute;
+
     final textColor = ownMessage
         ? theme.onBubbleColor
         : theme.colorScheme.onSurface;
@@ -550,43 +555,6 @@ class Message extends StatelessWidget {
                                                 selected: selected,
                                                 bigEmojis: bigEmojis,
                                               ),
-                                              if (event.hasAggregatedEvents(
-                                                timeline,
-                                                RelationshipTypes.edit,
-                                              ))
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                        bottom: 8.0,
-                                                        left: 16.0,
-                                                        right: 16.0,
-                                                      ),
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    spacing: 4.0,
-                                                    children: [
-                                                      Icon(
-                                                        Icons.edit_outlined,
-                                                        color: textColor
-                                                            .withAlpha(164),
-                                                        size: 14,
-                                                      ),
-                                                      Text(
-                                                        displayEvent
-                                                            .originServerTs
-                                                            .localizedTimeShort(
-                                                              context,
-                                                            ),
-                                                        style: TextStyle(
-                                                          color: textColor
-                                                              .withAlpha(164),
-                                                          fontSize: 11,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
                                             ],
                                           ),
                                         ),
@@ -799,6 +767,14 @@ class Message extends StatelessWidget {
                           child: MessageReactions(event, timeline),
                         ),
                 ),
+                if ((AppSettings.showMessageTimestamp.value &&
+                        !sameTimestampAsPrevious) ||
+                    event.hasAggregatedEvents(timeline, RelationshipTypes.edit))
+                  _MessageTimestamp(
+                    event: event,
+                    displayEvent: displayEvent,
+                    timeline: timeline,
+                  ),
                 if (enterThread != null)
                   AnimatedSize(
                     duration: FluffyThemes.animationDuration,
@@ -977,6 +953,38 @@ class __AnimateInState extends State<_AnimateIn> {
       duration: FluffyThemes.animationDuration,
       curve: FluffyThemes.animationCurve,
       child: _animationFinished ? widget.child : const SizedBox.shrink(),
+    );
+  }
+}
+
+class _MessageTimestamp extends StatelessWidget {
+  final Event event;
+  final Event displayEvent;
+  final Timeline timeline;
+
+  const _MessageTimestamp({
+    required this.event,
+    required this.displayEvent,
+    required this.timeline,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final color = Theme.of(context).colorScheme.onSurface.withAlpha(128);
+    return Padding(
+      padding: const EdgeInsets.only(top: 2, bottom: 2),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        spacing: 4.0,
+        children: [
+          if (event.hasAggregatedEvents(timeline, RelationshipTypes.edit))
+            Icon(Icons.edit_outlined, color: color, size: 14),
+          Text(
+            displayEvent.originServerTs.localizedTimeOfDay(context),
+            style: TextStyle(color: color, fontSize: 11),
+          ),
+        ],
+      ),
     );
   }
 }
