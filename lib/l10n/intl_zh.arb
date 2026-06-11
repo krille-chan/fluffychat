@@ -2889,5 +2889,14 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageNotDecryptable": "消息不可解密"
+    "messageNotDecryptable": "消息不可解密",
+    "knownSince": "初始知晓日期：{date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    }
 }
