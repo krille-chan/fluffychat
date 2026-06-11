@@ -96,13 +96,8 @@ class RecordingInputRow extends StatelessWidget {
               foregroundColor: theme.onBubbleColor,
             ),
             tooltip: L10n.of(context).sendAudio,
-            icon: state.isSending
-                ? const SizedBox.square(
-                    dimension: 24,
-                    child: CircularProgressIndicator.adaptive(),
-                  )
-                : const Icon(Icons.send_outlined),
-            onPressed: state.isSending ? null : () => state.stopAndSend(onSend),
+            icon: const Icon(Icons.send_outlined),
+            onPressed: () => state.stopAndSend(onSend),
           ),
           const SizedBox(width: 4),
         ],

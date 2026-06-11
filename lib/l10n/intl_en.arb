@@ -2885,5 +2885,13 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageNotDecryptable": "Message not decryptable"
+    "messageNotDecryptable": "Message not decryptable",
+    "today": "Today",
+    "sending": "Sending",
+    "generatingThumbnail": "Generating thumbnail",
+    "encrypting": "Encrypting",
+    "uploading": "Uploading",
+    "edited": "(edited)",
+    "couldNotBeSent": "Could not be sent",
+    "yesterday": "Yesterday"
 }
