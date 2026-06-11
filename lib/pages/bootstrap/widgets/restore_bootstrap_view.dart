@@ -134,7 +134,7 @@ class RestoreBootstrapView extends StatelessWidget {
           maxLines: viewModel.value.obscureText ? 1 : 4,
           onSubmitted: (_) => viewModel.unlock(context),
           decoration: InputDecoration(
-            hintText: L10n.of(context).restoreBootstrapHintText,
+            hintText: L10n.of(context).passphraseOrKey,
             prefixIcon: IconButton(
               icon: Icon(
                 viewModel.value.obscureText
@@ -190,43 +190,6 @@ class RestoreBootstrapView extends StatelessWidget {
           style: TextButton.styleFrom(foregroundColor: theme.colorScheme.error),
           child: Text(L10n.of(context).resetAccount),
         ),
-        /*Row(
-          spacing: 16,
-          children: [
-            Expanded(
-              child: TextButton.icon(
-                onPressed: () => viewModel.openRecoveryKeyFile(context),
-                label: Text(L10n.of(context).openFile),
-                icon: Icon(Icons.upload_outlined),
-                style: TextButton.styleFrom(
-                  backgroundColor: theme.colorScheme.primaryContainer,
-                  foregroundColor: theme.colorScheme.onPrimaryContainer,
-                ),
-              ),
-            ),
-            Expanded(
-              child: TextButton(
-                onPressed: () async {
-                  final consent = await showOkCancelAlertDialog(
-                    context: context,
-                    title: L10n.of(context).warning,
-                    message: L10n.of(context).resetAccountWarning,
-                    isDestructive: true,
-                    okLabel: L10n.of(context).resetAccount,
-                  );
-                  if (consent != OkCancelResult.ok) return;
-                  if (!context.mounted) return;
-                  viewModel.startResetAccount();
-                },
-                style: TextButton.styleFrom(
-                  foregroundColor: theme.colorScheme.onErrorContainer,
-                  backgroundColor: theme.colorScheme.errorContainer,
-                ),
-                child: Text(L10n.of(context).resetAccount),
-              ),
-            ),
-          ],
-        ),*/
       ],
     );
   }
