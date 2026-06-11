@@ -198,7 +198,7 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
     }
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: Duration(seconds: 3),
+        duration: Duration(seconds: 5),
         showCloseIcon: true,
         backgroundColor: Colors.green.shade700,
         content: Text(
