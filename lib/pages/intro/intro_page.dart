@@ -110,16 +110,17 @@ class IntroPage extends StatelessWidget {
                             ),
                             child: Hero(
                               tag: 'info-logo',
-                              child: Image.asset(
-                                './assets/logo/mini/logo_mono_mini.png',
-                                width: 156,
-                                height: 156,
-                                color:
-                                    theme.colorScheme.surfaceContainerHighest,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(128),
+                                child: Image.asset(
+                                  './assets/logo/mini/logo_mini.png',
+                                  width: 128,
+                                  height: 128,
+                                ),
                               ),
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 16),
                           Text(
                             L10n.of(context).appSubtitle,
                             textAlign: TextAlign.center,

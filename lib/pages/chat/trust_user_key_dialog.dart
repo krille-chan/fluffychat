@@ -54,6 +54,7 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
             crossAxisAlignment: .stretch,
             mainAxisSize: .min,
             children: [
+              const SizedBox(height: 8),
               Center(
                 child: Text(
                   users.length == 1
@@ -99,7 +100,7 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
                   ),
                   textStyle: theme.textTheme.labelSmall,
                   readOnly: true,
-                  maxLines: 2,
+                  maxLines: 3,
                 ),
               ],
             ],
@@ -108,6 +109,7 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
       ),
       actions: [
         AdaptiveDialogAction(
+          autofocus: true,
           bigButtons: true,
           onPressed: () {
             for (final user in users) {

@@ -92,11 +92,13 @@ abstract class PlatformInfos {
           },
         ),
       ],
-      applicationIcon: Image.asset(
-        'assets/logo/mini/logo_standalone_mini.png',
-        width: 64,
-        height: 64,
-        filterQuality: FilterQuality.medium,
+      applicationIcon: ClipRRect(
+        borderRadius: BorderRadius.circular(64),
+        child: Image.asset(
+          './assets/logo/mini/logo_mini.png',
+          width: 64,
+          height: 64,
+        ),
       ),
       applicationName: AppSettings.applicationName.value,
     );
