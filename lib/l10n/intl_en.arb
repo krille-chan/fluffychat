@@ -2767,11 +2767,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "restoreBootstrapHintText": "Passphrase or recovery key",
-    "@restoreBootstrapHintText": {
-        "type": "String",
-        "placeholders": {}
-    },
     "resetAccount": "Reset account",
     "@resetAccount": {
         "type": "String",

@@ -105,9 +105,7 @@ class IntroPage extends StatelessWidget {
                         children: [
                           Container(
                             alignment: Alignment.center,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8.0,
-                            ),
+                            padding: const EdgeInsets.all(32.0),
                             child: Hero(
                               tag: 'info-logo',
                               child: ClipRRect(
@@ -120,19 +118,17 @@ class IntroPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 16),
                           Text(
                             L10n.of(context).appSubtitle,
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(fontSize: 20),
                           ),
                           const SizedBox(height: 8),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
                             child: Text(
                               L10n.of(context).appDescription,
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 12),
                             ),
                           ),
                           const Spacer(),
