@@ -2747,15 +2747,6 @@
     "encryptedMessage": "加密的消息",
     "unencryptedMessage": "未加密的消息",
     "allow": "允许",
-    "allowEncryptedCommunicationWith": "允许和 {name} 的加密通信？",
-    "@allowEncryptedCommunicationWith": {
-        "type": "String",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
     "publicKey": "公钥：{key}",
     "@publicKey": {
         "type": "String",

@@ -2747,15 +2747,6 @@
     "encryptedMessage": "Зашифроване повідомлення",
     "unencryptedMessage": "Незашифроване повідомлення",
     "allow": "Дозволити",
-    "allowEncryptedCommunicationWith": "Дозволити зашифроване спілкування з {name}?",
-    "@allowEncryptedCommunicationWith": {
-        "type": "String",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
     "publicKey": "Публічний ключ: {key}",
     "@publicKey": {
         "type": "String",

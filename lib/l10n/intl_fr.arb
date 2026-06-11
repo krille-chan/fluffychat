@@ -2749,15 +2749,6 @@
     "encryptedMessage": "Message chiffré",
     "unencryptedMessage": "Message déchiffré",
     "allow": "Autoriser",
-    "allowEncryptedCommunicationWith": "Autoriser la communication chiffrée avec {name} ?",
-    "@allowEncryptedCommunicationWith": {
-        "type": "String",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
     "publicKey": "Clé publique : {key}",
     "@publicKey": {
         "type": "String",

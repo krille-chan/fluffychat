@@ -2755,15 +2755,6 @@
     "encryptedMessage": "Teachtaireacht chriptithe",
     "unencryptedMessage": "Teachtaireacht neamhchriptithe",
     "allow": "Ceadaigh",
-    "allowEncryptedCommunicationWith": "Cumarsáid chriptithe le {name} a cheadú?",
-    "@allowEncryptedCommunicationWith": {
-        "type": "String",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
     "publicKey": "Eochair phoiblí: {key}",
     "@publicKey": {
         "type": "String",

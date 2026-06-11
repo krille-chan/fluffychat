@@ -2738,15 +2738,8 @@
     "encryptedMessage": "Encrypted message",
     "unencryptedMessage": "Unencrypted message",
     "allow": "Allow",
-    "allowEncryptedCommunicationWith": "Allow encrypted communication with {name}?",
-    "@allowEncryptedCommunicationWith": {
-        "type": "String",
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
+    "messageCanOnlyBeReadByUser": "Your message is end to end encrypted and can only be read by this user:",
+    "messageCanOnlyBeReadByUsers": "Your message is end to end encrypted and can only be read by these users:",
     "publicKey": "Public key: {key}",
     "@publicKey": {
         "type": "String",

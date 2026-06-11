@@ -68,7 +68,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
               ),
 
               prefixIcon: Padding(
-                padding: const EdgeInsets.only(left: 8.0),
+                padding: const EdgeInsets.only(left: 8.0, top: 8, bottom: 8),
                 child: hide
                     ? controller.isSearchMode
                           ? IconButton(
@@ -97,7 +97,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                       ),
               ),
               suffixIcon: Padding(
-                padding: const EdgeInsets.only(right: 8.0),
+                padding: const EdgeInsets.only(right: 8.0, top: 8, bottom: 8),
                 child: controller.isSearchMode && globalSearch
                     ? controller.isSearching
                           ? const Padding(
