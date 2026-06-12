@@ -2719,5 +2719,180 @@
     "addTag": "Tambah tag",
     "removeTag": "Hapus tag",
     "tagName": "Nama tag",
-    "createNewTag": "Buat tag baru"
+    "createNewTag": "Buat tag baru",
+    "discardEdits": "Anda memiliki perubahan yang belum disimpan. Buang suntingan Anda?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showMore": "Tampilkan lebih banyak",
+    "showLess": "Tampilkan lebih sedikit",
+    "hideRoomsInSpaces": "Sembunyikan room yang berada dalam sebuah space",
+    "possibleByYou": "Rilis ini hanya dapat terwujud berkat dukungan Anda. FluffyChat tetap gratis, open-source, dan sepenuhnya digerakkan oleh komunitas.",
+    "showThumbnailsInTimeline": "Tampilkan thumbnail gambar dan video",
+    "appSubtitle": "Komunikasi [matrix] yang aman",
+    "appDescription": "Berkomunikasi secara terenkripsi melalui jaringan [matrix] terdesentralisasi dengan cara yang mudah dan dapat diakses oleh semua orang.",
+    "interactiveVerification": "Verifikasi interaktif",
+    "interactiveVerificationDescription": "Jika Anda berada bersebelahan atau berkomunikasi melalui saluran yang aman, Anda dapat memverifikasi semua perangkat sekaligus dengan membandingkan nomor keamanan atau emoji.",
+    "countUnverifiedDevices": "{count} perangkat yang belum diverifikasi di dalam chat.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "check": "Periksa",
+    "encryptedMessage": "Pesan terenkripsi",
+    "unencryptedMessage": "Pesan tidak terenkripsi",
+    "allow": "Izinkan",
+    "messageCanOnlyBeReadByUser": "Pesan Anda terenkripsi end-to-end dan hanya dapat dibaca oleh pengguna ini:",
+    "messageCanOnlyBeReadByUsers": "Pesan Anda terenkripsi end-to-end dan hanya dapat dibaca oleh para pengguna ini:",
+    "publicKey": "Kunci publik: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "deviceIdentityKey": "Kunci identitas perangkat",
+    "restoreBootstrapEmptyDevicesDescription": "Silakan masukkan passphrase atau recovery key Anda untuk memverifikasi perangkat ini dan mendapatkan akses ke cadangan pesan terenkripsi Anda.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Silakan pilih salah satu perangkat Anda yang lain untuk memverifikasi sesi ini:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Reset akun",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Pulihkan Identitas Kripto",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Reset Identitas Kripto",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Siapkan Identitas Kripto",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Menunggu kunci... Harap tetap aktifkan perangkat lainnya.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Tidak ada kunci yang dikirim. Silakan coba lagi.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Buka kunci",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Buka file",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Saat Anda mereset akun, Anda akan kehilangan akses ke pesan lama Anda selamanya. Semua perangkat Anda saat ini perlu diverifikasi kembali. Lakukan tindakan ini hanya jika Anda tidak memiliki perangkat lain lagi untuk memverifikasi sesi Anda dan Anda telah kehilangan recovery key serta passphrase Anda!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat menggunakan enkripsi end-to-end. Agar tidak kehilangan pesan Anda, silakan pilih passphrase yang kuat untuk mengamankan identitas kripto Anda dan cadangan pesan terenkripsi Anda.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Passphrase baru",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Ulangi passphrase",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Passphrase cocok",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "Panjang minimal 12 karakter.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Mengandung huruf besar dan huruf kecil.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Mengandung karakter khusus.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Mengandung satu angka.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Harap catat recovery key Anda agar dapat memulihkan pesan terenkripsi dan identitas kripto Anda.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Simpan sebagai file",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Anda siap untuk memulai!",
+    "noUserKeyFound": "Tidak ditemukan kunci pengguna",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Diketahui sejak: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "Perangkat tanpa tanda tangan",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Perangkat bertanda tangan",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Tidak ditemukan kunci curve25519",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Pesan tidak dapat didekripsi"
 }
