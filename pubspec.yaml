@@ -21,6 +21,7 @@ dependencies:
   blurhash_dart: ^1.2.1
   chewie: ^1.14.1
   collection: ^1.18.0
+  crop_image: ^1.0.17
   cross_file: ^0.3.5
   desktop_drop: ^0.7.1
   device_info_plus: ^13.1.0
