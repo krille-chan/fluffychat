@@ -2898,5 +2898,7 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "messageCanOnlyBeReadByUser": "你的消息是端到端加密的，只能由该用户读取：",
+    "messageCanOnlyBeReadByUsers": "你的消息是端到端加密的，只能由这些用户读取："
 }
