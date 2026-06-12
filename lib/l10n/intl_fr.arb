@@ -2757,5 +2757,141 @@
             }
         }
     },
-    "deviceIdentityKey": "Clé d'identification de l'appareil"
+    "deviceIdentityKey": "Clé d'identification de l'appareil",
+    "restoreBootstrapEmptyDevicesDescription": "Veuillez entrer votre mot de passe ou votre clé de récupération pour vérifier cet appareil et déchiffrer la sauvegarde de vos messages.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Veuillez choisir l'un de vos autre appareils, pour vérifier cette session :",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Ré-initialiser le compte",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Restaurer votre Profile Crypto",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Réinitialiser votre Profile Crypto",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Configurer votre Profile Crypto",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "En attente des clés... Veuillez garder l'autre appareil actif.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Aucune clé transmise. Veuillez réessayer.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Déverrouiller",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Ouvrir un fichier",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Lorsque vous réinitialiserez votre compte, vous perdrez l'accès à vos anciens messages pour toujours. Tous vos appareils devront être vérifiés de nouveau. Veuillez réaliser cette action seulement lorsque vous n'avez pas d'autre appareils pour vérifier votre session et que vous avez perdu votre clé de récupération et votre phrase de passe !",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat utilise le chiffrement de bout en bout. Pour ne pas perdre vos messages, veuillez choisir une phrase de passe forte pour sécuriser votre profile crypto et votre sauvegarde chiffrée des messages.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Nouvelle phrase de passe",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Répeter la phrase de passe",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Les phrases de passe correspondent",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "Au moins 12 caractères.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Contient des majuscules et des minuscules.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Contient des caractères spéciaux.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Contient un chiffre.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Veuillez noter votre clé de récupération pour pouvoir restaurer vos message chiffrés et votre profile crypto dans le futur.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Sauvegarder le fichier",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Vous êtes prêt à commencer !",
+    "noUserKeyFound": "Pas de clé utilisateur trouvée",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Connu depuis : {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "Appareil non-signé",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Appareil signé",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Aucune clé curve25519 trouvée",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Message non-déchiffrable"
 }
