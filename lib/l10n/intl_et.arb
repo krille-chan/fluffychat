@@ -1280,7 +1280,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Tõukereeglid",
+    "pushRules": "Tõuketeenuse reeglid",
     "@pushRules": {
         "type": "String",
         "placeholders": {}
@@ -2895,5 +2895,13 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "today": "Täna",
+    "sending": "Saadan",
+    "generatingThumbnail": "Koostan pisipilti",
+    "encrypting": "Krüptin",
+    "uploading": "Laadin üles",
+    "edited": "(muudetud)",
+    "couldNotBeSent": "Saatmine ei õnnestunud",
+    "yesterday": "Eile"
 }
