@@ -20,7 +20,6 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../config/app_config.dart';
-import '../../widgets/settings_switch_list_tile.dart';
 import 'settings_style.dart';
 
 class SettingsStyleView extends StatelessWidget {
@@ -351,10 +350,6 @@ class SettingsStyleView extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-            SettingsSwitchListTile.adaptive(
-              title: L10n.of(context).displayNavigationRail,
-              setting: AppSettings.displayNavigationRail,
             ),
           ],
         ),
