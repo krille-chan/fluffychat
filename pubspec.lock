@@ -686,10 +686,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_webrtc
-      sha256: c7b0a67ca2c878575fc5c146d801cd874f58f5f1ef5fa6e8eb0c93d413beb948
+      sha256: d8c89028d29e5693742190285b2e3c8a117531b0960ae0693d84273a53968d28
       url: "https://pub.dev"
     source: hosted
-    version: "1.4.1"
+    version: "1.5.0"
   frontend_server_client:
     dependency: transitive
     description:
