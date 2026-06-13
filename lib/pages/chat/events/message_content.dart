@@ -148,26 +148,11 @@ class MessageContent extends StatelessWidget {
               if (latlong.length == 2 &&
                   latlong.first != null &&
                   latlong.last != null) {
-                return Column(
-                  mainAxisSize: .min,
-                  children: [
-                    MapBubble(
-                      latitude: latlong.first!,
-                      longitude: latlong.last!,
-                    ),
-                    const SizedBox(height: 6),
-                    OutlinedButton.icon(
-                      icon: Icon(Icons.location_on_outlined, color: textColor),
-                      onPressed: UrlLauncher(
-                        context,
-                        geoUri.toString(),
-                      ).launchUrl,
-                      label: Text(
-                        L10n.of(context).openInMaps,
-                        style: TextStyle(color: textColor),
-                      ),
-                    ),
-                  ],
+                return MapBubble(
+                  onTap: () =>
+                      UrlLauncher(context, geoUri.toString()).launchUrl(),
+                  latitude: latlong.first!,
+                  longitude: latlong.last!,
                 );
               }
             }

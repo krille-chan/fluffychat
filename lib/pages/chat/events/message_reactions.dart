@@ -82,15 +82,6 @@ class MessageReactions extends StatelessWidget {
             ).show(context),
           ),
         ),
-        if (allReactionEvents.any((e) => e.status.isSending))
-          const SizedBox(
-            width: 24,
-            height: 24,
-            child: Padding(
-              padding: EdgeInsets.all(4.0),
-              child: CircularProgressIndicator.adaptive(strokeWidth: 1),
-            ),
-          ),
       ],
     );
   }
@@ -145,33 +136,34 @@ class _Reaction extends StatelessWidget {
       if (renderKey.length > 10) {
         renderKey = renderKey.getRange(0, 9) + Characters('…');
       }
-      content = Text(
-        renderKey.toString() + (count > 1 ? ' $count' : ''),
-        style: TextStyle(
-          color: theme.colorScheme.onSurface,
-          fontSize: DefaultTextStyle.of(context).style.fontSize,
-        ),
-      );
+      content = Text(renderKey.toString(), style: TextStyle(fontSize: 16));
     }
-    return InkWell(
-      onTap: () => onTap != null ? onTap!() : null,
-      onLongPress: () => onLongPress != null ? onLongPress!() : null,
-      borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-      child: Container(
-        decoration: BoxDecoration(
-          color: reacted == true
-              ? theme.colorScheme.primaryContainer
-              : theme.colorScheme.surfaceContainerHigh,
-          border: Border.all(
-            color: reacted == true
-                ? theme.colorScheme.primary
-                : theme.colorScheme.surfaceContainerHigh,
-            width: 1,
+    return Badge(
+      isLabelVisible: count > 1,
+      label: Text(count.toString()),
+      textStyle: TextStyle(fontSize: 10),
+      textColor: theme.colorScheme.onPrimary,
+      backgroundColor: theme.colorScheme.primary.withAlpha(200),
+      child: InkWell(
+        onTap: () => onTap != null ? onTap!() : null,
+        onLongPress: () => onLongPress != null ? onLongPress!() : null,
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+        child: Container(
+          decoration: BoxDecoration(
+            color: theme.colorScheme.secondaryContainer,
+            border: Border.all(
+              color: reacted == true
+                  ? theme.colorScheme.primary
+                  : theme.colorScheme.secondaryContainer,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+          width: 24,
+          height: 24,
+          padding: const EdgeInsets.symmetric(horizontal: 3),
+          child: content,
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-        child: content,
       ),
     );
   }
@@ -197,7 +189,7 @@ class _AdaptableReactorsDialog extends StatelessWidget {
 
   const _AdaptableReactorsDialog({this.client, this.reactionEntry});
 
-  Future<bool?> show(BuildContext context) => showAdaptiveDialog(
+  Future<bool?> show(BuildContext context) => showDialog(
     context: context,
     builder: (context) => this,
     barrierDismissible: true,
@@ -228,6 +220,6 @@ class _AdaptableReactorsDialog extends StatelessWidget {
 
     final title = Center(child: Text(reactionEntry!.key));
 
-    return AlertDialog.adaptive(title: title, content: body);
+    return AlertDialog(title: title, content: body);
   }
 }

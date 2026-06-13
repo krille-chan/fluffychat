@@ -133,7 +133,9 @@ class ChatEventList extends StatelessWidget {
 
               // The message at this index:
               final event = events[i];
-              final animateIn = event.eventId == controller.animateInEventId;
+              final animateIn =
+                  (event.transactionId ?? event.eventId) ==
+                  controller.animateInEventId;
 
               final nextEvent = i + 1 < events.length ? events[i + 1] : null;
               final previousEvent = i > 0 ? events[i - 1] : null;
