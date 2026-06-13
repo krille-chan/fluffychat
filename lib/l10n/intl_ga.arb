@@ -2763,5 +2763,143 @@
             }
         }
     },
-    "deviceIdentityKey": "Eochair aitheantais gléis"
+    "deviceIdentityKey": "Eochair aitheantais gléis",
+    "messageCanOnlyBeReadByUser": "Tá do theachtaireacht criptithe ó cheann ceann agus ní féidir ach leis an úsáideoir seo í a léamh:",
+    "messageCanOnlyBeReadByUsers": "Tá do theachtaireacht criptithe ó cheann ceann agus ní féidir ach leis na húsáideoirí seo í a léamh:",
+    "restoreBootstrapEmptyDevicesDescription": "Cuir isteach do phasfhocal nó d’eochair aisghabhála le do thoil chun an gléas seo a fhíorú agus rochtain a fháil ar chúltaca do theachtaireachta criptithe.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Roghnaigh ceann de do ghléasanna eile le do thoil, chun an seisiún seo a fhíorú:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Athshocraigh cuntas",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Athchóirigh Céannacht Cripte",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Athshocraigh Céannacht Chripte",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Socraigh Céannacht Chripte",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Ag fanacht le heochracha... Coinnigh an gléas eile gníomhach le do thoil.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Níor tarchuireadh aon eochracha. Déan iarracht arís.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Díghlasáil",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Oscail comhad",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Nuair a athshocraíonn tú do chuntas caillfidh tú rochtain ar do sheantheachtaireachtaí go deo. Ní mór do ghléasanna reatha go léir a fhíorú arís. Ná déan an gníomh seo ach amháin nuair nach bhfuil aon ghléasanna eile fágtha agat chun do sheisiún a fhíorú agus nuair a bheidh d’eochair aisghabhála agus d’fhrása faire caillte agat!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "Úsáideann FluffyChat criptiú ó cheann ceann go ceann. Chun nach gcaillfidh tú do theachtaireachtaí, roghnaigh frása faire láidir le do chéannacht chripte agus cúltaca do theachtaireachta criptithe a dhaingniú.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Pasfrása nua",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Athdhéan an frása faire",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Tá frásaí faire ag teacht le chéile",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "12 charachtar ar a laghad ar fhad.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Tá carachtair mhóra agus bheaga ann.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Tá carachtair speisialta ann.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Tá uimhir amháin ann.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Scríobh síos d’eochair aisghabhála le go mbeidh tú in ann do theachtaireachtaí criptithe agus d’aitheantas cripte a athchóiriú.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Sábháil mar chomhad",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Tá tú réidh le tosú!",
+    "noUserKeyFound": "Níor aimsíodh aon eochair úsáideora",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Ar a dtugtar ó: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "Gléas neamhshínithe",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Gléas sínithe",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Níor aimsíodh eochair curve25519",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Ní féidir an teachtaireacht a dhíchriptiú"
 }
