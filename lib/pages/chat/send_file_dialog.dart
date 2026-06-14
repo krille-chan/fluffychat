@@ -82,21 +82,16 @@ class SendFileDialogState extends State<SendFileDialog> {
     final proceed = await showTrustUserInRoomDialog(context, widget.room);
     if (!context.mounted || !proceed) return;
 
-    showFutureLoadingDialog(
-      context: widget.outerContext,
-      title: l10n.sendingAttachment,
-      futureWithProgress: (setProgress) async {
-        if (!widget.room.otherPartyCanReceiveMessages) {
-          throw OtherPartyCanNotReceiveMessages();
-        }
-        Navigator.of(context, rootNavigator: false).pop();
-        final clientConfig = await Result.capture(
-          widget.room.client.getConfig(),
-        );
-        final maxUploadSize =
-            clientConfig.asValue?.value.mUploadSize ?? 100 * 1000 * 1000;
+    Future<void> sendAction(setProgress) async {
+      if (!widget.room.otherPartyCanReceiveMessages) {
+        throw OtherPartyCanNotReceiveMessages();
+      }
+      Navigator.of(context, rootNavigator: false).pop();
+      final clientConfig = await Result.capture(widget.room.client.getConfig());
+      final maxUploadSize =
+          clientConfig.asValue?.value.mUploadSize ?? 100 * 1000 * 1000;
 
-        var sentFiles = 0;
+      var sentFiles = 0;
 
         for (var i = 0; i < widget.files.length; i++) {
           final xfile = widget.files[i];
@@ -104,13 +99,13 @@ class SendFileDialogState extends State<SendFileDialog> {
           MatrixImageFile? thumbnail;
           final mimeType = xfile.mimeType ?? lookupMimeType(xfile.path);
 
-          // Generate video thumbnail
-          if (PlatformInfos.isMobile &&
-              mimeType != null &&
-              mimeType.startsWith('video')) {
-            setProgress(sentFiles / widget.files.length + 0.2);
-            thumbnail = await xfile.getVideoThumbnail();
-          }
+        // Generate video thumbnail
+        if (PlatformInfos.isMobile &&
+            mimeType != null &&
+            mimeType.startsWith('video')) {
+          setProgress(sentFiles / widget.files.length + 0.2);
+          thumbnail = await xfile.getVideoThumbnail();
+        }
 
           // If file is a video, shrink it!
           if (PlatformInfos.isMobile &&
@@ -132,49 +127,57 @@ class SendFileDialogState extends State<SendFileDialog> {
             ).detectFileType;
           }
 
-          if (file.bytes.length > maxUploadSize) {
-            throw FileTooBigMatrixException(file.bytes.length, maxUploadSize);
-          }
-
-          if (widget.files.length > 1) {
-            setProgress(sentFiles / widget.files.length + 0.4);
-          }
-
-          final label = _labelTextController.text.trim();
-
-          try {
-            await widget.room.sendFileEvent(
-              file,
-              thumbnail: thumbnail,
-              shrinkImageMaxDimension: compress ? 1600 : null,
-              extraContent: label.isEmpty ? null : {'body': label},
-              threadRootEventId: widget.threadRootEventId,
-              threadLastEventId: widget.threadLastEventId,
-            );
-          } on MatrixException catch (e) {
-            final retryAfterMs = e.retryAfterMs;
-            if (e.error != MatrixError.M_LIMIT_EXCEEDED ||
-                retryAfterMs == null) {
-              rethrow;
-            }
-            final retryAfterDuration = Duration(
-              milliseconds: retryAfterMs + 1000,
-            );
-
-            setProgress(sentFiles / widget.files.length + 0.2);
-            await Future.delayed(retryAfterDuration);
-
-            await widget.room.sendFileEvent(
-              file,
-              thumbnail: thumbnail,
-              shrinkImageMaxDimension: compress ? 1600 : null,
-              extraContent: label.isEmpty ? null : {'body': label},
-            );
-          }
-          sentFiles++;
+        if (file.bytes.length > maxUploadSize) {
+          throw FileTooBigMatrixException(file.bytes.length, maxUploadSize);
         }
-      },
-    );
+
+        if (widget.files.length > 1) {
+          setProgress(sentFiles / widget.files.length + 0.4);
+        }
+
+        final label = _labelTextController.text.trim();
+
+        try {
+          await widget.room.sendFileEvent(
+            file,
+            thumbnail: thumbnail,
+            shrinkImageMaxDimension: compress ? 1600 : null,
+            extraContent: label.isEmpty ? null : {'body': label},
+            threadRootEventId: widget.threadRootEventId,
+            threadLastEventId: widget.threadLastEventId,
+          );
+        } on MatrixException catch (e) {
+          final retryAfterMs = e.retryAfterMs;
+          if (e.error != MatrixError.M_LIMIT_EXCEEDED || retryAfterMs == null) {
+            rethrow;
+          }
+          final retryAfterDuration = Duration(
+            milliseconds: retryAfterMs + 1000,
+          );
+
+          setProgress(sentFiles / widget.files.length + 0.2);
+          await Future.delayed(retryAfterDuration);
+
+          await widget.room.sendFileEvent(
+            file,
+            thumbnail: thumbnail,
+            shrinkImageMaxDimension: compress ? 1600 : null,
+            extraContent: label.isEmpty ? null : {'body': label},
+          );
+        }
+        sentFiles++;
+      }
+    }
+
+    if (widget.files.length == 1) {
+      await sendAction(VoidCallback);
+    } else {
+      showFutureLoadingDialog(
+        context: widget.outerContext,
+        title: l10n.sendingAttachment,
+        futureWithProgress: sendAction,
+      );
+    }
 
     return;
   }

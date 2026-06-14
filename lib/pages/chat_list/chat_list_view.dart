@@ -38,16 +38,30 @@ class ChatListView extends StatelessWidget {
       },
       child: Row(
         children: [
-          if (FluffyThemes.isColumnMode(context) ||
-              AppSettings.displayNavigationRail.value) ...[
-            SpacesNavigationRail(
-              activeSpaceId: controller.activeSpaceId,
-              onGoToChats: controller.clearActiveSpace,
-              onGoToSpaceId: controller.setActiveSpace,
+          Material(
+            color: Theme.of(context).colorScheme.surface,
+            child: AnimatedSize(
+              duration: FluffyThemes.animationDuration,
+              curve: FluffyThemes.animationCurve,
+              child:
+                  (FluffyThemes.isColumnMode(context) ||
+                      AppSettings.displayNavigationRail.value)
+                  ? SpacesNavigationRail(
+                      activeSpaceId: controller.activeSpaceId,
+                      onGoToChats: controller.clearActiveSpace,
+                      onGoToSpaceId: controller.setActiveSpace,
+                    )
+                  : SizedBox(
+                      width: 0,
+                      height: MediaQuery.sizeOf(context).height,
+                    ),
             ),
+          ),
+          if (FluffyThemes.isColumnMode(context) ||
+              AppSettings.displayNavigationRail.value)
             if (FluffyThemes.isColumnMode(context))
               Container(width: 1, color: Theme.of(context).dividerColor),
-          ],
+
           Expanded(
             child: GestureDetector(
               onTap: FocusManager.instance.primaryFocus?.unfocus,
@@ -57,7 +71,6 @@ class ChatListView extends StatelessWidget {
                 backgroundColor: oneColumnSpacesMode
                     ? Theme.of(context).colorScheme.surfaceContainer
                     : null,
-
                 body: SafeArea(
                   top: oneColumnSpacesMode,
                   bottom: false,
@@ -84,8 +97,11 @@ class ChatListView extends StatelessWidget {
                         !FluffyThemes.isColumnMode(context)
                     ? ValueListenableBuilder(
                         valueListenable: controller.scrolledToTop,
-                        builder: (context, scrolledToTop, _) =>
-                            StartChatFab(extended: scrolledToTop),
+                        builder: (context, scrolledToTop, _) => StartChatFab(
+                          extended:
+                              scrolledToTop &&
+                              !AppSettings.displayNavigationRail.value,
+                        ),
                       )
                     : const SizedBox.shrink(),
               ),

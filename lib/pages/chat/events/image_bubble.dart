@@ -5,7 +5,6 @@
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/pages/chat/events/file_send_status_indicator.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -63,7 +62,6 @@ class ImageBubble extends StatelessWidget {
         bottomRight: Radius.zero,
       );
     }
-    final fileSendingStatus = event.fileSendingStatus;
 
     return Column(
       mainAxisSize: .min,
@@ -90,6 +88,8 @@ class ImageBubble extends StatelessWidget {
                   tag: event.eventId,
                   child: AppSettings.showThumbnailsInTimeline.value
                       ? MxcImage(
+                          cacheKey: event.transactionId ?? event.eventId,
+                          cacheName: event.room.id,
                           event: event,
                           width: width,
                           height: height,
@@ -112,8 +112,6 @@ class ImageBubble extends StatelessWidget {
                           fit: fit,
                         ),
                 ),
-                if (fileSendingStatus != null)
-                  FileSendStatusIndicator(fileSendingStatus: fileSendingStatus),
               ],
             ),
           ),

@@ -49,11 +49,12 @@ class SpacesNavigationRail extends StatelessWidget {
             return SizedBox(
               width: FluffyThemes.isColumnMode(context)
                   ? FluffyThemes.navRailWidth
-                  : FluffyThemes.navRailWidth * 0.75,
+                  : FluffyThemes.navRailWidth - 8,
               child: Column(
                 children: [
                   Expanded(
                     child: ListView.builder(
+                      padding: EdgeInsets.symmetric(vertical: 8),
                       scrollDirection: Axis.vertical,
                       itemCount: allSpaces.length + 2,
                       itemBuilder: (context, i) {

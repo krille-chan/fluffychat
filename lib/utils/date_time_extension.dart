@@ -29,12 +29,28 @@ extension DateTimeExtension on DateTime {
   /// Checks if two DateTimes are close enough to belong to the same
   /// environment.
   bool sameEnvironment(DateTime prevTime) =>
-      difference(prevTime) < const Duration(hours: 1);
+      difference(prevTime).abs() < const Duration(minutes: 3) &&
+      sameDay(prevTime);
+
+  bool sameDay(DateTime prevTime) =>
+      prevTime.year == year && prevTime.month == month && prevTime.day == day;
 
   /// Returns a simple time String.
   String localizedTimeOfDay(BuildContext context) => use24HourFormat(context)
       ? DateFormat('HH:mm', L10n.of(context).localeName).format(this)
       : DateFormat('h:mm a', L10n.of(context).localeName).format(this);
+
+  String localizedTimeOfDayShort(BuildContext context) {
+    final now = DateTime.now();
+    if (isAfter(now.subtract(const Duration(minutes: 10)))) {
+      final minutes = now.difference(this).inMinutes;
+      if (minutes == 0) {
+        return 'gerade'; // TODO: Localize
+      }
+      return '${minutes}m'; // TODO: Localize
+    }
+    return localizedTimeOfDay(context);
+  }
 
   /// Returns [localizedTimeOfDay()] if the ChatTime is today, the name of the week
   /// day if the ChatTime is this week and a date string else.
@@ -63,6 +79,37 @@ extension DateTimeExtension on DateTime {
       ).format(this);
     }
     return DateFormat.yMMMd(
+      Localizations.localeOf(context).languageCode,
+    ).format(this);
+  }
+
+  String localizedDate(BuildContext context) {
+    final now = DateTime.now();
+
+    final sameYear = now.year == year;
+
+    final sameDay = sameYear && now.month == month && now.day == day;
+
+    final sameWeek =
+        sameYear &&
+        !sameDay &&
+        now.millisecondsSinceEpoch - millisecondsSinceEpoch <
+            1000 * 60 * 60 * 24 * 7;
+
+    if (sameDay) {
+      return L10n.of(context).today;
+    } else if (now.difference(this).inDays == 1) {
+      return L10n.of(context).yesterday;
+    } else if (sameWeek) {
+      return DateFormat.EEEE(
+        Localizations.localeOf(context).languageCode,
+      ).format(this);
+    } else if (sameYear) {
+      return DateFormat.MMMMd(
+        Localizations.localeOf(context).languageCode,
+      ).format(this);
+    }
+    return DateFormat.yMMMMd(
       Localizations.localeOf(context).languageCode,
     ).format(this);
   }

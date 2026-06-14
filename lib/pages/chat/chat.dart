@@ -34,6 +34,7 @@ import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -498,7 +499,8 @@ class ChatController extends State<ChatPageWithRoom>
 
   void _insert(int index) {
     if (index > 0) return;
-    animateInEventId = timeline?.events.firstOrNull?.eventId;
+    final firstEvent = timeline?.events.firstOrNull;
+    animateInEventId = firstEvent?.transactionId ?? firstEvent?.eventId;
   }
 
   void updateView() {
@@ -589,6 +591,7 @@ class ChatController extends State<ChatPageWithRoom>
     inputFocus.removeListener(_inputFocusListener);
     web.window.removeEventListener('paste', _handleClipboardFilePasteWeb);
     if (currentlyTyping) room.setTyping(false);
+    MxcImage.clearCache(widget.room.id);
     super.dispose();
   }
 

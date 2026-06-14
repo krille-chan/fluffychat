@@ -67,35 +67,50 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                 fontWeight: FontWeight.normal,
               ),
 
-              prefixIcon: Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 8, bottom: 8),
-                child: hide
-                    ? controller.isSearchMode
+              prefixIcon: hide
+                  ? Padding(
+                      padding: const EdgeInsets.only(
+                        left: 8.0,
+                        top: 8,
+                        bottom: 8,
+                      ),
+                      child: controller.isSearchMode
                           ? IconButton(
                               tooltip: L10n.of(context).cancel,
                               icon: const Icon(Icons.close_outlined),
                               onPressed: controller.cancelSearch,
                               color: theme.colorScheme.onPrimaryContainer,
                             )
-                          : IconButton(
+                          : FluffyThemes.isColumnMode(context) ||
+                                controller.spaces.isEmpty
+                          ? IconButton(
+                              tooltip: L10n.of(context).search,
                               onPressed: controller.startSearch,
                               icon: Icon(
                                 Icons.search_outlined,
                                 color: theme.colorScheme.onPrimaryContainer,
                               ),
                             )
-                    : Container(
-                        margin: const EdgeInsets.all(12),
-                        width: 8,
-                        height: 8,
-                        child: Center(
-                          child: CircularProgressIndicator.adaptive(
-                            strokeWidth: 2,
-                            value: status.progress,
-                          ),
+                          : IconButton(
+                              tooltip: L10n.of(context).displayNavigationRail,
+                              onPressed: controller.openNavrail,
+                              icon: Icon(
+                                Icons.menu,
+                                color: theme.colorScheme.onPrimaryContainer,
+                              ),
+                            ),
+                    )
+                  : Container(
+                      margin: const EdgeInsets.all(12),
+                      width: 8,
+                      height: 8,
+                      child: Center(
+                        child: CircularProgressIndicator.adaptive(
+                          strokeWidth: 2,
+                          value: status.progress,
                         ),
                       ),
-              ),
+                    ),
               suffixIcon: Padding(
                 padding: const EdgeInsets.only(right: 8.0, top: 8, bottom: 8),
                 child: controller.isSearchMode && globalSearch

@@ -35,7 +35,7 @@ import '../../config/setting_keys.dart';
 import '../../utils/url_launcher.dart';
 import '../../widgets/matrix.dart';
 
-enum ActiveFilter { allChats, spaces, messages, groups, unread, tag }
+enum ActiveFilter { allChats, unread, groups, messages, tag }
 
 extension LocalizedActiveFilter on ActiveFilter {
   String toLocalizedString(BuildContext context) {
@@ -48,8 +48,6 @@ extension LocalizedActiveFilter on ActiveFilter {
         return L10n.of(context).unread;
       case ActiveFilter.groups:
         return L10n.of(context).groups;
-      case ActiveFilter.spaces:
-        return L10n.of(context).spaces;
       case ActiveFilter.tag:
         throw 'Tags should not directly be displayed!';
     }
@@ -146,8 +144,6 @@ class ChatListController extends State<ChatList>
         return (room) => !room.isSpace && !room.isDirectChat;
       case ActiveFilter.unread:
         return (room) => room.isUnreadOrInvited;
-      case ActiveFilter.spaces:
-        return (room) => room.isSpace;
       case ActiveFilter.tag:
         return (room) => room.tags.keys.contains(activeTag);
     }
@@ -268,6 +264,14 @@ class ChatListController extends State<ChatList>
     if (globalSearch) {
       _coolDown = Timer(const Duration(milliseconds: 500), _search);
     }
+  }
+
+  void openNavrail() {
+    setState(() {
+      AppSettings.displayNavigationRail.setItem(
+        !AppSettings.displayNavigationRail.value,
+      );
+    });
   }
 
   void startSearch() {
