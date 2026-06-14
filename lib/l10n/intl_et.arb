@@ -1112,7 +1112,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noRoomsFound": "Jututubasid ei leidunud…",
+    "noRoomsFound": "Jututube ei leidu…",
     "@noRoomsFound": {
         "type": "String",
         "placeholders": {}
@@ -1136,7 +1136,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "Väljas",
+    "offline": "Pole võrgus",
     "@offline": {
         "type": "String",
         "placeholders": {}
@@ -1146,7 +1146,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "online": "Saadaval",
+    "online": "Võrgus",
     "@online": {
         "type": "String",
         "placeholders": {}
@@ -1156,12 +1156,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "oopsPushError": "Hopsti! Kahjuks tekkis tõuketeavituste seadistamisel viga.",
+    "oopsPushError": "Vaat kus lops! Kahjuks tekkis tõuketeavituste seadistamisel viga.",
     "@oopsPushError": {
         "type": "String",
         "placeholders": {}
     },
-    "oopsSomethingWentWrong": "Hopsti! Midagi läks nüüd viltu…",
+    "oopsSomethingWentWrong": "Vaat kus lops! Midagi läks nüüd viltu…",
     "@oopsSomethingWentWrong": {
         "type": "String",
         "placeholders": {}
@@ -1280,7 +1280,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Tõukereeglid",
+    "pushRules": "Tõuketeenuse reeglid",
     "@pushRules": {
         "type": "String",
         "placeholders": {}
@@ -1655,7 +1655,7 @@
             }
         }
     },
-    "unmuteChat": "Lõpeta vestluse vaigistamine",
+    "unmuteChat": "Lõpeta vestluse summutamine",
     "@unmuteChat": {
         "type": "String",
         "placeholders": {}
@@ -1859,7 +1859,7 @@
     "addToBundle": "Lisa köitesse",
     "editBundlesForAccount": "Muuda selle kasutajakonto köiteid",
     "addAccount": "Lisa kasutajakonto",
-    "oneClientLoggedOut": "Üks sinu klientrakendustest on Matrix'i võrgust välja loginud",
+    "oneClientLoggedOut": "Üks sinu klientrakendustest on Matrixi võrgust välja loginud",
     "link": "Link",
     "unverified": "Verifitseerimata",
     "repeatPassword": "Korda salasõna",
@@ -2757,5 +2757,151 @@
     },
     "deviceIdentityKey": "Seadme identiteedi võti",
     "showMore": "Näita veel",
-    "showLess": "Näita vähem"
+    "showLess": "Näita vähem",
+    "messageCanOnlyBeReadByUser": "Sinu sõnum on läbivalt krüptitud ja seda saab lugeda vaid see kasutaja:",
+    "messageCanOnlyBeReadByUsers": "Sinu sõnum on läbivalt krüptitud ja seda saavad lugeda vaid need kasutajad:",
+    "messageNotDecryptable": "Sõnum pole dekrüptitav",
+    "noCurve25519KeyFound": "Ühtegi curve25519 võtit ei leidu",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Allkirjastatud seade",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unsignedDevice": "Allkirjastamata seade",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapEmptyDevicesDescription": "Selle seadme verifitseerimiseks ja krüptitud sõnumite varunduse kasutamiseks palun sisesta oma kasutajakonto salafraas või taastevõti.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Selle sessiooni verifitseerimiseks palun vali üks oma muudets seadmetest:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Lähtesta kasutajakonto",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Taasta krüptoidentiteet",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Lähtesta krüptoidentiteet",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Seadista krüptoidentiteet",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Ootan võtmete laadimist… Palun hoia teine seade aktiivsena.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Mitte mingeid krüptovõtmeid ei edastatud. Palun proovi uuesti.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Ava lukustus",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Ava fail",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Kui sa lähtestad oma kasutajakonto, siis kaotad igaveseks ligipääsu oma vanadele sõnumitele. Lisaks vajavad kõik sinu praegused seadmed uuesti verifitseerimist. Palun võta selline toiming ette vaid siis, kui sul pole jäänud alles enam mitte ühtegi teist seadet oma sessiooni verifitseerimiseks ning sa oled kaotanud oma taastevõtme ja salafraasi!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat kasutab läbivat krüptimist. Et sa ei kaotaks oma sõnumeid, turvaks oma krüptidentitedi ja krüptiks sõnumite varunduse, siis palun sisesta korralik ja tugev salafraas.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Uus salafraas",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Korda salafraasi",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Salafraasid klapivad",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "Vähemalt 12 tähemärki pikk.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Sisaldab suur- ja väiketähti.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Sisaldab erimärke.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Sisaldab vähemat ühte numbrit.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Selleks, et saaksid hiljem oma krüptitud sõnumeid ja krüptoidentiteeti taastada, palun tähenda taastevõti turvaliselt üles ja talleta kas moodsas digitaalses salasõnalaekas või vana kooli seifis.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Salvesta failina",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Sa oled valmis alustama!",
+    "noUserKeyFound": "Kasutaja võtit ei leidu",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Teada alates: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "today": "Täna",
+    "sending": "Saadan",
+    "generatingThumbnail": "Koostan pisipilti",
+    "encrypting": "Krüptin",
+    "uploading": "Laadin üles",
+    "edited": "(muudetud)",
+    "couldNotBeSent": "Saatmine ei õnnestunud",
+    "yesterday": "Eile"
 }
