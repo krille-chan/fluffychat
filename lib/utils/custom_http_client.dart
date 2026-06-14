@@ -7,24 +7,23 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:fluffychat/config/isrg_x1.dart';
+import 'package:fluffychat/config/isrg_x2.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:http/retry.dart' as retry;
 
-/// Custom Client to add an additional certificate. This is for the isrg X1
-/// certificate which is needed for LetsEncrypt certificates. It is shipped
-/// on Android since OS version 7.1. As long as we support older versions we
-/// still have to ship this certificate by ourself.
+/// Custom HTTP client that adds the ISRG Root certificates used by Let's
+/// Encrypt. Older Android versions may not include these roots in their
+/// trust store, so we ship them ourselves to ensure TLS connections to
+/// Let's Encrypt–signed servers continue to work.
 class CustomHttpClient {
-  static HttpClient customHttpClient(String? cert) {
+  static HttpClient customHttpClient() {
     final context = SecurityContext.defaultContext;
 
     try {
-      if (cert != null) {
-        final bytes = utf8.encode(cert);
-        context.setTrustedCertificatesBytes(bytes);
-      }
+      context.setTrustedCertificatesBytes(utf8.encode(ISRG_X1));
+      context.setTrustedCertificatesBytes(utf8.encode(ISRG_X2));
     } on TlsException catch (e) {
       if (e.osError != null &&
           e.osError!.message.contains('CERT_ALREADY_IN_HASH_TABLE')) {
@@ -37,8 +36,6 @@ class CustomHttpClient {
   }
 
   static http.Client createHTTPClient() => retry.RetryClient(
-    PlatformInfos.isAndroid
-        ? IOClient(customHttpClient(ISRG_X1))
-        : http.Client(),
+    PlatformInfos.isAndroid ? IOClient(customHttpClient()) : http.Client(),
   );
 }
