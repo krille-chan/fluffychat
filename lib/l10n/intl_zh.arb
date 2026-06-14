@@ -2900,5 +2900,13 @@
         }
     },
     "messageCanOnlyBeReadByUser": "你的消息是端到端加密的，只能由该用户读取：",
-    "messageCanOnlyBeReadByUsers": "你的消息是端到端加密的，只能由这些用户读取："
+    "messageCanOnlyBeReadByUsers": "你的消息是端到端加密的，只能由这些用户读取：",
+    "today": "今日",
+    "sending": "发送中",
+    "generatingThumbnail": "正在生成缩略图",
+    "encrypting": "加密中",
+    "uploading": "上传中",
+    "edited": "(已编辑)",
+    "couldNotBeSent": "无法发送",
+    "yesterday": "昨天"
 }
