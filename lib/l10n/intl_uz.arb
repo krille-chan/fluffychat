@@ -1341,7 +1341,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "overview": "Umumiy ma'lumot",
     "passwordRecoverySettings": "Parolni qayta tiklash sozlamalari",
     "passwordRecovery": "Parolni qayta tiklash",
     "@passwordRecovery": {

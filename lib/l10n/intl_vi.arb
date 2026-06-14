@@ -2151,7 +2151,6 @@
         "placeholders": {}
     },
     "noMoreChatsFound": "",
-    "overview": "",
     "loadCountMoreParticipants": "",
     "@loadCountMoreParticipants": {
         "type": "String",

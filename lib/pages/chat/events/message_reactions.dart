@@ -136,7 +136,7 @@ class _Reaction extends StatelessWidget {
       if (renderKey.length > 10) {
         renderKey = renderKey.getRange(0, 9) + Characters('…');
       }
-      content = Text(renderKey.toString(), style: TextStyle(fontSize: 16));
+      content = Text(renderKey.toString(), style: TextStyle(fontSize: 14));
     }
     return Badge(
       isLabelVisible: count > 1,
@@ -153,7 +153,7 @@ class _Reaction extends StatelessWidget {
             color: theme.colorScheme.secondaryContainer,
             border: Border.all(
               color: reacted == true
-                  ? theme.colorScheme.primary
+                  ? theme.colorScheme.secondary
                   : theme.colorScheme.secondaryContainer,
               width: 1,
             ),

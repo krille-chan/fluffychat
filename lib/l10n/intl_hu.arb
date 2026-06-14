@@ -2297,7 +2297,6 @@
     "appLockDescription": "Applikáció zárolása PIN kóddal használaton kívül",
     "customEmojisAndStickers": "Egyedi hangulatjelek és matricák",
     "customEmojisAndStickersBody": "Egyedi hangulatjelek és matricák hozzáadása, amelyek bármely csevegésben felhasználhatóak.",
-    "overview": "Áttekintés",
     "publicChatAddresses": "Nyilvános csevegés címek",
     "createNewAddress": "Új cím létrehozása",
     "noDatabaseEncryption": "Adatbázis titkosítás nem támogatott ezen a platformon",

@@ -2169,7 +2169,6 @@
     "hideInvalidOrUnknownMessageFormats": "Ongeldige of onbekende berichtformaten verbergen",
     "passwordRecoverySettings": "Wachtwoordherstel-instellingen",
     "knock": "Klop",
-    "overview": "Overzicht",
     "noOneCanJoin": "Niemand kan deelnemen",
     "yourGlobalUserIdIs": "Je Matrix-ID is: ",
     "appLockDescription": "Vergendel de app wanneer het niet gebruikt wordt met een pincode",

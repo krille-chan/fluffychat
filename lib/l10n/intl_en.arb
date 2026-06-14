@@ -1350,7 +1350,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "overview": "Overview",
     "passwordRecoverySettings": "Password recovery settings",
     "passwordRecovery": "Password recovery",
     "@passwordRecovery": {

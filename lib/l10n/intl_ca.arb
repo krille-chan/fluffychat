@@ -2340,7 +2340,6 @@
     "calls": "Trucades",
     "hideRedactedMessages": "Amaga els missatges estripats",
     "hideInvalidOrUnknownMessageFormats": "Amaga els missatges que tinguin un format desconegut",
-    "overview": "Resum",
     "passwordRecoverySettings": "Recuperació de contrasenya",
     "gallery": "Galeria",
     "noDatabaseEncryption": "No es pot xifrar la base de dades en aquesta plataforma",

@@ -1777,7 +1777,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "overview": "Агляд",
     "passwordRecoverySettings": "Налады скіду пароля",
     "passwordRecovery": "Аднаўленне пароля",
     "@passwordRecovery": {

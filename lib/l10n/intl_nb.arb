@@ -1807,7 +1807,6 @@
         }
     },
     "commandHint_roomupgrade": "Oppgrader dette rommet til den gitte romversjonen",
-    "overview": "Oversikt",
     "passwordRecoverySettings": "Innstillinger for gjenoppretting av passord",
     "pleaseChooseAPasscode": "Vennligst velg en passordkode",
     "@pleaseChooseAPasscode": {

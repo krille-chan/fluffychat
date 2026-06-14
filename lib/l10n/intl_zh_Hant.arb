@@ -2004,7 +2004,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "overview": "概觀",
     "passwordRecoverySettings": "恢復密碼設定",
     "redactedBy": "由 {username} 編輯",
     "@redactedBy": {

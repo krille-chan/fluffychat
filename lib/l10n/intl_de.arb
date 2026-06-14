@@ -2316,7 +2316,6 @@
     "hideRedactedMessages": "Geschwärzte Nachrichten verstecken",
     "hideRedactedMessagesBody": "Wenn jemand eine Nachricht schwärzt/löscht, dann wird diese Nachricht im Chat nicht mehr sichtbar sein.",
     "hideInvalidOrUnknownMessageFormats": "Ungültige und unbekannte Nachrichten-Formate ausblenden",
-    "overview": "Übersicht",
     "passwordRecoverySettings": "Passwort-Wiederherstellungs-Einstellungen",
     "knock": "Anklopfen",
     "knocking": "Klopft",

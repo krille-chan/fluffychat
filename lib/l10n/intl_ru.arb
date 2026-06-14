@@ -2275,7 +2275,6 @@
     "hideRedactedMessages": "Скрыть редактированные сообщения",
     "hideInvalidOrUnknownMessageFormats": "Скрыть неправильные или неизвестные форматы сообщения",
     "hideRedactedMessagesBody": "Если кто-то редактирует сообщение, оно будет скрыто в чате.",
-    "overview": "Обзор",
     "passwordRecoverySettings": "Настройки восстановления пароля",
     "knock": "Постучаться",
     "usersMustKnock": "Пользователи должны постучаться",

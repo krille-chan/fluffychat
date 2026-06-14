@@ -40,18 +40,6 @@ extension DateTimeExtension on DateTime {
       ? DateFormat('HH:mm', L10n.of(context).localeName).format(this)
       : DateFormat('h:mm a', L10n.of(context).localeName).format(this);
 
-  String localizedTimeOfDayShort(BuildContext context) {
-    final now = DateTime.now();
-    if (isAfter(now.subtract(const Duration(minutes: 10)))) {
-      final minutes = now.difference(this).inMinutes;
-      if (minutes == 0) {
-        return 'gerade'; // TODO: Localize
-      }
-      return '${minutes}m'; // TODO: Localize
-    }
-    return localizedTimeOfDay(context);
-  }
-
   /// Returns [localizedTimeOfDay()] if the ChatTime is today, the name of the week
   /// day if the ChatTime is this week and a date string else.
   String localizedTimeShort(BuildContext context) {
@@ -83,12 +71,15 @@ extension DateTimeExtension on DateTime {
     ).format(this);
   }
 
+  DateTime get dateOnly => DateTime(year, month, day);
+
   String localizedDate(BuildContext context) {
-    final now = DateTime.now();
+    final date = dateOnly;
+    final now = DateTime.now().dateOnly;
 
-    final sameYear = now.year == year;
+    final sameYear = now.year == date.year;
 
-    final sameDay = sameYear && now.month == month && now.day == day;
+    final sameDay = now == date;
 
     final sameWeek =
         sameYear &&
@@ -98,20 +89,20 @@ extension DateTimeExtension on DateTime {
 
     if (sameDay) {
       return L10n.of(context).today;
-    } else if (now.difference(this).inDays == 1) {
+    } else if (now.difference(date).inDays == 1) {
       return L10n.of(context).yesterday;
     } else if (sameWeek) {
       return DateFormat.EEEE(
         Localizations.localeOf(context).languageCode,
-      ).format(this);
+      ).format(date);
     } else if (sameYear) {
       return DateFormat.MMMMd(
         Localizations.localeOf(context).languageCode,
-      ).format(this);
+      ).format(date);
     }
     return DateFormat.yMMMMd(
       Localizations.localeOf(context).languageCode,
-    ).format(this);
+    ).format(date);
   }
 
   /// If the DateTime is today, this returns [localizedTimeOfDay()], if not it also

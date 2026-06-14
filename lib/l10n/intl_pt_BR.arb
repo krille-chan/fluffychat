@@ -2300,7 +2300,6 @@
     "hideRedactedMessages": "Ocultar mensagens apagadas",
     "hideRedactedMessagesBody": "Se alguém apagar uma mensagem, esta mensagem não será mais visível na conversa.",
     "hideInvalidOrUnknownMessageFormats": "Ocultar formatos de mensagem inválidos ou desconhecidos",
-    "overview": "Visão geral",
     "usersMustKnock": "Usuários devem bater na porta",
     "noOneCanJoin": "Ninguém pode entrar",
     "knocking": "Batendo na porta",

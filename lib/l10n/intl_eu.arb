@@ -2319,7 +2319,6 @@
     "hideRedactedMessages": "Ezkutatu atzera botatako mezuak",
     "hideRedactedMessagesBody": "Norbaitek mezuren bat atzera botaz gero, mezua txatetik kenduko da, abisurik gabe.",
     "hideInvalidOrUnknownMessageFormats": "Ezkutatu mezuen formatu ezezagun edo baliogabea",
-    "overview": "Ikuspegi orokorra",
     "passwordRecoverySettings": "Pasahitza berreskuratzeko ezarpenak",
     "globalChatId": "Txat ID orokorra",
     "calls": "Deiak",

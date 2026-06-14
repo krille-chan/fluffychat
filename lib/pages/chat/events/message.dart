@@ -106,10 +106,6 @@ class Message extends StatelessWidget {
     final alignment = ownMessage ? Alignment.topRight : Alignment.topLeft;
 
     var color = theme.colorScheme.surfaceContainerHigh;
-    final displayDate =
-        event.type == EventTypes.RoomCreate ||
-        nextEvent == null ||
-        !event.originServerTs.sameDay(nextEvent!.originServerTs);
     final displayTime =
         event.type == EventTypes.RoomCreate ||
         previousEvent == null ||
@@ -233,7 +229,7 @@ class Message extends StatelessWidget {
           padding: EdgeInsets.only(
             left: 8.0,
             right: 8.0,
-            top: nextEventSameSender || displayDate ? 1.0 : 8.0,
+            top: nextEventSameSender ? 1.0 : 8.0,
             bottom: previousEventSameSender || previousEvent == null
                 ? 1.0
                 : 8.0,
@@ -242,35 +238,6 @@ class Message extends StatelessWidget {
             mainAxisSize: .min,
             crossAxisAlignment: ownMessage ? .end : .start,
             children: <Widget>[
-              if (displayDate)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 4.0),
-                      child: Material(
-                        borderRadius: BorderRadius.circular(
-                          AppConfig.borderRadius * 2,
-                        ),
-                        color: theme.colorScheme.inverseSurface.withAlpha(200),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0,
-                            vertical: 2.0,
-                          ),
-                          child: Text(
-                            event.originServerTs.localizedDate(context),
-                            style: TextStyle(
-                              fontSize: 11,
-                              fontWeight: FontWeight.bold,
-                              color: theme.colorScheme.onInverseSurface,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               Stack(
                 clipBehavior: Clip.none,
                 children: [
@@ -538,7 +505,7 @@ class Message extends StatelessWidget {
                                           !previousEventSameSender ||
                                           selected))
                                     Text(
-                                      ' ${event.originServerTs.localizedTimeOfDayShort(context)}',
+                                      ' ${event.originServerTs.localizedTimeOfDay(context)}',
                                       style: TextStyle(
                                         color: eventStateTextColor,
                                         fontSize: 11,

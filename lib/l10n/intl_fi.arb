@@ -2212,7 +2212,6 @@
     "blockedUsers": "Estetyt käyttäjät",
     "blockListDescription": "Voit estää sinua häiritsevät käyttäjät. Et voi vastaanottaa viestejä tai huonekutsuja henkilökohtaisella estolistallasi olevilta käyttäjiltä.",
     "blockUsername": "Jätä käyttäjänimi huomiotta",
-    "overview": "Yleiskatsaus",
     "passwordRecoverySettings": "Salasanan palautusasetukset",
     "sendImages": "Lähetä {count} kuva",
     "@sendImages": {
