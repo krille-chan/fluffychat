@@ -2302,7 +2302,6 @@
     "hideRedactedMessages": "삭제된 메시지 숨기기",
     "hideRedactedMessagesBody": "누군가가 메시지를 삭제하면 메시지를 더 이상 볼 수 없습니다.",
     "hideInvalidOrUnknownMessageFormats": "잘못되거나 알 수 없는 메시지 형식 숨김",
-    "overview": "개요",
     "passwordRecoverySettings": "비밀번호 복구 설정",
     "knock": "참가 요청",
     "usersMustKnock": "유저들이 참가를 허가받아야함",

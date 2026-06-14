@@ -2232,7 +2232,6 @@
     "publicSpaces": "Herkese açık alanlar",
     "initAppError": "Uygulama başlatılırken bir hata oluştu",
     "hideInvalidOrUnknownMessageFormats": "Geçersiz veya bilinmeyen mesaj biçimlerini gizle",
-    "overview": "Genel görünüm",
     "chatCanBeDiscoveredViaSearchOnServer": "Sohbet {server} üzerinde aranarak keşfedilebilir",
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",

@@ -2129,7 +2129,6 @@
     },
     "inviteGroupChat": "📨 Inviter à une discussion de groupe",
     "jump": "Sauter",
-    "overview": "Aperçu",
     "passwordRecoverySettings": "Paramètres de récupération de mot de passe",
     "hasKnocked": "🚪 {user} a frappé",
     "@hasKnocked": {

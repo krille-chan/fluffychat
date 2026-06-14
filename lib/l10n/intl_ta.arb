@@ -1713,7 +1713,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "overview": "கண்ணோட்டம்",
     "passwordRecoverySettings": "கடவுச்சொல் மீட்பு அமைப்புகள்",
     "passwordRecovery": "கடவுச்சொல் மீட்பு",
     "@passwordRecovery": {

@@ -2318,7 +2318,6 @@
     "customEmojisAndStickersBody": "Lisa või jaga kohandatud emotikone või kleepsupakke, mida võiks kasutada igas vestluses.",
     "hideRedactedMessages": "Peida muudetud sõnumid",
     "hideInvalidOrUnknownMessageFormats": "Peida vigase või tundmatu vorminguga sõnumid",
-    "overview": "Ülevaade",
     "passwordRecoverySettings": "Salasõna taastamise seadistused",
     "createNewAddress": "Loo uus aadress",
     "thereAreCountUsersBlocked": "Hetkel on {count} blokeeritud kasutajat.",

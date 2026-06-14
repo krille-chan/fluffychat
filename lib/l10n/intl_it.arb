@@ -2203,7 +2203,6 @@
     },
     "knock": "Bussa",
     "hideInvalidOrUnknownMessageFormats": "Nascondi formati di messaggi non validi o sconosciuti",
-    "overview": "Panoramica",
     "swipeRightToLeftToReply": "Scorri da destra a sinistra per rispondere",
     "globalChatId": "ID chat globale",
     "appLockDescription": "Blocca l'app con un codice PIN quando non è in uso",

@@ -17,7 +17,11 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extensi
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix_api_lite/model/event_types.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
+
+import '../../config/app_config.dart';
+import '../../utils/date_time_extension.dart';
 
 class ChatEventList extends StatelessWidget {
   final ChatController controller;
@@ -150,48 +154,91 @@ class ChatEventList extends StatelessWidget {
                   previousEvent?.isCollapsedState == true &&
                   !controller.expandedEventIds.contains(event.eventId);
 
+              final displayDate =
+                  event.type == EventTypes.RoomCreate ||
+                  nextEvent == null ||
+                  !event.originServerTs.sameDay(nextEvent.originServerTs);
+
               return AutoScrollTag(
                 key: ValueKey(event.transactionId ?? event.eventId),
                 index: i,
                 controller: controller.scrollController,
-                child: Message(
-                  event,
-                  bigEmojis: controller.bigEmojis,
-                  animateIn: animateIn,
-                  onSwipe: () => controller.replyAction(replyTo: event),
-                  onInfoTab: controller.showEventInfo,
-                  onMention: () => controller.sendController.text +=
-                      '${event.senderFromMemoryOrFallback.mention} ',
-                  highlightMarker:
-                      controller.scrollToEventIdMarker == event.eventId,
-                  onSelect: controller.onSelectMessage,
-                  scrollToEventId: controller.scrollToEventId,
-                  longPressSelect: controller.selectedEvents.isNotEmpty,
-                  selected: controller.selectedEvents.any(
-                    (e) => e.eventId == event.eventId,
-                  ),
-                  singleSelected:
-                      controller.selectedEvents.singleOrNull?.eventId ==
-                      event.eventId,
-                  onEdit: controller.editSelectedEventAction,
-                  timeline: timeline,
-                  displayReadMarker:
-                      i > 0 && controller.readMarkerEventId == event.eventId,
-                  nextEvent: nextEvent,
-                  previousEvent: previousEvent,
-                  wallpaperMode: hasWallpaper,
-                  scrollController: controller.scrollController,
-                  colors: colors,
-                  isCollapsed: isCollapsed,
-                  enterThread: controller.activeThreadId == null
-                      ? controller.enterThread
-                      : null,
-                  onExpand: canExpand
-                      ? () => controller.expandEventsFrom(
-                          event,
-                          !controller.expandedEventIds.contains(event.eventId),
-                        )
-                      : null,
+                child: Column(
+                  mainAxisSize: .min,
+                  children: [
+                    if (!isCollapsed && displayDate)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0, bottom: 16.0),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(
+                                AppConfig.borderRadius * 2,
+                              ),
+                              color: theme.colorScheme.inverseSurface.withAlpha(
+                                200,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0,
+                                  vertical: 2.0,
+                                ),
+                                child: Text(
+                                  event.originServerTs.localizedDate(context),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: theme.colorScheme.onInverseSurface,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    Message(
+                      event,
+                      bigEmojis: controller.bigEmojis,
+                      animateIn: animateIn,
+                      onSwipe: () => controller.replyAction(replyTo: event),
+                      onInfoTab: controller.showEventInfo,
+                      onMention: () => controller.sendController.text +=
+                          '${event.senderFromMemoryOrFallback.mention} ',
+                      highlightMarker:
+                          controller.scrollToEventIdMarker == event.eventId,
+                      onSelect: controller.onSelectMessage,
+                      scrollToEventId: controller.scrollToEventId,
+                      longPressSelect: controller.selectedEvents.isNotEmpty,
+                      selected: controller.selectedEvents.any(
+                        (e) => e.eventId == event.eventId,
+                      ),
+                      singleSelected:
+                          controller.selectedEvents.singleOrNull?.eventId ==
+                          event.eventId,
+                      onEdit: controller.editSelectedEventAction,
+                      timeline: timeline,
+                      displayReadMarker:
+                          i > 0 &&
+                          controller.readMarkerEventId == event.eventId,
+                      nextEvent: nextEvent,
+                      previousEvent: previousEvent,
+                      wallpaperMode: hasWallpaper,
+                      scrollController: controller.scrollController,
+                      colors: colors,
+                      isCollapsed: isCollapsed,
+                      enterThread: controller.activeThreadId == null
+                          ? controller.enterThread
+                          : null,
+                      onExpand: canExpand
+                          ? () => controller.expandEventsFrom(
+                              event,
+                              !controller.expandedEventIds.contains(
+                                event.eventId,
+                              ),
+                            )
+                          : null,
+                    ),
+                  ],
                 ),
               );
             },

@@ -2321,7 +2321,6 @@
     "hideRedactedMessages": "Dölj tillbakatagna meddelanden",
     "hideRedactedMessagesBody": "Om någon tar tillbaka ett meddelande, kommer meddelandet inte längre vara synligt i chatten.",
     "hideInvalidOrUnknownMessageFormats": "Dölj ogiltiga eller okända meddelande-format",
-    "overview": "Översikt",
     "passwordRecoverySettings": "Lösenordsåterställnings-inställningar",
     "sendImages": "Skicka {count} bild",
     "@sendImages": {

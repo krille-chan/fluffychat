@@ -2300,7 +2300,6 @@
     "customEmojisAndStickers": "الرموز التعبيرية والملصقات المخصصة",
     "hideRedactedMessagesBody": "إذا قام شخص ما بتنقيح رسالة، فلن تكون هذه الرسالة مرئية في المحادثة بعد الآن.",
     "hideInvalidOrUnknownMessageFormats": "إخفاء تنسيقات الرسائل غير الصالحة أو غير المعروفة",
-    "overview": "نظرة عامة",
     "passwordRecoverySettings": "إعدادات استعادة كلمة المرور",
     "globalChatId": "معرف المحادثة العامة",
     "accessAndVisibilityDescription": "من المسموح له بالانضمام إلى هذه المحادثة وكيف يمكن اكتشاف المحادثة.",

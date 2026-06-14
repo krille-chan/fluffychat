@@ -2304,7 +2304,6 @@
     "hideRedactedMessages": "Сховати змінені повідомлення",
     "hideRedactedMessagesBody": "Якщо хтось змінить повідомлення, його більше не буде видно в бесіді.",
     "hideInvalidOrUnknownMessageFormats": "Сховати недійсні або невідомі формати повідомлень",
-    "overview": "Огляд",
     "passwordRecoverySettings": "Налаштування відновлення пароля",
     "knock": "Постукатись",
     "knocking": "Стукаються",

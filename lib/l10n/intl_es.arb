@@ -2398,7 +2398,6 @@
     "crossVerifiedDevices": "Dispositivos verificados",
     "verifiedDevicesOnly": "Solo dispositivos verificados",
     "deviceKeys": "Claves de dispositivo:",
-    "overview": "Vista general",
     "removeDevicesDescription": "Vas a salir en este dispositivo y ya no podrás recibir mensajes.",
     "databaseMigrationBody": "Por favor espera. Esto llevará un momento.",
     "pleaseEnterYourCurrentPassword": "Por favor, pon tu clave actual",

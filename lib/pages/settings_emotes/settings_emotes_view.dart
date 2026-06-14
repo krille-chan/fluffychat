@@ -47,22 +47,25 @@ class EmotesSettingsView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: !controller.showSave,
-        title: controller.showSave
+        leading: controller.showSave
             ? TextButton(
                 onPressed: controller.resetAction,
                 child: Text(L10n.of(context).cancel),
               )
-            : Text(L10n.of(context).customEmojisAndStickers),
+            : null,
+        title: Text(L10n.of(context).customEmojisAndStickers),
         actions: [
           if (controller.showSave)
-            ElevatedButton(
-              onPressed: () => controller.save(context),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: theme.colorScheme.primary,
-                foregroundColor: theme.colorScheme.onPrimary,
+            Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: TextButton(
+                onPressed: () => controller.save(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: theme.colorScheme.primary,
+                  foregroundColor: theme.colorScheme.onPrimary,
+                ),
+                child: Text(L10n.of(context).saveChanges),
               ),
-              child: Text(L10n.of(context).saveChanges),
             )
           else
             PopupMenuButton<PopupMenuEmojiActions>(

@@ -2142,7 +2142,6 @@
     "optionalRedactReason": "(اختیاری) دلیل ویرایش این پیام...",
     "messagesStyle": "پیام‌ها:",
     "shareInviteLink": "هم‌رسانی پیوند دعوت",
-    "overview": "دید کلی",
     "passwordRecoverySettings": "تنظیمات بازیابی گذرواژه",
     "redactedBy": "ویرایش‌شده به‌دست {username}",
     "@redactedBy": {

@@ -30,7 +30,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
 
     return SliverAppBar(
       floating: true,
-      toolbarHeight: 88,
+      toolbarHeight: 72,
       pinned: FluffyThemes.isColumnMode(context),
       scrolledUnderElevation: 0,
       backgroundColor: Colors.transparent,
@@ -58,7 +58,6 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                 borderSide: BorderSide.none,
                 borderRadius: BorderRadius.circular(99),
               ),
-              contentPadding: const EdgeInsets.all(16),
               hintText: hide
                   ? L10n.of(context).searchChatsRooms
                   : status.calcLocalizedString(context),
@@ -68,40 +67,32 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
               ),
 
               prefixIcon: hide
-                  ? Padding(
-                      padding: const EdgeInsets.only(
-                        left: 8.0,
-                        top: 8,
-                        bottom: 8,
-                      ),
-                      child: controller.isSearchMode
-                          ? IconButton(
-                              tooltip: L10n.of(context).cancel,
-                              icon: const Icon(Icons.close_outlined),
-                              onPressed: controller.cancelSearch,
+                  ? controller.isSearchMode
+                        ? IconButton(
+                            tooltip: L10n.of(context).cancel,
+                            icon: const Icon(Icons.close_outlined),
+                            onPressed: controller.cancelSearch,
+                            color: theme.colorScheme.onPrimaryContainer,
+                          )
+                        : FluffyThemes.isColumnMode(context) ||
+                              controller.spaces.isEmpty
+                        ? IconButton(
+                            tooltip: L10n.of(context).search,
+                            onPressed: controller.startSearch,
+                            icon: Icon(
+                              Icons.search_outlined,
                               color: theme.colorScheme.onPrimaryContainer,
-                            )
-                          : FluffyThemes.isColumnMode(context) ||
-                                controller.spaces.isEmpty
-                          ? IconButton(
-                              tooltip: L10n.of(context).search,
-                              onPressed: controller.startSearch,
-                              icon: Icon(
-                                Icons.search_outlined,
-                                color: theme.colorScheme.onPrimaryContainer,
-                              ),
-                            )
-                          : IconButton(
-                              tooltip: L10n.of(context).displayNavigationRail,
-                              onPressed: controller.openNavrail,
-                              icon: Icon(
-                                Icons.menu,
-                                color: theme.colorScheme.onPrimaryContainer,
-                              ),
                             ),
-                    )
-                  : Container(
-                      margin: const EdgeInsets.all(12),
+                          )
+                        : IconButton(
+                            tooltip: L10n.of(context).displayNavigationRail,
+                            onPressed: controller.openNavrail,
+                            icon: Icon(
+                              Icons.menu,
+                              color: theme.colorScheme.onPrimaryContainer,
+                            ),
+                          )
+                  : SizedBox(
                       width: 8,
                       height: 8,
                       child: Center(
@@ -111,42 +102,36 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                         ),
                       ),
                     ),
-              suffixIcon: Padding(
-                padding: const EdgeInsets.only(right: 8.0, top: 8, bottom: 8),
-                child: controller.isSearchMode && globalSearch
-                    ? controller.isSearching
-                          ? const Padding(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 10.0,
-                                horizontal: 12,
+              suffixIcon: controller.isSearchMode && globalSearch
+                  ? controller.isSearching
+                        ? const Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 10.0,
+                              horizontal: 12,
+                            ),
+                            child: SizedBox.square(
+                              dimension: 24,
+                              child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 2,
                               ),
-                              child: SizedBox.square(
-                                dimension: 24,
-                                child: CircularProgressIndicator.adaptive(
-                                  strokeWidth: 2,
-                                ),
+                            ),
+                          )
+                        : TextButton.icon(
+                            onPressed: controller.setServer,
+                            style: TextButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(99),
                               ),
-                            )
-                          : TextButton.icon(
-                              onPressed: controller.setServer,
-                              style: TextButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(99),
-                                ),
-                                textStyle: const TextStyle(fontSize: 12),
-                              ),
-                              icon: const Icon(Icons.edit_outlined, size: 16),
-                              label: Text(
-                                controller.searchServer ??
-                                    Matrix.of(context).client.homeserver!.host,
-                                maxLines: 2,
-                              ),
-                            )
-                    : SizedBox(
-                        width: 0,
-                        child: ClientChooserButton(controller),
-                      ),
-              ),
+                              textStyle: const TextStyle(fontSize: 12),
+                            ),
+                            icon: const Icon(Icons.edit_outlined, size: 16),
+                            label: Text(
+                              controller.searchServer ??
+                                  Matrix.of(context).client.homeserver!.host,
+                              maxLines: 2,
+                            ),
+                          )
+                  : SizedBox(width: 0, child: ClientChooserButton(controller)),
             ),
           );
         },

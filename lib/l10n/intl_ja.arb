@@ -2148,7 +2148,6 @@
         "description": "Usage hint for the command /op"
     },
     "optionalRedactReason": "（オプション）メッセージを削除する理由…",
-    "overview": "概観",
     "passwordRecoverySettings": "パスワードの復元設定",
     "setChatDescription": "チャットの説明を設定",
     "dismiss": "棄却",

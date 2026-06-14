@@ -2130,7 +2130,6 @@
     "hideRedactedMessagesBody": "Pokud někdo zprávu zrediguje, nebude tato zpráva v chatu již viditelná.",
     "hideInvalidOrUnknownMessageFormats": "Skrýt nesprávné nebo neznámé formáty zpráv",
     "blockUsername": "Ignorovat uživatelské jméno",
-    "overview": "Přehled",
     "passwordRecoverySettings": "Nastavení obnovení hesla",
     "block": "Zablokovat",
     "blockListDescription": "Můžete blokovat uživatele, kteří vás obtěžují. Od uživatelů na vašem osobním seznamu blokovaných uživatelů nebudete moci přijímat žádné zprávy ani pozvánky do místnosti.",

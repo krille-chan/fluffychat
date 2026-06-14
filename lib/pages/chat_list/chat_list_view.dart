@@ -7,8 +7,8 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
+import 'package:fluffychat/pages/chat_list/navigation_rail.dart';
 import 'package:fluffychat/pages/chat_list/start_chat_fab.dart';
-import 'package:fluffychat/widgets/navigation_rail.dart';
 import 'package:flutter/material.dart';
 
 import 'chat_list_body.dart';
