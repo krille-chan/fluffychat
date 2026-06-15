@@ -2757,5 +2757,151 @@
     },
     "deviceIdentityKey": "设备身份密钥",
     "showMore": "显示更多",
-    "showLess": "显示较少"
+    "showLess": "显示较少",
+    "restoreBootstrapEmptyDevicesDescription": "请输入密码短语或恢复密钥来验证此设备并获得访问加密消息备份的权限。",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "请选择其他设备中的一台来验证此会话：",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "重置账户",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "恢复加密身份",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "重置加密身份",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "设置加密身份",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "正在等待密钥… 请保持另一台设备活跃。",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "未传输密钥。请重试。",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "解锁",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "打开文件",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "重置账户会造成永远无法访问旧消息。需要再次验证所有当前设备。请在没有其他设备来验证会话且丢失恢复密钥和密码短语时才执行此操作！",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat 使用端到端加密。为了不丢失消息，请选择强密码短语来保护加密身份和加密的消息备份。",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "新密码短语",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "重复密码短语",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "密码短语匹配",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "长度至少 12 个字符。",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "包含大小写字符。",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "包含特殊字符。",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "包含一个数字。",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "请写下恢复密钥以便恢复加密消息和加密身份。",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "保存为文件",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "可以开始了！",
+    "noUserKeyFound": "未找到用户密钥",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unsignedDevice": "未签名设备",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "已签名设备",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "未找到 curve25519 key",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "消息不可解密",
+    "knownSince": "初始知晓日期：{date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "messageCanOnlyBeReadByUser": "你的消息是端到端加密的，只能由该用户读取：",
+    "messageCanOnlyBeReadByUsers": "你的消息是端到端加密的，只能由这些用户读取：",
+    "today": "今日",
+    "sending": "发送中",
+    "generatingThumbnail": "正在生成缩略图",
+    "encrypting": "加密中",
+    "uploading": "上传中",
+    "edited": "(已编辑)",
+    "couldNotBeSent": "无法发送",
+    "yesterday": "昨天"
 }
