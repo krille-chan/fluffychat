@@ -2893,5 +2893,15 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageNotDecryptable": "Message non-déchiffrable"
+    "messageNotDecryptable": "Message non-déchiffrable",
+    "messageCanOnlyBeReadByUser": "Votre message est chiffré de bout en bout et ne peux être lu que par cet utilisateur :",
+    "messageCanOnlyBeReadByUsers": "Votre message est chiffré de bout en bout et ne peux être lu que par ces utilisateurs :",
+    "today": "Aujourd'hui",
+    "sending": "Envoi",
+    "generatingThumbnail": "Génération d'une miniature",
+    "encrypting": "Chiffrement",
+    "uploading": "Téléversement",
+    "edited": "(édité)",
+    "couldNotBeSent": "N'a pas pu être envoyé",
+    "yesterday": "Hier"
 }
