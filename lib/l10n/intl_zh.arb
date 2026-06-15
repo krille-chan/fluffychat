@@ -2768,11 +2768,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "restoreBootstrapHintText": "密码短语或恢复密钥",
-    "@restoreBootstrapHintText": {
-        "type": "String",
-        "placeholders": {}
-    },
     "resetAccount": "重置账户",
     "@resetAccount": {
         "type": "String",
