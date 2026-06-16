@@ -2741,7 +2741,7 @@
     "possibleByYou": "Diese Veröffentlichung war nur dank eurer Unterstützung möglich. FluffyChat bleibt kostenlos, Open-Source und vollständig von der Community getragen.",
     "showThumbnailsInTimeline": "Thumbnails von Bildern und Videos anzeigen",
     "appSubtitle": "Sichere [matrix]-Kommunikation",
-    "interactiveVerification": "Interaktive Überprüfung",
+    "interactiveVerification": "Interaktive Verifikation",
     "interactiveVerificationDescription": "Wenn ihr euch nebeneinander befindet oder über einen sicheren Kanal kommuniziert, könnt ihr alle Geräte gleichzeitig verifizieren, indem ihr eine Sicherheitsnummer oder Emojis vergleicht.",
     "countUnverifiedDevices": "{count} unbestätigte Geräte im Chat.",
     "@countUnverifiedDevices": {
