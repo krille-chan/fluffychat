@@ -2756,5 +2756,151 @@
     },
     "deviceIdentityKey": "Apparaatidentificatiesleutel",
     "showMore": "Toon meer",
-    "showLess": "Toon minder"
+    "showLess": "Toon minder",
+    "messageCanOnlyBeReadByUser": "Je bericht is eind-tot-eind versleuteld en kan alleen gelezen worden door deze persoon:",
+    "messageCanOnlyBeReadByUsers": "Je bericht eind-tot-eind versleuteld en kan alleen gelezen worden door deze personen:",
+    "restoreBootstrapEmptyDevicesDescription": "Voer je wachtwoordzin of herstelsleutel in om dit apparaat te verifiëren en krijg toegang tot je berichten back-up.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Kies een van je andere apparaten om deze sessie te verifiëren:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Account resetten",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Crypto-identiteit herstellen",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Crypto-identiteit resetten",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Crypto-identiteit instellen",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Wachten op sleutels... Houd het andere apparaat alsjeblieft actief.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Er zijn geen sleutels verzonden. Probeer het opnieuw.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Ontgrendelen",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Bestand openen",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Als je je account reset, verlies je voor altijd de toegang tot je oude berichten. Alle huidige apparaten moeten ook opnieuw geverifieerd worden. Voer deze actie alleen uit als je geen andere apparaten meer hebt om je sessie mee te verifiëren én je je herstelsleutel en wachtwoordzin kwijt bent!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat gebruikt eind-tot-eind versleuteling. Om je berichten niet te verliezen, kies alsjeblieft een sterke wachtwoordzin. Hiermee beveilig je je crypto-identiteit en je versleutelde berichten back-up.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Nieuwe wachtwoordzin",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Herhaal wachtwoordzin",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Wachtwoordzinnen komen overeen",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "Minstens 12 tekens lang.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Bevat hoofdletter en kleine letters.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Bevat speciale tekens.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Bevat een nummer.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Let op, bewaar je herstelsleutel zorgvuldig zodat je je versleutelde berichten en crypto-identiteit kan herstellen.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Bewaar als bestand",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Je bent klaar om te beginnen!",
+    "noUserKeyFound": "Geen persoonssleutel gevonden",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Bekend sinds: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "Apparaat zonder verificatie",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Geverifieerd apparaat",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Geen curve25519-sleutel gevonden",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Bericht niet te ontsleutelen",
+    "today": "Vandaag",
+    "sending": "Verzenden",
+    "generatingThumbnail": "Miniatuur-afbeelding genereren",
+    "encrypting": "Versleutelen",
+    "uploading": "Uploaden",
+    "edited": "(bewerkt)",
+    "couldNotBeSent": "Kan niet worden gestuurd",
+    "yesterday": "Gisteren"
 }
