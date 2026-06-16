@@ -7,7 +7,6 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/painting.dart';
-
 import 'package:matrix/matrix.dart';
 import 'package:native_imaging/native_imaging.dart' as native;
 
@@ -32,6 +31,7 @@ Future<MatrixImageFileResizedResponse?> customImageResizer(
   var originalHeight = 0;
   var width = 0;
   var height = 0;
+  String? mimeType;
 
   try {
     // for the other platforms
@@ -89,10 +89,12 @@ Future<MatrixImageFileResizedResponse?> customImageResizer(
       }
 
       imageBytes = await nativeImg.toJpeg(75);
+      mimeType = 'image/jpeg';
       nativeImg.free();
     }
   } catch (e, s) {
     Logs().e('Could not generate preview', e, s);
+    mimeType = null;
   }
 
   return MatrixImageFileResizedResponse(
@@ -102,5 +104,6 @@ Future<MatrixImageFileResizedResponse?> customImageResizer(
     originalWidth: originalWidth,
     originalHeight: originalHeight,
     blurhash: blurhash,
+    mimeType: mimeType,
   );
 }
