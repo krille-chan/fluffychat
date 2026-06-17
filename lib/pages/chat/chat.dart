@@ -497,10 +497,13 @@ class ChatController extends State<ChatPageWithRoom>
 
   String? animateInEventId;
 
-  void _insert(int index) {
+  Future<void> _insert(int index) async {
     if (index > 0) return;
     final firstEvent = timeline?.events.firstOrNull;
-    animateInEventId = firstEvent?.transactionId ?? firstEvent?.eventId;
+    final eventId = firstEvent?.transactionId ?? firstEvent?.eventId;
+    animateInEventId = eventId;
+    await Future.delayed(FluffyThemes.animationDuration);
+    if (animateInEventId == eventId) animateInEventId = null;
   }
 
   void updateView() {

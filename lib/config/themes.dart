@@ -51,14 +51,15 @@ abstract class FluffyThemes {
       dynamicSchemeVariant: DynamicSchemeVariant.rainbow,
     );
     final isColumnMode = FluffyThemes.isColumnMode(context);
+    final dividerColor = brightness == Brightness.dark
+        ? colorScheme.surfaceContainerHighest
+        : colorScheme.surfaceContainer;
     return ThemeData(
       visualDensity: VisualDensity.standard,
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
-      dividerColor: brightness == Brightness.dark
-          ? colorScheme.surfaceContainerHighest
-          : colorScheme.surfaceContainer,
+      dividerColor: dividerColor,
       segmentedButtonTheme: SegmentedButtonThemeData(
         style: SegmentedButton.styleFrom(
           iconColor: colorScheme.onSurface,
@@ -85,9 +86,6 @@ abstract class FluffyThemes {
       ),
       appBarTheme: AppBarTheme(
         toolbarHeight: isColumnMode ? 72 : 56,
-        shadowColor: isColumnMode
-            ? colorScheme.surfaceContainer.withAlpha(128)
-            : null,
         surfaceTintColor: isColumnMode ? colorScheme.surface : null,
         backgroundColor: isColumnMode ? colorScheme.surface : null,
         actionsPadding: isColumnMode
