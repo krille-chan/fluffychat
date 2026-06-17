@@ -82,11 +82,9 @@ extension LocalizedExceptionExtension on Object {
           .toString()
           .replaceAll('{', '"')
           .replaceAll('}', '"');
-      return L10n.of(context).badServerLoginTypesException(
-        serverVersions,
-        supportedVersions,
-        supportedVersions,
-      );
+      return L10n.of(
+        context,
+      ).badServerLoginTypesException(serverVersions, supportedVersions);
     }
     if (this is IOException ||
         this is SocketException ||
