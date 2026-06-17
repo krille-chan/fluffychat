@@ -1,7 +1,7 @@
 {
     "@@locale": "de",
     "@@last_modified": "2021-08-14 12:41:10.119255",
-    "alwaysUse24HourFormat": "true",
+    "alwaysUse24HourFormat": "falsch",
     "@alwaysUse24HourFormat": {
         "description": "Set to true to always display time of day in 24 hour format."
     },
@@ -2723,7 +2723,7 @@
     "supportFluffyChat": "FluffyChat unterstützen",
     "support": "Unterstützen",
     "createNewTag": "Neuen tag erstellen",
-    "tagName": "",
+    "tagName": "Tag-Name",
     "addTag": "Tag hinzufügen",
     "playSoundOnNotification": "Ton bei Benachrichtigung abspielen",
     "unsetLowPriority": "Niedrige Priorität aufheben",
@@ -2741,7 +2741,7 @@
     "possibleByYou": "Diese Veröffentlichung war nur dank eurer Unterstützung möglich. FluffyChat bleibt kostenlos, Open-Source und vollständig von der Community getragen.",
     "showThumbnailsInTimeline": "Thumbnails von Bildern und Videos anzeigen",
     "appSubtitle": "Sichere [matrix]-Kommunikation",
-    "interactiveVerification": "Interaktive Überprüfung",
+    "interactiveVerification": "Interaktive Verifikation",
     "interactiveVerificationDescription": "Wenn ihr euch nebeneinander befindet oder über einen sicheren Kanal kommuniziert, könnt ihr alle Geräte gleichzeitig verifizieren, indem ihr eine Sicherheitsnummer oder Emojis vergleicht.",
     "countUnverifiedDevices": "{count} unbestätigte Geräte im Chat.",
     "@countUnverifiedDevices": {
@@ -2765,5 +2765,151 @@
             }
         }
     },
-    "deviceIdentityKey": "Geräteidentitätsschlüssel"
+    "deviceIdentityKey": "Geräteidentitätsschlüssel",
+    "messageCanOnlyBeReadByUser": "Deine Nachricht ist Ende-zu-Ende-verschlüsselt und kann nur von diesem Nutzer gelesen werden:",
+    "messageCanOnlyBeReadByUsers": "Deine Nachricht ist Ende-zu-Ende-verschlüsselt und kann nur von diesen Nutzern gelesen werden:",
+    "restoreBootstrapEmptyDevicesDescription": "Bitte gib deine Passphrase oder deinen Wiederherstellungsschlüssel ein, um dieses Gerät zu verifizieren und Zugriff auf dein verschlüsseltes Nachrichten-Backup zu erhalten.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Bitte wähle eines deiner anderen Geräte aus, um diese Sitzung zu bestätigen:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Konto zurücksetzen",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Krypto-Identität wiederherstellen",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Krypto-Identität zurücksetzen",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Krypto-Identität einrichten",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Warten auf Schlüssel... Bitte lass das andere Gerät aktiv.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Keine Schlüssel übertragen. Bitte versuche es erneut.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Entsperren",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Datei öffnen",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Wenn du dein Konto zurücksetzt, verlierst du dauerhaft den Zugriff auf deine alten Nachrichten. Alle deine aktuellen Geräte müssen erneut verifiziert werden. Führe diesen Schritt bitte nur aus, wenn du über keine anderen Geräte mehr zur Verifizierung deiner Sitzung verfügst und zudem deinen Wiederherstellungsschlüssel sowie deine Passphrase verloren hast!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat verwendet Ende-zu-Ende-Verschlüsselung. Um deine Nachrichten nicht zu verlieren, wähle bitte eine starke Passphrase, um deine Krypto-Identität und dein verschlüsseltes Nachrichten-Backup zu sichern.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Neue Passphrase",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Passphrase wiederholen",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Passphrasen stimmen überein",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "Mindestens 12 Zeichen lang.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Enthält Groß- und Kleinbuchstaben.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Enthält Sonderzeichen.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Enthält eine Zahl.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Bitte notiere deinen Wiederherstellungsschlüssel, um deine verschlüsselten Nachrichten und deine Krypto-Identität wiederherstellen zu können.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Als Datei speichern",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Du bist bereit loszulegen!",
+    "noUserKeyFound": "Kein Benutzerschlüssel gefunden",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Bekannt seit: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "Nicht signiertes Gerät",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Signiertes Gerät",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Kein curve25519-Schlüssel gefunden",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Nachricht nicht entschlüsselbar",
+    "today": "Heute",
+    "sending": "Wird gesendet",
+    "generatingThumbnail": "Thumbnail wird erstellt",
+    "encrypting": "Verschlüsselung",
+    "uploading": "Hochladen",
+    "edited": "(bearbeitet)",
+    "couldNotBeSent": "Konnte nicht gesendet werden",
+    "yesterday": "Gestern"
 }
