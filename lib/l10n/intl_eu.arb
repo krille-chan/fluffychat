@@ -2752,5 +2752,6 @@
             }
         }
     },
-    "deviceIdentityKey": "Gailuaren identitate-gakoa"
+    "deviceIdentityKey": "Gailuaren identitate-gakoa",
+    "check": ""
 }
