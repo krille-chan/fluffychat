@@ -2890,5 +2890,13 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageNotDecryptable": "Pesan tidak dapat didekripsi"
+    "messageNotDecryptable": "Pesan tidak dapat didekripsi",
+    "couldNotBeSent": "",
+    "uploading": "",
+    "encrypting": "",
+    "yesterday": "",
+    "sending": "",
+    "edited": "",
+    "generatingThumbnail": "",
+    "today": ""
 }
