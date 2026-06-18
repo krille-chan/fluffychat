@@ -6,6 +6,7 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -13,51 +14,55 @@ import 'package:url_launcher/url_launcher_string.dart';
 abstract class UpdateNotifier {
   static const String versionStoreKey = 'last_known_version';
 
-  static Future<void> showUpdateSnackBar(BuildContext context) async {
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
-    final theme = Theme.of(context);
+  static Future<void> showUpdateDialog(BuildContext context) async {
     final l10n = L10n.of(context);
     final currentVersion = await PlatformInfos.getVersion();
     final store = await SharedPreferences.getInstance();
     final storedVersion = store.getString(versionStoreKey);
+    if (!context.mounted) return;
 
     if (currentVersion != storedVersion) {
       if (storedVersion != null) {
-        scaffoldMessenger.showMaterialBanner(
-          MaterialBanner(
-            content: Column(
-              mainAxisSize: .min,
-              crossAxisAlignment: .stretch,
-              children: [
-                Row(
+        showAdaptiveDialog(
+          barrierDismissible: true,
+          context: context,
+          builder: (context) => AlertDialog.adaptive(
+            title: Text(
+              l10n.updateInstalled(currentVersion),
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            content: Text(l10n.possibleByYou),
+            actions: [
+              AdaptiveDialogAction(
+                bigButtons: true,
+                autofocus: true,
+                onPressed: () => launchUrlString(AppConfig.helpUrl),
+                child: Row(
+                  mainAxisSize: .min,
+                  spacing: 4,
                   children: [
-                    Expanded(
-                      child: Text(
-                        l10n.updateInstalled(currentVersion),
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                    Icon(
+                      Icons.favorite,
+                      color: Theme.of(context).colorScheme.error,
                     ),
-                    CloseButton(
-                      onPressed: scaffoldMessenger.clearMaterialBanners,
+                    Text(
+                      l10n.support,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.error,
+                      ),
                     ),
                   ],
                 ),
-                Text(l10n.possibleByYou),
-              ],
-            ),
-            actions: [
-              TextButton(
+              ),
+              AdaptiveDialogAction(
+                bigButtons: true,
                 onPressed: () => launchUrlString(AppConfig.changelogUrl),
                 child: Text(l10n.changelog),
               ),
-              TextButton.icon(
-                style: TextButton.styleFrom(
-                  backgroundColor: theme.colorScheme.errorContainer,
-                  foregroundColor: theme.colorScheme.onErrorContainer,
-                ),
-                onPressed: () => launchUrlString(AppConfig.supportUrl),
-                icon: Icon(Icons.favorite),
-                label: Text(l10n.support),
+              AdaptiveDialogAction(
+                bigButtons: true,
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text(l10n.close),
               ),
             ],
           ),
