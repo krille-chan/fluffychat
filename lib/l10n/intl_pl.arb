@@ -2365,10 +2365,6 @@
     "pleaseChooseAStrongPassword": "Proszę wybrać silne hasło",
     "usersMustKnock": "Użytkownicy muszą zapukać",
     "noOneCanJoin": "Nikt nie może dołączyć",
-    "alwaysUse24HourFormat": "false",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "swipeRightToLeftToReply": "Przeciągnij w lewo, by odpowiedzieć",
     "pleaseEnterANumber": "Proszę podać liczbę większą od 0",
     "commandHint_sendraw": "Wyślij zwykły json",

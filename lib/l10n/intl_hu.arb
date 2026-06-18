@@ -2404,10 +2404,6 @@
     "sendRoomNotifications": "@szoba értesítés küldése",
     "changeTheDescriptionOfTheGroup": "Csevegés leírásának változtatása",
     "swipeRightToLeftToReply": "Húzza balra a válaszoláshoz",
-    "alwaysUse24HourFormat": "",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "loginWithMatrixId": "Bejelentkezés Matrix-ID-vel",
     "doesNotSeemToBeAValidHomeserver": "Nem tűnik kompatibilisnek a Mátrix-kiszolgálónak. Hibás a hivatkozás?",
     "noMoreChatsFound": "Nem található több csevegés...",

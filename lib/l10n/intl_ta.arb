@@ -2190,10 +2190,6 @@
     "version": "பதிப்பு",
     "website": "வலைத்தளம்",
     "compress": "சுருக்க",
-    "alwaysUse24HourFormat": "தவறு",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "admin": "நிர்வாகி",
     "@admin": {
         "type": "String",

@@ -2314,10 +2314,6 @@
     "calls": "Samtal",
     "customEmojisAndStickers": "Egna emojis och klistermärken",
     "customEmojisAndStickersBody": "Lägg till eller dela egna emojis eller klistermärken som kan användas i alla chattar.",
-    "alwaysUse24HourFormat": "falskt",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "hideRedactedMessages": "Dölj tillbakatagna meddelanden",
     "hideRedactedMessagesBody": "Om någon tar tillbaka ett meddelande, kommer meddelandet inte längre vara synligt i chatten.",
     "hideInvalidOrUnknownMessageFormats": "Dölj ogiltiga eller okända meddelande-format",

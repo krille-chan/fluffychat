@@ -2115,10 +2115,6 @@
     "hideInvalidOrUnknownMessageFormats": "Esconde formatos de mensajes inválidos o desconocidos",
     "hideRedactedMessages": "Esconde mensajes eliminados",
     "appLockDescription": "Bloquear la aplicación cuando no se use con código pin",
-    "alwaysUse24HourFormat": "true",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "accessAndVisibility": "Acceso y visibilidad",
     "globalChatId": "ID de chat Global",
     "accessAndVisibilityDescription": "A quién se le permite unirse a este chat y cómo se puede descubrir el chat.",

@@ -2367,10 +2367,6 @@
             }
         }
     },
-    "alwaysUse24HourFormat": "true",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "appLockDescription": "Bloca l'app amb un pin quan no la facis servir",
     "swipeRightToLeftToReply": "Llisca de dreta esquerra per respondre",
     "globalChatId": "Identificador global de xat",

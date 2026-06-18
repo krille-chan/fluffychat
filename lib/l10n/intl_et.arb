@@ -2340,10 +2340,6 @@
     "gallery": "Galerii",
     "files": "Failid",
     "swipeRightToLeftToReply": "Vastamiseks viipa paremalt vasakule",
-    "alwaysUse24HourFormat": "väär",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "noMoreChatsFound": "Rohkem vestlusi ei leidu...",
     "unread": "Lugemata",
     "space": "Kogukond",

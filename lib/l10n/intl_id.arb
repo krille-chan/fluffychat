@@ -2339,10 +2339,6 @@
     "files": "Berkas",
     "restricted": "Dibatasi",
     "knockRestricted": "Ketukan dibatasi",
-    "alwaysUse24HourFormat": "tidak",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "sendCanceled": "Pengiriman dibatalkan",
     "noChatsFoundHere": "Belum ada chat di sini. Mulai chat baru dengan seseorang menggunakan tombol di bawah. ⤵️",
     "invitedBy": "📩 Diundang oleh {user}",

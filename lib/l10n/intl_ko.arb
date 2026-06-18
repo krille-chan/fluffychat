@@ -2339,10 +2339,6 @@
     "restricted": "스페이스 멤버로 제한",
     "knockRestricted": "스페이스 멤버만 참가 요청 가능",
     "swipeRightToLeftToReply": "오른쪽에서 왼쪽으로 스와이프해서 답장",
-    "alwaysUse24HourFormat": "false",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "unread": "읽지 않은",
     "space": "스페이스",
     "spaces": "스페이스",

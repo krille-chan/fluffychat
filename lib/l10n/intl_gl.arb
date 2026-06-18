@@ -2340,10 +2340,6 @@
     "knockRestricted": "Peta á porta",
     "restricted": "Non accesible",
     "swipeRightToLeftToReply": "Despraza hacia a esquerda para responder",
-    "alwaysUse24HourFormat": "falso",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "noMoreChatsFound": "Non se atopan máis charlas…",
     "unread": "Sen ler",
     "space": "Espazo",

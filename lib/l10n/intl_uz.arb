@@ -1,9 +1,5 @@
 {
     "repeatPassword": "Parolni takrorlang",
-    "alwaysUse24HourFormat": "true",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "notAnImage": "Rasm fayli emas.",
     "ignoreUser": "Foydalanuvchini e’tiborsiz qoldirish",
     "remove": "O‘chirish",

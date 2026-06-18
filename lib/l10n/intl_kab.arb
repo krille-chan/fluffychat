@@ -2540,10 +2540,6 @@
     },
     "disableEncryptionWarning": "",
     "pleaseChooseAStrongPassword": "Ttxil, fren awal n uɛeddi iǧehden, ma ulac aɣilif",
-    "alwaysUse24HourFormat": "",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "publicChatAddresses": "",
     "commandHint_unban": "",
     "@commandHint_unban": {

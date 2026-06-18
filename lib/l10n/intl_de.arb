@@ -1,10 +1,6 @@
 {
     "@@locale": "de",
     "@@last_modified": "2021-08-14 12:41:10.119255",
-    "alwaysUse24HourFormat": "falsch",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "about": "Über",
     "@about": {
         "type": "String",
