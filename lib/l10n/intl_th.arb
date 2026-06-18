@@ -2881,5 +2881,14 @@
     },
     "interactiveVerification": "",
     "today": "",
-    "encryptedMessage": ""
+    "encryptedMessage": "",
+    "aboutHomeserver": "",
+    "@aboutHomeserver": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    }
 }
