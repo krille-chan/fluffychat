@@ -2753,5 +2753,151 @@
         }
     },
     "deviceIdentityKey": "Gailuaren identitate-gakoa",
-    "check": ""
+    "check": "",
+    "passphraseNumberRequirement": "",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "",
+    "restoreCryptoIdentity": "",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "couldNotBeSent": "",
+    "signedDevice": "",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "uploading": "",
+    "saveAsFile": "",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageCanOnlyBeReadByUsers": "",
+    "resetAccountWarning": "",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "waitingForKeys": "",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encrypting": "",
+    "passphraseUpperAndLowerCaseRequirement": "",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noUserKeyFound": "",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "yesterday": "",
+    "newPassphrase": "",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unsignedDevice": "",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "",
+    "messageCanOnlyBeReadByUser": "",
+    "setUpCryptoIdentity": "",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sending": "",
+    "restoreBootstrapEmptyDevicesDescription": "",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "edited": "",
+    "generatingThumbnail": "",
+    "passphraseSpecialCharactersRequirement": "",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "today": ""
 }
