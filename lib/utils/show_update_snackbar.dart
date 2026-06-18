@@ -55,7 +55,7 @@ abstract class UpdateNotifier {
                   backgroundColor: theme.colorScheme.errorContainer,
                   foregroundColor: theme.colorScheme.onErrorContainer,
                 ),
-                onPressed: () => launchUrlString(AppConfig.supportUrl),
+                onPressed: () => launchUrlString(AppConfig.helpUrl),
                 icon: Icon(Icons.favorite),
                 label: Text(l10n.support),
               ),
