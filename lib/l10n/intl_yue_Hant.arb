@@ -71,10 +71,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "alwaysUse24HourFormat": "false",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "importEmojis": "導入 Emoji",
     "hugContent": "{senderName} 抱咗你",
     "@hugContent": {

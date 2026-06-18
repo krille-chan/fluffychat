@@ -103,10 +103,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "alwaysUse24HourFormat": "true",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "repeatPassword": "Repita a senha",
     "notAnImage": "Não é um arquivo de imagem.",
     "showPassword": "",

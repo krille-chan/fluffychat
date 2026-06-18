@@ -24,10 +24,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "alwaysUse24HourFormat": "না",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "repeatPassword": "পাসওয়ার্ড আবার লিখো",
     "notAnImage": "ইমেজ ফাইল না।",
     "admin": "অ্যাডমিস",

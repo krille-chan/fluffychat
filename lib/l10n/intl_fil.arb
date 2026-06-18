@@ -891,10 +891,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "alwaysUse24HourFormat": "false",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "chatDescription": "Paglalarawan ng chat",
     "chatDescriptionHasBeenChanged": "Nabago ang paglalarawan ng chat",
     "groupWith": "Grupo kasama kay/sa {displayname}",

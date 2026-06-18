@@ -2151,10 +2151,6 @@
     "roomUpgradeDescription": "De chat zal dan opnieuw gemaakt worden met de nieuwe kamerversie. Alle deelnemers worden geïnformeerd dat ze moeten overstappen naar de nieuwe chat. Je kan meer lezen over kamerversies op https://spec.matrix.org/latest/rooms/",
     "pleaseEnterANumber": "Vul een getal in groter dan 0",
     "kickUserDescription": "De persoon is verwijderd uit de chat, maar is niet verbannen. In publieke chats kan de persoon op elk moment opnieuw deelnemen.",
-    "alwaysUse24HourFormat": "true",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "joinSpace": "Toetreden tot de space",
     "block": "Blokkeren",
     "blockedUsers": "Geblokkeerde personen",

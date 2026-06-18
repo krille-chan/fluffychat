@@ -2208,10 +2208,6 @@
     "appLockDescription": "Blocca l'app con un codice PIN quando non è in uso",
     "noOneCanJoin": "Nessuno può unirsi",
     "usersMustKnock": "Gli utenti devono bussare",
-    "alwaysUse24HourFormat": "disattivato",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "accessAndVisibility": "Accesso e visibilità",
     "accessAndVisibilityDescription": "Chi è autorizzato a partecipare a questa chat e come è possibile scoprirla.",
     "calls": "Chiamate",

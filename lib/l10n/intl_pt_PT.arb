@@ -2333,10 +2333,6 @@
     "foregroundServiceRunning": "Esta notificação aparece quando o serviço em primeiro plano está em execução.",
     "pleaseChooseAStrongPassword": "",
     "voiceCall": "",
-    "alwaysUse24HourFormat": "falso",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "publicChatAddresses": "",
     "notificationRuleContainsDisplayName": "",
     "notificationRuleReaction": "",

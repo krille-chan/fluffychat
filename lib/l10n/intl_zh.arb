@@ -2340,10 +2340,6 @@
     "knockRestricted": "“请求加入”请求受限",
     "restricted": "受限",
     "swipeRightToLeftToReply": "从右向左滑动进行回复",
-    "alwaysUse24HourFormat": "否",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "noMoreChatsFound": "找不到更多聊天…",
     "space": "空间",
     "spaces": "空间",

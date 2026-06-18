@@ -2355,10 +2355,6 @@
     "changeTheCanonicalRoomAlias": "Mainīt tērzēšanas galveno publisko adresi",
     "sendRoomNotifications": "Sūtīt @istaba paziņojumus",
     "changeTheDescriptionOfTheGroup": "Mainīt tērzēšanas aprakstu",
-    "alwaysUse24HourFormat": "true",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "userLevel": "{level} - Lietotājs",
     "@userLevel": {
         "type": "String",

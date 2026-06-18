@@ -1,8 +1,4 @@
 {
-    "alwaysUse24HourFormat": "адключана",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "repeatPassword": "Паўтарыце пароль",
     "notAnImage": "Не файл выявы.",
     "ignoreUser": "Ігнараваць карыстальніка",

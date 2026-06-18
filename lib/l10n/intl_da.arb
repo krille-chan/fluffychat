@@ -10,10 +10,6 @@
     "importNow": "Importer nu",
     "importEmojis": "Importer emojis",
     "importFromZipFile": "Importer fra .zip fil",
-    "alwaysUse24HourFormat": "true",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "exportEmotePack": "Eksportér Emote-pakke som .zip-fil",
     "replace": "Erstat",
     "about": "Om",

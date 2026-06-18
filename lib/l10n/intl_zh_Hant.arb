@@ -1789,10 +1789,6 @@
     "blockedUsers": "已封鎖的使用者",
     "block": "封鎖",
     "discover": "發現",
-    "alwaysUse24HourFormat": "false",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "sender": "傳送者",
     "voiceCall": "語音通話",
     "blockUsername": "無視使用者名稱",

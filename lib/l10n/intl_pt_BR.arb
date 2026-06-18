@@ -2340,10 +2340,6 @@
     "files": "Arquivos",
     "more": "Mais",
     "deletePushRuleCanNotBeUndone": "Se você apagar esta configuração de notificação, isso não poderá ser desfeito.",
-    "alwaysUse24HourFormat": "true",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "shareKeysWith": "Compartilhar chaves com...",
     "ignoreUser": "Ignorar usuário",
     "contentNotificationSettings": "Configurações de notificações de conteúdo",
