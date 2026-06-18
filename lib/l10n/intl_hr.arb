@@ -2716,5 +2716,188 @@
     "theProcessWasCanceled": "",
     "signInGreeting": "",
     "removeTag": "",
-    "supportFluffyChat": ""
+    "supportFluffyChat": "",
+    "appSubtitle": "",
+    "passphraseNumberRequirement": "",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "",
+    "restoreCryptoIdentity": "",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "couldNotBeSent": "",
+    "signedDevice": "",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "discardEdits": "",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "uploading": "",
+    "appDescription": "",
+    "saveAsFile": "",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageCanOnlyBeReadByUsers": "",
+    "resetAccountWarning": "",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showLess": "",
+    "newPassphraseDescription": "",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "waitingForKeys": "",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "countUnverifiedDevices": "",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "publicKey": "",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "passphrasesMatch": "",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encrypting": "",
+    "possibleByYou": "",
+    "passphraseUpperAndLowerCaseRequirement": "",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "hideRoomsInSpaces": "",
+    "noCurve25519KeyFound": "",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noUserKeyFound": "",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "interactiveVerificationDescription": "",
+    "deviceIdentityKey": "",
+    "yesterday": "",
+    "newPassphrase": "",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unsignedDevice": "",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showThumbnailsInTimeline": "",
+    "messageNotDecryptable": "",
+    "messageCanOnlyBeReadByUser": "",
+    "setUpCryptoIdentity": "",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "check": "",
+    "sending": "",
+    "restoreBootstrapEmptyDevicesDescription": "",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unencryptedMessage": "",
+    "showMore": "",
+    "allow": "",
+    "edited": "",
+    "generatingThumbnail": "",
+    "passphraseSpecialCharactersRequirement": "",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "interactiveVerification": "",
+    "today": "",
+    "encryptedMessage": ""
 }
