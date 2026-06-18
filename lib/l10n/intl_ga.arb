@@ -2897,5 +2897,13 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageNotDecryptable": "Ní féidir an teachtaireacht a dhíchriptiú"
+    "messageNotDecryptable": "Ní féidir an teachtaireacht a dhíchriptiú",
+    "couldNotBeSent": "",
+    "uploading": "",
+    "encrypting": "",
+    "yesterday": "",
+    "sending": "",
+    "edited": "",
+    "generatingThumbnail": "",
+    "today": ""
 }
