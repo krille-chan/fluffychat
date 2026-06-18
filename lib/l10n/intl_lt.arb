@@ -24,7 +24,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "all": "Visi",
+    "all": "Viskas",
     "@all": {
         "type": "String",
         "placeholders": {}
@@ -336,7 +336,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "remove": "Pašalinti",
+    "remove": "Šalinti",
     "@remove": {
         "type": "String",
         "placeholders": {}
@@ -376,13 +376,13 @@
         "type": "String",
         "placeholders": {}
     },
-    "accept": "Sutinku",
+    "accept": "Priimti",
     "@accept": {
         "type": "String",
         "placeholders": {}
     },
     "repeatPassword": "Pakartokite slaptažodį",
-    "addEmail": "Pridėti el. paštą",
+    "addEmail": "Įtraukti el. paštą",
     "@addEmail": {
         "type": "String",
         "placeholders": {}
@@ -392,7 +392,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "alias": "slapyvardis",
+    "alias": "pseudonimas",
     "@alias": {
         "type": "String",
         "placeholders": {}
@@ -995,7 +995,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "addToSpace": "Pridėti į erdvę",
+    "addToSpace": "Pridėti prie erdvės",
     "appLock": "Programos užraktas",
     "@appLock": {
         "type": "String",
@@ -2010,7 +2010,7 @@
     "newGroup": "Nauja grupė",
     "screenSharingDetail": "Bendrinate savo ekraną per FuffyChat",
     "passwordsDoNotMatch": "",
-    "hugContent": "",
+    "hugContent": "{senderName} jus apkabina",
     "@hugContent": {
         "type": "String",
         "placeholders": {
@@ -2024,7 +2024,7 @@
     "jumpToLastReadMessage": "",
     "commandHint_ignore": "",
     "answersVisible": "",
-    "commandHint_cuddle": "",
+    "commandHint_cuddle": "Siųskite glebimą",
     "notificationRuleInviteForMeDescription": "",
     "notificationRuleMemberEventDescription": "",
     "blockListDescription": "",
@@ -2091,7 +2091,7 @@
     "optionalMessage": "",
     "allDevices": "",
     "removeDevicesDescription": "",
-    "appLockDescription": "",
+    "appLockDescription": "Užrakinti programą, kai jos naudojama, nustatant PIN kodą",
     "notificationRuleRoomServerAcl": "",
     "notificationRuleIsUserMention": "",
     "tryAgain": "",
@@ -2207,7 +2207,7 @@
     "commandHint_unignore": "",
     "usersMustKnock": "",
     "setChatDescription": "",
-    "importFromZipFile": "",
+    "importFromZipFile": "Importuoti iš .zip failo",
     "answerOption": "",
     "notificationRuleRoomOneToOne": "",
     "discover": "",
@@ -2223,7 +2223,7 @@
             }
         }
     },
-    "ignoreUser": "",
+    "ignoreUser": "Nepaisyti naudotojo",
     "appWantsToUseForLoginDescription": "",
     "customReaction": "",
     "noOtherDevicesFound": "",
@@ -2293,7 +2293,7 @@
     "notificationRuleMessageDescription": "",
     "optionalRedactReason": "",
     "createNewAccount": "",
-    "aboutHomeserver": "",
+    "aboutHomeserver": "Apie {homeserver}",
     "@aboutHomeserver": {
         "type": "String",
         "placeholders": {
@@ -2314,7 +2314,7 @@
     "pleaseWaitUntilInvited": "",
     "archiveRoomDescription": "",
     "sendRoomNotifications": "",
-    "exportEmotePack": "",
+    "exportEmotePack": "Eksportuoti jaustukų paketą kaip .zip",
     "useAsSticker": "",
     "noMoreResultsFound": "",
     "longPressToRecordVoiceMessage": "",
@@ -2403,7 +2403,7 @@
     "select": "",
     "markAsUnread": "",
     "notificationRuleSuppressEditsDescription": "",
-    "googlyEyesContent": "",
+    "googlyEyesContent": "{senderName} siunčia jums išsipūtusias akutes",
     "@googlyEyesContent": {
         "type": "String",
         "placeholders": {
@@ -2480,7 +2480,7 @@
     "notificationRuleReaction": "",
     "blockUsername": "",
     "calculatingFileSize": "",
-    "importEmojis": "",
+    "importEmojis": "Importuoti jaustukus",
     "wasDirectChatDisplayName": "",
     "@wasDirectChatDisplayName": {
         "type": "String",
@@ -2498,7 +2498,7 @@
     "invalidUrl": "",
     "learnMore": "",
     "theProcessWasCanceled": "",
-    "notAnImage": "",
+    "notAnImage": "Nėra vaizdo failas.",
     "space": "",
     "chatDescriptionHasBeenChanged": "",
     "leaveEmptyToClearStatus": "",
@@ -2520,7 +2520,7 @@
     "noMoreChatsFound": "",
     "crossVerifiedDevices": "",
     "shareInviteLink": "",
-    "cuddleContent": "",
+    "cuddleContent": "{senderName} jus glėbia",
     "@cuddleContent": {
         "type": "String",
         "placeholders": {
@@ -2579,13 +2579,13 @@
             }
         }
     },
-    "commandHint_roomupgrade": "",
+    "commandHint_roomupgrade": "Atnaujinkite šį kambarį iki nurodytos kambario versijos",
     "calls": "",
     "roomNotificationSettings": "",
     "otherPartyNotLoggedIn": "",
     "notificationRuleReactionDescription": "",
-    "commandHint_hug": "",
-    "replace": "",
+    "commandHint_hug": "Siųskite apkabinimą",
+    "replace": "Pakeisti",
     "restoreSessionBody": "",
     "@restoreSessionBody": {
         "type": "String",
@@ -2637,7 +2637,7 @@
             }
         }
     },
-    "commandHint_googly": "",
+    "commandHint_googly": "Siųskite išsipūtusias akutes",
     "searchChatsRooms": "",
     "moderatorLevel": "",
     "@moderatorLevel": {
@@ -2679,7 +2679,7 @@
         }
     },
     "notificationRuleEncrypted": "",
-    "importNow": "",
+    "importNow": "Importuoti dabar",
     "noChatsFoundHere": "",
     "pleaseFillOut": "",
     "changedTheChatName": "",
@@ -2722,5 +2722,53 @@
     },
     "sendReadReceiptsDescription": "",
     "block": "",
-    "inviteGroupChat": ""
+    "inviteGroupChat": "",
+    "yesterday": "vakar",
+    "edited": "(redaguota)",
+    "uploading": "Įkeliamas",
+    "encrypting": "Šifruojamas",
+    "generatingThumbnail": "Generuojama miniatiūra",
+    "sending": "Siunčiama",
+    "today": "šiandien",
+    "youAreReadyToStart": "Esate pasirengę pradėti!",
+    "saveAsFile": "Išsaugoti kaip failą",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Atrakinti",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Atverti failą",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Atkūrus paskyrą, prarasite prieigą prie senų pranešimų visam laikui. Visus šiuo metu naudojamus įrenginius reikės patvirtinti iš naujo. Šį veiksmą atlikite tik tuo atveju, jei nebeliko jokių kitų įrenginių, kuriais būtų galima patvirtinti sesaną, ir praradote atkūrimo raktą bei slaptafrazę!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "„FluffyChat“ naudoja visapusišką šifravimą. Kad neprarastumėte savo žinučių, pasirinkite saugią slaptafrazę, kuri apsaugos jūsų kriptografinę tapatybę ir užšifruotą žinučių atsarginę kopiją.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Nauja slaptafrazė",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Pakartokite slaptafrazę",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Slaptafrazės sutampa",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    }
 }
