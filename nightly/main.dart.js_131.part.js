@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cNV(){return new A.Gt(B.df("eu"))},
-Gt:function Gt(d){this.a=d}},C
+cNX(){return new A.Gs(B.df("eu"))},
+Gs:function Gs(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[19],A)
 C=c[58]
-A.Gt.prototype={
+A.Gs.prototype={
 giZ(){return"false"},
 go4(){return"Idatzi berriro pasahitza"},
 gmD(){return"Ez da irudi-fitxategia."},
@@ -86,7 +86,7 @@ gfv(){return"Txataren xehetasunak"},
 gfw(){return"Txatak"},
 gjR(){return"Aukeratu pasahitz sendo bat"},
 gfz(){return"Ezabatu artxiboa"},
-gcv(d){return"Itxi"},
+gcr(d){return"Itxi"},
 gkc(){return"Markatu mezu-zuzen gela bezala Matrix ID jakin honentzat"},
 gkd(){return"Markatu talde bezala"},
 gjT(){return"Debekatu erabiltzailea gela honetan"},
@@ -713,8 +713,8 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Gt,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gt":{"aE":[]}}'))
+x(A.Gs,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gs":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["IiP3ZWeMAPk3xxBRQ5CwtE/5oR4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["x1XzE42oppYJk7CfyaQ5Jh9EzCk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_131.part.js.map

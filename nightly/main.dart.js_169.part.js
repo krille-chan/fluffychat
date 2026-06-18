@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOa(){return new A.GJ(B.df("ka"))},
-GJ:function GJ(d){this.a=d}},C
+cOc(){return new A.GI(B.df("ka"))},
+GI:function GI(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[35],A)
 C=c[58]
-A.GJ.prototype={
+A.GI.prototype={
 giZ(){return""},
 go4(){return"\u10d2\u10d0\u10d8\u10db\u10d4\u10dd\u10e0\u10d4\u10d7 \u10de\u10d0\u10e0\u10dd\u10da\u10d8"},
 gmD(){return"\u10e4\u10d0\u10d8\u10da\u10d8 \u10d0\u10e0\u10d0\u10d0 \u10e1\u10e3\u10e0\u10d0\u10d7\u10d8."},
@@ -86,7 +86,7 @@ gfv(){return"\u10e9\u10d0\u10e2\u10d8\u10e1 \u10d3\u10d4\u10e2\u10d0\u10da\u10d4
 gfw(){return"\u10e9\u10d0\u10e2\u10d4\u10d1\u10d8"},
 gjR(){return"\u10eb\u10da\u10d8\u10d4\u10e0\u10d8 \u10de\u10d0\u10e0\u10dd\u10da\u10d8 \u10d0\u10d0\u10e0\u10e9\u10d8\u10d4\u10d7"},
 gfz(){return"\u10d0\u10e0\u10e5\u10d8\u10d5\u10d8\u10e1 \u10d2\u10d0\u10ec\u10db\u10d4\u10dc\u10d3\u10d0"},
-gcv(d){return"\u10d3\u10d0\u10ee\u10e3\u10e0\u10d5\u10d0"},
+gcr(d){return"\u10d3\u10d0\u10ee\u10e3\u10e0\u10d5\u10d0"},
 gkc(){return""},
 gkd(){return"\u10d0\u10e6\u10dc\u10d8\u10e8\u10d5\u10dc\u10d0, \u10e0\u10dd\u10d2\u10dd\u10e0\u10ea \u10ef\u10d2\u10e3\u10e4\u10d8\u10e1"},
 gjT(){return"\u10db\u10dd\u10ea\u10d4\u10db\u10e3\u10da\u10d8 \u10db\u10dd\u10db\u10ee\u10db\u10d0\u10e0\u10d4\u10d1\u10da\u10d8\u10e1 \u10d1\u10da\u10dd\u10d9\u10d8\u10e0\u10d4\u10d1\u10d0 \u10d0\u10db \u10dd\u10d7\u10d0\u10ee\u10e8\u10d8"},
@@ -711,7 +711,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GJ,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GJ":{"aE":[]}}'))};
-(a=>{a["gZ2WRepiVuFcAOx/2IO5Au1SMu4="]=a.current})($__dart_deferred_initializers__);
+y(A.GI,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GI":{"aE":[]}}'))};
+(a=>{a["NXQykb/IOKMVfffxzeYDoIsPxw8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_169.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOf(){return new A.GO(B.df("nb"))},
-GO:function GO(d){this.a=d}},C
+cOh(){return new A.GN(B.df("nb"))},
+GN:function GN(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[40],A)
 C=c[58]
-A.GO.prototype={
+A.GN.prototype={
 giZ(){return"false"},
 go4(){return"Gjenta passord"},
 gmD(){return"Ikke en bildefil."},
@@ -86,7 +86,7 @@ gfv(){return"Sludringsdetaljer"},
 gfw(){return"Chatter"},
 gjR(){return"Velg et sterkt passord"},
 gfz(){return"T\xf8m arkivet"},
-gcv(d){return"Lukk"},
+gcr(d){return"Lukk"},
 gkc(){return"Marker som rom for direktemeldinger for den angitte Matrix-IDen"},
 gkd(){return"Merk som gruppe"},
 gjT(){return"Utesteng den gitte brukeren fra dette rommet"},
@@ -713,7 +713,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GO,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GO":{"aE":[]}}'))};
-(a=>{a["h0GgQImn6yc1RLu+/6Hv2BMdy34="]=a.current})($__dart_deferred_initializers__);
+y(A.GN,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GN":{"aE":[]}}'))};
+(a=>{a["w52M999ZhTaRUTkXJSan7lPxiC8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_174.part.js.map

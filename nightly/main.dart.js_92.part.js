@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cNM(){return new A.Gk(B.df("ca"))},
-Gk:function Gk(d){this.a=d}}
+cNO(){return new A.Gj(B.df("ca"))},
+Gj:function Gj(d){this.a=d}}
 B=c[0]
 C=c[58]
 A=a.updateHolder(c[10],A)
-A.Gk.prototype={
+A.Gj.prototype={
 giZ(){return"true"},
 go4(){return"Repetiu la contrasenya"},
 gmD(){return"No \xe9s un arxiu d'image."},
@@ -86,7 +86,7 @@ gfv(){return"Detalls del xat"},
 gfw(){return"Xats"},
 gjR(){return"Trieu una contrasenya forta"},
 gfz(){return"Neteja l\u2019arxiu"},
-gcv(d){return"Tanca"},
+gcr(d){return"Tanca"},
 gkc(){return"Marca com a conversa directa la sala amb aquesta ID de Matrix"},
 gkd(){return"Marca com un grup"},
 gjT(){return"Veta uni usu\xe0ri\xef d'aquesta sala"},
@@ -713,7 +713,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gk,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gk":{"aE":[]}}'))};
-(a=>{a["KO3akTGRGdxnLfAoZgn6QMeJvZU="]=a.current})($__dart_deferred_initializers__);
+y(A.Gj,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gj":{"aE":[]}}'))};
+(a=>{a["z4ahcEV5WAgEcKj2REsRlalDoyY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_92.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOo(){return new A.GW(B.df("sl"))},
-GW:function GW(d){this.a=d}},C
+cOq(){return new A.GV(B.df("sl"))},
+GV:function GV(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[46],A)
 C=c[58]
-A.GW.prototype={
+A.GV.prototype={
 giZ(){return""},
 go4(){return"Ponovite geslo"},
 gmD(){return""},
@@ -86,7 +86,7 @@ gfv(){return"Podrobnosti klepeta"},
 gfw(){return"Klepeti"},
 gjR(){return"Izberite mo\u010dno geslo"},
 gfz(){return"Po\u010disti arhiv"},
-gcv(d){return"Zapri"},
+gcr(d){return"Zapri"},
 gkc(){return""},
 gkd(){return""},
 gjT(){return"Izklju\u010di dolo\u010denega uporabnika iz te sobe"},
@@ -711,7 +711,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GW,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GW":{"aE":[]}}'))};
-(a=>{a["/wXES7oJHxRgfzHKh+rlPDSqWpk="]=a.current})($__dart_deferred_initializers__);
+y(A.GV,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GV":{"aE":[]}}'))};
+(a=>{a["+2heDTQ9tm6ySgT5VZLChHKRxEg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_185.part.js.map

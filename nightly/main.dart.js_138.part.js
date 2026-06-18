@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cNZ(){return new A.Gx(B.df("fr"))},
-Gx:function Gx(d){this.a=d}},C
+cO0(){return new A.Gw(B.df("fr"))},
+Gw:function Gw(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[23],A)
 C=c[58]
-A.Gx.prototype={
+A.Gw.prototype={
 giZ(){return"true"},
 go4(){return"R\xe9p\xe9tez le mot de passe"},
 gmD(){return"Pas un fichier image."},
@@ -86,7 +86,7 @@ gfv(){return"D\xe9tails de la discussion"},
 gfw(){return"Discussions"},
 gjR(){return"Choisissez un mot de passe fort"},
 gfz(){return"Effacer les archives"},
-gcv(d){return"Fermer"},
+gcr(d){return"Fermer"},
 gkc(){return"Marquer comme salon de messages directs pour l'identifiant Matrix indiqu\xe9"},
 gkd(){return"Marquer comme groupe"},
 gjT(){return"Bannir l'utilisateur/trice donn\xe9(e) de ce salon"},
@@ -713,7 +713,7 @@ gpQ(){return"N'a pas pu \xeatre envoy\xe9"},
 gqt(){return"Hier"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gx,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gx":{"aE":[]}}'))};
-(a=>{a["ZgpZkGL9LRXkLmGZsCPCwVkOMU8="]=a.current})($__dart_deferred_initializers__);
+y(A.Gw,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gw":{"aE":[]}}'))};
+(a=>{a["4IIqWie1MJ6QvMhkANzQcvmGgjg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_138.part.js.map

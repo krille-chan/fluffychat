@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cNU(){return new A.Gs(B.df("et"))},
-Gs:function Gs(d){this.a=d}},C
+cNW(){return new A.Gr(B.df("et"))},
+Gr:function Gr(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[18],A)
 C=c[58]
-A.Gs.prototype={
+A.Gr.prototype={
 giZ(){return"v\xe4\xe4r"},
 go4(){return"Korda salas\xf5na"},
 gmD(){return"See pole pildifail."},
@@ -86,7 +86,7 @@ gfv(){return"Vestluse teave"},
 gfw(){return"Vestlused"},
 gjR(){return"Vali korralik salas\xf5na"},
 gfz(){return"Kustuta arhiiv"},
-gcv(d){return"Sulge"},
+gcr(d){return"Sulge"},
 gkc(){return"M\xe4rgi otsevestluseks antud Matrixi ID jaoks"},
 gkd(){return"M\xe4rgi jututoaks"},
 gjT(){return"Sea sellele kasutajale antud jututoas suhtluskeeld"},
@@ -713,7 +713,7 @@ gpQ(){return"Saatmine ei \xf5nnestunud"},
 gqt(){return"Eile"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gs,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gs":{"aE":[]}}'))};
-(a=>{a["IOj8tJCBnK4PxueiXCHqv5IDyNc="]=a.current})($__dart_deferred_initializers__);
+y(A.Gr,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gr":{"aE":[]}}'))};
+(a=>{a["2mX3hBjBnwRTCTWQ2W9drLniaKU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_129.part.js.map

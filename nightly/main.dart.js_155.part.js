@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cO4(){return new A.GD(B.df("hu"))},
-GD:function GD(d){this.a=d}},C
+cO6(){return new A.GC(B.df("hu"))},
+GC:function GC(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[29],A)
 C=c[58]
-A.GD.prototype={
+A.GC.prototype={
 giZ(){return""},
 go4(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gmD(){return"Nem k\xe9p f\xe1jl."},
@@ -86,7 +86,7 @@ gfv(){return"Cseveg\xe9s r\xe9szletei"},
 gfw(){return"Cseveg\xe9sek"},
 gjR(){return"V\xe1lasszon egy er\u0151s jelsz\xf3t"},
 gfz(){return"Arch\xedvum \xfcr\xedt\xe9se"},
-gcv(d){return"Bez\xe1r"},
+gcr(d){return"Bez\xe1r"},
 gkc(){return"Szoba megjel\xf6l\xe9se mint k\xf6zvetlen cseveg\u0151 szoba az adott Matrix ID-n\xe9l"},
 gkd(){return"Jel\xf6l\xe9s csoportnak"},
 gjT(){return"Adott felhaszn\xe1l\xf3 kitilt\xe1sa a szob\xe1b\xf3l"},
@@ -711,7 +711,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GD,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GD":{"aE":[]}}'))};
-(a=>{a["k7DUMY+5uveGIH4qWG8O+j84T1o="]=a.current})($__dart_deferred_initializers__);
+y(A.GC,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GC":{"aE":[]}}'))};
+(a=>{a["OjsRK6EeHls/GGPPAVz1JLKvOE0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_155.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cO7(){return new A.GG(B.df("ie"))},
-GG:function GG(d){this.a=d}},C
+cO9(){return new A.GF(B.df("ie"))},
+GF:function GF(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[32],A)
 C=c[58]
-A.GG.prototype={
+A.GF.prototype={
 giZ(){return""},
 go4(){return"Repetir li contrasigne"},
 gmD(){return""},
@@ -86,7 +86,7 @@ gfv(){return"Detallies del conversation"},
 gfw(){return"Conversationes"},
 gjR(){return""},
 gfz(){return"Vacuar li archive"},
-gcv(d){return"Cluder"},
+gcr(d){return"Cluder"},
 gkc(){return""},
 gkd(){return"Marcar quam gruppe"},
 gjT(){return""},
@@ -711,7 +711,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GG,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GG":{"aE":[]}}'))};
-(a=>{a["ZnVJjESs/qbZbEBQT2H2n5r7pWw="]=a.current})($__dart_deferred_initializers__);
+y(A.GF,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GF":{"aE":[]}}'))};
+(a=>{a["/HKt7fAAd3QTdAFwTP7GxYN6kSE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_163.part.js.map

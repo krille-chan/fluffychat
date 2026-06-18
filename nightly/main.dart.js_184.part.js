@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOn(){return new A.GV(B.df("sk"))},
-GV:function GV(d){this.a=d}},C
+cOp(){return new A.GU(B.df("sk"))},
+GU:function GU(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[45],A)
 C=c[58]
-A.GV.prototype={
+A.GU.prototype={
 giZ(){return""},
 go4(){return"Zopakujte heslo"},
 gmD(){return""},
@@ -86,7 +86,7 @@ gfv(){return"Podrobnosti o chate"},
 gfw(){return"\u010cety"},
 gjR(){return"Vyberte si siln\xe9 heslo"},
 gfz(){return""},
-gcv(d){return"Zavrie\u0165"},
+gcr(d){return"Zavrie\u0165"},
 gkc(){return""},
 gkd(){return""},
 gjT(){return""},
@@ -711,7 +711,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GV,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GV":{"aE":[]}}'))};
-(a=>{a["qdmgHiWmCnwqwLYqNHGgHFznwEc="]=a.current})($__dart_deferred_initializers__);
+y(A.GU,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GU":{"aE":[]}}'))};
+(a=>{a["Ydf9sYCJdqasRPc0mCmNrsdrELA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_184.part.js.map

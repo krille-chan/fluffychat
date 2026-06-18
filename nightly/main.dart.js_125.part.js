@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cNT(){return new A.Gr(B.df("es"))},
-Gr:function Gr(d){this.a=d}},C
+cNV(){return new A.Gq(B.df("es"))},
+Gq:function Gq(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[17],A)
 C=c[58]
-A.Gr.prototype={
+A.Gq.prototype={
 giZ(){return"true"},
 go4(){return"Repite la contrase\xf1a"},
 gmD(){return"El archivo no es una imagen."},
@@ -86,7 +86,7 @@ gfv(){return"Detalles del chat"},
 gfw(){return"Conversaciones"},
 gjR(){return"Elija una contrase\xf1a segura"},
 gfz(){return"Borrar archivo"},
-gcv(d){return"Cerrar"},
+gcr(d){return"Cerrar"},
 gkc(){return"Marcar como sala de mensajes directos para el ID de Matrix"},
 gkd(){return"Marcar como grupo"},
 gjT(){return"Prohibir al usuario dado en esta sala"},
@@ -713,7 +713,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gr,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"Gr":{"aE":[]}}'))};
-(a=>{a["p+Qdta67VTDLHzonKwqushFVIac="]=a.current})($__dart_deferred_initializers__);
+y(A.Gq,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"Gq":{"aE":[]}}'))};
+(a=>{a["ahnDskbhceqPlbDyWUYe4//IW+Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_125.part.js.map

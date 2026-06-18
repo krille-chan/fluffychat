@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cO2(){return new A.GB(B.df("hi"))},
-GB:function GB(d){this.a=d}},C
+cO4(){return new A.GA(B.df("hi"))},
+GA:function GA(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[27],A)
 C=c[58]
-A.GB.prototype={
+A.GA.prototype={
 giZ(){return""},
 go4(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
 gmD(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
@@ -86,7 +86,7 @@ gfv(){return""},
 gfw(){return""},
 gjR(){return""},
 gfz(){return""},
-gcv(d){return""},
+gcr(d){return""},
 gkc(){return""},
 gkd(){return""},
 gjT(){return""},
@@ -711,7 +711,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GB,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GB":{"aE":[]}}'))};
-(a=>{a["MJT/Fsbiwa6OfeTP788TJsobQm4="]=a.current})($__dart_deferred_initializers__);
+y(A.GA,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GA":{"aE":[]}}'))};
+(a=>{a["TJg+kUUnSebUaf391HVgTY70r3M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_147.part.js.map

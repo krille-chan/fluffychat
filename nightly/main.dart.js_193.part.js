@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOv(){return new A.H2(B.df("tr"))},
-H2:function H2(d){this.a=d}},C
+cOx(){return new A.H1(B.df("tr"))},
+H1:function H1(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[53],A)
 C=c[58]
-A.H2.prototype={
+A.H1.prototype={
 giZ(){return"false"},
 go4(){return"Parolay\u0131 tekrarlay\u0131n"},
 gmD(){return"Bir resim dosyas\u0131 de\u011fil."},
@@ -86,7 +86,7 @@ gfv(){return"Sohbet ayr\u0131nt\u0131lar\u0131"},
 gfw(){return"Sohbetler"},
 gjR(){return"G\xfc\xe7l\xfc bir parola se\xe7in"},
 gfz(){return"Ar\u015fivi temizle"},
-gcv(d){return"Kapat"},
+gcr(d){return"Kapat"},
 gkc(){return"Verilen Matrix kimli\u011fi i\xe7in do\u011frudan mesaj odas\u0131 olarak i\u015faretle"},
 gkd(){return"Grup olarak i\u015faretle"},
 gjT(){return"Verilen kullan\u0131c\u0131y\u0131 bu odadan yasaklay\u0131n"},
@@ -711,8 +711,8 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.H2,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"H2":{"aE":[]}}'))
+x(A.H1,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"H1":{"aE":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["NNFA1hZWtwN1ZU7sEW0R92rz/AI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ycu8kBv2x7L9VCgbeMwaZjVb1FU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_193.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOh(){return new A.GQ(B.df("pl"))},
-GQ:function GQ(d){this.a=d}},C
+cOj(){return new A.GP(B.df("pl"))},
+GP:function GP(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[42],A)
 C=c[58]
-A.GQ.prototype={
+A.GP.prototype={
 giZ(){return"false"},
 go4(){return"Powt\xf3rz has\u0142o"},
 gmD(){return"To nie jest plik obrazu."},
@@ -86,7 +86,7 @@ gfv(){return"Szczeg\xf3\u0142y czatu"},
 gfw(){return"Czaty"},
 gjR(){return"Wybierz silne has\u0142o"},
 gfz(){return"Wyczy\u015b\u0107 archiwum"},
-gcv(d){return"Zamknij"},
+gcr(d){return"Zamknij"},
 gkc(){return"Oznacz jako pok\xf3j wiadomo\u015bci bezpo\u015brednich dla podanego Matrix ID"},
 gkd(){return"Oznacz jako grup\u0119"},
 gjT(){return"Zbanuj u\u017cytkownika w tym pokoju"},
@@ -713,7 +713,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GQ,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GQ":{"aE":[]}}'))};
-(a=>{a["sPk6bgLHOm8vsMicQBvg72LOzsU="]=a.current})($__dart_deferred_initializers__);
+y(A.GP,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GP":{"aE":[]}}'))};
+(a=>{a["WujXSQF3VU0kMMNf4jdEgnHo9pY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_178.part.js.map

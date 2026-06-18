@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOi(d){return new A.BB(B.df(d))},
-cOj(){return new A.GR(B.df("pt_BR"))},
-cOk(){return new A.GS(B.df("pt_PT"))},
+cOk(d){return new A.BB(B.df(d))},
+cOl(){return new A.GQ(B.df("pt_BR"))},
+cOm(){return new A.GR(B.df("pt_PT"))},
 BB:function BB(d){this.a=d},
-GR:function GR(d){this.a=d},
-GS:function GS(d){this.a=d}},C
+GQ:function GQ(d){this.a=d},
+GR:function GR(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[58]
@@ -90,7 +90,7 @@ gfv(){return""},
 gfw(){return""},
 gjR(){return""},
 gfz(){return""},
-gcv(d){return"Fechar"},
+gcr(d){return"Fechar"},
 gkc(){return""},
 gkd(){return""},
 gjT(){return""},
@@ -714,7 +714,7 @@ gpU(){return"(edited)"},
 gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
-A.GR.prototype={
+A.GQ.prototype={
 giZ(){return"true"},
 go4(){return"Repita a senha"},
 gmD(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -794,7 +794,7 @@ gfv(){return"Detalhes da conversa"},
 gfw(){return"Conversas"},
 gjR(){return"Escolha uma senha forte"},
 gfz(){return"Limpar arquivo"},
-gcv(d){return"Fechar"},
+gcr(d){return"Fechar"},
 gkc(){return"Marcar como sala de mensagens diretas para o ID Matrix fornecido"},
 gkd(){return"Marcar como grupo"},
 gjT(){return"Banir o usu\xe1rio especificado desta sala"},
@@ -1368,7 +1368,7 @@ go1(){return""},
 gog(d){return""},
 gkO(){return""},
 C(d,e){return this.gb8(this).$1(e)}}
-A.GS.prototype={
+A.GR.prototype={
 giZ(){return"falso"},
 go4(){return"Repete a palavra-passe"},
 gmD(){return"N\xe3o \xe9 um ficheiro de imagem."},
@@ -1449,7 +1449,7 @@ gfv(){return"Detalhes de conversa"},
 gfw(){return"Conversas"},
 gjR(){return"Escolhe uma palavra-passe forte"},
 gfz(){return"Limpar arquivo"},
-gcv(d){return"Fechar"},
+gcr(d){return"Fechar"},
 gkc(){return"Marcar como sala de mensagem direta para o Matrix ID dado"},
 gkd(){return"Marcar como grupo"},
 gjT(){return"Banir o utilizador dado desta sala"},
@@ -2023,8 +2023,8 @@ gkO(){return""},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.BB,C.aE)
-w(A.BB,[A.GR,A.GS])})()
-B.dI(b.typeUniverse,JSON.parse('{"BB":{"aE":[]},"GR":{"aE":[]},"GS":{"aE":[]}}'))
+w(A.BB,[A.GQ,A.GR])})()
+B.dI(b.typeUniverse,JSON.parse('{"BB":{"aE":[]},"GQ":{"aE":[]},"GR":{"aE":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["PJHrISDoeNCOIDXRFrai64EQt4U="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["AwJX+i0+2bUCf92kJt4RNJGZT5Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

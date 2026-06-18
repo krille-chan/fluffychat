@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOe(){return new A.GN(B.df("lv"))},
-GN:function GN(d){this.a=d}},C
+cOg(){return new A.GM(B.df("lv"))},
+GM:function GM(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[39],A)
 C=c[58]
-A.GN.prototype={
+A.GM.prototype={
 giZ(){return"true"},
 go4(){return"Atk\u0101rtot paroli"},
 gmD(){return"Nav att\u0113la datne."},
@@ -86,7 +86,7 @@ gfv(){return"T\u0113rz\u0113\u0161anas izv\u0113rsums"},
 gfw(){return"T\u0113rz\u0113\u0161anas"},
 gjR(){return"J\u0101izv\u0113las dro\u0161a parole"},
 gfz(){return"Izt\u012br\u012bt arh\u012bvu"},
-gcv(d){return"Aizv\u0113rt"},
+gcr(d){return"Aizv\u0113rt"},
 gkc(){return"Atz\u012bm\u0113t k\u0101 tie\u0161o zi\u0146u istabu nor\u0101d\u012btajam Matrix Id"},
 gkd(){return"Atz\u012bm\u0113t k\u0101 kopu"},
 gjT(){return"Izsl\u0113gt nor\u0101d\u012bto lietot\u0101ju no \u0161\u012bs istabas"},
@@ -713,7 +713,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GN,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GN":{"aE":[]}}'))};
-(a=>{a["sSfuqp12eheklQ8GDD5VPJqmfI0="]=a.current})($__dart_deferred_initializers__);
+y(A.GM,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GM":{"aE":[]}}'))};
+(a=>{a["9N/SSfs6b5zElVvbwn/wBIyqZNo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_173.part.js.map

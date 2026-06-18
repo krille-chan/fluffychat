@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cO8(){return new A.GH(B.df("it"))},
-GH:function GH(d){this.a=d}},C
+cOa(){return new A.GG(B.df("it"))},
+GG:function GG(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[33],A)
 C=c[58]
-A.GH.prototype={
+A.GG.prototype={
 giZ(){return"disattivato"},
 go4(){return"Ripeti password"},
 gmD(){return"Non \xe8 un file immagine."},
@@ -86,7 +86,7 @@ gfv(){return"Dettagli chat"},
 gfw(){return"Discussioni"},
 gjR(){return"Scegli una password complessa"},
 gfz(){return"Cancella archivio"},
-gcv(d){return"Chiudi"},
+gcr(d){return"Chiudi"},
 gkc(){return"Contrassegna questo Matrix ID come stanza di messaggi diretti"},
 gkd(){return"Segna come gruppo"},
 gjT(){return"Banna l'utente specificato da questa stanza"},
@@ -711,7 +711,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GH,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GH":{"aE":[]}}'))};
-(a=>{a["gzxuhxHZ/uWITH98YBGoI1qQzuw="]=a.current})($__dart_deferred_initializers__);
+y(A.GG,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GG":{"aE":[]}}'))};
+(a=>{a["oGM9C+sUA9eQJDgwk1AvXekBKWY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_165.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cO3(){return new A.GC(B.df("hr"))},
-GC:function GC(d){this.a=d}},C
+cO5(){return new A.GB(B.df("hr"))},
+GB:function GB(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[28],A)
 C=c[58]
-A.GC.prototype={
+A.GB.prototype={
 giZ(){return"true"},
 go4(){return"Ponovi lozinku"},
 gmD(){return"Nije slikovna datoteka."},
@@ -86,7 +86,7 @@ gfv(){return"Detalji chata"},
 gfw(){return"Chatovi"},
 gjR(){return"Odaberi sna\u017enu lozinku"},
 gfz(){return"Isprazni arhiv"},
-gcv(d){return"Zatvori"},
+gcr(d){return"Zatvori"},
 gkc(){return"Ozna\u010di kao sobu za izravnu razmjenu poruka za zadani Matrix ID"},
 gkd(){return"Ozna\u010di kao grupu"},
 gjT(){return"Isklju\u010di navedenog korisnika iz ove sobe"},
@@ -713,7 +713,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GC,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GC":{"aE":[]}}'))};
-(a=>{a["f+QLFyshyPmkAnGnoJFvlKNIEno="]=a.current})($__dart_deferred_initializers__);
+y(A.GB,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GB":{"aE":[]}}'))};
+(a=>{a["qjQVDJiVfURcmwORHSo3DSEWxNI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_148.part.js.map

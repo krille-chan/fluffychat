@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOp(){return new A.GX(B.df("sq"))},
-GX:function GX(d){this.a=d}},C
+cOr(){return new A.GW(B.df("sq"))},
+GW:function GW(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[47],A)
 C=c[58]
-A.GX.prototype={
+A.GW.prototype={
 giZ(){return""},
 go4(){return""},
 gmD(){return""},
@@ -86,7 +86,7 @@ gfv(){return""},
 gfw(){return""},
 gjR(){return""},
 gfz(){return""},
-gcv(d){return""},
+gcr(d){return""},
 gkc(){return""},
 gkd(){return""},
 gjT(){return""},
@@ -711,7 +711,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GX,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GX":{"aE":[]}}'))};
-(a=>{a["PbMjPmLXIAb1xrnKFnZ8EApjREg="]=a.current})($__dart_deferred_initializers__);
+y(A.GW,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GW":{"aE":[]}}'))};
+(a=>{a["Bh3DgDONsYArTNIKg31+CzcEPzs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_186.part.js.map

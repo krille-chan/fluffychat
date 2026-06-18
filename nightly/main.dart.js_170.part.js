@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOb(){return new A.GK(B.df("kab"))},
-GK:function GK(d){this.a=d}},C
+cOd(){return new A.GJ(B.df("kab"))},
+GJ:function GJ(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[36],A)
 C=c[58]
-A.GK.prototype={
+A.GJ.prototype={
 giZ(){return""},
 go4(){return"Ales awal n u\u025beddi"},
 gmD(){return"Ma\u010d\u010di d afaylu n tugna."},
@@ -86,7 +86,7 @@ gfv(){return"Ifatusen n udiwenni"},
 gfw(){return"Idiwenniyen"},
 gjR(){return"Fren awal n u\u025beddi i\u01e7ehden"},
 gfz(){return"Sfe\u1e0d a\u0263ba\u1e5b"},
-gcv(d){return"Mdel"},
+gcr(d){return"Mdel"},
 gkc(){return"Cre\u1e0d d akken taxxamt n yizen usrid i Usulay Matriks i d-yettunefken"},
 gkd(){return"Cre\u1e0d am ugraw"},
 gjT(){return"Gdel aseqdac i d-ittunefken seg texxamt-agi"},
@@ -711,7 +711,7 @@ gpQ(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.GK,C.aE)})()
-B.dI(b.typeUniverse,JSON.parse('{"GK":{"aE":[]}}'))};
-(a=>{a["3oxLptEWXj/5PzQ59D195xmUFW4="]=a.current})($__dart_deferred_initializers__);
+y(A.GJ,C.aE)})()
+B.dI(b.typeUniverse,JSON.parse('{"GJ":{"aE":[]}}'))};
+(a=>{a["FuF44ZsfBd7F84x+z+69XQEFcGs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_170.part.js.map
