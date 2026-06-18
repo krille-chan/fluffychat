@@ -2367,10 +2367,6 @@
     "nothingFound": "Níor aimsíodh aon rud...",
     "searchMore": "Cuardaigh tuilleadh...",
     "gallery": "Gailearaí",
-    "alwaysUse24HourFormat": "bréagach",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "importFromZipFile": "Iompórtáil ó chomhad .zip",
     "exportEmotePack": "Easpórtáil Emote pacáiste mar .zip",
     "replace": "Ionadaigh",

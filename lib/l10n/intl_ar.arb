@@ -2340,10 +2340,6 @@
     "searchMore": "ابحث أكثر...",
     "gallery": "المعرض",
     "swipeRightToLeftToReply": "اسحب من اليمين إلى اليسار للرد",
-    "alwaysUse24HourFormat": "علّم لعرض الوقت بنسق 24 ساعة دائما.‏",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "noMoreChatsFound": "لم يتم العثور على دردشات...",
     "unread": "غير المقروءة",
     "space": "المساحة",

@@ -2381,10 +2381,6 @@
         "space": {}
     },
     "markAsUnread": "Позначити непрочитаним",
-    "alwaysUse24HourFormat": "false",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "invitedBy": "📩 Запрошений {user}",
     "@invitedBy": {
         "placeholders": {

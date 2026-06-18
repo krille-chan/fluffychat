@@ -1263,10 +1263,6 @@
         "placeholders": {}
     },
     "notAnImage": "הקובץ אינו תמונה.",
-    "alwaysUse24HourFormat": "",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "showPassword": "",
     "@showPassword": {
         "type": "String",

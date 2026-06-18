@@ -228,10 +228,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "alwaysUse24HourFormat": "Ψευδής",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "ignoreUser": "Αγνόηση χρήστη",
     "aboutHomeserver": "Σχετικά με {homeserver}",
     "@aboutHomeserver": {

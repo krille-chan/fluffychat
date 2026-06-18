@@ -2075,10 +2075,6 @@
     "openLinkInBrowser": "بازکردن پیوند در مرورگر",
     "reportErrorDescription": "اوه نه. اشتباهی رخ داد. اگر تمایل دارید، می‌توانید این اشکال را با توسعه‌دهندگان گزارش دهید.",
     "notAnImage": "یک فایل تصویری نیست.",
-    "alwaysUse24HourFormat": "false",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "ignoreUser": "چشم‌پوشی از کاربر",
     "importNow": "اکنون وارد کنید",
     "importEmojis": "وارد کردن شکلک‌ها",

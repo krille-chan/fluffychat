@@ -557,10 +557,6 @@
             }
         }
     },
-    "alwaysUse24HourFormat": "không",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "hugContent": "{senderName} ôm bạn",
     "@hugContent": {
         "type": "String",

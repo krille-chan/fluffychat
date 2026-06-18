@@ -37,8 +37,14 @@ extension DateTimeExtension on DateTime {
 
   /// Returns a simple time String.
   String localizedTimeOfDay(BuildContext context) => use24HourFormat(context)
-      ? DateFormat('HH:mm', L10n.of(context).localeName).format(this)
-      : DateFormat('h:mm a', L10n.of(context).localeName).format(this);
+      ? DateFormat(
+          'HH:mm',
+          Localizations.localeOf(context).languageCode,
+        ).format(this)
+      : DateFormat(
+          'h:mm a',
+          Localizations.localeOf(context).languageCode,
+        ).format(this);
 
   /// Returns [localizedTimeOfDay()] if the ChatTime is today, the name of the week
   /// day if the ChatTime is this week and a date string else.
@@ -126,12 +132,41 @@ extension DateTimeExtension on DateTime {
   bool use24HourFormat(BuildContext context) {
     final mediaQuery24h = MediaQuery.alwaysUse24HourFormatOf(context);
 
-    final l10n24h = L10n.of(context).alwaysUse24HourFormat == 'true';
+    // For Android this should always work.
+    if (PlatformInfos.isAndroid) return mediaQuery24h;
+
+    final locale = Localizations.localeOf(context).languageCode;
+    // Note: I don't like maintaining my own list but I haven't found a way to
+    // check this completely in Flutter side, as `alwaysUse24HourFormatOf()`
+    // doesn't seem to work on web or desktop.
+    const languages24Hour = {
+      'de',
+      'fr',
+      'es',
+      'it',
+      'nl',
+      'pt',
+      'ru',
+      'zh',
+      'ja',
+      'ko',
+      'ar',
+      'pl',
+      'cs',
+      'hu',
+      'sv',
+      'no',
+      'da',
+      'fi',
+      'el',
+      'he',
+      'tr',
+      'lt',
+    };
+    final l10n24h = languages24Hour.contains(locale);
 
     // https://github.com/krille-chan/fluffychat/pull/1457#discussion_r1836817914
-    if (PlatformInfos.isAndroid) {
-      return mediaQuery24h;
-    } else if (PlatformInfos.isIOS) {
+    if (PlatformInfos.isIOS) {
       return mediaQuery24h || l10n24h;
     }
 

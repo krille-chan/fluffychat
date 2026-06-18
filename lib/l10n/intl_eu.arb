@@ -2340,10 +2340,6 @@
     "restricted": "Mugatuta",
     "knockRestricted": "Eskatu baimena sarrera mugatua duen txatean",
     "swipeRightToLeftToReply": "Herrestatu eskuin-ezker erantzuteko",
-    "alwaysUse24HourFormat": "false",
-    "@alwaysUse24HourFormat": {
-        "description": "Set to true to always display time of day in 24 hour format."
-    },
     "noMoreChatsFound": "Ez da beste txatik aurkitu...",
     "unread": "Irakurtzeke",
     "space": "Gunea",
