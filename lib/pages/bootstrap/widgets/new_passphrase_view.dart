@@ -57,6 +57,7 @@ class NewPassphraseView extends StatelessWidget {
           onPressed: canCreatePassphrase && !viewModel.value.isLoading
               ? () => viewModel.setOrSkipPassphrase(
                   viewModel.newPassphraseController.text,
+                  context,
                 )
               : null,
           child: viewModel.value.isLoading
@@ -67,7 +68,7 @@ class NewPassphraseView extends StatelessWidget {
         TextButton(
           onPressed: viewModel.value.isLoading
               ? null
-              : () => viewModel.setOrSkipPassphrase(null),
+              : () => viewModel.setOrSkipPassphrase(null, context),
           style: TextButton.styleFrom(foregroundColor: theme.colorScheme.error),
           child: Text(L10n.of(context).skip),
         ),
