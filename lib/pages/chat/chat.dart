@@ -591,7 +591,13 @@ class ChatController extends State<ChatPageWithRoom>
   void dispose() {
     timeline?.cancelSubscriptions();
     timeline = null;
+    _storeInputTimeoutTimer?.cancel();
+    typingCoolDown?.cancel();
+    typingTimeout?.cancel();
+    sendController.dispose();
+    scrollController.dispose();
     inputFocus.removeListener(_inputFocusListener);
+    inputFocus.dispose();
     web.window.removeEventListener('paste', _handleClipboardFilePasteWeb);
     if (currentlyTyping) room.setTyping(false);
     MxcImage.clearCache(widget.room.id);
