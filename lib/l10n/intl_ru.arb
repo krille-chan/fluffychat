@@ -2689,32 +2689,158 @@
     },
     "federationBaseUrl": "Основной URL федерации",
     "clientWellKnownInformation": "Client-Well-Known Информация:",
-    "baseUrl": "Базовый URL",
+    "baseUrl": "URL ссылка базы",
     "identityServer": "Сервер профилей:",
     "signIn": "Войти",
-    "searchOrEnterHomeserverAddress": "Поищите или введите адрес домашнего сервера",
-    "matrixId": "Matrix ID",
-    "setPowerLevel": "Установить уровень возможностей",
-    "makeModerator": "Назначить модератором",
-    "makeAdmin": "Назначить администратором",
-    "removeModeratorRights": "Удалить права модератора",
-    "removeAdminRights": "Удалить права администратора",
-    "powerLevel": "Уровень энергии",
-    "setPowerLevelDescription": "Уровни прав определяют, что участнику разрешено делать в этой комнате, и обычно варьируются от 0 до 100.",
+    "searchOrEnterHomeserverAddress": "Искать или ввести адрес сервера",
+    "matrixId": "Идентификатор Matrix",
+    "setPowerLevel": "Поставить уровень мощности",
+    "makeModerator": "Сделать модератором",
+    "makeAdmin": "Сделать админом",
+    "removeModeratorRights": "Убрать права у модератора",
+    "removeAdminRights": "Убрать права админа",
+    "powerLevel": "Уровень мощности",
+    "setPowerLevelDescription": "Уровни мощности определяют, что участник может делать в этой комнате и иногда варьируются в диапозоне 0 и 100.",
     "owner": "Владелец",
-    "mute": "Мут",
+    "mute": "Заглушить",
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    "createNewChat": "Создать новый чат",
+    "createNewChat": "Сделать новый чат",
     "reset": "Сброс",
-    "supportFluffyChat": "Поддержите FluffyChat",
-    "support": "Поддержка",
-    "setLowPriority": "Установить низкий приоритет",
-    "unsetLowPriority": "Неопределенный приоритет",
-    "playSoundOnNotification": "Воспроизвести звук при получении уведомления",
+    "supportFluffyChat": "Поддержать FluffyChat",
+    "support": "Поддержать",
+    "setLowPriority": "Установить маленький приоритет",
+    "unsetLowPriority": "Отменить низкий приоритет",
+    "playSoundOnNotification": "Проиграть звук, когда уведомления",
     "addTag": "Добавить тег",
     "removeTag": "Удалить тег",
     "tagName": "Название тега",
-    "createNewTag": "Создать новый тег"
+    "createNewTag": "Создать новый тег",
+    "appSubtitle": "Защитить коммуникацию [matrix]",
+    "passphrasesMatch": "Кодовые фразы соовпадают",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "discardEdits": "У вас есть не внесённые изменения. Отменить внесённые изменения?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Ключи не переданы. Пожалуйста, попробуйте еще раз.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showMore": "Показать больше",
+    "showLess": "Показать меньше",
+    "possibleByYou": "Этот релиз был только возможен из-за вашей поддержки. FluffyChat остаётся бесплатным, с открытым исходным кодом, и полностью управляется сообществом.",
+    "hideRoomsInSpaces": "Спрятать комнаты которые в пространстве",
+    "interactiveVerification": "Интерактивная верификация",
+    "check": "Проверить",
+    "waitingForKeys": "Ожидание ключей... Пожалуйста оставьте другое устройство активным.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "edited": "(изменено)",
+    "encryptedMessage": "Зашифрованное сообщение",
+    "unencryptedMessage": "Не зашифрованное сообщение",
+    "passphraseNumberRequirement": "Имеет одну цифру.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "allow": "Разрешить",
+    "messageCanOnlyBeReadByUser": "Ваше сообщение зашифровано сквозным шифрованием и только этот пользователь может его прочитать:",
+    "noUserKeyFound": "Не нашлось ключа пользователя",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "publicKey": "Публичный ключ: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "deviceIdentityKey": "Ключ идентификации устройства",
+    "encrypting": "Шифруем",
+    "couldNotBeSent": "Не возможно отправить",
+    "restoreBootstrapDevicesDescription": "Пожалуйста выберите одно своё другое устройтво, чтобы верифицировать эту сессию:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Разблокировать",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Сбросить аккаунт",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Открыть файл",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Когда вы сбрасываете ваш аккаунт, то вы потеряете доступ к вашим старым сообщениям навсегда. Все ваши устройства нужны будут верифицированы опять. Пожалуйста, только делайте это действие, когда у вас нет устройств, чтобы верифицировать вашу сессию и вы потеряли свой ключ восстановления и кодовую фразу!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Новая кодовая фраза",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Повторите кодовую фразу",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "Хотя-бы 12 символов.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Имеет прописные и строчные буквы.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Имеет специальные символы.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Сохранить как файл",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Вы готовы начать!",
+    "knownSince": "Известен с:{date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "today": "Сегодня",
+    "sending": "Отправляется",
+    "generatingThumbnail": "Генерируется миниатюра",
+    "uploading": "Загружаем",
+    "yesterday": "Вчера",
+    "showThumbnailsInTimeline": "Показать миниатюры картинок и видео",
+    "appDescription": "Общайтесь зашифрованным образом по децентрализованной сети [matrix] простым и доступным для всех способом."
 }
