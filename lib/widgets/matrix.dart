@@ -386,10 +386,26 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
 
-    onRoomKeyRequestSub.values.map((s) => s.cancel());
-    onKeyVerificationRequestSub.values.map((s) => s.cancel());
-    onLogoutSub.values.map((s) => s.cancel());
-    onNotification.values.map((s) => s.cancel());
+    for (final sub in onRoomKeyRequestSub.values) {
+      sub.cancel();
+    }
+    for (final sub in onKeyVerificationRequestSub.values) {
+      sub.cancel();
+    }
+    for (final sub in onLogoutSub.values) {
+      sub.cancel();
+    }
+    for (final sub in onNotification.values) {
+      sub.cancel();
+    }
+    for (final sub in onUiaRequest.values) {
+      sub.cancel();
+    }
+    onRoomKeyRequestSub.clear();
+    onKeyVerificationRequestSub.clear();
+    onLogoutSub.clear();
+    onNotification.clear();
+    onUiaRequest.clear();
 
     super.dispose();
   }
