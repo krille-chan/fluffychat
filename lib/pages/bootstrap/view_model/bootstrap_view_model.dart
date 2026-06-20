@@ -87,11 +87,15 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
         value.keyVerification?.onUpdate = _onKeyVerificationUpdate;
       }
       if (supportsSecureStorage) {
-        final keyFromSecureStorage = await FlutterSecureStorage().read(
-          key: _secureStorageKey,
-        );
-        if (keyFromSecureStorage != null) {
-          enterPassphraseOrRecovController.text = keyFromSecureStorage;
+        try {
+          final keyFromSecureStorage = await FlutterSecureStorage().read(
+            key: _secureStorageKey,
+          );
+          if (keyFromSecureStorage != null) {
+            enterPassphraseOrRecovController.text = keyFromSecureStorage;
+          }
+        } catch (e, s) {
+          Logs().e('Unable to read key from secure storage', e, s);
         }
       }
     }
@@ -151,6 +155,7 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
 
   bool get supportsSecureStorage =>
       PlatformInfos.isMobile || PlatformInfos.isDesktop;
+
   Future<void> unlock(BuildContext context) async {
     final key = enterPassphraseOrRecovController.text.trim();
     if (key.isEmpty) return;
@@ -170,10 +175,10 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
       Logs().d('Unable to unlock', e, s);
       value.isLoading = false;
       value.unlockWithError = e;
+      notifyListeners();
       if (supportsSecureStorage) {
         await FlutterSecureStorage().delete(key: _secureStorageKey);
       }
-      notifyListeners();
       return;
     }
   }
