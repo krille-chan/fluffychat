@@ -88,9 +88,6 @@ jobs:
           ./scripts/add-firebase-messaging.sh
       - uses: ./.github/actions/free_up_space
       - uses: dtolnay/rust-toolchain@stable
-      - name: Install Fastlane
-        working-directory: android
-        run: gem install fastlane -NV
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
