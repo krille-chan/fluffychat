@@ -1533,11 +1533,6 @@ let wasm_bindgen;
         wasm.__externref_table_dealloc(idx);
         return value;
     }
-
-    __exports.wasm_start_callback = function() {
-        wasm.wasm_start_callback();
-    };
-
     /**
      * # Safety
      *
@@ -1556,6 +1551,10 @@ let wasm_bindgen;
      */
     __exports.frb_dart_opaque_drop_thread_box_persistent_handle = function(ptr) {
         wasm.frb_dart_opaque_drop_thread_box_persistent_handle(ptr);
+    };
+
+    __exports.wasm_start_callback = function() {
+        wasm.wasm_start_callback();
     };
 
     /**
@@ -1955,7 +1954,7 @@ let wasm_bindgen;
             const ret = false;
             return ret;
         };
-        imports.wbg.__wbindgen_closure_wrapper1747 = function(arg0, arg1, arg2) {
+        imports.wbg.__wbindgen_closure_wrapper1746 = function(arg0, arg1, arg2) {
             const ret = makeMutClosure(arg0, arg1, 591, __wbg_adapter_40);
             return ret;
         };

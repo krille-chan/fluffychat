@@ -1,22 +1,227 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Redirecting…</title>
-        <meta http-equiv="refresh" content="0; url=/en/">
-        <script>
-            const userLang = navigator.language ?. substring(0, 2) || "en";
-            const supported = ["be","de","en","et","fa","fi","fy","gl","id","lt","lv","nb_NO","nl","pl","ru","ta","uk","uz"]; // z. B. ["en","de"] Fallback auf Englisch, falls Sprache nicht unterstützt
-            const targetLang = supported.includes(userLang)
-                ? userLang
-                : "en";
-            window.location.replace(`/${targetLang}/faq#${
-                location.hash
-            }`);
-        </script>
+        <title>FluffyChat Official Website | FAQ</title>
+        <meta name="identifier-url" content="https://fluffychat.im"/>
+        <meta name="title" content="FluffyChat Official Website"/>
+        <meta name="description" content="The cutest messenger in the Matrix network"/>
+        <meta name="abstract" content="FluffyChat is the cutest messenger in the Matrix network"/>
+        <meta name="keywords" content="FluffyChat, Matrix, Flutter, App"/>
+        <meta name="author" content="Krille Fear"/>
+        <meta name="revisit-after" content="15"/>
+        <meta name="language" content="EN"/>
+        <meta name="robots" content="All"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="/assets/favicon.png">
+        <link rel="stylesheet" href="/assets/tailwind.css">
+        <noscript><link rel="stylesheet" href="/assets/tailwind.css"></noscript>
     </head>
-    <body>
-        <p>Redirecting…</p>
+    <body
+        class="flex flex-col items-center min-h-screen w-full bg-white dark:bg-slate-800"
+        style="font-family: 'Zen Kurenaido', sans-serif;">
+        <!--Header-->
+        <div class="w-full lg:h-12 min-h-12 py-4 lg:py-0 mb-8 border-b border-gray-200 dark:border-gray-700">
+            <nav class="flex flex-wrap h-full justify-center items-center space-x-6 w-full max-w-4xl m-auto">
+                <a href="/" class=" text-lg">Home</a>
+                <a href="/faq" class="underline text-lg">FAQ</a>
+                <a href="/changelog" class=" text-lg">Changelog</a>
+                <a href="https://ko-fi.com/krille/posts" target="_blank" class="text-lg">Blog</a>
+                <div class="lg:flex-grow"></div>
+                <a href='https://ko-fi.com/C1C86VN53' class="hover:scale-110 transition-transform" target='_blank'>
+                    <div class="rounded-xl bg-slate-900 dark:bg-slate-50 p-2 flex flex-row spacing-4"><img src="/assets/ko-fi.png" class="h-5 mr-2"/>
+                        <span class="text-white dark:text-black text-xs flex items-center mr-2">Support me on Ko-Fi</span>
+                    </div>
+                </a>
+                <a href="https://troet.cafe/@krille" rel="me" class="m-2 hover:scale-110 transition-transform "><img src="/assets/mastodon.svg" class="h-7"/>
+                </a>
+            </nav>
+        </div>
+        
+<div class="container max-w-4xl markdown px-4 lg:px-0 faq-page">
+    <p class="text-center"><input id="searchField" type="text" placeholder="Search" class="placeholder:text-slate-400 text-center text-slate-700 text-3xl bg-slate-100 border border-slate-200 rounded-full w-full px-8 py-4 my-8"/></p>
+<div id="faqEntries">
+<h2 id="how_can_i_support_fluffychat" tabindex="-1">How can I support FluffyChat? <a class="header-anchor" href="#how_can_i_support_fluffychat">🔗</a></h2>
+<p><strong>FluffyChat needs YOUR help!</strong></p>
+<p>FluffyChat is developed by volunteers and will always be free for everyone. But hosting and development are not possible without financial support.</p>
+<p>Right now I spend almost all of my free time developing FluffyChat, completely unpaid. However, this is not something I can do forever. The future of FluffyChat depends on people like you.</p>
+<p>Most people will ignore this message. But if FluffyChat is useful to you, please consider making a small donation.</p>
+<p>Support FluffyChat here:</p>
+<ul>
+<li><a href="https://ko-fi.com/krille">https://ko-fi.com/krille</a></li>
+<li><a href="https://liberapay.com/KrilleChritzelius">https://liberapay.com/KrilleChritzelius</a></li>
+</ul>
+<p>Thank you for helping keep FluffyChat alive and independent.</p>
+<h2 id="what_is_fluffychat" tabindex="-1">What is FluffyChat? <a class="header-anchor" href="#what_is_fluffychat">🔗</a></h2>
+<p>FluffyChat is a user-friendly, free, and ad-free open-source app based on the <a href="https://matrix.org">Matrix protocol</a> and works similarly to Telegram or WhatsApp.</p>
+<p>With FluffyChat, you can chat with your friends privately, create group chats, exchange voice messages, share pictures and videos, and even send your location.</p>
+<p>And the best part: <strong>FluffyChat is compatible with other Matrix messengers!</strong></p>
+<h2 id="who_is_fluffychat_for" tabindex="-1">Who is FluffyChat for? <a class="header-anchor" href="#who_is_fluffychat_for">🔗</a></h2>
+<p>FluffyChat is for anyone looking for a fast, user-friendly, and secure alternative to centralized messaging apps like WhatsApp, Telegram, or WeChat.</p>
+<h2 id="who_created_fluffychat" tabindex="-1">Who created FluffyChat? <a class="header-anchor" href="#who_created_fluffychat">🔗</a></h2>
+<p>FluffyChat is developed by the community and was initiated by Christian (<a href="https://krille-chan.github.io/">Krille</a>) Kußowski. However there are a lot of contributors, either code or translations. You can find them <a href="https://github.com/krille-chan/fluffychat/graphs/contributors">here</a>.</p>
+<h2 id="how_is_fluffychat_funded" tabindex="-1">How is FluffyChat funded? <a class="header-anchor" href="#how_is_fluffychat_funded">🔗</a></h2>
+<p>FluffyChat is a non-profit project driven by volunteers and totally funded by donations.</p>
+<h2 id="is_fluffychat_available_on_my_device" tabindex="-1">Is FluffyChat available on my device? <a class="header-anchor" href="#is_fluffychat_available_on_my_device">🔗</a></h2>
+<p>Yes! You can use FluffyChat on mobile phones, tablets, and as a web version on your PC. Available on Android (Play Store and F-Droid), iOS (App Store), as a web app and as a desktop app for Linux (Flathub, Snap Store). It even works on Linux phones by using the Arm64 version of the Flatpak/Snap. You can compile it for MacOS and Windows by yourself if you like, but that is not yet supported.</p>
+<h2 id="how_do_i_create_a_fluffychat_account" tabindex="-1">How do I create a FluffyChat account? <a class="header-anchor" href="#how_do_i_create_a_fluffychat_account">🔗</a></h2>
+<p>When you first launch the app, you'll be asked to create a new Matrix account. Select a server (e.g., matrix.org), enter your desired username, and a secure password. Optionally, you can add an email address (this is helpful for password recovery, but not required).</p>
+<h2 id="what_is_a_matrix_id" tabindex="-1">What is a Matrix ID? <a class="header-anchor" href="#what_is_a_matrix_id">🔗</a></h2>
+<p>Your <strong>Matrix ID</strong> is your unique username on the network, e.g., @name:matrix.org. It consists of your name and the server on which your account is located.</p>
+<h2 id="how_do_i_log_in_to_fluffychat" tabindex="-1">How do I log in to FluffyChat? <a class="header-anchor" href="#how_do_i_log_in_to_fluffychat">🔗</a></h2>
+<p>If you already have a Matrix account, simply enter your Matrix ID (e.g., @name:matrix.org) and password. You can log in to any Matrix-compatible server because FluffyChat is decentralized.</p>
+<h2 id="do_i_need_an_email_address_for_fluffychat" tabindex="-1">Do I need an email address for FluffyChat? <a class="header-anchor" href="#do_i_need_an_email_address_for_fluffychat">🔗</a></h2>
+<p>No, an email address is not required. However, it is recommended if you want to reset your password or verify your account.</p>
+<h2 id="i_forgot_my_password_what_now" tabindex="-1">I forgot my password. What now? <a class="header-anchor" href="#i_forgot_my_password_what_now">🔗</a></h2>
+<p>If you provided an email address when creating your account, you can reset your password via the server website (e.g., https://matrix.org). Unfortunately, recovery is not possible without an email address. In this case, you will need to create a new account.</p>
+<h2 id="i_changed_my_device_and_now_all_my_messages_are_encrypted_what_now" tabindex="-1">I changed my device and now all my messages are encrypted. What now? <a class="header-anchor" href="#i_changed_my_device_and_now_all_my_messages_are_encrypted_what_now">🔗</a></h2>
+<p>To read your encrypted messages on the new device, you need to restore the backup you created previously. Enter your backup key or password when setting up FluffyChat on the new device. Only then can your messages be decrypted. If you haven't created a backup or have lost the key, your encrypted messages unfortunately cannot be restored.</p>
+<h2 id="how_do_i_create_a_backup_key_in_fluffychat" tabindex="-1">How do I create a backup key in FluffyChat? <a class="header-anchor" href="#how_do_i_create_a_backup_key_in_fluffychat">🔗</a></h2>
+<p>Open FluffyChat and go to the <strong>settings</strong> to the <strong>Chat Backup</strong>. There you can set up an <u>encrypted</u> chat backup. You will be asked to save a recovery key. Important: Make a note of this key or keep it safe. <strong>Without it, you won't be able to restore your encrypted messages on a new device.</strong></p>
+<h2 id="i_found_a_bug_what_now" tabindex="-1">I found a bug. What now? <a class="header-anchor" href="#i_found_a_bug_what_now">🔗</a></h2>
+<p>You can report bugs directly on Github. Alternatively, there's a public group chat on Messenger (#fluffy-space:matrix.org) where you can ask questions or send feedback.</p>
+<h2 id="how_can_i_get_push_notifications_without_google_services" tabindex="-1">How can I get Push Notifications without Google Services? <a class="header-anchor" href="#how_can_i_get_push_notifications_without_google_services">🔗</a></h2>
+<p>Push notifications are a great way to make sure you don't miss important messages in FluffyChat. For users who do not use Google Services (for example Huawei Phones, Amazon Fire tablets or custom roms), setting up push notifications is slightly different.</p>
+<p>FluffyChat attempts to set up push notifications automatically every time you launch the app. However, if you do not have Google Services on your device, you may receive an error message. In this case, it is necessary to use an <a href="https://unifiedpush.org/#quick-start">UnifiedPush app</a> such as Ntfy, UP-FCM Distributor (Google) or Conversations.</p>
+<h3 id="using_ntfy" tabindex="-1">Using Ntfy <a class="header-anchor" href="#using_ntfy">🔗</a></h3>
+<p>In this article, we'll show you how to configure push notifications on your Android device using the <strong>ntfy</strong> app.</p>
+<h4 id="step_1_installing_and_setting_up_ntfy" tabindex="-1">🏪 Step 1: Installing and Setting Up ntfy <a class="header-anchor" href="#step_1_installing_and_setting_up_ntfy">🔗</a></h4>
+<ol>
+<li>Download and install the <a href="https://ntfy.sh/">ntfy app</a> from F-Droid or Google Play.</li>
+<li>Open ntfy and note the topic URL displayed (e.g., <code>https://ntfy.sh/your-topic</code>).</li>
+</ol>
+<h4 id="step_2_deactivate_battery_optimization_for_ntfy" tabindex="-1">🔋 Step 2: Deactivate Battery Optimization for ntfy <a class="header-anchor" href="#step_2_deactivate_battery_optimization_for_ntfy">🔗</a></h4>
+<p>Go to your device's <strong>Settings &gt; Apps &gt; ntfy &gt; Battery</strong> and select <strong>Unrestricted</strong> to ensure ntfy runs in the background.</p>
+<h4 id="step_3_checking_push_configuration_in_fluffychat" tabindex="-1">✅ Step 3: Checking Push Configuration in FluffyChat <a class="header-anchor" href="#step_3_checking_push_configuration_in_fluffychat">🔗</a></h4>
+<p>Open FluffyChat, go to <strong>Settings &gt; Notifications</strong> and verify that the push provider shows ntfy.</p>
+<h4 id="step_4_receiving_push_notifications" tabindex="-1">🥳 Step 4: Receiving Push Notifications <a class="header-anchor" href="#step_4_receiving_push_notifications">🔗</a></h4>
+<p>Send yourself a test message. You should receive a push notification from ntfy.</p>
+<h3 id="using_conversations" tabindex="-1">Using Conversations <a class="header-anchor" href="#using_conversations">🔗</a></h3>
+<p>Install <a href="https://conversations.im/">Conversations</a> and enable it as a UnifiedPush distributor in its settings. FluffyChat will automatically detect it on next launch.</p>
+<h2 id="how_can_i_verify_the_authenticity_of_the_android_application" tabindex="-1">How can I verify the authenticity of the Android application? <a class="header-anchor" href="#how_can_i_verify_the_authenticity_of_the_android_application">🔗</a></h2>
+<p>Using tools like <a href="https://developer.android.com/tools/apksigner">apksigner</a> (CLI) or <a href="https://github.com/soupslurpr/AppVerifier">AppVerifier</a> (Android application), you can compare the certificate fingerprint of the downloaded apk / installed application with the values indicated below.</p>
+<p><strong>GooglePlay / Github releases:</strong></p>
+<pre><code>5E:DB:5C:43:95:B2:F2:D9:BA:68:2F:6A:1D:27:51:70:CC:E5:36:5A:6F:A2:7D:22:20:EA:8D:52:A6:D9:5F:07
+</code></pre>
+<p><strong>F-Droid releases:</strong></p>
+<pre><code>05:7A:C4:51:64:A2:E6:E3:1F:6D:DE:55:5A:5F:2C:CC:B4:D8:83:4C:B1:85:25:49:68:1B:00:E3:46:68:CA:F3
+</code></pre>
+<h2 id="how_can_i_extend_this_faq" tabindex="-1">How can I extend this FAQ? <a class="header-anchor" href="#how_can_i_extend_this_faq">🔗</a></h2>
+<p>You can edit the FAQ by editing the <a href="https://github.com/krille-chan/fluffychat-website/blob/main/src/faq.md">source file on GitHub</a>.</p>
+<h2 id="how_to_use_end_to_end_encryption" tabindex="-1">How to use end to end encryption? <a class="header-anchor" href="#how_to_use_end_to_end_encryption">🔗</a></h2>
+<p>FluffyChat supports end to end encryption. You can enable it per chat. Once enabled it cannot be disabled anymore for security reasons. You can not enable encryption for public rooms as this makes no sense when anyone can join and leave the room anyway. Once you have enabled encryption, the server is no longer able to read the content of your messages. It will encrypt all text messages and files.</p>
+<p>To be safe from man-in-the-middle attacks, you should take a look at the device list. You can do this in the encryption settings of a chat. Is there a suspicious device which you or your chat partner don't know? Then you can block it by moving the toggle to the left.</p>
+<p>The color of the toggle shows you the security state. Orange means that this device is not verified. Grey means that it is blocked and won't receive the encryption keys — this means that this device won't be able to read your messages anymore! Green means that this device is verified.</p>
+<p>To verify the devices of another user, start the verification in a direct chat. For this you have a &quot;Start verification&quot; button in the encryption settings of a direct chat. Be sure that you are standing next to this person or you are connected via phone or any other secure channel. When you have started the verification, you will both see a set of emojis on your device. Compare them and tap on &quot;They match&quot;. Wait a little bit and then you should see that all devices become green.</p>
+<h2 id="how_can_i_fork_fluffychat" tabindex="-1">How can I fork FluffyChat? <a class="header-anchor" href="#how_can_i_fork_fluffychat">🔗</a></h2>
+<h3 id="1_license" tabindex="-1">1. License <a class="header-anchor" href="#1_license">🔗</a></h3>
+<p>FluffyChat is licensed under AGPL. Read the <a href="https://github.com/krille-chan/fluffychat/blob/main/LICENSE">license</a> and make sure that your fork is open source under the same license and that you fulfill all requirements. Maybe you should consider contacting a lawyer <strong>before</strong> you publish your fork.</p>
+<h3 id="2_disable_endtoend_encryption" tabindex="-1">2. Disable end-to-end encryption! <a class="header-anchor" href="#2_disable_endtoend_encryption">🔗</a></h3>
+<p>Due to US export regulations you are not allowed to publish your app in a store or anywhere on a US server before you have removed everything regarding the encryption or fulfill the regulations.</p>
+<p>Learn more: <a href="https://www.bis.doc.gov/index.php/policy-guidance/encryption">https://www.bis.doc.gov/index.php/policy-guidance/encryption</a></p>
+<h3 id="3_stay_up_to_date" tabindex="-1">3. Stay up to date! <a class="header-anchor" href="#3_stay_up_to_date">🔗</a></h3>
+<p>FluffyChat contains security related stuff. If we find a security bug, we will try to fix it as soon as possible and ship it with a new version. But this means that your fork is out of date and a security risk. You must decide how you protect your users by choosing one of the following methods:</p>
+<ol>
+<li>Make your fork as minimal as possible and enable repository mirroring. Set up a CI which publishes new versions automatically if FluffyChat publishes a bug fix.</li>
+<li>Monitor the FluffyChat repository yourself and update your fork in time.</li>
+</ol>
+<h3 id="4_official_support" tabindex="-1">4. Official Support <a class="header-anchor" href="#4_official_support">🔗</a></h3>
+<p>If you need help from us with using E2EE in your fork, please reach out via the public Matrix room <a href="https://matrix.to/#/#fluffy-space:matrix.org">#fluffy-space:matrix.org</a>.</p>
+<h2 id="how_do_i_find_other_users" tabindex="-1">How do I find other users? <a class="header-anchor" href="#how_do_i_find_other_users">🔗</a></h2>
+<p>There are several ways to find other users in FluffyChat.</p>
+<ol>
+<li>
+<p><strong>Search by display name:</strong> You can enter a person's display name in the search. This only works if:</p>
+<ul>
+<li>You've already shared a chat with the person,</li>
+<li>They're in a public room known to your server, or</li>
+<li>Your server allows searching for other users.</li>
+</ul>
+</li>
+<li>
+<p><strong>Enter Matrix ID directly:</strong> If you know the Matrix ID (e.g., <code>@krille:janian.de</code>), you can enter it directly in the search. It works similarly to an email address: <code>@username:servername</code>.</p>
+</li>
+<li>
+<p><strong>Scan QR code:</strong> You can scan the other person's QR code or display your own for scanning.</p>
+</li>
+<li>
+<p><strong>Share invitation link:</strong> Anyone can share an invitation link to a room or chat. Clicking the link will connect you directly.</p>
+</li>
+</ol>
+<h2 id="how_do_i_get_stickers" tabindex="-1">How do I get stickers? <a class="header-anchor" href="#how_do_i_get_stickers">🔗</a></h2>
+<p>You can add a sticker pack from the internet. For example <a href="https://volpeon.ink/emojis/">volpeon.ink</a> does an incredible job.</p>
+<p>Just follow these steps:</p>
+<ol>
+<li>Download one of the packs as a zip file</li>
+<li>Open FluffyChat</li>
+<li>Go to &quot;Settings&quot; &gt; &quot;Chat&quot; &gt; &quot;Custom emotes and stickers&quot;</li>
+<li>Tap on the three dot menu top right and tap on &quot;Import from zip file&quot;</li>
+<li>Select the zip file and if you like edit the sticker names</li>
+</ol>
+<p>You can also find preconfigured sticker packs in Matrix. I recommend Nico's Sticker Collection:
+<a href="https://matrix.to/#/#nico's-stickers:neko.dev">https://matrix.to/#/#nico's-stickers:neko.dev</a></p>
+<p>The sticker collection for FluffyChat unfortunately does not have yet a large selection:
+<a href="https://matrix.to/#/#fluffychat-stickers:janian.de">https://matrix.to/#/#fluffychat-stickers:janian.de</a></p>
+<ol>
+<li>Join the public room</li>
+<li>Open the three dot menu top right and tap on &quot;Emote Settings&quot;</li>
+<li>Select the sticker pack in the room you like</li>
+<li>Toggle &quot;Enable emote pack globally&quot;</li>
+</ol>
+<p>Have fun with your stickers! :-)</p>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const inputField = document.getElementById("searchField");
+    inputField.oninput = (_) => {
+      const query = inputField.value.toLowerCase();
+      const headings = document.querySelectorAll("#faqEntries h2");
+      for (var i = 0; i < headings.length; i++) {
+        const heading = headings[i];
+        // Collect all sibling nodes until the next h2
+        let sibling = heading.nextElementSibling;
+        const answerNodes = [];
+        while (sibling && sibling.tagName !== "H2") {
+          answerNodes.push(sibling);
+          sibling = sibling.nextElementSibling;
+        }
+        const answerText = answerNodes.map(n => n.innerText).join(" ").toLowerCase();
+      const headingText = heading.innerText.replace("🔗", "").trim().toLowerCase();
+        const match = headingText.includes(query) || answerText.includes(query);
+        heading.hidden = !match;
+        answerNodes.forEach(n => n.hidden = !match);
+      }
+    };
+  });
+</script>
+
+</div>
+        <!--Footer-->
+        <div class="w-full flex justify-center border-t border-gray-200 dark:border-gray-700">
+            <footer class="w-full text-center max-w-4xl p-4 text-slate-700 dark:text-slate-200">
+                <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/impressum">Impressum</a>
+                -
+                <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/privacy">Privacy policy</a>
+                -
+                <a class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm" href="/tos">Terms of service</a>
+                -
+                <a
+                    class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
+                    href="https://github.com/krille-chan/fluffychat">Source Code</a>
+                -
+                <a
+                    class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
+                    href="https://liberapay.com/KrilleChritzelius">Liberapay</a>
+                -
+                <a
+                    class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
+                    href="https://googlefonts.github.io/noto-emoji-animation/">Noto Animated Emojis</a>
+                -
+                <a
+                    class="text-slate-700 dark:text-slate-200 underline hover:text-purple-800 text-sm"
+                    href="https://krille-chan.github.io">Created by Krille-chan</a>
+            </footer>
+        </div>
     </body>
 </html>
