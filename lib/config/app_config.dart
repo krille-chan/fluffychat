@@ -39,7 +39,7 @@ abstract class AppConfig {
       'https://github.com/krille-chan/fluffychat';
   static const String supportUrl =
       'https://github.com/krille-chan/fluffychat/issues';
-  static const String changelogUrl = 'https://fluffy.chat/en/changelog/';
+  static const String changelogUrl = 'https://fluffychat.im/changelog/';
   static const String helpUrl =
       'https://fluffychat.im/faq/#how_can_i_support_fluffychat';
 
