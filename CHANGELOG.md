@@ -5,6 +5,15 @@ SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+## v2.7.1
+- chore(translations): Translated using Weblate (Galician) (josé m.)
+- chore(translations): Translated using Weblate (Russian) (alexander kozlev)
+- chore(translations): Translated using Weblate (Tamil) (தமிழ்நேரம்)
+- chore: Improve message bubble design (Christian Kußowski)
+- chore: switch out fluffy.chat with fluffychat.im url (Christian Kußowski)
+- fix: send videos crashed duo type error (Christian Kußowski)
+- fix: sharing images sometimes break them (Christian Kußowski)
+
 ## v2.7.0
 - feat: Add ISRG X2 Root Certificate (Th0rOnDoR)
 - feat: better crypto setup with custom passphrase (Christian Kußowski)
