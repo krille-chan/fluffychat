@@ -2716,5 +2716,188 @@
     "addTag": "Engadir etiqueta",
     "removeTag": "Retirar etiqueta",
     "tagName": "Nome da etiqueta",
-    "createNewTag": "Crear nova etiqueta"
+    "createNewTag": "Crear nova etiqueta",
+    "discardEdits": "Ten cambios sen gardar. Desbotar a edición?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showMore": "Mostrar máis",
+    "showLess": "Mostrar menos",
+    "hideRoomsInSpaces": "Ocultar salas que están nun espazo",
+    "possibleByYou": "Esta versión foi posible grazas ao teu apoio. FluffyChat segue sendo libre, de código aberto e dirixida pola comunidade.",
+    "showThumbnailsInTimeline": "Mostrar miniaturas das imaxes e vídeos",
+    "appSubtitle": "Comunicación Segura en [matrix]",
+    "appDescription": "Comunícate de xeito cifrado na rede descentralizada [matrix], dunha forma doada e accesible para todas as persoas.",
+    "interactiveVerification": "Verificación interactiva",
+    "interactiveVerificationDescription": "Se estades unha a carón da outra ou tedes outra canle segura de comunicación entón podedes verificar os vosos dispositivos comparando os números de seguridade ou emojis.",
+    "countUnverifiedDevices": "{count} dispositivos na conversa non verificados.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "check": "Comprobar",
+    "encryptedMessage": "Mensaxe cifrada",
+    "unencryptedMessage": "Mensaxe sen cifrar",
+    "allow": "Permitir",
+    "messageCanOnlyBeReadByUser": "A túa mensaxe está cifrada de extremo a extremo e só a pode ler a usuaria:",
+    "messageCanOnlyBeReadByUsers": "A túa mensaxe está cifrada de extremo a extremo e só a poden ler estas usuarias:",
+    "publicKey": "Clave pública: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "deviceIdentityKey": "Clave de identidade do dispositivo",
+    "restoreBootstrapEmptyDevicesDescription": "Por favor escribe a túa frase de paso ou a clave de recuperación para verificar este dispositivo e ter acceso á copia de apoio cifrada das mensaxes.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Por favor elixe un dos outros teus dispositivos, para verificar esta sesión:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Restablecer a conta",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Restablecer identidade criptográfica",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Reiniciar identidade criptográfica",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Establecer identidade criptográfica",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Agardando polas claves… mantén o outro dispositivo activo.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Non se transmitiron as claves. Volve a intentalo.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Desbloquear",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Abrir ficheiro",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Cando reinicias a conta perdes o acceso ás mensaxes antigas para sempre. Todos os teus dispositivos actuais deberán verificarse novamente. Considera realizar esta acción só se non tes outros dispositivos desde onde poder verificar a sesión e se perdeches a clave de recuperación e a frase de paso!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat utiliza cifraxe de extremo a extremo. Para non perder as mensaxes elixe unha frase de paso forte para protexer a túa identidade criptográfica e a túa copia de apoio de mensaxes cifradas.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Nova frase de paso",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Repetir a frase de paso",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "As frases de paso concordan",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "12 caracteres como mínimo.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Contén maiúsculas e minúsculas.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Contén caracteres especiais.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Contén un número.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Garda nun lugar seguro a clave de recuperación para poder restablecer as túas mensaxes cifradas e a túa identidade criptográfica.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Gardar como ficheiro",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Todo preparado para comezar!",
+    "noUserKeyFound": "Non se atopa a clave da usuaria",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Coñecido desde: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "Dispositivo non asinado",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Dispositivo asinado",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Non se atopa a clave curve25519",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Mensaxe non descifrable",
+    "today": "Hoxe",
+    "sending": "Enviando",
+    "generatingThumbnail": "Creando a miniatura",
+    "encrypting": "Cifrando",
+    "uploading": "Subindo",
+    "edited": "(editada)",
+    "couldNotBeSent": "Non se puido enviar",
+    "yesterday": "Onte"
 }
