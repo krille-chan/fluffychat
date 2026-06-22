@@ -11,6 +11,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 - chore(translations): Translated using Weblate (Tamil) (தமிழ்நேரம்)
 - chore: Improve message bubble design (Christian Kußowski)
 - chore: switch out fluffy.chat with fluffychat.im url (Christian Kußowski)
+- fix: scrolling in tofu dialog (Christian Kußowski)
 - fix: send videos crashed duo type error (Christian Kußowski)
 - fix: sharing images sometimes break them (Christian Kußowski)
 

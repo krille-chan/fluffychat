@@ -50,58 +50,60 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
       content: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: 128),
         child: SelectionArea(
-          child: Column(
-            crossAxisAlignment: .stretch,
-            mainAxisSize: .min,
-            children: [
-              const SizedBox(height: 8),
-              Center(
-                child: Text(
-                  users.length == 1
-                      ? l10n.messageCanOnlyBeReadByUser
-                      : l10n.messageCanOnlyBeReadByUsers,
-                  style: TextStyle(fontSize: 16),
-                  textAlign: .center,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: .stretch,
+              mainAxisSize: .min,
+              children: [
+                const SizedBox(height: 8),
+                Center(
+                  child: Text(
+                    users.length == 1
+                        ? l10n.messageCanOnlyBeReadByUser
+                        : l10n.messageCanOnlyBeReadByUsers,
+                    style: TextStyle(fontSize: 16),
+                    textAlign: .center,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              for (final user in users) ...[
-                Row(
-                  children: [
-                    Avatar(
-                      name: user.calcDisplayname(),
-                      mxContent: user.avatarUrl,
-                      size: 14,
-                    ),
-                    const SizedBox(width: 4),
-                    Expanded(
-                      child: Text(
-                        user.calcDisplayname(),
-                        style: theme.textTheme.labelSmall,
-                        maxLines: 1,
-                        textAlign: TextAlign.start,
+                const SizedBox(height: 16),
+                for (final user in users) ...[
+                  Row(
+                    children: [
+                      Avatar(
+                        name: user.calcDisplayname(),
+                        mxContent: user.avatarUrl,
+                        size: 14,
+                      ),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        child: Text(
+                          user.calcDisplayname(),
+                          style: theme.textTheme.labelSmall,
+                          maxLines: 1,
+                          textAlign: TextAlign.start,
+                        ),
+                      ),
+                    ],
+                  ),
+                  DialogTextField(
+                    controller: TextEditingController(
+                      text: l10n.publicKey(
+                        room
+                                .client
+                                .userDeviceKeys[user.id]
+                                ?.masterKey
+                                ?.publicKey
+                                ?.beautifiedOneLine ??
+                            '???',
                       ),
                     ),
-                  ],
-                ),
-                DialogTextField(
-                  controller: TextEditingController(
-                    text: l10n.publicKey(
-                      room
-                              .client
-                              .userDeviceKeys[user.id]
-                              ?.masterKey
-                              ?.publicKey
-                              ?.beautifiedOneLine ??
-                          '???',
-                    ),
+                    textStyle: theme.textTheme.labelSmall,
+                    readOnly: true,
+                    maxLines: 3,
                   ),
-                  textStyle: theme.textTheme.labelSmall,
-                  readOnly: true,
-                  maxLines: 3,
-                ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),
