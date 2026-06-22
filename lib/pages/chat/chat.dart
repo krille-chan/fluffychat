@@ -1102,7 +1102,7 @@ class ChatController extends State<ChatPageWithRoom>
       context: context,
       builder: (context) => ShareScaffoldDialog(
         items: forwardEvents
-            .map((event) => ContentShareItem(event.content))
+            .map((event) => ContentShareItem(event.content.copy()))
             .toList(),
       ),
     );
