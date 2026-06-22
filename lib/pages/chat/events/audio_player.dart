@@ -15,7 +15,7 @@ import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:fluffychat/widgets/auto_linkify.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:opus_caf_converter_dart/opus_caf_converter_dart.dart';
@@ -490,7 +490,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                         horizontal: 16,
                         vertical: 8,
                       ),
-                      child: Linkify(
+                      child: AutoLinkify(
                         text: fileDescription,
                         textScaleFactor: MediaQuery.textScalerOf(
                           context,

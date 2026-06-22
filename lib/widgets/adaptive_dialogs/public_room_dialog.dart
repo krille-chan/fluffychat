@@ -9,7 +9,7 @@ import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:fluffychat/widgets/auto_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -220,7 +220,7 @@ class PublicRoomDialog extends StatelessWidget {
                         thumbVisibility: true,
                         trackVisibility: true,
                         child: SingleChildScrollView(
-                          child: SelectableLinkify(
+                          child: AutoSelectableLinkify(
                             text: topic,
                             textScaleFactor: MediaQuery.textScalerOf(
                               context,

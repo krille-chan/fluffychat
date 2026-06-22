@@ -5,7 +5,7 @@
 
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:fluffychat/widgets/auto_linkify.dart';
 
 class ChatAppBarListTile extends StatelessWidget {
   final Widget? leading;
@@ -38,7 +38,7 @@ class ChatAppBarListTile extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: Linkify(
+                child: AutoLinkify(
                   text: title,
                   textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
                   options: const LinkifyOptions(humanize: false),

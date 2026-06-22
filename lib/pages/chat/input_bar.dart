@@ -9,6 +9,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/trust_user_key_dialog.dart';
 import 'package:fluffychat/utils/markdown_context_builder.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -402,6 +403,7 @@ class InputBar extends StatelessWidget {
           controller: controller,
           focusNode: focusNode,
           readOnly: readOnly,
+          textDirection: autoTextDirection(controller.text),
           onEditingComplete: () {
             // To not lose focus on iOS:
             // https://github.com/krille-chan/fluffychat/issues/2784

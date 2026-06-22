@@ -13,7 +13,7 @@ import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:fluffychat/widgets/auto_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -234,7 +234,7 @@ class ChatDetailsView extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                               horizontal: 16.0,
                             ),
-                            child: SelectableLinkify(
+                            child: AutoSelectableLinkify(
                               text: room.topic.isEmpty
                                   ? L10n.of(context).noChatDescriptionYet
                                   : room.topic,

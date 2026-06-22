@@ -11,7 +11,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:fluffychat/widgets/auto_linkify.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -162,7 +162,7 @@ class SettingsHomeserverView extends StatelessWidget {
                       ),
                       ListTile(
                         title: Text(L10n.of(context).federationBaseUrl),
-                        subtitle: Linkify(
+                        subtitle: AutoLinkify(
                           text: data.federationBaseUrl.toString(),
                           textScaleFactor: MediaQuery.textScalerOf(
                             context,
@@ -222,7 +222,7 @@ class SettingsHomeserverView extends StatelessWidget {
                       ),
                       ListTile(
                         title: Text(L10n.of(context).baseUrl),
-                        subtitle: Linkify(
+                        subtitle: AutoLinkify(
                           text: wellKnown.mHomeserver.baseUrl.toString(),
                           textScaleFactor: MediaQuery.textScalerOf(
                             context,
@@ -238,7 +238,7 @@ class SettingsHomeserverView extends StatelessWidget {
                       if (identityServer != null)
                         ListTile(
                           title: Text(L10n.of(context).identityServer),
-                          subtitle: Linkify(
+                          subtitle: AutoLinkify(
                             text: identityServer.baseUrl.toString(),
                             textScaleFactor: MediaQuery.textScalerOf(
                               context,

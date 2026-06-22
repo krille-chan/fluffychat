@@ -8,7 +8,7 @@ import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/dialog_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:fluffychat/widgets/auto_linkify.dart';
 
 Future<String?> showTextInputDialog({
   required BuildContext context,
@@ -48,7 +48,7 @@ Future<String?> showTextInputDialog({
             mainAxisSize: .min,
             children: [
               if (message != null)
-                SelectableLinkify(
+                AutoSelectableLinkify(
                   text: message,
                   textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
                   linkStyle: TextStyle(

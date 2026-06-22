@@ -9,6 +9,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/code_highlight_theme.dart';
 import 'package:fluffychat/utils/event_checkbox_extension.dart';
+import 'package:fluffychat/utils/text_direction.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -172,11 +173,28 @@ class HtmlMessage extends StatelessWidget {
       // Single linebreak nodes between Elements are ignored:
       if (text == '\n') text = '';
 
-      return LinkifySpan(
-        text: text,
-        options: const LinkifyOptions(humanize: false),
-        linkStyle: linkStyle,
-        onOpen: onOpen,
+      if (!text.contains('\n')) {
+        return LinkifySpan(
+          text: bidiIsolate(text),
+          options: const LinkifyOptions(humanize: false),
+          linkStyle: linkStyle,
+          onOpen: onOpen,
+        );
+      }
+
+      final lines = text.split('\n');
+      return TextSpan(
+        children: [
+          for (var i = 0; i < lines.length; i++) ...[
+            LinkifySpan(
+              text: bidiIsolate(lines[i]),
+              options: const LinkifyOptions(humanize: false),
+              linkStyle: linkStyle,
+              onOpen: onOpen,
+            ),
+            if (i < lines.length - 1) const TextSpan(text: '\n'),
+          ],
+        ],
       );
     }
 
@@ -582,43 +600,142 @@ class HtmlMessage extends StatelessWidget {
     }
   }
 
+  static const Set<String> _blockLevelHtmlTags = {
+    ...blockHtmlTags,
+    ...fullLineHtmlTag,
+    'img',
+    'hr',
+    'thead',
+    'tbody',
+    'tfoot',
+    'tr',
+    'th',
+    'td',
+    'caption',
+  };
+
   @override
   Widget build(BuildContext context) {
     final element = parser.parse(html).body ?? dom.Element.html('');
     final configuredMaxLines = AppSettings.messagePreviewMaxLines.value;
     final maxLines = configuredMaxLines <= 0 ? null : configuredMaxLines;
-    final span = _renderHtml(element, context);
     final style = TextStyle(fontSize: fontSize, color: textColor);
-
-    if (maxLines == null) {
-      return Text.rich(
-        span,
-        style: style,
-        selectionColor: textColor.withAlpha(128),
-      );
-    }
-
-    // Heuristic: if plain text has enough newlines or length, it will overflow.
     final plainText = element.text;
-    final lineCount = '\n'.allMatches(plainText).length + 1;
-    final likelyOverflows =
-        lineCount > maxLines || plainText.length > maxLines * 50;
 
-    if (!likelyOverflows) {
+    final hasBlockElements = element.nodes.any(
+      (n) => n is dom.Element && _blockLevelHtmlTags.contains(n.localName),
+    );
+
+    if (hasBlockElements || !plainText.contains('\n')) {
+      final span = _renderHtml(element, context);
+      if (!hasBlockElements) {
+        final dir = autoTextDirection(plainText);
+        if (maxLines == null) {
+          return Text.rich(
+            span,
+            style: style,
+            textDirection: dir,
+            selectionColor: textColor.withAlpha(128),
+          );
+        }
+        final lineCount = 1;
+        final likelyOverflows = plainText.length > maxLines * 50;
+        if (!likelyOverflows) {
+          return Text.rich(
+            span,
+            style: style,
+            textDirection: dir,
+            selectionColor: textColor.withAlpha(128),
+          );
+        }
+        return _CollapsibleText(
+          span: span,
+          style: style,
+          textColor: textColor,
+          linkColor: linkStyle.color ?? textColor,
+          fontSize: fontSize,
+          maxLines: maxLines,
+        );
+      }
+      if (maxLines == null) {
+        return Text.rich(
+          span,
+          style: style,
+          selectionColor: textColor.withAlpha(128),
+        );
+      }
+      final lineCount = '\n'.allMatches(plainText).length + 1;
+      final likelyOverflows =
+          lineCount > maxLines || plainText.length > maxLines * 50;
+      if (!likelyOverflows) {
+        return Text.rich(
+          span,
+          style: style,
+          selectionColor: textColor.withAlpha(128),
+        );
+      }
+      return _CollapsibleText(
+        span: span,
+        style: style,
+        textColor: textColor,
+        linkColor: linkStyle.color ?? textColor,
+        fontSize: fontSize,
+        maxLines: maxLines,
+      );
+    }
+
+    return _buildPerLine(element, context, style, plainText, maxLines);
+  }
+
+  Widget _buildPerLine(
+    dom.Element body,
+    BuildContext context,
+    TextStyle style,
+    String plainText,
+    int? maxLines,
+  ) {
+    final allLines = plainText.split('\n');
+    final controlledMaxLines =
+        maxLines != null && allLines.length > maxLines ? maxLines : null;
+
+    if (controlledMaxLines != null) {
+      final span = _renderHtml(body, context);
       return Text.rich(
         span,
         style: style,
+        maxLines: controlledMaxLines,
+        overflow: TextOverflow.ellipsis,
         selectionColor: textColor.withAlpha(128),
       );
     }
 
-    return _CollapsibleText(
-      span: span,
-      style: style,
-      maxLines: maxLines,
-      textColor: textColor,
-      linkColor: linkStyle.color ?? textColor,
-      fontSize: fontSize,
+    final widgets = <Widget>[];
+    for (var i = 0; i < allLines.length; i++) {
+      final line = allLines[i];
+      if (line.isEmpty) {
+        widgets.add(SizedBox(height: fontSize * 0.5));
+        continue;
+      }
+
+      final lineElement =
+          parser.parse(line).body ?? dom.Element.html('');
+      final span = _renderHtml(lineElement, context);
+      final dir = autoTextDirection(line);
+
+      widgets.add(
+        Text.rich(
+          span,
+          style: style,
+          textDirection: dir,
+          selectionColor: textColor.withAlpha(128),
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: widgets,
     );
   }
 }

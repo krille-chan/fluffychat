@@ -13,7 +13,7 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:fluffychat/widgets/auto_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -174,7 +174,7 @@ class UserDialog extends StatelessWidget {
                     thumbVisibility: true,
                     trackVisibility: true,
                     child: SingleChildScrollView(
-                      child: SelectableLinkify(
+                      child: AutoSelectableLinkify(
                         text: statusMsg,
                         textScaleFactor: MediaQuery.textScalerOf(
                           context,

@@ -7,7 +7,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:fluffychat/widgets/auto_linkify.dart';
 
 enum OkCancelResult { ok, cancel }
 
@@ -31,7 +31,7 @@ Future<OkCancelResult?> showOkCancelAlertDialog({
       constraints: const BoxConstraints(maxWidth: 256),
       child: message == null
           ? null
-          : SelectableLinkify(
+          : AutoSelectableLinkify(
               text: message,
               textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
               linkStyle: TextStyle(
@@ -83,7 +83,7 @@ Future<OkCancelResult?> showOkAlertDialog({
       constraints: const BoxConstraints(maxWidth: 256),
       child: message == null
           ? null
-          : SelectableLinkify(
+          : AutoSelectableLinkify(
               text: message,
               textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
               linkStyle: TextStyle(
