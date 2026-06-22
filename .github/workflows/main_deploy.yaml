@@ -37,6 +37,9 @@ jobs:
 
   deploy_playstore_internal:
     runs-on: ubuntu-latest
+    concurrency:
+      group: deploy_playstore
+      queue: max
     steps:
       - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
