@@ -5,6 +5,9 @@ SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+## v2.7.2
+- fix: empty translations and add ci job (Christian Kußowski)
+
 ## v2.7.1
 - chore(translations): Translated using Weblate (Galician) (josé m.)
 - chore(translations): Translated using Weblate (Russian) (alexander kozlev)
