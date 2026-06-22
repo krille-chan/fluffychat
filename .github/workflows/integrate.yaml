@@ -18,6 +18,12 @@ jobs:
         with:
           flutter-version-file: .tool_versions.yaml
           cache: true
+      - name: Check for empty translations
+        run: |
+          if grep -rn '": ""' lib/l10n/*.arb; then
+            echo "❌ Found empty translation strings."
+            exit 1
+          fi
       - name: Check for unused translations
         run: flutter pub run translations_cleaner list-unused-terms -a
       - run: flutter pub get

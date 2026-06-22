@@ -2125,7 +2125,7 @@
             }
         }
     },
-    "hugContent": "",
+    
     "@hugContent": {
         "type": "String",
         "placeholders": {
@@ -2134,16 +2134,16 @@
             }
         }
     },
-    "commandHint_ignore": "",
-    "commandHint_cuddle": "",
-    "notificationRuleMemberEventDescription": "",
-    "blockListDescription": "",
-    "emoteShortcode": "",
+    
+    
+    
+    
+    
     "@emoteShortcode": {
         "type": "String",
         "placeholders": {}
     },
-    "completedKeyVerification": "",
+    
     "@completedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2152,45 +2152,45 @@
             }
         }
     },
-    "doesNotSeemToBeAValidHomeserver": "",
-    "createGroupAndInviteUsers": "",
-    "initAppError": "",
-    "shareKeysWithDescription": "",
-    "oneClientLoggedOut": "",
-    "notificationRuleEncryptedRoomOneToOneDescription": "",
-    "changeTheNameOfTheGroup": "",
+    
+    
+    
+    
+    
+    
+    
     "@changeTheNameOfTheGroup": {
         "type": "String",
         "placeholders": {}
     },
-    "reset": "",
-    "sendCanceled": "",
-    "changeTheCanonicalRoomAlias": "",
-    "hideRedactedMessagesBody": "",
-    "notificationRuleRoomOneToOneDescription": "",
-    "goToSpace": "",
+    
+    
+    
+    
+    
+    
     "@goToSpace": {
         "type": "String",
         "space": {}
     },
-    "restricted": "",
-    "deletePushRuleCanNotBeUndone": "",
-    "youHaveKnocked": "",
-    "banUserDescription": "",
-    "noDatabaseEncryption": "",
-    "createNewTag": "",
-    "changeTheme": "",
+    
+    
+    
+    
+    
+    
+    
     "@changeTheme": {
         "type": "String",
         "placeholders": {}
     },
-    "knockRestricted": "",
-    "removeDevicesDescription": "",
-    "notificationRuleRoomServerAcl": "",
-    "formattedMessages": "",
-    "publicSpaces": "",
-    "unbanUserDescription": "",
-    "isReadyForKeyVerification": "",
+    
+    
+    
+    
+    
+    
+    
     "@isReadyForKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2199,7 +2199,7 @@
             }
         }
     },
-    "countReplies": "",
+    
     "@countReplies": {
         "type": "int",
         "placeholders": {
@@ -2208,9 +2208,9 @@
             }
         }
     },
-    "hideInvalidOrUnknownMessageFormats": "",
-    "newSpaceDescription": "",
-    "changedTheGuestAccessRules": "",
+    
+    
+    
     "@changedTheGuestAccessRules": {
         "type": "String",
         "placeholders": {
@@ -2219,23 +2219,23 @@
             }
         }
     },
-    "reopenChat": "",
-    "notificationRuleServerAcl": "",
-    "addToBundle": "",
+    
+    
+    
     "passwordIsWrong": "Ur iṣeḥḥa ara wawal-ik n uɛeddi i d-teskecmeḍ",
-    "pleaseEnterYourCurrentPassword": "",
-    "noKeyForThisMessage": "",
-    "groupCanBeFoundViaSearch": "",
-    "sendReadReceipts": "",
-    "pushNotificationsNotAvailable": "",
-    "sendReadReceiptsDescription": "",
-    "hideRedactedEvents": "",
+    
+    
+    
+    
+    
+    
+    
     "@hideRedactedEvents": {
         "type": "String",
         "placeholders": {}
     },
-    "verifyOtherDevice": "",
-    "changedTheGuestAccessRulesTo": "",
+    
+    
     "@changedTheGuestAccessRulesTo": {
         "type": "String",
         "placeholders": {
@@ -2247,7 +2247,7 @@
             }
         }
     },
-    "updateInstalled": "",
+    
     "@updateInstalled": {
         "type": "String",
         "placeholders": {
@@ -2256,15 +2256,15 @@
             }
         }
     },
-    "makeAdminDescription": "",
+    
     "createNewChat": "Snulfu-d adiwenni amaynut",
-    "pushRules": "",
+    
     "@pushRules": {
         "type": "String",
         "placeholders": {}
     },
-    "makeModerator": "",
-    "noUsersFoundWithQuery": "",
+    
+    
     "@noUsersFoundWithQuery": {
         "type": "String",
         "placeholders": {
@@ -2273,10 +2273,10 @@
             }
         }
     },
-    "notificationRuleEncryptedDescription": "",
-    "commandHint_unignore": "",
-    "editBundlesForAccount": "",
-    "sentVoiceMessage": "",
+    
+    
+    
+    
     "@sentVoiceMessage": {
         "type": "String",
         "placeholders": {
@@ -2288,8 +2288,8 @@
             }
         }
     },
-    "appWantsToUseForLoginDescription": "",
-    "redactedBy": "",
+    
+    
     "@redactedBy": {
         "type": "String",
         "placeholders": {
@@ -2298,8 +2298,8 @@
             }
         }
     },
-    "videoCallsBetaWarning": "",
-    "redactedAnEvent": "",
+    
+    
     "@redactedAnEvent": {
         "type": "String",
         "placeholders": {
@@ -2308,18 +2308,18 @@
             }
         }
     },
-    "autoplayImages": "",
+    
     "@autoplayImages": {
         "type": "String",
         "placeholder": {}
     },
-    "compareEmojiMatch": "",
+    
     "@compareEmojiMatch": {
         "type": "String",
         "placeholders": {}
     },
     "tagName": "Isem n tebzimt",
-    "startedKeyVerification": "",
+    
     "@startedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2328,9 +2328,9 @@
             }
         }
     },
-    "inviteOtherUsers": "",
-    "federationBaseUrl": "",
-    "changedTheRoomAliases": "",
+    
+    
+    
     "@changedTheRoomAliases": {
         "type": "String",
         "placeholders": {
@@ -2339,9 +2339,9 @@
             }
         }
     },
-    "setPowerLevelDescription": "",
-    "nothingFound": "",
-    "changedTheHistoryVisibilityTo": "",
+    
+    
+    
     "@changedTheHistoryVisibilityTo": {
         "type": "String",
         "placeholders": {
@@ -2353,9 +2353,9 @@
             }
         }
     },
-    "changeTheVisibilityOfChatHistory": "",
-    "yourGlobalUserIdIs": "",
-    "changedTheJoinRulesTo": "",
+    
+    
+    
     "@changedTheJoinRulesTo": {
         "type": "String",
         "placeholders": {
@@ -2367,25 +2367,25 @@
             }
         }
     },
-    "support": "",
-    "notificationRuleMessageDescription": "",
-    "moderator": "",
+    
+    
+    
     "@moderator": {
         "type": "String",
         "placeholders": {}
     },
-    "channelCorruptedDecryptError": "",
+    
     "@channelCorruptedDecryptError": {
         "type": "String",
         "placeholders": {}
     },
-    "guestsCanJoin": "",
+    
     "@guestsCanJoin": {
         "type": "String",
         "placeholders": {}
     },
-    "notificationRuleServerAclDescription": "",
-    "hasWithdrawnTheInvitationFor": "",
+    
+    
     "@hasWithdrawnTheInvitationFor": {
         "type": "String",
         "placeholders": {
@@ -2397,17 +2397,17 @@
             }
         }
     },
-    "mute": "",
+    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    "archiveRoomDescription": "",
-    "sendRoomNotifications": "",
-    "commandInvalid": "",
+    
+    
+    
     "@commandInvalid": {
         "type": "String"
     },
-    "changedTheRoomInvitationLink": "",
+    
     "@changedTheRoomInvitationLink": {
         "type": "String",
         "placeholders": {
@@ -2416,19 +2416,19 @@
             }
         }
     },
-    "notificationRuleTombstone": "",
-    "commandHint_plain": "",
+    
+    
     "@commandHint_plain": {
         "type": "String",
         "description": "Usage hint for the command /plain"
     },
-    "removeModeratorRights": "",
-    "guestsAreForbidden": "",
+    
+    
     "@guestsAreForbidden": {
         "type": "String",
         "placeholders": {}
     },
-    "redactedByBecause": "",
+    
     "@redactedByBecause": {
         "type": "String",
         "placeholders": {
@@ -2440,9 +2440,9 @@
             }
         }
     },
-    "chatPermissionsDescription": "",
+    
     "addTag": "Rnu tabzimt",
-    "changedTheProfileAvatar": "",
+    
     "@changedTheProfileAvatar": {
         "type": "String",
         "placeholders": {
@@ -2451,12 +2451,12 @@
             }
         }
     },
-    "sendTypingNotificationsDescription": "",
-    "verifyOtherUser": "",
-    "verifyOtherUserDescription": "",
-    "notificationRuleRoomServerAclDescription": "",
-    "commandHint_sendraw": "",
-    "spaceMemberOfCanKnock": "",
+    
+    
+    
+    
+    
+    
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2465,7 +2465,7 @@
             }
         }
     },
-    "commandMissing": "",
+    
     "@commandMissing": {
         "type": "String",
         "placeholders": {
@@ -2475,18 +2475,18 @@
         },
         "description": "State that {command} is not a valid /command."
     },
-    "wrongRecoveryKey": "",
-    "hideRedactedMessages": "",
-    "playSoundOnNotification": "",
-    "compareNumbersMatch": "",
+    
+    
+    
+    
     "@compareNumbersMatch": {
         "type": "String",
         "placeholders": {}
     },
-    "changeGeneralChatSettings": "",
-    "stickers": "",
-    "markAsUnread": "",
-    "googlyEyesContent": "",
+    
+    
+    
+    
     "@googlyEyesContent": {
         "type": "String",
         "placeholders": {
@@ -2495,10 +2495,10 @@
             }
         }
     },
-    "unsetLowPriority": "",
-    "setLowPriority": "",
-    "changeTheDescriptionOfTheGroup": "",
-    "chatSearchedUntil": "",
+    
+    
+    
+    
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
@@ -2507,7 +2507,7 @@
             }
         }
     },
-    "sessionLostBody": "",
+    
     "@sessionLostBody": {
         "type": "String",
         "placeholders": {
@@ -2519,17 +2519,17 @@
             }
         }
     },
-    "thereAreCountUsersBlocked": "",
+    
     "@thereAreCountUsersBlocked": {
         "type": "String",
         "count": {}
     },
-    "commandHint_react": "",
+    
     "@commandHint_react": {
         "type": "String",
         "description": "Usage hint for the command /react"
     },
-    "changedTheHistoryVisibility": "",
+    
     "@changedTheHistoryVisibility": {
         "type": "String",
         "placeholders": {
@@ -2538,15 +2538,15 @@
             }
         }
     },
-    "disableEncryptionWarning": "",
+    
     "pleaseChooseAStrongPassword": "Ttxil, fren awal n uɛeddi iǧehden, ma ulac aɣilif",
-    "publicChatAddresses": "",
-    "commandHint_unban": "",
+    
+    
     "@commandHint_unban": {
         "type": "String",
         "description": "Usage hint for the command /unban"
     },
-    "wasDirectChatDisplayName": "",
+    
     "@wasDirectChatDisplayName": {
         "type": "String",
         "placeholders": {
@@ -2555,14 +2555,14 @@
             }
         }
     },
-    "addChatOrSubSpace": "",
-    "changeTheChatPermissions": "",
-    "removeFromBundle": "",
-    "bundleName": "",
-    "leaveEmptyToClearStatus": "",
-    "roomUpgradeDescription": "",
-    "joinSpace": "",
-    "unknownPushRule": "",
+    
+    
+    
+    
+    
+    
+    
+    
     "@unknownPushRule": {
         "type": "String",
         "placeholders": {
@@ -2571,7 +2571,7 @@
             }
         }
     },
-    "changedTheJoinRules": "",
+    
     "@changedTheJoinRules": {
         "type": "String",
         "placeholders": {
@@ -2580,9 +2580,9 @@
             }
         }
     },
-    "sorryThatsNotPossible": "",
-    "crossVerifiedDevices": "",
-    "cuddleContent": "",
+    
+    
+    
     "@cuddleContent": {
         "type": "String",
         "placeholders": {
@@ -2591,12 +2591,12 @@
             }
         }
     },
-    "noGoogleServicesWarning": "",
+    
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
     },
-    "acceptedKeyVerification": "",
+    
     "@acceptedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2605,14 +2605,14 @@
             }
         }
     },
-    "crossVerifiedDevicesIfEnabled": "",
-    "sendingAttachment": "",
-    "changeTheHomeserver": "",
+    
+    
+    
     "@changeTheHomeserver": {
         "type": "String",
         "placeholders": {}
     },
-    "chatCanBeDiscoveredViaSearchOnServer": "",
+    
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",
         "placeholders": {
@@ -2621,7 +2621,7 @@
             }
         }
     },
-    "canceledKeyVerification": "",
+    
     "@canceledKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2630,8 +2630,8 @@
             }
         }
     },
-    "commandHint_hug": "",
-    "restoreSessionBody": "",
+    
+    
     "@restoreSessionBody": {
         "type": "String",
         "placeholders": {
@@ -2643,9 +2643,9 @@
             }
         }
     },
-    "databaseMigrationTitle": "",
-    "verifyOtherDeviceDescription": "",
-    "unreadChatsInApp": "",
+    
+    
+    
     "@unreadChatsInApp": {
         "type": "String",
         "placeholders": {
@@ -2658,7 +2658,7 @@
         }
     },
     "removeTag": "Kkes tabzimt",
-    "countVotes": "",
+    
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -2667,9 +2667,9 @@
             }
         }
     },
-    "commandHint_googly": "",
-    "searchChatsRooms": "",
-    "moderatorLevel": "",
+    
+    
+    
     "@moderatorLevel": {
         "type": "String",
         "placeholders": {
@@ -2678,25 +2678,25 @@
             }
         }
     },
-    "notificationRuleJitsiDescription": "",
-    "changeYourAvatar": "",
+    
+    
     "@changeYourAvatar": {
         "type": "String",
         "placeholders": {}
     },
-    "incomingMessages": "",
-    "attribution": "",
-    "noBackupWarning": "",
-    "formattedMessagesDescription": "",
-    "supportFluffyChat": "",
-    "databaseMigrationBody": "",
-    "kickUserDescription": "",
-    "pin": "",
+    
+    
+    
+    
+    
+    
+    
+    
     "@pin": {
         "type": "String",
         "placeholders": {}
     },
-    "requestedKeyVerification": "",
+    
     "@requestedKeyVerification": {
         "type": "String",
         "placeholders": {

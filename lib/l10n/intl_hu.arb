@@ -2570,16 +2570,16 @@
     "approve": "Jóváhagy",
     "youHaveKnocked": "Kopogott",
     "pleaseWaitUntilInvited": "Kérem várjon, amíg valaki a szobából behívja Önt.",
-    "answersVisible": "",
-    "logs": "",
-    "signIn": "",
-    "pollQuestion": "",
-    "reset": "",
-    "thread": "",
-    "poll": "",
-    "stickerPackName": "",
-    "createNewTag": "",
-    "countReplies": "",
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     "@countReplies": {
         "type": "int",
         "placeholders": {
@@ -2588,7 +2588,7 @@
             }
         }
     },
-    "versionWithNumber": "",
+    
     "@versionWithNumber": {
         "type": "String",
         "placeholders": {
@@ -2597,9 +2597,9 @@
             }
         }
     },
-    "useAsEmoji": "",
-    "join": "",
-    "countChats": "",
+    
+    
+    
     "@countChats": {
         "type": "String",
         "placeholders": {
@@ -2608,48 +2608,48 @@
             }
         }
     },
-    "advancedConfigurations": "",
-    "signUpGreeting": "",
-    "baseUrl": "",
-    "pause": "",
-    "allowMultipleAnswers": "",
-    "answersWillBeVisibleWhenPollHasEnded": "",
-    "createNewChat": "",
-    "backToMainChat": "",
-    "makeModerator": "",
-    "addAnswerOption": "",
-    "skipChatBackup": "",
-    "answerOption": "",
-    "customReaction": "",
-    "displayNavigationRail": "",
-    "tagName": "",
-    "moreEvents": "",
-    "resume": "",
-    "commandHint_logoutall": "",
-    "clientWellKnownInformation": "",
-    "federationBaseUrl": "",
-    "setPowerLevelDescription": "",
-    "noMessagesYet": "",
-    "stickerPackNameAlreadyExists": "",
-    "matrixId": "",
-    "identityServer": "",
-    "support": "",
-    "createNewAccount": "",
-    "setPowerLevel": "",
-    "pollHasBeenEnded": "",
-    "replyInThread": "",
-    "mute": "",
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    "useAsSticker": "",
-    "noMoreResultsFound": "",
-    "longPressToRecordVoiceMessage": "",
-    "createSticker": "",
-    "removeModeratorRights": "",
-    "addTag": "",
-    "startPoll": "",
-    "spaceMemberOfCanKnock": "",
+    
+    
+    
+    
+    
+    
+    
+    
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2658,18 +2658,18 @@
             }
         }
     },
-    "removeAdminRights": "",
-    "removeFromSpaceDescription": "",
-    "owner": "",
-    "powerLevel": "",
-    "playSoundOnNotification": "",
-    "changedTheChatDescription": "",
-    "skipChatBackupWarning": "",
-    "makeAdmin": "",
-    "searchOrEnterHomeserverAddress": "",
-    "unsetLowPriority": "",
-    "setLowPriority": "",
-    "chatSearchedUntil": "",
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
@@ -2678,16 +2678,16 @@
             }
         }
     },
-    "endPoll": "",
-    "theProcessWasCanceled": "",
-    "saveChanges": "",
-    "commandHint_logout": "",
-    "newStickerPack": "",
-    "signInGreeting": "",
-    "advancedConfigs": "",
-    "declineInvitation": "",
-    "removeTag": "",
-    "countVotes": "",
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -2696,9 +2696,9 @@
             }
         }
     },
-    "attribution": "",
-    "supportFluffyChat": "",
-    "startedAPoll": "",
+    
+    
+    
     "@startedAPoll": {
         "type": "String",
         "placeholders": {
@@ -2707,8 +2707,8 @@
             }
         }
     },
-    "changedTheChatName": "",
-    "spaceMemberOf": "",
+    
+    
     "@spaceMemberOf": {
         "type": "String",
         "placeholders": {
