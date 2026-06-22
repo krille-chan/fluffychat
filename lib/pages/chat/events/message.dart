@@ -141,7 +141,7 @@ class Message extends StatelessWidget {
         : MainAxisAlignment.start;
 
     final displayEvent = event.getDisplayEvent(timeline);
-    const hardCorner = Radius.circular(4);
+    const hardCorner = Radius.circular(3);
     const roundedCorner = Radius.circular(AppConfig.borderRadius);
     final borderRadius = BorderRadius.only(
       topLeft: !ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
@@ -149,7 +149,7 @@ class Message extends StatelessWidget {
       bottomLeft: !ownMessage ? hardCorner : roundedCorner,
       bottomRight: ownMessage ? hardCorner : roundedCorner,
     );
-    const avatarSize = 48.0;
+    const avatarSize = Avatar.defaultSize;
     final noBubble =
         ({
           MessageTypes.Video,
@@ -192,6 +192,10 @@ class Message extends StatelessWidget {
     final threadChildren = event.aggregatedEvents(
       timeline,
       RelationshipTypes.thread,
+    );
+    final isEdited = event.hasAggregatedEvents(
+      timeline,
+      RelationshipTypes.edit,
     );
 
     final showReactionPicker =
@@ -444,6 +448,24 @@ class Message extends StatelessWidget {
                               ),
                             ),
 
+                            AnimatedSize(
+                              duration: FluffyThemes.animationDuration,
+                              curve: FluffyThemes.animationCurve,
+                              alignment: Alignment.bottomCenter,
+                              child: !hasReactions
+                                  ? const SizedBox.shrink()
+                                  : Container(
+                                      alignment: ownMessage
+                                          ? Alignment.centerRight
+                                          : Alignment.centerLeft,
+                                      padding: EdgeInsets.only(
+                                        top: 1.0,
+                                        left: 8.0,
+                                        right: ownMessage ? 0 : 12.0,
+                                      ),
+                                      child: MessageReactions(event, timeline),
+                                    ),
+                            ),
                             Padding(
                               padding: EdgeInsets.only(left: 8.0),
                               child: Row(
@@ -469,7 +491,9 @@ class Message extends StatelessWidget {
                                             .onPrimaryContainer,
                                       ),
                                     ),
-                                  if (!previousEventSameSender &&
+                                  if ((selected ||
+                                          !previousEventSameSender ||
+                                          isEdited) &&
                                       !ownMessage &&
                                       !event.room.isDirectChat)
                                     FutureBuilder<User?>(
@@ -505,17 +529,14 @@ class Message extends StatelessWidget {
                                           !previousEventSameSender ||
                                           selected))
                                     Text(
-                                      ' ${event.originServerTs.localizedTimeOfDay(context)}',
+                                      ' ${selected ? event.originServerTs.localizedTime(context) : event.originServerTs.localizedTimeOfDay(context)}',
                                       style: TextStyle(
                                         color: eventStateTextColor,
                                         fontSize: 11,
                                         shadows: wallpaperTextShadow,
                                       ),
                                     ),
-                                  if (event.hasAggregatedEvents(
-                                    timeline,
-                                    RelationshipTypes.edit,
-                                  )) ...[
+                                  if (isEdited) ...[
                                     Text(' ', style: TextStyle(fontSize: 11)),
                                     Text(
                                       L10n.of(context).edited,
@@ -759,22 +780,6 @@ class Message extends StatelessWidget {
                     ],
                   ),
                 ],
-              ),
-
-              AnimatedSize(
-                duration: FluffyThemes.animationDuration,
-                curve: FluffyThemes.animationCurve,
-                alignment: Alignment.bottomCenter,
-                child: !hasReactions
-                    ? const SizedBox.shrink()
-                    : Padding(
-                        padding: EdgeInsets.only(
-                          top: 1.0,
-                          left: (ownMessage ? 0 : avatarSize) + 8.0,
-                          right: ownMessage ? 0 : 12.0,
-                        ),
-                        child: MessageReactions(event, timeline),
-                      ),
               ),
               if (enterThread != null)
                 AnimatedSize(

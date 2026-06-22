@@ -49,7 +49,7 @@ class SendFileDialogState extends State<SendFileDialog> {
 
   final TextEditingController _labelTextController = TextEditingController();
 
-  Future<void> _send() async {
+  Future<void> _send(String? uniqueFileType) async {
     final l10n = L10n.of(context);
 
     final proceed = await showTrustUserInRoomDialog(context, widget.room);
@@ -140,8 +140,8 @@ class SendFileDialogState extends State<SendFileDialog> {
       }
     }
 
-    if (widget.files.length == 1) {
-      await sendAction(VoidCallback);
+    if (widget.files.length == 1 && !(uniqueFileType == 'video' && compress)) {
+      await sendAction((_) {});
     } else {
       showFutureLoadingDialog(
         context: widget.outerContext,
@@ -402,7 +402,7 @@ class SendFileDialogState extends State<SendFileDialog> {
               child: Text(L10n.of(context).cancel),
             ),
             AdaptiveDialogAction(
-              onPressed: _send,
+              onPressed: () => _send(uniqueFileType),
               child: Text(L10n.of(context).send),
             ),
           ],
