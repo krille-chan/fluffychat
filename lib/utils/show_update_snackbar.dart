@@ -35,7 +35,6 @@ abstract class UpdateNotifier {
             actions: [
               AdaptiveDialogAction(
                 bigButtons: true,
-                autofocus: true,
                 onPressed: () => launchUrlString(AppConfig.helpUrl),
                 child: Row(
                   mainAxisSize: .min,
