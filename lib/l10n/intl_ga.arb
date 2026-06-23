@@ -2897,5 +2897,13 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageNotDecryptable": "Ní féidir an teachtaireacht a dhíchriptiú"
+    "messageNotDecryptable": "Ní féidir an teachtaireacht a dhíchriptiú",
+    "today": "Inniu",
+    "sending": "Ag seoladh",
+    "generatingThumbnail": "Ag giniúint mionsamhail",
+    "encrypting": "Criptiú",
+    "uploading": "Ag uaslódáil",
+    "edited": "(eagarthóireacht déanta)",
+    "couldNotBeSent": "Níorbh fhéidir a sheoladh",
+    "yesterday": "Inné"
 }
