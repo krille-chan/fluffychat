@@ -66,7 +66,7 @@ jobs:
           cache: true
       - uses: dtolnay/rust-toolchain@stable
       - name: Cache Gradle
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: |
             ~/.gradle/caches
@@ -160,7 +160,7 @@ jobs:
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
       - name: AVD cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         id: avd-cache
         with:
           path: ~/.android/*
@@ -199,7 +199,7 @@ jobs:
           cache: true
       - uses: dtolnay/rust-toolchain@stable
       - name: Cache Gradle
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: |
             ~/.gradle/caches
