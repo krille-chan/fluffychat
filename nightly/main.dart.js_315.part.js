@@ -702,18 +702,18 @@ gqp(){return"Gl\xe9as neamhsh\xednithe"},
 gpk(){return"Gl\xe9as s\xednithe"},
 gpU(){return"N\xedor aims\xedodh eochair curve25519"},
 gpR(){return"N\xed f\xe9idir an teachtaireacht a dh\xedchripti\xfa"},
-gql(){return"Today"},
-gpa(){return"Sending"},
-gp7(){return"Generating thumbnail"},
-gpE(){return"Encrypting"},
-gqq(){return"Uploading"},
-gpC(){return"(edited)"},
-gpw(){return"Could not be sent"},
-gqs(){return"Yesterday"},
+gql(){return"Inniu"},
+gpa(){return"Ag seoladh"},
+gp7(){return"Ag gini\xfaint mionsamhail"},
+gpE(){return"Cripti\xfa"},
+gqq(){return"Ag uasl\xf3d\xe1il"},
+gpC(){return"(eagarth\xf3ireacht d\xe9anta)"},
+gpw(){return"N\xedorbh fh\xe9idir a sheoladh"},
+gqs(){return"Inn\xe9"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gx,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Gx":{"aE":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["05prlMuR+A18ilKuK5J2VTr/vys="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zM8d4uPFMFduixF1SaorNOQNa+8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_315.part.js.map
