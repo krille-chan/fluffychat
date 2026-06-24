@@ -1853,7 +1853,6 @@
     "scanQrCode": "Naskenujte QR kód",
     "sendOnEnter": "Odeslat při vstupu",
     "homeserver": "Domácí server",
-    "serverRequiresEmail": "Tento server potřebuje k registraci ověřit vaši e -mailovou adresu.",
     "addToBundle": "Přidat do balíčku",
     "addAccount": "Přidat účet",
     "bundleName": "Název balíčku",
@@ -2548,26 +2547,10 @@
         }
     },
     "commandHint_roomupgrade": "Aktualizovat místnost na danou verzi",
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@goToSpace": {
         "type": "String",
         "space": {}
     },
-    
-    
-    
-    
-    
-    
     "@countReplies": {
         "type": "int",
         "placeholders": {
@@ -2576,10 +2559,6 @@
             }
         }
     },
-    
-    
-    
-    
     "@userLevel": {
         "type": "String",
         "placeholders": {
@@ -2588,10 +2567,6 @@
             }
         }
     },
-    
-    
-    
-    
     "@updateInstalled": {
         "type": "String",
         "placeholders": {
@@ -2600,19 +2575,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@adminLevel": {
         "type": "String",
         "placeholders": {
@@ -2621,46 +2583,13 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@thereAreCountUsersBlocked": {
         "type": "String",
         "count": {}
     },
-    
-    
-    
-    
     "@unknownPushRule": {
         "type": "String",
         "placeholders": {
@@ -2669,11 +2598,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
     "@unreadChatsInApp": {
         "type": "String",
         "placeholders": {
@@ -2685,8 +2609,6 @@
             }
         }
     },
-    
-    
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -2695,7 +2617,6 @@
             }
         }
     },
-    
     "@moderatorLevel": {
         "type": "String",
         "placeholders": {
@@ -2704,11 +2625,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
     "@searchIn": {
         "type": "String",
         "placeholders": {

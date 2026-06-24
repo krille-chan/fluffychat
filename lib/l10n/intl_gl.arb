@@ -1853,7 +1853,6 @@
     "scanQrCode": "Escanear código QR",
     "sendOnEnter": "Enter para enviar",
     "homeserver": "Servidor de inicio",
-    "serverRequiresEmail": "O servidor precisa validar o teu enderezo de email para rexistrarte.",
     "addAccount": "Engadir conta",
     "oneClientLoggedOut": "Un dos teus clientes foi desconectado",
     "link": "Ligazón",

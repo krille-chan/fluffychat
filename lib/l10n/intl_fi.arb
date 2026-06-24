@@ -1643,7 +1643,6 @@
     },
     "removeFromSpace": "Poista tilasta",
     "start": "Aloita",
-    "serverRequiresEmail": "Tämän palvelimen täytyy tarkistaa sähköposti-osoitteesi rekisteröitymistä varten.",
     "roomVersion": "Huoneen versio",
     "@roomVersion": {
         "type": "String",
@@ -2645,12 +2644,6 @@
     },
     "thread": "Ketju",
     "backToMainChat": "Takaisin pääpikakeskusteluun",
-    
-    
-    
-    
-    
-    
     "@versionWithNumber": {
         "type": "String",
         "placeholders": {
@@ -2659,45 +2652,9 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {

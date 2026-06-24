@@ -1306,7 +1306,6 @@
         "placeholders": {}
     },
     "link": "Havola",
-    "serverRequiresEmail": "Ushbu server roʻyxatdan oʻtish uchun elektron pochta manzilingizni tasdiqlashi kerak.",
     "or": "Yoki",
     "@or": {
         "type": "String",
@@ -2673,20 +2672,6 @@
     "logs": "Jurnallar",
     "advancedConfigs": "Kengaytirilgan konfiguratsiyalar",
     "advancedConfigurations": "Kengaytirilgan sozlamalar",
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     }

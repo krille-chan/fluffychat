@@ -2036,7 +2036,6 @@
         "placeholders": {}
     },
     "unverified": "Hitelesítetlen",
-    "serverRequiresEmail": "Ehhez a szerverhez szükséges az email címének visszaigazolása.",
     "screenSharingTitle": "képernyő megosztás",
     "youBannedUser": "Letitotta {user} felhasználót",
     "@youBannedUser": {
@@ -2570,16 +2569,6 @@
     "approve": "Jóváhagy",
     "youHaveKnocked": "Kopogott",
     "pleaseWaitUntilInvited": "Kérem várjon, amíg valaki a szobából behívja Önt.",
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@countReplies": {
         "type": "int",
         "placeholders": {
@@ -2588,7 +2577,6 @@
             }
         }
     },
-    
     "@versionWithNumber": {
         "type": "String",
         "placeholders": {
@@ -2597,9 +2585,6 @@
             }
         }
     },
-    
-    
-    
     "@countChats": {
         "type": "String",
         "placeholders": {
@@ -2608,48 +2593,9 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    
-    
-    
-    
-    
-    
-    
-    
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2658,18 +2604,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
@@ -2678,16 +2612,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -2696,9 +2620,6 @@
             }
         }
     },
-    
-    
-    
     "@startedAPoll": {
         "type": "String",
         "placeholders": {
@@ -2707,8 +2628,6 @@
             }
         }
     },
-    
-    
     "@spaceMemberOf": {
         "type": "String",
         "placeholders": {

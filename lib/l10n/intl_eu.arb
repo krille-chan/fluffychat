@@ -1394,7 +1394,6 @@
     },
     "experimentalVideoCalls": "Bideo-dei esperimentalak",
     "removeFromBundle": "Kendu sorta honetatik",
-    "serverRequiresEmail": "Zerbitzari honek zure posta elektronikoa egiaztatu behar du izena eman dezazun.",
     "or": "Edo",
     "@or": {
         "type": "String",

@@ -1870,7 +1870,6 @@
     "editBundlesForAccount": "Lägg till paket för detta konto",
     "addToBundle": "Utöka paket",
     "bundleName": "Paketnamn",
-    "serverRequiresEmail": "Servern behöver validera din e-postadress för registrering.",
     "unverified": "Ej verifierad",
     "messageInfo": "Meddelandeinformation",
     "messageType": "Meddelandetyp",
@@ -2561,41 +2560,6 @@
     "logs": "Loggar",
     "signIn": "Logga in",
     "createNewAccount": "Skapa nytt konto",
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@sentVoiceMessage": {
         "type": "String",
         "placeholders": {
@@ -2607,41 +2571,9 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2650,19 +2582,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
@@ -2671,10 +2590,6 @@
             }
         }
     },
-    
-    
-    
-    
     "@unknownPushRule": {
         "type": "String",
         "placeholders": {
@@ -2683,21 +2598,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@startedAPoll": {
         "type": "String",
         "placeholders": {
@@ -2706,8 +2606,6 @@
             }
         }
     },
-    
-    
     "@spaceMemberOf": {
         "type": "String",
         "placeholders": {

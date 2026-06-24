@@ -1853,7 +1853,6 @@
     "scanQrCode": "Skaneeri QR-koodi",
     "sendOnEnter": "Saada sõnum sisestusklahvi vajutusel",
     "homeserver": "Koduserver",
-    "serverRequiresEmail": "See koduserver eeldab registreerimisel kasutatava e-postiaadressi kinnitamist.",
     "bundleName": "Köite nimi",
     "removeFromBundle": "Eemalda sellest köitest",
     "addToBundle": "Lisa köitesse",
