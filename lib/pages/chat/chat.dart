@@ -303,7 +303,7 @@ class ChatController extends State<ChatPageWithRoom>
     for (final item in shareItems) {
       if (item is FileShareItem) continue;
       if (item is TextShareItem) room.sendTextEvent(item.value);
-      if (item is ContentShareItem) room.sendEvent(item.value);
+      if (item is ContentShareItem) room.sendEvent(item.value.copy());
     }
     final files = shareItems
         .whereType<FileShareItem>()
