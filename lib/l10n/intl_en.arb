@@ -2744,6 +2744,7 @@
         }
     },
     "deviceIdentityKey": "Device identity key",
+    "rooms": "Rooms",
     "restoreBootstrapEmptyDevicesDescription": "Please enter your passphrase or recovery key to verify this device and get access to your encrypted message backup.",
     "@restoreBootstrapEmptyDevicesDescription": {
         "type": "String",
