@@ -1315,7 +1315,6 @@
         "placeholders": {}
     },
     "link": "Link",
-    "serverRequiresEmail": "This server needs to validate your email address for registration.",
     "or": "Or",
     "@or": {
         "type": "String",

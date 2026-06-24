@@ -1439,7 +1439,6 @@
         "placeholders": {}
     },
     "addAccount": "Dodaj konto",
-    "serverRequiresEmail": "Ten serwer wymaga potwierdzenia Twojego adresu email w celu rejestracji.",
     "or": "Lub",
     "@or": {
         "type": "String",

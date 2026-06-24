@@ -1851,7 +1851,6 @@
         "placeholder": {}
     },
     "addToSpace": "Zum Space hinzufügen",
-    "serverRequiresEmail": "Dieser Server muss deine E-Mail-Adresse für die Registrierung überprüfen.",
     "bundleName": "Name des Bundles",
     "removeFromBundle": "Von diesem Bundle entfernen",
     "addToBundle": "Zu einem Bundle hinzufügen",

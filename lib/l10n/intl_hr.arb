@@ -1845,7 +1845,6 @@
         "placeholders": {}
     },
     "addToSpace": "Dodaj u prostor",
-    "serverRequiresEmail": "Za registraciju ovaj server mora potvrditi tvoju e-mail adresu.",
     "scanQrCode": "Snimi QR kod",
     "homeserver": "Homeserver",
     "sendOnEnter": "Pošalji pritiskom tipke enter",
@@ -2686,20 +2685,6 @@
     "logs": "Zapisi",
     "advancedConfigs": "Napredne konfiguracije",
     "advancedConfigurations": "Napredne konfiguracije",
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     }

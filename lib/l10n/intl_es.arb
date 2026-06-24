@@ -1594,7 +1594,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "serverRequiresEmail": "Este servidor necesita validar su dirección de correo electrónico para registrarse.",
     "replaceRoomWithNewerVersion": "Reemplazar habitación con una versión más nueva",
     "@replaceRoomWithNewerVersion": {
         "type": "String",

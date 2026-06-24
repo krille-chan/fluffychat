@@ -1998,7 +1998,6 @@
     "invalidInput": "L'entrada no és vàlida!",
     "doNotShowAgain": "No ho tornis a mostrar",
     "report": "informa",
-    "serverRequiresEmail": "Aquest servidor necessita validar la teva adreça per registrar-t'hi.",
     "screenSharingTitle": "compartició de pantalla",
     "googlyEyesContent": "{senderName} t'ha enviat un parell d'ulls",
     "@googlyEyesContent": {

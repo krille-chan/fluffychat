@@ -1844,7 +1844,6 @@
     "scanQrCode": "Сканировать QR-код",
     "sendOnEnter": "Отправлять по Enter",
     "homeserver": "Домашний сервер",
-    "serverRequiresEmail": "Этот сервер должен подтвердить ваш адрес электронной почты для регистрации.",
     "bundleName": "Название пакета",
     "removeFromBundle": "Удалить из этого пакета",
     "addToBundle": "Добавить в пакет",

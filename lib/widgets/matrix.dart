@@ -21,7 +21,6 @@ import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/encryption.dart';
@@ -62,15 +61,11 @@ class Matrix extends StatefulWidget {
       Provider.of<MatrixState>(context, listen: false);
 }
 
-class MatrixState extends State<Matrix> with WidgetsBindingObserver {
+class MatrixState extends State<Matrix> {
   int _activeClient = -1;
   String? activeBundle;
 
   SharedPreferences get store => widget.store;
-
-  XFile? loginAvatar;
-  String? loginUsername;
-  bool? loginRegistrationSupported;
 
   BackgroundPush? backgroundPush;
 
@@ -87,9 +82,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   int getClientIndexByMatrixId(String matrixId) =>
       widget.clients.indexWhere((client) => client.userID == matrixId);
-
-  late String currentClientSecret;
-  RequestTokenResponse? currentThreepidCreds;
 
   void setActiveClient(Client? cl) {
     final i = widget.clients.indexWhere((c) => c == cl);
@@ -114,7 +106,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   Map<String?, List<Client?>> get accountBundles {
-    final resBundles = <String?, List<_AccountBundleWithClient>>{};
+    final resBundles =
+        <String?, List<({Client? client, AccountBundle? bundle})>>{};
     for (var i = 0; i < widget.clients.length; i++) {
       final bundles = widget.clients[i].accountBundles;
       for (final bundle in bundles) {
@@ -122,9 +115,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           continue;
         }
         resBundles[bundle.name] ??= [];
-        resBundles[bundle.name]!.add(
-          _AccountBundleWithClient(client: widget.clients[i], bundle: bundle),
-        );
+        resBundles[bundle.name]!.add((
+          client: widget.clients[i],
+          bundle: bundle,
+        ));
       }
     }
     for (final b in resBundles.values) {
@@ -210,9 +204,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    _listener = AppLifecycleListener(onStateChange: didChangeAppLifecycleState);
     initMatrix();
   }
+
+  AppLifecycleListener? _listener;
 
   void _registerSubs(String name) {
     final c = getClientByName(name);
@@ -365,7 +361,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     voipPlugin = VoipPlugin(this);
   }
 
-  @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     final foreground =
         state != AppLifecycleState.inactive &&
@@ -384,7 +379,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    _listener?.dispose();
 
     for (final sub in onRoomKeyRequestSub.values) {
       sub.cancel();
@@ -443,11 +438,4 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     if (!context.mounted) return;
     file.save(context);
   }
-}
-
-class _AccountBundleWithClient {
-  final Client? client;
-  final AccountBundle? bundle;
-
-  _AccountBundleWithClient({this.client, this.bundle});
 }

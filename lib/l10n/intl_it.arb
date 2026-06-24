@@ -1711,7 +1711,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "serverRequiresEmail": "Questo server ha bisogno di validare la tua email per la registrazione.",
     "openInMaps": "Apri in maps",
     "@openInMaps": {
         "type": "String",
@@ -2579,16 +2578,6 @@
     "longPressToRecordVoiceMessage": "Premi a lungo per registrare un messaggio vocale.",
     "pause": "Pausa",
     "resume": "Riprendi",
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@countReplies": {
         "type": "int",
         "placeholders": {
@@ -2597,7 +2586,6 @@
             }
         }
     },
-    
     "@versionWithNumber": {
         "type": "String",
         "placeholders": {
@@ -2606,9 +2594,6 @@
             }
         }
     },
-    
-    
-    
     "@countChats": {
         "type": "String",
         "placeholders": {
@@ -2617,40 +2602,9 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    
-    
-    
-    
-    
-    
-    
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2659,18 +2613,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
@@ -2679,14 +2621,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -2695,9 +2629,6 @@
             }
         }
     },
-    
-    
-    
     "@startedAPoll": {
         "type": "String",
         "placeholders": {
@@ -2706,8 +2637,6 @@
             }
         }
     },
-    
-    
     "@spaceMemberOf": {
         "type": "String",
         "placeholders": {

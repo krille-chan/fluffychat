@@ -1388,7 +1388,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "serverRequiresEmail": "이 서버는 가입을 위해 당신의 이메일을 확인해야 합니다.",
     "bundleName": "번들 이름",
     "removeFromBundle": "이 번들에서 삭제",
     "addToBundle": "번들에 추가",
@@ -2518,25 +2517,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@countReplies": {
         "type": "int",
         "placeholders": {
@@ -2545,7 +2525,6 @@
             }
         }
     },
-    
     "@versionWithNumber": {
         "type": "String",
         "placeholders": {
@@ -2554,11 +2533,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
     "@countChats": {
         "type": "String",
         "placeholders": {
@@ -2567,22 +2541,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@sentVoiceMessage": {
         "type": "String",
         "placeholders": {
@@ -2594,43 +2552,9 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2639,20 +2563,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
@@ -2661,9 +2571,6 @@
             }
         }
     },
-    
-    
-    
     "@unknownPushRule": {
         "type": "String",
         "placeholders": {
@@ -2672,18 +2579,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -2692,11 +2587,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
     "@startedAPoll": {
         "type": "String",
         "placeholders": {
@@ -2705,9 +2595,6 @@
             }
         }
     },
-    
-    
-    
     "@spaceMemberOf": {
         "type": "String",
         "placeholders": {

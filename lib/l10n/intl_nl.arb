@@ -1852,7 +1852,6 @@
     "scanQrCode": "QR-code scannen",
     "sendOnEnter": "Verstuur met enter",
     "homeserver": "Server",
-    "serverRequiresEmail": "Deze server wil je email laten bevestigen bij de registratie.",
     "oneClientLoggedOut": "Één van jouw apparaten is uitgelogd",
     "bundleName": "Bundelnaam",
     "removeFromBundle": "Van bundel verwijderen",

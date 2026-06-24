@@ -1742,7 +1742,6 @@
         "placeholders": {}
     },
     "link": "Спасылка",
-    "serverRequiresEmail": "Гэты сервер павінен спраўдзіць ваш email для рэгістрацыі.",
     "or": "Ці",
     "@or": {
         "type": "String",

@@ -1455,7 +1455,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "serverRequiresEmail": "Šim serverim ir nepieciešams pārbaudīt Tavu e-pasta adresi reģistrācijai.",
     "screenSharingTitle": "ekrāna kopīgošana",
     "sentCallInformations": "{senderName} nosūtīja informāciju par zvanu",
     "@sentCallInformations": {

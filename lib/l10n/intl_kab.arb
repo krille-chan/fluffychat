@@ -913,7 +913,6 @@
         "placeholders": {}
     },
     "link": "Aseɣwen",
-    "serverRequiresEmail": "Aqeddac-agi ilaq ad isentem tansa imayl i ujerred.",
     "or": "Neɣ",
     "@or": {
         "type": "String",
@@ -2125,7 +2124,6 @@
             }
         }
     },
-    
     "@hugContent": {
         "type": "String",
         "placeholders": {
@@ -2134,16 +2132,10 @@
             }
         }
     },
-    
-    
-    
-    
-    
     "@emoteShortcode": {
         "type": "String",
         "placeholders": {}
     },
-    
     "@completedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2152,45 +2144,18 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
     "@changeTheNameOfTheGroup": {
         "type": "String",
         "placeholders": {}
     },
-    
-    
-    
-    
-    
-    
     "@goToSpace": {
         "type": "String",
         "space": {}
     },
-    
-    
-    
-    
-    
-    
-    
     "@changeTheme": {
         "type": "String",
         "placeholders": {}
     },
-    
-    
-    
-    
-    
-    
-    
     "@isReadyForKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2199,7 +2164,6 @@
             }
         }
     },
-    
     "@countReplies": {
         "type": "int",
         "placeholders": {
@@ -2208,9 +2172,6 @@
             }
         }
     },
-    
-    
-    
     "@changedTheGuestAccessRules": {
         "type": "String",
         "placeholders": {
@@ -2219,23 +2180,11 @@
             }
         }
     },
-    
-    
-    
     "passwordIsWrong": "Ur iṣeḥḥa ara wawal-ik n uɛeddi i d-teskecmeḍ",
-    
-    
-    
-    
-    
-    
-    
     "@hideRedactedEvents": {
         "type": "String",
         "placeholders": {}
     },
-    
-    
     "@changedTheGuestAccessRulesTo": {
         "type": "String",
         "placeholders": {
@@ -2247,7 +2196,6 @@
             }
         }
     },
-    
     "@updateInstalled": {
         "type": "String",
         "placeholders": {
@@ -2256,15 +2204,11 @@
             }
         }
     },
-    
     "createNewChat": "Snulfu-d adiwenni amaynut",
-    
     "@pushRules": {
         "type": "String",
         "placeholders": {}
     },
-    
-    
     "@noUsersFoundWithQuery": {
         "type": "String",
         "placeholders": {
@@ -2273,10 +2217,6 @@
             }
         }
     },
-    
-    
-    
-    
     "@sentVoiceMessage": {
         "type": "String",
         "placeholders": {
@@ -2288,8 +2228,6 @@
             }
         }
     },
-    
-    
     "@redactedBy": {
         "type": "String",
         "placeholders": {
@@ -2298,8 +2236,6 @@
             }
         }
     },
-    
-    
     "@redactedAnEvent": {
         "type": "String",
         "placeholders": {
@@ -2308,18 +2244,15 @@
             }
         }
     },
-    
     "@autoplayImages": {
         "type": "String",
         "placeholder": {}
     },
-    
     "@compareEmojiMatch": {
         "type": "String",
         "placeholders": {}
     },
     "tagName": "Isem n tebzimt",
-    
     "@startedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2328,9 +2261,6 @@
             }
         }
     },
-    
-    
-    
     "@changedTheRoomAliases": {
         "type": "String",
         "placeholders": {
@@ -2339,9 +2269,6 @@
             }
         }
     },
-    
-    
-    
     "@changedTheHistoryVisibilityTo": {
         "type": "String",
         "placeholders": {
@@ -2353,9 +2280,6 @@
             }
         }
     },
-    
-    
-    
     "@changedTheJoinRulesTo": {
         "type": "String",
         "placeholders": {
@@ -2367,25 +2291,18 @@
             }
         }
     },
-    
-    
-    
     "@moderator": {
         "type": "String",
         "placeholders": {}
     },
-    
     "@channelCorruptedDecryptError": {
         "type": "String",
         "placeholders": {}
     },
-    
     "@guestsCanJoin": {
         "type": "String",
         "placeholders": {}
     },
-    
-    
     "@hasWithdrawnTheInvitationFor": {
         "type": "String",
         "placeholders": {
@@ -2397,17 +2314,12 @@
             }
         }
     },
-    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    
-    
-    
     "@commandInvalid": {
         "type": "String"
     },
-    
     "@changedTheRoomInvitationLink": {
         "type": "String",
         "placeholders": {
@@ -2416,19 +2328,14 @@
             }
         }
     },
-    
-    
     "@commandHint_plain": {
         "type": "String",
         "description": "Usage hint for the command /plain"
     },
-    
-    
     "@guestsAreForbidden": {
         "type": "String",
         "placeholders": {}
     },
-    
     "@redactedByBecause": {
         "type": "String",
         "placeholders": {
@@ -2440,9 +2347,7 @@
             }
         }
     },
-    
     "addTag": "Rnu tabzimt",
-    
     "@changedTheProfileAvatar": {
         "type": "String",
         "placeholders": {
@@ -2451,12 +2356,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2465,7 +2364,6 @@
             }
         }
     },
-    
     "@commandMissing": {
         "type": "String",
         "placeholders": {
@@ -2475,18 +2373,10 @@
         },
         "description": "State that {command} is not a valid /command."
     },
-    
-    
-    
-    
     "@compareNumbersMatch": {
         "type": "String",
         "placeholders": {}
     },
-    
-    
-    
-    
     "@googlyEyesContent": {
         "type": "String",
         "placeholders": {
@@ -2495,10 +2385,6 @@
             }
         }
     },
-    
-    
-    
-    
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
@@ -2507,7 +2393,6 @@
             }
         }
     },
-    
     "@sessionLostBody": {
         "type": "String",
         "placeholders": {
@@ -2519,17 +2404,14 @@
             }
         }
     },
-    
     "@thereAreCountUsersBlocked": {
         "type": "String",
         "count": {}
     },
-    
     "@commandHint_react": {
         "type": "String",
         "description": "Usage hint for the command /react"
     },
-    
     "@changedTheHistoryVisibility": {
         "type": "String",
         "placeholders": {
@@ -2538,15 +2420,11 @@
             }
         }
     },
-    
     "pleaseChooseAStrongPassword": "Ttxil, fren awal n uɛeddi iǧehden, ma ulac aɣilif",
-    
-    
     "@commandHint_unban": {
         "type": "String",
         "description": "Usage hint for the command /unban"
     },
-    
     "@wasDirectChatDisplayName": {
         "type": "String",
         "placeholders": {
@@ -2555,14 +2433,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
     "@unknownPushRule": {
         "type": "String",
         "placeholders": {
@@ -2571,7 +2441,6 @@
             }
         }
     },
-    
     "@changedTheJoinRules": {
         "type": "String",
         "placeholders": {
@@ -2580,9 +2449,6 @@
             }
         }
     },
-    
-    
-    
     "@cuddleContent": {
         "type": "String",
         "placeholders": {
@@ -2591,12 +2457,10 @@
             }
         }
     },
-    
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
     },
-    
     "@acceptedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2605,14 +2469,10 @@
             }
         }
     },
-    
-    
-    
     "@changeTheHomeserver": {
         "type": "String",
         "placeholders": {}
     },
-    
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",
         "placeholders": {
@@ -2621,7 +2481,6 @@
             }
         }
     },
-    
     "@canceledKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2630,8 +2489,6 @@
             }
         }
     },
-    
-    
     "@restoreSessionBody": {
         "type": "String",
         "placeholders": {
@@ -2643,9 +2500,6 @@
             }
         }
     },
-    
-    
-    
     "@unreadChatsInApp": {
         "type": "String",
         "placeholders": {
@@ -2658,7 +2512,6 @@
         }
     },
     "removeTag": "Kkes tabzimt",
-    
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -2667,9 +2520,6 @@
             }
         }
     },
-    
-    
-    
     "@moderatorLevel": {
         "type": "String",
         "placeholders": {
@@ -2678,25 +2528,14 @@
             }
         }
     },
-    
-    
     "@changeYourAvatar": {
         "type": "String",
         "placeholders": {}
     },
-    
-    
-    
-    
-    
-    
-    
-    
     "@pin": {
         "type": "String",
         "placeholders": {}
     },
-    
     "@requestedKeyVerification": {
         "type": "String",
         "placeholders": {

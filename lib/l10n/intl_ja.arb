@@ -1868,7 +1868,6 @@
     },
     "storeSecurlyOnThisDevice": "このデバイスに安全に保管する",
     "whyIsThisMessageEncrypted": "このメッセージが読めない理由",
-    "serverRequiresEmail": "このサーバーは、登録のためにメールアドレスを検証する必要があります。",
     "synchronizingPleaseWait": "同期中...お待ちください。",
     "@synchronizingPleaseWait": {
         "type": "String",
@@ -2319,10 +2318,6 @@
     "notificationRuleMasterDescription": "全ルールを上書きして通知をすべて無効にします。",
     "notificationRuleIsUserMention": "ユーザーの言及",
     "notificationRuleIsUserMentionDescription": "ユーザーがメッセージ内で直接言及されたときに通知します。",
-    
-    
-    
-    
     "@completedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2331,23 +2326,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@supposedMxid": {
         "type": "String",
         "placeholders": {
@@ -2356,24 +2334,10 @@
             }
         }
     },
-    
     "@goToSpace": {
         "type": "String",
         "space": {}
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@isReadyForKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2382,7 +2346,6 @@
             }
         }
     },
-    
     "@countReplies": {
         "type": "int",
         "placeholders": {
@@ -2391,7 +2354,6 @@
             }
         }
     },
-    
     "@versionWithNumber": {
         "type": "String",
         "placeholders": {
@@ -2400,12 +2362,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
     "@countChats": {
         "type": "String",
         "placeholders": {
@@ -2414,25 +2370,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@noUsersFoundWithQuery": {
         "type": "String",
         "placeholders": {
@@ -2441,13 +2378,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
     "@sentVoiceMessage": {
         "type": "String",
         "placeholders": {
@@ -2459,16 +2389,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@startedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2477,48 +2397,9 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2527,26 +2408,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
@@ -2555,7 +2416,6 @@
             }
         }
     },
-    
     "@sessionLostBody": {
         "type": "String",
         "placeholders": {
@@ -2567,27 +2427,14 @@
             }
         }
     },
-    
     "@thereAreCountUsersBlocked": {
         "type": "String",
         "count": {}
     },
-    
     "@commandHint_me": {
         "type": "String",
         "description": "Usage hint for the command /me"
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@unknownPushRule": {
         "type": "String",
         "placeholders": {
@@ -2596,14 +2443,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
     "@acceptedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2612,11 +2451,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",
         "placeholders": {
@@ -2625,7 +2459,6 @@
             }
         }
     },
-    
     "@canceledKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2634,9 +2467,6 @@
             }
         }
     },
-    
-    
-    
     "@restoreSessionBody": {
         "type": "String",
         "placeholders": {
@@ -2648,12 +2478,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
     "@unreadChatsInApp": {
         "type": "String",
         "placeholders": {
@@ -2665,8 +2489,6 @@
             }
         }
     },
-    
-    
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -2675,15 +2497,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@startedAPoll": {
         "type": "String",
         "placeholders": {
@@ -2692,9 +2505,6 @@
             }
         }
     },
-    
-    
-    
     "@spaceMemberOf": {
         "type": "String",
         "placeholders": {
@@ -2703,7 +2513,6 @@
             }
         }
     },
-    
     "@requestedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2712,7 +2521,6 @@
             }
         }
     },
-    
     "@searchIn": {
         "type": "String",
         "placeholders": {

@@ -1860,7 +1860,6 @@
         "placeholders": {}
     },
     "link": "Lenke",
-    "serverRequiresEmail": "Denne serveren må validere e-postadressen din for registrering.",
     "or": "Eller",
     "@or": {
         "type": "String",

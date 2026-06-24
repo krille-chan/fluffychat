@@ -1853,7 +1853,6 @@
     "scanQrCode": "Scanner un code QR",
     "sendOnEnter": "Envoyer avec Entrée",
     "homeserver": "Serveur d'accueil",
-    "serverRequiresEmail": "Ce serveur doit valider votre adresse électronique pour l'inscription.",
     "bundleName": "Nom du groupe",
     "removeFromBundle": "Retirer de ce groupe",
     "addToBundle": "Ajouter au groupe",
@@ -2470,7 +2469,6 @@
     "otherNotificationSettings": "Notifications diverses",
     "thread": "Fil de discussion",
     "notificationRuleRoomOneToOneDescription": "Notifie l'utilisateur à propos des messages dans les salons en duo.",
-    
     "poll": "Sondage",
     "stickerPackName": "Nom du groupe d'autocollant",
     "notificationRuleIsRoomMentionDescription": "Notifie l'utilisateur lorsqu'il y a une mention de salon.",
@@ -2520,7 +2518,6 @@
     "notificationRuleServerAcl": "Retire les Évènements ACL du Serveur",
     "advancedConfigurations": "Configurations avancées",
     "signUpGreeting": "FluffyChat est décentralisé ! Selectionnez un hôte sur lequel vous voulez créer un compte et c'est parti !",
-    
     "notificationRuleCall": "Appeler",
     "baseUrl": "URL racine",
     "pause": "Pause",
@@ -2551,12 +2548,10 @@
     "appWantsToUseForLoginDescription": "Vous autorisez l'application et le site web à partager vos informations.",
     "notificationRuleEncryptedRoomOneToOne": "Salon Chiffré en Duo",
     "name": "Nom",
-    
     "tagName": "Nom de l'étiquette",
     "moreEvents": "Plus d'évènements",
     "resume": "Reprendre",
     "commandHint_logoutall": "Se déconnecter de tous les appareils actifs",
-    
     "notificationRuleIsRoomMention": "Mention de Salon",
     "federationBaseUrl": "Racine de l'URL de Fédération",
     "userSpecificNotificationSettings": "Notifications relatives à l'utilisateur",
@@ -2567,7 +2562,6 @@
     "stickerPackNameAlreadyExists": "Ce nom est déjà utilisé par un groupe d'autocollant",
     "matrixId": "ID Matrix",
     "identityServer": "Serveur d'identité :",
-    
     "version": "Version",
     "notificationRuleMessageDescription": "Notifie l'utilisateur à propos des messages en général.",
     "createNewAccount": "Créer un nouveau compte",
@@ -2691,7 +2685,6 @@
         }
     },
     "notificationRuleJitsiDescription": "Notifie l'utilisateur à propos des évènements de l'intégration Jitsi.",
-    
     "approve": "Approuver",
     "notificationRuleRoomnotifDescription": "Notifie l'utilisateur lorsqu'un message contient '@room'.",
     "generalNotificationSettings": "Réglages généraux des notifications",

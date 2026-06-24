@@ -1176,7 +1176,6 @@
         "placeholders": {}
     },
     "editBundlesForAccount": "Redaguoti šios paskyros paketus",
-    "serverRequiresEmail": "Šis serveris turi patvirtinti jūsų el. pašto adresą registracijai.",
     "addToBundle": "Pridėti prie paketų",
     "removeFromBundle": "Pašalinkite iš šio paketo",
     "bundleName": "Paketo vardas",
@@ -2009,7 +2008,6 @@
     "whyIsThisMessageEncrypted": "Kodėl ši žinutė neperskaitoma?",
     "newGroup": "Nauja grupė",
     "screenSharingDetail": "Bendrinate savo ekraną per FuffyChat",
-    
     "hugContent": "{senderName} jus apkabina",
     "@hugContent": {
         "type": "String",
@@ -2019,16 +2017,7 @@
             }
         }
     },
-    
-    
-    
-    
-    
     "commandHint_cuddle": "Siųskite glebimą",
-    
-    
-    
-    
     "@completedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2037,22 +2026,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@synchronizingPleaseWaitCounter": {
         "type": "String",
         "placeholders": {
@@ -2061,44 +2034,11 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@goToSpace": {
         "type": "String",
         "space": {}
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "appLockDescription": "Užrakinti programą, kai jos naudojama, nustatant PIN kodą",
-    
-    
-    
-    
-    
-    
-    
     "@isReadyForKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2107,8 +2047,6 @@
             }
         }
     },
-    
-    
     "@countReplies": {
         "type": "int",
         "placeholders": {
@@ -2117,7 +2055,6 @@
             }
         }
     },
-    
     "@versionWithNumber": {
         "type": "String",
         "placeholders": {
@@ -2126,17 +2063,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@countChats": {
         "type": "String",
         "placeholders": {
@@ -2145,13 +2071,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
     "@userLevel": {
         "type": "String",
         "placeholders": {
@@ -2160,23 +2079,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@updateInstalled": {
         "type": "String",
         "placeholders": {
@@ -2185,15 +2087,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@noUsersFoundWithQuery": {
         "type": "String",
         "placeholders": {
@@ -2202,16 +2095,7 @@
             }
         }
     },
-    
-    
-    
-    
-    
     "importFromZipFile": "Importuoti iš .zip failo",
-    
-    
-    
-    
     "@sentVoiceMessage": {
         "type": "String",
         "placeholders": {
@@ -2224,11 +2108,6 @@
         }
     },
     "ignoreUser": "Nepaisyti naudotojo",
-    
-    
-    
-    
-    
     "@redactedBy": {
         "type": "String",
         "placeholders": {
@@ -2237,14 +2116,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
     "@startedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2253,11 +2124,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
     "@fileIsTooBigForServer": {
         "type": "String",
         "placeholders": {
@@ -2266,14 +2132,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
     "@adminLevel": {
         "type": "String",
         "placeholders": {
@@ -2282,17 +2140,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "aboutHomeserver": "Apie {homeserver}",
     "@aboutHomeserver": {
         "type": "String",
@@ -2302,29 +2149,10 @@
             }
         }
     },
-    
-    
-    
-    
-    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    
-    
-    
-    
     "exportEmotePack": "Eksportuoti jaustukų paketą kaip .zip",
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@redactedByBecause": {
         "type": "String",
         "placeholders": {
@@ -2336,18 +2164,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@fileHasBeenSavedAt": {
         "type": "String",
         "placeholders": {
@@ -2356,11 +2172,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2369,24 +2180,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@invitedBy": {
         "placeholders": {
             "user": {
@@ -2394,15 +2187,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "googlyEyesContent": "{senderName} siunčia jums išsipūtusias akutes",
     "@googlyEyesContent": {
         "type": "String",
@@ -2412,14 +2196,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
@@ -2428,7 +2204,6 @@
             }
         }
     },
-    
     "@sessionLostBody": {
         "type": "String",
         "placeholders": {
@@ -2440,12 +2215,10 @@
             }
         }
     },
-    
     "@thereAreCountUsersBlocked": {
         "type": "String",
         "count": {}
     },
-    
     "@hasKnocked": {
         "placeholders": {
             "user": {
@@ -2453,15 +2226,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@wrongPinEntered": {
         "type": "String",
         "placeholders": {
@@ -2470,18 +2234,7 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "importEmojis": "Importuoti jaustukus",
-    
     "@wasDirectChatDisplayName": {
         "type": "String",
         "placeholders": {
@@ -2490,22 +2243,7 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
     "notAnImage": "Nėra vaizdo failas.",
-    
-    
-    
-    
-    
-    
-    
     "@unknownPushRule": {
         "type": "String",
         "placeholders": {
@@ -2514,12 +2252,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
     "cuddleContent": "{senderName} jus glėbia",
     "@cuddleContent": {
         "type": "String",
@@ -2529,21 +2261,10 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@emoteKeyboardNoRecents": {
         "type": "String",
         "placeholders": {}
     },
-    
-    
     "@acceptedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2552,16 +2273,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",
         "placeholders": {
@@ -2570,7 +2281,6 @@
             }
         }
     },
-    
     "@canceledKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2580,13 +2290,8 @@
         }
     },
     "commandHint_roomupgrade": "Atnaujinkite šį kambarį iki nurodytos kambario versijos",
-    
-    
-    
-    
     "commandHint_hug": "Siųskite apkabinimą",
     "replace": "Pakeisti",
-    
     "@restoreSessionBody": {
         "type": "String",
         "placeholders": {
@@ -2598,14 +2303,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
     "@appWantsToUseForLogin": {
         "type": "String",
         "placeholders": {
@@ -2614,8 +2311,6 @@
             }
         }
     },
-    
-    
     "@unreadChatsInApp": {
         "type": "String",
         "placeholders": {
@@ -2627,8 +2322,6 @@
             }
         }
     },
-    
-    
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -2638,8 +2331,6 @@
         }
     },
     "commandHint_googly": "Siųskite išsipūtusias akutes",
-    
-    
     "@moderatorLevel": {
         "type": "String",
         "placeholders": {
@@ -2648,9 +2339,6 @@
             }
         }
     },
-    
-    
-    
     "@sendImages": {
         "type": "String",
         "placeholders": {
@@ -2659,17 +2347,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@startedAPoll": {
         "type": "String",
         "placeholders": {
@@ -2678,13 +2355,7 @@
             }
         }
     },
-    
     "importNow": "Importuoti dabar",
-    
-    
-    
-    
-    
     "@countInvited": {
         "type": "String",
         "placeholders": {
@@ -2693,7 +2364,6 @@
             }
         }
     },
-    
     "@spaceMemberOf": {
         "type": "String",
         "placeholders": {
@@ -2702,7 +2372,6 @@
             }
         }
     },
-    
     "@requestedKeyVerification": {
         "type": "String",
         "placeholders": {
@@ -2711,7 +2380,6 @@
             }
         }
     },
-    
     "@searchIn": {
         "type": "String",
         "placeholders": {
@@ -2720,9 +2388,6 @@
             }
         }
     },
-    
-    
-    
     "yesterday": "vakar",
     "edited": "(redaguota)",
     "uploading": "Įkeliamas",

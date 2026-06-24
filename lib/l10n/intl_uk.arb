@@ -1677,7 +1677,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "serverRequiresEmail": "Цей сервер потребує перевірки вашої адресу е-пошти для реєстрації.",
     "pleaseFollowInstructionsOnWeb": "Виконайте вказівки вебсайту та торкніться далі.",
     "@pleaseFollowInstructionsOnWeb": {
         "type": "String",

@@ -1994,7 +1994,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "serverRequiresEmail": "該伺服器需要驗證您的註冊電子郵件地址。",
     "or": "或",
     "@or": {
         "type": "String",
@@ -2556,16 +2555,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@countReplies": {
         "type": "int",
         "placeholders": {
@@ -2574,7 +2563,6 @@
             }
         }
     },
-    
     "@versionWithNumber": {
         "type": "String",
         "placeholders": {
@@ -2583,9 +2571,6 @@
             }
         }
     },
-    
-    
-    
     "@countChats": {
         "type": "String",
         "placeholders": {
@@ -2594,19 +2579,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@sentVoiceMessage": {
         "type": "String",
         "placeholders": {
@@ -2618,36 +2590,9 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@mute": {
         "description": "This should be a very short string because there is not much space in the button!"
     },
-    
-    
-    
-    
-    
-    
-    
-    
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2656,18 +2601,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
@@ -2676,17 +2609,6 @@
             }
         }
     },
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -2695,9 +2617,6 @@
             }
         }
     },
-    
-    
-    
     "@startedAPoll": {
         "type": "String",
         "placeholders": {
@@ -2706,8 +2625,6 @@
             }
         }
     },
-    
-    
     "@spaceMemberOf": {
         "type": "String",
         "placeholders": {

@@ -1862,7 +1862,6 @@
     "addToBundle": "添加到集合",
     "bundleName": "集合名称",
     "link": "链接",
-    "serverRequiresEmail": "此服务器需要验证你的电子邮件地址以进行注册。",
     "messageType": "消息类型",
     "sender": "发送者",
     "openGallery": "打开图库",
