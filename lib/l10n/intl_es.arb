@@ -2723,5 +2723,28 @@
     "addTag": "Agregar etiqueta",
     "removeTag": "Remover etiqueta",
     "tagName": "Nombre de etiqueta",
-    "createNewTag": "Crear nueva etiqueta"
+    "createNewTag": "Crear nueva etiqueta",
+    "discardEdits": "Tienes cambios sin guardar ¿Quieres descartarlos?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showMore": "Mostrar más",
+    "showLess": "Mostrar menos",
+    "hideRoomsInSpaces": "Esconder salas que estén en un espacio",
+    "possibleByYou": "Esta versión sólo fue posible gracias a tu apoyo. FluffyChat sigue siendo gratis, de código abierto y totalmente impulsado por la comunidad.",
+    "showThumbnailsInTimeline": "Mostrar miniaturas de imágenes y videos",
+    "appSubtitle": "Comunicación [matrix] Segura",
+    "appDescription": "Comunicación cifrada a través de la red descentralizada [matrix] de una manera fácil y accesible para todos.",
+    "interactiveVerification": "Verificación interactiva",
+    "interactiveVerificationDescription": "Si se encuentran cerca o se comunican por una vía segura pueden verificar todos los dispositivos a la vez comparando números de seguridad o emojis.",
+    "countUnverifiedDevices": "{count} dispositivos sin verificar en el chat.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    }
 }
