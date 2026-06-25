@@ -24,9 +24,9 @@ class ClientChooserButton extends StatelessWidget {
     final matrix = Matrix.of(context);
     final bundles = matrix.accountBundles.keys.toList()
       ..sort(
-        (a, b) => a!.isValidMatrixId == b!.isValidMatrixId
+        (a, b) => a!.isValidMatrixIdStrict() == b!.isValidMatrixIdStrict()
             ? 0
-            : a.isValidMatrixId && !b.isValidMatrixId
+            : a.isValidMatrixIdStrict() && !b.isValidMatrixIdStrict()
             ? -1
             : 1,
       );
