@@ -11,6 +11,7 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/push_helper.dart';
+import 'package:fluffychat/utils/room_push_rule_state_extension.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_vodozemac/flutter_vodozemac.dart' as vod;
 import 'package:go_router/go_router.dart';
@@ -196,7 +197,7 @@ Future<void> notificationTap(
             displayPendingEvent: false,
           );
         case FluffyChatNotificationActions.mute:
-          await room.setPushRuleState(PushRuleState.mentionsOnly);
+          await room.setEffectivePushRuleState(PushRuleState.mentionsOnly);
         case FluffyChatNotificationActions.open:
           router?.go(
             client.getRoomById(roomId)?.membership == Membership.invite

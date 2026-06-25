@@ -10,6 +10,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/dummy_chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
+import 'package:fluffychat/utils/room_push_rule_state_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -64,7 +65,7 @@ class ChatListViewBody extends StatelessWidget {
     return StreamBuilder(
       key: ValueKey(client.userID.toString()),
       stream: client.onSync.stream
-          .where((s) => s.hasRoomUpdate)
+          .where((s) => s.hasRoomUpdate || s.hasPushRuleStateUpdate)
           .rateLimit(const Duration(seconds: 1)),
       builder: (context, _) {
         final rooms = controller.filteredRooms

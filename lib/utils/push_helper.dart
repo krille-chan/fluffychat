@@ -15,6 +15,7 @@ import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/room_push_rule_state_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -163,8 +164,11 @@ Future<void> _tryPushHelper(
   }
   Logs().v('Push helper got notification event of type ${event.type}.');
 
-  if (!client.pushruleEvaluator.match(event).notify) {
-    Logs().i('Push helper: filtered by client-side push rules.');
+  final pushRuleResult = client.pushruleEvaluator.match(event);
+  final mentionsOnly =
+      event.room.encrypted &&
+      event.room.effectivePushRuleState == PushRuleState.mentionsOnly;
+  if (mentionsOnly ? !pushRuleResult.highlight : !pushRuleResult.notify) {
     return;
   }
 
