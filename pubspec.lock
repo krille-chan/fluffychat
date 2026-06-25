@@ -1103,11 +1103,12 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      sha256: e3b629ed935783d3e1b5d348575d10986eb80fb478a0186f21cd5470db710b6f
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.2.4"
+      path: "."
+      ref: "krille/fix-soft-logout-for-oidc"
+      resolved-ref: "332cc953cd0763cb962b3825c6d243f17c5f43b5"
+      url: "https://github.com/famedly/matrix-dart-sdk.git"
+    source: git
+    version: "7.4.0"
   meta:
     dependency: transitive
     description:

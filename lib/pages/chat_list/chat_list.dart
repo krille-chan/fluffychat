@@ -211,7 +211,7 @@ class ChatListController extends State<ChatList>
         limit: 20,
       );
 
-      if (searchQuery.isValidMatrixId &&
+      if (searchQuery.isValidMatrixIdStrict() &&
           searchQuery.sigil == '#' &&
           roomSearchResult.chunk.any(
                 (room) => room.canonicalAlias == searchQuery,

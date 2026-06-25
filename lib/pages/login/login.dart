@@ -112,7 +112,7 @@ class LoginController extends State<Login> {
 
   Future<void> _checkWellKnown(String userId) async {
     if (mounted) setState(() => usernameError = null);
-    if (!userId.isValidMatrixId) return;
+    if (!userId.isValidMatrixIdStrict()) return;
     final oldHomeserver = widget.client.homeserver;
     try {
       var newDomain = Uri.https(userId.domain!, '');

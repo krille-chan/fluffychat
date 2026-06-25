@@ -74,7 +74,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
     ).client.searchUserDirectory(searchTerm);
     final profiles = result.results;
 
-    if (searchTerm.isValidMatrixId &&
+    if (searchTerm.isValidMatrixIdStrict() &&
         searchTerm.sigil == '@' &&
         !profiles.any((profile) => profile.userId == searchTerm)) {
       profiles.add(Profile(userId: searchTerm));
