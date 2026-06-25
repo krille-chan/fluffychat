@@ -2898,5 +2898,6 @@
     "uploading": "上传中",
     "edited": "(已编辑)",
     "couldNotBeSent": "无法发送",
-    "yesterday": "昨天"
+    "yesterday": "昨天",
+    "resetRecoveryKey": "重置恢复密钥"
 }
