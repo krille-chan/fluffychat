@@ -48,5 +48,17 @@ extension on FluffyChatTester {
 
     // Restore with passphrase:
     await ensureLoggedIn();
+
+    // Reset passphrase
+    await tapOn(Key('accounts_and_settings_buttons'));
+    await tapOn('Settings');
+    await tapOn('Chat backup');
+    await tapOn('Reset recovery key');
+    await enterText(TextField, passphrase1, index: 0);
+    await enterText(TextField, passphrase1, index: 1);
+    await tapOn('Continue', pumpAndSettle: false);
+    await waitFor('You are ready to start!');
+    await tapOn('Continue');
+    AuthFlows.userPassphrases[user1Name] = passphrase1;
   }
 }

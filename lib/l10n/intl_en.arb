@@ -2887,5 +2887,6 @@
     "uploading": "Uploading",
     "edited": "(edited)",
     "couldNotBeSent": "Could not be sent",
-    "yesterday": "Yesterday"
+    "yesterday": "Yesterday",
+    "resetRecoveryKey": "Reset recovery key"
 }

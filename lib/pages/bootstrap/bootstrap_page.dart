@@ -16,16 +16,18 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BootstrapPage extends StatelessWidget {
-  const BootstrapPage({super.key});
+  final bool reset;
+  const BootstrapPage({required this.reset, super.key});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ViewModelBuilder(
-      create: () => BootstrapViewModel(client: Matrix.of(context).client),
+      create: () =>
+          BootstrapViewModel(client: Matrix.of(context).client, reset: reset),
       builder: (context, viewModel, _) {
         final cryptoIdentityState = viewModel.value.cryptoIdentityState;
-        if (cryptoIdentityState?.connected == true) {
+        if (cryptoIdentityState?.connected == true && !reset) {
           WidgetsBinding.instance.addPostFrameCallback(
             (_) => viewModel.goToRoomsPageAfterSuccess(context),
           );
@@ -48,15 +50,17 @@ class BootstrapPage extends StatelessWidget {
                 ? null
                 : CloseButton(
                     onPressed: () async {
-                      final consent = await showOkCancelAlertDialog(
-                        context: context,
-                        title: L10n.of(context).skipChatBackup,
-                        message: L10n.of(context).skipChatBackupWarning,
-                        okLabel: L10n.of(context).skip,
-                        isDestructive: true,
-                      );
-                      if (consent != OkCancelResult.ok) return;
-                      if (!context.mounted) return;
+                      if (!reset) {
+                        final consent = await showOkCancelAlertDialog(
+                          context: context,
+                          title: L10n.of(context).skipChatBackup,
+                          message: L10n.of(context).skipChatBackupWarning,
+                          okLabel: L10n.of(context).skip,
+                          isDestructive: true,
+                        );
+                        if (consent != OkCancelResult.ok) return;
+                        if (!context.mounted) return;
+                      }
                       context.go('/rooms');
                     },
                   ),
