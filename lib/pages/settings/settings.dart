@@ -193,12 +193,17 @@ class SettingsController extends State<Settings> {
 
   Future<void> firstRunBootstrapAction([_]) async {
     if (cryptoIdentityConnected == true) {
-      showOkAlertDialog(
+      final action = await showOkCancelAlertDialog(
         context: context,
         title: L10n.of(context).chatBackup,
         message: L10n.of(context).onlineKeyBackupEnabled,
-        okLabel: L10n.of(context).close,
+        okLabel: L10n.of(context).resetRecoveryKey,
+        cancelLabel: L10n.of(context).close,
+        isDestructive: true,
       );
+      if (action != OkCancelResult.ok) return;
+      if (!mounted) return;
+      await context.push('/backup?reset=true');
       return;
     }
     await context.push('/backup');

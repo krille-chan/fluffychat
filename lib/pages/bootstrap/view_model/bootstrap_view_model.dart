@@ -19,6 +19,7 @@ import 'bootstrap_state.dart';
 
 class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
   final Client client;
+  final bool reset;
 
   final TextEditingController enterPassphraseOrRecovController =
       TextEditingController();
@@ -26,8 +27,8 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
   final TextEditingController repeatPassphraseController =
       TextEditingController();
 
-  BootstrapViewModel({required this.client})
-    : super(BootstrapViewModelState()) {
+  BootstrapViewModel({required this.client, required this.reset})
+    : super(BootstrapViewModelState()..reset = reset) {
     _init();
   }
 
@@ -146,6 +147,12 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
     try {
       value.recoveryKey = await client.initCryptoIdentity(
         passphrase: passphrase,
+        wipeCrossSigning: !reset,
+        wipeKeyBackup: !reset,
+        wipeSecureStorage: !reset,
+        setupMasterKey: !reset,
+        setupSelfSigningKey: !reset,
+        setupUserSigningKey: !reset,
       );
     } catch (e, s) {
       if (!context.mounted) return;
