@@ -128,7 +128,7 @@ class SettingsView extends StatelessWidget {
                 Matrix.of(context).client.getAuthMetadata(),
               ).then((result) => result.asValue?.value),
               builder: (context, snapshot) {
-                final accountManageUrl = snapshot.data?.issuer;
+                final accountManageUrl = snapshot.data?.accountManagementUri;
                 if (accountManageUrl == null) {
                   return const SizedBox.shrink();
                 }
