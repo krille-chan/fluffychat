@@ -2898,5 +2898,6 @@
     "uploading": "Subindo",
     "edited": "(editada)",
     "couldNotBeSent": "Non se puido enviar",
-    "yesterday": "Onte"
+    "yesterday": "Onte",
+    "resetRecoveryKey": "Restablecer clave de recuperación"
 }
