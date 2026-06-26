@@ -90,7 +90,7 @@ dependencies:
   webrtc_interface: ^1.5.1
 
 dev_dependencies:
-  dart_code_linter: ^4.1.2
+  dart_code_linter: ^4.1.5
   flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
   flutter_test:
