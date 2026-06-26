@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cNL(){return new A.Gk(B.dg("cs"))},
+cO3(){return new A.Gk(B.dg("cs"))},
 Gk:function Gk(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Ozn\xe1men\xed"},
 gjX(){return"Z\xedsk\xe1v\xe1n\xed polohy\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Online z\xe1loha k\xed\u010d\u016f je zapnuta"},
-gdG(){return"Jejda, n\u011bco se pokazilo\u2026"},
+gdF(){return"Jejda, n\u011bco se pokazilo\u2026"},
 gjY(){return"Jeden z va\u0161ich klient\u016f byl odhl\xe1\u0161en"},
 gf4(){return"P\u0159idat \xfa\u010det"},
 giW(){return"Upravit bal\xed\u010dky pro tento \xfa\u010det"},
@@ -245,7 +245,7 @@ ghC(){return"P\u0159idat do bal\xed\u010dku"},
 gkm(){return"Odstranit z tohoto bal\xed\u010dku"},
 gfb(){return"N\xe1zev bal\xed\u010dku"},
 gk0(){return"Otev\u0159\xedt v map\xe1ch"},
-gdE(){return"Odkaz"},
+gdD(){return"Odkaz"},
 gk6(){return"Nebo"},
 gk7(){return"\xda\u010dastn\xedk"},
 gfR(){return"heslo nebo kl\xed\u010d pro obnoven\xed"},
@@ -383,7 +383,7 @@ gjU(){return"Nikdo se nem\u016f\u017ee p\u0159ipojit"},
 gjv(){return"Zaklepat"},
 gkL(){return"U\u017eivatel\xe9"},
 iG(d){return""+d+" soubor\u016f"},
-gdI(){return"U\u017eivatel"},
+gdH(){return"U\u017eivatel"},
 gfo(){return"Vlastn\xed"},
 gkQ(){return"Pro\u010d nelze p\u0159e\u010d\xedst tuto zpr\xe1vu?"},
 gjR(){return"K tomuto m\u016f\u017ee doj\xedt, pokud byla zpr\xe1va odesl\xe1na p\u0159ed p\u0159ihl\xe1\u0161en\xedm k \xfa\u010dtu v tomto za\u0159\xedzen\xed.\n\nJe tak\xe9 mo\u017en\xe9, \u017ee odes\xedlatel zablokoval va\u0161e za\u0159\xedzen\xed nebo se n\u011bco pokazilo s internetov\xfdm p\u0159ipojen\xedm.\n\nJste schopni si zpr\xe1vu p\u0159e\u010d\xedst v jin\xe9 relaci? Pak m\u016f\u017eete zpr\xe1vu p\u0159en\xe9st z n\u011bj! P\u0159ejd\u011bte do Nastaven\xed > Za\u0159\xedzen\xed a zkontrolujte, zda se Va\u0161e za\u0159\xedzen\xed vz\xe1jemn\u011b ov\u011b\u0159ila. P\u0159i p\u0159\xed\u0161t\xedm otev\u0159en\xed m\xedstnosti, kdy budou ob\u011b relace v pop\u0159ed\xed, se kl\xed\u010de p\u0159enesou automaticky.\n\nNechcete kl\xed\u010de ztratit p\u0159i odhla\u0161ov\xe1n\xed nebo p\u0159ep\xedn\xe1n\xed za\u0159\xedzen\xed? Ujist\u011bte se, \u017ee jste v nastaven\xedch povolili z\xe1lohov\xe1n\xed konverzac\xed."},
@@ -647,7 +647,7 @@ gq9(){return"Remove moderator rights"},
 gq8(){return"Remove admin rights"},
 gq5(){return"Power level"},
 gpc(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdJ(){return"Owner"},
 gpy(){return"Create new chat"},
 gqc(d){return"Reset"},
 gpo(){return"Support FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gk,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Gk":{"aE":[]}}'))};
-(a=>{a["zrrnyFuYl/3+qtRHyAOd+UEABTw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zwqqKfAaVV1hs5TECUaa6Nk7Ew4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_275.part.js.map

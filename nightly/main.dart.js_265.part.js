@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cNK(){return new A.Gj(B.dg("ca"))},
+cO2(){return new A.Gj(B.dg("ca"))},
 Gj:function Gj(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Notificacions"},
 gjX(){return"S\u2019est\xe0 obtenint la ubicaci\xf3\u2026"},
 gcR(){return"D'acord"},
 gjZ(){return"La c\xf2pia de seguretat de claus en l\xednia est\xe0 activada"},
-gdG(){return"Alguna cosa ha anat malament\u2026"},
+gdF(){return"Alguna cosa ha anat malament\u2026"},
 gjY(){return"Una de les teves aplicacions ha tancat la sessi\xf3"},
 gf4(){return"Afegeix un compte"},
 giW(){return"Edita paquets per aquest compte"},
@@ -245,7 +245,7 @@ ghC(){return"Afegeix al pquet"},
 gkm(){return"Esborra del paquet"},
 gfb(){return"Nom del paquet"},
 gk0(){return"Obre als mapes"},
-gdE(){return"Enlla\xe7"},
+gdD(){return"Enlla\xe7"},
 gk6(){return"O"},
 gk7(){return"Participant"},
 gfR(){return"contrasenya o clau de recuperaci\xf3"},
@@ -383,7 +383,7 @@ gjU(){return"Ning\xfa s'hi pot ficar"},
 gjv(){return"Pica"},
 gkL(){return"Usu\xe0r\xefis"},
 iG(d){return""+d+" arxius"},
-gdI(){return"Usu\xe0r\xefi"},
+gdH(){return"Usu\xe0r\xefi"},
 gfo(){return"Personalitzat"},
 gkQ(){return"Per qu\xe8 no es pot llegir aquest missatge?"},
 gjR(){return"Aix\xf2 pot passar si el missatge es va enviar abans que haguessis iniciat sessi\xf3 al teu compte des d'aquest dispositiu.\n\nTamb\xe9 pot ser que l'emissor hagi bloquejat el teu dispositiu o que la connexi\xf3 a internet an\xe9s malament.\n\nQue pots llegir el missatge des d'una altra sessi\xf3? Si \xe9s aix\xed, llavors pots transferir-lo! Ves a Par\xe0metres \u2192 Dispositius i assegura't que els teus dispositius s'ha verificat m\xfatuament. Quan obris la sala la propera vegada i totes dues sessions estiguin executant-se, en primer pla, llavors les claus es trasnsmetran autom\xe0ticament.\n\nVols evitar perdre les claus en tancar la sessi\xf3 o en canviar de dispositiu? Llavors assegura't que has activat la c\xf2pia de seguretat del xat als par\xe0metres."},
@@ -647,7 +647,7 @@ gq9(){return"Treu els drets de moderadori"},
 gq8(){return"Treu els drets d'admin"},
 gq5(){return"Nivell de permisos"},
 gpc(){return"Els nivells de permisos defineixen qu\xe8 pot fer uni membre d'aquesta sala, i es defineix per un n\xfamero entre 0 i 100."},
-gdK(){return"Propiet\xe0ri\xef"},
+gdJ(){return"Propiet\xe0ri\xef"},
 gpy(){return"Crea un nou xat"},
 gqc(d){return"Reseteja"},
 gpo(){return"Dona suport a FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gj,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Gj":{"aE":[]}}'))};
-(a=>{a["uQRmH/CHV2uESFjqxy/zG4AfeYo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Hfc/0empbELmneA2y9puizngNx8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_265.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cNR(){return new A.Gq(B.dg("es"))},
+cO9(){return new A.Gq(B.dg("es"))},
 Gq:function Gq(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Notificaciones"},
 gjX(){return"Obteniendo ubicaci\xf3n\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"La copia de seguridad de la clave en l\xednea est\xe1 habilitada"},
-gdG(){return"Ups, algo sali\xf3 mal\u2026"},
+gdF(){return"Ups, algo sali\xf3 mal\u2026"},
 gjY(){return"Se ha cerrado en la sesi\xf3n de uno de sus clientes"},
 gf4(){return"A\xf1adir cuenta"},
 giW(){return"Editar paquetes para esta cuenta"},
@@ -245,7 +245,7 @@ ghC(){return"Agregar al paquete"},
 gkm(){return"Quitar de este paquete"},
 gfb(){return"Nombre del paquete"},
 gk0(){return"Abrir en maps"},
-gdE(){return"Link"},
+gdD(){return"Link"},
 gk6(){return"O"},
 gk7(){return"Participante"},
 gfR(){return"contrase\xf1a o clave de recuperaci\xf3n"},
@@ -383,7 +383,7 @@ gjU(){return"Nadie puede unirse"},
 gjv(){return"Aviso"},
 gkL(){return"Usuarios"},
 iG(d){return""+d+" archivos"},
-gdI(){return"Usuario"},
+gdH(){return"Usuario"},
 gfo(){return"Personalizado"},
 gkQ(){return"\xbfPor qu\xe9 no se puede leer este mensaje?"},
 gjR(){return"Esto puede ocurrir si el mensaje se envi\xf3 antes de que entraras en tu cuenta en este dispositivo.\n\nTambi\xe9n puede que el remitente haya bloqueado tu dispositivo o haya fallado algo en la conexi\xf3n a Internet.\n\n\xbfPuedes leer el mensaje en otra sesi\xf3n? Entonces, \xa1puedes transferir el mensaje desde all\xed! Ve a Ajustes > Dispositivos y aseg\xfarate de que tus dispositivos se han verificado mutuamente. Cuando abras la sala la pr\xf3xima vez y ambas sesiones est\xe9n en primer plano, las claves se transmitir\xe1n autom\xe1ticamente.\n\n\xbfNo quieres perder las claves al salir o al cambiar de dispositivo? Aseg\xfarate de que has habilitado la copia de seguridad del chat en los ajustes."},
@@ -647,7 +647,7 @@ gq9(){return"Remover derechos de moderador"},
 gq8(){return"Remover derechos de administrador"},
 gq5(){return"Nivel de Poder"},
 gpc(){return"El nivel de poder define el nivel de acciones de un miembro, usualmente esta en el rango entre 0 a 100."},
-gdK(){return"Due\xf1o"},
+gdJ(){return"Due\xf1o"},
 gpy(){return"Crear nuevo chat"},
 gqc(d){return"Resetear"},
 gpo(){return"Apoyar FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gq,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Gq":{"aE":[]}}'))};
-(a=>{a["LVXrzytN3lxFSym1B8/ulIlXFdE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["TGDlH9PnMRU++XgnS+2c0NSal7M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_298.part.js.map

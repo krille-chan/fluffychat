@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cNX(){return new A.Gw(B.dg("fr"))},
+cOf(){return new A.Gw(B.dg("fr"))},
 Gw:function Gw(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Notifications"},
 gjX(){return"Obtention de la localisation\u2026"},
 gcR(){return"Valider"},
 gjZ(){return"La sauvegarde en ligne des cl\xe9s est activ\xe9e"},
-gdG(){return"Oups, un probl\xe8me est survenu\u2026"},
+gdF(){return"Oups, un probl\xe8me est survenu\u2026"},
 gjY(){return"Un de vos clients a \xe9t\xe9 d\xe9connect\xe9"},
 gf4(){return"Ajouter un compte"},
 giW(){return"Modifier les groupes pour ce compte"},
@@ -245,7 +245,7 @@ ghC(){return"Ajouter au groupe"},
 gkm(){return"Retirer de ce groupe"},
 gfb(){return"Nom du groupe"},
 gk0(){return"Ouvrir dans maps"},
-gdE(){return"Lien"},
+gdD(){return"Lien"},
 gk6(){return"Ou"},
 gk7(){return"Participant(e)"},
 gfR(){return"Phrase de passe ou cl\xe9 de r\xe9cup\xe9ration"},
@@ -383,7 +383,7 @@ gjU(){return"Personne ne peut rejoindre"},
 gjv(){return"Frapper \xe0 la porte"},
 gkL(){return"Utilisateurs/trices"},
 iG(d){return""+d+" fichiers"},
-gdI(){return"Utilisateur/trice"},
+gdH(){return"Utilisateur/trice"},
 gfo(){return"Personnalis\xe9"},
 gkQ(){return"Pourquoi ce message est-il illisible ?"},
 gjR(){return"Cela peut se produire si le message a \xe9t\xe9 envoy\xe9 avant que vous ne vous soyez connect\xe9 \xe0 votre compte sur cet appareil.\n\nIl est \xe9galement possible que l'exp\xe9diteur ait bloqu\xe9 votre appareil ou qu'un probl\xe8me de connexion Internet se soit produit.\n\n\xcates-vous capable de lire le message sur une autre session ? Vous pouvez alors transf\xe9rer le message \xe0 partir de celle-ci ! Allez dans Param\xe8tres > Appareils et assurez-vous que vos appareils se sont v\xe9rifi\xe9s mutuellement. Lorsque vous ouvrirez le salon la fois suivante et que les deux sessions seront au premier plan, les cl\xe9s seront transmises automatiquement.\n\nVous ne voulez pas perdre les cl\xe9s en vous d\xe9connectant ou en changeant d'appareil ? Assurez-vous que vous avez activ\xe9 la sauvegarde de la discussion dans les param\xe8tres."},
@@ -647,7 +647,7 @@ gq9(){return"R\xe9voquer les droits mod\xe9rateurs"},
 gq8(){return"R\xe9voquer les droits administrateur"},
 gq5(){return"Niveau de droit"},
 gpc(){return"Le niveau de droit d\xe9fini ce qu'un utilisateur est capable de faire dans ce salon et se place g\xe9n\xe9ralement entre 0 et 100."},
-gdK(){return"Propri\xe9taire"},
+gdJ(){return"Propri\xe9taire"},
 gpy(){return"Cr\xe9er une nouvelle discussion"},
 gqc(d){return"R\xe9initialiser"},
 gpo(){return"Soutenir FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gw,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Gw":{"aE":[]}}'))};
-(a=>{a["bzcMhvBwhAawP5plyq2P2kTeoxM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["kSORXk4SSKYehyY7cYIKDSQe25E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_311.part.js.map

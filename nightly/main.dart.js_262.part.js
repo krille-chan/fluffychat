@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cNJ(){return new A.Gi(B.dg("bo"))},
+cO1(){return new A.Gi(B.dg("bo"))},
 Gi:function Gi(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Notifications"},
 gjX(){return"Obtaining location\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Online Key Backup is enabled"},
-gdG(){return"Oops, something went wrong\u2026"},
+gdF(){return"Oops, something went wrong\u2026"},
 gjY(){return"One of your clients has been logged out"},
 gf4(){return"Add account"},
 giW(){return"Edit bundles for this account"},
@@ -245,7 +245,7 @@ ghC(){return"Add to bundle"},
 gkm(){return"Remove from this bundle"},
 gfb(){return"Bundle name"},
 gk0(){return"Open in maps"},
-gdE(){return"Link"},
+gdD(){return"Link"},
 gk6(){return"Or"},
 gk7(){return"Participant"},
 gfR(){return"passphrase or recovery key"},
@@ -383,7 +383,7 @@ gjU(){return"No one can join"},
 gjv(){return"Knock"},
 gkL(){return"Users"},
 iG(d){return""+d+" files"},
-gdI(){return"User"},
+gdH(){return"User"},
 gfo(){return"Custom"},
 gkQ(){return"Why is this message unreadable?"},
 gjR(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -647,7 +647,7 @@ gq9(){return"Remove moderator rights"},
 gq8(){return"Remove admin rights"},
 gq5(){return"Power level"},
 gpc(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdJ(){return"Owner"},
 gpy(){return"Create new chat"},
 gqc(d){return"Reset"},
 gpo(){return"Support FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gi,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Gi":{"aE":[]}}'))};
-(a=>{a["CuItTNnG3UbSoGAnq6xmDCNAt7w="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["IxdF3agSv4I7mYqEICuMMVekgJU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_262.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cOb(){return new A.GL(B.dg("lt"))},
+cOu(){return new A.GL(B.dg("lt"))},
 GL:function GL(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Prane\u0161imai"},
 gjX(){return"Gaunama vieta\u2026"},
 gcR(){return"OK"},
 gjZ(){return"Internetin\u0117 atsargin\u0117 rakt\u0173 kopija \u012fjungta"},
-gdG(){return"Oi, ka\u017ekas nutiko ne taip\u2026"},
+gdF(){return"Oi, ka\u017ekas nutiko ne taip\u2026"},
 gjY(){return"Vienas i\u0161 j\u016bs\u0173 klient\u0173 atsijung\u0117"},
 gf4(){return"Prid\u0117ti paskyr\u0105"},
 giW(){return"Redaguoti \u0161ios paskyros paketus"},
@@ -245,7 +245,7 @@ ghC(){return"Prid\u0117ti prie paket\u0173"},
 gkm(){return"Pa\u0161alinkite i\u0161 \u0161io paketo"},
 gfb(){return"Paketo vardas"},
 gk0(){return"Atidaryti \u017eem\u0117lapiuose"},
-gdE(){return"Nuoroda"},
+gdD(){return"Nuoroda"},
 gk6(){return"Arba"},
 gk7(){return"Dalyvis"},
 gfR(){return"Slapta fraz\u0117 arba atk\u016brimo raktas"},
@@ -383,7 +383,7 @@ gjU(){return"No one can join"},
 gjv(){return"Knock"},
 gkL(){return"Vartotojai"},
 iG(d){return""+d+" failai"},
-gdI(){return"Vartotojas"},
+gdH(){return"Vartotojas"},
 gfo(){return"Pasirinktinis"},
 gkQ(){return"Kod\u0117l \u0161i \u017einut\u0117 neperskaitoma?"},
 gjR(){return"Taip gali atsitikti, jei \u017einut\u0117 buvo i\u0161si\u0173sta prie\u0161 prisijungiant prie paskyros \u0161iame prietaise.\n\nTaip pat gali b\u016bti, kad siunt\u0117jas u\u017eblokavo j\u016bs\u0173 prietais\u0105 arba ka\u017ekas sutriko su interneto ry\u0161iu.\n\nAr galite perskaityti \u017einut\u0119 kitoje sesijoje? Tada galite perkelti \u017einut\u0119 i\u0161 jos! Eikite \u012f Nustatymai > Prietaisai ir \u012fsitikinkite, kad j\u016bs\u0173 prietaisai patvirtino vienas kit\u0105. Kai kit\u0105 kart\u0105 atidarysite kambar\u012f ir abi sesijos bus pirmame plane, raktai bus perduoti automati\u0161kai.\n\nNenorite prarasti rakt\u0173 atsijungdami arba keisdami \u012frenginius? \u012esitikinkite, kad nustatymuose \u012fjung\u0117te pokalbi\u0173 atsargin\u0119 kopij\u0105."},
@@ -647,7 +647,7 @@ gq9(){return"Remove moderator rights"},
 gq8(){return"Remove admin rights"},
 gq5(){return"Power level"},
 gpc(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdJ(){return"Owner"},
 gpy(){return"Create new chat"},
 gqc(d){return"Reset"},
 gpo(){return"Support FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GL,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"GL":{"aE":[]}}'))};
-(a=>{a["5UjGT2e0YJBqwiVW0Nwo5GgaJwk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["vybKGo2M3uu1XWKtJ8dS3Thdkx8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

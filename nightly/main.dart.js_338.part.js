@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cO6(){return new A.GG(B.dg("it"))},
+cOp(){return new A.GG(B.dg("it"))},
 GG:function GG(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Notifiche"},
 gjX(){return"Ottengo la posizione\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Il backup delle chiavi in linea \xe8 abilitato"},
-gdG(){return"Ops, qualcosa \xe8 andato storto\u2026"},
+gdF(){return"Ops, qualcosa \xe8 andato storto\u2026"},
 gjY(){return"Uno dei tuoi client \xe8 stato disconnesso"},
 gf4(){return"Aggiungi account"},
 giW(){return"Modifica i bundle per questo account"},
@@ -245,7 +245,7 @@ ghC(){return"Aggiungi al bundle"},
 gkm(){return"Rimuovi da questo bundle"},
 gfb(){return"Nome del bundle"},
 gk0(){return"Apri in maps"},
-gdE(){return"Link"},
+gdD(){return"Link"},
 gk6(){return"O"},
 gk7(){return"Partecipante"},
 gfR(){return"frase segreta o chiave di recupero"},
@@ -383,7 +383,7 @@ gjU(){return"Nessuno pu\xf2 unirsi"},
 gjv(){return"Bussa"},
 gkL(){return"Utenti"},
 iG(d){return""+d+" file"},
-gdI(){return"Utente"},
+gdH(){return"Utente"},
 gfo(){return"Personalizzato"},
 gkQ(){return"Perch\xe9 questo messaggio \xe8 illeggibile?"},
 gjR(){return"Questo pu\xf2 accadere se il messaggio \xe8 stato inviato prima che hai fatto l'accesso in questo dispositivo.\n\n\xc8 anche possibile che il mittente abbia bloccato il tuo dispositivo o che qualcosa sia andato storto con la tua connessione ad internet.\n\nSei in grado di leggere il messaggio su altre sessioni? Allora puoi trasferire il messaggio da l\xec! Vai su Impostazioni > Dispositivi e verifica che i tuoi dispositivi siano verificati l'un l'altro. Quando aprirai la stanza la prossima volta ed entrambe le sessioni sono in primo piano, le chiavi saranno trasmesse automaticamente.\n\nNon vuoi perdere le chiavi quando ti disconnetti o cambi dispositivo? Assicurati di aver attivato il backup delle chat nelle impostazioni."},
@@ -647,7 +647,7 @@ gq9(){return"Remove moderator rights"},
 gq8(){return"Remove admin rights"},
 gq5(){return"Power level"},
 gpc(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdJ(){return"Owner"},
 gpy(){return"Create new chat"},
 gqc(d){return"Reset"},
 gpo(){return"Support FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GG,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"GG":{"aE":[]}}'))};
-(a=>{a["husrnG7qlgSVqI0E9ZvjVb00/gg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["z0rW8H68yNJhcODlhDs0530NxFE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_338.part.js.map

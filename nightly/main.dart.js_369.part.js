@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cOv(){return new A.H3(B.dg("uz"))},
+cOO(){return new A.H3(B.dg("uz"))},
 H3:function H3(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Bildirishnomalar"},
 gjX(){return"Joylashuv aniqlanmoqda\u2026"},
 gcR(){return"Hop"},
 gjZ(){return"Onlayn kalit zaxira nusxasi yoqilgan"},
-gdG(){return"Voy, nimadir noto\u02bbg\u02bbri ketdi\u2026"},
+gdF(){return"Voy, nimadir noto\u02bbg\u02bbri ketdi\u2026"},
 gjY(){return"Mijozlaringizdan biri tizimdan chiqdi"},
 gf4(){return"Hisob qo\u02bbshish"},
 giW(){return"Bu hisob uchun to\u02bbplamlarni tahrirlash"},
@@ -245,7 +245,7 @@ ghC(){return"To\u02bbplamga qo\u02bbshish"},
 gkm(){return"Bu to\u02bbplamdan o\u02bbchirish"},
 gfb(){return"To\u02bbplam nomi"},
 gk0(){return"Xaritalarda ochish"},
-gdE(){return"Havola"},
+gdD(){return"Havola"},
 gk6(){return"Yoki"},
 gk7(){return"Qatnashuvchi"},
 gfR(){return"parol yoki tiklash kaliti"},
@@ -383,7 +383,7 @@ gjU(){return"Hech kim qo\u02bbshila olmaydi"},
 gjv(){return"Taqillating"},
 gkL(){return"Foydalanuvchilar"},
 iG(d){return""+d+" fayllar"},
-gdI(){return"Foydalanuvchi"},
+gdH(){return"Foydalanuvchi"},
 gfo(){return"Maxsus"},
 gkQ(){return"Nima uchun bu xabarni o\u02bbqib bo\u02bblmaydi?"},
 gjR(){return"Bu xabar siz ushbu qurilmada hisobingizga kirishdan oldin yuborilgan bo\u02bblsa sodir bo\u02bblishi mumkin.\n\nShuningdek, jo\u02bbnatuvchi qurilmangizni bloklagan yoki internet ulanishida biron bir muammo yuzaga kelgan bo\u02bblishi mumkin.\n\nXabarni boshqa sessiyada o\u02bbqiy olasizmi? Keyin xabarni undan uzatishingiz mumkin! Sozlamalar > Qurilmalar bo\u02bblimiga o\u02bbting va qurilmalaringiz bir-birini tasdiqlaganligiga ishonch hosil qiling. Keyingi safar xonani ochganingizda va ikkala sessiya ham oldinda bo\u02bblganda, kalitlar avtomatik ravishda uzatiladi.\n\nTizimdan chiqishda yoki qurilmalarni almashtirishda kalitlarni yo\u02bbqotishni xohlamaysizmi? Sozlamalarda suhbatning zaxira nusxasini yoqganingizga ishonch hosil qiling."},
@@ -647,7 +647,7 @@ gq9(){return"Remove moderator rights"},
 gq8(){return"Remove admin rights"},
 gq5(){return"Power level"},
 gpc(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdJ(){return"Owner"},
 gpy(){return"Create new chat"},
 gqc(d){return"Reset"},
 gpo(){return"Support FluffyChat"},
@@ -715,5 +715,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.H3,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"H3":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["FQEXgzSLrILsQMsROxB5Kl6lOWY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["FyPV9BET3grNSL4fqFaK4ijIKJ8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_369.part.js.map

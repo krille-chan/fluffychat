@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cNZ(){return new A.Gy(B.dg("gl"))},
+cOh(){return new A.Gy(B.dg("gl"))},
 Gy:function Gy(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Notificaci\xf3ns"},
 gjX(){return"Obtendo a localizaci\xf3n\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Copia de Apoio en li\xf1a das Chaves activada"},
-gdG(){return"Ooooi, algo fallou\u2026"},
+gdF(){return"Ooooi, algo fallou\u2026"},
 gjY(){return"Un dos teus clientes foi desconectado"},
 gf4(){return"Engadir conta"},
 giW(){return"Editar os feixes desta conta"},
@@ -245,7 +245,7 @@ ghC(){return"Engadir ao feixe"},
 gkm(){return"Eliminar deste feixe"},
 gfb(){return"Nome do feixe"},
 gk0(){return"Abrir en mapas"},
-gdE(){return"Ligaz\xf3n"},
+gdD(){return"Ligaz\xf3n"},
 gk6(){return"Ou"},
 gk7(){return"Participante"},
 gfR(){return"frase de paso ou chave de recuperaci\xf3n"},
@@ -383,7 +383,7 @@ gjU(){return"Ningu\xe9n pode unirse"},
 gjv(){return"Solicitar acceso"},
 gkL(){return"Usuarias"},
 iG(d){return""+d+" ficheiros"},
-gdI(){return"Usuaria"},
+gdH(){return"Usuaria"},
 gfo(){return"Personal"},
 gkQ(){return"Por que non podo ler esta mensaxe?"},
 gjR(){return"Pode ser que a mensaxe fose enviada antes de que ti accedeses \xe1 t\xfaa conta neste dispositivo.\n\nTam\xe9n \xe9 posible que a remitente non validase o teu dispositivo ou tam\xe9n que algo fallase na conexi\xf3n a internet.\n\nPodes ler a mensaxe noutro dispositivo? Ent\xf3n podes transferila desde el! Vai a Axustes > Dispositivos e comproba que tes t\xf3dolos dispositivos verificados. Ent\xf3n cando abras a sala a pr\xf3xima vez a sincronizaci\xf3n realizarase e as chaves transmitiranse autom\xe1ticamente.\n\nNon desexas perder as chaves cando pechas sesi\xf3n ou cambias de dispositivo? Comproba nos axustes que activaches a copia de apoio das conversas."},
@@ -647,7 +647,7 @@ gq9(){return"Retirar permiso de moderaci\xf3n"},
 gq8(){return"Retirar permiso de administraci\xf3n"},
 gq5(){return"Nivel responsabilidade"},
 gpc(){return"Os niveis de responsabilidade definen o que pode facer unha usuaria na sala, normalmente var\xeda de 0 a 100."},
-gdK(){return"Propietaria"},
+gdJ(){return"Propietaria"},
 gpy(){return"Crear nova conversa"},
 gqc(d){return"Restablecer"},
 gpo(){return"Apoia a FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gy,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Gy":{"aE":[]}}'))};
-(a=>{a["cf6ItfS4B8j1rfNVOQrGOdbkb38="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["dtHAO3SVyfI4KuhcKFSVAsrHT1Q="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cO_(){return new A.Gz(B.dg("he"))},
+cOi(){return new A.Gz(B.dg("he"))},
 Gz:function Gz(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"\u05d4\u05ea\u05e8\u05d0\u05d5\u05ea"},
 gjX(){return"\u05de\u05e9\u05d9\u05d2 \u05de\u05d9\u05e7\u05d5\u05dd\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"\u05d2\u05d9\u05d1\u05d5\u05d9 \u05de\u05e4\u05ea\u05d7 \u05de\u05e7\u05d5\u05d5\u05df \u05de\u05d5\u05e4\u05e2\u05dc"},
-gdG(){return"\u05d0\u05d5\u05e4\u05e1, \u05de\u05e9\u05d4\u05d5 \u05d4\u05e9\u05ea\u05d1\u05e9\u2026"},
+gdF(){return"\u05d0\u05d5\u05e4\u05e1, \u05de\u05e9\u05d4\u05d5 \u05d4\u05e9\u05ea\u05d1\u05e9\u2026"},
 gjY(){return"\u05d0\u05d7\u05d3 \u05de\u05d4\u05de\u05db\u05e9\u05d9\u05e8\u05d9\u05dd \u05e9\u05dc\u05da \u05d4\u05ea\u05e0\u05ea\u05e7"},
 gf4(){return"\u05d4\u05d5\u05e1\u05e3 \u05d7\u05e9\u05d1\u05d5\u05df"},
 giW(){return"\u05e2\u05e8\u05d5\u05da \u05d7\u05d1\u05d9\u05dc\u05d5\u05ea \u05e2\u05d1\u05d5\u05e8 \u05d7\u05e9\u05d1\u05d5\u05df \u05d6\u05d4"},
@@ -245,7 +245,7 @@ ghC(){return"\u05d4\u05d5\u05e1\u05e3 \u05dc\u05d7\u05d1\u05d9\u05dc\u05d4"},
 gkm(){return"\u05d4\u05e1\u05e8 \u05de\u05d7\u05d1\u05d9\u05dc\u05d4 \u05d6\u05d5"},
 gfb(){return"\u05e9\u05dd \u05d4\u05d7\u05d1\u05d9\u05dc\u05d4"},
 gk0(){return"\u05e4\u05ea\u05d9\u05d7\u05d4 \u05d1\u05de\u05e4\u05d5\u05ea"},
-gdE(){return"\u05e7\u05d9\u05e9\u05d5\u05e8"},
+gdD(){return"\u05e7\u05d9\u05e9\u05d5\u05e8"},
 gk6(){return"\u05d0\u05d5"},
 gk7(){return"\u05de\u05e9\u05ea\u05ea\u05e3"},
 gfR(){return"\u05d1\u05d9\u05d8\u05d5\u05d9 \u05e1\u05d9\u05e1\u05de\u05d4 \u05d0\u05d5 \u05de\u05e4\u05ea\u05d7 \u05e9\u05d7\u05d6\u05d5\u05e8"},
@@ -383,7 +383,7 @@ gjU(){return"No one can join"},
 gjv(){return"Knock"},
 gkL(){return"Users"},
 iG(d){return""+d+" files"},
-gdI(){return"User"},
+gdH(){return"User"},
 gfo(){return"Custom"},
 gkQ(){return"Why is this message unreadable?"},
 gjR(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -647,7 +647,7 @@ gq9(){return"Remove moderator rights"},
 gq8(){return"Remove admin rights"},
 gq5(){return"Power level"},
 gpc(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdJ(){return"Owner"},
 gpy(){return"Create new chat"},
 gqc(d){return"Reset"},
 gpo(){return"Support FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gz,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Gz":{"aE":[]}}'))};
-(a=>{a["+jbkaZs2uFOLJPMMDNZpjcDJBaM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["gWkhOlQg24+ykRz8Y1M8Q7/+3GY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_319.part.js.map

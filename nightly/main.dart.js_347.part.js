@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cOd(){return new A.GN(B.dg("nb"))},
+cOw(){return new A.GN(B.dg("nb"))},
 GN:function GN(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Merknader"},
 gjX(){return"Henter sted \u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Nettbasert sikkerhetskopiering av n\xf8kler p\xe5"},
-gdG(){return"Oida, noe gikk galt \u2026"},
+gdF(){return"Oida, noe gikk galt \u2026"},
 gjY(){return"En av klientene dine har blitt logget ut"},
 gf4(){return"Legg til konto"},
 giW(){return"Rediger pakker for denne kontoen"},
@@ -245,7 +245,7 @@ ghC(){return"Legg til i pakke"},
 gkm(){return"Fjern fra denne pakken"},
 gfb(){return"Navn p\xe5 pakke"},
 gk0(){return"\xc5pne i kart"},
-gdE(){return"Lenke"},
+gdD(){return"Lenke"},
 gk6(){return"Eller"},
 gk7(){return"Deltager"},
 gfR(){return"Passord eller gjenopprettingsn\xf8kkel"},
@@ -383,7 +383,7 @@ gjU(){return"Ingen kan bli med"},
 gjv(){return"Bank p\xe5"},
 gkL(){return"Brukere"},
 iG(d){return""+d+" filer"},
-gdI(){return"Bruker"},
+gdH(){return"Bruker"},
 gfo(){return"Egendefinert"},
 gkQ(){return"Hvorfor er denne meldingen uleselig?"},
 gjR(){return"Dette kan skje hvis meldingen ble sendt f\xf8r du logget inn p\xe5 kontoen din p\xe5 denne enheten.\n\nDet er ogs\xe5 mulig at senderen har blokkert enheten din, eller at noe gikk galt med internettforbindelsen.\n\nEr du i stand til \xe5 lese meldingen i en annen sesjon? Da kan du overf\xf8re meldingen fra den! G\xe5 til Innstillinger > Enheter og s\xf8rg for at enhetene dine har verifisert hverandre. Neste gang du \xe5pner rommet og begge sesjonene er i forgrunnen, vil n\xf8klene bli overf\xf8rt automatisk.\n\nVil du unng\xe5 \xe5 miste n\xf8klene n\xe5r du logger ut eller bytter enhet? S\xf8rg for at du har aktivert sikkerhetskopiering av chat i innstillingene."},
@@ -647,7 +647,7 @@ gq9(){return"Fjern moderator-rettigheter"},
 gq8(){return"Fjern admin-rettigheter"},
 gq5(){return"Styrkeniv\xe5"},
 gpc(){return"Styrkeniv\xe5er definerer hva et medlem har lov til \xe5 gj\xf8re i dette rommet, og varierer vanligvis mellom 0 og 100."},
-gdK(){return"Eier"},
+gdJ(){return"Eier"},
 gpy(){return"Opprett ny chat"},
 gqc(d){return"Nullstill"},
 gpo(){return"St\xf8tt FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GN,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"GN":{"aE":[]}}'))};
-(a=>{a["77Css3HjsudeYVq99tP+4ARGhSw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["pIbXbgaorJik7HiRqN46kPGBPrQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_347.part.js.map

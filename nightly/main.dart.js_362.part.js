@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cOp(){return new A.GY(B.dg("sv"))},
+cOI(){return new A.GY(B.dg("sv"))},
 GY:function GY(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Aviseringar"},
 gjX(){return"Erh\xe5ller plats\u2026"},
 gcR(){return"OK"},
 gjZ(){return"Online Nyckel-backup \xe4r aktiverad"},
-gdG(){return"Hoppsan, n\xe5got gick fel\u2026"},
+gdF(){return"Hoppsan, n\xe5got gick fel\u2026"},
 gjY(){return"En av dina klienter har loggats ut"},
 gf4(){return"L\xe4gg till konto"},
 giW(){return"L\xe4gg till paket f\xf6r detta konto"},
@@ -245,7 +245,7 @@ ghC(){return"Ut\xf6ka paket"},
 gkm(){return"Ta bort fr\xe5n paket"},
 gfb(){return"Paketnamn"},
 gk0(){return"\xd6ppna i karta"},
-gdE(){return"L\xe4nk"},
+gdD(){return"L\xe4nk"},
 gk6(){return"Eller"},
 gk7(){return"Deltagare"},
 gfR(){return"l\xf6senord eller \xe5terst\xe4llningsnyckel"},
@@ -383,7 +383,7 @@ gjU(){return"Ingen kan g\xe5 med"},
 gjv(){return"Knacka"},
 gkL(){return"Anv\xe4ndare"},
 iG(d){return""+d+" filer"},
-gdI(){return"Anv\xe4ndare"},
+gdH(){return"Anv\xe4ndare"},
 gfo(){return"Anpassad"},
 gkQ(){return"Varf\xf6r kan inte detta meddelande l\xe4sas?"},
 gjR(){return"Detta kan h\xe4nda om meddelandet skickades innan du loggade in p\xe5 ditt konto i den h\xe4r enheten.\n\nDet kan ocks\xe5 vara s\xe5 att avs\xe4ndaren har blockerat din enhet eller att n\xe5got gick fel med internetanslutningen.\n\nKan du l\xe4sa meddelandet i en annan session? I s\xe5dana fall kan du \xf6verf\xf6ra meddelandet fr\xe5n den sessionen! G\xe5 till Inst\xe4llningar > Enhet och s\xe4kerst\xe4ll att dina enheter har verifierat varandra. N\xe4r du \xf6ppnar rummet n\xe4sta g\xe5ng och b\xe5da sessionerna \xe4r i f\xf6rgrunden, s\xe5 kommer nycklarna att \xf6verf\xf6ras automatiskt.\n\nVill du inte f\xf6rlora nycklarna vid utloggning eller n\xe4r du byter enhet? S\xe4kerst\xe4ll att du har aktiverat s\xe4kerhetskopiering f\xf6r chatten i inst\xe4llningarna."},
@@ -647,7 +647,7 @@ gq9(){return"Remove moderator rights"},
 gq8(){return"Remove admin rights"},
 gq5(){return"Power level"},
 gpc(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdJ(){return"Owner"},
 gpy(){return"Create new chat"},
 gqc(d){return"Reset"},
 gpo(){return"Support FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GY,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"GY":{"aE":[]}}'))};
-(a=>{a["/1EtyOD8o7hseUbTddu146a4Usc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["XqK/IuwDErOhohbH8Yct2xq3oD4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_362.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cOf(){return new A.GP(B.dg("pl"))},
+cOy(){return new A.GP(B.dg("pl"))},
 GP:function GP(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Powiadomienia"},
 gjX(){return"Uzyskiwanie lokalizacji\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Kopia zapasowa kluczy online jest w\u0142\u0105czona"},
-gdG(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
+gdF(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
 gjY(){return"Jedno z twoich urz\u0105dze\u0144 zosta\u0142o wylogowane"},
 gf4(){return"Dodaj konto"},
 giW(){return"Edytuj pakiety dla tego konta"},
@@ -245,7 +245,7 @@ ghC(){return"Dodaj do pakietu"},
 gkm(){return"Usu\u0144 z tego pakietu"},
 gfb(){return"Nazwa pakietu"},
 gk0(){return"Otw\xf3rz w mapach"},
-gdE(){return"Link"},
+gdD(){return"Link"},
 gk6(){return"Lub"},
 gk7(){return"Uczestnik"},
 gfR(){return"fraza dost\u0119pu lub klucz odzyskiwania"},
@@ -383,7 +383,7 @@ gjU(){return"Nikt nie mo\u017ce do\u0142\u0105czy\u0107"},
 gjv(){return"Zapukaj"},
 gkL(){return"U\u017cytkownicy"},
 iG(d){return""+d+" plik\xf3w"},
-gdI(){return"U\u017cytkownik"},
+gdH(){return"U\u017cytkownik"},
 gfo(){return"W\u0142asne"},
 gkQ(){return"Dlaczego nie mo\u017cna odczyta\u0107 tej wiadomo\u015bci?"},
 gjR(){return"Mo\u017ce si\u0119 to zdarzy\u0107, je\u015bli wiadomo\u015b\u0107 zosta\u0142a wys\u0142ana przed zalogowaniem si\u0119 na to konto na tym urz\u0105dzeniu.\n\nMo\u017cliwe jest r\xf3wnie\u017c, \u017ce nadawca zablokowa\u0142 Twoje urz\u0105dzenie lub co\u015b posz\u0142o nie tak z po\u0142\u0105czeniem internetowym.\n\nJeste\u015b w stanie odczyta\u0107 wiadomo\u015b\u0107 na innej sesji? W takim razie mo\u017cesz przenie\u015b\u0107 z niej wiadomo\u015b\u0107! Wejd\u017a w Ustawienia > Urz\u0105dzenia i upewnij si\u0119, \u017ce Twoje urz\u0105dzenia zweryfikowa\u0142y si\u0119 wzajemnie. Gdy nast\u0119pnym razem otworzysz pok\xf3j i obie sesje b\u0119d\u0105 w\u0142\u0105czone, klucze zostan\u0105 przekazane automatycznie.\n\nNie chcesz straci\u0107 kluczy podczas wylogowania lub prze\u0142\u0105czania urz\u0105dze\u0144? Upewnij si\u0119, \u017ce w ustawieniach masz w\u0142\u0105czon\u0105 kopi\u0119 zapasow\u0105 czatu."},
@@ -647,7 +647,7 @@ gq9(){return"Odbierz uprawnienia moderatora"},
 gq8(){return"Odbierz uprawnienia administratora"},
 gq5(){return"Poziom uprawnie\u0144"},
 gpc(){return"Poziomy uprawnie\u0144 okre\u015blaj\u0105, co cz\u0142onek mo\u017ce robi\u0107 w tym pokoju i zazwyczaj mieszcz\u0105 si\u0119 w zakresie od 0 do 100."},
-gdK(){return"W\u0142a\u015bciciel"},
+gdJ(){return"W\u0142a\u015bciciel"},
 gpy(){return"Utw\xf3rz nowy czat"},
 gqc(d){return"Resetuj"},
 gpo(){return"Wesprzyj FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GP,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"GP":{"aE":[]}}'))};
-(a=>{a["D4LyYPmOxodtTsdLuok6mIo68VY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["0czga4tKqlOmW5PAyaQtHMAcf3g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

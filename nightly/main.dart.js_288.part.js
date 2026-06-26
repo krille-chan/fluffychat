@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cNN(){return new A.Gm(B.dg("de"))},
+cO5(){return new A.Gm(B.dg("de"))},
 Gm:function Gm(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Benachrichtigungen"},
 gjX(){return"Standort wird ermittelt \u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Online-Schl\xfcsselsicherung ist aktiviert"},
-gdG(){return"Hoppla, da ist etwas schiefgelaufen\u2026"},
+gdF(){return"Hoppla, da ist etwas schiefgelaufen\u2026"},
 gjY(){return"Einer deiner Clients wurde abgemeldet"},
 gf4(){return"Konto hinzuf\xfcgen"},
 giW(){return"Bundles f\xfcr dieses Konto bearbeiten"},
@@ -245,7 +245,7 @@ ghC(){return"Zu einem Bundle hinzuf\xfcgen"},
 gkm(){return"Von diesem Bundle entfernen"},
 gfb(){return"Name des Bundles"},
 gk0(){return"In Maps \xf6ffnen"},
-gdE(){return"Link"},
+gdD(){return"Link"},
 gk6(){return"Oder"},
 gk7(){return"Mitglied"},
 gfR(){return"Passwort oder Wiederherstellungsschl\xfcssel"},
@@ -383,7 +383,7 @@ gjU(){return"Niemand kann beitreten"},
 gjv(){return"Anklopfen"},
 gkL(){return"Benutzer"},
 iG(d){return""+d+" Dateien"},
-gdI(){return"Benutzer"},
+gdH(){return"Benutzer"},
 gfo(){return"Benutzerdefiniert"},
 gkQ(){return"Warum ist diese Nachricht nicht lesbar?"},
 gjR(){return"Dies kann passieren, wenn die Nachricht gesendet wurde, bevor du dich auf diesem Ger\xe4t bei deinem Konto angemeldet hast.\n\nEs ist auch m\xf6glich, dass der Absender dein Ger\xe4t blockiert hat oder etwas mit der Internetverbindung schief gelaufen ist.\n\nKannst du die Nachricht in einer anderen Sitzung lesen? Dann kannst du die Nachricht davon \xfcbertragen! Gehe zu den Einstellungen > Ger\xe4te und vergewissere dich, dass sich deine Ger\xe4te gegenseitig verifiziert haben. Wenn du den Raum das n\xe4chste Mal \xf6ffnest und beide Sitzungen im Vordergrund sind, werden die Schl\xfcssel automatisch \xfcbertragen.\n\nDu m\xf6chtest die Schl\xfcssel beim Abmelden oder Ger\xe4tewechsel nicht verlieren? Stelle sicher, dass du das Chat-Backup in den Einstellungen aktiviert hast."},
@@ -647,7 +647,7 @@ gq9(){return"Moderatorenrechte entziehen"},
 gq8(){return"Adminrechte entziehen"},
 gq5(){return"Power-Level"},
 gpc(){return"Die Power-Level legen fest, was ein Mitglied in diesem Raum tun darf und liegen \xfcblicherweise zwischen 0 und 100."},
-gdK(){return"Besitzer"},
+gdJ(){return"Besitzer"},
 gpy(){return"Neuen Chat erstellen"},
 gqc(d){return"Zur\xfccksetzen"},
 gpo(){return"FluffyChat unterst\xfctzen"},
@@ -715,5 +715,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Gm,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"Gm":{"aE":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["HK5oKBZLviPUDrHsw6VtmE561aY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BLtD1b+uIKhDUX2nzQXKw2JaRYY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_288.part.js.map

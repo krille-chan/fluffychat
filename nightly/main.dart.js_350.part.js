@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cOe(){return new A.GO(B.dg("nl"))},
+cOx(){return new A.GO(B.dg("nl"))},
 GO:function GO(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Meldingen"},
 gjX(){return"Locatie ophalen\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Online sleutelback-up is ingeschakeld"},
-gdG(){return"Oeps, er ging iets mis\u2026"},
+gdF(){return"Oeps, er ging iets mis\u2026"},
 gjY(){return"\xc9\xe9n van jouw apparaten is uitgelogd"},
 gf4(){return"Account toevoegen"},
 giW(){return"Bundels voor dit account wijzigen"},
@@ -245,7 +245,7 @@ ghC(){return"Aan bundel toevoegen"},
 gkm(){return"Van bundel verwijderen"},
 gfb(){return"Bundelnaam"},
 gk0(){return"In kaarten openen"},
-gdE(){return"Link"},
+gdD(){return"Link"},
 gk6(){return"Of"},
 gk7(){return"Personen"},
 gfR(){return"wachtwoordzin of herstelsleutel"},
@@ -383,7 +383,7 @@ gjU(){return"Niemand kan deelnemen"},
 gjv(){return"Klop"},
 gkL(){return"Personen"},
 iG(d){return""+d+" bestanden"},
-gdI(){return"Persoon"},
+gdH(){return"Persoon"},
 gfo(){return"Aangepast"},
 gkQ(){return"Waarom is dit bericht onleesbaar?"},
 gjR(){return"Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen in een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de chat de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chatback-up hebt aangezet in de instellingen."},
@@ -647,7 +647,7 @@ gq9(){return"Verwijder moderator-rechten"},
 gq8(){return"Verwijder beheerder-rechten"},
 gq5(){return"Rechtenniveau"},
 gpc(){return"Rechtenniveau's defini\xebren wat een persoon mag doen in deze chat en vari\xebren meestal tussen 0 en 100."},
-gdK(){return"Eigenaar"},
+gdJ(){return"Eigenaar"},
 gpy(){return"Cre\xeber nieuw chat"},
 gqc(d){return"Herstellen"},
 gpo(){return"FluffyChat steunen"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GO,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"GO":{"aE":[]}}'))};
-(a=>{a["WblDeJn16iVW+ISoU6RNp0RVrQ0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BYk+GGFdJmZmnXOWHK5PEwbrWgw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_350.part.js.map

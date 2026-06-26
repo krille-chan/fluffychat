@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cOj(){return new A.GS(B.dg("ro"))},
+cOC(){return new A.GS(B.dg("ro"))},
 GS:function GS(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Notific\u0103ri"},
 gjX(){return"Ob\u021bin\xe2nd loca\u021bie\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Backup de cheie online este activat"},
-gdG(){return"Ups, ceva a e\u0219uat\u2026"},
+gdF(){return"Ups, ceva a e\u0219uat\u2026"},
 gjY(){return"Unul dintre clien\u021bilor vo\u0219tri a fost deconectat"},
 gf4(){return"Ad\u0103uga\u021bi cont"},
 giW(){return"Edita\u021bi pachetele pentru acest cont"},
@@ -245,7 +245,7 @@ ghC(){return"Ad\u0103uga\u021bi \xeen pachet"},
 gkm(){return"Sterge\u021bi din acest pachet"},
 gfb(){return"Numele pachetului"},
 gk0(){return"Deschide\u021bi pe hart\u0103"},
-gdE(){return"Link"},
+gdD(){return"Link"},
 gk6(){return"Sau"},
 gk7(){return"Participant"},
 gfR(){return"fraz\u0103 de acces sau cheie de recuperare"},
@@ -383,7 +383,7 @@ gjU(){return"No one can join"},
 gjv(){return"Knock"},
 gkL(){return"Utilizatori"},
 iG(d){return""+d+" fi\u0219iere"},
-gdI(){return"Utilizator"},
+gdH(){return"Utilizator"},
 gfo(){return"Personalizat"},
 gkQ(){return"De ce este acest mesaj ilizibil?"},
 gjR(){return"Aceast\u0103 chestie poate s\u0103 se \xeent\xe2mple c\xe2nd mesajul a fost trimis \xeenainte s\u0103 v\u0103 conecta\u021bi contul cu acest dispozitiv.\n\nO alt\u0103 explica\u021bie ar fi dac\u0103 trimi\u021b\u0103torul a blocat dispozitivul vostru sau ceva s-a \xeent\xe2mplat cu conexiunea la internet\n\nPute\u021bi s\u0103 citi\u021bi mesajul \xeen o alt\u0103 se\u0219iune? Atunci pute\u021bi s\u0103 transfera\u021bi mesajul de acolo! Merge\u021bi la Configur\u0103ri > Dispozitive \u0219i verifica\u021bi c\u0103 dispozitivele s-au verificat. C\xe2nd deschide\u021bi camera \xeen viitor \u0219i ambele se\u0219iune sunt \xeen foreground, cheile va fi transmise automat. \n\nDori\u021bi s\u0103 \xee\u021bi p\u0103stra\u021bi cheile c\xe2nd deconecta\u021bi sau schimba\u021bi dispozitive? Fi\u021bi aten\u021bi s\u0103 activa\u021bi backup de chat \xeen configur\u0103ri."},
@@ -647,7 +647,7 @@ gq9(){return"Remove moderator rights"},
 gq8(){return"Remove admin rights"},
 gq5(){return"Power level"},
 gpc(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdJ(){return"Owner"},
 gpy(){return"Create new chat"},
 gqc(d){return"Reset"},
 gpo(){return"Support FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GS,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"GS":{"aE":[]}}'))};
-(a=>{a["k0GNrLQLBae5alB5ojJo6ezaTU0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zjzzvEEPjwx6DGBxPZ8UCXXT5y8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_352.part.js.map

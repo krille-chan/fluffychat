@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cO4(){return new A.GE(B.dg("id"))},
+cOn(){return new A.GE(B.dg("id"))},
 GE:function GE(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Notifikasi"},
 gjX(){return"Mendapatkan lokasi\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Cadangan Kunci Online dinyalakan"},
-gdG(){return"Ups, ada yang salah\u2026"},
+gdF(){return"Ups, ada yang salah\u2026"},
 gjY(){return"Salah satu klienmu telah keluar"},
 gf4(){return"Tambah akun"},
 giW(){return"Edit bundel untuk akun ini"},
@@ -245,7 +245,7 @@ ghC(){return"Tambah ke bundel"},
 gkm(){return"Hilangkan dari bundel ini"},
 gfb(){return"Nama bundel"},
 gk0(){return"Buka di peta"},
-gdE(){return"Tautan"},
+gdD(){return"Tautan"},
 gk6(){return"Atau"},
 gk7(){return"Peserta"},
 gfR(){return"frasa sandi atau kunci pemulihan"},
@@ -383,7 +383,7 @@ gjU(){return"Tidak ada siapa pun yang dapat bergabung"},
 gjv(){return"Ketuk"},
 gkL(){return"Pengguna"},
 iG(d){return""+d+" file"},
-gdI(){return"Pengguna"},
+gdH(){return"Pengguna"},
 gfo(){return"Kustom"},
 gkQ(){return"Mengapa pesan ini tidak bisa dibaca?"},
 gjR(){return"Hal ini bisa terjadi jika pesan dikirim sebelum kamu masuk ke akunmu di perangkat ini.\n\nMungkin juga pengirim telah memblokir perangkatmu atau ada yang tidak beres dengan koneksi internet.\n\nApakah kamu bisa membaca pesan pada sesi lain? Maka kamu bisa mentransfer pesan dari sesi tersebut! Buka Pengaturan > Perangkat dan pastikan bahwa perangkat Anda telah ditandatangani secara silang. Ketika kamu membuka ruangan di lain waktu dan kedua sesi berada di latar depan, kunci akan ditransmisikan secara otomatis.\n\nApakah kamu tidak mau kehilangan kunci saat keluar atau berpindah perangkat? Pastikan bahwa kamu telah mengaktifkan cadangan obrolan dalam pengaturan."},
@@ -647,7 +647,7 @@ gq9(){return"Hapus hak moderator"},
 gq8(){return"Hapus hak admin"},
 gq5(){return"Level kekuasaan"},
 gpc(){return"Level kekuasaan menentukan apa yang boleh dilakukan seorang anggota di ruangan ini dan biasanya berkisar antara 0 hingga 100."},
-gdK(){return"Pemilik"},
+gdJ(){return"Pemilik"},
 gpy(){return"Buat obrolan baru"},
 gqc(d){return"Atur ulang"},
 gpo(){return"Dukung FluffyChat"},
@@ -715,5 +715,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.GE,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"GE":{"aE":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["PWwUDOvjF9myHc9s5dkCKQLAs68="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3l5QiTshYHtMFiKT40FAyMhnPLA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map

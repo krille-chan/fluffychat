@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cO1(){return new A.GB(B.dg("hr"))},
+cOk(){return new A.GB(B.dg("hr"))},
 GB:function GB(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -237,7 +237,7 @@ geK(){return"Obavijesti"},
 gjX(){return"Dohva\u0107anje lokacije \u2026"},
 gcR(){return"U redu"},
 gjZ(){return"Internetski klju\u010d sigurnosnih kopija je aktiviran"},
-gdG(){return"Ups, dogodila se gre\u0161ka \u2026"},
+gdF(){return"Ups, dogodila se gre\u0161ka \u2026"},
 gjY(){return"Jedan od tvojih klijenata je odjavljen"},
 gf4(){return"Dodaj ra\u010dun"},
 giW(){return"Uredi pakete za ovaj ra\u010dun"},
@@ -245,7 +245,7 @@ ghC(){return"Dodaj u paket"},
 gkm(){return"Ukloni iz ovog paketa"},
 gfb(){return"Ime paketa"},
 gk0(){return"Otvori u kartama"},
-gdE(){return"Poveznica"},
+gdD(){return"Poveznica"},
 gk6(){return"Ili"},
 gk7(){return"Sudionik"},
 gfR(){return"tajni izraz ili klju\u010d za obnavljanje"},
@@ -383,7 +383,7 @@ gjU(){return"Nitko se ne mo\u017ee pridru\u017eiti"},
 gjv(){return"Pokucaj"},
 gkL(){return"Korisnici"},
 iG(d){return"Broj datoteka: "+d},
-gdI(){return"Korisnik"},
+gdH(){return"Korisnik"},
 gfo(){return"Prilago\u0111eno"},
 gkQ(){return"Za\u0161to nije mogu\u0107e \u010ditati ovu poruku?"},
 gjR(){return"To se mo\u017ee dogoditi ako je poruka poslana prije prijave na tvoj ra\u010dun na ovom ure\u0111aju.\n\nTako\u0111er je mogu\u0107e da je po\u0161iljatelj blokirao tvoj ure\u0111aj ili je do\u0161lo do gre\u0161ke s internetskom vezom.\n\nMo\u017ee\u0161 li pro\u010ditati poruku na jednoj drugoj sesiji? U tom slu\u010daju mo\u017ee\u0161 prenijeti poruku iz nje! Idi na Postavke > Ure\u0111aji i uvjeri se da su se tvoji ure\u0111aji me\u0111usobno potvrdili. Kada sljede\u0107i put otvori\u0161 sobu i obje sesije su u prednjem planu, klju\u010devi \u0107e se automatski prenijeti.\n\nNe \u017eeli\u0161 izgubiti klju\u010deve kada se odjavi\u0161 ili zamijeni\u0161 ure\u0111aje? Aktiviraj spremanje sigurnosne kopije chata u postavkama."},
@@ -647,7 +647,7 @@ gq9(){return"Remove moderator rights"},
 gq8(){return"Remove admin rights"},
 gq5(){return"Power level"},
 gpc(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdJ(){return"Owner"},
 gpy(){return"Create new chat"},
 gqc(d){return"Reset"},
 gpo(){return"Support FluffyChat"},
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GB,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"GB":{"aE":[]}}'))};
-(a=>{a["BNGpRoijvuEe77UQbcfYDgDQrZg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["OWAq0hoqoWpW4xuEjbdMrF12XgE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map
