@@ -1226,7 +1226,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "play": "Esita {fileName}",
+    "play": "Esita faili: {fileName}",
     "@play": {
         "type": "String",
         "placeholders": {
@@ -1235,7 +1235,7 @@
             }
         }
     },
-    "pleaseChooseAPasscode": "Palun vali rakenduse PIN-kood",
+    "pleaseChooseAPasscode": "Palun sisesta rakenduse PIN-kood",
     "@pleaseChooseAPasscode": {
         "type": "String",
         "placeholders": {}
@@ -1377,7 +1377,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "roomHasBeenUpgraded": "Jututoa vesrioon on uuendatud",
+    "roomHasBeenUpgraded": "Jututoa versioon on uuendatud",
     "@roomHasBeenUpgraded": {
         "type": "String",
         "placeholders": {}
@@ -2311,7 +2311,7 @@
     "noDatabaseEncryption": "Andmebaasi krüptimine pole sellel platvormil toetatud",
     "knock": "Koputa uksele",
     "appLockDescription": "Kui sa rakendust parasjagu ei kasuta, siis lukusta ta PIN-koodiga",
-    "accessAndVisibility": "Ligipääsetavus ja nähtavus",
+    "accessAndVisibility": "Hõlbustus, ligipääsetavus ja nähtavus",
     "calls": "Kõned",
     "customEmojisAndStickers": "Kohandatud emotikonid ja kleepsud",
     "customEmojisAndStickersBody": "Lisa või jaga kohandatud emotikone või kleepsupakke, mida võiks kasutada igas vestluses.",
@@ -2501,7 +2501,7 @@
     "notificationRuleReaction": "Reageerimised",
     "notificationRuleRoomServerAcl": "Jututoa ligipääsuõigused serveris",
     "notificationRuleSuppressEditsDescription": "Peida teavitused sõnumite muutmise kohta.",
-    "notificationRuleCall": "Kõned",
+    "notificationRuleCall": "Kõne",
     "notificationRuleEncryptedRoomOneToOne": "Kahepoolne vestlus krüptitud jututoas",
     "notificationRuleRoomOneToOne": "Kahepoolne vestlus krüptimata jututoas",
     "notificationRuleMessageDescription": "Teavita kasutajat üldistest sõnumitest.",
@@ -2898,5 +2898,6 @@
     "uploading": "Laadin üles",
     "edited": "(muudetud)",
     "couldNotBeSent": "Saatmine ei õnnestunud",
-    "yesterday": "Eile"
+    "yesterday": "Eile",
+    "resetRecoveryKey": "Lähtesta taastevõti"
 }
