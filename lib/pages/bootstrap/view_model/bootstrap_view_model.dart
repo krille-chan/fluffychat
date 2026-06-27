@@ -26,6 +26,7 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
   final TextEditingController newPassphraseController = TextEditingController();
   final TextEditingController repeatPassphraseController =
       TextEditingController();
+  final ScrollController devicesScrollController = ScrollController();
 
   BootstrapViewModel({required this.client, required this.reset})
     : super(BootstrapViewModelState()..reset = reset) {
@@ -35,6 +36,10 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
   @override
   void dispose() {
     _cancelKeyVerification();
+    enterPassphraseOrRecovController.dispose();
+    newPassphraseController.dispose();
+    repeatPassphraseController.dispose();
+    devicesScrollController.dispose();
     super.dispose();
   }
 

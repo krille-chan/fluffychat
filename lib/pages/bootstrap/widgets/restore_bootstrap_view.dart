@@ -83,7 +83,9 @@ class RestoreBootstrapView extends StatelessWidget {
               child: Scrollbar(
                 thumbVisibility: true,
                 trackVisibility: true,
+                controller: viewModel.devicesScrollController,
                 child: ListView.builder(
+                  controller: viewModel.devicesScrollController,
                   shrinkWrap: true,
                   itemCount: devices.length,
                   itemBuilder: (context, i) => ListTile(
