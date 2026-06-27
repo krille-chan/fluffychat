@@ -137,6 +137,9 @@ jobs:
       - run: ./scripts/add-firebase-messaging.sh
       - run: flutter pub get
       - run: flutter build ios --no-codesign
+      - name: Ensure that iOS build files are up to date in git
+        run: |
+          git diff --quiet -- ios/ || exit 1
 
   integration_test:
     runs-on: ubuntu-latest
