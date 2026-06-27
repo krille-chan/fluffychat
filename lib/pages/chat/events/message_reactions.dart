@@ -159,7 +159,6 @@ class _Reaction extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
-          width: 24,
           height: 24,
           padding: const EdgeInsets.symmetric(horizontal: 3),
           child: content,
