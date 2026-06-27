@@ -1,8 +1,8 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOz(d){return new A.BA(B.dg(d))},
-cOA(){return new A.GQ(B.dg("pt_BR"))},
-cOB(){return new A.GR(B.dg("pt_PT"))},
+cOA(d){return new A.BA(B.dg(d))},
+cOB(){return new A.GQ(B.dg("pt_BR"))},
+cOC(){return new A.GR(B.dg("pt_PT"))},
 BA:function BA(d){this.a=d},
 GQ:function GQ(d){this.a=d},
 GR:function GR(d){this.a=d}},C
@@ -1680,5 +1680,5 @@ x(A.BA,C.aE)
 w(A.BA,[A.GQ,A.GR])})()
 B.dJ(b.typeUniverse,JSON.parse('{"BA":{"aE":[]},"GQ":{"aE":[]},"GR":{"aE":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["F+2mizahsg+Lux5PKxqmWYtMpGU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["vyWh3u939jo6Tri3OJNCSpcUfmw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

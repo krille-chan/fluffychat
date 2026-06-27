@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cOD(){return new A.GT(B.dg("ru"))},
+cOE(){return new A.GT(B.dg("ru"))},
 GT:function GT(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -714,5 +714,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.GT,C.aE)})()
 B.dJ(b.typeUniverse,JSON.parse('{"GT":{"aE":[]}}'))};
-(a=>{a["t9J/Bzkejy+kTxxZuAuYO5V7AAc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["CERnwUsWxs0LezXC500q16bitLg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_353.part.js.map
