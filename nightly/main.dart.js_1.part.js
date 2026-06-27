@@ -711,7 +711,7 @@ gqq(){return"\u4e0a\u4f20\u4e2d"},
 gpB(){return"(\u5df2\u7f16\u8f91)"},
 gpw(){return"\u65e0\u6cd5\u53d1\u9001"},
 gqs(){return"\u6628\u5929"},
-gqf(){return"Reset recovery key"},
+gqf(){return"\u91cd\u7f6e\u6062\u590d\u5bc6\u94a5"},
 C(d,e){return this.gb8(this).$1(e)}}
 A.H6.prototype={
 gkq(){return"\u518d\u6b21\u8f38\u5165\u5bc6\u78bc"},
@@ -1291,5 +1291,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.BB,C.aE)
 y(A.H6,A.BB)})()
 B.dJ(b.typeUniverse,JSON.parse('{"BB":{"aE":[]},"H6":{"aE":[]}}'))};
-(a=>{a["ZQLZL4VgZd+NZu/CCgrHSkxc7EI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["VxkRLoRDVBYyEywnXr5EAXhhYEk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
