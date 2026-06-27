@@ -1105,7 +1105,7 @@ packages:
     description:
       path: "."
       ref: "krille/fix-soft-logout-for-oidc"
-      resolved-ref: "9a72e400fe4c8ff90df017cde47619de8167e8f2"
+      resolved-ref: "77ffff81a003e81c253fc4274990a882e8e4e937"
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "7.4.0"
