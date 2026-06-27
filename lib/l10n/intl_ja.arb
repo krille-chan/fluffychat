@@ -624,7 +624,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "forward": "進む",
+    "forward": "転送",
     "@forward": {
         "type": "String",
         "placeholders": {}
@@ -1140,7 +1140,7 @@
             }
         }
     },
-    "redactMessage": "メッセージを書く",
+    "redactMessage": "メッセージを削除",
     "@redactMessage": {
         "type": "String",
         "placeholders": {}
@@ -2318,215 +2318,9 @@
     "notificationRuleMasterDescription": "全ルールを上書きして通知をすべて無効にします。",
     "notificationRuleIsUserMention": "ユーザーの言及",
     "notificationRuleIsUserMentionDescription": "ユーザーがメッセージ内で直接言及されたときに通知します。",
-    "@completedKeyVerification": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            }
-        }
-    },
-    "@supposedMxid": {
-        "type": "String",
-        "placeholders": {
-            "mxid": {
-                "type": "String"
-            }
-        }
-    },
-    "@goToSpace": {
-        "type": "String",
-        "space": {}
-    },
-    "@isReadyForKeyVerification": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            }
-        }
-    },
-    "@countReplies": {
-        "type": "int",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "@versionWithNumber": {
-        "type": "String",
-        "placeholders": {
-            "version": {
-                "type": "String"
-            }
-        }
-    },
-    "@countChats": {
-        "type": "String",
-        "placeholders": {
-            "chats": {
-                "type": "int"
-            }
-        }
-    },
-    "@noUsersFoundWithQuery": {
-        "type": "String",
-        "placeholders": {
-            "query": {
-                "type": "String"
-            }
-        }
-    },
-    "@sentVoiceMessage": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            },
-            "duration": {
-                "type": "String"
-            }
-        }
-    },
-    "@startedKeyVerification": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            }
-        }
-    },
-    "@mute": {
-        "description": "This should be a very short string because there is not much space in the button!"
-    },
-    "@spaceMemberOfCanKnock": {
-        "type": "String",
-        "placeholders": {
-            "spaces": {
-                "type": "String"
-            }
-        }
-    },
-    "@chatSearchedUntil": {
-        "type": "String",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
-    },
-    "@sessionLostBody": {
-        "type": "String",
-        "placeholders": {
-            "url": {
-                "type": "String"
-            },
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "@thereAreCountUsersBlocked": {
-        "type": "String",
-        "count": {}
-    },
-    "@commandHint_me": {
-        "type": "String",
-        "description": "Usage hint for the command /me"
-    },
-    "@unknownPushRule": {
-        "type": "String",
-        "placeholders": {
-            "rule": {
-                "type": "String"
-            }
-        }
-    },
-    "@acceptedKeyVerification": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            }
-        }
-    },
-    "@chatCanBeDiscoveredViaSearchOnServer": {
-        "type": "String",
-        "placeholders": {
-            "server": {
-                "type": "String"
-            }
-        }
-    },
-    "@canceledKeyVerification": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            }
-        }
-    },
-    "@restoreSessionBody": {
-        "type": "String",
-        "placeholders": {
-            "url": {
-                "type": "String"
-            },
-            "error": {
-                "type": "String"
-            }
-        }
-    },
-    "@unreadChatsInApp": {
-        "type": "String",
-        "placeholders": {
-            "appname": {
-                "type": "String"
-            },
-            "unread": {
-                "type": "String"
-            }
-        }
-    },
-    "@countVotes": {
-        "type": "int",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "@spaceMemberOf": {
-        "type": "String",
-        "placeholders": {
-            "spaces": {
-                "type": "String"
-            }
-        }
-    },
-    "@requestedKeyVerification": {
-        "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            }
-        }
-    },
-    "@searchIn": {
-        "type": "String",
-        "placeholders": {
-            "chat": {
-                "type": "String"
-            }
-        }
-    }
+    "join": "参加",
+    "today": "今日",
+    "yesterday": "昨日",
+    "replyInThread": "スレッドで返信",
+    "select": "選択"
 }

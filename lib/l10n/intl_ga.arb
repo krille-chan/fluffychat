@@ -2904,5 +2904,6 @@
     "uploading": "Ag uaslódáil",
     "edited": "(eagarthóireacht déanta)",
     "couldNotBeSent": "Níorbh fhéidir a sheoladh",
-    "yesterday": "Inné"
+    "yesterday": "Inné",
+    "resetRecoveryKey": "Athshocraigh eochair aisghabhála"
 }

@@ -2906,5 +2906,6 @@
     "uploading": "Hochladen",
     "edited": "(bearbeitet)",
     "couldNotBeSent": "Konnte nicht gesendet werden",
-    "yesterday": "Gestern"
+    "yesterday": "Gestern",
+    "resetRecoveryKey": "Wiederherstellungsschlüssel zurücksetzen"
 }

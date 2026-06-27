@@ -2841,5 +2841,62 @@
     "uploading": "Загружаем",
     "yesterday": "Вчера",
     "showThumbnailsInTimeline": "Показать миниатюры картинок и видео",
-    "appDescription": "Общайтесь зашифрованным образом по децентрализованной сети [matrix] простым и доступным для всех способом."
+    "appDescription": "Общайтесь зашифрованным образом по децентрализованной сети [matrix] простым и доступным для всех способом.",
+    "interactiveVerificationDescription": "Если вы находитесь рядом с собеседником, либо общаетесь с помощью другого надёжного канала связи, вы можете подтвердить ваши устройства, сравнив ключи шифрования или эмодзи.",
+    "countUnverifiedDevices": "В этом чате {count} устройств не подтверждены.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "messageCanOnlyBeReadByUsers": "Ваши сообщения защищены сквозным шифрованием, и их могут прочесть только:",
+    "restoreBootstrapEmptyDevicesDescription": "Пожалуйста, введите код доступа или ключ восстановления, чтобы подтвердить устройство и получить доступ к зашифрованным сообщениям.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Восстановить крипто-идентичность",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Сбросить крипто-идентичность",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Настроить крипто-идентичность",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat защищает ваши сообщения сквозным шифрованием. Чтобы не потерять ваши сообщения, пожалуйста, придумайте сильную кодовую фразу, чтобы защитить вашу крипто-идентичность и легко восстанавливать зашифрованные сообщения.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Имейте в виду, что ваш ключ восстановления позволяет полностью восстановить ваши зашифрованные сообщения и крипто-идентичность.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unsignedDevice": "Неподтверждённое устройство",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Подтверждённое устройство",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Ключ Curve25519 не найден",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Не удалось расшифровать сообщение"
 }
