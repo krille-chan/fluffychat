@@ -59,7 +59,6 @@ class _LockScreenState extends State<LockScreen> {
     setState(() {
       _errorText = null;
     });
-    if (text.length <= 4) return;
 
     final enteredPin = int.tryParse(text);
     if (enteredPin == null) {
@@ -95,8 +94,9 @@ class _LockScreenState extends State<LockScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ScaffoldMessenger(
-      child: Scaffold(
+    return MaterialApp(
+      theme: FluffyThemes.buildTheme(context, Brightness.dark),
+      home: Scaffold(
         appBar: AppBar(
           title: Text(L10n.of(context).pleaseEnterYourPin),
           centerTitle: true,
@@ -123,7 +123,9 @@ class _LockScreenState extends State<LockScreen> {
                 autofocus: true,
                 textAlign: TextAlign.center,
                 readOnly: _inputBlocked,
-                onChanged: tryUnlock,
+                onChanged: (text) {
+                  if (text.length >= 6) tryUnlock(text);
+                },
                 onSubmitted: tryUnlock,
                 style: const TextStyle(fontSize: 40),
                 inputFormatters: [LengthLimitingTextInputFormatter(6)],

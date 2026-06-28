@@ -44,7 +44,10 @@ class SettingsSecurityController extends State<SettingsSecurity> {
 
     if (!oldState) {
       final localAuth = LocalAuthentication();
-      final unlocked = await localAuth.authenticate(localizedReason: actionStr);
+      final unlocked = await localAuth.authenticate(
+        localizedReason: actionStr,
+        biometricOnly: true,
+      );
       if (!unlocked) return;
       if (!mounted) return;
     }
