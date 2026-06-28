@@ -2892,5 +2892,13 @@
     "biometricsDescription": "With biometric authentication you can unlock the app with your face or your fingerprint. The capabilities depend on your device.",
     "useAppLock": "Use app lock",
     "unlockWithBiometrics": "Unlock with biometric authentication",
-    "resetPin": "Reset pin"
+    "resetPin": "Reset pin",
+    "forwardCountMessages": "Forward {count, plural, =1{one message} other{{count} messages}}?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    }
 }
