@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOK(){return new B.GY(A.dg("sv"))},
-GY:function GY(d){this.a=d}}
+cON(){return new B.GZ(A.dg("sv"))},
+GZ:function GZ(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[49],B)
-B.GY.prototype={
+B.GZ.prototype={
 gkq(){return"Upprepa l\xf6senord"},
 gjW(){return"Inte en bildfil."},
 gb8(d){return"Ta bort"},
@@ -129,7 +129,7 @@ giL(){return"M\xf6rkt"},
 iM(d,e){return d+", "+e},
 giN(){return"Detta kommer att avaktivera ditt konto. Det h\xe4r g\xe5r inte att \xe5ngra! \xc4r du s\xe4ker?"},
 giO(){return"Standard beh\xf6righetsniv\xe5"},
-gdh(d){return"Radera"},
+gdi(d){return"Radera"},
 giQ(){return"Ta bort konto"},
 giR(){return"Ta bort meddelande"},
 gey(){return"Enheter"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Tysta chatt"},
 gfK(){return"Ny chatt"},
 gjK(){return"Ny verifikationsbeg\xe4ran!"},
-gdg(d){return"N\xe4sta"},
+gdh(d){return"N\xe4sta"},
 gej(){return"Nej"},
 gjO(){return"Ingen anslutning till servern"},
 gfL(){return"Hittade inga dekaler. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GY,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GY":{"aE":[]}}'))};
-(a=>{a["JfZ69faZ62oERwCN1so1RQdY0ug="]=a.current})($__dart_deferred_initializers__);
+y(B.GZ,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GZ":{"aE":[]}}'))};
+(a=>{a["cnyZov1q+kCIM77FkeR09wd+WW4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_364.part.js.map

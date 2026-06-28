@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOn(){return new B.GC(A.dg("hu"))},
-GC:function GC(d){this.a=d}}
+cOq(){return new B.GD(A.dg("hu"))},
+GD:function GD(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[29],B)
-B.GC.prototype={
+B.GD.prototype={
 gkq(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gjW(){return"Nem k\xe9p f\xe1jl."},
 gb8(d){return"Elt\xe1vol\xedt\xe1s"},
@@ -129,7 +129,7 @@ giL(){return"S\xf6t\xe9t"},
 iM(d,e){return d+", "+e},
 giN(){return"Ez deaktiv\xe1lja a felhaszn\xe1l\xf3i fi\xf3kj\xe1t. Ez nem vonhat\xf3 vissza! Biztos benne?"},
 giO(){return"Alap\xe9rtelmezett hozz\xe1f\xe9r\xe9si szint \xfaj felhaszn\xe1l\xf3kn\xe1l"},
-gdh(d){return"T\xf6rl\xe9s"},
+gdi(d){return"T\xf6rl\xe9s"},
 giQ(){return"Fi\xf3k t\xf6rl\xe9se"},
 giR(){return"\xdczenet t\xf6rl\xe9se"},
 gey(){return"Eszk\xf6z\xf6k"},
@@ -223,7 +223,7 @@ gjG(){return"Moder\xe1tor"},
 geK(){return"Cseveg\xe9s n\xe9m\xedt\xe1sa"},
 gfK(){return"\xdaj cseveg\xe9s"},
 gjK(){return"\xdaj hiteles\xedt\xe9si k\xe9relem!"},
-gdg(d){return"K\xf6vetkez\u0151"},
+gdh(d){return"K\xf6vetkez\u0151"},
 gej(){return"Nem"},
 gjO(){return"Nem el\xe9rhet\u0151 a szerver"},
 gfL(){return"Nem tal\xe1lhat\xf3ak hangulatjelek. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GC,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GC":{"aE":[]}}'))};
-(a=>{a["Wol2B4gkCX4rHkm5dcWvGEEpRJ0="]=a.current})($__dart_deferred_initializers__);
+y(B.GD,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GD":{"aE":[]}}'))};
+(a=>{a["DMRuPEnj1J2wH6Kz4cAKwOTy17M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_330.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOx(){return new B.GM(A.dg("lv"))},
-GM:function GM(d){this.a=d}}
+cOA(){return new B.GN(A.dg("lv"))},
+GN:function GN(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[39],B)
-B.GM.prototype={
+B.GN.prototype={
 gkq(){return"Atk\u0101rtot paroli"},
 gjW(){return"Nav att\u0113la datne."},
 gb8(d){return"No\u0146emt"},
@@ -129,7 +129,7 @@ giL(){return"Tum\u0161s"},
 iM(d,e){return d+", "+e},
 giN(){return"Tas atsp\u0113jos Tavu lietot\u0101ja kontu. To nevar atdar\u012bt. Vai tie\u0161\u0101m?"},
 giO(){return"Noklus\u0113juma at\u013cauju l\u012bmenis jauniem lietot\u0101jiem"},
-gdh(d){return"Izdz\u0113st"},
+gdi(d){return"Izdz\u0113st"},
 giQ(){return"Izdz\u0113st kontu"},
 giR(){return"Izdz\u0113st zi\u0146u"},
 gey(){return"Ier\u012bces"},
@@ -223,7 +223,7 @@ gjG(){return"Moderators"},
 geK(){return"Apklusin\u0101t t\u0113rz\u0113\u0161anu"},
 gfK(){return"Jauna t\u0113rz\u0113\u0161ana"},
 gjK(){return"Jauns apliecin\u0101\u0161anas piepras\u012bjums."},
-gdg(d){return"N\u0101kamais"},
+gdh(d){return"N\u0101kamais"},
 gej(){return"N\u0113"},
 gjO(){return"Nav savienojuma ar serveri"},
 gfL(){return"Netika atrasta neviena emocija. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GM,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GM":{"aE":[]}}'))};
-(a=>{a["22ssZVLkVClmB91gadBXP04TYrI="]=a.current})($__dart_deferred_initializers__);
+y(B.GN,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GN":{"aE":[]}}'))};
+(a=>{a["t5G1x+YvEP1gThN6lNek4cmFz48="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_348.part.js.map

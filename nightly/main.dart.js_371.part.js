@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOQ(){return new B.H3(A.dg("uz"))},
-H3:function H3(d){this.a=d}}
+cOT(){return new B.H4(A.dg("uz"))},
+H4:function H4(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[55],B)
-B.H3.prototype={
+B.H4.prototype={
 gkq(){return"Parolni takrorlang"},
 gjW(){return"Rasm fayli emas."},
 gb8(d){return"O\u2018chirish"},
@@ -129,7 +129,7 @@ giL(){return"Qorong\u02bbi"},
 iM(d,e){return d+", "+e},
 giN(){return"Bu sizning foydalanuvchi hisobingizni o\u02bbchirib qo\u02bbyadi. Buni qaytarib bo\u02bblmaydi! Ishonchingiz komilmi?"},
 giO(){return"Yangi foydalanuvchilar uchun standart ruxsat darajasi"},
-gdh(d){return"O\u02bbchirish"},
+gdi(d){return"O\u02bbchirish"},
 giQ(){return"Hisobni o\u02bbchirish"},
 giR(){return"Xabarni o\u02bbchirish"},
 gey(){return"Qurilmalar"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Suhbatni ovozsizlantirish"},
 gfK(){return"Yangi suhbat"},
 gjK(){return"Yangi tasdiqlash so'rovi!"},
-gdg(d){return"Keyingi"},
+gdh(d){return"Keyingi"},
 gej(){return"Yo\u02bbq"},
 gjO(){return"Serverga ulanish yo\u02bbq"},
 gfL(){return"Hech qanday emote\u02bclar topilmadi \ud83d\ude15"},
@@ -714,8 +714,8 @@ pH(d){var x=null
 return"Forward "+A.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.H3,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"H3":{"aE":[]}}'))
+x(B.H4,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"H4":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["tMwmkeccdq7KXa6p17Uq/lbpHK4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["bBiKt3Io4VY31DSUwOqm5ZgRt8Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_371.part.js.map

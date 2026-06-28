@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cO8(){return new B.Gn(A.dg("el"))},
-Gn:function Gn(d){this.a=d}}
+cOb(){return new B.Go(A.dg("el"))},
+Go:function Go(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[14],B)
-B.Gn.prototype={
+B.Go.prototype={
 gkq(){return"\u0395\u03c0\u03b1\u03bd\u03ac\u03bb\u03b7\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gjW(){return"\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03b5\u03b9\u03ba\u03cc\u03bd\u03b1\u03c2."},
 gb8(d){return"\u0391\u03c6\u03b1\u03af\u03c1\u03b5\u03c3\u03b7"},
@@ -129,7 +129,7 @@ giL(){return"Dark"},
 iM(d,e){return d+", "+e},
 giN(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 giO(){return"Default permission level for new users"},
-gdh(d){return"Delete"},
+gdi(d){return"Delete"},
 giQ(){return"Delete account"},
 giR(){return"Delete message"},
 gey(){return"Devices"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Mute chat"},
 gfK(){return"New chat"},
 gjK(){return"New verification request!"},
-gdg(d){return"Next"},
+gdh(d){return"Next"},
 gej(){return"No"},
 gjO(){return"No connection to the server"},
 gfL(){return"No emotes found. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gn,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gn":{"aE":[]}}'))};
-(a=>{a["DiNJ84D36Og7ZBPvp6JjVTgyYAY="]=a.current})($__dart_deferred_initializers__);
+y(B.Go,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"Go":{"aE":[]}}'))};
+(a=>{a["x2YhFo3vjsbgvrLC/Ot7phO+k6A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_296.part.js.map

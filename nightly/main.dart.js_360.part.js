@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOH(){return new B.GV(A.dg("sl"))},
-GV:function GV(d){this.a=d}}
+cOK(){return new B.GW(A.dg("sl"))},
+GW:function GW(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[46],B)
-B.GV.prototype={
+B.GW.prototype={
 gkq(){return"Ponovite geslo"},
 gjW(){return"Not an image file."},
 gb8(d){return"Remove"},
@@ -129,7 +129,7 @@ giL(){return"Temno"},
 iM(d,e){return d+", "+e},
 giN(){return"S tem boste deaktivirali va\u0161 uporabni\u0161ki ra\u010dun. Tega ni mogo\u010de razveljaviti! Ali si prepri\u010dan?"},
 giO(){return"Privzeta raven dovoljenja"},
-gdh(d){return"Delete"},
+gdi(d){return"Delete"},
 giQ(){return"Delete account"},
 giR(){return"Delete message"},
 gey(){return"Devices"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Mute chat"},
 gfK(){return"New chat"},
 gjK(){return"New verification request!"},
-gdg(d){return"Next"},
+gdh(d){return"Next"},
 gej(){return"No"},
 gjO(){return"No connection to the server"},
 gfL(){return"No emotes found. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GV,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GV":{"aE":[]}}'))};
-(a=>{a["2xHZ8nHWHObJKHjiv8iumzidnBk="]=a.current})($__dart_deferred_initializers__);
+y(B.GW,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GW":{"aE":[]}}'))};
+(a=>{a["3/IKZVvgXFWh/8bX15QTfqFBDqU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map

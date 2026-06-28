@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cO4(){return new B.Gj(A.dg("ca"))},
-Gj:function Gj(d){this.a=d}}
+cO7(){return new B.Gk(A.dg("ca"))},
+Gk:function Gk(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[10],B)
-B.Gj.prototype={
+B.Gk.prototype={
 gkq(){return"Repetiu la contrasenya"},
 gjW(){return"No \xe9s un arxiu d'image."},
 gb8(d){return"Elimina"},
@@ -129,7 +129,7 @@ giL(){return"Fosc"},
 iM(d,e){return d+", "+e},
 giN(){return"Es desactivar\xe0 el vostre compte d\u2019usu\xe0ri\xef. \xc9s irreversible! Voleu fer-ho igualment?"},
 giO(){return"Nivell de permisos per defecte per nous membres"},
-gdh(d){return"Suprimeix"},
+gdi(d){return"Suprimeix"},
 giQ(){return"Suprimeix el compte"},
 giR(){return"Suprimeix el missatge"},
 gey(){return"Dispositius"},
@@ -223,7 +223,7 @@ gjG(){return"Moderador"},
 geK(){return"Silencia el xat"},
 gfK(){return"Xat nou"},
 gjK(){return"Nova sol\xb7licitud de verificaci\xf3!"},
-gdg(d){return"Seg\xfcent"},
+gdh(d){return"Seg\xfcent"},
 gej(){return"No"},
 gjO(){return"Sense connexi\xf3 al servidor"},
 gfL(){return"No s\u2019ha trobat cap emoticona. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gj,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gj":{"aE":[]}}'))};
-(a=>{a["+rhoxAX8Lop0tIOWf0IjYRdFzAk="]=a.current})($__dart_deferred_initializers__);
+y(B.Gk,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"Gk":{"aE":[]}}'))};
+(a=>{a["j1Vz+fTl48IWTB/E9mxvSQiJfO8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_267.part.js.map

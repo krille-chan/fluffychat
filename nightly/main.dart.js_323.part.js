@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOm(){return new B.GB(A.dg("hr"))},
-GB:function GB(d){this.a=d}}
+cOp(){return new B.GC(A.dg("hr"))},
+GC:function GC(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[28],B)
-B.GB.prototype={
+B.GC.prototype={
 gkq(){return"Ponovi lozinku"},
 gjW(){return"Nije slikovna datoteka."},
 gb8(d){return"Ukloni"},
@@ -129,7 +129,7 @@ giL(){return"Tamna"},
 iM(d,e){return d+", "+e},
 giN(){return"Ovo \u0107e nepovratno deaktivirati tvoj korisni\u010dki ra\u010dun. Stvarno to \u017eeli\u0161?"},
 giO(){return"Standardna razina dozvole za nove korisnike"},
-gdh(d){return"Izbri\u0161i"},
+gdi(d){return"Izbri\u0161i"},
 giQ(){return"Izbri\u0161i ra\u010dun"},
 giR(){return"Izbri\u0161i poruku"},
 gey(){return"Ure\u0111aji"},
@@ -223,7 +223,7 @@ gjG(){return"Voditelj"},
 geK(){return"Isklju\u010di zvuk chata"},
 gfK(){return"Novi chat"},
 gjK(){return"Novi zahtjev za potvr\u0111ivanje!"},
-gdg(d){return"Dalje"},
+gdh(d){return"Dalje"},
 gej(){return"Ne"},
 gjO(){return"Ne postoji veza sa serverom"},
 gfL(){return"Nema emotikona. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GB,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GB":{"aE":[]}}'))};
-(a=>{a["B7KjpvATyQKHC4kE3JssY/lfRhc="]=a.current})($__dart_deferred_initializers__);
+y(B.GC,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GC":{"aE":[]}}'))};
+(a=>{a["Pr4jKqKDEFYHFI/ipo4OpzM/SbY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_323.part.js.map

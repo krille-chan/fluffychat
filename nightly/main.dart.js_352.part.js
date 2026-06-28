@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOz(){return new B.GO(A.dg("nl"))},
-GO:function GO(d){this.a=d}}
+cOC(){return new B.GP(A.dg("nl"))},
+GP:function GP(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[41],B)
-B.GO.prototype={
+B.GP.prototype={
 gkq(){return"Wachtwoord herhalen"},
 gjW(){return"Geen afbeeldingsbestand."},
 gb8(d){return"Verwijder"},
@@ -129,7 +129,7 @@ giL(){return"Donker"},
 iM(d,e){return d+", "+e},
 giN(){return"Hierdoor wordt je account gedeactiveerd. Dit kan niet ongedaan gemaakt worden! Weet je het zeker?"},
 giO(){return"Standaard rechten-niveau voor nieuwe personen"},
-gdh(d){return"Verwijderen"},
+gdi(d){return"Verwijderen"},
 giQ(){return"Account verwijderen"},
 giR(){return"Bericht verwijderen"},
 gey(){return"Apparaten"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Chat dempen"},
 gfK(){return"Nieuwe chat"},
 gjK(){return"Nieuw verificatieverzoek!"},
-gdg(d){return"Volgende"},
+gdh(d){return"Volgende"},
 gej(){return"Nee"},
 gjO(){return"Geen verbinding met de server"},
 gfL(){return"Geen emoticons gevonden. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GO,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GO":{"aE":[]}}'))};
-(a=>{a["mIHjIAX0+lamJRMjp2W6pPO9o8Q="]=a.current})($__dart_deferred_initializers__);
+y(B.GP,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GP":{"aE":[]}}'))};
+(a=>{a["4cKLPRbKjg3WIsYFV6EKUJNM6tY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_352.part.js.map

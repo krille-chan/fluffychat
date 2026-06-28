@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOA(){return new B.GP(A.dg("pl"))},
-GP:function GP(d){this.a=d}}
+cOD(){return new B.GQ(A.dg("pl"))},
+GQ:function GQ(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[42],B)
-B.GP.prototype={
+B.GQ.prototype={
 gkq(){return"Powt\xf3rz has\u0142o"},
 gjW(){return"To nie jest plik obrazu."},
 gb8(d){return"Usu\u0144"},
@@ -129,7 +129,7 @@ giL(){return"Ciemny"},
 iM(d,e){return d+" "+e},
 giN(){return"To zdezaktywuje twoje konto. To jest nieodwracalne! Na pewno chcesz to zrobi\u0107?"},
 giO(){return"Domy\u015blny poziom uprawnie\u0144 dla nowych u\u017cytkownik\xf3w"},
-gdh(d){return"Usu\u0144"},
+gdi(d){return"Usu\u0144"},
 giQ(){return"Usu\u0144 konto"},
 giR(){return"Usu\u0144 wiadomo\u015b\u0107"},
 gey(){return"Urz\u0105dzenia"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Wycisz czat"},
 gfK(){return"Nowa rozmowa"},
 gjK(){return"Nowa pro\u015bba o weryfikacj\u0119!"},
-gdg(d){return"Dalej"},
+gdh(d){return"Dalej"},
 gej(){return"Nie"},
 gjO(){return"Brak po\u0142\u0105czenia z serwerem"},
 gfL(){return"Nie znaleziono \u017cadnych emotikon\xf3w. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GP,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GP":{"aE":[]}}'))};
-(a=>{a["WDB+Vnw3c5Etn2UnhUNw+lVdNs0="]=a.current})($__dart_deferred_initializers__);
+y(B.GQ,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GQ":{"aE":[]}}'))};
+(a=>{a["es/PvQDpgRGGzacHCy7PiVeua1Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_353.part.js.map

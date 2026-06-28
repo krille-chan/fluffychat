@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOj(){return new B.Gy(A.dg("gl"))},
-Gy:function Gy(d){this.a=d}}
+cOm(){return new B.Gz(A.dg("gl"))},
+Gz:function Gz(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[25],B)
-B.Gy.prototype={
+B.Gz.prototype={
 gkq(){return"Repite o contrasinal"},
 gjW(){return"Non \xe9 un ficheiro de imaxe."},
 gb8(d){return"Quitar"},
@@ -129,7 +129,7 @@ giL(){return"Escuro"},
 iM(d,e){return d+", "+e},
 giN(){return"Esto desactivar\xe1 a conta. Esto non ten volta atr\xe1s. Est\xe1s segura?"},
 giO(){return"Nivel de permisos por defecto para novas usuarias"},
-gdh(d){return"Eliminar"},
+gdi(d){return"Eliminar"},
 giQ(){return"Eliminar conta"},
 giR(){return"Eliminar mensaxe"},
 gey(){return"Dispositivos"},
@@ -223,7 +223,7 @@ gjG(){return"Moderadora"},
 geK(){return"Acalar conversa"},
 gfK(){return"Nova conversa"},
 gjK(){return"Nova solicitude de verificaci\xf3n!"},
-gdg(d){return"Seguinte"},
+gdh(d){return"Seguinte"},
 gej(){return"Non"},
 gjO(){return"Sen conexi\xf3n co servidor"},
 gfL(){return"Non hai emotes. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gy,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gy":{"aE":[]}}'))};
-(a=>{a["/e/XOW9waVHo9hiBFywrLQxKPjM="]=a.current})($__dart_deferred_initializers__);
+y(B.Gz,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"Gz":{"aE":[]}}'))};
+(a=>{a["TqHntBVpzJIyzrxVcJkP3dTjGsQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map

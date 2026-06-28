@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOc(){return new B.Gr(A.dg("et"))},
-Gr:function Gr(d){this.a=d}}
+cOf(){return new B.Gs(A.dg("et"))},
+Gs:function Gs(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[18],B)
-B.Gr.prototype={
+B.Gs.prototype={
 gkq(){return"Korda salas\xf5na"},
 gjW(){return"See pole pildifail."},
 gb8(d){return"Eemalda"},
@@ -129,7 +129,7 @@ giL(){return"Tume kujundus"},
 iM(d,e){return d+", "+e},
 giN(){return"J\xe4rgnevaga eemaldatakse sinu konto kasutusest. Seda tegevust ei saa tagasi p\xf6\xf6rata! Kas sa ikka oled kindel?"},
 giO(){return"Vaikimisi \xf5igused uutele kasutajatele"},
-gdh(d){return"Kustuta"},
+gdi(d){return"Kustuta"},
 giQ(){return"Kustuta kasutajakonto"},
 giR(){return"Kustuta s\xf5num"},
 gey(){return"Seadmed"},
@@ -223,7 +223,7 @@ gjG(){return"Moderaator"},
 geK(){return"Summuta vestlus"},
 gfK(){return"Uus vestlus"},
 gjK(){return"Uus verifitseerimisp\xe4ring!"},
-gdg(d){return"Edasi"},
+gdh(d){return"Edasi"},
 gej(){return"Ei"},
 gjO(){return"Puudub \xfchendus koduserveriga"},
 gfL(){return"\xdchtegi emotsioonitegevust ei leidunud. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gr,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gr":{"aE":[]}}'))};
-(a=>{a["/AmTTZRhDpLAFF0WnBSAeORkHkA="]=a.current})($__dart_deferred_initializers__);
+y(B.Gs,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"Gs":{"aE":[]}}'))};
+(a=>{a["JYI7VB7wjc+HmcB4kZ1AdlQXDAc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map

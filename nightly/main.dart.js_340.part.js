@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOr(){return new B.GG(A.dg("it"))},
-GG:function GG(d){this.a=d}}
+cOu(){return new B.GH(A.dg("it"))},
+GH:function GH(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[33],B)
-B.GG.prototype={
+B.GH.prototype={
 gkq(){return"Ripeti password"},
 gjW(){return"Non \xe8 un file immagine."},
 gb8(d){return"Rimuovi"},
@@ -129,7 +129,7 @@ giL(){return"Scuro"},
 iM(d,e){return d+", "+e},
 giN(){return"Disabiliter\xe0 il tuo account. Non puoi tornare indietro! Sei sicuro/a?"},
 giO(){return"Livello di autorizzazione predefinito per i nuovi utenti"},
-gdh(d){return"Cancella"},
+gdi(d){return"Cancella"},
 giQ(){return"Elimina l'account"},
 giR(){return"Elimina il messaggio"},
 gey(){return"Dispositivi"},
@@ -223,7 +223,7 @@ gjG(){return"Moderatore"},
 geK(){return"Silenzia discussione"},
 gfK(){return"Nuova discussione"},
 gjK(){return"Nuova richiesta di verifica!"},
-gdg(d){return"Avanti"},
+gdh(d){return"Avanti"},
 gej(){return"No"},
 gjO(){return"Nessuna connessione al server"},
 gfL(){return"Nessun emote trovato. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GG,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GG":{"aE":[]}}'))};
-(a=>{a["rb/68QR7eoBExhqQFC8I7kX3Zw0="]=a.current})($__dart_deferred_initializers__);
+y(B.GH,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GH":{"aE":[]}}'))};
+(a=>{a["igVNpDnp+v/Fyt8DsZILXZ3ZVQQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_340.part.js.map

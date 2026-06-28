@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOI(){return new B.GW(A.dg("sq"))},
-GW:function GW(d){this.a=d}}
+cOL(){return new B.GX(A.dg("sq"))},
+GX:function GX(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[47],B)
-B.GW.prototype={
+B.GX.prototype={
 gkq(){return"Repeat password"},
 gjW(){return"Not an image file."},
 gb8(d){return"Remove"},
@@ -129,7 +129,7 @@ giL(){return"Dark"},
 iM(d,e){return d+", "+e},
 giN(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 giO(){return"Default permission level for new users"},
-gdh(d){return"Delete"},
+gdi(d){return"Delete"},
 giQ(){return"Delete account"},
 giR(){return"Delete message"},
 gey(){return"Devices"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Mute chat"},
 gfK(){return"New chat"},
 gjK(){return"New verification request!"},
-gdg(d){return"Next"},
+gdh(d){return"Next"},
 gej(){return"No"},
 gjO(){return"No connection to the server"},
 gfL(){return"No emotes found. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GW,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GW":{"aE":[]}}'))};
-(a=>{a["+gvHPwnwgKqcVka8aVCyZTfVCNo="]=a.current})($__dart_deferred_initializers__);
+y(B.GX,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GX":{"aE":[]}}'))};
+(a=>{a["DD3Mxbu3WRlhMjCwyPmET9pSHXg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_361.part.js.map

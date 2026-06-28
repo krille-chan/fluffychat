@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOO(){return new B.H1(A.dg("tr"))},
-H1:function H1(d){this.a=d}}
+cOR(){return new B.H2(A.dg("tr"))},
+H2:function H2(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[53],B)
-B.H1.prototype={
+B.H2.prototype={
 gkq(){return"Parolay\u0131 tekrarlay\u0131n"},
 gjW(){return"Bir resim dosyas\u0131 de\u011fil."},
 gb8(d){return"Kald\u0131r"},
@@ -129,7 +129,7 @@ giL(){return"Koyu"},
 iM(d,e){return d+", "+e},
 giN(){return"Bu, kullan\u0131c\u0131 hesab\u0131n\u0131z\u0131 devre d\u0131\u015f\u0131 b\u0131rakacak. Bu geri al\u0131namaz! Emin misiniz?"},
 giO(){return"Yeni kullan\u0131c\u0131lar i\xe7i \xf6ntan\u0131ml\u0131 izin seviyesi"},
-gdh(d){return"Sil"},
+gdi(d){return"Sil"},
 giQ(){return"Hesab\u0131 sil"},
 giR(){return"Mesaj\u0131 sil"},
 gey(){return"Ayg\u0131tlar"},
@@ -223,7 +223,7 @@ gjG(){return"Moderat\xf6r"},
 geK(){return"Sohbeti sessize al"},
 gfK(){return"Yeni sohbet"},
 gjK(){return"Yeni do\u011frulama iste\u011fi!"},
-gdg(d){return"\u0130leri"},
+gdh(d){return"\u0130leri"},
 gej(){return"Hay\u0131r"},
 gjO(){return"Sunucuyla ba\u011flant\u0131 yok"},
 gfL(){return"\u0130fade bulunamad\u0131. \ud83d\ude15"},
@@ -714,8 +714,8 @@ pH(d){var x=null
 return"Forward "+A.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.H1,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"H1":{"aE":[]}}'))
+x(B.H2,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"H2":{"aE":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["fxyzsdnE4vTBaM5iKJokvo/rCE8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["VYWCbccl1skYukXlQqsO8bDLP+E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_368.part.js.map

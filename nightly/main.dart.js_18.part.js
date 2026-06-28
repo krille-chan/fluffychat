@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOB(d){return new A.BA(B.dg(d))},
-cOC(){return new A.GQ(B.dg("pt_BR"))},
-cOD(){return new A.GR(B.dg("pt_PT"))},
-BA:function BA(d){this.a=d},
-GQ:function GQ(d){this.a=d},
-GR:function GR(d){this.a=d}},C
+cOE(d){return new A.BC(B.dg(d))},
+cOF(){return new A.GR(B.dg("pt_BR"))},
+cOG(){return new A.GS(B.dg("pt_PT"))},
+BC:function BC(d){this.a=d},
+GR:function GR(d){this.a=d},
+GS:function GS(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[58]
-A.BA.prototype={
+A.BC.prototype={
 gkq(){return"Repita a senha"},
 gjW(){return"N\xe3o \xe9 um arquivo de imagem."},
 gb8(d){return"Remove"},
@@ -133,7 +133,7 @@ giL(){return"Dark"},
 iM(d,e){return d+", "+e},
 giN(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 giO(){return"Default permission level for new users"},
-gdh(d){return"Eliminar"},
+gdi(d){return"Eliminar"},
 giQ(){return"Delete account"},
 giR(){return"Delete message"},
 gey(){return"Devices"},
@@ -227,7 +227,7 @@ gjG(){return"Moderator"},
 geK(){return"Mute chat"},
 gfK(){return"New chat"},
 gjK(){return"New verification request!"},
-gdg(d){return"Next"},
+gdh(d){return"Next"},
 gej(){return"No"},
 gjO(){return"No connection to the server"},
 gfL(){return"No emotes found. \ud83d\ude15"},
@@ -717,7 +717,7 @@ gqh(){return"Reset recovery key"},
 pH(d){var x=null
 return"Forward "+B.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
-A.GQ.prototype={
+A.GR.prototype={
 gkq(){return"Repita a senha"},
 gjW(){return"N\xe3o \xe9 um arquivo de imagem."},
 gb8(d){return"Remover"},
@@ -840,7 +840,7 @@ giL(){return"Escuro"},
 iM(d,e){return d+" \xe0s "+e},
 giN(){return"Isto desativar\xe1 a sua conta. Isto \xe9 irrevers\xedvel! Tem certeza?"},
 giO(){return"N\xedvel de permiss\xe3o padr\xe3o para usu\xe1rios novos"},
-gdh(d){return"Apagar"},
+gdi(d){return"Apagar"},
 giQ(){return"Apagar conta"},
 giR(){return"Apagar mensagem"},
 gey(){return"Dispositivos"},
@@ -934,7 +934,7 @@ gjG(){return"Moderador"},
 geK(){return"Silenciar conversa"},
 gfK(){return"Nova conversa"},
 gjK(){return"Nova solicita\xe7\xe3o de verifica\xe7\xe3o!"},
-gdg(d){return"Avan\xe7ar"},
+gdh(d){return"Avan\xe7ar"},
 gej(){return"N\xe3o"},
 gjO(){return"Sem conex\xe3o com o servidor"},
 gfL(){return"Nenhum emoji encontrado. \ud83d\ude15"},
@@ -1333,7 +1333,7 @@ goq(){return"Pular backup de conversas"},
 gor(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 p7(d){return"Vers\xe3o: "+d},
 C(d,e){return this.gb8(this).$1(e)}}
-A.GR.prototype={
+A.GS.prototype={
 gkq(){return"Repete a palavra-passe"},
 gjW(){return"N\xe3o \xe9 um ficheiro de imagem."},
 gb8(d){return"Remover"},
@@ -1457,7 +1457,7 @@ giL(){return"Escuro"},
 iM(d,e){return d+" \xe0s "+e},
 giN(){return"Isto ir\xe1 desativar a tua conta. N\xe3o \xe9 revers\xedvel! Tens a certeza?"},
 giO(){return"N\xedvel de permiss\xe3o normal"},
-gdh(d){return"Eliminar"},
+gdi(d){return"Eliminar"},
 giQ(){return"Eliminar conta"},
 giR(){return"Eliminar mensagem"},
 gey(){return"Dispositivos"},
@@ -1530,7 +1530,7 @@ gjG(){return"Moderador"},
 geK(){return"Silenciar conversa"},
 gfK(){return"Nova conversa"},
 gjK(){return"Novo pedido de verifica\xe7\xe3o!"},
-gdg(d){return"Pr\xf3ximo"},
+gdh(d){return"Pr\xf3ximo"},
 gej(){return"N\xe3o"},
 gjO(){return"Nenhuma liga\xe7\xe3o ao servidor"},
 gfL(){return"Nenhuns emotes encontrados. \ud83d\ude15"},
@@ -1678,9 +1678,9 @@ gka(){return"Por favor introduza um n\xfamero maior que 0"},
 gev(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3o ver deixou o chat."},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.BA,C.aE)
-w(A.BA,[A.GQ,A.GR])})()
-B.dJ(b.typeUniverse,JSON.parse('{"BA":{"aE":[]},"GQ":{"aE":[]},"GR":{"aE":[]}}'))
+x(A.BC,C.aE)
+w(A.BC,[A.GR,A.GS])})()
+B.dJ(b.typeUniverse,JSON.parse('{"BC":{"aE":[]},"GR":{"aE":[]},"GS":{"aE":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["hm9u3QTxKTHnKlFVUZ3/Dgwxdxo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["LczR//FB+amjl9PxO+XkqUPSzGM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

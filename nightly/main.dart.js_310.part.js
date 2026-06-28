@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOf(){return new B.Gu(A.dg("fi"))},
-Gu:function Gu(d){this.a=d}}
+cOi(){return new B.Gv(A.dg("fi"))},
+Gv:function Gv(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[21],B)
-B.Gu.prototype={
+B.Gv.prototype={
 gkq(){return"Salasana uudelleen"},
 gjW(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
 gb8(d){return"Poista"},
@@ -129,7 +129,7 @@ giL(){return"Tumma"},
 iM(d,e){return d+", "+e},
 giN(){return"T\xe4m\xe4 poistaa tunnuksesi k\xe4yt\xf6st\xe4. T\xe4t\xe4 ei voi kumota! Oletko varma?"},
 giO(){return"Uusien k\xe4ytt\xe4jien oikeuksien oletustaso"},
-gdh(d){return"Poista"},
+gdi(d){return"Poista"},
 giQ(){return"Poista tunnus"},
 giR(){return"Poista viesti"},
 gey(){return"Laitteet"},
@@ -223,7 +223,7 @@ gjG(){return"Valvoja"},
 geK(){return"Vaienna keskustelu"},
 gfK(){return"Uusi keskustelu"},
 gjK(){return"Uusi varmennuspyynt\xf6!"},
-gdg(d){return"Seuraava"},
+gdh(d){return"Seuraava"},
 gej(){return"Ei"},
 gjO(){return"Ei yhteytt\xe4 palvelimeen"},
 gfL(){return"Emoteja ei l\xf6ytynyt. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gu,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gu":{"aE":[]}}'))};
-(a=>{a["y5BTJK8k4BTnrqmNkA81LulUOJQ="]=a.current})($__dart_deferred_initializers__);
+y(B.Gv,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"Gv":{"aE":[]}}'))};
+(a=>{a["30vWmgIlwV6+zFXwEjJA2SGzaCE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_310.part.js.map

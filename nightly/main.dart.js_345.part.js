@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOu(){return new B.GJ(A.dg("kab"))},
-GJ:function GJ(d){this.a=d}}
+cOx(){return new B.GK(A.dg("kab"))},
+GK:function GK(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[36],B)
-B.GJ.prototype={
+B.GK.prototype={
 gkq(){return"Ales awal n u\u025beddi"},
 gjW(){return"Ma\u010d\u010di d afaylu n tugna."},
 gb8(d){return"Kkes"},
@@ -129,7 +129,7 @@ giL(){return"Ubrik"},
 iM(d,e){return e+", "+d},
 giN(){return"Ayagi ad yekkes armed i umi\u1e0dan-ik\xb7im n useqdac. Aya ur yezmir ara ad yettwasefsex. Tet\u1e25eqqe\u1e0d s tidet?"},
 giO(){return"Aswir n turagt amezwer i yiseqdacen imaynuten"},
-gdh(d){return"kkes"},
+gdi(d){return"kkes"},
 giQ(){return"kkes ami\u1e0dan"},
 giR(){return"kkes izen"},
 gey(){return"Ibenkan"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Sgugem adiwenni"},
 gfK(){return"Adiwenni Amaynut"},
 gjK(){return"Asuter amaynut n uselken!"},
-gdg(d){return"U\u1e0dfir"},
+gdh(d){return"U\u1e0dfir"},
 gej(){return"Ala"},
 gjO(){return"Ulac tuqqna \u0263er uqeddac"},
 gfL(){return"Ulac izamulen u\u1e25ulfu yettwafen. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GJ,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GJ":{"aE":[]}}'))};
-(a=>{a["FSqv4C2XYWh+LgcY9DOcdVMeXk0="]=a.current})($__dart_deferred_initializers__);
+y(B.GK,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GK":{"aE":[]}}'))};
+(a=>{a["lYbe5jZzaJTYj0AKe+pT2BJLrbk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

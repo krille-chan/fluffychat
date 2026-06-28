@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOy(){return new B.GN(A.dg("nb"))},
-GN:function GN(d){this.a=d}}
+cOB(){return new B.GO(A.dg("nb"))},
+GO:function GO(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[40],B)
-B.GN.prototype={
+B.GO.prototype={
 gkq(){return"Gjenta passord"},
 gjW(){return"Ikke en bildefil."},
 gb8(d){return"Fjern"},
@@ -129,7 +129,7 @@ giL(){return"M\xf8rk"},
 iM(d,e){return e+", "+d},
 giN(){return"Dette vil skru av din brukerkonto for godt, og kan ikke angres! Er du sikker?"},
 giO(){return"Forvalgt tilgangsniv\xe5"},
-gdh(d){return"Slett"},
+gdi(d){return"Slett"},
 giQ(){return"Slett konto"},
 giR(){return"Slett melding"},
 gey(){return"Enheter"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Forstum sludring"},
 gfK(){return"Ny sludring"},
 gjK(){return"Ny bekreftelsesforesp\xf8rsel!"},
-gdg(d){return"Neste"},
+gdh(d){return"Neste"},
 gej(){return"Nei"},
 gjO(){return"Ingen tilkobling til tjeneren"},
 gfL(){return"Fant ingen smilefjes. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GN,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GN":{"aE":[]}}'))};
-(a=>{a["ym8H2KCht1dXxfjMa4sfDJiid6s="]=a.current})($__dart_deferred_initializers__);
+y(B.GO,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GO":{"aE":[]}}'))};
+(a=>{a["2oYC4XIKPKHqv04RTC1PLAznEuY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_349.part.js.map

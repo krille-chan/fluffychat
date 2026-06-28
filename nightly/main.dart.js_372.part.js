@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOR(){return new B.H4(A.dg("vi"))},
-H4:function H4(d){this.a=d}}
+cOU(){return new B.H5(A.dg("vi"))},
+H5:function H5(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[56],B)
-B.H4.prototype={
+B.H5.prototype={
 gkq(){return"Nh\u1eadp l\u1ea1i m\u1eadt kh\u1ea9u"},
 gjW(){return"Kh\xf4ng ph\u1ea3i t\u1ec7p \u1ea3nh."},
 gb8(d){return"Lo\u1ea1i b\u1ecf"},
@@ -129,7 +129,7 @@ giL(){return"Dark"},
 iM(d,e){return d+", "+e},
 giN(){return"Vi\u1ec7c n\xe0y s\u1ebd v\xf4 hi\u1ec7u ho\xe1 t\xe0i kho\u1ea3n c\u1ee7a b\u1ea1n. \u0110i\u1ec1u n\xe0y kh\xf4ng th\u1ec3 \u0111\u1ea3o ng\u01b0\u1ee3c \u0111\u01b0\u1ee3c! B\u1ea1n ch\u1eafc l\xe0 v\u1eabn mu\u1ed1n ti\u1ebfp t\u1ee5c ch\u1ee9?"},
 giO(){return"Default permission level for new users"},
-gdh(d){return"Xo\xe1"},
+gdi(d){return"Xo\xe1"},
 giQ(){return"Xo\xe1 t\xe0i kho\u1ea3n"},
 giR(){return"Xo\xe1 tin nh\u1eafn"},
 gey(){return"C\xe1c thi\u1ebft b\u1ecb"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Mute chat"},
 gfK(){return"New chat"},
 gjK(){return"New verification request!"},
-gdg(d){return"Ti\u1ebfp"},
+gdh(d){return"Ti\u1ebfp"},
 gej(){return"No"},
 gjO(){return"No connection to the server"},
 gfL(){return"No emotes found. \ud83d\ude15"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.H4,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"H4":{"aE":[]}}'))};
-(a=>{a["9s6MlgiFZoSZD2B2xADo9zvY6bA="]=a.current})($__dart_deferred_initializers__);
+y(B.H5,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"H5":{"aE":[]}}'))};
+(a=>{a["LtDoPm8qQN2HeFi3dPNSQayFFyA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_372.part.js.map
