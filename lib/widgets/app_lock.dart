@@ -6,18 +6,17 @@
 import 'package:fluffychat/widgets/lock_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
 
 class AppLockWidget extends StatefulWidget {
   const AppLockWidget({
     required this.child,
     required this.pincode,
-    required this.clients,
+    required this.isLoggedIn,
     super.key,
   });
 
-  final List<Client> clients;
+  final bool isLoggedIn;
   final String? pincode;
   final Widget child;
 
@@ -45,7 +44,7 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
   }
 
   Future<void> _checkLoggedIn(_) async {
-    if (widget.clients.any((client) => client.isLogged())) return;
+    if (widget.isLoggedIn) return;
 
     await changePincode(null);
     setState(() {

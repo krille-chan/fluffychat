@@ -78,7 +78,7 @@ class FluffyChatApp extends StatelessWidget {
         routerConfig: router,
         builder: (context, child) => AppLockWidget(
           pincode: pincode,
-          clients: clients,
+          isLoggedIn: clients.any((client) => client.isLogged()),
           // Need a navigator above the Matrix widget for
           // displaying dialogs
           child: Matrix(
