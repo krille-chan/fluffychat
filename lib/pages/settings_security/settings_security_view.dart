@@ -8,12 +8,13 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:matrix/matrix.dart';
 
 import 'settings_security.dart';
@@ -88,15 +89,44 @@ class SettingsSecurityView extends StatelessWidget {
                     onTap: () =>
                         context.go('/rooms/settings/security/ignorelist'),
                   ),
-                  if (Matrix.of(context).client.encryption != null) ...{
-                    if (PlatformInfos.isMobile)
-                      ListTile(
-                        trailing: const Icon(Icons.chevron_right_outlined),
-                        title: Text(L10n.of(context).appLock),
-                        subtitle: Text(L10n.of(context).appLockDescription),
-                        onTap: controller.setAppLockAction,
+
+                  Divider(color: theme.dividerColor),
+                  ListTile(
+                    title: Text(
+                      L10n.of(context).appLock,
+                      style: TextStyle(
+                        color: theme.colorScheme.secondary,
+                        fontWeight: FontWeight.bold,
                       ),
-                  },
+                    ),
+                    subtitle: Text(L10n.of(context).appLockDescription),
+                  ),
+                  SwitchListTile.adaptive(
+                    value: AppLock.of(context).isActive,
+                    title: Text(L10n.of(context).useAppLock),
+                    onChanged: (active) => active
+                        ? controller.setAppLockAction()
+                        : controller.disableAppLockAction(),
+                  ),
+                  if (AppLock.of(context).isActive) ...[
+                    FutureBuilder(
+                      future: LocalAuthentication().canCheckBiometrics,
+                      builder: (context, snapshot) {
+                        if (snapshot.data != true) return SizedBox.shrink();
+                        return SwitchListTile.adaptive(
+                          value: AppLock.of(context).useBiometrics,
+                          onChanged: (_) => controller.toggleBiometrics(),
+                          title: Text(L10n.of(context).unlockWithBiometrics),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      trailing: const Icon(Icons.lock_reset_outlined),
+                      title: Text(L10n.of(context).resetPin),
+                      onTap: controller.setAppLockAction,
+                    ),
+                  ],
+
                   Divider(color: theme.dividerColor),
                   ListTile(
                     title: Text(

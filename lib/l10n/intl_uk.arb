@@ -1392,11 +1392,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Введіть 4 цифри або залиште порожнім, щоб вимкнути блокування застосунку.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "redactMessage": "Редагувати повідомлення",
     "@redactMessage": {
         "type": "String",

@@ -1160,11 +1160,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Унесите 4 цифре или оставите празно да не закључавате апликацију.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Унесите своју лозинку",
     "@pleaseEnterYourPassword": {
         "type": "String",

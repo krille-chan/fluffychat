@@ -1004,11 +1004,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Introdueix 4 dígits o deixa-ho buit per desactivar el bloqueig.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Introdueix la teva contrasenya",
     "@pleaseEnterYourPassword": {
         "type": "String",

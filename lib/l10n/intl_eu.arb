@@ -1616,11 +1616,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Sartu lau zenbaki edo utzi hutsik aplikazioa babestu nahi ez baduzu.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "replaceRoomWithNewerVersion": "Ordezkatu gela bertsio berriago batekin",
     "@replaceRoomWithNewerVersion": {
         "type": "String",

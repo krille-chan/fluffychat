@@ -1380,11 +1380,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Please enter 4 digits or leave empty to disable app lock.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Please enter your password",
     "@pleaseEnterYourPassword": {
         "type": "String",
@@ -2888,5 +2883,14 @@
     "edited": "(edited)",
     "couldNotBeSent": "Could not be sent",
     "yesterday": "Yesterday",
-    "resetRecoveryKey": "Reset recovery key"
+    "resetRecoveryKey": "Reset recovery key",
+    "pleaseEnter6Digits": "Please enter 6 digits to enable the app lock.",
+    "disableAppLock": "Disable app lock",
+    "disableAppLockAreYouSure": "Are you sure you want to disable the app lock?",
+    "enableBiometrics": "Enable biometric authentication",
+    "disableBiometrics": "Disable biometric authentication",
+    "biometricsDescription": "With biometric authentication you can unlock the app with your face or your fingerprint. The capabilities depend on your device.",
+    "useAppLock": "Use app lock",
+    "unlockWithBiometrics": "Unlock with biometric authentication",
+    "resetPin": "Reset pin"
 }

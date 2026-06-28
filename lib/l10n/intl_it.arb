@@ -1074,11 +1074,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Inserisci 4 cifre o lascia vuoto per disabilitare il blocco dell'app.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Inserisci la tua password",
     "@pleaseEnterYourPassword": {
         "type": "String",

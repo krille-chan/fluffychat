@@ -2044,11 +2044,6 @@
             }
         }
     },
-    "pleaseEnter4Digits": "Ttxil-k·m sekcem 4 n wuṭṭunen neɣ eǧǧ-it d ilem akken ad tsenseḍ asekkeṛ n usnas.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPin": "Ttxil-k·m sekcem tangalt-ik·im pin",
     "@pleaseEnterYourPin": {
         "type": "String",

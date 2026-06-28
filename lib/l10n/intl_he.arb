@@ -1101,11 +1101,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "אנא הזן 4 ספרות או השאר ריק כדי להשבית את נעילת האפליקציה.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "online": "מחובר/ת",
     "@online": {
         "type": "String",

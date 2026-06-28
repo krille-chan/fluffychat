@@ -1236,11 +1236,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Введите 4 цифры или оставьте поле пустым, чтобы отключить блокировку приложения.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Пожалуйста, введите ваш пароль",
     "@pleaseEnterYourPassword": {
         "type": "String",

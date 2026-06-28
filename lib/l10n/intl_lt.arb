@@ -286,11 +286,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Įveskite 4 skaitmenis arba palikite tuščią, jei norite išjungti programėlės užraktą.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPin": "Įveskite savo PIN kodą",
     "@pleaseEnterYourPin": {
         "type": "String",

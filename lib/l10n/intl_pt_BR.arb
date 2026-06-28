@@ -1244,11 +1244,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Digite 4 dígitos ou deixe em branco para desativar o bloqueio do app.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Digite sua senha",
     "@pleaseEnterYourPassword": {
         "type": "String",

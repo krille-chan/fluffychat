@@ -1207,11 +1207,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Bonvolu enigi 4 ciferojn, aŭ nenion por malŝalti ŝlosadon de la aplikaĵo.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Bonvolu enigi vian pasvorton",
     "@pleaseEnterYourPassword": {
         "type": "String",

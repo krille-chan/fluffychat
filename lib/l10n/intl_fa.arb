@@ -1144,11 +1144,6 @@
             }
         }
     },
-    "pleaseEnter4Digits": "لطفاً ۴ رقم وارد کنید یا خالی بگذارید تا قفل برنامه غیرفعال شود.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPin": "لطفاً رمز کوتاه خود را وارد کنید",
     "@pleaseEnterYourPin": {
         "type": "String",

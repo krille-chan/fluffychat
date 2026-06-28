@@ -1245,11 +1245,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Chcete-li deaktivovat zámek aplikace, zadejte 4 číslice nebo nechte prázdné.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Zadejte prosím své heslo",
     "@pleaseEnterYourPassword": {
         "type": "String",

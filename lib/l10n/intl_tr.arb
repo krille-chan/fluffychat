@@ -1246,11 +1246,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Lütfen 4 basamak girin veya uygulama kilidini devre dışı bırakmak için boş bırakın.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Lütfen parolanızı girin",
     "@pleaseEnterYourPassword": {
         "type": "String",

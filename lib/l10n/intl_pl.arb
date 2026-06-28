@@ -1459,11 +1459,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Proszę podaj 4 cyfry. By wyłączyć blokadę pozostaw puste.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "removeYourAvatar": "Usuń swoje zdjęcie",
     "@removeYourAvatar": {
         "type": "String",

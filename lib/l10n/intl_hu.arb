@@ -1798,11 +1798,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Írjon be 4 számjegyet, vagy hagyja üresen a zár kikapcsolásához.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "security": "Biztonság",
     "@security": {
         "type": "String",

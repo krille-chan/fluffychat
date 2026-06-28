@@ -1246,11 +1246,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Veuillez saisir 4 chiffres ou laisser vide pour désactiver le verrouillage de l’application.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Renseignez votre mot de passe",
     "@pleaseEnterYourPassword": {
         "type": "String",

@@ -1244,11 +1244,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Syötä 4 numeroa tai jätä tyhjäksi poistaaksesi sovelluksen lukituksen.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPin": "Syötä PIN-koodisi",
     "@pleaseEnterYourPin": {
         "type": "String",

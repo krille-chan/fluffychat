@@ -1228,11 +1228,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Bitte 4 Ziffern eingeben oder leer lassen, um die Anwendungssperre zu deaktivieren.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Bitte dein Passwort eingeben",
     "@pleaseEnterYourPassword": {
         "type": "String",

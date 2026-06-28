@@ -1816,11 +1816,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Vă rugăm să introduceți 4 cifre sau puteți să lăsați gol să dezactivați lacătul aplicației.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Vă rugăm să introduceți parola voastră",
     "@pleaseEnterYourPassword": {
         "type": "String",

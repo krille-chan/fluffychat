@@ -1656,11 +1656,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Iontráil 4 dhigit le do thoil nó fág folamh chun glas aipe a dhíchumasú.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseClickOnLink": "Cliceáil ar an nasc sa ríomhphost agus ansin lean ar aghaidh.",
     "@pleaseClickOnLink": {
         "type": "String",

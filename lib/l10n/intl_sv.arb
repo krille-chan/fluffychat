@@ -1027,11 +1027,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Ange 4 siffror eller lämna tom för att inaktivera app-lås.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Ange ditt lösenord",
     "@pleaseEnterYourPassword": {
         "type": "String",

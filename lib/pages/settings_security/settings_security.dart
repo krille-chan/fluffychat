@@ -11,6 +11,7 @@ import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:matrix/matrix.dart';
 
 import 'settings_security_view.dart';
@@ -23,7 +24,54 @@ class SettingsSecurity extends StatefulWidget {
 }
 
 class SettingsSecurityController extends State<SettingsSecurity> {
+  Future<void> toggleBiometrics() async {
+    AppLock.of(context).showLockScreen();
+
+    final oldState = AppLock.of(context).useBiometrics;
+    final actionStr = oldState
+        ? L10n.of(context).disableBiometrics
+        : L10n.of(context).enableBiometrics;
+    final consent = await showOkCancelAlertDialog(
+      context: context,
+      title: actionStr,
+      message: L10n.of(context).biometricsDescription,
+      okLabel: actionStr,
+      cancelLabel: L10n.of(context).cancel,
+      isDestructive: true,
+    );
+    if (consent != OkCancelResult.ok) return;
+    if (!mounted) return;
+
+    if (!oldState) {
+      final localAuth = LocalAuthentication();
+      final unlocked = await localAuth.authenticate(localizedReason: actionStr);
+      if (!unlocked) return;
+      if (!mounted) return;
+    }
+    await AppLock.of(context).changeUseBiometrics(!oldState);
+    setState(() {});
+  }
+
+  Future<void> disableAppLockAction() async {
+    AppLock.of(context).showLockScreen();
+    final consent = await showOkCancelAlertDialog(
+      context: context,
+      title: L10n.of(context).disableAppLock,
+      message: L10n.of(context).disableAppLockAreYouSure,
+      okLabel: L10n.of(context).disableAppLock,
+      cancelLabel: L10n.of(context).cancel,
+      isDestructive: true,
+    );
+    if (consent != OkCancelResult.ok) return;
+    if (!mounted) return;
+    await AppLock.of(context).changePincode(null);
+    if (!mounted) return;
+    setState(() {});
+  }
+
   Future<void> setAppLockAction() async {
+    await AppLock.of(context).changeUseBiometrics(false);
+    if (!mounted) return;
     final l10n = L10n.of(context);
     if (AppLock.of(context).isActive) {
       AppLock.of(context).showLockScreen();
@@ -32,23 +80,24 @@ class SettingsSecurityController extends State<SettingsSecurity> {
       useRootNavigator: false,
       context: context,
       title: l10n.pleaseChooseAPasscode,
-      message: l10n.pleaseEnter4Digits,
+      message: l10n.pleaseEnter6Digits,
       cancelLabel: l10n.cancel,
       validator: (text) {
-        if (text.isEmpty || (text.length == 4 && int.tryParse(text)! >= 0)) {
+        if (text.length == 6 && int.tryParse(text)! >= 0) {
           return null;
         }
-        return l10n.pleaseEnter4Digits;
+        return l10n.pleaseEnter6Digits;
       },
       keyboardType: TextInputType.number,
       obscureText: true,
       maxLines: 1,
       minLines: 1,
-      maxLength: 4,
+      maxLength: 6,
     );
     if (newLock != null) {
       if (!mounted) return;
       await AppLock.of(context).changePincode(newLock);
+      setState(() {});
     }
   }
 
