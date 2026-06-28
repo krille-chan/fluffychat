@@ -59,10 +59,10 @@ class _LockScreenState extends State<LockScreen> {
     setState(() {
       _errorText = null;
     });
-    if (text.length < 4) return;
+    if (text.length <= 4) return;
 
     final enteredPin = int.tryParse(text);
-    if (enteredPin == null || text.length != 4) {
+    if (enteredPin == null) {
       setState(() {
         _errorText = L10n.of(context).invalidInput;
       });
@@ -126,7 +126,7 @@ class _LockScreenState extends State<LockScreen> {
                 onChanged: tryUnlock,
                 onSubmitted: tryUnlock,
                 style: const TextStyle(fontSize: 40),
-                inputFormatters: [LengthLimitingTextInputFormatter(4)],
+                inputFormatters: [LengthLimitingTextInputFormatter(6)],
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(40),
