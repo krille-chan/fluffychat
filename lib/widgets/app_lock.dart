@@ -6,17 +6,19 @@
 import 'package:fluffychat/widgets/lock_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
 
 class AppLockWidget extends StatefulWidget {
   const AppLockWidget({
     required this.child,
     required this.pincode,
+    required this.useBiometrics,
     required this.isLoggedIn,
     super.key,
   });
 
-  final bool isLoggedIn;
+  final bool isLoggedIn, useBiometrics;
   final String? pincode;
   final Widget child;
 
@@ -27,20 +29,25 @@ class AppLockWidget extends StatefulWidget {
 class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
   String? _pincode;
   bool _isLocked = false;
+  bool _useBiometrics = false;
+  bool _triedAutoBiometrics = false;
   bool _paused = false;
   bool get isActive =>
       _pincode != null &&
       int.tryParse(_pincode!) != null &&
       _pincode!.length == 4 &&
       !_paused;
+  bool get useBiometrics => _useBiometrics;
 
   @override
   void initState() {
+    _useBiometrics = widget.useBiometrics;
     _pincode = widget.pincode;
     _isLocked = isActive;
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback(_checkLoggedIn);
+    if (isActive && useBiometrics) unlockWithBiometrics();
   }
 
   Future<void> _checkLoggedIn(_) async {
@@ -54,15 +61,27 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (isActive &&
-        state == AppLifecycleState.hidden &&
-        !_isLocked &&
-        isActive) {
+    if (isActive && state == AppLifecycleState.hidden && !_isLocked) {
       showLockScreen();
+    }
+    if (_isLocked &&
+        state == AppLifecycleState.resumed &&
+        useBiometrics &&
+        !_triedAutoBiometrics) {
+      unlockWithBiometrics();
     }
   }
 
   bool get isLocked => _isLocked;
+
+  Future<void> changeUseBiometrics(bool useBiometrics) async {
+    await const FlutterSecureStorage().write(
+      key: 'chat.fluffy.use_biometrics',
+      value: useBiometrics.toString(),
+    );
+    _useBiometrics = useBiometrics;
+    return;
+  }
 
   Future<void> changePincode(String? pincode) async {
     await const FlutterSecureStorage().write(
@@ -71,6 +90,22 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
     );
     _pincode = pincode;
     return;
+  }
+
+  Future<bool> unlockWithBiometrics() async {
+    _triedAutoBiometrics = true;
+    final localAuth = LocalAuthentication();
+    final unlocked = await localAuth.authenticate(
+      localizedReason: 'Please authenticate to unlock the app.',
+      persistAcrossBackgrounding: true,
+    );
+    if (unlocked) {
+      setState(() {
+        _isLocked = false;
+        _triedAutoBiometrics = false;
+      });
+    }
+    return unlocked;
   }
 
   bool unlock(String pincode) {

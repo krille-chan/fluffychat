@@ -1245,11 +1245,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Voer 4 cijfers in of laat leeg om app-vergrendeling uit te schakelen.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Voer jouw wachtwoord in",
     "@pleaseEnterYourPassword": {
         "type": "String",

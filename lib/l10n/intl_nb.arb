@@ -1813,11 +1813,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Skriv inn fire sifre eller la feltet stå tomt for å deaktivere applåsen.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPin": "Oppgi din PIN-kode",
     "@pleaseEnterYourPin": {
         "type": "String",

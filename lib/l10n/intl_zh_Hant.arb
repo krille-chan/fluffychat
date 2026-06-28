@@ -1069,11 +1069,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "請輸入4位數字，或留空以停用密碼鎖定。",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "請輸入您的密碼",
     "@pleaseEnterYourPassword": {
         "type": "String",

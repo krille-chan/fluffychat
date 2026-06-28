@@ -1245,11 +1245,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Escribe 4 díxitos ou deíxao baleiro para non activar o bloqueo.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Escribe o teu contrasinal",
     "@pleaseEnterYourPassword": {
         "type": "String",

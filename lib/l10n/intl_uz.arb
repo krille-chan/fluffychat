@@ -1371,11 +1371,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Ilova qulfini oʻchirish uchun 4 ta raqamni kiriting yoki boʻsh qoldiring.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Iltimos parolingizni kiriting",
     "@pleaseEnterYourPassword": {
         "type": "String",

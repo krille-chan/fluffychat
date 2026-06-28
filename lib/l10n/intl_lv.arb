@@ -2009,11 +2009,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Lūgums ievadīt 4 ciparus vai atstāt tukšu, lai atspējotu lietotnes slēgu.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newSpace": "Jauna vieta",
     "changePassword": "Nomainīt paroli",
     "@changePassword": {

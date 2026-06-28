@@ -1180,11 +1180,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "请输入 4 位数字或留空以停用应用锁。",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "请输入你的密码",
     "@pleaseEnterYourPassword": {
         "type": "String",

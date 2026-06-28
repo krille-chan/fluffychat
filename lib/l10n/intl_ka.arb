@@ -1965,10 +1965,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@unknownEvent": {
         "type": "String",
         "placeholders": {

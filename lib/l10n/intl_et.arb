@@ -1245,11 +1245,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Rakenduse luku jaoks sisesta 4 numbrit või kui sa sellist võimalust ei soovi kasutada, siis jäta nad tühjaks.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Palun sisesta oma salasõna",
     "@pleaseEnterYourPassword": {
         "type": "String",

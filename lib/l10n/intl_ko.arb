@@ -1354,11 +1354,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "4자리 숫자를 입력하거나 앱 잠금을 사용하지 않도록 하려면 비워두세요.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseChooseAPasscode": "비밀번호를 골라주세요",
     "@pleaseChooseAPasscode": {
         "type": "String",

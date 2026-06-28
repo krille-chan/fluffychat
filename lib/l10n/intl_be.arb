@@ -1807,11 +1807,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Калі ласка, увядзіце 4 лічбы ці пакіньце пустым, каб адключыць код-пароль.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Калі ласка, увядзіце ваш пароль",
     "@pleaseEnterYourPassword": {
         "type": "String",

@@ -1081,11 +1081,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "アプリのロック用に4桁の数字を入力してください。空欄の場合は無効になります。",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "パスワードを入力してください",
     "@pleaseEnterYourPassword": {
         "type": "String",

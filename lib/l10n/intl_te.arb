@@ -1803,10 +1803,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@changePassword": {
         "type": "String",
         "placeholders": {}

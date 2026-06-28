@@ -1263,11 +1263,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Por favor, insere 4 dígitos ou deixa vazio para desativar o bloqueio da aplicação.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "Por favor, insere a tua palavra-passe",
     "@pleaseEnterYourPassword": {
         "type": "String",

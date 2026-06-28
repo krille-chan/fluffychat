@@ -1768,11 +1768,6 @@
         "placeholders": {}
     },
     "oneClientLoggedOut": "أُ خرج أحد العملاء الذي تسختدمها",
-    "pleaseEnter4Digits": "أدخل 4 أرقام أو أتركه فارغ لتعطيل القفل.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "redactMessage": "احذف رسالة",
     "@redactMessage": {
         "type": "String",

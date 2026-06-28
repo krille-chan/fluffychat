@@ -1727,11 +1727,6 @@
             }
         }
     },
-    "pleaseEnter4Digits": "பயன்பாட்டு பூட்டை முடக்க 4 இலக்கங்களை உள்ளிடவும் அல்லது காலியாக விடவும்.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPassword": "உங்கள் கடவுச்சொல்லை உள்ளிடவும்",
     "@pleaseEnterYourPassword": {
         "type": "String",

@@ -1843,11 +1843,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pleaseEnter4Digits": "Mohon masukkan 4 digit atau tinggalkan kosong untuk menonaktifkan kunci aplikasi.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseEnterYourPin": "Masukkan pin",
     "@pleaseEnterYourPin": {
         "type": "String",

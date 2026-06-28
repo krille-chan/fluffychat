@@ -98,11 +98,17 @@ void main(List<String> args) async {
 Future<void> startGui(List<Client> clients, SharedPreferences store) async {
   // Fetch the pin for the applock if existing for mobile applications.
   String? pin;
+  var useBiometrics = false;
   if (PlatformInfos.isMobile) {
     try {
       pin = await const FlutterSecureStorage().read(
         key: 'chat.fluffy.app_lock',
       );
+      useBiometrics =
+          (await const FlutterSecureStorage().read(
+            key: 'chat.fluffy.use_biometrics',
+          )) ==
+          'true';
     } catch (e, s) {
       Logs().d('Unable to read PIN from Secure storage', e, s);
     }
@@ -113,7 +119,13 @@ Future<void> startGui(List<Client> clients, SharedPreferences store) async {
   await firstClient?.roomsLoading;
   await firstClient?.accountDataLoading;
 
-  runApp(FluffyChatApp(clients: clients, pincode: pin, store: store));
+  runApp(
+    FluffyChatApp(
+      clients: clients,
+      appLockSettings: (pincode: pin, useBiometrics: useBiometrics),
+      store: store,
+    ),
+  );
 }
 
 /// Watches the lifecycle changes to start the application when it

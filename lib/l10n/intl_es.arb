@@ -1820,11 +1820,6 @@
     },
     "removeFromBundle": "Quitar de este paquete",
     "link": "Link",
-    "pleaseEnter4Digits": "Ingrese 4 dígitos o déjelo en blanco para deshabilitar el bloqueo de la aplicación.",
-    "@pleaseEnter4Digits": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseChooseAPasscode": "Elija un código de acceso",
     "@pleaseChooseAPasscode": {
         "type": "String",
