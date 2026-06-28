@@ -35,7 +35,7 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
   bool get isActive =>
       _pincode != null &&
       int.tryParse(_pincode!) != null &&
-      _pincode!.length == 4 &&
+      _pincode!.length >= 4 &&
       !_paused;
   bool get useBiometrics => _useBiometrics;
 
