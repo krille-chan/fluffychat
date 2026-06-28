@@ -98,6 +98,7 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
     final unlocked = await localAuth.authenticate(
       localizedReason: 'Please authenticate to unlock the app.',
       persistAcrossBackgrounding: true,
+      biometricOnly: true,
     );
     if (unlocked) {
       setState(() {
