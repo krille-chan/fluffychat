@@ -2728,5 +2728,59 @@
             }
         }
     },
-    "deviceIdentityKey": "Ierīces identificēšanas atslēga"
+    "deviceIdentityKey": "Ierīces identificēšanas atslēga",
+    "showMore": "Parādīt vairāk",
+    "showLess": "Rādīt mazāk",
+    "messageCanOnlyBeReadByUser": "Ziņojums ir pilnībā šifrēts, un to var izlasīt tikai šis lietotājs:",
+    "messageCanOnlyBeReadByUsers": "Ziņojums ir pilnībā šifrēts, un to var izlasīt tikai šie lietotāji:",
+    "unlock": "Atslēgt",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Atvērt datni",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Atkārtot paroles vārdkopu",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Paroles vārdkopas sakrīt",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "Vismaz 12 rakstzīmes gara.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Satur lielos un mazos burtus.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Satur īpašas rakstzīmes.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Satur vismaz vienu ciparu.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Ziņojums nav atšifrējams",
+    "today": "Šodien",
+    "sending": "Sūta",
+    "generatingThumbnail": "Veido sīktēlu",
+    "encrypting": "Šifrē",
+    "uploading": "Augšupielādē",
+    "edited": "(labots)",
+    "couldNotBeSent": "Nevarēja nosūtīt",
+    "yesterday": "Vakar",
+    "resetRecoveryKey": "Atiestatīt atkopes atslēgu"
 }
