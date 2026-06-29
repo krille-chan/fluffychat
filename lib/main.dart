@@ -99,7 +99,7 @@ Future<void> startGui(List<Client> clients, SharedPreferences store) async {
   // Fetch the pin for the applock if existing for mobile applications.
   String? pin;
   var useBiometrics = false;
-  if (PlatformInfos.isMobile) {
+  if (PlatformInfos.supportsAppLock) {
     try {
       pin = await const FlutterSecureStorage().read(
         key: 'chat.fluffy.app_lock',
