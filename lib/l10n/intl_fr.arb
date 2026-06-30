@@ -2887,5 +2887,29 @@
     "uploading": "Téléversement",
     "edited": "(édité)",
     "couldNotBeSent": "N'a pas pu être envoyé",
-    "yesterday": "Hier"
+    "yesterday": "Hier",
+    "displayNavigationRail": "Afficher la barre de navigation sur mobile",
+    "resetRecoveryKey": "Réinitialiser la clé de récupération",
+    "pleaseEnter6Digits": "Veuillez entrer le code à 6 chiffres pour activer le verouillage de l'application.",
+    "disableAppLock": "Désactiver le verrouillage de l'application",
+    "disableAppLockAreYouSure": "Êtes vous sûr de vouloir désactiver le verrouillage de l'application ?",
+    "enableBiometrics": "Activer l'authentification biométrique",
+    "disableBiometrics": "Désactiver l'authentification biométrique",
+    "biometricsDescription": "Avec l'authentification biométrique, vous pouvez déverrouillee l'application avec votre visage ou votre empreinte digitale. Les possibilités dépendent de votre appareil.",
+    "useAppLock": "Utiliser le verrouillage de l'application",
+    "unlockWithBiometrics": "Déverrouiller avec l'authentification biométrique",
+    "resetPin": "Réinitialiser le code pin",
+    "forwardCountMessages": "Avancer de {count, plural, =1{un message} other{{count} messages}} ?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "clientWellKnownInformation": "Informations Well-Known du client :",
+    "attribution": "Attribution",
+    "support": "Soutenir",
+    "blur": "Flou :",
+    "opacity": "Opacité :"
 }
