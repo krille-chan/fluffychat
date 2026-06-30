@@ -1,7 +1,7 @@
 {
     "@@locale": "pl",
     "@@last_modified": "2021-08-14 12:41:09.943634",
-    "about": "O aplikacji",
+    "about": "O",
     "@about": {
         "type": "String",
         "placeholders": {}
@@ -893,7 +893,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "login": "Login",
+    "login": "Zaloguj się",
     "@login": {
         "type": "String",
         "placeholders": {}
@@ -1418,7 +1418,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "Wszystkie",
+    "allChats": "Wszystkie czaty",
     "@allChats": {
         "type": "String",
         "placeholders": {}
@@ -1606,7 +1606,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fontSize": "Rozmiar fontu",
+    "fontSize": "Rozmiar czcionki",
     "@fontSize": {
         "type": "String",
         "placeholders": {}
@@ -1935,7 +1935,7 @@
     "noBackupWarning": "Uwaga! Bez włączenia kopii zapasowej czatu, stracisz dostęp do swoich zaszyfrowanych wiadomości. Zaleca się włączenie kopii zapasowej czatu przed wylogowaniem.",
     "commandHint_googly": "Wyślij kręcące się oczka",
     "storeInAndroidKeystore": "Przechowaj w Android KeyStore",
-    "commandHint_cuddle": "Wyślij przytulenie",
+    "commandHint_cuddle": "Wyślij uścisk",
     "googlyEyesContent": "{senderName} wysyła ci kręcące się oczka",
     "@googlyEyesContent": {
         "type": "String",
@@ -1945,7 +1945,7 @@
             }
         }
     },
-    "cuddleContent": "{senderName} przytula cię",
+    "cuddleContent": "{senderName} cię uściska",
     "@cuddleContent": {
         "type": "String",
         "placeholders": {
@@ -1954,7 +1954,7 @@
             }
         }
     },
-    "hugContent": "{senderName} uściska cię",
+    "hugContent": "{senderName} przytula cię",
     "@hugContent": {
         "type": "String",
         "placeholders": {
@@ -1963,7 +1963,7 @@
             }
         }
     },
-    "commandHint_hug": "Wyślij uścisk",
+    "commandHint_hug": "Wyślij przytulasa",
     "reactedWith": "{sender} zareagował/-a z {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -2086,7 +2086,7 @@
         }
     },
     "optionalRedactReason": "(Opcjonalnie) Powód usunięcia tej wiadomości...",
-    "exportEmotePack": "Eksportuj pakiet emotikonów jako .zip",
+    "exportEmotePack": "Eksportuj paczkę emoji jako .zip",
     "redactedByBecause": "Usunięte przez {username} z powodu „{reason}”",
     "@redactedByBecause": {
         "type": "String",
@@ -2114,7 +2114,7 @@
     },
     "sendTypingNotifications": "Wysyłaj powiadomienie o pisaniu",
     "inviteGroupChat": "📨 Zaproszenie do rozmowy grupowej",
-    "importEmojis": "Zaimportuj emotikony",
+    "importEmojis": "Zaimportuj emoji",
     "noChatDescriptionYet": "Nie utworzono jeszcze opisu czatu.",
     "notAnImage": "To nie jest plik obrazu.",
     "chatDescriptionHasBeenChanged": "Zmieniono opis czatu",
@@ -2126,7 +2126,7 @@
     },
     "replace": "Zastąp",
     "createGroup": "Utwórz grupę",
-    "importNow": "Zaimportuj",
+    "importNow": "Zaimportuj teraz",
     "invite": "Zaproszenie",
     "block": "Zablokuj",
     "blockedUsers": "Zablokowani użytkownicy",
@@ -2294,7 +2294,7 @@
     "contactServerAdmin": "Skontaktuj się z administratorem serwera",
     "compress": "Skompresuj",
     "pleaseFillOut": "Proszę wypełnić",
-    "invalidUrl": "Niepoprawny adres url",
+    "invalidUrl": "Niepoprawny adres URL",
     "unableToJoinChat": "Nie udało się dołączyć do czatu. Rozmowa mogła zostać zakończona przez drugą stronę.",
     "aboutHomeserver": "O {homeserver}",
     "@aboutHomeserver": {
@@ -2706,9 +2706,198 @@
     "backToMainChat": "Wróć do czatu głównego",
     "saveChanges": "Zapisz zmiany",
     "createSticker": "Utwórz naklejkę lub emoji",
-    "useAsSticker": "Użyj naklejki",
-    "useAsEmoji": "Użyj emoji",
+    "useAsSticker": "Użyj jako naklejki",
+    "useAsEmoji": "Użyj jako emoji",
     "stickerPackNameAlreadyExists": "Paczka naklejek o tej nazwie już istnieje",
-    "newStickerPack": "Nowy pakiet naklejek",
-    "stickerPackName": "Nazwa paczki naklejek"
+    "newStickerPack": "Nowa paczka naklejek",
+    "stickerPackName": "Nazwa paczki naklejek",
+    "discardEdits": "Masz niezapisane zmiany. Porzucić je?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showMore": "Pokaż wiecej",
+    "showLess": "Pokaż mniej",
+    "hideRoomsInSpaces": "Ukryj pokoje, które są w przestrzeni",
+    "possibleByYou": "To wydanie było tylko możliwe dzięki twojemu wsparciu. FluffyChat pozostaje darmowe, otwartoźródłowe i w całości oparty na inicjatywie społeczności.",
+    "showThumbnailsInTimeline": "Wyświetl miniatury zdjęć i filmów",
+    "appSubtitle": "Bezpieczna komunikacja [matrix]",
+    "appDescription": "Komunikuj się w sposób zaszyfrowany za pośrednictwem zdecentralizowanej sieci [matrix] – w łatwy i dostępny dla wszystkich sposób.",
+    "interactiveVerification": "Weryfikacja interaktywna",
+    "interactiveVerificationDescription": "Jeżeli jesteście obok siebie albo komunikujecie się przez bezpieczny kanał to możecie zweryfikować wszystkie urządzenia naraz przez porównywanie numeru bezpieczeństwa lub emoji.",
+    "countUnverifiedDevices": "{count} niezweryfikowanych urządzeń w czacie.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "check": "Sprawdź",
+    "encryptedMessage": "Szyfrowana wiadomość",
+    "unencryptedMessage": "Nieszyfrowana wiadomość",
+    "allow": "Zezwól",
+    "messageCanOnlyBeReadByUser": "Twoja wiadomość jest szyfrowana od początku do końca i może ją odczytać wyłącznie ten użytkownik:",
+    "messageCanOnlyBeReadByUsers": "Twoja wiadomość jest szyfrowana od początku do końca i mogą ją odczytać wyłącznie następujący użytkownicy:",
+    "publicKey": "Publiczny klucz: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "deviceIdentityKey": "Klucz identyfikacyjny urządzenia",
+    "restoreBootstrapEmptyDevicesDescription": "Wprowadź hasło lub klucz odzyskiwania, aby zweryfikować to urządzenie i uzyskać dostęp do zaszyfrowanej kopii zapasowej wiadomości.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Wybierz jedno ze swoich innych urządzeń, aby zweryfikować tę sesję:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Zresetuj konto",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Przywróć tożsamość kryptograficzną",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Zresetuj tożsamość kryptograficzną",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Skonfiguruj tożsamość kryptograficzną",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Oczekiwanie na klucze... Proszę pozostawić drugie urządzenie włączone.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Nie przesłano żadnych kluczy. Spróbuj ponownie.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Odblokuj",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Otwórz plik",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Po zresetowaniu konta utracisz na zawsze dostęp do starych wiadomości. Wszystkie Twoje obecne urządzenia będą wymagały ponownej weryfikacji. Wykonaj tę czynność tylko wtedy, gdy nie masz już żadnych innych urządzeń, na których można zweryfikować sesję, oraz utraciłeś klucz odzyskiwania i hasło!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat korzysta z szyfrowania od końca do końca. Aby nie utracić swoich wiadomości, wybierz silne hasło, które zabezpieczy Twoją tożsamość kryptograficzną oraz zaszyfrowaną kopię zapasową wiadomości.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Nowa fraza hasłowa",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Powtórz frazę hasłową",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Zgodność fraz hasłowych",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "Co najmniej 12 znaków.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Zawiera wielkie i małe litery.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Zawiera znaki specjalne.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Zawiera jedną liczbę.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Zapisz swój klucz odzyskiwania, aby móc przywrócić zaszyfrowane wiadomości oraz swoją tożsamość kryptograficzną.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Zapisz jako plik",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Jesteś gotowy aby rozpocząć!",
+    "noUserKeyFound": "Nie znaleziono kluczy użytkownika",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Znany od: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "Niepodpisane urządzenie",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Podpisane urządzenie",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Nie znaleziono klucza curve25519",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Nie można odszyfrować wiadomości",
+    "today": "Dzisiaj",
+    "sending": "Wysyłanie",
+    "generatingThumbnail": "Tworzenie miniatury",
+    "encrypting": "Szyfrowanie",
+    "uploading": "Przesyłanie",
+    "edited": "(edytowano)",
+    "couldNotBeSent": "Nie udało się wysłać",
+    "yesterday": "Wczoraj",
+    "resetRecoveryKey": "Zresetuj klucz odzyskiwania",
+    "pleaseEnter6Digits": "Wpisz 6 cyfr aby włączyć blokadę aplikacji.",
+    "disableAppLock": "Wyłącz blokadę aplikacji",
+    "disableAppLockAreYouSure": "Czy na pewno chcesz wyłączyć blokadę aplikacji?",
+    "enableBiometrics": "Włącz uwierzytelnianie biometryczne",
+    "disableBiometrics": "Wyłącz uwierzytelnianie biometryczne"
 }
