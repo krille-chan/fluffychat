@@ -101,7 +101,7 @@ class RecorderProcessor extends AudioWorkletProcessor {
   flush() {
     let channels = []
     for (let channel = 0; channel < this._numChannels; channel++) {
-      channels.push(this.mergeFloat32Arrays(this._buffers[channel], this._bytesWritten))
+      channels.push(this.mergeFloat32Arrays(this._buffers[channel]))
     }
 
     let interleaved = this.interleave(channels)
@@ -113,8 +113,14 @@ class RecorderProcessor extends AudioWorkletProcessor {
     this.initBuffers()
   }
 
-  mergeFloat32Arrays(arrays, bytesWritten) {
-    let result = new Float32Array(bytesWritten)
+  mergeFloat32Arrays(arrays) {
+    // Calculate the actual total length from the arrays
+    let actualLength = 0
+    for (let i = 0; i < arrays.length; i++) {
+      actualLength += arrays[i].length
+    }
+    
+    let result = new Float32Array(actualLength)
     var offset = 0
 
     for (let i = 0; i < arrays.length; i++) {
@@ -127,7 +133,7 @@ class RecorderProcessor extends AudioWorkletProcessor {
 
   // Interleave data from channels from LLLLRRRR to LRLRLRLR
   interleave(channels) {
-    if (channels === 1) {
+    if (channels.length === 1) {
       return channels[0]
     }
 
@@ -140,8 +146,9 @@ class RecorderProcessor extends AudioWorkletProcessor {
 
     var index = 0
     var inputIndex = 0
+    var minChannelLength = Math.min(...channels.map(c => c.length))
 
-    while (index < length) {
+    while (index < length && inputIndex < minChannelLength) {
       for (let i = 0; i < channels.length; i++) {
         result[index] = channels[i][inputIndex]
         index++
@@ -238,6 +245,7 @@ class Resampler {
     try {
       this.outputBuffer = new Float32Array(this.outputBufferSize);
       this.lastOutput = new Float32Array(this.channels);
+      this.lastOutput.fill(0); // Initialize to zeros to prevent artifacts
     }
     catch (error) {
       this.outputBuffer = [];
@@ -388,18 +396,6 @@ class Resampler {
   }
 
   resample(buffer) {
-    if (this.fromSampleRate == this.toSampleRate) {
-      this.ratioWeight = 1;
-    } else {
-      if (this.fromSampleRate < this.toSampleRate) {
-        this.lastWeight = 1;
-      } else {
-        this.tailExists = false;
-        this.lastWeight = 0;
-      }
-      this.initializeBuffers();
-      this.ratioWeight = this.fromSampleRate / this.toSampleRate;
-    }
     return this.resampler(buffer)
   }
 }
