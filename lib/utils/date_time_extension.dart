@@ -29,7 +29,7 @@ extension DateTimeExtension on DateTime {
   /// Checks if two DateTimes are close enough to belong to the same
   /// environment.
   bool sameEnvironment(DateTime prevTime) =>
-      difference(prevTime).abs() < const Duration(minutes: 3) &&
+      difference(prevTime).abs() < const Duration(minutes: 5) &&
       sameDay(prevTime);
 
   bool sameDay(DateTime prevTime) =>
@@ -127,6 +127,22 @@ extension DateTimeExtension on DateTime {
       localizedTimeOfDay(context),
     );
   }
+
+  String localizedDetailedTime(BuildContext context) =>
+      L10n.of(context).dateAndTimeOfDay(
+        DateFormat.yMMMd(
+          Localizations.localeOf(context).languageCode,
+        ).format(this),
+        use24HourFormat(context)
+            ? DateFormat(
+                'HH:mm:ss',
+                Localizations.localeOf(context).languageCode,
+              ).format(this)
+            : DateFormat(
+                'h:mm:ss a',
+                Localizations.localeOf(context).languageCode,
+              ).format(this),
+      );
 
   /// Check if time needs to be in 24h format
   bool use24HourFormat(BuildContext context) {

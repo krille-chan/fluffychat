@@ -144,9 +144,11 @@ class Message extends StatelessWidget {
     const hardCorner = Radius.circular(3);
     const roundedCorner = Radius.circular(AppConfig.borderRadius);
     final borderRadius = BorderRadius.only(
-      topLeft: !ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
+      topLeft: !ownMessage ? hardCorner : roundedCorner,
       topRight: ownMessage && nextEventSameSender ? hardCorner : roundedCorner,
-      bottomLeft: !ownMessage ? hardCorner : roundedCorner,
+      bottomLeft: !ownMessage && previousEventSameSender
+          ? hardCorner
+          : roundedCorner,
       bottomRight: ownMessage ? hardCorner : roundedCorner,
     );
     const avatarSize = Avatar.defaultSize;
@@ -270,7 +272,7 @@ class Message extends StatelessWidget {
                     ),
                   ),
                   Row(
-                    crossAxisAlignment: .end,
+                    crossAxisAlignment: .start,
                     mainAxisAlignment: rowMainAxisAlignment,
                     children: [
                       if (longPressSelect && !event.redacted)
@@ -288,38 +290,94 @@ class Message extends StatelessWidget {
                             onPressed: () => onSelect(event),
                           ),
                         )
-                      else if (previousEventSameSender || ownMessage)
+                      else if (nextEventSameSender || ownMessage)
                         SizedBox(width: avatarSize)
                       else
-                        Padding(
-                          // Align with bottom line of displayname:
-                          padding: const EdgeInsets.only(bottom: 2.0),
-                          child: FutureBuilder<User?>(
-                            future: event.fetchSenderUser(),
-                            builder: (context, snapshot) {
-                              final user = snapshot.data ?? sender;
-                              return Avatar(
-                                mxContent: user.avatarUrl,
-                                name: user.calcDisplayname(),
-                                onTap: () => showMemberActionsPopupMenu(
-                                  context: context,
-                                  user: user,
-                                  onMention: onMention,
-                                ),
-                                size: avatarSize,
-                                presenceUserId: user.stateKey,
-                                presenceBackgroundColor: wallpaperMode
-                                    ? Colors.transparent
-                                    : null,
-                              );
-                            },
-                          ),
+                        FutureBuilder<User?>(
+                          future: event.fetchSenderUser(),
+                          builder: (context, snapshot) {
+                            final user = snapshot.data ?? sender;
+                            return Avatar(
+                              mxContent: user.avatarUrl,
+                              name: user.calcDisplayname(),
+                              onTap: () => showMemberActionsPopupMenu(
+                                context: context,
+                                user: user,
+                                onMention: onMention,
+                              ),
+                              size: avatarSize,
+                              presenceUserId: user.stateKey,
+                              presenceBackgroundColor: wallpaperMode
+                                  ? Colors.transparent
+                                  : null,
+                            );
+                          },
                         ),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: .start,
                           mainAxisSize: .min,
                           children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 8.0),
+                              child: Row(
+                                mainAxisAlignment: ownMessage ? .end : .start,
+                                children: [
+                                  if (sender.powerLevel.role !=
+                                          PowerLevelRole.user &&
+                                      !nextEventSameSender &&
+                                      !ownMessage &&
+                                      !event.room.isDirectChat)
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        right: 2.0,
+                                      ),
+                                      child: Icon(
+                                        sender.powerLevel.role ==
+                                                PowerLevelRole.moderator
+                                            ? Icons.add_moderator_outlined
+                                            : Icons.admin_panel_settings,
+                                        size: 14,
+                                        color: theme
+                                            .colorScheme
+                                            .onPrimaryContainer,
+                                      ),
+                                    ),
+                                  if ((!nextEventSameSender) && !ownMessage)
+                                    FutureBuilder<User?>(
+                                      future: event.fetchSenderUser(),
+                                      builder: (context, snapshot) {
+                                        final displayname =
+                                            snapshot.data?.calcDisplayname() ??
+                                            sender.calcDisplayname();
+                                        return ConstrainedBox(
+                                          constraints: BoxConstraints(
+                                            maxWidth: 200,
+                                          ),
+                                          child: Text(
+                                            displayname,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: event.room.isDirectChat
+                                                  ? Colors.transparent
+                                                  : (theme.brightness ==
+                                                            Brightness.light
+                                                        ? displayname.color
+                                                        : displayname
+                                                              .lightColorText),
+                                              fontSize: 11,
+                                              shadows: wallpaperTextShadow,
+                                            ),
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                ],
+                              ),
+                            ),
+
                             Container(
                               alignment: alignment,
                               padding: const EdgeInsets.only(left: 8),
@@ -466,134 +524,79 @@ class Message extends StatelessWidget {
                                       child: MessageReactions(event, timeline),
                                     ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 8.0),
-                              child: Row(
-                                mainAxisAlignment: ownMessage ? .end : .start,
-                                children: [
-                                  if (sender.powerLevel.role !=
-                                          PowerLevelRole.user &&
-                                      !previousEventSameSender &&
-                                      !ownMessage &&
-                                      !event.room.isDirectChat)
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        right: 2.0,
-                                      ),
-                                      child: Icon(
-                                        sender.powerLevel.role ==
-                                                PowerLevelRole.moderator
-                                            ? Icons.add_moderator_outlined
-                                            : Icons.admin_panel_settings,
-                                        size: 14,
-                                        color: theme
-                                            .colorScheme
-                                            .onPrimaryContainer,
-                                      ),
+                            Row(
+                              mainAxisAlignment: ownMessage ? .end : .start,
+                              children: [
+                                const SizedBox(width: 8),
+                                if (event.status.isSent &&
+                                    (displayTime ||
+                                        !previousEventSameSender ||
+                                        selected))
+                                  Text(
+                                    ' ${selected ? event.originServerTs.localizedDetailedTime(context) : event.originServerTs.localizedTimeOfDay(context)}',
+                                    style: TextStyle(
+                                      color: eventStateTextColor,
+                                      fontSize: 11,
+                                      shadows: wallpaperTextShadow,
                                     ),
-                                  if ((selected ||
-                                          !previousEventSameSender ||
-                                          isEdited) &&
-                                      !ownMessage &&
-                                      !event.room.isDirectChat)
-                                    FutureBuilder<User?>(
-                                      future: event.fetchSenderUser(),
-                                      builder: (context, snapshot) {
-                                        final displayname =
-                                            snapshot.data?.calcDisplayname() ??
-                                            sender.calcDisplayname();
-                                        return ConstrainedBox(
-                                          constraints: BoxConstraints(
-                                            maxWidth: 200,
-                                          ),
-                                          child: Text(
-                                            displayname,
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color:
-                                                  (theme.brightness ==
-                                                      Brightness.light
-                                                  ? displayname.color
-                                                  : displayname.lightColorText),
-                                              fontSize: 11,
-                                              shadows: wallpaperTextShadow,
-                                            ),
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        );
-                                      },
+                                  ),
+                                if (isEdited) ...[
+                                  Text(' ', style: TextStyle(fontSize: 11)),
+                                  Text(
+                                    L10n.of(context).edited,
+                                    style: TextStyle(
+                                      color: eventStateTextColor,
+                                      fontSize: 11,
+                                      shadows: wallpaperTextShadow,
                                     ),
-                                  if (event.status.isSent &&
-                                      (displayTime ||
-                                          !previousEventSameSender ||
-                                          selected))
-                                    Text(
-                                      ' ${selected ? event.originServerTs.localizedTime(context) : event.originServerTs.localizedTimeOfDay(context)}',
-                                      style: TextStyle(
-                                        color: eventStateTextColor,
-                                        fontSize: 11,
-                                        shadows: wallpaperTextShadow,
-                                      ),
-                                    ),
-                                  if (isEdited) ...[
-                                    Text(' ', style: TextStyle(fontSize: 11)),
-                                    Text(
-                                      L10n.of(context).edited,
-                                      style: TextStyle(
-                                        color: eventStateTextColor,
-                                        fontSize: 11,
-                                        shadows: wallpaperTextShadow,
-                                      ),
-                                    ),
-                                  ],
-                                  if (event.status == EventStatus.error) ...[
-                                    Text(' ', style: TextStyle(fontSize: 11)),
-                                    Text(
-                                      L10n.of(context).couldNotBeSent,
-                                      style: TextStyle(
-                                        fontSize: 11,
-                                        color: theme.colorScheme.error,
-                                        shadows: wallpaperTextShadow,
-                                      ),
-                                    ),
-                                    Text(' ', style: TextStyle(fontSize: 11)),
-                                    Icon(
-                                      Icons.error_outlined,
-                                      size: 14,
+                                  ),
+                                ],
+                                if (event.status == EventStatus.error) ...[
+                                  Text(' ', style: TextStyle(fontSize: 11)),
+                                  Text(
+                                    L10n.of(context).couldNotBeSent,
+                                    style: TextStyle(
+                                      fontSize: 11,
                                       color: theme.colorScheme.error,
                                       shadows: wallpaperTextShadow,
                                     ),
-                                  ],
-                                  if (event.status == EventStatus.sending) ...[
-                                    Text(
-                                      switch (event.fileSendingStatus) {
-                                        null => L10n.of(context).sending,
-                                        FileSendingStatus.generatingThumbnail =>
-                                          L10n.of(context).generatingThumbnail,
-                                        FileSendingStatus.encrypting => L10n.of(
-                                          context,
-                                        ).encrypting,
-                                        FileSendingStatus.uploading => L10n.of(
-                                          context,
-                                        ).uploading,
-                                      },
-                                      style: TextStyle(
-                                        color: eventStateTextColor,
-                                        fontSize: 11,
-                                        shadows: wallpaperTextShadow,
-                                      ),
-                                    ),
-                                    Text(' ', style: TextStyle(fontSize: 11)),
-                                    SizedBox.square(
-                                      dimension: 11,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 1,
-                                      ),
-                                    ),
-                                  ],
+                                  ),
+                                  Text(' ', style: TextStyle(fontSize: 11)),
+                                  Icon(
+                                    Icons.error_outlined,
+                                    size: 14,
+                                    color: theme.colorScheme.error,
+                                    shadows: wallpaperTextShadow,
+                                  ),
                                 ],
-                              ),
+                                if (event.status == EventStatus.sending) ...[
+                                  Text(
+                                    switch (event.fileSendingStatus) {
+                                      null => L10n.of(context).sending,
+                                      FileSendingStatus.generatingThumbnail =>
+                                        L10n.of(context).generatingThumbnail,
+                                      FileSendingStatus.encrypting => L10n.of(
+                                        context,
+                                      ).encrypting,
+                                      FileSendingStatus.uploading => L10n.of(
+                                        context,
+                                      ).uploading,
+                                    },
+                                    style: TextStyle(
+                                      color: eventStateTextColor,
+                                      fontSize: 11,
+                                      shadows: wallpaperTextShadow,
+                                    ),
+                                  ),
+                                  Text(' ', style: TextStyle(fontSize: 11)),
+                                  SizedBox.square(
+                                    dimension: 11,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 1,
+                                    ),
+                                  ),
+                                ],
+                              ],
                             ),
                             Align(
                               alignment: ownMessage
