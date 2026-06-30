@@ -2894,5 +2894,22 @@
     "edited": "(已编辑)",
     "couldNotBeSent": "无法发送",
     "yesterday": "昨天",
-    "resetRecoveryKey": "重置恢复密钥"
+    "resetRecoveryKey": "重置恢复密钥",
+    "pleaseEnter6Digits": "请输入 6 位数字来启用应用锁。",
+    "disableAppLock": "禁用应用锁",
+    "disableAppLockAreYouSure": "确定要禁用应用锁吗？",
+    "enableBiometrics": "启用生物识别身份认证",
+    "disableBiometrics": "禁用生物识别身份认证",
+    "biometricsDescription": "借助生物识别身份认证，你可以用脸或指纹解锁应用。该功能是否可用取决于你的设备。",
+    "useAppLock": "使用应用锁",
+    "unlockWithBiometrics": "用生物识别身份认证解锁",
+    "resetPin": "重置 pin 码",
+    "forwardCountMessages": "转发 {count, plural, =1{条消息} other{{count} 条消息}}？",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    }
 }
