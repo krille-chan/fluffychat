@@ -52,7 +52,7 @@ dependencies:
   image_picker: ^1.2.3
   intl: any
   just_audio: ^0.10.6
-  latlong2: ^0.9.1
+  latlong2: ^0.10.1
   local_auth: ^3.0.1
   matrix: #^7.4.0
     git:
