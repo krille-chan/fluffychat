@@ -1481,7 +1481,7 @@
             }
         }
     },
-    "sentCallInformations": "{senderName} saatis teavet kõne kohta",
+    "sentCallInformations": "{senderName} edastas teavet kõne kohta",
     "@sentCallInformations": {
         "type": "String",
         "placeholders": {
@@ -1549,7 +1549,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "startedACall": "{senderName} alustas kõnet",
+    "startedACall": "{senderName} helistas",
     "@startedACall": {
         "type": "String",
         "placeholders": {
@@ -1573,12 +1573,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "synchronizingPleaseWait": "Sünkroniseerin andmeid… Palun oota.",
+    "synchronizingPleaseWait": "Sünkroonin andmeid… Palun oota.",
     "@synchronizingPleaseWait": {
         "type": "String",
         "placeholders": {}
     },
-    "systemTheme": "Süsteem",
+    "systemTheme": "Süsteemi kujundus",
     "@systemTheme": {
         "type": "String",
         "placeholders": {}
@@ -1609,7 +1609,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "unavailable": "Eemal",
+    "unavailable": "Pole saadaval",
     "@unavailable": {
         "type": "String",
         "placeholders": {}
@@ -1707,7 +1707,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "userSentUnknownEvent": "{username} saatis {type} sündmuse",
+    "userSentUnknownEvent": "{username} saatis „{type}“ tüüpi sündmuse",
     "@userSentUnknownEvent": {
         "type": "String",
         "placeholders": {
@@ -1887,7 +1887,7 @@
     "markAsRead": "Märgi loetuks",
     "reportUser": "Teata kasutajast",
     "dismiss": "Loobu",
-    "reactedWith": "{sender} reageeris nii {reaction}",
+    "reactedWith": "{sender} reageeris sedaviisi: {reaction}",
     "@reactedWith": {
         "type": "String",
         "placeholders": {
@@ -1899,7 +1899,7 @@
             }
         }
     },
-    "emojis": "Emotikonid",
+    "emojis": "Emojid",
     "placeCall": "Helista",
     "unsupportedAndroidVersion": "See Androidi versioon ei ole toetatud",
     "voiceCall": "Häälkõne",
@@ -2460,7 +2460,7 @@
         }
     },
     "waitingForServer": "Ootame serveri vastust...",
-    "synchronizingPleaseWaitCounter": " Sünkroniseerime… ({percentage}%)",
+    "synchronizingPleaseWaitCounter": " Sünkroonin… ({percentage}%)",
     "@synchronizingPleaseWaitCounter": {
         "type": "String",
         "placeholders": {
@@ -2894,5 +2894,22 @@
     "edited": "(muudetud)",
     "couldNotBeSent": "Saatmine ei õnnestunud",
     "yesterday": "Eile",
-    "resetRecoveryKey": "Lähtesta taastevõti"
+    "resetRecoveryKey": "Lähtesta taastevõti",
+    "pleaseEnter6Digits": "Rakenduse luku sisselülitamiseks sisesta palun 6 numbrit.",
+    "disableAppLock": "Lülita rakenduse lukk välja",
+    "disableAppLockAreYouSure": "Kas oled kindel, et soovid selle rakenduse luku lülitada välja?",
+    "enableBiometrics": "Kasuta biomeetrilist autentimist",
+    "disableBiometrics": "Lülita biomeetriline autentimine välja",
+    "useAppLock": "Kasuta rakenduse lukustust",
+    "unlockWithBiometrics": "Ava lukustus biomeetrilise autentimisega",
+    "resetPin": "Lähtesta PIN-kood",
+    "forwardCountMessages": "Kas edastad {count, plural, =1{ühe sõnumi} other{{count} sõnumit}}?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "biometricsDescription": "Biomeetrilise autentimise puhul saad rakenduse lukust avada oma näo või sõrmejäljega. Konkreetsed võimalused sõltuvad sinu seadmest."
 }

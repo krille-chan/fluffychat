@@ -2894,5 +2894,22 @@
     "edited": "(editada)",
     "couldNotBeSent": "Non se puido enviar",
     "yesterday": "Onte",
-    "resetRecoveryKey": "Restablecer clave de recuperación"
+    "resetRecoveryKey": "Restablecer clave de recuperación",
+    "pleaseEnter6Digits": "Escribe os 6 díxitos para activar o bloqueo da app.",
+    "disableAppLock": "Desactivar bloqueo da app",
+    "disableAppLockAreYouSure": "Tes certeza de querer desactivar o bloqueo da app?",
+    "enableBiometrics": "Activar a autenticación biométrica",
+    "disableBiometrics": "Desactivar autenticación biométrica",
+    "biometricsDescription": "Coa autenticación biométrica podes desbloquear a app coa face ou a impresión dactilar. As opcións dependen do teu dispositivo.",
+    "useAppLock": "Usar bloqueo da app",
+    "unlockWithBiometrics": "Desbloquear con autenticación biométrica",
+    "resetPin": "Restablecer PIN",
+    "forwardCountMessages": "Reenviar {count, plural, =1{unha mensaxe} other{{count} mensaxes}}?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    }
 }

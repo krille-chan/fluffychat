@@ -2741,5 +2741,19 @@
                 "type": "int"
             }
         }
+    },
+    "encryptedMessage": "Mensaje encriptado",
+    "unencryptedMessage": "Mensaje des-encriptado",
+    "allow": "Permitir",
+    "messageCanOnlyBeReadByUser": "Tu mensaje esta encriptado punto a punto y solo puede ser leído por este usuario:",
+    "messageCanOnlyBeReadByUsers": "Tu mensaje esta encriptado punto a punto y solo puede ser leído por estos usuarios:",
+    "publicKey": "Llave Pública: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
     }
 }
