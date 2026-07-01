@@ -11,7 +11,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "acceptedTheInvitation": "👍 {username} zaakceptował/-a zaproszenie",
+    "acceptedTheInvitation": "👍 {username} zaakceptował(a) zaproszenie",
     "@acceptedTheInvitation": {
         "type": "String",
         "placeholders": {
@@ -25,7 +25,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "activatedEndToEndEncryption": "🔐 {username} aktywował/-a szyfrowanie od końca do końca",
+    "activatedEndToEndEncryption": "🔐 {username} aktywował(a) szyfrowanie od końca do końca",
     "@activatedEndToEndEncryption": {
         "type": "String",
         "placeholders": {
@@ -160,7 +160,7 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} zmienił/-a opis czatu na '{description}'",
+    "changedTheChatDescriptionTo": "{username} zmienił(a) opis czatu na '{description}'",
     "@changedTheChatDescriptionTo": {
         "type": "String",
         "placeholders": {
@@ -172,7 +172,7 @@
             }
         }
     },
-    "changedTheChatNameTo": "{username} zmienił/-a nazwę czatu na '{chatname}'",
+    "changedTheChatNameTo": "{username} zmienił(a) nazwę czatu na '{chatname}'",
     "@changedTheChatNameTo": {
         "type": "String",
         "placeholders": {
@@ -184,7 +184,7 @@
             }
         }
     },
-    "changedTheChatPermissions": "{username} zmienił/-a uprawnienia w czacie",
+    "changedTheChatPermissions": "{username} zmienił(a) uprawnienia w czacie",
     "@changedTheChatPermissions": {
         "type": "String",
         "placeholders": {
@@ -193,7 +193,7 @@
             }
         }
     },
-    "changedTheDisplaynameTo": "{username} zmienił/-a swoją nazwę wyświetlaną na '{displayname}'",
+    "changedTheDisplaynameTo": "{username} zmienił(a) swoją nazwę wyświetlaną na '{displayname}'",
     "@changedTheDisplaynameTo": {
         "type": "String",
         "placeholders": {
@@ -205,7 +205,7 @@
             }
         }
     },
-    "changedTheGuestAccessRules": "{username} zmienił/-a zasady dostępu dla gości",
+    "changedTheGuestAccessRules": "{username} zmienił(a) zasady dostępu dla gości",
     "@changedTheGuestAccessRules": {
         "type": "String",
         "placeholders": {
@@ -214,7 +214,7 @@
             }
         }
     },
-    "changedTheGuestAccessRulesTo": "{username} zmienił/-a zasady dostępu dla gości na {rules}",
+    "changedTheGuestAccessRulesTo": "{username} zmienił(a) zasady dostępu dla gości na {rules}",
     "@changedTheGuestAccessRulesTo": {
         "type": "String",
         "placeholders": {
@@ -226,7 +226,7 @@
             }
         }
     },
-    "changedTheHistoryVisibility": "{username} zmienił/-a widoczność historii",
+    "changedTheHistoryVisibility": "{username} zmienił(a) widoczność historii",
     "@changedTheHistoryVisibility": {
         "type": "String",
         "placeholders": {
@@ -235,7 +235,7 @@
             }
         }
     },
-    "changedTheHistoryVisibilityTo": "{username} zmienił/-a widoczność historii na {rules}",
+    "changedTheHistoryVisibilityTo": "{username} zmienił(a) widoczność historii na {rules}",
     "@changedTheHistoryVisibilityTo": {
         "type": "String",
         "placeholders": {
@@ -247,7 +247,7 @@
             }
         }
     },
-    "changedTheJoinRules": "{username} zmienił/-a zasady wejścia",
+    "changedTheJoinRules": "{username} zmienił(a) zasady wejścia",
     "@changedTheJoinRules": {
         "type": "String",
         "placeholders": {
@@ -256,7 +256,7 @@
             }
         }
     },
-    "changedTheJoinRulesTo": "{username} zmienił/-a zasady wejścia na {joinRules}",
+    "changedTheJoinRulesTo": "{username} zmienił(a) zasady wejścia na {joinRules}",
     "@changedTheJoinRulesTo": {
         "type": "String",
         "placeholders": {
@@ -268,7 +268,7 @@
             }
         }
     },
-    "changedTheProfileAvatar": "{username} zmienił/-a zdjęcie profilowe",
+    "changedTheProfileAvatar": "{username} zmienił(a) zdjęcie profilowe",
     "@changedTheProfileAvatar": {
         "type": "String",
         "placeholders": {
@@ -277,7 +277,7 @@
             }
         }
     },
-    "changedTheRoomAliases": "{username} zmienił/-a alias pokoju",
+    "changedTheRoomAliases": "{username} zmienił(a) alias pokoju",
     "@changedTheRoomAliases": {
         "type": "String",
         "placeholders": {
@@ -286,7 +286,7 @@
             }
         }
     },
-    "changedTheRoomInvitationLink": "{username} zmienił/-a link z zaproszeniem do pokoju",
+    "changedTheRoomInvitationLink": "{username} zmienił(a) link z zaproszeniem do pokoju",
     "@changedTheRoomInvitationLink": {
         "type": "String",
         "placeholders": {
@@ -2899,5 +2899,17 @@
     "disableAppLock": "Wyłącz blokadę aplikacji",
     "disableAppLockAreYouSure": "Czy na pewno chcesz wyłączyć blokadę aplikacji?",
     "enableBiometrics": "Włącz uwierzytelnianie biometryczne",
-    "disableBiometrics": "Wyłącz uwierzytelnianie biometryczne"
+    "disableBiometrics": "Wyłącz uwierzytelnianie biometryczne",
+    "resetPin": "Resetuj pin",
+    "forwardCountMessages": "Przekazać {count, plural, =1{jedną wiadomość} other {{count} wiadomości}}?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "unlockWithBiometrics": "Odblokuj za pomocą uwierzytelniania biometrycznego",
+    "useAppLock": "Użyj blokady aplikacji",
+    "biometricsDescription": "Za pomocą biometrycznego uwierzytelniania możesz odblokować aplikację za pomocą swojej twarzy lub odsisku palca. Możliwości zależą od twojego urządzenia."
 }
