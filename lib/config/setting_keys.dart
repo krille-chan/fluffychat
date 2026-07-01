@@ -68,9 +68,9 @@ enum AppSettings<T> {
   ),
   privacyPolicy<String>(
     'chat.fluffy.privacy_policy_url',
-    'https://fluffychat.im/en/privacy',
+    'https://fluffychat.im/privacy',
   ),
-  tos<String>('chat.fluffy.tos_url', 'https://fluffychat.im/en/tos'),
+  tos<String>('chat.fluffy.tos_url', 'https://fluffychat.im/tos'),
   sendTimelineEventTimeout<int>('chat.fluffy.send_timeline_event_timeout', 15),
   webNotificationSound<bool>('chat.fluffy.web_notification_sound', true),
   chatFilter<String>('chat.fluffy.chat_filter', 'allChats'),
