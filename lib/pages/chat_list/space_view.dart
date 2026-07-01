@@ -13,6 +13,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/unread_bubble.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/room_push_rule_state_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -241,20 +242,20 @@ class _SpaceViewState extends State<SpaceView> {
       items: [
         if (room != null && room.membership == Membership.join) ...[
           PopupMenuItem(
-            value: room.pushRuleState == PushRuleState.notify
+            value: room.effectivePushRuleState == PushRuleState.notify
                 ? SpaceChildAction.mute
                 : SpaceChildAction.unmute,
             child: Row(
               mainAxisSize: .min,
               children: [
                 Icon(
-                  room.pushRuleState == PushRuleState.notify
+                  room.effectivePushRuleState == PushRuleState.notify
                       ? Icons.notifications_off_outlined
                       : Icons.notifications_on_outlined,
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  room.pushRuleState == PushRuleState.notify
+                  room.effectivePushRuleState == PushRuleState.notify
                       ? L10n.of(context).muteChat
                       : L10n.of(context).unmuteChat,
                 ),
@@ -346,12 +347,13 @@ class _SpaceViewState extends State<SpaceView> {
       case SpaceChildAction.mute:
         await showFutureLoadingDialog(
           context: context,
-          future: () => room!.setPushRuleState(PushRuleState.mentionsOnly),
+          future: () =>
+              room!.setEffectivePushRuleState(PushRuleState.mentionsOnly),
         );
       case SpaceChildAction.unmute:
         await showFutureLoadingDialog(
           context: context,
-          future: () => room!.setPushRuleState(PushRuleState.notify),
+          future: () => room!.setEffectivePushRuleState(PushRuleState.notify),
         );
       case SpaceChildAction.markAsUnread:
         await showFutureLoadingDialog(
@@ -479,7 +481,7 @@ class _SpaceViewState extends State<SpaceView> {
           ? const Center(child: Icon(Icons.search_outlined, size: 80))
           : StreamBuilder(
               stream: room.client.onSync.stream
-                  .where((s) => s.hasRoomUpdate)
+                  .where((s) => s.hasRoomUpdate || s.hasPushRuleStateUpdate)
                   .rateLimit(const Duration(seconds: 1)),
               builder: (context, snapshot) {
                 final filter = _filterController.text.trim().toLowerCase();
@@ -652,7 +654,7 @@ class _SpaceViewState extends State<SpaceView> {
                                       ),
                                     ),
                                     if (joinedRoom != null &&
-                                        joinedRoom.pushRuleState !=
+                                        joinedRoom.effectivePushRuleState !=
                                             PushRuleState.notify)
                                       const Padding(
                                         padding: EdgeInsets.only(left: 4.0),

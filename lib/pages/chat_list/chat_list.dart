@@ -14,6 +14,7 @@ import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/room_push_rule_state_extension.dart';
 import 'package:fluffychat/utils/show_scaffold_dialog.dart';
 import 'package:fluffychat/utils/show_update_snackbar.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
@@ -506,13 +507,13 @@ class ChatListController extends State<ChatList>
               mainAxisSize: .min,
               children: [
                 Icon(
-                  room.pushRuleState == PushRuleState.notify
+                  room.effectivePushRuleState == PushRuleState.notify
                       ? Icons.notifications_off_outlined
                       : Icons.notifications_off,
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  room.pushRuleState == PushRuleState.notify
+                  room.effectivePushRuleState == PushRuleState.notify
                       ? L10n.of(context).muteChat
                       : L10n.of(context).unmuteChat,
                 ),
@@ -700,8 +701,8 @@ class ChatListController extends State<ChatList>
       case ChatContextAction.mute:
         await showFutureLoadingDialog(
           context: context,
-          future: () => room.setPushRuleState(
-            room.pushRuleState == PushRuleState.notify
+          future: () => room.setEffectivePushRuleState(
+            room.effectivePushRuleState == PushRuleState.notify
                 ? PushRuleState.mentionsOnly
                 : PushRuleState.notify,
           ),
