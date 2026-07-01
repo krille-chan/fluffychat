@@ -30,13 +30,13 @@ Future<String?> showTextInputDialog({
   TextInputType? keyboardType,
   int? maxLength,
   bool autocorrect = true,
-}) {
+}) async {
   final controller = TextEditingController(text: initialText);
-  return showAdaptiveDialog<String>(
+  final error = ValueNotifier<String?>(null);
+  return await showAdaptiveDialog<String>(
     context: context,
     useRootNavigator: useRootNavigator,
     builder: (context) {
-      final error = ValueNotifier<String?>(null);
       return AlertDialog.adaptive(
         title: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 256),
@@ -61,10 +61,10 @@ Future<String?> showTextInputDialog({
               const SizedBox(height: 16),
               ValueListenableBuilder<String?>(
                 valueListenable: error,
-                builder: (context, error, _) {
+                builder: (context, errorText, _) {
                   return DialogTextField(
                     hintText: hintText,
-                    errorText: error,
+                    errorText: errorText,
                     labelText: labelText,
                     controller: controller,
                     initialText: initialText,
@@ -75,6 +75,10 @@ Future<String?> showTextInputDialog({
                     maxLength: maxLength,
                     keyboardType: keyboardType,
                     obscureText: obscureText,
+                    onDispose: () {
+                      error.dispose();
+                      controller.dispose();
+                    },
                   );
                 },
               ),
@@ -83,7 +87,10 @@ Future<String?> showTextInputDialog({
         ),
         actions: [
           AdaptiveDialogAction(
-            onPressed: () => Navigator.of(context).pop(null),
+            onPressed: () {
+              Navigator.of(context).pop(null);
+              controller.dispose();
+            },
             child: Text(cancelLabel ?? L10n.of(context).cancel),
           ),
           AdaptiveDialogAction(
@@ -95,6 +102,7 @@ Future<String?> showTextInputDialog({
                 return;
               }
               Navigator.of(context).pop<String>(input);
+              controller.dispose();
             },
             autofocus: true,
             child: Text(

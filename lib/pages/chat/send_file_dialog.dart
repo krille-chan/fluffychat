@@ -161,6 +161,12 @@ class SendFileDialogState extends State<SendFileDialog> {
   }
 
   @override
+  void dispose() {
+    _labelTextController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 

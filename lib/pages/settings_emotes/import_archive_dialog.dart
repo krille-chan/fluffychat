@@ -221,14 +221,26 @@ class _EmojiImportPreview extends StatefulWidget {
 
 class _EmojiImportPreviewState extends State<_EmojiImportPreview> {
   final hasErrorNotifier = ValueNotifier(false);
+  final controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.text = widget.entry.value;
+  }
+
+  @override
+  void dispose() {
+    hasErrorNotifier.dispose();
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     // TODO: support Lottie here as well ...
-    final controller = TextEditingController(text: widget.entry.value);
-
     return Stack(
       alignment: Alignment.topRight,
       children: [

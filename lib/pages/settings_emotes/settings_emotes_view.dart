@@ -236,6 +236,7 @@ class EmotesSettingsView extends StatelessWidget {
                     itemBuilder: (BuildContext context, int i) {
                       final imageCode = imageKeys[i];
                       final image = controller.pack!.images[imageCode]!;
+                      // TODO: Dispose this
                       final textEditingController = TextEditingController();
                       textEditingController.text = imageCode;
                       final useShortCuts =

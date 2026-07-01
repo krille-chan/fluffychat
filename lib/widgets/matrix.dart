@@ -402,6 +402,8 @@ class MatrixState extends State<Matrix> {
     onNotification.clear();
     onUiaRequest.clear();
 
+    voiceMessageEventId.dispose();
+
     super.dispose();
   }
 

@@ -74,6 +74,12 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
   }
 
   @override
+  void dispose() {
+    _filterController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final rooms = Matrix.of(context).client.rooms
