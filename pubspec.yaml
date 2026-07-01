@@ -51,7 +51,7 @@ dependencies:
   image: ^4.7.2
   image_picker: ^1.2.2
   intl: any
-  just_audio: ^0.10.5
+  just_audio: ^0.10.6
   latlong2: ^0.9.1
   local_auth: ^3.0.1
   matrix: #^7.4.0
