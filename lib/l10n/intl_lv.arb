@@ -2782,5 +2782,39 @@
     "edited": "(labots)",
     "couldNotBeSent": "Nevarēja nosūtīt",
     "yesterday": "Vakar",
-    "resetRecoveryKey": "Atiestatīt atkopes atslēgu"
+    "resetRecoveryKey": "Atiestatīt atkopes atslēgu",
+    "resetAccount": "Atiestatīt kontu",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Saglabāt kā datni",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unsignedDevice": "Neapstiprināta ierīce",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Apstiprināta ierīce",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Curve25519 atslēga nav atrasta",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseEnter6Digits": "Lūdzu, ievadiet 6 ciparus, lai iespējotu lietotnes aizslēgšanu.",
+    "disableAppLock": "Atspējot lietotnes aizslēgšanu",
+    "disableAppLockAreYouSure": "Vai tiešām vēlaties atspējot lietotnes aizslēgšanu?",
+    "enableBiometrics": "Iespējot biometrisko autentifikāciju",
+    "disableBiometrics": "Atspējot biometrisko autentifikāciju",
+    "biometricsDescription": "Ar biometrisko autentifikāciju jūs variet atslēgt lietotni ar savu seju vai pirksta nospiedumu. Iespējas ir atkarīgas no jūsu konkrētās ierīces.",
+    "useAppLock": "Izmantot lietotnes aizslēgšanu",
+    "unlockWithBiometrics": "Atslēgt ar biometrisko autentifikāciju",
+    "resetPin": "Atiestatīt PIN kodu"
 }
