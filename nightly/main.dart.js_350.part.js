@@ -711,10 +711,10 @@ gpy(){return"Kan niet worden gestuurd"},
 gqt(){return"Gisteren"},
 gqh(){return"Herstelsleutel resetten"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return A.aL(d,y,this.a,y,"Een bericht",""+d+" berichten",y,y)+" doorsturen?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GQ,C.aE)})()
 A.dJ(b.typeUniverse,JSON.parse('{"GQ":{"aE":[]}}'))};
-(a=>{a["DhL8h1BJNIRk/bXd5mCn8r8Lg64="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["L4XZGN+JaTVSXdRHEQEWiRCZdzA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_350.part.js.map
