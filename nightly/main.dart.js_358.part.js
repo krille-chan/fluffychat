@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOL(){return new B.GW(A.dg("sl"))},
-GW:function GW(d){this.a=d}}
+cOO(){return new B.GX(A.dg("sl"))},
+GX:function GX(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[46],B)
-B.GW.prototype={
+B.GX.prototype={
 gkq(){return"Ponovite geslo"},
 gjW(){return"Not an image file."},
 gb8(d){return"Remove"},
@@ -55,7 +55,7 @@ gf8(){return"Prepoved klepeta"},
 gf9(){return"Prepovedano"},
 hO(d,e){return d+" je prepovedan v "+e},
 gfb(){return"Blokirana naprava"},
-gcj(){return"Blokirano"},
+gck(){return"Blokirano"},
 gbx(d){return"Prekli\u010di"},
 fd(d){return"URI-ja "+d+" ni mogo\u010de odpreti"},
 gfe(){return"Spremenite ime naprave"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GW,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GW":{"aE":[]}}'))};
-(a=>{a["j4rJviVC/DkG1YkEsCWcTrbNVyE="]=a.current})($__dart_deferred_initializers__);
+y(B.GX,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GX":{"aE":[]}}'))};
+(a=>{a["MMzczZAg61hoGrH0agGLH6N4vVg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_358.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOU(){return new B.H4(A.dg("uz"))},
-H4:function H4(d){this.a=d}}
+cOX(){return new B.H5(A.dg("uz"))},
+H5:function H5(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[55],B)
-B.H4.prototype={
+B.H5.prototype={
 gkq(){return"Parolni takrorlang"},
 gjW(){return"Rasm fayli emas."},
 gb8(d){return"O\u2018chirish"},
@@ -55,7 +55,7 @@ gf8(){return"Suhbatdan taqiqlash"},
 gf9(){return"Taqiqlangan"},
 hO(d,e){return d+" taqiqladi "+e+"(ni)"},
 gfb(){return"Qurilmani bloklash"},
-gcj(){return"Bloklandi"},
+gck(){return"Bloklandi"},
 gbx(d){return"Bekor qilish"},
 fd(d){return d+" URIni ochib bo\u02bblmadi"},
 gfe(){return"Qurilma nomini o\u02bbzgartirish"},
@@ -714,8 +714,8 @@ pH(d){var x=null
 return"Forward "+A.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.H4,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"H4":{"aE":[]}}'))
+x(B.H5,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"H5":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["t+YxbpWEK1fvktx0aoDwnoBRpug="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["aTSs9ac1haeueVOE6cuF6XiRmVc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_369.part.js.map

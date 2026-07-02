@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOa(){return new B.Gm(A.dg("da"))},
-Gm:function Gm(d){this.a=d}}
+cOd(){return new B.Gn(A.dg("da"))},
+Gn:function Gn(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[12],B)
-B.Gm.prototype={
+B.Gn.prototype={
 gkq(){return"Gentag password"},
 gjW(){return"Ikke en billedfil."},
 gb8(d){return"Fjern"},
@@ -55,7 +55,7 @@ gf8(){return"Ban from chat"},
 gf9(){return"Banned"},
 hO(d,e){return d+" banned "+e},
 gfb(){return"Block Device"},
-gcj(){return"Blocked"},
+gck(){return"Blocked"},
 gbx(d){return"Cancel"},
 fd(d){return"Can't open the URI "+d},
 gfe(){return"Change device name"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gm,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gm":{"aE":[]}}'))};
-(a=>{a["lNdpCGiHDc/4XvjuEXqU651CLsQ="]=a.current})($__dart_deferred_initializers__);
+y(B.Gn,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"Gn":{"aE":[]}}'))};
+(a=>{a["ogg0e1Tik/cNxI35ihtTqaogApo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_284.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOh(){return new B.Gt(A.dg("eu"))},
-Gt:function Gt(d){this.a=d}}
+cOk(){return new B.Gu(A.dg("eu"))},
+Gu:function Gu(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[19],B)
-B.Gt.prototype={
+B.Gu.prototype={
 gkq(){return"Idatzi berriro pasahitza"},
 gjW(){return"Ez da irudi-fitxategia."},
 gb8(d){return"Kendu"},
@@ -55,7 +55,7 @@ gf8(){return"Txatera batzeko debekua ezarri"},
 gf9(){return"Kanporatuta"},
 hO(d,e){return d+"(e)k "+e+"(r)i debekua ezarri dio"},
 gfb(){return"Blokeatu gailua"},
-gcj(){return"Blokeatuta"},
+gck(){return"Blokeatuta"},
 gbx(d){return"Utzi"},
 fd(d){return"Ezin da "+d+" URIa ireki"},
 gfe(){return"Aldatu gailuaren izena"},
@@ -714,8 +714,8 @@ pH(d){var x=null
 return"Forward "+A.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Gt,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gt":{"aE":[]}}'))
+x(B.Gu,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"Gu":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["UgdwQ7EtzAteWl/ECUmwG7EsAmY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["XXkbuZuXVWHgnm0vYbPulO/QGyk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map

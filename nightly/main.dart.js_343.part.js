@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOy(){return new B.GK(A.dg("kab"))},
-GK:function GK(d){this.a=d}}
+cOB(){return new B.GL(A.dg("kab"))},
+GL:function GL(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[36],B)
-B.GK.prototype={
+B.GL.prototype={
 gkq(){return"Ales awal n u\u025beddi"},
 gjW(){return"Ma\u010d\u010di d afaylu n tugna."},
 gb8(d){return"Kkes"},
@@ -55,7 +55,7 @@ gf8(){return"Gdel seg adiwenni"},
 gf9(){return"Yettwagdel"},
 hO(d,e){return d+" yegdel "+e},
 gfb(){return"Sew\u1e25el ibenk"},
-gcj(){return"Yettusew\u1e25el"},
+gck(){return"Yettusew\u1e25el"},
 gbx(d){return"Sefsex"},
 fd(d){return"Ur yezmir ara ad yeldi URl "+d},
 gfe(){return"Snifel isem n yibenk"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GK,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GK":{"aE":[]}}'))};
-(a=>{a["i6xwEbRUmm0j8Cl4nZypcXpluHI="]=a.current})($__dart_deferred_initializers__);
+y(B.GL,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GL":{"aE":[]}}'))};
+(a=>{a["D8hw18s5cSvZ6D8sAzo4LCe5RGo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_343.part.js.map

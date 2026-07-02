@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOv(){return new B.GH(A.dg("it"))},
-GH:function GH(d){this.a=d}}
+cOy(){return new B.GI(A.dg("it"))},
+GI:function GI(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[33],B)
-B.GH.prototype={
+B.GI.prototype={
 gkq(){return"Ripeti password"},
 gjW(){return"Non \xe8 un file immagine."},
 gb8(d){return"Rimuovi"},
@@ -55,7 +55,7 @@ gf8(){return"Bandisci dalla chat"},
 gf9(){return"Bandito"},
 hO(d,e){return d+" ha bandito "+e},
 gfb(){return"Blocca dispositivo"},
-gcj(){return"Bloccato"},
+gck(){return"Bloccato"},
 gbx(d){return"Annulla"},
 fd(d){return"Impossibile aprire l'URI "+d},
 gfe(){return"Cambia nome dispositivo"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GH,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GH":{"aE":[]}}'))};
-(a=>{a["gBQNQAoJH3ARCZ9CdWje+kCiUx0="]=a.current})($__dart_deferred_initializers__);
+y(B.GI,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GI":{"aE":[]}}'))};
+(a=>{a["LYKrD7Tx8vktmObPwhYKIT2e7og="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_338.part.js.map

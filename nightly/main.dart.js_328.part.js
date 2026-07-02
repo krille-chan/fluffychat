@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOr(){return new B.GD(A.dg("hu"))},
-GD:function GD(d){this.a=d}}
+cOu(){return new B.GE(A.dg("hu"))},
+GE:function GE(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[29],B)
-B.GD.prototype={
+B.GE.prototype={
 gkq(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gjW(){return"Nem k\xe9p f\xe1jl."},
 gb8(d){return"Elt\xe1vol\xedt\xe1s"},
@@ -55,7 +55,7 @@ gf8(){return"Kitilt\xe1s a cseveg\xe9sb\u0151l"},
 gf9(){return"Kitiltva"},
 hO(d,e){return d+" kitiltva "+e+" \xe1ltal"},
 gfb(){return"Eszk\xf6z blokkol\xe1sa"},
-gcj(){return"Blokkolva"},
+gck(){return"Blokkolva"},
 gbx(d){return"M\xe9gse"},
 fd(d){return"Nem siker\xfclt a k\xf6vetkez\u0151 URI megnyit\xe1sa: "+d},
 gfe(){return"Eszk\xf6zn\xe9v m\xf3dos\xedt\xe1sa"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GD,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GD":{"aE":[]}}'))};
-(a=>{a["RRWprG1QvNSgvqbToqx+pl87AsA="]=a.current})($__dart_deferred_initializers__);
+y(B.GE,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GE":{"aE":[]}}'))};
+(a=>{a["p8VA+Wi2NffOgwYJnjcKOEEZ0/0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_328.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOn(){return new B.Gz(A.dg("gl"))},
-Gz:function Gz(d){this.a=d}}
+cOq(){return new B.GA(A.dg("gl"))},
+GA:function GA(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[25],B)
-B.Gz.prototype={
+B.GA.prototype={
 gkq(){return"Repite o contrasinal"},
 gjW(){return"Non \xe9 un ficheiro de imaxe."},
 gb8(d){return"Quitar"},
@@ -55,7 +55,7 @@ gf8(){return"Vetar na conversa"},
 gf9(){return"Vetada"},
 hO(d,e){return d+" vetou a "+e},
 gfb(){return"Bloquear dispositivo"},
-gcj(){return"Bloqueado"},
+gck(){return"Bloqueado"},
 gbx(d){return"Cancelar"},
 fd(d){return"Non se pode abrir o URI "+d},
 gfe(){return"Cambiar nome do dispositivo"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Reenviar "+A.aL(d,y,this.a,y,"unha mensaxe",""+d+" mensaxes",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gz,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gz":{"aE":[]}}'))};
-(a=>{a["Gc58WHDf/y+1JyGNiOY/bXy/Q90="]=a.current})($__dart_deferred_initializers__);
+y(B.GA,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GA":{"aE":[]}}'))};
+(a=>{a["Jye2AdPtH4gs7pc4PkgoeykGVa0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

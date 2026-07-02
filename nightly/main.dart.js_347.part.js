@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOC(){return new B.GO(A.dg("nb"))},
-GO:function GO(d){this.a=d}}
+cOF(){return new B.GP(A.dg("nb"))},
+GP:function GP(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[40],B)
-B.GO.prototype={
+B.GP.prototype={
 gkq(){return"Gjenta passord"},
 gjW(){return"Ikke en bildefil."},
 gb8(d){return"Fjern"},
@@ -55,7 +55,7 @@ gf8(){return"Bannlys fra sludring"},
 gf9(){return"Bannlyst"},
 hO(d,e){return d+" bannlyste "+e},
 gfb(){return"Blokker enhet"},
-gcj(){return"Blokkert"},
+gck(){return"Blokkert"},
 gbx(d){return"Avbryt"},
 fd(d){return"Kan ikke \xe5pne URI "+d},
 gfe(){return"Endre enhetsnavn"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GO,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GO":{"aE":[]}}'))};
-(a=>{a["E2zwgq0OyWaqjf40NwesiWaxqb4="]=a.current})($__dart_deferred_initializers__);
+y(B.GP,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GP":{"aE":[]}}'))};
+(a=>{a["JP7q1tiuZyQ6JLYYAI+1CWl5ID8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_347.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOg(){return new B.Gs(A.dg("et"))},
-Gs:function Gs(d){this.a=d}}
+cOj(){return new B.Gt(A.dg("et"))},
+Gt:function Gt(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[18],B)
-B.Gs.prototype={
+B.Gt.prototype={
 gkq(){return"Korda salas\xf5na"},
 gjW(){return"See pole pildifail."},
 gb8(d){return"Eemalda"},
@@ -55,7 +55,7 @@ gf8(){return"Keela ligip\xe4\xe4s vestlusele"},
 gf9(){return"Ligip\xe4\xe4s vestlusele on keelatud"},
 hO(d,e){return d+" keelas ligip\xe4\xe4su kasutajale "+e},
 gfb(){return"Blokeeri seade"},
-gcj(){return"Blokeeritud"},
+gck(){return"Blokeeritud"},
 gbx(d){return"Katkesta"},
 fd(d){return d+" aadressi avamine ei \xf5nnestu"},
 gfe(){return"Muuda seadme nime"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Kas edastad "+A.aL(d,y,this.a,y,"\xfche s\xf5numi",""+d+" s\xf5numit",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gs,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gs":{"aE":[]}}'))};
-(a=>{a["t2gP1/ULErAJzNPFyQML7y33Es4="]=a.current})($__dart_deferred_initializers__);
+y(B.Gt,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"Gt":{"aE":[]}}'))};
+(a=>{a["EqBOQThE/UwyxCvsW7tg/qZ4I8A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_302.part.js.map

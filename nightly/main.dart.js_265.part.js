@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cO8(){return new B.Gk(A.dg("ca"))},
-Gk:function Gk(d){this.a=d}}
+cOb(){return new B.Gl(A.dg("ca"))},
+Gl:function Gl(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[10],B)
-B.Gk.prototype={
+B.Gl.prototype={
 gkq(){return"Repetiu la contrasenya"},
 gjW(){return"No \xe9s un arxiu d'image."},
 gb8(d){return"Elimina"},
@@ -55,7 +55,7 @@ gf8(){return"Veta del xat"},
 gf9(){return"Vetadi"},
 hO(d,e){return d+" ha vetat a "+e},
 gfb(){return"Bloca el dispositiu"},
-gcj(){return"Blocat"},
+gck(){return"Blocat"},
 gbx(d){return"Cancel\xb7la"},
 fd(d){return"No es pot obrir l\u2019URI "+d},
 gfe(){return"Canvia el nom del dispositiu"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gk,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gk":{"aE":[]}}'))};
-(a=>{a["qQJDTV5BOBq6cn8e8VtZPd4tx+g="]=a.current})($__dart_deferred_initializers__);
+y(B.Gl,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"Gl":{"aE":[]}}'))};
+(a=>{a["/v/4ShOS8C3m5JhyThktH4u3Oaw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_265.part.js.map

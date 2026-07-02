@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cO4(){return new B.Gg(A.dg("az"))},
-Gg:function Gg(d){this.a=d}}
+cO7(){return new B.Gh(A.dg("az"))},
+Gh:function Gh(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[6],B)
-B.Gg.prototype={
+B.Gh.prototype={
 gkq(){return"\u015eifr\u0259ni t\u0259krarlay\u0131n"},
 gjW(){return"\u015e\u0259kil fayl\u0131 deyil."},
 gb8(d){return"\xe7\u0131xar\u0131n"},
@@ -55,7 +55,7 @@ gf8(){return"Ban from chat"},
 gf9(){return"Banned"},
 hO(d,e){return d+" banned "+e},
 gfb(){return"Block Device"},
-gcj(){return"Blocked"},
+gck(){return"Blocked"},
 gbx(d){return"Cancel"},
 fd(d){return"Can't open the URI "+d},
 gfe(){return"Change device name"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gg,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gg":{"aE":[]}}'))};
-(a=>{a["9tkj/UQ4P8oOVSqgQ/jWy8plSvw="]=a.current})($__dart_deferred_initializers__);
+y(B.Gh,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"Gh":{"aE":[]}}'))};
+(a=>{a["C5aPK6bX8XfHnflcV+pMjEn1vQg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_244.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOk(){return new B.Gw(A.dg("fil"))},
-Gw:function Gw(d){this.a=d}}
+cOn(){return new B.Gx(A.dg("fil"))},
+Gx:function Gx(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[22],B)
-B.Gw.prototype={
+B.Gx.prototype={
 gkq(){return"Ulitin ang password"},
 gjW(){return"Hindi isang file na larawan."},
 gb8(d){return"Tanggalin"},
@@ -55,7 +55,7 @@ gf8(){return"Pagbawalan sa chat"},
 gf9(){return"Pinagbawalan"},
 hO(d,e){return"Pinagbawalan ni "+d+" si "+e},
 gfb(){return"I-block ang Device"},
-gcj(){return"Na-block"},
+gck(){return"Na-block"},
 gbx(d){return"Kanselahin"},
 fd(d){return"Hindi mabuksan ang URI na "+d},
 gfe(){return"Palitan ang pangalan ng device"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gw,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gw":{"aE":[]}}'))};
-(a=>{a["oifRBGag+leJhUOtTb8KUmzNTM8="]=a.current})($__dart_deferred_initializers__);
+y(B.Gx,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"Gx":{"aE":[]}}'))};
+(a=>{a["bFcwn7fVYGLZD/MLlTXKLdqM0Og="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_310.part.js.map

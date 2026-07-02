@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOF(d){return new A.BC(B.dg(d))},
-cOG(){return new A.GR(B.dg("pt_BR"))},
-cOH(){return new A.GS(B.dg("pt_PT"))},
+cOI(d){return new A.BC(B.dg(d))},
+cOJ(){return new A.GS(B.dg("pt_BR"))},
+cOK(){return new A.GT(B.dg("pt_PT"))},
 BC:function BC(d){this.a=d},
-GR:function GR(d){this.a=d},
-GS:function GS(d){this.a=d}},C
+GS:function GS(d){this.a=d},
+GT:function GT(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[58]
@@ -59,7 +59,7 @@ gf8(){return"Ban from chat"},
 gf9(){return"Banned"},
 hO(d,e){return d+" banned "+e},
 gfb(){return"Block Device"},
-gcj(){return"Blocked"},
+gck(){return"Blocked"},
 gbx(d){return"Cancelar"},
 fd(d){return"Can't open the URI "+d},
 gfe(){return"Change device name"},
@@ -717,7 +717,7 @@ gqh(){return"Reset recovery key"},
 pH(d){var x=null
 return"Forward "+B.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
-A.GR.prototype={
+A.GS.prototype={
 gkq(){return"Repita a senha"},
 gjW(){return"N\xe3o \xe9 um arquivo de imagem."},
 gb8(d){return"Remover"},
@@ -766,7 +766,7 @@ gf8(){return"Banir da conversa"},
 gf9(){return"Banidos"},
 hO(d,e){return d+" baniu "+e},
 gfb(){return"Bloquear dispositivo"},
-gcj(){return"Bloqueado"},
+gck(){return"Bloqueado"},
 gbx(d){return"Cancelar"},
 fd(d){return"N\xe3o foi poss\xedvel abrir a URI "+d},
 gfe(){return"Alterar o nome do dispositivo"},
@@ -1333,7 +1333,7 @@ goq(){return"Pular backup de conversas"},
 gor(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 p7(d){return"Vers\xe3o: "+d},
 C(d,e){return this.gb8(this).$1(e)}}
-A.GS.prototype={
+A.GT.prototype={
 gkq(){return"Repete a palavra-passe"},
 gjW(){return"N\xe3o \xe9 um ficheiro de imagem."},
 gb8(d){return"Remover"},
@@ -1383,7 +1383,7 @@ gf8(){return"Banir da conversa"},
 gf9(){return"Banido(a)"},
 hO(d,e){return d+" baniu "+e},
 gfb(){return"Bloquear dispositivo"},
-gcj(){return"Bloqueado"},
+gck(){return"Bloqueado"},
 gbx(d){return"Cancelar"},
 fd(d){return"N\xe3o \xe9 poss\xedvel abrir o URI "+d},
 gfe(){return"Alterar nome do dispositivo"},
@@ -1679,8 +1679,8 @@ gev(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.BC,C.aE)
-w(A.BC,[A.GR,A.GS])})()
-B.dJ(b.typeUniverse,JSON.parse('{"BC":{"aE":[]},"GR":{"aE":[]},"GS":{"aE":[]}}'))
+w(A.BC,[A.GS,A.GT])})()
+B.dJ(b.typeUniverse,JSON.parse('{"BC":{"aE":[]},"GS":{"aE":[]},"GT":{"aE":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["O2mE9/dcTqQXslq3ZY2myXKNAF0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["kz+YBaMx+u8X5bgDckm4E/7PQ/c="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

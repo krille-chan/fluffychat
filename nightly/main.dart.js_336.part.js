@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOu(){return new B.GG(A.dg("ie"))},
-GG:function GG(d){this.a=d}}
+cOx(){return new B.GH(A.dg("ie"))},
+GH:function GH(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[32],B)
-B.GG.prototype={
+B.GH.prototype={
 gkq(){return"Repetir li contrasigne"},
 gjW(){return"Not an image file."},
 gb8(d){return"Remover"},
@@ -55,7 +55,7 @@ gf8(){return"Bannir del conversation"},
 gf9(){return"Bannit"},
 hO(d,e){return d+" ha bannit "+e},
 gfb(){return"Blocar li aparate"},
-gcj(){return"Blocat"},
+gck(){return"Blocat"},
 gbx(d){return"Anullar"},
 fd(d){return"Ne successat aperter li adresse "+d},
 gfe(){return"Cambiar li n\xf3mine de aparate"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GG,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GG":{"aE":[]}}'))};
-(a=>{a["ohg/pDWVE1mTuAknf/n+wgydMfc="]=a.current})($__dart_deferred_initializers__);
+y(B.GH,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GH":{"aE":[]}}'))};
+(a=>{a["ZevUMc1kRaUH0ptd5NgSMCHA0gY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_336.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOE(){return new B.GQ(A.dg("pl"))},
-GQ:function GQ(d){this.a=d}}
+cOH(){return new B.GR(A.dg("pl"))},
+GR:function GR(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[42],B)
-B.GQ.prototype={
+B.GR.prototype={
 gkq(){return"Powt\xf3rz has\u0142o"},
 gjW(){return"To nie jest plik obrazu."},
 gb8(d){return"Usu\u0144"},
@@ -55,7 +55,7 @@ gf8(){return"Ban w czacie"},
 gf9(){return"Zbanowany/-a"},
 hO(d,e){return d+" zbanowa\u0142/-a "+e},
 gfb(){return"Zablokuj urz\u0105dzenie"},
-gcj(){return"Zablokowane"},
+gck(){return"Zablokowane"},
 gbx(d){return"Anuluj"},
 fd(d){return"Nie mo\u017cna otworzy\u0107 linku "+d},
 gfe(){return"Zmie\u0144 nazw\u0119 urz\u0105dzenia"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GQ,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GQ":{"aE":[]}}'))};
-(a=>{a["OCpJuFOwyl99sZcsynntJWveAeI="]=a.current})($__dart_deferred_initializers__);
+y(B.GR,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GR":{"aE":[]}}'))};
+(a=>{a["nxTe51TATRATeIjSri5t9KBOsI8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOK(){return new B.GV(A.dg("sk"))},
-GV:function GV(d){this.a=d}}
+cON(){return new B.GW(A.dg("sk"))},
+GW:function GW(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[45],B)
-B.GV.prototype={
+B.GW.prototype={
 gkq(){return"Zopakujte heslo"},
 gjW(){return"Not an image file."},
 gb8(d){return"Odstr\xe1ni\u0165"},
@@ -55,7 +55,7 @@ gf8(){return"Zabanova\u0165 z chatu"},
 gf9(){return"Zabanovan\xfd"},
 hO(d,e){return d+" zabanoval "+e},
 gfb(){return"Zak\xe1za\u0165 zariadenie"},
-gcj(){return"Blocked"},
+gck(){return"Blocked"},
 gbx(d){return"Zru\u0161i\u0165"},
 fd(d){return"Nemo\u017eno otvori\u0165 identifik\xe1tor prostriedku "+d},
 gfe(){return"Zmeni\u0165 n\xe1zov zariadenia"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GV,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GV":{"aE":[]}}'))};
-(a=>{a["+Gt3klmF4hMPozaOG4Az5gFzWRY="]=a.current})($__dart_deferred_initializers__);
+y(B.GW,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GW":{"aE":[]}}'))};
+(a=>{a["zmL6fozt9/YryRvSTT6d+qKQk0s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_357.part.js.map

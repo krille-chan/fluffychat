@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOj(){return new B.Gv(A.dg("fi"))},
-Gv:function Gv(d){this.a=d}}
+cOm(){return new B.Gw(A.dg("fi"))},
+Gw:function Gw(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[21],B)
-B.Gv.prototype={
+B.Gw.prototype={
 gkq(){return"Salasana uudelleen"},
 gjW(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
 gb8(d){return"Poista"},
@@ -55,7 +55,7 @@ gf8(){return"Anna porttikielto keskusteluun"},
 gf9(){return"Porttikiellossa"},
 hO(d,e){return d+" antoi porttikiellon k\xe4ytt\xe4j\xe4lle "+e},
 gfb(){return"Est\xe4 laite"},
-gcj(){return"Estetty"},
+gck(){return"Estetty"},
 gbx(d){return"Peruuta"},
 fd(d){return"URI-osoitetta "+d+" ei voida avata"},
 gfe(){return"Vaihda laitteen nime\xe4"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gv,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gv":{"aE":[]}}'))};
-(a=>{a["s4Z/Ateg9Ef4w9fSAfVLGhKRc3w="]=a.current})($__dart_deferred_initializers__);
+y(B.Gw,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"Gw":{"aE":[]}}'))};
+(a=>{a["UdR+fyTQPwiI9HcLi1cb9dc4CoM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map

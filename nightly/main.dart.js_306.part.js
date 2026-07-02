@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cOi(){return new A.Gu(B.dg("fa"))},
-Gu:function Gu(d){this.a=d}}
+cOl(){return new A.Gv(B.dg("fa"))},
+Gv:function Gv(d){this.a=d}}
 B=c[0]
 C=c[58]
 A=a.updateHolder(c[20],A)
-A.Gu.prototype={
+A.Gv.prototype={
 gkq(){return"\u062a\u06a9\u0631\u0627\u0631 \u06af\u0630\u0631\u0648\u0627\u0698\u0647"},
 gjW(){return"\u06cc\u06a9 \u0641\u0627\u06cc\u0644 \u062a\u0635\u0648\u06cc\u0631\u06cc \u0646\u06cc\u0633\u062a."},
 gb8(d){return"\u0628\u0631\u062f\u0627\u0634\u062a\u0646"},
@@ -55,7 +55,7 @@ gf8(){return"\u0628\u0646 \u06a9\u0631\u062f\u0646 \u0627\u0632 \u0686\u062a"},
 gf9(){return"\u0645\u062d\u0631\u0648\u0645\u200c\u0634\u062f\u0647"},
 hO(d,e){return d+" \u06a9\u0627\u0631\u0628\u0631 "+e+" \u0631\u0627 \u0645\u062d\u0631\u0648\u0645 \u06a9\u0631\u062f"},
 gfb(){return"\u0645\u0633\u062f\u0648\u062f \u06a9\u0631\u062f\u0646 \u062f\u0633\u062a\u06af\u0627\u0647"},
-gcj(){return"\u0645\u0633\u062f\u0648\u062f\u200c\u0634\u062f\u0647"},
+gck(){return"\u0645\u0633\u062f\u0648\u062f\u200c\u0634\u062f\u0647"},
 gbx(d){return"\u0631\u062f \u06a9\u0631\u062f\u0646"},
 fd(d){return"\u0646\u0645\u06cc\u200c\u062a\u0648\u0627\u0646 \u067e\u06cc\u0648\u0646\u062f "+d+" \u0631\u0627 \u0628\u0627\u0632 \u06a9\u0631\u062f"},
 gfe(){return"\u062a\u063a\u06cc\u06cc\u0631 \u0646\u0627\u0645 \u062f\u0633\u062a\u06af\u0627\u0647"},
@@ -712,7 +712,7 @@ pH(d){var y=null
 return"Forward "+B.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Gu,C.aE)})()
-B.dJ(b.typeUniverse,JSON.parse('{"Gu":{"aE":[]}}'))};
-(a=>{a["zk0muzALYD6aV9eKjdy+YLWiwiA="]=a.current})($__dart_deferred_initializers__);
+y(A.Gv,C.aE)})()
+B.dJ(b.typeUniverse,JSON.parse('{"Gv":{"aE":[]}}'))};
+(a=>{a["qunyzWpbkiYdqFcsxAoqhjFMiVw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

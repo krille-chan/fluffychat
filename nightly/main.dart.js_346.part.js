@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOB(){return new B.GN(A.dg("lv"))},
-GN:function GN(d){this.a=d}}
+cOE(){return new B.GO(A.dg("lv"))},
+GO:function GO(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[39],B)
-B.GN.prototype={
+B.GO.prototype={
 gkq(){return"Atk\u0101rtot paroli"},
 gjW(){return"Nav att\u0113la datne."},
 gb8(d){return"No\u0146emt"},
@@ -55,7 +55,7 @@ gf8(){return"Izsl\u0113gt no t\u0113rz\u0113\u0161anas"},
 gf9(){return"Izsl\u0113gts"},
 hO(d,e){return d+" izsl\u0113dza "+e},
 gfb(){return"Liegt ier\u012bci"},
-gcj(){return"Liegta"},
+gck(){return"Liegta"},
 gbx(d){return"Atcelt"},
 fd(d){return"Nevar atv\u0113rt adresi "+d},
 gfe(){return"Main\u012bt ier\u012bces nosaukumu"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GN,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GN":{"aE":[]}}'))};
-(a=>{a["nGTQpSY5fwv+V0fKAkI2HKUmju4="]=a.current})($__dart_deferred_initializers__);
+y(B.GO,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GO":{"aE":[]}}'))};
+(a=>{a["EAtchdQqtK57ZWz851/qYtl1c0c="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_346.part.js.map

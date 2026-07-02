@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOq(){return new B.GC(A.dg("hr"))},
-GC:function GC(d){this.a=d}}
+cOt(){return new B.GD(A.dg("hr"))},
+GD:function GD(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[28],B)
-B.GC.prototype={
+B.GD.prototype={
 gkq(){return"Ponovi lozinku"},
 gjW(){return"Nije slikovna datoteka."},
 gb8(d){return"Ukloni"},
@@ -55,7 +55,7 @@ gf8(){return"Isklju\u010di iz chata"},
 gf9(){return"Isklju\u010den"},
 hO(d,e){return d+" je isklju\u010dio/la "+e},
 gfb(){return"Blokiraj ure\u0111aj"},
-gcj(){return"Blokirano"},
+gck(){return"Blokirano"},
 gbx(d){return"Odustani"},
 fd(d){return"URI adresa "+d+" se ne mo\u017ee otvoriti"},
 gfe(){return"Promijeni ime ure\u0111aja"},
@@ -714,7 +714,7 @@ pH(d){var y=null
 return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GC,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GC":{"aE":[]}}'))};
-(a=>{a["6tj2Ffx6xUD2TUPk3Hr1lbKq6d8="]=a.current})($__dart_deferred_initializers__);
+y(B.GD,C.aE)})()
+A.dJ(b.typeUniverse,JSON.parse('{"GD":{"aE":[]}}'))};
+(a=>{a["LWo3d5dXLujPrHotCqLmWAs3TVM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map
