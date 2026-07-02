@@ -28,6 +28,7 @@ class SignInViewModel extends ValueNotifier<SignInState> {
   @override
   void dispose() {
     filterTextController.removeListener(_filterHomeservers);
+    filterTextController.dispose();
     super.dispose();
   }
 

@@ -85,21 +85,27 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
                       ),
                     ],
                   ),
-                  DialogTextField(
-                    controller: TextEditingController(
-                      text: l10n.publicKey(
-                        room
-                                .client
-                                .userDeviceKeys[user.id]
-                                ?.masterKey
-                                ?.publicKey
-                                ?.beautifiedOneLine ??
-                            '???',
-                      ),
-                    ),
-                    textStyle: theme.textTheme.labelSmall,
-                    readOnly: true,
-                    maxLines: 3,
+                  Builder(
+                    builder: (context) {
+                      final controller = TextEditingController(
+                        text: l10n.publicKey(
+                          room
+                                  .client
+                                  .userDeviceKeys[user.id]
+                                  ?.masterKey
+                                  ?.publicKey
+                                  ?.beautifiedOneLine ??
+                              '???',
+                        ),
+                      );
+                      return DialogTextField(
+                        controller: controller,
+                        textStyle: theme.textTheme.labelSmall,
+                        readOnly: true,
+                        maxLines: 3,
+                        onDispose: controller.dispose,
+                      );
+                    },
                   ),
                 ],
               ],

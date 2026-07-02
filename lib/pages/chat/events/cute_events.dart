@@ -171,6 +171,12 @@ class _CuteEventOverlayState extends State<CuteEventOverlay>
       widget.onAnimationEnd.call();
     }
   }
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
 }
 
 class _CuteOverlayContent extends StatelessWidget {

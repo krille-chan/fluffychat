@@ -7,7 +7,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class DialogTextField extends StatelessWidget {
+class DialogTextField extends StatefulWidget {
   final TextEditingController? controller;
   final String? hintText;
   final String? labelText;
@@ -17,14 +17,13 @@ class DialogTextField extends StatelessWidget {
   final String? suffixText;
   final String? errorText;
   final bool obscureText;
-  final bool isDestructive = false;
   final int? minLines;
   final int? maxLines;
   final TextInputType? keyboardType;
   final int? maxLength;
-  final bool autocorrect = true;
   final bool readOnly;
   final TextStyle? textStyle;
+  final VoidCallback? onDispose;
 
   const DialogTextField({
     super.key,
@@ -43,13 +42,31 @@ class DialogTextField extends StatelessWidget {
     this.obscureText = false,
     this.readOnly = false,
     this.textStyle,
+    this.onDispose,
   });
 
   @override
+  State<DialogTextField> createState() => _DialogTextFieldState();
+}
+
+class _DialogTextFieldState extends State<DialogTextField> {
+  final bool isDestructive = false;
+
+  final bool autocorrect = true;
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => widget.onDispose?.call(),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final prefixText = this.prefixText;
-    final suffixText = this.suffixText;
-    final errorText = this.errorText;
+    final prefixText = widget.prefixText;
+    final suffixText = widget.suffixText;
+    final errorText = widget.errorText;
     final theme = Theme.of(context);
     switch (theme.platform) {
       case TargetPlatform.android:
@@ -57,15 +74,15 @@ class DialogTextField extends StatelessWidget {
       case TargetPlatform.linux:
       case TargetPlatform.windows:
         return TextField(
-          readOnly: readOnly,
-          controller: controller,
-          obscureText: obscureText,
-          minLines: minLines,
-          maxLines: maxLines,
-          maxLength: maxLength,
-          keyboardType: keyboardType,
+          readOnly: widget.readOnly,
+          controller: widget.controller,
+          obscureText: widget.obscureText,
+          minLines: widget.minLines,
+          maxLines: widget.maxLines,
+          maxLength: widget.maxLength,
+          keyboardType: widget.keyboardType,
           autocorrect: autocorrect,
-          style: textStyle,
+          style: widget.textStyle,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
@@ -78,30 +95,32 @@ class DialogTextField extends StatelessWidget {
             filled: true,
             fillColor: theme.colorScheme.surfaceBright,
             errorText: errorText,
-            hintText: hintText,
-            labelText: labelText,
+            hintText: widget.hintText,
+            labelText: widget.labelText,
             prefixText: prefixText,
             suffixText: suffixText,
-            counterText: counterText,
+            counterText: widget.counterText,
           ),
         );
       case TargetPlatform.iOS:
       case TargetPlatform.macOS:
-        final placeholder = labelText ?? hintText;
+        final placeholder = widget.labelText ?? widget.hintText;
         return Column(
           children: [
             SizedBox(
-              height: placeholder == null ? null : ((maxLines ?? 1) + 1) * 20,
+              height: placeholder == null
+                  ? null
+                  : ((widget.maxLines ?? 1) + 1) * 20,
               child: CupertinoTextField(
-                controller: controller,
-                readOnly: readOnly,
-                obscureText: obscureText,
-                minLines: minLines,
-                maxLines: maxLines,
-                maxLength: maxLength,
-                keyboardType: keyboardType,
+                controller: widget.controller,
+                readOnly: widget.readOnly,
+                obscureText: widget.obscureText,
+                minLines: widget.minLines,
+                maxLines: widget.maxLines,
+                maxLength: widget.maxLength,
+                keyboardType: widget.keyboardType,
                 autocorrect: autocorrect,
-                style: textStyle,
+                style: widget.textStyle,
                 prefix: prefixText != null ? Text(prefixText) : null,
                 suffix: suffixText != null ? Text(suffixText) : null,
                 placeholder: placeholder,

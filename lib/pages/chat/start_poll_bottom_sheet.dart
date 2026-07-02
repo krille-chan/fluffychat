@@ -75,6 +75,15 @@ class _StartPollBottomSheetState extends State<StartPollBottomSheet> {
   }
 
   @override
+  void dispose() {
+    _bodyController.dispose();
+    for (final answerController in _answers) {
+      answerController.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     const maxAnswers = 10;
     return Scaffold(

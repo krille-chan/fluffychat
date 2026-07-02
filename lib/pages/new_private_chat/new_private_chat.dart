@@ -123,5 +123,12 @@ class NewPrivateChatController extends State<NewPrivateChat> {
       UserDialog.show(context: context, profile: profile);
 
   @override
+  void dispose() {
+    controller.dispose();
+    textFieldFocus.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => NewPrivateChatView(this);
 }

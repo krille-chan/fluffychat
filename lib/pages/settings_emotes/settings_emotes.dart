@@ -355,6 +355,13 @@ class EmotesSettingsController extends State<EmotesSettings> {
   }
 
   @override
+  void dispose() {
+    packDisplayNameController.dispose();
+    packAttributionController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return EmotesSettingsView(this);
   }

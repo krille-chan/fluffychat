@@ -21,6 +21,7 @@ class StoreRecoveryKeyView extends StatelessWidget {
         Text(L10n.of(context).storeRecoveryKeyDescription),
         const SizedBox(height: 16),
         TextField(
+          // TODO: Dispose this
           controller: TextEditingController(text: viewModel.value.recoveryKey),
           readOnly: true,
           minLines: 2,

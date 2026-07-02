@@ -35,6 +35,10 @@ Future<int?> showPermissionChooser(
                 keyboardType: TextInputType.number,
                 labelText: L10n.of(context).custom,
                 errorText: errorText,
+                onDispose: () {
+                  controller.dispose();
+                  error.dispose();
+                },
               ),
             ),
           ],
