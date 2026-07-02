@@ -2893,5 +2893,22 @@
     "edited": "(bewerkt)",
     "couldNotBeSent": "Kan niet worden gestuurd",
     "yesterday": "Gisteren",
-    "resetRecoveryKey": "Herstelsleutel resetten"
+    "resetRecoveryKey": "Herstelsleutel resetten",
+    "pleaseEnter6Digits": "Voer 6 getallen in om de app-vergrendeling in te schakelen.",
+    "disableAppLock": "App-vergrendeling uitschakelen",
+    "disableAppLockAreYouSure": "Weet je zeker dat je de app-vergrendeling wilt uitschakelen?",
+    "enableBiometrics": "Biometrische authenticatie inschakelen",
+    "disableBiometrics": "Biomedische authenticatie uitschakelen",
+    "biometricsDescription": "Met biometrische authenticatie kan je de app ontgrendelen met je gezicht of vingerafdruk. De mogelijkheden hangen af van je apparaat.",
+    "useAppLock": "App-vergrendeling gebruiken",
+    "unlockWithBiometrics": "Met biometrische authenticatie ontgrendelen",
+    "resetPin": "Pincode resetten",
+    "forwardCountMessages": "{count, plural, =1{Een bericht} other{{count} berichten}} doorsturen?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    }
 }
