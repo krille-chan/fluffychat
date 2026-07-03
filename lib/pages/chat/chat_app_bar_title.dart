@@ -6,6 +6,7 @@
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/sync_status_localization.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -83,9 +84,20 @@ class ChatAppBarTitle extends StatelessWidget {
                                 if (statusMessage != null) {
                                   return Text(statusMessage, style: style);
                                 }
+                                final lastActiveTimestamp =
+                                    presence?.lastActiveTimestamp;
                                 if (presence?.currentlyActive == true) {
                                   return Text(
                                     L10n.of(context).currentlyActive,
+                                    style: style,
+                                  );
+                                } else if (lastActiveTimestamp != null) {
+                                  return Text(
+                                    L10n.of(context).lastActiveAgo(
+                                      lastActiveTimestamp.localizedTimeShort(
+                                        context,
+                                      ),
+                                    ),
                                     style: style,
                                   );
                                 }
