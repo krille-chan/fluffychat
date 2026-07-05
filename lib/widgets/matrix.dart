@@ -33,6 +33,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
+import '../utils/android_conversation_notifications.dart';
 import '../utils/background_push.dart';
 import 'local_notifications_extension.dart';
 
@@ -256,6 +257,14 @@ class MatrixState extends State<Matrix> {
         .where((state) => state == LoginState.loggedOut)
         .listen((_) {
           final loggedInWithMultipleClients = widget.clients.length > 1;
+
+          if (PlatformInfos.isAndroid) {
+            final roomIds = c.rooms.map((r) => r.id).toList();
+            AndroidConversationNotifications.removeShortcuts(roomIds).ignore();
+            AndroidConversationNotifications.removeConversationChannels(
+              roomIds,
+            ).ignore();
+          }
 
           _cancelSubs(c.clientName);
           widget.clients.remove(c);
