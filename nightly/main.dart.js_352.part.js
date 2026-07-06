@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOK(){return new B.GR(A.dg("pl"))},
-GR:function GR(d){this.a=d}}
+cOK(){return new B.GQ(A.dg("pl"))},
+GQ:function GQ(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[42],B)
-B.GR.prototype={
+B.GQ.prototype={
 gkq(){return"Powt\xf3rz has\u0142o"},
 gjW(){return"To nie jest plik obrazu."},
 gb8(d){return"Usu\u0144"},
@@ -118,7 +118,7 @@ gex(d){return"Kopiuj"},
 giF(){return"Skopiuj do schowka"},
 iG(d){return"Nie mo\u017cna odszyfrowa\u0107 wiadomo\u015bci: "+d},
 glT(){return"Lista kontrolna"},
-dQ(d){return""+d+" uczestnik\xf3w"},
+dJ(d){return""+d+" uczestnik\xf3w"},
 iI(d){return""+d+" zaproszonych"},
 giJ(d){return"Stw\xf3rz"},
 iK(d){return"\ud83d\udcac "+d+" utworzy\u0142/-a czat"},
@@ -129,7 +129,7 @@ giM(){return"Ciemny"},
 fs(d,e){return d+" "+e},
 giN(){return"To zdezaktywuje twoje konto. To jest nieodwracalne! Na pewno chcesz to zrobi\u0107?"},
 giO(){return"Domy\u015blny poziom uprawnie\u0144 dla nowych u\u017cytkownik\xf3w"},
-gdi(d){return"Usu\u0144"},
+gdh(d){return"Usu\u0144"},
 giQ(){return"Usu\u0144 konto"},
 giR(){return"Usu\u0144 wiadomo\u015b\u0107"},
 gez(){return"Urz\u0105dzenia"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Wycisz czat"},
 gfL(){return"Nowa rozmowa"},
 gjK(){return"Nowa pro\u015bba o weryfikacj\u0119!"},
-gdh(d){return"Dalej"},
+gdg(d){return"Dalej"},
 gek(){return"Nie"},
 gjO(){return"Brak po\u0142\u0105czenia z serwerem"},
 gfM(){return"Nie znaleziono \u017cadnych emotikon\xf3w. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Zg\u0142o\u015b wiadomo\u015b\u0107"},
 gkv(){return"Pok\xf3j zosta\u0142 zaktualizowany"},
 ge4(){return"Wersja pokoju"},
 gh8(){return"Zapisz plik"},
-gdO(d){return"Szukaj"},
+gdP(d){return"Szukaj"},
 geR(){return"Bezpiecze\u0144stwo"},
 gdX(d){return"Wy\u015blij"},
 gha(){return"Wy\u015blij wiadomo\u015b\u0107"},
@@ -300,7 +300,7 @@ gli(){return"Ustaw jako g\u0142\xf3wny alias"},
 geW(){return"Ustaw opis czatu"},
 geX(){return"Ustaw status"},
 ge9(){return"Ustawienia"},
-gdP(d){return"Udost\u0119pnij"},
+gdQ(d){return"Udost\u0119pnij"},
 ho(d){return d+" udost\u0119pni\u0142/-a swoj\u0105 lokalizacj\u0119"},
 ghn(){return"Udost\u0119pnij lokalizacj\u0119"},
 gea(d){return"Pomi\u0144"},
@@ -348,7 +348,7 @@ god(){return"Kto mo\u017ce wykonywa\u0107 jakie czynno\u015bci"},
 goe(){return"Kto mo\u017ce do\u0142\u0105czy\u0107 do tej grupy"},
 geQ(){return"Dlaczego chcesz to zg\u0142osi\u0107?"},
 gof(){return"Dzi\u0119ki tym adresom mo\u017cesz odzyska\u0107 swoje has\u0142o."},
-gdN(){return"Tak"},
+gdO(){return"Tak"},
 goh(){return"Ty"},
 ge7(){return"Nie uczestniczysz ju\u017c w tym czacie"},
 goi(){return"Zosta\u0142e\u015b/-a\u015b zbanowany/-a w tym czacie"},
@@ -605,11 +605,11 @@ gow(){return"Dodaj opcj\u0119 odpowiedzi"},
 goy(){return"Zezwalaj na wiele odpowiedzi"},
 gnB(){return"Ankieta zosta\u0142a zako\u0144czona"},
 oJ(d){var y=""+d
-return A.aL(d,y+" g\u0142osy",this.a,y+" g\u0142os\xf3w",y+" g\u0142os",y+" g\u0142osu",null,null)},
+return A.aE(d,y+" g\u0142osy",this.a,y+" g\u0142os\xf3w",y+" g\u0142os",y+" g\u0142osu",null,null)},
 goB(){return"Wyniki b\u0119d\u0105 widoczne po zako\u0144czeniu ankiety"},
 gnI(){return"Odpowiedz w w\u0105tku"},
 oI(d){var y=""+d,x=y+" odpowiedzi"
-return A.aL(d,x,this.a,x,y+" odpowied\u017a",x,null,null)},
+return A.aE(d,x,this.a,x,y+" odpowied\u017a",x,null,null)},
 goZ(){return"W\u0105tek"},
 goD(){return"Wr\xf3\u0107 do czatu g\u0142\xf3wnego"},
 gon(){return"Zapisz zmiany"},
@@ -647,7 +647,7 @@ gqc(){return"Odbierz uprawnienia moderatora"},
 gqb(){return"Odbierz uprawnienia administratora"},
 gq8(){return"Poziom uprawnie\u0144"},
 gpe(){return"Poziomy uprawnie\u0144 okre\u015blaj\u0105, co cz\u0142onek mo\u017ce robi\u0107 w tym pokoju i zazwyczaj mieszcz\u0105 si\u0119 w zakresie od 0 do 100."},
-gdK(){return"W\u0142a\u015bciciel"},
+gdL(){return"W\u0142a\u015bciciel"},
 gpA(){return"Utw\xf3rz nowy czat"},
 goX(d){return"Resetuj"},
 gpq(){return"Wesprzyj FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Nie uda\u0142o si\u0119 wys\u0142a\u0107"},
 gqt(){return"Wczoraj"},
 gqh(){return"Zresetuj klucz odzyskiwania"},
 pH(d){var y=null
-return"Przekaza\u0107 "+A.aL(d,y,this.a,y,"jedn\u0105 wiadomo\u015b\u0107",""+d+" wiadomo\u015bci",y,y)+"?"},
+return"Przekaza\u0107 "+A.aE(d,y,this.a,y,"jedn\u0105 wiadomo\u015b\u0107",""+d+" wiadomo\u015bci",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GR,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GR":{"aE":[]}}'))};
-(a=>{a["sseKfd8P6POt5JQT1bADB56sFAI="]=a.current})($__dart_deferred_initializers__);
+y(B.GQ,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GQ":{"aF":[]}}'))};
+(a=>{a["41d+xoxSmgPPqBXZCRxM1YbQky4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_352.part.js.map

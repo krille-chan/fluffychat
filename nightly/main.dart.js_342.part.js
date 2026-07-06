@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOC(){return new B.GJ(A.dg("ja"))},
-GJ:function GJ(d){this.a=d}}
+cOC(){return new B.GI(A.dg("ja"))},
+GI:function GI(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[34],B)
-B.GJ.prototype={
+B.GI.prototype={
 gkq(){return"\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u7e70\u308a\u8fd4\u305d"},
 gjW(){return"\u753b\u50cf\u30d5\u30a1\u30a4\u30eb\u3067\u306f\u3042\u308a\u307e\u305b\u3093\u3002"},
 gb8(d){return"\u6d88\u53bb"},
@@ -118,7 +118,7 @@ gex(d){return"\u30b3\u30d4\u30fc"},
 giF(){return"\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u306b\u30b3\u30d4\u30fc"},
 iG(d){return"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u89e3\u8aad\u3067\u304d\u307e\u305b\u3093\u3067\u3057\u305f: "+d},
 glT(){return"\u30c1\u30a7\u30c3\u30af\u30ea\u30b9\u30c8"},
-dQ(d){return""+d+"\u540d\u306e\u53c2\u52a0\u8005"},
+dJ(d){return""+d+"\u540d\u306e\u53c2\u52a0\u8005"},
 iI(d){return""+d+"\u4eba\u3092\u62db\u5f85\u6e08\u307f"},
 giJ(d){return"\u4f5c\u6210"},
 iK(d){return"\ud83d\udcac "+d+"\u304c\u30c1\u30e3\u30c3\u30c8\u3092\u4f5c\u6210\u3057\u307e\u3057\u305f"},
@@ -129,7 +129,7 @@ giM(){return"\u30c0\u30fc\u30af"},
 fs(d,e){return d+", "+e},
 giN(){return"\u3042\u306a\u305f\u306e\u30a2\u30ab\u30a6\u30f3\u30c8\u3092\u7121\u52b9\u5316\u3057\u307e\u3059\u3002\u3053\u306e\u64cd\u4f5c\u306f\u5143\u306b\u623b\u305b\u307e\u305b\u3093\uff01\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f"},
 giO(){return"\u30c7\u30d5\u30a9\u30eb\u30c8\u306e\u6a29\u9650\u30ec\u30d9\u30eb"},
-gdi(d){return"\u524a\u9664"},
+gdh(d){return"\u524a\u9664"},
 giQ(){return"\u30a2\u30ab\u30a6\u30f3\u30c8\u306e\u524a\u9664"},
 giR(){return"\u30e1\u30c3\u30bb\u30fc\u30b8\u306e\u524a\u9664"},
 gez(){return"\u30c7\u30d0\u30a4\u30b9"},
@@ -223,7 +223,7 @@ gjG(){return"\u30e2\u30c7\u30ec\u30fc\u30bf"},
 geK(){return"\u30c1\u30e3\u30c3\u30c8\u306e\u30df\u30e5\u30fc\u30c8"},
 gfL(){return"\u65b0\u898f\u30c1\u30e3\u30c3\u30c8"},
 gjK(){return"\u8a8d\u8a3c\u30ea\u30af\u30a8\u30b9\u30c8\uff01"},
-gdh(d){return"\u6b21\u3078"},
+gdg(d){return"\u6b21\u3078"},
 gek(){return"\u3044\u3044\u3048"},
 gjO(){return"\u30b5\u30fc\u30d0\u30fc\u306b\u63a5\u7d9a\u3067\u304d\u307e\u305b\u3093"},
 gfM(){return"Emote\u306f\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f\ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u901a\u5831"},
 gkv(){return"\u90e8\u5c4b\u306f\u30a2\u30c3\u30d7\u30b0\u30ec\u30fc\u30c9\u3055\u308c\u307e\u3057\u305f"},
 ge4(){return"\u30eb\u30fc\u30e0\u30d0\u30fc\u30b8\u30e7\u30f3"},
 gh8(){return"\u30d5\u30a1\u30a4\u30eb\u3092\u4fdd\u5b58"},
-gdO(d){return"\u691c\u7d22"},
+gdP(d){return"\u691c\u7d22"},
 geR(){return"\u30bb\u30ad\u30e5\u30ea\u30c6\u30a3"},
 gdX(d){return"\u9001\u4fe1"},
 gha(){return"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u9001\u4fe1"},
@@ -300,7 +300,7 @@ gli(){return"\u30e1\u30a4\u30f3\u30a8\u30a4\u30ea\u30a2\u30b9\u306b\u8a2d\u5b9a"
 geW(){return"\u30c1\u30e3\u30c3\u30c8\u306e\u8aac\u660e\u3092\u8a2d\u5b9a"},
 geX(){return"\u30b9\u30c6\u30fc\u30bf\u30b9\u306e\u8a2d\u5b9a"},
 ge9(){return"\u8a2d\u5b9a"},
-gdP(d){return"\u5171\u6709"},
+gdQ(d){return"\u5171\u6709"},
 ho(d){return d+"\u306f\u73fe\u5728\u5730\u3092\u5171\u6709\u3057\u307e\u3057\u305f"},
 ghn(){return"\u4f4d\u7f6e\u60c5\u5831\u306e\u5171\u6709"},
 gea(d){return"\u30b9\u30ad\u30c3\u30d7"},
@@ -348,7 +348,7 @@ god(){return"\u8ab0\u304c\u3069\u306e\u64cd\u4f5c\u3092\u5b9f\u884c\u3067\u304d\
 goe(){return"\u8ab0\u304c\u3053\u306e\u30c1\u30e3\u30c3\u30c8\u306b\u5165\u308c\u307e\u3059\u304b"},
 geQ(){return"\u3053\u308c\u3092\u901a\u5831\u3059\u308b\u7406\u7531"},
 gof(){return"\u3053\u308c\u3089\u306e\u30a2\u30c9\u30ec\u30b9\u3092\u4f7f\u7528\u3059\u308b\u3068\u3001\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u56de\u5fa9\u3059\u308b\u3053\u3068\u304c\u3067\u304d\u307e\u3059\u3002"},
-gdN(){return"\u306f\u3044"},
+gdO(){return"\u306f\u3044"},
 goh(){return"\u3042\u306a\u305f"},
 ge7(){return"\u3042\u306a\u305f\u306f\u3082\u3046\u3053\u306e\u30c1\u30e3\u30c3\u30c8\u306e\u53c2\u52a0\u8005\u3067\u306f\u3042\u308a\u307e\u305b\u3093"},
 goi(){return"\u30c1\u30e3\u30c3\u30c8\u304b\u3089BAN\u3055\u308c\u3066\u3057\u307e\u3044\u307e\u3057\u305f"},
@@ -605,11 +605,11 @@ gow(){return"Add answer option"},
 goy(){return"Allow multiple answers"},
 gnB(){return"Poll has been ended"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"\u30b9\u30ec\u30c3\u30c9\u3067\u8fd4\u4fe1"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Thread"},
 goD(){return"Back to main chat"},
 gon(){return"Save changes"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"\u6628\u65e5"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GJ,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GJ":{"aE":[]}}'))};
-(a=>{a["FJ8PZEr3b9njuWKo9BeRc9lDMCE="]=a.current})($__dart_deferred_initializers__);
+y(B.GI,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GI":{"aF":[]}}'))};
+(a=>{a["6csHUgbM133wTQn6S1mXlhpEp/o="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_342.part.js.map

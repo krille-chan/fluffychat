@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOQ(){return new B.GW(A.dg("sk"))},
-GW:function GW(d){this.a=d}}
+cOQ(){return new B.GV(A.dg("sk"))},
+GV:function GV(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[45],B)
-B.GW.prototype={
+B.GV.prototype={
 gkq(){return"Zopakujte heslo"},
 gjW(){return"Not an image file."},
 gb8(d){return"Odstr\xe1ni\u0165"},
@@ -118,7 +118,7 @@ gex(d){return"Kop\xedrova\u0165"},
 giF(){return"Copy to clipboard"},
 iG(d){return"Nebolo mo\u017en\xe9 de\u0161ifrova\u0165 spr\xe1vu: "+d},
 glT(){return"Check list"},
-dQ(d){return""+d+" \xfa\u010dastn\xedkov"},
+dJ(d){return""+d+" \xfa\u010dastn\xedkov"},
 iI(d){return""+d+" invited"},
 giJ(d){return"Vytvori\u0165"},
 iK(d){return d+" zalo\u017eili chat"},
@@ -129,7 +129,7 @@ giM(){return"Tmav\xe1"},
 fs(d,e){return d+", "+e},
 giN(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 giO(){return"Default permission level for new users"},
-gdi(d){return"Odstr\xe1ni\u0165"},
+gdh(d){return"Odstr\xe1ni\u0165"},
 giQ(){return"Delete account"},
 giR(){return"Odstr\xe1ni\u0165 spr\xe1vu"},
 gez(){return"Zariadenia"},
@@ -223,7 +223,7 @@ gjG(){return"Moder\xe1tor"},
 geK(){return"Stlmi\u0165 chat"},
 gfL(){return"New chat"},
 gjK(){return"Nov\xe1 \u017eiados\u0165 o verifik\xe1ciu!"},
-gdh(d){return"Next"},
+gdg(d){return"Next"},
 gek(){return"No"},
 gjO(){return"No connection to the server"},
 gfM(){return"Nena\u0161li sa \u017eiadne emotikony. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Nahl\xe1si\u0165 spr\xe1vu"},
 gkv(){return"Miestnos\u0165 bola upgradeovan\xe1"},
 ge4(){return"Verzia miestnosti"},
 gh8(){return"Save file"},
-gdO(d){return"H\u013eada\u0165"},
+gdP(d){return"H\u013eada\u0165"},
 geR(){return"Bezpe\u010dnos\u0165"},
 gdX(d){return"Odosla\u0165"},
 gha(){return"Odosla\u0165 spr\xe1vu"},
@@ -300,7 +300,7 @@ gli(){return"Set as main alias"},
 geW(){return"Set chat description"},
 geX(){return"Nastavi\u0165 status"},
 ge9(){return"Nastavenia"},
-gdP(d){return"Zdie\u013ea\u0165"},
+gdQ(d){return"Zdie\u013ea\u0165"},
 ho(d){return d+" zdie\u013ea lok\xe1ciu"},
 ghn(){return"Share location"},
 gea(d){return"Presko\u010di\u0165"},
@@ -348,7 +348,7 @@ god(){return"Who can perform which action"},
 goe(){return"Kto m\xf4\u017ee vst\xfapi\u0165 do tejto skupiny"},
 geQ(){return"Why do you want to report this?"},
 gof(){return"With these addresses you can recover your password."},
-gdN(){return"\xc1no"},
+gdO(){return"\xc1no"},
 goh(){return"Vy"},
 ge7(){return"U\u017e sa nez\xfa\u010dast\u0148ujete tohto chatu"},
 goi(){return"M\xe1te zablokovan\xfd pr\xedstup k tomuto chatu"},
@@ -605,11 +605,11 @@ gow(){return"Add answer option"},
 goy(){return"Allow multiple answers"},
 gnB(){return"Poll has been ended"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"Reply in thread"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Thread"},
 goD(){return"Back to main chat"},
 gon(){return"Save changes"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GW,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GW":{"aE":[]}}'))};
-(a=>{a["lwCthcDJ6A+1NJVVMUivT9VcQTk="]=a.current})($__dart_deferred_initializers__);
+y(B.GV,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GV":{"aF":[]}}'))};
+(a=>{a["chBk39gZ+xD9hSBNr/ocyRdZCLo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_358.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOq(){return new B.Gx(A.dg("fil"))},
-Gx:function Gx(d){this.a=d}}
+cOq(){return new B.Gw(A.dg("fil"))},
+Gw:function Gw(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[22],B)
-B.Gx.prototype={
+B.Gw.prototype={
 gkq(){return"Ulitin ang password"},
 gjW(){return"Hindi isang file na larawan."},
 gb8(d){return"Tanggalin"},
@@ -118,7 +118,7 @@ gex(d){return"Kopyahin"},
 giF(){return"Kopyahin sa clipboard"},
 iG(d){return"Hindi ma-decrypt ang mensahe: "+d},
 glT(){return"Check list"},
-dQ(d){return""+d+" mga kasali"},
+dJ(d){return""+d+" mga kasali"},
 iI(d){return""+d+" invited"},
 giJ(d){return"Gumawa"},
 iK(d){return"\ud83d\udcac Ginawa ni "+d+" ang chat"},
@@ -129,7 +129,7 @@ giM(){return"Madilim"},
 fs(d,e){return d+", "+e},
 giN(){return"Ide-deactivate nito ang iyong user account. Hindi na ito maaaring bawiin! Sigurado ka?"},
 giO(){return"Default na antas ng pahintulot para sa mga bagong user"},
-gdi(d){return"Burahin"},
+gdh(d){return"Burahin"},
 giQ(){return"Burahin ang account"},
 giR(){return"Burahin ang mensahe"},
 gez(){return"Mga Device"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Mute chat"},
 gfL(){return"New chat"},
 gjK(){return"New verification request!"},
-gdh(d){return"Next"},
+gdg(d){return"Next"},
 gek(){return"No"},
 gjO(){return"No connection to the server"},
 gfM(){return"No emotes found. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Report message"},
 gkv(){return"Room has been upgraded"},
 ge4(){return"Room version"},
 gh8(){return"Save file"},
-gdO(d){return"Search"},
+gdP(d){return"Search"},
 geR(){return"Security"},
 gdX(d){return"Send"},
 gha(){return"Send a message"},
@@ -300,7 +300,7 @@ gli(){return"Set as main alias"},
 geW(){return"Set chat description"},
 geX(){return"Set status"},
 ge9(){return"Settings"},
-gdP(d){return"Share"},
+gdQ(d){return"Share"},
 ho(d){return d+" shared their location"},
 ghn(){return"Share location"},
 gea(d){return"Skip"},
@@ -348,7 +348,7 @@ god(){return"Who can perform which action"},
 goe(){return"Who is allowed to join this group"},
 geQ(){return"Why do you want to report this?"},
 gof(){return"With these addresses you can recover your password."},
-gdN(){return"Yes"},
+gdO(){return"Yes"},
 goh(){return"You"},
 ge7(){return"You are no longer participating in this chat"},
 goi(){return"You have been banned from this chat"},
@@ -605,11 +605,11 @@ gow(){return"Add answer option"},
 goy(){return"Allow multiple answers"},
 gnB(){return"Poll has been ended"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"Reply in thread"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Thread"},
 goD(){return"Back to main chat"},
 gon(){return"Save changes"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gx,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"Gx":{"aE":[]}}'))};
-(a=>{a["YYeQMOB+MEJXJkk6FWtiF9Q9KCQ="]=a.current})($__dart_deferred_initializers__);
+y(B.Gw,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"Gw":{"aF":[]}}'))};
+(a=>{a["6KBwq8NrQlN/VjuytGpwPx31Yk8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_311.part.js.map

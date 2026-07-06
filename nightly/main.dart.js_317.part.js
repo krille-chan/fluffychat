@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOt(){return new B.GA(A.dg("gl"))},
-GA:function GA(d){this.a=d}}
+cOt(){return new B.Gz(A.dg("gl"))},
+Gz:function Gz(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[25],B)
-B.GA.prototype={
+B.Gz.prototype={
 gkq(){return"Repite o contrasinal"},
 gjW(){return"Non \xe9 un ficheiro de imaxe."},
 gb8(d){return"Quitar"},
@@ -118,7 +118,7 @@ gex(d){return"Copiar"},
 giF(){return"Copiar ao portapapeis"},
 iG(d){return"Non se descifrou a mensaxe: "+d},
 glT(){return"Comprobar lista"},
-dQ(d){return""+d+" participantes"},
+dJ(d){return""+d+" participantes"},
 iI(d){return""+d+" convidadas"},
 giJ(d){return"Crear"},
 iK(d){return"\ud83d\udcac "+d+" creou a conversa"},
@@ -129,7 +129,7 @@ giM(){return"Escuro"},
 fs(d,e){return d+", "+e},
 giN(){return"Esto desactivar\xe1 a conta. Esto non ten volta atr\xe1s. Est\xe1s segura?"},
 giO(){return"Nivel de permisos por defecto para novas usuarias"},
-gdi(d){return"Eliminar"},
+gdh(d){return"Eliminar"},
 giQ(){return"Eliminar conta"},
 giR(){return"Eliminar mensaxe"},
 gez(){return"Dispositivos"},
@@ -223,7 +223,7 @@ gjG(){return"Moderadora"},
 geK(){return"Acalar conversa"},
 gfL(){return"Nova conversa"},
 gjK(){return"Nova solicitude de verificaci\xf3n!"},
-gdh(d){return"Seguinte"},
+gdg(d){return"Seguinte"},
 gek(){return"Non"},
 gjO(){return"Sen conexi\xf3n co servidor"},
 gfM(){return"Non hai emotes. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Denunciar mensaxe"},
 gkv(){return"A sala foi actualizada"},
 ge4(){return"Versi\xf3n da sala"},
 gh8(){return"Gardar ficheiro"},
-gdO(d){return"Buscar"},
+gdP(d){return"Buscar"},
 geR(){return"Seguridade"},
 gdX(d){return"Enviar"},
 gha(){return"Enviar unha mensaxe"},
@@ -300,7 +300,7 @@ gli(){return"Establecer como alias principal"},
 geW(){return"Escribir descrici\xf3n da conversa"},
 geX(){return"Establecer estado"},
 ge9(){return"Axustes"},
-gdP(d){return"Compartir"},
+gdQ(d){return"Compartir"},
 ho(d){return d+" compartiu a s\xfaa localizaci\xf3n"},
 ghn(){return"Compartir localizaci\xf3n"},
 gea(d){return"Saltar"},
@@ -348,7 +348,7 @@ god(){return"Quen pode realizar determinada acci\xf3n"},
 goe(){return"Quen se pode unir a este grupo"},
 geQ(){return"Por que queres denunciar esto?"},
 gof(){return"Con estos enderezos podes recuperar o contrasinal."},
-gdN(){return"Si"},
+gdO(){return"Si"},
 goh(){return"Ti"},
 ge7(){return"Xa non participas desta conversa"},
 goi(){return"Foches vetada nesta conversa"},
@@ -605,11 +605,11 @@ gow(){return"Engadir opci\xf3n"},
 goy(){return"Permitir varias respostas"},
 gnB(){return"Rematou a enquisa"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
+return A.aE(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
 goB(){return"As respostas son visibles ao finalizar a enquisa"},
 gnI(){return"Responder ao f\xedo"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"Unha resposta",""+d+" respostas",y,y)},
+return A.aE(d,y,this.a,y,"Unha resposta",""+d+" respostas",y,y)},
 goZ(){return"F\xedo"},
 goD(){return"Volver \xe1 conversa principal"},
 gon(){return"Gardar cambios"},
@@ -647,7 +647,7 @@ gqc(){return"Retirar permiso de moderaci\xf3n"},
 gqb(){return"Retirar permiso de administraci\xf3n"},
 gq8(){return"Nivel responsabilidade"},
 gpe(){return"Os niveis de responsabilidade definen o que pode facer unha usuaria na sala, normalmente var\xeda de 0 a 100."},
-gdK(){return"Propietaria"},
+gdL(){return"Propietaria"},
 gpA(){return"Crear nova conversa"},
 goX(d){return"Restablecer"},
 gpq(){return"Apoia a FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Non se puido enviar"},
 gqt(){return"Onte"},
 gqh(){return"Restablecer clave de recuperaci\xf3n"},
 pH(d){var y=null
-return"Reenviar "+A.aL(d,y,this.a,y,"unha mensaxe",""+d+" mensaxes",y,y)+"?"},
+return"Reenviar "+A.aE(d,y,this.a,y,"unha mensaxe",""+d+" mensaxes",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GA,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GA":{"aE":[]}}'))};
-(a=>{a["/OdIIIj50iggt9x6slq6tcdZwT4="]=a.current})($__dart_deferred_initializers__);
+y(B.Gz,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"Gz":{"aF":[]}}'))};
+(a=>{a["X8GffNEwgecOzdfOtBl3rCfJ9SM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOi(){return new B.Gp(A.dg("el"))},
-Gp:function Gp(d){this.a=d}}
+cOi(){return new B.Go(A.dg("el"))},
+Go:function Go(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[14],B)
-B.Gp.prototype={
+B.Go.prototype={
 gkq(){return"\u0395\u03c0\u03b1\u03bd\u03ac\u03bb\u03b7\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gjW(){return"\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03b5\u03b9\u03ba\u03cc\u03bd\u03b1\u03c2."},
 gb8(d){return"\u0391\u03c6\u03b1\u03af\u03c1\u03b5\u03c3\u03b7"},
@@ -118,7 +118,8 @@ gex(d){return"Copy"},
 giF(){return"Copy to clipboard"},
 iG(d){return"Could not decrypt message: "+d},
 glT(){return"Check list"},
-dQ(d){return""+d+" participants"},
+dJ(d){var y=null
+return A.aE(d,y,this.a,y,"1 participant",""+d+" participants",y,y)},
 iI(d){return""+d+" invited"},
 giJ(d){return"Create"},
 iK(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -129,7 +130,7 @@ giM(){return"Dark"},
 fs(d,e){return d+", "+e},
 giN(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 giO(){return"Default permission level for new users"},
-gdi(d){return"Delete"},
+gdh(d){return"Delete"},
 giQ(){return"Delete account"},
 giR(){return"Delete message"},
 gez(){return"Devices"},
@@ -223,7 +224,7 @@ gjG(){return"Moderator"},
 geK(){return"Mute chat"},
 gfL(){return"New chat"},
 gjK(){return"New verification request!"},
-gdh(d){return"Next"},
+gdg(d){return"Next"},
 gek(){return"No"},
 gjO(){return"No connection to the server"},
 gfM(){return"No emotes found. \ud83d\ude15"},
@@ -279,7 +280,7 @@ gku(){return"Report message"},
 gkv(){return"Room has been upgraded"},
 ge4(){return"Room version"},
 gh8(){return"Save file"},
-gdO(d){return"Search"},
+gdP(d){return"Search"},
 geR(){return"Security"},
 gdX(d){return"Send"},
 gha(){return"Send a message"},
@@ -300,7 +301,7 @@ gli(){return"Set as main alias"},
 geW(){return"Set chat description"},
 geX(){return"Set status"},
 ge9(){return"Settings"},
-gdP(d){return"Share"},
+gdQ(d){return"Share"},
 ho(d){return d+" shared their location"},
 ghn(){return"Share location"},
 gea(d){return"Skip"},
@@ -348,7 +349,7 @@ god(){return"Who can perform which action"},
 goe(){return"Who is allowed to join this group"},
 geQ(){return"Why do you want to report this?"},
 gof(){return"With these addresses you can recover your password."},
-gdN(){return"Yes"},
+gdO(){return"Yes"},
 goh(){return"You"},
 ge7(){return"You are no longer participating in this chat"},
 goi(){return"You have been banned from this chat"},
@@ -605,11 +606,11 @@ gow(){return"Add answer option"},
 goy(){return"Allow multiple answers"},
 gnB(){return"Poll has been ended"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"Reply in thread"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Thread"},
 goD(){return"Back to main chat"},
 gon(){return"Save changes"},
@@ -647,7 +648,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +712,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gp,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"Gp":{"aE":[]}}'))};
-(a=>{a["1xD3GGRMQGW1mjEV3zHWDjSfDyw="]=a.current})($__dart_deferred_initializers__);
+y(B.Go,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"Go":{"aF":[]}}'))};
+(a=>{a["N0H53zSiUMd5qTQXbY3a/7wTG08="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

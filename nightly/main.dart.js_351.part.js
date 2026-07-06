@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOJ(){return new B.GQ(A.dg("nl"))},
-GQ:function GQ(d){this.a=d}}
+cOJ(){return new B.GP(A.dg("nl"))},
+GP:function GP(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[41],B)
-B.GQ.prototype={
+B.GP.prototype={
 gkq(){return"Wachtwoord herhalen"},
 gjW(){return"Geen afbeeldingsbestand."},
 gb8(d){return"Verwijder"},
@@ -118,7 +118,7 @@ gex(d){return"Bericht kopi\xebren"},
 giF(){return"Kopieer naar klembord"},
 iG(d){return"Kan het bericht niet ontsleutelen: "+d},
 glT(){return"Checklist"},
-dQ(d){return""+d+" personen"},
+dJ(d){return""+d+" personen"},
 iI(d){return""+d+" uitgenodigd"},
 giJ(d){return"Aanmaken"},
 iK(d){return"\ud83d\udcac "+d+" heeft de chat gemaakt"},
@@ -129,7 +129,7 @@ giM(){return"Donker"},
 fs(d,e){return d+", "+e},
 giN(){return"Hierdoor wordt je account gedeactiveerd. Dit kan niet ongedaan gemaakt worden! Weet je het zeker?"},
 giO(){return"Standaard rechten-niveau voor nieuwe personen"},
-gdi(d){return"Verwijderen"},
+gdh(d){return"Verwijderen"},
 giQ(){return"Account verwijderen"},
 giR(){return"Bericht verwijderen"},
 gez(){return"Apparaten"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Chat dempen"},
 gfL(){return"Nieuwe chat"},
 gjK(){return"Nieuw verificatieverzoek!"},
-gdh(d){return"Volgende"},
+gdg(d){return"Volgende"},
 gek(){return"Nee"},
 gjO(){return"Geen verbinding met de server"},
 gfM(){return"Geen emoticons gevonden. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Bericht rapporteren"},
 gkv(){return"Chat is ge\xfcpgrade"},
 ge4(){return"Kamerversie"},
 gh8(){return"Bestand opslaan"},
-gdO(d){return"Zoeken"},
+gdP(d){return"Zoeken"},
 geR(){return"Beveiliging"},
 gdX(d){return"Verstuur"},
 gha(){return"Stuur een bericht"},
@@ -300,7 +300,7 @@ gli(){return"Als hoofdalias instellen"},
 geW(){return"Onderwerp instellen"},
 geX(){return"Status instellen"},
 ge9(){return"Instellingen"},
-gdP(d){return"Delen"},
+gdQ(d){return"Delen"},
 ho(d){return d+" heeft deze locatie gedeeld"},
 ghn(){return"Locatie delen"},
 gea(d){return"Overslaan"},
@@ -348,7 +348,7 @@ god(){return"Wie kan welke actie uitvoeren"},
 goe(){return"Wie mag deelnemen aan deze groep"},
 geQ(){return"Waarom wil je dit rapporteren?"},
 gof(){return"Met deze adressen kun je je wachtwoord herstellen."},
-gdN(){return"Ja"},
+gdO(){return"Ja"},
 goh(){return"Jij"},
 ge7(){return"Je neemt niet langer deel aan deze chat"},
 goi(){return"Je bent verbannen uit deze chat"},
@@ -605,11 +605,11 @@ gow(){return"Antwoord optie toevoegen"},
 goy(){return"Meerdere antwoorden toestaan"},
 gnB(){return"Peiling is ge\xebindigd"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"\xc9\xe9n stem",""+d+" stemmen",y,y)},
+return A.aE(d,y,this.a,y,"\xc9\xe9n stem",""+d+" stemmen",y,y)},
 goB(){return"Antwoorden zullen zichtbaar zijn wanneer de peiling is ge\xebindigd"},
 gnI(){return"Antwoord in gesprek"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"\xc9\xe9n antwoord",""+d+" antwoorden",y,y)},
+return A.aE(d,y,this.a,y,"\xc9\xe9n antwoord",""+d+" antwoorden",y,y)},
 goZ(){return"Gesprek"},
 goD(){return"Terug naar hoofdchat"},
 gon(){return"Wijzigingen opslaan"},
@@ -647,7 +647,7 @@ gqc(){return"Verwijder moderator-rechten"},
 gqb(){return"Verwijder beheerder-rechten"},
 gq8(){return"Rechtenniveau"},
 gpe(){return"Rechtenniveau's defini\xebren wat een persoon mag doen in deze chat en vari\xebren meestal tussen 0 en 100."},
-gdK(){return"Eigenaar"},
+gdL(){return"Eigenaar"},
 gpA(){return"Cre\xeber nieuw chat"},
 goX(d){return"Resetten"},
 gpq(){return"FluffyChat steunen"},
@@ -711,10 +711,10 @@ gpy(){return"Kan niet worden gestuurd"},
 gqt(){return"Gisteren"},
 gqh(){return"Herstelsleutel resetten"},
 pH(d){var y=null
-return A.aL(d,y,this.a,y,"Een bericht",""+d+" berichten",y,y)+" doorsturen?"},
+return A.aE(d,y,this.a,y,"Een bericht",""+d+" berichten",y,y)+" doorsturen?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GQ,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GQ":{"aE":[]}}'))};
-(a=>{a["qZDY+rwLbG+vT+9ZC/+p9JKRr70="]=a.current})($__dart_deferred_initializers__);
+y(B.GP,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GP":{"aF":[]}}'))};
+(a=>{a["LwSF5zhEgswFODzRJ4luTLQ3REw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

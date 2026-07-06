@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOF(){return new B.GM(A.dg("ko"))},
-GM:function GM(d){this.a=d}}
+cOF(){return new B.GL(A.dg("ko"))},
+GL:function GL(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[37],B)
-B.GM.prototype={
+B.GL.prototype={
 gkq(){return"\ube44\ubc00\ubc88\ud638 \ub2e4\uc2dc \uc785\ub825"},
 gjW(){return"\uc774\ubbf8\uc9c0 \ud30c\uc77c\uc774 \uc544\ub2d9\ub2c8\ub2e4."},
 gb8(d){return"\uc9c0\uc6b0\uae30"},
@@ -118,7 +118,7 @@ gex(d){return"\ubcf5\uc0ac"},
 giF(){return"\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac"},
 iG(d){return"\uba54\uc2dc\uc9c0 \ubcf5\ud638\ud654\ud560 \uc218 \uc5c6\uc74c: "+d},
 glT(){return"\uccb4\ud06c\ub9ac\uc2a4\ud2b8"},
-dQ(d){return""+d+" \ucc38\uc5ec\uc790"},
+dJ(d){return""+d+" \ucc38\uc5ec\uc790"},
 iI(d){return""+d+"\ucd08\ub300\ubc1b\uc740"},
 giJ(d){return"\uc0dd\uc131"},
 iK(d){return"\ud83d\udcac "+d+"\ub2d8\uc774 \ucc44\ud305\uc744 \uc0dd\uc131\ud568"},
@@ -129,7 +129,7 @@ giM(){return"\ub2e4\ud06c"},
 fs(d,e){return d+", "+e},
 giN(){return"\uc774\uac83\uc740 \ub2f9\uc2e0\uc758 \uacc4\uc815\uc744 \ube44\ud65c\uc131\ud654\ud560 \uac83\uc785\ub2c8\ub2e4. \uc774\uac83\uc740 \ub418\ub3cc\ub9b4 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4! \ud655\uc2e4\ud55c\uac00\uc694?"},
 giO(){return"\uc0c8\ub85c \ucc38\uac00\ud558\ub294 \uc720\uc800\ub4e4\uc758 \uae30\ubcf8 \uad8c\ud55c \ub808\ubca8"},
-gdi(d){return"\uc0ad\uc81c"},
+gdh(d){return"\uc0ad\uc81c"},
 giQ(){return"\uacc4\uc815 \uc0ad\uc81c"},
 giR(){return"\uba54\uc2dc\uc9c0 \uc0ad\uc81c"},
 gez(){return"\uae30\uae30"},
@@ -223,7 +223,7 @@ gjG(){return"\uad00\ub9ac\uc790"},
 geK(){return"\ucc44\ud305 \uc74c\uc18c\uac70"},
 gfL(){return"\uc0c8 \ucc44\ud305"},
 gjK(){return"\uc0c8\ub85c\uc6b4 \ud655\uc778 \uc694\uccad!"},
-gdh(d){return"\ub2e4\uc74c"},
+gdg(d){return"\ub2e4\uc74c"},
 gek(){return"\uc544\ub2c8\uc694"},
 gjO(){return"\uc11c\ubc84\uc5d0 \uc5f0\uacb0 \uc5c6\uc74c"},
 gfM(){return"\uc774\ubaa8\ud2b8 \ubc1c\uacac\ub418\uc9c0 \uc54a\uc74c. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"\uba54\uc2dc\uc9c0 \uc2e0\uace0"},
 gkv(){return"\ubc29\uc774 \uc5c5\uadf8\ub808\uc774\ub4dc\ub418\uc5c8\uc2b5\ub2c8\ub2e4"},
 ge4(){return"\ubc29 \ubc84\uc804"},
 gh8(){return"\ud30c\uc77c \uc800\uc7a5"},
-gdO(d){return"\uac80\uc0c9"},
+gdP(d){return"\uac80\uc0c9"},
 geR(){return"\ubcf4\uc548"},
 gdX(d){return"\ubcf4\ub0b4\uae30"},
 gha(){return"\uba54\uc2dc\uc9c0 \ubcf4\ub0b4\uae30"},
@@ -300,7 +300,7 @@ gli(){return"\uc8fc \ubcc4\uba85\uc73c\ub85c \uc124\uc815"},
 geW(){return"\ucc44\ud305 \uc124\uba85 \uc124\uc815"},
 geX(){return"\uc0c1\ud0dc \uc124\uc815"},
 ge9(){return"\uc124\uc815"},
-gdP(d){return"\uacf5\uc720"},
+gdQ(d){return"\uacf5\uc720"},
 ho(d){return d+"\ub2d8\uc774 \uc704\uce58\ub97c \uacf5\uc720\ud568"},
 ghn(){return"\uc704\uce58 \ubcf4\ub0b4\uae30"},
 gea(d){return"\uc2a4\ud0b5"},
@@ -348,7 +348,7 @@ god(){return"\ub204\uac00 \uc5b4\ub5a4 \ud589\ub3d9\uc744 \ud560 \uc218 \uc788\u
 goe(){return"\ucc38\uac00 \uc81c\ud55c \uc124\uc815"},
 geQ(){return"\uc65c \uc774\uac83\uc744 \uc2e0\uace0\ud558\ub824\uace0 \ud558\ub098\uc694?"},
 gof(){return"\uc774 \uc8fc\uc18c\ub85c \ub2f9\uc2e0\uc758 \ube44\ubc00\ubc88\ud638\ub97c \ubcf5\uad6c\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4."},
-gdN(){return"\ud655\uc778"},
+gdO(){return"\ud655\uc778"},
 goh(){return"\ub2f9\uc2e0"},
 ge7(){return"\ub2f9\uc2e0\uc740 \ub354 \uc774\uc0c1 \uc774 \ucc44\ud305\uc5d0 \ucc38\uc5ec\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4"},
 goi(){return"\ub2f9\uc2e0\uc740 \uc774 \ucc44\ud305\uc5d0\uc11c \uc601\uad6c \ucd94\ubc29\ub418\uc5c8\uc2b5\ub2c8\ub2e4"},
@@ -605,11 +605,11 @@ gow(){return"Add answer option"},
 goy(){return"Allow multiple answers"},
 gnB(){return"Poll has been ended"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"Reply in thread"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Thread"},
 goD(){return"Back to main chat"},
 gon(){return"Save changes"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GM,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GM":{"aE":[]}}'))};
-(a=>{a["7BumSXIASOak6V4YrPJigPEevUM="]=a.current})($__dart_deferred_initializers__);
+y(B.GL,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GL":{"aF":[]}}'))};
+(a=>{a["o9H80lg1iMAkGqNtQwSXkYNhAIQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

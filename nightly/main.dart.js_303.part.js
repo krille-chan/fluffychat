@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOm(){return new B.Gt(A.dg("et"))},
-Gt:function Gt(d){this.a=d}}
+cOm(){return new B.Gs(A.dg("et"))},
+Gs:function Gs(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[18],B)
-B.Gt.prototype={
+B.Gs.prototype={
 gkq(){return"Korda salas\xf5na"},
 gjW(){return"See pole pildifail."},
 gb8(d){return"Eemalda"},
@@ -118,7 +118,7 @@ gex(d){return"Kopeeri"},
 giF(){return"Kopeeri l\xf5ikelauale"},
 iG(d){return"S\xf5numi dekr\xfcptimine ei \xf5nnestunud: "+d},
 glT(){return"Kontrollnimekiri"},
-dQ(d){return""+d+" osalejat"},
+dJ(d){return""+d+" osalejat"},
 iI(d){return""+d+" kutsutut"},
 giJ(d){return"Loo"},
 iK(d){return"\ud83d\udcac "+d+" algatas vestluse"},
@@ -129,7 +129,7 @@ giM(){return"Tume kujundus"},
 fs(d,e){return d+", "+e},
 giN(){return"J\xe4rgnevaga eemaldatakse sinu konto kasutusest. Seda tegevust ei saa tagasi p\xf6\xf6rata! Kas sa ikka oled kindel?"},
 giO(){return"Vaikimisi \xf5igused uutele kasutajatele"},
-gdi(d){return"Kustuta"},
+gdh(d){return"Kustuta"},
 giQ(){return"Kustuta kasutajakonto"},
 giR(){return"Kustuta s\xf5num"},
 gez(){return"Seadmed"},
@@ -223,7 +223,7 @@ gjG(){return"Moderaator"},
 geK(){return"Summuta vestlus"},
 gfL(){return"Uus vestlus"},
 gjK(){return"Uus verifitseerimisp\xe4ring!"},
-gdh(d){return"Edasi"},
+gdg(d){return"Edasi"},
 gek(){return"Ei"},
 gjO(){return"Puudub \xfchendus koduserveriga"},
 gfM(){return"\xdchtegi emotsioonitegevust ei leidunud. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Teata s\xf5numist"},
 gkv(){return"Jututoa versioon on uuendatud"},
 ge4(){return"Jututoa versioon"},
 gh8(){return"Salvesta fail"},
-gdO(d){return"Otsi"},
+gdP(d){return"Otsi"},
 geR(){return"Turvalisus"},
 gdX(d){return"Saada"},
 gha(){return"Saada s\xf5num"},
@@ -300,7 +300,7 @@ gli(){return"M\xe4\xe4ra p\xf5hinimeks"},
 geW(){return"Lisa vestluse kirjeldus"},
 geX(){return"M\xe4\xe4ra olek"},
 ge9(){return"Seadistused"},
-gdP(d){return"Jaga"},
+gdQ(d){return"Jaga"},
 ho(d){return d+" jagas oma asukohta"},
 ghn(){return"Jaga asukohta"},
 gea(d){return"J\xe4ta vahele"},
@@ -348,7 +348,7 @@ god(){return"Erinevatele kasutajatele lubatud toimingud"},
 goe(){return"Kes v\xf5ivad selle jututoaga liituda"},
 geQ(){return"Miks sa soovid sellest teatada?"},
 gof(){return"Nende e-posti aadresside abil saad taastada oma salas\xf5na."},
-gdN(){return"Jah"},
+gdO(){return"Jah"},
 goh(){return"Sina"},
 ge7(){return"Sa enam ei osale selles vestluses"},
 goi(){return"Sinule on selles vestluses seatud suhtluskeeld"},
@@ -605,11 +605,11 @@ gow(){return"Lisa valikvastus"},
 goy(){return"Luba mitu vastusevalikut"},
 gnB(){return"K\xfcsitlus on l\xf5ppenud"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"\xdcks h\xe4\xe4l",""+d+" h\xe4\xe4lt",y,y)},
+return A.aE(d,y,this.a,y,"\xdcks h\xe4\xe4l",""+d+" h\xe4\xe4lt",y,y)},
 goB(){return"Vastused on n\xe4ha k\xfcsitluse l\xf5ppedes"},
 gnI(){return"Vasta jutul\xf5ngas"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"\xdcks vastus",""+d+" vastust",y,y)},
+return A.aE(d,y,this.a,y,"\xdcks vastus",""+d+" vastust",y,y)},
 goZ(){return"Jutul\xf5ng"},
 goD(){return"Tagasi p\xf5hivestlusesse"},
 gon(){return"Salvesta muudatused"},
@@ -647,7 +647,7 @@ gqc(){return"Eemalda moderaatori \xf5igused"},
 gqb(){return"Eemalda peakasutaja \xf5igused"},
 gq8(){return"\xd5iguste tase"},
 gpe(){return"\xd5iguste tase on \xfcks v\xf5imalusi kirjeldamaks seda, mida kasutaja saab jututoas teha ning see tavaliselt v\xe4ljendub numbriga vahemikust 0 kuni 100."},
-gdK(){return"Omanik"},
+gdL(){return"Omanik"},
 gpA(){return"Loo uus vestlus"},
 goX(d){return"L\xe4htesta"},
 gpq(){return"Toeta FluffyChati"},
@@ -711,10 +711,10 @@ gpy(){return"Saatmine ei \xf5nnestunud"},
 gqt(){return"Eile"},
 gqh(){return"L\xe4htesta taastev\xf5ti"},
 pH(d){var y=null
-return"Kas edastad "+A.aL(d,y,this.a,y,"\xfche s\xf5numi",""+d+" s\xf5numit",y,y)+"?"},
+return"Kas edastad "+A.aE(d,y,this.a,y,"\xfche s\xf5numi",""+d+" s\xf5numit",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gt,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"Gt":{"aE":[]}}'))};
-(a=>{a["cuYysfbJeANrG0LmzSrCTp5/Xk0="]=a.current})($__dart_deferred_initializers__);
+y(B.Gs,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"Gs":{"aF":[]}}'))};
+(a=>{a["jmtLUfEEFCfBmc9CPMTyInTd1Rk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map

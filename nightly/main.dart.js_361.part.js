@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOT(){return new B.GZ(A.dg("sr"))},
-GZ:function GZ(d){this.a=d}}
+cOT(){return new B.GY(A.dg("sr"))},
+GY:function GY(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[48],B)
-B.GZ.prototype={
+B.GY.prototype={
 gkq(){return"Ponovite lozinku"},
 gjW(){return"Not an image file."},
 gb8(d){return"\u0423\u043a\u043b\u043e\u043d\u0438"},
@@ -118,7 +118,7 @@ gex(d){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458"},
 giF(){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458 \u0443 \u043a\u043b\u0438\u043f\u0431\u043e\u0440\u0434"},
 iG(d){return"\u041d\u0435 \u043c\u043e\u0433\u0443 \u0434\u0430 \u0434\u0435\u0448\u0438\u0444\u0440\u0443\u0458\u0435\u043c \u043f\u043e\u0440\u0443\u043a\u0443: "+d},
 glT(){return"Check list"},
-dQ(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
+dJ(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
 iI(d){return""+d+" invited"},
 giJ(d){return"\u041d\u0430\u043f\u0440\u0430\u0432\u0438"},
 iK(d){return d+" \u043d\u0430\u043f\u0440\u0430\u0432\u0438 \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
@@ -129,7 +129,7 @@ giM(){return"\u0442\u0430\u043c\u043d\u0438"},
 fs(d,e){return d+", "+e},
 giN(){return"\u041e\u0432\u043e \u045b\u0435 \u0434\u0435\u0430\u043a\u0442\u0438\u0432\u0438\u0440\u0430\u0442\u0438 \u0432\u0430\u0448 \u043a\u043e\u0440\u0438\u0441\u043d\u0438\u0447\u043a\u0438 \u043d\u0430\u043b\u043e\u0433. \u041d\u0435 \u043c\u043e\u0436\u0435 \u0441\u0435 \u043f\u043e\u0432\u0440\u0430\u0442\u0438\u0442\u0438! \u0421\u0438\u0433\u0443\u0440\u043d\u0438 \u0441\u0442\u0435?"},
 giO(){return"\u041f\u043e\u0434\u0440\u0430\u0437\u0443\u043c\u0435\u0432\u0430\u043d\u0438 \u043d\u0438\u0432\u043e \u043f\u0440\u0438\u0441\u0442\u0443\u043f\u0430"},
-gdi(d){return"\u041e\u0431\u0440\u0438\u0448\u0438"},
+gdh(d){return"\u041e\u0431\u0440\u0438\u0448\u0438"},
 giQ(){return"\u041e\u0431\u0440\u0438\u0448\u0438 \u043d\u0430\u043b\u043e\u0433"},
 giR(){return"\u0411\u0440\u0438\u0441\u0430\u045a\u0435 \u043f\u043e\u0440\u0443\u043a\u0435"},
 gez(){return"\u0423\u0440\u0435\u0452\u0430\u0458\u0438"},
@@ -223,7 +223,7 @@ gjG(){return"\u041c\u043e\u0434\u0435\u0440\u0430\u0442\u043e\u0440"},
 geK(){return"\u0423\u045b\u0443\u0442\u043a\u0430\u0458 \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
 gfL(){return"\u041d\u043e\u0432\u043e \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
 gjK(){return"\u041d\u043e\u0432\u0438 \u0437\u0430\u0445\u0442\u0435\u0432 \u0437\u0430 \u0432\u0435\u0440\u0438\u0444\u0438\u043a\u0430\u0446\u0438\u0458\u0443!"},
-gdh(d){return"\u0421\u043b\u0435\u0434\u0435\u045b\u0435"},
+gdg(d){return"\u0421\u043b\u0435\u0434\u0435\u045b\u0435"},
 gek(){return"\u041d\u0435"},
 gjO(){return"\u041d\u0435\u043c\u0430 \u0432\u0435\u0437\u0435 \u0441\u0430 \u0441\u0435\u0440\u0432\u0435\u0440\u043e\u043c"},
 gfM(){return"\u041d\u0435\u043c\u0430 \u0435\u043c\u043e\u0442\u0438\u0458\u0430. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"\u041f\u0440\u0438\u0458\u0430\u0432\u0438 \u043f\u043e\u0440\u0443
 gkv(){return"\u0421\u043e\u0431\u0430 \u0458\u0435 \u043d\u0430\u0434\u043e\u0433\u0440\u0430\u0452\u0435\u043d\u0430"},
 ge4(){return"\u0412\u0435\u0440\u0437\u0438\u0458\u0430 \u0441\u043e\u0431\u0435"},
 gh8(){return"Save file"},
-gdO(d){return"\u041f\u0440\u0435\u0442\u0440\u0430\u0436\u0438"},
+gdP(d){return"\u041f\u0440\u0435\u0442\u0440\u0430\u0436\u0438"},
 geR(){return"\u0411\u0435\u0437\u0431\u0435\u0434\u043d\u043e\u0441\u0442"},
 gdX(d){return"\u041f\u043e\u0448\u0430\u0459\u0438"},
 gha(){return"\u041f\u043e\u0448\u0430\u0459\u0438 \u043f\u043e\u0440\u0443\u043a\u0443"},
@@ -300,7 +300,7 @@ gli(){return"\u041f\u043e\u0441\u0442\u0430\u0432\u0438 \u043a\u0430\u043e \u043
 geW(){return"Set chat description"},
 geX(){return"\u041f\u043e\u0441\u0442\u0430\u0432\u0438 \u0441\u0442\u0430\u0442\u0443\u0441"},
 ge9(){return"\u041f\u043e\u0441\u0442\u0430\u0432\u043a\u0435"},
-gdP(d){return"\u041f\u043e\u0434\u0435\u043b\u0438"},
+gdQ(d){return"\u041f\u043e\u0434\u0435\u043b\u0438"},
 ho(d){return d+" \u043f\u043e\u0434\u0435\u043b\u0438 \u043b\u043e\u043a\u0430\u0446\u0438\u0458\u0443"},
 ghn(){return"Share location"},
 gea(d){return"\u041f\u0440\u0435\u0441\u043a\u043e\u0447\u0438"},
@@ -348,7 +348,7 @@ god(){return"\u043a\u043e \u043c\u043e\u0436\u0435 \u0448\u0442\u0430 \u0434\u04
 goe(){return"\u041a\u043e \u043c\u043e\u0436\u0435 \u0434\u0430 \u0441\u0435 \u043f\u0440\u0438\u0434\u0440\u0443\u0436\u0438 \u0433\u0440\u0443\u043f\u0438"},
 geQ(){return"\u0417\u0430\u0448\u0442\u043e \u0436\u0435\u043b\u0438\u0442\u0435 \u043e\u0432\u043e \u0434\u0430 \u043f\u0440\u0438\u0458\u0430\u0432\u0438\u0442\u0435?"},
 gof(){return"\u0421\u0430 \u043e\u0432\u0438\u043c \u0430\u0434\u0440\u0435\u0441\u0430\u043c\u0430 \u043c\u043e\u0436\u0435\u0442\u0435 \u043e\u043f\u043e\u0440\u0430\u0432\u0438\u0442\u0438 \u0441\u0432\u043e\u0458\u0443 \u043b\u043e\u0437\u0438\u043d\u043a\u0443."},
-gdN(){return"\u0414\u0430"},
+gdO(){return"\u0414\u0430"},
 goh(){return"\u0412\u0438"},
 ge7(){return"\u0412\u0438\u0448\u0435 \u043d\u0435 \u0443\u0447\u0435\u0441\u0442\u0432\u0443\u0458\u0435\u0442\u0435 \u0443 \u043e\u0432\u043e\u043c \u045b\u0430\u0441\u043a\u0430\u045a\u0443"},
 goi(){return"\u0417\u0430\u0431\u0440\u0430\u045a\u0435\u043d\u043e \u0432\u0430\u043c \u0458\u0435 \u043e\u0432\u043e \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
@@ -605,11 +605,11 @@ gow(){return"Add answer option"},
 goy(){return"Allow multiple answers"},
 gnB(){return"Poll has been ended"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"Reply in thread"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Thread"},
 goD(){return"Back to main chat"},
 gon(){return"Save changes"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GZ,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GZ":{"aE":[]}}'))};
-(a=>{a["8H2m09eUf/V96IrW0J6HRYJhggo="]=a.current})($__dart_deferred_initializers__);
+y(B.GY,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GY":{"aF":[]}}'))};
+(a=>{a["EW2wpQ3CCoceM8YRWCLC45tfWDQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_361.part.js.map

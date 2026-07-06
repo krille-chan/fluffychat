@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOx(){return new B.GE(A.dg("hu"))},
-GE:function GE(d){this.a=d}}
+cOx(){return new B.GD(A.dg("hu"))},
+GD:function GD(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[29],B)
-B.GE.prototype={
+B.GD.prototype={
 gkq(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gjW(){return"Nem k\xe9p f\xe1jl."},
 gb8(d){return"Elt\xe1vol\xedt\xe1s"},
@@ -118,7 +118,7 @@ gex(d){return"M\xe1sol\xe1s"},
 giF(){return"V\xe1g\xf3lapra m\xe1sol\xe1s"},
 iG(d){return"Nem siker\xfclt visszafejteni az \xfczenetet: "+d},
 glT(){return"Tennival\xf3k list\xe1ja"},
-dQ(d){return""+d+" r\xe9sztvev\u0151"},
+dJ(d){return""+d+" r\xe9sztvev\u0151"},
 iI(d){return""+d+" megh\xedvott"},
 giJ(d){return"L\xe9trehoz"},
 iK(d){return"\ud83d\udcac "+d+" cseveg\xe9st hozott l\xe9tre"},
@@ -129,7 +129,7 @@ giM(){return"S\xf6t\xe9t"},
 fs(d,e){return d+", "+e},
 giN(){return"Ez deaktiv\xe1lja a felhaszn\xe1l\xf3i fi\xf3kj\xe1t. Ez nem vonhat\xf3 vissza! Biztos benne?"},
 giO(){return"Alap\xe9rtelmezett hozz\xe1f\xe9r\xe9si szint \xfaj felhaszn\xe1l\xf3kn\xe1l"},
-gdi(d){return"T\xf6rl\xe9s"},
+gdh(d){return"T\xf6rl\xe9s"},
 giQ(){return"Fi\xf3k t\xf6rl\xe9se"},
 giR(){return"\xdczenet t\xf6rl\xe9se"},
 gez(){return"Eszk\xf6z\xf6k"},
@@ -223,7 +223,7 @@ gjG(){return"Moder\xe1tor"},
 geK(){return"Cseveg\xe9s n\xe9m\xedt\xe1sa"},
 gfL(){return"\xdaj cseveg\xe9s"},
 gjK(){return"\xdaj hiteles\xedt\xe9si k\xe9relem!"},
-gdh(d){return"K\xf6vetkez\u0151"},
+gdg(d){return"K\xf6vetkez\u0151"},
 gek(){return"Nem"},
 gjO(){return"Nem el\xe9rhet\u0151 a szerver"},
 gfM(){return"Nem tal\xe1lhat\xf3ak hangulatjelek. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"\xdczenet jelent\xe9se"},
 gkv(){return"A szoba friss\xedt\xe9sre ker\xfclt"},
 ge4(){return"Szoba verzi\xf3"},
 gh8(){return"F\xe1jl ment\xe9se"},
-gdO(d){return"Keres\xe9s"},
+gdP(d){return"Keres\xe9s"},
 geR(){return"Biztons\xe1g"},
 gdX(d){return"K\xfcld\xe9s"},
 gha(){return"\xdczenet k\xfcld\xe9se"},
@@ -300,7 +300,7 @@ gli(){return"Be\xe1ll\xedt\xe1s alap\xe9rtelmezett \xe1ln\xe9vk\xe9nt"},
 geW(){return"Cseveg\xe9s le\xedr\xe1s be\xe1ll\xedt\xe1sa"},
 geX(){return"\xc1llapot be\xe1ll\xedt\xe1sa"},
 ge9(){return"Be\xe1ll\xedt\xe1sok"},
-gdP(d){return"Megoszt\xe1s"},
+gdQ(d){return"Megoszt\xe1s"},
 ho(d){return d+" megosztotta a poz\xedci\xf3j\xe1t"},
 ghn(){return"Poz\xedci\xf3 megoszt\xe1sa"},
 gea(d){return"Kihagy"},
@@ -348,7 +348,7 @@ god(){return"Ki milyen m\u0171veletet v\xe9gezhet"},
 goe(){return"Ki csatlakozhat a csoporthoz"},
 geQ(){return"Mi\xe9rt k\xedv\xe1nja ezt bejelenteni?"},
 gof(){return"Ezekkel a c\xedmekkel vissza tudja \xe1ll\xedtani a jelszav\xe1t."},
-gdN(){return"Igen"},
+gdO(){return"Igen"},
 goh(){return"\xd6n"},
 ge7(){return"Imm\xe1ron nem vesz r\xe9szt ebben a cseveg\xe9sben"},
 goi(){return"Kitiltott\xe1k ebb\u0151l a cseveg\xe9sb\u0151l"},
@@ -605,11 +605,11 @@ gow(){return"Add answer option"},
 goy(){return"Allow multiple answers"},
 gnB(){return"Poll has been ended"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"Reply in thread"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Thread"},
 goD(){return"Back to main chat"},
 gon(){return"Save changes"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GE,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GE":{"aE":[]}}'))};
-(a=>{a["nZlWR29Fh615D5KuchV1fQLVUaQ="]=a.current})($__dart_deferred_initializers__);
+y(B.GD,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GD":{"aF":[]}}'))};
+(a=>{a["q7lMrpxCJjMqqrUn4aN3jFvTaTI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_329.part.js.map

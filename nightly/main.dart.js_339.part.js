@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOB(){return new B.GI(A.dg("it"))},
-GI:function GI(d){this.a=d}}
+cOB(){return new B.GH(A.dg("it"))},
+GH:function GH(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[33],B)
-B.GI.prototype={
+B.GH.prototype={
 gkq(){return"Ripeti password"},
 gjW(){return"Non \xe8 un file immagine."},
 gb8(d){return"Rimuovi"},
@@ -118,7 +118,7 @@ gex(d){return"Copia"},
 giF(){return"Copia negli appunti"},
 iG(d){return"Impossibile decriptare messaggio: "+d},
 glT(){return"Checklist"},
-dQ(d){return""+d+" partecipanti"},
+dJ(d){return""+d+" partecipanti"},
 iI(d){return""+d+" invitati"},
 giJ(d){return"Crea"},
 iK(d){return"\ud83d\udcac "+d+" ha creato la chat"},
@@ -129,7 +129,7 @@ giM(){return"Scuro"},
 fs(d,e){return d+", "+e},
 giN(){return"Disabiliter\xe0 il tuo account. Non puoi tornare indietro! Sei sicuro/a?"},
 giO(){return"Livello di autorizzazione predefinito per i nuovi utenti"},
-gdi(d){return"Cancella"},
+gdh(d){return"Cancella"},
 giQ(){return"Elimina l'account"},
 giR(){return"Elimina il messaggio"},
 gez(){return"Dispositivi"},
@@ -223,7 +223,7 @@ gjG(){return"Moderatore"},
 geK(){return"Silenzia discussione"},
 gfL(){return"Nuova discussione"},
 gjK(){return"Nuova richiesta di verifica!"},
-gdh(d){return"Avanti"},
+gdg(d){return"Avanti"},
 gek(){return"No"},
 gjO(){return"Nessuna connessione al server"},
 gfM(){return"Nessun emote trovato. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Segnala il messaggio"},
 gkv(){return"La stanza \xe8 stata aggiornata"},
 ge4(){return"Versione della stanza"},
 gh8(){return"Salva file"},
-gdO(d){return"Cerca"},
+gdP(d){return"Cerca"},
 geR(){return"Sicurezza"},
 gdX(d){return"Invia"},
 gha(){return"Invia un messaggio"},
@@ -300,7 +300,7 @@ gli(){return"Imposta come alias principale"},
 geW(){return"Imposta la descrizione della chat"},
 geX(){return"Imposta lo stato"},
 ge9(){return"Impostazioni"},
-gdP(d){return"Condividi"},
+gdQ(d){return"Condividi"},
 ho(d){return d+" ha condiviso la sua posizione"},
 ghn(){return"Condividi posizione"},
 gea(d){return"Ignora"},
@@ -348,7 +348,7 @@ god(){return"Chi pu\xf2 eseguire quale azione"},
 goe(){return"Chi \xe8 autorizzato a unirsi a questo gruppo"},
 geQ(){return"Perch\xe9 vuoi segnalarlo?"},
 gof(){return"Con questi indirizzi puoi recuperare la tua password se necessario."},
-gdN(){return"S\xec"},
+gdO(){return"S\xec"},
 goh(){return"Tu"},
 ge7(){return"Non stai pi\xf9 partecipando a questa chat"},
 goi(){return"Sei stato/a bandito/a da questa chat"},
@@ -605,11 +605,11 @@ gow(){return"Add answer option"},
 goy(){return"Allow multiple answers"},
 gnB(){return"Poll has been ended"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"Reply in thread"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Thread"},
 goD(){return"Back to main chat"},
 gon(){return"Save changes"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GI,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GI":{"aE":[]}}'))};
-(a=>{a["eSKF3vDV/OtEm00jLZj4kjCP6mA="]=a.current})($__dart_deferred_initializers__);
+y(B.GH,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GH":{"aF":[]}}'))};
+(a=>{a["+RptjuuwBtU9ALtKsp/P3Z9KxCU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_339.part.js.map

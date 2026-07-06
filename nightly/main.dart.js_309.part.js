@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOp(){return new B.Gw(A.dg("fi"))},
-Gw:function Gw(d){this.a=d}}
+cOp(){return new B.Gv(A.dg("fi"))},
+Gv:function Gv(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[21],B)
-B.Gw.prototype={
+B.Gv.prototype={
 gkq(){return"Salasana uudelleen"},
 gjW(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
 gb8(d){return"Poista"},
@@ -118,7 +118,7 @@ gex(d){return"Kopioi"},
 giF(){return"Kopioi leikep\xf6yd\xe4lle"},
 iG(d){return"Viestin salausta ei voitu purkaa: "+d},
 glT(){return"Tarkistuslista"},
-dQ(d){return""+d+" osallistujaa"},
+dJ(d){return""+d+" osallistujaa"},
 iI(d){return""+d+" kutsuttu"},
 giJ(d){return"Luo"},
 iK(d){return d+" loi keskustelun"},
@@ -129,7 +129,7 @@ giM(){return"Tumma"},
 fs(d,e){return d+", "+e},
 giN(){return"T\xe4m\xe4 poistaa tunnuksesi k\xe4yt\xf6st\xe4. T\xe4t\xe4 ei voi kumota! Oletko varma?"},
 giO(){return"Uusien k\xe4ytt\xe4jien oikeuksien oletustaso"},
-gdi(d){return"Poista"},
+gdh(d){return"Poista"},
 giQ(){return"Poista tunnus"},
 giR(){return"Poista viesti"},
 gez(){return"Laitteet"},
@@ -223,7 +223,7 @@ gjG(){return"Valvoja"},
 geK(){return"Vaienna keskustelu"},
 gfL(){return"Uusi keskustelu"},
 gjK(){return"Uusi varmennuspyynt\xf6!"},
-gdh(d){return"Seuraava"},
+gdg(d){return"Seuraava"},
 gek(){return"Ei"},
 gjO(){return"Ei yhteytt\xe4 palvelimeen"},
 gfM(){return"Emoteja ei l\xf6ytynyt. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Ilmoita viesti"},
 gkv(){return"Huone on p\xe4ivitetty"},
 ge4(){return"Huoneen versio"},
 gh8(){return"Tallenna tiedosto"},
-gdO(d){return"Hae"},
+gdP(d){return"Hae"},
 geR(){return"Turvallisuus"},
 gdX(d){return"L\xe4het\xe4"},
 gha(){return"L\xe4het\xe4 viesti"},
@@ -300,7 +300,7 @@ gli(){return"Aseta p\xe4\xe4alias"},
 geW(){return"Asetti keskustelun kuvauksen"},
 geX(){return"Aseta tila"},
 ge9(){return"Asetukset"},
-gdP(d){return"Jaa"},
+gdQ(d){return"Jaa"},
 ho(d){return d+" jakoi sijaintinsa"},
 ghn(){return"Jaa sijainti"},
 gea(d){return"Ohita"},
@@ -348,7 +348,7 @@ god(){return"Kuka voi suorittaa mink\xe4 toimenpiteen"},
 goe(){return"Kenen on sallittua liitty\xe4 ryhm\xe4\xe4n"},
 geQ(){return"Miksi haluat ilmoittaa t\xe4m\xe4n?"},
 gof(){return"N\xe4ill\xe4 osoitteilla voit palauttaa salasanasi."},
-gdN(){return"Kyll\xe4"},
+gdO(){return"Kyll\xe4"},
 goh(){return"Sin\xe4"},
 ge7(){return"Et en\xe4\xe4 osallistu t\xe4h\xe4n keskusteluun"},
 goi(){return"Sinulle on annettu porttikielto t\xe4h\xe4n keskusteluun"},
@@ -605,11 +605,11 @@ gow(){return"Lis\xe4\xe4 vastausvaihtoehto"},
 goy(){return"Salli useita vastauksia"},
 gnB(){return"Kysely on p\xe4\xe4ttynyt"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" \xe4\xe4nt\xe4",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" \xe4\xe4nt\xe4",y,y)},
 goB(){return"Vastaukset n\xe4kyv\xe4t, kun kysely on p\xe4\xe4ttynyt"},
 gnI(){return"Vastaa ketjussa"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" vastausta",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" vastausta",y,y)},
 goZ(){return"Ketju"},
 goD(){return"Takaisin p\xe4\xe4pikakeskusteluun"},
 gon(){return"Save changes"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gw,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"Gw":{"aE":[]}}'))};
-(a=>{a["3g05yelMyMr+AVfwv8Ljw6X8S4g="]=a.current})($__dart_deferred_initializers__);
+y(B.Gv,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"Gv":{"aF":[]}}'))};
+(a=>{a["ZqOU9cTvxrUtO5z5jBeAf5OYLJw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_309.part.js.map

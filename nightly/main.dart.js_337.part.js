@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOA(){return new B.GH(A.dg("ie"))},
-GH:function GH(d){this.a=d}}
+cOA(){return new B.GG(A.dg("ie"))},
+GG:function GG(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[32],B)
-B.GH.prototype={
+B.GG.prototype={
 gkq(){return"Repetir li contrasigne"},
 gjW(){return"Not an image file."},
 gb8(d){return"Remover"},
@@ -118,7 +118,7 @@ gex(d){return"Copiar"},
 giF(){return"Copiar al Paperiere"},
 iG(d){return"Could not decrypt message: "+d},
 glT(){return"Check list"},
-dQ(d){return""+d+" participantes"},
+dJ(d){return""+d+" participantes"},
 iI(d){return""+d+" invited"},
 giJ(d){return"Crear"},
 iK(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -129,7 +129,7 @@ giM(){return"Obscur"},
 fs(d,e){return d+", "+e},
 giN(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 giO(){return"Default permission level for new users"},
-gdi(d){return"Remover"},
+gdh(d){return"Remover"},
 giQ(){return"Destructer li conto"},
 giR(){return"Remover li missage"},
 gez(){return"Aparates"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Assurdar li conversation"},
 gfL(){return"Crear un conversation"},
 gjK(){return"Nov demanda de verification!"},
-gdh(d){return"Sequent"},
+gdg(d){return"Sequent"},
 gek(){return"No"},
 gjO(){return"No connection to the server"},
 gfM(){return"No emotes found. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Raportar li missage"},
 gkv(){return"Room has been upgraded"},
 ge4(){return"Version del chambre"},
 gh8(){return"Gardar li file"},
-gdO(d){return"Sercha"},
+gdP(d){return"Sercha"},
 geR(){return"Securit\xe1"},
 gdX(d){return"Inviar"},
 gha(){return"Send a message"},
@@ -300,7 +300,7 @@ gli(){return"Set as main alias"},
 geW(){return"Set chat description"},
 geX(){return"Assignar li statu"},
 ge9(){return"Parametres"},
-gdP(d){return"Partir"},
+gdQ(d){return"Partir"},
 ho(d){return d+" shared their location"},
 ghn(){return"Partir un localisation"},
 gea(d){return"Omisser"},
@@ -348,7 +348,7 @@ god(){return"Who can perform which action"},
 goe(){return"Who is allowed to join this group"},
 geQ(){return"Why do you want to report this?"},
 gof(){return"With these addresses you can recover your password."},
-gdN(){return"Yes"},
+gdO(){return"Yes"},
 goh(){return"Vu"},
 ge7(){return"You are no longer participating in this chat"},
 goi(){return"You have been banned from this chat"},
@@ -605,11 +605,11 @@ gow(){return"Add answer option"},
 goy(){return"Allow multiple answers"},
 gnB(){return"Poll has been ended"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"Reply in thread"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Thread"},
 goD(){return"Back to main chat"},
 gon(){return"Save changes"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GH,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GH":{"aE":[]}}'))};
-(a=>{a["FspA8rCXxv2Qwmitd0PrBmNFcfg="]=a.current})($__dart_deferred_initializers__);
+y(B.GG,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GG":{"aF":[]}}'))};
+(a=>{a["58AJsFdEtlupHAFX9qAynSF0TWQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_337.part.js.map

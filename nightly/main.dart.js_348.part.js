@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOI(){return new B.GP(A.dg("nb"))},
-GP:function GP(d){this.a=d}}
+cOI(){return new B.GO(A.dg("nb"))},
+GO:function GO(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[40],B)
-B.GP.prototype={
+B.GO.prototype={
 gkq(){return"Gjenta passord"},
 gjW(){return"Ikke en bildefil."},
 gb8(d){return"Fjern"},
@@ -118,7 +118,7 @@ gex(d){return"Kopier"},
 giF(){return"Kopier til utklippstavle"},
 iG(d){return"Kunne ikke dekryptere melding: "+d},
 glT(){return"Sjekkliste"},
-dQ(d){return""+d+" deltagere"},
+dJ(d){return""+d+" deltagere"},
 iI(d){return""+d+" inviterte"},
 giJ(d){return"Opprett"},
 iK(d){return d+" opprettet sludringen"},
@@ -129,7 +129,7 @@ giM(){return"M\xf8rk"},
 fs(d,e){return e+", "+d},
 giN(){return"Dette vil skru av din brukerkonto for godt, og kan ikke angres! Er du sikker?"},
 giO(){return"Forvalgt tilgangsniv\xe5"},
-gdi(d){return"Slett"},
+gdh(d){return"Slett"},
 giQ(){return"Slett konto"},
 giR(){return"Slett melding"},
 gez(){return"Enheter"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Forstum sludring"},
 gfL(){return"Ny sludring"},
 gjK(){return"Ny bekreftelsesforesp\xf8rsel!"},
-gdh(d){return"Neste"},
+gdg(d){return"Neste"},
 gek(){return"Nei"},
 gjO(){return"Ingen tilkobling til tjeneren"},
 gfM(){return"Fant ingen smilefjes. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Rapporter melding"},
 gkv(){return"Rommet har blitt oppgradert"},
 ge4(){return"Rom versjon"},
 gh8(){return"Lagre fil"},
-gdO(d){return"S\xf8k"},
+gdP(d){return"S\xf8k"},
 geR(){return"Sikkerhet"},
 gdX(d){return"Send"},
 gha(){return"Send en melding"},
@@ -300,7 +300,7 @@ gli(){return"Angi som hovedalias"},
 geW(){return"Sett chat beskrivelse"},
 geX(){return"Angi status"},
 ge9(){return"Innstilinger"},
-gdP(d){return"Del"},
+gdQ(d){return"Del"},
 ho(d){return d+" delte posisjonen"},
 ghn(){return"Del lokasjon"},
 gea(d){return"Hopp over"},
@@ -348,7 +348,7 @@ god(){return"Hvem kan utf\xf8re hvilken handling"},
 goe(){return"Hvem tillates \xe5 ta del i denne gruppen"},
 geQ(){return"Hvorfor \xf8nsker du \xe5 rapportere dette?"},
 gof(){return"Med disse adressene kan du gjenopprette passordet ditt hvis du trenger det."},
-gdN(){return"Ja"},
+gdO(){return"Ja"},
 goh(){return"Deg"},
 ge7(){return"Du deltar ikke lenger i denne sludringen"},
 goi(){return"Du har blitt bannlyst fra denne sludringen"},
@@ -605,11 +605,11 @@ gow(){return"Legg til svaralternativ"},
 goy(){return"Tillat flere svar"},
 gnB(){return"Avstemningen er avsluttet"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"En stemme",""+d+" stemmer",y,y)},
+return A.aE(d,y,this.a,y,"En stemme",""+d+" stemmer",y,y)},
 goB(){return"Svarene vil v\xe6re synlige n\xe5r avstemningen er avsluttet"},
 gnI(){return"Svar i tr\xe5den"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"Et svar",""+d+" svar",y,y)},
+return A.aE(d,y,this.a,y,"Et svar",""+d+" svar",y,y)},
 goZ(){return"Tr\xe5d"},
 goD(){return"Tilbake til hovedchatten"},
 gon(){return"Lagre endringer"},
@@ -647,7 +647,7 @@ gqc(){return"Fjern moderator-rettigheter"},
 gqb(){return"Fjern admin-rettigheter"},
 gq8(){return"Styrkeniv\xe5"},
 gpe(){return"Styrkeniv\xe5er definerer hva et medlem har lov til \xe5 gj\xf8re i dette rommet, og varierer vanligvis mellom 0 og 100."},
-gdK(){return"Eier"},
+gdL(){return"Eier"},
 gpA(){return"Opprett ny chat"},
 goX(d){return"Nullstill"},
 gpq(){return"St\xf8tt FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GP,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GP":{"aE":[]}}'))};
-(a=>{a["mgbFGqYun36VO7Aj9l+D1DwaWt8="]=a.current})($__dart_deferred_initializers__);
+y(B.GO,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GO":{"aF":[]}}'))};
+(a=>{a["22Pc3AOUod6wUwBBCJG1cIMH7Q8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_348.part.js.map

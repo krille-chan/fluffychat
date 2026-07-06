@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOE(){return new B.GL(A.dg("kab"))},
-GL:function GL(d){this.a=d}}
+cOE(){return new B.GK(A.dg("kab"))},
+GK:function GK(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[36],B)
-B.GL.prototype={
+B.GK.prototype={
 gkq(){return"Ales awal n u\u025beddi"},
 gjW(){return"Ma\u010d\u010di d afaylu n tugna."},
 gb8(d){return"Kkes"},
@@ -118,7 +118,7 @@ gex(d){return"N\u0263el"},
 giF(){return"N\u0263el \u0263er tecfawit"},
 iG(d){return"Ur izmer ara tukksa n uwgelhen n yizen: "+d},
 glT(){return"Senqed tabdart"},
-dQ(d){return""+d+" imttekkiyen"},
+dJ(d){return""+d+" imttekkiyen"},
 iI(d){return""+d+" yettwa\u025ber\u1e0den"},
 giJ(d){return"Snulfu-d"},
 iK(d){return"\ud83d\udcac "+d+" yesnulfa-d adiwenni"},
@@ -129,7 +129,7 @@ giM(){return"Ubrik"},
 fs(d,e){return e+", "+d},
 giN(){return"Ayagi ad yekkes armed i umi\u1e0dan-ik\xb7im n useqdac. Aya ur yezmir ara ad yettwasefsex. Tet\u1e25eqqe\u1e0d s tidet?"},
 giO(){return"Aswir n turagt amezwer i yiseqdacen imaynuten"},
-gdi(d){return"kkes"},
+gdh(d){return"kkes"},
 giQ(){return"kkes ami\u1e0dan"},
 giR(){return"kkes izen"},
 gez(){return"Ibenkan"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Sgugem adiwenni"},
 gfL(){return"Adiwenni Amaynut"},
 gjK(){return"Asuter amaynut n uselken!"},
-gdh(d){return"U\u1e0dfir"},
+gdg(d){return"U\u1e0dfir"},
 gek(){return"Ala"},
 gjO(){return"Ulac tuqqna \u0263er uqeddac"},
 gfM(){return"Ulac izamulen u\u1e25ulfu yettwafen. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Mmel-d izen"},
 gkv(){return"Taxxamt tettwaleqqem"},
 ge4(){return"Lqem n texxamt"},
 gh8(){return"Sekles afaylu"},
-gdO(d){return"Nadi"},
+gdP(d){return"Nadi"},
 geR(){return"Ta\u0263ellist"},
 gdX(d){return"Azen"},
 gha(){return"Azen izen"},
@@ -300,7 +300,7 @@ gli(){return"Sbadu-t d taza\u1e93lut tagejdant"},
 geW(){return"Sbadu aglam n udiwenni"},
 geX(){return"Sbadu addad"},
 ge9(){return"I\u0263ewwaren"},
-gdP(d){return"B\u1e0du"},
+gdQ(d){return"B\u1e0du"},
 ho(d){return d+" yeb\u1e0da adig-is"},
 ghn(){return"B\u1e0du adig"},
 gea(d){return"Zgel"},
@@ -348,7 +348,7 @@ god(){return"Anwa i izemren ad yexdem anta tigawt"},
 goe(){return"Anwa i izemren ad yernu \u0263er ugraw-agi"},
 geQ(){return"Ay\u0263er teb\u0263i\u1e0d ad temle\u1e0d aya?"},
 gof(){return"S tansiwin-agi i tzemre\u1e0d ad terre\u1e0d awal-ik\xb7im n u\u025beddi."},
-gdN(){return"Ih"},
+gdO(){return"Ih"},
 goh(){return"ke\u010d\u010d\xb7em"},
 ge7(){return"Ur mazal ara tettekka\u1e0d deg udiwenni-a"},
 goi(){return"Tettwagedle\u1e0d seg udiwenni-agi"},
@@ -605,11 +605,11 @@ gow(){return"Rnu tanefrunt n tririt"},
 goy(){return"Sireg aget n tiririyin"},
 gnB(){return"Tafrent tfukk"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goB(){return"Tiririyin ad banent ticki tafrent tfukk"},
 gnI(){return"Err deg udras udiwenni"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Adras udiwenni"},
 goD(){return"U\u0263al \u0263er udiwenni agejdan"},
 gon(){return"Sekles ibeddilen"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Kkes izerfan n unedbal"},
 gq8(){return"Aswir n tezmert"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Amli"},
+gdL(){return"Amli"},
 gpA(){return"Snulfu-d adiwenni amaynut"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GL,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GL":{"aE":[]}}'))};
-(a=>{a["+LamehgCjB1SPpNRQrUhqK4MOYE="]=a.current})($__dart_deferred_initializers__);
+y(B.GK,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GK":{"aF":[]}}'))};
+(a=>{a["v4rRaCaIGw/FaSlWrLX9RqoqW7o="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_344.part.js.map

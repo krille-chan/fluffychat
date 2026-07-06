@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOG(){return new B.GN(A.dg("lt"))},
-GN:function GN(d){this.a=d}}
+cOG(){return new B.GM(A.dg("lt"))},
+GM:function GM(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[38],B)
-B.GN.prototype={
+B.GM.prototype={
 gkq(){return"Pakartokite slapta\u017eod\u012f"},
 gjW(){return"N\u0117ra vaizdo failas."},
 gb8(d){return"\u0160alinti"},
@@ -118,7 +118,7 @@ gex(d){return"Kopijuoti"},
 giF(){return"Koipjuoti \u012f i\u0161karpin\u0119"},
 iG(d){return"Nepavyko i\u0161\u0161ifruoti prane\u0161imo: "+d},
 glT(){return"Check list"},
-dQ(d){return""+d+" dalyviai"},
+dJ(d){return""+d+" dalyviai"},
 iI(d){return""+d+" invited"},
 giJ(d){return"Sukurti"},
 iK(d){return"\ud83d\udcac "+d+" suk\u016br\u0117 pokalb\u012f"},
@@ -129,7 +129,7 @@ giM(){return"Tamsi"},
 fs(d,e){return d+", "+e},
 giN(){return"Tai deaktyvuos j\u016bs\u0173 vartotojo paskyr\u0105. Tai negali b\u016bti at\u0161aukta! Ar j\u016bs tuo tikri?"},
 giO(){return"Numatytasis teisi\u0173 lygis"},
-gdi(d){return"I\u0161trinti"},
+gdh(d){return"I\u0161trinti"},
 giQ(){return"Panaikinti paskyra"},
 giR(){return"I\u0161trinti \u017einut\u0119"},
 gez(){return"\u012erenginiai"},
@@ -223,7 +223,7 @@ gjG(){return"Moderatorius"},
 geK(){return"Nutildyti pokalb\u012f"},
 gfL(){return"Naujas pokalbis"},
 gjK(){return"Nauja patvirtinimo u\u017eklausa!"},
-gdh(d){return"Toliau"},
+gdg(d){return"Toliau"},
 gek(){return"Ne"},
 gjO(){return"N\u0117ra ry\u0161io su serveriu"},
 gfM(){return"Nerasta jaustuk\u0173. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Prane\u0161ti apie \u017einut\u0119"},
 gkv(){return"Kambarys buvo atnaujintas"},
 ge4(){return"Kambario versija"},
 gh8(){return"I\u0161saugoti fail\u0105"},
-gdO(d){return"Ie\u0161koti"},
+gdP(d){return"Ie\u0161koti"},
 geR(){return"Apsauga"},
 gdX(d){return"Si\u0173sti"},
 gha(){return"Si\u0173sti \u017einut\u0119"},
@@ -300,7 +300,7 @@ gli(){return"Nustatyti kaip pagrindin\u012f slapyvard\u012f"},
 geW(){return"Set chat description"},
 geX(){return"Nustatyti b\u016bsen\u0105"},
 ge9(){return"Nustatytmai"},
-gdP(d){return"Bendrinti"},
+gdQ(d){return"Bendrinti"},
 ho(d){return d+" bendrino savo viet\u0105"},
 ghn(){return"Bendrinti viet\u0105"},
 gea(d){return"Praleisti"},
@@ -348,7 +348,7 @@ god(){return"Kas gali atlikti kok\u012f veiksm\u0105"},
 goe(){return"Kam leid\u017eiama prisijungti prie \u0161ios grup\u0117s"},
 geQ(){return"Kod\u0117l norite apie tai prane\u0161ti?"},
 gof(){return"Naudodami \u0161iuos adresus galite atkurti savo slapta\u017eod\u012f."},
-gdN(){return"Taip"},
+gdO(){return"Taip"},
 goh(){return"J\u016bs"},
 ge7(){return"J\u016bs nebedalyvaujate \u0161iame pokalbyje"},
 goi(){return"Jums buvo u\u017edrausta dalyvauti \u0161iame pokalbyje"},
@@ -605,11 +605,11 @@ gow(){return"Add answer option"},
 goy(){return"Allow multiple answers"},
 gnB(){return"Poll has been ended"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"Reply in thread"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Thread"},
 goD(){return"Back to main chat"},
 gon(){return"Save changes"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"vakar"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GN,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GN":{"aE":[]}}'))};
-(a=>{a["XQ0huiSkXFiJNFTtssWoxP5qZ7Q="]=a.current})($__dart_deferred_initializers__);
+y(B.GM,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GM":{"aF":[]}}'))};
+(a=>{a["/OaWxNSBHyuxfc7ff9TW8RTq9B8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_346.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOw(){return new B.GD(A.dg("hr"))},
-GD:function GD(d){this.a=d}}
+cOw(){return new B.GC(A.dg("hr"))},
+GC:function GC(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[28],B)
-B.GD.prototype={
+B.GC.prototype={
 gkq(){return"Ponovi lozinku"},
 gjW(){return"Nije slikovna datoteka."},
 gb8(d){return"Ukloni"},
@@ -118,7 +118,7 @@ gex(d){return"Kopiraj"},
 giF(){return"Kopiraj u me\u0111uspremnik"},
 iG(d){return"Neuspjelo de\u0161ifriranje poruke: "+d},
 glT(){return"Kontrolni popis"},
-dQ(d){return"Broj sudionika: "+d},
+dJ(d){return"Broj sudionika: "+d},
 iI(d){return"Broj pozvanih: "+d},
 giJ(d){return"Stvori"},
 iK(d){return"\ud83d\udcac "+d+" je stvorio/la chat"},
@@ -129,7 +129,7 @@ giM(){return"Tamna"},
 fs(d,e){return d+", "+e},
 giN(){return"Ovo \u0107e nepovratno deaktivirati tvoj korisni\u010dki ra\u010dun. Stvarno to \u017eeli\u0161?"},
 giO(){return"Standardna razina dozvole za nove korisnike"},
-gdi(d){return"Izbri\u0161i"},
+gdh(d){return"Izbri\u0161i"},
 giQ(){return"Izbri\u0161i ra\u010dun"},
 giR(){return"Izbri\u0161i poruku"},
 gez(){return"Ure\u0111aji"},
@@ -223,7 +223,7 @@ gjG(){return"Voditelj"},
 geK(){return"Isklju\u010di zvuk chata"},
 gfL(){return"Novi chat"},
 gjK(){return"Novi zahtjev za potvr\u0111ivanje!"},
-gdh(d){return"Dalje"},
+gdg(d){return"Dalje"},
 gek(){return"Ne"},
 gjO(){return"Ne postoji veza sa serverom"},
 gfM(){return"Nema emotikona. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Prijavi poruku"},
 gkv(){return"Soba je nadogra\u0111ena"},
 ge4(){return"Verzija sobe"},
 gh8(){return"Spremi datoteku"},
-gdO(d){return"Tra\u017ei"},
+gdP(d){return"Tra\u017ei"},
 geR(){return"Sigurnost"},
 gdX(d){return"Po\u0161alji"},
 gha(){return"Po\u0161alji poruku"},
@@ -300,7 +300,7 @@ gli(){return"Postavi kao glavni pseudonim"},
 geW(){return"Postavi opis rzgovora"},
 geX(){return"Postavi stanje"},
 ge9(){return"Postavke"},
-gdP(d){return"Dijeli"},
+gdQ(d){return"Dijeli"},
 ho(d){return d+" je dijelio/la svoje mjesto"},
 ghn(){return"Dijeli lokaciju"},
 gea(d){return"Presko\u010di"},
@@ -348,7 +348,7 @@ god(){return"Tko mo\u017ee izvr\u0161iti koju radnju"},
 goe(){return"Tko se smije pridru\u017eiti grupi"},
 geQ(){return"Za\u0161to \u017eeli\u0161 ovo prijaviti?"},
 gof(){return"Lozinku mo\u017ee\u0161 obnoviti pomo\u0107u ovih adresa."},
-gdN(){return"Da"},
+gdO(){return"Da"},
 goh(){return"Ti"},
 ge7(){return"Vi\u0161e ne sudjeluje\u0161 u ovom chatu"},
 goi(){return"Isklju\u010den/a si iz ovog chata"},
@@ -605,11 +605,11 @@ gow(){return"Dodaj opciju za odgovor"},
 goy(){return"Dopusti vi\u0161e odgovora"},
 gnB(){return"Anketa je zavr\u0161ena"},
 oJ(d){var y=""+d
-return A.aL(d,y+" glasa",this.a,null,"Jedan glas",y+" glasova",null,null)},
+return A.aE(d,y+" glasa",this.a,null,"Jedan glas",y+" glasova",null,null)},
 goB(){return"Odgovori \u0107e biti vidljivi nakon zavr\u0161etka ankete"},
 gnI(){return"Odgovori u temi"},
 oI(d){var y=""+d+" odgovora"
-return A.aL(d,y,this.a,null,"Jedan odgovor",y,null,null)},
+return A.aE(d,y,this.a,null,"Jedan odgovor",y,null,null)},
 goZ(){return"Tema"},
 goD(){return"Natrag na glavni chat"},
 gon(){return"Spremi promjene"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.GD,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GD":{"aE":[]}}'))};
-(a=>{a["O9HcDg746bGsW+G7MLhPg2hJPGU="]=a.current})($__dart_deferred_initializers__);
+y(B.GC,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GC":{"aF":[]}}'))};
+(a=>{a["Nd1pRd51jqrid5EyT1yoBn7/2eQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_322.part.js.map

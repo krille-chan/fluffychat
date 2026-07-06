@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cP_(){return new B.H5(A.dg("uz"))},
-H5:function H5(d){this.a=d}}
+cP_(){return new B.H4(A.dg("uz"))},
+H4:function H4(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[55],B)
-B.H5.prototype={
+B.H4.prototype={
 gkq(){return"Parolni takrorlang"},
 gjW(){return"Rasm fayli emas."},
 gb8(d){return"O\u2018chirish"},
@@ -118,7 +118,7 @@ gex(d){return"Nusxalash"},
 giF(){return"Buferga nusxalash"},
 iG(d){return"Xabarni shifrlab bo\u02bblmadi: "+d},
 glT(){return"Tekshirish ro\u02bbyxati"},
-dQ(d){return""+d+" qatnashuvchilar"},
+dJ(d){return""+d+" qatnashuvchilar"},
 iI(d){return""+d+" taklif qilindi"},
 giJ(d){return"Yaratish"},
 iK(d){return"\ud83d\udcac "+d+" suhbat yaratdi"},
@@ -129,7 +129,7 @@ giM(){return"Qorong\u02bbi"},
 fs(d,e){return d+", "+e},
 giN(){return"Bu sizning foydalanuvchi hisobingizni o\u02bbchirib qo\u02bbyadi. Buni qaytarib bo\u02bblmaydi! Ishonchingiz komilmi?"},
 giO(){return"Yangi foydalanuvchilar uchun standart ruxsat darajasi"},
-gdi(d){return"O\u02bbchirish"},
+gdh(d){return"O\u02bbchirish"},
 giQ(){return"Hisobni o\u02bbchirish"},
 giR(){return"Xabarni o\u02bbchirish"},
 gez(){return"Qurilmalar"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Suhbatni ovozsizlantirish"},
 gfL(){return"Yangi suhbat"},
 gjK(){return"Yangi tasdiqlash so'rovi!"},
-gdh(d){return"Keyingi"},
+gdg(d){return"Keyingi"},
 gek(){return"Yo\u02bbq"},
 gjO(){return"Serverga ulanish yo\u02bbq"},
 gfM(){return"Hech qanday emote\u02bclar topilmadi \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Xabar berish"},
 gkv(){return"Xona takomillashtirildi"},
 ge4(){return"Guruh versiyasi"},
 gh8(){return"Fayl saqlash"},
-gdO(d){return"Qidiruv"},
+gdP(d){return"Qidiruv"},
 geR(){return"Xavfsizlik"},
 gdX(d){return"Yuborish"},
 gha(){return"Xabar yuborish"},
@@ -300,7 +300,7 @@ gli(){return"Asosiy taxallus sifatida belgilash"},
 geW(){return"Suhbat tavsifini sozlash"},
 geX(){return"Holatni sozlash"},
 ge9(){return"Sozlamalar"},
-gdP(d){return"Bo\u2018lishmoq"},
+gdQ(d){return"Bo\u2018lishmoq"},
 ho(d){return d+" joylashuvini ulashdi"},
 ghn(){return"Joylashuvni ulashish"},
 gea(d){return"Tashlab ketish"},
@@ -348,7 +348,7 @@ god(){return"Kim qaysi amalni bajarishi mumkin"},
 goe(){return"Bu guruhga kim qo\u2018shilishi mumkin"},
 geQ(){return"Nima uchun bu haqda xabar bermoqchisiz?"},
 gof(){return"Ushbu manzillar yordamida parolingizni tiklashingiz mumkin."},
-gdN(){return"Ha"},
+gdO(){return"Ha"},
 goh(){return"Siz"},
 ge7(){return"Siz ortiq bu suhbatda qatnashmayapsiz"},
 goi(){return"Bu suhbatdan bloklandingiz"},
@@ -605,11 +605,11 @@ gow(){return"Javob variantini kiritish"},
 goy(){return"Bir nechta javobga ruxsat berish"},
 gnB(){return"So\u2018rovnoma yakunlandi"},
 oJ(d){var x=null
-return A.aL(d,x,this.a,x,"Bir ovoz",""+d+" ta ovoz",x,x)},
+return A.aE(d,x,this.a,x,"Bir ovoz",""+d+" ta ovoz",x,x)},
 goB(){return"So\u2018rovnoma tugaganida javoblar chiqadi"},
 gnI(){return"Sahifada javob berish"},
 oI(d){var x=null
-return A.aL(d,x,this.a,x,"Bitta javob",""+d+" ta javob",x,x)},
+return A.aE(d,x,this.a,x,"Bitta javob",""+d+" ta javob",x,x)},
 goZ(){return"Sahifa"},
 goD(){return"Asosiy suhbatga qaytish"},
 gon(){return"O\u2018zgarishlarni saqlash"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,11 +711,11 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var x=null
-return"Forward "+A.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
+return"Forward "+A.aE(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.H5,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"H5":{"aE":[]}}'))
+x(B.H4,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"H4":{"aF":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["60OY/Nt0ZB8zT6NtbB4Y6epIcZk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BSVBdocgGIRsIYWrP+MKzkf6ojg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_370.part.js.map

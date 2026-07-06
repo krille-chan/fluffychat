@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOU(){return new B.H_(A.dg("sv"))},
-H_:function H_(d){this.a=d}}
+cOU(){return new B.GZ(A.dg("sv"))},
+GZ:function GZ(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[49],B)
-B.H_.prototype={
+B.GZ.prototype={
 gkq(){return"Upprepa l\xf6senord"},
 gjW(){return"Inte en bildfil."},
 gb8(d){return"Ta bort"},
@@ -118,7 +118,7 @@ gex(d){return"Kopiera"},
 giF(){return"Kopiera till urklipp"},
 iG(d){return"Kunde ej avkoda meddelande: "+d},
 glT(){return"Att-g\xf6ra lista"},
-dQ(d){return""+d+" deltagare"},
+dJ(d){return""+d+" deltagare"},
 iI(d){return""+d+" inbjudna"},
 giJ(d){return"Skapa"},
 iK(d){return"\ud83d\udcac "+d+" skapade chatten"},
@@ -129,7 +129,7 @@ giM(){return"M\xf6rkt"},
 fs(d,e){return d+", "+e},
 giN(){return"Detta kommer att avaktivera ditt konto. Det h\xe4r g\xe5r inte att \xe5ngra! \xc4r du s\xe4ker?"},
 giO(){return"Standard beh\xf6righetsniv\xe5"},
-gdi(d){return"Radera"},
+gdh(d){return"Radera"},
 giQ(){return"Ta bort konto"},
 giR(){return"Ta bort meddelande"},
 gez(){return"Enheter"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Tysta chatt"},
 gfL(){return"Ny chatt"},
 gjK(){return"Ny verifikationsbeg\xe4ran!"},
-gdh(d){return"N\xe4sta"},
+gdg(d){return"N\xe4sta"},
 gek(){return"Nej"},
 gjO(){return"Ingen anslutning till servern"},
 gfM(){return"Hittade inga dekaler. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Rapportera meddelande"},
 gkv(){return"Rummet har blivit uppgraderat"},
 ge4(){return"Rum version"},
 gh8(){return"Spara fil"},
-gdO(d){return"S\xf6k"},
+gdP(d){return"S\xf6k"},
 geR(){return"S\xe4kerhet"},
 gdX(d){return"Skicka"},
 gha(){return"Skicka ett meddelande"},
@@ -300,7 +300,7 @@ gli(){return"S\xe4tt som prim\xe4rt alias"},
 geW(){return"\xc4ndra chattens beskrivning"},
 geX(){return"St\xe4ll in status"},
 ge9(){return"Inst\xe4llningar"},
-gdP(d){return"Dela"},
+gdQ(d){return"Dela"},
 ho(d){return d+" delade sin position"},
 ghn(){return"Dela plats"},
 gea(d){return"Hoppa \xf6ver"},
@@ -348,7 +348,7 @@ god(){return"Vem kan utf\xf6ra vilken \xe5tg\xe4rd"},
 goe(){return"Vilka som \xe4r tilll\xe5tna att ansluta till denna grupp"},
 geQ(){return"Varf\xf6r vill du rapportera detta?"},
 gof(){return"Med dessa addresser kan du \xe5terst\xe4lla ditt l\xf6senord."},
-gdN(){return"Ja"},
+gdO(){return"Ja"},
 goh(){return"Du"},
 ge7(){return"Du deltar inte l\xe4ngre i denna chatt"},
 goi(){return"Du har blivit bannad fr\xe5n denna chatt"},
@@ -605,11 +605,11 @@ gow(){return"L\xe4gg till svarsalternativ"},
 goy(){return"Till\xe5t flera svar"},
 gnB(){return"Poll has been ended"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"En r\xf6st",""+d+" r\xf6ster",y,y)},
+return A.aE(d,y,this.a,y,"En r\xf6st",""+d+" r\xf6ster",y,y)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"Svara i tr\xe5d"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"Ett svar",""+d+" svar",y,y)},
+return A.aE(d,y,this.a,y,"Ett svar",""+d+" svar",y,y)},
 goZ(){return"Tr\xe5d"},
 goD(){return"Back to main chat"},
 gon(){return"Spara \xe4ndringar"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.H_,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"H_":{"aE":[]}}'))};
-(a=>{a["vOjIFvFbZ5OLk4P6Plq0ntOAmeQ="]=a.current})($__dart_deferred_initializers__);
+y(B.GZ,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GZ":{"aF":[]}}'))};
+(a=>{a["7CZvAd8aO6KGVnwlaA5Id4cjHLM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

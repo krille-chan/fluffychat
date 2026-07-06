@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOY(){return new B.H3(A.dg("tr"))},
-H3:function H3(d){this.a=d}}
+cOY(){return new B.H2(A.dg("tr"))},
+H2:function H2(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[53],B)
-B.H3.prototype={
+B.H2.prototype={
 gkq(){return"Parolay\u0131 tekrarlay\u0131n"},
 gjW(){return"Bir resim dosyas\u0131 de\u011fil."},
 gb8(d){return"Kald\u0131r"},
@@ -118,7 +118,7 @@ gex(d){return"Kopyala"},
 giF(){return"Panoya kopyala"},
 iG(d){return"Mesaj\u0131n \u015fifresi \xe7\xf6z\xfclemedi: "+d},
 glT(){return"Kontrol listesi"},
-dQ(d){return""+d+" kat\u0131l\u0131mc\u0131"},
+dJ(d){return""+d+" kat\u0131l\u0131mc\u0131"},
 iI(d){return""+d+" davet edildi"},
 giJ(d){return"Olu\u015ftur"},
 iK(d){return"\ud83d\udcac "+d+" sohbeti olu\u015fturdu"},
@@ -129,7 +129,7 @@ giM(){return"Koyu"},
 fs(d,e){return d+", "+e},
 giN(){return"Bu, kullan\u0131c\u0131 hesab\u0131n\u0131z\u0131 devre d\u0131\u015f\u0131 b\u0131rakacak. Bu geri al\u0131namaz! Emin misiniz?"},
 giO(){return"Yeni kullan\u0131c\u0131lar i\xe7i \xf6ntan\u0131ml\u0131 izin seviyesi"},
-gdi(d){return"Sil"},
+gdh(d){return"Sil"},
 giQ(){return"Hesab\u0131 sil"},
 giR(){return"Mesaj\u0131 sil"},
 gez(){return"Ayg\u0131tlar"},
@@ -223,7 +223,7 @@ gjG(){return"Moderat\xf6r"},
 geK(){return"Sohbeti sessize al"},
 gfL(){return"Yeni sohbet"},
 gjK(){return"Yeni do\u011frulama iste\u011fi!"},
-gdh(d){return"\u0130leri"},
+gdg(d){return"\u0130leri"},
 gek(){return"Hay\u0131r"},
 gjO(){return"Sunucuyla ba\u011flant\u0131 yok"},
 gfM(){return"\u0130fade bulunamad\u0131. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Mesaj\u0131 bildir"},
 gkv(){return"Oda y\xfckseltildi"},
 ge4(){return"Oda s\xfcr\xfcm\xfc"},
 gh8(){return"Dosyay\u0131 kaydet"},
-gdO(d){return"Ara"},
+gdP(d){return"Ara"},
 geR(){return"G\xfcvenlik"},
 gdX(d){return"G\xf6nder"},
 gha(){return"Bir mesaj g\xf6nder"},
@@ -300,7 +300,7 @@ gli(){return"Ana takma ad olarak ayarla"},
 geW(){return"Sohbet a\xe7\u0131klamas\u0131n\u0131 ayarla"},
 geX(){return"Durumu ayarla"},
 ge9(){return"Ayarlar"},
-gdP(d){return"Payla\u015f"},
+gdQ(d){return"Payla\u015f"},
 ho(d){return d+" konumunu payla\u015ft\u0131"},
 ghn(){return"Konumu payla\u015f"},
 gea(d){return"Atla"},
@@ -348,7 +348,7 @@ god(){return"Kim hangi eylemi ger\xe7ekle\u015ftirebilir"},
 goe(){return"Bu gruba kimler kat\u0131labilir"},
 geQ(){return"Bunu neden bildirmek istiyorsunuz?"},
 gof(){return"Bu adresler ile parolan\u0131z\u0131 kurtarabilirsiniz."},
-gdN(){return"Evet"},
+gdO(){return"Evet"},
 goh(){return"Sen"},
 ge7(){return"Art\u0131k bu sohbette kat\u0131l\u0131mc\u0131 de\u011filsiniz"},
 goi(){return"Bu sohbetten engellendiniz"},
@@ -605,11 +605,11 @@ gow(){return"Add answer option"},
 goy(){return"Allow multiple answers"},
 gnB(){return"Poll has been ended"},
 oJ(d){var x=null
-return A.aL(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
+return A.aE(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"Reply in thread"},
 oI(d){var x=null
-return A.aL(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+return A.aE(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
 goZ(){return"Thread"},
 goD(){return"Back to main chat"},
 gon(){return"Save changes"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,11 +711,11 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var x=null
-return"Forward "+A.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
+return"Forward "+A.aE(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.H3,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"H3":{"aE":[]}}'))
+x(B.H2,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"H2":{"aF":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["aACsaMZ3vjHLWqi01SLRbL/klPM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["eKr7Xi8zZ9bs6kZNfDO7JiuJ1Ig="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_367.part.js.map

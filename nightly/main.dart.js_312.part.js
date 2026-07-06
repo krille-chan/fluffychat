@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOr(){return new B.Gy(A.dg("fr"))},
-Gy:function Gy(d){this.a=d}}
+cOr(){return new B.Gx(A.dg("fr"))},
+Gx:function Gx(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[23],B)
-B.Gy.prototype={
+B.Gx.prototype={
 gkq(){return"R\xe9p\xe9tez le mot de passe"},
 gjW(){return"Pas un fichier image."},
 gb8(d){return"Supprimer"},
@@ -118,7 +118,7 @@ gex(d){return"Copier"},
 giF(){return"Copier dans le presse-papiers"},
 iG(d){return"Impossible de d\xe9chiffrer le message : "+d},
 glT(){return"Check-list"},
-dQ(d){return""+d+" participant(s)"},
+dJ(d){return""+d+" participant(s)"},
 iI(d){return""+d+" invit\xe9(e/s)"},
 giJ(d){return"Cr\xe9er"},
 iK(d){return"\ud83d\udcac "+d+" a cr\xe9\xe9 la discussion"},
@@ -129,7 +129,7 @@ giM(){return"Sombre"},
 fs(d,e){return d+", "+e},
 giN(){return"Cette op\xe9ration va d\xe9sactiver votre compte. Une fois cette action effectu\xe9e, aucun retour en arri\xe8re n'est possible\xa0! \xcates-vous s\xfbr\xb7e\xa0?"},
 giO(){return"Niveau d'autorisation par d\xe9faut pour les arrivants"},
-gdi(d){return"Supprimer"},
+gdh(d){return"Supprimer"},
 giQ(){return"Supprimer le compte"},
 giR(){return"Supprimer le message"},
 gez(){return"Appareils"},
@@ -223,7 +223,7 @@ gjG(){return"Mod\xe9rateur\xb7rice"},
 geK(){return"Mettre la discussion en sourdine"},
 gfL(){return"Nouvelle discussion"},
 gjK(){return"Nouvelle demande de v\xe9rification !"},
-gdh(d){return"Suivant"},
+gdg(d){return"Suivant"},
 gek(){return"Non"},
 gjO(){return"Aucune connexion au serveur"},
 gfM(){return"Aucune \xe9motic\xf4ne trouv\xe9e. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Signaler un message"},
 gkv(){return"Le salon a \xe9t\xe9 mis \xe0 niveau"},
 ge4(){return"Version du salon"},
 gh8(){return"Enregistrer le fichier"},
-gdO(d){return"Rechercher"},
+gdP(d){return"Rechercher"},
 geR(){return"S\xe9curit\xe9"},
 gdX(d){return"Envoyer"},
 gha(){return"Envoyer un message"},
@@ -300,7 +300,7 @@ gli(){return"D\xe9finir comme adresse principale"},
 geW(){return"D\xe9finir la description de la discussion"},
 geX(){return"D\xe9finir le statut"},
 ge9(){return"Param\xe8tres"},
-gdP(d){return"Partager"},
+gdQ(d){return"Partager"},
 ho(d){return d+" a partag\xe9 sa position"},
 ghn(){return"Partager la localisation"},
 gea(d){return"Ignorer"},
@@ -348,7 +348,7 @@ god(){return"Qui peut faire quelle action"},
 goe(){return"Qui est autoris\xe9\xb7e \xe0 rejoindre ce groupe"},
 geQ(){return"Pourquoi voulez-vous le signaler ?"},
 gof(){return"Gr\xe2ce \xe0 ces adresses, vous pouvez r\xe9cup\xe9rer votre mot de passe si vous en avez besoin."},
-gdN(){return"Oui"},
+gdO(){return"Oui"},
 goh(){return"Vous"},
 ge7(){return"Vous ne participez plus \xe0 cette discussion"},
 goi(){return"Vous avez \xe9t\xe9 banni\xb7e de cette discussion"},
@@ -605,11 +605,11 @@ gow(){return"Ajouter une r\xe9ponse"},
 goy(){return"Autoriser plusieurs r\xe9ponses"},
 gnB(){return"Le sondage \xe0 pris fin"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"Un vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"Un vote",""+d+" votes",y,y)},
 goB(){return"Les r\xe9ponses seront affich\xe9es quand le sondage aura pris fin"},
 gnI(){return"R\xe9pondre dans un fil de discussion"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"Une r\xe9ponse",""+d+" r\xe9ponses",y,y)},
+return A.aE(d,y,this.a,y,"Une r\xe9ponse",""+d+" r\xe9ponses",y,y)},
 goZ(){return"Fil de discussion"},
 goD(){return"Retourner \xe0 la discussion principale"},
 gon(){return"Enregistrer les modifications"},
@@ -647,7 +647,7 @@ gqc(){return"R\xe9voquer les droits mod\xe9rateurs/trices"},
 gqb(){return"R\xe9voquer les droits administrateurs/trices"},
 gq8(){return"Niveau de droits"},
 gpe(){return"Le niveau de droit d\xe9fini ce qu'un utilisateur est capable de faire dans ce salon et se place g\xe9n\xe9ralement entre 0 et 100."},
-gdK(){return"Propri\xe9taire"},
+gdL(){return"Propri\xe9taire"},
 gpA(){return"Cr\xe9er une nouvelle discussion"},
 goX(d){return"R\xe9initialiser"},
 gpq(){return"Soutenir FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"N'a pas pu \xeatre envoy\xe9"},
 gqt(){return"Hier"},
 gqh(){return"R\xe9initialiser la cl\xe9 de r\xe9cup\xe9ration"},
 pH(d){var y=null
-return"Avancer de "+A.aL(d,y,this.a,y,"un message",""+d+" messages",y,y)+"\u202f?"},
+return"Avancer de "+A.aE(d,y,this.a,y,"un message",""+d+" messages",y,y)+"\u202f?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gy,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"Gy":{"aE":[]}}'))};
-(a=>{a["Zb1Y+x9+A6iqU+19qa86Tw8Y7zE="]=a.current})($__dart_deferred_initializers__);
+y(B.Gx,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"Gx":{"aF":[]}}'))};
+(a=>{a["qGEpaBEnCESxVybHEvFDoeXWeww="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

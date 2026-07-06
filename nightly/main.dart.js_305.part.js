@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOn(){return new B.Gu(A.dg("eu"))},
-Gu:function Gu(d){this.a=d}}
+cOn(){return new B.Gt(A.dg("eu"))},
+Gt:function Gt(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[19],B)
-B.Gu.prototype={
+B.Gt.prototype={
 gkq(){return"Idatzi berriro pasahitza"},
 gjW(){return"Ez da irudi-fitxategia."},
 gb8(d){return"Kendu"},
@@ -118,7 +118,7 @@ gex(d){return"Kopiatu"},
 giF(){return"Kopiatu arbelera"},
 iG(d){return"Ezin izan da mezua deszifratu: "+d},
 glT(){return"Kontrol-zerrenda"},
-dQ(d){return""+d+" partaide"},
+dJ(d){return""+d+" partaide"},
 iI(d){return""+d+" gonbidatu"},
 giJ(d){return"Sortu"},
 iK(d){return"\ud83d\udcac "+d+"(e)k txata sortu du"},
@@ -129,7 +129,7 @@ giM(){return"Iluna"},
 fs(d,e){return d+", "+e},
 giN(){return"Honek zure kontua desaktibatuko du. Ezin da desegin! Ziur zaude?"},
 giO(){return"Erabiltzaile berrien defektuzko botere-maila"},
-gdi(d){return"Ezabatu"},
+gdh(d){return"Ezabatu"},
 giQ(){return"Ezabatu kontua"},
 giR(){return"Mezuak ezabatu"},
 gez(){return"Gailuak"},
@@ -223,7 +223,7 @@ gjG(){return"Moderatzailea"},
 geK(){return"Mututu txata"},
 gfL(){return"Txat berria"},
 gjK(){return"Egiaztaketa-eskaera berria!"},
-gdh(d){return"Hurrengoa"},
+gdg(d){return"Hurrengoa"},
 gek(){return"Ez"},
 gjO(){return"Ez dago konexiorik zerbitzariarekin"},
 gfM(){return"Ez da emoterik aurkitu. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Salatu mezua"},
 gkv(){return"Gela bertsio-berritu da"},
 ge4(){return"Gelaren bertsioa"},
 gh8(){return"Gorde fitxategia"},
-gdO(d){return"Bilatu"},
+gdP(d){return"Bilatu"},
 geR(){return"Segurtasuna"},
 gdX(d){return"Bidali"},
 gha(){return"Bidali mezua"},
@@ -300,7 +300,7 @@ gli(){return"Ezarri alias nagusi bezala"},
 geW(){return"Ezarri txataren deskribapena"},
 geX(){return"Ezarri egoera"},
 ge9(){return"Ezarpenak"},
-gdP(d){return"Partekatu"},
+gdQ(d){return"Partekatu"},
 ho(d){return d+"(e)k kokapena partekatu du"},
 ghn(){return"Partekatu kokapena"},
 gea(d){return"Saltatu"},
@@ -348,7 +348,7 @@ god(){return"Nork zer egin dezakeen"},
 goe(){return"Nor batu daiteke talde honetara"},
 geQ(){return"Zergatik salatu nahi duzu?"},
 gof(){return"Helbide hauekin pasahitza berreskuratu dezakezu."},
-gdN(){return"Bai"},
+gdO(){return"Bai"},
 goh(){return"Zeu"},
 ge7(){return"Ez duzu txat honetan parte hartzen honezkero"},
 goi(){return"Txat honetan debekua ezarri dizute"},
@@ -605,11 +605,11 @@ gow(){return"Gehitu erantzun-aukera"},
 goy(){return"Baimendu erantzun bat baino gehiago"},
 gnB(){return"Bozketa amaitu da"},
 oJ(d){var x=null
-return A.aL(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
+return A.aE(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
 goB(){return"Emaitzak bozketak amaitu duenean egongo dira ikusgai"},
 gnI(){return"Erantzun harian"},
 oI(d){var x=null
-return A.aL(d,x,this.a,x,"Erantzun bat",""+d+" erantzun",x,x)},
+return A.aE(d,x,this.a,x,"Erantzun bat",""+d+" erantzun",x,x)},
 goZ(){return"Haria"},
 goD(){return"Joan txat nagusira"},
 gon(){return"Gorde aldaketak"},
@@ -647,7 +647,7 @@ gqc(){return"Kendu moderatzaile eskubideak"},
 gqb(){return"Kendu administratzaile eskubideak"},
 gq8(){return"Botere-maila"},
 gpe(){return"Botere-mailek zehazten dute kide batek zer egin dezakeen gela honetan, eta tartea 0tik 100era artekoa izan ohi da."},
-gdK(){return"Jabea"},
+gdL(){return"Jabea"},
 gpA(){return"Sortu txat berria"},
 goX(d){return"Berrezarri"},
 gpq(){return"Eman babesa FluffyChat-i"},
@@ -711,11 +711,11 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var x=null
-return"Forward "+A.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
+return"Forward "+A.aE(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Gu,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"Gu":{"aE":[]}}'))
+x(B.Gt,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"Gt":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["/M5YGFRIi1+cyft0QAbWSOQyeBk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ctnj0gmQpGUTi/qNY4NIjws06f0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

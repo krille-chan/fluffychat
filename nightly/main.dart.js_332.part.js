@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOz(){return new B.GG(A.dg("id"))},
-GG:function GG(d){this.a=d}}
+cOz(){return new B.GF(A.dg("id"))},
+GF:function GF(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[31],B)
-B.GG.prototype={
+B.GF.prototype={
 gkq(){return"Ulangi kata sandi"},
 gjW(){return"Bukan berkas gambar."},
 gb8(d){return"Hapus"},
@@ -118,7 +118,7 @@ gex(d){return"Salin"},
 giF(){return"Salin ke papan klip"},
 iG(d){return"Tidak dapat mendekripsikan pesan: "+d},
 glT(){return"Ceklis"},
-dQ(d){return""+d+" anggota"},
+dJ(d){return""+d+" anggota"},
 iI(d){return""+d+" diundang"},
 giJ(d){return"Buat"},
 iK(d){return"\ud83d\udcac "+d+" membuat obrolan ini"},
@@ -129,7 +129,7 @@ giM(){return"Gelap"},
 fs(d,e){return e+", "+d},
 giN(){return"Ini akan menonaktifkan akun penggunamu. Ini tidak bisa dibatalkan! Apakah kamu yakin?"},
 giO(){return"Level izin bawaan untuk pengguna baru"},
-gdi(d){return"Hapus"},
+gdh(d){return"Hapus"},
 giQ(){return"Hapus akun"},
 giR(){return"Hapus pesan"},
 gez(){return"Perangkat"},
@@ -223,7 +223,7 @@ gjG(){return"Moderator"},
 geK(){return"Bisukan obrolan"},
 gfL(){return"Chat baru"},
 gjK(){return"Permintaan verifikasi baru!"},
-gdh(d){return"Lanjut"},
+gdg(d){return"Lanjut"},
 gek(){return"Tidak"},
 gjO(){return"Tidak ada koneksi ke server"},
 gfM(){return"Tidak ada emote yang ditemukan. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Laporkan pesan"},
 gkv(){return"Ruangan telah ditingkatkan"},
 ge4(){return"Versi ruangan"},
 gh8(){return"Simpan file"},
-gdO(d){return"Cari"},
+gdP(d){return"Cari"},
 geR(){return"Keamanan"},
 gdX(d){return"Kirim"},
 gha(){return"Kirim pesan"},
@@ -300,7 +300,7 @@ gli(){return"Atur sebagai alias utama"},
 geW(){return"Lihat deskripsi obrolan"},
 geX(){return"Tetapkan status"},
 ge9(){return"Pengaturan"},
-gdP(d){return"Bagikan"},
+gdQ(d){return"Bagikan"},
 ho(d){return d+" membagikan lokasinya"},
 ghn(){return"Bagikan lokasi"},
 gea(d){return"Lewat"},
@@ -348,7 +348,7 @@ god(){return"Siapa yang dapat melakukan tindakan apa"},
 goe(){return"Siapa yang dapat bergabung ke grup ini"},
 geQ(){return"Kenapa kamu ingin melaporkannya?"},
 gof(){return"Dengan alamat ini kamu bisa memulihkan kata sandimu."},
-gdN(){return"Ya"},
+gdO(){return"Ya"},
 goh(){return"Kamu"},
 ge7(){return"Kamu tidak berpartisipasi lagi di obrolan ini"},
 goi(){return"Kamu telah dicekal dari obrolan ini"},
@@ -605,11 +605,11 @@ gow(){return"Tambah opsi jawaban"},
 goy(){return"Izinkan beberapa jawaban"},
 gnB(){return"Polling telah diakhiri"},
 oJ(d){var x=null
-return A.aL(d,x,this.a,x,"Satu suara",""+d+" suara",x,x)},
+return A.aE(d,x,this.a,x,"Satu suara",""+d+" suara",x,x)},
 goB(){return"Jawaban akan terlihat saat polling telah diakhiri"},
 gnI(){return"Balas dalam thread"},
 oI(d){var x=null
-return A.aL(d,x,this.a,x,"Satu balasan",""+d+" balasan",x,x)},
+return A.aE(d,x,this.a,x,"Satu balasan",""+d+" balasan",x,x)},
 goZ(){return"Thread"},
 goD(){return"Kembali ke obrolan utama"},
 gon(){return"Simpan perubahan"},
@@ -647,7 +647,7 @@ gqc(){return"Hapus hak moderator"},
 gqb(){return"Hapus hak admin"},
 gq8(){return"Level kekuasaan"},
 gpe(){return"Level kekuasaan menentukan apa yang boleh dilakukan seorang anggota di ruangan ini dan biasanya berkisar antara 0 hingga 100."},
-gdK(){return"Pemilik"},
+gdL(){return"Pemilik"},
 gpA(){return"Buat obrolan baru"},
 goX(d){return"Atur ulang"},
 gpq(){return"Dukung FluffyChat"},
@@ -711,11 +711,11 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var x=null
-return"Forward "+A.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
+return"Forward "+A.aE(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.GG,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"GG":{"aE":[]}}'))
+x(B.GF,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"GF":{"aF":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["9l/FvblwP+/9XjTyI1nwi65zGec="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["dSUwKFmZNT38bUREwOgWgx8RjFA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_332.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOk(){return new B.Gr(A.dg("eo"))},
-Gr:function Gr(d){this.a=d}}
+cOk(){return new B.Gq(A.dg("eo"))},
+Gq:function Gq(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[16],B)
-B.Gr.prototype={
+B.Gq.prototype={
 gkq(){return"Repeat password"},
 gjW(){return"Not an image file."},
 gb8(d){return"Forigi"},
@@ -118,7 +118,7 @@ gex(d){return"Kopii"},
 giF(){return"Kopii al tondujo"},
 iG(d){return"Ne povis mal\u0109ifri mesa\u011don: "+d},
 glT(){return"Check list"},
-dQ(d){return""+d+" partoprenantoj"},
+dJ(d){return""+d+" partoprenantoj"},
 iI(d){return""+d+" invited"},
 giJ(d){return"Krei"},
 iK(d){return d+" kreis la babilon"},
@@ -129,7 +129,7 @@ giM(){return"Malhela"},
 fs(d,e){return d+", "+e},
 giN(){return"\u0108i tio malaktivigos vian konton de uzanto. Ne eblas tion malfari! \u0108u certe vi certas?"},
 giO(){return"Norma nivelo de permesoj"},
-gdi(d){return"Forigi"},
+gdh(d){return"Forigi"},
 giQ(){return"Forigi konton"},
 giR(){return"Forigi mesa\u011don"},
 gez(){return"Aparatoj"},
@@ -223,7 +223,7 @@ gjG(){return"Reguligisto"},
 geK(){return"Silentigi babilon"},
 gfL(){return"Nova babilo"},
 gjK(){return"Nova kontrolpeto!"},
-gdh(d){return"Sekva"},
+gdg(d){return"Sekva"},
 gek(){return"Ne"},
 gjO(){return"Neniu konekto al la servilo"},
 gfM(){return"Neniuj mienetoj trovi\u011dis. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Raporti mesa\u011don"},
 gkv(){return"\u0108ambro gradalti\u011dis"},
 ge4(){return"Versio de \u0109ambro"},
 gh8(){return"Konservi dosieron"},
-gdO(d){return"Ser\u0109i"},
+gdP(d){return"Ser\u0109i"},
 geR(){return"Sekureco"},
 gdX(d){return"Sendi"},
 gha(){return"Sendi mesa\u011don"},
@@ -300,7 +300,7 @@ gli(){return"Agordi kiel \u0109efan kromnomon"},
 geW(){return"Set chat description"},
 geX(){return"Agordi staton"},
 ge9(){return"Agordoj"},
-gdP(d){return"Konigi"},
+gdQ(d){return"Konigi"},
 ho(d){return d+" konigis sian lokon"},
 ghn(){return"Konigi lokon"},
 gea(d){return"Preterpasi"},
@@ -348,7 +348,7 @@ god(){return"Kiu povas kion"},
 goe(){return"Kiu rajtas ali\u011di al \u0109i tiu grupo"},
 geQ(){return"Kial vi volas tion \u0109i raporti?"},
 gof(){return"Per tiuj \u0109i adresoj vi povas rehavi vian pasvorton."},
-gdN(){return"Jes"},
+gdO(){return"Jes"},
 goh(){return"Vi"},
 ge7(){return"Vi ne plu partoprenas \u0109i tiun babilon"},
 goi(){return"Vi estas forbarita de \u0109i tiu babilo"},
@@ -605,11 +605,11 @@ gow(){return"Add answer option"},
 goy(){return"Allow multiple answers"},
 gnB(){return"Poll has been ended"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aE(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 goB(){return"Answers will be visible when poll has ended"},
 gnI(){return"Reply in thread"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Thread"},
 goD(){return"Back to main chat"},
 gon(){return"Save changes"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdK(){return"Owner"},
+gdL(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gr,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"Gr":{"aE":[]}}'))};
-(a=>{a["TpynsqgplM6W21qvoQnJKr6hEzk="]=a.current})($__dart_deferred_initializers__);
+y(B.Gq,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"Gq":{"aF":[]}}'))};
+(a=>{a["708HFDVhTLaD4JqKG1ur3bahibI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

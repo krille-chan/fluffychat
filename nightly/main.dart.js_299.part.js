@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOl(){return new B.Gs(A.dg("es"))},
-Gs:function Gs(d){this.a=d}}
+cOl(){return new B.Gr(A.dg("es"))},
+Gr:function Gr(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[17],B)
-B.Gs.prototype={
+B.Gr.prototype={
 gkq(){return"Repite la contrase\xf1a"},
 gjW(){return"El archivo no es una imagen."},
 gb8(d){return"Eliminar"},
@@ -118,7 +118,7 @@ gex(d){return"Copiar"},
 giF(){return"Copiar al portapapeles"},
 iG(d){return"No se pudo descifrar el mensaje: "+d},
 glT(){return"Lista de tareas"},
-dQ(d){return""+d+" participantes"},
+dJ(d){return""+d+" participantes"},
 iI(d){return""+d+" invitado"},
 giJ(d){return"Crear"},
 iK(d){return"\ud83d\udcac"+d+" cre\xf3 el chat"},
@@ -129,7 +129,7 @@ giM(){return"Oscuro"},
 fs(d,e){return d+", "+e},
 giN(){return"Se desactivar\xe1 su cuenta de usuario. \xa1La operaci\xf3n no se puede cancelar! \xbfEst\xe1 seguro?"},
 giO(){return"Nivel de permiso predeterminado para nuevo usuarios"},
-gdi(d){return"Eliminar"},
+gdh(d){return"Eliminar"},
 giQ(){return"Cancelar cuenta"},
 giR(){return"Eliminar mensaje"},
 gez(){return"Dispositivos"},
@@ -223,7 +223,7 @@ gjG(){return"Moderador"},
 geK(){return"Silenciar chat"},
 gfL(){return"Nuevo chat"},
 gjK(){return"\xa1Nueva solicitud de verificaci\xf3n!"},
-gdh(d){return"Siguiente"},
+gdg(d){return"Siguiente"},
 gek(){return"No"},
 gjO(){return"Sin conexi\xf3n al servidor"},
 gfM(){return"Ning\xfan emote encontrado. \ud83d\ude15"},
@@ -279,7 +279,7 @@ gku(){return"Mensaje de informe"},
 gkv(){return"La sala ha subido de categor\xeda"},
 ge4(){return"Versi\xf3n de sala"},
 gh8(){return"Guardar el archivo"},
-gdO(d){return"Buscar"},
+gdP(d){return"Buscar"},
 geR(){return"Seguridad"},
 gdX(d){return"Enviar"},
 gha(){return"Enviar un mensaje"},
@@ -300,7 +300,7 @@ gli(){return"Fijar alias principal"},
 geW(){return"Establecer descripci\xf3n del chat"},
 geX(){return"Establecer estado"},
 ge9(){return"Ajustes"},
-gdP(d){return"Compartir"},
+gdQ(d){return"Compartir"},
 ho(d){return d+" comparti\xf3 la ubicaci\xf3n"},
 ghn(){return"Compartir ubicaci\xf3n"},
 gea(d){return"Omitir"},
@@ -348,7 +348,7 @@ god(){return"Qui\xe9n puede realizar qu\xe9 acci\xf3n"},
 goe(){return"Qui\xe9n tiene permitido unirse al grupo"},
 geQ(){return"\xbfPor qu\xe9 quieres denunciar esto?"},
 gof(){return"Con esta direcci\xf3n puede recuperar su contrase\xf1a."},
-gdN(){return"S\xed"},
+gdO(){return"S\xed"},
 goh(){return"T\xfa"},
 ge7(){return"Ya no est\xe1s participando en este chat"},
 goi(){return"Has sido vetado de este chat"},
@@ -605,11 +605,11 @@ gow(){return"A\xf1adir respuesta"},
 goy(){return"Permitir varias respuestas"},
 gnB(){return"La encuesta ha terminado"},
 oJ(d){var y=null
-return A.aL(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
+return A.aE(d,y,this.a,y,"Un voto",""+d+" votos",y,y)},
 goB(){return"Las respuestas ser\xe1n visibles cuando termine la encuesta"},
 gnI(){return"Contestar en el hilo"},
 oI(d){var y=null
-return A.aL(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aE(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 goZ(){return"Hilo"},
 goD(){return"Volver al chat pricipal"},
 gon(){return"Guardar cambios"},
@@ -647,7 +647,7 @@ gqc(){return"Remover derechos de moderador"},
 gqb(){return"Remover derechos de administrador"},
 gq8(){return"Nivel de Poder"},
 gpe(){return"El nivel de poder define el nivel de acciones de un miembro, usualmente esta en el rango entre 0 a 100."},
-gdK(){return"Due\xf1o"},
+gdL(){return"Due\xf1o"},
 gpA(){return"Crear nuevo chat"},
 goX(d){return"Resetear"},
 gpq(){return"Apoyar FluffyChat"},
@@ -711,10 +711,10 @@ gpy(){return"Could not be sent"},
 gqt(){return"Yesterday"},
 gqh(){return"Reset recovery key"},
 pH(d){var y=null
-return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aE(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Gs,C.aE)})()
-A.dI(b.typeUniverse,JSON.parse('{"Gs":{"aE":[]}}'))};
-(a=>{a["ju6LExHq42HQugnBFvCSVRIlZu4="]=a.current})($__dart_deferred_initializers__);
+y(B.Gr,C.aF)})()
+A.dI(b.typeUniverse,JSON.parse('{"Gr":{"aF":[]}}'))};
+(a=>{a["+8dSYDz+A57oUU/RhO2IXCh9S6s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map
