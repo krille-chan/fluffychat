@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOB(){return new B.GL(A.dg("kab"))},
+cOE(){return new B.GL(A.dg("kab"))},
 GL:function GL(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"N\u0263el"},
 giF(){return"N\u0263el \u0263er tecfawit"},
 iG(d){return"Ur izmer ara tukksa n uwgelhen n yizen: "+d},
 glT(){return"Senqed tabdart"},
-dP(d){return""+d+" imttekkiyen"},
+dQ(d){return""+d+" imttekkiyen"},
 iI(d){return""+d+" yettwa\u025ber\u1e0den"},
 giJ(d){return"Snulfu-d"},
 iK(d){return"\ud83d\udcac "+d+" yesnulfa-d adiwenni"},
@@ -279,7 +279,7 @@ gku(){return"Mmel-d izen"},
 gkv(){return"Taxxamt tettwaleqqem"},
 ge4(){return"Lqem n texxamt"},
 gh8(){return"Sekles afaylu"},
-gdN(d){return"Nadi"},
+gdO(d){return"Nadi"},
 geR(){return"Ta\u0263ellist"},
 gdX(d){return"Azen"},
 gha(){return"Azen izen"},
@@ -300,7 +300,7 @@ gli(){return"Sbadu-t d taza\u1e93lut tagejdant"},
 geW(){return"Sbadu aglam n udiwenni"},
 geX(){return"Sbadu addad"},
 ge9(){return"I\u0263ewwaren"},
-gdO(d){return"B\u1e0du"},
+gdP(d){return"B\u1e0du"},
 ho(d){return d+" yeb\u1e0da adig-is"},
 ghn(){return"B\u1e0du adig"},
 gea(d){return"Zgel"},
@@ -348,7 +348,7 @@ god(){return"Anwa i izemren ad yexdem anta tigawt"},
 goe(){return"Anwa i izemren ad yernu \u0263er ugraw-agi"},
 geQ(){return"Ay\u0263er teb\u0263i\u1e0d ad temle\u1e0d aya?"},
 gof(){return"S tansiwin-agi i tzemre\u1e0d ad terre\u1e0d awal-ik\xb7im n u\u025beddi."},
-gdM(){return"Ih"},
+gdN(){return"Ih"},
 goh(){return"ke\u010d\u010d\xb7em"},
 ge7(){return"Ur mazal ara tettekka\u1e0d deg udiwenni-a"},
 goi(){return"Tettwagedle\u1e0d seg udiwenni-agi"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Kkes izerfan n unedbal"},
 gq8(){return"Aswir n tezmert"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Amli"},
+gdK(){return"Amli"},
 gpA(){return"Snulfu-d adiwenni amaynut"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GL,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GL":{"aE":[]}}'))};
-(a=>{a["RiAIU4oy4gTYzHX3WZ/gRwAWeJE="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GL":{"aE":[]}}'))};
+(a=>{a["+LamehgCjB1SPpNRQrUhqK4MOYE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_344.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOh(){return new B.Gr(A.dg("eo"))},
+cOk(){return new B.Gr(A.dg("eo"))},
 Gr:function Gr(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopii"},
 giF(){return"Kopii al tondujo"},
 iG(d){return"Ne povis mal\u0109ifri mesa\u011don: "+d},
 glT(){return"Check list"},
-dP(d){return""+d+" partoprenantoj"},
+dQ(d){return""+d+" partoprenantoj"},
 iI(d){return""+d+" invited"},
 giJ(d){return"Krei"},
 iK(d){return d+" kreis la babilon"},
@@ -279,7 +279,7 @@ gku(){return"Raporti mesa\u011don"},
 gkv(){return"\u0108ambro gradalti\u011dis"},
 ge4(){return"Versio de \u0109ambro"},
 gh8(){return"Konservi dosieron"},
-gdN(d){return"Ser\u0109i"},
+gdO(d){return"Ser\u0109i"},
 geR(){return"Sekureco"},
 gdX(d){return"Sendi"},
 gha(){return"Sendi mesa\u011don"},
@@ -300,7 +300,7 @@ gli(){return"Agordi kiel \u0109efan kromnomon"},
 geW(){return"Set chat description"},
 geX(){return"Agordi staton"},
 ge9(){return"Agordoj"},
-gdO(d){return"Konigi"},
+gdP(d){return"Konigi"},
 ho(d){return d+" konigis sian lokon"},
 ghn(){return"Konigi lokon"},
 gea(d){return"Preterpasi"},
@@ -348,7 +348,7 @@ god(){return"Kiu povas kion"},
 goe(){return"Kiu rajtas ali\u011di al \u0109i tiu grupo"},
 geQ(){return"Kial vi volas tion \u0109i raporti?"},
 gof(){return"Per tiuj \u0109i adresoj vi povas rehavi vian pasvorton."},
-gdM(){return"Jes"},
+gdN(){return"Jes"},
 goh(){return"Vi"},
 ge7(){return"Vi ne plu partoprenas \u0109i tiun babilon"},
 goi(){return"Vi estas forbarita de \u0109i tiu babilo"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gr,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gr":{"aE":[]}}'))};
-(a=>{a["FqKvWXwvh3Hy/8OERj9EvGSIMUU="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"Gr":{"aE":[]}}'))};
+(a=>{a["TpynsqgplM6W21qvoQnJKr6hEzk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

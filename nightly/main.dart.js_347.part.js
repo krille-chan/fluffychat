@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOE(){return new B.GO(A.dg("lv"))},
+cOH(){return new B.GO(A.dg("lv"))},
 GO:function GO(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Ievietot starpliktuv\u0113"},
 giF(){return"Ievietot starpliktuv\u0113"},
 iG(d){return"Nevar\u0113ja at\u0161ifr\u0113t zi\u0146u: "+d},
 glT(){return"P\u0101rbau\u017eu saraksts"},
-dP(d){return""+d+" dal\u012bbnieki"},
+dQ(d){return""+d+" dal\u012bbnieki"},
 iI(d){return""+d+" uzaicin\u0101ti"},
 giJ(d){return"Izveidot"},
 iK(d){return"\ud83d\udcac "+d+" izveidoja t\u0113rz\u0113\u0161anu"},
@@ -279,7 +279,7 @@ gku(){return"Zi\u0146ot par zi\u0146u"},
 gkv(){return"Istaba tika atjaunin\u0101ta"},
 ge4(){return"Istabas versija"},
 gh8(){return"Saglab\u0101t datni"},
-gdN(d){return"Mekl\u0113t"},
+gdO(d){return"Mekl\u0113t"},
 geR(){return"Dro\u0161\u012bba"},
 gdX(d){return"Nos\u016bt\u012bt"},
 gha(){return"Nos\u016bt\u012bt zi\u0146u"},
@@ -300,7 +300,7 @@ gli(){return"Iestat\u012bt k\u0101 galveno aizst\u0101jv\u0101rdu"},
 geW(){return"Iestat\u012bt t\u0113rz\u0113\u0161anas aprakstu"},
 geX(){return"Iestat\u012bt st\u0101vokli"},
 ge9(){return"Iestat\u012bjumi"},
-gdO(d){return"Kop\u012bgot"},
+gdP(d){return"Kop\u012bgot"},
 ho(d){return d+" kop\u012bgoja savu atra\u0161an\u0101s vietu"},
 ghn(){return"Kop\u012bgot atra\u0161an\u0101s vietu"},
 gea(d){return"Izlaist"},
@@ -348,7 +348,7 @@ god(){return"Kur\u0161 var veikt k\u0101das darb\u012bbas"},
 goe(){return"Kuram ir \u013cauts pievienoties \u0161ai kopai"},
 geQ(){return"K\u0101d\u0113\u013c v\u0113lies zi\u0146ot par \u0161o?"},
 gof(){return"Ar \u0161\u012bm adres\u0113m var atjaunot savu paroli."},
-gdM(){return"J\u0101"},
+gdN(){return"J\u0101"},
 goh(){return"Tu"},
 ge7(){return"Tu vairs nepiedalies \u0161aj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 goi(){return"Tev tika liegta piek\u013cuve \u0161ai t\u0113rz\u0113\u0161anai"},
@@ -647,7 +647,7 @@ gqc(){return"No\u0146emt satura p\u0101rraudz\u012bt\u0101ja ties\u012bbas"},
 gqb(){return"No\u0146emt p\u0101rvald\u012bt\u0101ja ties\u012bbas"},
 gq8(){return"Ties\u012bbu l\u012bmenis"},
 gpe(){return"Ties\u012bbu l\u012bme\u0146i nosaka, ko dal\u012bbniekam ir \u013cauts dar\u012bt \u0161aj\u0101 istab\u0101, un parasti ir starp 0 un 100."},
-gdJ(){return"\u012apa\u0161nieks"},
+gdK(){return"\u012apa\u0161nieks"},
 gpA(){return"Izveidot jaunu t\u0113rz\u0113\u0161anu"},
 goX(d){return"Atiestat\u012bt"},
 gpq(){return"Atbalst\u012bt FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GO,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GO":{"aE":[]}}'))};
-(a=>{a["2NggSLek8Oez3DdJhsaagu9xL4o="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GO":{"aE":[]}}'))};
+(a=>{a["woPJR+SPf0+qNv/Q7OvOSADj/14="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_347.part.js.map

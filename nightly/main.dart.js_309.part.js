@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOm(){return new B.Gw(A.dg("fi"))},
+cOp(){return new B.Gw(A.dg("fi"))},
 Gw:function Gw(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopioi"},
 giF(){return"Kopioi leikep\xf6yd\xe4lle"},
 iG(d){return"Viestin salausta ei voitu purkaa: "+d},
 glT(){return"Tarkistuslista"},
-dP(d){return""+d+" osallistujaa"},
+dQ(d){return""+d+" osallistujaa"},
 iI(d){return""+d+" kutsuttu"},
 giJ(d){return"Luo"},
 iK(d){return d+" loi keskustelun"},
@@ -279,7 +279,7 @@ gku(){return"Ilmoita viesti"},
 gkv(){return"Huone on p\xe4ivitetty"},
 ge4(){return"Huoneen versio"},
 gh8(){return"Tallenna tiedosto"},
-gdN(d){return"Hae"},
+gdO(d){return"Hae"},
 geR(){return"Turvallisuus"},
 gdX(d){return"L\xe4het\xe4"},
 gha(){return"L\xe4het\xe4 viesti"},
@@ -300,7 +300,7 @@ gli(){return"Aseta p\xe4\xe4alias"},
 geW(){return"Asetti keskustelun kuvauksen"},
 geX(){return"Aseta tila"},
 ge9(){return"Asetukset"},
-gdO(d){return"Jaa"},
+gdP(d){return"Jaa"},
 ho(d){return d+" jakoi sijaintinsa"},
 ghn(){return"Jaa sijainti"},
 gea(d){return"Ohita"},
@@ -348,7 +348,7 @@ god(){return"Kuka voi suorittaa mink\xe4 toimenpiteen"},
 goe(){return"Kenen on sallittua liitty\xe4 ryhm\xe4\xe4n"},
 geQ(){return"Miksi haluat ilmoittaa t\xe4m\xe4n?"},
 gof(){return"N\xe4ill\xe4 osoitteilla voit palauttaa salasanasi."},
-gdM(){return"Kyll\xe4"},
+gdN(){return"Kyll\xe4"},
 goh(){return"Sin\xe4"},
 ge7(){return"Et en\xe4\xe4 osallistu t\xe4h\xe4n keskusteluun"},
 goi(){return"Sinulle on annettu porttikielto t\xe4h\xe4n keskusteluun"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gw,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gw":{"aE":[]}}'))};
-(a=>{a["NoDhpwq7VmIhLC4l3D40zLol2Es="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"Gw":{"aE":[]}}'))};
+(a=>{a["3g05yelMyMr+AVfwv8Ljw6X8S4g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_309.part.js.map

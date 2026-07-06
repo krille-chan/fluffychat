@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOb(){return new B.Gl(A.dg("ca"))},
+cOe(){return new B.Gl(A.dg("ca"))},
 Gl:function Gl(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Copia"},
 giF(){return"Copia al porta-retalls"},
 iG(d){return"No s'ha pogut desxifrar el missatge: "+d},
 glT(){return"Llista de tasques"},
-dP(d){return""+d+" participants"},
+dQ(d){return""+d+" participants"},
 iI(d){return""+d+" convidadis"},
 giJ(d){return"Crea"},
 iK(d){return"\ud83d\udcac "+d+" ha creat el xat"},
@@ -279,7 +279,7 @@ gku(){return"Denuncia el missatge"},
 gkv(){return"La sala s'ha actualitzat"},
 ge4(){return"Versi\xf3 de la sala"},
 gh8(){return"Desa el fitxer"},
-gdN(d){return"Cerca"},
+gdO(d){return"Cerca"},
 geR(){return"Seguretat"},
 gdX(d){return"Envia"},
 gha(){return"Envia un missatge"},
@@ -300,7 +300,7 @@ gli(){return"Defineix com a \xe0lies principal"},
 geW(){return"Posa una descripci\xf3 de xat"},
 geX(){return"Defineix l\u2019estat"},
 ge9(){return"Par\xe0metres"},
-gdO(d){return"Comparteix"},
+gdP(d){return"Comparteix"},
 ho(d){return d+" n\u2019ha compartit la ubicaci\xf3"},
 ghn(){return"Comparteix la ubicaci\xf3"},
 gea(d){return"Omet"},
@@ -348,7 +348,7 @@ god(){return"Qui pot efectuar quina acci\xf3"},
 goe(){return"Qui pot unir-se a aquest grup"},
 geQ(){return"Per qu\xe8 voleu denunciar aix\xf2?"},
 gof(){return"Amb aquestes adreces, si ho necessiteu, podeu recuperar la vostra contrasenya."},
-gdM(){return"S\xed"},
+gdN(){return"S\xed"},
 goh(){return"V\xf3s"},
 ge7(){return"Ja no participeu en aquest xat"},
 goi(){return"T'han vetat en aquest xat"},
@@ -647,7 +647,7 @@ gqc(){return"Treu els drets de moderadori"},
 gqb(){return"Treu els drets d'admin"},
 gq8(){return"Nivell de permisos"},
 gpe(){return"Els nivells de permisos defineixen qu\xe8 pot fer uni membre d'aquesta sala, i es defineix per un n\xfamero entre 0 i 100."},
-gdJ(){return"Propiet\xe0ri\xef"},
+gdK(){return"Propiet\xe0ri\xef"},
 gpA(){return"Crea un nou xat"},
 goX(d){return"Reseteja"},
 gpq(){return"Dona suport a FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gl,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gl":{"aE":[]}}'))};
-(a=>{a["ik6AGFtix25vU6a60A5rwWWZ35g="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"Gl":{"aE":[]}}'))};
+(a=>{a["JzUzmBjGnhpg5lp2nR9lb7rG0R8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_266.part.js.map

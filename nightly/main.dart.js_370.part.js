@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOX(){return new B.H5(A.dg("uz"))},
+cP_(){return new B.H5(A.dg("uz"))},
 H5:function H5(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Nusxalash"},
 giF(){return"Buferga nusxalash"},
 iG(d){return"Xabarni shifrlab bo\u02bblmadi: "+d},
 glT(){return"Tekshirish ro\u02bbyxati"},
-dP(d){return""+d+" qatnashuvchilar"},
+dQ(d){return""+d+" qatnashuvchilar"},
 iI(d){return""+d+" taklif qilindi"},
 giJ(d){return"Yaratish"},
 iK(d){return"\ud83d\udcac "+d+" suhbat yaratdi"},
@@ -279,7 +279,7 @@ gku(){return"Xabar berish"},
 gkv(){return"Xona takomillashtirildi"},
 ge4(){return"Guruh versiyasi"},
 gh8(){return"Fayl saqlash"},
-gdN(d){return"Qidiruv"},
+gdO(d){return"Qidiruv"},
 geR(){return"Xavfsizlik"},
 gdX(d){return"Yuborish"},
 gha(){return"Xabar yuborish"},
@@ -300,7 +300,7 @@ gli(){return"Asosiy taxallus sifatida belgilash"},
 geW(){return"Suhbat tavsifini sozlash"},
 geX(){return"Holatni sozlash"},
 ge9(){return"Sozlamalar"},
-gdO(d){return"Bo\u2018lishmoq"},
+gdP(d){return"Bo\u2018lishmoq"},
 ho(d){return d+" joylashuvini ulashdi"},
 ghn(){return"Joylashuvni ulashish"},
 gea(d){return"Tashlab ketish"},
@@ -348,7 +348,7 @@ god(){return"Kim qaysi amalni bajarishi mumkin"},
 goe(){return"Bu guruhga kim qo\u2018shilishi mumkin"},
 geQ(){return"Nima uchun bu haqda xabar bermoqchisiz?"},
 gof(){return"Ushbu manzillar yordamida parolingizni tiklashingiz mumkin."},
-gdM(){return"Ha"},
+gdN(){return"Ha"},
 goh(){return"Siz"},
 ge7(){return"Siz ortiq bu suhbatda qatnashmayapsiz"},
 goi(){return"Bu suhbatdan bloklandingiz"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,7 +715,7 @@ return"Forward "+A.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.H5,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"H5":{"aE":[]}}'))
+A.dI(b.typeUniverse,JSON.parse('{"H5":{"aE":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["RhYQYBJpOiXf5qklyCeFwQBnA5o="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["60OY/Nt0ZB8zT6NtbB4Y6epIcZk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_370.part.js.map

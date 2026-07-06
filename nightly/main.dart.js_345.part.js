@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOC(){return new B.GM(A.dg("ko"))},
+cOF(){return new B.GM(A.dg("ko"))},
 GM:function GM(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"\ubcf5\uc0ac"},
 giF(){return"\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac"},
 iG(d){return"\uba54\uc2dc\uc9c0 \ubcf5\ud638\ud654\ud560 \uc218 \uc5c6\uc74c: "+d},
 glT(){return"\uccb4\ud06c\ub9ac\uc2a4\ud2b8"},
-dP(d){return""+d+" \ucc38\uc5ec\uc790"},
+dQ(d){return""+d+" \ucc38\uc5ec\uc790"},
 iI(d){return""+d+"\ucd08\ub300\ubc1b\uc740"},
 giJ(d){return"\uc0dd\uc131"},
 iK(d){return"\ud83d\udcac "+d+"\ub2d8\uc774 \ucc44\ud305\uc744 \uc0dd\uc131\ud568"},
@@ -279,7 +279,7 @@ gku(){return"\uba54\uc2dc\uc9c0 \uc2e0\uace0"},
 gkv(){return"\ubc29\uc774 \uc5c5\uadf8\ub808\uc774\ub4dc\ub418\uc5c8\uc2b5\ub2c8\ub2e4"},
 ge4(){return"\ubc29 \ubc84\uc804"},
 gh8(){return"\ud30c\uc77c \uc800\uc7a5"},
-gdN(d){return"\uac80\uc0c9"},
+gdO(d){return"\uac80\uc0c9"},
 geR(){return"\ubcf4\uc548"},
 gdX(d){return"\ubcf4\ub0b4\uae30"},
 gha(){return"\uba54\uc2dc\uc9c0 \ubcf4\ub0b4\uae30"},
@@ -300,7 +300,7 @@ gli(){return"\uc8fc \ubcc4\uba85\uc73c\ub85c \uc124\uc815"},
 geW(){return"\ucc44\ud305 \uc124\uba85 \uc124\uc815"},
 geX(){return"\uc0c1\ud0dc \uc124\uc815"},
 ge9(){return"\uc124\uc815"},
-gdO(d){return"\uacf5\uc720"},
+gdP(d){return"\uacf5\uc720"},
 ho(d){return d+"\ub2d8\uc774 \uc704\uce58\ub97c \uacf5\uc720\ud568"},
 ghn(){return"\uc704\uce58 \ubcf4\ub0b4\uae30"},
 gea(d){return"\uc2a4\ud0b5"},
@@ -348,7 +348,7 @@ god(){return"\ub204\uac00 \uc5b4\ub5a4 \ud589\ub3d9\uc744 \ud560 \uc218 \uc788\u
 goe(){return"\ucc38\uac00 \uc81c\ud55c \uc124\uc815"},
 geQ(){return"\uc65c \uc774\uac83\uc744 \uc2e0\uace0\ud558\ub824\uace0 \ud558\ub098\uc694?"},
 gof(){return"\uc774 \uc8fc\uc18c\ub85c \ub2f9\uc2e0\uc758 \ube44\ubc00\ubc88\ud638\ub97c \ubcf5\uad6c\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4."},
-gdM(){return"\ud655\uc778"},
+gdN(){return"\ud655\uc778"},
 goh(){return"\ub2f9\uc2e0"},
 ge7(){return"\ub2f9\uc2e0\uc740 \ub354 \uc774\uc0c1 \uc774 \ucc44\ud305\uc5d0 \ucc38\uc5ec\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4"},
 goi(){return"\ub2f9\uc2e0\uc740 \uc774 \ucc44\ud305\uc5d0\uc11c \uc601\uad6c \ucd94\ubc29\ub418\uc5c8\uc2b5\ub2c8\ub2e4"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GM,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GM":{"aE":[]}}'))};
-(a=>{a["9E+NE7PBew8Tc2AVw/DWEeHIp7s="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GM":{"aE":[]}}'))};
+(a=>{a["7BumSXIASOak6V4YrPJigPEevUM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

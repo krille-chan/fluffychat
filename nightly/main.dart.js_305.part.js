@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOk(){return new B.Gu(A.dg("eu"))},
+cOn(){return new B.Gu(A.dg("eu"))},
 Gu:function Gu(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopiatu"},
 giF(){return"Kopiatu arbelera"},
 iG(d){return"Ezin izan da mezua deszifratu: "+d},
 glT(){return"Kontrol-zerrenda"},
-dP(d){return""+d+" partaide"},
+dQ(d){return""+d+" partaide"},
 iI(d){return""+d+" gonbidatu"},
 giJ(d){return"Sortu"},
 iK(d){return"\ud83d\udcac "+d+"(e)k txata sortu du"},
@@ -279,7 +279,7 @@ gku(){return"Salatu mezua"},
 gkv(){return"Gela bertsio-berritu da"},
 ge4(){return"Gelaren bertsioa"},
 gh8(){return"Gorde fitxategia"},
-gdN(d){return"Bilatu"},
+gdO(d){return"Bilatu"},
 geR(){return"Segurtasuna"},
 gdX(d){return"Bidali"},
 gha(){return"Bidali mezua"},
@@ -300,7 +300,7 @@ gli(){return"Ezarri alias nagusi bezala"},
 geW(){return"Ezarri txataren deskribapena"},
 geX(){return"Ezarri egoera"},
 ge9(){return"Ezarpenak"},
-gdO(d){return"Partekatu"},
+gdP(d){return"Partekatu"},
 ho(d){return d+"(e)k kokapena partekatu du"},
 ghn(){return"Partekatu kokapena"},
 gea(d){return"Saltatu"},
@@ -348,7 +348,7 @@ god(){return"Nork zer egin dezakeen"},
 goe(){return"Nor batu daiteke talde honetara"},
 geQ(){return"Zergatik salatu nahi duzu?"},
 gof(){return"Helbide hauekin pasahitza berreskuratu dezakezu."},
-gdM(){return"Bai"},
+gdN(){return"Bai"},
 goh(){return"Zeu"},
 ge7(){return"Ez duzu txat honetan parte hartzen honezkero"},
 goi(){return"Txat honetan debekua ezarri dizute"},
@@ -647,7 +647,7 @@ gqc(){return"Kendu moderatzaile eskubideak"},
 gqb(){return"Kendu administratzaile eskubideak"},
 gq8(){return"Botere-maila"},
 gpe(){return"Botere-mailek zehazten dute kide batek zer egin dezakeen gela honetan, eta tartea 0tik 100era artekoa izan ohi da."},
-gdJ(){return"Jabea"},
+gdK(){return"Jabea"},
 gpA(){return"Sortu txat berria"},
 goX(d){return"Berrezarri"},
 gpq(){return"Eman babesa FluffyChat-i"},
@@ -715,7 +715,7 @@ return"Forward "+A.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Gu,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gu":{"aE":[]}}'))
+A.dI(b.typeUniverse,JSON.parse('{"Gu":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["7HRNsNHzzYNTosvJJ4AMoFJ1GS0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/M5YGFRIi1+cyft0QAbWSOQyeBk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

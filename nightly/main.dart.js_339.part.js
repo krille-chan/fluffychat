@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOy(){return new B.GI(A.dg("it"))},
+cOB(){return new B.GI(A.dg("it"))},
 GI:function GI(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Copia"},
 giF(){return"Copia negli appunti"},
 iG(d){return"Impossibile decriptare messaggio: "+d},
 glT(){return"Checklist"},
-dP(d){return""+d+" partecipanti"},
+dQ(d){return""+d+" partecipanti"},
 iI(d){return""+d+" invitati"},
 giJ(d){return"Crea"},
 iK(d){return"\ud83d\udcac "+d+" ha creato la chat"},
@@ -279,7 +279,7 @@ gku(){return"Segnala il messaggio"},
 gkv(){return"La stanza \xe8 stata aggiornata"},
 ge4(){return"Versione della stanza"},
 gh8(){return"Salva file"},
-gdN(d){return"Cerca"},
+gdO(d){return"Cerca"},
 geR(){return"Sicurezza"},
 gdX(d){return"Invia"},
 gha(){return"Invia un messaggio"},
@@ -300,7 +300,7 @@ gli(){return"Imposta come alias principale"},
 geW(){return"Imposta la descrizione della chat"},
 geX(){return"Imposta lo stato"},
 ge9(){return"Impostazioni"},
-gdO(d){return"Condividi"},
+gdP(d){return"Condividi"},
 ho(d){return d+" ha condiviso la sua posizione"},
 ghn(){return"Condividi posizione"},
 gea(d){return"Ignora"},
@@ -348,7 +348,7 @@ god(){return"Chi pu\xf2 eseguire quale azione"},
 goe(){return"Chi \xe8 autorizzato a unirsi a questo gruppo"},
 geQ(){return"Perch\xe9 vuoi segnalarlo?"},
 gof(){return"Con questi indirizzi puoi recuperare la tua password se necessario."},
-gdM(){return"S\xec"},
+gdN(){return"S\xec"},
 goh(){return"Tu"},
 ge7(){return"Non stai pi\xf9 partecipando a questa chat"},
 goi(){return"Sei stato/a bandito/a da questa chat"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GI,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GI":{"aE":[]}}'))};
-(a=>{a["wZUDzOOaJGd3Hh1SkL1JqXPjkNE="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GI":{"aE":[]}}'))};
+(a=>{a["eSKF3vDV/OtEm00jLZj4kjCP6mA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_339.part.js.map

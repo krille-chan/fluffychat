@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOt(){return new B.GD(A.dg("hr"))},
+cOw(){return new B.GD(A.dg("hr"))},
 GD:function GD(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopiraj"},
 giF(){return"Kopiraj u me\u0111uspremnik"},
 iG(d){return"Neuspjelo de\u0161ifriranje poruke: "+d},
 glT(){return"Kontrolni popis"},
-dP(d){return"Broj sudionika: "+d},
+dQ(d){return"Broj sudionika: "+d},
 iI(d){return"Broj pozvanih: "+d},
 giJ(d){return"Stvori"},
 iK(d){return"\ud83d\udcac "+d+" je stvorio/la chat"},
@@ -279,7 +279,7 @@ gku(){return"Prijavi poruku"},
 gkv(){return"Soba je nadogra\u0111ena"},
 ge4(){return"Verzija sobe"},
 gh8(){return"Spremi datoteku"},
-gdN(d){return"Tra\u017ei"},
+gdO(d){return"Tra\u017ei"},
 geR(){return"Sigurnost"},
 gdX(d){return"Po\u0161alji"},
 gha(){return"Po\u0161alji poruku"},
@@ -300,7 +300,7 @@ gli(){return"Postavi kao glavni pseudonim"},
 geW(){return"Postavi opis rzgovora"},
 geX(){return"Postavi stanje"},
 ge9(){return"Postavke"},
-gdO(d){return"Dijeli"},
+gdP(d){return"Dijeli"},
 ho(d){return d+" je dijelio/la svoje mjesto"},
 ghn(){return"Dijeli lokaciju"},
 gea(d){return"Presko\u010di"},
@@ -348,7 +348,7 @@ god(){return"Tko mo\u017ee izvr\u0161iti koju radnju"},
 goe(){return"Tko se smije pridru\u017eiti grupi"},
 geQ(){return"Za\u0161to \u017eeli\u0161 ovo prijaviti?"},
 gof(){return"Lozinku mo\u017ee\u0161 obnoviti pomo\u0107u ovih adresa."},
-gdM(){return"Da"},
+gdN(){return"Da"},
 goh(){return"Ti"},
 ge7(){return"Vi\u0161e ne sudjeluje\u0161 u ovom chatu"},
 goi(){return"Isklju\u010den/a si iz ovog chata"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GD,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GD":{"aE":[]}}'))};
-(a=>{a["TR9AeJtUiAv5sjODBOxK64nH4hE="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GD":{"aE":[]}}'))};
+(a=>{a["O9HcDg746bGsW+G7MLhPg2hJPGU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_322.part.js.map

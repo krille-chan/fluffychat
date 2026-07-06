@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOV(){return new B.H3(A.dg("tr"))},
+cOY(){return new B.H3(A.dg("tr"))},
 H3:function H3(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopyala"},
 giF(){return"Panoya kopyala"},
 iG(d){return"Mesaj\u0131n \u015fifresi \xe7\xf6z\xfclemedi: "+d},
 glT(){return"Kontrol listesi"},
-dP(d){return""+d+" kat\u0131l\u0131mc\u0131"},
+dQ(d){return""+d+" kat\u0131l\u0131mc\u0131"},
 iI(d){return""+d+" davet edildi"},
 giJ(d){return"Olu\u015ftur"},
 iK(d){return"\ud83d\udcac "+d+" sohbeti olu\u015fturdu"},
@@ -279,7 +279,7 @@ gku(){return"Mesaj\u0131 bildir"},
 gkv(){return"Oda y\xfckseltildi"},
 ge4(){return"Oda s\xfcr\xfcm\xfc"},
 gh8(){return"Dosyay\u0131 kaydet"},
-gdN(d){return"Ara"},
+gdO(d){return"Ara"},
 geR(){return"G\xfcvenlik"},
 gdX(d){return"G\xf6nder"},
 gha(){return"Bir mesaj g\xf6nder"},
@@ -300,7 +300,7 @@ gli(){return"Ana takma ad olarak ayarla"},
 geW(){return"Sohbet a\xe7\u0131klamas\u0131n\u0131 ayarla"},
 geX(){return"Durumu ayarla"},
 ge9(){return"Ayarlar"},
-gdO(d){return"Payla\u015f"},
+gdP(d){return"Payla\u015f"},
 ho(d){return d+" konumunu payla\u015ft\u0131"},
 ghn(){return"Konumu payla\u015f"},
 gea(d){return"Atla"},
@@ -348,7 +348,7 @@ god(){return"Kim hangi eylemi ger\xe7ekle\u015ftirebilir"},
 goe(){return"Bu gruba kimler kat\u0131labilir"},
 geQ(){return"Bunu neden bildirmek istiyorsunuz?"},
 gof(){return"Bu adresler ile parolan\u0131z\u0131 kurtarabilirsiniz."},
-gdM(){return"Evet"},
+gdN(){return"Evet"},
 goh(){return"Sen"},
 ge7(){return"Art\u0131k bu sohbette kat\u0131l\u0131mc\u0131 de\u011filsiniz"},
 goi(){return"Bu sohbetten engellendiniz"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,7 +715,7 @@ return"Forward "+A.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.H3,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"H3":{"aE":[]}}'))
+A.dI(b.typeUniverse,JSON.parse('{"H3":{"aE":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["a9LlFmdHdowoRWvQRHXgC6E1gC0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["aACsaMZ3vjHLWqi01SLRbL/klPM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_367.part.js.map

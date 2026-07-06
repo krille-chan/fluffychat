@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOF(){return new B.GP(A.dg("nb"))},
+cOI(){return new B.GP(A.dg("nb"))},
 GP:function GP(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopier"},
 giF(){return"Kopier til utklippstavle"},
 iG(d){return"Kunne ikke dekryptere melding: "+d},
 glT(){return"Sjekkliste"},
-dP(d){return""+d+" deltagere"},
+dQ(d){return""+d+" deltagere"},
 iI(d){return""+d+" inviterte"},
 giJ(d){return"Opprett"},
 iK(d){return d+" opprettet sludringen"},
@@ -279,7 +279,7 @@ gku(){return"Rapporter melding"},
 gkv(){return"Rommet har blitt oppgradert"},
 ge4(){return"Rom versjon"},
 gh8(){return"Lagre fil"},
-gdN(d){return"S\xf8k"},
+gdO(d){return"S\xf8k"},
 geR(){return"Sikkerhet"},
 gdX(d){return"Send"},
 gha(){return"Send en melding"},
@@ -300,7 +300,7 @@ gli(){return"Angi som hovedalias"},
 geW(){return"Sett chat beskrivelse"},
 geX(){return"Angi status"},
 ge9(){return"Innstilinger"},
-gdO(d){return"Del"},
+gdP(d){return"Del"},
 ho(d){return d+" delte posisjonen"},
 ghn(){return"Del lokasjon"},
 gea(d){return"Hopp over"},
@@ -348,7 +348,7 @@ god(){return"Hvem kan utf\xf8re hvilken handling"},
 goe(){return"Hvem tillates \xe5 ta del i denne gruppen"},
 geQ(){return"Hvorfor \xf8nsker du \xe5 rapportere dette?"},
 gof(){return"Med disse adressene kan du gjenopprette passordet ditt hvis du trenger det."},
-gdM(){return"Ja"},
+gdN(){return"Ja"},
 goh(){return"Deg"},
 ge7(){return"Du deltar ikke lenger i denne sludringen"},
 goi(){return"Du har blitt bannlyst fra denne sludringen"},
@@ -647,7 +647,7 @@ gqc(){return"Fjern moderator-rettigheter"},
 gqb(){return"Fjern admin-rettigheter"},
 gq8(){return"Styrkeniv\xe5"},
 gpe(){return"Styrkeniv\xe5er definerer hva et medlem har lov til \xe5 gj\xf8re i dette rommet, og varierer vanligvis mellom 0 og 100."},
-gdJ(){return"Eier"},
+gdK(){return"Eier"},
 gpA(){return"Opprett ny chat"},
 goX(d){return"Nullstill"},
 gpq(){return"St\xf8tt FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GP,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GP":{"aE":[]}}'))};
-(a=>{a["7TI8nvjw5rCekQOAvePdLurLY/8="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GP":{"aE":[]}}'))};
+(a=>{a["mgbFGqYun36VO7Aj9l+D1DwaWt8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_348.part.js.map

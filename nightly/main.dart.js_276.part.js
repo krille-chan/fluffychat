@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOc(){return new B.Gm(A.dg("cs"))},
+cOf(){return new B.Gm(A.dg("cs"))},
 Gm:function Gm(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kop\xedrovat"},
 giF(){return"Zkop\xedrovat do schr\xe1nky"},
 iG(d){return"Nebylo mo\u017en\xe9 de\u0161ifrovat zpr\xe1vu: "+d},
 glT(){return"Kontroln\xed seznam"},
-dP(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
+dQ(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
 iI(d){return""+d+" pozv\xe1no"},
 giJ(d){return"Vytvo\u0159it"},
 iK(d){return"\ud83d\udcac "+d+" zalo\u017eil/a chat"},
@@ -279,7 +279,7 @@ gku(){return"Nahl\xe1sit zpr\xe1vu"},
 gkv(){return"M\xedstnost byla upgradov\xe1na"},
 ge4(){return"Verze m\xedstnosti"},
 gh8(){return"Ulo\u017eit soubor"},
-gdN(d){return"Hledat"},
+gdO(d){return"Hledat"},
 geR(){return"Bezpe\u010dnostn\xed"},
 gdX(d){return"Odeslat"},
 gha(){return"Odeslat zpr\xe1vu"},
@@ -300,7 +300,7 @@ gli(){return"Nastavit jako hlavn\xed alias"},
 geW(){return"Nastavit popis konverzace"},
 geX(){return"Nastavit stav"},
 ge9(){return"Nastaven\xed"},
-gdO(d){return"Sd\xedlet"},
+gdP(d){return"Sd\xedlet"},
 ho(d){return d+" sd\xedlel jejich polohu"},
 ghn(){return"Sd\xedlet polohu"},
 gea(d){return"P\u0159esko\u010dit"},
@@ -348,7 +348,7 @@ god(){return"Kdo m\u016f\u017ee prov\xe9st jakou akci"},
 goe(){return"Kdo se m\u016f\u017ee p\u0159ipojit do t\xe9to skupiny"},
 geQ(){return"Pro\u010d to chcete nahl\xe1sit?"},
 gof(){return"S t\u011bmito adresami m\u016f\u017eete obnovit sv\xe9 heslo."},
-gdM(){return"Ano"},
+gdN(){return"Ano"},
 goh(){return"Vy"},
 ge7(){return"Tohoto chatu se nad\xe1le ne\xfa\u010dastn\xedte"},
 goi(){return"Byl v\xe1m zablokov\xe1n p\u0159\xedstup k tomuto chatu"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gm,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gm":{"aE":[]}}'))};
-(a=>{a["P3yT5c5+ckJ3F3oLATY6rwnsXZU="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"Gm":{"aE":[]}}'))};
+(a=>{a["Qc93oxmcCuYrX+PCCwWIwJ3Ffa0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_276.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOo(){return new B.Gy(A.dg("fr"))},
+cOr(){return new B.Gy(A.dg("fr"))},
 Gy:function Gy(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Copier"},
 giF(){return"Copier dans le presse-papiers"},
 iG(d){return"Impossible de d\xe9chiffrer le message : "+d},
 glT(){return"Check-list"},
-dP(d){return""+d+" participant(s)"},
+dQ(d){return""+d+" participant(s)"},
 iI(d){return""+d+" invit\xe9(e/s)"},
 giJ(d){return"Cr\xe9er"},
 iK(d){return"\ud83d\udcac "+d+" a cr\xe9\xe9 la discussion"},
@@ -279,7 +279,7 @@ gku(){return"Signaler un message"},
 gkv(){return"Le salon a \xe9t\xe9 mis \xe0 niveau"},
 ge4(){return"Version du salon"},
 gh8(){return"Enregistrer le fichier"},
-gdN(d){return"Rechercher"},
+gdO(d){return"Rechercher"},
 geR(){return"S\xe9curit\xe9"},
 gdX(d){return"Envoyer"},
 gha(){return"Envoyer un message"},
@@ -300,7 +300,7 @@ gli(){return"D\xe9finir comme adresse principale"},
 geW(){return"D\xe9finir la description de la discussion"},
 geX(){return"D\xe9finir le statut"},
 ge9(){return"Param\xe8tres"},
-gdO(d){return"Partager"},
+gdP(d){return"Partager"},
 ho(d){return d+" a partag\xe9 sa position"},
 ghn(){return"Partager la localisation"},
 gea(d){return"Ignorer"},
@@ -348,7 +348,7 @@ god(){return"Qui peut faire quelle action"},
 goe(){return"Qui est autoris\xe9\xb7e \xe0 rejoindre ce groupe"},
 geQ(){return"Pourquoi voulez-vous le signaler ?"},
 gof(){return"Gr\xe2ce \xe0 ces adresses, vous pouvez r\xe9cup\xe9rer votre mot de passe si vous en avez besoin."},
-gdM(){return"Oui"},
+gdN(){return"Oui"},
 goh(){return"Vous"},
 ge7(){return"Vous ne participez plus \xe0 cette discussion"},
 goi(){return"Vous avez \xe9t\xe9 banni\xb7e de cette discussion"},
@@ -647,7 +647,7 @@ gqc(){return"R\xe9voquer les droits mod\xe9rateurs/trices"},
 gqb(){return"R\xe9voquer les droits administrateurs/trices"},
 gq8(){return"Niveau de droits"},
 gpe(){return"Le niveau de droit d\xe9fini ce qu'un utilisateur est capable de faire dans ce salon et se place g\xe9n\xe9ralement entre 0 et 100."},
-gdJ(){return"Propri\xe9taire"},
+gdK(){return"Propri\xe9taire"},
 gpA(){return"Cr\xe9er une nouvelle discussion"},
 goX(d){return"R\xe9initialiser"},
 gpq(){return"Soutenir FluffyChat"},
@@ -715,6 +715,6 @@ return"Avancer de "+A.aL(d,y,this.a,y,"un message",""+d+" messages",y,y)+"\u202f
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gy,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gy":{"aE":[]}}'))};
-(a=>{a["d9WTx0ao5eA+AjvMERBLR5+xNbM="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"Gy":{"aE":[]}}'))};
+(a=>{a["Zb1Y+x9+A6iqU+19qa86Tw8Y7zE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

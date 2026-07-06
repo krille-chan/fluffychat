@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOw(){return new B.GG(A.dg("id"))},
+cOz(){return new B.GG(A.dg("id"))},
 GG:function GG(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Salin"},
 giF(){return"Salin ke papan klip"},
 iG(d){return"Tidak dapat mendekripsikan pesan: "+d},
 glT(){return"Ceklis"},
-dP(d){return""+d+" anggota"},
+dQ(d){return""+d+" anggota"},
 iI(d){return""+d+" diundang"},
 giJ(d){return"Buat"},
 iK(d){return"\ud83d\udcac "+d+" membuat obrolan ini"},
@@ -279,7 +279,7 @@ gku(){return"Laporkan pesan"},
 gkv(){return"Ruangan telah ditingkatkan"},
 ge4(){return"Versi ruangan"},
 gh8(){return"Simpan file"},
-gdN(d){return"Cari"},
+gdO(d){return"Cari"},
 geR(){return"Keamanan"},
 gdX(d){return"Kirim"},
 gha(){return"Kirim pesan"},
@@ -300,7 +300,7 @@ gli(){return"Atur sebagai alias utama"},
 geW(){return"Lihat deskripsi obrolan"},
 geX(){return"Tetapkan status"},
 ge9(){return"Pengaturan"},
-gdO(d){return"Bagikan"},
+gdP(d){return"Bagikan"},
 ho(d){return d+" membagikan lokasinya"},
 ghn(){return"Bagikan lokasi"},
 gea(d){return"Lewat"},
@@ -348,7 +348,7 @@ god(){return"Siapa yang dapat melakukan tindakan apa"},
 goe(){return"Siapa yang dapat bergabung ke grup ini"},
 geQ(){return"Kenapa kamu ingin melaporkannya?"},
 gof(){return"Dengan alamat ini kamu bisa memulihkan kata sandimu."},
-gdM(){return"Ya"},
+gdN(){return"Ya"},
 goh(){return"Kamu"},
 ge7(){return"Kamu tidak berpartisipasi lagi di obrolan ini"},
 goi(){return"Kamu telah dicekal dari obrolan ini"},
@@ -647,7 +647,7 @@ gqc(){return"Hapus hak moderator"},
 gqb(){return"Hapus hak admin"},
 gq8(){return"Level kekuasaan"},
 gpe(){return"Level kekuasaan menentukan apa yang boleh dilakukan seorang anggota di ruangan ini dan biasanya berkisar antara 0 hingga 100."},
-gdJ(){return"Pemilik"},
+gdK(){return"Pemilik"},
 gpA(){return"Buat obrolan baru"},
 goX(d){return"Atur ulang"},
 gpq(){return"Dukung FluffyChat"},
@@ -715,7 +715,7 @@ return"Forward "+A.aL(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.GG,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GG":{"aE":[]}}'))
+A.dI(b.typeUniverse,JSON.parse('{"GG":{"aE":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["Oq4dgVdqSVZ9oJRLIWrXLJOpeSo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9l/FvblwP+/9XjTyI1nwi65zGec="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_332.part.js.map

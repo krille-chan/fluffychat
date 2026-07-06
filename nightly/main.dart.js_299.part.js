@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOi(){return new B.Gs(A.dg("es"))},
+cOl(){return new B.Gs(A.dg("es"))},
 Gs:function Gs(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Copiar"},
 giF(){return"Copiar al portapapeles"},
 iG(d){return"No se pudo descifrar el mensaje: "+d},
 glT(){return"Lista de tareas"},
-dP(d){return""+d+" participantes"},
+dQ(d){return""+d+" participantes"},
 iI(d){return""+d+" invitado"},
 giJ(d){return"Crear"},
 iK(d){return"\ud83d\udcac"+d+" cre\xf3 el chat"},
@@ -279,7 +279,7 @@ gku(){return"Mensaje de informe"},
 gkv(){return"La sala ha subido de categor\xeda"},
 ge4(){return"Versi\xf3n de sala"},
 gh8(){return"Guardar el archivo"},
-gdN(d){return"Buscar"},
+gdO(d){return"Buscar"},
 geR(){return"Seguridad"},
 gdX(d){return"Enviar"},
 gha(){return"Enviar un mensaje"},
@@ -300,7 +300,7 @@ gli(){return"Fijar alias principal"},
 geW(){return"Establecer descripci\xf3n del chat"},
 geX(){return"Establecer estado"},
 ge9(){return"Ajustes"},
-gdO(d){return"Compartir"},
+gdP(d){return"Compartir"},
 ho(d){return d+" comparti\xf3 la ubicaci\xf3n"},
 ghn(){return"Compartir ubicaci\xf3n"},
 gea(d){return"Omitir"},
@@ -348,7 +348,7 @@ god(){return"Qui\xe9n puede realizar qu\xe9 acci\xf3n"},
 goe(){return"Qui\xe9n tiene permitido unirse al grupo"},
 geQ(){return"\xbfPor qu\xe9 quieres denunciar esto?"},
 gof(){return"Con esta direcci\xf3n puede recuperar su contrase\xf1a."},
-gdM(){return"S\xed"},
+gdN(){return"S\xed"},
 goh(){return"T\xfa"},
 ge7(){return"Ya no est\xe1s participando en este chat"},
 goi(){return"Has sido vetado de este chat"},
@@ -647,7 +647,7 @@ gqc(){return"Remover derechos de moderador"},
 gqb(){return"Remover derechos de administrador"},
 gq8(){return"Nivel de Poder"},
 gpe(){return"El nivel de poder define el nivel de acciones de un miembro, usualmente esta en el rango entre 0 a 100."},
-gdJ(){return"Due\xf1o"},
+gdK(){return"Due\xf1o"},
 gpA(){return"Crear nuevo chat"},
 goX(d){return"Resetear"},
 gpq(){return"Apoyar FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gs,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gs":{"aE":[]}}'))};
-(a=>{a["uhce49HBf7xOUQce8AfD6Lnn7EA="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"Gs":{"aE":[]}}'))};
+(a=>{a["ju6LExHq42HQugnBFvCSVRIlZu4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

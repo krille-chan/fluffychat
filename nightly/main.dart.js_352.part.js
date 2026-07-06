@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOH(){return new B.GR(A.dg("pl"))},
+cOK(){return new B.GR(A.dg("pl"))},
 GR:function GR(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopiuj"},
 giF(){return"Skopiuj do schowka"},
 iG(d){return"Nie mo\u017cna odszyfrowa\u0107 wiadomo\u015bci: "+d},
 glT(){return"Lista kontrolna"},
-dP(d){return""+d+" uczestnik\xf3w"},
+dQ(d){return""+d+" uczestnik\xf3w"},
 iI(d){return""+d+" zaproszonych"},
 giJ(d){return"Stw\xf3rz"},
 iK(d){return"\ud83d\udcac "+d+" utworzy\u0142/-a czat"},
@@ -279,7 +279,7 @@ gku(){return"Zg\u0142o\u015b wiadomo\u015b\u0107"},
 gkv(){return"Pok\xf3j zosta\u0142 zaktualizowany"},
 ge4(){return"Wersja pokoju"},
 gh8(){return"Zapisz plik"},
-gdN(d){return"Szukaj"},
+gdO(d){return"Szukaj"},
 geR(){return"Bezpiecze\u0144stwo"},
 gdX(d){return"Wy\u015blij"},
 gha(){return"Wy\u015blij wiadomo\u015b\u0107"},
@@ -300,7 +300,7 @@ gli(){return"Ustaw jako g\u0142\xf3wny alias"},
 geW(){return"Ustaw opis czatu"},
 geX(){return"Ustaw status"},
 ge9(){return"Ustawienia"},
-gdO(d){return"Udost\u0119pnij"},
+gdP(d){return"Udost\u0119pnij"},
 ho(d){return d+" udost\u0119pni\u0142/-a swoj\u0105 lokalizacj\u0119"},
 ghn(){return"Udost\u0119pnij lokalizacj\u0119"},
 gea(d){return"Pomi\u0144"},
@@ -348,7 +348,7 @@ god(){return"Kto mo\u017ce wykonywa\u0107 jakie czynno\u015bci"},
 goe(){return"Kto mo\u017ce do\u0142\u0105czy\u0107 do tej grupy"},
 geQ(){return"Dlaczego chcesz to zg\u0142osi\u0107?"},
 gof(){return"Dzi\u0119ki tym adresom mo\u017cesz odzyska\u0107 swoje has\u0142o."},
-gdM(){return"Tak"},
+gdN(){return"Tak"},
 goh(){return"Ty"},
 ge7(){return"Nie uczestniczysz ju\u017c w tym czacie"},
 goi(){return"Zosta\u0142e\u015b/-a\u015b zbanowany/-a w tym czacie"},
@@ -647,7 +647,7 @@ gqc(){return"Odbierz uprawnienia moderatora"},
 gqb(){return"Odbierz uprawnienia administratora"},
 gq8(){return"Poziom uprawnie\u0144"},
 gpe(){return"Poziomy uprawnie\u0144 okre\u015blaj\u0105, co cz\u0142onek mo\u017ce robi\u0107 w tym pokoju i zazwyczaj mieszcz\u0105 si\u0119 w zakresie od 0 do 100."},
-gdJ(){return"W\u0142a\u015bciciel"},
+gdK(){return"W\u0142a\u015bciciel"},
 gpA(){return"Utw\xf3rz nowy czat"},
 goX(d){return"Resetuj"},
 gpq(){return"Wesprzyj FluffyChat"},
@@ -715,6 +715,6 @@ return"Przekaza\u0107 "+A.aL(d,y,this.a,y,"jedn\u0105 wiadomo\u015b\u0107",""+d+
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GR,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GR":{"aE":[]}}'))};
-(a=>{a["f8lwE9rLrFrDjkFDAT5LOoVS5xE="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GR":{"aE":[]}}'))};
+(a=>{a["sseKfd8P6POt5JQT1bADB56sFAI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_352.part.js.map

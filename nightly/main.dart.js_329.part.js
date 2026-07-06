@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOu(){return new B.GE(A.dg("hu"))},
+cOx(){return new B.GE(A.dg("hu"))},
 GE:function GE(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"M\xe1sol\xe1s"},
 giF(){return"V\xe1g\xf3lapra m\xe1sol\xe1s"},
 iG(d){return"Nem siker\xfclt visszafejteni az \xfczenetet: "+d},
 glT(){return"Tennival\xf3k list\xe1ja"},
-dP(d){return""+d+" r\xe9sztvev\u0151"},
+dQ(d){return""+d+" r\xe9sztvev\u0151"},
 iI(d){return""+d+" megh\xedvott"},
 giJ(d){return"L\xe9trehoz"},
 iK(d){return"\ud83d\udcac "+d+" cseveg\xe9st hozott l\xe9tre"},
@@ -279,7 +279,7 @@ gku(){return"\xdczenet jelent\xe9se"},
 gkv(){return"A szoba friss\xedt\xe9sre ker\xfclt"},
 ge4(){return"Szoba verzi\xf3"},
 gh8(){return"F\xe1jl ment\xe9se"},
-gdN(d){return"Keres\xe9s"},
+gdO(d){return"Keres\xe9s"},
 geR(){return"Biztons\xe1g"},
 gdX(d){return"K\xfcld\xe9s"},
 gha(){return"\xdczenet k\xfcld\xe9se"},
@@ -300,7 +300,7 @@ gli(){return"Be\xe1ll\xedt\xe1s alap\xe9rtelmezett \xe1ln\xe9vk\xe9nt"},
 geW(){return"Cseveg\xe9s le\xedr\xe1s be\xe1ll\xedt\xe1sa"},
 geX(){return"\xc1llapot be\xe1ll\xedt\xe1sa"},
 ge9(){return"Be\xe1ll\xedt\xe1sok"},
-gdO(d){return"Megoszt\xe1s"},
+gdP(d){return"Megoszt\xe1s"},
 ho(d){return d+" megosztotta a poz\xedci\xf3j\xe1t"},
 ghn(){return"Poz\xedci\xf3 megoszt\xe1sa"},
 gea(d){return"Kihagy"},
@@ -348,7 +348,7 @@ god(){return"Ki milyen m\u0171veletet v\xe9gezhet"},
 goe(){return"Ki csatlakozhat a csoporthoz"},
 geQ(){return"Mi\xe9rt k\xedv\xe1nja ezt bejelenteni?"},
 gof(){return"Ezekkel a c\xedmekkel vissza tudja \xe1ll\xedtani a jelszav\xe1t."},
-gdM(){return"Igen"},
+gdN(){return"Igen"},
 goh(){return"\xd6n"},
 ge7(){return"Imm\xe1ron nem vesz r\xe9szt ebben a cseveg\xe9sben"},
 goi(){return"Kitiltott\xe1k ebb\u0151l a cseveg\xe9sb\u0151l"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GE,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GE":{"aE":[]}}'))};
-(a=>{a["f0ckimO53cEBgsrLiE6JrWkSW7E="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GE":{"aE":[]}}'))};
+(a=>{a["nZlWR29Fh615D5KuchV1fQLVUaQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_329.part.js.map

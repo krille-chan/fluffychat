@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cON(){return new B.GW(A.dg("sk"))},
+cOQ(){return new B.GW(A.dg("sk"))},
 GW:function GW(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kop\xedrova\u0165"},
 giF(){return"Copy to clipboard"},
 iG(d){return"Nebolo mo\u017en\xe9 de\u0161ifrova\u0165 spr\xe1vu: "+d},
 glT(){return"Check list"},
-dP(d){return""+d+" \xfa\u010dastn\xedkov"},
+dQ(d){return""+d+" \xfa\u010dastn\xedkov"},
 iI(d){return""+d+" invited"},
 giJ(d){return"Vytvori\u0165"},
 iK(d){return d+" zalo\u017eili chat"},
@@ -279,7 +279,7 @@ gku(){return"Nahl\xe1si\u0165 spr\xe1vu"},
 gkv(){return"Miestnos\u0165 bola upgradeovan\xe1"},
 ge4(){return"Verzia miestnosti"},
 gh8(){return"Save file"},
-gdN(d){return"H\u013eada\u0165"},
+gdO(d){return"H\u013eada\u0165"},
 geR(){return"Bezpe\u010dnos\u0165"},
 gdX(d){return"Odosla\u0165"},
 gha(){return"Odosla\u0165 spr\xe1vu"},
@@ -300,7 +300,7 @@ gli(){return"Set as main alias"},
 geW(){return"Set chat description"},
 geX(){return"Nastavi\u0165 status"},
 ge9(){return"Nastavenia"},
-gdO(d){return"Zdie\u013ea\u0165"},
+gdP(d){return"Zdie\u013ea\u0165"},
 ho(d){return d+" zdie\u013ea lok\xe1ciu"},
 ghn(){return"Share location"},
 gea(d){return"Presko\u010di\u0165"},
@@ -348,7 +348,7 @@ god(){return"Who can perform which action"},
 goe(){return"Kto m\xf4\u017ee vst\xfapi\u0165 do tejto skupiny"},
 geQ(){return"Why do you want to report this?"},
 gof(){return"With these addresses you can recover your password."},
-gdM(){return"\xc1no"},
+gdN(){return"\xc1no"},
 goh(){return"Vy"},
 ge7(){return"U\u017e sa nez\xfa\u010dast\u0148ujete tohto chatu"},
 goi(){return"M\xe1te zablokovan\xfd pr\xedstup k tomuto chatu"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GW,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GW":{"aE":[]}}'))};
-(a=>{a["V3A41ZxM8iJ2HSTCnNBUHAQRX08="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GW":{"aE":[]}}'))};
+(a=>{a["lwCthcDJ6A+1NJVVMUivT9VcQTk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_358.part.js.map

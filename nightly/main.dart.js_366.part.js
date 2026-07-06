@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOU(){return new B.H2(A.dg("th"))},
+cOX(){return new B.H2(A.dg("th"))},
 H2:function H2(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"\u0e04\u0e31\u0e14\u0e25\u0e2d\u0e01"},
 giF(){return"Copy to clipboard"},
 iG(d){return"Could not decrypt message: "+d},
 glT(){return"Check list"},
-dP(d){return""+d+" participants"},
+dQ(d){return""+d+" participants"},
 iI(d){return""+d+" invited"},
 giJ(d){return"Create"},
 iK(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -279,7 +279,7 @@ gku(){return"Report message"},
 gkv(){return"Room has been upgraded"},
 ge4(){return"Room version"},
 gh8(){return"Save file"},
-gdN(d){return"Search"},
+gdO(d){return"Search"},
 geR(){return"Security"},
 gdX(d){return"\u0e2a\u0e48\u0e07"},
 gha(){return"Send a message"},
@@ -300,7 +300,7 @@ gli(){return"Set as main alias"},
 geW(){return"Set chat description"},
 geX(){return"Set status"},
 ge9(){return"Settings"},
-gdO(d){return"Share"},
+gdP(d){return"Share"},
 ho(d){return d+" shared their location"},
 ghn(){return"Share location"},
 gea(d){return"Skip"},
@@ -348,7 +348,7 @@ god(){return"Who can perform which action"},
 goe(){return"Who is allowed to join this group"},
 geQ(){return"Why do you want to report this?"},
 gof(){return"With these addresses you can recover your password."},
-gdM(){return"Yes"},
+gdN(){return"Yes"},
 goh(){return"You"},
 ge7(){return"You are no longer participating in this chat"},
 goi(){return"You have been banned from this chat"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.H2,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"H2":{"aE":[]}}'))};
-(a=>{a["ORmUGAQtv+PwUcMKJxYPOabOTgg="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"H2":{"aE":[]}}'))};
+(a=>{a["y1YUBfS3WPweGaqrUn3/jqt/kBM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_366.part.js.map

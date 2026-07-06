@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOj(){return new B.Gt(A.dg("et"))},
+cOm(){return new B.Gt(A.dg("et"))},
 Gt:function Gt(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopeeri"},
 giF(){return"Kopeeri l\xf5ikelauale"},
 iG(d){return"S\xf5numi dekr\xfcptimine ei \xf5nnestunud: "+d},
 glT(){return"Kontrollnimekiri"},
-dP(d){return""+d+" osalejat"},
+dQ(d){return""+d+" osalejat"},
 iI(d){return""+d+" kutsutut"},
 giJ(d){return"Loo"},
 iK(d){return"\ud83d\udcac "+d+" algatas vestluse"},
@@ -279,7 +279,7 @@ gku(){return"Teata s\xf5numist"},
 gkv(){return"Jututoa versioon on uuendatud"},
 ge4(){return"Jututoa versioon"},
 gh8(){return"Salvesta fail"},
-gdN(d){return"Otsi"},
+gdO(d){return"Otsi"},
 geR(){return"Turvalisus"},
 gdX(d){return"Saada"},
 gha(){return"Saada s\xf5num"},
@@ -300,7 +300,7 @@ gli(){return"M\xe4\xe4ra p\xf5hinimeks"},
 geW(){return"Lisa vestluse kirjeldus"},
 geX(){return"M\xe4\xe4ra olek"},
 ge9(){return"Seadistused"},
-gdO(d){return"Jaga"},
+gdP(d){return"Jaga"},
 ho(d){return d+" jagas oma asukohta"},
 ghn(){return"Jaga asukohta"},
 gea(d){return"J\xe4ta vahele"},
@@ -348,7 +348,7 @@ god(){return"Erinevatele kasutajatele lubatud toimingud"},
 goe(){return"Kes v\xf5ivad selle jututoaga liituda"},
 geQ(){return"Miks sa soovid sellest teatada?"},
 gof(){return"Nende e-posti aadresside abil saad taastada oma salas\xf5na."},
-gdM(){return"Jah"},
+gdN(){return"Jah"},
 goh(){return"Sina"},
 ge7(){return"Sa enam ei osale selles vestluses"},
 goi(){return"Sinule on selles vestluses seatud suhtluskeeld"},
@@ -647,7 +647,7 @@ gqc(){return"Eemalda moderaatori \xf5igused"},
 gqb(){return"Eemalda peakasutaja \xf5igused"},
 gq8(){return"\xd5iguste tase"},
 gpe(){return"\xd5iguste tase on \xfcks v\xf5imalusi kirjeldamaks seda, mida kasutaja saab jututoas teha ning see tavaliselt v\xe4ljendub numbriga vahemikust 0 kuni 100."},
-gdJ(){return"Omanik"},
+gdK(){return"Omanik"},
 gpA(){return"Loo uus vestlus"},
 goX(d){return"L\xe4htesta"},
 gpq(){return"Toeta FluffyChati"},
@@ -715,6 +715,6 @@ return"Kas edastad "+A.aL(d,y,this.a,y,"\xfche s\xf5numi",""+d+" s\xf5numit",y,y
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gt,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gt":{"aE":[]}}'))};
-(a=>{a["M1/W2B0sGYnTmI5X2N63GxE034c="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"Gt":{"aE":[]}}'))};
+(a=>{a["cuYysfbJeANrG0LmzSrCTp5/Xk0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map

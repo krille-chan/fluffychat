@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOQ(){return new B.GZ(A.dg("sr"))},
+cOT(){return new B.GZ(A.dg("sr"))},
 GZ:function GZ(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458"},
 giF(){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458 \u0443 \u043a\u043b\u0438\u043f\u0431\u043e\u0440\u0434"},
 iG(d){return"\u041d\u0435 \u043c\u043e\u0433\u0443 \u0434\u0430 \u0434\u0435\u0448\u0438\u0444\u0440\u0443\u0458\u0435\u043c \u043f\u043e\u0440\u0443\u043a\u0443: "+d},
 glT(){return"Check list"},
-dP(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
+dQ(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
 iI(d){return""+d+" invited"},
 giJ(d){return"\u041d\u0430\u043f\u0440\u0430\u0432\u0438"},
 iK(d){return d+" \u043d\u0430\u043f\u0440\u0430\u0432\u0438 \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
@@ -279,7 +279,7 @@ gku(){return"\u041f\u0440\u0438\u0458\u0430\u0432\u0438 \u043f\u043e\u0440\u0443
 gkv(){return"\u0421\u043e\u0431\u0430 \u0458\u0435 \u043d\u0430\u0434\u043e\u0433\u0440\u0430\u0452\u0435\u043d\u0430"},
 ge4(){return"\u0412\u0435\u0440\u0437\u0438\u0458\u0430 \u0441\u043e\u0431\u0435"},
 gh8(){return"Save file"},
-gdN(d){return"\u041f\u0440\u0435\u0442\u0440\u0430\u0436\u0438"},
+gdO(d){return"\u041f\u0440\u0435\u0442\u0440\u0430\u0436\u0438"},
 geR(){return"\u0411\u0435\u0437\u0431\u0435\u0434\u043d\u043e\u0441\u0442"},
 gdX(d){return"\u041f\u043e\u0448\u0430\u0459\u0438"},
 gha(){return"\u041f\u043e\u0448\u0430\u0459\u0438 \u043f\u043e\u0440\u0443\u043a\u0443"},
@@ -300,7 +300,7 @@ gli(){return"\u041f\u043e\u0441\u0442\u0430\u0432\u0438 \u043a\u0430\u043e \u043
 geW(){return"Set chat description"},
 geX(){return"\u041f\u043e\u0441\u0442\u0430\u0432\u0438 \u0441\u0442\u0430\u0442\u0443\u0441"},
 ge9(){return"\u041f\u043e\u0441\u0442\u0430\u0432\u043a\u0435"},
-gdO(d){return"\u041f\u043e\u0434\u0435\u043b\u0438"},
+gdP(d){return"\u041f\u043e\u0434\u0435\u043b\u0438"},
 ho(d){return d+" \u043f\u043e\u0434\u0435\u043b\u0438 \u043b\u043e\u043a\u0430\u0446\u0438\u0458\u0443"},
 ghn(){return"Share location"},
 gea(d){return"\u041f\u0440\u0435\u0441\u043a\u043e\u0447\u0438"},
@@ -348,7 +348,7 @@ god(){return"\u043a\u043e \u043c\u043e\u0436\u0435 \u0448\u0442\u0430 \u0434\u04
 goe(){return"\u041a\u043e \u043c\u043e\u0436\u0435 \u0434\u0430 \u0441\u0435 \u043f\u0440\u0438\u0434\u0440\u0443\u0436\u0438 \u0433\u0440\u0443\u043f\u0438"},
 geQ(){return"\u0417\u0430\u0448\u0442\u043e \u0436\u0435\u043b\u0438\u0442\u0435 \u043e\u0432\u043e \u0434\u0430 \u043f\u0440\u0438\u0458\u0430\u0432\u0438\u0442\u0435?"},
 gof(){return"\u0421\u0430 \u043e\u0432\u0438\u043c \u0430\u0434\u0440\u0435\u0441\u0430\u043c\u0430 \u043c\u043e\u0436\u0435\u0442\u0435 \u043e\u043f\u043e\u0440\u0430\u0432\u0438\u0442\u0438 \u0441\u0432\u043e\u0458\u0443 \u043b\u043e\u0437\u0438\u043d\u043a\u0443."},
-gdM(){return"\u0414\u0430"},
+gdN(){return"\u0414\u0430"},
 goh(){return"\u0412\u0438"},
 ge7(){return"\u0412\u0438\u0448\u0435 \u043d\u0435 \u0443\u0447\u0435\u0441\u0442\u0432\u0443\u0458\u0435\u0442\u0435 \u0443 \u043e\u0432\u043e\u043c \u045b\u0430\u0441\u043a\u0430\u045a\u0443"},
 goi(){return"\u0417\u0430\u0431\u0440\u0430\u045a\u0435\u043d\u043e \u0432\u0430\u043c \u0458\u0435 \u043e\u0432\u043e \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GZ,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GZ":{"aE":[]}}'))};
-(a=>{a["VoSeCbdxgIuqG6R47WbhASIbEM0="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GZ":{"aE":[]}}'))};
+(a=>{a["8H2m09eUf/V96IrW0J6HRYJhggo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_361.part.js.map

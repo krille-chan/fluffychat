@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOq(){return new B.GA(A.dg("gl"))},
+cOt(){return new B.GA(A.dg("gl"))},
 GA:function GA(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Copiar"},
 giF(){return"Copiar ao portapapeis"},
 iG(d){return"Non se descifrou a mensaxe: "+d},
 glT(){return"Comprobar lista"},
-dP(d){return""+d+" participantes"},
+dQ(d){return""+d+" participantes"},
 iI(d){return""+d+" convidadas"},
 giJ(d){return"Crear"},
 iK(d){return"\ud83d\udcac "+d+" creou a conversa"},
@@ -279,7 +279,7 @@ gku(){return"Denunciar mensaxe"},
 gkv(){return"A sala foi actualizada"},
 ge4(){return"Versi\xf3n da sala"},
 gh8(){return"Gardar ficheiro"},
-gdN(d){return"Buscar"},
+gdO(d){return"Buscar"},
 geR(){return"Seguridade"},
 gdX(d){return"Enviar"},
 gha(){return"Enviar unha mensaxe"},
@@ -300,7 +300,7 @@ gli(){return"Establecer como alias principal"},
 geW(){return"Escribir descrici\xf3n da conversa"},
 geX(){return"Establecer estado"},
 ge9(){return"Axustes"},
-gdO(d){return"Compartir"},
+gdP(d){return"Compartir"},
 ho(d){return d+" compartiu a s\xfaa localizaci\xf3n"},
 ghn(){return"Compartir localizaci\xf3n"},
 gea(d){return"Saltar"},
@@ -348,7 +348,7 @@ god(){return"Quen pode realizar determinada acci\xf3n"},
 goe(){return"Quen se pode unir a este grupo"},
 geQ(){return"Por que queres denunciar esto?"},
 gof(){return"Con estos enderezos podes recuperar o contrasinal."},
-gdM(){return"Si"},
+gdN(){return"Si"},
 goh(){return"Ti"},
 ge7(){return"Xa non participas desta conversa"},
 goi(){return"Foches vetada nesta conversa"},
@@ -647,7 +647,7 @@ gqc(){return"Retirar permiso de moderaci\xf3n"},
 gqb(){return"Retirar permiso de administraci\xf3n"},
 gq8(){return"Nivel responsabilidade"},
 gpe(){return"Os niveis de responsabilidade definen o que pode facer unha usuaria na sala, normalmente var\xeda de 0 a 100."},
-gdJ(){return"Propietaria"},
+gdK(){return"Propietaria"},
 gpA(){return"Crear nova conversa"},
 goX(d){return"Restablecer"},
 gpq(){return"Apoia a FluffyChat"},
@@ -715,6 +715,6 @@ return"Reenviar "+A.aL(d,y,this.a,y,"unha mensaxe",""+d+" mensaxes",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GA,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GA":{"aE":[]}}'))};
-(a=>{a["U9xSnhHQnhMxFpymKZbw7dpruUo="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GA":{"aE":[]}}'))};
+(a=>{a["/OdIIIj50iggt9x6slq6tcdZwT4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

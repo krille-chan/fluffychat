@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOL(){return new B.GU(A.dg("ro"))},
+cOO(){return new B.GU(A.dg("ro"))},
 GU:function GU(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Copia\u021bi"},
 giF(){return"Copia\u021bi \xeen clipboard"},
 iG(d){return"Dezcriptarea mesajului a e\u0219uat: "+d},
 glT(){return"Check list"},
-dP(d){return""+d+" participan\u021bi"},
+dQ(d){return""+d+" participan\u021bi"},
 iI(d){return""+d+" invited"},
 giJ(d){return"Crea\u021bi"},
 iK(d){return"\ud83d\udcac"+d+" a creat chatul"},
@@ -279,7 +279,7 @@ gku(){return"Raporta\u021bi mesajul"},
 gkv(){return"Camera a fost actualizat\u0103"},
 ge4(){return"Versiunea camerei"},
 gh8(){return"Salva\u021bi fi\u0219ierul"},
-gdN(d){return"C\u0103uta\u021bi"},
+gdO(d){return"C\u0103uta\u021bi"},
 geR(){return"Securitate"},
 gdX(d){return"Trimite\u021bi"},
 gha(){return"Trimite\u021bi un mesaj"},
@@ -300,7 +300,7 @@ gli(){return"Stabili\u021bi ca pseudonimul primar"},
 geW(){return"Set chat description"},
 geX(){return"Stabili\u021bi status"},
 ge9(){return"Configur\u0103ri"},
-gdO(d){return"Partaja\u021bi"},
+gdP(d){return"Partaja\u021bi"},
 ho(d){return d+" sa partajat loca\u021bia"},
 ghn(){return"Partaja\u021bi loca\u021bia"},
 gea(d){return"S\u0103ri\u021bi peste"},
@@ -348,7 +348,7 @@ god(){return"Cine poate face care ac\u021biune"},
 goe(){return"Cine se poate al\u0103tura la acest grup"},
 geQ(){return"De ce dori\u021bi s\u0103 reporta\u021bi acest con\u021binut?"},
 gof(){return"Cu acestea adrese pute\u021bi s\u0103 v\u0103 recupera\u021bi parola."},
-gdM(){return"Da"},
+gdN(){return"Da"},
 goh(){return"Voi"},
 ge7(){return"Nu mai participa\u021bi \xeen acest chat"},
 goi(){return"A\u021bi fost interzis din acest chat"},
@@ -647,7 +647,7 @@ gqc(){return"Remove moderator rights"},
 gqb(){return"Remove admin rights"},
 gq8(){return"Power level"},
 gpe(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gdJ(){return"Owner"},
+gdK(){return"Owner"},
 gpA(){return"Create new chat"},
 goX(d){return"Reset"},
 gpq(){return"Support FluffyChat"},
@@ -715,6 +715,6 @@ return"Forward "+A.aL(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GU,C.aE)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GU":{"aE":[]}}'))};
-(a=>{a["MLkk1QjOUYrfqYx8bIw5VyR5srE="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GU":{"aE":[]}}'))};
+(a=>{a["DA2kHdhersNbXboV2wqu1SSLDSs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_353.part.js.map
