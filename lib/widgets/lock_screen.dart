@@ -94,97 +94,103 @@ class _LockScreenState extends State<LockScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: FluffyThemes.buildTheme(context, Brightness.dark),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text(L10n.of(context).pleaseEnterYourPin),
-          centerTitle: true,
-        ),
-        body: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: FluffyThemes.columnWidth),
-          child: ListView(
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(16.0),
-            children: [
-              Center(
-                child: Image.asset(
-                  'assets/logo/mini/logo_mono_mini.png',
-                  width: 128,
-                  color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                ),
+    return Overlay(
+      initialEntries: [
+        OverlayEntry(
+          builder: (context) => Scaffold(
+            appBar: AppBar(
+              title: Text(L10n.of(context).pleaseEnterYourPin),
+              centerTitle: true,
+            ),
+            body: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: FluffyThemes.columnWidth,
               ),
-              const SizedBox(height: 16),
-              TextField(
-                controller: _textEditingController,
-                textInputAction: TextInputAction.go,
-                keyboardType: TextInputType.number,
-                obscureText: true,
-                autofocus: true,
-                textAlign: TextAlign.center,
-                readOnly: _inputBlocked,
-                onChanged: (text) {
-                  if (text.length >= 6) tryUnlock(text);
-                },
-                onSubmitted: tryUnlock,
-                style: const TextStyle(fontSize: 40),
-                inputFormatters: [LengthLimitingTextInputFormatter(6)],
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(40),
+              child: ListView(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(16.0),
+                children: [
+                  Center(
+                    child: Image.asset(
+                      'assets/logo/mini/logo_mono_mini.png',
+                      width: 128,
+                      color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                    ),
                   ),
-                  errorText: _errorText,
-                  hintText: '✱✱✱✱',
-                  hintStyle: TextStyle(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.surfaceContainerHighest,
+                  const SizedBox(height: 16),
+                  TextField(
+                    controller: _textEditingController,
+                    textInputAction: TextInputAction.go,
+                    keyboardType: TextInputType.number,
+                    obscureText: true,
+                    autofocus: true,
+                    textAlign: TextAlign.center,
+                    readOnly: _inputBlocked,
+                    onChanged: (text) {
+                      if (text.length >= 6) tryUnlock(text);
+                    },
+                    onSubmitted: tryUnlock,
+                    style: const TextStyle(fontSize: 40),
+                    inputFormatters: [LengthLimitingTextInputFormatter(6)],
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      errorText: _errorText,
+                      hintText: '✱✱✱✱',
+                      hintStyle: TextStyle(
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerHighest,
+                      ),
+                      prefix: AppLock.of(context).useBiometrics
+                          ? IconButton(
+                              tooltip: L10n.of(context).unlockWithBiometrics,
+                              icon: FutureBuilder(
+                                future: LocalAuthentication()
+                                    .getAvailableBiometrics(),
+                                builder: (context, snapshot) {
+                                  final availableBiometrics =
+                                      snapshot.data ?? [];
+                                  if (availableBiometrics.contains(
+                                    BiometricType.face,
+                                  )) {
+                                    return Icon(Icons.face_unlock_outlined);
+                                  }
+                                  return Icon(Icons.fingerprint_outlined);
+                                },
+                              ),
+                              onPressed: _inputBlocked
+                                  ? null
+                                  : tryUnlockWithBiometrics,
+                            )
+                          : IconButton(
+                              tooltip: L10n.of(context).reset,
+                              icon: Icon(Icons.cancel_outlined),
+                              onPressed: _inputBlocked
+                                  ? null
+                                  : _textEditingController.clear,
+                            ),
+                      suffix: IconButton(
+                        tooltip: L10n.of(context).unlock,
+                        icon: Icon(Icons.send_outlined),
+                        onPressed: _inputBlocked
+                            ? null
+                            : () => tryUnlock(_textEditingController.text),
+                      ),
+                    ),
                   ),
-                  prefix: AppLock.of(context).useBiometrics
-                      ? IconButton(
-                          tooltip: L10n.of(context).unlockWithBiometrics,
-                          icon: FutureBuilder(
-                            future: LocalAuthentication()
-                                .getAvailableBiometrics(),
-                            builder: (context, snapshot) {
-                              final availableBiometrics = snapshot.data ?? [];
-                              if (availableBiometrics.contains(
-                                BiometricType.face,
-                              )) {
-                                return Icon(Icons.face_unlock_outlined);
-                              }
-                              return Icon(Icons.fingerprint_outlined);
-                            },
-                          ),
-                          onPressed: _inputBlocked
-                              ? null
-                              : tryUnlockWithBiometrics,
-                        )
-                      : IconButton(
-                          tooltip: L10n.of(context).reset,
-                          icon: Icon(Icons.cancel_outlined),
-                          onPressed: _inputBlocked
-                              ? null
-                              : _textEditingController.clear,
-                        ),
-                  suffix: IconButton(
-                    tooltip: L10n.of(context).unlock,
-                    icon: Icon(Icons.send_outlined),
-                    onPressed: _inputBlocked
-                        ? null
-                        : () => tryUnlock(_textEditingController.text),
-                  ),
-                ),
+                  if (_inputBlocked)
+                    const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: CircularProgressIndicator.adaptive(),
+                    ),
+                ],
               ),
-              if (_inputBlocked)
-                const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: CircularProgressIndicator.adaptive(),
-                ),
-            ],
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

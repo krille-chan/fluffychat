@@ -59,13 +59,15 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
         'Started forward action before room was selected. This should never happen.',
       );
     }
-    final consent = await showOkCancelAlertDialog(
-      context: context,
-      title: L10n.of(context).forwardCountMessages(widget.items.length),
-      okLabel: L10n.of(context).forward,
-      cancelLabel: L10n.of(context).cancel,
-    );
-    if (consent != OkCancelResult.ok) return;
+    if (widget.items.any((item) => item is! FileShareItem)) {
+      final consent = await showOkCancelAlertDialog(
+        context: context,
+        title: L10n.of(context).forwardCountMessages(widget.items.length),
+        okLabel: L10n.of(context).forward,
+        cancelLabel: L10n.of(context).cancel,
+      );
+      if (consent != OkCancelResult.ok) return;
+    }
     if (!mounted) return;
     while (context.canPop()) {
       context.pop();
