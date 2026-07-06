@@ -3,7 +3,9 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
@@ -44,8 +46,6 @@ Future<void> pushHelper(
       useNotificationActions: useNotificationActions,
     );
   } catch (e, s) {
-    Logs().e('Push Helper has crashed! Writing into temporary file', e, s);
-
     l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
     await flutterLocalNotificationsPlugin.show(
       id: notification.hashCode,
@@ -68,11 +68,14 @@ Future<void> pushHelper(
       ),
     );
 
-    final store = await SharedPreferences.getInstance();
-    await store.setStringList(AppConfig.pushHelperCrashReportKey, [
-      e.toString(),
-      s.toString(),
-    ]);
+    if (e is! TimeoutException && e is! IOException) {
+      Logs().e('Push Helper has crashed! Writing into temporary file...', e, s);
+      final store = await SharedPreferences.getInstance();
+      await store.setStringList(AppConfig.pushHelperCrashReportKey, [
+        e.toString(),
+        s.toString(),
+      ]);
+    }
     rethrow;
   }
 }
