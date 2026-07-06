@@ -73,37 +73,73 @@ class ChatAppBarTitle extends StatelessWidget {
                         (room.client.onSync.value != null &&
                             status.status != SyncStatus.error &&
                             room.client.prevBatch != null);
+                    final style = TextStyle(fontSize: 11);
                     return AnimatedSize(
                       duration: FluffyThemes.animationDuration,
                       child: hide
-                          ? PresenceBuilder(
-                              userId: room.directChatMatrixID,
-                              builder: (context, presence) {
-                                final statusMessage = presence?.statusMsg;
-                                final style = TextStyle(fontSize: 11);
-                                if (statusMessage != null) {
-                                  return Text(statusMessage, style: style);
-                                }
-                                final lastActiveTimestamp =
-                                    presence?.lastActiveTimestamp;
-                                if (presence?.currentlyActive == true) {
-                                  return Text(
-                                    L10n.of(context).currentlyActive,
-                                    style: style,
-                                  );
-                                } else if (lastActiveTimestamp != null) {
-                                  return Text(
-                                    L10n.of(context).lastActiveAgo(
-                                      lastActiveTimestamp.localizedTimeShort(
-                                        context,
+                          ? room.isDirectChat
+                                ? PresenceBuilder(
+                                    userId: room.directChatMatrixID,
+                                    builder: (context, presence) {
+                                      final statusMessage = presence?.statusMsg;
+
+                                      final lastActiveTimestamp =
+                                          presence?.lastActiveTimestamp;
+
+                                      return Row(
+                                        children: [
+                                          if (presence?.currentlyActive == true)
+                                            Text(
+                                              L10n.of(context).currentlyActive,
+                                              style: style,
+                                            )
+                                          else if (lastActiveTimestamp != null)
+                                            Text(
+                                              L10n.of(context).lastActiveAgo(
+                                                lastActiveTimestamp
+                                                    .localizedTimeShort(
+                                                      context,
+                                                    ),
+                                              ),
+                                              style: style,
+                                            ),
+                                          if (statusMessage != null) ...[
+                                            if ((presence?.currentlyActive ==
+                                                    true ||
+                                                lastActiveTimestamp != null))
+                                              Text(' ◦ ', style: style),
+                                            Expanded(
+                                              child: Text(
+                                                statusMessage,
+                                                style: style,
+                                              ),
+                                            ),
+                                          ],
+                                        ],
+                                      );
+                                    },
+                                  )
+                                : Row(
+                                    children: [
+                                      Text(
+                                        L10n.of(context).countParticipants(
+                                          (room.summary.mJoinedMemberCount ??
+                                                  1) +
+                                              (room
+                                                      .summary
+                                                      .mInvitedMemberCount ??
+                                                  0),
+                                        ),
+                                        style: style,
                                       ),
-                                    ),
-                                    style: style,
-                                  );
-                                }
-                                return const SizedBox.shrink();
-                              },
-                            )
+                                      if (room.topic.isNotEmpty) ...[
+                                        Text(' ◦ ', style: style),
+                                        Expanded(
+                                          child: Text(room.topic, style: style),
+                                        ),
+                                      ],
+                                    ],
+                                  )
                           : Row(
                               children: [
                                 SizedBox.square(

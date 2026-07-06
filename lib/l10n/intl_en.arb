@@ -617,7 +617,7 @@
         }
     },
     "checkList": "Check list",
-    "countParticipants": "{count} participants",
+    "countParticipants": "{count, plural, =1{1 participant} other{{count} participants}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
