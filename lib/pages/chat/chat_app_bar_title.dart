@@ -112,6 +112,7 @@ class ChatAppBarTitle extends StatelessWidget {
                                               child: Text(
                                                 statusMessage,
                                                 style: style,
+                                                maxLines: 1,
                                               ),
                                             ),
                                           ],
@@ -130,12 +131,17 @@ class ChatAppBarTitle extends StatelessWidget {
                                                       .mInvitedMemberCount ??
                                                   0),
                                         ),
+                                        maxLines: 1,
                                         style: style,
                                       ),
                                       if (room.topic.isNotEmpty) ...[
                                         Text(' ◦ ', style: style),
                                         Expanded(
-                                          child: Text(room.topic, style: style),
+                                          child: Text(
+                                            room.topic,
+                                            style: style,
+                                            maxLines: 1,
+                                          ),
                                         ),
                                       ],
                                     ],
