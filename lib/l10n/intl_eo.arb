@@ -2726,5 +2726,8 @@
     "unsupportedAndroidVersionLong": "",
     "inviteGroupChat": "",
     "sendReadReceiptsDescription": "",
-    "block": ""
+    "block": "",
+    "storeSecurlyOnThisDevice": "",
+    "passwordsDoNotMatch": "",
+    "screenSharingDetail": ""
 }
