@@ -43,11 +43,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "Tots els xats",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "answeredTheCall": "{senderName} ha respost a la trucada",
     "@answeredTheCall": {
         "type": "String",
@@ -147,30 +142,6 @@
         "type": "String",
         "placeholders": {
             "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} ha canviat la descripció del xat a: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} ha canviat el nom del xat a: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
                 "type": "String"
             }
         }
@@ -448,16 +419,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Dispositiu",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "Id. de dispositiu",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Dispositius",
     "@devices": {
         "type": "String",
@@ -495,11 +456,6 @@
     },
     "emoteInvalid": "Codi d'emoticona invàlid!",
     "@emoteInvalid": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Paquet d'emoticones de la sala",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -554,16 +510,6 @@
     },
     "enterAnEmailAddress": "Introduïu una adreça electrònica",
     "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fileName": "Nom del fitxer",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
         "type": "String",
         "placeholders": {}
     },
@@ -628,18 +574,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Amaga els esdeveniments estripats",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideUnknownEvents": "Amaga els esdeveniments desconeguts",
     "@hideUnknownEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "Id.",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -841,11 +777,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Tingueu en compte que, ara per ara, us cal el Pantalaimon per a poder utilitzar el xifratge d’extrem a extrem.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newMessageInFluffyChat": "💬 Missatge nou al FluffyChat",
     "@newMessageInFluffyChat": {
         "type": "String",
@@ -873,11 +804,6 @@
     },
     "noGoogleServicesWarning": "Sembla que no teniu els Serveis de Google al telèfon. Això és una bona decisió respecte a la vostra privadesa! Per a rebre notificacions automàtiques del FluffyChat, us recomanem instaŀlar ntfy. Amb ntfy o qualsevol altre proveïdor de Unified Push, pots rebre notificacions de forma segura i lliure. Pots instaŀlar ntfy des de la PlayStore o des de F-Droid.",
     "@noGoogleServicesWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "none": "Cap",
-    "@none": {
         "type": "String",
         "placeholders": {}
     },
@@ -910,18 +836,8 @@
             }
         }
     },
-    "offline": "Fora de línia",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "D'acord",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "En línia",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -975,24 +891,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Selecciona una imatge",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Fixa",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "Reproduir {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseChooseAPasscode": "Tria un codi d'accés",
     "@pleaseChooseAPasscode": {
@@ -1021,16 +923,6 @@
     },
     "publicRooms": "Sales públiques",
     "@publicRooms": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pushRules": "Regles push",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Enregistrant",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -1067,15 +959,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "Eliminat per {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Aixeca el veto",
     "@unbanFromChat": {
         "type": "String",
@@ -1083,11 +966,6 @@
     },
     "reply": "Respon",
     "@reply": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Sol·licita permís",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1257,12 +1135,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tooManyRequestsWarning": "Massa sol·licituds. Torna-ho a provar més tard!",
     "@tooManyRequestsWarning": {
         "type": "String",
@@ -1270,11 +1142,6 @@
     },
     "tryToSendAgain": "Intenta tornar a enviar",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "No disponible",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1366,11 +1233,6 @@
             }
         }
     },
-    "username": "Nom d’usuàriï",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} ha enviat un esdeveniment {type}",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1382,11 +1244,6 @@
                 "type": "String"
             }
         }
-    },
-    "verify": "Verifica",
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
     },
     "verifyStart": "Inicia la verificació",
     "@verifyStart": {
@@ -1697,11 +1554,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "showPassword": "Mostra la contrasenya",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "spaceIsPublic": "L’espai és públic",
     "@spaceIsPublic": {
         "type": "String",
@@ -1819,7 +1671,6 @@
     },
     "jumpToLastReadMessage": "Salta a l'últim missatge llegit",
     "commandHint_cuddle": "Envia una carícia",
-    "dismiss": "Ignora-ho",
     "reportErrorDescription": "😭 Oh no. Hi ha hagut algun error. Si vols, pots informar d'aquest bug a l'equip de desenvolupament.",
     "removeYourAvatar": "Esborra el teu avatar",
     "@removeYourAvatar": {
@@ -1827,10 +1678,8 @@
         "placeholders": {}
     },
     "unsupportedAndroidVersion": "Aquesta versió d'Android és incompatible",
-    "messageType": "Tipus de missatge",
     "oneClientLoggedOut": "Una de les teves aplicacions ha tancat la sessió",
     "setColorTheme": "Tria el color del tema:",
-    "allSpaces": "Tots els espais",
     "supposedMxid": "Això hauria de ser {mxid}",
     "@supposedMxid": {
         "type": "String",
@@ -1931,14 +1780,7 @@
         "placeholders": {}
     },
     "fileIsTooBigForServer": "No s'ha pogut enviar! El servidor només accepta adjunts de fins a {max}.",
-    "homeserver": "Servidor",
     "readUpToHere": "Llegit fins aquí",
-    "start": "Comença",
-    "register": "Registra't",
-    "@register": {
-        "type": "String",
-        "placeholders": {}
-    },
     "optionalRedactReason": "(Opcional) El motiu per estripar el missatge...",
     "dehydrate": "Exporta la sessió i neteja el dispositiu",
     "archiveRoomDescription": "Aquest xat serà arxivat. Els altres contactes del grup ho veuran com si haguessis abandonat el xat.",
@@ -1989,7 +1831,6 @@
         }
     },
     "redactMessageDescription": "S'estriparà el missatge per a totser d'aquesta conversa. Aquesta acció és irreversible.",
-    "recoveryKey": "Clau de recuperació",
     "invalidInput": "L'entrada no és vàlida!",
     "doNotShowAgain": "No ho tornis a mostrar",
     "report": "informa",
@@ -2064,7 +1905,6 @@
     "users": "Usuàrïis",
     "openGallery": "Obre la galeria",
     "chatDescriptionHasBeenChanged": "Ha canviat la descripció del xat",
-    "newGroup": "Grup nou",
     "bundleName": "Nom del paquet",
     "removeFromSpace": "Esborra de l'espai",
     "roomUpgradeDescription": "El xat serà recreat amb una versió de sala nova. Totis lis participants seran notificadis que han de canviar al nou xat. Pots llegir més sobre les versions de sala a https://spec.matrix.org/latest/rooms/",
@@ -2102,7 +1942,6 @@
             }
         }
     },
-    "deviceKeys": "Claus del dispositiu:",
     "emoteKeyboardNoRecents": "Els últims emotes usats apareixeran aquí...",
     "@emoteKeyboardNoRecents": {
         "type": "String",
@@ -2153,7 +1992,6 @@
     "groupName": "Nom del grup",
     "createGroupAndInviteUsers": "Crea un grup i convida-hi usuàrïis",
     "wrongRecoveryKey": "Malauradament, aquesta clau de recuperació no és la correcta.",
-    "transparent": "Transparent",
     "sendReadReceiptsDescription": "Lis altris participants d'un xat poden veure quan has llegit un missatge.",
     "yourGlobalUserIdIs": "La teva ID global és: ",
     "commandHint_sendraw": "Envia un json pelat",
@@ -2276,18 +2114,8 @@
     "commandHint_unignore": "Deixa d'ignorar el compt de matrix especificat",
     "sendCanceled": "S'ha canceŀlat l'enviament",
     "noChatsFoundHere": "Encara no hi ha xats. Obre una conversa amb algú picant al botó de sota. ⤵️",
-    "invitedBy": "📩 Convidadi per {user}",
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "knock": "Pica",
     "knocking": "S'està picant",
-    "restricted": "Restringit",
-    "knockRestricted": "No es pot picar a la porta",
     "goToSpace": "Ves a l'espai {space}",
     "@goToSpace": {
         "type": "String",
@@ -2390,7 +2218,6 @@
     "noMoreChatsFound": "No hi ha més xats...",
     "space": "Espai",
     "unread": "Sense llegir",
-    "spaces": "Espais",
     "chatCanBeDiscoveredViaSearchOnServer": "El xat es pot descobrir amb la cerca de {server}",
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",
@@ -2417,9 +2244,7 @@
         }
     },
     "sendingAttachment": "S'està enviant l'adjunt...",
-    "compressVideo": "S'està comprimint el vídeo...",
     "oneOfYourDevicesIsNotVerified": "Un dels teus dispositius no està verificat",
-    "welcomeText": "Hola hola! 👋 Això és FluffyChat. Pots iniciar sessió en qualsevol servidor compatible amb https://matrix.org. I llavors xatejar amb qualsevol. És una xarxa enorme de missatgeria descentralitzada !",
     "blur": "Difumina:",
     "opacity": "Opacitat:",
     "manageAccount": "Gestiona el compte",
@@ -2537,7 +2362,6 @@
     "optionalMessage": "(Opcional) missatge...",
     "enterNewChat": "Entra al nou xat",
     "notSupportedOnThisDevice": "No suportat en aquest dispositiu",
-    "ignoreUser": "Ignora l'usuàriï",
     "changedTheChatDescription": "{username} ha canviat la descripció del xat",
     "changedTheChatName": "{username} ha canviat el nom del xat",
     "checkList": "Llista de tasques",
@@ -2603,16 +2427,6 @@
             }
         }
     },
-    "startedAPoll": "{username} ha creat una enquesta.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "Enquesta",
     "startPoll": "Comença una enquesta",
     "endPoll": "Acaba l'enquesta",
     "answersVisible": "Respostes visibles",

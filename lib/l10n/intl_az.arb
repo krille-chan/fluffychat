@@ -1,7 +1,6 @@
 {
     "repeatPassword": "Şifrəni təkrarlayın",
     "notAnImage": "Şəkil faylı deyil.",
-    "ignoreUser": "İstifadəçini nəzərə alma",
     "remove": "çıxarın",
     "@remove": {
         "type": "String",

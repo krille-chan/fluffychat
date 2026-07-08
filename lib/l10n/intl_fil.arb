@@ -39,11 +39,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "Lahat ng mga chat",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "commandHint_googly": "Magpadala ng mga googly eye",
     "commandHint_cuddle": "Magpadala ng yakap",
     "cuddleContent": "Niyakap ka ni {senderName}",
@@ -354,35 +349,11 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "Pinalitan ni {username} ang deskripsyon ng chat sa: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
     "changedTheProfileAvatar": "Pinalitan ni {username} ang kanilang avatar",
     "@changedTheProfileAvatar": {
         "type": "String",
         "placeholders": {
             "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "Pinalitan ni {username} ang pangalan ng chat sa: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
                 "type": "String"
             }
         }
@@ -697,16 +668,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Device",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "ID ng Device",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Mga Device",
     "@devices": {
         "type": "String",
@@ -749,7 +710,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "homeserver": "Homeserver",
     "commandHint_plain": "Magpadala ng hindi na-format na text",
     "@commandHint_plain": {
         "type": "String",
@@ -794,11 +754,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emotePacks": "Mga emote pack para sa room",
-    "@emotePacks": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteSettings": "Mga Setting ng Emote",
     "@emoteSettings": {
         "type": "String",
@@ -820,16 +775,6 @@
                 "type": "String"
             }
         }
-    },
-    "fileName": "Pangalan ng file",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
     },
     "fontSize": "Laki ng font",
     "@fontSize": {
@@ -880,7 +825,6 @@
     "swipeRightToLeftToReply": "Mag-swipe pakaliwa o kanan para tumugon",
     "noMoreChatsFound": "Wala nang mga chat na nahanap…",
     "unread": "Hindi nabasa",
-    "spaces": "Mga Espasyo",
     "groupIsPublic": "Pampubliko ang grupo",
     "@groupIsPublic": {
         "type": "String",
@@ -901,10 +845,6 @@
                 "type": "String"
             }
         }
-    },
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
     },
     "@passphraseOrKey": {
         "type": "String",
@@ -969,11 +909,6 @@
             }
         }
     },
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "@synchronizingPleaseWaitCounter": {
         "type": "String",
         "placeholders": {
@@ -991,10 +926,6 @@
         "placeholders": {}
     },
     "@newVerificationRequest": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1099,10 +1030,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@id": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@youKickedAndBanned": {
         "placeholders": {
             "user": {
@@ -1153,10 +1080,6 @@
             }
         }
     },
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@invitedUsersOnly": {
         "type": "String",
         "placeholders": {}
@@ -1166,10 +1089,6 @@
         "placeholders": {}
     },
     "@pleaseFollowInstructionsOnWeb": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1263,14 +1182,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@online": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@lastActiveAgo": {
         "type": "String",
         "placeholders": {
@@ -1291,10 +1202,6 @@
             }
         }
     },
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@loadMore": {
         "type": "String",
         "placeholders": {}
@@ -1311,10 +1218,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@loadingPleaseWait": {
         "type": "String",
         "placeholders": {}
@@ -1326,10 +1229,6 @@
                 "type": "String"
             }
         }
-    },
-    "@none": {
-        "type": "String",
-        "placeholders": {}
     },
     "@rejectedTheInvitation": {
         "type": "String",
@@ -1418,10 +1317,6 @@
             }
         }
     },
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@fileIsTooBigForServer": {
         "type": "String",
         "placeholders": {
@@ -1455,14 +1350,6 @@
         }
     },
     "@newMessageInFluffyChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@register": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -1526,14 +1413,6 @@
     "@locationDisabledNotice": {
         "type": "String",
         "placeholders": {}
-    },
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "@newChat": {
         "type": "String",
@@ -1693,10 +1572,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@noPermission": {
         "type": "String",
         "placeholders": {}
@@ -1704,13 +1579,6 @@
     "@status": {
         "type": "String",
         "placeholders": {}
-    },
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
     },
     "@verifyStart": {
         "type": "String",
@@ -1934,14 +1802,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
-    },
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",
         "placeholders": {
@@ -2087,21 +1947,9 @@
             }
         }
     },
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@sendVideo": {
         "type": "String",
         "placeholders": {}
-    },
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "@sendAMessage": {
         "type": "String",

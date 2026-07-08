@@ -128,30 +128,6 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} змінює опис бесіди на: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} змінює назву бесіди на: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
     "changedTheChatPermissions": "{username} змінює права доступу бесіди",
     "@changedTheChatPermissions": {
         "type": "String",
@@ -392,11 +368,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Пристрій",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Пристрої",
     "@devices": {
         "type": "String",
@@ -466,16 +437,6 @@
             }
         }
     },
-    "fileName": "Назва файлу",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "forward": "Переслати",
     "@forward": {
         "type": "String",
@@ -534,11 +495,6 @@
     },
     "help": "Довідка",
     "@help": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "ID",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -710,11 +666,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Майте на увазі, що на цей час вам потрібен Pantalaimon, щоб використовувати наскрізне шифрування.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newMessageInFluffyChat": "💬 Нове повідомлення у FluffyChat",
     "@newMessageInFluffyChat": {
         "type": "String",
@@ -732,11 +683,6 @@
     },
     "noGoogleServicesWarning": "Схоже, Firebase Cloud Messaging недоступна на вашому пристрої. Щоб отримувати push-сповіщення, радимо встановити ntfy. За допомогою ntfy або іншого постачальника Unified Push ви можете отримувати push-сповіщення у безпечний спосіб. Ви можете завантажити ntfy з PlayStore або з F-Droid.",
     "@noGoogleServicesWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "none": "Нічого",
-    "@none": {
         "type": "String",
         "placeholders": {}
     },
@@ -785,20 +731,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Вибрати зображення",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "play": "Відтворити {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
-    },
     "pleaseEnterYourPassword": "Введіть свій пароль",
     "@pleaseEnterYourPassword": {
         "type": "String",
@@ -811,11 +743,6 @@
     },
     "publicRooms": "Загальнодоступні кімнати",
     "@publicRooms": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Запис",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -852,15 +779,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "Вилучено користувачем {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Розблокувати у бесіді",
     "@unbanFromChat": {
         "type": "String",
@@ -868,11 +786,6 @@
     },
     "reply": "Відповісти",
     "@reply": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Запит дозволу",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1005,12 +918,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Спробуйте надіслати ще раз",
     "@tryToSendAgain": {
         "type": "String",
@@ -1099,11 +1006,6 @@
             }
         }
     },
-    "username": "Ім'я користувача",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} надсилає подію {type}",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1115,11 +1017,6 @@
                 "type": "String"
             }
         }
-    },
-    "verify": "Перевірити",
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
     },
     "verifyStart": "Почати перевірку",
     "@verifyStart": {
@@ -1206,11 +1103,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Правила сповіщень",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "notifications": "Сповіщення",
     "@notifications": {
         "type": "String",
@@ -1231,11 +1123,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emotePacks": "Набори емодзі для кімнати",
-    "@emotePacks": {
-        "type": "String",
-        "placeholders": {}
-    },
     "edit": "Редагувати",
     "@edit": {
         "type": "String",
@@ -1243,11 +1130,6 @@
     },
     "directChats": "Особисті бесіди",
     "@directChats": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "ID пристрою",
-    "@deviceId": {
         "type": "String",
         "placeholders": {}
     },
@@ -1377,11 +1259,6 @@
             }
         }
     },
-    "online": "Онлайн",
-    "@online": {
-        "type": "String",
-        "placeholders": {}
-    },
     "oopsPushError": "Дідько! На жаль, сталася помилка під час налаштування push-сповіщень.",
     "@oopsPushError": {
         "type": "String",
@@ -1394,11 +1271,6 @@
     },
     "redactMessage": "Редагувати повідомлення",
     "@redactMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "register": "Зареєструватися",
-    "@register": {
         "type": "String",
         "placeholders": {}
     },
@@ -1493,11 +1365,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "Усі бесіди",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "commandHint_join": "Приєднатися до цієї кімнати",
     "@commandHint_join": {
         "type": "String",
@@ -1527,11 +1394,6 @@
                 "type": "String"
             }
         }
-    },
-    "hideRedactedEvents": "Сховати змінені події",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
     },
     "synchronizingPleaseWait": "Синхронізація… Будь ласка, зачекайте.",
     "@synchronizingPleaseWait": {
@@ -1609,7 +1471,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "homeserver": "Домашній сервер",
     "groups": "Групи",
     "@groups": {
         "type": "String",
@@ -1661,11 +1522,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "Офлайн",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "addAccount": "Додати обліковий запис",
     "openInMaps": "Відкрити в картах",
     "@openInMaps": {
@@ -1699,11 +1555,6 @@
     },
     "tooManyRequestsWarning": "Забагато запитів. Спробуйте пізніше!",
     "@tooManyRequestsWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Недоступний",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1777,11 +1628,6 @@
     },
     "editBlockedServers": "Редагувати заблоковані сервери",
     "@editBlockedServers": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "showPassword": "Показати пароль",
-    "@showPassword": {
         "type": "String",
         "placeholders": {}
     },
@@ -1859,11 +1705,9 @@
     "repeatPassword": "Повторіть пароль",
     "messageInfo": "Відомості про повідомлення",
     "time": "Час",
-    "messageType": "Тип повідомлення",
     "openGallery": "Відкрити галерею",
     "sender": "Відправник",
     "removeFromSpace": "Вилучити з простору",
-    "start": "Почати",
     "commandHint_discardsession": "Відкинути сеанс",
     "@commandHint_discardsession": {
         "type": "String",
@@ -1884,7 +1728,6 @@
         "type": "String",
         "description": "Usage hint for the command /dm"
     },
-    "dismiss": "Відхилити",
     "markAsRead": "Позначити прочитаним",
     "reportUser": "Поскаржився на користувача",
     "reactedWith": "{sender} реагує з {reaction}",
@@ -1970,7 +1813,6 @@
     "storeInAndroidKeystore": "Зберегти в Android KeyStore",
     "storeInAppleKeyChain": "Зберегти в Apple KeyChain",
     "storeSecurlyOnThisDevice": "Зберегти безпечно на цей пристрій",
-    "recoveryKey": "Ключ відновлення",
     "users": "Користувачі",
     "countFiles": "{count} файлів",
     "@countFiles": {
@@ -2001,9 +1843,7 @@
     "noKeyForThisMessage": "Це може статися, якщо повідомлення було надіслано до того, як ви ввійшли у свій обліковий запис на цьому пристрої.\n\nТакож можливо, що відправник заблокував ваш пристрій або щось пішло не так з під'єднанням до інтернету.\n\nЧи можете ви прочитати повідомлення на іншому сеансі? Тоді ви зможете перенести повідомлення з нього! Перейдіть до Налаштування > Пристрої та переконайтеся, що ваші пристрої перевірили один одного. Коли ви відкриєте кімнату наступного разу й обидва сеанси будуть на активні, ключі будуть передані автоматично.\n\nВи ж не хочете втрачати ключі після виходу або зміни пристроїв? Переконайтеся, що ви ввімкнули резервне копіювання бесід у налаштуваннях.",
     "foregroundServiceRunning": "Це сповіщення з'являється під час роботи основної служби.",
     "screenSharingTitle": "спільний доступ до екрана",
-    "newGroup": "Нова група",
     "newSpace": "Новий простір",
-    "allSpaces": "Усі простори",
     "screenSharingDetail": "Ви ділитеся своїм екраном FuffyChat",
     "doNotShowAgain": "Не показувати знову",
     "commandHint_cuddle": "Надіслати пригортайку",
@@ -2049,7 +1889,6 @@
     "encryptThisChat": "Зашифрувати цю бесіду",
     "disableEncryptionWarning": "З міркувань безпеки ви не можете вимкнути шифрування в бесіді, ув якій воно було ввімкнене раніше.",
     "sorryThatsNotPossible": "Вибачте... це неможливо",
-    "deviceKeys": "Ключі пристрою:",
     "reopenChat": "Відновити бесіду",
     "noOtherDevicesFound": "Інших пристроїв не знайдено",
     "noBackupWarning": "Увага! Якщо ви не ввімкнете резервне копіювання бесіди, ви втратите доступ до своїх зашифрованих повідомлень. Наполегливо радимо ввімкнути резервне копіювання бесіди перед виходом.",
@@ -2233,7 +2072,6 @@
             }
         }
     },
-    "transparent": "Прозорий",
     "sendReadReceiptsDescription": "Інші учасники бесіди бачитимуть, що ви прочитали повідомлення.",
     "formattedMessages": "Форматовані повідомлення",
     "sendReadReceipts": "Надіслати підтвердження прочитання",
@@ -2283,7 +2121,6 @@
         }
     },
     "commandHint_ignore": "Ігнорувати цей Matrix ID",
-    "restricted": "Обмежено",
     "swipeRightToLeftToReply": "Посунути праворуч або ліворуч, щоб відповісти",
     "globalChatId": "Глобальний ID бесіди",
     "accessAndVisibility": "Доступ і видимість",
@@ -2293,7 +2130,6 @@
     "customEmojisAndStickersBody": "Додавайте або діліться власними емодзі або наліпками, які можна використовувати в будь-якій бесіді.",
     "createNewAddress": "Створити нову адресу",
     "commandHint_unignore": "Не ігнорувати цей Matrix ID",
-    "knockRestricted": "Стук обмежено",
     "appLockDescription": "Блокувати додаток, коли не використовується PIN-код",
     "hideRedactedMessages": "Сховати змінені повідомлення",
     "hideRedactedMessagesBody": "Якщо хтось змінить повідомлення, його більше не буде видно в бесіді.",
@@ -2368,21 +2204,12 @@
     "changeTheCanonicalRoomAlias": "Змінити основну адресу загальнодоступного чату",
     "sendRoomNotifications": "Надсилати сповіщення @room",
     "space": "Простір",
-    "spaces": "Простори",
     "goToSpace": "Перейти до простору: {space}",
     "@goToSpace": {
         "type": "String",
         "space": {}
     },
     "markAsUnread": "Позначити непрочитаним",
-    "invitedBy": "📩 Запрошений {user}",
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "changeTheDescriptionOfTheGroup": "Змінити опис чату",
     "updateInstalled": "🎉 Оновлення {version} встановлено!",
     "@updateInstalled": {
@@ -2403,12 +2230,10 @@
     "doesNotSeemToBeAValidHomeserver": "Здається, це несумісний домашній сервер. Неправильна URL-адреса?",
     "calculatingFileSize": "Обчислення розміру файлу...",
     "sendingAttachment": "Надсилання вкладення...",
-    "compressVideo": "Стиснення відео...",
     "oneOfYourDevicesIsNotVerified": "Один із ваших пристроїв не верифікований",
     "noticeChatBackupDeviceVerification": "Примітка: Коли ви під'єднуєте всі свої пристрої до резервної копії бесіди, вони автоматично верифікуються.",
     "continueText": "Продовжити",
     "manageAccount": "Керувати обліковим записом",
-    "welcomeText": "Привіт-привіт 👋 Це FluffyChat. Ви можете увійти на будь-який сервер, сумісний із https://matrix.org. А потім спілкуватися з будь-ким. Це величезна децентралізована мережа для обміну повідомленнями!",
     "blur": "Розмиття:",
     "opacity": "Прозорість:",
     "setWallpaper": "Встановити шпалери",
@@ -2533,7 +2358,6 @@
     "pleaseWaitUntilInvited": "Будь ласка, зачекайте, поки хтось з кімнати запросить вас.",
     "notificationRuleEncryptedRoomOneToOne": "Зашифрована кімната \"Один на один\"",
     "deletePushRuleCanNotBeUndone": "Якщо ви видалите це налаштування сповіщень, відновити його буде неможливо.",
-    "ignoreUser": "Ігнорувати користувача",
     "notificationRuleEncryptedDescription": "Повідомляє користувача про повідомлення в зашифрованих кімнатах.",
     "notificationRuleRoomServerAclDescription": "Приховує сповіщення про списки контролю доступу (ACL) сервера кімнати.",
     "notificationRuleReaction": "Реакція",
@@ -2602,16 +2426,6 @@
             }
         }
     },
-    "startedAPoll": "Нове опитування від {username}.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "Опитування",
     "startPoll": "Розпочати опитування",
     "endPoll": "Завершити опитування",
     "answersVisible": "Відповіді видимі",
@@ -2732,10 +2546,8 @@
             }
         }
     },
-    "check": "Перевірити",
     "encryptedMessage": "Зашифроване повідомлення",
     "unencryptedMessage": "Незашифроване повідомлення",
-    "allow": "Дозволити",
     "publicKey": "Публічний ключ: {key}",
     "@publicKey": {
         "type": "String",

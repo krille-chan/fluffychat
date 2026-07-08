@@ -1,7 +1,6 @@
 {
     "repeatPassword": "Паўтарыце пароль",
     "notAnImage": "Не файл выявы.",
-    "ignoreUser": "Ігнараваць карыстальніка",
     "remove": "Прыбраць",
     "@remove": {
         "type": "String",
@@ -78,11 +77,6 @@
     },
     "all": "Усё",
     "@all": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "allChats": "Усе чаты",
-    "@allChats": {
         "type": "String",
         "placeholders": {}
     },
@@ -195,7 +189,6 @@
     "noChatsFoundHere": "Здаецца, тут пуста. Пачніце новы чат з кімсьці праз кнопку ніжэй. ⤵️",
     "unread": "Непрачытаные",
     "space": "Прастора",
-    "spaces": "Прасторы",
     "banFromChat": "Заблакіраваць ў чаце",
     "@banFromChat": {
         "type": "String",
@@ -252,30 +245,6 @@
         "type": "String",
         "placeholders": {
             "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} змяніў апісанне чата на :'{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} змяніў назву чата на '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
                 "type": "String"
             }
         }
@@ -694,16 +663,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Прылада",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "ID прылады",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Прылады",
     "@devices": {
         "type": "String",
@@ -762,11 +721,6 @@
     },
     "emoteKeyboardNoRecents": "Нядаўна ўжытыя эмодзі паявяцца тут...",
     "@emoteKeyboardNoRecents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Наборы эмодзі для пакою",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -835,7 +789,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "homeserver": "Дамашні сервер",
     "errorObtainingLocation": "Памылка атрымання месцазнаходжання: {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -844,16 +797,6 @@
                 "type": "String"
             }
         }
-    },
-    "fileName": "Назва файла",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
     },
     "fontSize": "Памер шрыфту",
     "@fontSize": {
@@ -928,19 +871,9 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Схаваць адрэдагаваныя падзеі",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideRedactedMessages": "Схаваць адрэдагаваныя паведамленні",
     "hideRedactedMessagesBody": "Калі хтосьці рэдагуе паведамленне, яно будзе схавана ў чаце.",
     "hideInvalidOrUnknownMessageFormats": "Хаваць памылковыя ці невядомыя фарматы паведамленняў",
-    "id": "ID",
-    "@id": {
-        "type": "String",
-        "placeholders": {}
-    },
     "block": "Заблакіраваць",
     "blockedUsers": "Заблакіраваныя карыстальнікі",
     "blockListDescription": "Вы можаце заблакіраваць карыстальнікаў, якія вам перашкаджаюць. Вы не атрымаеце ад іх ні паведамленняў, ні запрашэнняў.",
@@ -1152,11 +1085,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Пераканайцеся, калі ласка, што вы выкарыстоўваеце Pantalaimon для end-to-end шыфравання.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "Новы чат",
     "@newChat": {
         "type": "String",
@@ -1216,11 +1144,6 @@
     },
     "shareInviteLink": "Падзяліцца запрашальнай спасылкай",
     "scanQrCode": "Сканіраваць QR-код",
-    "none": "Нічога",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPasswordRecoveryDescription": "Вы яшчэ не дадалі метад аднаўлення пароля.",
     "@noPasswordRecoveryDescription": {
         "type": "String",
@@ -1268,11 +1191,6 @@
     },
     "shareLocation": "Падзяліцца месцазнаходжаннем",
     "@shareLocation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "showPassword": "Паказаць пароль",
-    "@showPassword": {
         "type": "String",
         "placeholders": {}
     },
@@ -1346,12 +1264,6 @@
     },
     "theyMatch": "Яны супадаюць",
     "@theyMatch": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
         "type": "String",
         "placeholders": {}
     },
@@ -1442,14 +1354,11 @@
     },
     "messageInfo": "Інфармацыя пра паведамленне",
     "time": "Час",
-    "messageType": "Тып паведамлення",
     "sender": "Адпраўшчык",
     "openGallery": "Адкрыць галерэю",
     "removeFromSpace": "Выдаліць з прасторы",
-    "start": "Пачаць",
     "markAsRead": "Адзначыць як прачытанае",
     "reportUser": "Паскардзіцца на карыстальніка",
-    "dismiss": "Адхіліць",
     "reactedWith": "{sender} рэагуе з {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -1492,14 +1401,6 @@
     },
     "youInvitedBy": "📩 Вы былі запрошаны карыстальнікам {user}",
     "@youInvitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "invitedBy": "📩 Запрошаны(-а) {user}",
-    "@invitedBy": {
         "placeholders": {
             "user": {
                 "type": "String"
@@ -1568,9 +1469,7 @@
     "screenSharingDetail": "Вы дзеліцеся экранам у FluffyChat",
     "whyIsThisMessageEncrypted": "Чаму гэта паведамленне нельга прачытаць?",
     "noKeyForThisMessage": "Гэта можа здарыцца з-за таго, што паведамленне было даслана да таго, як вы увайшлі ў уліковы запіс на гэтай прыладзе.\n\nТаксама верагодна, што адпраўшчык заблакіраваў вашу прыладу ці ў вас хібы з інтэрнэтам.\n\nВы можаце чытаць гэта паведамленне з іншага сеансу? Тад дашліце паведамленне адтуль! Перайдзіце ў Налады > Прылады і пераканайцеся ў тым, што вашы прылады верыфікавалі адна адну. Калі вы адкрыеце пакой наступны раз і абодве сэсіі будуць запушчаны, ключы павінны сінхранізавацца аўтаматычна.\n\nВы не хаціце згубіць клбчы, калі будзеце выходзіць ці змяняць прылады? Пераканайцеся ў тым, што вы уключылі рэзервовае капіраванне чатаў у наладах.",
-    "newGroup": "Новая група",
     "newSpace": "Новая прастора",
-    "allSpaces": "Усе прасторы",
     "doNotShowAgain": "Не паказваць зноў",
     "wasDirectChatDisplayName": "Пусты чат (быў {oldDisplayName})",
     "@wasDirectChatDisplayName": {
@@ -1585,7 +1484,6 @@
     "encryptThisChat": "Шыфраваць гэты чат",
     "disableEncryptionWarning": "У мэтах бяспекі, вы не можаце адклбчауь шыфраванне ў гэтым чаце, дзе яно было ўключана.",
     "sorryThatsNotPossible": "Прабачце... Гэта немагчыма",
-    "deviceKeys": "Ключы прылад:",
     "reopenChat": "Адкрыць чат зноў",
     "noBackupWarning": "Увага! Без уключэння рэзервовага капіравання чатаў, вы страціце доступ да вашых зашыфраваных паведамленняў. Настойліва рэкамендуецца уключыць фукнцыю да таго, як выйсці.",
     "noOtherDevicesFound": "Іншыя прылады не знойдзены",
@@ -1690,18 +1588,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "Не ў сетцы",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "Ок",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "У сетцы",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -1778,24 +1666,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Абраць выяву",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Замацаваць",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "Прайграць {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseChooseAPasscode": "Калі ласка, выберыце код доступу",
     "@pleaseChooseAPasscode": {
@@ -1837,18 +1711,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Правілы пушэй",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reason": "Прычына",
     "@reason": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Запіс",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -1888,11 +1752,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "register": "Зарэгістравацца",
-    "@register": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reject": "Адмовіць",
     "@reject": {
         "type": "String",
@@ -1911,15 +1770,6 @@
     "@removeAllOtherDevices": {
         "type": "String",
         "placeholders": {}
-    },
-    "removedBy": "Выдалена {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "unbanFromChat": "Разблакіраваць у чаце",
     "@unbanFromChat": {
@@ -1943,11 +1793,6 @@
     },
     "reportMessage": "Паведаміць пра паведамленне",
     "@reportMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Запрасіць дазвол",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1976,7 +1821,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "recoveryKey": "Ключ аднаўлення",
     "send": "Даслаць",
     "@send": {
         "type": "String",
@@ -2094,11 +1938,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unavailable": "Недаступна",
-    "@unavailable": {
-        "type": "String",
-        "placeholders": {}
-    },
     "unbannedUser": "{username} разблакіраваў {targetName}",
     "@unbannedUser": {
         "type": "String",
@@ -2187,11 +2026,6 @@
             }
         }
     },
-    "username": "Імя карыстальніка",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} даслаў падзею {type}",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -2207,11 +2041,6 @@
     "unverified": "Не спраўджана",
     "verified": "Спраўджана",
     "@verified": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verify": "Спраўдзіць",
-    "@verify": {
         "type": "String",
         "placeholders": {}
     },
@@ -2300,7 +2129,6 @@
         }
     },
     "knocking": "Грукацца",
-    "knockRestricted": "Грук абмежаваны",
     "spaceMemberOfCanKnock": "Удзельнікі прасторы з {spaces} могуць грукацца",
     "@spaceMemberOfCanKnock": {
         "type": "String",
@@ -2424,7 +2252,6 @@
             }
         }
     },
-    "transparent": "Празрысты",
     "incomingMessages": "Уваходныя паведамленні",
     "stickers": "Стыкеры",
     "discover": "Даследаваць",
@@ -2448,7 +2275,6 @@
         "type": "String",
         "count": {}
     },
-    "restricted": "Абмежавана",
     "goToSpace": "Перайсці да прасторы: {space}",
     "@goToSpace": {
         "type": "String",
@@ -2504,10 +2330,8 @@
     "doesNotSeemToBeAValidHomeserver": "Гэта не выглядае як дамашні сервер. Няслушны URL?",
     "calculatingFileSize": "Вылічэнне памеру файла...",
     "sendingAttachment": "Адпраўка прыкладання...",
-    "compressVideo": "Сцісканне відэа...",
     "oneOfYourDevicesIsNotVerified": "Адна з вашых прылад не спраўджана",
     "noticeChatBackupDeviceVerification": "Заўвага: Калі вы падключыце ўсе свае прылады да рэзервовага капіравання, яны аўтаматычна спраўдзяцца.",
-    "welcomeText": "Вітаначкі 👋 Гэта FluffyChat. Вы можаце ўвайсці на любы дамашні сервер, што сумяшчальны з https://matrix.org, а потым паразмаўляць з кім-небудзь. Гэта вялізная дэцэнтралізаваная сетка абмену паведамленнямі!",
     "blur": "Размыццё:",
     "opacity": "Празрыстасць:",
     "setWallpaper": "Задаць шпалеры",
@@ -2589,16 +2413,6 @@
             }
         }
     },
-    "startedAPoll": "{username} пачаў апытанне.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "Апытанне",
     "startPoll": "Пачаць апытанне",
     "endPoll": "Скончыць апытанне",
     "answersVisible": "Адказы бачны",

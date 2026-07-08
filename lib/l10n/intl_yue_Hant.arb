@@ -54,18 +54,6 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} 改咗呢個偈嘅介紹： 「'{description}'」",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
     "addEmail": "加 Email",
     "@addEmail": {
         "type": "String",
@@ -160,11 +148,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "所有傾嘅偈仔",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "commandHint_roomupgrade": "將呢間房升級到指定版本",
     "commandHint_googly": "送啲古靈精怪表情過去",
     "commandHint_cuddle": "Send 個攬攬",
@@ -231,7 +214,6 @@
     "noMoreChatsFound": "搵唔到更多偈傾啦…",
     "unread": "未讀",
     "space": "空間",
-    "spaces": "空間",
     "banned": "Block 咗",
     "@banned": {
         "type": "String",
@@ -268,10 +250,6 @@
     },
     "confirmMatrixId": "Confirm 你嘅 Matrix ID ，我哋先至可以刪除你嘅 Account。",
     "importFromZipFile": "喺 .zip 檔案導入",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@darkTheme": {
         "type": "String",
         "placeholders": {}
@@ -356,10 +334,6 @@
             }
         }
     },
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@commandHint_html": {
         "type": "String",
         "description": "Usage hint for the command /html"
@@ -383,11 +357,6 @@
             }
         }
     },
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "@changeTheNameOfTheGroup": {
         "type": "String",
         "placeholders": {}
@@ -409,10 +378,6 @@
         "placeholders": {}
     },
     "@newVerificationRequest": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -540,10 +505,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@id": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -602,10 +563,6 @@
             }
         }
     },
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@couldNotDecryptMessage": {
         "type": "String",
         "placeholders": {
@@ -635,14 +592,6 @@
         }
     },
     "@editRoomAliases": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -756,14 +705,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@online": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@lastActiveAgo": {
         "type": "String",
         "placeholders": {
@@ -795,10 +736,6 @@
             }
         }
     },
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@edit": {
         "type": "String",
         "placeholders": {}
@@ -816,10 +753,6 @@
         "placeholders": {}
     },
     "@passwordHasBeenChanged": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@pushRules": {
         "type": "String",
         "placeholders": {}
     },
@@ -842,10 +775,6 @@
                 "type": "String"
             }
         }
-    },
-    "@none": {
-        "type": "String",
-        "placeholders": {}
     },
     "@enableEncryption": {
         "type": "String",
@@ -958,10 +887,6 @@
             }
         }
     },
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@changedTheRoomAliases": {
         "type": "String",
         "placeholders": {
@@ -1037,14 +962,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@register": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@changedTheJoinRulesTo": {
         "type": "String",
         "placeholders": {
@@ -1055,10 +972,6 @@
                 "type": "String"
             }
         }
-    },
-    "@recording": {
-        "type": "String",
-        "placeholders": {}
     },
     "@changedTheChatPermissions": {
         "type": "String",
@@ -1129,17 +1042,6 @@
     "@sendAsText": {
         "type": "String"
     },
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
     "@commandInvalid": {
         "type": "String"
     },
@@ -1154,14 +1056,6 @@
     "@locationDisabledNotice": {
         "type": "String",
         "placeholders": {}
-    },
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "@changedTheRoomInvitationLink": {
         "type": "String",
@@ -1394,10 +1288,6 @@
         "type": "String",
         "description": "Usage hint for the command /myroomnick"
     },
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@noPermission": {
         "type": "String",
         "placeholders": {}
@@ -1410,13 +1300,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "@groupIsPublic": {
         "type": "String",
         "placeholders": {}
@@ -1426,10 +1309,6 @@
         "placeholders": {}
     },
     "@joinRoom": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@fluffychat": {
         "type": "String",
         "placeholders": {}
     },
@@ -1774,14 +1653,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
-    },
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",
         "placeholders": {
@@ -1959,21 +1830,9 @@
         "type": "String",
         "placeholders": {}
     },
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@sendVideo": {
         "type": "String",
         "placeholders": {}
-    },
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "@sendAMessage": {
         "type": "String",
@@ -2006,10 +1865,6 @@
                 "type": "String"
             }
         }
-    },
-    "@emotePacks": {
-        "type": "String",
-        "placeholders": {}
     },
     "@requestedKeyVerification": {
         "type": "String",

@@ -147,30 +147,6 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} endret chatbeskrivelsen til: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} endret chatnavnet til: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
     "changedTheChatPermissions": "{username} endret sludretilgangene",
     "@changedTheChatPermissions": {
         "type": "String",
@@ -451,16 +427,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Enhet",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "Enhets-ID",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Enheter",
     "@devices": {
         "type": "String",
@@ -508,11 +474,6 @@
     },
     "emoteInvalid": "Ugyldig smilefjes-kode!",
     "@emoteInvalid": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Smilefjespakker for rommet",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -572,16 +533,6 @@
     },
     "enterAnEmailAddress": "Skriv inn en e-postadresse",
     "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fileName": "Filnavn",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
         "type": "String",
         "placeholders": {}
     },
@@ -656,18 +607,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Skjul tilbaketrukne hendelser",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideUnknownEvents": "Skjul ukjente hendelser",
     "@hideUnknownEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "ID",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -869,11 +810,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Merk at du trenger Pantalaimon for å bruke ende-til-ende -kryptering inntil videre.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "Ny sludring",
     "@newChat": {
         "type": "String",
@@ -909,11 +845,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "none": "Ingen",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPasswordRecoveryDescription": "Du har ikke lagt til en måte å gjenopprette passordet ditt på.",
     "@noPasswordRecoveryDescription": {
         "type": "String",
@@ -943,18 +874,8 @@
             }
         }
     },
-    "offline": "Frakoblet",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "Ok",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "Pålogget",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -1008,24 +929,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Velg bilde",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Fest",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "Spill av {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseClickOnLink": "Klikk på lenken i e-posten og fortsett.",
     "@pleaseClickOnLink": {
@@ -1057,18 +964,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Dyttingsregler",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reason": "Grunn",
     "@reason": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Opptak",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -1105,15 +1002,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "Fjernet av {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Opphev bannlysning",
     "@unbanFromChat": {
         "type": "String",
@@ -1131,11 +1019,6 @@
     },
     "reportMessage": "Rapporter melding",
     "@reportMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Forespør tilgang",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1316,12 +1199,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tooManyRequestsWarning": "For mange forespørsler. Prøv igjen senere!",
     "@tooManyRequestsWarning": {
         "type": "String",
@@ -1329,11 +1206,6 @@
     },
     "tryToSendAgain": "Prøv å sende igjen",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Utilgjengelig",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1425,11 +1297,6 @@
             }
         }
     },
-    "username": "Brukernavn",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} sendte en {type}-hendelse",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1441,11 +1308,6 @@
                 "type": "String"
             }
         }
-    },
-    "verify": "Bekreft",
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
     },
     "verifyStart": "Start bekreftelse",
     "@verifyStart": {
@@ -1564,11 +1426,6 @@
     },
     "repeatPassword": "Gjenta passord",
     "addToSpace": "Legg til område",
-    "allChats": "Alle samtaler",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "autoplayImages": "Automatisk spill av animerte stickers og emojis",
     "@autoplayImages": {
         "type": "String",
@@ -1618,7 +1475,6 @@
         }
     },
     "space": "Område",
-    "spaces": "Områder",
     "cuddleContent": "{senderName} koser med deg",
     "@cuddleContent": {
         "type": "String",
@@ -1629,7 +1485,6 @@
         }
     },
     "appLockDescription": "Lås appen med en PIN-kode når den ikke er i bruk",
-    "ignoreUser": "Ignorer bruker",
     "replace": "Erstatt",
     "noMoreChatsFound": "Ingen flere chatter funnet ...",
     "confirmMatrixId": "Bekreft Matrix-IDen din for å slette kontoen din.",
@@ -1646,7 +1501,6 @@
     "commandHint_hug": "Send en klem",
     "markAsRead": "Marker som lest",
     "openLinkInBrowser": "Åpne lenke i nettleser",
-    "start": "Start",
     "passwordsDoNotMatch": "Passordene stemmer ikke overens",
     "encryptThisChat": "Krypter denne chatten",
     "doNotShowAgain": "Ikke vis igjen",
@@ -1662,14 +1516,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "recoveryKey": "Gjenopprettingsnøkkel",
     "shareLocation": "Del lokasjon",
     "@shareLocation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "showPassword": "Vis passord",
-    "@showPassword": {
         "type": "String",
         "placeholders": {}
     },
@@ -1678,7 +1526,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "dismiss": "Avvis",
     "reopenChat": "Gjenåpne chat",
     "changeTheDescriptionOfTheGroup": "Endre beskrivelsen til chatten",
     "inviteOtherUsers": "Inviter andre brukere til denne chatten",
@@ -1708,7 +1555,6 @@
             }
         }
     },
-    "restricted": "Begrenset",
     "updateInstalled": "🎉 Oppdatering {version} installert!",
     "@updateInstalled": {
         "type": "String",
@@ -1744,7 +1590,6 @@
     "learnMore": "Lær mer",
     "sorryThatsNotPossible": "Beklager... det er ikke mulig",
     "markAsUnread": "Marker som ulest",
-    "newGroup": "Ny gruppe",
     "addLink": "Legg til lenke",
     "synchronizingPleaseWaitCounter": " Synkroniserer… ({percentage}%)",
     "@synchronizingPleaseWaitCounter": {
@@ -1886,7 +1731,6 @@
     "invalidServerName": "Ugyldig servernavn",
     "messageInfo": "Meldingsinformasjon",
     "time": "Tid",
-    "messageType": "Meldingstype",
     "sender": "Avsender",
     "reportUser": "Rapporter bruker",
     "youHaveWithdrawnTheInvitationFor": "Du har trukket tilbake invitasjonen for {user}",
@@ -1962,14 +1806,6 @@
             }
         }
     },
-    "invitedBy": "📩 Invitert av {user}",
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "youInvitedUser": "📩 Du inviterte {user}",
     "@youInvitedUser": {
         "placeholders": {
@@ -2038,7 +1874,6 @@
         }
     },
     "disableEncryptionWarning": "Av sikkerhetshensyn kan du ikke deaktivere kryptering i en chat der det har vært aktivert tidligere.",
-    "deviceKeys": "Enhetsnøkler:",
     "readUpToHere": "Lest frem til her",
     "jump": "Hopp",
     "reportErrorDescription": "😭 Å nei. Noe gikk galt. Hvis du ønsker det, kan du rapportere denne feilen til utviklerne.",
@@ -2126,7 +1961,6 @@
             }
         }
     },
-    "transparent": "Gjennomsiktig",
     "stickers": "Stickers",
     "commandHint_ignore": "Ignorer den oppgitte matrix IDen",
     "commandHint_unignore": "Opphev ignorering av den gitte matrix IDen",
@@ -2216,7 +2050,6 @@
     "notificationRuleEncryptedRoomOneToOneDescription": "Varsler brukeren om meldinger i krypterte en-til-en-rom.",
     "notificationRuleRoomOneToOne": "Rom én-til-én",
     "customEmojisAndStickersBody": "Legg til eller del tilpassede emojier eller klistremerker som kan brukes i hvilken som helst chat.",
-    "homeserver": "Hjemmeserver",
     "errorObtainingLocation": "Feil ved henting av posisjon: {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -2305,8 +2138,6 @@
         "description": "Usage hint for the command /clearcache"
     },
     "doesNotSeemToBeAValidHomeserver": "Ser ikke ut til å være en kompatibel hjemmeserver. Feil URL?",
-    "compressVideo": "Komprimerer video...",
-    "welcomeText": "Hei, hei! 👋 Dette er FluffyChat. Du kan logge på hvilken som helst hjemmeserver som er kompatibel med https://matrix.org. Og deretter chatte med hvem som helst. Det er et stort desentralisert meldingsnettverk!",
     "notificationRuleIsUserMentionDescription": "Varsler brukeren når de er direkte nevnt i en melding.",
     "notificationRuleContainsDisplayName": "Inneholder visningsnavn",
     "notificationRuleContainsDisplayNameDescription": "Varsler brukeren når en melding inneholder ens visningsnavnet.",
@@ -2452,7 +2283,6 @@
         "placeholders": {}
     },
     "newSpace": "Nytt område",
-    "allSpaces": "Alle områder",
     "wasDirectChatDisplayName": "Tom chat (var {oldDisplayName})",
     "@wasDirectChatDisplayName": {
         "type": "String",
@@ -2499,16 +2329,6 @@
     "pause": "Pause",
     "foregroundServiceRunning": "Denne varslingen vises når forgrunnstjenesten kjører.",
     "longPressToRecordVoiceMessage": "Langt trykk for å spille inn talemelding.",
-    "startedAPoll": "{username} startet en avstemning.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "Avstemning",
     "startPoll": "Start avstemning",
     "endPoll": "Avslutt avstemning",
     "answersVisible": "Svar synlige",
@@ -2583,11 +2403,6 @@
         "description": "Usage hint for the command /op"
     },
     "editBundlesForAccount": "Rediger pakker for denne kontoen",
-    "register": "Registrer",
-    "@register": {
-        "type": "String",
-        "placeholders": {}
-    },
     "makeAdminDescription": "Når du gjør denne brukeren til administrator, kan du kanskje ikke omgjøre det senere. Brukeren vil da få de samme rettighetene som deg.",
     "joinSpace": "Bli med i området",
     "publicSpaces": "Offentlige områder",
@@ -2632,7 +2447,6 @@
     "notificationRuleMemberEventDescription": "Skjuler varslinger for medlemsskapshendelser.",
     "youHaveKnocked": "Du har banket på",
     "moreEvents": "Flere hendelser",
-    "knockRestricted": "Banking deaktivert",
     "contactServerSecurity": "Kontakt sikkerhetsansvarlig for serveren",
     "notificationRuleMemberEvent": "Medlemshendelse",
     "spaceMemberOfCanKnock": "Et medlem av området {spaces} kan banke på",

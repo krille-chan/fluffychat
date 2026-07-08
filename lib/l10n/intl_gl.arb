@@ -54,11 +54,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "Todas as conversas",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "answeredTheCall": "{senderName} respondeu á chamada",
     "@answeredTheCall": {
         "type": "String",
@@ -185,30 +180,6 @@
         "type": "String",
         "placeholders": {
             "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} mudou a descrición da conversa a: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} mudou o nome da charla a: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
                 "type": "String"
             }
         }
@@ -593,16 +564,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Dispositivo",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "ID do dispositivo",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Dispositivos",
     "@devices": {
         "type": "String",
@@ -655,11 +616,6 @@
     },
     "emoteInvalid": "Atallo do emote non é válido!",
     "@emoteInvalid": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Paquetes de Emotes para a sala",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -730,16 +686,6 @@
                 "type": "String"
             }
         }
-    },
-    "fileName": "Nome do ficheiro",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
     },
     "fontSize": "Tamaño da letra",
     "@fontSize": {
@@ -812,18 +758,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Agochar eventos editados",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideUnknownEvents": "Agochar eventos descoñecidos",
     "@hideUnknownEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "ID",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -1035,11 +971,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Ten en conta que polo de agora precisas Pantalaimon para a cifraxe extremo-a-extremo.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "Nova conversa",
     "@newChat": {
         "type": "String",
@@ -1097,11 +1028,6 @@
             }
         }
     },
-    "none": "Ningún",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPasswordRecoveryDescription": "Aínda non engaiches ningún xeito de recuperar o contrasinal.",
     "@noPasswordRecoveryDescription": {
         "type": "String",
@@ -1136,18 +1062,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "Desconectada",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "Ok",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "En liña",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -1216,24 +1132,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Elixe unha imaxe",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Fixar",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "Reproducir {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseChooseAPasscode": "Escolle un código de acceso",
     "@pleaseChooseAPasscode": {
@@ -1275,18 +1177,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Regras de envío",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reason": "Razón",
     "@reason": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Gravando",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -1301,11 +1193,6 @@
     },
     "redactMessage": "Eliminar mensaxe",
     "@redactMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "register": "Crear conta",
-    "@register": {
         "type": "String",
         "placeholders": {}
     },
@@ -1333,15 +1220,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "Eliminado por {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Retirar veto na conversa",
     "@unbanFromChat": {
         "type": "String",
@@ -1364,11 +1242,6 @@
     },
     "reportMessage": "Denunciar mensaxe",
     "@reportMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Solicitar permiso",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1524,11 +1397,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "showPassword": "Amosar contrasinal",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "skip": "Saltar",
     "@skip": {
         "type": "String",
@@ -1593,12 +1461,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tooManyRequestsWarning": "Demasiadas solicitudes. Inténtao máis tarde!",
     "@tooManyRequestsWarning": {
         "type": "String",
@@ -1606,11 +1468,6 @@
     },
     "tryToSendAgain": "Inténtao outra vez",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Non dispoñible",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1702,11 +1559,6 @@
             }
         }
     },
-    "username": "Nome de usuaria",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} enviou un evento {type}",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1721,11 +1573,6 @@
     },
     "verified": "Verificado",
     "@verified": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verify": "Verificar",
-    "@verify": {
         "type": "String",
         "placeholders": {}
     },
@@ -1847,7 +1694,6 @@
     "addToSpace": "Engadir ao espazo",
     "scanQrCode": "Escanear código QR",
     "sendOnEnter": "Enter para enviar",
-    "homeserver": "Servidor de inicio",
     "addAccount": "Engadir conta",
     "oneClientLoggedOut": "Un dos teus clientes foi desconectado",
     "link": "Ligazón",
@@ -1857,9 +1703,7 @@
     "time": "Hora",
     "sender": "Remitente",
     "openGallery": "Galería pública",
-    "messageType": "Tipo de mensaxe",
     "removeFromSpace": "Retirar do espazo",
-    "start": "Comezar",
     "commandHint_discardsession": "Descartar sesión",
     "@commandHint_discardsession": {
         "type": "String",
@@ -1880,7 +1724,6 @@
         "type": "String",
         "description": "Usage hint for the command /dm"
     },
-    "dismiss": "Desbotar",
     "markAsRead": "Marcar como lido",
     "reportUser": "Denunciar usuaria",
     "voiceCall": "Chamada de voz",
@@ -1969,7 +1812,6 @@
     },
     "storeInAndroidKeystore": "Gardar en Android KeyStore",
     "storeInAppleKeyChain": "Gardar en Apple KeyChain",
-    "recoveryKey": "Chave de recuperación",
     "storeSecurlyOnThisDevice": "Gardar de xeito seguro no dispositivo",
     "users": "Usuarias",
     "countFiles": "{count} ficheiros",
@@ -1999,11 +1841,9 @@
     "commandHint_markasgroup": "Marcar como grupo",
     "whyIsThisMessageEncrypted": "Por que non podo ler esta mensaxe?",
     "noKeyForThisMessage": "Pode ser que a mensaxe fose enviada antes de que ti accedeses á túa conta neste dispositivo.\n\nTamén é posible que a remitente non validase o teu dispositivo ou tamén que algo fallase na conexión a internet.\n\nPodes ler a mensaxe noutro dispositivo? Entón podes transferila desde el! Vai a Axustes > Dispositivos e comproba que tes tódolos dispositivos verificados. Entón cando abras a sala a próxima vez a sincronización realizarase e as chaves transmitiranse automáticamente.\n\nNon desexas perder as chaves cando pechas sesión ou cambias de dispositivo? Comproba nos axustes que activaches a copia de apoio das conversas.",
-    "newGroup": "Novo grupo",
     "newSpace": "Novo espazo",
     "foregroundServiceRunning": "Esta notificación aparece cando se está a executar o servizo en segundo plano.",
     "screenSharingTitle": "compartición da pantalla",
-    "allSpaces": "Todos os espazos",
     "screenSharingDetail": "Estás a compartir a túa pantalla en FluffyChat",
     "doNotShowAgain": "Non mostrar outra vez",
     "commandHint_googly": "Envía uns ollos desos grandes",
@@ -2039,7 +1879,6 @@
     "encryptThisChat": "Cifrar esta conversa",
     "disableEncryptionWarning": "Por razóns de seguridade non podes desactivar a cifraxe dunha conversa onde foi activada previamente.",
     "sorryThatsNotPossible": "Lamentámolo... iso non é posible",
-    "deviceKeys": "Chaves do dispositivo:",
     "newSpaceDescription": "Os Espazos permítenche consolidar as túas conversas e construir comunidades públicas ou privadas.",
     "wasDirectChatDisplayName": "Conversa baleira (era {oldDisplayName})",
     "@wasDirectChatDisplayName": {
@@ -2206,7 +2045,6 @@
             }
         }
     },
-    "transparent": "Transparente",
     "sendReadReceipts": "Enviar confirmación de lectura",
     "sendReadReceiptsDescription": "Outras participantes na conversa poden ver cando liches unha mensaxe.",
     "formattedMessages": "Mensaxes con formato",
@@ -2331,13 +2169,10 @@
     "searchMore": "Buscar máis...",
     "gallery": "Galería",
     "files": "Ficheiros",
-    "knockRestricted": "Peta á porta",
-    "restricted": "Non accesible",
     "swipeRightToLeftToReply": "Despraza hacia a esquerda para responder",
     "noMoreChatsFound": "Non se atopan máis charlas…",
     "unread": "Sen ler",
     "space": "Espazo",
-    "spaces": "Espazos",
     "goToSpace": "Ir ao espazo: {space}",
     "@goToSpace": {
         "type": "String",
@@ -2378,14 +2213,6 @@
     "changeTheCanonicalRoomAlias": "Cambiar o enderezo público principal da charla",
     "sendRoomNotifications": "Enviar notificacións a @room",
     "changeTheDescriptionOfTheGroup": "Cambiar a descrición da charla",
-    "invitedBy": "📩 Convidada por {user}",
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "changelog": "Novidades na versión",
     "chatPermissionsDescription": "Define que nivel de permisos son necesarios para realizar certas accións nesta charla. Os niveis de permiso 0, 50 e 100 normalmente representan, usuarias, moderadoras e administradoras, pero son posibles outras escalas.",
     "updateInstalled": "🎉 Instalouse a actualización a {version}!",
@@ -2403,7 +2230,6 @@
     "doesNotSeemToBeAValidHomeserver": "Non semella ser un servidor de inicio compatible. É o URL correcto?",
     "calculatingFileSize": "Calculando o tamaño do ficheiro…",
     "sendingAttachment": "Enviando o anexo…",
-    "compressVideo": "Comprimindo o vídeo…",
     "oneOfYourDevicesIsNotVerified": "Un dos teus dispositivos non está verificado",
     "noticeChatBackupDeviceVerification": "Nota: Cando conectas todos os teus dispositivos á copia de apoio da conversa quedan verificados automaticamente.",
     "blur": "Néboa:",
@@ -2418,7 +2244,6 @@
             }
         }
     },
-    "welcomeText": "Ola! 👋 Isto é FluffyChat. Podes iniciar sesión en calquera servidor compatible con https://matrix.org. Poderás conversar con calquera. Unha enorme rede de mensaxería descentralizada!",
     "setWallpaper": "Establecer fondo",
     "manageAccount": "Xestionar conta",
     "noContactInformationProvided": "O servidor non proporciona información de contacto válida",
@@ -2538,7 +2363,6 @@
     "recordAVideo": "Gravar vídeo",
     "enterNewChat": "Entrar na nova conversa",
     "commandHint_roomupgrade": "Actualizar esta sala á versión de sala indicada",
-    "ignoreUser": "Ignorar usuaria",
     "approve": "Aprobar",
     "pleaseWaitUntilInvited": "Agora agarda a que alguén da sala te convide a entrar.",
     "youHaveKnocked": "Petaches á porta",
@@ -2602,16 +2426,6 @@
             }
         }
     },
-    "startedAPoll": "{username} publicou unha enquisa.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "Enquisa",
     "startPoll": "Publicar enquisa",
     "endPoll": "Finalizar enquisa",
     "answersVisible": "Resultados visibles",
@@ -2734,10 +2548,8 @@
             }
         }
     },
-    "check": "Comprobar",
     "encryptedMessage": "Mensaxe cifrada",
     "unencryptedMessage": "Mensaxe sen cifrar",
-    "allow": "Permitir",
     "messageCanOnlyBeReadByUser": "A túa mensaxe está cifrada de extremo a extremo e só a pode ler a usuaria:",
     "messageCanOnlyBeReadByUsers": "A túa mensaxe está cifrada de extremo a extremo e só a poden ler estas usuarias:",
     "publicKey": "Clave pública: {key}",

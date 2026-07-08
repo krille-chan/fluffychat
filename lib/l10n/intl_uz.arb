@@ -1,7 +1,6 @@
 {
     "repeatPassword": "Parolni takrorlang",
     "notAnImage": "Rasm fayli emas.",
-    "ignoreUser": "Foydalanuvchini e’tiborsiz qoldirish",
     "remove": "O‘chirish",
     "@remove": {
         "type": "String",
@@ -78,11 +77,6 @@
     },
     "all": "Hammasi",
     "@all": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "allChats": "Hamma suhbatlar",
-    "@allChats": {
         "type": "String",
         "placeholders": {}
     },
@@ -195,7 +189,6 @@
     "noChatsFoundHere": "Bu yerda hali chat topilmadi. Quyidagi tugmadan foydalanib, kimdir bilan yangi suhbat boshlang. ⤵️",
     "unread": "Oʻqilmagan",
     "space": "Boʻshliq",
-    "spaces": "Boʻshliqlar",
     "banFromChat": "Suhbatdan taqiqlash",
     "@banFromChat": {
         "type": "String",
@@ -252,30 +245,6 @@
         "type": "String",
         "placeholders": {
             "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} suhbat tavsifini '{description}'ga oʻzgartirdi",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} suhbat nomini: '{chatname}'ga oʻzgartirdi",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
                 "type": "String"
             }
         }
@@ -693,16 +662,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Qurilma",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "Qurilma ID",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Qurilmalar",
     "@devices": {
         "type": "String",
@@ -710,11 +669,6 @@
     },
     "directChats": "Shaxsiy suhbatlar",
     "@directChats": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Guruh uchun Emote toʻplamlar",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -761,11 +715,6 @@
     },
     "encryption": "Shifrlash",
     "@encryption": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
         "type": "String",
         "placeholders": {}
     },
@@ -842,19 +791,9 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Tahrirlangan tadbirlarni yashirish",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideRedactedMessages": "Oʻchirilgan xabarlarni yashirish",
     "hideRedactedMessagesBody": "Agar kimdir xabarni oʻchirsa, bu xabar endi suhbatda koʻrinmaydi.",
     "hideInvalidOrUnknownMessageFormats": "Notoʻgʻri yoki nomaʼlum xabar formatlarini yashirish",
-    "id": "ID",
-    "@id": {
-        "type": "String",
-        "placeholders": {}
-    },
     "block": "Bloklash",
     "blockedUsers": "Bloklangan foydalanuvchilar",
     "blockListDescription": "Sizni bezovta qilayotgan foydalanuvchilarni bloklashingiz mumkin. Shaxsiy bloklash roʻyxatingizdagi foydalanuvchilardan hech qanday xabar yoki guruhga taklifnomalarni qabul qila olmaysiz.",
@@ -997,7 +936,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "homeserver": "Uy serveri",
     "errorObtainingLocation": "Joylashuv axboroti olinmadi: {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -1006,11 +944,6 @@
                 "type": "String"
             }
         }
-    },
-    "fileName": "Fayl nomi",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
     },
     "joinedTheChat": "👋 {username} suhbatga qoʻshildi",
     "@joinedTheChat": {
@@ -1151,11 +1084,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Iltimos, hozircha Pantalaimon boshdan-oyoq shifrlashdan foydalanishi kerakligini yodda tuting.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "Yangi suhbat",
     "@newChat": {
         "type": "String",
@@ -1215,11 +1143,6 @@
     },
     "shareInviteLink": "Taklifnoma havolasini ulashish",
     "scanQrCode": "QR kodini skanerlang",
-    "none": "Hech biri",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPasswordRecoveryDescription": "Siz hali parolingizni tiklash usulini qoʻshmadingiz.",
     "@noPasswordRecoveryDescription": {
         "type": "String",
@@ -1254,18 +1177,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "Oflayn",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "Hop",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "Onlayn",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -1342,24 +1255,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Rasm tanlash",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Toʻgʻnash",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "{fileName}ni oʻynash",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseChooseAPasscode": "Iltimos, kirish kodini tanlang",
     "@pleaseChooseAPasscode": {
@@ -1401,18 +1300,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Push qoidalari",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reason": "Sabab",
     "@reason": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Yozilmoqda",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -1452,11 +1341,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "register": "Roʻyxatdan oʻtish",
-    "@register": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reject": "Rad qilish",
     "@reject": {
         "type": "String",
@@ -1475,15 +1359,6 @@
     "@removeAllOtherDevices": {
         "type": "String",
         "placeholders": {}
-    },
-    "removedBy": "{username} tomonidan oʻchirildi",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "unbanFromChat": "Suhbat blokidan chiqazish",
     "@unbanFromChat": {
@@ -1507,11 +1382,6 @@
     },
     "reportMessage": "Xabar berish",
     "@reportMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Ruxsat soʻrash",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1540,7 +1410,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "recoveryKey": "Tiklash kaliti",
     "send": "Yuborish",
     "@send": {
         "type": "String",
@@ -1678,11 +1547,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "showPassword": "Parolni ko‘rsatish",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "skip": "Tashlab ketish",
     "@skip": {
         "type": "String",
@@ -1756,12 +1620,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tooManyRequestsWarning": "Talablar soni oshib ketdi. Keyinroq qayta urining!",
     "@tooManyRequestsWarning": {
         "type": "String",
@@ -1769,11 +1627,6 @@
     },
     "tryToSendAgain": "Qayta yuborishga urining",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Mavjud emas",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1865,11 +1718,6 @@
             }
         }
     },
-    "username": "Foydalanuvchi nomi",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} {type} tadbirini yubordi",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1885,11 +1733,6 @@
     "unverified": "Tasdiqlanmagan",
     "verified": "Tasdiqlangan",
     "@verified": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verify": "Tasdiqlash",
-    "@verify": {
         "type": "String",
         "placeholders": {}
     },
@@ -2010,11 +1853,9 @@
     },
     "messageInfo": "Xabar axboroti",
     "time": "Vaqt",
-    "messageType": "Xabar turi",
     "sender": "Yuboruvchi",
     "openGallery": "Galereyani ochish",
     "removeFromSpace": "Guruhdan olib tashlash",
-    "start": "Boshlash",
     "usersMustKnock": "Foydalanuvchilar taqillatishi kerak",
     "noOneCanJoin": "Hech kim qoʻshila olmaydi",
     "knock": "Taqillating",
@@ -2037,9 +1878,7 @@
     "screenSharingDetail": "Siz ekraningizni FuffyChat’da ulashmoqdasiz",
     "whyIsThisMessageEncrypted": "Nima uchun bu xabarni oʻqib boʻlmaydi?",
     "noKeyForThisMessage": "Bu xabar siz ushbu qurilmada hisobingizga kirishdan oldin yuborilgan boʻlsa sodir boʻlishi mumkin.\n\nShuningdek, joʻnatuvchi qurilmangizni bloklagan yoki internet ulanishida biron bir muammo yuzaga kelgan boʻlishi mumkin.\n\nXabarni boshqa sessiyada oʻqiy olasizmi? Keyin xabarni undan uzatishingiz mumkin! Sozlamalar > Qurilmalar boʻlimiga oʻting va qurilmalaringiz bir-birini tasdiqlaganligiga ishonch hosil qiling. Keyingi safar xonani ochganingizda va ikkala sessiya ham oldinda boʻlganda, kalitlar avtomatik ravishda uzatiladi.\n\nTizimdan chiqishda yoki qurilmalarni almashtirishda kalitlarni yoʻqotishni xohlamaysizmi? Sozlamalarda suhbatning zaxira nusxasini yoqganingizga ishonch hosil qiling.",
-    "newGroup": "Yangi guruh",
     "newSpace": "Yangi maydon",
-    "allSpaces": "Barcha maydonlar",
     "doNotShowAgain": "Qaytib koʻrsatilmasin",
     "wasDirectChatDisplayName": "Boʻsh suhbat ({oldDisplayName} edi)",
     "@wasDirectChatDisplayName": {
@@ -2105,7 +1944,6 @@
     "changeTheDescriptionOfTheGroup": "Suhbat tavsifini oʻzgartirish",
     "chatPermissionsDescription": "Ushbu suhbatda muayyan harakatlar uchun qaysi quvvat darajasi zarurligini aniqlang. 0, 50 va 100 quvvat darajalari odatda foydalanuvchilar, moderatorlar va administratorlarni ifodalaydi, ammo har qanday gradatsiya mumkin.",
     "noticeChatBackupDeviceVerification": "Eslatma: Barcha qurilmalaringizni suhbat zaxira nusxasiga ulaganingizda, ular avtomatik ravishda tasdiqlanadi.",
-    "welcomeText": "Hey Hey 👋 Bu FluffyChat. Siz https://matrix.org bilan mos keladigan istalgan uy serveriga kirishingiz mumkin. Va keyin istalgan kishi bilan suhbatlashishingiz mumkin. Bu ulkan markazlashtirilmagan xabar almashish tarmog'i!",
     "unableToJoinChat": "Chatga qoʻshilib boʻlmadi. Ehtimol, boshqa tomon suhbatni allaqachon yopib qoʻygan.",
     "newChatRequest": "📩 Yangi suhbat uchun soʻrov",
     "shareKeysWithDescription": "Shifrlangan suhbatlarda xabarlaringizni oʻqishlari uchun qaysi qurilmalarga ishonish kerak?",
@@ -2123,7 +1961,6 @@
     "backToMainChat": "Asosiy suhbatga qaytish",
     "markAsRead": "Oʻqilgan sifatida belgilash",
     "reportUser": "Foydalanuvchi haqida xabar berish",
-    "dismiss": "Rad qilmoq",
     "reactedWith": "{sender} {reaction} bilan reaksiya bildirdi",
     "@reactedWith": {
         "type": "String",
@@ -2145,7 +1982,6 @@
     "videoCallsBetaWarning": "Iltimos, video qoʻngʻiroqlar hozirda beta-versiyada ekanligini unutmang. Ular kutilganidek ishlamasligi yoki barcha platformalarda umuman ishlamasligi mumkin.",
     "experimentalVideoCalls": "Tajriba video qoʻngʻiroqlar",
     "sorryThatsNotPossible": "Kechirasiz... bu mumkin emas",
-    "deviceKeys": "Qurilma kalitlari:",
     "noOtherDevicesFound": "Boshqa qurilma topilmadi",
     "fileIsTooBigForServer": "Yuborish imkonsiz! Server faqat {max} hajmgacha bo‘lgan ilovalarni qo‘llab-quvvatlaydi.",
     "@fileIsTooBigForServer": {
@@ -2329,7 +2165,6 @@
             }
         }
     },
-    "transparent": "Shaffof",
     "incomingMessages": "Kiruvchi xabarlar",
     "stickers": "Stikerlar",
     "discover": "Kashf etish",
@@ -2341,8 +2176,6 @@
         "type": "String",
         "count": {}
     },
-    "restricted": "Cheklangan",
-    "knockRestricted": "Taqillatish cheklangan",
     "goToSpace": "Maydonga o‘tish: {space}",
     "@goToSpace": {
         "type": "String",
@@ -2392,7 +2225,6 @@
     "doesNotSeemToBeAValidHomeserver": "Uy serveri mos emasga o‘xshaydi. URL xato kiritilganmi?",
     "calculatingFileSize": "Fayl hajmi hisoblanmoqda...",
     "sendingAttachment": "Biriktirish yuborilmoqda...",
-    "compressVideo": "Video siqilmoqda...",
     "oneOfYourDevicesIsNotVerified": "Qurilmalaringizdan biri tasdiqlanmagan",
     "continueText": "Davom etish",
     "blur": "Xiralashtirish:",
@@ -2510,16 +2342,6 @@
             }
         }
     },
-    "startedAPoll": "{username} so‘rovnoma boshladi.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "So‘rov",
     "startPoll": "So‘rovni boshlash",
     "endPoll": "So‘rovnomani yakunlash",
     "answersVisible": "Javoblar ko‘rinadi",
@@ -2569,14 +2391,6 @@
     },
     "youInvitedBy": "📩 Sizni {user} taklif qildi",
     "@youInvitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "invitedBy": "📩 {user} taklif qilgan",
-    "@invitedBy": {
         "placeholders": {
             "user": {
                 "type": "String"

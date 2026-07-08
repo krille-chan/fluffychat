@@ -132,30 +132,6 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} a schimbat descrierea grupului în '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} a schimbat porecla în '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
     "commandHint_unban": "Dezinterziceți utilizatorul ales din această cameră",
     "@commandHint_unban": {
         "type": "String",
@@ -172,11 +148,6 @@
                 "type": "String"
             }
         }
-    },
-    "deviceId": "ID-ul Dispozitiv",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
     },
     "devices": "Dispozitive",
     "@devices": {
@@ -219,11 +190,6 @@
                 "type": "String"
             }
         }
-    },
-    "showPassword": "Afișați parola",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
     },
     "no": "Nu",
     "@no": {
@@ -297,15 +263,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "Eliminat de {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "share": "Partajați",
     "@share": {
         "type": "String",
@@ -346,11 +303,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "verify": "Verificați",
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
-    },
     "weSentYouAnEmail": "V-am trimis un email",
     "@weSentYouAnEmail": {
         "type": "String",
@@ -379,7 +331,6 @@
         }
     },
     "screenSharingTitle": "partajarea de ecran",
-    "newGroup": "Grup nou",
     "changedTheRoomInvitationLink": "{username} a schimbat linkul de invitație",
     "@changedTheRoomInvitationLink": {
         "type": "String",
@@ -409,11 +360,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "online": "Online",
-    "@online": {
-        "type": "String",
-        "placeholders": {}
-    },
     "onlineKeyBackupEnabled": "Backup de cheie online este activat",
     "@onlineKeyBackupEnabled": {
         "type": "String",
@@ -437,21 +383,6 @@
     },
     "privacy": "Confidențialitate",
     "@privacy": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pushRules": "Regulile Push",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Înregistrare",
-    "@recording": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "register": "Înregistrați-vă",
-    "@register": {
         "type": "String",
         "placeholders": {}
     },
@@ -482,11 +413,6 @@
     },
     "settings": "Configurări",
     "@settings": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
         "type": "String",
         "placeholders": {}
     },
@@ -569,7 +495,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "start": "Începeți",
     "videoCallsBetaWarning": "Vă rugăm să luați notă că apeluri video sunt în beta. Se poate că nu funcționează normal sau de loc pe fie care platformă.",
     "pinMessage": "Fixați în cameră",
     "wasDirectChatDisplayName": "Chat gol (a fost {oldDisplayName})",
@@ -610,12 +535,6 @@
     },
     "theyMatch": "Sunt asemănători",
     "@theyMatch": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
         "type": "String",
         "placeholders": {}
     },
@@ -762,11 +681,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Ascunde evenimente redactate",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideUnknownEvents": "Ascunde evenimente necunoscute",
     "@hideUnknownEvents": {
         "type": "String",
@@ -909,11 +823,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "none": "Niciunul",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPermission": "Fără permisie",
     "@noPermission": {
         "type": "String",
@@ -926,11 +835,6 @@
     },
     "obtainingLocation": "Obținând locație…",
     "@obtainingLocation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "offline": "Offline",
-    "@offline": {
         "type": "String",
         "placeholders": {}
     },
@@ -1049,12 +953,10 @@
     },
     "messageInfo": "Info mesajului",
     "time": "Timp",
-    "messageType": "Fel de mesaj",
     "sender": "Trimițător",
     "openGallery": "Deschideți galeria",
     "removeFromSpace": "Eliminați din spațiu",
     "unsupportedAndroidVersionLong": "Această funcție are nevoie de o versiune de Android mai nouă. Vă rugăm să verificați dacă sunt actualizări sau suport de la Lineage OS.",
-    "dismiss": "Respingeți",
     "youRejectedTheInvitation": "Ați respins invitația",
     "youJoinedTheChat": "Va-ți alăturat la chat",
     "youAcceptedTheInvitation": "👍Ați acceptat invitația",
@@ -1105,7 +1007,6 @@
     "storeSecurlyOnThisDevice": "Stoca sigur pe acest dispozitiv",
     "whyIsThisMessageEncrypted": "De ce este acest mesaj ilizibil?",
     "newSpace": "Spațiu nou",
-    "allSpaces": "Toate spațiile",
     "doNotShowAgain": "Nu se mai apară din nou",
     "newSpaceDescription": "Spațiile vă permit să vă consolidați chaturile și să stabiliți comunități private sau publice.",
     "encryptThisChat": "Criptați acest chat",
@@ -1126,11 +1027,6 @@
     "jumpToLastReadMessage": "Săriți la ultimul citit mesaj",
     "guestsCanJoin": "Musafiri pot să se alăture",
     "@guestsCanJoin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fileName": "Nume de fișier",
-    "@fileName": {
         "type": "String",
         "placeholders": {}
     },
@@ -1261,11 +1157,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unavailable": "Nedisponibil",
-    "@unavailable": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userAndUserAreTyping": "{username} și {username2} tastează…",
     "@userAndUserAreTyping": {
         "type": "String",
@@ -1354,16 +1245,6 @@
     },
     "copiedToClipboard": "Copiat în clipboard",
     "@copiedToClipboard": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "device": "Dispozitiv",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "username": "Nume de utilizator",
-    "@username": {
         "type": "String",
         "placeholders": {}
     },
@@ -1671,11 +1552,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emotePacks": "Pachete de emoturi din cameră",
-    "@emotePacks": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteSettings": "Configurări Emote",
     "@emoteSettings": {
         "type": "String",
@@ -1696,7 +1572,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "homeserver": "Homeserver",
     "errorObtainingLocation": "Obținerea locației a eșuat: {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -1801,11 +1676,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Alegeți o imagine",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Fixați",
     "@pin": {
         "type": "String",
@@ -1879,11 +1749,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "requestPermission": "Cereți permisiune",
-    "@requestPermission": {
-        "type": "String",
-        "placeholders": {}
-    },
     "saveFile": "Salvați fișierul",
     "@saveFile": {
         "type": "String",
@@ -1894,14 +1759,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "recoveryKey": "Cheie de recuperare",
     "muteChat": "Amuțați chatul",
     "@muteChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "needPantalaimonWarning": "Vă rugăm să fiți conștienți că e nevoie de Pantalaimon să folosiți criptare end-to-end deocamdată.",
-    "@needPantalaimonWarning": {
         "type": "String",
         "placeholders": {}
     },
@@ -1920,11 +1779,6 @@
             }
         }
     },
-    "id": "ID",
-    "@id": {
-        "type": "String",
-        "placeholders": {}
-    },
     "invitedUser": "📩{username} a invitat {targetName}",
     "@invitedUser": {
         "type": "String",
@@ -1937,7 +1791,6 @@
             }
         }
     },
-    "deviceKeys": "Cheile dispozitivului:",
     "newVerificationRequest": "Cerere de verificare nouă!",
     "@newVerificationRequest": {
         "type": "String",
@@ -1947,15 +1800,6 @@
     "@remove": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "Redați {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "channelCorruptedDecryptError": "Criptarea a fost corupată",
     "@channelCorruptedDecryptError": {
@@ -2000,11 +1844,6 @@
     "@commandHint_join": {
         "type": "String",
         "description": "Usage hint for the command /join"
-    },
-    "allChats": "Toate Chaturile",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
     },
     "commandHint_invite": "Invitați utilizatorul ales la această cameră",
     "@commandHint_invite": {
@@ -2209,13 +2048,6 @@
             }
         }
     },
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
@@ -2341,14 +2173,6 @@
         "placeholders": {
             "count": {
                 "type": "int"
-            }
-        }
-    },
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
             }
         }
     },

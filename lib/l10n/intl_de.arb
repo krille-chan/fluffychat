@@ -54,11 +54,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "Alle Chats",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "answeredTheCall": "{senderName} hat den Anruf angenommen",
     "@answeredTheCall": {
         "type": "String",
@@ -180,30 +175,6 @@
         "type": "String",
         "placeholders": {
             "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} hat die Chatbeschreibung geändert in: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} hat den Chatnamen geändert in: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
                 "type": "String"
             }
         }
@@ -588,16 +559,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Gerät",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "Geräte-ID",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Geräte",
     "@devices": {
         "type": "String",
@@ -650,11 +611,6 @@
     },
     "emoteInvalid": "Ungültiges Emoticon-Kürzel!",
     "@emoteInvalid": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Emoticon-Bündel für Raum",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -725,16 +681,6 @@
                 "type": "String"
             }
         }
-    },
-    "fileName": "Dateiname",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
     },
     "fontSize": "Schriftgröße",
     "@fontSize": {
@@ -807,18 +753,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Gelöschte Nachrichten ausblenden",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideUnknownEvents": "Unbekannte Ereignisse ausblenden",
     "@hideUnknownEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "ID",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -1030,11 +966,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Bitte beachte, dass du Pantalaimon brauchst, um Ende-zu-Ende-Verschlüsselung benutzen zu können.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "Neuer Chat",
     "@newChat": {
         "type": "String",
@@ -1080,11 +1011,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "none": "Keiner",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPasswordRecoveryDescription": "Du hast bisher keine Möglichkeit hinzugefügt, um dein Passwort zurückzusetzen.",
     "@noPasswordRecoveryDescription": {
         "type": "String",
@@ -1119,18 +1045,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "Offline",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "Ok",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "Online",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -1199,24 +1115,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Bild wählen",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Anpinnen",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "{fileName} abspielen",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseChooseAPasscode": "Bitte einen Code festlegen",
     "@pleaseChooseAPasscode": {
@@ -1258,18 +1160,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Push-Regeln",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reason": "Grund",
     "@reason": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Aufnahme",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -1284,11 +1176,6 @@
     },
     "redactMessage": "Nachricht löschen",
     "@redactMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "register": "Registrieren",
-    "@register": {
         "type": "String",
         "placeholders": {}
     },
@@ -1316,15 +1203,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "Entfernt von {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Verbannung aufheben",
     "@unbanFromChat": {
         "type": "String",
@@ -1347,11 +1225,6 @@
     },
     "reportMessage": "Nachricht melden",
     "@reportMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Berechtigung anfragen",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1507,11 +1380,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "showPassword": "Passwort anzeigen",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "skip": "Überspringen",
     "@skip": {
         "type": "String",
@@ -1576,12 +1444,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tooManyRequestsWarning": "Zu viele Anfragen. Bitte versuche es später noch einmal!",
     "@tooManyRequestsWarning": {
         "type": "String",
@@ -1589,11 +1451,6 @@
     },
     "tryToSendAgain": "Noch mal versuchen zu senden",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Nicht verfügbar",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1685,11 +1542,6 @@
             }
         }
     },
-    "username": "Benutzername",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} hat ein {type}-Ereignis gesendet",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1704,11 +1556,6 @@
     },
     "verified": "Verifiziert",
     "@verified": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verify": "Verifizieren",
-    "@verify": {
         "type": "String",
         "placeholders": {}
     },
@@ -1852,17 +1699,14 @@
     "editBundlesForAccount": "Bundles für dieses Konto bearbeiten",
     "addAccount": "Konto hinzufügen",
     "oneClientLoggedOut": "Einer deiner Clients wurde abgemeldet",
-    "homeserver": "Homeserver",
     "sendOnEnter": "Senden mit Enter",
     "link": "Link",
     "unverified": "Unverifiziert",
     "messageInfo": "Nachrichten-Info",
     "time": "Zeit",
-    "messageType": "Nachrichtentyp",
     "sender": "Absender:in",
     "openGallery": "Galerie öffnen",
     "removeFromSpace": "Aus dem Space entfernen",
-    "start": "Start",
     "repeatPassword": "Passwort wiederholen",
     "commandHint_dm": "Starte einen direkten Chat\nBenutze --no-encryption, um die Verschlüsselung auszuschalten",
     "@commandHint_dm": {
@@ -1907,7 +1751,6 @@
     "markAsRead": "Als gelesen markiert",
     "reportUser": "Benutzer melden",
     "confirmEventUnpin": "Möchtest du das Ereignis wirklich dauerhaft lösen?",
-    "dismiss": "Verwerfen",
     "youKicked": "👞 Du hast {user} rausgeworfen",
     "@youKicked": {
         "placeholders": {
@@ -1967,7 +1810,6 @@
             }
         }
     },
-    "recoveryKey": "Wiederherstellungs-Schlüssel",
     "user": "Benutzer",
     "custom": "Benutzerdefiniert",
     "storeInAndroidKeystore": "Im Android KeyStore speichern",
@@ -2002,9 +1844,7 @@
     "foregroundServiceRunning": "Diese Benachrichtigung wird angezeigt, wenn der Vordergrunddienst ausgeführt wird.",
     "screenSharingTitle": "Bildschirm teilen",
     "whyIsThisMessageEncrypted": "Warum ist diese Nachricht nicht lesbar?",
-    "newGroup": "Neue Gruppe",
     "newSpace": "Neuer Space",
-    "allSpaces": "Alle Spaces",
     "screenSharingDetail": "Du teilst deinen Bildschirm in FuffyChat",
     "newSpaceDescription": "Mit Spaces kannst du deine Chats zusammenfassen und private oder öffentliche Communities aufbauen.",
     "wasDirectChatDisplayName": "Leerer Chat (war {oldDisplayName})",
@@ -2026,7 +1866,6 @@
             }
         }
     },
-    "deviceKeys": "Geräteschlüssel:",
     "commandHint_cuddle": "Umarmung senden",
     "commandHint_hug": "Umarmung senden",
     "cuddleContent": "{senderName} knuddelt dich",
@@ -2211,7 +2050,6 @@
     "formattedMessagesDescription": "Formatierte Nachrichteninhalte wie fettgedruckten Text mit Markdown anzeigen.",
     "verifyOtherUser": "🔐 Anderen Benutzer verifizieren",
     "sendReadReceiptsDescription": "Andere Teilnehmer in einem Chat können sehen, ob du eine Nachricht gelesen hast.",
-    "transparent": "Transparent",
     "verifyOtherDevice": "🔐 Anderes Gerät verifizieren",
     "verifyOtherUserDescription": "Wenn du einen anderen Benutzer verifizierst, kannst du sicher sein, dass du weißt, an wen du wirklich schreibst. 💪\n\nWenn du eine Verifizierung startest, wird dir und dem anderen Nutzer ein Popup in der App angezeigt. Dort siehst du dann eine Reihe von Emojis oder Zahlen, die ihr miteinander vergleichen müsst.\n\nDas geht am besten, wenn man sich trifft oder einen Videoanruf startet. 👭",
     "acceptedKeyVerification": "{sender} hat die Schlüsselverifikation akzeptiert",
@@ -2320,8 +2158,6 @@
     "publicChatAddresses": "Öffentliche Chat-Adressen",
     "gallery": "Galerie",
     "files": "Dateien",
-    "restricted": "Beschränkt",
-    "knockRestricted": "Anklopfen beschränkt",
     "searchIn": "In Chat \"{chat}\" suchen ...",
     "@searchIn": {
         "type": "String",
@@ -2335,7 +2171,6 @@
     "unread": "Ungelesen",
     "noMoreChatsFound": "Keine weiteren Chats gefunden ...",
     "space": "Space",
-    "spaces": "Spaces",
     "goToSpace": "Geh zum Space: {space}",
     "@goToSpace": {
         "type": "String",
@@ -2365,14 +2200,6 @@
     "changeTheChatPermissions": "Ändere die Chat-Berechtigungen",
     "changeTheVisibilityOfChatHistory": "Wechsele die Sichtbarkeit der Chat-Historie",
     "chatPermissionsDescription": "Einstellen, welches Level für bestimmte Aktionen in diesem Chat erforderlich ist. Die Level 0, 50 und 100 stehen üblicherweise für Benutzer, Moderatoren und Admins, aber jede Abstufung ist möglich.",
-    "invitedBy": "📩 Eingeladen von {user}",
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "adminLevel": "{level} - Administrator",
     "@adminLevel": {
         "type": "String",
@@ -2402,7 +2229,6 @@
     "loginWithMatrixId": "Mit Matrix-ID anmelden",
     "sendingAttachment": "Anhang wird gesendet ...",
     "calculatingFileSize": "Dateigröße wird berechnet ...",
-    "compressVideo": "Video wird komprimiert ...",
     "fileIsTooBigForServer": "Kann nicht gesendet werden! Der Server unterstützt nur Anhänge bis höchstens {max}.",
     "@fileIsTooBigForServer": {
         "type": "String",
@@ -2416,7 +2242,6 @@
     "noticeChatBackupDeviceVerification": "Hinweis: Wenn du alle deine Geräte mit dem Chat-Backup verbindest, sind sie automatisch verifiziert.",
     "setWallpaper": "Hintergrund ändern",
     "opacity": "Deckkraft:",
-    "welcomeText": "Hey Hey 👋 Das ist FluffyChat. Du kannst sich bei jedem Homeserver anmelden, der mit https://matrix.org kompatibel ist. Und dann mit jedem chatten. Das hier ist ein riesiges dezentrales Nachrichtennetzwerk!",
     "blur": "Verwischen:",
     "manageAccount": "Konto verwalten",
     "continueText": "Fortfahren",
@@ -2511,7 +2336,6 @@
     "recordAVideo": "Video aufnehmen",
     "optionalMessage": "(Optionale) Nachricht...",
     "notSupportedOnThisDevice": "Nicht unterstützt auf diesem Gerät",
-    "ignoreUser": "Nutzer ignorieren",
     "notificationRuleEncryptedRoomOneToOneDescription": "Benachrichtigt den Benutzer über Nachrichten in verschlüsselten Eins-zu-Eins-Chats.",
     "commandHint_roomupgrade": "Aktualisieren Sie diesen Raum auf die angegebene Raumversion",
     "notificationRuleMemberEvent": "Mitgliederveranstaltung",
@@ -2610,16 +2434,6 @@
         }
     },
     "resume": "Fortsetzen",
-    "startedAPoll": "{username} hat eine Umfrage gestartet.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "Umfrage",
     "startPoll": "Umfrage starten",
     "endPoll": "Umfrage beenden",
     "answersVisible": "Antworten sichtbar",
@@ -2742,10 +2556,8 @@
             }
         }
     },
-    "check": "Überprüfen",
     "encryptedMessage": "Verschlüsselte Nachricht",
     "unencryptedMessage": "Unverschlüsselte Nachricht",
-    "allow": "Erlauben",
     "publicKey": "Öffentlicher Schlüssel: {key}",
     "@publicKey": {
         "type": "String",

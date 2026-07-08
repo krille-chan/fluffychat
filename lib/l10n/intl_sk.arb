@@ -119,30 +119,6 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} zmenili popis chatu na: „{description}“",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} zmenili meno chatu na: „{chatname}“",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
     "changedTheChatPermissions": "{username} zmenili nastavenie oprávnení chatu",
     "@changedTheChatPermissions": {
         "type": "String",
@@ -383,11 +359,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Zariadenie",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Zariadenia",
     "@devices": {
         "type": "String",
@@ -445,16 +416,6 @@
     },
     "encryptionNotEnabled": "Šifrovanie nie je aktívne",
     "@encryptionNotEnabled": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fileName": "Názov súboru",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
         "type": "String",
         "placeholders": {}
     },
@@ -516,11 +477,6 @@
     },
     "help": "Pomoc",
     "@help": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "ID",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -692,11 +648,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Prosím berte na vedomie, že na koncové šifrovanie zatiaľ potrebujete Pantalaimon.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newMessageInFluffyChat": "Nová správa v FluffyChate",
     "@newMessageInFluffyChat": {
         "type": "String",
@@ -714,11 +665,6 @@
     },
     "noGoogleServicesWarning": "Zdá sa, že nemáte žiadne služby Googlu v telefóne. To je dobré rozhodnutie pre vaše súkromie! Ak chcete dostávať push notifikácie vo FluffyChat, odporúčame používať microG: https://microg.org/.",
     "@noGoogleServicesWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "none": "Žiadne",
-    "@none": {
         "type": "String",
         "placeholders": {}
     },
@@ -767,20 +713,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Vybrať obrázok",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "play": "Prehrať {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
-    },
     "pleaseEnterYourPassword": "Prosím zadajte svoje heslo",
     "@pleaseEnterYourPassword": {
         "type": "String",
@@ -793,11 +725,6 @@
     },
     "publicRooms": "Verejné miestnosti",
     "@publicRooms": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Nahrávam",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -834,15 +761,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "Odstánené užívateľom {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Odblokovať",
     "@unbanFromChat": {
         "type": "String",
@@ -850,11 +768,6 @@
     },
     "reply": "Odpovedať",
     "@reply": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Vyžiadať si povolenie",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -987,12 +900,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Skúsiť znova odoslať",
     "@tryToSendAgain": {
         "type": "String",
@@ -1081,11 +988,6 @@
             }
         }
     },
-    "username": "Užívateľské meno",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} poslali udalosť {type}",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1097,11 +999,6 @@
                 "type": "String"
             }
         }
-    },
-    "verify": "Overiť",
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
     },
     "verifyStart": "Spustiť verifikáciu",
     "@verifyStart": {
@@ -1285,11 +1182,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "Všetky chaty",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "areYouSureYouWantToLogout": "Ste si istí, že sa chcete odhlásiť?",
     "@areYouSureYouWantToLogout": {
         "type": "String",
@@ -1321,10 +1213,6 @@
         "placeholders": {}
     },
     "importNow": "Importovať teraz",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@hugContent": {
         "type": "String",
         "placeholders": {
@@ -1466,10 +1354,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@unavailable": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@countChats": {
         "type": "String",
         "placeholders": {
@@ -1529,14 +1413,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@online": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@weSentYouAnEmail": {
         "type": "String",
         "placeholders": {}
@@ -1554,10 +1430,6 @@
         "placeholders": {}
     },
     "@synchronizingPleaseWait": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@pushRules": {
         "type": "String",
         "placeholders": {}
     },
@@ -1639,14 +1511,6 @@
                 "type": "int"
             }
         }
-    },
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@register": {
-        "type": "String",
-        "placeholders": {}
     },
     "@aboutHomeserver": {
         "type": "String",
@@ -1788,20 +1652,9 @@
         "type": "String",
         "description": "Usage hint for the command /myroomnick"
     },
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@status": {
         "type": "String",
         "placeholders": {}
-    },
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
     },
     "@googlyEyesContent": {
         "type": "String",
@@ -2115,14 +1968,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "@pin": {
         "type": "String",
         "placeholders": {}
@@ -2146,10 +1991,6 @@
                 "type": "String"
             }
         }
-    },
-    "@emotePacks": {
-        "type": "String",
-        "placeholders": {}
     },
     "@requestedKeyVerification": {
         "type": "String",
