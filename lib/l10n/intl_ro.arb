@@ -2721,5 +2721,6 @@
         }
     },
     "sendReadReceiptsDescription": "",
-    "block": ""
+    "block": "",
+    "inviteGroupChat": ""
 }
