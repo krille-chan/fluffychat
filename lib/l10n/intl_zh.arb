@@ -475,7 +475,7 @@
             }
         }
     },
-    "countParticipants": "{count} 名参与者",
+    "countParticipants": "{count, plural, =1{1 位参与者} other{{count} 位参与者}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
