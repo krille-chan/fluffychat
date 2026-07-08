@@ -366,7 +366,7 @@
             }
         }
     },
-    "countParticipants": "{count} participantes",
+    "countParticipants": "{count, plural, =1{1 participante} other{{count} participantes}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -2575,7 +2575,7 @@
         "placeholders": {}
     },
     "youAreReadyToStart": "",
-    "restoreCryptoIdentity": "",
+    "restoreCryptoIdentity": "Restaurar Identidad Crypto",
     "@restoreCryptoIdentity": {
         "type": "String",
         "placeholders": {}
@@ -2586,17 +2586,17 @@
         "type": "String",
         "placeholders": {}
     },
-    "unlock": "",
+    "unlock": "Desbloquear",
     "@unlock": {
         "type": "String",
         "placeholders": {}
     },
-    "resetCryptoIdentity": "",
+    "resetCryptoIdentity": "Resetear Identidad Crypto",
     "@resetCryptoIdentity": {
         "type": "String",
         "placeholders": {}
     },
-    "restoreBootstrapDevicesDescription": "",
+    "restoreBootstrapDevicesDescription": "Seleccione uno de los otros dispositivos para verificar esta sesión:",
     "@restoreBootstrapDevicesDescription": {
         "type": "String",
         "placeholders": {}
@@ -2607,7 +2607,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "openFile": "",
+    "openFile": "Abrir archivo",
     "@openFile": {
         "type": "String",
         "placeholders": {}
@@ -2640,7 +2640,7 @@
             }
         }
     },
-    "waitingForKeys": "",
+    "waitingForKeys": "Esperando llaves... Por favor mantenga activo el otro dispositivo.",
     "@waitingForKeys": {
         "type": "String",
         "placeholders": {}
@@ -2672,7 +2672,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "deviceIdentityKey": "",
+    "deviceIdentityKey": "Llave de Identidad del dispositivo",
     "yesterday": "",
     "useAppLock": "",
     "newPassphrase": "",
@@ -2696,7 +2696,7 @@
     "messageNotDecryptable": "",
     "disableAppLockAreYouSure": "",
     "pleaseEnter6Digits": "",
-    "setUpCryptoIdentity": "",
+    "setUpCryptoIdentity": "Setear Identidad Crypto",
     "@setUpCryptoIdentity": {
         "type": "String",
         "placeholders": {}
@@ -2707,7 +2707,7 @@
         "placeholders": {}
     },
     "sending": "",
-    "restoreBootstrapEmptyDevicesDescription": "",
+    "restoreBootstrapEmptyDevicesDescription": "Por favor ingrese la frase o llave de recuperación para verificar este dispositivo y obtener acceso al backup de mensajes encriptado.",
     "@restoreBootstrapEmptyDevicesDescription": {
         "type": "String",
         "placeholders": {}
@@ -2720,12 +2720,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "noKeysTransmitted": "",
+    "noKeysTransmitted": "Sin llaves transmitidas. Por favor intente de nuevo.",
     "@noKeysTransmitted": {
         "type": "String",
         "placeholders": {}
     },
-    "resetAccount": "",
+    "resetAccount": "Resetear Cuenta",
     "@resetAccount": {
         "type": "String",
         "placeholders": {}
