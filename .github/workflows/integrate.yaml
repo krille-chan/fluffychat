@@ -24,8 +24,6 @@ jobs:
             echo "❌ Found empty translation strings."
             exit 1
           fi
-      - name: Check for unused translations
-        run: flutter pub run translations_cleaner list-unused-terms -a
       - run: flutter pub get
       - name: Check if pubspec.lock is up to date
         run: git diff --exit-code pubspec.lock
@@ -33,6 +31,10 @@ jobs:
         run: dart format lib/ test/ --set-exit-if-changed
       - name: Check license compliance
         run: dart run license_checker check-licenses -c licenses.yaml --problematic
+      - name: Check for unused translations
+        run: |
+          dart pub global activate sweeper
+          dart pub global run sweeper check
       - run: flutter analyze
       - name: Search unused dependencies
         run: |

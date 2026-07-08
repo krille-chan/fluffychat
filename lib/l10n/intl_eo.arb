@@ -53,11 +53,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "Ĉiuj babiloj",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "answeredTheCall": "{senderName} respondis la vokon",
     "@answeredTheCall": {
         "type": "String",
@@ -179,30 +174,6 @@
         "type": "String",
         "placeholders": {
             "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} ŝanĝis priskribon de la babilo al: «{description}»",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} ŝanĝis nomon de la babilo al: «{chatname}»",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
                 "type": "String"
             }
         }
@@ -582,16 +553,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Aparato",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "Identigilo de aparato",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Aparatoj",
     "@devices": {
         "type": "String",
@@ -644,11 +605,6 @@
     },
     "emoteInvalid": "Nevalida mallongigo de mieneto!",
     "@emoteInvalid": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Mienetaroj por la ĉambro",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -719,16 +675,6 @@
                 "type": "String"
             }
         }
-    },
-    "fileName": "Dosiernomo",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
     },
     "fontSize": "Grandeco de tiparo",
     "@fontSize": {
@@ -801,18 +747,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Kaŝi obskurigitajn eventojn",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideUnknownEvents": "Kaŝi nekonatajn eventojn",
     "@hideUnknownEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "Identigilo",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -1014,11 +950,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Bonvolu scii, ke vi ankoraŭ bezonas la programon Pantalaimon por uzi tutvojan ĉifradon.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "Nova babilo",
     "@newChat": {
         "type": "String",
@@ -1064,11 +995,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "none": "Neniu",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPasswordRecoveryDescription": "Vi ankoraŭ ne aldonis manieron rehavi vian pasvorton.",
     "@noPasswordRecoveryDescription": {
         "type": "String",
@@ -1103,18 +1029,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "Eksterrete",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "bone",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "Enrete",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -1178,24 +1094,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Elekti bildon",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Fiksi",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "Ludi {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseChooseAPasscode": "Bonvolu elekti paskodon",
     "@pleaseChooseAPasscode": {
@@ -1237,18 +1139,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Reguloj de pasivaj sciigoj",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reason": "Kialo",
     "@reason": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Registrante",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -1263,11 +1155,6 @@
     },
     "redactMessage": "Obskurigi mesaĝon",
     "@redactMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "register": "Registriĝi",
-    "@register": {
         "type": "String",
         "placeholders": {}
     },
@@ -1295,15 +1182,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "Forigita de {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Malforbari",
     "@unbanFromChat": {
         "type": "String",
@@ -1326,11 +1204,6 @@
     },
     "reportMessage": "Raporti mesaĝon",
     "@reportMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Peti permeson",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1482,11 +1355,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "showPassword": "Montri pasvorton",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "skip": "Preterpasi",
     "@skip": {
         "type": "String",
@@ -1551,12 +1419,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tooManyRequestsWarning": "Tro multaj petoj. Bonvolu reprovi poste!",
     "@tooManyRequestsWarning": {
         "type": "String",
@@ -1564,11 +1426,6 @@
     },
     "tryToSendAgain": "Reprovi sendi",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Nedisponeble",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1660,11 +1517,6 @@
             }
         }
     },
-    "username": "Uzantonomo",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} sendis eventon de speco {type}",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1679,11 +1531,6 @@
     },
     "verified": "Kontrolita",
     "@verified": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verify": "Kontroli",
-    "@verify": {
         "type": "String",
         "placeholders": {}
     },
@@ -1829,7 +1676,6 @@
         "placeholder": {}
     },
     "addToSpace": "Aldoni al aro",
-    "homeserver": "Hejmservilo",
     "sendOnEnter": "Sendi per eniga klavo",
     "@hugContent": {
         "type": "String",
@@ -2063,13 +1909,6 @@
         "type": "String",
         "description": "Usage hint for the command /discardsession"
     },
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "@googlyEyesContent": {
         "type": "String",
         "placeholders": {
@@ -2255,14 +2094,6 @@
         "placeholders": {
             "count": {
                 "type": "int"
-            }
-        }
-    },
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
             }
         }
     },

@@ -75,11 +75,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "fileName": "Nómine de file",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
     "fontSize": "Dimension de fonde",
     "@fontSize": {
         "type": "String",
@@ -107,11 +102,6 @@
     },
     "hideUnknownEvents": "Celar ínconosset evenimentes",
     "@hideUnknownEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "ID",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -169,18 +159,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "For del rete",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "OK",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "In li rete",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -225,11 +205,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Regules de push-notificationes",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "redactMessage": "Redacter li missage",
     "@redactMessage": {
         "type": "String",
@@ -240,7 +215,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "recoveryKey": "Clave de regania",
     "sendMessages": "Inviar missages",
     "@sendMessages": {
         "type": "String",
@@ -261,11 +235,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unavailable": "Índisponibil",
-    "@unavailable": {
-        "type": "String",
-        "placeholders": {}
-    },
     "unblockDevice": "Deblocar li aparate",
     "@unblockDevice": {
         "type": "String",
@@ -281,8 +250,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageType": "Tip de missage",
-    "start": "Iniciar",
     "messageInfo": "Information pri li missage",
     "openGallery": "Aperter li galerie",
     "reportUser": "Raportar li usator",
@@ -317,11 +284,6 @@
     },
     "messages": "Missages",
     "@messages": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "none": "Null",
-    "@none": {
         "type": "String",
         "placeholders": {}
     },
@@ -385,16 +347,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "username": "Nómine de usator",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verify": "Verificar",
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
-    },
     "submit": "Inviar",
     "@submit": {
         "type": "String",
@@ -422,7 +374,6 @@
     },
     "time": "Hora",
     "sender": "Autor",
-    "dismiss": "Demisser",
     "custom": "Personalisat",
     "emojis": "Emoji",
     "users": "Usatores",
@@ -475,16 +426,6 @@
     },
     "privacy": "Privatie",
     "@privacy": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Registrante",
-    "@recording": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "register": "Inregistrar se",
-    "@register": {
         "type": "String",
         "placeholders": {}
     },
@@ -570,11 +511,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "showPassword": "Monstrar li contrasigne",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "sendFile": "Inviar un file",
     "@sendFile": {
         "type": "String",
@@ -631,15 +567,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "play": "Reproducter {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
-    },
     "about": "Pri",
     "@about": {
         "type": "String",
@@ -651,11 +578,6 @@
         "placeholders": {}
     },
     "confirmMatrixId": "Ples confirmar vor Matrix ID por destructer vor conto.",
-    "allChats": "Omni conversationes",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "addToSpace": "Adjunter al spacie",
     "askVerificationRequest": "Esque acceptar ti demanda de verification de {username}?",
     "@askVerificationRequest": {
@@ -850,11 +772,6 @@
             }
         }
     },
-    "device": "Aparate",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
     "account": "Conto",
     "@account": {
         "type": "String",
@@ -890,20 +807,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "homeserver": "Hem-servitor",
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "moderator": "Moderator",
     "@moderator": {
         "type": "String",
         "placeholders": {}
     },
-    "newGroup": "Crear un gruppe",
     "newSpace": "Crear un spacie",
-    "allSpaces": "Omni spacies",
     "logout": "Cluder li session",
     "@logout": {
         "type": "String",
@@ -919,12 +828,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "skip": "Omisser",
     "@skip": {
         "type": "String",
@@ -936,11 +839,6 @@
         "placeholders": {}
     },
     "unverified": "Ínverificat",
-    "deviceId": "ID de aparate",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "editDisplayname": "Redacter li visibil nómine",
     "@editDisplayname": {
         "type": "String",
@@ -948,11 +846,6 @@
     },
     "inviteContact": "Invitar un contacte",
     "@inviteContact": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Demandar li permission",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1136,17 +1029,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
     "@youKickedAndBanned": {
         "placeholders": {
             "user": {
@@ -1192,10 +1074,6 @@
                 "type": "String"
             }
         }
-    },
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
     },
     "@answeredTheCall": {
         "type": "String",
@@ -1280,10 +1158,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@changedTheGuestAccessRulesTo": {
         "type": "String",
         "placeholders": {
@@ -1306,10 +1180,6 @@
                 "type": "String"
             }
         }
-    },
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
     },
     "@noEmotesFound": {
         "type": "String",
@@ -1517,17 +1387,6 @@
     "@sendAsText": {
         "type": "String"
     },
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
     "@setAsCanonicalAlias": {
         "type": "String",
         "placeholders": {}
@@ -1539,14 +1398,6 @@
     "@locationDisabledNotice": {
         "type": "String",
         "placeholders": {}
-    },
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "@changedTheRoomInvitationLink": {
         "type": "String",
@@ -1715,13 +1566,6 @@
     "@compareNumbersMatch": {
         "type": "String",
         "placeholders": {}
-    },
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
     },
     "@sentCallInformations": {
         "type": "String",
@@ -2126,14 +1970,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "@sendAMessage": {
         "type": "String",
         "placeholders": {}
@@ -2153,10 +1989,6 @@
                 "type": "String"
             }
         }
-    },
-    "@emotePacks": {
-        "type": "String",
-        "placeholders": {}
     },
     "@requestedKeyVerification": {
         "type": "String",

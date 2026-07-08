@@ -54,11 +54,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "Kõik vestlused",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "answeredTheCall": "{senderName} vastas kõnele",
     "@answeredTheCall": {
         "type": "String",
@@ -185,30 +180,6 @@
         "type": "String",
         "placeholders": {
             "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} muutis vestluse uueks kirjelduseks '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} muutis vestluse uueks nimeks '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
                 "type": "String"
             }
         }
@@ -593,16 +564,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Seade",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "Seadme tunnus",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Seadmed",
     "@devices": {
         "type": "String",
@@ -655,11 +616,6 @@
     },
     "emoteInvalid": "Vigane emotsioonitegevuse lühikood!",
     "@emoteInvalid": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Emotsioonitegevuste pakid jututoa jaoks",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -730,16 +686,6 @@
                 "type": "String"
             }
         }
-    },
-    "fileName": "Failinimi",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
     },
     "fontSize": "Kirjatüübi suurus",
     "@fontSize": {
@@ -812,18 +758,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Peida muudetud sündmused",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideUnknownEvents": "Peida tundmatud sündmused",
     "@hideUnknownEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "Tunnus",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -1035,11 +971,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Palun arvesta, et sa saad hetkel kasutada läbivat krüptimist vaid siis, kui koduserver kasutab Pantalaimon'it.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "Uus vestlus",
     "@newChat": {
         "type": "String",
@@ -1097,11 +1028,6 @@
             }
         }
     },
-    "none": "Mitte midagi",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPasswordRecoveryDescription": "Sa pole veel lisanud võimalust salasõna taastamiseks.",
     "@noPasswordRecoveryDescription": {
         "type": "String",
@@ -1136,18 +1062,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "Pole võrgus",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "Sobib",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "Võrgus",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -1216,24 +1132,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Vali pilt",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Tõsta esile",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "Esita faili: {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseChooseAPasscode": "Palun sisesta rakenduse PIN-kood",
     "@pleaseChooseAPasscode": {
@@ -1275,18 +1177,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Tõuketeenuse reeglid",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reason": "Põhjus",
     "@reason": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Salvestan",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -1301,11 +1193,6 @@
     },
     "redactMessage": "Eemalda sõnum",
     "@redactMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "register": "Registreeru",
-    "@register": {
         "type": "String",
         "placeholders": {}
     },
@@ -1333,15 +1220,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "{username} eemaldas sündmuse",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Eemalda suhtluskeeld",
     "@unbanFromChat": {
         "type": "String",
@@ -1364,11 +1242,6 @@
     },
     "reportMessage": "Teata sõnumist",
     "@reportMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Palu õigusi",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1524,11 +1397,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "showPassword": "Näita salasõna",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "skip": "Jäta vahele",
     "@skip": {
         "type": "String",
@@ -1593,12 +1461,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tooManyRequestsWarning": "Liiga palju päringuid. Palun proovi hiljem uuesti!",
     "@tooManyRequestsWarning": {
         "type": "String",
@@ -1606,11 +1468,6 @@
     },
     "tryToSendAgain": "Proovi uuesti saata",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Pole saadaval",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1702,11 +1559,6 @@
             }
         }
     },
-    "username": "Kasutajanimi",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} saatis „{type}“ tüüpi sündmuse",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1721,11 +1573,6 @@
     },
     "verified": "Verifitseeritud",
     "@verified": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verify": "Verifitseeri",
-    "@verify": {
         "type": "String",
         "placeholders": {}
     },
@@ -1847,7 +1694,6 @@
     "addToSpace": "Lisa kogukonda",
     "scanQrCode": "Skaneeri QR-koodi",
     "sendOnEnter": "Saada sõnum sisestusklahvi vajutusel",
-    "homeserver": "Koduserver",
     "bundleName": "Köite nimi",
     "removeFromBundle": "Eemalda sellest köitest",
     "addToBundle": "Lisa köitesse",
@@ -1859,11 +1705,9 @@
     "repeatPassword": "Korda salasõna",
     "messageInfo": "Sõnumi teave",
     "time": "Kellaaeg",
-    "messageType": "Sõnumi tüüp",
     "sender": "Saatja",
     "openGallery": "Ava galerii",
     "removeFromSpace": "Eemalda kogukonnast",
-    "start": "Alusta",
     "commandHint_discardsession": "Loobu sessioonist",
     "@commandHint_discardsession": {
         "type": "String",
@@ -1886,7 +1730,6 @@
     },
     "markAsRead": "Märgi loetuks",
     "reportUser": "Teata kasutajast",
-    "dismiss": "Loobu",
     "reactedWith": "{sender} reageeris sedaviisi: {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -1967,7 +1810,6 @@
             }
         }
     },
-    "recoveryKey": "Taastevõti",
     "users": "Kasutajad",
     "storeInAndroidKeystore": "Vali salvestuskohaks Android KeyStore",
     "storeInAppleKeyChain": "Vali salvestuskohaks Apple KeyChain",
@@ -1999,11 +1841,9 @@
     "commandHint_markasdm": "Märgi otsevestluseks antud Matrixi ID jaoks",
     "whyIsThisMessageEncrypted": "Miks see sõnum pole loetav?",
     "noKeyForThisMessage": "See võib juhtuda, kui sõnum oli saadetud enne, kui siin seadmes oma kontoga sisse logisid.\n\nSamuti võib juhtuda siis, kui saatja on lugemises selles seadmes blokeerinud või on tekkinud tõrkeid veebiühenduses.\n\nAga mõnes teises seadmes saad seda sõnumit lugeda? Siis sa võid sõnumi sealt üle tõsta. Ava Seadistused -> Seadmed ning kontrolli, et kõik sinu seadmed on omavahel verifitseeritud. Kui avad selle vestluse või jututoa ning mõlemad sessioonid on avatud, siis vajalikud krüptovõtmed saadetakse automaatset.\n\nKas sa soovid vältida krüptovõtmete kadumist väljalogimisel ja seadmete vahetusel? Siis palun kontrolli, et seadistuses on krüptovõtmete varundus sisse lülitatud.",
-    "newGroup": "Uus jututuba",
     "newSpace": "Uus kogukond",
     "screenSharingTitle": "ekraani jagamine",
     "foregroundServiceRunning": "See teavitus toimib siis, kui esiplaaniteenus töötab.",
-    "allSpaces": "Kõik kogukonnad",
     "screenSharingDetail": "Sa jagad oma ekraani FuffyChati vahendusel",
     "doNotShowAgain": "Ära näita uuesti",
     "commandHint_cuddle": "Saada üks kaisutus",
@@ -2048,7 +1888,6 @@
     "encryptThisChat": "Krüpti see vestlus",
     "disableEncryptionWarning": "Kui vestluses on krüptimine kasutusele võetud, siis turvalisuse huvides ei saa seda hiljem välja lülitada.",
     "sorryThatsNotPossible": "Vabandust... see ei ole võimalik",
-    "deviceKeys": "Seadme võtmed:",
     "newSpaceDescription": "Kogukonnad võimaldavad sul koondada erinevaid vestlusi ning korraldada avalikku või privaatset ühistegevust.",
     "reopenChat": "Alusta vestlust uuesti",
     "noOtherDevicesFound": "Muid seadmeid ei leidu",
@@ -2206,7 +2045,6 @@
             }
         }
     },
-    "transparent": "Läbipaistev",
     "sendReadReceipts": "Saada lugemisteatisi",
     "verifyOtherUserDescription": "Kui sa oled vestluse teise osapoole verifitseerinud, siis saad kindel olla, et tead, kellega suhtled. 💪\n\nKui alustad verifitseerimist, siis sinul ja teisel osapoolel tekib rakenduses hüpikaken. Seal kuvatakse emotikonide või numbrite jada, mida peate omavahel võrdlema.\n\nKõige lihtsam on seda teha kas omavahelise kohtumise ajal või videokõne kestel. 👭",
     "sendTypingNotificationsDescription": "Muud vestluses osalejad saavad näha, kui sa oled uut sõnumit kirjutamas.",
@@ -2329,15 +2167,12 @@
         }
     },
     "searchMore": "Otsi veel...",
-    "knockRestricted": "Koputa piiratud ligipääsuga jututoa uksele",
-    "restricted": "Piiratud",
     "gallery": "Galerii",
     "files": "Failid",
     "swipeRightToLeftToReply": "Vastamiseks viipa paremalt vasakule",
     "noMoreChatsFound": "Rohkem vestlusi ei leidu...",
     "unread": "Lugemata",
     "space": "Kogukond",
-    "spaces": "Kogukonnad",
     "goToSpace": "Ava kogukond: {space}",
     "@goToSpace": {
         "type": "String",
@@ -2379,14 +2214,6 @@
     "changeTheChatPermissions": "Muuda vestluse õigusi",
     "changeTheDescriptionOfTheGroup": "Muuda vestluse/jututoa kirjeldust",
     "chatPermissionsDescription": "Määra erinevatele kasutajatele selles vestluses vajalikud õigused. Tüüpiliselt on need 0, 50 ja 100 (vastavalt kasutajad, moderaatorid ja peakasutajad), kuid igasugused vahepealsed variatsioonid on ka võimalikud.",
-    "invitedBy": "📩 Kutsujaks {user}",
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "updateInstalled": "🎉 Versiooniuuendus {version} on paigaldatud!",
     "@updateInstalled": {
         "type": "String",
@@ -2401,13 +2228,11 @@
     "noChatsFoundHere": "Siin ei leidu veel ühtegi vestlust. Alusta uut vestlust klõpsides allpool asuvat nuppu. ⤵️",
     "loginWithMatrixId": "Logi sisse Matrix-ID alusel",
     "doesNotSeemToBeAValidHomeserver": "Ei tundu olema ühilduv koduserver. Kas võrguaadress on ikka õige?",
-    "compressVideo": "Pakime videot väiksemaks...",
     "sendingAttachment": "Saadame manust...",
     "calculatingFileSize": "Arvutame faili suurust...",
     "oneOfYourDevicesIsNotVerified": "Üks sinu seadmetest pole verifitseeritud",
     "noticeChatBackupDeviceVerification": "Märkus: kui liidad kõik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud.",
     "continueText": "Jätka",
-    "welcomeText": "Tere, tere 👋 See on FluffyChat. Sa võid sisse logida igasse koduserverisse, mis ühildub https://matrix.org serveriga. Ja seejärel saad suhelda kõigiga. Tegemist on ikka väga suure detsentraliseeritud sõnumivõrguga!",
     "setWallpaper": "Määra taustapildiks",
     "manageAccount": "Halda kasutajakontot",
     "blur": "Hägusus:",
@@ -2538,7 +2363,6 @@
     "notSupportedOnThisDevice": "See pole antud seadmes toetatud",
     "enterNewChat": "Liitu uue vestlusega",
     "commandHint_roomupgrade": "Uuenda see jututuba antud jututoa versioonini",
-    "ignoreUser": "Eira kasutajat",
     "approve": "Kiida heaks",
     "pleaseWaitUntilInvited": "Palun oota seni, kuni keegi jututoast saadab sulle kutse.",
     "youHaveKnocked": "Sa oled koputanud",
@@ -2602,16 +2426,6 @@
             }
         }
     },
-    "startedAPoll": "{username} koostas küsitluse.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "Küsitlus",
     "startPoll": "Koosta küsitlus",
     "endPoll": "Lõpeta küsitlus",
     "answersVisible": "Vastused on näha",
@@ -2732,10 +2546,8 @@
             }
         }
     },
-    "check": "Kontrolli",
     "encryptedMessage": "Krüptitud sõnum",
     "unencryptedMessage": "Krüptimata sõnum",
-    "allow": "Luba",
     "publicKey": "Avalik võti: {key}",
     "@publicKey": {
         "type": "String",

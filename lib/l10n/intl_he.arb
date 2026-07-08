@@ -111,11 +111,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "כל הצ'אטים",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "banned": "חסום",
     "@banned": {
         "type": "String",
@@ -151,18 +146,6 @@
         "type": "String",
         "placeholders": {
             "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} שינה את שם הצ'אט ל: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
                 "type": "String"
             }
         }
@@ -238,18 +221,6 @@
         "type": "String",
         "placeholders": {
             "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} שינה את תיאור הצ'אט ל: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
                 "type": "String"
             }
         }
@@ -517,11 +488,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "deviceId": "מזהה מכשיר",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "התקנים",
     "@devices": {
         "type": "String",
@@ -572,16 +538,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "fileName": "שם קובץ",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "fontSize": "גודל גופן",
     "@fontSize": {
         "type": "String",
@@ -623,11 +579,6 @@
     },
     "guestsCanJoin": "אורחים יכולים להצטרף",
     "@guestsCanJoin": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "מזהה",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -806,11 +757,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "מכשיר",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
     "group": "קבוצה",
     "@group": {
         "type": "String",
@@ -876,11 +822,6 @@
             }
         }
     },
-    "hideRedactedEvents": "הסתר אירועים מצונזרים",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "encryptionNotEnabled": "ההצפנה אינה מופעלת",
     "@encryptionNotEnabled": {
         "type": "String",
@@ -900,7 +841,6 @@
             }
         }
     },
-    "homeserver": "שרת בית",
     "ignore": "התעלם",
     "@ignore": {
         "type": "String",
@@ -1004,11 +944,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "שים לב שאתה צריך Pantalaimon כדי להשתמש בהצפנה מקצה לקצה לעת עתה.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "צ'אט חדש",
     "@newChat": {
         "type": "String",
@@ -1101,11 +1036,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "online": "מחובר/ת",
-    "@online": {
-        "type": "String",
-        "placeholders": {}
-    },
     "addToBundle": "הוסף לחבילה",
     "passphraseOrKey": "ביטוי סיסמה או מפתח שחזור",
     "@passphraseOrKey": {
@@ -1126,20 +1056,6 @@
     "@passwordRecovery": {
         "type": "String",
         "placeholders": {}
-    },
-    "pickImage": "בחר תמונה",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "play": "הפעל {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseChooseAPasscode": "אנא בחר קוד גישה",
     "@pleaseChooseAPasscode": {
@@ -1188,22 +1104,12 @@
             }
         }
     },
-    "none": "ללא",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPasswordRecoveryDescription": "עדיין לא הוספת דרך לשחזר את הסיסמה שלך.",
     "@noPasswordRecoveryDescription": {
         "type": "String",
         "placeholders": {}
     },
     "bundleName": "שם החבילה",
-    "offline": "לא מקוון",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "removeFromBundle": "הסר מחבילה זו",
     "openInMaps": "פתיחה במפות",
     "@openInMaps": {
@@ -1257,10 +1163,6 @@
         "placeholders": {}
     },
     "notAnImage": "הקובץ אינו תמונה.",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@hugContent": {
         "type": "String",
         "placeholders": {
@@ -1301,11 +1203,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "@synchronizingPleaseWaitCounter": {
         "type": "String",
         "placeholders": {
@@ -1319,10 +1216,6 @@
         "placeholders": {}
     },
     "@sendFile": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1462,10 +1355,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@unavailable": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@publicRooms": {
         "type": "String",
         "placeholders": {}
@@ -1553,10 +1442,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@noUsersFoundWithQuery": {
         "type": "String",
         "placeholders": {
@@ -1636,10 +1521,6 @@
             }
         }
     },
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@fileIsTooBigForServer": {
         "type": "String",
         "placeholders": {
@@ -1663,14 +1544,6 @@
                 "type": "int"
             }
         }
-    },
-    "@register": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@recording": {
-        "type": "String",
-        "placeholders": {}
     },
     "@waitingPartnerEmoji": {
         "type": "String",
@@ -1709,14 +1582,6 @@
     "@whyDoYouWantToReportThis": {
         "type": "String",
         "placeholders": {}
-    },
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "@emoteSettings": {
         "type": "String",
@@ -1805,13 +1670,6 @@
     "@status": {
         "type": "String",
         "placeholders": {}
-    },
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
     },
     "@verifyStart": {
         "type": "String",
@@ -2136,21 +1994,9 @@
             }
         }
     },
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@sendVideo": {
         "type": "String",
         "placeholders": {}
-    },
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "@sendAMessage": {
         "type": "String",
@@ -2171,10 +2017,6 @@
                 "type": "String"
             }
         }
-    },
-    "@emotePacks": {
-        "type": "String",
-        "placeholders": {}
     },
     "@requestedKeyVerification": {
         "type": "String",

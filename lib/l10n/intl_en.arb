@@ -3,7 +3,6 @@
     "@@last_modified": "2021-08-14 12:38:37.885451",
     "repeatPassword": "Repeat password",
     "notAnImage": "Not an image file.",
-    "ignoreUser": "Ignore user",
     "remove": "Remove",
     "@remove": {
         "type": "String",
@@ -80,11 +79,6 @@
     },
     "all": "All",
     "@all": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "allChats": "All chats",
-    "@allChats": {
         "type": "String",
         "placeholders": {}
     },
@@ -202,7 +196,6 @@
     "noChatsFoundHere": "No chats found here yet. Start a new chat with someone by using the button below. ⤵️",
     "unread": "Unread",
     "space": "Space",
-    "spaces": "Spaces",
     "banFromChat": "Ban from chat",
     "@banFromChat": {
         "type": "String",
@@ -264,31 +257,7 @@
         }
     },
     "changedTheChatDescription": "{username} changed the chat description",
-    "changedTheChatDescriptionTo": "{username} changed the chat description to: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
     "changedTheChatName": "{username} changed the chat name",
-    "changedTheChatNameTo": "{username} changed the chat name to: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
     "changedTheChatPermissions": "{username} changed the chat permissions",
     "@changedTheChatPermissions": {
         "type": "String",
@@ -702,16 +671,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Device",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "Device ID",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Devices",
     "@devices": {
         "type": "String",
@@ -770,11 +729,6 @@
     },
     "emoteKeyboardNoRecents": "Recently-used emotes will appear here...",
     "@emoteKeyboardNoRecents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Emote packs for room",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -843,7 +797,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "homeserver": "Homeserver",
     "errorObtainingLocation": "Error obtaining location: {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -852,16 +805,6 @@
                 "type": "String"
             }
         }
-    },
-    "fileName": "File name",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
     },
     "fontSize": "Font size",
     "@fontSize": {
@@ -936,19 +879,9 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Hide redacted events",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideRedactedMessages": "Hide redacted messages",
     "hideRedactedMessagesBody": "If someone redacts a message, this message won't be visible in the chat anymore.",
     "hideInvalidOrUnknownMessageFormats": "Hide invalid or unknown message formats",
-    "id": "ID",
-    "@id": {
-        "type": "String",
-        "placeholders": {}
-    },
     "block": "Block",
     "blockedUsers": "Blocked users",
     "blockListDescription": "You can block users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal block list.",
@@ -1160,11 +1093,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Please be aware that you need Pantalaimon to use end-to-end encryption for now.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "New chat",
     "@newChat": {
         "type": "String",
@@ -1224,11 +1152,6 @@
     },
     "shareInviteLink": "Share invite link",
     "scanQrCode": "Scan QR code",
-    "none": "None",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPasswordRecoveryDescription": "You have not added a way to recover your password yet.",
     "@noPasswordRecoveryDescription": {
         "type": "String",
@@ -1263,18 +1186,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "Offline",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "Ok",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "Online",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -1351,24 +1264,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Pick an image",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Pin",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "Play {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseChooseAPasscode": "Please choose a pass code",
     "@pleaseChooseAPasscode": {
@@ -1410,18 +1309,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Push rules",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reason": "Reason",
     "@reason": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Recording",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -1461,11 +1350,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "register": "Register",
-    "@register": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reject": "Reject",
     "@reject": {
         "type": "String",
@@ -1484,15 +1368,6 @@
     "@removeAllOtherDevices": {
         "type": "String",
         "placeholders": {}
-    },
-    "removedBy": "Removed by {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "unbanFromChat": "Unban from chat",
     "@unbanFromChat": {
@@ -1516,11 +1391,6 @@
     },
     "reportMessage": "Report message",
     "@reportMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Request permission",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1549,7 +1419,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "recoveryKey": "Recovery key",
     "send": "Send",
     "@send": {
         "type": "String",
@@ -1687,11 +1556,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "showPassword": "Show password",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "skip": "Skip",
     "@skip": {
         "type": "String",
@@ -1765,12 +1629,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tooManyRequestsWarning": "Too many requests. Please try again later!",
     "@tooManyRequestsWarning": {
         "type": "String",
@@ -1778,11 +1636,6 @@
     },
     "tryToSendAgain": "Try to send again",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Unavailable",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1874,11 +1727,6 @@
             }
         }
     },
-    "username": "Username",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} sent a {type} event",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1894,11 +1742,6 @@
     "unverified": "Unverified",
     "verified": "Verified",
     "@verified": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verify": "Verify",
-    "@verify": {
         "type": "String",
         "placeholders": {}
     },
@@ -2019,14 +1862,11 @@
     },
     "messageInfo": "Message info",
     "time": "Time",
-    "messageType": "Message Type",
     "sender": "Sender",
     "openGallery": "Open gallery",
     "removeFromSpace": "Remove from space",
-    "start": "Start",
     "markAsRead": "Mark as read",
     "reportUser": "Report user",
-    "dismiss": "Dismiss",
     "reactedWith": "{sender} reacted with {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -2069,14 +1909,6 @@
     },
     "youInvitedBy": "📩 You have been invited by {user}",
     "@youInvitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
-    "invitedBy": "📩 Invited by {user}",
-    "@invitedBy": {
         "placeholders": {
             "user": {
                 "type": "String"
@@ -2145,9 +1977,7 @@
     "screenSharingDetail": "You are sharing your screen in FuffyChat",
     "whyIsThisMessageEncrypted": "Why is this message unreadable?",
     "noKeyForThisMessage": "This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings.",
-    "newGroup": "New group",
     "newSpace": "New space",
-    "allSpaces": "All spaces",
     "doNotShowAgain": "Do not show again",
     "wasDirectChatDisplayName": "Empty chat (was {oldDisplayName})",
     "@wasDirectChatDisplayName": {
@@ -2162,7 +1992,6 @@
     "encryptThisChat": "Encrypt this chat",
     "disableEncryptionWarning": "For security reasons you can not disable encryption in a chat, where it has been enabled before.",
     "sorryThatsNotPossible": "Sorry... that is not possible",
-    "deviceKeys": "Device keys:",
     "reopenChat": "Reopen chat",
     "noBackupWarning": "Warning! Without enabling chat backup, you will lose access to your encrypted messages. It is highly recommended to enable the chat backup first before logging out.",
     "noOtherDevicesFound": "No other devices found",
@@ -2356,7 +2185,6 @@
             }
         }
     },
-    "transparent": "Transparent",
     "incomingMessages": "Incoming messages",
     "stickers": "Stickers",
     "discover": "Discover",
@@ -2380,8 +2208,6 @@
         "type": "String",
         "count": {}
     },
-    "restricted": "Restricted",
-    "knockRestricted": "Knock restricted",
     "goToSpace": "Go to space: {space}",
     "@goToSpace": {
         "type": "String",
@@ -2438,11 +2264,9 @@
     "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
     "calculatingFileSize": "Calculating file size...",
     "sendingAttachment": "Sending attachment...",
-    "compressVideo": "Compressing video...",
     "oneOfYourDevicesIsNotVerified": "One of your devices is not verified",
     "noticeChatBackupDeviceVerification": "Note: When you connect all your devices to the chat backup, they are automatically verified.",
     "continueText": "Continue",
-    "welcomeText": "Hey Hey 👋 This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!",
     "blur": "Blur:",
     "opacity": "Opacity:",
     "setWallpaper": "Set wallpaper",
@@ -2600,16 +2424,6 @@
             }
         }
     },
-    "startedAPoll": "{username} started a poll.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "Poll",
     "startPoll": "Start poll",
     "endPoll": "End poll",
     "answersVisible": "Answers visible",
@@ -2723,10 +2537,8 @@
             }
         }
     },
-    "check": "Check",
     "encryptedMessage": "Encrypted message",
     "unencryptedMessage": "Unencrypted message",
-    "allow": "Allow",
     "messageCanOnlyBeReadByUser": "Your message is end to end encrypted and can only be read by this user:",
     "messageCanOnlyBeReadByUsers": "Your message is end to end encrypted and can only be read by these users:",
     "publicKey": "Public key: {key}",

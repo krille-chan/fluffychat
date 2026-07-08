@@ -133,30 +133,6 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} megváltoztatta a csevegés leírást a következőre: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} módosította a csevegés nevét a következőre: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
     "changedTheChatPermissions": "{username} módosította a csevegési engedélyeket",
     "@changedTheChatPermissions": {
         "type": "String",
@@ -412,11 +388,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Eszköz",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Eszközök",
     "@devices": {
         "type": "String",
@@ -444,11 +415,6 @@
     },
     "emoteInvalid": "Érvénytelen hangulatjel rövidkód!",
     "@emoteInvalid": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Hangulatjel csomagok a szobához",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -495,16 +461,6 @@
                 "type": "String"
             }
         }
-    },
-    "fileName": "Fájlnév",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
     },
     "forward": "Továbbítás",
     "@forward": {
@@ -567,18 +523,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Szerkesztett események elrejtése",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideUnknownEvents": "Ismeretlen események elrejtése",
     "@hideUnknownEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "ID",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -765,11 +711,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Jelenleg a Pantalaimon szükséges a végpontok közötti titkosítás használatához.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newMessageInFluffyChat": "💬 Új FluffyChat üzenet",
     "@newMessageInFluffyChat": {
         "type": "String",
@@ -795,11 +736,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "none": "Nincs",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPermission": "Nincs engedély",
     "@noPermission": {
         "type": "String",
@@ -810,18 +746,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "Offline",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "Ok",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "Online",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -860,24 +786,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Kép választása",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Rögzítés",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "{fileName} lejátszása",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseEnterYourPassword": "Kérem, adja meg jelszavát",
     "@pleaseEnterYourPassword": {
@@ -896,11 +808,6 @@
     },
     "publicRooms": "Nyilvános szobák",
     "@publicRooms": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Felvétel",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -937,15 +844,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "{username} által eltávolítva",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Csevegés kitiltás feloldása",
     "@unbanFromChat": {
         "type": "String",
@@ -953,11 +851,6 @@
     },
     "reply": "Válasz",
     "@reply": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Jogosultsági kérelem",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1118,19 +1011,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Újraküldés megpróbálása",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Nem elérhető",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1222,11 +1104,6 @@
             }
         }
     },
-    "username": "Felhasználónév",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} felhasználó {type} eseményt küldött",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1238,11 +1115,6 @@
                 "type": "String"
             }
         }
-    },
-    "verify": "Hitelesít",
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
     },
     "verifyStart": "Hitelesítés megkezdése",
     "@verifyStart": {
@@ -1379,11 +1251,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "deviceId": "Eszköz ID",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "repeatPassword": "Jelszó ismétlése",
     "addEmail": "E-mail-cím hozzáadása",
     "@addEmail": {
@@ -1392,11 +1259,6 @@
     },
     "all": "Összes",
     "@all": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "allChats": "Összes csevegés",
-    "@allChats": {
         "type": "String",
         "placeholders": {}
     },
@@ -1534,7 +1396,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "homeserver": "Matrix-kiszolgáló",
     "chatBackup": "Csevegés biztonsági mentés",
     "@chatBackup": {
         "type": "String",
@@ -1774,11 +1635,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "register": "Regisztráció",
-    "@register": {
-        "type": "String",
-        "placeholders": {}
-    },
     "saveFile": "Fájl mentése",
     "@saveFile": {
         "type": "String",
@@ -1804,11 +1660,6 @@
         "placeholders": {}
     },
     "notAnImage": "Nem kép fájl.",
-    "showPassword": "Jelszó megjelenítése",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hugContent": "{senderName} megölel",
     "@hugContent": {
         "type": "String",
@@ -1819,7 +1670,6 @@
         }
     },
     "jumpToLastReadMessage": "Az utoljára olvasott üzenethez ugrás",
-    "dismiss": "Elvetés",
     "reportErrorDescription": "😭 Sajnos, valami félresiklott. Ha kívánja, jelezheti a bugot a fejlesztőknek.",
     "removeYourAvatar": "Profilképének törlése",
     "@removeYourAvatar": {
@@ -1827,10 +1677,8 @@
         "placeholders": {}
     },
     "unsupportedAndroidVersion": "Nem támogatott Android verzió",
-    "messageType": "Üzenet típus",
     "oneClientLoggedOut": "Az egyik kliense kijelentkezett",
     "setColorTheme": "Szín séma beállítása:",
-    "allSpaces": "Minden tér",
     "supposedMxid": "{mxid}-nek kell lennie",
     "@supposedMxid": {
         "type": "String",
@@ -1915,11 +1763,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Push szabályok",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "editBundlesForAccount": "Fiókcsoportok szerkesztése ehhez a fiókhoz",
     "whyIsThisMessageEncrypted": "Miért olvashatatlan ez az üzenet?",
     "setChatDescription": "Csevegés leírás beállítása",
@@ -1947,7 +1790,6 @@
         "placeholders": {}
     },
     "readUpToHere": "Olvasás idáig",
-    "start": "Kezdés",
     "optionalRedactReason": "(Választható) A szerkesztés oka...",
     "sendAsText": "Küldés szövegként",
     "@sendAsText": {
@@ -2011,7 +1853,6 @@
         }
     },
     "redactMessageDescription": "A társalgásban összes résztvevője számára módosításra kerül az üzenet. Ez nem visszavonható.",
-    "recoveryKey": "Visszaállító kulcs",
     "invalidInput": "Hibás bevitel!",
     "yourPublicKey": "A publikus kulcsa",
     "@yourPublicKey": {
@@ -2086,7 +1927,6 @@
     "users": "Felhasználók",
     "openGallery": "Galéria megnyitása",
     "chatDescriptionHasBeenChanged": "A csevegés leírás megváltozott",
-    "newGroup": "Új csoport",
     "bundleName": "Fiókcsoport neve",
     "removeFromSpace": "Eltávolítás a térről",
     "roomUpgradeDescription": "A csevegés újra elkészül az új szoba verzióval. Minden résztvevő értesítést kap, hogy át kell állniuk az új csevegésre. További információkért a szoba verziókról látogasson el a https://spec.matrix.org/latest/rooms/ címre",
@@ -2115,7 +1955,6 @@
     "sorryThatsNotPossible": "Ez sajnos nem lehetséges",
     "shareInviteLink": "Meghívó link megosztása",
     "commandHint_markasdm": "Szoba megjelölése mint közvetlen csevegő szoba az adott Matrix ID-nél",
-    "deviceKeys": "Eszköz kulcsok:",
     "emoteKeyboardNoRecents": "A nemrég használt hangulatjelek fognak itt megjelenni...",
     "@emoteKeyboardNoRecents": {
         "type": "String",
@@ -2262,7 +2101,6 @@
             }
         }
     },
-    "transparent": "Átlátszó",
     "incomingMessages": "Bejövő üzenetek",
     "nothingFound": "Nincs találat...",
     "select": "Kiválaszt",
@@ -2322,8 +2160,6 @@
     },
     "files": "Fájlok",
     "commandHint_unignore": "Adott matrix ID figyelembe vétele",
-    "restricted": "Korlátozott",
-    "knockRestricted": "Kopogás korlátozva",
     "globalChatId": "Átfogó csevegő ID",
     "hideRedactedMessages": "Szerkesztett üzenetek elrejtése",
     "hideRedactedMessagesBody": "Ha valaki szerkeszti az üzenetét, ez az üzenet nem jelenik meg a csevegés során.",
@@ -2335,15 +2171,6 @@
     "commandHint_ignore": "Adott matrix ID figyelmen kívül hagyása",
     "unread": "Olvasatlan",
     "space": "Tér",
-    "spaces": "Terek",
-    "invitedBy": "📩 {user} jóvoltából meghívva",
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "markAsUnread": "Olvasatlannak jelölés",
     "moderatorLevel": "{level} - Moderátor",
     "@moderatorLevel": {
@@ -2429,7 +2256,6 @@
             }
         }
     },
-    "ignoreUser": "Felhasználó ignorálása",
     "commandHint_roomupgrade": "Szoba frissítése a megadott szoba verzióra",
     "oneOfYourDevicesIsNotVerified": "Egyik készüléke nem hitelesített",
     "synchronizingPleaseWaitCounter": " Szinkronizálás… ({percentage}%)",
@@ -2443,7 +2269,6 @@
     },
     "calculatingFileSize": "Fájl méret kalkulálása...",
     "sendingAttachment": "Csatolmány küldése...",
-    "compressVideo": "Videó tömörítése...",
     "contentNotificationSettings": "Tartalom értesítési beállítások",
     "generalNotificationSettings": "Átalános értesítési beállítások",
     "roomNotificationSettings": "Szoba értesítési beállítások",
@@ -2534,7 +2359,6 @@
     "name": "Név",
     "continueText": "Folytatás",
     "opacity": "Átlátszóság:",
-    "welcomeText": "Üdv 👋 Ez a FluffyChat. Bejelentkezhet bármely matrix-kiszolgálóhoz amely kompatibilis a https://matrix.org címmel. Ezután cseveghet bárkivel. Így képez egy óriási decentralizált üzenetküldő hálózatot!",
     "addLink": "Hivatkozás hozzáadása",
     "invalidUrl": "Helytelen hivatkozás",
     "setWallpaper": "Háttér beállítás",
@@ -2612,14 +2436,6 @@
         "placeholders": {
             "count": {
                 "type": "int"
-            }
-        }
-    },
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
             }
         }
     },

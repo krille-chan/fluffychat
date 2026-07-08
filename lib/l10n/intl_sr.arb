@@ -169,30 +169,6 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} промени опис ћаскања у: „{description}“",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} промени назив ћаскања у: „{chatname}“",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
     "changedTheChatPermissions": "{username} измени дозволе ћаскања",
     "@changedTheChatPermissions": {
         "type": "String",
@@ -549,16 +525,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Уређај",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "ИД уређаја",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Уређаји",
     "@devices": {
         "type": "String",
@@ -611,11 +577,6 @@
     },
     "emoteInvalid": "Неисправна скраћеница за емоти!",
     "@emoteInvalid": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Пакети емотија за собу",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -675,16 +636,6 @@
     },
     "enterAnEmailAddress": "Унесите адресу е-поште",
     "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fileName": "Назив фајла",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
         "type": "String",
         "placeholders": {}
     },
@@ -759,18 +710,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Сакриј редиговане догађаје",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideUnknownEvents": "Сакриј непознате догађаје",
     "@hideUnknownEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "ИД",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -972,11 +913,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "За сада, потребан је Пантелејмон (Pantalaimon) да бисте користили шифровање с краја на крај.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "Ново ћаскање",
     "@newChat": {
         "type": "String",
@@ -1022,11 +958,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "none": "Ништа",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPasswordRecoveryDescription": "Још нисте одредили начин за опоравак лозинке.",
     "@noPasswordRecoveryDescription": {
         "type": "String",
@@ -1056,18 +987,8 @@
             }
         }
     },
-    "offline": "Ван везе",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "у реду",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "На вези",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -1131,24 +1052,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Избор слике",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Закачи",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "Пусти {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseChooseAPasscode": "Изаберите код за пролаз",
     "@pleaseChooseAPasscode": {
@@ -1190,18 +1097,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Правила протурања",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reason": "Разлог",
     "@reason": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Снимам",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -1216,11 +1113,6 @@
     },
     "redactMessage": "Редигуј поруку",
     "@redactMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "register": "Регистрација",
-    "@register": {
         "type": "String",
         "placeholders": {}
     },
@@ -1248,15 +1140,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "Уклонио корисник {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Уклони изгнанство",
     "@unbanFromChat": {
         "type": "String",
@@ -1279,11 +1162,6 @@
     },
     "reportMessage": "Пријави поруку",
     "@reportMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Затражи дозволу",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1425,11 +1303,6 @@
             }
         }
     },
-    "showPassword": "Прикажи лозинку",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "skip": "Прескочи",
     "@skip": {
         "type": "String",
@@ -1479,12 +1352,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tooManyRequestsWarning": "Превише упита. Покушајте касније!",
     "@tooManyRequestsWarning": {
         "type": "String",
@@ -1492,11 +1359,6 @@
     },
     "tryToSendAgain": "Покушај слање поново",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Недоступно",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1588,11 +1450,6 @@
             }
         }
     },
-    "username": "Корисничко име",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} посла {type} догађај",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1607,11 +1464,6 @@
     },
     "verified": "Оверен",
     "@verified": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verify": "Верификуј",
-    "@verify": {
         "type": "String",
         "placeholders": {}
     },
@@ -1998,10 +1850,6 @@
             }
         }
     },
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@youInvitedUser": {
         "placeholders": {
             "user": {
@@ -2037,13 +1885,6 @@
     "@commandHint_discardsession": {
         "type": "String",
         "description": "Usage hint for the command /discardsession"
-    },
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
     },
     "@googlyEyesContent": {
         "type": "String",
@@ -2238,14 +2079,6 @@
         "placeholders": {
             "count": {
                 "type": "int"
-            }
-        }
-    },
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
             }
         }
     },

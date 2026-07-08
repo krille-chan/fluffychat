@@ -54,11 +54,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "Todas as conversas",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "answeredTheCall": "{senderName} atendeu a chamada",
     "@answeredTheCall": {
         "type": "String",
@@ -526,16 +521,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Dispositivo",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "ID de dispositivo",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Dispositivos",
     "@devices": {
         "type": "String",
@@ -588,11 +573,6 @@
     },
     "emoteInvalid": "Código de emote inválido!",
     "@emoteInvalid": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Pacotes de emotes da sala",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -655,7 +635,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "homeserver": "Servidor",
     "errorObtainingLocation": "Erro ao obter localização: {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -664,16 +643,6 @@
                 "type": "String"
             }
         }
-    },
-    "fileName": "Nome do ficheiro",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
     },
     "fontSize": "Tamanho da letra",
     "@fontSize": {
@@ -736,18 +705,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Esconder eventos eliminados",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideUnknownEvents": "Esconder eventos desconhecidos",
     "@hideUnknownEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "ID",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -959,11 +918,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Por favor,",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "Nova conversa",
     "@newChat": {
         "type": "String",
@@ -1021,11 +975,6 @@
             }
         }
     },
-    "none": "Nenhum",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "changedTheChatAvatar": "{username} alterou o avatar da conversa",
     "@changedTheChatAvatar": {
         "type": "String",
@@ -1043,30 +992,6 @@
                 "type": "String"
             },
             "rules": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} alterou a descrição da conversa para: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} alterou o nome da conversa para: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
                 "type": "String"
             }
         }
@@ -1147,18 +1072,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "Offline",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "ok",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "Online",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -1234,24 +1149,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Escolher uma imagem",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Afixar",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "Reproduzir {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseChooseAPasscode": "Por favor, escolhe um código-passe",
     "@pleaseChooseAPasscode": {
@@ -1307,18 +1208,8 @@
             }
         }
     },
-    "recording": "A gravar",
-    "@recording": {
-        "type": "String",
-        "placeholders": {}
-    },
     "redactMessage": "Eliminar mensagem",
     "@redactMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "register": "Registar",
-    "@register": {
         "type": "String",
         "placeholders": {}
     },
@@ -1346,15 +1237,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "Removido por {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Perdoar nesta conversa",
     "@unbanFromChat": {
         "type": "String",
@@ -1377,11 +1259,6 @@
     },
     "reportMessage": "Reportar mensagem",
     "@reportMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Pedir permissão",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1498,11 +1375,6 @@
     "dehydrate": "Exportar sessão e limpar dispositivo",
     "dehydrateWarning": "Esta ação não pode ser revertida. Assegura-te que guardas bem a cópia de segurança.",
     "hydrate": "Restaurar a partir de cópia de segurança",
-    "showPassword": "Mostrar palavra-passe",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hugContent": "{senderName} abraçou-o",
     "@hugContent": {
         "type": "String",
@@ -1539,12 +1411,6 @@
         "placeholders": {}
     },
     "globalChatId": "ID global do chat",
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "synchronizingPleaseWaitCounter": " A sincronizar… ({percentage}%)",
     "@synchronizingPleaseWaitCounter": {
         "type": "String",
@@ -1563,7 +1429,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allSpaces": "Todos os espaços",
     "supposedMxid": "Isto deve ser {mxid}",
     "@supposedMxid": {
         "type": "String",
@@ -1669,11 +1534,6 @@
     "youRejectedTheInvitation": "Rejeitou o convite",
     "newSpaceDescription": "Espaços permitem-lhe consolidar os seus chats e construir comunidades privadas ou públicas.",
     "encryptThisChat": "Encriptar este chat",
-    "unavailable": "Indisponível",
-    "@unavailable": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@fromTheInvitation": {
         "type": "String",
         "placeholders": {}
@@ -1749,10 +1609,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "@noUsersFoundWithQuery": {
         "type": "String",
         "placeholders": {
@@ -1790,7 +1646,6 @@
             }
         }
     },
-    "ignoreUser": "Ignorar utilizador",
     "noOtherDevicesFound": "Nenhum outro dispositivo encontrado",
     "@whoIsAllowedToJoinThisGroup": {
         "type": "String",
@@ -1826,11 +1681,6 @@
                 "type": "String"
             }
         }
-    },
-    "username": "Nome de utilizador",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
     },
     "fileIsTooBigForServer": "Não foi possível enviar! O sevidor apenas suporta anexos até {max}.",
     "@fileIsTooBigForServer": {
@@ -1989,14 +1839,6 @@
         "placeholders": {}
     },
     "changedTheChatDescription": "{username} mudou a descrição do chat",
-    "invitedBy": "📩 Convidado por {user}",
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "@verifyStart": {
         "type": "String",
         "placeholders": {}
@@ -2082,7 +1924,6 @@
         }
     },
     "sendTypingNotifications": "Enviar notificações de digitação",
-    "spaces": "Espaços",
     "accessAndVisibility": "Acesso e visibilidade",
     "@verifyTitle": {
         "type": "String",
@@ -2116,7 +1957,6 @@
     "notAnImage": "Não é um ficheiro de imagem.",
     "users": "Utilizadores",
     "space": "Espaço",
-    "newGroup": "Novo grupo",
     "sourceCode": "Código fonte",
     "@sourceCode": {
         "type": "String",
@@ -2175,7 +2015,6 @@
             }
         }
     },
-    "deviceKeys": "Chaves do dispositivo:",
     "@waitingPartnerNumbers": {
         "type": "String",
         "placeholders": {}
@@ -2329,19 +2168,6 @@
     "@fromJoining": {
         "type": "String",
         "placeholders": {}
-    },
-    "verify": "Verificar",
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
     },
     "importNow": "Importar agora",
     "noChatsFoundHere": "Não foi encontrado nenhum chat aqui. Comece um chat novo com alguém ao usar o botão abaixo. ⤵️",

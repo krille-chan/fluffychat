@@ -128,30 +128,6 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username}(e)k txataren deskribapena aldatu du: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username}(e)k txataren izena '{chatname}'(e)ra aldatu du",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
     "changedTheChatPermissions": "{username}(e)k txataren baimenak aldatu ditu",
     "@changedTheChatPermissions": {
         "type": "String",
@@ -392,11 +368,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Gailua",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Gailuak",
     "@devices": {
         "type": "String",
@@ -466,16 +437,6 @@
             }
         }
     },
-    "fileName": "Fitxategiaren izena",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "forward": "Birbidali",
     "@forward": {
         "type": "String",
@@ -534,11 +495,6 @@
     },
     "help": "Laguntza",
     "@help": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "IDa",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -715,11 +671,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Kontuan izan oraingoz Pantalaimon behar duzula ertzetik ertzerako zifratzerako.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newMessageInFluffyChat": "💬 Mezu berria FluffyChaten",
     "@newMessageInFluffyChat": {
         "type": "String",
@@ -742,11 +693,6 @@
     },
     "noGoogleServicesWarning": "Ez dirudi Firebase Cloud Messaging zure mugikorrean erabilgarri dagoenik. Jakinarazpenak jasotzeko ntfy instalatzea gomendatzen dugu. ntfy edo beste Unified Push hornitzaileren batekin, push jakinarazpenak jaso ditzazkezu datuentzako segurua den modu batean. ntfy PlayStore edo F-Droid dendetatik deskarga dezakezu.",
     "@noGoogleServicesWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "none": "Bat ere ez",
-    "@none": {
         "type": "String",
         "placeholders": {}
     },
@@ -795,24 +741,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Aukeratu irudi bat",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Finkatu",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "Abiarazi {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseEnterYourPassword": "Sartu zure pasahitza",
     "@pleaseEnterYourPassword": {
@@ -826,11 +758,6 @@
     },
     "publicRooms": "Gela publikoak",
     "@publicRooms": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Grabatzen",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -867,15 +794,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "{username}(e)k kendu du",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Kendu txatean duen debekua",
     "@unbanFromChat": {
         "type": "String",
@@ -883,11 +801,6 @@
     },
     "reply": "Erantzun",
     "@reply": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Eskatu baimena",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1048,12 +961,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tryToSendAgain": "Saiatu berriro bidaltzen",
     "@tryToSendAgain": {
         "type": "String",
@@ -1147,11 +1054,6 @@
             }
         }
     },
-    "username": "Erabiltzaile-izena",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username}(e)k {type} gertaera bat bidali du",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1163,11 +1065,6 @@
                 "type": "String"
             }
         }
-    },
-    "verify": "Egiaztatu",
-    "@verify": {
-        "type": "String",
-        "placeholders": {}
     },
     "verifyStart": "Abiarazi egiaztaketa",
     "@verifyStart": {
@@ -1329,7 +1226,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "homeserver": "Zerbitzaria",
     "errorObtainingLocation": "Errorea kokapena lortzerakoan: {error}",
     "@errorObtainingLocation": {
         "type": "String",
@@ -1341,11 +1237,6 @@
     },
     "groups": "Taldeak",
     "@groups": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "hideRedactedEvents": "Ezkutatu atzera botatako gertaerak",
-    "@hideRedactedEvents": {
         "type": "String",
         "placeholders": {}
     },
@@ -1410,11 +1301,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "register": "Eman izena",
-    "@register": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pleaseFollowInstructionsOnWeb": "Jarraitu webguneko argibideak eta sakatu 'Hurrengoa'.",
     "@pleaseFollowInstructionsOnWeb": {
         "type": "String",
@@ -1440,9 +1326,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageType": "Mezu mota",
     "time": "Ordua",
-    "dismiss": "Baztertu",
     "edit": "Editatu",
     "@edit": {
         "type": "String",
@@ -1535,11 +1419,6 @@
         "placeholders": {}
     },
     "addToSpace": "Gehitu gunera",
-    "allChats": "Txat guztiak",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "badServerLoginTypesException": "Zerbitzariak ondorengo aukerak onartzen ditu saioa hasteko:\n{serverVersions}\nBaina aplikazioak hauek onartzen ditu bakarrik:\n{supportedVersions}",
     "@badServerLoginTypesException": {
         "type": "String",
@@ -1603,16 +1482,6 @@
     },
     "noPasswordRecoveryDescription": "Oraindik ez duzu pasahitza berreskuratzeko modurik gehitu.",
     "@noPasswordRecoveryDescription": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "Linean",
-    "@online": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "pushRules": "Push arauak",
-    "@pushRules": {
         "type": "String",
         "placeholders": {}
     },
@@ -1718,16 +1587,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "deviceId": "Gailuaren IDa",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Gelarako emote-sortak",
-    "@emotePacks": {
-        "type": "String",
-        "placeholders": {}
-    },
     "enableEmotesGlobally": "Gaitu emote-sorta txat guztietarako",
     "@enableEmotesGlobally": {
         "type": "String",
@@ -1778,11 +1637,6 @@
     "scanQrCode": "Eskaneatu QR kodea",
     "obtainingLocation": "Kokapena atzitzen…",
     "@obtainingLocation": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "offline": "Lineaz kanpo",
-    "@offline": {
         "type": "String",
         "placeholders": {}
     },
@@ -1852,11 +1706,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "showPassword": "Erakutsi pasahitza",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "spaceIsPublic": "Gunea publikoa da",
     "@spaceIsPublic": {
         "type": "String",
@@ -1874,11 +1723,6 @@
     },
     "tooManyRequestsWarning": "Eskaera gehiegi. Saiatu berriro geroago!",
     "@tooManyRequestsWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Ez dago eskuragai",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1906,7 +1750,6 @@
     "messageInfo": "Mezuaren xehetasunak",
     "sender": "Igorlea",
     "removeFromSpace": "Kendu gunetik",
-    "start": "Hasi",
     "reportUser": "Salatu erabiltzailea",
     "youJoinedTheChat": "Txatera batu zara",
     "youAcceptedTheInvitation": "👍 Gonbidapena onartu duzu",
@@ -1967,7 +1810,6 @@
         }
     },
     "youRejectedTheInvitation": "Gonbidapena baztertu duzu",
-    "recoveryKey": "Berreskuratze-gakoa",
     "users": "Erabiltzaileak",
     "storeInAndroidKeystore": "Gorde Android KeyStore-n",
     "dehydrate": "Esportatu saioa eta ezabatu gailua",
@@ -1988,8 +1830,6 @@
     "confirmMatrixId": "Baieztatu zure Matrix IDa kontua ezabatu ahal izateko.",
     "newSpace": "Gune berria",
     "whyIsThisMessageEncrypted": "Zergatik ezin da mezu hau irakurri?",
-    "allSpaces": "Gune guztiak",
-    "newGroup": "Talde berria",
     "screenSharingTitle": "pantaila-partekatzea",
     "screenSharingDetail": "Pantaila FluffyChaten partekatzen ari zara",
     "noKeyForThisMessage": "Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irekiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula.",
@@ -2014,7 +1854,6 @@
             }
         }
     },
-    "deviceKeys": "Gailuaren gakoak:",
     "noBackupWarning": "Adi! Txataren babeskopia gaitzen ez baduzu, ezingo dituzu zifratutako txatak atzitu. Oso gomendagarria da txaten babeskopia gaitzea saioa amaitu baino lehen.",
     "doNotShowAgain": "Ez erakutsi berriro",
     "fileIsTooBigForServer": "Ezin da bidali! Zerbitzariak gehienez {max}-ko eranskinak onartzen ditu.",
@@ -2206,7 +2045,6 @@
             }
         }
     },
-    "transparent": "Gardena",
     "sendReadReceipts": "Bidali irakurri izanaren agiria",
     "formattedMessages": "Formatua duten mezuak",
     "verifyOtherDevice": "🔐 Egiaztatu beste gailu bat",
@@ -2331,8 +2169,6 @@
         }
     },
     "searchMore": "Bilatu gehiago...",
-    "restricted": "Mugatuta",
-    "knockRestricted": "Eskatu baimena sarrera mugatua duen txatean",
     "swipeRightToLeftToReply": "Herrestatu eskuin-ezker erantzuteko",
     "noMoreChatsFound": "Ez da beste txatik aurkitu...",
     "unread": "Irakurtzeke",
@@ -2343,7 +2179,6 @@
         "space": {}
     },
     "markAsUnread": "Markatu irakurri gabetzat",
-    "spaces": "Guneak",
     "adminLevel": "{level} - Administratzailea",
     "@adminLevel": {
         "type": "String",
@@ -2378,14 +2213,6 @@
     "changeGeneralChatSettings": "Aldatu txataren ezarpen orokorrak",
     "changeTheVisibilityOfChatHistory": "Aldatu txataren historiaren ikusgaitasuna",
     "changeTheCanonicalRoomAlias": "Aldatu txataren helbide publiko nagusia",
-    "invitedBy": "📩 {user}(e)k gonbidatua",
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "updateInstalled": "🎉 {version} bertsioa instalatu da!",
     "@updateInstalled": {
         "type": "String",
@@ -2403,7 +2230,6 @@
     "doesNotSeemToBeAValidHomeserver": "Ez dirudi zerbitzaria bateragarria denik. Zuzena da URLa?",
     "calculatingFileSize": "Fitxategiaren tamaina kalkulatzen…",
     "sendingAttachment": "Eranskina bidaltzen…",
-    "compressVideo": "Bideoa konprimatzen…",
     "oneOfYourDevicesIsNotVerified": "Zure gailuetako bat ez dago egiaztatuta",
     "noticeChatBackupDeviceVerification": "Oharra: gailu guztiak txat-babeskopiarekin konektatzen dituzunean, automatikoki egiaztatzen dira.",
     "opacity": "Opakutasuna:",
@@ -2411,7 +2237,6 @@
     "setWallpaper": "Ezarri horma-irudia",
     "blur": "Lausotu:",
     "continueText": "Jarraitu",
-    "welcomeText": "Ieup 👋 Ongi etorri FluffyChat-era. https://matrix.org-rekin bateragarria den edozein zerbitzaritan hasi dezakezu saioa eta edonorekin txateatu. Mezularitza-sare deszentralizatu eraraldoia da!",
     "contactServerAdmin": "Jarri harremanetan zerbitzariaren administratzailearekin",
     "aboutHomeserver": "{homeserver}(e)ri buruz",
     "@aboutHomeserver": {
@@ -2538,7 +2363,6 @@
     "commandHint_roomupgrade": "Bertsio-berritu gela adierazitako gela-bertsiora",
     "enterNewChat": "Sartu txat berrira",
     "notificationRuleRoomServerAclDescription": "Gela-zerbitzarirako sarbide-kontroleko zerrenden (ACL) jakinarazpenak ezkutatzen ditu.",
-    "ignoreUser": "Egin muzin erabiltzaileari",
     "approve": "Onetsi",
     "youHaveKnocked": "Sartzeko baimena eskatu duzu",
     "pleaseWaitUntilInvited": "Orain itxaron gelako norbaitek gonbidatzen zaituen arte.",
@@ -2602,16 +2426,6 @@
             }
         }
     },
-    "startedAPoll": "{username}(e)k bozketa hasi du.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "Bozketa",
     "startPoll": "Hasi bozketa",
     "endPoll": "Amaitu bozketa",
     "answersVisible": "Erakutsi emaitzak",
@@ -2736,7 +2550,6 @@
     },
     "encryptedMessage": "Zifratutako mezua",
     "unencryptedMessage": "Zifratu gabeko mezua",
-    "allow": "Baimendu",
     "publicKey": "Gako publikoa: {key}",
     "@publicKey": {
         "type": "String",

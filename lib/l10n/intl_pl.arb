@@ -160,30 +160,6 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} zmienił(a) opis czatu na '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} zmienił(a) nazwę czatu na '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
-                "type": "String"
-            }
-        }
-    },
     "changedTheChatPermissions": "{username} zmienił(a) uprawnienia w czacie",
     "@changedTheChatPermissions": {
         "type": "String",
@@ -539,16 +515,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Urządzenie",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "Identyfikator urządzenia",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Urządzenia",
     "@devices": {
         "type": "String",
@@ -591,11 +557,6 @@
     },
     "emoteInvalid": "Nieprawidłowy kod emotikonu!",
     "@emoteInvalid": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Paczki emotikonów dla pokoju",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -650,16 +611,6 @@
     },
     "enterAnEmailAddress": "Wpisz adres e-mail",
     "@enterAnEmailAddress": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fileName": "Nazwa pliku",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
         "type": "String",
         "placeholders": {}
     },
@@ -724,18 +675,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Ukryj informacje o usuniętych zdarzeniach",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideUnknownEvents": "Ukryj nieznane wdarzenia",
     "@hideUnknownEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "Identyfikator",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -927,11 +868,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Należy pamiętać, że Pantalaimon wymaga na razie szyfrowania od końca do końca.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "Nowa rozmowa",
     "@newChat": {
         "type": "String",
@@ -964,11 +900,6 @@
     },
     "noGoogleServicesWarning": "Wygląda na to, że Twoje urządzenie nie obsługuje Firebase Cloud Messaging. Aby wciąż otrzymywać powiadomienia push, zalecamy istalację ntfy. Używając ntfy lub inengo zunifikowanego dostawcy powiadomień push, możesz bezpiecznie otrzymywać takowe powiadomienia. Ntfy można pobrać ze sklepu Google Play Store lub z F-Droid.",
     "@noGoogleServicesWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "none": "Brak",
-    "@none": {
         "type": "String",
         "placeholders": {}
     },
@@ -1022,15 +953,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "play": "Otwórz {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
-    },
     "pleaseEnterYourPassword": "Wprowadź swoje hasło",
     "@pleaseEnterYourPassword": {
         "type": "String",
@@ -1051,16 +973,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Reguły push",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Nagranie",
-    "@recording": {
-        "type": "String",
-        "placeholders": {}
-    },
     "redactedAnEvent": "{username} usunął/-ęła zdarzenie",
     "@redactedAnEvent": {
         "type": "String",
@@ -1069,11 +981,6 @@
                 "type": "String"
             }
         }
-    },
-    "register": "Zarejestruj",
-    "@register": {
-        "type": "String",
-        "placeholders": {}
     },
     "rejectedTheInvitation": "{username} odrzucił/-a zaproszenie",
     "@rejectedTheInvitation": {
@@ -1094,15 +1001,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "Usunięta przez {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Odbanuj w czacie",
     "@unbanFromChat": {
         "type": "String",
@@ -1110,11 +1008,6 @@
     },
     "reply": "Odpowiedz",
     "@reply": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Prośba o pozwolenie",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1217,11 +1110,6 @@
             }
         }
     },
-    "showPassword": "Pokaż hasło",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "sourceCode": "Kod żródłowy",
     "@sourceCode": {
         "type": "String",
@@ -1239,12 +1127,6 @@
     },
     "systemTheme": "System",
     "@systemTheme": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
         "type": "String",
         "placeholders": {}
     },
@@ -1336,11 +1218,6 @@
             }
         }
     },
-    "username": "Nazwa użytkownika",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} wysłał/-a zdarzenie {type}",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1355,11 +1232,6 @@
     },
     "verified": "Zweryfikowane",
     "@verified": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verify": "zweryfikuj",
-    "@verify": {
         "type": "String",
         "placeholders": {}
     },
@@ -1415,11 +1287,6 @@
     },
     "youHaveBeenBannedFromThisChat": "Zostałeś/-aś zbanowany/-a w tym czacie",
     "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "allChats": "Wszystkie czaty",
-    "@allChats": {
         "type": "String",
         "placeholders": {}
     },
@@ -1522,11 +1389,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Wybierz obraz",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "passwordRecovery": "Odzyskiwanie hasła",
     "@passwordRecovery": {
         "type": "String",
@@ -1579,7 +1441,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "homeserver": "Adres serwera",
     "locationDisabledNotice": "Usługi lokalizacji są wyłączone. Proszę włącz je aby móc udostępnić swoją lokalizację.",
     "@locationDisabledNotice": {
         "type": "String",
@@ -1666,19 +1527,9 @@
         "type": "String",
         "placeholders": {}
     },
-    "unavailable": "Niedostępne",
-    "@unavailable": {
-        "type": "String",
-        "placeholders": {}
-    },
     "scanQrCode": "Skanuj kod QR",
     "createNewSpace": "Nowa przestrzeń",
     "@createNewSpace": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "offline": "Offline",
-    "@offline": {
         "type": "String",
         "placeholders": {}
     },
@@ -1733,11 +1584,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "online": "Online",
-    "@online": {
-        "type": "String",
-        "placeholders": {}
-    },
     "status": "Status",
     "@status": {
         "type": "String",
@@ -1760,7 +1606,6 @@
     },
     "messageInfo": "Informacje o wiadomości",
     "time": "Czas",
-    "messageType": "Rodzaj wiadomości",
     "waitingPartnerAcceptRequest": "Oczekiwanie na zaakceptowanie prośby przez drugą osobę…",
     "@waitingPartnerAcceptRequest": {
         "type": "String",
@@ -1796,7 +1641,6 @@
             }
         }
     },
-    "recoveryKey": "Klucz odzyskiwania",
     "sentCallInformations": "{senderName} wysłał/-a informacje o połączeniu",
     "@sentCallInformations": {
         "type": "String",
@@ -1828,7 +1672,6 @@
     },
     "sender": "Nadawca",
     "openGallery": "Otwórz galerię",
-    "start": "Start",
     "hydrate": "Przywracanie z pliku kopii zapasowej",
     "noMatrixServer": "{server1} nie jest serwerem Matriksa, czy chcesz zamiast niego użyć {server2}?",
     "@noMatrixServer": {
@@ -1873,7 +1716,6 @@
         "placeholders": {}
     },
     "reportUser": "Zgłoś użytkownika",
-    "dismiss": "Odrzuć",
     "markAsRead": "Oznacz jako przeczytane",
     "passphraseOrKey": "fraza dostępu lub klucz odzyskiwania",
     "@passphraseOrKey": {
@@ -1905,7 +1747,6 @@
     "youJoinedTheChat": "Dołączono do czatu",
     "user": "Użytkownik",
     "custom": "Własne",
-    "newGroup": "Nowa grupa",
     "newSpace": "Nowa przestrzeń",
     "fileIsTooBigForServer": "Nie udało się wysłać! Ten serwer obsługuje załączniki o maksymalnej wielkości {max}.",
     "youBannedUser": "Zbanowałeś/-aś {user}",
@@ -1928,7 +1769,6 @@
     "noOtherDevicesFound": "Nie znaleziono innych urządzeń",
     "encryptThisChat": "Zaszyfruj ten czat",
     "disableEncryptionWarning": "Ze względów bezpieczeństwa nie można wyłączyć szyfrowania w czacie, w którym zostało ono wcześniej włączone.",
-    "deviceKeys": "Klucze urządzenia:",
     "screenSharingTitle": "udostępnianie ekranu",
     "noKeyForThisMessage": "Może się to zdarzyć, jeśli wiadomość została wysłana przed zalogowaniem się na to konto na tym urządzeniu.\n\nMożliwe jest również, że nadawca zablokował Twoje urządzenie lub coś poszło nie tak z połączeniem internetowym.\n\nJesteś w stanie odczytać wiadomość na innej sesji? W takim razie możesz przenieść z niej wiadomość! Wejdź w Ustawienia > Urządzenia i upewnij się, że Twoje urządzenia zweryfikowały się wzajemnie. Gdy następnym razem otworzysz pokój i obie sesje będą włączone, klucze zostaną przekazane automatycznie.\n\nNie chcesz stracić kluczy podczas wylogowania lub przełączania urządzeń? Upewnij się, że w ustawieniach masz włączoną kopię zapasową czatu.",
     "sorryThatsNotPossible": "Przepraszamy... to nie jest możliwe",
@@ -2037,7 +1877,6 @@
     "foregroundServiceRunning": "To powiadomienie pojawia się, gdy usługa w tle jest uruchomiona.",
     "screenSharingDetail": "Udostępniasz swój ekran w FluffyChat",
     "whyIsThisMessageEncrypted": "Dlaczego nie można odczytać tej wiadomości?",
-    "allSpaces": "Wszystkie przestrzenie",
     "doNotShowAgain": "Nie pokazuj ponownie",
     "wasDirectChatDisplayName": "Pusty czat (wcześniej {oldDisplayName})",
     "@wasDirectChatDisplayName": {
@@ -2131,7 +1970,6 @@
     "block": "Zablokuj",
     "blockedUsers": "Zablokowani użytkownicy",
     "blockUsername": "Ignoruj użytkownika",
-    "transparent": "Przezroczystość",
     "select": "Zaznacz",
     "calls": "Połączenia",
     "learnMore": "Dowiedz się więcej",
@@ -2141,20 +1979,11 @@
     "gallery": "Galeria",
     "files": "Pliki",
     "discover": "Odkrywaj",
-    "restricted": "Ograniczone",
     "nothingFound": "Nic nie odnaleziono...",
     "stickers": "Naklejki",
     "noChatsFoundHere": "Nie jeszcze ma żadnych czatów. Wciśnij poniższy przycisk, aby rozpocząć nowy czat. ⤵️",
     "hideRedactedMessagesBody": "Usunięte wiadomości nie będą widoczne w czacie.",
     "passwordRecoverySettings": "Ustawienia odzyskiwania hasła",
-    "invitedBy": "Zaproszony/-a przez {user}",
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "archiveRoomDescription": "Czat zostanie przeniesiony do archiwum. Pozostali użytkownicy będą mogli zobaczyć, że opuściłeś/-aś czat.",
     "yourGlobalUserIdIs": "Twój globalny identyfikator to: ",
     "canceledKeyVerification": "{sender} anulował/-a weryfikację kluczy",
@@ -2284,8 +2113,6 @@
     "doesNotSeemToBeAValidHomeserver": "Wydaje się nie być kompatybilnym serwerem domowym. Niepoprawny adres URL?",
     "calculatingFileSize": "Obliczanie rozmiaru pliku...",
     "sendingAttachment": "Wysyłanie załącznika...",
-    "compressVideo": "Kompresowanie filmu...",
-    "welcomeText": "No cześć! 👋 Tutaj FluffyChat. Możesz zapisać się do dowolnego serwera domowego, kompatybilnego z https://matrix.org i rozmawiać ze wszystkimi. To duża zdecentralizowana sieć czatów!",
     "blur": "Rozmazanie:",
     "opacity": "Przezroczystość:",
     "setWallpaper": "Ustaw tapetę",
@@ -2353,7 +2180,6 @@
     "searchMore": "Szukaj dalej...",
     "formattedMessagesDescription": "Używaj Markdown do wyświetlania dodatkowego formatowania w wiadomościach, jak np. pogrubienie tekstu.",
     "verifyOtherUser": "🔐 Zweryfikuj innego użytkownika",
-    "knockRestricted": "Pukanie jest ograniczone",
     "appLockDescription": "Zablokuj aplikację pinem kiedy nie jest używana",
     "knocking": "Pukanie",
     "pleaseChooseAStrongPassword": "Proszę wybrać silne hasło",
@@ -2422,7 +2248,6 @@
     "addLink": "Dodaj link",
     "unread": "Nieprzeczytane",
     "space": "Przestrzeń",
-    "spaces": "Przestrzenie",
     "noMoreChatsFound": "Nie znaleziono więcej czatów...",
     "removeDevicesDescription": "Nastąpi wylogowanie z tego urządzenia. Nie będziesz w stanie odbierać na nim wiadomości.",
     "makeAdminDescription": "Kiedy użytkownik zostanie adminem, nie będziesz móc tego cofnąć, bo nabierze takich samych uprawnień, jak Ty.",
@@ -2560,7 +2385,6 @@
         }
     },
     "checkList": "Lista kontrolna",
-    "ignoreUser": "Ignoruj użytkownika",
     "approve": "Zaakceptuj",
     "youHaveKnocked": "Zapukałeś/-aś",
     "pleaseWaitUntilInvited": "Proszę zaczekać na zaproszenie przez kogoś z pokoju.",
@@ -2664,16 +2488,6 @@
     "addTag": "Dodaj znacznik",
     "removeTag": "Usuń znacznik",
     "tagName": "Nazwa znacznika",
-    "startedAPoll": "{username} rozpoczął głosowanie.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "Ankieta",
     "startPoll": "Rozpocznij ankietę",
     "endPoll": "Zakończ ankietę",
     "answersVisible": "Widoczne odpowiedzi",
@@ -2734,10 +2548,8 @@
             }
         }
     },
-    "check": "Sprawdź",
     "encryptedMessage": "Szyfrowana wiadomość",
     "unencryptedMessage": "Nieszyfrowana wiadomość",
-    "allow": "Zezwól",
     "messageCanOnlyBeReadByUser": "Twoja wiadomość jest szyfrowana od początku do końca i może ją odczytać wyłącznie ten użytkownik:",
     "messageCanOnlyBeReadByUsers": "Twoja wiadomość jest szyfrowana od początku do końca i mogą ją odczytać wyłącznie następujący użytkownicy:",
     "publicKey": "Publiczny klucz: {key}",

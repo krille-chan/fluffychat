@@ -54,11 +54,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "allChats": "Alle chats",
-    "@allChats": {
-        "type": "String",
-        "placeholders": {}
-    },
     "answeredTheCall": "{senderName} heeft de oproep beantwoord",
     "@answeredTheCall": {
         "type": "String",
@@ -185,30 +180,6 @@
         "type": "String",
         "placeholders": {
             "username": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatDescriptionTo": "{username} heeft de chatomschrijving gewijzigd in: '{description}'",
-    "@changedTheChatDescriptionTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "description": {
-                "type": "String"
-            }
-        }
-    },
-    "changedTheChatNameTo": "{username} heeft de chatnaam gewijzigd in: '{chatname}'",
-    "@changedTheChatNameTo": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "chatname": {
                 "type": "String"
             }
         }
@@ -593,16 +564,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "device": "Apparaat",
-    "@device": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "deviceId": "Apparaat-ID",
-    "@deviceId": {
-        "type": "String",
-        "placeholders": {}
-    },
     "devices": "Apparaten",
     "@devices": {
         "type": "String",
@@ -655,11 +616,6 @@
     },
     "emoteInvalid": "Ongeldige emoticon korte code!",
     "@emoteInvalid": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "emotePacks": "Emoticonpakketten voor de chat",
-    "@emotePacks": {
         "type": "String",
         "placeholders": {}
     },
@@ -730,16 +686,6 @@
                 "type": "String"
             }
         }
-    },
-    "fileName": "Bestandsnaam",
-    "@fileName": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
-        "type": "String",
-        "placeholders": {}
     },
     "fontSize": "Lettergrootte",
     "@fontSize": {
@@ -812,18 +758,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "hideRedactedEvents": "Bewerkte gebeurtenissen verbergen",
-    "@hideRedactedEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
     "hideUnknownEvents": "Onbekende gebeurtenissen verbergen",
     "@hideUnknownEvents": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "id": "ID",
-    "@id": {
         "type": "String",
         "placeholders": {}
     },
@@ -1035,11 +971,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "needPantalaimonWarning": "Houd er rekening mee dat je voorlopig Pantalaimon nodig hebt om eind-tot-eind versleuteling te gebruiken.",
-    "@needPantalaimonWarning": {
-        "type": "String",
-        "placeholders": {}
-    },
     "newChat": "Nieuwe chat",
     "@newChat": {
         "type": "String",
@@ -1097,11 +1028,6 @@
             }
         }
     },
-    "none": "Geen",
-    "@none": {
-        "type": "String",
-        "placeholders": {}
-    },
     "noPasswordRecoveryDescription": "Je hebt nog geen manier toegevoegd om je wachtwoord te herstellen.",
     "@noPasswordRecoveryDescription": {
         "type": "String",
@@ -1136,18 +1062,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "offline": "Offline",
-    "@offline": {
-        "type": "String",
-        "placeholders": {}
-    },
     "ok": "Ok",
     "@ok": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "online": "Online",
-    "@online": {
         "type": "String",
         "placeholders": {}
     },
@@ -1216,24 +1132,10 @@
         "type": "String",
         "placeholders": {}
     },
-    "pickImage": "Kies een afbeelding",
-    "@pickImage": {
-        "type": "String",
-        "placeholders": {}
-    },
     "pin": "Pin",
     "@pin": {
         "type": "String",
         "placeholders": {}
-    },
-    "play": "Speel {fileName}",
-    "@play": {
-        "type": "String",
-        "placeholders": {
-            "fileName": {
-                "type": "String"
-            }
-        }
     },
     "pleaseChooseAPasscode": "Kies een toegangscode",
     "@pleaseChooseAPasscode": {
@@ -1275,18 +1177,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "pushRules": "Meldingsinstellingen",
-    "@pushRules": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reason": "Reden",
     "@reason": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "recording": "Opnemen",
-    "@recording": {
         "type": "String",
         "placeholders": {}
     },
@@ -1301,11 +1193,6 @@
     },
     "redactMessage": "Aangepast bericht",
     "@redactMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "register": "Registeren",
-    "@register": {
         "type": "String",
         "placeholders": {}
     },
@@ -1333,15 +1220,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "removedBy": "Verwijderd door {username}",
-    "@removedBy": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
     "unbanFromChat": "Verbanning opheffen",
     "@unbanFromChat": {
         "type": "String",
@@ -1364,11 +1242,6 @@
     },
     "reportMessage": "Bericht rapporteren",
     "@reportMessage": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "requestPermission": "Vraag toestemming",
-    "@requestPermission": {
         "type": "String",
         "placeholders": {}
     },
@@ -1524,11 +1397,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "showPassword": "Wachtwoord weergeven",
-    "@showPassword": {
-        "type": "String",
-        "placeholders": {}
-    },
     "skip": "Overslaan",
     "@skip": {
         "type": "String",
@@ -1593,12 +1461,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
-    "@title": {
-        "description": "Title for the application",
-        "type": "String",
-        "placeholders": {}
-    },
     "tooManyRequestsWarning": "Te veel verzoeken. Probeer het later nog eens!",
     "@tooManyRequestsWarning": {
         "type": "String",
@@ -1606,11 +1468,6 @@
     },
     "tryToSendAgain": "Probeer nogmaals te verzenden",
     "@tryToSendAgain": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "unavailable": "Niet beschikbaar",
-    "@unavailable": {
         "type": "String",
         "placeholders": {}
     },
@@ -1702,11 +1559,6 @@
             }
         }
     },
-    "username": "Inlognaam",
-    "@username": {
-        "type": "String",
-        "placeholders": {}
-    },
     "userSentUnknownEvent": "{username} heeft een {type} -gebeurtenis gestuurd",
     "@userSentUnknownEvent": {
         "type": "String",
@@ -1721,11 +1573,6 @@
     },
     "verified": "Geverifieerd",
     "@verified": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "verify": "Verifieer",
-    "@verify": {
         "type": "String",
         "placeholders": {}
     },
@@ -1846,7 +1693,6 @@
     },
     "scanQrCode": "QR-code scannen",
     "sendOnEnter": "Verstuur met enter",
-    "homeserver": "Server",
     "oneClientLoggedOut": "Één van jouw apparaten is uitgelogd",
     "bundleName": "Bundelnaam",
     "removeFromBundle": "Van bundel verwijderen",
@@ -1858,11 +1704,9 @@
     "repeatPassword": "Wachtwoord herhalen",
     "messageInfo": "Berichtinfo",
     "time": "Tijd",
-    "messageType": "Berichttype",
     "sender": "Afzender",
     "openGallery": "Galerij openen",
     "removeFromSpace": "Uit de space verwijderen",
-    "start": "Start",
     "commandHint_clearcache": "Cache wissen",
     "@commandHint_clearcache": {
         "type": "String",
@@ -1883,7 +1727,6 @@
         "type": "String",
         "description": "Usage hint for the command /discardsession"
     },
-    "dismiss": "Sluiten",
     "markAsRead": "Markeer als gelezen",
     "reportUser": "Persoon rapporteren",
     "reactedWith": "{sender} reageerde met {reaction}",
@@ -1966,7 +1809,6 @@
             }
         }
     },
-    "recoveryKey": "Herstelsleutel",
     "users": "Personen",
     "storeInAndroidKeystore": "In Android KeyStore opslaan",
     "storeInAppleKeyChain": "In Apple KeyChain opslaan",
@@ -1998,11 +1840,9 @@
     "commandHint_markasgroup": "Markeer als groep",
     "whyIsThisMessageEncrypted": "Waarom is dit bericht onleesbaar?",
     "noKeyForThisMessage": "Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen in een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de chat de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chatback-up hebt aangezet in de instellingen.",
-    "allSpaces": "Alle spaces",
     "foregroundServiceRunning": "Deze melding verschijnt wanneer de voorgronddienst draait.",
     "screenSharingTitle": "scherm delen",
     "screenSharingDetail": "Je deelt je scherm in FuffyChat",
-    "newGroup": "Nieuwe groep",
     "newSpace": "Space aanmaken",
     "doNotShowAgain": "Niet meer tonen",
     "googlyEyesContent": "{senderName} stuurt je wiebelogen",
@@ -2048,7 +1888,6 @@
     "sorryThatsNotPossible": "Sorry, dat is niet mogelijk",
     "reopenChat": "Chat heropenen",
     "encryptThisChat": "Versleutel deze chat",
-    "deviceKeys": "Apparaatsleutels:",
     "newSpaceDescription": "Met spaces kun je je chats samenvoegen en privé- of publieke community's bouwen.",
     "noOtherDevicesFound": "Geen andere apparaten gevonden",
     "noBackupWarning": "Waarschuwing! Zonder de chatback-up in te schakelen, verlies je de toegang tot je versleutelde berichten. Het is sterk aanbevolen om eerst de chatback-up in te schakelen voordat je uitlogt.",
@@ -2164,14 +2003,6 @@
     "appLockDescription": "Vergendel de app wanneer het niet gebruikt wordt met een pincode",
     "globalChatId": "Globale chat ID",
     "accessAndVisibility": "Toegang en zichtbaarheid",
-    "invitedBy": "📩 Uitgenodigd door: {user}",
-    "@invitedBy": {
-        "placeholders": {
-            "user": {
-                "type": "String"
-            }
-        }
-    },
     "publicSpaces": "Publieke spaces",
     "blockUsername": "Negeer inlognaam",
     "publicChatAddresses": "Publieke chat adressen",
@@ -2179,11 +2010,9 @@
     "noMoreChatsFound": "Geen chats gevonden...",
     "knocking": "Kloppen",
     "space": "Space",
-    "spaces": "Spaces",
     "unread": "Ongelezen",
     "groupName": "Groepsnaam",
     "changeGeneralChatSettings": "Algemene chat instellingen wijzigen",
-    "restricted": "Beperkt",
     "searchForUsers": "Zoek @personen...",
     "searchMore": "Zoek meer...",
     "groupCanBeFoundViaSearch": "Groep kan gevonden worden via zoeken",
@@ -2246,7 +2075,6 @@
     "stickers": "Stickers",
     "nothingFound": "Niets gevonden...",
     "gallery": "Galerij",
-    "transparent": "Transparant",
     "incomingMessages": "Inkomende berichten",
     "discover": "Ontdek",
     "commandHint_ignore": "Negeer de gegeven Matrix-ID",
@@ -2414,7 +2242,6 @@
             }
         }
     },
-    "knockRestricted": "Kloppen is beperkt",
     "goToSpace": "Ga naar space: {space}",
     "@goToSpace": {
         "type": "String",
@@ -2435,7 +2262,6 @@
     "loginWithMatrixId": "Inloggen met Matrix-ID",
     "calculatingFileSize": "Bestandsgrootte berekenen...",
     "sendingAttachment": "Bijlage versturen...",
-    "compressVideo": "Video comprimeren...",
     "version": "Versie",
     "supportPage": "Supportpagina",
     "serverInformation": "Server-informatie:",
@@ -2464,7 +2290,6 @@
     "verifyOtherDevice": "🔐 Ander apparaat verifiëren",
     "doesNotSeemToBeAValidHomeserver": "Dit lijkt geen ondersteunde server. Verkeerde URL?",
     "continueText": "Doorgaan",
-    "welcomeText": "Hallo hallo 👋 Dit is FluffyChat. Je kan inloggen op elke server die werkt met https://matrix.org. En dan chat je met iedereen. Het is een groot decentraal chat-netwerk!",
     "appWantsToUseForLogin": "Inloggen met '{server}'",
     "@appWantsToUseForLogin": {
         "type": "String",
@@ -2537,7 +2362,6 @@
     "optionalMessage": "(Optioneel) bericht...",
     "notSupportedOnThisDevice": "Niet ondersteund op dit apparaat",
     "commandHint_roomupgrade": "Upgradeer deze chat naar de aangegeven kamerversie",
-    "ignoreUser": "Persoon negeren",
     "pleaseWaitUntilInvited": "Wacht even alsjeblieft tot iemand van de chat je uitnodigt.",
     "approve": "Goedkeuren",
     "youHaveKnocked": "Je hebt geklopt",
@@ -2601,16 +2425,6 @@
             }
         }
     },
-    "startedAPoll": "{username} is een peiling begonnen.",
-    "@startedAPoll": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            }
-        }
-    },
-    "poll": "Peiling",
     "startPoll": "Peiling starten",
     "endPoll": "Peiling beëindigen",
     "answersVisible": "Zichtbaar invullen",
@@ -2731,10 +2545,8 @@
             }
         }
     },
-    "check": "Controleer",
     "encryptedMessage": "Versleuteld bericht",
     "unencryptedMessage": "Niet-versleuteld bericht",
-    "allow": "Toestaan",
     "publicKey": "Publieke sleutel: {key}",
     "@publicKey": {
         "type": "String",
