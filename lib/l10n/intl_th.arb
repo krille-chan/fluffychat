@@ -2687,5 +2687,14 @@
             }
         }
     },
-    "passwordsDoNotMatch": ""
+    "passwordsDoNotMatch": "",
+    "searchIn": "",
+    "@searchIn": {
+        "type": "String",
+        "placeholders": {
+            "chat": {
+                "type": "String"
+            }
+        }
+    }
 }
