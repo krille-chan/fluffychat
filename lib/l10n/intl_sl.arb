@@ -2710,5 +2710,8 @@
         "placeholders": {}
     },
     "sendReadReceiptsDescription": "",
-    "block": ""
+    "block": "",
+    "storeSecurlyOnThisDevice": "",
+    "passwordsDoNotMatch": "",
+    "screenSharingDetail": ""
 }
