@@ -2714,5 +2714,14 @@
     "unlockWithBiometrics": "",
     "notificationRuleEncrypted": "",
     "today": "",
-    "encryptedMessage": ""
+    "encryptedMessage": "",
+    "searchIn": "",
+    "@searchIn": {
+        "type": "String",
+        "placeholders": {
+            "chat": {
+                "type": "String"
+            }
+        }
+    }
 }
