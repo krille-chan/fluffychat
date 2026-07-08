@@ -489,7 +489,7 @@
             }
         }
     },
-    "countParticipants": "{count} personen",
+    "countParticipants": "{count, plural, =1{1 persoon} other{{count} personen}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
