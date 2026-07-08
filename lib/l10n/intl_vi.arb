@@ -2554,5 +2554,11 @@
                 "type": "String"
             }
         }
+    },
+    "unsupportedAndroidVersionLong": "",
+    "noGoogleServicesWarning": "",
+    "@noGoogleServicesWarning": {
+        "type": "String",
+        "placeholders": {}
     }
 }
