@@ -2692,5 +2692,14 @@
                 "type": "String"
             }
         }
+    },
+    "searchIn": "",
+    "@searchIn": {
+        "type": "String",
+        "placeholders": {
+            "chat": {
+                "type": "String"
+            }
+        }
     }
 }
