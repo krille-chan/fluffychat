@@ -2724,5 +2724,7 @@
         }
     },
     "unsupportedAndroidVersionLong": "",
-    "inviteGroupChat": ""
+    "inviteGroupChat": "",
+    "sendReadReceiptsDescription": "",
+    "block": ""
 }
