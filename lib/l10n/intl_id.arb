@@ -2696,5 +2696,31 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageNotDecryptable": "Pesan tidak dapat didekripsi"
+    "messageNotDecryptable": "Pesan tidak dapat didekripsi",
+    "resetPin": "",
+    "couldNotBeSent": "",
+    "disableBiometrics": "",
+    "biometricsDescription": "",
+    "uploading": "",
+    "enableBiometrics": "",
+    "encrypting": "",
+    "disableAppLock": "",
+    "yesterday": "",
+    "useAppLock": "",
+    "forwardCountMessages": "",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "disableAppLockAreYouSure": "",
+    "pleaseEnter6Digits": "",
+    "sending": "",
+    "resetRecoveryKey": "",
+    "edited": "",
+    "generatingThumbnail": "",
+    "unlockWithBiometrics": "",
+    "today": ""
 }
