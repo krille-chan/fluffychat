@@ -489,7 +489,7 @@
             }
         }
     },
-    "countParticipants": "{count} osalejat",
+    "countParticipants": "{count, plural, =1{1 osaleja} other{{count} osalejat}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
