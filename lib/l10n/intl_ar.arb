@@ -2563,5 +2563,165 @@
     "supportFluffyChat": "",
     "unlockWithBiometrics": "",
     "today": "",
-    "encryptedMessage": ""
+    "encryptedMessage": "",
+    "answersVisible": "الإجابات مرئية",
+    "notificationRuleMaster": "كتم جميع الإشعارات",
+    "shareKeysWithDescription": "ما هي الأجهزة التي يجب الوثوق بها حتى تتمكن من قراءة رسائلك في المحادثات المشفرة؟",
+    "notificationRuleEncryptedRoomOneToOneDescription": "يقوم بإخطار المستخدم بالرسائل الموجودة في غرف الدردشة المشفرة الخاصة بالأفراد.",
+    "pollQuestion": "سؤال الاستطلاع",
+    "enterNewChat": "ادخل إلى دردشة جديدة",
+    "otherNotificationSettings": "إعدادات الإشعارات الأخرى",
+    "notificationRuleRoomOneToOneDescription": "يقوم بإخطار المستخدم بالرسائل في الغرف الفردية.",
+    "stickerPackName": "اسم حزمة الملصقات",
+    "notificationRuleIsRoomMentionDescription": "يُعلم المستخدم عند ذكر الغرفة.",
+    "deletePushRuleCanNotBeUndone": "إذا قمت بحذف إعداد الإشعار هذا، فلا يمكن التراجع عن ذلك.",
+    "youHaveKnocked": "لقد طرقت الباب",
+    "optionalMessage": "(اختياري) رسالة...",
+    "allDevices": "جميع الأجهزة",
+    "notificationRuleRoomServerAcl": "قائمة التحكم في خادم الغرفة",
+    "useAsEmoji": "استخدم كرمز تعبيري",
+    "shareKeysWith": "مشاركة المفاتيح مع...",
+    "discardEdits": "لديك تغييرات غير محفوظة. هل تريد تجاهل تعديلاتك؟",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "takeAPhoto": "التقط صورة",
+    "countChats": "{chats} محادثات",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "notificationRuleServerAcl": "كبت أحداث التحكم في الوصول للخادم",
+    "notificationRuleCall": "يتصل",
+    "pause": "يوقف",
+    "allowMultipleAnswers": "السماح بإجابات متعددة",
+    "answersWillBeVisibleWhenPollHasEnded": "ستظهر الإجابات عند انتهاء الاستطلاع",
+    "backToMainChat": "العودة إلى المحادثة الرئيسية",
+    "addAnswerOption": "إضافة خيار الإجابة",
+    "skipChatBackup": "تخطي النسخ الاحتياطي للمحادثة",
+    "notificationRuleEncryptedDescription": "يُعلم المستخدم بالرسائل الموجودة في الغرف المشفرة.",
+    "answerOption": "خيار الإجابة",
+    "notificationRuleRoomOneToOne": "غرفة فردية",
+    "sentVoiceMessage": "🎙️ {duration} - رسالة صوتية من {sender}",
+    "@sentVoiceMessage": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "appWantsToUseForLoginDescription": "أنت بذلك تسمح للتطبيق والموقع الإلكتروني بمشاركة معلومات عنك.",
+    "customReaction": "رد فعل مخصص",
+    "notificationRuleEncryptedRoomOneToOne": "غرفة مشفرة فردية",
+    "displayNavigationRail": "عرض شريط التنقل على الهاتف المحمول",
+    "moreEvents": "المزيد من الفعاليات",
+    "commandHint_logoutall": "قم بتسجيل الخروج من جميع الأجهزة النشطة",
+    "notificationRuleIsRoomMention": "ذكر الغرفة",
+    "showLess": "عرض أقل",
+    "userSpecificNotificationSettings": "إعدادات الإشعارات الخاصة بالمستخدم",
+    "notSupportedOnThisDevice": "غير مدعوم على هذا الجهاز",
+    "notificationRuleRoomnotif": "إشعار الغرفة",
+    "noMessagesYet": "لم يتم إرسال أي رسالة بعد",
+    "stickerPackNameAlreadyExists": "اسم حزمة الملصقات موجود بالفعل",
+    "notificationRuleMessageDescription": "يُعلم المستخدم بالرسائل العامة.",
+    "notificationRuleServerAclDescription": "يقوم بإيقاف الإشعارات الخاصة بأحداث التحكم في الوصول للخادم.",
+    "pollHasBeenEnded": "تم إنهاء التصويت",
+    "replyInThread": "الرد في الموضوع",
+    "notificationRuleSuppressEdits": "إخفاء التعديلات",
+    "pleaseWaitUntilInvited": "يرجى الانتظار الآن حتى يدعوك أحد الأشخاص من الغرفة.",
+    "useAsSticker": "استخدم كملصق",
+    "noMoreResultsFound": "لم يتم العثور على نتائج أخرى",
+    "longPressToRecordVoiceMessage": "اضغط مطولاً لتسجيل رسالة صوتية.",
+    "createSticker": "أنشئ ملصقًا أو رمزًا تعبيريًا",
+    "notificationRuleMessage": "رسالة",
+    "contentNotificationSettings": "إعدادات إشعارات المحتوى",
+    "startPoll": "ابدأ استطلاع رأي",
+    "notificationRuleRoomServerAclDescription": "يقوم بإيقاف الإشعارات الخاصة بقوائم التحكم في الوصول (ACL) لخادم الغرفة.",
+    "spaceMemberOfCanKnock": "يمكن لعنصر الفضاء في {spaces} أن يطرق",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "removeFromSpaceDescription": "ستتم إزالة المحادثة من المساحة ولكنها ستظل تظهر في قائمة المحادثات الخاصة بك.",
+    "newChatRequest": "📩 طلب دردشة جديد",
+    "changedTheChatDescription": "قام {username} بتغيير وصف المحادثة",
+    "skipChatBackupWarning": "هل أنت متأكد؟ بدون تفعيل خاصية النسخ الاحتياطي للمحادثات، قد تفقد الوصول إلى رسائلك إذا قمت بتغيير جهازك.",
+    "more": "أكثر",
+    "notificationRuleSuppressEditsDescription": "يقوم بإيقاف الإشعارات الخاصة بالرسائل المعدلة.",
+    "notificationRuleJitsi": "جيتسي",
+    "notificationRuleContainsUserName": "يحتوي على اسم المستخدم",
+    "notificationRuleSuppressNotices": "كتم الرسائل الآلية",
+    "checkList": "قائمة التحقق",
+    "notificationRuleMasterDescription": "يتجاوز جميع القواعد الأخرى ويعطل جميع الإشعارات.",
+    "open": "مفتوح",
+    "notificationRuleTombstoneDescription": "يُعلم المستخدم برسائل إلغاء تفعيل الغرفة.",
+    "notificationRuleContainsUserNameDescription": "يُعلم المستخدم عندما تحتوي الرسالة على اسم المستخدم الخاص به.",
+    "notificationRuleReaction": "رد فعل",
+    "endPoll": "إنهاء الاستطلاع",
+    "unknownPushRule": "قاعدة دفع غير معروفة '{rule}'",
+    "@unknownPushRule": {
+        "type": "String",
+        "placeholders": {
+            "rule": {
+                "type": "String"
+            }
+        }
+    },
+    "showMore": "عرض المزيد",
+    "saveChanges": "حفظ التغييرات",
+    "commandHint_logout": "قم بتسجيل الخروج من جهازك الحالي",
+    "newStickerPack": "مجموعة ملصقات جديدة",
+    "waitingForServer": "في انتظار الخادم...",
+    "declineInvitation": "رفض الدعوة",
+    "commandHint_roomupgrade": "قم بترقية هذه الغرفة إلى إصدار الغرفة المحدد",
+    "roomNotificationSettings": "إعدادات إشعارات الغرفة",
+    "notificationRuleReactionDescription": "يكتم إشعارات التفاعلات.",
+    "notificationRuleCallDescription": "يُعلم المستخدم بالمكالمات.",
+    "appWantsToUseForLogin": "استخدم '{server}' لتسجيل الدخول",
+    "@appWantsToUseForLogin": {
+        "type": "String",
+        "placeholders": {
+            "server": {
+                "type": "String"
+            }
+        }
+    },
+    "recordAVideo": "سجل فيديو",
+    "notificationRuleJitsiDescription": "يُعلم المستخدم بأحداث أداة Jitsi.",
+    "approve": "موافقة",
+    "notificationRuleRoomnotifDescription": "يقوم بإخطار المستخدم عندما تحتوي الرسالة على '@room'.",
+    "generalNotificationSettings": "إعدادات الإشعارات العامة",
+    "notificationRuleEncrypted": "مشفر",
+    "changedTheChatName": "قام {username} بتغيير اسم المحادثة",
+    "countInvited": "تم دعوة {count}",
+    "@countInvited": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "spaceMemberOf": "عضو فضائي من {spaces}",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    }
 }
