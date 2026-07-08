@@ -2697,5 +2697,23 @@
     "interactiveVerification": "",
     "supportFluffyChat": "",
     "today": "",
-    "encryptedMessage": ""
+    "encryptedMessage": "",
+    "resetPin": "",
+    "disableBiometrics": "",
+    "biometricsDescription": "",
+    "enableBiometrics": "",
+    "disableAppLock": "",
+    "useAppLock": "",
+    "forwardCountMessages": "",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "disableAppLockAreYouSure": "",
+    "pleaseEnter6Digits": "",
+    "resetRecoveryKey": "",
+    "unlockWithBiometrics": ""
 }
