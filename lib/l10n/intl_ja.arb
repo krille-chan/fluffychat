@@ -2727,5 +2727,6 @@
     },
     "tagName": "",
     "addTag": "",
-    "removeTag": ""
+    "removeTag": "",
+    "sendReadReceiptsDescription": ""
 }
