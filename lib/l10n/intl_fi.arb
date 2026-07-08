@@ -2452,24 +2452,5 @@
         }
     },
     "thread": "Ketju",
-    "backToMainChat": "Takaisin pääpikakeskusteluun",
-    "@versionWithNumber": {
-        "type": "String",
-        "placeholders": {
-            "version": {
-                "type": "String"
-            }
-        }
-    },
-    "@mute": {
-        "description": "This should be a very short string because there is not much space in the button!"
-    },
-    "@chatSearchedUntil": {
-        "type": "String",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
-    }
+    "backToMainChat": "Takaisin pääpikakeskusteluun"
 }
