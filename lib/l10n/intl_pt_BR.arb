@@ -2720,5 +2720,7 @@
     "supportFluffyChat": "",
     "unlockWithBiometrics": "",
     "today": "",
-    "encryptedMessage": ""
+    "encryptedMessage": "",
+    "theProcessWasCanceled": "",
+    "advancedConfigs": ""
 }
