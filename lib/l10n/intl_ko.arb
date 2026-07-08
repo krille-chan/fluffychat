@@ -2335,5 +2335,392 @@
                 "type": "int"
             }
         }
+    },
+    "appSubtitle": "",
+    "answersVisible": "",
+    "passphraseNumberRequirement": "",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "",
+    "restoreCryptoIdentity": "",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "shareKeysWithDescription": "",
+    "logs": "",
+    "signIn": "",
+    "notificationRuleEncryptedRoomOneToOneDescription": "",
+    "pollQuestion": "",
+    "resetPin": "",
+    "enterNewChat": "",
+    "reset": "",
+    "repeatPassphrase": "",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "thread": "",
+    "notificationRuleRoomOneToOneDescription": "",
+    "stickerPackName": "",
+    "deletePushRuleCanNotBeUndone": "",
+    "youHaveKnocked": "",
+    "verifiedDevicesOnly": "",
+    "createNewTag": "",
+    "unlock": "",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "optionalMessage": "",
+    "allDevices": "",
+    "resetCryptoIdentity": "",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "countReplies": "",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "versionWithNumber": "",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "useAsEmoji": "",
+    "couldNotBeSent": "",
+    "signedDevice": "",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "join": "",
+    "openFile": "",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "shareKeysWith": "",
+    "discardEdits": "",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "takeAPhoto": "",
+    "countChats": "",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "disableBiometrics": "",
+    "notificationRuleServerAcl": "",
+    "advancedConfigurations": "",
+    "biometricsDescription": "",
+    "signUpGreeting": "",
+    "baseUrl": "",
+    "pause": "",
+    "allowMultipleAnswers": "",
+    "uploading": "",
+    "answersWillBeVisibleWhenPollHasEnded": "",
+    "appDescription": "",
+    "saveAsFile": "",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "createNewChat": "",
+    "backToMainChat": "",
+    "makeModerator": "",
+    "addAnswerOption": "",
+    "skipChatBackup": "",
+    "notificationRuleEncryptedDescription": "",
+    "enableBiometrics": "",
+    "answerOption": "",
+    "notificationRuleRoomOneToOne": "",
+    "messageCanOnlyBeReadByUsers": "",
+    "sentVoiceMessage": "",
+    "@sentVoiceMessage": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "customReaction": "",
+    "resetAccountWarning": "",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notificationRuleEncryptedRoomOneToOne": "",
+    "displayNavigationRail": "",
+    "tagName": "",
+    "moreEvents": "",
+    "resume": "",
+    "commandHint_logoutall": "",
+    "clientWellKnownInformation": "",
+    "federationBaseUrl": "",
+    "showLess": "",
+    "userSpecificNotificationSettings": "",
+    "notSupportedOnThisDevice": "",
+    "newPassphraseDescription": "",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setPowerLevelDescription": "",
+    "noMessagesYet": "",
+    "stickerPackNameAlreadyExists": "",
+    "matrixId": "",
+    "knownSince": "",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "identityServer": "",
+    "support": "",
+    "notificationRuleMessageDescription": "",
+    "waitingForKeys": "",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "countUnverifiedDevices": "",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "createNewAccount": "",
+    "setPowerLevel": "",
+    "notificationRuleServerAclDescription": "",
+    "publicKey": "",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "pollHasBeenEnded": "",
+    "replyInThread": "",
+    "mute": "",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "pleaseWaitUntilInvited": "",
+    "passphrasesMatch": "",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "useAsSticker": "",
+    "noMoreResultsFound": "",
+    "longPressToRecordVoiceMessage": "",
+    "createSticker": "",
+    "notificationRuleMessage": "",
+    "passphraseLengthRequirement": "",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "removeModeratorRights": "",
+    "encrypting": "",
+    "addTag": "",
+    "possibleByYou": "",
+    "passphraseUpperAndLowerCaseRequirement": "",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "startPoll": "",
+    "disableAppLock": "",
+    "hideRoomsInSpaces": "",
+    "spaceMemberOfCanKnock": "",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "removeAdminRights": "",
+    "removeFromSpaceDescription": "",
+    "owner": "",
+    "powerLevel": "",
+    "noCurve25519KeyFound": "",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "playSoundOnNotification": "",
+    "changedTheChatDescription": "",
+    "skipChatBackupWarning": "",
+    "makeAdmin": "",
+    "noUserKeyFound": "",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "interactiveVerificationDescription": "",
+    "more": "",
+    "searchOrEnterHomeserverAddress": "",
+    "deviceIdentityKey": "",
+    "notificationRuleJitsi": "",
+    "unsetLowPriority": "",
+    "setLowPriority": "",
+    "chatSearchedUntil": "",
+    "@chatSearchedUntil": {
+        "type": "String",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "yesterday": "",
+    "useAppLock": "",
+    "newPassphrase": "",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unsignedDevice": "",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showThumbnailsInTimeline": "",
+    "forwardCountMessages": "",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "messageNotDecryptable": "",
+    "disableAppLockAreYouSure": "",
+    "endPoll": "",
+    "theProcessWasCanceled": "",
+    "messageCanOnlyBeReadByUser": "",
+    "pleaseEnter6Digits": "",
+    "setUpCryptoIdentity": "",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unknownPushRule": "",
+    "@unknownPushRule": {
+        "type": "String",
+        "placeholders": {
+            "rule": {
+                "type": "String"
+            }
+        }
+    },
+    "sending": "",
+    "crossVerifiedDevices": "",
+    "restoreBootstrapEmptyDevicesDescription": "",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unencryptedMessage": "",
+    "showMore": "",
+    "saveChanges": "",
+    "commandHint_logout": "",
+    "newStickerPack": "",
+    "signInGreeting": "",
+    "resetRecoveryKey": "",
+    "advancedConfigs": "",
+    "crossVerifiedDevicesIfEnabled": "",
+    "edited": "",
+    "generatingThumbnail": "",
+    "passphraseSpecialCharactersRequirement": "",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "declineInvitation": "",
+    "noKeysTransmitted": "",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notificationRuleCallDescription": "",
+    "resetAccount": "",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "recordAVideo": "",
+    "removeTag": "",
+    "countVotes": "",
+    "@countVotes": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "notificationRuleJitsiDescription": "",
+    "attribution": "",
+    "approve": "",
+    "interactiveVerification": "",
+    "supportFluffyChat": "",
+    "unlockWithBiometrics": "",
+    "notificationRuleEncrypted": "",
+    "today": "",
+    "encryptedMessage": "",
+    "changedTheChatName": "",
+    "spaceMemberOf": "",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
     }
 }
