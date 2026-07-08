@@ -2685,5 +2685,10 @@
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
+    },
+    "withTheseAddressesRecoveryDescription": "",
+    "@withTheseAddressesRecoveryDescription": {
+        "type": "String",
+        "placeholders": {}
     }
 }
