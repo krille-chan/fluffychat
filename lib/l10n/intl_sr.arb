@@ -2722,5 +2722,7 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "unsupportedAndroidVersionLong": "",
+    "inviteGroupChat": ""
 }
