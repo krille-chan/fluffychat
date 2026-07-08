@@ -2705,5 +2705,23 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageNotDecryptable": "Не удалось расшифровать сообщение"
+    "messageNotDecryptable": "Не удалось расшифровать сообщение",
+    "resetPin": "",
+    "disableBiometrics": "",
+    "biometricsDescription": "",
+    "enableBiometrics": "",
+    "disableAppLock": "",
+    "useAppLock": "",
+    "forwardCountMessages": "",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "disableAppLockAreYouSure": "",
+    "pleaseEnter6Digits": "",
+    "resetRecoveryKey": "",
+    "unlockWithBiometrics": ""
 }
