@@ -2728,5 +2728,6 @@
         }
     },
     "sendReadReceiptsDescription": "",
-    "block": ""
+    "block": "",
+    "inviteGroupChat": ""
 }
