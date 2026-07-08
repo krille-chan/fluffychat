@@ -2714,5 +2714,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "screenSharingDetail": ""
+    "screenSharingDetail": "",
+    "placeCall": ""
 }
