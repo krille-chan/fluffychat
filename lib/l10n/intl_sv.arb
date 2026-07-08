@@ -2378,5 +2378,349 @@
     },
     "logs": "Loggar",
     "signIn": "Logga in",
-    "createNewAccount": "Skapa nytt konto"
+    "createNewAccount": "Skapa nytt konto",
+    "appSubtitle": "",
+    "answersVisible": "",
+    "notificationRuleInviteForMeDescription": "",
+    "notificationRuleMemberEventDescription": "",
+    "passphraseNumberRequirement": "",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "",
+    "restoreCryptoIdentity": "",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "shareKeysWithDescription": "",
+    "notificationRuleEncryptedRoomOneToOneDescription": "",
+    "pollQuestion": "",
+    "resetPin": "",
+    "reset": "",
+    "repeatPassphrase": "",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notificationRuleRoomOneToOneDescription": "",
+    "stickerPackName": "",
+    "notificationRuleIsRoomMentionDescription": "",
+    "deletePushRuleCanNotBeUndone": "",
+    "youHaveKnocked": "",
+    "verifiedDevicesOnly": "",
+    "notificationRuleSuppressNoticesDescription": "",
+    "createNewTag": "",
+    "unlock": "",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notificationRuleRoomServerAcl": "",
+    "resetCryptoIdentity": "",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notificationRuleIsUserMention": "",
+    "restoreBootstrapDevicesDescription": "",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "useAsEmoji": "",
+    "couldNotBeSent": "",
+    "signedDevice": "",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "join": "",
+    "openFile": "",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "shareKeysWith": "",
+    "discardEdits": "",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "disableBiometrics": "",
+    "notificationRuleIsUserMentionDescription": "",
+    "notificationRuleServerAcl": "",
+    "advancedConfigurations": "",
+    "biometricsDescription": "",
+    "signUpGreeting": "",
+    "baseUrl": "",
+    "uploading": "",
+    "answersWillBeVisibleWhenPollHasEnded": "",
+    "appDescription": "",
+    "saveAsFile": "",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notificationRuleContainsDisplayNameDescription": "",
+    "createNewChat": "",
+    "backToMainChat": "",
+    "makeModerator": "",
+    "skipChatBackup": "",
+    "notificationRuleEncryptedDescription": "",
+    "enableBiometrics": "",
+    "notificationRuleRoomOneToOne": "",
+    "messageCanOnlyBeReadByUsers": "",
+    "sentVoiceMessage": "",
+    "@sentVoiceMessage": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "resetAccountWarning": "",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notificationRuleEncryptedRoomOneToOne": "",
+    "displayNavigationRail": "",
+    "tagName": "",
+    "commandHint_logoutall": "",
+    "clientWellKnownInformation": "",
+    "notificationRuleIsRoomMention": "",
+    "federationBaseUrl": "",
+    "showLess": "",
+    "notSupportedOnThisDevice": "",
+    "newPassphraseDescription": "",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setPowerLevelDescription": "",
+    "notificationRuleRoomnotif": "",
+    "stickerPackNameAlreadyExists": "",
+    "matrixId": "",
+    "knownSince": "",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "identityServer": "",
+    "support": "",
+    "notificationRuleMessageDescription": "",
+    "waitingForKeys": "",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "countUnverifiedDevices": "",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "setPowerLevel": "",
+    "notificationRuleServerAclDescription": "",
+    "publicKey": "",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "pollHasBeenEnded": "",
+    "mute": "",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "notificationRuleSuppressEdits": "",
+    "pleaseWaitUntilInvited": "",
+    "passphrasesMatch": "",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "useAsSticker": "",
+    "longPressToRecordVoiceMessage": "",
+    "createSticker": "",
+    "notificationRuleMessage": "",
+    "notificationRuleTombstone": "",
+    "passphraseLengthRequirement": "",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "removeModeratorRights": "",
+    "encrypting": "",
+    "addTag": "",
+    "possibleByYou": "",
+    "passphraseUpperAndLowerCaseRequirement": "",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "startPoll": "",
+    "disableAppLock": "",
+    "notificationRuleRoomServerAclDescription": "",
+    "notificationRuleInviteForMe": "",
+    "hideRoomsInSpaces": "",
+    "spaceMemberOfCanKnock": "",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "removeAdminRights": "",
+    "removeFromSpaceDescription": "",
+    "owner": "",
+    "powerLevel": "",
+    "noCurve25519KeyFound": "",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "playSoundOnNotification": "",
+    "skipChatBackupWarning": "",
+    "makeAdmin": "",
+    "noUserKeyFound": "",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "interactiveVerificationDescription": "",
+    "searchOrEnterHomeserverAddress": "",
+    "deviceIdentityKey": "",
+    "notificationRuleSuppressEditsDescription": "",
+    "unsetLowPriority": "",
+    "setLowPriority": "",
+    "notificationRuleSuppressNotices": "",
+    "chatSearchedUntil": "",
+    "@chatSearchedUntil": {
+        "type": "String",
+        "placeholders": {
+            "time": {
+                "type": "String"
+            }
+        }
+    },
+    "yesterday": "",
+    "useAppLock": "",
+    "newPassphrase": "",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unsignedDevice": "",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notificationRuleTombstoneDescription": "",
+    "showThumbnailsInTimeline": "",
+    "forwardCountMessages": "",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "messageNotDecryptable": "",
+    "disableAppLockAreYouSure": "",
+    "endPoll": "",
+    "theProcessWasCanceled": "",
+    "messageCanOnlyBeReadByUser": "",
+    "pleaseEnter6Digits": "",
+    "setUpCryptoIdentity": "",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unknownPushRule": "",
+    "@unknownPushRule": {
+        "type": "String",
+        "placeholders": {
+            "rule": {
+                "type": "String"
+            }
+        }
+    },
+    "sending": "",
+    "crossVerifiedDevices": "",
+    "restoreBootstrapEmptyDevicesDescription": "",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unencryptedMessage": "",
+    "showMore": "",
+    "commandHint_logout": "",
+    "newStickerPack": "",
+    "signInGreeting": "",
+    "resetRecoveryKey": "",
+    "advancedConfigs": "",
+    "crossVerifiedDevicesIfEnabled": "",
+    "edited": "",
+    "generatingThumbnail": "",
+    "passphraseSpecialCharactersRequirement": "",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "declineInvitation": "",
+    "noKeysTransmitted": "",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notificationRuleReactionDescription": "",
+    "notificationRuleCallDescription": "",
+    "resetAccount": "",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "removeTag": "",
+    "notificationRuleJitsiDescription": "",
+    "attribution": "",
+    "notificationRuleRoomnotifDescription": "",
+    "interactiveVerification": "",
+    "supportFluffyChat": "",
+    "unlockWithBiometrics": "",
+    "notificationRuleEncrypted": "",
+    "today": "",
+    "encryptedMessage": "",
+    "spaceMemberOf": "",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    }
 }
