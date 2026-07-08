@@ -2714,5 +2714,22 @@
     "edited": "(bearbeitet)",
     "couldNotBeSent": "Konnte nicht gesendet werden",
     "yesterday": "Gestern",
-    "resetRecoveryKey": "Wiederherstellungsschlüssel zurücksetzen"
+    "resetRecoveryKey": "Wiederherstellungsschlüssel zurücksetzen",
+    "resetPin": "",
+    "disableBiometrics": "",
+    "biometricsDescription": "",
+    "enableBiometrics": "",
+    "disableAppLock": "",
+    "useAppLock": "",
+    "forwardCountMessages": "",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "disableAppLockAreYouSure": "",
+    "pleaseEnter6Digits": "",
+    "unlockWithBiometrics": ""
 }
