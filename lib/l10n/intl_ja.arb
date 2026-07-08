@@ -2724,5 +2724,8 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "tagName": "",
+    "addTag": "",
+    "removeTag": ""
 }
