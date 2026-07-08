@@ -2705,5 +2705,14 @@
         "placeholders": {}
     },
     "sendReadReceiptsDescription": "",
-    "block": ""
+    "block": "",
+    "aboutHomeserver": "",
+    "@aboutHomeserver": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    }
 }
