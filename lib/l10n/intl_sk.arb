@@ -2683,5 +2683,14 @@
     },
     "storeSecurlyOnThisDevice": "",
     "passwordsDoNotMatch": "",
-    "screenSharingDetail": ""
+    "screenSharingDetail": "",
+    "searchIn": "",
+    "@searchIn": {
+        "type": "String",
+        "placeholders": {
+            "chat": {
+                "type": "String"
+            }
+        }
+    }
 }
