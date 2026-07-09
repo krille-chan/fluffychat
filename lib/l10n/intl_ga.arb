@@ -134,7 +134,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "countParticipants": "{count} rannpháirtithe",
+    "countParticipants": "{count, plural, =1{1 rannpháirtí} other{{count} rannpháirtithe}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
