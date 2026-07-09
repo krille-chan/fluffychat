@@ -45,11 +45,14 @@ class PinnedEvents extends StatelessWidget {
                     value: event?.eventId ?? '',
                     icon: const Icon(Icons.push_pin_outlined),
                     label:
-                        event?.calcLocalizedBodyFallback(
-                          MatrixLocals(l10n),
-                          withSenderNamePrefix: true,
-                          hideReply: true,
-                        ) ??
+                        event
+                            ?.calcLocalizedBodyFallback(
+                              MatrixLocals(l10n),
+                              withSenderNamePrefix: true,
+                              hideReply: true,
+                            )
+                            .trim()
+                            .replaceAll('\n', ' ') ??
                         'UNKNOWN',
                   ),
                 )
@@ -75,11 +78,13 @@ class PinnedEvents extends StatelessWidget {
         final event = snapshot.data;
         return ChatAppBarListTile(
           title:
-              event?.calcLocalizedBodyFallback(
-                MatrixLocals(L10n.of(context)),
-                withSenderNamePrefix: true,
-                hideReply: true,
-              ) ??
+              event
+                  ?.calcLocalizedBodyFallback(
+                    MatrixLocals(L10n.of(context)),
+                    withSenderNamePrefix: true,
+                    hideReply: true,
+                  )
+                  .replaceAll('\n', ' ') ??
               L10n.of(context).loadingPleaseWait,
           leading: IconButton(
             splashRadius: 18,
