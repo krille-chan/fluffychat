@@ -68,11 +68,14 @@ class _EditContent extends StatelessWidget {
         Icon(Icons.edit, color: theme.colorScheme.primary),
         Container(width: 15.0),
         Text(
-          event.calcLocalizedBodyFallback(
-            MatrixLocals(L10n.of(context)),
-            withSenderNamePrefix: false,
-            hideReply: true,
-          ),
+          event
+              .calcLocalizedBodyFallback(
+                MatrixLocals(L10n.of(context)),
+                withSenderNamePrefix: false,
+                hideReply: true,
+              )
+              .trim()
+              .replaceAll('\n', ' '),
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
           style: TextStyle(color: theme.textTheme.bodyMedium!.color),

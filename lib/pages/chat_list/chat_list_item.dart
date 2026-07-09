@@ -353,7 +353,10 @@ class ChatListItem extends StatelessWidget {
                                         (isDirectChat
                                             ? L10n.of(context).newChatRequest
                                             : L10n.of(context).inviteGroupChat)
-                                  : snapshot.data ??
+                                  : snapshot.data?.trim().replaceAll(
+                                          '\n',
+                                          ' ',
+                                        ) ??
                                         L10n.of(context).noMessagesYet,
                               softWrap: false,
                               maxLines: room.notificationCount >= 1 ? 2 : 1,

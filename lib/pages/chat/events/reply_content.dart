@@ -79,12 +79,15 @@ class ReplyContent extends StatelessWidget {
                   },
                 ),
                 Text(
-                  displayEvent.calcLocalizedBodyFallback(
-                    MatrixLocals(L10n.of(context)),
-                    withSenderNamePrefix: false,
-                    hideReply: true,
-                    plaintextBody: true,
-                  ),
+                  displayEvent
+                      .calcLocalizedBodyFallback(
+                        MatrixLocals(L10n.of(context)),
+                        withSenderNamePrefix: false,
+                        hideReply: true,
+                        plaintextBody: true,
+                      )
+                      .trim()
+                      .replaceAll('\n', ' '),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   style: TextStyle(
