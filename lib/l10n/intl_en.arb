@@ -1,4 +1,54 @@
 {
+    "editImage": "Edit image",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Rotate left",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Rotate right",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Mirror",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Save",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Draw",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Undo",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Clear",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Eraser",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Crop",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
     "@@locale": "en",
     "@@last_modified": "2021-08-14 12:38:37.885451",
     "repeatPassword": "Repeat password",
