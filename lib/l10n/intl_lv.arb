@@ -334,7 +334,7 @@
         "placeholders": {}
     },
     "removeDevicesDescription": "Tu tiksi izrakstīts no šīs ierīces un vairs nevarēsi saņemt ziņas.",
-    "countParticipants": "{count} dalībnieki",
+    "countParticipants": "{count, plural, =1{1 dalībnieks} other{{count} dalībnieki}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -1438,7 +1438,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "wrongPinEntered": "Ievadīts nepareizs PIN. Jāmēģina vēlreiz pēc {seconds} sekundēm...",
+    "wrongPinEntered": "Ievadīts nepareizs PIN kods! Jāmēģina vēlreiz pēc {seconds} sekundēm…",
     "@wrongPinEntered": {
         "type": "String",
         "placeholders": {
@@ -2197,7 +2197,7 @@
     "chatPermissionsDescription": "Noteikt, kurš spēka līmenis ir nepieciešams noteiktām darbībām šajā tērzēšanā. Spēka līmeņi 0, 50 un 100 parasti atbilst lietotājiem, moderatoriem un pārvaldītājiem, bet ir iespējams jebkāds iedalījums.",
     "doesNotSeemToBeAValidHomeserver": "Neizskatās pēc saderīga mājasservera. Nepareizs URL?",
     "loginWithMatrixId": "Pieteikties ar Matrix-Id",
-    "updateInstalled": "🎉 Atjauninājums {version} uzstādīts.",
+    "updateInstalled": "🎉 Atjauninājums {version} uzstādīts!",
     "@updateInstalled": {
         "type": "String",
         "placeholders": {
