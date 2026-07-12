@@ -111,6 +111,7 @@ class ChatMembersController extends State<ChatMembersPage> {
   @override
   void dispose() {
     _updateSub?.cancel();
+    filterController.dispose();
     super.dispose();
   }
 

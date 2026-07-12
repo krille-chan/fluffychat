@@ -133,6 +133,8 @@ class ChatSearchController extends State<ChatSearchPage>
   @override
   void dispose() {
     tabController.removeListener(_onTabChanged);
+    searchController.dispose();
+    tabController.dispose();
     super.dispose();
   }
 

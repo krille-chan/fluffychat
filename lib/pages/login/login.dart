@@ -256,6 +256,13 @@ class LoginController extends State<Login> {
   static int sendAttempt = 0;
 
   @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => LoginView(this);
 }
 
