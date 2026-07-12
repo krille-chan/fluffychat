@@ -334,7 +334,7 @@
         "placeholders": {}
     },
     "removeDevicesDescription": "Tu tiksi izrakstīts no šīs ierīces un vairs nevarēsi saņemt ziņas.",
-    "countParticipants": "{count, plural, =1{1 dalībnieks} other{{count} dalībnieki}}",
+    "countParticipants": "{count, plural, zero{{count} dalībnieku} one{{count} dalībnieks} other{{count} dalībnieki}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -1438,7 +1438,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "wrongPinEntered": "Ievadīts nepareizs PIN kods! Jāmēģina vēlreiz pēc {seconds} sekundēm…",
+    "wrongPinEntered": "Ievadīts nepareizs PIN. Jāmēģina vēlreiz pēc {seconds} sekundēm...",
     "@wrongPinEntered": {
         "type": "String",
         "placeholders": {
@@ -2627,6 +2627,6 @@
     "disableBiometrics": "Atspējot biometrisko autentifikāciju",
     "biometricsDescription": "Ar biometrisko autentifikāciju jūs variet atslēgt lietotni ar savu seju vai pirksta nospiedumu. Iespējas ir atkarīgas no jūsu konkrētās ierīces.",
     "useAppLock": "Izmantot lietotnes aizslēgšanu",
-    "unlockWithBiometrics": "Atslēgt ar biometrisko autentifikāciju",
-    "resetPin": "Atiestatīt PIN kodu"
+    "unlockWithBiometrics": "Atslēgt ar biometrisko autentificēšanos",
+    "resetPin": "Atiestatīt PIN"
 }
