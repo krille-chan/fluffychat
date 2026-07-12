@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOs(){return new B.Gy(A.dg("ga"))},
+cOt(){return new B.Gy(A.dg("ga"))},
 Gy:function Gy(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"C\xf3d foinseach"},
 ghp(){return"T\xe1 an sp\xe1s poibl\xed"},
 ghq(){return"Ainm an sp\xe1is"},
 f0(d){return"Thosaigh "+d+" glao"},
-gaL(d){return"Staid"},
+gaM(d){return"Staid"},
 ghs(){return"Conas at\xe1 t\xfa inniu?"},
 ght(d){return"Cuir isteach"},
 ghw(){return"Ag sioncr\xf3n\xfa... Fan, le do thoil."},
@@ -717,5 +717,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Gy,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gy":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["CR37DpotoiZAmqFf60i1JIczsE4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["POkPBaKfBv9rykmK97KYNUsa8tQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_319.part.js.map

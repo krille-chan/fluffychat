@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOw(){return new B.GC(A.dg("hr"))},
+cOx(){return new B.GC(A.dg("hr"))},
 GC:function GC(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"Izvorni k\u020fd"},
 ghp(){return"Prostor je javan"},
 ghq(){return"Ime prostora"},
 f0(d){return d+" ja zapo\u010deo/la poziv"},
-gaL(d){return"Stanje"},
+gaM(d){return"Stanje"},
 ghs(){return"Kako si danas?"},
 ght(d){return"Po\u0161alji"},
 ghw(){return"Sinkronizira se \u2026 Pri\u010dekaj."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GC,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GC":{"aF":[]}}'))};
-(a=>{a["3tFgrqSy/C2ihrpgVdOpUokbbko="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+KMRvmWc8SuTkrqYwLSlNxw8spo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_325.part.js.map

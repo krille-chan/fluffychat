@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOG(){return new B.GM(A.dg("lt"))},
+cOH(){return new B.GM(A.dg("lt"))},
 GM:function GM(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"Programinis kodas"},
 ghp(){return"Erdv\u0117 yra vie\u0161a"},
 ghq(){return"Erdv\u0117s pavadinimas"},
 f0(d){return d+" prad\u0117jo skambut\u012f"},
-gaL(d){return"B\u016bsena"},
+gaM(d){return"B\u016bsena"},
 ghs(){return"Kaip sekasi \u0161iandien?"},
 ght(d){return"Pateikti"},
 ghw(){return"Sinchronizuojama\u2026 Pra\u0161ome palaukti."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GM,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GM":{"aF":[]}}'))};
-(a=>{a["wuB/NJHmRKMytvrrmCMzgK+1a9k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Feu08ksL0wWSt1XyLro5v1i+kBE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_349.part.js.map

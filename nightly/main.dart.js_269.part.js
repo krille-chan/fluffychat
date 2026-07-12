@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOe(){return new B.Gk(A.dg("ca"))},
+cOf(){return new B.Gk(A.dg("ca"))},
 Gk:function Gk(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"Codi font"},
 ghp(){return"L\u2019espai \xe9s p\xfablic"},
 ghq(){return"Nom de l\u2019espai"},
 f0(d){return d+" ha iniciat una trucada"},
-gaL(d){return"Estat"},
+gaM(d){return"Estat"},
 ghs(){return"Com us sentiu avui?"},
 ght(d){return"Envia"},
 ghw(){return"S\u2019est\xe0 sincronitzant\u2026 Espereu."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gk,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gk":{"aF":[]}}'))};
-(a=>{a["TstektAoxxj1n3bjcbGxkth20uc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["EVbtlm5ZjRuwQ0jmh7RTgD8/f3g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_269.part.js.map

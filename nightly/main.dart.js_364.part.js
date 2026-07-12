@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOT(){return new B.GY(A.dg("sr"))},
+cOU(){return new B.GY(A.dg("sr"))},
 GY:function GY(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"\u0418\u0437\u0432\u043e\u0440\u043d\u0438 \u043a\u043e\u0434"},
 ghp(){return"Space is public"},
 ghq(){return"Space name"},
 f0(d){return d+" \u0437\u0430\u043f\u043e\u0447\u0435 \u043f\u043e\u0437\u0438\u0432"},
-gaL(d){return"\u0421\u0442\u0430\u045a\u0435"},
+gaM(d){return"\u0421\u0442\u0430\u045a\u0435"},
 ghs(){return"\u041a\u0430\u043a\u043e \u0441\u0442\u0435 \u0434\u0430\u043d\u0430\u0441?"},
 ght(d){return"\u041f\u043e\u0448\u0430\u0459\u0438"},
 ghw(){return"Synchronizing\u2026 Please wait."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GY,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GY":{"aF":[]}}'))};
-(a=>{a["pSM3GxAQfh78soyHIM9cZgpECFk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["eT1okQTe3eUDoJ55GKfmUlDG5ro="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_364.part.js.map

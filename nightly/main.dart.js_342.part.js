@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOB(){return new B.GH(A.dg("it"))},
+cOC(){return new B.GH(A.dg("it"))},
 GH:function GH(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"Codice sorgente"},
 ghp(){return"Lo spazio \xe8 pubblico"},
 ghq(){return"Nome dello spazio"},
 f0(d){return d+" ha iniziato una chiamata"},
-gaL(d){return"Stato"},
+gaM(d){return"Stato"},
 ghs(){return"Come stai oggi?"},
 ght(d){return"Invia"},
 ghw(){return"Sincronizzazione... Attendere prego."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GH,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GH":{"aF":[]}}'))};
-(a=>{a["8rd0j/4PpsiSDirDlj7bb0h9+GM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["0bwIq7/eb8fau37+mTNt354SHUo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_342.part.js.map

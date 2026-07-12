@@ -1,8 +1,8 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOL(d){return new A.BC(B.dg(d))},
-cOM(){return new A.GR(B.dg("pt_BR"))},
-cON(){return new A.GS(B.dg("pt_PT"))},
+cOM(d){return new A.BC(B.dg(d))},
+cON(){return new A.GR(B.dg("pt_BR"))},
+cOO(){return new A.GS(B.dg("pt_PT"))},
 BC:function BC(d){this.a=d},
 GR:function GR(d){this.a=d},
 GS:function GS(d){this.a=d}},C
@@ -313,7 +313,7 @@ geZ(){return"Source code"},
 ghp(){return"Space is public"},
 ghq(){return"Space name"},
 f0(d){return d+" started a call"},
-gaL(d){return"Status"},
+gaM(d){return"Status"},
 ghs(){return"How are you today?"},
 ght(d){return"Submit"},
 ghw(){return"Synchronizing\u2026 Please wait."},
@@ -1020,7 +1020,7 @@ geZ(){return"C\xf3digo-fonte"},
 ghp(){return"O espa\xe7o \xe9 p\xfablico"},
 ghq(){return"Nome do espa\xe7o"},
 f0(d){return d+" iniciou uma chamada"},
-gaL(d){return"Estado"},
+gaM(d){return"Estado"},
 ghs(){return"Como vai voc\xea?"},
 ght(d){return"Enviar"},
 ghw(){return"Sincronizando\u2026 Aguarde."},
@@ -1608,7 +1608,7 @@ geZ(){return"C\xf3digo fonte"},
 ghp(){return"O espa\xe7o \xe9 p\xfablico"},
 ghq(){return"Nome do espa\xe7o"},
 f0(d){return d+" come\xe7ou uma chamada"},
-gaL(d){return"Estado"},
+gaM(d){return"Estado"},
 ghs(){return"Como est\xe1 hoje?"},
 ght(d){return"Submeter"},
 ghw(){return"A sincronizar\u2026 Por favor aguarde."},
@@ -1683,5 +1683,5 @@ x(A.BC,C.aF)
 w(A.BC,[A.GR,A.GS])})()
 B.dI(b.typeUniverse,JSON.parse('{"BC":{"aF":[]},"GR":{"aF":[]},"GS":{"aF":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["adZuy7fSE2jHhDb2J2slG9vOdUM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9/tuEP+PC516kB2jG42D/rvWwqQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

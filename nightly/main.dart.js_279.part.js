@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOf(){return new B.Gl(A.dg("cs"))},
+cOg(){return new B.Gl(A.dg("cs"))},
 Gl:function Gl(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"Zdrojov\xe9 k\xf3dy"},
 ghp(){return"Prostor je ve\u0159ejn\xfd"},
 ghq(){return"N\xe1zev prostoru"},
 f0(d){return d+" zah\xe1jil hovor"},
-gaL(d){return"Stav"},
+gaM(d){return"Stav"},
 ghs(){return"Jak se dneska m\xe1\u0161?"},
 ght(d){return"Odeslat"},
 ghw(){return"Synchronizace ... \u010cekejte pros\xedm."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gl,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gl":{"aF":[]}}'))};
-(a=>{a["+g0SQdiloU34M9UPPTsPRJZsABU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["FXVn0NluOwRAvNg+gxA7wqEc5Oc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_279.part.js.map

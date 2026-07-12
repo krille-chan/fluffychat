@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOh(){return new B.Gn(A.dg("de"))},
+cOi(){return new B.Gn(A.dg("de"))},
 Gn:function Gn(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"Quellcode"},
 ghp(){return"Space ist \xf6ffentlich"},
 ghq(){return"Space-Name"},
 f0(d){return d+" hat einen Anruf get\xe4tigt"},
-gaL(d){return"Status"},
+gaM(d){return"Status"},
 ghs(){return"Wie geht es dir heute?"},
 ght(d){return"Absenden"},
 ghw(){return"Synchronisiere... Bitte warten."},
@@ -717,5 +717,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Gn,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gn":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["vpdt5bdZuvssNMttw3xtjrZ4o/k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["0eLll/oYKKuhPuIjwRAT2/u1V3g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_292.part.js.map

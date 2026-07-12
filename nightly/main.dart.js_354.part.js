@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOJ(){return new B.GP(A.dg("nl"))},
+cOK(){return new B.GP(A.dg("nl"))},
 GP:function GP(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"Broncode"},
 ghp(){return"Space is publiek"},
 ghq(){return"Spacenaam"},
 f0(d){return d+" heeft een gesprek gestart"},
-gaL(d){return"Status"},
+gaM(d){return"Status"},
 ghs(){return"Hoe gaat het met jouw vandaag?"},
 ght(d){return"Indienen"},
 ghw(){return"Synchroniseren... Even geduld."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GP,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GP":{"aF":[]}}'))};
-(a=>{a["s6Ns9e6lUbJ/DaXl7xKL2Tl4PqA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ztuLP2tAP7KV/11ln9yROxDEIJI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_354.part.js.map

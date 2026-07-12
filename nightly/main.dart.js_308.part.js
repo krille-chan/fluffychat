@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOn(){return new B.Gt(A.dg("eu"))},
+cOo(){return new B.Gt(A.dg("eu"))},
 Gt:function Gt(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"Iturburu kodea"},
 ghp(){return"Gunea publikoa da"},
 ghq(){return"Gunearen izena"},
 f0(d){return d+"(e)k deia hasi du"},
-gaL(d){return"Egoera"},
+gaM(d){return"Egoera"},
 ghs(){return"Zer moduz zaude gaur?"},
 ght(d){return"Bidali"},
 ghw(){return"Sinkronizatzen\u2026 itxaron."},
@@ -717,5 +717,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Gt,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gt":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["U9GBL6hQa2OIw8zKiAzUEuBWG9o="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["WOo8OhebIam9FZ4ScC9NEIYaQZM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map

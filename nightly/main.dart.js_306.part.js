@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOm(){return new B.Gs(A.dg("et"))},
+cOn(){return new B.Gs(A.dg("et"))},
 Gs:function Gs(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"L\xe4htekood"},
 ghp(){return"Kogukond on avalik"},
 ghq(){return"Kogukonna nimi"},
 f0(d){return d+" helistas"},
-gaL(d){return"Olek"},
+gaM(d){return"Olek"},
 ghs(){return"Kuidas sul t\xe4na l\xe4heb?"},
 ght(d){return"Saada"},
 ghw(){return"S\xfcnkroonin andmeid\u2026 Palun oota."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gs,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gs":{"aF":[]}}'))};
-(a=>{a["kUjAAT+vXU889n5z0i2GAq1ME38="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["XCUrVpwHDCJnV3+L5DcpWhMOcCQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

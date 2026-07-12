@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOI(){return new B.GO(A.dg("nb"))},
+cOJ(){return new B.GO(A.dg("nb"))},
 GO:function GO(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"Kildekode"},
 ghp(){return"Omr\xe5det er offentlig"},
 ghq(){return"Navn p\xe5 omr\xe5de"},
 f0(d){return d+" startet en samtale"},
-gaL(d){return"Status"},
+gaM(d){return"Status"},
 ghs(){return"Hvordan har du det i dag?"},
 ght(d){return"Send inn"},
 ghw(){return"Synkroniserer \u2026 Vent litt."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GO,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GO":{"aF":[]}}'))};
-(a=>{a["GI4VS0rgAa3T8yIgkJfIabQZ3O8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["98Nqub+iLi667ecANPgTjtK375U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

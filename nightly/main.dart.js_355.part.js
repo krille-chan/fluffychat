@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOK(){return new B.GQ(A.dg("pl"))},
+cOL(){return new B.GQ(A.dg("pl"))},
 GQ:function GQ(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -308,7 +308,7 @@ geZ(){return"Kod \u017cr\xf3d\u0142owy"},
 ghp(){return"Ustaw jako publiczn\u0105"},
 ghq(){return"Nazwa przestrzeni"},
 f0(d){return d+" rozpocz\u0105\u0142/-\u0119\u0142a rozmow\u0119"},
-gaL(d){return"Status"},
+gaM(d){return"Status"},
 ghs(){return"Jak si\u0119 masz dzi\u015b?"},
 ght(d){return"Ode\u015blij"},
 ghw(){return"Synchronizowanie\u2026 Prosz\u0119 czeka\u0107."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GQ,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GQ":{"aF":[]}}'))};
-(a=>{a["UiP0IQtkq4Ci1gTuZK1euy4jepE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["WnbthCFVYi976DH2B/yvRbD0iBc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_355.part.js.map
