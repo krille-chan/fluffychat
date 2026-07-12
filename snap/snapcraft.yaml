@@ -81,6 +81,10 @@ parts:
     plugin: nil
     source: .
     override-build: |
+      # Install rust manually:
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+      export PATH="$HOME/.cargo/bin:$PATH"
+
       # Workaround for Flutter build error:
       rm -rf build
 
@@ -93,8 +97,6 @@ parts:
       - libssl-dev
       - curl
       - libpciaccess-dev
-    build-snaps:
-      - rustup
     stage-packages:
       - libsecret-1-0
       - libjsoncpp25
