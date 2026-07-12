@@ -31,6 +31,7 @@ Future<String?> showTextInputDialog({
   int? maxLength,
   bool autocorrect = true,
 }) {
+  // TODO: Dispose this somewhere
   final controller = TextEditingController(text: initialText);
   return showAdaptiveDialog<String>(
     context: context,

@@ -81,6 +81,7 @@ class _SpaceViewState extends State<SpaceView> {
   @override
   void dispose() {
     _childStateSub?.cancel();
+    _filterController.dispose();
     super.dispose();
   }
 
