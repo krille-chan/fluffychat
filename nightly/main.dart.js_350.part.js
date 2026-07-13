@@ -118,8 +118,8 @@ gex(d){return"Ievietot starpliktuv\u0113"},
 giF(){return"Ievietot starpliktuv\u0113"},
 iG(d){return"Nevar\u0113ja at\u0161ifr\u0113t zi\u0146u: "+d},
 glT(){return"P\u0101rbau\u017eu saraksts"},
-dK(d){var y=null
-return A.aE(d,y,this.a,y,"1 dal\u012bbnieks",""+d+" dal\u012bbnieki",y,y)},
+dK(d){var y=""+d
+return A.aE(d,null,this.a,null,y+" dal\u012bbnieks",y+" dal\u012bbnieki",null,y+" dal\u012bbnieku")},
 iI(d){return""+d+" uzaicin\u0101ti"},
 giJ(d){return"Izveidot"},
 iK(d){return"\ud83d\udcac "+d+" izveidoja t\u0113rz\u0113\u0161anu"},
@@ -409,7 +409,7 @@ ghl(){return"Iestat\u012bt kr\u0101su izskatu:"},
 gfD(){return"Uzaicin\u0101t"},
 gjm(){return"\ud83d\udce8 Uzaicin\u0101jums uz kopas t\u0113rz\u0113\u0161anu"},
 gfC(){return"Neder\u012bga ievade."},
-kR(d){return"Ievad\u012bts nepareizs PIN kods! J\u0101m\u0113\u0123ina v\u0113lreiz p\u0113c "+d+" sekund\u0113m\u2026"},
+kR(d){return"Ievad\u012bts nepareizs PIN. J\u0101m\u0113\u0123ina v\u0113lreiz p\u0113c "+d+" sekund\u0113m..."},
 gka(){return"L\u016bgums ievad\u012bt skaitli liel\u0101ku par 0"},
 gew(){return"T\u0113rz\u0113\u0161ana tiks p\u0101rvietota uz arh\u012bvu. Citi lietot\u0101ji redz\u0113s, ka pameti t\u0113rz\u0113\u0161anu."},
 gnN(){return"T\u0113rz\u0113\u0161ana tad tiks atk\u0101rtoti izveidota ar jauno istabas versiju. Visiem dal\u012bbniekiem tiks pazi\u0146ots, ka vi\u0146iem ir j\u0101p\u0101rsl\u0113dzas uz jauno t\u0113rz\u0113\u0161anu. Vair\u0101k par istabu versij\u0101m var atrast https://spec.matrix.org/latest/rooms/"},
@@ -717,5 +717,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GN,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GN":{"aF":[]}}'))};
-(a=>{a["ljh6t+Cr0aGAm/8ZwpQmuGRq92M="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["6qMdhwrVf6ubMTR5cVOJri+8jP4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_350.part.js.map

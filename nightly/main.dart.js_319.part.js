@@ -711,11 +711,11 @@ gpy(){return"N\xedorbh fh\xe9idir a sheoladh"},
 gqt(){return"Inn\xe9"},
 gqh(){return"Athshocraigh eochair aisghabh\xe1la"},
 pH(d){var x=null
-return"Forward "+A.aE(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
+return"Ar aghaidh "+A.aE(d,x,this.a,x,"teachtaireacht amh\xe1in",""+d+" teachtaireachta\xed",x,x)+"?"},
 C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Gy,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gy":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["POkPBaKfBv9rykmK97KYNUsa8tQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["JIFQH3GFsg5X81R+jHWz0cFmYag="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_319.part.js.map
