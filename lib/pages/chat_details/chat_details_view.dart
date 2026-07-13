@@ -114,6 +114,7 @@ class ChatDetailsView extends StatelessWidget {
                                       onTap: roomAvatar != null
                                           ? () => showDialog(
                                               context: context,
+                                              useRootNavigator: false,
                                               builder: (_) =>
                                                   MxcImageViewer(roomAvatar),
                                             )

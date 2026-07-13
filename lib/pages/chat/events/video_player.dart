@@ -70,6 +70,7 @@ class EventVideoPlayer extends StatelessWidget {
             onTap: () => supportsVideoPlayer
                 ? showDialog(
                     context: context,
+                    useRootNavigator: false,
                     builder: (_) => ImageViewer(
                       event,
                       timeline: timeline,

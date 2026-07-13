@@ -92,6 +92,7 @@ class MessageContent extends StatelessWidget {
               textColor: textColor,
               onTap: () => showDialog(
                 context: context,
+                useRootNavigator: false,
                 builder: (_) => ImageViewer(
                   event,
                   timeline: timeline,

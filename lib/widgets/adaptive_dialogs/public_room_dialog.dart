@@ -125,6 +125,7 @@ class PublicRoomDialog extends StatelessWidget {
                         onTap: avatar != null
                             ? () => showDialog(
                                 context: context,
+                                useRootNavigator: false,
                                 builder: (_) => MxcImageViewer(avatar),
                               )
                             : null,
