@@ -2157,34 +2157,34 @@ packages:
     dependency: "direct main"
     description:
       name: video_player
-      sha256: "48a7bdaa38a3d50ec10c78627abdbfad863fdf6f0d6e08c7c3c040cfd80ae36f"
+      sha256: "20ef311160e2ced020a62f38e4cc399a1bf289e722fc5fe37c9d7b18e44c9e8d"
       url: "https://pub.dev"
     source: hosted
-    version: "2.11.1"
+    version: "2.13.0"
   video_player_android:
     dependency: transitive
     description:
       name: video_player_android
-      sha256: "877a6c7ba772456077d7bfd71314629b3fe2b73733ce503fc77c3314d43a0ca0"
+      sha256: "5121de08444d00363efdda630a69ad4d27a208a9f7586482d4909a44a1cdbc63"
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.5"
+    version: "2.11.0"
   video_player_avfoundation:
     dependency: transitive
     description:
       name: video_player_avfoundation
-      sha256: "9338f3ec22774f88146b22f13273a446719b1da010fd200c4d1d97802156ac58"
+      sha256: c238f5f0a26845cd0bcc2956049b63065a4d3c40ddfc22c3414cd170bef7fff9
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.7"
+    version: "2.11.0"
   video_player_platform_interface:
     dependency: transitive
     description:
       name: video_player_platform_interface
-      sha256: "16eaed5268c571c31840dc58ef8da5f0cd4db2a98490c3b8f1cf70122546c6e0"
+      sha256: "92c0fbabe20c788e71fd10d26cea998d0d253282e65d145aed0818731cf593ce"
       url: "https://pub.dev"
     source: hosted
-    version: "6.7.0"
+    version: "6.9.0"
   video_player_web:
     dependency: transitive
     description:
