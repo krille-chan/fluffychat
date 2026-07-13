@@ -6,6 +6,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/room_push_rule_state_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
@@ -49,13 +50,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
   @override
   Widget build(BuildContext context) {
     notificationChangeSub ??= Matrix.of(context).client.onSync.stream
-        .where(
-          (syncUpdate) =>
-              syncUpdate.accountData?.any(
-                (accountData) => accountData.type == 'm.push_rules',
-              ) ??
-              false,
-        )
+        .where((syncUpdate) => syncUpdate.hasPushRuleStateUpdate)
         .listen((u) => setState(() {}));
     return Stack(
       alignment: Alignment.center,
@@ -90,15 +85,17 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               case ChatPopupMenuActions.mute:
                 await showFutureLoadingDialog(
                   context: context,
-                  future: () =>
-                      widget.room.setPushRuleState(PushRuleState.mentionsOnly),
+                  future: () => widget.room.setEffectivePushRuleState(
+                    PushRuleState.mentionsOnly,
+                  ),
                 );
                 break;
               case ChatPopupMenuActions.unmute:
                 await showFutureLoadingDialog(
                   context: context,
-                  future: () =>
-                      widget.room.setPushRuleState(PushRuleState.notify),
+                  future: () => widget.room.setEffectivePushRuleState(
+                    PushRuleState.notify,
+                  ),
                 );
                 break;
               case ChatPopupMenuActions.details:
@@ -126,7 +123,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   ],
                 ),
               ),
-            if (widget.room.pushRuleState == PushRuleState.notify)
+            if (widget.room.effectivePushRuleState == PushRuleState.notify)
               PopupMenuItem<ChatPopupMenuActions>(
                 value: ChatPopupMenuActions.mute,
                 child: Row(

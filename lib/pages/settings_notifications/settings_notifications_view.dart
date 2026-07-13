@@ -8,6 +8,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_notifications/push_rule_extensions.dart';
 import 'package:fluffychat/utils/push_helper.dart';
+import 'package:fluffychat/utils/room_push_rule_state_extension.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'package:flutter/foundation.dart';
@@ -25,10 +26,21 @@ class SettingsNotificationsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pushRules = Matrix.of(context).client.globalPushRules;
+    final client = Matrix.of(context).client;
+    final pushRules = client.globalPushRules;
     final pushCategories = [
-      if (pushRules?.override?.isNotEmpty ?? false)
-        (rules: pushRules?.override ?? [], kind: PushRuleKind.override),
+      if (pushRules?.override
+              ?.where((rule) => !client.isEncryptedRoomWakeupRule(rule))
+              .isNotEmpty ??
+          false)
+        (
+          rules:
+              pushRules?.override
+                  ?.where((rule) => !client.isEncryptedRoomWakeupRule(rule))
+                  .toList() ??
+              [],
+          kind: PushRuleKind.override,
+        ),
       if (pushRules?.content?.isNotEmpty ?? false)
         (rules: pushRules?.content ?? [], kind: PushRuleKind.content),
       if (pushRules?.sender?.isNotEmpty ?? false)
