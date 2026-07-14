@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOm(){return new B.Gr(A.dg("es"))},
+cOq(){return new B.Gr(A.dg("es"))},
 Gr:function Gr(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Copiar"},
 giF(){return"Copiar al portapapeles"},
 iG(d){return"No se pudo descifrar el mensaje: "+d},
 glT(){return"Lista de tareas"},
-dK(d){return""+d+" participantes"},
+dL(d){return""+d+" participantes"},
 iI(d){return""+d+" invitado"},
 giJ(d){return"Crear"},
 iK(d){return"\ud83d\udcac"+d+" cre\xf3 el chat"},
@@ -237,7 +237,7 @@ geL(){return"Notificaciones"},
 gjX(){return"Obteniendo ubicaci\xf3n\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"La copia de seguridad de la clave en l\xednea est\xe1 habilitada"},
-gdF(){return"Ups, algo sali\xf3 mal\u2026"},
+gdG(){return"Ups, algo sali\xf3 mal\u2026"},
 gjY(){return"Se ha cerrado en la sesi\xf3n de uno de sus clientes"},
 gf5(){return"A\xf1adir cuenta"},
 giW(){return"Editar paquetes para esta cuenta"},
@@ -245,7 +245,7 @@ ghD(){return"Agregar al paquete"},
 gkm(){return"Quitar de este paquete"},
 gfc(){return"Nombre del paquete"},
 gk0(){return"Abrir en maps"},
-gdD(){return"Link"},
+gdE(){return"Link"},
 gk6(){return"O"},
 gk7(){return"Participante"},
 gfS(){return"contrase\xf1a o clave de recuperaci\xf3n"},
@@ -383,7 +383,7 @@ gjU(){return"Nadie puede unirse"},
 gjv(){return"Aviso"},
 gkL(){return"Usuarios"},
 iH(d){return""+d+" archivos"},
-gdI(){return"Usuario"},
+gdJ(){return"Usuario"},
 gfp(){return"Personalizado"},
 gkQ(){return"\xbfPor qu\xe9 no se puede leer este mensaje?"},
 gjR(){return"Esto puede ocurrir si el mensaje se envi\xf3 antes de que entraras en tu cuenta en este dispositivo.\n\nTambi\xe9n puede que el remitente haya bloqueado tu dispositivo o haya fallado algo en la conexi\xf3n a Internet.\n\n\xbfPuedes leer el mensaje en otra sesi\xf3n? Entonces, \xa1puedes transferir el mensaje desde all\xed! Ve a Ajustes > Dispositivos y aseg\xfarate de que tus dispositivos se han verificado mutuamente. Cuando abras la sala la pr\xf3xima vez y ambas sesiones est\xe9n en primer plano, las claves se transmitir\xe1n autom\xe1ticamente.\n\n\xbfNo quieres perder las claves al salir o al cambiar de dispositivo? Aseg\xfarate de que has habilitado la copia de seguridad del chat en los ajustes."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gr,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gr":{"aF":[]}}'))};
-(a=>{a["13Fn+btlceCJyyYZORN+P5P+owc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["O0I0tjzmTXIpQunPump9xExfqdk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_302.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOJ(){return new B.GO(A.dg("nb"))},
+cON(){return new B.GO(A.dg("nb"))},
 GO:function GO(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopier"},
 giF(){return"Kopier til utklippstavle"},
 iG(d){return"Kunne ikke dekryptere melding: "+d},
 glT(){return"Sjekkliste"},
-dK(d){return""+d+" deltagere"},
+dL(d){return""+d+" deltagere"},
 iI(d){return""+d+" inviterte"},
 giJ(d){return"Opprett"},
 iK(d){return d+" opprettet sludringen"},
@@ -237,7 +237,7 @@ geL(){return"Merknader"},
 gjX(){return"Henter sted \u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Nettbasert sikkerhetskopiering av n\xf8kler p\xe5"},
-gdF(){return"Oida, noe gikk galt \u2026"},
+gdG(){return"Oida, noe gikk galt \u2026"},
 gjY(){return"En av klientene dine har blitt logget ut"},
 gf5(){return"Legg til konto"},
 giW(){return"Rediger pakker for denne kontoen"},
@@ -245,7 +245,7 @@ ghD(){return"Legg til i pakke"},
 gkm(){return"Fjern fra denne pakken"},
 gfc(){return"Navn p\xe5 pakke"},
 gk0(){return"\xc5pne i kart"},
-gdD(){return"Lenke"},
+gdE(){return"Lenke"},
 gk6(){return"Eller"},
 gk7(){return"Deltager"},
 gfS(){return"Passord eller gjenopprettingsn\xf8kkel"},
@@ -383,7 +383,7 @@ gjU(){return"Ingen kan bli med"},
 gjv(){return"Bank p\xe5"},
 gkL(){return"Brukere"},
 iH(d){return""+d+" filer"},
-gdI(){return"Bruker"},
+gdJ(){return"Bruker"},
 gfp(){return"Egendefinert"},
 gkQ(){return"Hvorfor er denne meldingen uleselig?"},
 gjR(){return"Dette kan skje hvis meldingen ble sendt f\xf8r du logget inn p\xe5 kontoen din p\xe5 denne enheten.\n\nDet er ogs\xe5 mulig at senderen har blokkert enheten din, eller at noe gikk galt med internettforbindelsen.\n\nEr du i stand til \xe5 lese meldingen i en annen sesjon? Da kan du overf\xf8re meldingen fra den! G\xe5 til Innstillinger > Enheter og s\xf8rg for at enhetene dine har verifisert hverandre. Neste gang du \xe5pner rommet og begge sesjonene er i forgrunnen, vil n\xf8klene bli overf\xf8rt automatisk.\n\nVil du unng\xe5 \xe5 miste n\xf8klene n\xe5r du logger ut eller bytter enhet? S\xf8rg for at du har aktivert sikkerhetskopiering av chat i innstillingene."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GO,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GO":{"aF":[]}}'))};
-(a=>{a["98Nqub+iLi667ecANPgTjtK375U="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["8NwKoil4IJKPStxFTttJEPVuApE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

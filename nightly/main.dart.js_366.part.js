@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOV(){return new B.GZ(A.dg("sv"))},
+cOZ(){return new B.GZ(A.dg("sv"))},
 GZ:function GZ(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopiera"},
 giF(){return"Kopiera till urklipp"},
 iG(d){return"Kunde ej avkoda meddelande: "+d},
 glT(){return"Att-g\xf6ra lista"},
-dK(d){return""+d+" deltagare"},
+dL(d){return""+d+" deltagare"},
 iI(d){return""+d+" inbjudna"},
 giJ(d){return"Skapa"},
 iK(d){return"\ud83d\udcac "+d+" skapade chatten"},
@@ -237,7 +237,7 @@ geL(){return"Aviseringar"},
 gjX(){return"Erh\xe5ller plats\u2026"},
 gcR(){return"OK"},
 gjZ(){return"Online Nyckel-backup \xe4r aktiverad"},
-gdF(){return"Hoppsan, n\xe5got gick fel\u2026"},
+gdG(){return"Hoppsan, n\xe5got gick fel\u2026"},
 gjY(){return"En av dina klienter har loggats ut"},
 gf5(){return"L\xe4gg till konto"},
 giW(){return"L\xe4gg till paket f\xf6r detta konto"},
@@ -245,7 +245,7 @@ ghD(){return"Ut\xf6ka paket"},
 gkm(){return"Ta bort fr\xe5n paket"},
 gfc(){return"Paketnamn"},
 gk0(){return"\xd6ppna i karta"},
-gdD(){return"L\xe4nk"},
+gdE(){return"L\xe4nk"},
 gk6(){return"Eller"},
 gk7(){return"Deltagare"},
 gfS(){return"l\xf6senord eller \xe5terst\xe4llningsnyckel"},
@@ -383,7 +383,7 @@ gjU(){return"Ingen kan g\xe5 med"},
 gjv(){return"Knacka"},
 gkL(){return"Anv\xe4ndare"},
 iH(d){return""+d+" filer"},
-gdI(){return"Anv\xe4ndare"},
+gdJ(){return"Anv\xe4ndare"},
 gfp(){return"Anpassad"},
 gkQ(){return"Varf\xf6r kan inte detta meddelande l\xe4sas?"},
 gjR(){return"Detta kan h\xe4nda om meddelandet skickades innan du loggade in p\xe5 ditt konto i den h\xe4r enheten.\n\nDet kan ocks\xe5 vara s\xe5 att avs\xe4ndaren har blockerat din enhet eller att n\xe5got gick fel med internetanslutningen.\n\nKan du l\xe4sa meddelandet i en annan session? I s\xe5dana fall kan du \xf6verf\xf6ra meddelandet fr\xe5n den sessionen! G\xe5 till Inst\xe4llningar > Enhet och s\xe4kerst\xe4ll att dina enheter har verifierat varandra. N\xe4r du \xf6ppnar rummet n\xe4sta g\xe5ng och b\xe5da sessionerna \xe4r i f\xf6rgrunden, s\xe5 kommer nycklarna att \xf6verf\xf6ras automatiskt.\n\nVill du inte f\xf6rlora nycklarna vid utloggning eller n\xe4r du byter enhet? S\xe4kerst\xe4ll att du har aktiverat s\xe4kerhetskopiering f\xf6r chatten i inst\xe4llningarna."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GZ,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GZ":{"aF":[]}}'))};
-(a=>{a["b2BCHV0/UPKmxa18lr6H800niZ8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["yEN9gnU6NVM6JJpi2tNjl/FnwdA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_366.part.js.map

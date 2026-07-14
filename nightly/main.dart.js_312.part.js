@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOq(){return new B.Gv(A.dg("fi"))},
+cOu(){return new B.Gv(A.dg("fi"))},
 Gv:function Gv(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopioi"},
 giF(){return"Kopioi leikep\xf6yd\xe4lle"},
 iG(d){return"Viestin salausta ei voitu purkaa: "+d},
 glT(){return"Tarkistuslista"},
-dK(d){return""+d+" osallistujaa"},
+dL(d){return""+d+" osallistujaa"},
 iI(d){return""+d+" kutsuttu"},
 giJ(d){return"Luo"},
 iK(d){return d+" loi keskustelun"},
@@ -237,7 +237,7 @@ geL(){return"Ilmoitukset"},
 gjX(){return"Paikannetaan sijantia\u2026"},
 gcR(){return"ok"},
 gjZ(){return"Verkkkoavainvarmuuskopio on k\xe4yt\xf6ss\xe4"},
-gdF(){return"Hups, jotakin meni pieleen\u2026"},
+gdG(){return"Hups, jotakin meni pieleen\u2026"},
 gjY(){return"Yksi tunnuksistasi on kirjattu ulos"},
 gf5(){return"Lis\xe4\xe4 tili"},
 giW(){return"Muokkaa t\xe4m\xe4n tilin k\xe4\xe4r\xf6j\xe4"},
@@ -245,7 +245,7 @@ ghD(){return"Lis\xe4\xe4 k\xe4\xe4reeseen"},
 gkm(){return"Poista t\xe4st\xe4 k\xe4\xe4reest\xe4"},
 gfc(){return"K\xe4\xe4reen nimi"},
 gk0(){return"Avaa kartoissa"},
-gdD(){return"Linkki"},
+gdE(){return"Linkki"},
 gk6(){return"Tai"},
 gk7(){return"Osallistuja"},
 gfS(){return"salalause tai palautusavain"},
@@ -383,7 +383,7 @@ gjU(){return"Kukaan ei voi liitty\xe4"},
 gjv(){return"Koputa"},
 gkL(){return"K\xe4ytt\xe4j\xe4t"},
 iH(d){return""+d+" tiedostoa"},
-gdI(){return"K\xe4ytt\xe4j\xe4"},
+gdJ(){return"K\xe4ytt\xe4j\xe4"},
 gfp(){return"Mukautettu"},
 gkQ(){return"Miksei t\xe4t\xe4 viesti\xe4 voida lukea?"},
 gjR(){return"T\xe4m\xe4 voi tapahtua mik\xe4li viesti l\xe4hetettiin ennen sis\xe4\xe4nkirjautumistasi t\xe4lle laitteelle.\n\nOn my\xf6s mahdollista, ett\xe4 l\xe4hett\xe4j\xe4 on est\xe4nyt t\xe4m\xe4n laitteen tai jokin meni pieleen verkkoyhteyden kanssa.\n\nPystytk\xf6 lukemaan viestin toisella istunnolla? Siin\xe4 tapauksessa voit siirt\xe4\xe4 viestin silt\xe4! Mene Asetukset > Laitteet ja varmista, ett\xe4 laitteesi ovat varmistaneet toisensa. Seuraavankerran avatessasi huoneen ja molempien istuntojen ollessa etualalla, avaimet siirret\xe4\xe4n automaattisesti.\n\nHaluatko varmistaa ettet menet\xe4 avaimia uloskirjautuessa tai laitteita vaihtaessa? Varmista avainvarmuuskopion k\xe4yt\xf6ss\xe4olo asetuksista."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gv,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gv":{"aF":[]}}'))};
-(a=>{a["E3ypB6GIGhujX4s28yK+wPFsJPc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["wKVKouYtzLn4JbBcFjS3b5Ag0Mo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

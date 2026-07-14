@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOj(){return new B.Go(A.dg("el"))},
+cOn(){return new B.Go(A.dg("el"))},
 Go:function Go(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Copy"},
 giF(){return"Copy to clipboard"},
 iG(d){return"Could not decrypt message: "+d},
 glT(){return"Check list"},
-dK(d){var y=null
+dL(d){var y=null
 return A.aE(d,y,this.a,y,"1 participant",""+d+" participants",y,y)},
 iI(d){return""+d+" invited"},
 giJ(d){return"Create"},
@@ -238,7 +238,7 @@ geL(){return"Notifications"},
 gjX(){return"Obtaining location\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Online Key Backup is enabled"},
-gdF(){return"Oops, something went wrong\u2026"},
+gdG(){return"Oops, something went wrong\u2026"},
 gjY(){return"One of your clients has been logged out"},
 gf5(){return"Add account"},
 giW(){return"Edit bundles for this account"},
@@ -246,7 +246,7 @@ ghD(){return"Add to bundle"},
 gkm(){return"Remove from this bundle"},
 gfc(){return"Bundle name"},
 gk0(){return"Open in maps"},
-gdD(){return"Link"},
+gdE(){return"Link"},
 gk6(){return"Or"},
 gk7(){return"Participant"},
 gfS(){return"passphrase or recovery key"},
@@ -384,7 +384,7 @@ gjU(){return"No one can join"},
 gjv(){return"Knock"},
 gkL(){return"Users"},
 iH(d){return""+d+" files"},
-gdI(){return"User"},
+gdJ(){return"User"},
 gfp(){return"Custom"},
 gkQ(){return"Why is this message unreadable?"},
 gjR(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -717,5 +717,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Go,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Go":{"aF":[]}}'))};
-(a=>{a["BYI0MTR+Zo4FN6cuzd8Ya27z/U4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["RnRz9OaCdAKOFGt2aIMQHQCJzS0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_298.part.js.map

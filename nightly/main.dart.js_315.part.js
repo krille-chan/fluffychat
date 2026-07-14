@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOs(){return new B.Gx(A.dg("fr"))},
+cOw(){return new B.Gx(A.dg("fr"))},
 Gx:function Gx(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Copier"},
 giF(){return"Copier dans le presse-papiers"},
 iG(d){return"Impossible de d\xe9chiffrer le message : "+d},
 glT(){return"Check-list"},
-dK(d){return""+d+" participant(s)"},
+dL(d){return""+d+" participant(s)"},
 iI(d){return""+d+" invit\xe9(e/s)"},
 giJ(d){return"Cr\xe9er"},
 iK(d){return"\ud83d\udcac "+d+" a cr\xe9\xe9 la discussion"},
@@ -237,7 +237,7 @@ geL(){return"Notifications"},
 gjX(){return"Obtention de la localisation\u2026"},
 gcR(){return"Valider"},
 gjZ(){return"La sauvegarde en ligne des cl\xe9s est activ\xe9e"},
-gdF(){return"Oups, un probl\xe8me est survenu\u2026"},
+gdG(){return"Oups, un probl\xe8me est survenu\u2026"},
 gjY(){return"Un de vos clients a \xe9t\xe9 d\xe9connect\xe9"},
 gf5(){return"Ajouter un compte"},
 giW(){return"Modifier les groupes pour ce compte"},
@@ -245,7 +245,7 @@ ghD(){return"Ajouter au groupe"},
 gkm(){return"Retirer de ce groupe"},
 gfc(){return"Nom du groupe"},
 gk0(){return"Ouvrir dans maps"},
-gdD(){return"Lien"},
+gdE(){return"Lien"},
 gk6(){return"Ou"},
 gk7(){return"Participant(e)"},
 gfS(){return"Phrase de passe ou cl\xe9 de r\xe9cup\xe9ration"},
@@ -383,7 +383,7 @@ gjU(){return"Personne ne peut rejoindre"},
 gjv(){return"Frapper \xe0 la porte"},
 gkL(){return"Utilisateurs/trices"},
 iH(d){return""+d+" fichiers"},
-gdI(){return"Utilisateur/trice"},
+gdJ(){return"Utilisateur/trice"},
 gfp(){return"Personnalis\xe9"},
 gkQ(){return"Pourquoi ce message est-il illisible ?"},
 gjR(){return"Cela peut se produire si le message a \xe9t\xe9 envoy\xe9 avant que vous ne vous soyez connect\xe9 \xe0 votre compte sur cet appareil.\n\nIl est \xe9galement possible que l'exp\xe9diteur ait bloqu\xe9 votre appareil ou qu'un probl\xe8me de connexion Internet se soit produit.\n\n\xcates-vous capable de lire le message sur une autre session ? Vous pouvez alors transf\xe9rer le message \xe0 partir de celle-ci ! Allez dans Param\xe8tres > Appareils et assurez-vous que vos appareils se sont v\xe9rifi\xe9s mutuellement. Lorsque vous ouvrirez le salon la fois suivante et que les deux sessions seront au premier plan, les cl\xe9s seront transmises automatiquement.\n\nVous ne voulez pas perdre les cl\xe9s en vous d\xe9connectant ou en changeant d'appareil ? Assurez-vous que vous avez activ\xe9 la sauvegarde de la discussion dans les param\xe8tres."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gx,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gx":{"aF":[]}}'))};
-(a=>{a["YzKShDcWNe0rpMOmDJ1rsW3lDDo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["8bWSVsp3fUe7qb5LNGJ1f526F6E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_315.part.js.map

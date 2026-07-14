@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOg(){return new B.Gl(A.dg("cs"))},
+cOk(){return new B.Gl(A.dg("cs"))},
 Gl:function Gl(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kop\xedrovat"},
 giF(){return"Zkop\xedrovat do schr\xe1nky"},
 iG(d){return"Nebylo mo\u017en\xe9 de\u0161ifrovat zpr\xe1vu: "+d},
 glT(){return"Kontroln\xed seznam"},
-dK(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
+dL(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
 iI(d){return""+d+" pozv\xe1no"},
 giJ(d){return"Vytvo\u0159it"},
 iK(d){return"\ud83d\udcac "+d+" zalo\u017eil/a chat"},
@@ -237,7 +237,7 @@ geL(){return"Ozn\xe1men\xed"},
 gjX(){return"Z\xedsk\xe1v\xe1n\xed polohy\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Online z\xe1loha k\xed\u010d\u016f je zapnuta"},
-gdF(){return"Jejda, n\u011bco se pokazilo\u2026"},
+gdG(){return"Jejda, n\u011bco se pokazilo\u2026"},
 gjY(){return"Jeden z va\u0161ich klient\u016f byl odhl\xe1\u0161en"},
 gf5(){return"P\u0159idat \xfa\u010det"},
 giW(){return"Upravit bal\xed\u010dky pro tento \xfa\u010det"},
@@ -245,7 +245,7 @@ ghD(){return"P\u0159idat do bal\xed\u010dku"},
 gkm(){return"Odstranit z tohoto bal\xed\u010dku"},
 gfc(){return"N\xe1zev bal\xed\u010dku"},
 gk0(){return"Otev\u0159\xedt v map\xe1ch"},
-gdD(){return"Odkaz"},
+gdE(){return"Odkaz"},
 gk6(){return"Nebo"},
 gk7(){return"\xda\u010dastn\xedk"},
 gfS(){return"heslo nebo kl\xed\u010d pro obnoven\xed"},
@@ -383,7 +383,7 @@ gjU(){return"Nikdo se nem\u016f\u017ee p\u0159ipojit"},
 gjv(){return"Zaklepat"},
 gkL(){return"U\u017eivatel\xe9"},
 iH(d){return""+d+" soubor\u016f"},
-gdI(){return"U\u017eivatel"},
+gdJ(){return"U\u017eivatel"},
 gfp(){return"Vlastn\xed"},
 gkQ(){return"Pro\u010d nelze p\u0159e\u010d\xedst tuto zpr\xe1vu?"},
 gjR(){return"K tomuto m\u016f\u017ee doj\xedt, pokud byla zpr\xe1va odesl\xe1na p\u0159ed p\u0159ihl\xe1\u0161en\xedm k \xfa\u010dtu v tomto za\u0159\xedzen\xed.\n\nJe tak\xe9 mo\u017en\xe9, \u017ee odes\xedlatel zablokoval va\u0161e za\u0159\xedzen\xed nebo se n\u011bco pokazilo s internetov\xfdm p\u0159ipojen\xedm.\n\nJste schopni si zpr\xe1vu p\u0159e\u010d\xedst v jin\xe9 relaci? Pak m\u016f\u017eete zpr\xe1vu p\u0159en\xe9st z n\u011bj! P\u0159ejd\u011bte do Nastaven\xed > Za\u0159\xedzen\xed a zkontrolujte, zda se Va\u0161e za\u0159\xedzen\xed vz\xe1jemn\u011b ov\u011b\u0159ila. P\u0159i p\u0159\xed\u0161t\xedm otev\u0159en\xed m\xedstnosti, kdy budou ob\u011b relace v pop\u0159ed\xed, se kl\xed\u010de p\u0159enesou automaticky.\n\nNechcete kl\xed\u010de ztratit p\u0159i odhla\u0161ov\xe1n\xed nebo p\u0159ep\xedn\xe1n\xed za\u0159\xedzen\xed? Ujist\u011bte se, \u017ee jste v nastaven\xedch povolili z\xe1lohov\xe1n\xed konverzac\xed."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gl,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gl":{"aF":[]}}'))};
-(a=>{a["FXVn0NluOwRAvNg+gxA7wqEc5Oc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mp+MvMb3Jq9u33nILigLhhPoc80="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_279.part.js.map

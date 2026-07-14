@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOZ(){return new B.H2(A.dg("tr"))},
+cP2(){return new B.H2(A.dg("tr"))},
 H2:function H2(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopyala"},
 giF(){return"Panoya kopyala"},
 iG(d){return"Mesaj\u0131n \u015fifresi \xe7\xf6z\xfclemedi: "+d},
 glT(){return"Kontrol listesi"},
-dK(d){return""+d+" kat\u0131l\u0131mc\u0131"},
+dL(d){return""+d+" kat\u0131l\u0131mc\u0131"},
 iI(d){return""+d+" davet edildi"},
 giJ(d){return"Olu\u015ftur"},
 iK(d){return"\ud83d\udcac "+d+" sohbeti olu\u015fturdu"},
@@ -237,7 +237,7 @@ geL(){return"Bildirimler"},
 gjX(){return"Konum al\u0131n\u0131yor\u2026"},
 gcR(){return"Tamam"},
 gjZ(){return"\xc7evrim i\xe7i anahtar yedekleme etkinle\u015ftirildi"},
-gdF(){return"T\xfch, bir \u015feyler yanl\u0131\u015f gitti\u2026"},
+gdG(){return"T\xfch, bir \u015feyler yanl\u0131\u015f gitti\u2026"},
 gjY(){return"\u0130stemcilerinizden birinin oturumu kapat\u0131ld\u0131"},
 gf5(){return"Hesap ekle"},
 giW(){return"Bu hesap i\xe7in paketleri d\xfczenle"},
@@ -245,7 +245,7 @@ ghD(){return"Pakete ekle"},
 gkm(){return"Bu paketten kald\u0131r"},
 gfc(){return"Paket ad\u0131"},
 gk0(){return"Haritalarda a\xe7"},
-gdD(){return"Ba\u011flant\u0131"},
+gdE(){return"Ba\u011flant\u0131"},
 gk6(){return"Veya"},
 gk7(){return"Kat\u0131l\u0131mc\u0131"},
 gfS(){return"parola veya kurtarma anahtar\u0131"},
@@ -383,7 +383,7 @@ gjU(){return"Kimse kat\u0131lamaz"},
 gjv(){return"T\u0131klat"},
 gkL(){return"Kullan\u0131c\u0131lar"},
 iH(d){return""+d+" dosya"},
-gdI(){return"Kullan\u0131c\u0131"},
+gdJ(){return"Kullan\u0131c\u0131"},
 gfp(){return"\xd6zel"},
 gkQ(){return"Bu mesaj neden okunam\u0131yor?"},
 gjR(){return"Bu durum, mesaj siz bu ayg\u0131tta hesab\u0131n\u0131zda oturum a\xe7madan \xf6nce g\xf6nderildiyse meydana gelebilir.\n\nG\xf6nderenin ayg\u0131t\u0131n\u0131z\u0131 engellemi\u015f olmas\u0131 veya internet ba\u011flant\u0131s\u0131nda bir sorun olmas\u0131 da m\xfcmk\xfcnd\xfcr.\n\nMesaj\u0131 ba\u015fka bir oturumda okuyabiliyor musunuz? O zaman mesaj\u0131 oradan aktarabilirsiniz! Ayarlar > Ayg\u0131tlar b\xf6l\xfcm\xfcne gidin ve ayg\u0131tlar\u0131n\u0131z\u0131n birbirini do\u011frulad\u0131\u011f\u0131ndan emin olun. Oday\u0131 bir sonraki sefer a\xe7t\u0131\u011f\u0131n\u0131zda ve her iki oturum da \xf6n planda oldu\u011funda, anahtarlar otomatik olarak iletilecektir.\n\nOturumu kapat\u0131rken veya ayg\u0131t de\u011fi\u015ftirirken anahtarlar\u0131 kaybetmek istemiyor musunuz? Ayarlarda sohbet yedeklemesini etkinle\u015ftirdi\u011finizden emin olun."},
@@ -717,5 +717,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.H2,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"H2":{"aF":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["Dk8XFh95G2ezzVFz122bLSxM7BA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["KRbb/mWhBriMjIgRvquxdVDvSNs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_370.part.js.map

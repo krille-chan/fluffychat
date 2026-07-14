@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOE(){return new B.GJ(A.dg("ka"))},
+cOI(){return new B.GJ(A.dg("ka"))},
 GJ:function GJ(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"\u10d9\u10dd\u10de\u10d8\u10e0\u10d4\u10d1\u10d0"},
 giF(){return"\u10d9\u10dd\u10de\u10d8\u10e0\u10d4\u10d1\u10d0 \u10d1\u10e3\u10e4\u10d4\u10e0\u10e8\u10d8"},
 iG(d){return"\u10e8\u10d4\u10e2\u10e7\u10dd\u10d1\u10d8\u10dc\u10d4\u10d1\u10d8\u10e1 \u10d2\u10d0\u10e8\u10d8\u10e4\u10d5\u10e0\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d3\u10dd\u10db\u10d0: "+d},
 glT(){return"Check list"},
-dK(d){return""+d+" \u10db\u10dd\u10dc\u10d0\u10ec\u10d8\u10da\u10d4"},
+dL(d){return""+d+" \u10db\u10dd\u10dc\u10d0\u10ec\u10d8\u10da\u10d4"},
 iI(d){return""+d+" invited"},
 giJ(d){return"\u10e8\u10d4\u10e5\u10db\u10dc\u10d0"},
 iK(d){return"\ud83d\udcac "+d+" \u10e8\u10d4\u10e5\u10db\u10dc\u10d0 \u10e9\u10d0\u10e2\u10d8"},
@@ -237,7 +237,7 @@ geL(){return"Notifications"},
 gjX(){return"Obtaining location\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Online Key Backup is enabled"},
-gdF(){return"Oops, something went wrong\u2026"},
+gdG(){return"Oops, something went wrong\u2026"},
 gjY(){return"One of your clients has been logged out"},
 gf5(){return"Add account"},
 giW(){return"Edit bundles for this account"},
@@ -245,7 +245,7 @@ ghD(){return"Add to bundle"},
 gkm(){return"Remove from this bundle"},
 gfc(){return"Bundle name"},
 gk0(){return"Open in maps"},
-gdD(){return"Link"},
+gdE(){return"Link"},
 gk6(){return"Or"},
 gk7(){return"Participant"},
 gfS(){return"passphrase or recovery key"},
@@ -383,7 +383,7 @@ gjU(){return"No one can join"},
 gjv(){return"Knock"},
 gkL(){return"Users"},
 iH(d){return""+d+" files"},
-gdI(){return"User"},
+gdJ(){return"User"},
 gfp(){return"Custom"},
 gkQ(){return"Why is this message unreadable?"},
 gjR(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GJ,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GJ":{"aF":[]}}'))};
-(a=>{a["NJpq/mRcNwxs/i5qJHYpadFLVC0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["aHC/g0jI+tRXz6Pc78wYqL5R2dk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_346.part.js.map

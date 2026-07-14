@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOK(){return new B.GP(A.dg("nl"))},
+cOO(){return new B.GP(A.dg("nl"))},
 GP:function GP(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Bericht kopi\xebren"},
 giF(){return"Kopieer naar klembord"},
 iG(d){return"Kan het bericht niet ontsleutelen: "+d},
 glT(){return"Checklist"},
-dK(d){return""+d+" personen"},
+dL(d){return""+d+" personen"},
 iI(d){return""+d+" uitgenodigd"},
 giJ(d){return"Aanmaken"},
 iK(d){return"\ud83d\udcac "+d+" heeft de chat gemaakt"},
@@ -237,7 +237,7 @@ geL(){return"Meldingen"},
 gjX(){return"Locatie ophalen\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Online sleutelback-up is ingeschakeld"},
-gdF(){return"Oeps, er ging iets mis\u2026"},
+gdG(){return"Oeps, er ging iets mis\u2026"},
 gjY(){return"\xc9\xe9n van jouw apparaten is uitgelogd"},
 gf5(){return"Account toevoegen"},
 giW(){return"Bundels voor dit account wijzigen"},
@@ -245,7 +245,7 @@ ghD(){return"Aan bundel toevoegen"},
 gkm(){return"Van bundel verwijderen"},
 gfc(){return"Bundelnaam"},
 gk0(){return"In kaarten openen"},
-gdD(){return"Link"},
+gdE(){return"Link"},
 gk6(){return"Of"},
 gk7(){return"Personen"},
 gfS(){return"wachtwoordzin of herstelsleutel"},
@@ -383,7 +383,7 @@ gjU(){return"Niemand kan deelnemen"},
 gjv(){return"Klop"},
 gkL(){return"Personen"},
 iH(d){return""+d+" bestanden"},
-gdI(){return"Persoon"},
+gdJ(){return"Persoon"},
 gfp(){return"Aangepast"},
 gkQ(){return"Waarom is dit bericht onleesbaar?"},
 gjR(){return"Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen in een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de chat de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chatback-up hebt aangezet in de instellingen."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GP,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GP":{"aF":[]}}'))};
-(a=>{a["ztuLP2tAP7KV/11ln9yROxDEIJI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["0qokLOFRQF/Yw5xTLaN0VpoVLg0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_354.part.js.map

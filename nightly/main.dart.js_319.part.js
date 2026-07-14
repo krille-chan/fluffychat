@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOt(){return new B.Gy(A.dg("ga"))},
+cOx(){return new B.Gy(A.dg("ga"))},
 Gy:function Gy(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"C\xf3ipe\xe1il"},
 giF(){return"C\xf3ipe\xe1il ar an ghearrthaisce"},
 iG(d){return"N\xedorbh fh\xe9idir teachtaireacht a dh\xedchripti\xfa: "+d},
 glT(){return"Liosta seice\xe1la"},
-dK(d){return""+d+" rannph\xe1irtithe"},
+dL(d){return""+d+" rannph\xe1irtithe"},
 iI(d){return"cuireadh chuig "+d},
 giJ(d){return"Cruthaigh"},
 iK(d){return"\ud83d\udcac chruthaigh "+d+" an comhr\xe1"},
@@ -237,7 +237,7 @@ geL(){return"F\xf3gra\xed"},
 gjX(){return"ag Aimsi\xfa an su\xedomh\u2026"},
 gcR(){return"Ceart go leor"},
 gjZ(){return"T\xe1 C\xfaltaca Eochair Ar L\xedne cumasaithe"},
-gdF(){return"\xdaps, chuaigh rud \xe9igin m\xedcheart \u2026"},
+gdG(){return"\xdaps, chuaigh rud \xe9igin m\xedcheart \u2026"},
 gjY(){return"T\xe1 duine de do chliaint log\xe1ilte amach"},
 gf5(){return"Breisigh cuntas"},
 giW(){return"Cuir cuachta in eagar don chuntas seo"},
@@ -245,7 +245,7 @@ ghD(){return"Cuir le bundle"},
 gkm(){return"Bain as an mbeart seo"},
 gfc(){return"Ainm an bheart\xe1in"},
 gk0(){return"Oscail i l\xe9arsc\xe1ileanna"},
-gdD(){return"Nasc"},
+gdE(){return"Nasc"},
 gk6(){return"N\xf3"},
 gk7(){return"Rannph\xe1irt\xed"},
 gfS(){return"pasfhr\xe1sa n\xf3 eochair t\xe9arnaimh"},
@@ -383,7 +383,7 @@ gjU(){return"N\xed f\xe9idir le duine ar bith p\xe1irt a ghlacadh"},
 gjv(){return"Cnoc Mhuire"},
 gkL(){return"\xdas\xe1ideoir\xed"},
 iH(d){return"Comhaid "+d},
-gdI(){return"\xdas\xe1ideoir"},
+gdJ(){return"\xdas\xe1ideoir"},
 gfp(){return"Saincheaptha"},
 gkQ(){return"C\xe9n f\xe1th nach f\xe9idir an teachtaireacht seo a l\xe9amh?"},
 gjR(){return"F\xe9adfaidh s\xe9 seo tarl\xfa m\xe1 seoladh an teachtaireacht sular sh\xednigh t\xfa isteach ar do chuntas ag an ngl\xe9as seo.\n\nIs f\xe9idir freisin gur chuir an seolt\xf3ir bac ar do ghl\xe9as n\xf3 go ndeachaigh rud \xe9igin m\xedcheart leis an nasc idirl\xedn.\n\nAn bhfuil t\xfa in ann an teachtaireacht a l\xe9amh ar sheisi\xfan eile? Ansin is f\xe9idir leat an teachtaireacht a aistri\xfa uaidh! T\xe9igh go Socruithe > Gl\xe9asanna agus cinntigh go bhfuil do ghl\xe9asanna f\xedoraithe a ch\xe9ile. Nuair a oscla\xedonn t\xfa an seomra an ch\xe9ad uair eile agus an d\xe1 sheisi\xfan sa tulra, d\xe9anfar na heochracha a tharchur go huathoibr\xedoch.\n\nN\xe1r mhaith leat na heochracha a chailleadh agus t\xfa ag log\xe1il amach n\xf3 ag aistri\xfa gl\xe9asanna? D\xe9an cinnte go bhfuil an c\xfaltaca comhr\xe1 cumasaithe agat sna socruithe."},
@@ -717,5 +717,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Gy,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gy":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["JIFQH3GFsg5X81R+jHWz0cFmYag="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+yMxVUO7jLB6FmQ9hW79Z4sooog="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_319.part.js.map

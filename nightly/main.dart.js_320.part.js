@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOu(){return new B.Gz(A.dg("gl"))},
+cOy(){return new B.Gz(A.dg("gl"))},
 Gz:function Gz(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Copiar"},
 giF(){return"Copiar ao portapapeis"},
 iG(d){return"Non se descifrou a mensaxe: "+d},
 glT(){return"Comprobar lista"},
-dK(d){return""+d+" participantes"},
+dL(d){return""+d+" participantes"},
 iI(d){return""+d+" convidadas"},
 giJ(d){return"Crear"},
 iK(d){return"\ud83d\udcac "+d+" creou a conversa"},
@@ -237,7 +237,7 @@ geL(){return"Notificaci\xf3ns"},
 gjX(){return"Obtendo a localizaci\xf3n\u2026"},
 gcR(){return"Ok"},
 gjZ(){return"Copia de Apoio en li\xf1a das Chaves activada"},
-gdF(){return"Ooooi, algo fallou\u2026"},
+gdG(){return"Ooooi, algo fallou\u2026"},
 gjY(){return"Un dos teus clientes foi desconectado"},
 gf5(){return"Engadir conta"},
 giW(){return"Editar os feixes desta conta"},
@@ -245,7 +245,7 @@ ghD(){return"Engadir ao feixe"},
 gkm(){return"Eliminar deste feixe"},
 gfc(){return"Nome do feixe"},
 gk0(){return"Abrir en mapas"},
-gdD(){return"Ligaz\xf3n"},
+gdE(){return"Ligaz\xf3n"},
 gk6(){return"Ou"},
 gk7(){return"Participante"},
 gfS(){return"frase de paso ou chave de recuperaci\xf3n"},
@@ -383,7 +383,7 @@ gjU(){return"Ningu\xe9n pode unirse"},
 gjv(){return"Solicitar acceso"},
 gkL(){return"Usuarias"},
 iH(d){return""+d+" ficheiros"},
-gdI(){return"Usuaria"},
+gdJ(){return"Usuaria"},
 gfp(){return"Personal"},
 gkQ(){return"Por que non podo ler esta mensaxe?"},
 gjR(){return"Pode ser que a mensaxe fose enviada antes de que ti accedeses \xe1 t\xfaa conta neste dispositivo.\n\nTam\xe9n \xe9 posible que a remitente non validase o teu dispositivo ou tam\xe9n que algo fallase na conexi\xf3n a internet.\n\nPodes ler a mensaxe noutro dispositivo? Ent\xf3n podes transferila desde el! Vai a Axustes > Dispositivos e comproba que tes t\xf3dolos dispositivos verificados. Ent\xf3n cando abras a sala a pr\xf3xima vez a sincronizaci\xf3n realizarase e as chaves transmitiranse autom\xe1ticamente.\n\nNon desexas perder as chaves cando pechas sesi\xf3n ou cambias de dispositivo? Comproba nos axustes que activaches a copia de apoio das conversas."},
@@ -716,5 +716,5 @@ C(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gz,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gz":{"aF":[]}}'))};
-(a=>{a["R9okXleW6BrwI1Cj0OO1skmdurs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["bwy+Vtq0Sx2CLPTfJoCod837MCM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_320.part.js.map

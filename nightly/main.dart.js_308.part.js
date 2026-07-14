@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cOo(){return new B.Gt(A.dg("eu"))},
+cOs(){return new B.Gt(A.dg("eu"))},
 Gt:function Gt(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -118,7 +118,7 @@ gex(d){return"Kopiatu"},
 giF(){return"Kopiatu arbelera"},
 iG(d){return"Ezin izan da mezua deszifratu: "+d},
 glT(){return"Kontrol-zerrenda"},
-dK(d){return""+d+" partaide"},
+dL(d){return""+d+" partaide"},
 iI(d){return""+d+" gonbidatu"},
 giJ(d){return"Sortu"},
 iK(d){return"\ud83d\udcac "+d+"(e)k txata sortu du"},
@@ -237,7 +237,7 @@ geL(){return"Jakinarazpenak"},
 gjX(){return"Kokapena atzitzen\u2026"},
 gcR(){return"Ados"},
 gjZ(){return"Gakoen online babeskopia gaituta dago"},
-gdF(){return"Hara, zerbaitek huts egin du\u2026"},
+gdG(){return"Hara, zerbaitek huts egin du\u2026"},
 gjY(){return"Zure gailuetako batek saioa amaitu du"},
 gf5(){return"Gehitu kontua"},
 giW(){return"Editatu kontu honetarako sortak"},
@@ -245,7 +245,7 @@ ghD(){return"Gehitu sortara"},
 gkm(){return"Kendu sorta honetatik"},
 gfc(){return"Sortaren izena"},
 gk0(){return"Ireki mapen aplikazioan"},
-gdD(){return"Esteka"},
+gdE(){return"Esteka"},
 gk6(){return"Edo"},
 gk7(){return"Partaide"},
 gfS(){return"pasaesaldia edo berreskuratze-gakoa"},
@@ -383,7 +383,7 @@ gjU(){return"Ezin da inor batu"},
 gjv(){return"Eskatu baimena"},
 gkL(){return"Erabiltzaileak"},
 iH(d){return""+d+" fitxategi"},
-gdI(){return"Erabiltzailea"},
+gdJ(){return"Erabiltzailea"},
 gfp(){return"Neurrira egindakoa"},
 gkQ(){return"Zergatik ezin da mezu hau irakurri?"},
 gjR(){return"Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irekiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula."},
@@ -717,5 +717,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Gt,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gt":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["WOo8OhebIam9FZ4ScC9NEIYaQZM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/ohxySFrvafA96B3XvOTwwxKb/Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map
