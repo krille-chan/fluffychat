@@ -107,10 +107,18 @@ class _MxcImageState extends State<MxcImage> {
     }
 
     if (event != null) {
+      final useThumbnail = widget.isThumbnail && event.hasThumbnail;
+      if (!useThumbnail &&
+          !{
+            MessageTypes.Image,
+            MessageTypes.Sticker,
+          }.contains(event.messageType)) {
+        throw Exception('Event of type ${event.messageType} has no thumbnail!');
+      }
       final data = await event.downloadAndDecryptAttachment(
-        getThumbnail: widget.isThumbnail,
+        getThumbnail: useThumbnail,
       );
-      if (data.detectFileType is MatrixImageFile || widget.isThumbnail) {
+      if (data.detectFileType is MatrixImageFile) {
         if (!mounted) return;
         setState(() {
           _imageData = data.bytes;

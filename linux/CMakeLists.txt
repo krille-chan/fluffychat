@@ -93,6 +93,11 @@ set_target_properties(${BINARY_NAME}
 # them to the application.
 include(flutter/generated_plugins.cmake)
 
+# Workaround for https://github.com/flutter-webrtc/flutter-webrtc/issues/2112
+if(TARGET flutter_webrtc_plugin)
+  target_compile_options(flutter_webrtc_plugin PRIVATE "-include" "stdint.h")
+endif()
+
 
 # === Installation ===
 # By default, "installing" just makes a relocatable bundle in the build
