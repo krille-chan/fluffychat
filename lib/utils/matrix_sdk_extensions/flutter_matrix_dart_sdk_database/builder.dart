@@ -65,7 +65,9 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
 
   Directory? fileStorageLocation;
   try {
-    final temporaryDirectory = await getTemporaryDirectory();
+    final temporaryDirectory = PlatformInfos.isLinux
+        ? await getApplicationCacheDirectory()
+        : await getTemporaryDirectory();
     fileStorageLocation = await Directory(
       join(temporaryDirectory.path, 'fluffychat_download_cache'),
     ).create(recursive: true);
