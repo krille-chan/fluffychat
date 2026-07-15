@@ -54,6 +54,7 @@ dependencies:
   just_audio: ^0.10.6
   latlong2: ^0.10.1
   local_auth: ^3.0.2
+  lottie: ^3.5.1
   matrix: ^8.1.0
   mime: ^2.0.0
   native_imaging: ^0.4.0

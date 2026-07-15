@@ -3,15 +3,18 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:archive/archive.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:matrix/matrix.dart';
 
 class MxcImage extends StatefulWidget {
@@ -143,41 +146,58 @@ class _MxcImageState extends State<MxcImage> {
   Widget build(BuildContext context) {
     final data = _imageData;
     final hasData = data != null && data.isNotEmpty;
+    final ungzippedLottieData = data == null ? null : _ungzipLottie(data);
+
+    Widget errorFallback(
+      BuildContext context,
+      Object error,
+      StackTrace? stackTrace,
+    ) {
+      Logs().d('Unable to render mxc image', error, stackTrace);
+      return SizedBox(
+        width: widget.width,
+        height: widget.height,
+        child: Material(
+          color: Theme.of(context).colorScheme.surfaceContainer,
+          child: Icon(
+            Icons.broken_image_outlined,
+            size: min(widget.height ?? 64, 64),
+            color: Theme.of(context).colorScheme.onSurface,
+          ),
+        ),
+      );
+    }
+
+    final imageChild = data == null
+        ? _MxcImagePlaceholder(
+            width: widget.width,
+            height: widget.height,
+            placeholder: widget.placeholder,
+          )
+        : (ungzippedLottieData != null
+              ? Lottie.memory(
+                  ungzippedLottieData,
+                  width: widget.width,
+                  height: widget.height,
+                  fit: widget.fit,
+                  errorBuilder: errorFallback,
+                )
+              : Image.memory(
+                  data,
+                  width: widget.width,
+                  height: widget.height,
+                  fit: widget.fit,
+                  filterQuality: widget.isThumbnail
+                      ? FilterQuality.low
+                      : FilterQuality.medium,
+                  errorBuilder: errorFallback,
+                ));
 
     return AnimatedCrossFade(
       duration: FluffyThemes.animationDuration,
       firstChild: ClipRRect(
         borderRadius: widget.borderRadius,
-        child: data == null
-            ? _MxcImagePlaceholder(
-                width: widget.width,
-                height: widget.height,
-                placeholder: widget.placeholder,
-              )
-            : Image.memory(
-                data,
-                width: widget.width,
-                height: widget.height,
-                fit: widget.fit,
-                filterQuality: widget.isThumbnail
-                    ? FilterQuality.low
-                    : FilterQuality.medium,
-                errorBuilder: (context, e, s) {
-                  Logs().d('Unable to render mxc image', e, s);
-                  return SizedBox(
-                    width: widget.width,
-                    height: widget.height,
-                    child: Material(
-                      color: Theme.of(context).colorScheme.surfaceContainer,
-                      child: Icon(
-                        Icons.broken_image_outlined,
-                        size: min(widget.height ?? 64, 64),
-                        color: Theme.of(context).colorScheme.onSurface,
-                      ),
-                    ),
-                  );
-                },
-              ),
+        child: imageChild,
       ),
       secondChild: _MxcImagePlaceholder(
         width: widget.width,
@@ -212,4 +232,25 @@ class _MxcImagePlaceholder extends StatelessWidget {
           child: const CircularProgressIndicator.adaptive(strokeWidth: 2),
         );
   }
+}
+
+Uint8List? _ungzipLottie(Uint8List data) {
+  // early return if the data is not gzipped
+  if (data.length < 2 || data.first != 0x1f || data[1] != 0x8b) {
+    return null;
+  }
+
+  // try decoding json
+  try {
+    final decompressed = GZipDecoder().decodeBytes(data);
+    final jsonStr = utf8.decode(decompressed);
+    final json = jsonDecode(jsonStr);
+    if (json is Map && json.containsKey('v')) {
+      return Uint8List.fromList(utf8.encode(jsonStr));
+    }
+  } catch (_) {
+    return null;
+  }
+
+  return null;
 }
