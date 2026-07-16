@@ -7,8 +7,8 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 

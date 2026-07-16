@@ -13,8 +13,8 @@ import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
+import 'package:flutter/cupertino.dart' hide Text;
 import 'package:matrix/matrix.dart';
 
 import '../../config/themes.dart';

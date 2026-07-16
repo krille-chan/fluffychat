@@ -6,8 +6,8 @@
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:flutter/material.dart';
 
 import 'user_device_list_item.dart';
 

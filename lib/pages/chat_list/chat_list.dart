@@ -20,9 +20,9 @@ import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:go_router/go_router.dart';

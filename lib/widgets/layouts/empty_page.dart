@@ -5,7 +5,7 @@
 
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 
 class EmptyPage extends StatelessWidget {
   static const double _width = 400;

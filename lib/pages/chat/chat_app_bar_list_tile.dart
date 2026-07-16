@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'package:fluffychat/utils/url_launcher.dart';
-import 'package:flutter/material.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 
 class ChatAppBarListTile extends StatelessWidget {

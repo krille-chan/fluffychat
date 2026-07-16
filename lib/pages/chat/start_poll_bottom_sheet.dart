@@ -6,7 +6,7 @@
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/trust_user_key_dialog.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:flutter/material.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 import 'package:matrix/matrix.dart';
 
 class StartPollBottomSheet extends StatefulWidget {

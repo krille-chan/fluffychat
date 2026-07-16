@@ -3,8 +3,8 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'package:fluffychat/widgets/bidi/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 
 class CustomScrollBehavior extends MaterialScrollBehavior {
   @override

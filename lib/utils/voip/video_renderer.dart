@@ -5,7 +5,7 @@
 
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 
 import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:matrix/matrix.dart';

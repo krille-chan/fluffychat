@@ -5,9 +5,9 @@
 
 import 'package:badges/badges.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
-import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../config/themes.dart';

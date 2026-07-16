@@ -7,7 +7,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/dialog_text_field.dart';
-import 'package:flutter/material.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 
 Future<String?> showTextInputDialog({

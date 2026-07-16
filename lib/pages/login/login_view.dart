@@ -4,8 +4,8 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
-import 'package:flutter/material.dart';
 
 import 'login.dart';
 

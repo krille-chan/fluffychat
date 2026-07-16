@@ -15,8 +15,8 @@ import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
+import 'package:flutter/cupertino.dart' hide Text;
 import 'package:matrix/matrix_api_lite/model/event_types.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 

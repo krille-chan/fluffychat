@@ -10,8 +10,8 @@ import 'dart:typed_data';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 class MxcImage extends StatefulWidget {
