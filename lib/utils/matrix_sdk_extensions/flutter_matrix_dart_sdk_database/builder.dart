@@ -20,30 +20,23 @@ import 'sqlcipher_stub.dart'
     if (dart.library.io) 'package:sqlcipher_flutter_libs/sqlcipher_flutter_libs.dart';
 
 Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(String clientName) async {
-  MatrixSdkDatabase? database;
   try {
-    database = await _constructDatabase(clientName);
-    await database.open();
-    return database;
+    return await _constructDatabase(clientName);
   } catch (e, s) {
     Logs().wtf('Unable to construct database!', e, s);
 
     try {
       // Send error notification:
       final l10n = await lookupL10n(PlatformDispatcher.instance.locale);
-      ClientManager.sendInitNotification(l10n.initAppError, e.toString());
+      // We expect that the database cannot be open on iOS 2.8.0 due to that
+      // the team ID has changed and te app can no longer access the database
+      // key in the iOS keychain. This should be removed from 2.9.0 on.
+      if (!PlatformInfos.isIOS) {
+        ClientManager.sendInitNotification(l10n.initAppError, e.toString());
+      }
     } catch (e, s) {
       Logs().e('Unable to send error notification', e, s);
     }
-
-    // Try to delete database so that it can created again on next init:
-    database?.delete().catchError(
-      (e, s) => Logs().wtf(
-        'Unable to delete database, after failed construction',
-        e,
-        s,
-      ),
-    );
 
     // Delete database file:
     if (!kIsWeb) {
@@ -51,7 +44,8 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(String clientName) async {
       if (await dbFile.exists()) await dbFile.delete();
     }
 
-    rethrow;
+    // Try again
+    return await _constructDatabase(clientName);
   }
 }
 
