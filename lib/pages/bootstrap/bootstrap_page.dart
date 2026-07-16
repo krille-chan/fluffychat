@@ -9,10 +9,10 @@ import 'package:fluffychat/pages/bootstrap/widgets/new_passphrase_view.dart';
 import 'package:fluffychat/pages/bootstrap/widgets/restore_bootstrap_view.dart';
 import 'package:fluffychat/pages/bootstrap/widgets/store_recovery_key_view.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/view_model_builder.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class BootstrapPage extends StatelessWidget {

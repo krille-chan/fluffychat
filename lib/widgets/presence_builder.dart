@@ -5,8 +5,8 @@
 
 import 'dart:async';
 
+import 'package:fluffychat/widgets/bidi/material.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 class PresenceBuilder extends StatefulWidget {

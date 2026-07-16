@@ -75,7 +75,7 @@ We split views and controller logic with stateful widgets as controller where th
 
 ```dart
 // /lib/controller/enter_name_controller.dart
-import 'package:flutter/material.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 
 class EnterName extends StatefulWidget {
   @override
@@ -111,7 +111,7 @@ The view class could look like this:
 
 ```dart
 // /lib/views/enter_name_view.dart
-import 'package:flutter/material.dart';
+import 'package:fluffychat/widgets/bidi/material.dart';
 
 class EnterNameView extends StatelessWidget {
   final EnterNameController controller;
