@@ -19,6 +19,10 @@ flutter pub get
   pod update
 )
 
+# pub get hardcodes FlutterGeneratedPluginSwiftPackage to iOS 13.0; regenerate so
+# it picks up the project's IPHONEOS_DEPLOYMENT_TARGET before xcodebuild.
+flutter build ios --config-only --release
+
 # Build and open archive dialog
 xcodebuild \
   -workspace ios/Runner.xcworkspace \
