@@ -1,8 +1,8 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cOQ(d){return new A.BC(B.dg(d))},
-cOR(){return new A.GR(B.dg("pt_BR"))},
-cOS(){return new A.GS(B.dg("pt_PT"))},
+cOP(d){return new A.BC(B.dg(d))},
+cOQ(){return new A.GR(B.dg("pt_BR"))},
+cOR(){return new A.GS(B.dg("pt_PT"))},
 BC:function BC(d){this.a=d},
 GR:function GR(d){this.a=d},
 GS:function GS(d){this.a=d}},C
@@ -1683,5 +1683,5 @@ x(A.BC,C.aF)
 w(A.BC,[A.GR,A.GS])})()
 B.dI(b.typeUniverse,JSON.parse('{"BC":{"aF":[]},"GR":{"aF":[]},"GS":{"aF":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["Dk0sCAEh11W49dMD3xCEKs61UrE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["SSuDNVvSsS5XiomTWwNCdUFVodo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map
