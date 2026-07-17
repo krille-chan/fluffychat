@@ -7,6 +7,7 @@ import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 Future<void> restoreBackupFlow(BuildContext context) async {
   final matrix = Matrix.of(context);
@@ -15,12 +16,17 @@ Future<void> restoreBackupFlow(BuildContext context) async {
   if (file == null) return;
 
   if (!context.mounted) return;
-  await showFutureLoadingDialog(
+  final result = await showFutureLoadingDialog(
     context: context,
     future: () async {
       final client = await matrix.getLoginClient();
       await client.importDump(String.fromCharCodes(await file.readAsBytes()));
       matrix.initMatrix();
+      return client.isLogged();
     },
   );
+
+  if (result.result == true && context.mounted) {
+    context.go('/rooms');
+  }
 }
