@@ -3,6 +3,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
@@ -75,7 +76,8 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                             color: theme.colorScheme.onPrimaryContainer,
                           )
                         : FluffyThemes.isColumnMode(context) ||
-                              controller.spaces.isEmpty
+                              controller.spaces.isEmpty ||
+                              AppSettings.displayNavigationRail.value
                         ? IconButton(
                             tooltip: L10n.of(context).search,
                             onPressed: controller.startSearch,
