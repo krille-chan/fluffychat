@@ -20,7 +20,13 @@ Future<void> restoreBackupFlow(BuildContext context) async {
     context: context,
     future: () async {
       final client = await matrix.getLoginClient();
-      await client.importDump(String.fromCharCodes(await file.readAsBytes()));
+      await client.database.importDump(
+        String.fromCharCodes(await file.readAsBytes()),
+      );
+      await client.init(
+        waitForFirstSync: false,
+        waitUntilLoadCompletedLoaded: false,
+      );
       matrix.initMatrix();
       return client.isLogged();
     },
