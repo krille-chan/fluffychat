@@ -76,8 +76,8 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                             color: theme.colorScheme.onPrimaryContainer,
                           )
                         : FluffyThemes.isColumnMode(context) ||
-                              controller.spaces.isEmpty ||
-                              AppSettings.displayNavigationRail.value
+                              (controller.spaces.isEmpty &&
+                                  !AppSettings.displayNavigationRail.value)
                         ? IconButton(
                             tooltip: L10n.of(context).search,
                             onPressed: controller.startSearch,

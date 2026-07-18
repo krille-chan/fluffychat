@@ -184,12 +184,10 @@ class ClientChooserButton extends StatelessWidget {
           tooltip: 'Accounts and settings',
           onSelected: (o) => _clientSelected(o, context),
           itemBuilder: _bundleMenuItems,
-          child: Center(
-            child: Avatar(
-              mxContent: snapshot.data?.avatarUrl,
-              name: snapshot.data?.displayName ?? client?.userID?.localpart,
-              size: 32,
-            ),
+          icon: Avatar(
+            mxContent: snapshot.data?.avatarUrl,
+            name: snapshot.data?.displayName ?? client?.userID?.localpart,
+            size: 32,
           ),
         ),
       ),
