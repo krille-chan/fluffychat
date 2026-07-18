@@ -40,14 +40,19 @@ class Avatar extends StatelessWidget {
     super.key,
   });
 
+  String _calcFallbackLetters() {
+    final name = this.name?.trim();
+    if (name == null || name.isEmpty) return '@';
+    final words = name.split(' ');
+    if (words.length <= 1) return name.substring(0, 1);
+    return '${words.first.substring(0, 1)}${words.last.substring(0, 1)}';
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final name = this.name;
-    final fallbackLetters = name == null || name.isEmpty
-        ? '@'
-        : name.substring(0, 1);
+    final fallbackLetters = _calcFallbackLetters();
 
     final noPic =
         mxContent == null ||
@@ -83,7 +88,9 @@ class Avatar extends StatelessWidget {
               placeholder: (_) => noPic
                   ? Container(
                       decoration: BoxDecoration(
-                        color: backgroundColor ?? name?.lightColorAvatar,
+                        color:
+                            backgroundColor ??
+                            fallbackLetters.colorScheme.primaryContainer,
                       ),
                       alignment: Alignment.center,
                       child: Text(
@@ -91,7 +98,9 @@ class Avatar extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'RobotoMono',
-                          color: textColor ?? Colors.white,
+                          color:
+                              textColor ??
+                              fallbackLetters.colorScheme.onPrimaryContainer,
                           fontWeight: FontWeight.bold,
                           fontSize: (size / 2.5).roundToDouble(),
                         ),
