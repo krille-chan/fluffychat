@@ -113,7 +113,7 @@ class _MxcImageState extends State<MxcImage> {
             MessageTypes.Image,
             MessageTypes.Sticker,
           }.contains(event.messageType)) {
-        throw Exception('Event of type ${event.messageType} has no thumbnail!');
+        Logs().e('Event of type ${event.messageType} has no thumbnail!');
       }
       final data = await event.downloadAndDecryptAttachment(
         getThumbnail: useThumbnail,
