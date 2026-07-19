@@ -3,12 +3,14 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'dart:async';
 import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/start_push_foreground_service.dart';
@@ -127,13 +129,22 @@ Future<void> startGui(List<Client> clients, SharedPreferences store) async {
   await firstClient?.roomsLoading;
   await firstClient?.accountDataLoading;
 
-  runApp(
-    FluffyChatApp(
-      clients: clients,
-      appLockSettings: (pincode: pin, useBiometrics: useBiometrics),
-      store: store,
-    ),
-  );
+  runZonedGuarded(() {
+    // Forward Flutter errors to global error reporter
+    FlutterError.onError = kDebugMode
+        ? FlutterError.dumpErrorToConsole
+        : (details) => Zone.current.handleUncaughtError(
+            details.exception,
+            details.stack ?? StackTrace.current,
+          );
+    runApp(
+      FluffyChatApp(
+        clients: clients,
+        appLockSettings: (pincode: pin, useBiometrics: useBiometrics),
+        store: store,
+      ),
+    );
+  }, ErrorReporter.onFlutterError);
 }
 
 /// Watches the lifecycle changes to start the application when it

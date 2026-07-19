@@ -2769,5 +2769,17 @@
     "unifiedPushDistributors": "Unified Push distributors:",
     "doubleTapToReact": "Double-tap to react",
     "doubleTapToReactDescription": "Double-tap a message to react instead of selecting text",
-    "doubleTapReaction": "Double-tap reaction"
+    "doubleTapReaction": "Double-tap reaction",
+    "shareCrashReports": "Share crash reports",
+    "shareCrashReportsDescription": "Automatically share crash reports with the developers",
+    "shareCrashReportsPrompt": "Share crash reports automatically with the developers? Learn more at {url} about what data is being shared.",
+    "@shareCrashReportsPrompt": {
+        "placeholders": {
+            "url": {
+                "type": "String"
+            }
+        }
+    },
+    "allow": "Allow",
+    "deny": "Deny"
 }

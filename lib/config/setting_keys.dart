@@ -78,7 +78,12 @@ enum AppSettings<T> {
   showThumbnailsInTimeline<bool>('chat.fluffy.showThumbnailsInTimeline', true),
   doubleTapToReact<bool>('chat.fluffy.double_tap_to_react', false),
   doubleTapReaction<String>('chat.fluffy.double_tap_reaction', '❤️'),
-  benchmarksInLogs<bool>('chat.fluffy.benchmarks_in_logs', false);
+  benchmarksInLogs<bool>('chat.fluffy.benchmarks_in_logs', false),
+  autoSendErrorReports<bool?>('chat.fluffy.auto_send_eror_reports', null),
+  sentryDns<String>(
+    'chat.fluffy.sentry_dns',
+    'https://001fc83b53bd409c82a505d74d56f001@observe.fluffy.chat/1',
+  );
 
   final String key;
   final T defaultValue;
@@ -153,6 +158,23 @@ enum AppSettings<T> {
 
     return store;
   }
+}
+
+extension AppSettingsBoolNExtension on AppSettings<bool?> {
+  bool? get value {
+    final value = Result(() => AppSettings.store.getBool(key));
+    final error = value.asError;
+    if (error != null) {
+      Logs().e(
+        'Unable to fetch $key from storage. Removing entry...',
+        error.error,
+        error.stackTrace,
+      );
+    }
+    return value.asValue?.value;
+  }
+
+  Future<void> setItem(bool value) => AppSettings.store.setBool(key, value);
 }
 
 extension AppSettingsBoolExtension on AppSettings<bool> {
