@@ -79,6 +79,12 @@ class SettingsSecurityView extends StatelessWidget {
                     subtitle: L10n.of(context).sendReadReceiptsDescription,
                     setting: AppSettings.sendPublicReadReceipts,
                   ),
+                  SettingsSwitchListTile.adaptive(
+                    title: L10n.of(context).shareCrashReports,
+                    subtitle: L10n.of(context).shareCrashReportsDescription,
+                    setting: AppSettings.autoSendErrorReports,
+                    defaultValue: false,
+                  ),
                   ListTile(
                     trailing: const Icon(Icons.chevron_right_outlined),
                     title: Text(L10n.of(context).blockedUsers),
