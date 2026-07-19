@@ -75,7 +75,8 @@ enum AppSettings<T> {
   webNotificationSound<bool>('chat.fluffy.web_notification_sound', true),
   chatFilter<String>('chat.fluffy.chat_filter', 'allChats'),
   hideRoomsInSpaces<bool>('chat.fluffy.hideRoomsInSpaces', false),
-  showThumbnailsInTimeline<bool>('chat.fluffy.showThumbnailsInTimeline', true);
+  showThumbnailsInTimeline<bool>('chat.fluffy.showThumbnailsInTimeline', true),
+  autoSendErrorReports<bool?>('chat.fluffy.auto_send_eror_reports', null);
 
   final String key;
   final T defaultValue;
@@ -144,6 +145,23 @@ enum AppSettings<T> {
 
     return store;
   }
+}
+
+extension AppSettingsBoolNExtension on AppSettings<bool?> {
+  bool? get value {
+    final value = Result(() => AppSettings.store.getBool(key));
+    final error = value.asError;
+    if (error != null) {
+      Logs().e(
+        'Unable to fetch $key from storage. Removing entry...',
+        error.error,
+        error.stackTrace,
+      );
+    }
+    return value.asValue?.value;
+  }
+
+  Future<void> setItem(bool value) => AppSettings.store.setBool(key, value);
 }
 
 extension AppSettingsBoolExtension on AppSettings<bool> {
