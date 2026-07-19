@@ -57,7 +57,7 @@ dependencies:
   matrix: ^8.1.0
   mime: ^2.0.0
   native_imaging: ^0.4.0
-  opus_caf_converter_dart: ^1.0.1
+  ogg_caf_converter: ^0.1.4
   package_info_plus: ^10.2.0
   particles_network: ^1.9.5
   pasteboard: ^0.5.0

@@ -1220,14 +1220,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.3.0"
-  opus_caf_converter_dart:
+  ogg_caf_converter:
     dependency: "direct main"
     description:
-      name: opus_caf_converter_dart
-      sha256: e08156066916f790a54df305e103d6dec4d853ec23147e6a02eda3c06f67ba1a
+      name: ogg_caf_converter
+      sha256: "3faa20f7ae854d6eda233773756de3eddb6c8d4fdc6d0165da992ded95240818"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.1"
+    version: "0.1.4"
   package_config:
     dependency: transitive
     description:

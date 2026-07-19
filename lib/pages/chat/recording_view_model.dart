@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:fluffychat/config/setting_keys.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
+import 'package:ogg_caf_converter/ogg_caf_converter.dart';
 import 'package:path/path.dart' as path_lib;
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
@@ -64,10 +66,7 @@ class RecordingViewModelState extends State<RecordingViewModel> {
     setState(() {});
 
     try {
-      final codec =
-          !PlatformInfos
-                  .isIOS && // Blocked by https://github.com/llfbandit/record/issues/560
-              await audioRecorder.isEncoderSupported(AudioEncoder.opus)
+      final codec = await audioRecorder.isEncoderSupported(AudioEncoder.opus)
           ? AudioEncoder.opus
           : AudioEncoder.aacLc;
       fileName =
@@ -183,6 +182,20 @@ class RecordingViewModelState extends State<RecordingViewModel> {
     final path = await _audioRecorder?.stop();
 
     if (path == null) throw ('Recording failed!');
+
+    if (PlatformInfos.isIOS && path.endsWith('.ogg')) {
+      Logs().d('Convert CAF to normal opus...', path);
+      final cafPath = '$path.caf';
+      final file = File(path);
+      await file.copy(cafPath);
+      await file.delete();
+      await OggCafConverter().convertCafToOgg(
+        input: cafPath,
+        output: path,
+        deleteInput: true,
+      );
+    }
+
     const waveCount = AudioPlayerWidget.wavesCount;
     final step = amplitudeTimeline.length < waveCount
         ? 1
