@@ -7,6 +7,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:ffmpeg_kit_flutter_new/ffmpeg_kit.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -15,7 +16,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
-import 'package:ogg_caf_converter/ogg_caf_converter.dart';
 import 'package:path/path.dart' as path_lib;
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
@@ -66,9 +66,7 @@ class RecordingViewModelState extends State<RecordingViewModel> {
     setState(() {});
 
     try {
-      final codec = await audioRecorder.isEncoderSupported(AudioEncoder.opus)
-          ? AudioEncoder.opus
-          : AudioEncoder.aacLc;
+      const codec = AudioEncoder.aacLc;
       fileName =
           'voice_message_${DateTime.now().millisecondsSinceEpoch}.${codec.fileExtension}';
       String? path;
@@ -179,21 +177,17 @@ class RecordingViewModelState extends State<RecordingViewModel> {
     onSend,
   ) async {
     _recorderSubscription?.cancel();
-    final path = await _audioRecorder?.stop();
+    var path = await _audioRecorder?.stop();
 
     if (path == null) throw ('Recording failed!');
 
-    if (PlatformInfos.isIOS && path.endsWith('.ogg')) {
-      Logs().d('Convert CAF to normal opus...', path);
-      final cafPath = '$path.caf';
-      final file = File(path);
-      await file.copy(cafPath);
-      await file.delete();
-      await OggCafConverter().convertCafToOgg(
-        input: cafPath,
-        output: path,
-        deleteInput: true,
-      );
+    if (path.endsWith('.m4a') && PlatformInfos.supportsFfmpeg) {
+      Logs().d('Convert to opus format before sending...', path);
+      final outputFormat = path.replaceAll('.m4a', '.ogg');
+      await FFmpegKit.execute('-i "$path" -c:a libopus "$outputFormat"');
+      await File(path).delete();
+      path = outputFormat;
+      fileName = fileName?.replaceFirst('.m4a', '.ogg');
     }
 
     const waveCount = AudioPlayerWidget.wavesCount;
