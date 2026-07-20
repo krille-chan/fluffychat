@@ -2487,5 +2487,6 @@
     },
     "logs": "Zapisi",
     "advancedConfigs": "Napredne konfiguracije",
-    "advancedConfigurations": "Napredne konfiguracije"
+    "advancedConfigurations": "Napredne konfiguracije",
+    "matrixId": "Matrix ID"
 }
