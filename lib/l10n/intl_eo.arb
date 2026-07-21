@@ -608,11 +608,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Agordoj pri mienetoj",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Mallongigo de mieneto",
     "@emoteShortcode": {
         "type": "String",

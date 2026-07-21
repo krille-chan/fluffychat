@@ -97,11 +97,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Cài đặt biểu tượng cảm xúc",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "editDisplayname": "Sửa tên hiển thị",
     "@editDisplayname": {
         "type": "String",

@@ -389,11 +389,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Nastavenie emotikonov",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Kód emotikonu",
     "@emoteShortcode": {
         "type": "String",

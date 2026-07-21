@@ -614,11 +614,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Emoticon-Einstellungen",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Emoticon-Kürzel",
     "@emoteShortcode": {
         "type": "String",
@@ -1948,7 +1943,6 @@
     "chatDescriptionHasBeenChanged": "Chatbeschreibung geändert",
     "noChatDescriptionYet": "Noch keine Chatbeschreibung vorhanden.",
     "invalidServerName": "Ungültiger Servername",
-    "directChat": "Privater Chat",
     "setChatDescription": "Chatbeschreibung festlegen",
     "inviteGroupChat": "📨 Einladungen zum Gruppenchat",
     "invalidInput": "Ungültige Eingabe!",

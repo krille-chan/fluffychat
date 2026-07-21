@@ -732,11 +732,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Emote Settings",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "globalChatId": "Global chat ID",
     "accessAndVisibility": "Access and visibility",
     "accessAndVisibilityDescription": "Who is allowed to join this chat and how the chat can be discovered.",
@@ -1323,7 +1318,6 @@
             }
         }
     },
-    "directChat": "Direct chat",
     "redactedByBecause": "Redacted by {username} because: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",

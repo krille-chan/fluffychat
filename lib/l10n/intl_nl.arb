@@ -619,11 +619,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Emoticon-instellingen",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Emoticon korte code",
     "@emoteShortcode": {
         "type": "String",
@@ -1946,7 +1941,6 @@
             }
         }
     },
-    "directChat": "Directe chat",
     "setChatDescription": "Onderwerp instellen",
     "setColorTheme": "Kleurthema instellen:",
     "invite": "Uitnodigen",

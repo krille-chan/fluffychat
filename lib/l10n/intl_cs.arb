@@ -619,11 +619,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Nastavení emotikonů",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Klávesová zkratka emotikonu",
     "@emoteShortcode": {
         "type": "String",
@@ -1890,7 +1885,6 @@
     "noChatDescriptionYet": "Zatím nebyl vytvořen žádný popis konverzace.",
     "invalidServerName": "Neplatné jméno serveru",
     "chatPermissions": "Oprávnění konverzace",
-    "directChat": "Přímá konverzace",
     "setChatDescription": "Nastavit popis konverzace",
     "whyIsThisMessageEncrypted": "Proč nelze přečíst tuto zprávu?",
     "wasDirectChatDisplayName": "Prázdná konverzace (dříve {oldDisplayName})",

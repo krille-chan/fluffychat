@@ -1397,11 +1397,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "எமோட் அமைப்புகள்",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "accessAndVisibilityDescription": "இந்த அரட்டையில் யார் சேர அனுமதிக்கப்படுகிறார்கள், அரட்டையை எவ்வாறு கண்டுபிடிப்பது.",
     "calls": "அழைப்புகள்",
     "customEmojisAndStickers": "தனிப்பயன் ஈமோசிகள் மற்றும் ச்டிக்கர்கள்",
@@ -2069,7 +2064,6 @@
             }
         }
     },
-    "directChat": "நேரடி அரட்டை",
     "redactMessage": "திருத்தும் செய்தி",
     "@redactMessage": {
         "type": "String",

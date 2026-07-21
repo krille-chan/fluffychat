@@ -599,11 +599,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "ემოციების პარამეტრები",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "globalChatId": "გლობალური ჩატის ID",
     "repeatPassword": "გაიმეორეთ პაროლი",
     "notAnImage": "ფაილი არაა სურათი.",
