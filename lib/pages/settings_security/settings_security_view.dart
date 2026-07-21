@@ -29,8 +29,6 @@ class SettingsSecurityView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final client = Matrix.of(context).client;
-    final publicMasterKey =
-        client.userDeviceKeys[client.userID]?.masterKey?.publicKey;
 
     return Scaffold(
       appBar: AppBar(
@@ -176,15 +174,22 @@ class SettingsSecurityView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  if (publicMasterKey != null)
-                    ListTile(
-                      title: Text(L10n.of(context).yourPublicKey),
-                      leading: const Icon(Icons.verified_user_outlined),
-                      subtitle: SelectableText(
-                        publicMasterKey.beautified,
-                        style: const TextStyle(fontFamily: 'RobotoMono'),
-                      ),
-                    ),
+                  FutureBuilder(
+                    future: client.fetchUserDeviceKeysList(client.userID!),
+                    builder: (context, snapshot) {
+                      final publicMasterKey =
+                          snapshot.data?.masterKey?.publicKey;
+                      if (publicMasterKey == null) return SizedBox.shrink();
+                      return ListTile(
+                        title: Text(L10n.of(context).yourPublicKey),
+                        leading: const Icon(Icons.verified_user_outlined),
+                        subtitle: SelectableText(
+                          publicMasterKey.beautified,
+                          style: const TextStyle(fontFamily: 'RobotoMono'),
+                        ),
+                      );
+                    },
+                  ),
                   ListTile(
                     title: Text(L10n.of(context).deviceIdentityKey),
                     leading: const Icon(Icons.mobile_friendly_outlined),
