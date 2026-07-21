@@ -114,7 +114,6 @@ class SettingsView extends StatelessWidget {
                 );
               },
             ),
-            Divider(color: theme.dividerColor),
             SwitchListTile.adaptive(
               controlAffinity: ListTileControlAffinity.trailing,
               value: controller.cryptoIdentityConnected == true,
