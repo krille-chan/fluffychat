@@ -753,11 +753,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "تنظیمات شکلک",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "کد کوتاه شکلک",
     "@emoteShortcode": {
         "type": "String",
@@ -1979,7 +1974,6 @@
             }
         }
     },
-    "directChat": "چت مستقیم",
     "redactedByBecause": "ویرایش‌شده به‌دست {username} زیرا: «{reason}»",
     "@redactedByBecause": {
         "type": "String",

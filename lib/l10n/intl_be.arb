@@ -724,11 +724,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Налады эмодзі",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "globalChatId": "ID габальнага чату",
     "accessAndVisibility": "Даступнасць і бачнасць",
     "accessAndVisibilityDescription": "Каму дазволена далучацца да гэтага чату і як ён можа быць знойдзены.",
@@ -1725,7 +1720,6 @@
             }
         }
     },
-    "directChat": "Асобны чат",
     "redactedByBecause": "Адрэдагавана {username}, прычына: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",

@@ -620,11 +620,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "İfade Ayarları",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "İfade kısa kodu",
     "@emoteShortcode": {
         "type": "String",
@@ -1950,7 +1945,6 @@
     },
     "setChatDescription": "Sohbet açıklamasını ayarla",
     "chatDescriptionHasBeenChanged": "Sohbet açıklaması değişti",
-    "directChat": "Doğrudan sohbet",
     "inviteGroupChat": "📨 Grup sohbetine davet et",
     "emoteKeyboardNoRecents": "Son kullanılan ifadeler burada görünecek...",
     "@emoteKeyboardNoRecents": {

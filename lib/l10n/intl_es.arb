@@ -466,11 +466,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Configuración de emotes",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Atajo de emote",
     "@emoteShortcode": {
         "type": "String",
@@ -1864,7 +1859,6 @@
             }
         }
     },
-    "directChat": "Chat directo",
     "foregroundServiceRunning": "Esta notificación aparece cuando el servicio en segundo plano se está ejecutando.",
     "wasDirectChatDisplayName": "Chat vacío (era {oldDisplayName})",
     "@wasDirectChatDisplayName": {

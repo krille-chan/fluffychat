@@ -12,6 +12,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
+import 'package:particles_network/particles_network.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:qr_image/qr_image.dart';
 
@@ -90,47 +91,53 @@ class QrCodeViewer extends StatelessWidget {
           const SizedBox(width: 8),
         ],
       ),
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.all(32.0),
-          padding: const EdgeInsets.all(32.0),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: theme.colorScheme.onPrimaryContainer,
-              width: 4,
-            ),
-            color: theme.colorScheme.surfaceBright,
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          ),
-          child: Column(
-            mainAxisSize: .min,
-            children: [
-              ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxWidth: FluffyThemes.columnWidth,
+      body: Stack(
+        children: [
+          if (!MediaQuery.disableAnimationsOf(context))
+            ParticleNetwork(maxSpeed: 0.25),
+          Center(
+            child: Container(
+              margin: const EdgeInsets.all(32.0),
+              padding: const EdgeInsets.all(32.0),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: theme.colorScheme.onSurface,
+                  width: 8,
                 ),
-                child: PrettyQrView.data(
-                  data: inviteLink,
-                  decoration: PrettyQrDecoration(
-                    shape: PrettyQrSmoothSymbol(
-                      roundFactor: 1,
-                      color: theme.colorScheme.onPrimaryContainer,
+                color: theme.colorScheme.surfaceBright,
+                borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+              ),
+              child: Column(
+                mainAxisSize: .min,
+                children: [
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: FluffyThemes.columnWidth,
+                    ),
+                    child: PrettyQrView.data(
+                      data: inviteLink,
+                      decoration: PrettyQrDecoration(
+                        shape: PrettyQrSmoothSymbol(
+                          roundFactor: 1,
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  const SizedBox(height: 8.0),
+                  SelectableText(
+                    content,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: theme.colorScheme.onPrimaryContainer,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 8.0),
-              SelectableText(
-                content,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: theme.colorScheme.onPrimaryContainer,
-                  fontSize: 12,
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

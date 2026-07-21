@@ -261,11 +261,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Pengaturan Emote",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteInvalid": "Shortcode emote tidak valid!",
     "@emoteInvalid": {
         "type": "String",
@@ -1934,7 +1929,6 @@
             }
         }
     },
-    "directChat": "Chat langsung",
     "redactedByBecause": "Dihilangkan oleh {username} karena: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",

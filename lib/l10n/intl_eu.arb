@@ -398,11 +398,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Emote-ezarpenak",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Laburdura",
     "@emoteShortcode": {
         "type": "String",
@@ -1945,7 +1940,6 @@
         }
     },
     "redactMessageDescription": "Mezua elkarrizketa honetako partaide guztientzat botako da atzera. Ezin da desegin.",
-    "directChat": "Banakako txata",
     "wrongPinEntered": "PIN okerra! Saiatu berriro {seconds} segundu barru…",
     "@wrongPinEntered": {
         "type": "String",

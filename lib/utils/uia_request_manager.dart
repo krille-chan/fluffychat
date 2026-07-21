@@ -87,7 +87,10 @@ extension UiaRequestManager on MatrixState {
           listener.dispose();
 
           return uiaRequest.completeStage(
-            AuthenticationData(session: uiaRequest.session),
+            AuthenticationData(
+              session: uiaRequest.session,
+              type: stageUrl == null ? null : stage,
+            ),
           );
       }
     } catch (e, s) {

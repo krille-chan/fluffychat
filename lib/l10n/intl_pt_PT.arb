@@ -576,11 +576,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Configurações de emotes",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Código do emote",
     "@emoteShortcode": {
         "type": "String",

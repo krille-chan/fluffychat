@@ -620,11 +620,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Paramètre des émoticônes",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Raccourci de l'émoticône",
     "@emoteShortcode": {
         "type": "String",
@@ -1923,7 +1918,6 @@
             }
         }
     },
-    "directChat": "Discussion directe",
     "optionalRedactReason": "(Facultatif) Raison de la suppression de ce message...",
     "sendTypingNotifications": "Envoyer des notifications de frappe",
     "replace": "Remplacer",

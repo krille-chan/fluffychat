@@ -963,11 +963,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Socruithe straoiseoige",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "downloadFile": "Íoslódáil comhad",
     "@downloadFile": {
         "type": "String",
@@ -2088,7 +2083,6 @@
     },
     "noMoreChatsFound": "Níor aimsíodh a thuilleadh comhráite...",
     "space": "Spás",
-    "directChat": "Comhrá díreach",
     "redactedByBecause": "Athbhreithnithe ag {username} mar: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",

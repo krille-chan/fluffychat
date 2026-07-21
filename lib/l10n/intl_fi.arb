@@ -492,11 +492,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Emote-asetukset",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Emote-lyhytkoodi",
     "@emoteShortcode": {
         "type": "String",
@@ -1948,7 +1943,6 @@
             }
         }
     },
-    "directChat": "Yksityiskeskustelu",
     "wrongPinEntered": "Väärä pin-koodi! Yritä uudelleen {seconds} sekuntin kuluttua...",
     "@wrongPinEntered": {
         "type": "String",

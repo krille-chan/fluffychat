@@ -459,11 +459,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Paràmetres de les emoticones",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Codi d'emoticona",
     "@emoteShortcode": {
         "type": "String",
@@ -1868,7 +1863,6 @@
     "openLinkInBrowser": "Obre l'enllaç en un navegador",
     "messageInfo": "Informació del missatge",
     "disableEncryptionWarning": "Per motius de seguretat, un cop activat, no es pot desactivar el xifratge.",
-    "directChat": "Xat directe",
     "wrongPinEntered": "Pin incorrecte! Torna-ho a provar en {seconds} segons...",
     "@wrongPinEntered": {
         "type": "String",

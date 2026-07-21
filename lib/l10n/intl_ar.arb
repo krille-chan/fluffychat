@@ -408,11 +408,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "اعدادات الانفعالات",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "رمز الانفعالة",
     "@emoteShortcode": {
         "type": "String",
@@ -1950,7 +1945,6 @@
     "noChatDescriptionYet": "لم يتم إنشاء وصف للمحادثة حتى الآن.",
     "invalidServerName": "اسم الخادم غير متاح",
     "setChatDescription": "تعيين وصفًا للدردشة",
-    "directChat": "محادثة مباشرة",
     "inviteGroupChat": "📨 دعوة للمحادثة الجماعية",
     "emoteKeyboardNoRecents": "التعبيرات المستخدمة مؤخرًا ستظهر هنا ...",
     "@emoteKeyboardNoRecents": {

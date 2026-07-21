@@ -182,11 +182,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "이모트 설정",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteInvalid": "올바르지 않은 이모트 단축키!",
     "@emoteInvalid": {
         "type": "String",
@@ -1908,7 +1903,6 @@
     },
     "openLinkInBrowser": "브라우저에서 링크 열기",
     "disableEncryptionWarning": "보안상의 이유로 암호화가 활성화된 채팅에서 암호화를 비활성화 할 수 없습니다.",
-    "directChat": "다이렉트 채팅",
     "wrongPinEntered": "잘못된 pin입니다! {seconds}초 후에 다시 시도하세요...",
     "@wrongPinEntered": {
         "type": "String",

@@ -614,11 +614,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Postavke emotikona",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Kratica emotikona",
     "@emoteShortcode": {
         "type": "String",
@@ -1940,7 +1935,6 @@
         }
     },
     "redactMessageDescription": "Poruka će se redigirati za sve sudionike u ovoj konverzaciji. To je nepovratna radnja.",
-    "directChat": "Izravni chat",
     "inviteGroupChat": "📨 Pozivnica u grupni chat",
     "noChatDescriptionYet": "Opis chata još nije stvoren.",
     "chatDescriptionHasBeenChanged": "Opis chata je promijenjen",

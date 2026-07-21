@@ -619,11 +619,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Axustes de Emote",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Atallo de Emote",
     "@emoteShortcode": {
         "type": "String",
@@ -1949,7 +1944,6 @@
     "chatDescriptionHasBeenChanged": "Cambiou a descrición da conversa",
     "noChatDescriptionYet": "Aínda non se escribeu a descrición da conversa.",
     "invalidServerName": "Nome de servidor non válido",
-    "directChat": "Conversa Directa",
     "setChatDescription": "Escribir descrición da conversa",
     "inviteGroupChat": "📨 Convidar a conversa en grupo",
     "emoteKeyboardNoRecents": "Os emotes usados recentemente aparecerán aquí...",

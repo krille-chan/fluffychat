@@ -511,11 +511,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Emote設定",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Emoteショートコード",
     "@emoteShortcode": {
         "type": "String",
@@ -1888,7 +1883,6 @@
             }
         }
     },
-    "directChat": "ダイレクトチャット",
     "redactedByBecause": "{username}によって削除済み。理由:「{reason}」",
     "@redactedByBecause": {
         "type": "String",

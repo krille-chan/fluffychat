@@ -600,11 +600,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "表情设置",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "表情快捷码",
     "@emoteShortcode": {
         "type": "String",
@@ -1938,7 +1933,6 @@
             }
         }
     },
-    "directChat": "私聊",
     "redactedByBecause": "已被 {username} 删除，原因：\"{reason}\"",
     "@redactedByBecause": {
         "type": "String",

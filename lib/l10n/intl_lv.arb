@@ -1016,11 +1016,6 @@
         "type": "String",
         "description": "Usage hint for the command /plain"
     },
-    "emoteSettings": "Emociju iestatījumi",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "experimentalVideoCalls": "Izmēģinājuma video zvani",
     "openCamera": "Atvērt kameru",
     "@openCamera": {
@@ -1432,7 +1427,6 @@
     },
     "messageInfo": "Informācija par ziņu",
     "disableEncryptionWarning": "Drošības iemeslu dēļ tērzēšanā nevar atspējot šifrēšanu, ja tā ir pirms tam ir bijusi iespējota.",
-    "directChat": "Tiešā tērzēšana",
     "encryptionNotEnabled": "Šifrēšana nav iespējota",
     "@encryptionNotEnabled": {
         "type": "String",

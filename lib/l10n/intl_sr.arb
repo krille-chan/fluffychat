@@ -580,11 +580,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Поставке емотија",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "скраћеница",
     "@emoteShortcode": {
         "type": "String",

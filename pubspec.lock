@@ -487,10 +487,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_foreground_task
-      sha256: fc5c01a5e1b8f7bb51d0c737714f0c50440dbdf1aeddc5f8cbba313aa6fd4856
+      sha256: "0dad7e6a4ac57aeb0e680e35ec7ae997f1a2b8579fdb85b16dd16e299b634f4f"
       url: "https://pub.dev"
     source: hosted
-    version: "9.2.2"
+    version: "10.0.0"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -1151,10 +1151,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      sha256: "25ab47abd6a98c5c1affd1c735b83dcd01844f49c60483d679ffb9463f0a3f61"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: main
+      resolved-ref: "39f2630ed86419591a04ad878774ae0746ea232c"
+      url: "https://github.com/famedly/matrix-dart-sdk.git"
+    source: git
     version: "8.1.0"
   meta:
     dependency: transitive
@@ -1228,70 +1229,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.3.0"
-  open_file:
-    dependency: "direct main"
-    description:
-      name: open_file
-      sha256: "4f9b00d42565249ed4346976bc0d57f91303bec391f6b0b217921277cf8e6e4f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.0"
-  open_file_android:
-    dependency: transitive
-    description:
-      name: open_file_android
-      sha256: f48a342b0347bf82bebf68c752f5cfce162965ce8449c5ecdafc406d294aa63d
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
-  open_file_ios:
-    dependency: transitive
-    description:
-      name: open_file_ios
-      sha256: "0e3e67dcd12f69888128f533cacc092039627dd4f1d7a95a2826b814ae4ea8aa"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
-  open_file_linux:
-    dependency: transitive
-    description:
-      name: open_file_linux
-      sha256: efd9c1f9679745cf35a54d21d809a1fe5a1196d4a1353fe2d205ba298ae86dc9
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
-  open_file_mac:
-    dependency: transitive
-    description:
-      name: open_file_mac
-      sha256: "1abe00e65f792b9baa1e15fdf4d44af5e813b1696ac307d71535543122a01e30"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
-  open_file_platform_interface:
-    dependency: transitive
-    description:
-      name: open_file_platform_interface
-      sha256: dc302e4bd5c1d77acec4240bd0dbc1d9f2ee6882b1ce52bca5298369da7acf12
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
-  open_file_web:
-    dependency: transitive
-    description:
-      name: open_file_web
-      sha256: "4945221c9ee98a5a6cdf26730fe0fabb3a36c1e423148bff4c32c283079ee532"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
-  open_file_windows:
-    dependency: transitive
-    description:
-      name: open_file_windows
-      sha256: "6a97d8f2a5966fb0a7f613a901f1d502f93456f64e8a7519d3204184413aab79"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
   opus_caf_converter_dart:
     dependency: "direct main"
     description:
@@ -1373,7 +1310,7 @@ packages:
     source: hosted
     version: "2.3.1"
   path_provider_foundation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider_foundation
       sha256: "2a376b7d6392d80cd3705782d2caa734ca4727776db0b6ec36ef3f1855197699"
@@ -1704,10 +1641,10 @@ packages:
     dependency: "direct main"
     description:
       name: share_plus
-      sha256: "9eee8283462d91a7a1c8bdb67d08874abd75a2f8fae3bc0ca033035e375fb3d8"
+      sha256: "02180b01c1237b9706b663d9402b2cf2402b3407f48cce99cc19e3200f095b8a"
       url: "https://pub.dev"
     source: hosted
-    version: "13.2.0"
+    version: "13.2.1"
   share_plus_platform_interface:
     dependency: transitive
     description:
@@ -1853,34 +1790,26 @@ packages:
     dependency: transitive
     description:
       name: sqflite_common
-      sha256: "1581ffbf7a0e333b380d6a30737d78516b826cb35beb7fb0bf8a3ea0c678b465"
+      sha256: "5bf6a55c166e73bf651ba7ec3ed486e577620e3dc8f3a9c6a258a8031b624590"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.8"
+    version: "2.5.11"
   sqflite_common_ffi:
     dependency: "direct main"
     description:
       name: sqflite_common_ffi
-      sha256: "8d7b8749a516cbf6e9057f9b480b716ad14fc4f3d3873ca6938919cc626d9025"
+      sha256: "5ccd38136edb9beb3213f6927775d52db70dfdadcdb28dad1f625ca9f2b9824f"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.7+1"
-  sqlcipher_flutter_libs:
-    dependency: "direct main"
-    description:
-      name: sqlcipher_flutter_libs
-      sha256: dd1fcc74d5baf3c36ad53e2652b2d06c9f8747494a3ccde0076e88b159dfe622
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.6.8"
+    version: "2.4.2"
   sqlite3:
     dependency: transitive
     description:
       name: sqlite3
-      sha256: "3145bd74dcdb4fd6f5c6dda4d4e4490a8087d7f286a14dee5d37087290f0f8a2"
+      sha256: "752d9d746052359a2022f588bb979f2e7c4e0f9e4b6a1c3121f7626a1574974b"
       url: "https://pub.dev"
     source: hosted
-    version: "2.9.4"
+    version: "3.3.4"
   stack_trace:
     dependency: transitive
     description:
@@ -1933,10 +1862,10 @@ packages:
     dependency: transitive
     description:
       name: synchronized
-      sha256: "63896c27e81b28f8cb4e69ead0d3e8f03f1d1e5fc531a3e579cabed6a2c7c9e5"
+      sha256: "93b153dcb6a26dcddee6ca087dd634b53e38c10b5aa163e8e49501a776456153"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.0+1"
+    version: "3.4.1"
   term_glyph:
     dependency: transitive
     description:

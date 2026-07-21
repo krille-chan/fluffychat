@@ -12,38 +12,30 @@ import 'package:flutter/foundation.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:path_provider_foundation/path_provider_foundation.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:universal_html/html.dart' as html;
 
 import 'cipher.dart';
-import 'sqlcipher_stub.dart'
-    if (dart.library.io) 'package:sqlcipher_flutter_libs/sqlcipher_flutter_libs.dart';
 
 Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(String clientName) async {
-  MatrixSdkDatabase? database;
   try {
-    database = await _constructDatabase(clientName);
-    await database.open();
-    return database;
+    return await _constructDatabase(clientName);
   } catch (e, s) {
     Logs().wtf('Unable to construct database!', e, s);
 
     try {
       // Send error notification:
       final l10n = await lookupL10n(PlatformDispatcher.instance.locale);
-      ClientManager.sendInitNotification(l10n.initAppError, e.toString());
+      // We expect that the database cannot be open on iOS 2.8.0 due to that
+      // the team ID has changed and te app can no longer access the database
+      // key in the iOS keychain. This should be removed from 2.9.0 on.
+      if (!PlatformInfos.isIOS) {
+        ClientManager.sendInitNotification(l10n.initAppError, e.toString());
+      }
     } catch (e, s) {
       Logs().e('Unable to send error notification', e, s);
     }
-
-    // Try to delete database so that it can created again on next init:
-    database?.delete().catchError(
-      (e, s) => Logs().wtf(
-        'Unable to delete database, after failed construction',
-        e,
-        s,
-      ),
-    );
 
     // Delete database file:
     if (!kIsWeb) {
@@ -51,7 +43,8 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(String clientName) async {
       if (await dbFile.exists()) await dbFile.delete();
     }
 
-    rethrow;
+    // Try again
+    return await _constructDatabase(clientName);
   }
 }
 
@@ -65,7 +58,9 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
 
   Directory? fileStorageLocation;
   try {
-    final temporaryDirectory = await getTemporaryDirectory();
+    final temporaryDirectory = PlatformInfos.isLinux
+        ? await getApplicationCacheDirectory()
+        : await getTemporaryDirectory();
     fileStorageLocation = await Directory(
       join(temporaryDirectory.path, 'fluffychat_download_cache'),
     ).create(recursive: true);
@@ -77,12 +72,8 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
 
   final path = await _getDatabasePath(clientName);
 
-  // fix dlopen for old Android
-  await applyWorkaroundToOpenSqlCipherOnOldAndroidVersions();
   // import the SQLite / SQLCipher shared objects / dynamic libraries
-  final factory = createDatabaseFactoryFfi(
-    ffiInit: SQfLiteEncryptionHelper.ffiInit,
-  );
+  final factory = createDatabaseFactoryFfi();
 
   // required for [getDatabasesPath]
   databaseFactory = factory;
@@ -117,12 +108,27 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
   );
 }
 
-Future<String> _getDatabasePath(String clientName) async {
-  final databaseDirectory = PlatformInfos.isIOS || PlatformInfos.isMacOS
-      ? await getLibraryDirectory()
-      : await getApplicationSupportDirectory();
+Future<String> _getDatabaseDirectory() async {
+  if (PlatformInfos.isIOS) {
+    final containerPath = await PathProviderFoundation().getContainerPath(
+      appGroupIdentifier: 'group.im.fluffychat.app',
+    );
+    if (containerPath == null) {
+      Logs().w('No container path found for iOS app!');
+      return (await getLibraryDirectory()).path;
+    }
+    return containerPath;
+  }
+  if (PlatformInfos.isMacOS) {
+    return (await getLibraryDirectory()).path;
+  }
+  return (await getApplicationSupportDirectory()).path;
+}
 
-  return join(databaseDirectory.path, '$clientName.sqlite');
+Future<String> _getDatabasePath(String clientName) async {
+  final databaseDirectory = await _getDatabaseDirectory();
+
+  return join(databaseDirectory, '$clientName.sqlite');
 }
 
 Future<void> _migrateLegacyLocation(
@@ -131,9 +137,11 @@ Future<void> _migrateLegacyLocation(
 ) async {
   final oldPath = PlatformInfos.isDesktop
       ? (await getApplicationSupportDirectory()).path
+      : PlatformInfos.isIOS
+      ? (await getLibraryDirectory()).path
       : await getDatabasesPath();
 
-  final oldFilePath = join(oldPath, clientName);
+  final oldFilePath = join(oldPath, '$clientName.sqlite');
   if (oldFilePath == sqlFilePath) return;
 
   final maybeOldFile = File(oldFilePath);

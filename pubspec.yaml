@@ -30,7 +30,7 @@ dependencies:
   file_selector: ^1.1.0
   flutter:
     sdk: flutter
-  flutter_foreground_task: ^9.2.2
+  flutter_foreground_task: ^10.0.0
   flutter_linkify: ^6.0.0
   flutter_local_notifications: ^22.0.1
   flutter_localizations:
@@ -55,16 +55,19 @@ dependencies:
   latlong2: ^0.10.1
   local_auth: ^3.0.2
   lottie: ^3.5.1
-  matrix: ^8.1.0
+  matrix: #^8.1.0
+    git:
+      url: https://github.com/famedly/matrix-dart-sdk.git
+      ref: main
   mime: ^2.0.0
   native_imaging: ^0.4.0
-  open_file: ^4.0.0
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^10.2.0
   particles_network: ^1.9.5
   pasteboard: ^0.5.0
   path: ^1.9.0
   path_provider: ^2.1.6
+  path_provider_foundation: ^2.6.0
   pretty_qr_code: ^3.6.0
   provider: ^6.0.2
   punycode: ^1.0.0
@@ -73,11 +76,10 @@ dependencies:
   receive_sharing_intent: ^1.8.1
   record: ^7.1.1
   scroll_to_index: ^3.0.1
-  share_plus: ^13.2.0
+  share_plus: ^13.2.1
   shared_preferences: ^2.5.5 # Pinned because https://github.com/flutter/flutter/issues/118401
   slugify: ^2.0.0
-  sqflite_common_ffi: ^2.3.7+1
-  sqlcipher_flutter_libs: ^0.6.8
+  sqflite_common_ffi: ^2.4.2
   swipe_to_action: ^0.3.0
   unifiedpush: ^6.2.0
   unifiedpush_ui: ^0.2.0
@@ -106,6 +108,11 @@ flutter:
     - assets/logo/mini/
     - assets/sounds/
     - assets/vodozemac/
+
+hooks:
+  user_defines:
+    sqlite3:
+      source: sqlcipher
 
 flutter_launcher_icons:
   image_path: assets/logo/img/logo.png

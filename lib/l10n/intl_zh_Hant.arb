@@ -499,11 +499,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "表情設定",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "表情快捷鍵",
     "@emoteShortcode": {
         "type": "String",
@@ -1963,7 +1958,6 @@
     "chatDescription": "聊天室描述",
     "chatDescriptionHasBeenChanged": "聊天室描述已變更",
     "tryAgain": "再試一次",
-    "directChat": "私訊",
     "setAsCanonicalAlias": "設為主要別名",
     "@setAsCanonicalAlias": {
         "type": "String",

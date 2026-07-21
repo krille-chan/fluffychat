@@ -618,11 +618,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Configuração dos Emoji",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Código Emoji",
     "@emoteShortcode": {
         "type": "String",
@@ -1947,7 +1942,6 @@
     },
     "openLinkInBrowser": "Abrir link no navegador",
     "disableEncryptionWarning": "Por razões de segurança, não é possível desativar a criptografada uma vez ativada.",
-    "directChat": "Conversa direta",
     "wrongPinEntered": "PIN incorreto! Tente novamente em {seconds} segundos...",
     "@wrongPinEntered": {
         "type": "String",

@@ -52,76 +52,76 @@ class SettingsView extends StatelessWidget {
                     Matrix.of(context).client.userID ?? L10n.of(context).user;
                 final displayname =
                     profile?.displayName ?? mxid.localpart ?? mxid;
-                return Row(
+                return Column(
+                  crossAxisAlignment: .center,
+                  mainAxisSize: .min,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(32.0),
-                      child: Stack(
-                        children: [
-                          Avatar(
-                            mxContent: avatar,
-                            name: displayname,
-                            size: Avatar.defaultSize * 2.5,
-                            onTap: avatar != null
-                                ? () => showDialog(
-                                    context: context,
-                                    builder: (_) => MxcImageViewer(avatar),
-                                  )
-                                : null,
-                          ),
-                          if (profile != null)
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: FloatingActionButton.small(
-                                elevation: 2,
-                                onPressed: controller.setAvatarAction,
-                                heroTag: null,
-                                child: const Icon(Icons.camera_alt_outlined),
-                              ),
+                    Stack(
+                      children: [
+                        Avatar(
+                          mxContent: avatar,
+                          name: displayname,
+                          size: Avatar.defaultSize * 2.5,
+                          onTap: avatar != null
+                              ? () => showDialog(
+                                  context: context,
+                                  builder: (_) => MxcImageViewer(avatar),
+                                )
+                              : null,
+                        ),
+                        if (profile != null)
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: FloatingActionButton.small(
+                              elevation: 2,
+                              onPressed: controller.setAvatarAction,
+                              heroTag: null,
+                              child: const Icon(Icons.camera_alt_outlined),
                             ),
-                        ],
+                          ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    TextButton.icon(
+                      onPressed: controller.setDisplaynameAction,
+                      icon: const Icon(Icons.edit_outlined, size: 16),
+                      style: TextButton.styleFrom(
+                        foregroundColor: theme.colorScheme.onSurface,
+                        iconColor: theme.colorScheme.onSurface,
+                      ),
+                      label: Text(
+                        displayname,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 18),
                       ),
                     ),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: .center,
-                        crossAxisAlignment: .start,
-                        children: [
-                          TextButton.icon(
-                            onPressed: controller.setDisplaynameAction,
-                            icon: const Icon(Icons.edit_outlined, size: 16),
-                            style: TextButton.styleFrom(
-                              foregroundColor: theme.colorScheme.onSurface,
-                              iconColor: theme.colorScheme.onSurface,
-                            ),
-                            label: Text(
-                              displayname,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(fontSize: 18),
-                            ),
-                          ),
-                          TextButton.icon(
-                            onPressed: () => FluffyShare.share(mxid, context),
-                            icon: const Icon(Icons.copy_outlined, size: 14),
-                            style: TextButton.styleFrom(
-                              foregroundColor: theme.colorScheme.secondary,
-                              iconColor: theme.colorScheme.secondary,
-                            ),
-                            label: Text(
-                              mxid,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              //    style: const TextStyle(fontSize: 12),
-                            ),
-                          ),
-                        ],
+                    TextButton(
+                      onPressed: () => FluffyShare.share(mxid, context),
+                      style: TextButton.styleFrom(
+                        foregroundColor: theme.colorScheme.secondary,
+                        iconColor: theme.colorScheme.secondary,
+                      ),
+                      child: Text(
+                        mxid,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
+                    const SizedBox(height: 8),
                   ],
                 );
               },
+            ),
+            Divider(color: theme.dividerColor),
+            SwitchListTile.adaptive(
+              controlAffinity: ListTileControlAffinity.trailing,
+              value: controller.cryptoIdentityConnected == true,
+              secondary: const Icon(Icons.backup_outlined),
+              title: Text(L10n.of(context).chatBackup),
+              onChanged: controller.firstRunBootstrapAction,
+              contentPadding: EdgeInsets.only(left: 16, right: 8),
             ),
             FutureBuilder(
               future: Result.capture(
@@ -143,15 +143,6 @@ class SettingsView extends StatelessWidget {
                 );
               },
             ),
-            Divider(color: theme.dividerColor),
-            SwitchListTile.adaptive(
-              controlAffinity: ListTileControlAffinity.trailing,
-              value: controller.cryptoIdentityConnected == true,
-              secondary: const Icon(Icons.backup_outlined),
-              title: Text(L10n.of(context).chatBackup),
-              onChanged: controller.firstRunBootstrapAction,
-            ),
-            Divider(color: theme.dividerColor),
             ListTile(
               leading: const Icon(Icons.format_paint_outlined),
               title: Text(L10n.of(context).changeTheme),
