@@ -920,18 +920,11 @@ class ChatController extends State<ChatPageWithRoom>
   String _getSelectedEventString() {
     var copyString = '';
     if (selectedEvents.length == 1) {
-      return selectedEvents.first
-          .getDisplayEvent(timeline!)
-          .calcLocalizedBodyFallback(MatrixLocals(L10n.of(context)));
+      return selectedEvents.first.getDisplayEvent(timeline!).body;
     }
     for (final event in selectedEvents) {
       if (copyString.isNotEmpty) copyString += '\n\n';
-      copyString += event
-          .getDisplayEvent(timeline!)
-          .calcLocalizedBodyFallback(
-            MatrixLocals(L10n.of(context)),
-            withSenderNamePrefix: true,
-          );
+      copyString += event.getDisplayEvent(timeline!).body;
     }
     return copyString;
   }
