@@ -181,9 +181,10 @@ class ChatDetailsView extends StatelessWidget {
                                 ) ??
                                 false,
                           ),
-                          builder: (context, _) => Row(
-                            mainAxisAlignment: .center,
+                          builder: (context, _) => Wrap(
+                            alignment: .center,
                             spacing: 16,
+                            runSpacing: 16,
                             children: [
                               _MainChatDetailsButton(
                                 onPressed: () =>
@@ -226,7 +227,6 @@ class ChatDetailsView extends StatelessWidget {
                         const SizedBox(height: 16),
                         if (room.canChangeStateEvent(EventTypes.RoomTopic) ||
                             room.topic.isNotEmpty) ...[
-                          Divider(color: theme.dividerColor),
                           ListTile(
                             title: Text(
                               L10n.of(context).chatDescription,
@@ -385,7 +385,7 @@ class _MainChatDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Material(
-      color: theme.colorScheme.primaryContainer,
+      color: theme.colorScheme.secondaryContainer,
       borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       child: InkWell(
         onTap: onPressed,
@@ -396,11 +396,18 @@ class _MainChatDetailsButton extends StatelessWidget {
             crossAxisAlignment: .center,
             mainAxisSize: .min,
             children: [
-              Icon(icon, color: theme.colorScheme.onPrimaryContainer),
-              Text(
-                label,
-                maxLines: 1,
-                style: TextStyle(color: theme.colorScheme.onPrimaryContainer),
+              Icon(icon, color: theme.colorScheme.onSecondaryContainer),
+              SizedBox(
+                width: 64,
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: .ellipsis,
+                  textAlign: .center,
+                  style: TextStyle(
+                    color: theme.colorScheme.onSecondaryContainer,
+                  ),
+                ),
               ),
             ],
           ),
