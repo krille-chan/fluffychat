@@ -18,9 +18,13 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
   final users = await room.requestParticipants();
   if (!context.mounted) return false;
 
+  final userDeviceKeys = await room.client.fetchUserDeviceKeysLists(
+    users.map((user) => user.id).toSet(),
+  );
+
   users.removeWhere((user) {
     if (user.id == room.client.userID) return true;
-    final keys = room.client.userDeviceKeys[user.id];
+    final keys = userDeviceKeys[user.id];
     final masterKey = keys?.masterKey;
 
     if (keys == null ||
@@ -33,6 +37,7 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
   });
 
   if (users.isEmpty) return true;
+  if (!context.mounted) return true;
 
   final l10n = L10n.of(context);
   final theme = Theme.of(context);
@@ -89,9 +94,7 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
                     builder: (context) {
                       final controller = TextEditingController(
                         text: l10n.publicKey(
-                          room
-                                  .client
-                                  .userDeviceKeys[user.id]
+                          userDeviceKeys[user.id]
                                   ?.masterKey
                                   ?.publicKey
                                   ?.beautifiedOneLine ??
@@ -118,7 +121,7 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
           bigButtons: true,
           onPressed: () {
             for (final user in users) {
-              room.client.userDeviceKeys[user.id]?.masterKey?.trustOnFirstUse();
+              userDeviceKeys[user.id]?.masterKey?.trustOnFirstUse();
             }
             Navigator.of(context).pop(_Action.allow);
           },
@@ -144,12 +147,12 @@ Future<bool> showTrustUserInRoomDialog(BuildContext context, Room room) async {
   switch (action) {
     case _Action.allow:
       for (final user in users) {
-        room.client.userDeviceKeys[user.id]?.masterKey?.trustOnFirstUse();
+        userDeviceKeys[user.id]?.masterKey?.trustOnFirstUse();
       }
     case _Action.deny:
       return false;
     case _Action.verification:
-      final req = await room.client.userDeviceKeys[room.directChatMatrixID]
+      final req = await userDeviceKeys[room.directChatMatrixID]
           ?.startVerification();
       if (req == null) return false;
       if (!context.mounted) return false;

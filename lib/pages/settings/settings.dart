@@ -177,7 +177,6 @@ class SettingsController extends State<Settings> {
     if (!client.encryptionEnabled) return;
     if (!client.isLogged()) return;
     await client.accountDataLoading;
-    await client.userDeviceKeysLoading;
     if (client.prevBatch == null) {
       await client.onSync.stream.first;
     }

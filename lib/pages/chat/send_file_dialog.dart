@@ -89,9 +89,10 @@ class SendFileDialogState extends State<SendFileDialog> {
     if (!context.mounted || !proceed) return;
 
     Future<void> sendAction(setProgress) async {
-      if (!widget.room.otherPartyCanReceiveMessages) {
+      if (await widget.room.otherPartyCanReceiveMessages()) {
         throw OtherPartyCanNotReceiveMessages();
       }
+      if (!mounted) return;
       Navigator.of(context, rootNavigator: false).pop();
       final clientConfig = await Result.capture(widget.room.client.getConfig());
       final maxUploadSize =
