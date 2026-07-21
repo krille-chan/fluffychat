@@ -398,11 +398,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Налаштування емодзі",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Короткий код для емодзі",
     "@emoteShortcode": {
         "type": "String",
@@ -1935,7 +1930,6 @@
             }
         }
     },
-    "directChat": "Особисте повідомлення",
     "redactedByBecause": "Відредаговано {username}, тому що: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",

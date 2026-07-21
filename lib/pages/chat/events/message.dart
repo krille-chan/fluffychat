@@ -362,9 +362,12 @@ class Message extends StatelessWidget {
                                                   ? Colors.transparent
                                                   : (theme.brightness ==
                                                             Brightness.light
-                                                        ? displayname.color
+                                                        ? displayname
+                                                              .colorScheme
+                                                              .primary
                                                         : displayname
-                                                              .lightColorText),
+                                                              .colorScheme
+                                                              .primaryContainer),
                                               fontSize: 11,
                                               shadows: wallpaperTextShadow,
                                             ),

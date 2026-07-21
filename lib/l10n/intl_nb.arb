@@ -477,11 +477,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Smilefjes-innstillinger",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Smilefjes-kode",
     "@emoteShortcode": {
         "type": "String",
@@ -2259,7 +2254,6 @@
             }
         }
     },
-    "directChat": "Direkte chat",
     "redactedByBecause": "Redigert av {username} fordi: «{reason}»",
     "@redactedByBecause": {
         "type": "String",

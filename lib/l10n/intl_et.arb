@@ -619,11 +619,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Emotsioonitegevuste seadistused",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Emotsioonitegevuse lühikood",
     "@emoteShortcode": {
         "type": "String",
@@ -1923,7 +1918,6 @@
     "optionalRedactReason": "(Kui soovid lisada) Sõnumi muutmise põhjus...",
     "messagesStyle": "Sõnumid:",
     "shareInviteLink": "Jaga kutse linki",
-    "directChat": "Otsevestlus",
     "setChatDescription": "Lisa vestluse kirjeldus",
     "setColorTheme": "Vali värviteema:",
     "invite": "Kutsu",

@@ -687,11 +687,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Iɣewwaṛen n uzamul uḥulfu",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "globalChatId": "Asulay n udiwenni amatu",
     "accessAndVisibility": "Addaf d twalit",
     "accessAndVisibilityDescription": "Anwa i yesɛan turagt ad yernu ɣer udiwenni-agi u amek adiwenni yezmer ad yettwaf.",
@@ -1791,7 +1786,6 @@
         "description": "Usage hint for the command /send"
     },
     "addAccount": "Rnu amiḍan",
-    "directChat": "Adiwenni usrid",
     "redactMessage": "Kkes izen",
     "@redactMessage": {
         "type": "String",

@@ -560,11 +560,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Ustawienia emotikonów",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Skrócony kod emotikonu",
     "@emoteShortcode": {
         "type": "String",
@@ -1941,7 +1936,6 @@
     "redactMessageDescription": "Wiadomość zostanie usunięta u wszystkich uczestników tej rozmowy. Tego nie można cofnąć.",
     "invalidInput": "Nieprawidłowe dane!",
     "report": "zgłoś",
-    "directChat": "Czat bezpośredni",
     "wrongPinEntered": "Wprowadzono nieprawidłowy kod pin! Spróbuj ponownie za {seconds} sekund...",
     "@wrongPinEntered": {
         "type": "String",

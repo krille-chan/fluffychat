@@ -6,7 +6,13 @@
 import 'package:flutter/material.dart';
 
 extension StringColor on String {
-  static final _colorCache = <String, Map<double, Color>>{};
+  static final _colorSchemeCache = <String, ColorScheme>{};
+
+  ColorScheme get colorScheme =>
+      _colorSchemeCache[this] ??= ColorScheme.fromSeed(
+        seedColor: _getColorLight(0.3),
+        dynamicSchemeVariant: DynamicSchemeVariant.rainbow,
+      );
 
   Color _getColorLight(double light) {
     var number = 0.0;
@@ -15,25 +21,5 @@ extension StringColor on String {
     }
     number = (number % 12) * 25.5;
     return HSLColor.fromAHSL(0.75, number, 1, light).toColor();
-  }
-
-  Color get color {
-    _colorCache[this] ??= {};
-    return _colorCache[this]![0.3] ??= _getColorLight(0.3);
-  }
-
-  Color get darkColor {
-    _colorCache[this] ??= {};
-    return _colorCache[this]![0.2] ??= _getColorLight(0.2);
-  }
-
-  Color get lightColorText {
-    _colorCache[this] ??= {};
-    return _colorCache[this]![0.7] ??= _getColorLight(0.7);
-  }
-
-  Color get lightColorAvatar {
-    _colorCache[this] ??= {};
-    return _colorCache[this]![0.45] ??= _getColorLight(0.45);
   }
 }

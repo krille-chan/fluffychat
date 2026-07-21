@@ -418,11 +418,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Hangulatjel Beállítások",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Hangulatjel rövidkód",
     "@emoteShortcode": {
         "type": "String",
@@ -1892,7 +1887,6 @@
     "openLinkInBrowser": "Hivatkozás megnyitása böngészőben",
     "messageInfo": "Üzenet információ",
     "disableEncryptionWarning": "Biztonsági okokból nem kapcsolható ki egy korábban bekapcsolt csevegés titkosítás.",
-    "directChat": "Privát csevegés",
     "wrongPinEntered": "Hibás pinkódot adott meg! Próbálja újra {seconds} mp múlva...",
     "@wrongPinEntered": {
         "type": "String",

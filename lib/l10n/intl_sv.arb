@@ -467,11 +467,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Emote inställningar",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Dekal kod",
     "@emoteShortcode": {
         "type": "String",
@@ -1953,7 +1948,6 @@
         }
     },
     "openLinkInBrowser": "Öppna länk i webbläsare",
-    "directChat": "Direktchatt",
     "wrongPinEntered": "Fel pin-kod inslagen! Försök igen om {seconds} sekunder…",
     "@wrongPinEntered": {
         "type": "String",

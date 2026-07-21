@@ -1552,11 +1552,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Configurări Emote",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Shortcode de emote",
     "@emoteShortcode": {
         "type": "String",

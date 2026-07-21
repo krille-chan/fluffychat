@@ -504,11 +504,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Impostazioni emote",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Scorciatoia emote",
     "@emoteShortcode": {
         "type": "String",
@@ -1848,7 +1843,6 @@
     },
     "messageInfo": "Informazioni del messaggio",
     "disableEncryptionWarning": "Per motivi di sicurezza non puoi disabilitare la crittografia in una chat, se era stata abilitata in precedenza.",
-    "directChat": "Chat diretta",
     "wrongPinEntered": "È stato inserito il pin sbagliato! Riprova tra {seconds} secondi...",
     "@wrongPinEntered": {
         "type": "String",

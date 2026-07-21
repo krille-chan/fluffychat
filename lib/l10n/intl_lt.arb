@@ -1396,11 +1396,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Jaustukų nustatymai",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Jaustuko trumpasis kodas",
     "@emoteShortcode": {
         "type": "String",

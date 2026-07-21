@@ -672,11 +672,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Emote Sozlamalari",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "globalChatId": "Ommaviy suhbat IDʼsi",
     "accessAndVisibility": "Kirish va koʻrinish",
     "accessAndVisibilityDescription": "Bu suhbatga kim qoʻshilishi mumkin va suhbatni qanday topish mumkin.",
@@ -1314,7 +1309,6 @@
             }
         }
     },
-    "directChat": "Shaxsiy suhbat",
     "redactedByBecause": "{username} tomonidan tahrirlandi, sababi: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",

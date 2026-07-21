@@ -619,11 +619,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "emoteSettings": "Настройки эмодзи",
-    "@emoteSettings": {
-        "type": "String",
-        "placeholders": {}
-    },
     "emoteShortcode": "Код эмодзи",
     "@emoteShortcode": {
         "type": "String",
@@ -1918,7 +1913,6 @@
             }
         }
     },
-    "directChat": "Личный чат",
     "redactedByBecause": "{username} отредактировал это событие. Причина: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
