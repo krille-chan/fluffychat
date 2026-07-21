@@ -16,8 +16,6 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:universal_html/html.dart' as html;
 
 import 'cipher.dart';
-import 'sqlcipher_stub.dart'
-    if (dart.library.io) 'package:sqlcipher_flutter_libs/sqlcipher_flutter_libs.dart';
 
 Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(String clientName) async {
   try {
@@ -73,12 +71,8 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
 
   final path = await _getDatabasePath(clientName);
 
-  // fix dlopen for old Android
-  await applyWorkaroundToOpenSqlCipherOnOldAndroidVersions();
   // import the SQLite / SQLCipher shared objects / dynamic libraries
-  final factory = createDatabaseFactoryFfi(
-    ffiInit: SQfLiteEncryptionHelper.ffiInit,
-  );
+  final factory = createDatabaseFactoryFfi();
 
   // required for [getDatabasesPath]
   databaseFactory = factory;
