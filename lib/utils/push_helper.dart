@@ -36,6 +36,18 @@ Future<void> pushHelper(
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
   bool useNotificationActions = true,
 }) async {
+  l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
+  final progressNotificationTimer =
+      !PlatformInfos.isAndroid || notification.roomId == null
+      ? null
+      : Timer(
+          const Duration(seconds: 1),
+          () => _showProgressNotification(
+            notification: notification,
+            l10n: l10n!,
+            flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
+          ),
+        );
   try {
     await _tryPushHelper(
       notification,
@@ -46,29 +58,9 @@ Future<void> pushHelper(
       useNotificationActions: useNotificationActions,
     );
   } catch (e, s) {
-    l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
-    await flutterLocalNotificationsPlugin.show(
-      id: notification.hashCode,
-      title: l10n.newMessageInFluffyChat,
-      body: l10n.openAppToReadMessages,
-      notificationDetails: NotificationDetails(
-        iOS: const DarwinNotificationDetails(),
-        android: AndroidNotificationDetails(
-          AppConfig.pushNotificationsChannelId,
-          l10n.incomingMessages,
-          number: notification.counts?.unread,
-          ticker: l10n.unreadChatsInApp(
-            AppSettings.applicationName.value,
-            (notification.counts?.unread ?? 0).toString(),
-          ),
-          importance: Importance.high,
-          priority: Priority.max,
-          shortcutId: notification.roomId,
-        ),
-      ),
-    );
-
-    if (e is! TimeoutException && e is! IOException) {
+    if (PlatformInfos.isAndroid &&
+        e is! TimeoutException &&
+        e is! IOException) {
       Logs().e('Push Helper has crashed! Writing into temporary file...', e, s);
       final store = await SharedPreferences.getInstance();
       await store.setStringList(AppConfig.pushHelperCrashReportKey, [
@@ -76,7 +68,37 @@ Future<void> pushHelper(
         s.toString(),
       ]);
     }
+
+    if (notification.roomId != null) {
+      await flutterLocalNotificationsPlugin.show(
+        id: notification.notificationId,
+        title: l10n.newMessageInFluffyChat,
+        body: l10n.openAppToReadMessages,
+        notificationDetails: NotificationDetails(
+          iOS: const DarwinNotificationDetails(),
+          android: AndroidNotificationDetails(
+            AppConfig.pushNotificationsChannelId,
+            l10n.incomingMessages,
+            number: notification.counts?.unread,
+            ticker: l10n.unreadChatsInApp(
+              AppSettings.applicationName.value,
+              (notification.counts?.unread ?? 0).toString(),
+            ),
+            importance: Importance.high,
+            priority: Priority.max,
+            shortcutId: notification.roomId,
+            category: AndroidNotificationCategory.message,
+            groupKey: notification.clientName,
+          ),
+        ),
+      );
+    }
     rethrow;
+  } finally {
+    flutterLocalNotificationsPlugin.cancel(
+      id: '${notification.clientName}_loading'.hashCode,
+    );
+    progressNotificationTimer?.cancel();
   }
 }
 
@@ -101,9 +123,7 @@ Future<void> _tryPushHelper(
     return;
   }
 
-  final clientName = notification.devices?.firstOrNull?.data?.tryGet<String>(
-    'client_name',
-  );
+  final clientName = notification.clientName;
   final store = await AppSettings.init();
 
   final client = clientName == null
@@ -347,7 +367,7 @@ Future<void> _tryPushHelper(
   final needsTitleAndBody = !PlatformInfos.isAndroid;
 
   await flutterLocalNotificationsPlugin.show(
-    id: id,
+    id: notification.notificationId,
     title: needsTitleAndBody ? title : null,
     body: needsTitleAndBody ? body : null,
     notificationDetails: platformChannelSpecifics,
@@ -481,3 +501,35 @@ extension on Client {
     }
   }
 }
+
+extension on PushNotification {
+  String? get clientName =>
+      devices?.firstOrNull?.data?.tryGet<String>('client_name');
+  int get notificationId {
+    final roomId = this.roomId;
+    if (roomId == null) return 0;
+    final clientName = this.clientName;
+    if (clientName == null) return roomId.hashCode;
+    return '${clientName}_$roomId'.hashCode;
+  }
+}
+
+void _showProgressNotification({
+  required PushNotification notification,
+  required L10n l10n,
+  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
+}) => flutterLocalNotificationsPlugin.show(
+  id: '${notification.clientName}_loading'.hashCode,
+  title: l10n.loadingMessages,
+  notificationDetails: NotificationDetails(
+    android: AndroidNotificationDetails(
+      'fluffychat_sync',
+      l10n.loadingMessages,
+      playSound: false,
+      enableVibration: false,
+      silent: true,
+      groupKey: notification.clientName,
+      autoCancel: false,
+    ),
+  ),
+);
