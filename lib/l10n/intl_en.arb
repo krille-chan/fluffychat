@@ -2756,5 +2756,6 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "loadingMessages": "Loading messages..."
 }
