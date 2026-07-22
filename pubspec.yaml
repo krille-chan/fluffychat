@@ -87,7 +87,7 @@ dependencies:
   url_launcher: ^6.3.2
   video_compress: ^3.1.4
   video_player: ^2.13.0
-  wakelock_plus: ^1.6.1
+  wakelock_plus: ^1.7.0
   webrtc_interface: ^1.5.1
 
 dev_dependencies:
