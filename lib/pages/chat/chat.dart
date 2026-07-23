@@ -679,6 +679,12 @@ class ChatController extends State<ChatPageWithRoom>
       parseCommands = false;
     }
 
+    if (currentlyTyping) {
+      typingCoolDown?.cancel();
+      currentlyTyping = false;
+      room.setTyping(false);
+    }
+
     // ignore: unawaited_futures
     room.sendTextEvent(
       sendController.text,
