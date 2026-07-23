@@ -557,24 +557,45 @@ class ChatController extends State<ChatPageWithRoom>
   Future<void>? _setReadMarkerFuture;
 
   void setReadMarker({String? eventId}) {
-    if (eventId?.isValidMatrixIdStrict() == false) return;
-    if (_setReadMarkerFuture != null) return;
-    if (_scrolledUp) return;
-    if (scrollUpBannerEventId != null) return;
-
-    if (eventId == null &&
-        !room.hasNewMessages &&
-        room.notificationCount == 0) {
-      return;
-    }
-
     // Do not send read markers when app is not in foreground
     if (WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed) {
       return;
     }
 
+    // We are already setting a read marker
+    if (_setReadMarkerFuture != null) return;
+
+    // We only set read marker if we are at the bottom
+    if (_scrolledUp) return;
+
+    // We do not set read marker if we offer user the scroll up banner
+    if (scrollUpBannerEventId != null) return;
+
+    // We do not set read marker if timeline is empty
     final timeline = this.timeline;
     if (timeline == null || timeline.events.isEmpty) return;
+
+    final setOnLatestEvent = eventId == null;
+    eventId ??= timeline.events
+        .firstWhereOrNull((event) => !event.isState)
+        ?.eventId;
+
+    // There is no event we could place a read marker
+    if (eventId == null) return;
+
+    // This is a sending event, we do not set a readmarker yet
+    if (eventId.isValidMatrixIdStrict() == false) return;
+
+    // Already set a read marker on this event
+    if (room.fullyRead == eventId) return;
+
+    // Set a readmarker on a specific event, not latest, but room is not unread
+    // at all.
+    if (!setOnLatestEvent &&
+        !room.hasNewMessages &&
+        room.notificationCount == 0) {
+      return;
+    }
 
     Logs().d('Set read marker...', eventId);
     // ignore: unawaited_futures
