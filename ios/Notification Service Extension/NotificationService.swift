@@ -97,8 +97,9 @@ class NotificationService: UNNotificationServiceExtension {
             return
         }
         guard let database = getDatabase(key: key, path: path) else {
+            // getDatabase already logged the concrete SQLite error
+            bestAttemptContent.title = "Unable to open database!"
             bestAttemptContent.body = path
-            os_log("[FluffyChatPushHelper] Unable to open database!")
             contentHandler(bestAttemptContent)
             return
         }
@@ -180,16 +181,44 @@ class NotificationService: UNNotificationServiceExtension {
             )
         else { return nil }
 
-        return libraryPath.appendingPathComponent(
-            "\(clientName).sqlite"
-        ).path()
+        // Use URL.path (not path()) — path(percentEncoded:) can break FileManager paths.
+        return libraryPath.appendingPathComponent("\(clientName).sqlite").path
     }
 
     func getDatabase(key: String, path: String) -> FMDatabase? {
+        guard FileManager.default.fileExists(atPath: path) else { return nil }
+
         let database = FMDatabase(path: path)
-        // Open database in read-only mode (SQLITE_OPEN_READONLY = 0x00000001)
-        guard database.open(withFlags: 0x0000_0001) else { return nil }
-        database.setKey(key)
+        // SQLCipher + WAL cannot reliably open with SQLITE_OPEN_READONLY.
+        // SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX
+        let flags: Int32 = 0x0000_0002 | 0x0001_0000
+        guard database.open(withFlags: flags) else {
+            os_log(
+                "[FluffyChatPushHelper] sqlite open failed: %{public}@",
+                database.lastErrorMessage()
+            )
+            return nil
+        }
+
+        // Match Flutter / matrix-dart-sdk: PRAGMA KEY='…' (passphrase), not raw key bytes.
+        let escapedKey = key.replacingOccurrences(of: "'", with: "''")
+        guard database.executeStatements("PRAGMA key = '\(escapedKey)';") else {
+            os_log(
+                "[FluffyChatPushHelper] PRAGMA key failed: %{public}@",
+                database.lastErrorMessage()
+            )
+            database.close()
+            return nil
+        }
+
+        guard database.goodConnection else {
+            os_log(
+                "[FluffyChatPushHelper] bad connection after key: %{public}@",
+                database.lastErrorMessage()
+            )
+            database.close()
+            return nil
+        }
 
         return database
     }
