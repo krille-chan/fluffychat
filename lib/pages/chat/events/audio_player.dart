@@ -18,7 +18,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
-import 'package:opus_caf_converter_dart/opus_caf_converter_dart.dart';
+import 'package:ogg_caf_converter/ogg_caf_converter.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../../utils/matrix_sdk_extensions/event_extension.dart';
@@ -183,7 +183,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           Logs().v('Convert ogg audio file for iOS...');
           final convertedFile = File('${file.path}.caf');
           if (await convertedFile.exists() == false) {
-            OpusCaf().convertOpusToCaf(file.path, convertedFile.path);
+            OggCafConverter().convertOggToCaf(
+              input: file.path,
+              output: convertedFile.path,
+            );
           }
           file = convertedFile;
         }

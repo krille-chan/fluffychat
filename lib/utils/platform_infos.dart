@@ -45,6 +45,9 @@ abstract class PlatformInfos {
 
   static bool get supportsAppLock => (isMobile || isMacOS);
 
+  static bool get supportsFfmpeg =>
+      (isAndroid || isIOS || isWindows || isMacOS);
+
   static String get appDisplayName =>
       '${AppSettings.applicationName.value} ${isWeb ? 'web' : Platform.operatingSystem}${kReleaseMode ? '' : 'Debug'}';
 
