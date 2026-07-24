@@ -75,7 +75,9 @@ enum AppSettings<T> {
   webNotificationSound<bool>('chat.fluffy.web_notification_sound', true),
   chatFilter<String>('chat.fluffy.chat_filter', 'allChats'),
   hideRoomsInSpaces<bool>('chat.fluffy.hideRoomsInSpaces', false),
-  showThumbnailsInTimeline<bool>('chat.fluffy.showThumbnailsInTimeline', true);
+  showThumbnailsInTimeline<bool>('chat.fluffy.showThumbnailsInTimeline', true),
+  doubleTapToReact<bool>('chat.fluffy.double_tap_to_react', false),
+  doubleTapReaction<String>('chat.fluffy.double_tap_reaction', '❤️');
 
   final String key;
   final T defaultValue;
