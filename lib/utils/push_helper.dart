@@ -22,6 +22,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
+import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -60,7 +61,8 @@ Future<void> pushHelper(
   } catch (e, s) {
     if (PlatformInfos.isAndroid &&
         e is! TimeoutException &&
-        e is! IOException) {
+        e is! IOException &&
+        e is! http.ClientException) {
       Logs().e('Push Helper has crashed! Writing into temporary file...', e, s);
       final store = await SharedPreferences.getInstance();
       await store.setStringList(AppConfig.pushHelperCrashReportKey, [
