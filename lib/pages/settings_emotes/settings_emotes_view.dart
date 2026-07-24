@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/gif_api.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -11,7 +12,9 @@ import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/mxc_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../widgets/matrix.dart';
 import 'settings_emotes.dart';
@@ -201,6 +204,71 @@ class EmotesSettingsView extends StatelessWidget {
               ),
             ],
             if (!controller.readonly) ...[
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 8.0,
+                ),
+                child: DropdownButtonFormField<GifProvider>(
+                  value: controller.gifProvider,
+                  decoration: const InputDecoration(
+                    labelText: 'GIF API Provider',
+                    prefixIcon: Icon(Icons.gif_outlined),
+                  ),
+                  items: const [
+                    DropdownMenuItem(
+                      value: GifProvider.giphy,
+                      child: Text('Giphy'),
+                    ),
+                    DropdownMenuItem(
+                      value: GifProvider.klipy,
+                      child: Text('Klipy'),
+                    ),
+                  ],
+                  onChanged: (provider) {
+                    if (provider != null) {
+                      controller.updateGifProvider(provider);
+                    }
+                  },
+                ),
+              ),
+              ListTile(
+                title: Text(
+                  controller.gifProvider == GifProvider.klipy
+                      ? L10n.of(context).enterKlipyApiKey
+                      : L10n.of(context).enterGiphyApiKey,
+                ),
+                subtitle: Linkify(
+                  text: controller.gifProvider == GifProvider.klipy
+                      ? 'https://klipy.co'
+                      : 'https://developers.giphy.com',
+                  textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
+                  options: const LinkifyOptions(humanize: false),
+                  linkStyle: TextStyle(
+                    color: theme.colorScheme.primary,
+                    decorationColor: theme.colorScheme.primary,
+                  ),
+                  onOpen: (link) => launchUrlString(link.url),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: TextFormField(
+                  key: ValueKey('gif_api_key_${controller.gifProvider.name}'),
+                  initialValue: controller.giphyApiKey,
+                  onChanged: controller.updateApiKey,
+                  obscureText: true,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.lock_outlined),
+                    hintText: '********',
+                    labelText: controller.gifProvider == GifProvider.klipy
+                        ? L10n.of(context).enterKlipyApiKey
+                        : L10n.of(context).enterGiphyApiKey,
+                  ),
+                ),
+              ),
+              const Divider(),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: ElevatedButton.icon(

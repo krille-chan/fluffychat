@@ -6,20 +6,31 @@
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/chat/sticker_picker_dialog.dart';
 import 'package:fluffychat/pages/chat/trust_user_key_dialog.dart';
+import 'package:fluffychat/pages/chat/sticker_picker_dialog.dart';
+import 'package:fluffychat/pages/chat/gif_picker_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
+import '../../widgets/matrix.dart';
 import 'chat.dart';
 
-class ChatEmojiPicker extends StatelessWidget {
+class ChatEmojiPicker extends StatefulWidget {
   final ChatController controller;
   const ChatEmojiPicker(this.controller, {super.key});
 
   @override
+  State<ChatEmojiPicker> createState() => _ChatEmojiPickerState();
+}
+
+class _ChatEmojiPickerState extends State<ChatEmojiPicker> {
+  bool isSending = false;
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final controller = widget.controller;
+
     return AnimatedContainer(
       duration: FluffyThemes.animationDuration,
       curve: FluffyThemes.animationCurve,
@@ -30,13 +41,14 @@ class ChatEmojiPicker extends StatelessWidget {
           : 0,
       child: controller.showEmojiPicker
           ? DefaultTabController(
-              length: 2,
+              length: 3,
               child: Column(
                 children: [
                   TabBar(
                     tabs: [
                       Tab(text: L10n.of(context).emojis),
                       Tab(text: L10n.of(context).stickers),
+                      Tab(text: L10n.of(context).gifs),
                     ],
                   ),
                   Expanded(
@@ -93,6 +105,29 @@ class ChatEmojiPicker extends StatelessWidget {
                               threadLastEventId: controller.threadLastEventId,
                             );
                             controller.hideEmojiPicker();
+                          },
+                        ),
+                        GifPickerDialog(
+                          isSending: isSending,
+                          onSelected: (gif) async {
+                            if (isSending) return;
+
+                            if (gif.url.isEmpty ||
+                                !gif.url.startsWith('http')) {
+                              print("Error: Invalid URL");
+                              return;
+                            }
+
+                            setState(() => isSending = true);
+
+                            try {
+                              await controller.room.sendTextEvent(gif.url);
+                            } catch (e) {
+                              Logs().w('Failed to send GIF', e);
+                            } finally {
+                              setState(() => isSending = false);
+                              controller.hideEmojiPicker();
+                            }
                           },
                         ),
                       ],

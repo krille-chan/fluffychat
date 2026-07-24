@@ -10,8 +10,10 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/events/poll.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../../config/app_config.dart';
 import '../../../utils/event_checkbox_extension.dart';
@@ -23,6 +25,8 @@ import 'html_message.dart';
 import 'image_bubble.dart';
 import 'map_bubble.dart';
 import 'message_download_content.dart';
+import '../../../utils/gif_api.dart';
+import '../../../utils/gif_favorites.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
@@ -46,9 +50,19 @@ class MessageContent extends StatelessWidget {
     required this.bigEmojis,
   });
 
+  String? _extractFileUrl(String text) {
+    final urlRegExp = RegExp(
+      r'https?:\/\/[^\s<>\"]+(\.(png|jpg|jpeg|gif|webp|svg|mp4|webm|webmd|mp3|ogg|wav)|giphy\.com|klipy\.co|tenor\.com)(\?[^\s<>\"]*)?',
+      caseSensitive: false,
+    );
+    final match = urlRegExp.firstMatch(text);
+    return match?.group(0);
+  }
+
   @override
   Widget build(BuildContext context) {
-    const fontSize = AppConfig.messageFontSize;
+    final fontSize =
+        AppConfig.messageFontSize * AppSettings.fontSizeFactor.value;
     final buttonTextColor = textColor;
     switch (event.type) {
       case EventTypes.Message:
@@ -181,25 +195,60 @@ class MessageContent extends StatelessWidget {
             final bigEmotes =
                 !event.isRichMessage && bigEmojis.contains(event.body);
 
+            final embeddedFileUrl = AppSettings.autoEmbedFileLinks.value
+                ? _extractFileUrl(event.body)
+                : null;
+
+            if (embeddedFileUrl != null) {
+              final cleanedHtml = html
+                  .replaceAll(embeddedFileUrl, '')
+                  .replaceAll(RegExp(r'<a[^>]*>.*?<\/a>'), '')
+                  .replaceAll(RegExp(r'<p>\s*<\/p>'), '')
+                  .trim();
+              if (cleanedHtml.isEmpty || cleanedHtml == '<p></p>') {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  child: _FileLinkEmbed(url: embeddedFileUrl),
+                );
+              }
+              html = cleanedHtml;
+            }
+
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: HtmlMessage(
-                html: html,
-                textColor: textColor,
-                room: event.room,
-                fontSize: AppConfig.messageFontSize * (bigEmotes ? 5 : 1),
-                linkStyle: TextStyle(
-                  color: linkColor,
-                  fontSize: AppConfig.messageFontSize,
-                  decoration: TextDecoration.underline,
-                  decorationColor: linkColor,
-                ),
-                onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                eventId: event.eventId,
-                checkboxCheckedEvents: event.aggregatedEvents(
-                  timeline,
-                  EventCheckboxRoomExtension.relationshipType,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  HtmlMessage(
+                    html: html,
+                    textColor: textColor,
+                    room: event.room,
+                    fontSize:
+                        AppSettings.fontSizeFactor.value *
+                        AppConfig.messageFontSize *
+                        (bigEmotes ? 5 : 1),
+                    linkStyle: TextStyle(
+                      color: linkColor,
+                      fontSize:
+                          AppSettings.fontSizeFactor.value *
+                          AppConfig.messageFontSize,
+                      decoration: TextDecoration.underline,
+                      decorationColor: linkColor,
+                    ),
+                    onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                    eventId: event.eventId,
+                    checkboxCheckedEvents: event.aggregatedEvents(
+                      timeline,
+                      EventCheckboxRoomExtension.relationshipType,
+                    ),
+                  ),
+                  if (embeddedFileUrl != null)
+                    _FileLinkEmbed(url: embeddedFileUrl),
+                ],
               ),
             );
         }
@@ -319,6 +368,201 @@ class _ButtonContent extends StatelessWidget {
           style: TextStyle(color: textColor, fontSize: fontSize),
         ),
       ),
+    );
+  }
+}
+
+class InlineMediaEmbedWidget extends StatefulWidget {
+  final String url;
+  const InlineMediaEmbedWidget({required this.url, super.key});
+
+  @override
+  State<InlineMediaEmbedWidget> createState() => _InlineMediaEmbedWidgetState();
+}
+
+class _InlineMediaEmbedWidgetState extends State<InlineMediaEmbedWidget>
+    with AutomaticKeepAliveClientMixin {
+  VideoPlayerController? _controller;
+  bool _initialized = false;
+  bool _hasError = false;
+  bool _isFav = false;
+
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkFavorite();
+    final lower = widget.url.toLowerCase();
+    final isVideo =
+        lower.contains('.mp4') ||
+        lower.contains('.webm') ||
+        lower.contains('.webmd');
+    if (isVideo) {
+      _initVideo();
+    }
+  }
+
+  Future<void> _checkFavorite() async {
+    try {
+      if (!mounted) return;
+      final client = Matrix.of(context).client;
+      final favs = await GifFavorites.getFavorites(client: client);
+      final isFav = GifFavorites.isFavorite(
+        GifItem(
+          id: widget.url,
+          title: widget.url.split('/').last,
+          url: widget.url,
+          embedUrl: widget.url,
+          previewUrl: widget.url,
+          width: 0,
+          height: 0,
+        ),
+        favs,
+      );
+      if (mounted) {
+        setState(() => _isFav = isFav);
+      }
+    } catch (_) {}
+  }
+
+  Future<void> _toggleFavorite() async {
+    try {
+      if (!mounted) return;
+      final client = Matrix.of(context).client;
+      final item = GifItem(
+        id: widget.url,
+        title: widget.url.split('/').last,
+        url: widget.url,
+        embedUrl: widget.url,
+        previewUrl: widget.url,
+        width: 0,
+        height: 0,
+      );
+      final updated = await GifFavorites.toggleFavorite(item, client: client);
+      if (mounted) {
+        setState(() {
+          _isFav = GifFavorites.isFavorite(item, updated);
+        });
+      }
+    } catch (_) {}
+  }
+
+  Future<void> _initVideo() async {
+    try {
+      _controller = VideoPlayerController.networkUrl(Uri.parse(widget.url));
+      await _controller!.initialize();
+      _controller!.setLooping(true);
+      _controller!.play();
+      if (mounted) {
+        setState(() => _initialized = true);
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(() => _hasError = true);
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller?.pause();
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    final lower = widget.url.toLowerCase();
+    final isVideo =
+        lower.contains('.mp4') ||
+        lower.contains('.webm') ||
+        lower.contains('.webmd');
+
+    Widget mediaWidget;
+    if (!isVideo || _hasError) {
+      mediaWidget = Image.network(
+        widget.url,
+        fit: BoxFit.cover,
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+          return Container(
+            height: 150,
+            color: Colors.black12,
+            child: const Center(child: CircularProgressIndicator.adaptive()),
+          );
+        },
+        errorBuilder: (_, __, ___) => OutlinedButton.icon(
+          icon: const Icon(Icons.insert_drive_file_outlined),
+          label: Text(
+            widget.url.split('/').last,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          onPressed: () => UrlLauncher(context, widget.url).launchUrl(),
+        ),
+      );
+    } else if (_initialized && _controller != null) {
+      mediaWidget = AspectRatio(
+        aspectRatio: _controller!.value.aspectRatio > 0
+            ? _controller!.value.aspectRatio
+            : 16 / 9,
+        child: VideoPlayer(_controller!),
+      );
+    } else {
+      mediaWidget = Container(
+        height: 150,
+        color: Colors.black12,
+        child: const Center(child: CircularProgressIndicator.adaptive()),
+      );
+    }
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8.0),
+      child: Container(
+        constraints: const BoxConstraints(maxHeight: 250),
+        child: Stack(
+          alignment: Alignment.topRight,
+          children: [
+            mediaWidget,
+            Positioned(
+              top: 6,
+              right: 6,
+              child: InkWell(
+                onTap: _toggleFavorite,
+                borderRadius: BorderRadius.circular(16),
+                child: Container(
+                  padding: const EdgeInsets.all(6.0),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withValues(alpha: 0.6),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    _isFav ? Icons.star : Icons.star_border,
+                    color: _isFav ? Colors.amber : Colors.white,
+                    size: 20,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _FileLinkEmbed extends StatelessWidget {
+  final String url;
+  const _FileLinkEmbed({required this.url});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: InlineMediaEmbedWidget(url: url),
     );
   }
 }
