@@ -2760,5 +2760,5 @@
     "loadingMessages": "Loading messages...",
     "buildDoesNotSupportFirebase": "This build does not support firebase cloud messaging.",
     "unableToRegisterDeviceForFirebase": "Unable to register device for firebase cloud messaging.",
-    "supportedUnifiedPushDistributors": "Supported Unified Push distributors:"
+    "unifiedPushDistributors": "Unified Push distributors:"
 }

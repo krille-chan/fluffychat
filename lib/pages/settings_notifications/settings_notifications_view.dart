@@ -7,6 +7,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_notifications/push_rule_extensions.dart';
+import 'package:fluffychat/utils/background_push.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -15,6 +16,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
+import 'package:unifiedpush_ui/unifiedpush_ui.dart';
 
 import '../../utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
@@ -165,11 +167,28 @@ class SettingsNotificationsView extends StatelessWidget {
                           return SizedBox.shrink();
                         }
                         return ListTile(
-                          title: Text(
-                            L10n.of(context).supportedUnifiedPushDistributors,
-                          ),
+                          title: Text(L10n.of(context).unifiedPushDistributors),
                           leading: Icon(Icons.info_outlined),
-                          subtitle: Text(distributors.join(', ')),
+                          subtitle: SelectableText(distributors.join(', ')),
+                          trailing: distributors.length >= 2
+                              ? IconButton(
+                                  onPressed: () => UnifiedPushUi(
+                                    context: context,
+                                    instances: ['default'],
+                                    unifiedPushFunctions: UPFunctions(),
+                                    showNoDistribDialog: false,
+                                    onNoDistribDialogDismissed:
+                                        () {}, // TODO: Implement me
+                                  ).registerAppWithDialog(),
+                                  icon: Icon(Icons.edit_outlined),
+                                  style: IconButton.styleFrom(
+                                    backgroundColor:
+                                        theme.colorScheme.primaryContainer,
+                                    foregroundColor:
+                                        theme.colorScheme.onPrimaryContainer,
+                                  ),
+                                )
+                              : null,
                         );
                       },
                     ),
@@ -210,16 +229,16 @@ class SettingsNotificationsView extends StatelessWidget {
                           ),
                         );
                       }
-                      return ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: pushers.length,
-                        itemBuilder: (_, i) => ListTile(
-                          title: Text(
-                            '${pushers[i].appDisplayName} - ${pushers[i].appId}',
+                      return SelectionArea(
+                        child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: pushers.length,
+                          itemBuilder: (_, i) => ListTile(
+                            title: Text(pushers[i].appId),
+                            subtitle: Text(pushers[i].data.url.toString()),
+                            onTap: () => controller.onPusherTap(pushers[i]),
                           ),
-                          subtitle: Text(pushers[i].data.url.toString()),
-                          onTap: () => controller.onPusherTap(pushers[i]),
                         ),
                       );
                     },

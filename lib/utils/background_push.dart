@@ -158,7 +158,6 @@ class BackgroundPush {
     required Client client,
     String? gatewayUrl,
     String? token,
-    bool useDeviceSpecificAppId = false,
   }) async {
     if (PlatformInfos.isIOS) {
       //<GOOGLE_SERVICES>await firebase.requestPermission();
@@ -179,18 +178,13 @@ class BackgroundPush {
         })) ??
         [];
 
-    // Just the plain app id, we add the .data_message suffix later
-    var appId = AppConfig.pushNotificationsAppId;
-    // we need the deviceAppId to remove potential legacy UP pusher
-    var deviceAppId = '$appId.${client.deviceID}';
+    // we need the deviceAppId to remove potential legacy pusher
+    var deviceAppId = '${AppConfig.pushNotificationsAppId}.${client.deviceID}';
     // appId may only be up to 64 chars as per spec
     if (deviceAppId.length > 64) {
       deviceAppId = deviceAppId.substring(0, 64);
     }
-    if (!useDeviceSpecificAppId && PlatformInfos.isAndroid) {
-      appId += '.data_message';
-    }
-    final thisAppId = useDeviceSpecificAppId ? deviceAppId : appId;
+    final thisAppId = deviceAppId;
     if (gatewayUrl == null || token == null) {
       Logs().w('[Push] Missing required push credentials');
       return;
@@ -212,20 +206,26 @@ class BackgroundPush {
           currentPusher.data.additionalProperties['data_message'] ==
               pusherDataMessageFormat,
     )) {
-      Logs().i('[Push] Pusher already set for ${client.clientName}');
+      Logs().i('[Push] Pusher already set for ${client.deviceID}');
       return;
     }
 
     if (!client.isLogged()) return;
 
-    final legacyPushers = pushers.where((pusher) => pusher.pushkey == token);
+    final legacyPushers = pushers.where(
+      (pusher) =>
+          pusher.appId == thisAppId || // To migrate older app-id format:
+          ((pusher.appId == 'chat.fluffy.fluffychat.data_message' ||
+                  pusher.appId == 'chat.fluffy.fluffychat') &&
+              pusher.pushkey == token),
+    );
     for (final pusher in legacyPushers) {
       try {
         await client.deletePusher(pusher);
-        Logs().i('[Push] Removed legacy pusher for ${client.clientName}');
+        Logs().i('[Push] Removed legacy pusher for ${client.deviceID}');
       } catch (err) {
         Logs().w(
-          '[Push] Failed to remove old pusher for ${client.clientName}',
+          '[Push] Failed to remove old pusher for ${client.deviceID}',
           err,
         );
       }
@@ -408,7 +408,6 @@ class BackgroundPush {
         client: client,
         gatewayUrl: endpoint,
         token: newEndpoint,
-        useDeviceSpecificAppId: true,
       );
     }
     await AppSettings.unifiedPushEndpoint.setItem(newEndpoint);
@@ -425,7 +424,6 @@ class BackgroundPush {
   }
 
   Future<void> _onUpMessage(PushMessage pushMessage, String i) async {
-    Logs().wtf('Push Notification from UP received', pushMessage);
     final message = pushMessage.content;
     upAction = true;
     final data = Map<String, dynamic>.from(
