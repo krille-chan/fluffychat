@@ -283,7 +283,8 @@ class ChatController extends State<ChatPageWithRoom>
   Future<void> _shareItems([_]) async {
     final shareItems = widget.shareItems;
     if (shareItems == null || shareItems.isEmpty) return;
-    if (!room.otherPartyCanReceiveMessages) {
+    if (await room.otherPartyCanReceiveMessages() == false) {
+      if (!mounted) return;
       final theme = Theme.of(context);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -298,6 +299,7 @@ class ChatController extends State<ChatPageWithRoom>
       );
       return;
     }
+    if (!mounted) return;
     final proceed = await showTrustUserInRoomDialog(context, room);
     if (!mounted || !proceed) return;
     for (final item in shareItems) {
