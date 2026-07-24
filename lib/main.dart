@@ -54,6 +54,10 @@ void main(List<String> args) async {
   // widget bindings are initialized already.
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Set Image cache to prevent constant reloading of gifs
+  PaintingBinding.instance.imageCache.maximumSizeBytes = 500 * 1024 * 1024;
+  PaintingBinding.instance.imageCache.maximumSize = 300;
+
   final store = await AppSettings.init();
   Logs().i('Welcome to ${AppSettings.applicationName.value} <3');
 
