@@ -365,10 +365,10 @@ packages:
     dependency: "direct main"
     description:
       name: emoji_picker_flutter
-      sha256: "67863bb82d024156c37349206acd6dd881c511ea3271bb7290449d549456a7b6"
+      sha256: "47794613fc533225bb506885e378e5b2c7097af06acbfd409a0bab444613a51e"
       url: "https://pub.dev"
     source: hosted
-    version: "4.5.2"
+    version: "4.5.3"
   fake_async:
     dependency: transitive
     description:
