@@ -26,7 +26,7 @@ dependencies:
   desktop_drop: ^0.7.1
   device_info_plus: ^13.2.0
   dynamic_color: ^1.8.1
-  emoji_picker_flutter: ^4.4.0
+  emoji_picker_flutter: ^4.5.2
   file_picker: ^12.0.0-beta.7
   file_selector: ^1.1.0
   flutter:
