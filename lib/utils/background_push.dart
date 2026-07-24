@@ -39,6 +39,7 @@ class BackgroundPush {
 
   MatrixState? matrix;
   String? _fcmToken;
+  String? get fcmToken => _fcmToken;
   void Function(String errorMsg, {Uri? link})? onFcmError;
   L10n? l10n;
 

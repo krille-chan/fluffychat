@@ -7,12 +7,14 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_notifications/push_rule_extensions.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
+import 'package:unifiedpush/unifiedpush.dart';
 
 import '../../utils/localized_exception_extension.dart';
 import '../../widgets/matrix.dart';
@@ -36,6 +38,7 @@ class SettingsNotificationsView extends StatelessWidget {
       if (pushRules?.underride?.isNotEmpty ?? false)
         (rules: pushRules?.underride ?? [], kind: PushRuleKind.underride),
     ];
+    final pushService = Matrix.of(context).backgroundPush;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: !FluffyThemes.isColumnMode(context),
@@ -130,6 +133,46 @@ class SettingsNotificationsView extends StatelessWidget {
                         ),
                       Divider(color: theme.dividerColor),
                     ],
+
+                  if (pushService?.firebaseEnabled != true)
+                    ListTile(
+                      title: Text(L10n.of(context).buildDoesNotSupportFirebase),
+                      leading: Icon(
+                        Icons.close,
+                        color: theme.colorScheme.error,
+                      ),
+                    ),
+                  if (PlatformInfos.isAndroid)
+                    FutureBuilder(
+                      future: UnifiedPush.getDistributors(),
+                      builder: (context, snapshot) {
+                        final distributors = snapshot.data;
+                        if (distributors == null || distributors.isEmpty) {
+                          if (pushService?.firebaseEnabled == true &&
+                              pushService?.fcmToken == null) {
+                            return ListTile(
+                              title: Text(
+                                L10n.of(
+                                  context,
+                                ).unableToRegisterDeviceForFirebase,
+                              ),
+                              leading: Icon(
+                                Icons.close,
+                                color: theme.colorScheme.error,
+                              ),
+                            );
+                          }
+                          return SizedBox.shrink();
+                        }
+                        return ListTile(
+                          title: Text(
+                            L10n.of(context).supportedUnifiedPushDistributors,
+                          ),
+                          leading: Icon(Icons.info_outlined),
+                          subtitle: Text(distributors.join(', ')),
+                        );
+                      },
+                    ),
                   ListTile(
                     title: Text(
                       L10n.of(context).devices,
