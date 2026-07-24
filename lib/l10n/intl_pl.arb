@@ -2717,5 +2717,8 @@
     },
     "unlockWithBiometrics": "Odblokuj za pomocą uwierzytelniania biometrycznego",
     "useAppLock": "Użyj blokady aplikacji",
-    "biometricsDescription": "Za pomocą biometrycznego uwierzytelniania możesz odblokować aplikację za pomocą swojej twarzy lub odsisku palca. Możliwości zależą od twojego urządzenia."
+    "biometricsDescription": "Za pomocą biometrycznego uwierzytelniania możesz odblokować aplikację za pomocą swojej twarzy lub odsisku palca. Możliwości zależą od twojego urządzenia.",
+    "doubleTapToReact": "Podwójne dotknięcie, aby zareagować",
+    "doubleTapToReactDescription": "Podwójne dotknięcie wiadomości reaguje zamiast zaznaczania tekstu",
+    "doubleTapReaction": "Reakcja podwójnego dotknięcia"
 }

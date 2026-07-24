@@ -2760,5 +2760,8 @@
     "loadingMessages": "Loading messages...",
     "buildDoesNotSupportFirebase": "This build does not support firebase cloud messaging.",
     "unableToRegisterDeviceForFirebase": "Unable to register device for firebase cloud messaging.",
-    "unifiedPushDistributors": "Unified Push distributors:"
+    "unifiedPushDistributors": "Unified Push distributors:",
+    "doubleTapToReact": "Double-tap to react",
+    "doubleTapToReactDescription": "Double-tap a message to react instead of selecting text",
+    "doubleTapReaction": "Double-tap reaction"
 }
