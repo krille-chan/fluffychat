@@ -86072,7 +86072,7 @@ if(r){q=A.fm(s.cx.c,new A.aYe())
 a=q==null?null:q.y}if(a==null)return
 if(!A.cK(a))return
 if(p.gbf().gaoG()===a)return
-if(!r&&!p.gbf().gTV()&&p.gbf().c===0)return
+if(r&&!p.gbf().gTV()&&p.gbf().c===0)return
 $.V().Cq(0,"Set read marker...",a)
 p.k1=s.aeX(a,A.hA(B.u1)).aL(new A.aYf(p),t.H)},
 Wp(){return this.atT(null)},
@@ -86802,7 +86802,7 @@ A.aYk.prototype={
 $0(){},
 $S:0}
 A.aYe.prototype={
-$1(a){return A.ba(["m.room.message","m.sticker"],t.N).p(0,a.a)},
+$1(a){return A.ba(["m.room.message","m.sticker","m.room.encrypted"],t.N).p(0,a.a)},
 $S:22}
 A.aYf.prototype={
 $1(a){this.a.k1=null},
