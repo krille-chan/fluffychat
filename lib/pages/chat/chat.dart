@@ -577,7 +577,13 @@ class ChatController extends State<ChatPageWithRoom>
 
     final setOnLatestEvent = eventId == null;
     eventId ??= timeline.events
-        .firstWhereOrNull((event) => !event.isState)
+        .firstWhereOrNull(
+          (event) => {
+            EventTypes.Message,
+            EventTypes.Sticker,
+            EventTypes.Encrypted,
+          }.contains(event.type),
+        )
         ?.eventId;
 
     // There is no event we could place a read marker
@@ -591,7 +597,7 @@ class ChatController extends State<ChatPageWithRoom>
 
     // Set a readmarker on a specific event, not latest, but room is not unread
     // at all.
-    if (!setOnLatestEvent &&
+    if (setOnLatestEvent &&
         !room.hasNewMessages &&
         room.notificationCount == 0) {
       return;
