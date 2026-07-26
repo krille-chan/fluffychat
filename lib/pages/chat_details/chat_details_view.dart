@@ -325,21 +325,15 @@ class ChatDetailsView extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          trailing: !room.isDirectChat && room.canInvite
+                              ? TextButton.icon(
+                                  icon: Icon(Icons.add),
+                                  label: Text(L10n.of(context).invite),
+                                  onPressed: () =>
+                                      context.go('/rooms/${room.id}/invite'),
+                                )
+                              : null,
                         ),
-                        if (!room.isDirectChat && room.canInvite)
-                          ListTile(
-                            title: Text(L10n.of(context).inviteContact),
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  theme.colorScheme.primaryContainer,
-                              foregroundColor:
-                                  theme.colorScheme.onPrimaryContainer,
-                              radius: Avatar.defaultSize / 2,
-                              child: const Icon(Icons.add_outlined),
-                            ),
-                            trailing: const Icon(Icons.chevron_right_outlined),
-                            onTap: () => context.go('/rooms/${room.id}/invite'),
-                          ),
                       ],
                     )
                   : i < members.length + 1
@@ -348,13 +342,6 @@ class ChatDetailsView extends StatelessWidget {
                       title: Text(
                         L10n.of(context).loadCountMoreParticipants(
                           (actualMembersCount - members.length),
-                        ),
-                      ),
-                      leading: CircleAvatar(
-                        backgroundColor: theme.scaffoldBackgroundColor,
-                        child: const Icon(
-                          Icons.group_outlined,
-                          color: Colors.grey,
                         ),
                       ),
                       onTap: () => context.push(
@@ -385,7 +372,7 @@ class _MainChatDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Material(
-      color: theme.colorScheme.secondaryContainer,
+      color: theme.colorScheme.surfaceContainerHigh,
       borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       child: InkWell(
         onTap: onPressed,
@@ -396,7 +383,7 @@ class _MainChatDetailsButton extends StatelessWidget {
             crossAxisAlignment: .center,
             mainAxisSize: .min,
             children: [
-              Icon(icon, color: theme.colorScheme.onSecondaryContainer),
+              Icon(icon, color: theme.colorScheme.secondary),
               SizedBox(
                 width: 64,
                 child: Text(
@@ -404,9 +391,7 @@ class _MainChatDetailsButton extends StatelessWidget {
                   maxLines: 1,
                   overflow: .ellipsis,
                   textAlign: .center,
-                  style: TextStyle(
-                    color: theme.colorScheme.onSecondaryContainer,
-                  ),
+                  style: TextStyle(color: theme.colorScheme.secondary),
                 ),
               ),
             ],
