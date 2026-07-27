@@ -204,6 +204,8 @@ Future<void> notificationTap(
                 : '/rooms/$roomId?client=${client.clientName}',
           );
       }
+    case NotificationResponseType.notificationDismissed:
+      return;
   }
 }
 
