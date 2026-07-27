@@ -80,23 +80,25 @@
                <data android:scheme="im.fluffychat" android:host="chat" />
             </intent-filter>
 
-            <!-- App can receive shared text -->
+            <!-- App can receive shared content (text, images, video, audio, files) -->
             <intent-filter>
                <action android:name="android.intent.action.SEND" />
                <category android:name="android.intent.category.DEFAULT" />
-               <data android:mimeType="text/*" />
+               <data android:mimeType="text/plain" />
+               <data android:mimeType="image/*" />
+               <data android:mimeType="video/*" />
+               <data android:mimeType="audio/*" />
+               <data android:mimeType="application/*" />
             </intent-filter>
 
-            <!-- App can receive shared any type of files -->
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="*/*" />
-            </intent-filter>
+            <!-- App can receive multiple files -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND_MULTIPLE" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="*/*" />
+                <data android:mimeType="image/*" />
+                <data android:mimeType="video/*" />
+                <data android:mimeType="audio/*" />
+                <data android:mimeType="application/*" />
             </intent-filter>
         </activity>
 
