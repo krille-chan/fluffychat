@@ -439,9 +439,9 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4NXF6Z997G;
+				DEVELOPMENT_TEAM = ZK3SQCHLR5;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = FluffyChat;
+				INFOPLIST_KEY_CFBundleDisplayName = "Schellout Chat";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -458,7 +458,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
-				PRODUCT_NAME = FluffyChat;
+				PRODUCT_NAME = "Schellout Chat";
 			};
 			name = Profile;
 		};
@@ -571,9 +571,9 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4NXF6Z997G;
+				DEVELOPMENT_TEAM = ZK3SQCHLR5;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = FluffyChat;
+				INFOPLIST_KEY_CFBundleDisplayName = "Schellout Chat";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -597,9 +597,9 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4NXF6Z997G;
+				DEVELOPMENT_TEAM = ZK3SQCHLR5;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = FluffyChat;
+				INFOPLIST_KEY_CFBundleDisplayName = "Schellout Chat";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -616,7 +616,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Manual;
-				PRODUCT_NAME = FluffyChat;
+				PRODUCT_NAME = "Schellout Chat";
 			};
 			name = Debug;
 		};
@@ -624,7 +624,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = FluffyChat;
+				PRODUCT_NAME = "Schellout Chat";
 			};
 			name = Release;
 		};

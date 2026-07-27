@@ -1,11 +1,11 @@
 {
-    "name": "FluffyChat",
-    "short_name": "FluffyChat",
+    "name": "Schellout Chat",
+    "short_name": "Schellout",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FFFFFF",
-    "theme_color": "#41a2bc",
-    "description": "The cutest messenger in the Matrix network",
+    "theme_color": "#6A3DE8",
+    "description": "Schellout Chat — a Matrix messenger",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
