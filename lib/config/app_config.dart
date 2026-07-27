@@ -36,9 +36,9 @@ abstract class AppConfig {
   static const String appSsoUrlScheme = 'im.fluffychat.auth';
 
   static const String sourceCodeUrl =
-      'https://github.com/krille-chan/fluffychat';
+      'https://github.com/jschell12/schellout-chat';
   static const String supportUrl =
-      'https://github.com/krille-chan/fluffychat/issues';
+      'https://github.com/jschell12/schellout-chat/issues';
   static const String changelogUrl = 'https://fluffychat.im/changelog/';
   static const String helpUrl =
       'https://fluffychat.im/faq/#how_can_i_support_fluffychat';
@@ -48,7 +48,7 @@ abstract class AppConfig {
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'github.com',
-    path: '/krille-chan/fluffychat/issues/new',
+    path: '/jschell12/schellout-chat/issues/new',
   );
 
   static final Uri homeserverList = Uri(
