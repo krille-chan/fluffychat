@@ -5,6 +5,15 @@ SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+> **Schellout Chat** is a personal fork of
+> [FluffyChat](https://github.com/krille-chan/fluffychat) by Krille Fear and the
+> FluffyChat contributors, licensed under the AGPL-3.0-or-later. This fork adds
+> Schellout branding, named theme presets with a custom color picker, and small
+> macOS quality-of-life changes. Complete corresponding source for every
+> deployed build is available at
+> <https://github.com/jschell12/schellout-chat>. See `BRANDING.md` for the full
+> list of changes from upstream.
+
 ![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/assets/banner_transparent.png?raw=true)
 
 [FluffyChat](https://fluffy.chat) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
