@@ -16,6 +16,7 @@ import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
+import '../../utils/web_push.dart';
 import '../../widgets/matrix.dart';
 import 'settings_notifications_view.dart';
 
@@ -62,6 +63,19 @@ class SettingsNotificationsController extends State<SettingsNotifications> {
   }
 
   Future<List<Pusher>?>? pusherFuture;
+
+  // Schellout fork: subscribe this browser to Web Push via Sygnal. Must be
+  // triggered by a user gesture so the permission prompt works on iOS.
+  Future<void> enableWebPush() async {
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () => setupWebPush(Matrix.of(context).client, interactive: true),
+    );
+    if (result.error != null) return;
+    setState(() {
+      pusherFuture = null;
+    });
+  }
 
   Future<void> togglePushRule(PushRuleKind kind, PushRule pushRule) async {
     setState(() {

@@ -34,6 +34,7 @@ import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
+import '../utils/web_push.dart';
 import 'local_notifications_extension.dart';
 
 class Matrix extends StatefulWidget {
@@ -297,6 +298,10 @@ class MatrixState extends State<Matrix> {
       );
       c.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
+        // Schellout fork: silently refresh the Web Push pusher if the user
+        // already granted permission (prompting requires a user gesture and
+        // happens in Settings -> Notifications).
+        setupWebPush(c);
         onNotification[name] ??= c.onNotification.stream.listen(
           showLocalNotification,
         );

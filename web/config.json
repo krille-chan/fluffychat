@@ -1,5 +1,7 @@
 {
   "applicationName": "Schellout Chat",
   "defaultHomeserver": "matrix.schellout.com",
-  "colorSchemeSeedInt": 4292891698
+  "colorSchemeSeedInt": 4292891698,
+  "webPushVapidKey": "BMkpMKPdPwLHjCdmEu186giWwBeO8H3CAGBp6O26vzeu34UdVqvUVmOcXgV3Trf-VHXrqpu9zQO9AzsQR7-ZObw",
+  "webPushGatewayUrl": "http://10.0.0.2:5001/_matrix/push/v1/notify"
 }

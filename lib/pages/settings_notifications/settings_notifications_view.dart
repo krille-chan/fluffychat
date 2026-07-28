@@ -10,6 +10,7 @@ import 'package:fluffychat/pages/settings_notifications/push_rule_extensions.dar
 import 'package:fluffychat/utils/background_push.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/push_helper.dart';
+import 'package:fluffychat/utils/web_push.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'package:flutter/foundation.dart';
@@ -191,6 +192,19 @@ class SettingsNotificationsView extends StatelessWidget {
                               : null,
                         );
                       },
+                    ),
+                  // Schellout fork: Web Push via self-hosted Sygnal.
+                  if (kIsWeb && webPushAvailable)
+                    ListTile(
+                      leading: const Icon(Icons.notifications_active_outlined),
+                      title: const Text('Enable push on this device'),
+                      subtitle: Text(
+                        webPushPermissionState == 'denied'
+                            ? 'Notifications are blocked in the browser settings'
+                            : 'Get notified in this browser when the app is closed',
+                      ),
+                      enabled: webPushPermissionState != 'denied',
+                      onTap: controller.enableWebPush,
                     ),
                   ListTile(
                     title: Text(

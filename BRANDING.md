@@ -24,11 +24,19 @@ This file lists every file that diverges from upstream. When merging upstream
 | `lib/pages/settings_style/settings_style_view.dart` | swatch grid → named preset chips + Custom… (uses `theme_presets.dart`) |
 | `macos/Runner/AppDelegate.swift` | keep running after last window closes; dock-click reopens window |
 | `lib/pages/chat_list/chat_list_view.dart` | `CallbackShortcuts`: Cmd+N new chat, Cmd+K search |
+| `lib/config/setting_keys.dart` (webpush) | added `webPushVapidKey`, `webPushGatewayUrl`, `webPushRegisteredPushkey` settings |
+| `lib/widgets/matrix.dart` | calls `setupWebPush()` on first sync (silent pusher refresh on web) |
+| `lib/pages/settings_notifications/settings_notifications.dart` | added `enableWebPush()` (user-gesture Web Push opt-in) |
+| `lib/pages/settings_notifications/settings_notifications_view.dart` | web-only "Enable push on this device" tile |
+| `web/index.html` (webpush) | added `<script src="web_push.js">` |
 
 ## New files (never conflict)
 
 - `.fvmrc` — pins Flutter per upstream `.tool_versions.yaml`
-- `web/config.json` — web runtime config (name, homeserver, seed color)
+- `web/config.json` — web runtime config (name, homeserver, seed color, VAPID key, Sygnal gateway URL)
+- `web/web_push.js` — browser push subscription helper (`window.schelloutWebPush`)
+- `web/push_service_worker.js` — push-only service worker (scope `./push/`, no clash with Flutter SW)
+- `lib/utils/web_push.dart` / `web_push_stub.dart` / `web_push_web.dart` — Sygnal Web Push pusher registration
 - `lib/config/theme_presets.dart` — named theme presets (English-only, no l10n)
 - `scripts/fix-vodozemac-symlinks.sh` — repairs pub-cache framework symlinks for codesign
 - `BRANDING.md` — this file
