@@ -7,6 +7,7 @@ import 'dart:ui';
 
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/config/theme_presets.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/events/state_message.dart';
@@ -85,54 +86,59 @@ class SettingsStyleView extends StatelessWidget {
                     Theme.of(context).brightness == Brightness.light
                     ? light?.primary
                     : dark?.primary;
-                final colors = [null, AppConfig.chatColor, ...Colors.primaries];
-                if (systemColor == null) {
-                  colors.remove(null);
-                }
-                return GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 64,
+                final currentColor = controller.currentColor;
+                final isCustomColor =
+                    currentColor != null &&
+                    !themePresets.any(
+                      (preset) => preset.color == currentColor,
+                    );
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12.0,
+                    vertical: 8.0,
                   ),
-                  itemCount: colors.length,
-                  itemBuilder: (context, i) {
-                    final color = colors[i];
-                    return Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Tooltip(
-                        message: color == null
-                            ? L10n.of(context).systemTheme
-                            : '#${color.hexValue.toRadixString(16).toUpperCase()}',
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(colorPickerSize),
-                          onTap: () => controller.setChatColor(color),
-                          child: Material(
-                            color: color ?? systemColor,
-                            elevation: 6,
-                            borderRadius: BorderRadius.circular(
-                              colorPickerSize,
+                  child: Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      if (systemColor != null)
+                        ChoiceChip(
+                          avatar: CircleAvatar(
+                            backgroundColor: systemColor,
+                            radius: colorPickerSize / 4,
+                          ),
+                          label: Text(L10n.of(context).systemTheme),
+                          selected: currentColor == null,
+                          onSelected: (_) => controller.setChatColor(null),
+                        ),
+                      for (final preset in themePresets)
+                        Tooltip(
+                          message:
+                              '#${preset.color.hexValue.toRadixString(16).toUpperCase()}',
+                          child: ChoiceChip(
+                            avatar: CircleAvatar(
+                              backgroundColor: preset.color,
+                              radius: colorPickerSize / 4,
                             ),
-                            child: SizedBox(
-                              width: colorPickerSize,
-                              height: colorPickerSize,
-                              child: controller.currentColor == color
-                                  ? Center(
-                                      child: Icon(
-                                        Icons.check,
-                                        size: 16,
-                                        color: Theme.of(
-                                          context,
-                                        ).colorScheme.onPrimary,
-                                      ),
-                                    )
-                                  : null,
-                            ),
+                            label: Text(preset.name),
+                            selected: currentColor == preset.color,
+                            onSelected: (_) =>
+                                controller.setChatColor(preset.color),
                           ),
                         ),
+                      ChoiceChip(
+                        avatar: isCustomColor
+                            ? CircleAvatar(
+                                backgroundColor: currentColor,
+                                radius: colorPickerSize / 4,
+                              )
+                            : const Icon(Icons.palette_outlined),
+                        label: const Text('Custom…'),
+                        selected: isCustomColor,
+                        onSelected: (_) => controller.pickCustomColor(),
                       ),
-                    );
-                  },
+                    ],
+                  ),
                 );
               },
             ),
