@@ -313,7 +313,7 @@
             }
         }
     },
-    "countParticipants": "Учасників: {count}",
+    "countParticipants": "{count, plural, =1{1 учасник} other{Учасників: {count}}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
