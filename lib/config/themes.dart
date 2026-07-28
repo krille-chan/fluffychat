@@ -5,6 +5,7 @@
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/config/theme_presets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -45,11 +46,16 @@ abstract class FluffyThemes {
     Brightness brightness, [
     Color? seed,
   ]) {
-    final colorScheme = ColorScheme.fromSeed(
+    final effectiveSeed = seed ?? Color(AppSettings.colorSchemeSeedInt.value);
+    var colorScheme = ColorScheme.fromSeed(
       brightness: brightness,
-      seedColor: seed ?? Color(AppSettings.colorSchemeSeedInt.value),
+      seedColor: effectiveSeed,
       dynamicSchemeVariant: DynamicSchemeVariant.rainbow,
     );
+    // schellout-chat: the Schellout preset pins the exact dashboard palette.
+    if (effectiveSeed.toARGB32() == schelloutSeed.toARGB32()) {
+      colorScheme = applySchelloutPalette(colorScheme, brightness);
+    }
     final isColumnMode = FluffyThemes.isColumnMode(context);
     final dividerColor = brightness == Brightness.dark
         ? colorScheme.surfaceContainerHighest
