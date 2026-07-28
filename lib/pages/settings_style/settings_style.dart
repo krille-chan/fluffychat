@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/file_selector.dart';
@@ -27,6 +28,25 @@ class SettingsStyleController extends State<SettingsStyle> {
       color?.toARGB32() ?? AppSettings.colorSchemeSeedInt.defaultValue,
     );
     ThemeController.of(context).setPrimaryColor(color);
+  }
+
+  Future<void> pickCustomColor() async {
+    final initialColor =
+        currentColor ?? Color(AppSettings.colorSchemeSeedInt.defaultValue);
+    final color = await showColorPickerDialog(
+      context,
+      initialColor,
+      pickersEnabled: const {
+        ColorPickerType.primary: false,
+        ColorPickerType.accent: false,
+        ColorPickerType.wheel: true,
+      },
+      enableShadesSelection: false,
+      showColorCode: true,
+      colorCodeHasColor: true,
+    );
+    if (!mounted) return;
+    setChatColor(color);
   }
 
   Future<void> setWallpaper() async {
