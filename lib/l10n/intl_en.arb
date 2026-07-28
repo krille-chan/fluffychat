@@ -994,7 +994,7 @@
             }
         }
     },
-    "isTyping": "is typing…",
+    "isTyping": "is typing",
     "@isTyping": {
         "type": "String",
         "placeholders": {}

@@ -11,6 +11,7 @@ import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
+import 'package:fluffychat/widgets/typing_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
@@ -260,11 +261,7 @@ class ChatListItem extends StatelessWidget {
                     child: typingText.isNotEmpty
                         ? Padding(
                             padding: const EdgeInsets.only(right: 4.0),
-                            child: Icon(
-                              Icons.edit_outlined,
-                              color: theme.colorScheme.secondary,
-                              size: 16,
-                            ),
+                            child: TypingAnimation(size: 4.0),
                           )
                         : room.lastEvent?.relationshipType ==
                               RelationshipTypes.thread

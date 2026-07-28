@@ -3,13 +3,12 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import 'dart:async';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/typing_animation.dart';
 import 'package:flutter/material.dart';
 
 class TypingIndicators extends StatelessWidget {
@@ -91,7 +90,7 @@ class TypingIndicators extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: typingUsers.isEmpty ? null : const _TypingDots(),
+                    child: typingUsers.isEmpty ? null : const TypingAnimation(),
                   ),
                 ),
               ],
@@ -99,67 +98,6 @@ class TypingIndicators extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class _TypingDots extends StatefulWidget {
-  const _TypingDots();
-
-  @override
-  State<_TypingDots> createState() => __TypingDotsState();
-}
-
-class __TypingDotsState extends State<_TypingDots> {
-  int _tick = 0;
-
-  late final Timer _timer;
-
-  static const Duration animationDuration = Duration(milliseconds: 300);
-
-  @override
-  void initState() {
-    _timer = Timer.periodic(animationDuration, (_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {
-        _tick = (_tick + 1) % 4;
-      });
-    });
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    const size = 8.0;
-
-    return Row(
-      mainAxisSize: .min,
-      children: [
-        for (var i = 1; i <= 3; i++)
-          AnimatedContainer(
-            duration: animationDuration * 1.5,
-            curve: FluffyThemes.animationCurve,
-            width: size,
-            height: _tick == i ? size * 2 : size,
-            margin: EdgeInsets.symmetric(
-              horizontal: 2,
-              vertical: _tick == i ? 4 : 8,
-            ),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(size * 2),
-              color: theme.colorScheme.secondary,
-            ),
-          ),
-      ],
     );
   }
 }

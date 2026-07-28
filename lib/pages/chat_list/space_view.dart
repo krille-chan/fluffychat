@@ -435,15 +435,16 @@ class _SpaceViewState extends State<SpaceView> {
                             useRootNavigator: true,
                             onSelected: _onSpaceAction,
                             itemBuilder: (context) => [
-                              PopupMenuItem(
-                                value: SpaceActions.addChild,
-                                child: ListTile(
-                                  leading: Icon(Icons.edit_square),
-                                  title: Text(
-                                    L10n.of(context).addChatOrSubSpace,
+                              if (isAdmin)
+                                PopupMenuItem(
+                                  value: SpaceActions.addChild,
+                                  child: ListTile(
+                                    leading: Icon(Icons.edit_square),
+                                    title: Text(
+                                      L10n.of(context).addChatOrSubSpace,
+                                    ),
                                   ),
                                 ),
-                              ),
                               PopupMenuItem(
                                 value: SpaceActions.settings,
                                 child: ListTile(
