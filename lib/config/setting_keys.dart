@@ -34,6 +34,11 @@ enum AppSettings<T> {
     'pushNotificationsPusherFormat',
     'event_id_only',
   ),
+  // Schellout fork: Web Push via self-hosted Sygnal. Empty = feature off.
+  // Configured via web/config.json on web deployments.
+  webPushVapidKey<String>('chat.schellout.webpush.vapid_key', ''),
+  webPushGatewayUrl<String>('chat.schellout.webpush.gateway_url', ''),
+  webPushRegisteredPushkey<String>('chat.schellout.webpush.pushkey', ''),
   renderHtml<bool>('chat.fluffy.renderHtml', true),
   fontSizeFactor<double>('chat.fluffy.font_size_factor', 1.0),
   hideRedactedEvents<bool>('chat.fluffy.hideRedactedEvents', false),
