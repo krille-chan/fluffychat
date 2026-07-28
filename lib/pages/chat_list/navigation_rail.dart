@@ -20,11 +20,13 @@ class SpacesNavigationRail extends StatelessWidget {
   final String? activeSpaceId;
   final void Function() onGoToChats;
   final void Function(String) onGoToSpaceId;
+  final bool showSettingsBadge;
 
   const SpacesNavigationRail({
     required this.activeSpaceId,
     required this.onGoToChats,
     required this.onGoToSpaceId,
+    this.showSettingsBadge = false,
     super.key,
   });
 
@@ -127,9 +129,19 @@ class SpacesNavigationRail extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 12.0),
                       child: IconButton(
-                        tooltip: L10n.of(context).settings,
-                        icon: const Icon(Icons.settings_outlined),
-                        onPressed: () => context.go('/rooms/settings'),
+                        tooltip: showSettingsBadge
+                            ? L10n.of(context).oneOfYourDevicesIsNotVerified
+                            : L10n.of(context).settings,
+                        icon: Badge(
+                          isLabelVisible: showSettingsBadge,
+                          label: const Text('!'),
+                          child: const Icon(Icons.settings_outlined),
+                        ),
+                        onPressed: () => context.go(
+                          showSettingsBadge
+                              ? '/rooms/settings/devices'
+                              : '/rooms/settings',
+                        ),
                       ),
                     ),
                   if (FluffyThemes.isColumnMode(context))
