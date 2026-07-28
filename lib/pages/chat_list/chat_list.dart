@@ -859,8 +859,11 @@ class ChatListController extends State<ChatList>
 
   bool waitForFirstSync = false;
 
+  // schellout-chat: drives the badge on the settings gear instead of the
+  // upstream unverified-device snack bar.
+  bool hasUnverifiedDevices = false;
+
   Future<void> _waitForFirstSync() async {
-    final router = GoRouter.of(context);
     final client = Matrix.of(context).client;
     await client.roomsLoading;
     await client.accountDataLoading;
@@ -880,32 +883,17 @@ class ChatListController extends State<ChatList>
       waitForFirstSync = true;
     });
 
-    if (client.userDeviceKeys[client.userID!]?.deviceKeys.values.any(
+    // schellout-chat: no snack bar — surface unverified devices as a badge
+    // on the settings gear in the navigation rail.
+    final unverified =
+        client.userDeviceKeys[client.userID!]?.deviceKeys.values.any(
           (device) => !device.verified && !device.blocked,
         ) ??
-        false) {
-      late final ScaffoldFeatureController controller;
-      final theme = Theme.of(context);
-      controller = ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          duration: const Duration(seconds: 15),
-          showCloseIcon: true,
-          backgroundColor: theme.colorScheme.errorContainer,
-          closeIconColor: theme.colorScheme.onErrorContainer,
-          content: Text(
-            L10n.of(context).oneOfYourDevicesIsNotVerified,
-            style: TextStyle(color: theme.colorScheme.onErrorContainer),
-          ),
-          action: SnackBarAction(
-            onPressed: () {
-              controller.close();
-              router.go('/rooms/settings/devices');
-            },
-            textColor: theme.colorScheme.onErrorContainer,
-            label: L10n.of(context).settings,
-          ),
-        ),
-      );
+        false;
+    if (unverified != hasUnverifiedDevices) {
+      setState(() {
+        hasUnverifiedDevices = unverified;
+      });
     }
   }
 
