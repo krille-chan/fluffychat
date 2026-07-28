@@ -15,7 +15,7 @@ class ThemePreset {
 }
 
 const List<ThemePreset> themePresets = [
-  ThemePreset('Schellout', Color(0xFF6A3DE8)),
+  ThemePreset('Schellout', Color(0xFFE05432)),
   ThemePreset('Ocean', Color(0xFF0277BD)),
   ThemePreset('Forest', Color(0xFF2E7D32)),
   ThemePreset('Sunset', Color(0xFFE65100)),
