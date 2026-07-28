@@ -25,13 +25,16 @@ class ChatListView extends StatelessWidget {
     final oneColumnSpacesMode =
         !FluffyThemes.isColumnMode(context) &&
         AppSettings.displayNavigationRail.value;
-    // schellout-chat: desktop shortcuts — Cmd+N new chat, Cmd+K search.
+    // schellout-chat: desktop shortcuts — Cmd+N new chat, Cmd+K search,
+    // Cmd+, settings.
     return CallbackShortcuts(
       bindings: {
         const SingleActivator(LogicalKeyboardKey.keyN, meta: true): () =>
             context.go('/rooms/newprivatechat'),
         const SingleActivator(LogicalKeyboardKey.keyK, meta: true):
             controller.startSearch,
+        const SingleActivator(LogicalKeyboardKey.comma, meta: true): () =>
+            context.go('/rooms/settings'),
       },
       child: Focus(
         autofocus: true,
