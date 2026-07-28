@@ -9,7 +9,7 @@ This file lists every file that diverges from upstream. When merging upstream
 | File | Divergence |
 |---|---|
 | `.gitignore` | added `.fvm/` |
-| `lib/config/setting_keys.dart` | defaults: `applicationName` → Schellout Chat, `defaultHomeserver` → matrix.schellout.com, `colorSchemeSeedInt` → `0xFF6A3DE8` |
+| `lib/config/setting_keys.dart` | defaults: `applicationName` → Schellout Chat, `defaultHomeserver` → matrix.schellout.com, `colorSchemeSeedInt` → `0xFFE05432` (dashboard vermillion) |
 | `lib/config/app_config.dart` | `sourceCodeUrl`, `supportUrl`, `newIssueUrl` → this fork |
 | `macos/Runner/Configs/AppInfo.xcconfig` | `PRODUCT_NAME` → Schellout Chat; `PRODUCT_BUNDLE_IDENTIFIER` → `com.schellout.chat` (Apple refuses registering upstream's ID to another team); copyright keeps FluffyChat attribution |
 | `macos/Runner.xcodeproj/project.pbxproj` | `PRODUCT_NAME`/`CFBundleDisplayName` → Schellout Chat; `DEVELOPMENT_TEAM` → ZK3SQCHLR5 (keychain entitlements require real dev signing; ad-hoc fails) |

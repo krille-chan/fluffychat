@@ -58,7 +58,7 @@ enum AppSettings<T> {
     'matrix.schellout.com',
   ),
   // colorSchemeSeed stored as ARGB int
-  colorSchemeSeedInt<int>('chat.fluffy.color_scheme_seed', 0xFF6A3DE8),
+  colorSchemeSeedInt<int>('chat.fluffy.color_scheme_seed', 0xFFE05432),
   emojiSuggestionLocale<String>('emoji_suggestion_locale', ''),
   enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false),
   enableMatrixNativeOIDC<bool>('chat.fluffy.enable_matrix_native_oidc', false),
