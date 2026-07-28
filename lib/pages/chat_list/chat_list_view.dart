@@ -10,6 +10,8 @@ import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/navigation_rail.dart';
 import 'package:fluffychat/pages/chat_list/start_chat_fab.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 import 'chat_list_body.dart';
 
@@ -23,6 +25,22 @@ class ChatListView extends StatelessWidget {
     final oneColumnSpacesMode =
         !FluffyThemes.isColumnMode(context) &&
         AppSettings.displayNavigationRail.value;
+    // schellout-chat: desktop shortcuts — Cmd+N new chat, Cmd+K search.
+    return CallbackShortcuts(
+      bindings: {
+        const SingleActivator(LogicalKeyboardKey.keyN, meta: true): () =>
+            context.go('/rooms/newprivatechat'),
+        const SingleActivator(LogicalKeyboardKey.keyK, meta: true):
+            controller.startSearch,
+      },
+      child: Focus(
+        autofocus: true,
+        child: _buildBody(context, oneColumnSpacesMode),
+      ),
+    );
+  }
+
+  Widget _buildBody(BuildContext context, bool oneColumnSpacesMode) {
     return PopScope(
       canPop: !controller.isSearchMode && controller.activeSpaceId == null,
       onPopInvokedWithResult: (pop, _) {

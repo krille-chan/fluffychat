@@ -19,11 +19,18 @@ This file lists every file that diverges from upstream. When merging upstream
 | `macos/.../AppIcon.appiconset/*.png` | placeholder "S" icon (binary swap, same filenames) |
 | `web/favicon.png`, `web/icons/*.png` | placeholder "S" icon |
 | `assets/logo/mini/logo_mini.png`, `logo_mono_mini.png` | placeholder "S" icon (in-app logo: About/intro/login/lock screens) |
+| `pubspec.yaml` / `pubspec.lock` | added dep `flex_color_picker` |
+| `lib/pages/settings_style/settings_style.dart` | added `pickCustomColor()` (flex_color_picker dialog → existing `setChatColor`) |
+| `lib/pages/settings_style/settings_style_view.dart` | swatch grid → named preset chips + Custom… (uses `theme_presets.dart`) |
+| `macos/Runner/AppDelegate.swift` | keep running after last window closes; dock-click reopens window |
+| `lib/pages/chat_list/chat_list_view.dart` | `CallbackShortcuts`: Cmd+N new chat, Cmd+K search |
 
 ## New files (never conflict)
 
 - `.fvmrc` — pins Flutter per upstream `.tool_versions.yaml`
 - `web/config.json` — web runtime config (name, homeserver, seed color)
+- `lib/config/theme_presets.dart` — named theme presets (English-only, no l10n)
+- `scripts/fix-vodozemac-symlinks.sh` — repairs pub-cache framework symlinks for codesign
 - `BRANDING.md` — this file
 
 ## Deliberately NOT changed
