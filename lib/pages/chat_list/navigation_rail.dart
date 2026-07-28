@@ -121,6 +121,17 @@ class SpacesNavigationRail extends StatelessWidget {
                       },
                     ),
                   ),
+                  // schellout-chat: quick access to settings above the
+                  // new-conversation button.
+                  if (FluffyThemes.isColumnMode(context))
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12.0),
+                      child: IconButton(
+                        tooltip: L10n.of(context).settings,
+                        icon: const Icon(Icons.settings_outlined),
+                        onPressed: () => context.go('/rooms/settings'),
+                      ),
+                    ),
                   if (FluffyThemes.isColumnMode(context))
                     Padding(
                       padding: const EdgeInsets.all(12.0),
