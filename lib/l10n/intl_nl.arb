@@ -489,7 +489,7 @@
             }
         }
     },
-    "countParticipants": "{count} personen",
+    "countParticipants": "{count, plural, =1{1 persoon} other{{count} personen}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -826,7 +826,7 @@
             }
         }
     },
-    "isTyping": "is aan het typen…",
+    "isTyping": "is aan het typen",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -1097,7 +1097,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "participant": "Personen",
+    "participant": "Deelnemer",
     "@participant": {
         "type": "String",
         "placeholders": {}
@@ -2716,5 +2716,59 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "editImage": "Afbeelding wijzigen",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Linksom draaien",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Rechtsom draaien",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Spiegelen",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Opslaan",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Tekenen",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Herstel",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Ongedaan maken",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Gummen",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Bijsnijden",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadingMessages": "Berichten laden...",
+    "buildDoesNotSupportFirebase": "Deze versie ondersteunt geen firebase cloud messaging.",
+    "unableToRegisterDeviceForFirebase": "Niet in staat om het apparaat te registreren voor firebase cloud messaging.",
+    "unifiedPushDistributors": "Unified Push diensten:"
 }
