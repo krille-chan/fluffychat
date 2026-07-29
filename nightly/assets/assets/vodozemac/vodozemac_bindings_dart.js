@@ -1533,38 +1533,6 @@ let wasm_bindgen;
         wasm.__externref_table_dealloc(idx);
         return value;
     }
-
-    __exports.wasm_start_callback = function() {
-        wasm.wasm_start_callback();
-    };
-
-    function passArrayJsValueToWasm0(array, malloc) {
-        const ptr = malloc(array.length * 4, 4) >>> 0;
-        for (let i = 0; i < array.length; i++) {
-            const add = addToExternrefTable0(array[i]);
-            getDataViewMemory0().setUint32(ptr + 4 * i, add, true);
-        }
-        WASM_VECTOR_LEN = array.length;
-        return ptr;
-    }
-    /**
-     * ## Safety
-     * This function reclaims a raw pointer created by [`TransferClosure`], and therefore
-     * should **only** be used in conjunction with it.
-     * Furthermore, the WASM module in the worker must have been initialized with the shared
-     * memory from the host JS scope.
-     * @param {number} payload
-     * @param {any[]} transfer
-     */
-    __exports.receive_transfer_closure = function(payload, transfer) {
-        const ptr0 = passArrayJsValueToWasm0(transfer, wasm.__wbindgen_malloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.receive_transfer_closure(payload, ptr0, len0);
-        if (ret[1]) {
-            throw takeFromExternrefTable0(ret[0]);
-        }
-    };
-
     /**
      * # Safety
      *
@@ -1594,8 +1562,39 @@ let wasm_bindgen;
         return ret;
     };
 
+    function passArrayJsValueToWasm0(array, malloc) {
+        const ptr = malloc(array.length * 4, 4) >>> 0;
+        for (let i = 0; i < array.length; i++) {
+            const add = addToExternrefTable0(array[i]);
+            getDataViewMemory0().setUint32(ptr + 4 * i, add, true);
+        }
+        WASM_VECTOR_LEN = array.length;
+        return ptr;
+    }
+    /**
+     * ## Safety
+     * This function reclaims a raw pointer created by [`TransferClosure`], and therefore
+     * should **only** be used in conjunction with it.
+     * Furthermore, the WASM module in the worker must have been initialized with the shared
+     * memory from the host JS scope.
+     * @param {number} payload
+     * @param {any[]} transfer
+     */
+    __exports.receive_transfer_closure = function(payload, transfer) {
+        const ptr0 = passArrayJsValueToWasm0(transfer, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.receive_transfer_closure(payload, ptr0, len0);
+        if (ret[1]) {
+            throw takeFromExternrefTable0(ret[0]);
+        }
+    };
+
+    __exports.wasm_start_callback = function() {
+        wasm.wasm_start_callback();
+    };
+
     function __wbg_adapter_40(arg0, arg1, arg2) {
-        wasm.closure580_externref_shim(arg0, arg1, arg2);
+        wasm.closure592_externref_shim(arg0, arg1, arg2);
     }
 
     const WorkerPoolFinalization = (typeof FinalizationRegistry === 'undefined')
@@ -1955,8 +1954,8 @@ let wasm_bindgen;
             const ret = false;
             return ret;
         };
-        imports.wbg.__wbindgen_closure_wrapper1693 = function(arg0, arg1, arg2) {
-            const ret = makeMutClosure(arg0, arg1, 581, __wbg_adapter_40);
+        imports.wbg.__wbindgen_closure_wrapper1739 = function(arg0, arg1, arg2) {
+            const ret = makeMutClosure(arg0, arg1, 593, __wbg_adapter_40);
             return ret;
         };
         imports.wbg.__wbindgen_debug_string = function(arg0, arg1) {
