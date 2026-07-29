@@ -35,7 +35,6 @@ Future<void> pushHelper(
   L10n? l10n,
   String? activeRoomId,
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-  bool useNotificationActions = true,
 }) async {
   l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
   final progressNotificationTimer =
@@ -56,7 +55,6 @@ Future<void> pushHelper(
       l10n: l10n,
       activeRoomId: activeRoomId,
       flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
-      useNotificationActions: useNotificationActions,
     );
   } catch (e, s) {
     if (PlatformInfos.isAndroid &&
@@ -110,7 +108,6 @@ Future<void> _tryPushHelper(
   L10n? l10n,
   String? activeRoomId,
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-  bool useNotificationActions = true,
 }) async {
   final isBackgroundMessage = clients == null;
   Logs().v(
@@ -328,7 +325,7 @@ Future<void> _tryPushHelper(
     importance: Importance.high,
     priority: Priority.max,
     groupKey: client.clientName,
-    actions: event.type == EventTypes.RoomMember || !useNotificationActions
+    actions: event.type == EventTypes.RoomMember
         ? null
         : <AndroidNotificationAction>[
             AndroidNotificationAction(
