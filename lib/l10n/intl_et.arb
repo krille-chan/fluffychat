@@ -826,7 +826,7 @@
             }
         }
     },
-    "isTyping": "kirjutab…",
+    "isTyping": "kirjutab",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -1837,7 +1837,7 @@
     "whyIsThisMessageEncrypted": "Miks see sõnum pole loetav?",
     "noKeyForThisMessage": "See võib juhtuda, kui sõnum oli saadetud enne, kui siin seadmes oma kontoga sisse logisid.\n\nSamuti võib juhtuda siis, kui saatja on lugemises selles seadmes blokeerinud või on tekkinud tõrkeid veebiühenduses.\n\nAga mõnes teises seadmes saad seda sõnumit lugeda? Siis sa võid sõnumi sealt üle tõsta. Ava Seadistused -> Seadmed ning kontrolli, et kõik sinu seadmed on omavahel verifitseeritud. Kui avad selle vestluse või jututoa ning mõlemad sessioonid on avatud, siis vajalikud krüptovõtmed saadetakse automaatset.\n\nKas sa soovid vältida krüptovõtmete kadumist väljalogimisel ja seadmete vahetusel? Siis palun kontrolli, et seadistuses on krüptovõtmete varundus sisse lülitatud.",
     "newSpace": "Uus kogukond",
-    "screenSharingTitle": "ekraani jagamine",
+    "screenSharingTitle": "ekraanijagamine",
     "foregroundServiceRunning": "See teavitus toimib siis, kui esiplaaniteenus töötab.",
     "screenSharingDetail": "Sa jagad oma ekraani FuffyChati vahendusel",
     "doNotShowAgain": "Ära näita uuesti",
@@ -1967,7 +1967,7 @@
     "pushNotificationsNotAvailable": "Tõuketeavitused pole saadaval",
     "makeAdminDescription": "Kui annad sellele kasutajale peakasutaja õigused, siis kuna tal on sinuga samad õigused, sa ei saa seda toimingut enam tagasi pöörata.",
     "archiveRoomDescription": "Selle vestluse tõstame nüüd arhiivi. Muud osalejad näevad, et sa oled vestlusest lahkunud.",
-    "hasKnocked": "🚪{user} on jututoa uksele koputanud",
+    "hasKnocked": "🚪{user} on koputanud jututoa uksele",
     "@hasKnocked": {
         "placeholders": {
             "user": {
@@ -2717,5 +2717,59 @@
             }
         }
     },
-    "biometricsDescription": "Biomeetrilise autentimise puhul saad rakenduse lukust avada oma näo või sõrmejäljega. Konkreetsed võimalused sõltuvad sinu seadmest."
+    "biometricsDescription": "Biomeetrilise autentimise puhul saad rakenduse lukust avada oma näo või sõrmejäljega. Konkreetsed võimalused sõltuvad sinu seadmest.",
+    "editImage": "Muuda pilti",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Pööra vasakule",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Pööra paremale",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Peegelda",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Salvesta",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Joonista",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Võta tegevus tagasi",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Tühjenda",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Kustutuskumm",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Kadreeri",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadingMessages": "Laadin sõnumeid…",
+    "buildDoesNotSupportFirebase": "See kompileeritud variant ei toeta Firebase Cloud Messaging teenust.",
+    "unableToRegisterDeviceForFirebase": "Seadme registreerimine Firebase Cloud Messaging teenuses ei õnnestu.",
+    "unifiedPushDistributors": "Unified Pushi tõuketeenuste levitajad:"
 }
