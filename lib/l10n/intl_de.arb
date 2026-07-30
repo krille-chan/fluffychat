@@ -1743,7 +1743,7 @@
             }
         }
     },
-    "markAsRead": "Als gelesen markiert",
+    "markAsRead": "Als gelesen markieren",
     "reportUser": "Benutzer melden",
     "confirmEventUnpin": "Möchtest du das Ereignis wirklich dauerhaft lösen?",
     "youKicked": "👞 Du hast {user} rausgeworfen",
