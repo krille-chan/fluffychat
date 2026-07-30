@@ -826,7 +826,7 @@
             }
         }
     },
-    "isTyping": "está escribindo…",
+    "isTyping": "está escribindo",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -2717,5 +2717,59 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "editImage": "Editar imaxe",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Rotar á esquerda",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Rotar á dereita",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Espello",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Gardar",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Debuxar",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Desfacer",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Limpar",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Borrar",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Recortar",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadingMessages": "Cargando mensaxes…",
+    "buildDoesNotSupportFirebase": "Esta versión non é compatible con firebase cloud messaging.",
+    "unableToRegisterDeviceForFirebase": "Non se puido rexistrar o dispositivo en firebase cloud messaging.",
+    "unifiedPushDistributors": "Distribuidores Unified Push:"
 }
