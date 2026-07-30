@@ -913,7 +913,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "isTyping": "ag clóscríobh…",
+    "isTyping": "ag clóscríobh",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -2723,5 +2723,59 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "editImage": "Cuir íomhá in eagar",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Rothlaigh ar chlé",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Rothlaigh ar dheis",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Scáthán",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Sábháil",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Tarraing",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Cuir ar ceal",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Glan",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Scriosán",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Barr",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadingMessages": "Ag lódáil teachtaireachtaí...",
+    "buildDoesNotSupportFirebase": "Ní thacaíonn an tógáil seo le teachtaireachtaí scamall firebase.",
+    "unableToRegisterDeviceForFirebase": "Ní féidir gléas a chlárú le haghaidh teachtaireachtaí scamall firebase.",
+    "unifiedPushDistributors": "Dáileoirí Brú Aontaithe:"
 }
