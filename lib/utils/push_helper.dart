@@ -50,6 +50,9 @@ Future<void> pushHelper(
             flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
           ),
         );
+  final ticker = Timer.periodic(const Duration(seconds: 1), (_) {
+    Logs().d('[PushHelper] Tick');
+  });
   try {
     await _tryPushHelper(
       notification,
@@ -100,6 +103,7 @@ Future<void> pushHelper(
     }
     rethrow;
   } finally {
+    ticker.cancel();
     flutterLocalNotificationsPlugin.cancel(
       id: '${notification.clientName}_loading'.hashCode,
     );
@@ -194,9 +198,10 @@ Future<void> _tryPushHelper(
 
   await client.ensureNotSoftLoggedOut();
 
-  Logs().v('Load rooms...');
-  await client.roomsLoading;
-  var room = client.getRoomById(roomId);
+  Logs().v('Load room...', roomId);
+  var room =
+      client.getRoomById(roomId) ??
+      await client.database.getSingleRoom(client, roomId);
   if (room == null) {
     Logs().v('Wait for one sync to get unknown room...', roomId);
     await client
