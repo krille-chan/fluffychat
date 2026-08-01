@@ -88,14 +88,9 @@ parts:
       # Workaround for Flutter build error:
       rm -rf build
 
-      # Desktop SQLCipher via sqlite3 hooks (omitted from pubspec so mobile can use sqflite_sqlcipher)
-      yq -i '.hooks.user_defines.sqlite3.source = "sqlcipher"' pubspec.yaml
-
       flutter build linux --release -v
       mkdir -p $CRAFT_PART_INSTALL/bin/
       cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/bin/
-    build-snaps:
-      - yq
     build-packages:
       - libsecret-1-dev
       - libjsoncpp-dev

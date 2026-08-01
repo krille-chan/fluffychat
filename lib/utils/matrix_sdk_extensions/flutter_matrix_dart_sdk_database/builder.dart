@@ -14,7 +14,6 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path_provider_foundation/path_provider_foundation.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:sqflite_sqlcipher/sqflite.dart' as sqlcipher;
 import 'package:universal_html/html.dart' as html;
 
 import 'cipher.dart';
@@ -85,30 +84,32 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
 
   final path = await _getDatabasePath(clientName);
 
+  // import the SQLite / SQLCipher shared objects / dynamic libraries
+  final factory = createDatabaseFactoryFfi();
+
   // required for [getDatabasesPath]
-  databaseFactory = PlatformInfos.isMobile
-      ? sqlcipher.databaseFactory
-      : createDatabaseFactoryFfi();
+  databaseFactory = factory;
 
   // migrate from potential previous SQLite database path to current one
   await _migrateLegacyLocation(path, clientName);
 
-  final database = PlatformInfos.isMobile
-      ? await sqlcipher.openDatabase(path, version: 1, password: cipher)
-      : await databaseFactory.openDatabase(
-          path,
-          options: OpenDatabaseOptions(
-            version: 1,
-            // most important : apply encryption when opening the DB
-            onConfigure: cipher == null
-                ? null
-                : SQfLiteEncryptionHelper(
-                    factory: databaseFactory,
-                    path: path,
-                    cipher: cipher,
-                  ).applyPragmaKey,
-          ),
-        );
+  // in case we got a cipher, we use the encryption helper
+  // to manage SQLite encryption
+  final helper = cipher == null
+      ? null
+      : SQfLiteEncryptionHelper(factory: factory, path: path, cipher: cipher);
+
+  // check whether the DB is already encrypted and otherwise do so
+  await helper?.ensureDatabaseFileEncrypted();
+
+  final database = await factory.openDatabase(
+    path,
+    options: OpenDatabaseOptions(
+      version: 1,
+      // most important : apply encryption when opening the DB
+      onConfigure: helper?.applyPragmaKey,
+    ),
+  );
 
   return await MatrixSdkDatabase.init(
     clientName,
