@@ -120,6 +120,8 @@ jobs:
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
           ./flutter/bin/flutter doctor
       - uses: dtolnay/rust-toolchain@stable
+      # Desktop SQLCipher via sqlite3 hooks (omitted from pubspec so mobile can use sqflite_sqlcipher)
+      - run: yq -i '.hooks.user_defines.sqlite3.source = "sqlcipher"' pubspec.yaml
       - run: ./flutter/bin/flutter pub get
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
 
