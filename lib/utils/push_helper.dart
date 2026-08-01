@@ -148,11 +148,6 @@ Future<void> _tryPushHelper(
   final roomId = notification.roomId;
   final eventId = notification.eventId;
 
-  final awaitingOneShotSync = client
-      .oneShotSync()
-      .timeout(const Duration(seconds: 8))
-      .catchError((_) => null);
-
   l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
 
   updateAppBadge(notification.counts?.unread ?? 0);
@@ -164,7 +159,11 @@ Future<void> _tryPushHelper(
     } else {
       // Make sure client is fully loaded and synced before dismiss notifications:
       await client.roomsLoading;
-      await awaitingOneShotSync;
+      await client
+          .oneShotSync()
+          .timeout(const Duration(seconds: 8))
+          .catchError((_) => null);
+
       final activeNotifications = await flutterLocalNotificationsPlugin
           .getActiveNotifications();
       activeNotifications.removeWhere(
@@ -193,11 +192,17 @@ Future<void> _tryPushHelper(
     return;
   }
 
+  await client.ensureNotSoftLoggedOut();
+
+  Logs().v('Load rooms...');
   await client.roomsLoading;
   var room = client.getRoomById(roomId);
   if (room == null) {
     Logs().v('Wait for one sync to get unknown room...', roomId);
-    await awaitingOneShotSync;
+    await client
+        .oneShotSync()
+        .timeout(const Duration(seconds: 8))
+        .catchError((_) => null);
     room =
         client.getRoomById(roomId) ??
         Room(id: roomId, client: client, membership: Membership.invite);
@@ -220,7 +225,10 @@ Future<void> _tryPushHelper(
         );
   if (event == null || event.messageType == MessageTypes.BadEncrypted) {
     Logs().v('Wait for one sync to decrypt event...');
-    await awaitingOneShotSync;
+    await client
+        .oneShotSync()
+        .timeout(const Duration(seconds: 8))
+        .catchError((_) => null);
     event =
         await client.database.getEventById(eventId, room) ??
         Event(
