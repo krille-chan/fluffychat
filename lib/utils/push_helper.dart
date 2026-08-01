@@ -20,6 +20,7 @@ import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
@@ -39,17 +40,7 @@ Future<void> pushHelper(
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
 }) async {
   l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
-  final progressNotificationTimer =
-      !PlatformInfos.isAndroid || notification.roomId == null
-      ? null
-      : Timer(
-          const Duration(seconds: 1),
-          () => _showProgressNotification(
-            notification: notification,
-            l10n: l10n!,
-            flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
-          ),
-        );
+
   final ticker = Timer.periodic(const Duration(seconds: 1), (_) {
     Logs().d('[PushHelper] Tick');
   });
@@ -104,10 +95,10 @@ Future<void> pushHelper(
     rethrow;
   } finally {
     ticker.cancel();
-    flutterLocalNotificationsPlugin.cancel(
-      id: '${notification.clientName}_loading'.hashCode,
-    );
-    progressNotificationTimer?.cancel();
+    if (PlatformInfos.isAndroid &&
+        await FlutterForegroundTask.isRunningService) {
+      await FlutterForegroundTask.stopService();
+    }
   }
 }
 
@@ -577,26 +568,6 @@ extension on PushNotification {
     return '${clientName}_$roomId'.hashCode;
   }
 }
-
-void _showProgressNotification({
-  required PushNotification notification,
-  required L10n l10n,
-  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-}) => flutterLocalNotificationsPlugin.show(
-  id: '${notification.clientName}_loading'.hashCode,
-  title: l10n.loadingMessages,
-  notificationDetails: NotificationDetails(
-    android: AndroidNotificationDetails(
-      'fluffychat_sync',
-      l10n.loadingMessages,
-      playSound: false,
-      enableVibration: false,
-      silent: true,
-      groupKey: notification.clientName,
-      autoCancel: false,
-    ),
-  ),
-);
 
 /// Keep in sync with `createAttachment()` in iOS Notification Extension
 Future<List<DarwinNotificationAttachment>?> _getIosAttachmentPath(
