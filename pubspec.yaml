@@ -81,6 +81,7 @@ dependencies:
   shared_preferences: ^2.5.5 # Pinned because https://github.com/flutter/flutter/issues/118401
   slugify: ^2.0.0
   sqflite_common_ffi: ^2.4.2
+  sqflite_sqlcipher: ^3.4.0
   swipe_to_action: ^0.3.0
   unifiedpush: ^6.2.0
   unifiedpush_ui: ^0.2.0
@@ -110,10 +111,9 @@ flutter:
     - assets/sounds/
     - assets/vodozemac/
 
-hooks:
-  user_defines:
-    sqlite3:
-      source: sqlcipher
+# Desktop SQLCipher is injected in Linux CI / snapcraft via:
+#   yq -i '.hooks.user_defines.sqlite3.source = "sqlcipher"' pubspec.yaml
+# (kept out of the committed pubspec so mobile builds can use sqflite_sqlcipher)
 
 flutter_launcher_icons:
   image_path: assets/logo/img/logo.png
