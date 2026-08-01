@@ -14860,6 +14860,8 @@ case 4:switch(f.a){case 0:s=6
 break
 case 1:s=7
 break
+case 2:s=8
+break
 default:s=5
 break}break
 case 6:k=o.b
@@ -14868,16 +14870,16 @@ break}g.Qn("Open room from notification tap",k)
 g=n.u6
 f=t.z
 p=t.L0
-s=8
-return A.f(p.b(g)?g:A.b4(g,f),$async$rT)
-case 8:g=n.wm
 s=9
 return A.f(p.b(g)?g:A.b4(g,f),$async$rT)
-case 9:s=n.d9(k)==null?10:11
+case 9:g=n.wm
+s=10
+return A.f(p.b(g)?g:A.b4(g,f),$async$rT)
+case 10:s=n.d9(k)==null?11:12
 break
-case 10:s=12
+case 11:s=13
 return A.f(n.aSK(k).B1(0,B.k8),$async$rT)
-case 12:case 11:g=n.d9(k)
+case 13:case 12:g=n.d9(k)
 a1.BR(0,(g==null?null:g.b)===B.aU?"/rooms?client="+m:"/rooms/"+k+"?client="+m)
 s=5
 break
@@ -14888,49 +14890,51 @@ if(k==null)throw A.q(A.b6("Selected notification with action but no payload"))
 g=n.u6
 f=t.z
 p=t.L0
-s=13
-return A.f(p.b(g)?g:A.b4(g,f),$async$rT)
-case 13:g=n.wm
 s=14
 return A.f(p.b(g)?g:A.b4(g,f),$async$rT)
-case 14:g=n.v9
+case 14:g=n.wm
 s=15
 return A.f(p.b(g)?g:A.b4(g,f),$async$rT)
-case 15:i=n.d9(k)
+case 15:g=n.v9
+s=16
+return A.f(p.b(g)?g:A.b4(g,f),$async$rT)
+case 16:i=n.d9(k)
 if(i==null)throw A.q(A.b6("Selected notification with action but unknown room "+k))
-case 16:switch(j.a){case 0:s=18
+case 17:switch(j.a){case 0:s=19
 break
-case 1:s=19
+case 1:s=20
 break
-case 2:s=20
+case 2:s=21
 break
-case 3:s=21
+case 3:s=22
 break
-default:s=17
+default:s=18
 break}break
-case 18:g=o.c
+case 19:g=o.c
 f=g==null
 p=f?i.ch.y:g
 if(f)g=i.ch.y
-s=22
-return A.f(i.Wq(p,g,A.i0(B.u0)),$async$rT)
-case 22:s=17
-break
-case 19:h=a.c
-if(h==null||h.length===0)throw A.q(A.b6("Selected notification with reply action but without input"))
 s=23
+return A.f(i.Wq(p,g,A.i0(B.u0)),$async$rT)
+case 23:s=18
+break
+case 20:h=a.c
+if(h==null||h.length===0)throw A.q(A.b6("Selected notification with reply action but without input"))
+s=24
 return A.f(i.aYn(h,!1,!1),$async$rT)
-case 23:s=17
+case 24:s=18
 break
-case 20:s=24
+case 21:s=25
 return A.f(i.Ao(B.nU),$async$rT)
-case 24:s=17
+case 25:s=18
 break
-case 21:g=n.d9(k)
+case 22:g=n.d9(k)
 a1.BR(0,(g==null?null:g.b)===B.aU?"/rooms?client="+m:"/rooms/"+k+"?client="+m)
-s=17
+s=18
 break
-case 17:s=5
+case 18:s=5
+break
+case 8:s=1
 break
 case 5:case 1:return A.l(q,r)}})
 return A.m($async$rT,r)},
