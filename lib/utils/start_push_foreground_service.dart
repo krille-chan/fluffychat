@@ -36,8 +36,9 @@ Future<bool> startPushForegroundService() async {
     }
     final result = await FlutterForegroundTask.startService(
       serviceTypes: [ForegroundServiceTypes.shortService],
-      notificationTitle: l10n.loadingMessages,
-      notificationText: 'FluffyChat',
+      notificationTitle: 'FluffyChat',
+      notificationText: l10n.loadingMessages,
+      notificationIcon: NotificationIcon(metaDataName: 'ic_launcher'),
     );
     final started = result is ServiceRequestSuccess;
     Logs().d('[PushHelper] Foreground service start: $started ($result)');

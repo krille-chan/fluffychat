@@ -41,9 +41,6 @@ Future<void> pushHelper(
 }) async {
   l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
 
-  final ticker = Timer.periodic(const Duration(seconds: 1), (_) {
-    Logs().d('[PushHelper] Tick');
-  });
   try {
     await _tryPushHelper(
       notification,
@@ -94,7 +91,6 @@ Future<void> pushHelper(
     }
     rethrow;
   } finally {
-    ticker.cancel();
     if (PlatformInfos.isAndroid &&
         await FlutterForegroundTask.isRunningService) {
       await FlutterForegroundTask.stopService();
@@ -138,16 +134,17 @@ Future<void> _tryPushHelper(
 
   lastReceivedPushNotification[client.clientName] = DateTime.now();
 
-  await client.roomsLoading;
-
-  final roomId = notification.roomId;
-  final eventId = notification.eventId;
-
   l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
+
+  Logs().v('Load event...');
+  final event = await client.getEventByPushNotification(
+    notification,
+    storeInDatabase: false,
+  );
 
   updateAppBadge(notification.counts?.unread ?? 0);
 
-  if (eventId == null || roomId == null) {
+  if (event == null) {
     Logs().v('Notification is a clearing indicator.');
     if (clients?.length == 1 && (notification.counts?.unread == 0)) {
       await flutterLocalNotificationsPlugin.cancelAll();
@@ -185,57 +182,6 @@ Future<void> _tryPushHelper(
       }
     }
     return;
-  }
-
-  await client.ensureNotSoftLoggedOut();
-
-  Logs().v('Load room...', roomId);
-  var room =
-      client.getRoomById(roomId) ??
-      await client.database.getSingleRoom(client, roomId);
-  if (room == null) {
-    Logs().v('Wait for one sync to get unknown room...', roomId);
-    await client
-        .oneShotSync()
-        .timeout(const Duration(seconds: 8))
-        .catchError((_) => null);
-    room =
-        client.getRoomById(roomId) ??
-        Room(id: roomId, client: client, membership: Membership.invite);
-  }
-
-  Logs().v('Load event...', eventId);
-  var event = room.membership == Membership.join
-      ? await room
-            .getEventById(eventId)
-            .timeout(const Duration(seconds: 8))
-            .catchError((_) => null)
-      : Event(
-          eventId: eventId,
-          room: room,
-          type: EventTypes.RoomMember,
-          stateKey: client.userID,
-          senderId: client.userID!,
-          originServerTs: DateTime.now(),
-          content: {'membership': 'invite'},
-        );
-  if (event == null || event.messageType == MessageTypes.BadEncrypted) {
-    Logs().v('Wait for one sync to decrypt event...');
-    await client
-        .oneShotSync()
-        .timeout(const Duration(seconds: 8))
-        .catchError((_) => null);
-    event =
-        await client.database.getEventById(eventId, room) ??
-        Event(
-          eventId: eventId,
-          room: room,
-          type: EventTypes.RoomMember,
-          stateKey: client.userID,
-          senderId: client.userID!,
-          originServerTs: DateTime.now(),
-          content: {'membership': 'invite'},
-        );
   }
 
   Logs().v('Push helper got notification event of type ${event.type}.');
