@@ -725,7 +725,7 @@ gpA(){return"This build does not support firebase cloud messaging."},
 B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.H9,C.aF)})()
-A.dI(b.typeUniverse,JSON.parse('{"H9":{"aF":[]}}'))
+A.dJ(b.typeUniverse,JSON.parse('{"H9":{"aF":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["S/4E5V+9IDFIB+95O6QN+SvfvDM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PBPfxYo90J/xYv1mIsX5xxRv70U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_372.part.js.map

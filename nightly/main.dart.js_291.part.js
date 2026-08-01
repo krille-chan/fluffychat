@@ -725,7 +725,7 @@ gpA(){return"This build does not support firebase cloud messaging."},
 B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Gs,C.aF)})()
-A.dI(b.typeUniverse,JSON.parse('{"Gs":{"aF":[]}}'))
+A.dJ(b.typeUniverse,JSON.parse('{"Gs":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["jEnSBOBYaDRXy/s6Hnu8/DNoFqY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["G9kaLs6swu7U2uh9Z6O0OPBBL9s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_291.part.js.map
