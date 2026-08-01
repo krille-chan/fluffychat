@@ -40,9 +40,7 @@ Future<void> pushHelper(
 }) async {
   l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
   final progressNotificationTimer =
-      !PlatformInfos.isAndroid ||
-          notification.roomId == null ||
-          !AppSettings.showProgressNotification.value
+      !PlatformInfos.isAndroid || notification.roomId == null
       ? null
       : Timer(
           const Duration(seconds: 1),
@@ -130,11 +128,8 @@ Future<void> _tryPushHelper(
   }
 
   final clientName = notification.clientName;
-  Logs().v('Got client name', clientName);
-  Logs().v('Get store...');
   final store = await AppSettings.init();
 
-  Logs().v('Get client...');
   final client = clientName == null
       ? (clients?.first ??
             (await ClientManager.getClients(
@@ -148,15 +143,32 @@ Future<void> _tryPushHelper(
 
   lastReceivedPushNotification[client.clientName] = DateTime.now();
 
-  Logs().v('Get event...');
-  final event = await client.getEventByPushNotification(
-    notification,
-    storeInDatabase: false,
-  );
+  await client.roomsLoading;
+
+  final roomId = notification.roomId;
+  final eventId = notification.eventId;
+
+  await client.roomsLoading;
+  final room = roomId == null
+      ? null
+      : client.getRoomById(roomId) ??
+            Room(id: roomId, membership: Membership.invite, client: client);
+  Logs().v('Load event...');
+  final event = eventId == null || room == null
+      ? null
+      : room.membership == Membership.join
+      ? await room.getEventById(eventId)
+      : Event(
+          eventId: eventId,
+          room: room,
+          type: EventTypes.RoomMember,
+          stateKey: client.userID,
+          senderId: client.userID!,
+          originServerTs: DateTime.now(),
+          content: {'membership': 'invite'},
+        );
 
   final awaitingOneShotSync = client.oneShotSync();
-
-  Logs().v('Get l10n...');
   l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
 
   updateAppBadge(notification.counts?.unread ?? 0);
@@ -167,9 +179,7 @@ Future<void> _tryPushHelper(
       await flutterLocalNotificationsPlugin.cancelAll();
     } else {
       // Make sure client is fully loaded and synced before dismiss notifications:
-      Logs().v('Load rooms...');
       await client.roomsLoading;
-      Logs().v('Wait for sync...');
       await awaitingOneShotSync;
       final activeNotifications = await flutterLocalNotificationsPlugin
           .getActiveNotifications();
@@ -230,7 +240,6 @@ Future<void> _tryPushHelper(
   final matrixLocals = MatrixLocals(l10n);
 
   // Calculate the body
-  Logs().v('Calc body...');
   final body = event.type == EventTypes.Encrypted
       ? l10n.newMessageInFluffyChat
       : await event.calcLocalizedBody(
@@ -250,7 +259,6 @@ Future<void> _tryPushHelper(
 
   final ownUser = event.room.unsafeGetUserFromMemoryOrFallback(client.userID!);
 
-  Logs().v('Download avatars...');
   final userAvatarFile = await client.tryDownloadNotificationAvatar(
     ownUser.avatarUrl,
   );
@@ -277,7 +285,6 @@ Future<void> _tryPushHelper(
     ),
   );
 
-  Logs().v('Get active notifications...');
   final messagingStyleInformation = PlatformInfos.isAndroid
       ? await AndroidFlutterLocalNotificationsPlugin()
             .getActiveNotificationMessagingStyle(id: id)
@@ -301,7 +308,6 @@ Future<void> _tryPushHelper(
     groupId: notificationGroupId,
   );
 
-  Logs().v('Create notification channels...');
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin
@@ -380,13 +386,11 @@ Future<void> _tryPushHelper(
   final title = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
 
   if (PlatformInfos.isAndroid && messagingStyleInformation == null) {
-    Logs().v('Set shortcut...');
     await _setShortcut(event, l10n, title, roomAvatarFile);
   }
 
   final needsTitleAndBody = !PlatformInfos.isAndroid;
 
-  Logs().v('Show notification...');
   await flutterLocalNotificationsPlugin.show(
     id: notification.notificationId,
     title: needsTitleAndBody ? title : null,
@@ -401,7 +405,6 @@ Future<void> _tryPushHelper(
 
   // Send summary notification on Android
   if (PlatformInfos.isAndroid) {
-    Logs().v('Update summary notification...');
     await updateSummaryNotification(
       clientName: client.clientName,
       l10n: l10n,
@@ -561,7 +564,6 @@ Future<List<DarwinNotificationAttachment>?> _getIosAttachmentPath(
   Client client,
   Uri? roomAvatar,
 ) async {
-  if (!PlatformInfos.isIOS) return null;
   if (roomAvatar == null) return null;
 
   final directory = await getFileStorageLocation();

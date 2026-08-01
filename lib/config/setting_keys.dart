@@ -75,8 +75,7 @@ enum AppSettings<T> {
   webNotificationSound<bool>('chat.fluffy.web_notification_sound', true),
   chatFilter<String>('chat.fluffy.chat_filter', 'allChats'),
   hideRoomsInSpaces<bool>('chat.fluffy.hideRoomsInSpaces', false),
-  showThumbnailsInTimeline<bool>('chat.fluffy.showThumbnailsInTimeline', true),
-  showProgressNotification('chat.fluffy.showProgressNotification', true);
+  showThumbnailsInTimeline<bool>('chat.fluffy.showThumbnailsInTimeline', true);
 
   final String key;
   final T defaultValue;
