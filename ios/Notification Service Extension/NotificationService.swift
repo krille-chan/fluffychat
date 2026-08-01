@@ -41,7 +41,6 @@ class NotificationService: UNNotificationServiceExtension {
         }
 
         // Set thread identifier and fallback body:
-        bestAttemptContent.threadIdentifier = roomId
         bestAttemptContent.body = String(
             localized: "New message - open app to read",
             comment: "Default notification body"
@@ -82,6 +81,8 @@ class NotificationService: UNNotificationServiceExtension {
             contentHandler(bestAttemptContent)
             return
         }
+
+        bestAttemptContent.threadIdentifier = "\(clientName)_\(roomId)"
 
         // Open database:
         guard let key = getDatabaseKey() else {
