@@ -725,6 +725,6 @@ gpA(){return"This build does not support firebase cloud messaging."},
 B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GO,C.aF)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GO":{"aF":[]}}'))};
-(a=>{a["Jue7PZa+w/ocX9fK0yxrYHH4Dy4="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GO":{"aF":[]}}'))};
+(a=>{a["fbVtnFsyHKSvXN56PFw77+W8FbI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map
