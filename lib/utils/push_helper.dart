@@ -24,7 +24,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:http/http.dart' as http;
-import 'package:matrix/matrix.dart';
+import 'package:matrix/matrix.dart' hide Result;
 import 'package:path/path.dart' as path;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -148,32 +148,16 @@ Future<void> _tryPushHelper(
   final roomId = notification.roomId;
   final eventId = notification.eventId;
 
-  await client.roomsLoading;
-  final room = roomId == null
-      ? null
-      : client.getRoomById(roomId) ??
-            Room(id: roomId, membership: Membership.invite, client: client);
-  Logs().v('Load event...');
-  final event = eventId == null || room == null
-      ? null
-      : room.membership == Membership.join
-      ? await room.getEventById(eventId)
-      : Event(
-          eventId: eventId,
-          room: room,
-          type: EventTypes.RoomMember,
-          stateKey: client.userID,
-          senderId: client.userID!,
-          originServerTs: DateTime.now(),
-          content: {'membership': 'invite'},
-        );
+  final awaitingOneShotSync = client
+      .oneShotSync()
+      .timeout(const Duration(seconds: 8))
+      .catchError((_) => null);
 
-  final awaitingOneShotSync = client.oneShotSync();
   l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
 
   updateAppBadge(notification.counts?.unread ?? 0);
 
-  if (event == null) {
+  if (eventId == null || roomId == null) {
     Logs().v('Notification is a clearing indicator.');
     if (clients?.length == 1 && (notification.counts?.unread == 0)) {
       await flutterLocalNotificationsPlugin.cancelAll();
@@ -208,6 +192,48 @@ Future<void> _tryPushHelper(
     }
     return;
   }
+
+  await client.roomsLoading;
+  var room = client.getRoomById(roomId);
+  if (room == null) {
+    Logs().v('Wait for one sync to get unknown room...', roomId);
+    await awaitingOneShotSync;
+    room =
+        client.getRoomById(roomId) ??
+        Room(id: roomId, client: client, membership: Membership.invite);
+  }
+
+  Logs().v('Load event...', eventId);
+  var event = room.membership == Membership.join
+      ? await room
+            .getEventById(eventId)
+            .timeout(const Duration(seconds: 8))
+            .catchError((_) => null)
+      : Event(
+          eventId: eventId,
+          room: room,
+          type: EventTypes.RoomMember,
+          stateKey: client.userID,
+          senderId: client.userID!,
+          originServerTs: DateTime.now(),
+          content: {'membership': 'invite'},
+        );
+  if (event == null || event.messageType == MessageTypes.BadEncrypted) {
+    Logs().v('Wait for one sync to decrypt event...');
+    await awaitingOneShotSync;
+    event =
+        await client.database.getEventById(eventId, room) ??
+        Event(
+          eventId: eventId,
+          room: room,
+          type: EventTypes.RoomMember,
+          stateKey: client.userID,
+          senderId: client.userID!,
+          originServerTs: DateTime.now(),
+          content: {'membership': 'invite'},
+        );
+  }
+
   Logs().v('Push helper got notification event of type ${event.type}.');
 
   if (!client.pushruleEvaluator.match(event).notify) {

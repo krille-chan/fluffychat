@@ -128,7 +128,7 @@ abstract class ClientManager {
       customImageResizer: PlatformInfos.supportsCustomImageResizer
           ? customImageResizer
           : null,
-      logLevel: kReleaseMode ? Level.warning : Level.verbose,
+      logLevel: Level.verbose,
       database: await flutterMatrixSdkDatabaseBuilder(clientName),
       supportedLoginTypes: {
         AuthenticationTypes.password,
