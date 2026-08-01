@@ -38,7 +38,9 @@ Future<void> pushHelper(
 }) async {
   l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
   final progressNotificationTimer =
-      !PlatformInfos.isAndroid || notification.roomId == null
+      !PlatformInfos.isAndroid ||
+          notification.roomId == null ||
+          !AppSettings.showProgressNotification.value
       ? null
       : Timer(
           const Duration(seconds: 1),
