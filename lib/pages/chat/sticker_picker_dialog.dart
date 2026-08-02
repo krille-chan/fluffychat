@@ -39,10 +39,12 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
     return Material(
       color: theme.colorScheme.onInverseSurface,
       child: SafeArea(
+        top: false,
         child: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
               floating: true,
+              primary: false,
               toolbarHeight: 72,
               scrolledUnderElevation: 0,
               backgroundColor: Colors.transparent,
@@ -129,6 +131,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                         ),
                       const SizedBox(height: 6),
                       GridView.builder(
+                        padding: EdgeInsets.zero,
                         itemCount: imageKeys.length,
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
