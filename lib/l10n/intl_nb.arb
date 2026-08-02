@@ -675,7 +675,7 @@
             }
         }
     },
-    "isTyping": "skriver…",
+    "isTyping": "skriver",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
