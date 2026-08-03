@@ -11,6 +11,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/start_push_foreground_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -63,13 +64,16 @@ void main(List<String> args) async {
   }
 
   Logs().nativeColors = !PlatformInfos.isIOS;
-  final clients = await ClientManager.getClients(store: store);
 
   // If the app starts in detached mode, we assume that it is in
   // background fetch mode for processing push notifications. This is
   // currently only supported on Android.
   if (PlatformInfos.isAndroid &&
       AppLifecycleState.detached == WidgetsBinding.instance.lifecycleState) {
+    await startPushForegroundService();
+
+    final clients = await ClientManager.getClients(store: store);
+
     // Do not send online presences when app is in background fetch mode.
     for (final client in clients) {
       client.backgroundSync = false;
@@ -86,6 +90,8 @@ void main(List<String> args) async {
     );
     return;
   }
+
+  final clients = await ClientManager.getClients(store: store);
 
   // Started in foreground mode.
   Logs().i(

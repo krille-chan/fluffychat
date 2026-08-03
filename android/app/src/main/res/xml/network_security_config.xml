@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Trust ISRG Root X1/X2 in addition to the system CAs so Let's Encrypt–signed
+  servers work on Android versions older than 7.1.1, which lack these roots.
+  Cronet uses the Android trust store and therefore respects this config.
+
+  Cleartext is permitted so users (and integration tests) can still reach
+  local HTTP homeservers, matching previous dart:io HttpClient behavior.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="@raw/isrg_root_x1" />
+            <certificates src="@raw/isrg_root_x2" />
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

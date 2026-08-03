@@ -48,6 +48,30 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(String clientName) async {
   }
 }
 
+Future<Directory?> getFileStorageLocation() async {
+  try {
+    late final Directory temporaryDirectory;
+    if (PlatformInfos.isIOS) {
+      final containerPath = await PathProviderFoundation().getContainerPath(
+        appGroupIdentifier: 'group.im.fluffychat.app',
+      );
+      temporaryDirectory = Directory(containerPath!);
+    } else if (PlatformInfos.isLinux) {
+      temporaryDirectory = await getApplicationCacheDirectory();
+    } else {
+      temporaryDirectory = await getTemporaryDirectory();
+    }
+    return await Directory(
+      join(temporaryDirectory.path, 'fluffychat_download_cache'),
+    ).create(recursive: true);
+  } on MissingPlatformDirectoryException catch (_) {
+    Logs().w(
+      'No temporary directory for file cache available on this platform.',
+    );
+  }
+  return null;
+}
+
 Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
   if (kIsWeb) {
     html.window.navigator.storage?.persist();
@@ -56,19 +80,7 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
 
   final cipher = await getDatabaseCipher();
 
-  Directory? fileStorageLocation;
-  try {
-    final temporaryDirectory = PlatformInfos.isLinux
-        ? await getApplicationCacheDirectory()
-        : await getTemporaryDirectory();
-    fileStorageLocation = await Directory(
-      join(temporaryDirectory.path, 'fluffychat_download_cache'),
-    ).create(recursive: true);
-  } on MissingPlatformDirectoryException catch (_) {
-    Logs().w(
-      'No temporary directory for file cache available on this platform.',
-    );
-  }
+  final fileStorageLocation = await getFileStorageLocation();
 
   final path = await _getDatabasePath(clientName);
 

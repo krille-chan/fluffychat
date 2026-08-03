@@ -14,16 +14,19 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_matrix_dart_sdk_database/builder.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:http/http.dart' as http;
-import 'package:matrix/matrix.dart';
+import 'package:matrix/matrix.dart' hide Result;
+import 'package:path/path.dart' as path;
 import 'package:shared_preferences/shared_preferences.dart';
 
 const notificationAvatarDimension = 128;
@@ -35,20 +38,9 @@ Future<void> pushHelper(
   L10n? l10n,
   String? activeRoomId,
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-  bool useNotificationActions = true,
 }) async {
   l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
-  final progressNotificationTimer =
-      !PlatformInfos.isAndroid || notification.roomId == null
-      ? null
-      : Timer(
-          const Duration(seconds: 1),
-          () => _showProgressNotification(
-            notification: notification,
-            l10n: l10n!,
-            flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
-          ),
-        );
+
   try {
     await _tryPushHelper(
       notification,
@@ -56,8 +48,7 @@ Future<void> pushHelper(
       l10n: l10n,
       activeRoomId: activeRoomId,
       flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
-      useNotificationActions: useNotificationActions,
-    );
+    ).timeout(const Duration(seconds: 30));
   } catch (e, s) {
     if (PlatformInfos.isAndroid &&
         e is! TimeoutException &&
@@ -77,7 +68,10 @@ Future<void> pushHelper(
         title: l10n.newMessageInFluffyChat,
         body: l10n.openAppToReadMessages,
         notificationDetails: NotificationDetails(
-          iOS: const DarwinNotificationDetails(),
+          iOS: DarwinNotificationDetails(
+            threadIdentifier:
+                '${notification.clientName}_${notification.roomId}',
+          ),
           android: AndroidNotificationDetails(
             AppConfig.pushNotificationsChannelId,
             l10n.incomingMessages,
@@ -97,10 +91,10 @@ Future<void> pushHelper(
     }
     rethrow;
   } finally {
-    flutterLocalNotificationsPlugin.cancel(
-      id: '${notification.clientName}_loading'.hashCode,
-    );
-    progressNotificationTimer?.cancel();
+    if (PlatformInfos.isAndroid &&
+        await FlutterForegroundTask.isRunningService) {
+      await FlutterForegroundTask.stopService();
+    }
   }
 }
 
@@ -110,7 +104,6 @@ Future<void> _tryPushHelper(
   L10n? l10n,
   String? activeRoomId,
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-  bool useNotificationActions = true,
 }) async {
   final isBackgroundMessage = clients == null;
   Logs().v(
@@ -141,13 +134,13 @@ Future<void> _tryPushHelper(
 
   lastReceivedPushNotification[client.clientName] = DateTime.now();
 
+  l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
+
+  Logs().v('Load event...');
   final event = await client.getEventByPushNotification(
     notification,
     storeInDatabase: false,
   );
-
-  final awaitingOneShotSync = client.oneShotSync();
-  l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
 
   updateAppBadge(notification.counts?.unread ?? 0);
 
@@ -158,7 +151,11 @@ Future<void> _tryPushHelper(
     } else {
       // Make sure client is fully loaded and synced before dismiss notifications:
       await client.roomsLoading;
-      await awaitingOneShotSync;
+      await client
+          .oneShotSync()
+          .timeout(const Duration(seconds: 8))
+          .catchError((_) => null);
+
       final activeNotifications = await flutterLocalNotificationsPlugin
           .getActiveNotifications();
       activeNotifications.removeWhere(
@@ -186,6 +183,7 @@ Future<void> _tryPushHelper(
     }
     return;
   }
+
   Logs().v('Push helper got notification event of type ${event.type}.');
 
   if (!client.pushruleEvaluator.match(event).notify) {
@@ -328,7 +326,7 @@ Future<void> _tryPushHelper(
     importance: Importance.high,
     priority: Priority.max,
     groupKey: client.clientName,
-    actions: event.type == EventTypes.RoomMember || !useNotificationActions
+    actions: event.type == EventTypes.RoomMember
         ? null
         : <AndroidNotificationAction>[
             AndroidNotificationAction(
@@ -353,7 +351,8 @@ Future<void> _tryPushHelper(
           ],
   );
   final iOSPlatformChannelSpecifics = DarwinNotificationDetails(
-    threadIdentifier: event.room.id,
+    threadIdentifier: '${notification.clientName}_${notification.roomId}',
+    attachments: await _getIosAttachmentPath(client, event.room.avatar),
   );
   final platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
@@ -516,22 +515,26 @@ extension on PushNotification {
   }
 }
 
-void _showProgressNotification({
-  required PushNotification notification,
-  required L10n l10n,
-  required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-}) => flutterLocalNotificationsPlugin.show(
-  id: '${notification.clientName}_loading'.hashCode,
-  title: l10n.loadingMessages,
-  notificationDetails: NotificationDetails(
-    android: AndroidNotificationDetails(
-      'fluffychat_sync',
-      l10n.loadingMessages,
-      playSound: false,
-      enableVibration: false,
-      silent: true,
-      groupKey: notification.clientName,
-      autoCancel: false,
-    ),
-  ),
-);
+/// Keep in sync with `createAttachment()` in iOS Notification Extension
+Future<List<DarwinNotificationAttachment>?> _getIosAttachmentPath(
+  Client client,
+  Uri? roomAvatar,
+) async {
+  if (roomAvatar == null) return null;
+
+  final directory = await getFileStorageLocation();
+  if (directory == null) return null;
+
+  final host = roomAvatar.host.replaceAll('.', '_');
+  final rawPath = roomAvatar.pathSegments.join('_');
+  final fileName = 'notification_${host}_$rawPath.jpg';
+  final cachedFile = File(path.join(directory.path, fileName));
+
+  if (!await cachedFile.exists()) {
+    final bytes = await client.tryDownloadNotificationAvatar(roomAvatar);
+    if (bytes == null) return null;
+    await cachedFile.writeAsBytes(bytes);
+  }
+
+  return [DarwinNotificationAttachment(cachedFile.path, identifier: 'image')];
+}
