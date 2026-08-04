@@ -114,6 +114,12 @@ enum AppSettings<T> {
     if (store.getBool(AppSettings.sendOnEnter.key) == null) {
       await store.setBool(AppSettings.sendOnEnter.key, !PlatformInfos.isMobile);
     }
+    if (store.getBool(AppSettings.doubleTapToReact.key) == null) {
+      await store.setBool(
+        AppSettings.doubleTapToReact.key,
+        PlatformInfos.isMobile,
+      );
+    }
     if (kIsWeb && loadWebConfigFile) {
       try {
         final configJsonString = utf8.decode(
