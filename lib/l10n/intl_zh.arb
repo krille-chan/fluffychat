@@ -2771,5 +2771,8 @@
     "loadingMessages": "正在加载消息…",
     "buildDoesNotSupportFirebase": "此版本不支持 firebase 云消息。",
     "unableToRegisterDeviceForFirebase": "无法注册设备用于 firebase 云消息。",
-    "unifiedPushDistributors": "Unified Push 分发程序："
+    "unifiedPushDistributors": "Unified Push 分发程序：",
+    "doubleTapToReact": "轻按两次回应",
+    "doubleTapToReactDescription": "轻按消息两次进行回应而非选中文本",
+    "doubleTapReaction": "轻按两次回应"
 }
