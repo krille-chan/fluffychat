@@ -1409,14 +1409,15 @@ let wasm_bindgen;
 
     /**
      * @param {any} that
+     * @param {any} config
      * @param {any} their_identity_key
      * @param {string} pre_key_message_base64
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_account_create_inbound_session = function(that, their_identity_key, pre_key_message_base64) {
+    __exports.wire__crate__bindings__vodozemac_account_create_inbound_session = function(that, config, their_identity_key, pre_key_message_base64) {
         const ptr0 = passStringToWasm0(pre_key_message_base64, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_account_create_inbound_session(that, their_identity_key, ptr0, len0);
+        const ret = wasm.wire__crate__bindings__vodozemac_account_create_inbound_session(that, config, their_identity_key, ptr0, len0);
         return ret;
     };
 
@@ -1581,10 +1582,6 @@ let wasm_bindgen;
         wasm.frb_dart_opaque_drop_thread_box_persistent_handle(ptr);
     };
 
-    __exports.wasm_start_callback = function() {
-        wasm.wasm_start_callback();
-    };
-
     /**
      * @param {number} ptr
      * @returns {any}
@@ -1594,8 +1591,12 @@ let wasm_bindgen;
         return ret;
     };
 
+    __exports.wasm_start_callback = function() {
+        wasm.wasm_start_callback();
+    };
+
     function __wbg_adapter_40(arg0, arg1, arg2) {
-        wasm.closure579_externref_shim(arg0, arg1, arg2);
+        wasm.closure595_externref_shim(arg0, arg1, arg2);
     }
 
     const WorkerPoolFinalization = (typeof FinalizationRegistry === 'undefined')
@@ -1627,14 +1628,17 @@ let wasm_bindgen;
          * @param {number | null} [initial]
          * @param {string | null} [script_src]
          * @param {string | null} [worker_js_preamble]
+         * @param {string | null} [wasm_bindgen_name]
          * @returns {WorkerPool}
          */
-        static new(initial, script_src, worker_js_preamble) {
+        static new(initial, script_src, worker_js_preamble, wasm_bindgen_name) {
             var ptr0 = isLikeNone(script_src) ? 0 : passStringToWasm0(script_src, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
             var len0 = WASM_VECTOR_LEN;
             var ptr1 = isLikeNone(worker_js_preamble) ? 0 : passStringToWasm0(worker_js_preamble, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
             var len1 = WASM_VECTOR_LEN;
-            const ret = wasm.workerpool_new(isLikeNone(initial) ? 0x100000001 : (initial) >>> 0, ptr0, len0, ptr1, len1);
+            var ptr2 = isLikeNone(wasm_bindgen_name) ? 0 : passStringToWasm0(wasm_bindgen_name, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+            var len2 = WASM_VECTOR_LEN;
+            const ret = wasm.workerpool_new(isLikeNone(initial) ? 0x100000001 : (initial) >>> 0, ptr0, len0, ptr1, len1, ptr2, len2);
             if (ret[2]) {
                 throw takeFromExternrefTable0(ret[1]);
             }
@@ -1654,13 +1658,16 @@ let wasm_bindgen;
          * @param {number} initial
          * @param {string} script_src
          * @param {string} worker_js_preamble
+         * @param {string} wasm_bindgen_name
          */
-        constructor(initial, script_src, worker_js_preamble) {
+        constructor(initial, script_src, worker_js_preamble, wasm_bindgen_name) {
             const ptr0 = passStringToWasm0(script_src, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
             const len0 = WASM_VECTOR_LEN;
             const ptr1 = passStringToWasm0(worker_js_preamble, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
             const len1 = WASM_VECTOR_LEN;
-            const ret = wasm.workerpool_new_raw(initial, ptr0, len0, ptr1, len1);
+            const ptr2 = passStringToWasm0(wasm_bindgen_name, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+            const len2 = WASM_VECTOR_LEN;
+            const ret = wasm.workerpool_new_raw(initial, ptr0, len0, ptr1, len1, ptr2, len2);
             if (ret[2]) {
                 throw takeFromExternrefTable0(ret[1]);
             }
@@ -1732,7 +1739,7 @@ let wasm_bindgen;
             const ret = arg0.data;
             return ret;
         };
-        imports.wbg.__wbg_error_076d4beefd7cfd14 = function(arg0, arg1) {
+        imports.wbg.__wbg_error_2cdfbae2e8e23e41 = function(arg0, arg1) {
             console.error(getStringFromWasm0(arg0, arg1));
         };
         imports.wbg.__wbg_error_7534b8e9a36f1ab4 = function(arg0, arg1) {
@@ -1865,7 +1872,7 @@ let wasm_bindgen;
             const ret = arg0.node;
             return ret;
         };
-        imports.wbg.__wbg_postMessage_33814d4dc32c2dcf = function() { return handleError(function (arg0, arg1) {
+        imports.wbg.__wbg_postMessage_68b94be862c0db01 = function() { return handleError(function (arg0, arg1) {
             arg0.postMessage(arg1);
         }, arguments) };
         imports.wbg.__wbg_postMessage_6edafa8f7b9c2f52 = function() { return handleError(function (arg0, arg1) {
@@ -1955,8 +1962,8 @@ let wasm_bindgen;
             const ret = false;
             return ret;
         };
-        imports.wbg.__wbindgen_closure_wrapper1695 = function(arg0, arg1, arg2) {
-            const ret = makeMutClosure(arg0, arg1, 580, __wbg_adapter_40);
+        imports.wbg.__wbindgen_closure_wrapper1724 = function(arg0, arg1, arg2) {
+            const ret = makeMutClosure(arg0, arg1, 596, __wbg_adapter_40);
             return ret;
         };
         imports.wbg.__wbindgen_debug_string = function(arg0, arg1) {
