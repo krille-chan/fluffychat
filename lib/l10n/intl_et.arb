@@ -1919,7 +1919,7 @@
     "messagesStyle": "Sõnumid:",
     "shareInviteLink": "Jaga kutse linki",
     "setChatDescription": "Lisa vestluse kirjeldus",
-    "setColorTheme": "Vali värviteema:",
+    "setColorTheme": "Vali värvikombinatsioon:",
     "invite": "Kutsu",
     "invalidServerName": "Vigane serveri nimi",
     "chatDescriptionHasBeenChanged": "Vestluse kirjeldus on muutunud",
@@ -1977,13 +1977,13 @@
     },
     "learnMore": "Loe lisaks",
     "roomUpgradeDescription": "See vestlus luuakse nüüd uuesti jututoa uue versioonina. Kõik senised osalejad saavad teate, et nad peavad liituma uue vestlusega. Jututubade versioonide kohta leiad teavet https://spec.matrix.org/latest/rooms/ lehelt",
-    "pleaseEnterANumber": "Palun sisesta 0'st suurem number",
+    "pleaseEnterANumber": "Palun sisesta 0-st suurem number",
     "kickUserDescription": "See kasutaja on nüüd jutuoast välja müksatud, kuid talle pole seatud suhtluskeeldu. Avaliku jututoa puhul saab ta alati uuesti liituda.",
     "blockListDescription": "Sul on võimalik blokeerida neid kasutajaid, kes sind segavad. Oma isiklikku blokerimisloendisse lisatud kasutajad ei saa sulle saata sõnumeid ega kutseid.",
     "createGroupAndInviteUsers": "Lisa jututuba ja kutsu sinna kasutajaid",
     "blockedUsers": "Blokeeritud kasutajad",
     "groupCanBeFoundViaSearch": "Jututuba on leitav otsinguga",
-    "noUsersFoundWithQuery": "Päringuga „{query}“ ei leidunud kahkus ühtegi kasutajat. Palun kontrolli, et päringus poleks vigu.",
+    "noUsersFoundWithQuery": "Päringuga „{query}“ ei leidunud kahjuks ühtegi kasutajat. Palun kontrolli, et päringus poleks vigu.",
     "@noUsersFoundWithQuery": {
         "type": "String",
         "placeholders": {
@@ -2125,7 +2125,7 @@
     "usersMustKnock": "Kasutajad peavad uksele koputama",
     "noOneCanJoin": "Mitte keegi ei saa liituda",
     "knocking": "Koputus uksele",
-    "chatCanBeDiscoveredViaSearchOnServer": "Vestluse või jututoa saad leida otsingust serveris {server}",
+    "chatCanBeDiscoveredViaSearchOnServer": "Vestluse või jututoa saad leida otsingu abil serverist {server}",
     "@chatCanBeDiscoveredViaSearchOnServer": {
         "type": "String",
         "placeholders": {
@@ -2771,5 +2771,8 @@
     "loadingMessages": "Laadin sõnumeid…",
     "buildDoesNotSupportFirebase": "See kompileeritud variant ei toeta Firebase Cloud Messaging teenust.",
     "unableToRegisterDeviceForFirebase": "Seadme registreerimine Firebase Cloud Messaging teenuses ei õnnestu.",
-    "unifiedPushDistributors": "Unified Pushi tõuketeenuste levitajad:"
+    "unifiedPushDistributors": "Unified Pushi tõuketeenuste levitajad:",
+    "doubleTapToReact": "Reageerimiseks topeltklõpsa",
+    "doubleTapToReactDescription": "Teksti valimise asemel saad reageerida sõnumil topeltklõpsamisega",
+    "doubleTapReaction": "Reageerimine topeltklõpsamisel"
 }
