@@ -164,6 +164,7 @@ abstract class AppRoutes {
                     ChatPage(
                       roomId: state.pathParameters['roomid']!,
                       eventId: state.uri.queryParameters['event'],
+                      timeline: state.extra as Timeline?,
                     ),
                   ),
                   redirect: loggedOutRedirect,
