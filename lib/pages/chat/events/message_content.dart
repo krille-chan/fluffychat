@@ -204,6 +204,7 @@ class MessageContent extends StatelessWidget {
             );
         }
       case PollEventContent.startType:
+      case 'm.poll.start':
         if (event.redacted) {
           return RedactionWidget(
             event: event,
