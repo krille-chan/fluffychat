@@ -2777,5 +2777,8 @@
     "loadingMessages": "Ag lódáil teachtaireachtaí...",
     "buildDoesNotSupportFirebase": "Ní thacaíonn an tógáil seo le teachtaireachtaí scamall firebase.",
     "unableToRegisterDeviceForFirebase": "Ní féidir gléas a chlárú le haghaidh teachtaireachtaí scamall firebase.",
-    "unifiedPushDistributors": "Dáileoirí Brú Aontaithe:"
+    "unifiedPushDistributors": "Dáileoirí Brú Aontaithe:",
+    "doubleTapToReact": "Tapáil faoi dhó le freagairt",
+    "doubleTapToReactDescription": "Tapáil faoi dhó ar theachtaireacht le freagairt in ionad téacs a roghnú",
+    "doubleTapReaction": "Imoibriú tapála faoi dhó"
 }
