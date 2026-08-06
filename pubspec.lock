@@ -1168,8 +1168,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: main
-      resolved-ref: "6bbafbaeb1e84dad1dd14f6d480500be139d2632"
+      ref: "krille/refactor-archive-room-handling"
+      resolved-ref: "33169d11df2f08cc8891c58f9c00d7beac3b1d39"
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "9.0.0"

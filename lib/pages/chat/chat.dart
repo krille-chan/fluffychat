@@ -56,12 +56,14 @@ class ChatPage extends StatelessWidget {
   final String roomId;
   final List<ShareItem>? shareItems;
   final String? eventId;
+  final Timeline? timeline;
 
   const ChatPage({
     super.key,
     required this.roomId,
     this.eventId,
     this.shareItems,
+    this.timeline,
   });
 
   @override
@@ -84,6 +86,7 @@ class ChatPage extends StatelessWidget {
       room: room,
       shareItems: shareItems,
       eventId: eventId,
+      timeline: timeline,
     );
   }
 }
@@ -92,12 +95,14 @@ class ChatPageWithRoom extends StatefulWidget {
   final Room room;
   final List<ShareItem>? shareItems;
   final String? eventId;
+  final Timeline? timeline;
 
   const ChatPageWithRoom({
     super.key,
     required this.room,
     this.shareItems,
     this.eventId,
+    this.timeline,
   });
 
   @override
@@ -525,11 +530,13 @@ class ChatController extends State<ChatPageWithRoom>
     }
     try {
       timeline?.cancelSubscriptions();
-      timeline = await room.getTimeline(
-        onUpdate: updateView,
-        onInsert: _insert,
-        eventContextId: eventContextId,
-      );
+      timeline =
+          widget.timeline ??
+          await room.getTimeline(
+            onUpdate: updateView,
+            onInsert: _insert,
+            eventContextId: eventContextId,
+          );
     } catch (e, s) {
       Logs().w('Unable to load timeline on event ID $eventContextId', e, s);
       if (!mounted) return;
