@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cPF(){return new B.Gy(A.dh("eu"))},
+cPE(){return new B.Gy(A.dh("eu"))},
 Gy:function Gy(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -728,7 +728,7 @@ goQ(){return"Double-tap reaction"},
 B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Gy,C.aF)})()
-A.dJ(b.typeUniverse,JSON.parse('{"Gy":{"aF":[]}}'))
+A.dI(b.typeUniverse,JSON.parse('{"Gy":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["UZzK5xE14896IkVIcDDbZLtPDVs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["MjHsdpQIOe/MSAkKBuCIqx57zNA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map

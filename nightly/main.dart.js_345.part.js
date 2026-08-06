@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cPU(){return new B.GN(A.dh("ja"))},
+cPT(){return new B.GN(A.dh("ja"))},
 GN:function GN(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -728,6 +728,6 @@ goQ(){return"Double-tap reaction"},
 B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GN,C.aF)})()
-A.dJ(b.typeUniverse,JSON.parse('{"GN":{"aF":[]}}'))};
-(a=>{a["vUdHhFxU1hYpTkSR1e7dhmm5UFo="]=a.current})($__dart_deferred_initializers__);
+A.dI(b.typeUniverse,JSON.parse('{"GN":{"aF":[]}}'))};
+(a=>{a["UER7QgupPV+ysGquQZCxPHwgyhc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map
