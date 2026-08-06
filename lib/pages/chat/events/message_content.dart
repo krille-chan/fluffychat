@@ -15,6 +15,7 @@ import 'package:matrix/matrix.dart';
 
 import '../../../config/app_config.dart';
 import '../../../utils/event_checkbox_extension.dart';
+import '../../../utils/file_description.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
 import 'audio_player.dart';
@@ -81,6 +82,10 @@ class MessageContent extends StatelessWidget {
                 height = maxSize;
                 width = max(32, maxSize * (w / h));
               }
+            }
+            if (event.fileDescription != null) {
+              width = maxSize;
+              fit = BoxFit.cover;
             }
             return ImageBubble(
               event,
