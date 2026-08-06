@@ -19,19 +19,19 @@ class Archive extends StatefulWidget {
 }
 
 class ArchiveController extends State<Archive> {
-  List<Room> archive = [];
+  List<ArchivedRoom> archive = [];
 
-  Future<List<Room>> getArchive(BuildContext context) async {
+  Future<List<ArchivedRoom>> getArchive(BuildContext context) async {
     if (archive.isNotEmpty) return archive;
-    return archive = await Matrix.of(context).client.loadArchive();
+    return archive = await Matrix.of(context).client.loadArchiveWithTimeline();
   }
 
   Future<void> forgetRoomAction(int i) async {
     await showFutureLoadingDialog(
       context: context,
       future: () async {
-        Logs().v('Forget room ${archive.last.getLocalizedDisplayname()}');
-        await archive[i].forget();
+        Logs().v('Forget room ${archive.last.room.getLocalizedDisplayname()}');
+        await archive[i].room.forget();
         archive.removeAt(i);
       },
     );
@@ -60,8 +60,10 @@ class ArchiveController extends State<Archive> {
         final count = archive.length;
         while (archive.isNotEmpty) {
           onProgress(1 - (archive.length / count));
-          Logs().v('Forget room ${archive.last.getLocalizedDisplayname()}');
-          await archive.last.forget();
+          Logs().v(
+            'Forget room ${archive.last.room.getLocalizedDisplayname()}',
+          );
+          await archive.last.room.forget();
           archive.removeLast();
         }
       },
