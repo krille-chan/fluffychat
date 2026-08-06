@@ -77,7 +77,8 @@ enum AppSettings<T> {
   hideRoomsInSpaces<bool>('chat.fluffy.hideRoomsInSpaces', false),
   showThumbnailsInTimeline<bool>('chat.fluffy.showThumbnailsInTimeline', true),
   doubleTapToReact<bool>('chat.fluffy.double_tap_to_react', false),
-  doubleTapReaction<String>('chat.fluffy.double_tap_reaction', '❤️');
+  doubleTapReaction<String>('chat.fluffy.double_tap_reaction', '❤️'),
+  benchmarksInLogs<bool>('chat.fluffy.benchmarks_in_logs', false);
 
   final String key;
   final T defaultValue;
