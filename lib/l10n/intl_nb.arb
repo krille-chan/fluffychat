@@ -2778,5 +2778,8 @@
     "loadingMessages": "Laster meldinger...",
     "buildDoesNotSupportFirebase": "Denne versjonen støtter ikke Firebase Cloud Messaging.",
     "unableToRegisterDeviceForFirebase": "Kan ikke registrere enheten for Firebase Cloud Messaging.",
-    "unifiedPushDistributors": "UnifiedPush-distributører:"
+    "unifiedPushDistributors": "UnifiedPush-distributører:",
+    "doubleTapToReact": "Dubbelttrykk for å reagere",
+    "doubleTapToReactDescription": "Dobbelt-trykk på en melding for å reagere i stedet for å merke tekst",
+    "doubleTapReaction": "Reaksjon ved dobbelttrykk"
 }
