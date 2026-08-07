@@ -168,7 +168,6 @@ Future<void> notificationTap(
       }
       await client.roomsLoading;
       await client.accountDataLoading;
-      await client.userDeviceKeysLoading;
       final room = client.getRoomById(roomId);
       if (room == null) {
         throw Exception(

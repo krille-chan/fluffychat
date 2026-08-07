@@ -127,11 +127,10 @@ class DevicesSettingsController extends State<DevicesSettings> {
     );
     if (consent != OkCancelResult.ok) return;
     if (!mounted) return;
-    final req = await matrix
-        .client
-        .userDeviceKeys[matrix.client.userID!]!
-        .deviceKeys[device.deviceId]!
-        .startVerification();
+    final keys = await matrix.client.fetchUserDeviceKeysList(
+      matrix.client.userID!,
+    );
+    final req = await keys!.deviceKeys[device.deviceId]!.startVerification();
     req.onUpdate = () {
       if ({
         KeyVerificationState.error,
@@ -145,10 +144,9 @@ class DevicesSettingsController extends State<DevicesSettings> {
   }
 
   Future<void> blockDeviceAction(Device device) async {
-    final key = Matrix.of(context)
-        .client
-        .userDeviceKeys[Matrix.of(context).client.userID!]!
-        .deviceKeys[device.deviceId]!;
+    final client = Matrix.of(context).client;
+    final userDeviceKeys = await client.fetchUserDeviceKeysList(client.userID!);
+    final key = userDeviceKeys!.deviceKeys[device.deviceId]!;
     if (key.directVerified) {
       await key.setVerified(false);
     }
@@ -157,10 +155,9 @@ class DevicesSettingsController extends State<DevicesSettings> {
   }
 
   Future<void> unblockDeviceAction(Device device) async {
-    final key = Matrix.of(context)
-        .client
-        .userDeviceKeys[Matrix.of(context).client.userID!]!
-        .deviceKeys[device.deviceId]!;
+    final client = Matrix.of(context).client;
+    final userDeviceKeys = await client.fetchUserDeviceKeysList(client.userID!);
+    final key = userDeviceKeys!.deviceKeys[device.deviceId]!;
     await key.setBlocked(false);
     setState(() {});
   }
