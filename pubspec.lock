@@ -673,10 +673,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_vodozemac
-      sha256: "678206fbe7210045af0d85993febfc0fa1cea6c0a5b7f2f425a0c8a3bfb60908"
+      sha256: "7e893533d757501eba4aedeecb54586ac2f3fa5e4f28de3e5723b383d5293d7e"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.0"
+    version: "0.7.1"
   flutter_web_auth_2:
     dependency: "direct main"
     description:
