@@ -1186,7 +1186,7 @@
             }
         }
     },
-    "redactMessage": "Eliminar mensaxe",
+    "redactMessage": "Editar mensaxe",
     "@redactMessage": {
         "type": "String",
         "placeholders": {}
@@ -2771,5 +2771,8 @@
     "loadingMessages": "Cargando mensaxes…",
     "buildDoesNotSupportFirebase": "Esta versión non é compatible con firebase cloud messaging.",
     "unableToRegisterDeviceForFirebase": "Non se puido rexistrar o dispositivo en firebase cloud messaging.",
-    "unifiedPushDistributors": "Distribuidores Unified Push:"
+    "unifiedPushDistributors": "Distribuidores Unified Push:",
+    "doubleTapToReact": "Doble toque para reaccionar",
+    "doubleTapToReactDescription": "Fai doble toque nunha mensaxe para engadir reacción no lugar de seleccionar o texto",
+    "doubleTapReaction": "Reacción con doble toque"
 }
