@@ -97,10 +97,12 @@ parts:
       - libssl-dev
       - curl
       - libpciaccess-dev
+      - libpulse-dev
     stage-packages:
       - libsecret-1-0
       - libjsoncpp25
       - libpciaccess0
+      - libpulse0
 
 slots:
   dbus-svc:
