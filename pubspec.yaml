@@ -59,7 +59,7 @@ dependencies:
   matrix: #^9.0.0
     git:
       url: https://github.com/famedly/matrix-dart-sdk.git
-      ref: krille/refactor-user-device-keys
+      ref: main
   mime: ^2.0.0
   native_imaging: ^0.5.0
   opus_caf_converter_dart: ^1.0.1

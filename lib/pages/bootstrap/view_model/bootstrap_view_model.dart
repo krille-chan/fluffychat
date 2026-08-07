@@ -60,8 +60,8 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
 
   Future<void> retryKeyVerification() async {
     value.noSecretsreceived = false;
-    final keys = await client.fetchUserDeviceKeysList(client.userID!);
-    value.keyVerification = await keys!.startVerification();
+    value.keyVerification = await client.userDeviceKeys[client.userID!]!
+        .startVerification();
     value.keyVerification?.onUpdate = _onKeyVerificationUpdate;
     notifyListeners();
   }
@@ -77,10 +77,10 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
     if (state.initialized) {
       if (state.connected) return notifyListeners();
 
-      final keys = await client.fetchUserDeviceKeysList(client.userID!);
+      await client.updateUserDeviceKeys();
 
       final devices = value.connectedDevices =
-          keys?.deviceKeys.values
+          client.userDeviceKeys[client.userID!]?.deviceKeys.values
               .where(
                 (device) => device.hasValidSignatureChain(
                   verifiedByTheirMasterKey: true,
@@ -89,7 +89,8 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
               .toList() ??
           [];
       if (devices.isNotEmpty) {
-        value.keyVerification = await keys!.startVerification();
+        value.keyVerification = await client.userDeviceKeys[client.userID!]!
+            .startVerification();
         value.keyVerification?.onUpdate = _onKeyVerificationUpdate;
       }
       if (supportsSecureStorage) {

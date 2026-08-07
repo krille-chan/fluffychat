@@ -6,16 +6,20 @@
 import 'package:matrix/matrix.dart';
 
 extension OtherPartyCanReceiveExtension on Room {
-  Future<bool> otherPartyCanReceiveMessages() async {
+  bool get otherPartyCanReceiveMessages {
     if (!encrypted) return true;
-    final keys = await getUserDeviceKeys();
     final users = getParticipants()
         .map((u) => u.id)
         .where((userId) => userId != client.userID)
         .toSet();
     if (users.isEmpty) return true;
 
-    return keys.any((key) => key.userId != client.userID);
+    for (final userId in users) {
+      if (client.userDeviceKeys[userId]?.deviceKeys.values.isNotEmpty == true) {
+        return true;
+      }
+    }
+    return false;
   }
 }
 

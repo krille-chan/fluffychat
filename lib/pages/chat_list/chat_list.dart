@@ -864,6 +864,7 @@ class ChatListController extends State<ChatList>
     final client = Matrix.of(context).client;
     await client.roomsLoading;
     await client.accountDataLoading;
+    await client.userDeviceKeysLoading;
     if (client.prevBatch == null) {
       await client.onSyncStatus.stream.firstWhere(
         (status) => status.status == SyncStatus.finished,
@@ -879,14 +880,11 @@ class ChatListController extends State<ChatList>
       waitForFirstSync = true;
     });
 
-    final keys = await client.fetchUserDeviceKeysList(client.userID!);
-
-    if (keys?.deviceKeys.values.any(
+    if (client.userDeviceKeys[client.userID!]?.deviceKeys.values.any(
           (device) => !device.verified && !device.blocked,
         ) ??
         false) {
       late final ScaffoldFeatureController controller;
-      if (!mounted) return;
       final theme = Theme.of(context);
       controller = ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

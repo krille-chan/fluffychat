@@ -18,7 +18,17 @@ class EncryptionInfo extends StatelessWidget {
 
   Future<int> _unverifiedDevices() async {
     if (!room.encrypted) return 0;
-    final devices = await room.getUserDeviceKeys();
+    final users = await room.requestParticipants();
+    final devicesKeysLists = users
+        .map((user) => room.client.userDeviceKeys[user.id])
+        .nonNulls;
+    final devices = devicesKeysLists.fold<List<DeviceKeys>>(
+      [],
+      (devices, devicesKeysList) => [
+        ...devices,
+        ...devicesKeysList.deviceKeys.values,
+      ],
+    );
     return devices
         .where(
           (device) =>
