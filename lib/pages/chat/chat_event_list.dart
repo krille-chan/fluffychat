@@ -66,7 +66,8 @@ class ChatEventList extends StatelessWidget {
             bottom:
                 8 +
                 (controller.inputBarHeight ??
-                    (72 + (FluffyThemes.isColumnMode(context) ? 16 : 0))),
+                        (72 + (FluffyThemes.isColumnMode(context) ? 16 : 0)))
+                    .toDouble(),
             left: horizontalPadding,
             right: horizontalPadding,
           ),

@@ -11,6 +11,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/file_selector.dart';
+import 'package:fluffychat/utils/gif_api.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
@@ -45,6 +46,9 @@ class EmotesSettingsController extends State<EmotesSettings> {
     return keys;
   }
 
+  String giphyApiKey = '';
+  GifProvider gifProvider = GifProvider.giphy;
+
   @override
   void initState() {
     super.initState();
@@ -52,6 +56,38 @@ class EmotesSettingsController extends State<EmotesSettings> {
         ? Matrix.of(context).client.getRoomById(widget.roomId!)
         : null;
     setStateKey(packKeys?.firstOrNull, reset: false);
+
+    _loadApiKey();
+  }
+
+  void _loadApiKey() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final client = Matrix.of(context).client;
+      final content = client.accountData['im.ponies.gif_config']?.content;
+      if (content != null) {
+        final key = content.tryGet<String>('api_key') ?? '';
+        final provStr = content.tryGet<String>('provider')?.toLowerCase();
+        final prov = provStr == 'klipy' ? GifProvider.klipy : GifProvider.giphy;
+        setState(() {
+          giphyApiKey = key;
+          gifProvider = prov;
+        });
+      }
+    });
+  }
+
+  void updateApiKey(String value) {
+    setState(() {
+      giphyApiKey = value;
+      showSave = true;
+    });
+  }
+
+  void updateGifProvider(GifProvider provider) {
+    setState(() {
+      gifProvider = provider;
+      showSave = true;
+    });
   }
 
   void setStateKey(String? key, {reset = true}) {
@@ -98,19 +134,33 @@ class EmotesSettingsController extends State<EmotesSettings> {
     final client = Matrix.of(context).client;
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () => room != null
-          ? client.setRoomStateWithKey(
-              room!.id,
-              'im.ponies.room_emotes',
-              stateKey ?? '',
-              pack!.toJson(),
-            )
-          : client.setAccountData(
-              client.userID!,
-              'im.ponies.user_emotes',
-              pack!.toJson(),
-            ),
+      future: () async {
+        if (room != null) {
+          await client.setRoomStateWithKey(
+            room!.id,
+            'im.ponies.room_emotes',
+            stateKey ?? '',
+            pack!.toJson(),
+          );
+        } else {
+          await client.setAccountData(
+            client.userID!,
+            'im.ponies.user_emotes',
+            pack!.toJson(),
+          );
+        }
+
+        await client.setAccountData(
+          client.userID!,
+          'im.ponies.gif_config',
+          <String, dynamic>{
+            'api_key': giphyApiKey.trim(),
+            'provider': gifProvider.name,
+          },
+        );
+      },
     );
+
     if (!result.isError) {
       setState(() {
         showSave = false;
