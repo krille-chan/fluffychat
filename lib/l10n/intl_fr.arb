@@ -2771,5 +2771,8 @@
     "loadingMessages": "Chargement des messages...",
     "buildDoesNotSupportFirebase": "Cette version ne supporte pas firebase cloud messaging.",
     "unableToRegisterDeviceForFirebase": "Impossible d'enregistrer l'appareil sur firebase cloud messaging.",
-    "unifiedPushDistributors": "Distributeurs Unified Push :"
+    "unifiedPushDistributors": "Distributeurs Unified Push :",
+    "doubleTapToReact": "Double-tappez pour réagir",
+    "doubleTapToReactDescription": "Double-tappez sur un message pour réagir au lieu de sélectionner du texte",
+    "doubleTapReaction": "Réaction du double appuis"
 }
