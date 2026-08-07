@@ -1,1 +1,0 @@
-Improved timeline design, implement biometrics for app lock and a lot of bug fixes and performance improvements.
