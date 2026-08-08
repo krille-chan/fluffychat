@@ -24,7 +24,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "activatedEndToEndEncryption": "{username} skrudde på ende-til-ende -kryptering",
+    "activatedEndToEndEncryption": "{username} skrudde på ende-til-ende-kryptering",
     "@activatedEndToEndEncryption": {
         "type": "String",
         "placeholders": {
@@ -357,7 +357,7 @@
             }
         }
     },
-    "countParticipants": "{count} deltagere",
+    "countParticipants": "{count, plural, =1{1 deltaker} other{{count} deltakere}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -675,7 +675,7 @@
             }
         }
     },
-    "isTyping": "skriver…",
+    "isTyping": "skriver",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -2525,5 +2525,261 @@
     "addTag": "Legg til emneknagg",
     "removeTag": "Fjern emneknagg",
     "tagName": "Navn på emneknagg",
-    "createNewTag": "Opprett ny emneknagg"
+    "createNewTag": "Opprett ny emneknagg",
+    "discardEdits": "Du har endringer som ikke er lagret. Vil du forkaste endringene?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showMore": "Vis mer",
+    "showLess": "Vis mindre",
+    "hideRoomsInSpaces": "Skjul rom som er med i et område",
+    "possibleByYou": "Denne versjonen var bare mulig takket være din støtte. FluffyChat forblir gratis, har åpen kildekode og er helt fellesskapsdrevet.",
+    "showThumbnailsInTimeline": "Vis miniatyrbilder av bilder og videoer",
+    "appSubtitle": "Sikker [matrix]-kommunikasjon",
+    "appDescription": "Kommuniser kryptert over det desentraliserte [matrix]-nettverket på en enkel og tilgjengelig måte for alle.",
+    "interactiveVerification": "Interaktiv verifisering",
+    "interactiveVerificationDescription": "Hvis dere står ved siden av hverandre eller kommuniserer via en sikker kanal, kan dere verifisere alle enhetene samtidig ved å sammenligne et sikkerhetsnummer eller emojier.",
+    "countUnverifiedDevices": "{count} uverifiserte enheter i chatten.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "encryptedMessage": "Kryptert melding",
+    "unencryptedMessage": "Ukryptert melding",
+    "messageCanOnlyBeReadByUser": "Din melding er ende-til-ende kryptert og kan bare leses av denne brukeren:",
+    "messageCanOnlyBeReadByUsers": "Din melding er ende-til-ende kryptert og kan bare leses av disse brukerne:",
+    "publicKey": "Offentlig nøkkel: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "deviceIdentityKey": "Enhetens identitetsnøkkel",
+    "restoreBootstrapEmptyDevicesDescription": "Vennligst oppgi passfrasen eller gjenopprettingsnøkkelen din for å verifisere denne enheten og få tilgang til den krypterte sikkerhetskopien av meldingene dine.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Vennligst velg en av de andre enhetene dine for å verifisere denne sesjonen:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Tilbakestill kontoen",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Venter på nøkler... Vennligst hold den andre enheten aktiv.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Ingen nøkler overført. Vennligst prøv igjen.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Lås opp",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Åpne fil",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat bruker ende-til-ende-kryptering. For å ikke miste meldingene dine, vennligst velg et sterkt passord for å sikre din kryptografiske identitet og din krypterte sikkerhetskopi av meldinger.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Ny passfrase",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Gjenta passfrase",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Passfrasene matcher",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "Minst 12 tegn langt.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Inneholder store og små bokstaver.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Inneholder spesialtegn.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "editImage": "Rediger bilde",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Roter til venstre",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Roter til høyre",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Speil",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Lagre",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Tegn",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Angre",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Tøm",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Viskelær",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Beskjær",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Når du tilbakestiller kontoen din, mister du tilgangen til de gamle meldingene dine for alltid. Alle dine nåværende enheter må verifiseres på nytt. Du bør bare utføre denne handlingen dersom du ikke har noen andre enheter igjen til å verifisere økten din, og du har mistet gjenopprettingsnøkkelen og passordfrasen din!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Inneholder ett tall.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Vennligst skriv ned gjenopprettingsnøkkelen din for å kunne gjenopprette de krypterte meldingene dine og din kryptoidentitet.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Lagre som en fil",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Nå er du klar til å starte!",
+    "restoreCryptoIdentity": "Forny kryptoidentitet",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Tilbakestill kryptoidentitet",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Sett opp kryptoidentitet",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noUserKeyFound": "Ingen brukernøkkel funnet",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Kjent siden: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "Usignert enhet",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Signert enhet",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Ingen Curve25519-nøkkel funnet",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Meldingen kan ikke dekrypteres",
+    "today": "I dag",
+    "sending": "Sender",
+    "generatingThumbnail": "Genererer miniatyrbilde",
+    "encrypting": "Krypterer",
+    "uploading": "Laster opp",
+    "edited": "(redgiert)",
+    "couldNotBeSent": "Kunne ikke sendes",
+    "yesterday": "I går",
+    "resetRecoveryKey": "Tilbakestill gjenopprettingsnøkkel",
+    "pleaseEnter6Digits": "Skriv inn 6 sifre for å aktivere applåsen.",
+    "disableAppLock": "Deaktiver applåsen",
+    "disableAppLockAreYouSure": "Er du sikker på at du ønsker å deaktivere applåsen?",
+    "enableBiometrics": "Aktiver biometrisk autentisering",
+    "disableBiometrics": "Deaktiver biometrisk autentisering",
+    "biometricsDescription": "Med biometrisk autentisering kan du låse opp appen med ansiktet ditt eller fingeravtrykket ditt. Hvilke funksjoner som er tilgjengelige, avhenger av enheten din.",
+    "useAppLock": "Aktiver applås",
+    "unlockWithBiometrics": "Lås opp med biometrisk autentisering",
+    "resetPin": "Tilbakestill PIN",
+    "forwardCountMessages": "Videresend {count, plural, =1{en melding} other{{count} meldinger}}?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "loadingMessages": "Laster meldinger...",
+    "buildDoesNotSupportFirebase": "Denne versjonen støtter ikke Firebase Cloud Messaging.",
+    "unableToRegisterDeviceForFirebase": "Kan ikke registrere enheten for Firebase Cloud Messaging.",
+    "unifiedPushDistributors": "UnifiedPush-distributører:",
+    "doubleTapToReact": "Dubbelttrykk for å reagere",
+    "doubleTapToReactDescription": "Dobbelt-trykk på en melding for å reagere i stedet for å merke tekst",
+    "doubleTapReaction": "Reaksjon ved dobbelttrykk"
 }

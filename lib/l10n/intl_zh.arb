@@ -798,7 +798,7 @@
             }
         }
     },
-    "isTyping": "正在输入…",
+    "isTyping": "正在输入",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -1884,7 +1884,7 @@
     "encryptThisChat": "加密此聊天",
     "disableEncryptionWarning": "出于安全考虑 ，你不能在之前已启用加密的聊天中禁用加密。",
     "sorryThatsNotPossible": "非常抱歉……这是做不到的",
-    "report": "报错",
+    "report": "举报",
     "fileIsTooBigForServer": "无法发送！服务器只支持最大 {max} 的文件。",
     "noOtherDevicesFound": "未找到其它设备",
     "jumpToLastReadMessage": "跳转到上次已读的消息",
@@ -2717,5 +2717,62 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "editImage": "编辑图片",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "左转",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "右转",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "镜像",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "保存",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "绘制",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "撤销",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "清除",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "擦除",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "裁剪",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadingMessages": "正在加载消息…",
+    "buildDoesNotSupportFirebase": "此版本不支持 firebase 云消息。",
+    "unableToRegisterDeviceForFirebase": "无法注册设备用于 firebase 云消息。",
+    "unifiedPushDistributors": "Unified Push 分发程序：",
+    "doubleTapToReact": "轻按两次回应",
+    "doubleTapToReactDescription": "轻按消息两次进行回应而非选中文本",
+    "doubleTapReaction": "轻按两次回应"
 }

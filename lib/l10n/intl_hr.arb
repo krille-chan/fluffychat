@@ -78,7 +78,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Smiju li se gosti pridružiti",
+    "areGuestsAllowedToJoin": "Smiju li se gosti pridružiti?",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -484,7 +484,7 @@
             }
         }
     },
-    "countParticipants": "Broj sudionika: {count}",
+    "countParticipants": "{count, plural, =1{1 sudionik} few{{count} sudionika} other{{count} sudionika}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -1947,7 +1947,7 @@
     "createGroup": "Stvori grupu",
     "invite": "Pozovi",
     "invalidInput": "Neispravan unos!",
-    "wrongPinEntered": "Unesen je pogrešan PIN! Pokušaj ponovo za {seconds} sekunde …",
+    "wrongPinEntered": "Unesen je pogrešan PIN! Pokušaj ponovo za {seconds} s …",
     "@wrongPinEntered": {
         "type": "String",
         "placeholders": {
@@ -2002,7 +2002,7 @@
     "hideRedactedMessagesBody": "Ako netko redigira poruku, ta poruka više neće biti vidljiva u chatu.",
     "kickUserDescription": "Korisnik je izbačen iz chata, ali nije isključen. U javnim chatovima se korisnik može ponovo pridružiti u bilo kojem trenutku.",
     "addChatOrSubSpace": "Dodaj chat ili podpodručje",
-    "appLockDescription": "Zaključaj aplikaciju kada je ne koristiš s PIN kodom",
+    "appLockDescription": "Kada je ne koristiš, zaključaj aplikaciju s PIN kodom",
     "globalChatId": "Globalni ID chata",
     "hideRedactedMessages": "Sakrij redigirane poruke",
     "hideInvalidOrUnknownMessageFormats": "Sakrij nevažeće ili nepoznate formate poruka",
@@ -2488,7 +2488,5 @@
     "logs": "Zapisi",
     "advancedConfigs": "Napredne konfiguracije",
     "advancedConfigurations": "Napredne konfiguracije",
-    "@mute": {
-        "description": "This should be a very short string because there is not much space in the button!"
-    }
+    "matrixId": "Matrix ID"
 }
