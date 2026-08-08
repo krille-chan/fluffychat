@@ -83,7 +83,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "isTyping": "sedang mengetik…",
+    "isTyping": "sedang mengetik",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -357,7 +357,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "countParticipants": "{count} anggota",
+    "countParticipants": "{count, plural, =1{1 peserta} other{{count} peserta}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -2690,5 +2690,88 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageNotDecryptable": "Pesan tidak dapat didekripsi"
+    "messageNotDecryptable": "Pesan tidak dapat didekripsi",
+    "editImage": "Edit gambar",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Putar ke kiri",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Putar ke kanan",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Cermin",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Simpan",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Gambar",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Batalkan",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Hapus",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Penghapus",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Potong",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "today": "Hari Ini",
+    "sending": "Mengirim",
+    "generatingThumbnail": "Membuat thumbnail",
+    "encrypting": "Mengenkripsi",
+    "uploading": "Mengunggah",
+    "edited": "(diedit)",
+    "couldNotBeSent": "Tidak dapat dikirim",
+    "yesterday": "Kemarin",
+    "resetRecoveryKey": "Setel ulang kunci pemulihan",
+    "pleaseEnter6Digits": "Masukkan 6 digit untuk mengaktifkan kunci aplikasi.",
+    "disableAppLock": "Nonaktifkan kunci aplikasi",
+    "disableAppLockAreYouSure": "Apakah Anda yakin ingin menonaktifkan kunci aplikasi?",
+    "enableBiometrics": "Aktifkan autentikasi biometrik",
+    "disableBiometrics": "Nonaktifkan autentikasi biometrik",
+    "biometricsDescription": "Dengan autentikasi biometrik, Anda dapat membuka kunci aplikasi dengan wajah atau sidik jari. Kemampuan ini bergantung pada perangkat Anda.",
+    "useAppLock": "Gunakan kunci aplikasi",
+    "unlockWithBiometrics": "Buka kunci dengan autentikasi biometrik",
+    "resetPin": "Setel ulang PIN",
+    "forwardCountMessages": "Teruskan {count, plural, =1{satu pesan} other{{count} pesan}}?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "loadingMessages": "Memuat pesan...",
+    "buildDoesNotSupportFirebase": "Build ini tidak mendukung Firebase Cloud Messaging.",
+    "unableToRegisterDeviceForFirebase": "Tidak dapat mendaftarkan perangkat untuk Firebase Cloud Messaging.",
+    "unifiedPushDistributors": "Distributor Unified Push:",
+    "doubleTapToReact": "Ketuk dua kali untuk bereaksi",
+    "doubleTapToReactDescription": "Ketuk dua kali pada pesan untuk bereaksi alih-alih memilih teks",
+    "doubleTapReaction": "Reaksi ketuk dua kali"
 }
