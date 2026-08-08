@@ -586,9 +586,14 @@ class ChatController extends State<ChatPageWithRoom>
     final setOnLatestEvent = eventId == null;
     eventId ??= timeline.events
         .firstWhereOrNull(
-          (event) =>
-              room.client.pushruleEvaluator.match(event).notify &&
-              event.eventId.isValidMatrixIdStrict(),
+          (event) => room.pushRuleState == PushRuleState.notify
+              ? room.client.pushruleEvaluator.match(event).notify
+              : {
+                      EventTypes.Message,
+                      EventTypes.Encrypted,
+                      EventTypes.Sticker,
+                    }.contains(event.type) &&
+                    event.eventId.isValidMatrixIdStrict(),
         )
         ?.eventId;
 
