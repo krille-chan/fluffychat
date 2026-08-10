@@ -1855,8 +1855,6 @@
             }
         }
     },
-    "foregroundServiceRunning": "Tá an fógra seo le feiceáil nuair atá an tseirbhís tulra ag rith.",
-    "screenSharingDetail": "Tá do scáileán á roinnt agat i FuffyChat",
     "disableEncryptionWarning": "Ar chúiseanna slándála ní féidir leat criptiú a dhíchumasú i gcomhrá, áit ar cumasaíodh é roimhe seo.",
     "sorryThatsNotPossible": "Tá brón orm... nach féidir a dhéanamh",
     "reopenChat": "Comhrá a athoscailt",
@@ -2241,7 +2239,6 @@
     "doesNotSeemToBeAValidHomeserver": "Ní cosúil gur freastalaí baile comhoiriúnach é. URL mícheart?",
     "youJoinedTheChat": "Chuaigh tú isteach sa chomhrá",
     "youAcceptedTheInvitation": "👍 Ghlac tú leis an gcuireadh",
-    "screenSharingTitle": "comhroinnt scáileáin",
     "accessAndVisibility": "Rochtain agus infheictheacht",
     "accessAndVisibilityDescription": "Cé a bhfuil cead aige páirt a ghlacadh sa chomhrá seo agus conas is féidir an comhrá a aimsiú.",
     "calls": "Glaonna",

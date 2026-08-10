@@ -72,7 +72,7 @@ void main(List<String> args) async {
   // currently only supported on Android.
   if (PlatformInfos.isAndroid &&
       AppLifecycleState.detached == WidgetsBinding.instance.lifecycleState) {
-    await startPushForegroundService();
+    await ForegroundServices.startService('background_push');
 
     final clients = await ClientManager.getClients(store: store);
 

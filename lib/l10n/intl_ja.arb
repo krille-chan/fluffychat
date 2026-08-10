@@ -1601,7 +1601,6 @@
     },
     "users": "ユーザー",
     "youRejectedTheInvitation": "招待を拒否しました",
-    "screenSharingDetail": "FuffyChatで画面を共有しています",
     "scanQrCode": "QRコードをスキャン",
     "obtainingLocation": "位置情報を取得しています…",
     "@obtainingLocation": {
@@ -1688,8 +1687,6 @@
     },
     "storeInAppleKeyChain": "Apple KeyChainに保存",
     "storeInAndroidKeystore": "Android KeyStoreに保存する",
-    "screenSharingTitle": "画面共有",
-    "foregroundServiceRunning": "この通知は、フォアグラウンド サービスの実行中に表示されます。",
     "custom": "カスタム",
     "countFiles": "{count}個のファイル",
     "@countFiles": {

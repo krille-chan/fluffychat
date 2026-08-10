@@ -1853,7 +1853,6 @@
     "storeSecurlyOnThisDevice": "Guardar de modo seguro neste dispositivo",
     "user": "Usuário",
     "custom": "Personalizado",
-    "foregroundServiceRunning": "Esta notificação aparece quando o serviço de primeiro plano está sendo executado.",
     "newSpace": "Novo espaço",
     "countFiles": "{count} arquivos",
     "@countFiles": {
@@ -1867,8 +1866,6 @@
     "dehydrate": "Exportar sessão e apagar dispositivo",
     "dehydrateWarning": "Esta ação não pode ser desfeita. Certifique-se de que o arquivo de backup está guardado e seguro.",
     "whyIsThisMessageEncrypted": "Por que não consigo ler esta mensagem?",
-    "screenSharingTitle": "compartilhamento de tela",
-    "screenSharingDetail": "Você está compartilhando sua tela no FluffyChat",
     "noKeyForThisMessage": "Isto pode ocorrer caso a mensagem tenha sido enviada antes de você ter se conectado à sua conta com este dispositivo.\n\nTambém é possível que o remetente tenha bloqueado o seu dispositivo ou ocorreu algum problema com a conexão.\n\nVocê consegue ler as mensagens em outra sessão? Então, pode transferir as mensagens de lá! Vá em Configurações > Dispositivos e confira se os dispositivos verificaram um ao outro. Quando abrir a sala da próxima vez e ambas as sessões estiverem abertas, as chaves serão transmitidas automaticamente.\n\nNão gostaria de perder suas chaves ao desconectar ou trocar de dispositivos? Certifique-se que o backup de conversas esteja ativado nas configurações.",
     "notAnImage": "Não é um arquivo de imagem.",
     "importNow": "Importar agora",

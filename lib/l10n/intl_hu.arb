@@ -1867,7 +1867,6 @@
         "placeholders": {}
     },
     "unverified": "Hitelesítetlen",
-    "screenSharingTitle": "képernyő megosztás",
     "youBannedUser": "Letitotta {user} felhasználót",
     "@youBannedUser": {
         "placeholders": {
@@ -1898,7 +1897,6 @@
     },
     "sendTypingNotifications": "Gépelési értesítés megjelenítése",
     "inviteGroupChat": "📨 Meghívó a csoportba",
-    "foregroundServiceRunning": "Ez az értesítés akkor jelenik meg ha az előtéri szolgáltatás fut.",
     "voiceCall": "Hang hívás",
     "importEmojis": "Emojik importálása",
     "wasDirectChatDisplayName": "Üres csevegés (korábban {oldDisplayName})",
@@ -1977,7 +1975,6 @@
     "invite": "Meghívás",
     "unsupportedAndroidVersionLong": "Ehhez a funkcióhoz egy újabb Android verzió kell. Kérem ellenőrizze be van e frissítve teljesen készüléke, esetlegesen van e LineageOS támogatás hozzá.",
     "storeSecurlyOnThisDevice": "Biztonságos tárolás az eszközön",
-    "screenSharingDetail": "Megosztja a képernyőjét a FluffyChat-ben",
     "placeCall": "Tér hívás",
     "block": "Blokkolás",
     "blockedUsers": "Blokkolt felhasználók",

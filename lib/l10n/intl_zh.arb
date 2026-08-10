@@ -1837,9 +1837,6 @@
     "whyIsThisMessageEncrypted": "为什么此消息不可读？",
     "noKeyForThisMessage": "如果消息是在你在此设备上登录账户前发送的，就可能发生这种情况。\n\n也有可能是发送者屏蔽了你的设备或网络连接出了问题。\n\n你能在另一个会话中读取消息吗？如果是的话，你可以从它那里传递信息！点击设置 > 设备，并确保你的设备已经相互验证。当你下次打开聊天室，且两个会话都在前台，密钥就会自动传输。\n\n你不想在退出登录或切换设备时丢失密钥？请确保在设置中启用了聊天备份。",
     "newSpace": "新的空间",
-    "foregroundServiceRunning": "此通知在前台服务运行时出现。",
-    "screenSharingTitle": "屏幕共享",
-    "screenSharingDetail": "你正在 FluffyChat 中共享屏幕",
     "doNotShowAgain": "不再显示",
     "googlyEyesContent": "{senderName} 向你发送了“大眼”表情",
     "@googlyEyesContent": {

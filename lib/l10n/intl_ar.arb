@@ -1830,11 +1830,8 @@
             }
         }
     },
-    "foregroundServiceRunning": "يظهر هذا الإشعار عند تشغيل الخدمة الأمامية.",
-    "screenSharingTitle": "مشاركة الشاشة",
     "whyIsThisMessageEncrypted": "لماذا هذه الرسالة غير قابلة للقراءة؟",
     "encryptThisChat": "تشفير هذه المحادثة",
-    "screenSharingDetail": "أنت تشارك شاشتك في FuffyChat",
     "youKicked": "👞 لقد ركلت {user}",
     "@youKicked": {
         "placeholders": {
