@@ -18,6 +18,7 @@ import 'package:fluffychat/utils/other_party_can_receive.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/show_scaffold_dialog.dart';
 import 'package:fluffychat/utils/size_string.dart';
+import 'package:fluffychat/utils/start_push_foreground_service.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/dialog_text_field.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -174,8 +175,13 @@ class SendFileDialogState extends State<SendFileDialog> {
       }
     }
 
-    if (_files.length == 1 && !(uniqueFileType == 'video' && compress)) {
-      await sendAction((_) {});
+    if (PlatformInfos.isMobile) {
+      await ForegroundServices.startService('send_files');
+      try {
+        await sendAction((_) {});
+      } finally {
+        await ForegroundServices.stopService('send_files');
+      }
     } else {
       showFutureLoadingDialog(
         context: widget.outerContext,

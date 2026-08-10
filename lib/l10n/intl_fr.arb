@@ -1836,9 +1836,6 @@
         }
     },
     "whyIsThisMessageEncrypted": "Pourquoi ce message est-il illisible ?",
-    "foregroundServiceRunning": "Cette notification s’affiche lorsque le service au premier plan est en cours d’exécution.",
-    "screenSharingTitle": "Partage d'écran",
-    "screenSharingDetail": "Vous partagez votre écran dans FuffyChat",
     "newSpace": "Nouvel espace",
     "doNotShowAgain": "Ne plus afficher",
     "commandHint_googly": "Envoyer des yeux écarquillés",

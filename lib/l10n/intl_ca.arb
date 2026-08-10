@@ -1829,7 +1829,6 @@
     "invalidInput": "L'entrada no és vàlida!",
     "doNotShowAgain": "No ho tornis a mostrar",
     "report": "informa",
-    "screenSharingTitle": "compartició de pantalla",
     "googlyEyesContent": "{senderName} t'ha enviat un parell d'ulls",
     "@googlyEyesContent": {
         "type": "String",
@@ -1874,7 +1873,6 @@
     },
     "sendTypingNotifications": "Envia notificacions d'escriptura",
     "inviteGroupChat": "📨 Invitació de grup",
-    "foregroundServiceRunning": "Aquesta notificació apareix quan el servei de primer pla està corrent.",
     "voiceCall": "Videotrucada",
     "commandHint_unban": "Aixeca el veto a aquesti usuàriï per aquesta sala",
     "@commandHint_unban": {
@@ -1976,7 +1974,6 @@
     "invite": "Convida",
     "unsupportedAndroidVersionLong": "Aquesta funcionalitat només funciona amb versions d'Android més noves.",
     "storeSecurlyOnThisDevice": "Desa de forma segura en aquest dispositiu",
-    "screenSharingDetail": "Estàs compartint la teva pantalla a FluffyChat",
     "placeCall": "Truca",
     "block": "Bloca",
     "blockUsername": "Ignora aquesti usuàrïi",

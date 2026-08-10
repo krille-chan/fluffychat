@@ -18,9 +18,9 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_matrix_dart_sdk_d
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/start_push_foreground_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
@@ -91,10 +91,7 @@ Future<void> pushHelper(
     }
     rethrow;
   } finally {
-    if (PlatformInfos.isAndroid &&
-        await FlutterForegroundTask.isRunningService) {
-      await FlutterForegroundTask.stopService();
-    }
+    ForegroundServices.stopService('background_push');
   }
 }
 

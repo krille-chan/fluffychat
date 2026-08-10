@@ -10,12 +10,12 @@ import 'dart:math';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/start_push_foreground_service.dart';
 import 'package:fluffychat/utils/voip/video_renderer.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart' hide VideoRenderer;
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
@@ -270,25 +270,9 @@ class MyCallingPage extends State<Calling> {
   void _screenSharing() {
     if (PlatformInfos.isAndroid) {
       if (!call.screensharingEnabled) {
-        FlutterForegroundTask.init(
-          androidNotificationOptions: AndroidNotificationOptions(
-            channelId: 'notification_channel_id',
-            channelName: 'Foreground Notification',
-            channelDescription: L10n.of(
-              widget.context,
-            ).foregroundServiceRunning,
-          ),
-          iosNotificationOptions: const IOSNotificationOptions(),
-          foregroundTaskOptions: ForegroundTaskOptions(
-            eventAction: ForegroundTaskEventAction.nothing(),
-          ),
-        );
-        FlutterForegroundTask.startService(
-          notificationTitle: L10n.of(widget.context).screenSharingTitle,
-          notificationText: L10n.of(widget.context).screenSharingDetail,
-        );
+        ForegroundServices.startService('screen_share');
       } else {
-        FlutterForegroundTask.stopService();
+        ForegroundServices.stopService('screen_share');
       }
     }
 

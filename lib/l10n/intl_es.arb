@@ -1778,7 +1778,6 @@
     "replace": "Reemplazar",
     "unsupportedAndroidVersionLong": "Esta característica requiere una versión más reciente de Android. Por favor, compruebe las actualizaciones o la compatibilidad de LineageOS.",
     "storeSecurlyOnThisDevice": "Almacenar de forma segura en este dispositivo",
-    "screenSharingDetail": "Usted está compartiendo su pantalla en FluffyChat",
     "unsupportedAndroidVersion": "Versión de Android no compatible",
     "commandHint_create": "Crear un chat grupal vacío\nUse --no-encryption para deshabilitar el cifrado",
     "@commandHint_create": {
@@ -1850,7 +1849,6 @@
     },
     "redactMessageDescription": "El mensaje será censurado para todas las personas participantes en la conversación. Esto no se puede deshacer.",
     "doNotShowAgain": "No mostrar de nuevo",
-    "screenSharingTitle": "Compartir la pantalla",
     "youBannedUser": "Usted prohibió el acceso a {user}",
     "@youBannedUser": {
         "placeholders": {
@@ -1859,7 +1857,6 @@
             }
         }
     },
-    "foregroundServiceRunning": "Esta notificación aparece cuando el servicio en segundo plano se está ejecutando.",
     "wasDirectChatDisplayName": "Chat vacío (era {oldDisplayName})",
     "@wasDirectChatDisplayName": {
         "type": "String",

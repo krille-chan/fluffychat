@@ -1899,8 +1899,6 @@
     "newSpaceDescription": "Prostory umožňují organizovat Vaše konverzace a vytvářet soukromé nebo veřejné komunity.",
     "sendTypingNotifications": "Posílat oznámení o psaní",
     "commandHint_markasgroup": "Označit jako skupinu",
-    "foregroundServiceRunning": "Toto oznámení se zobrazuje když běží služba na pozadí.",
-    "screenSharingDetail": "Sdílíte svou obrazovku přes FluffyChat",
     "encryptThisChat": "Zašifrovat tuto konverzaci",
     "sorryThatsNotPossible": "Omlouváme se… to není možné",
     "reopenChat": "Znovu otevřít konverzaci",
@@ -1917,7 +1915,6 @@
         }
     },
     "newSpace": "Nový prostor",
-    "screenSharingTitle": "sdílení obrazovky",
     "user": "Uživatel",
     "fileHasBeenSavedAt": "Soubor uložen do {path}",
     "@fileHasBeenSavedAt": {
