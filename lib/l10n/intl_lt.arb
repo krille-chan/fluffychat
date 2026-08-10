@@ -1834,10 +1834,7 @@
     "storeSecurlyOnThisDevice": "Saugiai laikyti šiame prietaise",
     "storeInAndroidKeystore": "Saugoti Android raktų saugykloje",
     "noKeyForThisMessage": "Taip gali atsitikti, jei žinutė buvo išsiųsta prieš prisijungiant prie paskyros šiame prietaise.\n\nTaip pat gali būti, kad siuntėjas užblokavo jūsų prietaisą arba kažkas sutriko su interneto ryšiu.\n\nAr galite perskaityti žinutę kitoje sesijoje? Tada galite perkelti žinutę iš jos! Eikite į Nustatymai > Prietaisai ir įsitikinkite, kad jūsų prietaisai patvirtino vienas kitą. Kai kitą kartą atidarysite kambarį ir abi sesijos bus pirmame plane, raktai bus perduoti automatiškai.\n\nNenorite prarasti raktų atsijungdami arba keisdami įrenginius? Įsitikinkite, kad nustatymuose įjungėte pokalbių atsarginę kopiją.",
-    "foregroundServiceRunning": "Šis pranešimas rodomas, kai veikia pirmojo plano paslauga.",
-    "screenSharingTitle": "ekrano bendrinimas",
     "whyIsThisMessageEncrypted": "Kodėl ši žinutė neperskaitoma?",
-    "screenSharingDetail": "Bendrinate savo ekraną per FuffyChat",
     "hugContent": "{senderName} jus apkabina",
     "@hugContent": {
         "type": "String",

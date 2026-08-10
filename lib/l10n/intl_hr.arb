@@ -1847,7 +1847,6 @@
     "jump": "Skoči",
     "newSpaceDescription": "Prostori omogućuju konsolidiranje tvojih chatova i izgradnju privatne ili javne zajednice.",
     "encryptThisChat": "Šifiraj ovaj chat",
-    "foregroundServiceRunning": "Ova se obavijest pojavljuje kada se pokreće usluga u prvom planu.",
     "commandHint_hug": "Pošalji grljenje",
     "commandHint_googly": "Pošalji kotrljajuće oči",
     "commandHint_cuddle": "Pošalji maženje",
@@ -1861,8 +1860,6 @@
             }
         }
     },
-    "screenSharingDetail": "Dijeliš svoj ekran u FuffyChatu",
-    "screenSharingTitle": "dijeljenje ekrana",
     "newSpace": "Novi prostor",
     "sorryThatsNotPossible": "Žao nam je … to nije moguće",
     "disableEncryptionWarning": "Iz sigurnosnih razloga ne možeš deaktivirati šifriranje u chatu u kojem je prije bilo aktivirano.",

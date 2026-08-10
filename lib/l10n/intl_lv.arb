@@ -1310,7 +1310,6 @@
         "placeholders": {}
     },
     "unverified": "Neapliecināta",
-    "screenSharingTitle": "ekrāna kopīgošana",
     "sentCallInformations": "{senderName} nosūtīja informāciju par zvanu",
     "@sentCallInformations": {
         "type": "String",
@@ -1453,7 +1452,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "foregroundServiceRunning": "Šis paziņojums parādās, kad darbojas priekšplāna pakalpojums.",
     "enterAnEmailAddress": "Jāievada e-pasta adrese",
     "@enterAnEmailAddress": {
         "type": "String",
@@ -1941,7 +1939,6 @@
         "placeholders": {}
     },
     "pinMessage": "Piespraust istabai",
-    "screenSharingDetail": "Tu kopīgo savu ekrānu FluffyChat",
     "muteChat": "Apklusināt tērzēšanu",
     "@muteChat": {
         "type": "String",

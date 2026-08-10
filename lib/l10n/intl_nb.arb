@@ -1746,8 +1746,6 @@
         }
     },
     "chatDescriptionHasBeenChanged": "Chatbeskrivelsen er endret",
-    "screenSharingTitle": "skjermdeling",
-    "screenSharingDetail": "Du deler skjermen din i FuffyChat",
     "whyIsThisMessageEncrypted": "Hvorfor er denne meldingen uleselig?",
     "yourGlobalUserIdIs": "Din globale bruker-ID er: ",
     "searchChatsRooms": "Søk etter #chatter, @brukere...",
@@ -2321,7 +2319,6 @@
     "notificationRuleJitsiDescription": "Varsler brukeren om hendelser i Jitsi-widgeten.",
     "customReaction": "Egendefinert reaksjon",
     "pause": "Pause",
-    "foregroundServiceRunning": "Denne varslingen vises når forgrunnstjenesten kjører.",
     "longPressToRecordVoiceMessage": "Langt trykk for å spille inn talemelding.",
     "startPoll": "Start avstemning",
     "endPoll": "Avslutt avstemning",

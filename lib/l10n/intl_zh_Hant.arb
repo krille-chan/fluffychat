@@ -1729,7 +1729,6 @@
             }
         }
     },
-    "screenSharingDetail": "您正在 FuffyChat 中分享您的螢幕",
     "wrongPinEntered": "輸入的密碼錯誤！ {seconds} 秒後再試一次......",
     "@wrongPinEntered": {
         "type": "String",
@@ -2019,8 +2018,6 @@
     "noOneCanJoin": "沒有人可以加入",
     "storeInAndroidKeystore": "存儲在 Android KeyStore",
     "storeInAppleKeyChain": "存儲在 Apple KeyChain",
-    "foregroundServiceRunning": "當前景服務正在運行時會顯示此通知。",
-    "screenSharingTitle": "螢幕分享",
     "wasDirectChatDisplayName": "空的聊天室（原名稱為 {oldDisplayName} ）",
     "@wasDirectChatDisplayName": {
         "type": "String",

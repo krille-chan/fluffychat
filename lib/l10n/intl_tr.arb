@@ -1836,10 +1836,7 @@
     "commandHint_markasdm": "Verilen Matrix kimliği için doğrudan mesaj odası olarak işaretle",
     "whyIsThisMessageEncrypted": "Bu mesaj neden okunamıyor?",
     "noKeyForThisMessage": "Bu durum, mesaj siz bu aygıtta hesabınızda oturum açmadan önce gönderildiyse meydana gelebilir.\n\nGönderenin aygıtınızı engellemiş olması veya internet bağlantısında bir sorun olması da mümkündür.\n\nMesajı başka bir oturumda okuyabiliyor musunuz? O zaman mesajı oradan aktarabilirsiniz! Ayarlar > Aygıtlar bölümüne gidin ve aygıtlarınızın birbirini doğruladığından emin olun. Odayı bir sonraki sefer açtığınızda ve her iki oturum da ön planda olduğunda, anahtarlar otomatik olarak iletilecektir.\n\nOturumu kapatırken veya aygıt değiştirirken anahtarları kaybetmek istemiyor musunuz? Ayarlarda sohbet yedeklemesini etkinleştirdiğinizden emin olun.",
-    "screenSharingTitle": "ekran paylaşımı",
-    "foregroundServiceRunning": "Bu bildirim, ön plan hizmeti çalışırken görünür.",
     "newSpace": "Yeni alan",
-    "screenSharingDetail": "Ekranınızı FuffyChat'te paylaşıyorsunuz",
     "doNotShowAgain": "Tekrar gösterme",
     "googlyEyesContent": "{senderName} size şaşkın gözler gönderiyor",
     "@googlyEyesContent": {

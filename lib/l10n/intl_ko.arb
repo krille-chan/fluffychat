@@ -1884,7 +1884,6 @@
     "invalidInput": "잘못된 입력!",
     "doNotShowAgain": "다시 보지 않기",
     "report": "신고",
-    "screenSharingTitle": "화면 공유",
     "youBannedUser": "{user}님을 영구 추방함",
     "@youBannedUser": {
         "placeholders": {
@@ -1914,7 +1913,6 @@
     },
     "sendTypingNotifications": "입력 알림 보내기",
     "inviteGroupChat": "📨 그룹 채팅에 초대",
-    "foregroundServiceRunning": "이 알림은 백그라운드 서비스가 실행중일때 표시됩니다.",
     "importEmojis": "이모지 불러오기",
     "wasDirectChatDisplayName": "빈 채팅 (전 {oldDisplayName})",
     "@wasDirectChatDisplayName": {
@@ -1977,7 +1975,6 @@
     "importNow": "지금 불러오기",
     "invite": "초대",
     "storeSecurlyOnThisDevice": "이 기기에 안전하게 저장",
-    "screenSharingDetail": "FluffyChat에 당신의 화면을 공유하는중",
     "blockUsername": "유저 이름 무시",
     "block": "차단",
     "blockedUsers": "차단된 유저",

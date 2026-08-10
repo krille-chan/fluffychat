@@ -330,7 +330,6 @@
             }
         }
     },
-    "screenSharingTitle": "partajarea de ecran",
     "changedTheRoomInvitationLink": "{username} a schimbat linkul de invitație",
     "@changedTheRoomInvitationLink": {
         "type": "String",
@@ -544,7 +543,6 @@
     "confirmEventUnpin": "Sunteți sigur că doriți să anulați permanent fixarea evenimentului?",
     "emojis": "Emoji-uri",
     "users": "Utilizatori",
-    "foregroundServiceRunning": "Această notificare apare când serviciul de foreground rulează.",
     "currentlyActive": "Activ acum",
     "@currentlyActive": {
         "type": "String",
@@ -1003,7 +1001,6 @@
     "storeInAndroidKeystore": "Stoca în Android KeyStore",
     "user": "Utilizator",
     "custom": "Personalizat",
-    "screenSharingDetail": "Partajați ecranul în FluffyChat",
     "storeSecurlyOnThisDevice": "Stoca sigur pe acest dispozitiv",
     "whyIsThisMessageEncrypted": "De ce este acest mesaj ilizibil?",
     "newSpace": "Spațiu nou",

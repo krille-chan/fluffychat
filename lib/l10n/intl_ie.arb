@@ -654,7 +654,6 @@
         "placeholders": {}
     },
     "commandHint_markasgroup": "Marcar quam gruppe",
-    "screenSharingTitle": "partir li ecran",
     "bannedUser": "{username} ha bannit {targetName}",
     "@bannedUser": {
         "type": "String",

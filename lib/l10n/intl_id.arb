@@ -1833,12 +1833,9 @@
     },
     "commandHint_markasdm": "Tandai sebagai ruangan pesan langsung untuk ID Matrix yang ditentukan",
     "commandHint_markasgroup": "Tandai sebagai grup",
-    "screenSharingTitle": "membagikan layar",
     "noKeyForThisMessage": "Hal ini bisa terjadi jika pesan dikirim sebelum kamu masuk ke akunmu di perangkat ini.\n\nMungkin juga pengirim telah memblokir perangkatmu atau ada yang tidak beres dengan koneksi internet.\n\nApakah kamu bisa membaca pesan pada sesi lain? Maka kamu bisa mentransfer pesan dari sesi tersebut! Buka Pengaturan > Perangkat dan pastikan bahwa perangkat Anda telah ditandatangani secara silang. Ketika kamu membuka ruangan di lain waktu dan kedua sesi berada di latar depan, kunci akan ditransmisikan secara otomatis.\n\nApakah kamu tidak mau kehilangan kunci saat keluar atau berpindah perangkat? Pastikan bahwa kamu telah mengaktifkan cadangan obrolan dalam pengaturan.",
-    "foregroundServiceRunning": "Notifikasi ini ditampilkan ketika layanan latar depan berjalan.",
     "whyIsThisMessageEncrypted": "Mengapa pesan ini tidak bisa dibaca?",
     "newSpace": "Space baru",
-    "screenSharingDetail": "Kamu membagikan layarmu di FluffyChat",
     "doNotShowAgain": "Jangan tampilkan lagi",
     "hugContent": "{senderName} memeluk kamu",
     "@hugContent": {

@@ -1799,7 +1799,6 @@
     },
     "doNotShowAgain": "Non mostrare più",
     "report": "segnala",
-    "screenSharingTitle": "condivisione schermo",
     "googlyEyesContent": "{senderName} ti ha inviato degli occhi finti",
     "@googlyEyesContent": {
         "type": "String",
@@ -1854,7 +1853,6 @@
     },
     "sendTypingNotifications": "Invia notifiche di scrittura",
     "inviteGroupChat": "📨 Invita a una chat di gruppo",
-    "foregroundServiceRunning": "Questa notifica viene mostrata quando il servizio in primo piano è in esecuzione.",
     "voiceCall": "Chiamata vocale",
     "commandHint_kick": "Rimuovi l'utente fornito da questa stanza",
     "@commandHint_kick": {
@@ -1976,7 +1974,6 @@
     "invite": "Invitare",
     "unsupportedAndroidVersionLong": "Questa funzionalità richiede una versione di Android più recente. Si prega di verificare la presenza di aggiornamenti o supporto per Lineage OS.",
     "storeSecurlyOnThisDevice": "Salva in modo sicuro su questo dispositivo",
-    "screenSharingDetail": "Stai condividendo il tuo schermo in FuffyChat",
     "placeCall": "Fai una chiamata",
     "blockListDescription": "Puoi bloccare gli utenti che ti disturbano. Non sarai più in grado di ricevere messaggi o inviti alle stanze dalle persone che hai bloccato.",
     "blockedUsers": "Utenti bloccati",
