@@ -5,7 +5,6 @@
 
 import 'dart:async';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:flutter/material.dart';
@@ -102,23 +101,20 @@ class _LockScreenState extends State<LockScreen> {
               title: Text(L10n.of(context).pleaseEnterYourPin),
               centerTitle: true,
             ),
-            body: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: FluffyThemes.columnWidth,
-              ),
-              child: ListView(
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(16.0),
-                children: [
-                  Center(
-                    child: Image.asset(
-                      'assets/logo/mini/logo_mono_mini.png',
-                      width: 128,
-                      color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                    ),
+            body: ListView(
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(16.0),
+              children: [
+                Center(
+                  child: Image.asset(
+                    'assets/logo/mini/logo_mono_mini.png',
+                    width: 128,
+                    color: Theme.of(context).colorScheme.surfaceContainerHigh,
                   ),
-                  const SizedBox(height: 16),
-                  TextField(
+                ),
+                const SizedBox(height: 16),
+                Center(
+                  child: TextField(
                     controller: _textEditingController,
                     textInputAction: TextInputAction.go,
                     keyboardType: TextInputType.number,
@@ -180,13 +176,13 @@ class _LockScreenState extends State<LockScreen> {
                       ),
                     ),
                   ),
-                  if (_inputBlocked)
-                    const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: CircularProgressIndicator.adaptive(),
-                    ),
-                ],
-              ),
+                ),
+                if (_inputBlocked)
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: CircularProgressIndicator.adaptive(),
+                  ),
+              ],
             ),
           ),
         ),
