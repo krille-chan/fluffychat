@@ -35,10 +35,12 @@ class BackgroundPush {
       FlutterLocalNotificationsPlugin();
 
   List<Client> _clients;
+
   List<Client> get clients => matrix?.widget.clients ?? _clients;
 
   MatrixState? matrix;
   String? _fcmToken;
+
   String? get fcmToken => _fcmToken;
   void Function(String errorMsg, {Uri? link})? onFcmError;
   L10n? l10n;
@@ -261,11 +263,9 @@ class BackgroundPush {
 
   static bool _wentToRoomOnStartup = false;
 
-  Future<void> setupPush() async {
-    final context = matrix?.context;
+  Future<void> setupPush(BuildContext context) async {
     if (PlatformInfos.isAndroid &&
         (await UnifiedPush.getDistributors()).isNotEmpty &&
-        context != null &&
         context.mounted) {
       await UnifiedPushUi(
         context: context,
