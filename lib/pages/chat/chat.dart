@@ -1436,6 +1436,11 @@ class ChatController extends State<ChatPageWithRoom>
     if (response == OkCancelResult.ok) {
       final events = room.pinnedEventIds
         ..removeWhere((oldEvent) => oldEvent == eventId);
+      if (scrollToEventIdMarker == eventId) {
+        setState(() {
+          scrollToEventIdMarker = null;
+        });
+      }
       showFutureLoadingDialog(
         context: context,
         future: () => room.setPinnedEvents(events),
@@ -1450,7 +1455,8 @@ class ChatController extends State<ChatPageWithRoom>
         selectedEventIds.length == 1 &&
         pinnedEventIds.contains(selectedEventIds.single);
     if (unpin) {
-      pinnedEventIds.removeWhere(selectedEventIds.contains);
+      unpinEvent(selectedEventIds.single);
+      return;
     } else {
       pinnedEventIds.addAll(selectedEventIds);
     }
