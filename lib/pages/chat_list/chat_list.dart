@@ -80,6 +80,7 @@ class ChatListController extends State<ChatList>
   String? activeTag;
 
   String? _activeSpaceId;
+
   String? get activeSpaceId => _activeSpaceId;
 
   Future<void> setActiveSpace(String spaceId) async {
@@ -386,7 +387,7 @@ class ChatListController extends State<ChatList>
         searchServer = Matrix.of(
           context,
         ).store.getString(_serverStoreNamespace);
-        Matrix.of(context).backgroundPush?.setupPush();
+        Matrix.of(context).backgroundPush?.setupPush(context);
         UpdateNotifier.showUpdateDialog(context);
       }
 
