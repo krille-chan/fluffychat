@@ -23,6 +23,7 @@ import 'html_message.dart';
 import 'image_bubble.dart';
 import 'map_bubble.dart';
 import 'message_download_content.dart';
+import 'voice_message_transcription.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
@@ -102,24 +103,35 @@ class MessageContent extends StatelessWidget {
           case CuteEventContent.eventType:
             return CuteContent(event);
           case MessageTypes.Audio:
-            if (PlatformInfos.isMobile ||
-                PlatformInfos.isMacOS ||
-                PlatformInfos.isWeb
-            // Disabled until https://github.com/bleonard252/just_audio_mpv/issues/3
-            // is fixed
-            //   || PlatformInfos.isLinux
-            ) {
-              return AudioPlayerWidget(
-                event,
-                color: textColor,
-                linkColor: linkColor,
-                fontSize: fontSize,
-              );
-            }
-            return MessageDownloadContent(
-              event,
-              textColor: textColor,
-              linkColor: linkColor,
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (PlatformInfos.isMobile ||
+                    PlatformInfos.isMacOS ||
+                    PlatformInfos.isWeb
+                // Disabled until https://github.com/bleonard252/just_audio_mpv/issues/3
+                // is fixed
+                //   || PlatformInfos.isLinux
+                )
+                  AudioPlayerWidget(
+                    event,
+                    color: textColor,
+                    linkColor: linkColor,
+                    fontSize: fontSize,
+                  )
+                else
+                  MessageDownloadContent(
+                    event,
+                    textColor: textColor,
+                    linkColor: linkColor,
+                  ),
+                VoiceMessageTranscription(
+                  event: event,
+                  color: textColor,
+                  fontSize: fontSize,
+                ),
+              ],
             );
           case MessageTypes.Video:
             return EventVideoPlayer(

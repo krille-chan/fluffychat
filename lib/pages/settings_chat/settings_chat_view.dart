@@ -9,6 +9,10 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/stt/stt_manager.dart';
+import 'package:fluffychat/utils/stt/stt_model_picker.dart'
+    show sttModelDescription;
+import 'package:fluffychat/utils/stt/transcription_cache.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
@@ -157,6 +161,58 @@ class SettingsChatView extends StatelessWidget {
               Divider(color: theme.dividerColor),
               ListTile(
                 title: Text(
+                  L10n.of(context).speechToText,
+                  style: TextStyle(
+                    color: theme.colorScheme.secondary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context).sttEnable,
+                subtitle: L10n.of(context).sttEnableDescription,
+                setting: AppSettings.sttEnabled,
+                onChanged: (_) => controller.updateState(),
+              ),
+              if (AppSettings.sttEnabled.value &&
+                  Matrix.of(context).stt.onDeviceAvailable) ...[
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  child: Text(
+                    L10n.of(context).sttModel,
+                    style: TextStyle(
+                      color: theme.colorScheme.secondary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                ValueListenableBuilder<Map<String, ModelDownloadState>>(
+                  valueListenable: Matrix.of(context).stt.modelDownloads,
+                  builder: (context, downloads, _) {
+                    return RadioGroup<String>(
+                      groupValue: AppSettings.sttModel.value,
+                      onChanged: (value) => controller.selectModel(value!),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          for (final model in SttManager.models)
+                            _SttModelRow(
+                              controller: controller,
+                              model: model,
+                              download: downloads[model],
+                            ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ],
+              Divider(color: theme.dividerColor),
+              ListTile(
+                title: Text(
                   L10n.of(context).calls,
                   style: TextStyle(
                     color: theme.colorScheme.secondary,
@@ -176,6 +232,78 @@ class SettingsChatView extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _SttModelRow extends StatelessWidget {
+  final SettingsChatController controller;
+  final String model;
+  final ModelDownloadState? download;
+
+  const _SttModelRow({
+    required this.controller,
+    required this.model,
+    required this.download,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = L10n.of(context);
+    final downloaded = controller.sttModelDownloadStatus[model] == true;
+    final sizeBytes = controller.sttModelSizes[model];
+    final selected = model == AppSettings.sttModel.value;
+    final isDownloading = download != null;
+    return RadioListTile<String>.adaptive(
+      value: model,
+      enabled: !isDownloading,
+      title: Row(
+        children: [
+          Text(model),
+          if (sizeBytes != null) ...[
+            const SizedBox(width: 8),
+            Text(
+              '${(sizeBytes / 1048576).toStringAsFixed(0)} MB',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.outline,
+              ),
+            ),
+          ],
+          const Spacer(),
+          if (isDownloading)
+            SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                value: download!.hasTotal ? download!.progress : null,
+              ),
+            )
+          else if (!downloaded)
+            IconButton(
+              icon: const Icon(Icons.cloud_download_outlined),
+              tooltip: l10n.sttDownloadModel,
+              onPressed: () => controller.downloadModel(model),
+            )
+          else if (!selected)
+            IconButton(
+              icon: const Icon(Icons.delete_outline),
+              tooltip: l10n.delete,
+              onPressed: () => controller.deleteModel(model),
+            )
+          else
+            const Icon(Icons.download_done, size: 18, color: Colors.green),
+        ],
+      ),
+      subtitle: isDownloading
+          ? Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: LinearProgressIndicator(
+                value: download!.hasTotal ? download!.progress : null,
+              ),
+            )
+          : Text(sttModelDescription(context, model)),
     );
   }
 }
