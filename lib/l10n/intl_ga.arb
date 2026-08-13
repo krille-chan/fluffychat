@@ -1992,7 +1992,6 @@
     "sendCanceled": "Cealaíodh seoladh",
     "loginWithMatrixId": "Logáil isteach le Matrix-ID",
     "calculatingFileSize": "Méid an chomhaid á ríomh...",
-    "sendingAttachment": "Iatán á sheoladh...",
     "oneOfYourDevicesIsNotVerified": "Ní fhíoraítear ceann de do ghléasanna",
     "noticeChatBackupDeviceVerification": "Nóta: Nuair a nascann tú do ghléasanna go léir leis an gcúltaca comhrá, déantar iad a fhíorú go huathoibríoch.",
     "continueText": "Lean ar aghaidh",

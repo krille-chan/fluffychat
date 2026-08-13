@@ -2222,7 +2222,6 @@
     "noChatsFoundHere": "Siin ei leidu veel ühtegi vestlust. Alusta uut vestlust klõpsides allpool asuvat nuppu. ⤵️",
     "loginWithMatrixId": "Logi sisse Matrix-ID alusel",
     "doesNotSeemToBeAValidHomeserver": "Ei tundu olema ühilduv koduserver. Kas võrguaadress on ikka õige?",
-    "sendingAttachment": "Saadame manust...",
     "calculatingFileSize": "Arvutame faili suurust...",
     "oneOfYourDevicesIsNotVerified": "Üks sinu seadmetest pole verifitseeritud",
     "noticeChatBackupDeviceVerification": "Märkus: kui liidad kõik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud.",

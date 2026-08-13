@@ -2320,7 +2320,6 @@
     "loginWithMatrixId": "Увайсці з Matrix-ID",
     "doesNotSeemToBeAValidHomeserver": "Гэта не выглядае як дамашні сервер. Няслушны URL?",
     "calculatingFileSize": "Вылічэнне памеру файла...",
-    "sendingAttachment": "Адпраўка прыкладання...",
     "oneOfYourDevicesIsNotVerified": "Адна з вашых прылад не спраўджана",
     "noticeChatBackupDeviceVerification": "Заўвага: Калі вы падключыце ўсе свае прылады да рэзервовага капіравання, яны аўтаматычна спраўдзяцца.",
     "blur": "Размыццё:",

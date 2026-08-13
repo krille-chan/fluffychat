@@ -1443,7 +1443,17 @@
         "type": "String",
         "placeholders": {}
     },
+    "sendingFilesDoNotExit": "Sending {count} files... Please do not exit the app!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
     "roomVersion": "Room version",
+    "compressingVideo": "Compressing video",
     "@roomVersion": {
         "type": "String",
         "placeholders": {}
@@ -2304,7 +2314,6 @@
     "loginWithMatrixId": "Login with Matrix-ID",
     "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
     "calculatingFileSize": "Calculating file size...",
-    "sendingAttachment": "Sending attachment...",
     "oneOfYourDevicesIsNotVerified": "One of your devices is not verified",
     "noticeChatBackupDeviceVerification": "Note: When you connect all your devices to the chat backup, they are automatically verified.",
     "continueText": "Continue",

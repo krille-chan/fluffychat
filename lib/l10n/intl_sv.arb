@@ -2259,7 +2259,6 @@
     "loginWithMatrixId": "Logga in med Matrix-ID",
     "doesNotSeemToBeAValidHomeserver": "Verkar inte vara en kompatibel hemserver. Fel URL?",
     "calculatingFileSize": "Beräknar filstorlek...",
-    "sendingAttachment": "Skickar bilaga...",
     "oneOfYourDevicesIsNotVerified": "En av dina enheter är inte verifierade",
     "noticeChatBackupDeviceVerification": "Notis: När du ansluter alla dina enheter till chatt-backupen, är de automatiskt verifierade.",
     "continueText": "Fortsätt",

@@ -2220,7 +2220,6 @@
     "loginWithMatrixId": "Hasi saioa Matrix IDarekin",
     "doesNotSeemToBeAValidHomeserver": "Ez dirudi zerbitzaria bateragarria denik. Zuzena da URLa?",
     "calculatingFileSize": "Fitxategiaren tamaina kalkulatzen…",
-    "sendingAttachment": "Eranskina bidaltzen…",
     "oneOfYourDevicesIsNotVerified": "Zure gailuetako bat ez dago egiaztatuta",
     "noticeChatBackupDeviceVerification": "Oharra: gailu guztiak txat-babeskopiarekin konektatzen dituzunean, automatikoki egiaztatzen dira.",
     "opacity": "Opakutasuna:",

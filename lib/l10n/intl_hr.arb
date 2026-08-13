@@ -2161,7 +2161,6 @@
         "count": {}
     },
     "swipeRightToLeftToReply": "Za odgovaranje povuci prstom zdesna ulijevo",
-    "sendingAttachment": "Slanje priloga …",
     "aboutHomeserver": "Informacije o {homeserver}",
     "@aboutHomeserver": {
         "type": "String",

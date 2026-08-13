@@ -85,6 +85,7 @@ class SendFileDialogState extends State<SendFileDialog> {
 
   Future<void> _send(String? uniqueFileType) async {
     final l10n = L10n.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
 
     final proceed = await showTrustUserInRoomDialog(context, widget.room);
     if (!context.mounted || !proceed) return;
@@ -120,10 +121,17 @@ class SendFileDialogState extends State<SendFileDialog> {
             mimeType.startsWith('video')) {
           setProgress(sentFiles / _files.length + 0.2);
           final lengthResult = await Result.capture(xfile.length());
+          if (!mounted) return;
           final length = lengthResult.asValue?.value;
-          file = await xfile.getVideoInfo(
-            compress: length != null && length > minSizeToCompress && compress,
+          final compressResult = await showFutureLoadingDialog(
+            context: context,
+            title: l10n.compressingVideo,
+            future: () => xfile.getVideoInfo(
+              compress:
+                  length != null && length > minSizeToCompress && compress,
+            ),
           );
+          file = compressResult.result!;
         } else {
           // Else we just create a MatrixFile
           file = MatrixFile(
@@ -175,19 +183,24 @@ class SendFileDialogState extends State<SendFileDialog> {
       }
     }
 
-    if (PlatformInfos.isMobile) {
+    if (ForegroundServices.platformSupported) {
       await ForegroundServices.startService('send_files');
-      try {
-        await sendAction((_) {});
-      } finally {
-        await ForegroundServices.stopService('send_files');
-      }
     } else {
-      showFutureLoadingDialog(
-        context: widget.outerContext,
-        title: l10n.sendingAttachment,
-        futureWithProgress: sendAction,
+      scaffoldMessenger.showSnackBar(
+        SnackBar(
+          persist: true,
+          content: Text(l10n.sendingFilesDoNotExit(widget.files.length)),
+        ),
       );
+    }
+    try {
+      await sendAction((_) {});
+    } finally {
+      if (ForegroundServices.platformSupported) {
+        await ForegroundServices.stopService('send_files');
+      } else {
+        scaffoldMessenger.clearSnackBars();
+      }
     }
 
     return;

@@ -2228,7 +2228,6 @@
     "manageAccount": "帳號管理",
     "changeTheChatPermissions": "變更聊天室權限",
     "changeTheVisibilityOfChatHistory": "變更過往聊天記錄可見度",
-    "sendingAttachment": "附件傳送中…",
     "opacity": "不透明度:",
     "aboutHomeserver": "關於{homeserver}",
     "@aboutHomeserver": {

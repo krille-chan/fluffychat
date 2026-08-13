@@ -2171,7 +2171,6 @@
     "sendRoomNotifications": "Invia notifiche alla @stanza",
     "sendCanceled": "Invio annullato",
     "calculatingFileSize": "Calcolo della dimensione del file...",
-    "sendingAttachment": "Invio allegato...",
     "oneOfYourDevicesIsNotVerified": "Uno dei tuoi dispositivi non è verificato",
     "noticeChatBackupDeviceVerification": "Nota: quando colleghi tutti i tuoi dispositivi al backup della chat, vengono verificati automaticamente.",
     "moderatorLevel": "{level} - Moderatore",

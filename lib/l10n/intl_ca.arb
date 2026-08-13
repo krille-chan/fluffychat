@@ -2234,7 +2234,6 @@
             }
         }
     },
-    "sendingAttachment": "S'està enviant l'adjunt...",
     "oneOfYourDevicesIsNotVerified": "Un dels teus dispositius no està verificat",
     "blur": "Difumina:",
     "opacity": "Opacitat:",
