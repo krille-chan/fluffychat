@@ -2103,7 +2103,6 @@
     "sendCanceled": "Anulowano wysyłanie",
     "doesNotSeemToBeAValidHomeserver": "Wydaje się nie być kompatybilnym serwerem domowym. Niepoprawny adres URL?",
     "calculatingFileSize": "Obliczanie rozmiaru pliku...",
-    "sendingAttachment": "Wysyłanie załącznika...",
     "blur": "Rozmazanie:",
     "opacity": "Przezroczystość:",
     "setWallpaper": "Ustaw tapetę",

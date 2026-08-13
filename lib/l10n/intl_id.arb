@@ -2172,7 +2172,6 @@
     "changeTheCanonicalRoomAlias": "Ubah alamat chat publik utama",
     "changeTheVisibilityOfChatHistory": "Ubah keterlihatan riwayat chat",
     "changeTheDescriptionOfTheGroup": "Ubah deskripsi chat",
-    "sendingAttachment": "Mengirim lampiran...",
     "calculatingFileSize": "Menghitung ukuran berkas...",
     "userLevel": "{level} - Pengguna",
     "@userLevel": {

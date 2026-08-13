@@ -2267,7 +2267,6 @@
     "loginWithMatrixId": "Kirjaudu sisään Matrix-tunnuksella",
     "doesNotSeemToBeAValidHomeserver": "Ei näytä olevan yhteensopiva kotipalvelin. Väärä URL-osoite?",
     "calculatingFileSize": "Lasketaan tiedoston kokoa...",
-    "sendingAttachment": "Lähetetään liitettä...",
     "oneOfYourDevicesIsNotVerified": "Yhtä laitteistasi ei ole vahvistettu",
     "noticeChatBackupDeviceVerification": "Huomautus: Kun yhdistät kaikki laitteesi keskustelun varmuuskopiointiin, ne vahvistetaan automaattisesti.",
     "blur": "Sumeus:",

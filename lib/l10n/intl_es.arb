@@ -2110,7 +2110,6 @@
             }
         }
     },
-    "sendingAttachment": "Enviando adjunto...",
     "compress": "Comprimir",
     "pleaseFillOut": "Por favor, rellenar",
     "newChatRequest": "📩 Nueva petición de chat",

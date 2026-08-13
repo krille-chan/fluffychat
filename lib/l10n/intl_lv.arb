@@ -2202,7 +2202,6 @@
     "unread": "Nelasītas",
     "space": "Vieta",
     "markAsUnread": "Atzīmēt kā nelasītu",
-    "sendingAttachment": "Nosūta pielikumu...",
     "calculatingFileSize": "Aprēķina datnes lielumu...",
     "oneOfYourDevicesIsNotVerified": "Viena no ierīcēm nav apliecināta",
     "noticeChatBackupDeviceVerification": "Piezīme: kad visas ierīces tiek savienotas ar tērzēšanu rezerves kopiju, tās tiek automātiski apliecinātas.",

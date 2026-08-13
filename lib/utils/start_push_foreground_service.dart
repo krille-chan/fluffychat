@@ -14,6 +14,9 @@ import '../l10n/l10n.dart';
 abstract class ForegroundServices {
   static final List<String> runningServices = [];
 
+  static bool get platformSupported =>
+      PlatformInfos.isMobile || PlatformInfos.isWeb;
+
   static bool _beforeUnload(html.Event e) {
     e.preventDefault();
     return true;

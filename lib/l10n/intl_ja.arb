@@ -2087,7 +2087,6 @@
     "sendCanceled": "送信を取り消しました",
     "loginWithMatrixId": "Matrix-IDでログイン",
     "calculatingFileSize": "ファイルサイズを計算しています…",
-    "sendingAttachment": "添付ファイルを送信しています…",
     "oneOfYourDevicesIsNotVerified": "いずれかのデバイスが認証されていません",
     "noticeChatBackupDeviceVerification": "注意：すべてのデバイスをチャットのバックアップに接続している場合、それらは自動的に認証されます。",
     "continueText": "続ける",

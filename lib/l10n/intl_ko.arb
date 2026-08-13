@@ -2242,7 +2242,6 @@
         }
     },
     "changelog": "변경 기록",
-    "sendingAttachment": "첨부된 파일 전송 중...",
     "blur": "블러:",
     "sendImages": "이미지 {count}개 보내기",
     "@sendImages": {
