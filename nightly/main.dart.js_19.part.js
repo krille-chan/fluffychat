@@ -1,8 +1,8 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cQ9(d){return new A.BD(B.dh(d))},
-cQa(){return new A.GW(B.dh("pt_BR"))},
-cQb(){return new A.GX(B.dh("pt_PT"))},
+cQb(d){return new A.BD(B.dh(d))},
+cQc(){return new A.GW(B.dh("pt_BR"))},
+cQd(){return new A.GX(B.dh("pt_PT"))},
 BD:function BD(d){this.a=d},
 GW:function GW(d){this.a=d},
 GX:function GX(d){this.a=d}},C
@@ -344,7 +344,7 @@ kM(d){return d+" is typing\u2026"},
 kN(d){return"\ud83d\udeaa "+d+" left the chat"},
 fZ(d,e){return d+" sent a "+e+" event"},
 gfY(){return"Unverified"},
-gcO(){return"Verified"},
+gcL(){return"Verified"},
 gkQ(){return"Start Verification"},
 go1(){return"You successfully verified!"},
 go2(){return"Verifying other account"},
@@ -1053,7 +1053,7 @@ kM(d){return d+" est\xe1 digitando\u2026"},
 kN(d){return"\ud83d\udeaa "+d+" saiu da conversa"},
 fZ(d,e){return d+" enviou um evento de "+e},
 gfY(){return"N\xe3o verificado"},
-gcO(){return"Verificado"},
+gcL(){return"Verificado"},
 gkQ(){return"Iniciar verifica\xe7\xe3o"},
 go1(){return"Verifica\xe7\xe3o efetivada!"},
 go2(){return"Verificando outra conta"},
@@ -1639,7 +1639,7 @@ kM(d){return d+" est\xe1 a escrever\u2026"},
 kN(d){return"\ud83d\udeaa "+d+" saiu do chat"},
 fZ(d,e){return d+" enviou um evento do tipo "+e},
 gfY(){return"N\xe3o Verificado"},
-gcO(){return"Verificado"},
+gcL(){return"Verificado"},
 gkR(){return"Por favor tenha em aten\xe7\xe3o que v\xeddeo chamadas est\xe3o atualmente em beta. Podem n\xe3o funcionar como esperado ou funcionar em todas as plataformas."},
 gj9(){return"Chamadas de v\xeddeo experimentais"},
 gl0(){return"Rejeitou o convite"},
@@ -1691,5 +1691,5 @@ x(A.BD,C.aF)
 w(A.BD,[A.GW,A.GX])})()
 B.dI(b.typeUniverse,JSON.parse('{"BD":{"aF":[]},"GW":{"aF":[]},"GX":{"aF":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["qdT27ZuoBz/w6WFQjk8v3v7r0qk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["6ynQ8Q5HdAhkTnlASP7Y9dNIAWI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_19.part.js.map

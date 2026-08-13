@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cQi(){return new B.H3(A.dh("sv"))},
+cQk(){return new B.H3(A.dh("sv"))},
 H3:function H3(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return d+" skriver\u2026"},
 kN(d){return"\ud83d\udeaa "+d+" l\xe4mnade chatten"},
 fZ(d,e){return d+" skickade en "+e+" h\xe4ndelse"},
 gfY(){return"Ej verifierad"},
-gcO(){return"Verifierad"},
+gcL(){return"Verifierad"},
 gkQ(){return"Starta verifiering"},
 go1(){return"Du har lyckats verifiera!"},
 go2(){return"Verifiera andra konton"},
@@ -728,5 +728,5 @@ B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.H3,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"H3":{"aF":[]}}'))};
-(a=>{a["0CgWcFOs3/ghjDv1KWqXwxQ/wCA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["RxqolBP5tfxc4f0rp4AwQ45TS9I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_366.part.js.map

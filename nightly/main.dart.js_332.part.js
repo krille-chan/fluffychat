@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cPW(){return new B.GI(A.dh("hu"))},
+cPY(){return new B.GI(A.dh("hu"))},
 GI:function GI(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return d+" g\xe9pel\u2026"},
 kN(d){return"\ud83d\udeaa "+d+" elhagyta a cseveg\xe9st"},
 fZ(d,e){return d+" felhaszn\xe1l\xf3 "+e+" esem\xe9nyt k\xfcld\xf6tt"},
 gfY(){return"Hiteles\xedtetlen"},
-gcO(){return"Hiteles\xedtett"},
+gcL(){return"Hiteles\xedtett"},
 gkQ(){return"Hiteles\xedt\xe9s megkezd\xe9se"},
 go1(){return"Sikeres hiteles\xedt\xe9s!"},
 go2(){return"M\xe1sik fi\xf3k hiteles\xedt\xe9se"},
@@ -728,5 +728,5 @@ B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GI,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GI":{"aF":[]}}'))};
-(a=>{a["es7/q239dNP/RkHmk6urcW3EdyQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["FfDr7MWYiYFDUJWdBvGqtw3Ihnk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_332.part.js.map

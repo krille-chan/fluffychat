@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cQ8(){return new B.GV(A.dh("pl"))},
+cQa(){return new B.GV(A.dh("pl"))},
 GV:function GV(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return d+" pisze\u2026"},
 kN(d){return"\ud83d\udeaa "+d+" opu\u015bci\u0142/-a czat"},
 fZ(d,e){return d+" wys\u0142a\u0142/-a zdarzenie "+e},
 gfY(){return"Niezweryfikowane"},
-gcO(){return"Zweryfikowane"},
+gcL(){return"Zweryfikowane"},
 gkQ(){return"Rozpocznij weryfikacj\u0119"},
 go1(){return"Pomy\u015blnie zweryfikowano!"},
 go2(){return"Weryfikowanie innego konta"},
@@ -728,5 +728,5 @@ B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GV,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GV":{"aF":[]}}'))};
-(a=>{a["riMbmO6DVT0MWFK2oqmlo9AbTt8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["WHMpfK+qmr0uchQerjDfciJrRBg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_355.part.js.map

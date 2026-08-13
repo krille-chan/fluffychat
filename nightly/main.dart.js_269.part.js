@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cPD(){return new B.Gp(A.dh("ca"))},
+cPF(){return new B.Gp(A.dh("ca"))},
 Gp:function Gp(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return d+" est\xe0 escrivint\u2026"},
 kN(d){return"\ud83d\udeaa "+d+" ha marxat del xat"},
 fZ(d,e){return d+" ha enviat un esdeveniment "+e},
 gfY(){return"No verificat"},
-gcO(){return"Verificat"},
+gcL(){return"Verificat"},
 gkQ(){return"Inicia la verificaci\xf3"},
 go1(){return"T'has verificat correctament!"},
 go2(){return"Verificant un altre compte"},
@@ -728,5 +728,5 @@ B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gp,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gp":{"aF":[]}}'))};
-(a=>{a["VnvXs1v8Ht+WXAbM2zBm61i/uRw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["YwlfHaAX7k83OMuu6J93fBx+Ik0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_269.part.js.map

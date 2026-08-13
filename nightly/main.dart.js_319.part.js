@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cPR(){return new B.GD(A.dh("ga"))},
+cPT(){return new B.GD(A.dh("ga"))},
 GD:function GD(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return"T\xe1 "+d+" ag cl\xf3scr\xedobh\u2026"},
 kN(d){return"\ud83d\udeaa D'fh\xe1g "+d+" an comhr\xe1"},
 fZ(d,e){return"Sheol "+d+" imeacht "+e},
 gfY(){return"Neamhfh\xedoraithe"},
-gcO(){return"Deimhnithe"},
+gcL(){return"Deimhnithe"},
 gkQ(){return"Tosaigh F\xedor\xfa"},
 go1(){return"D'fh\xedoraigh t\xfa go rath\xfail!"},
 go2(){return"Ag f\xedor\xfa cuntas eile"},
@@ -729,5 +729,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.GD,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GD":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["8UJYpEYJUgE1ImND420i6XFIrvQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["bqUNbtmt6/JWmPtgOk40DKyq2gc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_319.part.js.map

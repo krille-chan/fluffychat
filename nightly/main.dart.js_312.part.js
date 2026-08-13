@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cPO(){return new B.GA(A.dh("fi"))},
+cPQ(){return new B.GA(A.dh("fi"))},
 GA:function GA(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return d+" kirjoittaa\u2026"},
 kN(d){return"\ud83d\udeaa "+d+" poistui keskustelusta"},
 fZ(d,e){return d+" l\xe4hetti "+e+"-tapahtuman"},
 gfY(){return"Varmistamaton"},
-gcO(){return"Varmistettu"},
+gcL(){return"Varmistettu"},
 gkQ(){return"Aloita varmennus"},
 go1(){return"Varmensit onnistuneesti!"},
 go2(){return"Varmistetaan toista tunnusta"},
@@ -728,5 +728,5 @@ B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GA,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GA":{"aF":[]}}'))};
-(a=>{a["SoLc7qUcLIUONi4z+LMgnGORSrU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BQMfHOWqub7jhzoMNrYi7xMaHkk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

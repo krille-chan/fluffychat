@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cPV(){return new B.GH(A.dh("hr"))},
+cPX(){return new B.GH(A.dh("hr"))},
 GH:function GH(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return d+" tipka \u2026"},
 kN(d){return"\ud83d\udeaa "+d+" je napustio/la chat"},
 fZ(d,e){return d+" ja poslao/la "+e+" doga\u0111aj"},
 gfY(){return"Nepotvr\u0111eno"},
-gcO(){return"Potvr\u0111eno"},
+gcL(){return"Potvr\u0111eno"},
 gkQ(){return"Pokreni potvr\u0111ivanje"},
 go1(){return"Uspje\u0161no si potvrdio/la!"},
 go2(){return"Potvr\u0111ivanje drugog ra\u010duna"},
@@ -728,5 +728,5 @@ B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.GH,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"GH":{"aF":[]}}'))};
-(a=>{a["E89XZSEPnlwKEpbT3Fc0LX2+rMQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4vFJKmLA2ZVr7NvLVUJ6OZCXQIw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_325.part.js.map

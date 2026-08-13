@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cPK(){return new B.Gw(A.dh("es"))},
+cPM(){return new B.Gw(A.dh("es"))},
 Gw:function Gw(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return d+" est\xe1 escribiendo\u2026"},
 kN(d){return d+" abandon\xf3 el chat"},
 fZ(d,e){return d+" envi\xf3 un evento "+e},
 gfY(){return"No verificado"},
-gcO(){return"Verificado"},
+gcL(){return"Verificado"},
 gkQ(){return"Comenzar verificaci\xf3n"},
 go1(){return"\xa1Has verificado exitosamente!"},
 go2(){return"Verificando la otra cuenta"},
@@ -728,5 +728,5 @@ B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gw,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gw":{"aF":[]}}'))};
-(a=>{a["Io4ibPG4o2+ZGmNGZSK+IJDpDhM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["84OocEX6YwUBNppZ1VZvRT7Bxo8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_302.part.js.map

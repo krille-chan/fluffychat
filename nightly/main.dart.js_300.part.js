@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cPJ(){return new B.Gv(A.dh("eo"))},
+cPL(){return new B.Gv(A.dh("eo"))},
 Gv:function Gv(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return d+" tajpas\u2026"},
 kN(d){return d+" foriris de la babilo"},
 fZ(d,e){return d+" sendis eventon de speco "+e},
 gfY(){return"Unverified"},
-gcO(){return"Kontrolita"},
+gcL(){return"Kontrolita"},
 gkQ(){return"Komenci kontrolon"},
 go1(){return"Vi sukcese kontrolis!"},
 go2(){return"Kontrolante alian konton"},
@@ -728,5 +728,5 @@ B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gv,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gv":{"aF":[]}}'))};
-(a=>{a["+HrbwnY0kbrXLvxnI/QRgUjFWqg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["LJ2Ci1xNaMxSqEuK5Sy++gMhh6Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_300.part.js.map

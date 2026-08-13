@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cPL(){return new B.Gx(A.dh("et"))},
+cPN(){return new B.Gx(A.dh("et"))},
 Gx:function Gx(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return d+" kirjutab\u2026"},
 kN(d){return"\ud83d\udeaa"+d+" lahkus vestlusest"},
 fZ(d,e){return d+" saatis \u201e"+e+"\u201c t\xfc\xfcpi s\xfcndmuse"},
 gfY(){return"Verifitseerimata"},
-gcO(){return"Verifitseeritud"},
+gcL(){return"Verifitseeritud"},
 gkQ(){return"Alusta verifitseerimist"},
 go1(){return"Sinu verifitseerimine \xf5nnestus!"},
 go2(){return"Verifitseerin teist kasutajakontot"},
@@ -728,5 +728,5 @@ B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Gx,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"Gx":{"aF":[]}}'))};
-(a=>{a["QpER3n6RFAdiVBTwgRQWL/Uy8PY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/SAalwTQvn9/0Gn24amsD1yfYa4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

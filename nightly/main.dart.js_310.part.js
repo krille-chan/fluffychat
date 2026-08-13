@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cPN(){return new A.Gz(B.dh("fa"))},
+cPP(){return new A.Gz(B.dh("fa"))},
 Gz:function Gz(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return d+" \u062f\u0631 \u062d\u0627\u0644 \u0646\u0648\u0634\u062a\u0646\
 kN(d){return"\ud83d\udc4b "+d+" \u0686\u062a \u0631\u0627 \u062a\u0631\u06a9 \u06a9\u0631\u062f"},
 fZ(d,e){return d+" \u06cc\u06a9 \u0631\u0648\u06cc\u062f\u0627\u062f "+e+" \u0641\u0631\u0633\u062a\u0627\u062f"},
 gfY(){return"\u062a\u0623\u06cc\u06cc\u062f\u0646\u0634\u062f\u0647"},
-gcO(){return"\u062a\u0627\u06cc\u06cc\u062f\u0634\u062f\u0647"},
+gcL(){return"\u062a\u0627\u06cc\u06cc\u062f\u0634\u062f\u0647"},
 gkQ(){return"\u0622\u063a\u0627\u0632 \u0628\u0627\u0632\u0628\u06cc\u0646\u06cc"},
 go1(){return"\u0628\u0627\u0632\u0628\u06cc\u0646\u06cc \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f!"},
 go2(){return"\u062f\u0631 \u062d\u0627\u0644 \u062a\u0627\u06cc\u06cc\u062f \u062d\u0633\u0627\u0628 \u062f\u06cc\u06af\u0631"},
@@ -726,5 +726,5 @@ B(d,e){return this.gb8(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Gz,C.aF)})()
 B.dI(b.typeUniverse,JSON.parse('{"Gz":{"aF":[]}}'))};
-(a=>{a["CXZ9iUMu4S3Xa5cvATgTRLeXjIk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Z9WX4ERBFdp8qG3b5YkbVwNS4Vg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_310.part.js.map

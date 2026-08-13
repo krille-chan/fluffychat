@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cQo(){return new B.H9(A.dh("uz"))},
+cQq(){return new B.H9(A.dh("uz"))},
 H9:function H9(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return d+" yozmoqda\u2026"},
 kN(d){return"\ud83d\udeaa "+d+" suhbatni tark etdi"},
 fZ(d,e){return d+" "+e+" tadbirini yubordi"},
 gfY(){return"Tasdiqlanmagan"},
-gcO(){return"Tasdiqlangan"},
+gcL(){return"Tasdiqlangan"},
 gkQ(){return"Tasdiqlashni boshlash"},
 go1(){return"Siz tasdiqladingiz!"},
 go2(){return"Boshqa hisob tasdiqlanmoqda"},
@@ -729,5 +729,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.H9,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"H9":{"aF":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["iyiUW2oLrUDNULkqeJUPqhmJmK0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["8jcBmzAFwP+oQpLAxsXGCGSQS8M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_373.part.js.map

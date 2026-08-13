@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cQm(){return new B.H7(A.dh("tr"))},
+cQo(){return new B.H7(A.dh("tr"))},
 H7:function H7(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -339,7 +339,7 @@ kM(d){return d+" yaz\u0131yor\u2026"},
 kN(d){return"\ud83d\udeaa "+d+" sohbetten ayr\u0131ld\u0131"},
 fZ(d,e){return d+" bir "+e+" etkinli\u011fi g\xf6nderdi"},
 gfY(){return"Do\u011frulanmad\u0131"},
-gcO(){return"Do\u011fruland\u0131"},
+gcL(){return"Do\u011fruland\u0131"},
 gkQ(){return"Do\u011frulamay\u0131 Ba\u015flat"},
 go1(){return"Ba\u015far\u0131yla do\u011fruland\u0131!"},
 go2(){return"Di\u011fer hesap do\u011frulan\u0131yor"},
@@ -729,5 +729,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.H7,C.aF)})()
 A.dI(b.typeUniverse,JSON.parse('{"H7":{"aF":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["Tw7ME4QbA7RwCIRhOhwi49LV3Ts="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ufTnMYmfDUOyGjtWbKFF3QdJYqM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_370.part.js.map
