@@ -2220,7 +2220,6 @@
     "loginWithMatrixId": "Увійти за допомогою Matrix-ID",
     "doesNotSeemToBeAValidHomeserver": "Здається, це несумісний домашній сервер. Неправильна URL-адреса?",
     "calculatingFileSize": "Обчислення розміру файлу...",
-    "sendingAttachment": "Надсилання вкладення...",
     "oneOfYourDevicesIsNotVerified": "Один із ваших пристроїв не верифікований",
     "noticeChatBackupDeviceVerification": "Примітка: Коли ви під'єднуєте всі свої пристрої до резервної копії бесіди, вони автоматично верифікуються.",
     "continueText": "Продовжити",

@@ -2215,7 +2215,6 @@
     "loginWithMatrixId": "Matriks-ID bilan kirish",
     "doesNotSeemToBeAValidHomeserver": "Uy serveri mos emasga o‘xshaydi. URL xato kiritilganmi?",
     "calculatingFileSize": "Fayl hajmi hisoblanmoqda...",
-    "sendingAttachment": "Biriktirish yuborilmoqda...",
     "oneOfYourDevicesIsNotVerified": "Qurilmalaringizdan biri tasdiqlanmagan",
     "continueText": "Davom etish",
     "blur": "Xiralashtirish:",

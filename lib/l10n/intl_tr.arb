@@ -2220,7 +2220,6 @@
     "loginWithMatrixId": "Matrix kimliği ile oturum aç",
     "doesNotSeemToBeAValidHomeserver": "Uyumlu bir ana sunucu gibi görünmüyor. Yanlış URL mi?",
     "calculatingFileSize": "Dosya boyutu hesaplanıyor...",
-    "sendingAttachment": "Ek gönderiliyor...",
     "oneOfYourDevicesIsNotVerified": "Aygıtlarınızdan biri doğrulanmadı",
     "noticeChatBackupDeviceVerification": "Not: Tüm aygıtlarınızı sohbet yedeklemesine bağladığınızda, otomatik olarak doğrulanırlar.",
     "blur": "Blur:",

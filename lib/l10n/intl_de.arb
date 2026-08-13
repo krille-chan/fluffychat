@@ -2218,7 +2218,6 @@
     "noChatsFoundHere": "Hier wurden noch keine Chats gefunden. Starte einen neuen Chat mit jemandem, indem du die Schaltfläche unten verwenden. ⤵️",
     "doesNotSeemToBeAValidHomeserver": "Scheint kein kompatibler Homeserver zu sein. Falsche URL?",
     "loginWithMatrixId": "Mit Matrix-ID anmelden",
-    "sendingAttachment": "Anhang wird gesendet ...",
     "calculatingFileSize": "Dateigröße wird berechnet ...",
     "fileIsTooBigForServer": "Kann nicht gesendet werden! Der Server unterstützt nur Anhänge bis höchstens {max}.",
     "@fileIsTooBigForServer": {

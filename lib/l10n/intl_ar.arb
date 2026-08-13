@@ -2220,7 +2220,6 @@
     "loginWithMatrixId": "تسجيل الدخول باستخدام معرف ماتريكس",
     "doesNotSeemToBeAValidHomeserver": "لا يبدو أنه خادم منزلي متوافق. عنوان URL غير صحيح ؟",
     "calculatingFileSize": "جارٍ حساب حجم الملف...",
-    "sendingAttachment": "جارٍ إرسال المرفق...",
     "oneOfYourDevicesIsNotVerified": "لم يتم التحقق من أحد أجهزتك",
     "noticeChatBackupDeviceVerification": "ملاحظة: عند توصيل جميع أجهزتك بنسخة احتياطية للدردشة، يتم التحقق منها تلقائيًا.",
     "continueText": "استمرار",
