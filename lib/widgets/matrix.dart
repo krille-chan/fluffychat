@@ -13,6 +13,8 @@ import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/stt/stt_manager.dart';
+import 'package:fluffychat/utils/stt/transcription_cache.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/utils/voip_plugin.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -142,6 +144,10 @@ class MatrixState extends State<Matrix> {
   AudioPlayer? audioPlayer;
   final ValueNotifier<String?> voiceMessageEventId = ValueNotifier(null);
 
+  /// Speech-to-Text state for voice messages. Lazily created so it costs
+  /// nothing until the feature is first used.
+  late final SttManager stt = SttManager(TranscriptionCache());
+
   Future<Client> getLoginClient() async {
     if (widget.clients.isNotEmpty && !client.isLogged()) {
       return client;
@@ -206,6 +212,9 @@ class MatrixState extends State<Matrix> {
     super.initState();
     _listener = AppLifecycleListener(onStateChange: didChangeAppLifecycleState);
     initMatrix();
+    // Preload the configured default STT model in the background so the first
+    // voice message of a session transcribes without a model load.
+    WidgetsBinding.instance.addPostFrameCallback((_) => stt.preloadDefaultModel());
   }
 
   AppLifecycleListener? _listener;

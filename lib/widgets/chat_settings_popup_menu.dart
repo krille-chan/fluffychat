@@ -5,7 +5,9 @@
 
 import 'dart:async';
 
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/stt/stt_model_picker.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,7 @@ import 'package:matrix/matrix.dart';
 
 import 'matrix.dart';
 
-enum ChatPopupMenuActions { details, encryption, leave, search }
+enum ChatPopupMenuActions { details, encryption, leave, search, sttModel }
 
 class ChatSettingsPopupMenu extends StatefulWidget {
   final Room room;
@@ -85,6 +87,9 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
               case ChatPopupMenuActions.encryption:
                 context.go('/rooms/${widget.room.id}/encryption');
                 break;
+              case ChatPopupMenuActions.sttModel:
+                await showSttModelPicker(context);
+                break;
             }
           },
           itemBuilder: (BuildContext context) => [
@@ -119,6 +124,23 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 ],
               ),
             ),
+            if (Matrix.of(context).stt.isFeatureAvailable &&
+                Matrix.of(context).stt.onDeviceAvailable)
+              PopupMenuItem<ChatPopupMenuActions>(
+                value: ChatPopupMenuActions.sttModel,
+                child: Row(
+                  children: [
+                    const Icon(Icons.subtitles_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context).speechToTextModel),
+                    const Spacer(),
+                    Text(
+                      AppSettings.sttModel.value,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+              ),
             PopupMenuItem<ChatPopupMenuActions>(
               value: ChatPopupMenuActions.leave,
               child: Row(

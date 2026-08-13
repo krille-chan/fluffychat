@@ -23,6 +23,9 @@ enum AppSettings<T> {
   audioRecordingNoiseSuppress<bool>('audioRecordingNoiseSuppress', true),
   audioRecordingBitRate<int>('audioRecordingBitRate', 64000),
   audioRecordingSamplingRate<int>('audioRecordingSamplingRate', 44100),
+  // Speech-to-Text (transcription of voice messages)
+  sttEnabled<bool>('chat.fluffy.stt.enabled', false),
+  sttModel<String>('chat.fluffy.stt.model', 'base'),
   showNoGoogle<bool>('chat.fluffy.show_no_google', false),
   unifiedPushRegistered<bool>('chat.fluffy.unifiedpush.registered', false),
   unifiedPushEndpoint<String>('chat.fluffy.unifiedpush.endpoint', ''),

@@ -115,7 +115,6 @@ class ChatController extends State<ChatPageWithRoom>
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
 
   late Client sendingClient;
-
   Timeline? timeline;
 
   String? activeThreadId;

@@ -33,6 +33,11 @@ packageLicenseOverride:
   rxdart: Apache-2.0
   flutter_new_badger: MIT
   sqlcipher_flutter_libs: MIT
+  # Speech-to-Text (on-device voice message transcription). whisper_ggml is the
+  # only direct dependency; ffmpeg_kit_flutter_new_min is the LGPL-3.0 "min"
+  # build it pulls in for audio format conversion. Both are detected
+  # automatically below, but note the LGPL obligations for binary distribution
+  # (dynamic linking / offering the corresponding source).
 
   # flutter's internal packages
   flutter_driver: BSD-3-Clause

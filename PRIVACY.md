@@ -12,6 +12,7 @@ FluffyChat is available on Android, iOS, Linux and as a web version. Desktop ver
 *   [Matrix](#matrix)
 *   [Database](#database)
 *   [Encryption](#encryption)
+*   [Speech-to-Text](#speech-to-text)
 *   [App Permissions](#app-permissions)
 *   [Push Notifications](#push-notifications)
 *   [PlayStore Safety Standards](#playstore-safety)
@@ -34,6 +35,11 @@ More information is available at: [https://pub.dev/packages/sqflite](https://pub
 All communication of substantive content between Fluffychat and any server is done in secure way, using transport encryption to protect it.
 
 FluffyChat also uses End-To-End-Encryption by using [Vodozemac](https://github.com/matrix-org/vodozemac) and enables it by default for private chats.
+
+## <a id="speech-to-text" href="#speech-to-text">#</a> Speech-to-Text
+FluffyChat can optionally transcribe voice messages to text. The feature is disabled by default and can be turned on in the chat settings.
+
+When enabled, FluffyChat transcribes **entirely on the device** using the open-source [Whisper](https://github.com/ggerganov/whisper.cpp) model (via [whisper_ggml](https://pub.dev/packages/whisper_ggml)). The audio of your voice messages is decrypted locally and **never leaves the device**. The Whisper model is downloaded once from [huggingface.co](https://huggingface.co) when the feature is first used (or when you trigger the download in the settings); this is the only network request involved and no message content is transmitted.
 
 ## <a id="app-permissions" href="#app-permissions">#</a> App Permissions
 
