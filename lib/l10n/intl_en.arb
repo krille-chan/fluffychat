@@ -1443,7 +1443,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "sendingFilesDoNotExit": "Sending {count} files... Please do not exit the app!",
+    "sendingFilesDoNotExit": "Sending {count} files... Please do not exit!",
     "@sendingFilesDoNotExit": {
         "type": "String",
         "placeholders": {
@@ -1453,7 +1453,7 @@
         }
     },
     "roomVersion": "Room version",
-    "compressingVideo": "Compressing video",
+    "compressingVideo": "Compressing video...",
     "@roomVersion": {
         "type": "String",
         "placeholders": {}
