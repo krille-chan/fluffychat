@@ -91,16 +91,19 @@ class NotificationService: UNNotificationServiceExtension {
             contentHandler(bestAttemptContent)
             return
         }
-        guard let path = getDatabasePath(clientName: clientName) else {
-            bestAttemptContent.title = "Unable to get database path"
-            os_log("[FluffyChatPushHelper] Unable to get database path!")
-            contentHandler(bestAttemptContent)
-            return
+        guard let containerPath = FileManager.default.containerURL(
+                forSecurityApplicationGroupIdentifier: "group.im.fluffychat.app"
+            ) else {
+                bestAttemptContent.title = "Unable to get container path"
+                os_log("[FluffyChatPushHelper] Unable to get container path!")
+                contentHandler(bestAttemptContent)
+                return
         }
-        guard let database = getDatabase(key: key, path: path) else {
+        let databasePath = containerPath.appendingPathComponent("\(clientName).sqlite").path
+        guard let database = getDatabase(key: key, path: databasePath) else {
             // getDatabase already logged the concrete SQLite error
             bestAttemptContent.title = "Unable to open database!"
-            bestAttemptContent.body = path
+            bestAttemptContent.body = databasePath
             contentHandler(bestAttemptContent)
             return
         }
@@ -110,10 +113,10 @@ class NotificationService: UNNotificationServiceExtension {
             database: database,
             roomId: roomId
         )
+        var roomAvatarUrl = getRoomAvatarFromDatabase(database: database, roomId: roomId)
 
         // Fall back to room heroes if no explicit room name
-        if roomName == nil {
-            bestAttemptContent.title = "Room name is null!"
+        if roomName == nil || roomAvatarUrl == nil {
             if let heroes = getRoomheroesFromDatabase(
                 database: database,
                 roomId: roomId
@@ -125,18 +128,26 @@ class NotificationService: UNNotificationServiceExtension {
                             hero.content.displayname
                                 ?? String(localized: "FluffyChat User")
                         }.joined(separator: ", ")
+                    roomAvatarUrl = roomAvatarUrl ?? heroes.first?.content.avatar_url
                 } else {
-                    bestAttemptContent.title = "Heroes list is empty!"
                     roomName = roomName ?? String(localized: "Empty chat")
                 }
             } else {
-                bestAttemptContent.title = "No heroes found!"
                 roomName = roomName ?? String(localized: "New chat")
             }
         }
 
         if let roomName = roomName {
             bestAttemptContent.title = roomName
+        }
+        
+        if let roomAvatarUrl = roomAvatarUrl {
+            do {
+                let attachment = try downloadAttachment(url: roomAvatarUrl, containerPath: containerPath)
+                bestAttemptContent.attachments = [attachment]
+            } catch {
+                os_log("[FluffyChatPushHelper] Unable to download avatar!")
+            }
         }
 
         contentHandler(bestAttemptContent)
@@ -173,17 +184,6 @@ class NotificationService: UNNotificationServiceExtension {
             return nil
         }
         return key
-    }
-
-    func getDatabasePath(clientName: String) -> String? {
-        guard
-            let libraryPath = FileManager.default.containerURL(
-                forSecurityApplicationGroupIdentifier: "group.im.fluffychat.app"
-            )
-        else { return nil }
-
-        // Use URL.path (not path()) — path(percentEncoded:) can break FileManager paths.
-        return libraryPath.appendingPathComponent("\(clientName).sqlite").path
     }
 
     func getDatabase(key: String, path: String) -> FMDatabase? {
@@ -255,6 +255,40 @@ class NotificationService: UNNotificationServiceExtension {
         return nil
     }
 
+    func getRoomAvatarFromDatabase(database: FMDatabase, roomId: String)
+        -> String?
+    {
+        do {
+            // Database key format: "roomId|eventType|stateKey"
+            let roomAvatarDatabaseKey = [roomId, "m.room.avatar", ""].joined(
+                separator: "|"
+            )
+            let roomAvatarResult = try database.executeQuery(
+                "SELECT * FROM box_preload_room_states WHERE k=?",
+                values: [roomAvatarDatabaseKey]
+            )
+            if roomAvatarResult.next(),
+                let event = roomAvatarResult.string(forColumn: "v")
+            {
+                let roomAvatarEvent = try! JSONDecoder().decode(
+                    RoomAvatarEventJson.self,
+                    from: event.data(using: .utf8)!
+                )
+                if let avatarUrl = roomAvatarEvent.content.url, !avatarUrl.isEmpty {
+                    return avatarUrl
+                }
+            }
+        } catch {
+            os_log(
+                "[FluffyChatPushHelper] DB query failed: %{public}@",
+                log: .default,
+                type: .error,
+                error.localizedDescription
+            )
+        }
+        return nil
+    }
+    
     func getRoomNameFromDatabase(database: FMDatabase, roomId: String)
         -> String?
     {
@@ -327,6 +361,22 @@ class NotificationService: UNNotificationServiceExtension {
         }
         return []
     }
+    
+    func downloadAttachment(url: String, containerPath: URL) throws -> UNNotificationAttachment {
+        let downloadDirectory = containerPath.appendingPathComponent("fluffychat_download_cache")
+        
+        let mxcComponents = url.replacingOccurrences(of: "mxc://", with: "").split(separator: "/")
+        guard mxcComponents.count == 2 else {
+            throw NSError(domain: "FamedlyPushHelper", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid MXC URL format"])
+        }
+        
+        let host = String(mxcComponents[0]).replacingOccurrences(of: ".", with: "_")
+        let mediaId = String(mxcComponents[1])
+        let fileName = "notification_\(host)_\(mediaId).jpg"
+        let fileUrl = downloadDirectory.appendingPathComponent(fileName)
+        
+        return try UNNotificationAttachment(identifier: "image", url: fileUrl, options: nil)
+    }
 }
 
 struct UserEventJson: Decodable {
@@ -342,6 +392,13 @@ struct RoomNameEventJson: Decodable {
         let name: String?
     }
     let content: RoomNameEventContentJson
+}
+
+struct RoomAvatarEventJson: Decodable {
+    struct RoomAvatarEventContentJson: Decodable {
+        let url: String?
+    }
+    let content: RoomAvatarEventContentJson
 }
 
 struct RoomJson: Decodable {

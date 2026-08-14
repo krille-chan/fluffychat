@@ -12,10 +12,9 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_matrix_dart_sdk_database/builder.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/notification_avatar_extension.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/start_push_foreground_service.dart';
@@ -26,10 +25,8 @@ import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart' hide Result;
-import 'package:path/path.dart' as path;
 import 'package:shared_preferences/shared_preferences.dart';
 
-const notificationAvatarDimension = 128;
 final Map<String, DateTime> lastReceivedPushNotification = {};
 
 Future<void> pushHelper(
@@ -347,9 +344,19 @@ Future<void> _tryPushHelper(
             ),
           ],
   );
+  final iOSAttachmentPath = PlatformInfos.isIOS
+      ? await client.getIosNotificationAvatar(event.room.avatar)
+      : null;
   final iOSPlatformChannelSpecifics = DarwinNotificationDetails(
     threadIdentifier: '${notification.clientName}_${notification.roomId}',
-    attachments: await _getIosAttachmentPath(client, event.room.avatar),
+    attachments: iOSAttachmentPath == null
+        ? null
+        : [
+            DarwinNotificationAttachment(
+              iOSAttachmentPath,
+              identifier: 'image',
+            ),
+          ],
   );
   final platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
@@ -480,26 +487,6 @@ Future<void> _setShortcut(
   );
 }
 
-extension on Client {
-  Future<Uint8List?> tryDownloadNotificationAvatar(Uri? avatar) async {
-    if (avatar == null) return null;
-    try {
-      return await downloadMxcCached(
-        avatar,
-        thumbnailMethod: ThumbnailMethod.crop,
-        width: notificationAvatarDimension,
-        height: notificationAvatarDimension,
-        animated: false,
-        isThumbnail: true,
-        rounded: true,
-      ).timeout(const Duration(seconds: 3));
-    } catch (e, s) {
-      Logs().e('Unable to get avatar picture', e, s);
-      return null;
-    }
-  }
-}
-
 extension on PushNotification {
   String? get clientName =>
       devices?.firstOrNull?.data?.tryGet<String>('client_name');
@@ -510,28 +497,4 @@ extension on PushNotification {
     if (clientName == null) return roomId.hashCode;
     return '${clientName}_$roomId'.hashCode;
   }
-}
-
-/// Keep in sync with `createAttachment()` in iOS Notification Extension
-Future<List<DarwinNotificationAttachment>?> _getIosAttachmentPath(
-  Client client,
-  Uri? roomAvatar,
-) async {
-  if (roomAvatar == null) return null;
-
-  final directory = await getFileStorageLocation();
-  if (directory == null) return null;
-
-  final host = roomAvatar.host.replaceAll('.', '_');
-  final rawPath = roomAvatar.pathSegments.join('_');
-  final fileName = 'notification_${host}_$rawPath.jpg';
-  final cachedFile = File(path.join(directory.path, fileName));
-
-  if (!await cachedFile.exists()) {
-    final bytes = await client.tryDownloadNotificationAvatar(roomAvatar);
-    if (bytes == null) return null;
-    await cachedFile.writeAsBytes(bytes);
-  }
-
-  return [DarwinNotificationAttachment(cachedFile.path, identifier: 'image')];
 }
