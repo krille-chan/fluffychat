@@ -9,7 +9,7 @@ import 'package:fluffychat/pages/new_group/new_group.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class NewGroupView extends StatelessWidget {
   final NewGroupController controller;

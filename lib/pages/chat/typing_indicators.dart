@@ -9,7 +9,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/typing_animation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class TypingIndicators extends StatelessWidget {
   final ChatController controller;

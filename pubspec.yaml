@@ -24,6 +24,7 @@ dependencies:
   cronet_http: ^1.9.0
   crop_image: ^1.0.17
   cross_file: ^0.3.5
+  cupertino_ui: any
   desktop_drop: ^0.7.1
   device_info_plus: ^13.2.0
   dynamic_color: ^1.9.0
@@ -56,6 +57,7 @@ dependencies:
   just_audio: ^0.10.6
   latlong2: ^0.10.1
   local_auth: ^3.0.2
+  material_ui: any
   matrix: ^10.0.1
   mime: ^2.0.0
   native_imaging: ^0.5.0

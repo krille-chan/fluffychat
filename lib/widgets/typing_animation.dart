@@ -6,7 +6,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/config/themes.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class TypingAnimation extends StatefulWidget {
   final double size;

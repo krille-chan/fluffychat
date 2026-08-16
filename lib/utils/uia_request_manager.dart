@@ -10,7 +10,7 @@ import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -45,7 +45,7 @@ extension UiaRequestManager on MatrixState {
           if (input == null || input.isEmpty) {
             return uiaRequest.cancel();
           }
-          return uiaRequest.completeStage(
+          return await uiaRequest.completeStage(
             AuthenticationPassword(
               session: uiaRequest.session,
               password: input,
@@ -53,7 +53,7 @@ extension UiaRequestManager on MatrixState {
             ),
           );
         case AuthenticationTypes.dummy:
-          return uiaRequest.completeStage(
+          return await uiaRequest.completeStage(
             AuthenticationData(
               type: AuthenticationTypes.dummy,
               session: uiaRequest.session,
@@ -86,7 +86,7 @@ extension UiaRequestManager on MatrixState {
           await completer.future;
           listener.dispose();
 
-          return uiaRequest.completeStage(
+          return await uiaRequest.completeStage(
             AuthenticationData(
               session: uiaRequest.session,
               type: stageUrl == null ? null : stage,

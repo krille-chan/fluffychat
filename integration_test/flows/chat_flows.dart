@@ -5,8 +5,8 @@
 
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../utils/fluffy_chat_tester.dart';
 import 'auth_flows.dart';
