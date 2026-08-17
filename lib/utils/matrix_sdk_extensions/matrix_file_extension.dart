@@ -24,7 +24,7 @@ extension MatrixFileExtension on MatrixFile {
 
     scaffoldMessenger.showSnackBar(
       SnackBar(
-        content: Text(l10n.fileHasBeenSavedAt(downloadPath)),
+        content: Text(l10n.fileHasBeenSavedAt(downloadPath.toString())),
         showCloseIcon: true,
       ),
     );
