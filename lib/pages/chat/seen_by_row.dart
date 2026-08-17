@@ -6,7 +6,7 @@
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
 class SeenByRow extends StatelessWidget {

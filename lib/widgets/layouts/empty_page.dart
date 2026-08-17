@@ -5,7 +5,7 @@
 
 import 'dart:math';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class EmptyPage extends StatelessWidget {
   static const double _width = 400;
