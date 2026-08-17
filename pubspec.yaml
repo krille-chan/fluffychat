@@ -53,7 +53,7 @@ dependencies:
   http: ^1.6.0
   image: ^4.7.2
   image_picker: ^1.2.3
-  intl: any
+  intl: 0.20.3
   just_audio: ^0.10.6
   latlong2: ^0.10.1
   local_auth: ^3.0.2
