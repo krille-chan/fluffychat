@@ -5,6 +5,9 @@ SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+## v2.9.1
+Revert cronet for http3.
+
 ## v2.9.0
 FluffyChat 2.9.0 updates underlying libraries, fixed a lot of bugs and improves the UX.
 It also adds double tap to react and better notifications for iOS.
