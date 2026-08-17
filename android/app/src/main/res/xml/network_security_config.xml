@@ -13,6 +13,7 @@
             <certificates src="@raw/isrg_root_x1" />
             <certificates src="@raw/isrg_root_x2" />
             <certificates src="system" />
+            <!-- Trust user-installed CAs (e.g., private CA) to support self-signed/enterprise certificates; note this expands the trust surface. -->
             <certificates src="user" />
         </trust-anchors>
     </base-config>
