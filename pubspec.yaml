@@ -56,6 +56,7 @@ dependencies:
   intl: 0.20.3
   just_audio: ^0.10.6
   latlong2: ^0.10.1
+  light_compressor_v2: ^1.9.1
   local_auth: ^3.0.2
   material_ui: any
   matrix: ^10.0.1
@@ -85,7 +86,6 @@ dependencies:
   unifiedpush_ui: ^0.2.0
   universal_html: ^2.3.0
   url_launcher: ^6.3.2
-  video_compress: ^3.1.4
   video_player: ^2.13.0
   wakelock_plus: ^1.7.0
   webrtc_interface: ^1.5.1
