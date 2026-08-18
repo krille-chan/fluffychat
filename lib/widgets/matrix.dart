@@ -14,6 +14,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dar
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
+import 'package:fluffychat/utils/voip/webrtc_delegate.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -67,6 +68,11 @@ class MatrixState extends State<Matrix> {
   SharedPreferences get store => widget.store;
 
   BackgroundPush? backgroundPush;
+
+  final Map<String, VoIP> _voips = {};
+
+  VoIP get voip =>
+      _voips[client.clientName] ??= VoIP(client, AppWebRTCDelegate());
 
   Client get client {
     if (_activeClient < 0 || _activeClient >= widget.clients.length) {
