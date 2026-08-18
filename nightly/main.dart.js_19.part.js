@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-dcn(d){return new A.CQ(B.dm(d))},
-dco(){return new A.IB(B.dm("pt_BR"))},
-dcp(){return new A.IC(B.dm("pt_PT"))},
-CQ:function CQ(d){this.a=d},
+dcs(d){return new A.CR(B.dm(d))},
+dct(){return new A.IB(B.dm("pt_BR"))},
+dcu(){return new A.IC(B.dm("pt_PT"))},
+CR:function CR(d){this.a=d},
 IB:function IB(d){this.a=d},
 IC:function IC(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[58]
-A.CQ.prototype={
+A.CR.prototype={
 gpe(){return"Edit image"},
 gqU(){return"Rotate left"},
 gqV(){return"Rotate right"},
@@ -1692,9 +1692,9 @@ gkB(){return"Por favor introduza um n\xfamero maior que 0"},
 geX(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3o ver deixou o chat."},
 F(d,e){return this.gbw(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.CQ,C.aM)
-w(A.CQ,[A.IB,A.IC])})()
-B.dY(b.typeUniverse,JSON.parse('{"CQ":{"aM":[]},"IB":{"aM":[]},"IC":{"aM":[]}}'))
+x(A.CR,C.aM)
+w(A.CR,[A.IB,A.IC])})()
+B.dX(b.typeUniverse,JSON.parse('{"CR":{"aM":[]},"IB":{"aM":[]},"IC":{"aM":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["FWjSngGe2X6FDXiXXIIhWahLf1M="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["uF4eDgaxzahNaPds5RYCUVMGnCQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_19.part.js.map
