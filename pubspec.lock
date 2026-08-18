@@ -2250,7 +2250,7 @@ packages:
     source: hosted
     version: "1.0.1"
   webrtc_interface:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: webrtc_interface
       sha256: c6f100eac5057d9a817a60473126f9828c796d42884d498af4f339c97b21014f
