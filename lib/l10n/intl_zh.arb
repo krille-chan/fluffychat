@@ -1511,11 +1511,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "视频通话",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "聊天记录的可见性",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1742,10 +1737,6 @@
     "emojis": "表情符号",
     "unsupportedAndroidVersionLong": "这个功能需要较新版本的 Android 系统。请检查更新或 Lineage OS 支持。",
     "unsupportedAndroidVersion": "不受支持的 Android 版本",
-    "voiceCall": "语音通话",
-    "placeCall": "发起通话",
-    "videoCallsBetaWarning": "请注意，视频通话目前处于测试阶段。它们可能不能像预期的那样工作，或者在所有平台上都不能工作。",
-    "experimentalVideoCalls": "实验性的视频通话",
     "youRejectedTheInvitation": "你拒绝了邀请",
     "youJoinedTheChat": "你加入了聊天",
     "youBannedUser": "你封禁了 {user}",

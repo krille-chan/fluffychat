@@ -5,6 +5,7 @@
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call_member.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
@@ -67,6 +68,8 @@ class PermissionsListTile extends StatelessWidget {
           return L10n.of(context).enableEncryption;
         case 'm.room.server_acl':
           return L10n.of(context).editBlockedServers;
+        case MatrixRtcCallMember.eventType:
+          return 'Create or join a group call';
       }
     }
     return permissionKey;

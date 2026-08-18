@@ -1214,11 +1214,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Video llamada",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Visibilidad del historial del chat",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1761,7 +1756,6 @@
         }
     },
     "reportUser": "Reportar usuario",
-    "voiceCall": "Llamada de voz",
     "reactedWith": "{sender} reaccionó con {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -1814,10 +1808,8 @@
             }
         }
     },
-    "videoCallsBetaWarning": "Tenga en cuenta que las videollamadas están actualmente en fase beta. Es posible que no funcionen como se espera o que no funcionen de ninguna manera en algunas plataformas.",
     "optionalRedactReason": "(Opcional) Motivo para censurar este mensaje...",
     "dehydrate": "Exportar sesión y limpiar dispositivo",
-    "experimentalVideoCalls": "Videollamadas experimentales",
     "redactedByBecause": "Censurado por {username} porque: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
@@ -1948,7 +1940,6 @@
     "blockedUsers": "Usuarios bloqueados",
     "blockUsername": "Ignorar nombre de usuario",
     "noMoreChatsFound": "No se encontraron más chats...",
-    "placeCall": "Llamar",
     "disableEncryptionWarning": "Por motivos de seguridad no es posible deshabilitar el cifrado en un chat si ha sido habilitado previamente.",
     "setColorTheme": "Poner tema de color:",
     "inviteGroupChat": "📨 Invitar a grupo",

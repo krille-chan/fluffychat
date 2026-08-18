@@ -22,6 +22,7 @@ import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/file_selector.dart';
+import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -284,7 +285,7 @@ class ChatController extends State<ChatPageWithRoom>
     }
   }
 
-  Future<void> _shareItems([_]) async {
+  Future<void> _shareItems() async {
     final shareItems = widget.shareItems;
     if (shareItems == null || shareItems.isEmpty) return;
     if (!room.otherPartyCanReceiveMessages) {
@@ -392,8 +393,12 @@ class ChatController extends State<ChatPageWithRoom>
     inputFocus.addListener(_inputFocusListener);
 
     _loadDraft();
-    WidgetsBinding.instance.addPostFrameCallback(_shareItems);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _shareItems();
+      _checkMatrixRtcCallSupport();
+    });
     web.window.addEventListener('paste', _handleClipboardFilePasteWeb);
+
     super.initState();
     _displayChatDetailsColumn = ValueNotifier(
       AppSettings.displayChatDetailsColumn.value,
@@ -417,6 +422,18 @@ class ChatController extends State<ChatPageWithRoom>
         : '';
     WidgetsBinding.instance.addObserver(this);
     _tryLoadTimeline();
+  }
+
+  Future<void> _checkMatrixRtcCallSupport() async {
+    try {
+      final urls = await room.client.getLiveKitServiceUrls();
+      if (urls.isEmpty) return;
+      setState(() {
+        supportLiveKitCalls = true;
+      });
+    } catch (e) {
+      Logs().d('Unable to check MatrixRTC call support', e);
+    }
   }
 
   final Set<String> expandedEventIds = {};
@@ -1541,6 +1558,10 @@ class ChatController extends State<ChatPageWithRoom>
     replyEvent = null;
     editEvent = null;
   });
+
+  void startOrJoinVideoCall() => context.go('/rooms/${room.id}/call');
+
+  bool supportLiveKitCalls = false;
 
   Future<void> _cancelEditWithConfirmation() async {
     final originalText = editEvent!

@@ -318,8 +318,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "placeCall": "Faceți apel",
-    "voiceCall": "Apel vocal",
     "unsupportedAndroidVersion": "Versiune de Android nesuportat",
     "userIsTyping": "{username} tastează…",
     "@userIsTyping": {
@@ -494,7 +492,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCallsBetaWarning": "Vă rugăm să luați notă că apeluri video sunt în beta. Se poate că nu funcționează normal sau de loc pe fie care platformă.",
     "pinMessage": "Fixați în cameră",
     "wasDirectChatDisplayName": "Chat gol (a fost {oldDisplayName})",
     "@wasDirectChatDisplayName": {
@@ -539,7 +536,6 @@
     },
     "scanQrCode": "Scanați cod QR",
     "addAccount": "Adăugați cont",
-    "experimentalVideoCalls": "Apeluri video experimentale",
     "confirmEventUnpin": "Sunteți sigur că doriți să anulați permanent fixarea evenimentului?",
     "emojis": "Emoji-uri",
     "users": "Utilizatori",
@@ -891,11 +887,6 @@
     },
     "verifyStart": "Începeți verificare",
     "@verifyStart": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "videoCall": "Apel video",
-    "@videoCall": {
         "type": "String",
         "placeholders": {}
     },

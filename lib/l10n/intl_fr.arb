@@ -1587,11 +1587,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Appel vidéo",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Visibilité de l'historique de la discussion",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1738,14 +1733,10 @@
         }
     },
     "emojis": "Émojis",
-    "placeCall": "Passer un appel",
-    "voiceCall": "Appel vocal",
     "unsupportedAndroidVersion": "Version d'Android non prise en charge",
     "unsupportedAndroidVersionLong": "Cette fonctionnalité nécessite une nouvelle version d'Android. Veuillez vérifier les mises à jour ou la prise en charge de Lineage OS.",
     "pinMessage": "Épingler au salon",
     "confirmEventUnpin": "Voulez-vous vraiment désépingler définitivement l'événement ?",
-    "videoCallsBetaWarning": "Veuillez noter que les appels vidéo sont actuellement en version bêta. Ils peuvent ne pas fonctionner comme prévu ou ne oas fonctionner du tout sur toutes les plateformes.",
-    "experimentalVideoCalls": "Appels vidéo expérimentaux",
     "youRejectedTheInvitation": "Vous avez rejeté l'invitation",
     "youJoinedTheChat": "Vous avez rejoint la discussion",
     "youHaveWithdrawnTheInvitationFor": "Vous avez retiré l'invitation pour {user}",

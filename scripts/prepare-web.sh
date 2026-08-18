@@ -27,3 +27,11 @@ unzip native_imaging.zip
 mv js/* web/
 rmdir js
 rm native_imaging.zip
+
+# Enable e2ee for LiveKit:
+git clone https://github.com/livekit/client-sdk-flutter.git
+cd client-sdk-flutter
+flutter pub get
+dart compile js web/e2ee.worker.dart -o ../web/e2ee.worker.dart.js -m
+cd ..
+rm -rf client-sdk-flutter

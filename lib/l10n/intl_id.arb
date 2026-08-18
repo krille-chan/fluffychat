@@ -993,11 +993,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Panggilan video",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "verifyTitle": "Memverifikasi akun lain",
     "@verifyTitle": {
         "type": "String",
@@ -1741,10 +1736,6 @@
     "confirmEventUnpin": "Apakah kamu yakin untuk melepaskan pin peristiwa ini secara permanen?",
     "unsupportedAndroidVersionLong": "Fitur ini memerlukan versi Android yang baru. Mohon periksa untuk pembaruan atau dukungan LineageOS.",
     "unsupportedAndroidVersion": "Versi Android tidak didukung",
-    "placeCall": "Lakukan panggilan",
-    "voiceCall": "Panggilan suara",
-    "videoCallsBetaWarning": "Dicatat bahwa panggilan video sedang dalam beta. Fitur ini mungkin tidak berkerja dengan benar atau tidak berkerja sama sekali pada semua platform.",
-    "experimentalVideoCalls": "Panggilan video eksperimental",
     "youInvitedBy": "📩 Kamu telah diundang oleh {user}",
     "@youInvitedBy": {
         "placeholders": {

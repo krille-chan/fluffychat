@@ -253,7 +253,6 @@
     "messageInfo": "Information pri li missage",
     "openGallery": "Aperter li galerie",
     "reportUser": "Raportar li usator",
-    "voiceCall": "Telefonada",
     "countFiles": "{count} files",
     "@countFiles": {
         "placeholders": {
@@ -483,11 +482,6 @@
     },
     "emptyChat": "Vacui conversation",
     "@emptyChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "videoCall": "Videotelefonada",
-    "@videoCall": {
         "type": "String",
         "placeholders": {}
     },

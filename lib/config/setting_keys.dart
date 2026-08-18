@@ -82,7 +82,8 @@ enum AppSettings<T> {
   sentryDns<String>(
     'chat.fluffy.sentry_dns',
     'https://001fc83b53bd409c82a505d74d56f001@observe.fluffy.chat/1',
-  );
+  ),
+  customLiveKitInstance<String>('chat.fluffy.custom_live_kit_instance', '');
 
   final String key;
   final T defaultValue;

@@ -1586,11 +1586,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Video hovor",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Viditelnost historie chatu",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1738,11 +1733,7 @@
         }
     },
     "emojis": "Emojis",
-    "voiceCall": "Hlasový hovor",
     "unsupportedAndroidVersion": "Nepodporovaná verze Androidu",
-    "videoCallsBetaWarning": "Upozorňujeme, že videohovory jsou aktuálně ve verzi beta. Nemusí fungovat podle očekávání nebo fungovat vůbec na všech platformách.",
-    "placeCall": "Zavolejte",
-    "experimentalVideoCalls": "Experimentální videohovory",
     "unsupportedAndroidVersionLong": "Tato funkce vyžaduje novější verzi Android. Zkontrolujte prosím aktualizace nebo podporu Lineage OS.",
     "pinMessage": "Připnout zprávu do místnosti",
     "confirmEventUnpin": "Opravdu chcete událost trvale odepnout?",

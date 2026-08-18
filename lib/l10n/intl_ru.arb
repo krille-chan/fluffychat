@@ -1577,11 +1577,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Видеозвонок",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Видимость истории чата",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1729,12 +1724,8 @@
         }
     },
     "emojis": "Эмодзи",
-    "voiceCall": "Голосовой звонок",
     "unsupportedAndroidVersion": "Неподдерживаемая версия Android",
     "unsupportedAndroidVersionLong": "Для этой функции требуется более новая версия Android. Проверьте наличие обновлений или поддержку Lineage OS.",
-    "placeCall": "Совершить звонок",
-    "videoCallsBetaWarning": "Обратите внимание, что видеозвонки в настоящее время находятся в бета-версии. Они могут работать не так, как ожидалось, или вообще не работать на всех платформах.",
-    "experimentalVideoCalls": "Экспериментальные видеозвонки",
     "pinMessage": "Прикрепить к комнате",
     "confirmEventUnpin": "Вы уверены, что хотите навсегда открепить событие?",
     "youRejectedTheInvitation": "Вы отклонили приглашение",

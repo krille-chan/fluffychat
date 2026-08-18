@@ -848,11 +848,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "영상 통화",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "verifyTitle": "다른 계정 확인 중",
     "@verifyTitle": {
         "type": "String",
@@ -1739,12 +1734,8 @@
     "confirmEventUnpin": "이벤트를 영구적으로 고정 해제할 것이 확실한가요?",
     "pinMessage": "방에 고정",
     "emojis": "이모지",
-    "voiceCall": "음성 통화",
-    "placeCall": "전화 걸기",
-    "experimentalVideoCalls": "실험적인 영상 통화",
     "unsupportedAndroidVersion": "지원되지 않는 안드로이드 버전",
     "unsupportedAndroidVersionLong": "이 기능은 새로운 안드로이드 버전을 요구합니다. Lineage OS 지원이나 업데이트를 확인해주세요.",
-    "videoCallsBetaWarning": "영상 통화는 베타임을 확인해주세요. 의도한 대로 작동하지 않거나 모든 플랫폼에서 작동하지 않을 수 있습니다.",
     "confirmMatrixId": "계정을 삭제하려면 Matrix ID를 입력해 주세요.",
     "commandHint_googly": "왕눈이 눈알 보내기",
     "googlyEyesContent": "{senderName} 님이 왕눈이 눈알을 보냈습니다",

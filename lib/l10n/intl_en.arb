@@ -1814,11 +1814,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Video call",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Visibility of the chat history",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1936,12 +1931,8 @@
     "pinMessage": "Pin to room",
     "confirmEventUnpin": "Are you sure to permanently unpin the event?",
     "emojis": "Emojis",
-    "placeCall": "Place call",
-    "voiceCall": "Voice call",
     "unsupportedAndroidVersion": "Unsupported Android version",
     "unsupportedAndroidVersionLong": "This feature requires a newer Android version. Please check for updates or Lineage OS support.",
-    "videoCallsBetaWarning": "Please note that video calls are currently in beta. They might not work as expected or work at all on all platforms.",
-    "experimentalVideoCalls": "Experimental video calls",
     "youRejectedTheInvitation": "You rejected the invitation",
     "youJoinedTheChat": "You joined the chat",
     "youAcceptedTheInvitation": "👍 You accepted the invitation",
@@ -2781,5 +2772,15 @@
         }
     },
     "allow": "Allow",
-    "deny": "Deny"
+    "deny": "Deny",
+    "activeCall": "Active call",
+    "countActiveCallMembers": "{count} active call members",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Enter call"
 }

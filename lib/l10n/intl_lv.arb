@@ -236,11 +236,6 @@
             }
         }
     },
-    "videoCall": "Videozvans",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "youAcceptedTheInvitation": "👍 Tu pieņēmi uzaicinājumu",
     "banFromChat": "Izslēgt no tērzēšanas",
     "@banFromChat": {
@@ -731,7 +726,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCallsBetaWarning": "Lūgums ņemt vērā, ka video zvani pašreiz ir beta stāvoklī. Tie visās platformās var nedarboties kā paredzēs vai pat nedarboties vispār.",
     "unmuteChat": "Atcelt tērzēšanas apklusināšanu",
     "@unmuteChat": {
         "type": "String",
@@ -991,7 +985,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "placeCall": "Veikt zvanu",
     "changedTheRoomInvitationLink": "{username} nomainīja uzaicinājuma saiti",
     "@changedTheRoomInvitationLink": {
         "type": "String",
@@ -1016,7 +1009,6 @@
         "type": "String",
         "description": "Usage hint for the command /plain"
     },
-    "experimentalVideoCalls": "Izmēģinājuma video zvani",
     "openCamera": "Atvērt kameru",
     "@openCamera": {
         "type": "String",
@@ -1457,7 +1449,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "voiceCall": "Balss zvans",
     "commandHint_kick": "Noņemt norādīto lietotāju no šīs istabas",
     "@commandHint_kick": {
         "type": "String",

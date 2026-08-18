@@ -192,7 +192,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "voiceCall": "குரல் அழைப்பு",
     "youKickedAndBanned": "🙅 நீங்கள் உதைத்து தடைசெய்துள்ளீர்கள் {user}",
     "@youKickedAndBanned": {
         "placeholders": {
@@ -334,11 +333,6 @@
     },
     "verifyTitle": "பிற கணக்கை சரிபார்க்கிறது",
     "@verifyTitle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "videoCall": "வீடியோ அழைப்பு",
-    "@videoCall": {
         "type": "String",
         "placeholders": {}
     },
@@ -735,9 +729,6 @@
             }
         }
     },
-    "placeCall": "அழைப்பு இடு",
-    "videoCallsBetaWarning": "வீடியோ அழைப்புகள் தற்போது பீட்டாவில் உள்ளன என்பதை நினைவில் கொள்க. அவர்கள் எதிர்பார்த்தபடி வேலை செய்யக்கூடாது அல்லது எல்லா தளங்களிலும் வேலை செய்யக்கூடாது.",
-    "experimentalVideoCalls": "சோதனை வீடியோ அழைப்புகள்",
     "noOneCanJoin": "யாரும் சேர முடியாது",
     "newSpace": "புதிய இடம்",
     "wasDirectChatDisplayName": "வெற்று அரட்டை ({oldDisplayName})",

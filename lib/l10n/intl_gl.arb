@@ -1586,11 +1586,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Chamada de vídeo",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Visibilidade do historial da conversa",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1721,11 +1716,8 @@
     },
     "markAsRead": "Marcar como lido",
     "reportUser": "Denunciar usuaria",
-    "voiceCall": "Chamada de voz",
     "emojis": "Emojis",
-    "placeCall": "Chamar",
     "unsupportedAndroidVersionLong": "Esta característica require unha vesión máis recente de Android. Mira se hai actualizacións ou soporte de LineageOS.",
-    "videoCallsBetaWarning": "Ten en conta que as chamadas de vídeo están en fase beta. Poderían non funcionar correctamente ou non funcionar nalgunhas plataformas.",
     "unsupportedAndroidVersion": "Version de Android non soportada",
     "reactedWith": "{sender} reaccionou con {reaction}",
     "@reactedWith": {
@@ -1741,7 +1733,6 @@
     },
     "pinMessage": "Fixar na sala",
     "confirmEventUnpin": "Tes a certeza de querer desafixar o evento?",
-    "experimentalVideoCalls": "Chamadas de vídeo en probas",
     "bundleName": "Nome do feixe",
     "editBundlesForAccount": "Editar os feixes desta conta",
     "addToBundle": "Engadir ao feixe",

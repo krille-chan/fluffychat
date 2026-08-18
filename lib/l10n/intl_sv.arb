@@ -1319,11 +1319,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videosamtal",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Chatt-historikens synlighet",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1725,10 +1720,7 @@
     "scanQrCode": "Skanna QR-kod",
     "removeFromBundle": "Ta bort från paket",
     "emojis": "Uttryckssymboler",
-    "placeCall": "Ring",
-    "voiceCall": "Röstsamtal",
     "unsupportedAndroidVersion": "Inget stöd för denna version av Android",
-    "videoCallsBetaWarning": "Videosamtal är för närvarande under testning. De kanske inte fungerar som det är tänkt eller på alla plattformar.",
     "unsupportedAndroidVersionLong": "Denna funktion kräver en senare version av Android.",
     "reactedWith": "{sender} reagerade med {reaction}",
     "@reactedWith": {
@@ -1744,7 +1736,6 @@
     },
     "pinMessage": "Fäst i rum",
     "confirmEventUnpin": "Är du säker på att händelsen inte längre skall vara fastnålad?",
-    "experimentalVideoCalls": "Experimentella videosamtal",
     "storeSecurlyOnThisDevice": "Lagra säkert på denna enhet",
     "youJoinedTheChat": "Du gick med i chatten",
     "youAcceptedTheInvitation": "👍 Du accepterade inbjudan",
