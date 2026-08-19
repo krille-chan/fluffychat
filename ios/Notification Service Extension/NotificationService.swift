@@ -74,7 +74,6 @@ class NotificationService: UNNotificationServiceExtension {
             ),
             let clientName = devices.first?.data.client_name
         else {
-            bestAttemptContent.title = "Unable to find client name"
             os_log(
                 "[FluffyChatPushHelper] No client_name found in Push Notification!"
             )
@@ -86,7 +85,6 @@ class NotificationService: UNNotificationServiceExtension {
 
         // Open database:
         guard let key = getDatabaseKey() else {
-            bestAttemptContent.title = "Unable to get database key"
             os_log("[FluffyChatPushHelper] Unable to get database key!")
             contentHandler(bestAttemptContent)
             return
@@ -94,7 +92,6 @@ class NotificationService: UNNotificationServiceExtension {
         guard let containerPath = FileManager.default.containerURL(
                 forSecurityApplicationGroupIdentifier: "group.im.fluffychat.app"
             ) else {
-                bestAttemptContent.title = "Unable to get container path"
                 os_log("[FluffyChatPushHelper] Unable to get container path!")
                 contentHandler(bestAttemptContent)
                 return
@@ -102,8 +99,7 @@ class NotificationService: UNNotificationServiceExtension {
         let databasePath = containerPath.appendingPathComponent("\(clientName).sqlite").path
         guard let database = getDatabase(key: key, path: databasePath) else {
             // getDatabase already logged the concrete SQLite error
-            bestAttemptContent.title = "Unable to open database!"
-            bestAttemptContent.body = databasePath
+            os_log("[FluffyChatPushHelper] Unable to open database!")
             contentHandler(bestAttemptContent)
             return
         }
