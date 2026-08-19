@@ -41,6 +41,7 @@ dependencies:
   flutter_new_badger: ^2.0.0
   flutter_secure_storage: ^11.0.0
   flutter_shortcuts_new: ^2.0.0
+  flutter_user_certificates_android: ^0.1.0
   flutter_vodozemac: ^0.7.1
   flutter_web_auth_2: ^5.1.0
   flutter_webrtc: ^1.6.0
