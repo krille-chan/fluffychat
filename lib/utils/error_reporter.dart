@@ -8,6 +8,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:material_ui/material_ui.dart';
@@ -58,7 +59,9 @@ class ErrorReporter {
       return;
     }
 
-    ScaffoldMessenger.of(context).showSnackBar(
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+
+    scaffoldMessenger.showSnackBar(
       SnackBar(
         backgroundColor: Theme.of(context).colorScheme.inverseSurface,
         persist: true,
@@ -90,6 +93,7 @@ class ErrorReporter {
                       error: error,
                       stackTrace: stackTrace,
                     );
+                    scaffoldMessenger.clearSnackBars();
                   }, // TODO: Also send to sentry
                   child: Text(
                     L10n.of(context).allow,
@@ -101,6 +105,7 @@ class ErrorReporter {
                 TextButton(
                   onPressed: () {
                     AppSettings.autoSendErrorReports.setItem(false);
+                    scaffoldMessenger.clearSnackBars();
                   },
                   child: Text(
                     L10n.of(context).deny,
@@ -125,6 +130,10 @@ class ErrorReporter {
     required StackTrace? stackTrace,
     int level = 0,
   }) async {
+    if (!kReleaseMode) {
+      Logs().e(message, error, stackTrace);
+      return;
+    }
     final dsn = AppSettings.sentryDns.value;
     if (dsn.isEmpty) {
       return ErrorReporter(null, message).onErrorCallback(error, stackTrace);
