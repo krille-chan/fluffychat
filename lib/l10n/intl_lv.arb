@@ -1059,7 +1059,7 @@
             }
         }
     },
-    "isTyping": "raksta…",
+    "isTyping": "raksta",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -2618,5 +2618,132 @@
     "biometricsDescription": "Ar biometrisko autentifikāciju jūs variet atslēgt lietotni ar savu seju vai pirksta nospiedumu. Iespējas ir atkarīgas no jūsu konkrētās ierīces.",
     "useAppLock": "Izmantot lietotnes aizslēgšanu",
     "unlockWithBiometrics": "Atslēgt ar biometrisko autentificēšanos",
-    "resetPin": "Atiestatīt PIN"
+    "resetPin": "Atiestatīt PIN",
+    "unifiedPushDistributors": "Vienotās pašpiegādes nodrošinātāji:",
+    "editImage": "Labot attēlu",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Pagriezt pa kreisi",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Pagriezt pa labi",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Spoguļot",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Saglabāt",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Zīmēt",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Atdarīt",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Notīrīt",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Dzēšgumija",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Apcirpt",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapEmptyDevicesDescription": "Lūgums ievadīt savu paroles vārdkopu vai atkopes atslēgu, lai apliecinātu šo ierīci un iegūtu piekļuvi savai šifrēto ziņu rezerves kopijai.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Lūgums izvēlēties vienu no savām citām ierīcēm, lai apliecinātu šo sesiju:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Atjaunot Crypto identitāti",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Atiestatīt Crypto identitāti",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Iestatīt Crypto identitāti",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Gaida atslēgas… Lūgums nodrošināt otras ierīces darbību.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Nav pārsūtīta neviena atslēga. Lūgums mēģināt vēlreiz.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat izmanto pilnīgu šifrēšanu. Lai nezaudētu savas ziņas, lūgums izvēlēties drošu paroles vārdkopu, lai aizsargātu savu kripto identitāti un šifrēto ziņu rezerves kopiju.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Jauna paroles vārdkopa",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Lūgums pierakstīt savu atkopes atslēgu, lai turpmāk varētu atjaunot savas šifrētās ziņas un kripto identitāti.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Vari sākt!",
+    "noUserKeyFound": "Nav atrasta neviena lietotāja atslēga",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Zināms kopš: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "forwardCountMessages": "Pārvirzīt {count, plural, zero{{count} ziņas} one{{count} ziņu} other {{count} ziņas}}?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "loadingMessages": "Ielādē ziņas…",
+    "buildDoesNotSupportFirebase": "Šis būvējums neatbalsta Firebase mākoņziņapmaiņu.",
+    "unableToRegisterDeviceForFirebase": "Nav iespējams reģistrēt ierīci Firebase ziņapmaiņai."
 }

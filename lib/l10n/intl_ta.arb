@@ -100,7 +100,7 @@
         "type": "String",
         "description": "Usage hint for the command /unban"
     },
-    "countParticipants": "{count} பங்கேற்பாளர்கள்",
+    "countParticipants": "{count, plural, =1{1 பங்கேற்பாளர்} other{{count} பங்கேற்பாளர்கள்}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -431,7 +431,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "isTyping": "தட்டச்சு செய்கிறது…",
+    "isTyping": "தட்டச்சு செய்கிறார்",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -2501,5 +2501,263 @@
     "@unlock": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "editImage": "படத்தை திருத்து",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "இடப்புறம் சுழற்று",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "வலதுபுறம் சுழற்று",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "கண்ணாடி",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "சேமி",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "வரையவும்",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "செயல்தவிர்",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "தெளிவு",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "அழிப்பான்",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "பயிர்",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "discardEdits": "உங்களிடம் சேமிக்கப்படாத மாற்றங்கள் உள்ளன. உங்கள் திருத்தங்களை நிராகரிக்கவா?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showMore": "மேலும் காட்டு",
+    "showLess": "குறைவாகக் காட்டு",
+    "reset": "மீட்டமை",
+    "supportFluffyChat": "FluffyChat ஐ ஆதரிக்கவும்",
+    "support": "உதவி",
+    "setLowPriority": "குறைந்த முன்னுரிமையை அமைக்கவும்",
+    "unsetLowPriority": "குறைந்த முன்னுரிமையை அமைக்கவும்",
+    "playSoundOnNotification": "அறிவிப்பில் ஒலியை இயக்கவும்",
+    "addTag": "குறியைச் சேர்க்கவும்",
+    "removeTag": "குறிச்சொல்லை அகற்று",
+    "tagName": "குறிச்சொல் பெயர்",
+    "createNewTag": "புதிய குறிச்சொல்லை உருவாக்கவும்",
+    "hideRoomsInSpaces": "ஒரு இடத்தில் இருக்கும் அறைகளை மறைக்கவும்",
+    "possibleByYou": "உங்கள் ஆதரவினால் மட்டுமே இந்த வெளியீடு சாத்தியமானது. பஞ்சுபோன்ற அரட்டை இலவசம், திறந்த மூலமானது மற்றும் முழுமையாக சமூகத்தால் இயக்கப்படுகிறது.",
+    "showThumbnailsInTimeline": "படங்கள் மற்றும் வீடியோக்களின் சிறுபடங்களைக் காட்டு",
+    "appSubtitle": "பாதுகாப்பான [மேட்ரிக்ச்] தொடர்பு",
+    "appDescription": "பரவலாக்கப்பட்ட [மேட்ரிக்ச்] நெட்வொர்க்கில் மறைகுறியாக்கப்பட்ட தொடர்பு அனைவருக்கும் எளிதாகவும் அணுகக்கூடியதாகவும் உள்ளது.",
+    "interactiveVerification": "ஊடாடும் சரிபார்ப்பு",
+    "interactiveVerificationDescription": "நீங்கள் ஒருவருக்கொருவர் அருகில் இருந்தால் அல்லது பாதுகாப்பான சேனல் மூலம் தொடர்பு கொண்டால், பாதுகாப்பு எண் அல்லது ஈமோசிகளை ஒப்பிடுவதன் மூலம் அனைத்து சாதனங்களையும் ஒரே நேரத்தில் சரிபார்க்கலாம்.",
+    "countUnverifiedDevices": "அரட்டையில் சரிபார்க்கப்படாத சாதனங்கள் {count}.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "encryptedMessage": "மறைகுறியாக்கப்பட்ட செய்தி",
+    "unencryptedMessage": "மறைகுறியாக்கப்படாத செய்தி",
+    "messageCanOnlyBeReadByUser": "உங்கள் செய்தி எண்ட் டு என்ட் என்க்ரிப்ட் செய்யப்பட்டு இந்தப் பயனரால் மட்டுமே படிக்க முடியும்:",
+    "messageCanOnlyBeReadByUsers": "உங்கள் செய்தி எண்ட் டு என்ட் என்க்ரிப்ட் செய்யப்பட்டு, இந்தப் பயனர்களால் மட்டுமே படிக்க முடியும்:",
+    "publicKey": "பொது விசை: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "deviceIdentityKey": "சாதன அடையாள விசை",
+    "restoreBootstrapEmptyDevicesDescription": "இந்தச் சாதனத்தைச் சரிபார்க்க உங்கள் கடவுச்சொற்றொடரை அல்லது மீட்பு விசையை உள்ளிடவும் மற்றும் உங்கள் மறைகுறியாக்கப்பட்ட செய்தி காப்புப்பிரதிக்கான அணுகலைப் பெறவும்.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "இந்த அமர்வைச் சரிபார்க்க, உங்கள் மற்ற சாதனங்களில் ஒன்றைத் தேர்ந்தெடுக்கவும்:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "கணக்கை மீட்டமைக்கவும்",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "மறையீட்டு அடையாளத்தை மீட்டெடுக்கவும்",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "மறையீட்டு அடையாளத்தை மீட்டமைக்கவும்",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "மறையீட்டு அடையாளத்தை அமைக்கவும்",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "விசைகளுக்காகக் காத்திருக்கிறது... மற்ற சாதனத்தை செயலில் வைத்திருக்கவும்.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "விசைகள் எதுவும் அனுப்பப்படவில்லை. மீண்டும் முயற்சிக்கவும்.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "கோப்பை திற",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "உங்கள் கணக்கை மீட்டமைக்கும்போது, உங்கள் பழைய செய்திகளுக்கான அணுகலை நிரந்தரமாக இழப்பீர்கள். உங்களின் தற்போதைய சாதனங்கள் அனைத்தும் மீண்டும் சரிபார்க்கப்பட வேண்டும். உங்கள் அமர்வைச் சரிபார்க்க வேறு எந்தச் சாதனங்களும் உங்களிடம் இல்லாதபோதும், உங்கள் மீட்பு விசையையும் கடவுச்சொற்றொடரையும் நீங்கள் இழந்திருக்கும்போது மட்டுமே இந்தச் செயலைச் செய்யவும்!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat என்ட் டு என்ட் என்க்ரிப்சனைப் பயன்படுத்துகிறது. உங்கள் செய்திகளை இழக்காமல் இருக்க, உங்கள் மறையீட்டு அடையாளத்தையும் மறைகுறியாக்கப்பட்ட செய்தி காப்புப்பிரதியையும் பாதுகாக்க வலுவான கடவுச்சொற்றொடரைத் தேர்வு செய்யவும்.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "புதிய கடவுச்சொற்றொடர்",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "கடவுச்சொற்றொடரை மீண்டும் செய்யவும்",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "கடவுச்சொற்கள் பொருந்தும்",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "குறைந்தது 12 எழுத்துகள் நீளம்.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "பெரிய எழுத்து மற்றும் சிறிய எழுத்துகளைக் கொண்டுள்ளது.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "சிறப்பு எழுத்துக்களைக் கொண்டுள்ளது.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "ஒரு எண்களைக் கொண்டுள்ளது.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "உங்கள் மறைகுறியாக்கப்பட்ட செய்திகளையும் உங்கள் மறையீட்டு அடையாளத்தையும் மீட்டமைக்க, உங்கள் மீட்பு விசையைக் குறித்துக் கொள்ளவும்.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "கோப்பாக சேமிக்கவும்",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "நீங்கள் தொடங்கத் தயாராக உள்ளீர்கள்!",
+    "noUserKeyFound": "பயனர் விசை எதுவும் இல்லை",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "அறியப்பட்டது: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "கையொப்பமிடப்படாத சாதனம்",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "கையொப்பமிடப்பட்ட சாதனம்",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "வளைவு25519 விசை இல்லை",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "செய்தியை மறைகுறியாக்க முடியாது",
+    "today": "இன்று",
+    "sending": "அனுப்புகிறது",
+    "generatingThumbnail": "சிறுபடத்தை உருவாக்குகிறது",
+    "encrypting": "குறியாக்கம்",
+    "uploading": "பதிவேற்றுகிறது",
+    "edited": "(திருத்தப்பட்டது)",
+    "couldNotBeSent": "அனுப்ப முடியவில்லை",
+    "yesterday": "நேற்று",
+    "resetRecoveryKey": "மீட்பு விசையை மீட்டமைக்கவும்",
+    "pleaseEnter6Digits": "ஆப்ச் பூட்டை இயக்க, 6 இலக்கங்களை உள்ளிடவும்.",
+    "disableAppLock": "பயன்பாட்டு பூட்டை முடக்கு",
+    "disableAppLockAreYouSure": "ஆப்ச் பூட்டை நிச்சயமாக முடக்க விரும்புகிறீர்களா?",
+    "enableBiometrics": "பயோமெட்ரிக் அங்கீகாரத்தை இயக்கு",
+    "disableBiometrics": "பயோமெட்ரிக் அங்கீகாரத்தை முடக்கு",
+    "biometricsDescription": "பயோமெட்ரிக் அங்கீகாரத்துடன் உங்கள் முகம் அல்லது கைரேகை மூலம் பயன்பாட்டைத் திறக்கலாம். திறன்கள் உங்கள் சாதனத்தைப் பொறுத்தது.",
+    "useAppLock": "பயன்பாட்டு பூட்டைப் பயன்படுத்தவும்",
+    "unlockWithBiometrics": "பயோமெட்ரிக் அங்கீகாரத்துடன் திறக்கவும்",
+    "resetPin": "பின்னை மீட்டமைக்கவும்",
+    "forwardCountMessages": "{count, plural, =1{செய்தியை} other{{count} செய்திகளை}}அனுப்பவா?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "loadingMessages": "செய்திகளை ஏற்றுகிறது...",
+    "buildDoesNotSupportFirebase": "இந்த பில்ட் ஃபயர்பேச் முகில் மெசேசிங்கை ஆதரிக்காது.",
+    "unableToRegisterDeviceForFirebase": "ஃபயர்பேச் முகில் மெசேசிங்கிற்கான சாதனத்தைப் பதிவு செய்ய முடியவில்லை.",
+    "unifiedPushDistributors": "ஒருங்கிணைந்த புச் விநியோகச்தர்கள்:"
 }

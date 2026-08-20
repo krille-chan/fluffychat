@@ -2713,5 +2713,62 @@
     "attribution": "Attribution",
     "support": "Soutenir",
     "blur": "Flou :",
-    "opacity": "Opacité :"
+    "opacity": "Opacité :",
+    "editImage": "Éditer l'image",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Tourner vers la gauche",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Tourner vers la droite",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Mirroir",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Sauvegarder",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Dessiner",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Défaire",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Effacer",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Gomme",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Rogner",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadingMessages": "Chargement des messages...",
+    "buildDoesNotSupportFirebase": "Cette version ne supporte pas firebase cloud messaging.",
+    "unableToRegisterDeviceForFirebase": "Impossible d'enregistrer l'appareil sur firebase cloud messaging.",
+    "unifiedPushDistributors": "Distributeurs Unified Push :",
+    "doubleTapToReact": "Double-tappez pour réagir",
+    "doubleTapToReactDescription": "Double-tappez sur un message pour réagir au lieu de sélectionner du texte",
+    "doubleTapReaction": "Réaction du double appuis"
 }
