@@ -313,15 +313,6 @@
             }
         }
     },
-    "countParticipants": "{العدد، بصيغة الجمع، =1{مشارك واحد} مشاركين آخرين{{{count}}",
-    "@countParticipants": {
-        "type": "String",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
     "create": "أنشئ",
     "@create": {
         "type": "String",
@@ -2424,15 +2415,6 @@
     "pollHasBeenEnded": "تم إنهاء التصويت",
     "answersWillBeVisibleWhenPollHasEnded": "ستظهر الإجابات عند انتهاء الاستطلاع",
     "replyInThread": "الرد في الموضوع",
-    "countReplies": "{count, plural, =1{One reply} اخرى{{count} replies}}",
-    "@countReplies": {
-        "type": "int",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
     "thread": "خيط",
     "backToMainChat": "العودة إلى المحادثة الرئيسية",
     "saveChanges": "حفظ التغييرات",
@@ -2695,23 +2677,6 @@
     "useAppLock": "استخدم قفل التطبيقات",
     "unlockWithBiometrics": "افتح القفل باستخدام المصادقة البيومترية",
     "resetPin": "دبوس إعادة الضبط",
-    "forwardCountMessages": "إعادة توجيه {العدد، بصيغة الجمع، =1{رسالة واحدة} رسائل أخرى{{{count}}؟",
-    "@forwardCountMessages": {
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
     "notificationRuleJitsi": "جيتسي",
-    "countVotes": "{count, plural, =1{صوت واحد} أصوات أخرى{{count}}",
-    "@countVotes": {
-        "type": "int",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
     "notificationRuleTombstone": "علامة القبر"
 }
