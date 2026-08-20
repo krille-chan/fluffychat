@@ -883,11 +883,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Vaizdo skambutis",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Jūsų viešasis raktas",
     "@yourPublicKey": {
         "type": "String",
@@ -1649,11 +1644,7 @@
     "pinMessage": "Prisegti prie kambario",
     "confirmEventUnpin": "Ar tikrai norite visam laikui atsegti įvykį?",
     "emojis": "Jaustukai",
-    "placeCall": "Skambinti",
-    "voiceCall": "Balso skambutis",
     "unsupportedAndroidVersionLong": "Šiai funkcijai reikalinga naujesnė Android versija. Patikrinkite, ar nėra naujinimų arba Lineage OS palaikymo.",
-    "videoCallsBetaWarning": "Atminkite, kad vaizdo skambučiai šiuo metu yra beta versijos. Jie gali neveikti taip kaip tikėtasi, arba iš viso neveikti visose platformose.",
-    "experimentalVideoCalls": "Eksperimentiniai vaizdo skambučiai",
     "youRejectedTheInvitation": "Jūs atmetėte kvietimą",
     "youJoinedTheChat": "Jūs prisijungėte prie pokalbio",
     "youAcceptedTheInvitation": "👍 Jūs priėmėte kvietimą",

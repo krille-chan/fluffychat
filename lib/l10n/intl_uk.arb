@@ -1028,11 +1028,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Відеовиклик",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Видимість історії бесіди",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1740,12 +1735,8 @@
     "emojis": "Емодзі",
     "pinMessage": "Прикріпити в кімнаті",
     "confirmEventUnpin": "Ви впевнені, що бажаєте назавжди відкріпити подію?",
-    "placeCall": "Здійснити виклик",
     "unsupportedAndroidVersion": "Непідтримувана версія Android",
-    "voiceCall": "Голосовий виклик",
     "unsupportedAndroidVersionLong": "Для цієї функції потрібна новіша версія Android. Перевірте наявність оновлень або підтримку Lineage OS.",
-    "videoCallsBetaWarning": "Зауважте, що відеовиклики на ранньому етапі розробки. Вони можуть працювати не так, як очікувалося, або взагалі не працювати на всіх платформах.",
-    "experimentalVideoCalls": "Експериментальні відеовиклики",
     "youInvitedBy": "📩 Ви були запрошені {user}",
     "@youInvitedBy": {
         "placeholders": {

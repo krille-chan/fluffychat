@@ -1376,11 +1376,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videochiamata",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Visibilità della cronologia della discussione",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1723,7 +1718,6 @@
             }
         }
     },
-    "videoCallsBetaWarning": "Nota che le video chiamate sono attualmente in beta. Potrebbero non funzionare come previsto o non funzionare del tutto su alcune piattaforme.",
     "fileIsTooBigForServer": "Impossibile inviare! Il server supporta solo allegati fino a {max}.",
     "readUpToHere": "Letto fino a qui",
     "optionalRedactReason": "(Opzionale) Ragione per rimuovere questo messaggio...",
@@ -1735,7 +1729,6 @@
     },
     "archiveRoomDescription": "Questa chat sarà archiviata. Gli altri utenti saranno in grado di vedere che hai abbandonato la chat.",
     "exportEmotePack": "Esporta pack di Emote come .zip",
-    "experimentalVideoCalls": "Video chiamate sperimentali",
     "redactedByBecause": "Rimosso da {username} per: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
@@ -1853,7 +1846,6 @@
     },
     "sendTypingNotifications": "Invia notifiche di scrittura",
     "inviteGroupChat": "📨 Invita a una chat di gruppo",
-    "voiceCall": "Chiamata vocale",
     "commandHint_kick": "Rimuovi l'utente fornito da questa stanza",
     "@commandHint_kick": {
         "type": "String",
@@ -1974,7 +1966,6 @@
     "invite": "Invitare",
     "unsupportedAndroidVersionLong": "Questa funzionalità richiede una versione di Android più recente. Si prega di verificare la presenza di aggiornamenti o supporto per Lineage OS.",
     "storeSecurlyOnThisDevice": "Salva in modo sicuro su questo dispositivo",
-    "placeCall": "Fai una chiamata",
     "blockListDescription": "Puoi bloccare gli utenti che ti disturbano. Non sarai più in grado di ricevere messaggi o inviti alle stanze dalle persone che hai bloccato.",
     "blockedUsers": "Utenti bloccati",
     "blockUsername": "Nome utente da ignorare",

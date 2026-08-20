@@ -1586,11 +1586,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videokõne",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Vestluse ajaloo nähtavus",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1738,13 +1733,9 @@
         }
     },
     "emojis": "Emojid",
-    "placeCall": "Helista",
     "unsupportedAndroidVersion": "See Androidi versioon ei ole toetatud",
-    "voiceCall": "Häälkõne",
     "confirmEventUnpin": "Kas sa oled kindel, et tahad esiletõstetud sündmuse jäädavalt eemaldada?",
     "pinMessage": "Tõsta sõnum jututoas esile",
-    "videoCallsBetaWarning": "Palun arvesta, et videokõned on veel beetajärgus. Nad ei pruugi veel toimida kõikidel platvormidel korrektselt.",
-    "experimentalVideoCalls": "Katselised videokõned",
     "unsupportedAndroidVersionLong": "See funktsionaalsus eeldab uuemat Androidi versiooni. Palun kontrolli, kas sinu nutiseadmele leidub süsteemiuuendusi või saaks seal Lineage OSi kasutada.",
     "youAcceptedTheInvitation": "👍 Sa võtsid kutse vastu",
     "youUnbannedUser": "Sa eemaldasid suhtluskeelu kasutajalt {user}",

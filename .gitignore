@@ -198,3 +198,8 @@ android/app/google-services.json
 # iOS
 ios/Runner.ipa
 ios/Runner/GoogleServices-Info.plist
+
+# livekit
+web/e2ee.worker.dart.js
+web/e2ee.worker.dart.js.deps
+web/e2ee.worker.dart.js.map

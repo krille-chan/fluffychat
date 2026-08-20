@@ -1076,11 +1076,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Bideo-deia",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Txat-historiaren ikusgaitasuna",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1157,8 +1152,6 @@
         "placeholders": {}
     },
     "emojis": "Emojiak",
-    "placeCall": "Egin deia",
-    "voiceCall": "Ahozko deia",
     "unsupportedAndroidVersion": "Android bertsioa ez da bateragarria",
     "unsupportedAndroidVersionLong": "Funtzio honek Android bertsio berriago bat behar du. Egiaztatu eguneraketak ote dauden edo begiratu Lineage OS-ek zure gailuarentzat aukerarik eskaintzen duen.",
     "commandHint_ban": "Debekatu erabiltzailea gela honetan",
@@ -1267,7 +1260,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCallsBetaWarning": "Kontuan izan bideo-deiak beta fasean daudela. Litekeena da behar bezala erabili ezin izatea —erabili ahal badira—.",
     "all": "Guztia",
     "@all": {
         "type": "String",
@@ -1278,7 +1270,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "experimentalVideoCalls": "Bideo-dei esperimentalak",
     "removeFromBundle": "Kendu sorta honetatik",
     "or": "Edo",
     "@or": {

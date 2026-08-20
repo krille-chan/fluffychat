@@ -1646,11 +1646,6 @@
             }
         }
     },
-    "videoCall": "تماس تصویری",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibleForAllParticipants": "قابل‌دید برای همه شرکت‌کنندگان",
     "@visibleForAllParticipants": {
         "type": "String",
@@ -1833,9 +1828,6 @@
     },
     "youRejectedTheInvitation": "شما دعوت را رد کردید",
     "youAcceptedTheInvitation": "👍 شما دعوت را پذیرفتید",
-    "videoCallsBetaWarning": "لطفا توجه داشته باشید که تماس‌های تصویری در حال حاضر آزمایشی هستند. ممکن است طبق انتظار کار نکنند یا روی همه پلتفرم‌ها اصلا کار نکنند.",
-    "experimentalVideoCalls": "تماس‌های تصویری آزمایشی",
-    "placeCall": "برقراری تماس",
     "unsupportedAndroidVersionLong": "این ویژگی به نسخه تازه‌تری از اندروید نیاز دارد. لطفا به‌روزرسانی یا پشتیبانی لینیج‌اواس(LineageOS) را بررسی کنید.",
     "sharedTheLocation": "{username} وضعیت مکانی خود را به اشتراک گذاشت",
     "@sharedTheLocation": {
@@ -1860,7 +1852,6 @@
     "reportUser": "گزارش دادن کاربر",
     "pinMessage": "سنجاق کردن به اتاق",
     "emojis": "شکلک‌ها",
-    "voiceCall": "تماس صوتی",
     "youJoinedTheChat": "شما به چت پیوستید",
     "youBannedUser": "شما {user} را محروم کردید",
     "@youBannedUser": {

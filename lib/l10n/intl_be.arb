@@ -1369,12 +1369,8 @@
     "pinMessage": "Прымацаваць да пакою",
     "confirmEventUnpin": "Вы ўпэўнены ў тым, што хаціце назаўсёды адмацаваць гэту падзею?",
     "emojis": "Эмодзі",
-    "placeCall": "Здзейсніць выклік",
-    "voiceCall": "Галасавы выклік",
     "unsupportedAndroidVersion": "Непадтрымліваемая версія Android",
     "unsupportedAndroidVersionLong": "Гэта функцыя патрабуе навейшай версіі Android. Калі ласка, праверце наяўнасць абнаўленняў ці падтрымку Linage OS.",
-    "videoCallsBetaWarning": "Звярніце ўвагу, што відэа выклікі знаходзяцца ў бэце. Яны могуць працаваць некарэктна ці не на ўсіх платформах.",
-    "experimentalVideoCalls": "Эксперыментальныя відэа выклікі",
     "youRejectedTheInvitation": "Вы скасавалі запрашэнне",
     "youJoinedTheChat": "Вы далучыліся да чату",
     "youAcceptedTheInvitation": "👍 Вы прынялі запрашэнне",
@@ -2047,11 +2043,6 @@
     },
     "verifyTitle": "Спраўдзіць іншы ўліковы запіс",
     "@verifyTitle": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "videoCall": "Відэа выклік",
-    "@videoCall": {
         "type": "String",
         "placeholders": {}
     },

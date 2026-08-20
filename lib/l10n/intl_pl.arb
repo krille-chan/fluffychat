@@ -1230,11 +1230,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Rozmowa wideo",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Widoczność historii czatu",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1811,11 +1806,7 @@
         }
     },
     "emojis": "Emoji",
-    "placeCall": "Zadzwoń",
-    "voiceCall": "Połączenie głosowe",
     "unsupportedAndroidVersionLong": "Ta funkcja wymaga nowszej wersji systemu Android. Sprawdź aktualizacje lub wsparcie Lineage OS.",
-    "videoCallsBetaWarning": "Należy pamiętać, że połączenia wideo są obecnie w fazie beta. Mogą nie działać zgodnie z oczekiwaniami lub nie działać w ogóle na wszystkich platformach.",
-    "experimentalVideoCalls": "Eksperymentalne połączenia wideo",
     "youRejectedTheInvitation": "Odrzucono zaproszenie",
     "youAcceptedTheInvitation": "👍 Zaakceptowałeś/-aś zaproszenie",
     "youHaveWithdrawnTheInvitationFor": "Wycofano zaproszenie dla {user}",

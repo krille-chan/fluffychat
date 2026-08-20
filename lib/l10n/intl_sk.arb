@@ -1010,11 +1010,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videohovor",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Viditeľnosť histórie chatu",
     "@visibilityOfTheChatHistory": {
         "type": "String",

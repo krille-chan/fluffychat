@@ -1587,11 +1587,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Görüntülü arama",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Sohbet geçmişi görünürlüğü",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1738,14 +1733,10 @@
         }
     },
     "emojis": "Emojiler",
-    "placeCall": "Arama yap",
-    "voiceCall": "Sesli arama",
     "unsupportedAndroidVersion": "Desteklenmeyen Android sürümü",
     "unsupportedAndroidVersionLong": "Bu özellik daha yeni bir Android sürümü gerektiriyor. Lütfen güncellemelere veya LineageOS desteğine bakın.",
     "pinMessage": "Odaya sabitle",
     "confirmEventUnpin": "Etkinliğin sabitlemesini kalıcı olarak kaldırmak istediğinizden emin misiniz?",
-    "videoCallsBetaWarning": "Görüntülü aramaların şu anda beta aşamasında olduğunu lütfen unutmayın. Tüm platformlarda beklendiği gibi veya hiç çalışmayabilirler.",
-    "experimentalVideoCalls": "Deneysel görüntülü aramalar",
     "youJoinedTheChat": "Sohbete katıldınız",
     "youAcceptedTheInvitation": "👍 Daveti kabul ettiniz",
     "youKickedAndBanned": "🙅 {user} kullanıcısını attınız ve yasakladınız",

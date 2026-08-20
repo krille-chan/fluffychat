@@ -6,7 +6,6 @@
 import 'dart:ui' as ui;
 
 import 'package:desktop_drop/desktop_drop.dart';
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -17,10 +16,12 @@ import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:fluffychat/widgets/pulsating_widget.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
@@ -38,6 +39,7 @@ class ChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final hasActiveGroupCall = controller.room.hasActiveMatrixRtcCall;
     if (controller.room.membership == Membership.invite) {
       showFutureLoadingDialog(
         context: context,
@@ -223,12 +225,30 @@ class ChatView extends StatelessWidget {
                         ],
                       ),
                   ] else if (!controller.room.isArchived) ...[
-                    if ((AppSettings.experimentalVoip.value &&
-                        controller.room.isDirectChat))
+                    if (hasActiveGroupCall)
+                      PulsatingWidget(
+                        color: theme.colorScheme.error,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                          child: TextButton.icon(
+                            icon: Icon(Icons.add_ic_call_outlined),
+                            label: Text(L10n.of(context).activeCall),
+                            onPressed:
+                                controller.room.hasPermissionForMatrixRtcCall
+                                ? controller.startOrJoinVideoCall
+                                : null,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: theme.colorScheme.error,
+                              foregroundColor: theme.colorScheme.onError,
+                            ),
+                          ),
+                        ),
+                      )
+                    else if (controller.room.hasPermissionForMatrixRtcCall &&
+                        controller.supportLiveKitCalls)
                       IconButton(
-                        onPressed: controller.onPhoneButtonTap,
-                        icon: const Icon(Icons.call_outlined),
-                        tooltip: L10n.of(context).placeCall,
+                        icon: Icon(Icons.call_outlined),
+                        onPressed: controller.startOrJoinVideoCall,
                       ),
                     ChatSettingsPopupMenu(controller.room, true),
                   ],

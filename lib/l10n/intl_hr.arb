@@ -1530,11 +1530,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Video poziv",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Vidljivost povijesti chata",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1755,10 +1750,6 @@
     },
     "pinMessage": "Prikvači na sobu",
     "confirmEventUnpin": "Stvarno želiš trajno otkvačiti događaj?",
-    "voiceCall": "Glasovni poziv",
-    "placeCall": "Nazovi",
-    "videoCallsBetaWarning": "Napominjemo da se funkcija videopoziva trenutačno nalazi u beta stanju. Možda neće raditi ispravno ili uopće neće raditi na svim platformama.",
-    "experimentalVideoCalls": "Eksperimentalni videopozivi",
     "youRejectedTheInvitation": "Odbio/la si poziv",
     "youJoinedTheChat": "Pridružio/la si se chatu",
     "youAcceptedTheInvitation": "👍 Prihvatio/la si poziv",

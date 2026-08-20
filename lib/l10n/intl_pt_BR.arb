@@ -1585,11 +1585,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Chamada de vídeo",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Visibilidade do histórico da conversa",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1725,7 +1720,6 @@
     "markAsRead": "Marcar como lido",
     "reportUser": "Denunciar usuário",
     "emojis": "Emojis",
-    "placeCall": "Chamar",
     "reactedWith": "{sender} reagiu com {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -1740,11 +1734,8 @@
     },
     "confirmEventUnpin": "Tem certeza que quer desafixar o evento permanentemente?",
     "pinMessage": "Fixar na sala",
-    "voiceCall": "Chamada de voz",
     "unsupportedAndroidVersion": "Versão Android sem suporte",
     "unsupportedAndroidVersionLong": "Esta funcionalidade requer uma versão mais nova do Android. Verifique se há atualizações ou suporte ao LineageOS.",
-    "videoCallsBetaWarning": "Observe que chamadas de vídeo estão atualmente em teste. Podem não funcionar como esperado ou sequer funcionar em algumas plataformas.",
-    "experimentalVideoCalls": "Vídeo chamadas experimentais",
     "youRejectedTheInvitation": "Você rejeitou o convite",
     "youBannedUser": "Você baniu {user}",
     "@youBannedUser": {

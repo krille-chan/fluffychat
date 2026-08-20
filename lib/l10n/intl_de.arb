@@ -1569,11 +1569,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videoanruf",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Sichtbarkeit des Chat-Verlaufs",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1725,12 +1720,8 @@
     },
     "pinMessage": "An Raum anheften",
     "emojis": "Emojis",
-    "placeCall": "Anruf tätigen",
-    "voiceCall": "Sprachanruf",
     "unsupportedAndroidVersion": "Nicht unterstützte Android-Version",
-    "videoCallsBetaWarning": "Bitte beachte, dass sich Videoanrufe derzeit in der Beta-Phase befinden. Sie funktionieren möglicherweise nicht wie erwartet oder überhaupt nicht auf allen Plattformen.",
     "unsupportedAndroidVersionLong": "Diese Funktion erfordert eine neuere Android-Version. Bitte suche nach Updates oder prüfe die Lineage-OS-Unterstützung.",
-    "experimentalVideoCalls": "Experimentelle Videoanrufe",
     "reactedWith": "{sender} reagierte mit {reaction}",
     "@reactedWith": {
         "type": "String",

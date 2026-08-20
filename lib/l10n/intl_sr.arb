@@ -1477,11 +1477,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Видео позив",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Одреди видљивост историје",
     "@visibilityOfTheChatHistory": {
         "type": "String",

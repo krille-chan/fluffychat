@@ -44,7 +44,6 @@ enum AppSettings<T> {
   swipeRightToLeftToReply<bool>('chat.fluffy.swipeRightToLeftToReply', true),
   sendOnEnter<bool>('chat.fluffy.send_on_enter', false),
   displayNavigationRail<bool>('chat.fluffy.display_navigation_rail', false),
-  experimentalVoip<bool>('chat.fluffy.experimental_voip', false),
   shareKeysWith<String>('chat.fluffy.share_keys_with_2', 'all'),
   noEncryptionWarningShown<bool>(
     'chat.fluffy.no_encryption_warning_shown',
@@ -83,7 +82,8 @@ enum AppSettings<T> {
   sentryDns<String>(
     'chat.fluffy.sentry_dns',
     'https://001fc83b53bd409c82a505d74d56f001@observe.fluffy.chat/1',
-  );
+  ),
+  customLiveKitInstance<String>('chat.fluffy.custom_live_kit_instance', '');
 
   final String key;
   final T defaultValue;

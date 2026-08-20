@@ -768,11 +768,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Físghlao",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "verifyStart": "Tosaigh Fíorú",
     "@verifyStart": {
         "type": "String",
@@ -1699,7 +1694,6 @@
         "type": "String",
         "description": "Usage hint for the command /clearcache"
     },
-    "videoCallsBetaWarning": "Tabhair faoi deara go bhfuil físglaonna i béite. B'fhéidir nach bhfeidhmíonn siad ar gach ardán chomh atá súil aige ná ar bith.",
     "repeatPassword": "Scríobh an pasfhocal arís",
     "fileHasBeenSavedAt": "Sábháladh an comhad ag {path}",
     "@fileHasBeenSavedAt": {
@@ -1799,7 +1793,6 @@
         }
     },
     "incomingMessages": "Teachtaireachtaí isteach",
-    "voiceCall": "Glao gutha",
     "emojis": "Emojis",
     "reportUser": "Déan tuairisc ar úsáideoir",
     "custom": "Saincheaptha",
@@ -1829,7 +1822,6 @@
     "noChatsFoundHere": "Níor aimsíodh aon chomhrá anseo fós. Cuir tús le comhrá nua le duine éigin tríd an gcnaipe thíos a úsáid. ⤵️",
     "messageInfo": "Eolas teachtaireachta",
     "unsupportedAndroidVersionLong": "Éilíonn an ghné seo leagan Android níos nuaí. Seiceáil le haghaidh nuashonruithe nó tacaíocht Lineage OS.",
-    "experimentalVideoCalls": "Glaonna físe turgnamhacha",
     "youKicked": "👞 Chiceáil tú {user}",
     "@youKicked": {
         "placeholders": {
@@ -2095,7 +2087,6 @@
     "setChatDescription": "Socraigh cur síos ar an gcomhrá",
     "time": "Am",
     "removeFromSpace": "Bain as spás",
-    "placeCall": "Cuir glaoch",
     "unsupportedAndroidVersion": "Leagan Android gan tacaíocht",
     "usersMustKnock": "Ní mór d'úsáideoirí cnag a chur ar",
     "storeSecurlyOnThisDevice": "Stóráil go daingean ar an ngléas seo",

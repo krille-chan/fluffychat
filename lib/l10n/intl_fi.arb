@@ -1648,11 +1648,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videopuhelu",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "sender": "Lähettäjä",
     "startedACall": "{senderName} aloitti puhelun",
     "@startedACall": {
@@ -1726,9 +1721,6 @@
     "unsupportedAndroidVersionLong": "Tämä ominaisuus vaatii uudemman Android-version. Tarkistathan päivitykset tai Lineage OS :n tuki.",
     "unsupportedAndroidVersion": "Ei tuettu Android-versio",
     "reportUser": "Ilmianna käyttäjä",
-    "voiceCall": "Äänipuhelu",
-    "videoCallsBetaWarning": "Huomaathan videopuheluiden ovan beta-asteella. Ne eivät ehkä toimi odotetusti tai toimi ollenkaan kaikilla alustoilla.",
-    "placeCall": "Soita",
     "reactedWith": "{sender} reagoi {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -1743,7 +1735,6 @@
     },
     "pinMessage": "Kiinnitä huoneeseen",
     "confirmEventUnpin": "Haluatko varmasti irrottaa tapahtuman pysyvästi?",
-    "experimentalVideoCalls": "Kokeelliset videopuhelut",
     "youRejectedTheInvitation": "Kieltäydyit kutsusta",
     "youJoinedTheChat": "Liityit keskusteluun",
     "youAcceptedTheInvitation": "👍 Hyväksyit kutsun",

@@ -1586,11 +1586,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videogesprek",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Chatgeschiedenis zichtbaarheid",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1738,13 +1733,9 @@
     },
     "pinMessage": "Maak vast aan chat",
     "emojis": "Emoji's",
-    "placeCall": "Bellen",
     "unsupportedAndroidVersion": "Niet-ondersteunde Android-versie",
     "unsupportedAndroidVersionLong": "Voor deze functie is een nieuwe Android-versie verplicht. Controleer je updates of Lineage OS-ondersteuning.",
-    "videoCallsBetaWarning": "Houd er rekening mee dat videogesprekken momenteel in bèta zijn. Ze werken misschien niet zoals je verwacht of werken niet op alle platformen.",
-    "voiceCall": "Spraakgesprek",
     "confirmEventUnpin": "Weet je zeker dat je de gebeurtenis definitief wilt losmaken?",
-    "experimentalVideoCalls": "Videogesprekken (experimenteel)",
     "youAcceptedTheInvitation": "👍 Je hebt de uitnodiging geaccepteerd",
     "youRejectedTheInvitation": "Je hebt de uitnodiging afgewezen",
     "youJoinedTheChat": "Je bent toegetreden tot de chat",

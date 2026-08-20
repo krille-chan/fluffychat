@@ -1092,11 +1092,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "مكالمة فيديو",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "مرئية تأريخ المحادثة",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1675,10 +1670,8 @@
         "placeholders": {}
     },
     "emojis": "إيموجي",
-    "voiceCall": "مكالمة صوتية",
     "unsupportedAndroidVersion": "نسخة أندرويد غير مدعومة",
     "unsupportedAndroidVersionLong": "تتطلب هذه الميزة إصدار Android أحدث. يرجى التحقق من وجود تحديثات أو دعم Lineage OS.",
-    "experimentalVideoCalls": "مكالمات الفيديو التجريبية",
     "commandHint_create": "أنشأ محادثة جماعية فارغة\nاستخدم --لا-تشفير لتعطيل التشفير",
     "@commandHint_create": {
         "type": "String",
@@ -1704,8 +1697,6 @@
         "type": "String",
         "description": "Usage hint for the command /myroomavatar"
     },
-    "videoCallsBetaWarning": "يرجى ملاحظة أن مكالمات الفيديو حالياً في مرحلة تجريبية. قد لا تعمل كما هو متوقع أو تعمل على الإطلاق على جميع المنصات.",
-    "placeCall": "إجراء مكالمة",
     "setAsCanonicalAlias": "تعيين كاسم مستعار رئيسي",
     "@setAsCanonicalAlias": {
         "type": "String",

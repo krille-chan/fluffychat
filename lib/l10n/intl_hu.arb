@@ -1126,11 +1126,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videóhívás",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Csevegési előzmény láthatósága",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1777,7 +1772,6 @@
             }
         }
     },
-    "videoCallsBetaWarning": "Kérem vegye figyelembe, hogy a videó hívások jelenleg béta fázisban vannak. Nem biztos, hogy megfelelően fognak működni, vagy egyáltalán elindulnak egyes platformokon.",
     "fileIsTooBigForServer": "Nem küldhető el! A szerver csak {max} határig enged csatolmányokat.",
     "verified": "Hitelesített",
     "@verified": {
@@ -1802,7 +1796,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "experimentalVideoCalls": "Kísérleti videó hívások",
     "redactedByBecause": "{username} által szerkesztve, mivel: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
@@ -1897,7 +1890,6 @@
     },
     "sendTypingNotifications": "Gépelési értesítés megjelenítése",
     "inviteGroupChat": "📨 Meghívó a csoportba",
-    "voiceCall": "Hang hívás",
     "importEmojis": "Emojik importálása",
     "wasDirectChatDisplayName": "Üres csevegés (korábban {oldDisplayName})",
     "@wasDirectChatDisplayName": {
@@ -1975,7 +1967,6 @@
     "invite": "Meghívás",
     "unsupportedAndroidVersionLong": "Ehhez a funkcióhoz egy újabb Android verzió kell. Kérem ellenőrizze be van e frissítve teljesen készüléke, esetlegesen van e LineageOS támogatás hozzá.",
     "storeSecurlyOnThisDevice": "Biztonságos tárolás az eszközön",
-    "placeCall": "Tér hívás",
     "block": "Blokkolás",
     "blockedUsers": "Blokkolt felhasználók",
     "blockListDescription": "Az Önt zavaró felhasználókat blokkolhatja. A blokkolt listán található felhasználóktól nem tud fogadni üzenetet vagy szoba meghívást.",
