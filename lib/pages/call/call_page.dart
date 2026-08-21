@@ -41,6 +41,7 @@ class CallPage extends StatelessWidget {
         final ownUser = room.unsafeGetUserFromMemoryOrFallback(
           room.client.userID!,
         );
+        final ownHandRaised = viewModel.participantRaisedHand(ownUser.id);
 
         return Scaffold(
           extendBodyBehindAppBar: true,
@@ -183,6 +184,9 @@ class CallPage extends StatelessWidget {
                             video: focused.video,
                             audio: focused.audio,
                             margin: EdgeInsets.zero,
+                            handRaised: viewModel.participantRaisedHand(
+                              focused.user.id,
+                            ),
                             onTap: null,
                           ),
                         );
@@ -206,6 +210,9 @@ class CallPage extends StatelessWidget {
                                 video: focused.video,
                                 audio: focused.audio,
                                 fit: .contain,
+                                handRaised: viewModel.participantRaisedHand(
+                                  focused.user.id,
+                                ),
                                 onTap: focused.video == null
                                     ? null
                                     : () =>
@@ -228,6 +235,9 @@ class CallPage extends StatelessWidget {
                                     video: tiles[i].video,
                                     audio: tiles[i].audio,
                                     size: tileSize,
+                                    handRaised: viewModel.participantRaisedHand(
+                                      tiles[i].user.id,
+                                    ),
                                     onTap: tiles[i].video == null
                                         ? null
                                         : () => viewModel.setFocusedTrack(
@@ -277,7 +287,7 @@ class CallPage extends StatelessWidget {
                         : Icons.videocam_off_outlined,
                   ),
                 ),
-                if (!PlatformInfos.isIOS) // TODO: Fix on iOS?
+                if (!PlatformInfos.isMobile) // TODO: Fix on mobile?
                   FloatingActionButton(
                     heroTag: null,
                     mini: mini,
@@ -293,8 +303,23 @@ class CallPage extends StatelessWidget {
                 FloatingActionButton(
                   heroTag: null,
                   mini: mini,
-                  onPressed: null,
-                  child: Icon(Icons.emoji_emotions_outlined),
+                  backgroundColor: ownHandRaised
+                      ? theme.colorScheme.primary
+                      : null,
+                  foregroundColor: ownHandRaised
+                      ? theme.colorScheme.onPrimary
+                      : null,
+                  onPressed: () => showFutureLoadingDialog(
+                    context: context,
+                    future: () => ownHandRaised
+                        ? room.lowerHandInMatrixRtcCall(viewModel.timeline!)
+                        : room.raiseHandInMatrixRtcCall(),
+                  ),
+                  child: Icon(
+                    ownHandRaised
+                        ? Icons.front_hand
+                        : Icons.front_hand_outlined,
+                  ),
                 ),
               ] else ...[
                 Center(
