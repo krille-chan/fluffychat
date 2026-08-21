@@ -93,6 +93,30 @@ extension MatrixRtcRoomExtension on Room {
     }
   }
 
+  Future<void> setMatrixRtcMembershipState(
+    final List<MatrixRtcFocusPreferred> fociPreferred, {
+    MatrixRtcCallIntent intent = MatrixRtcCallIntent.video,
+  }) => client.setRoomStateWithKey(
+    id,
+    MatrixRtcCallMember.eventType,
+    _ownMatrixRtcMembershipStateKey,
+    MatrixRtcCallMember(
+      application: 'm.call',
+      callId: '',
+      deviceId: client.deviceID,
+      expires: Duration(hours: 4),
+      createdAt: DateTime.now(),
+      fociPreferred: fociPreferred,
+      focusActive: MatrixRtcFocusActive(
+        focusSelection: 'oldest_membership',
+        type: 'livekit',
+      ),
+      callIntent: intent.name,
+      membershipId: '${client.userID}:${client.deviceID}',
+      scope: 'm.room',
+    ).toJson(),
+  );
+
   Future<void> shareMatrixRtcCallKey({
     required Uint8List key,
     required int index,
@@ -153,33 +177,17 @@ extension MatrixRtcRoomExtension on Room {
     Logs().d(
       '[Join MatrixRtc Call] (2/5) Set "${MatrixRtcCallMember.eventType}" State event...',
     );
-    await client.setRoomStateWithKey(
-      id,
-      MatrixRtcCallMember.eventType,
-      _ownMatrixRtcMembershipStateKey,
-      MatrixRtcCallMember(
-        application: 'm.call',
-        callId: '',
-        deviceId: client.deviceID,
-        expires: Duration(hours: 4),
-        createdAt: DateTime.now(),
-        fociPreferred: urls
-            .map(
-              (url) => MatrixRtcFocusPreferred(
-                type: 'livekit',
-                livekitServiceUrl: url,
-                livekitAlias: id,
-              ),
-            )
-            .toList(),
-        focusActive: MatrixRtcFocusActive(
-          focusSelection: 'oldest_membership',
-          type: 'livekit',
-        ),
-        callIntent: intent.name,
-        membershipId: '${client.userID}:${client.deviceID}',
-        scope: 'm.room',
-      ).toJson(),
+    await setMatrixRtcMembershipState(
+      urls
+          .map(
+            (url) => MatrixRtcFocusPreferred(
+              type: 'livekit',
+              livekitServiceUrl: url,
+              livekitAlias: id,
+            ),
+          )
+          .toList(),
+      intent: intent,
     );
 
     // TODO: Send RTC Notification
