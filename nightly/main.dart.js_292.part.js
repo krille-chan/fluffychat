@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyB(){return new B.Lq(A.dy("et"))},
-Lq:function Lq(d){this.a=d}}
+dyL(){return new B.Lr(A.dy("et"))},
+Lr:function Lr(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[18],B)
-B.Lq.prototype={
+B.Lr.prototype={
 gph(){return"Muuda pilti"},
 gr3(){return"P\xf6\xf6ra vasakule"},
 gr4(){return"P\xf6\xf6ra paremale"},
@@ -731,7 +731,7 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Lq,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"Lq":{"aR":[]}}'))};
-(a=>{a["ltXWxZE0fOA0zrcgt/AS/rwoydQ="]=a.current})($__dart_deferred_initializers__);
+y(B.Lr,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"Lr":{"aR":[]}}'))};
+(a=>{a["WwGbv2MrT7pMGls2D/j98dJGZXE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_292.part.js.map
