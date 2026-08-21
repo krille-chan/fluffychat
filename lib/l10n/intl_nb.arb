@@ -1415,7 +1415,7 @@
         "placeholders": {}
     },
     "repeatPassword": "Gjenta passord",
-    "addToSpace": "Legg til område",
+    "addToSpace": "Legg til romgruppe",
     "autoplayImages": "Automatisk spill av animerte stickers og emojis",
     "@autoplayImages": {
         "type": "String",
@@ -1464,7 +1464,7 @@
             }
         }
     },
-    "space": "Område",
+    "space": "Romgruppe",
     "cuddleContent": "{senderName} koser med deg",
     "@cuddleContent": {
         "type": "String",
@@ -1612,7 +1612,7 @@
         }
     },
     "approve": "Godkjenn",
-    "goToSpace": "Gå til område: {space}",
+    "goToSpace": "Gå til romgruppe: {space}",
     "@goToSpace": {
         "type": "String",
         "space": {}
@@ -2088,7 +2088,7 @@
     "contentNotificationSettings": "Innstillinger for innholdsvarslinger",
     "generalNotificationSettings": "Generelle varslingsinnstillinger",
     "notificationRuleContainsUserNameDescription": "Varsler bruker når en melding inneholder ens brukernavn.",
-    "removeFromSpace": "Fjern fra området",
+    "removeFromSpace": "Fjern fra romgruppe",
     "reactedWith": "{sender} reagerte med {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -2176,7 +2176,7 @@
         "description": "State that {command} is not a valid /command."
     },
     "checkList": "Sjekkliste",
-    "createNewSpace": "Nytt område",
+    "createNewSpace": "Ny romgruppe",
     "@createNewSpace": {
         "type": "String",
         "placeholders": {}
@@ -2264,7 +2264,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "newSpace": "Nytt område",
+    "newSpace": "Ny romgruppe",
     "wasDirectChatDisplayName": "Tom chat (var {oldDisplayName})",
     "@wasDirectChatDisplayName": {
         "type": "String",
@@ -2274,7 +2274,7 @@
             }
         }
     },
-    "removeFromSpaceDescription": "Chatten blir fjernet fra området, men vises fortsatt i chatlisten din.",
+    "removeFromSpaceDescription": "Chatten blir fjernet fra romgruppen, men vises fortsatt i chatlisten din.",
     "countChats": "{chats} chats",
     "@countChats": {
         "type": "String",
@@ -2360,12 +2360,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "spaceIsPublic": "Området er offentlig",
+    "spaceIsPublic": "Romgruppen er offentlig",
     "@spaceIsPublic": {
         "type": "String",
         "placeholders": {}
     },
-    "spaceName": "Navn på område",
+    "spaceName": "Navn på romgruppe",
     "@spaceName": {
         "type": "String",
         "placeholders": {}
@@ -2385,8 +2385,8 @@
     },
     "editBundlesForAccount": "Rediger pakker for denne kontoen",
     "makeAdminDescription": "Når du gjør denne brukeren til administrator, kan du kanskje ikke omgjøre det senere. Brukeren vil da få de samme rettighetene som deg.",
-    "joinSpace": "Bli med i området",
-    "publicSpaces": "Offentlige områder",
+    "joinSpace": "Bli med i romgruppe",
+    "publicSpaces": "Offentlige romgrupper",
     "verifyOtherUserDescription": "Hvis du verifiserer en annen bruker, kan du være trygg på at du vet hvem du faktisk skriver med. 💪\n\nNår du starter en verifisering, vil både du og den andre brukeren se et popup-vindu i appen. Der vil dere se en serie emojier eller tall som dere må sammenligne med hverandre.\n\nDen beste måten å gjøre dette på er å møtes ansikt til ansikt eller starte en videosamtale. 👭",
     "verifyOtherDeviceDescription": "Når du verifiserer en annen enhet, kan disse enhetene utveksle nøkler, noe som øker den generelle sikkerheten din. 💪 Når du starter en verifisering, vil det dukke opp et popup-vindu i appen på begge enhetene. Der vil du se en serie emojier eller tall som du må sammenligne med hverandre. Det er best å ha begge enhetene forhånden før du starter verifiseringen. 🤳",
     "clientWellKnownInformation": "Velkjent informasjon om klienten:",
@@ -2430,7 +2430,7 @@
     "moreEvents": "Flere hendelser",
     "contactServerSecurity": "Kontakt sikkerhetsansvarlig for serveren",
     "notificationRuleMemberEvent": "Medlemshendelse",
-    "spaceMemberOfCanKnock": "Et medlem av området {spaces} kan banke på",
+    "spaceMemberOfCanKnock": "Et medlem av romgruppen {spaces} kan banke på",
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2476,12 +2476,12 @@
         }
     },
     "confirmEventUnpin": "Er du sikker på at du vil løsne hendelsen permanent?",
-    "newSpaceDescription": "Områder lar deg samle chattene dine og bygge private eller offentlige fellesskap.",
+    "newSpaceDescription": "Romgrupper lar deg samle chattene dine og bygge private eller offentlige fellesskap.",
     "chatPermissionsDescription": "Definer hvilket tilgangsnivå som kreves for bestemte handlinger i denne chatten. Nivåene 0, 50 og 100 representerer vanligvis brukere, moderatorer og administratorer, men alle mellomtrinn er mulige.",
     "knocking": "Banker på",
     "noKeyForThisMessage": "Dette kan skje hvis meldingen ble sendt før du logget inn på kontoen din på denne enheten.\n\nDet er også mulig at senderen har blokkert enheten din, eller at noe gikk galt med internettforbindelsen.\n\nEr du i stand til å lese meldingen i en annen sesjon? Da kan du overføre meldingen fra den! Gå til Innstillinger > Enheter og sørg for at enhetene dine har verifisert hverandre. Neste gang du åpner rommet og begge sesjonene er i forgrunnen, vil nøklene bli overført automatisk.\n\nVil du unngå å miste nøklene når du logger ut eller bytter enhet? Sørg for at du har aktivert sikkerhetskopiering av chat i innstillingene.",
     "report": "rapportere",
-    "addChatOrSubSpace": "Legg til chat eller underområde",
+    "addChatOrSubSpace": "Legg til chat eller under-romgruppe",
     "signIn": "Logg på",
     "createNewAccount": "Opprett ny konto",
     "signUpGreeting": "FluffyChat er desentralisert! Velg en server der du vil opprette kontoen din, så kjører vi på!",
@@ -2520,7 +2520,7 @@
     },
     "showMore": "Vis mer",
     "showLess": "Vis mindre",
-    "hideRoomsInSpaces": "Skjul rom som er med i et område",
+    "hideRoomsInSpaces": "Skjul rom som er med i en romgruppe",
     "possibleByYou": "Denne versjonen var bare mulig takket være din støtte. FluffyChat forblir gratis, har åpen kildekode og er helt fellesskapsdrevet.",
     "showThumbnailsInTimeline": "Vis miniatyrbilder av bilder og videoer",
     "appSubtitle": "Sikker [matrix]-kommunikasjon",
