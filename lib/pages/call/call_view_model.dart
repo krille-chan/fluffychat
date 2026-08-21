@@ -7,29 +7,35 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:collection/collection.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/call_keys_event_content.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call_member.dart';
+import 'package:fluffychat/utils/position_from_build_context.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart' as rtc;
 import 'package:go_router/go_router.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:livekit_client/livekit_client.dart' as lk;
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
 class CallViewModelState {
   lk.Room? room;
   lk.LocalVideoTrack? localVideoTrack;
   lk.LocalAudioTrack? localAudioTrack;
+  String? focusedTrack;
 }
 
 class CallViewModel extends ValueNotifier<CallViewModelState> {
   final Room room;
-  final player = AudioPlayer();
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  DateTime? startTime;
   StreamSubscription? _onCallEncryptionKeysSub, _onCallMembersChanged;
+  Timer? _resendCallMemberState;
 
   Set<String> _lastSharedParticipants = {};
   DateTime? _keyCreatedAt;
@@ -39,6 +45,16 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
 
   CallViewModel({required this.room}) : super(CallViewModelState()) {
     _init();
+  }
+
+  void setFocusedTrack(String trackId) {
+    Logs().d('Set focus on', trackId);
+    if (value.focusedTrack == trackId) {
+      value.focusedTrack = null;
+    } else {
+      value.focusedTrack = trackId;
+    }
+    notifyListeners();
   }
 
   Future<void> _onCallEncryptionKeys(CallKeysEvent event) async {
@@ -252,6 +268,23 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
         camera: lk.TrackOption(track: video),
       ),
     );
+    _resendCallMemberState?.cancel();
+    _resendCallMemberState = Timer.periodic(const Duration(hours: 1), (_) {
+      final ownMembership = room.ownMatrixRtcMembership;
+      if (ownMembership == null) {
+        _resendCallMemberState?.cancel();
+        return;
+      }
+      room.setMatrixRtcMembershipState(
+        ownMembership.fociPreferred,
+        intent:
+            MatrixRtcCallIntent.values.firstWhereOrNull(
+              (intent) => ownMembership.callIntent == intent.name,
+            ) ??
+            MatrixRtcCallIntent.video,
+      );
+    });
+    startTime = DateTime.now();
     notifyListeners();
     _playJoinSound();
   }
@@ -260,13 +293,18 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     _playLeaveSound();
     final liveKitRoom = value.room;
     if (liveKitRoom != null) {
+      liveKitRoom.removeListener(notifyListeners);
       await showFutureLoadingDialog(
         context: context,
         future: () async {
-          await liveKitRoom.disconnect();
+          if (liveKitRoom.connectionState != lk.ConnectionState.disconnected) {
+            await liveKitRoom.disconnect();
+          }
           await liveKitRoom.dispose();
           value.room = null;
-          await room.leaveMatrixRtcCall();
+          if (room.ownMatrixRtcMembership != null) {
+            await room.leaveMatrixRtcCall();
+          }
         },
       );
     }
@@ -277,6 +315,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
   void dispose() {
     _onCallEncryptionKeysSub?.cancel();
     _onCallMembersChanged?.cancel();
+    _resendCallMemberState?.cancel();
     final liveKitRoom = value.room;
     if (liveKitRoom != null) {
       liveKitRoom.removeListener(notifyListeners);
@@ -286,17 +325,76 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       liveKitRoom.dispose();
       room.leaveMatrixRtcCall();
     }
-    player.dispose();
+    _audioPlayer.dispose();
     super.dispose();
   }
 
   Future<void> _playJoinSound([_]) async {
-    await player.setAsset('assets/sounds/call_join.mp3');
-    await player.play();
+    await _audioPlayer.setAsset('assets/sounds/call_join.mp3');
+    await _audioPlayer.play();
   }
 
   Future<void> _playLeaveSound([_]) async {
-    await player.setAsset('assets/sounds/call_leave.mp3');
-    await player.play();
+    await _audioPlayer.setAsset('assets/sounds/call_leave.mp3');
+    await _audioPlayer.play();
+  }
+
+  Future<lk.MediaDevice?> _selectMediaDevice(
+    BuildContext context,
+    String type,
+    String? activeDeviceId,
+  ) async {
+    final devices = await lk.Hardware.instance.enumerateDevices(type: type);
+    if (!context.mounted) return null;
+    return await showMenu<lk.MediaDevice>(
+      context: context,
+      position: context.position,
+      items: devices.isEmpty
+          ? [
+              PopupMenuItem(
+                enabled: false,
+                child: Text(L10n.of(context).noDevicesFound),
+              ),
+            ]
+          : devices
+                .map(
+                  (device) => PopupMenuItem(
+                    value: device,
+                    child: Row(
+                      mainAxisSize: .min,
+                      children: [
+                        Icon(
+                          device.deviceId == activeDeviceId
+                              ? Icons.check_circle_outlined
+                              : Icons.circle_outlined,
+                        ),
+                        const SizedBox(width: 12),
+                        Text(device.label),
+                      ],
+                    ),
+                  ),
+                )
+                .toList(),
+    );
+  }
+
+  Future<void> selectCamera(BuildContext context) async {
+    final source = await _selectMediaDevice(
+      context,
+      'videoinput',
+      value.room?.selectedVideoInputDeviceId,
+    );
+    if (source == null) return;
+    await value.room?.setVideoInputDevice(source);
+  }
+
+  Future<void> selectMicrophone(BuildContext context) async {
+    final source = await _selectMediaDevice(
+      context,
+      'audioinput',
+      value.room?.selectedAudioInputDeviceId,
+    );
+    if (source == null) return;
+    await value.room?.setAudioInputDevice(source);
   }
 }

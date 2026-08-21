@@ -14,11 +14,13 @@ class CallTile extends StatelessWidget {
   final lk.TrackPublication<lk.AudioTrack>? audio;
   final User user;
   final EdgeInsets? margin;
+  final VoidCallback? onTap;
   const CallTile({
     super.key,
     this.video,
     this.audio,
     required this.user,
+    required this.onTap,
     this.margin,
   });
 
@@ -26,14 +28,25 @@ class CallTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final video = this.video?.track;
     final theme = Theme.of(context);
+    final borderRadius = BorderRadius.circular(AppConfig.borderRadius / 2);
+    // VideoTrackRenderer installs its own GestureDetector for local camera
+    // tap-to-focus/zoom on mobile, which wins the gesture arena over parents.
+    // Handle taps on a transparent overlay above the video instead.
     return Container(
       width: 128,
       height: 128,
       margin: margin,
       clipBehavior: .hardEdge,
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            spreadRadius: 1.0,
+            color: theme.dividerColor,
+            blurRadius: 0.0,
+          ),
+        ],
         color: Theme.of(context).colorScheme.surfaceContainerHigh,
-        borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+        borderRadius: borderRadius,
       ),
       child: Stack(
         children: [
@@ -45,6 +58,12 @@ class CallTile extends StatelessWidget {
                     name: user.calcDisplayname(),
                   ),
                 ),
+          Positioned.fill(
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: onTap,
+            ),
+          ),
           Positioned(
             bottom: 4,
             left: 4,
@@ -64,9 +83,7 @@ class CallTile extends StatelessWidget {
                   children: [
                     if (audio != null)
                       Icon(
-                        audio?.muted == false
-                            ? Icons.mic_outlined
-                            : Icons.mic_off_outlined,
+                        audio?.muted == false ? Icons.mic : Icons.mic_off,
                         size: 11,
                       ),
                     Text(
@@ -91,6 +108,7 @@ extension GetCallTiles on lk.Room {
   /// null video track at least.
   List<
     ({
+      String id,
       lk.TrackPublication<lk.VideoTrack>? video,
       lk.TrackPublication<lk.AudioTrack>? audio,
       User user,
@@ -100,6 +118,7 @@ extension GetCallTiles on lk.Room {
     final tiles =
         <
           ({
+            String id,
             lk.TrackPublication<lk.VideoTrack>? video,
             lk.TrackPublication<lk.AudioTrack>? audio,
             User user,
@@ -110,10 +129,16 @@ extension GetCallTiles on lk.Room {
       if (!participant.videoTrackPublications.any(
         (pub) => !pub.isScreenShare,
       )) {
-        tiles.add((user: user, video: null, audio: null));
+        tiles.add((
+          id: '${participant.identity}_none',
+          user: user,
+          video: null,
+          audio: null,
+        ));
       }
       for (final pub in participant.videoTrackPublications) {
         tiles.add((
+          id: '${participant.identity}_${pub.name}',
           user: user,
           video: pub,
           audio: pub.isScreenShare
@@ -128,6 +153,7 @@ extension GetCallTiles on lk.Room {
         in localParticipant?.videoTrackPublications ??
             <lk.LocalTrackPublication<lk.LocalVideoTrack>>[]) {
       tiles.add((
+        id: '${localParticipant?.identity ?? ownUser.id}_${pub.name}',
         user: ownUser,
         video: pub,
         audio: localParticipant?.audioTrackPublications.firstOrNull,
@@ -139,6 +165,7 @@ extension GetCallTiles on lk.Room {
         ) !=
         true) {
       tiles.add((
+        id: '${localParticipant?.identity ?? ownUser.id}_none',
         user: ownUser,
         video: null,
         audio: localParticipant?.audioTrackPublications.firstOrNull,
