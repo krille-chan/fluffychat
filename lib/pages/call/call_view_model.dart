@@ -15,9 +15,9 @@ import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call_member.dart';
 import 'package:fluffychat/utils/position_from_build_context.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart' as rtc;
-import 'package:go_router/go_router.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:livekit_client/livekit_client.dart' as lk;
 import 'package:material_ui/material_ui.dart';
@@ -32,6 +32,7 @@ class CallViewModelState {
 
 class CallViewModel extends ValueNotifier<CallViewModelState> {
   final Room room;
+  Timeline? timeline;
   final AudioPlayer _audioPlayer = AudioPlayer();
   DateTime? startTime;
   StreamSubscription? _onCallEncryptionKeysSub, _onCallMembersChanged;
@@ -254,8 +255,18 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     notifyListeners();
   }
 
+  bool hasRaisedHand(String userId) {
+    // TODO: Implement me
+    throw UnimplementedError();
+  }
+
+  void _onNewTimelineEvent(int i) {
+    // TODO: Handle raise hand and reactions
+  }
+
   Future<void> connect() async {
     final credentials = await room.joinMatrixRtcCall();
+    timeline = await room.getTimeline(onInsert: _onNewTimelineEvent);
     await _createKeyAndShare();
     final video = value.localVideoTrack;
     final audio = value.localAudioTrack;
@@ -308,7 +319,9 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
         },
       );
     }
-    if (context.mounted) context.pop();
+    if (context.mounted) {
+      Matrix.of(context).activeCallRoomId.value = null;
+    }
   }
 
   @override
@@ -316,6 +329,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     _onCallEncryptionKeysSub?.cancel();
     _onCallMembersChanged?.cancel();
     _resendCallMemberState?.cancel();
+    timeline?.cancelSubscriptions();
     final liveKitRoom = value.room;
     if (liveKitRoom != null) {
       liveKitRoom.removeListener(notifyListeners);
