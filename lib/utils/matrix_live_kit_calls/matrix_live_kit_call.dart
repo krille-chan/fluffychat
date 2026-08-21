@@ -190,7 +190,12 @@ extension MatrixRtcRoomExtension on Room {
       intent: intent,
     );
 
-    // TODO: Send RTC Notification
+    final dmUserId = directChatMatrixID;
+    if (dmUserId != null) {
+      await sendRtcNotification(type: .ring, userIds: [dmUserId]);
+    } else {
+      await sendRtcNotification(type: .notification, mentionRoom: true);
+    }
 
     Logs().v('[Join MatrixRtc Call] (3/5) Request OpenId Token...');
     final openIdCredentials = await client.requestOpenIdToken(
