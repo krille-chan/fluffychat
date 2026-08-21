@@ -5,6 +5,7 @@
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/call/call_tile.dart';
 import 'package:fluffychat/pages/call/call_view_model.dart';
@@ -26,6 +27,8 @@ class CallPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final room = Matrix.of(context).client.getRoomById(roomId)!;
+    final mini = Matrix.of(context).callPosition.value != .fullScreen;
+    final tileSize = FluffyThemes.isColumnMode(context) ? 256.0 : 128.0;
     return ViewModelBuilder(
       create: () => CallViewModel(room: room),
       builder: (context, viewModel, _) {
@@ -46,9 +49,19 @@ class CallPage extends StatelessWidget {
             leading: viewModel.startTime == null
                 ? null
                 : StartTime(startTime: viewModel.startTime!),
-            backgroundColor: Colors.transparent,
+            backgroundColor: theme.colorScheme.surface.withAlpha(64),
             centerTitle: true,
             actions: [
+              IconButton(
+                icon: Icon(Icons.fullscreen_outlined),
+                onPressed: () {
+                  final matrix = Matrix.of(context);
+                  matrix.callPosition.value =
+                      matrix.callPosition.value == .fullScreen
+                      ? .top
+                      : .fullScreen;
+                },
+              ),
               if (localVideoTrack == null)
                 PopupMenuButton(
                   itemBuilder: (context) => [
@@ -77,6 +90,7 @@ class CallPage extends StatelessWidget {
                   ],
                 ),
             ],
+            titleSpacing: mini ? 0 : null,
             title: Column(
               mainAxisSize: .min,
               children: [
@@ -84,6 +98,9 @@ class CallPage extends StatelessWidget {
                   room.getLocalizedDisplayname(),
                   maxLines: 1,
                   overflow: .ellipsis,
+                  style: mini
+                      ? TextStyle(fontSize: 11, fontWeight: .bold)
+                      : null,
                 ),
                 Text(
                   L10n.of(context).countActiveCallMembers(activeMembers),
@@ -96,16 +113,43 @@ class CallPage extends StatelessWidget {
           body: liveKitRoom == null
               ? Center(child: CircularProgressIndicator())
               : localVideoTrack != null
-              ? localVideoTrack.muted
-                    ? Center(
-                        child: Avatar(
-                          mxContent: ownUser.avatarUrl,
-                          name: ownUser.calcDisplayname(),
-                          size: 128,
+              ? Stack(
+                  children: [
+                    localVideoTrack.muted
+                        ? Center(
+                            child: Avatar(
+                              mxContent: ownUser.avatarUrl,
+                              name: ownUser.calcDisplayname(),
+                              size: 128,
+                            ),
+                          )
+                        : VideoTrackRenderer(localVideoTrack, fit: .cover),
+
+                    Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.errorContainer.withAlpha(
+                            230,
+                          ),
+                          borderRadius: BorderRadius.circular(
+                            AppConfig.borderRadius,
+                          ),
                         ),
-                      )
-                    : VideoTrackRenderer(localVideoTrack, fit: .cover)
+                        margin: EdgeInsets.all(16.0),
+                        padding: EdgeInsets.all(16.0),
+                        child: Text(
+                          L10n.of(context).videoCallsBetaWarning,
+                          textAlign: .center,
+                          style: TextStyle(
+                            color: theme.colorScheme.onErrorContainer,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               : SafeArea(
+                  top: !mini,
                   child: LayoutBuilder(
                     builder: (context, constraints) {
                       final axis = constraints.maxWidth < constraints.maxHeight
@@ -131,6 +175,18 @@ class CallPage extends StatelessWidget {
                             video: null,
                             audio: null,
                           );
+                      if (mini) {
+                        return SizedBox.expand(
+                          child: CallTile(
+                            key: ValueKey(focused.id),
+                            user: focused.user,
+                            video: focused.video,
+                            audio: focused.audio,
+                            margin: EdgeInsets.zero,
+                            onTap: null,
+                          ),
+                        );
+                      }
                       tiles.remove(focused);
 
                       return Padding(
@@ -149,6 +205,7 @@ class CallPage extends StatelessWidget {
                                 user: focused.user,
                                 video: focused.video,
                                 audio: focused.audio,
+                                fit: .contain,
                                 onTap: focused.video == null
                                     ? null
                                     : () =>
@@ -158,8 +215,8 @@ class CallPage extends StatelessWidget {
                             if (tiles.isNotEmpty) ...[
                               SizedBox(width: 16, height: 16),
                               SizedBox(
-                                height: axis == .horizontal ? null : 128,
-                                width: axis == .vertical ? null : 128,
+                                height: axis == .horizontal ? null : tileSize,
+                                width: axis == .vertical ? null : tileSize,
                                 child: ListView.builder(
                                   scrollDirection: axis == .horizontal
                                       ? .vertical
@@ -170,6 +227,7 @@ class CallPage extends StatelessWidget {
                                     user: tiles[i].user,
                                     video: tiles[i].video,
                                     audio: tiles[i].audio,
+                                    size: tileSize,
                                     onTap: tiles[i].video == null
                                         ? null
                                         : () => viewModel.setFocusedTrack(
@@ -192,10 +250,11 @@ class CallPage extends StatelessWidget {
           floatingActionButtonLocation: .centerFloat,
           floatingActionButton: Wrap(
             alignment: .center,
-            spacing: 16,
+            spacing: mini ? 8 : 16,
             children: [
               if (localParticipant != null) ...[
                 FloatingActionButton(
+                  mini: mini,
                   heroTag: null,
                   onPressed: () => localParticipant.setMicrophoneEnabled(
                     !localParticipant.isMicrophoneEnabled(),
@@ -208,6 +267,7 @@ class CallPage extends StatelessWidget {
                 ),
                 FloatingActionButton(
                   heroTag: null,
+                  mini: mini,
                   onPressed: () => localParticipant.setCameraEnabled(
                     !localParticipant.isCameraEnabled(),
                   ),
@@ -220,6 +280,7 @@ class CallPage extends StatelessWidget {
                 if (!PlatformInfos.isIOS) // TODO: Fix on iOS?
                   FloatingActionButton(
                     heroTag: null,
+                    mini: mini,
                     onPressed: () => localParticipant.setScreenShareEnabled(
                       !localParticipant.isScreenShareEnabled(),
                     ),
@@ -231,29 +292,11 @@ class CallPage extends StatelessWidget {
                   ),
                 FloatingActionButton(
                   heroTag: null,
+                  mini: mini,
                   onPressed: null,
                   child: Icon(Icons.emoji_emotions_outlined),
                 ),
               ] else ...[
-                Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.errorContainer.withAlpha(230),
-                      borderRadius: BorderRadius.circular(
-                        AppConfig.borderRadius,
-                      ),
-                    ),
-                    margin: EdgeInsets.all(16.0),
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      L10n.of(context).videoCallsBetaWarning,
-                      textAlign: .center,
-                      style: TextStyle(
-                        color: theme.colorScheme.onErrorContainer,
-                      ),
-                    ),
-                  ),
-                ),
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -275,6 +318,7 @@ class CallPage extends StatelessWidget {
                 if (localAudioTrack != null)
                   FloatingActionButton(
                     heroTag: null,
+                    mini: mini,
                     onPressed: viewModel.togglePreviewMic,
                     child: Icon(
                       !localAudioTrack.muted
@@ -285,6 +329,7 @@ class CallPage extends StatelessWidget {
                 if (localVideoTrack != null)
                   FloatingActionButton(
                     heroTag: null,
+                    mini: mini,
                     onPressed: viewModel.togglePreviewCamera,
                     child: Icon(
                       !localVideoTrack.muted
@@ -295,6 +340,7 @@ class CallPage extends StatelessWidget {
               ],
               FloatingActionButton(
                 heroTag: null,
+                mini: mini,
                 onPressed: () => viewModel.close(context),
                 foregroundColor: theme.colorScheme.onErrorContainer,
                 backgroundColor: theme.colorScheme.errorContainer,

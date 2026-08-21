@@ -15,12 +15,17 @@ class CallTile extends StatelessWidget {
   final User user;
   final EdgeInsets? margin;
   final VoidCallback? onTap;
+  final lk.VideoViewFit fit;
+  final double size;
+
   const CallTile({
     super.key,
     this.video,
     this.audio,
+    this.size = 256.0,
     required this.user,
     required this.onTap,
+    this.fit = lk.VideoViewFit.cover,
     this.margin,
   });
 
@@ -33,8 +38,8 @@ class CallTile extends StatelessWidget {
     // tap-to-focus/zoom on mobile, which wins the gesture arena over parents.
     // Handle taps on a transparent overlay above the video instead.
     return Container(
-      width: 128,
-      height: 128,
+      width: size,
+      height: size,
       margin: margin,
       clipBehavior: .hardEdge,
       decoration: BoxDecoration(
@@ -45,15 +50,18 @@ class CallTile extends StatelessWidget {
             blurRadius: 0.0,
           ),
         ],
-        color: Theme.of(context).colorScheme.surfaceContainerHigh,
+        color: fit == .cover || !(video != null && !video.muted)
+            ? Theme.of(context).colorScheme.surfaceContainerHigh
+            : Colors.black,
         borderRadius: borderRadius,
       ),
       child: Stack(
         children: [
           video != null && !video.muted
-              ? lk.VideoTrackRenderer(video, fit: .cover)
+              ? lk.VideoTrackRenderer(video, fit: fit)
               : Center(
                   child: Avatar(
+                    size: 64,
                     mxContent: user.avatarUrl,
                     name: user.calcDisplayname(),
                   ),
@@ -86,6 +94,8 @@ class CallTile extends StatelessWidget {
                         audio?.muted == false ? Icons.mic : Icons.mic_off,
                         size: 11,
                       ),
+                    if (this.video?.isScreenShare == true)
+                      Icon(Icons.screen_share_outlined, size: 11),
                     Text(
                       user.calcDisplayname(),
                       maxLines: 1,

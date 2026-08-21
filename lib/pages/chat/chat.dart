@@ -1559,7 +1559,9 @@ class ChatController extends State<ChatPageWithRoom>
     editEvent = null;
   });
 
-  void startOrJoinVideoCall() => context.go('/rooms/${room.id}/call');
+  void startOrJoinVideoCall() {
+    Matrix.of(context).activeCallRoomId.value = room.id;
+  }
 
   bool supportLiveKitCalls = false;
 

@@ -8,7 +8,6 @@ import 'dart:async';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
 import 'package:fluffychat/pages/bootstrap/bootstrap_page.dart';
-import 'package:fluffychat/pages/call/call_page.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat_access_settings/chat_access_settings_controller.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
@@ -424,15 +423,6 @@ abstract class AppRoutes {
                     InvitationSelection(
                       roomId: state.pathParameters['roomid']!,
                     ),
-                  ),
-                  redirect: loggedOutRedirect,
-                ),
-                GoRoute(
-                  path: 'call',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    state,
-                    CallPage(roomId: state.pathParameters['roomid']!),
                   ),
                   redirect: loggedOutRedirect,
                 ),
