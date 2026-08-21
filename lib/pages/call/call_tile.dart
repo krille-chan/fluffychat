@@ -17,6 +17,7 @@ class CallTile extends StatelessWidget {
   final VoidCallback? onTap;
   final lk.VideoViewFit fit;
   final double size;
+  final bool handRaised;
 
   const CallTile({
     super.key,
@@ -25,6 +26,7 @@ class CallTile extends StatelessWidget {
     this.size = 256.0,
     required this.user,
     required this.onTap,
+    this.handRaised = false,
     this.fit = lk.VideoViewFit.cover,
     this.margin,
   });
@@ -72,6 +74,22 @@ class CallTile extends StatelessWidget {
               onTap: onTap,
             ),
           ),
+          if (handRaised)
+            Positioned(
+              top: 8,
+              right: 8,
+              child: Material(
+                borderRadius: BorderRadius.circular(32),
+                color: Theme.of(context).colorScheme.surface,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.front_hand_outlined,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
+              ),
+            ),
           Positioned(
             bottom: 4,
             left: 4,

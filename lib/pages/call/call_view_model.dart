@@ -255,13 +255,64 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     notifyListeners();
   }
 
-  bool hasRaisedHand(String userId) {
-    // TODO: Implement me
-    throw UnimplementedError();
+  bool participantRaisedHand(String matrixId) {
+    final stateEvent =
+        room.states[MatrixRtcCallMember.eventType]?.entries
+                .lastWhereOrNull(
+                  (entry) =>
+                      entry.key.startsWith('_${matrixId}_') &&
+                      entry.key.endsWith('_m.call'),
+                )
+                ?.value
+            as Event?;
+    if (stateEvent == null) return false;
+    final aggregatedEvents = timeline
+        ?.aggregatedEvents[stateEvent.eventId]?['m.annotation']
+        ?.where(
+          (event) =>
+              event.senderId == matrixId &&
+              event.status.isSent &&
+              event.content
+                      .tryGetMap<String, Object?>('m.relates_to')
+                      ?.tryGet<String>('key') ==
+                  '🖐️',
+        );
+    if (aggregatedEvents == null || aggregatedEvents.isEmpty) return false;
+
+    return true;
   }
 
-  void _onNewTimelineEvent(int i) {
-    // TODO: Handle raise hand and reactions
+  Future<void> _onNewTimelineEvent(int i) async {
+    final event = timeline?.events[i];
+    if (event == null) return;
+    switch (event.type) {
+      case 'io.element.call.reaction':
+        Logs().d(
+          'Call reactions are not yet handled',
+          event.content.tryGet<String>('emoji'),
+        );
+        // TODO: handle reaction
+        break;
+      case EventTypes.Reaction:
+        final reactedEvent = await timeline!.getEventById(
+          event.relationshipEventId!,
+        );
+        if (reactedEvent != null &&
+            reactedEvent.type == MatrixRtcCallMember.eventType &&
+            event.senderId == reactedEvent.senderId &&
+            event.content
+                    .tryGetMap<String, Object?>('m.relates_to')
+                    ?.tryGet<String>('key') ==
+                '🖐️') {
+          Logs().d('User raised hand!');
+          _playRaiseHandSound();
+          notifyListeners();
+        }
+        break;
+      case EventTypes.Redaction:
+        notifyListeners();
+        break;
+    }
   }
 
   Future<void> connect() async {
@@ -350,6 +401,11 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
 
   Future<void> _playLeaveSound([_]) async {
     await _audioPlayer.setAsset('assets/sounds/call_leave.mp3');
+    await _audioPlayer.play();
+  }
+
+  Future<void> _playRaiseHandSound() async {
+    await _audioPlayer.setAsset('assets/sounds/call_join.mp3');
     await _audioPlayer.play();
   }
 

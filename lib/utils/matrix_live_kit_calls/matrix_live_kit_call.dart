@@ -6,6 +6,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:collection/collection.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/call_keys_event_content.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call_member.dart';
@@ -117,6 +118,36 @@ extension MatrixRtcRoomExtension on Room {
     ).toJson(),
   );
 
+  Future<String?> raiseHandInMatrixRtcCall() async {
+    final ownMemberStateEvent =
+        states[MatrixRtcCallMember.eventType]?[_ownMatrixRtcMembershipStateKey]
+            as Event?;
+    if (ownMemberStateEvent == null) return null;
+    return await sendReaction(ownMemberStateEvent.eventId, '🖐️');
+  }
+
+  Future<String?> lowerHandInMatrixRtcCall(Timeline timeline) async {
+    final ownMemberStateEvent =
+        states[MatrixRtcCallMember.eventType]?[_ownMatrixRtcMembershipStateKey]
+            as Event?;
+    if (ownMemberStateEvent == null) return null;
+    final reaction = timeline.events.firstWhereOrNull(
+      (event) =>
+          event.type == EventTypes.Reaction &&
+          event.relationshipEventId == ownMemberStateEvent.eventId &&
+          event.senderId == client.userID &&
+          event.status.isSent &&
+          event.content
+                  .tryGetMap<String, Object?>('m.relates_to')
+                  ?.tryGet<String>('key') ==
+              '🖐️',
+    );
+    if (reaction == null) {
+      throw Exception('Hand raise reaction event not found!');
+    }
+    return await reaction.redactEvent();
+  }
+
   Future<void> shareMatrixRtcCallKey({
     required Uint8List key,
     required int index,
@@ -154,8 +185,9 @@ extension MatrixRtcRoomExtension on Room {
   }) async {
     await postLoad();
     if (ownMatrixRtcMembership != null) {
-      leaveMatrixRtcCall();
-      throw Exception('User has already joined the call!');
+      Logs().w(
+        'User has already an active rtc membership state in this room. Resetting it now...',
+      );
     }
     Logs().d('[Join MatrixRtc Call] (1/5) Get LiveKit Backend Urls...');
     final urls = await client.getLiveKitServiceUrls();
@@ -190,7 +222,12 @@ extension MatrixRtcRoomExtension on Room {
       intent: intent,
     );
 
-    // TODO: Send RTC Notification
+    final dmUserId = directChatMatrixID;
+    if (dmUserId != null) {
+      await sendRtcNotification(type: .ring, userIds: [dmUserId]);
+    } else {
+      await sendRtcNotification(type: .notification, mentionRoom: true);
+    }
 
     Logs().v('[Join MatrixRtc Call] (3/5) Request OpenId Token...');
     final openIdCredentials = await client.requestOpenIdToken(
