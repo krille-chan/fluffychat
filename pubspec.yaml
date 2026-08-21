@@ -91,7 +91,7 @@ dependencies:
   wakelock_plus: ^1.7.0
 
 dev_dependencies:
-  dart_code_linter: ^4.1.9
+  dart_code_linter: ^4.2.1
   flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
   flutter_test:
