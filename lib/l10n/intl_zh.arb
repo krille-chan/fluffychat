@@ -2783,5 +2783,17 @@
         }
     },
     "allow": "允许",
-    "deny": "拒绝"
+    "deny": "拒绝",
+    "videoCallsBetaWarning": "视频通话是测试功能。可能有故障或意外行为。我们可以聆听您的反馈。",
+    "activeCall": "活跃通话",
+    "countActiveCallMembers": "{count} 名活跃通话成员",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "进入通话",
+    "noDevicesFound": "未找到设备"
 }
