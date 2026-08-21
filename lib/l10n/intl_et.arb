@@ -2001,7 +2001,7 @@
     "passwordsDoNotMatch": "Salasõnad ei klapi omavahel",
     "select": "Vali",
     "pleaseChooseAStrongPassword": "Palun sisesta korralik salasõna",
-    "addChatOrSubSpace": "Lisa vestlus või jututuba",
+    "addChatOrSubSpace": "Lisa vestlus või alamkogukond",
     "leaveEmptyToClearStatus": "Senise oleku eemaldamiseks jäta väärtus tühjaks.",
     "joinSpace": "Liitu kogukonnaga",
     "searchForUsers": "Otsi kasutajat @kasutajanimi ...",
@@ -2786,5 +2786,17 @@
         }
     },
     "allow": "Luba",
-    "deny": "Keeldu"
+    "deny": "Keeldu",
+    "activeCall": "Pooleliolev kõne",
+    "countActiveCallMembers": "Pooleliolevas kõnes on {count} osalejat",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Liitu kõnega",
+    "videoCallsBetaWarning": "Palun arvesta, et videokõned on veel beetajärgus. Neis võib olla vigu ja ootamatusi. Kui midagi niisugust peaks juhtuma, siis hea meelega sooviksime sellest teada.",
+    "noDevicesFound": "Ühtegi seadet ei leidu"
 }
