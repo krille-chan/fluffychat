@@ -2761,5 +2761,27 @@
     "unifiedPushDistributors": "Unified Push 分发程序：",
     "doubleTapToReact": "轻按两次回应",
     "doubleTapToReactDescription": "轻按消息两次进行回应而非选中文本",
-    "doubleTapReaction": "轻按两次回应"
+    "doubleTapReaction": "轻按两次回应",
+    "sendingFilesDoNotExit": "正发送 {count} 个文件… 请不要退出！",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "正在压缩视频…",
+    "shareCrashReports": "分享崩溃报告",
+    "shareCrashReportsDescription": "自动与开发者分享崩溃报告",
+    "shareCrashReportsPrompt": "自动与开发者分享崩溃报告吗？访问 {url} 了解分享什么数据的更多信息。",
+    "@shareCrashReportsPrompt": {
+        "placeholders": {
+            "url": {
+                "type": "String"
+            }
+        }
+    },
+    "allow": "允许",
+    "deny": "拒绝"
 }
