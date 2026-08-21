@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyw(){return new B.Lq(A.dy("eu"))},
-Lq:function Lq(d){this.a=d}}
+dyC(){return new B.Lr(A.dy("eu"))},
+Lr:function Lr(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[19],B)
-B.Lq.prototype={
+B.Lr.prototype={
 gph(){return"Edit image"},
 gr3(){return"Rotate left"},
 gr4(){return"Rotate right"},
@@ -607,11 +607,11 @@ goV(){return"Gehitu erantzun-aukera"},
 goX(){return"Baimendu erantzun bat baino gehiago"},
 go0(){return"Bozketa amaitu da"},
 pa(d){var x=null
-return A.aN(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
+return A.aO(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
 gp_(){return"Emaitzak bozketak amaitu duenean egongo dira ikusgai"},
 go7(){return"Erantzun harian"},
 p9(d){var x=null
-return A.aN(d,x,this.a,x,"Erantzun bat",""+d+" erantzun",x,x)},
+return A.aO(d,x,this.a,x,"Erantzun bat",""+d+" erantzun",x,x)},
 gpt(){return"Haria"},
 gp5(){return"Joan txat nagusira"},
 goL(){return"Gorde aldaketak"},
@@ -714,7 +714,7 @@ gq7(){return"Could not be sent"},
 grg(){return"Yesterday"},
 gr_(){return"Reset recovery key"},
 qm(d){var x=null
-return"Forward "+A.aN(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
+return"Forward "+A.aO(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 gq3(){return"This build does not support firebase cloud messaging."},
 gqe(){return"Double-tap to react"},
 gqf(){return"Double-tap a message to react instead of selecting text"},
@@ -731,8 +731,8 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Lq,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"Lq":{"aR":[]}}'))
+x(B.Lr,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"Lr":{"aR":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["IO1LcoUuJnqtrK+3mSkFx+Qv/Ms="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["LSMj4Qb350bah577Eluj8/I66Dw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_294.part.js.map

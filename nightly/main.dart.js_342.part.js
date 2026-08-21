@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyT(){return new B.LN(A.dy("pl"))},
-LN:function LN(d){this.a=d}}
+dyZ(){return new B.LO(A.dy("pl"))},
+LO:function LO(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[42],B)
-B.LN.prototype={
+B.LO.prototype={
 gph(){return"Edit image"},
 gr3(){return"Rotate left"},
 gr4(){return"Rotate right"},
@@ -607,11 +607,11 @@ goV(){return"Dodaj opcj\u0119 odpowiedzi"},
 goX(){return"Zezwalaj na wiele odpowiedzi"},
 go0(){return"Ankieta zosta\u0142a zako\u0144czona"},
 pa(d){var y=""+d
-return A.aN(d,y+" g\u0142osy",this.a,y+" g\u0142os\xf3w",y+" g\u0142os",y+" g\u0142osu",null,null)},
+return A.aO(d,y+" g\u0142osy",this.a,y+" g\u0142os\xf3w",y+" g\u0142os",y+" g\u0142osu",null,null)},
 gp_(){return"Wyniki b\u0119d\u0105 widoczne po zako\u0144czeniu ankiety"},
 go7(){return"Odpowiedz w w\u0105tku"},
 p9(d){var y=""+d,x=y+" odpowiedzi"
-return A.aN(d,x,this.a,x,y+" odpowied\u017a",x,null,null)},
+return A.aO(d,x,this.a,x,y+" odpowied\u017a",x,null,null)},
 gpt(){return"W\u0105tek"},
 gp5(){return"Wr\xf3\u0107 do czatu g\u0142\xf3wnego"},
 goL(){return"Zapisz zmiany"},
@@ -714,7 +714,7 @@ gq7(){return"Nie uda\u0142o si\u0119 wys\u0142a\u0107"},
 grg(){return"Wczoraj"},
 gr_(){return"Zresetuj klucz odzyskiwania"},
 qm(d){var y=null
-return"Przekaza\u0107 "+A.aN(d,y,this.a,y,"jedn\u0105 wiadomo\u015b\u0107",""+d+" wiadomo\u015bci",y,y)+"?"},
+return"Przekaza\u0107 "+A.aO(d,y,this.a,y,"jedn\u0105 wiadomo\u015b\u0107",""+d+" wiadomo\u015bci",y,y)+"?"},
 gq3(){return"This build does not support firebase cloud messaging."},
 gqe(){return"Podw\xf3jne dotkni\u0119cie, aby zareagowa\u0107"},
 gqf(){return"Podw\xf3jne dotkni\u0119cie wiadomo\u015bci reaguje zamiast zaznaczania tekstu"},
@@ -731,7 +731,7 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.LN,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"LN":{"aR":[]}}'))};
-(a=>{a["1f2zaWT2cnlZBsu1++Z+D8TJljo="]=a.current})($__dart_deferred_initializers__);
+y(B.LO,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"LO":{"aR":[]}}'))};
+(a=>{a["+zhHednEEtJxW2v6I84KU/eXzjg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_342.part.js.map

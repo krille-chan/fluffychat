@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dz8(){return new B.M1(A.dy("uz"))},
-M1:function M1(d){this.a=d}}
+dze(){return new B.M2(A.dy("uz"))},
+M2:function M2(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[55],B)
-B.M1.prototype={
+B.M2.prototype={
 gph(){return"Edit image"},
 gr3(){return"Rotate left"},
 gr4(){return"Rotate right"},
@@ -607,11 +607,11 @@ goV(){return"Javob variantini kiritish"},
 goX(){return"Bir nechta javobga ruxsat berish"},
 go0(){return"So\u2018rovnoma yakunlandi"},
 pa(d){var x=null
-return A.aN(d,x,this.a,x,"Bir ovoz",""+d+" ta ovoz",x,x)},
+return A.aO(d,x,this.a,x,"Bir ovoz",""+d+" ta ovoz",x,x)},
 gp_(){return"So\u2018rovnoma tugaganida javoblar chiqadi"},
 go7(){return"Sahifada javob berish"},
 p9(d){var x=null
-return A.aN(d,x,this.a,x,"Bitta javob",""+d+" ta javob",x,x)},
+return A.aO(d,x,this.a,x,"Bitta javob",""+d+" ta javob",x,x)},
 gpt(){return"Sahifa"},
 gp5(){return"Asosiy suhbatga qaytish"},
 goL(){return"O\u2018zgarishlarni saqlash"},
@@ -714,7 +714,7 @@ gq7(){return"Could not be sent"},
 grg(){return"Yesterday"},
 gr_(){return"Reset recovery key"},
 qm(d){var x=null
-return"Forward "+A.aN(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
+return"Forward "+A.aO(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 gq3(){return"This build does not support firebase cloud messaging."},
 gqe(){return"Double-tap to react"},
 gqf(){return"Double-tap a message to react instead of selecting text"},
@@ -731,8 +731,8 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.M1,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"M1":{"aR":[]}}'))
+x(B.M2,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"M2":{"aR":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["1/Wkbakd5eZUDGjB7vGuuTyopZ8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["q7cpj7bTp/qZMvwH3//lRy3+cpU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map

@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-dyU(d){return new A.EZ(B.dy(d))},
-dyV(){return new A.LO(B.dy("pt_BR"))},
-dyW(){return new A.LP(B.dy("pt_PT"))},
-EZ:function EZ(d){this.a=d},
-LO:function LO(d){this.a=d},
-LP:function LP(d){this.a=d}},C
+dz_(d){return new A.F0(B.dy(d))},
+dz0(){return new A.LP(B.dy("pt_BR"))},
+dz1(){return new A.LQ(B.dy("pt_PT"))},
+F0:function F0(d){this.a=d},
+LP:function LP(d){this.a=d},
+LQ:function LQ(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[58]
-A.EZ.prototype={
+A.F0.prototype={
 gph(){return"Edit image"},
 gr3(){return"Rotate left"},
 gr4(){return"Rotate right"},
@@ -133,7 +133,7 @@ gj9(){return"Copy to clipboard"},
 ja(d){return"Could not decrypt message: "+d},
 gmo(){return"Check list"},
 er(d){var x=null
-return B.aN(d,x,this.a,x,"1 participant",""+d+" participants",x,x)},
+return B.aO(d,x,this.a,x,"1 participant",""+d+" participants",x,x)},
 jc(d){return""+d+" invited"},
 gjd(d){return"Create"},
 je(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -612,11 +612,11 @@ goV(){return"Add answer option"},
 goX(){return"Allow multiple answers"},
 go0(){return"Poll has been ended"},
 pa(d){var x=null
-return B.aN(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
+return B.aO(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 gp_(){return"Answers will be visible when poll has ended"},
 go7(){return"Reply in thread"},
 p9(d){var x=null
-return B.aN(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+return B.aO(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
 gpt(){return"Thread"},
 gp5(){return"Back to main chat"},
 goL(){return"Save changes"},
@@ -719,7 +719,7 @@ gq7(){return"Could not be sent"},
 grg(){return"Yesterday"},
 gr_(){return"Reset recovery key"},
 qm(d){var x=null
-return"Forward "+B.aN(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
+return"Forward "+B.aO(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 gq3(){return"This build does not support firebase cloud messaging."},
 gqe(){return"Double-tap to react"},
 gqf(){return"Double-tap a message to react instead of selecting text"},
@@ -735,7 +735,7 @@ gqj(){return"Enter call"},
 gre(){return"Video calls are a beta feature. There might be bugs or unexpected behavior. We would be happy to hear about your feedback."},
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
-A.LO.prototype={
+A.LP.prototype={
 gkU(){return"Repita a senha"},
 gks(){return"N\xe3o \xe9 um arquivo de imagem."},
 gbA(d){return"Remover"},
@@ -1324,11 +1324,11 @@ goV(){return"Adicionar op\xe7\xe3o de resposta"},
 goX(){return"Permitir v\xe1rias respostas"},
 go0(){return"A enquete terminou"},
 pa(d){var x=null
-return B.aN(d,x,this.a,x,"Um voto",""+d+" votos",x,x)},
+return B.aO(d,x,this.a,x,"Um voto",""+d+" votos",x,x)},
 gp_(){return"As respostas ficar\xe3o vis\xedveis quando a enquete terminar"},
 go7(){return"Responder no t\xf3pico"},
 p9(d){var x=null
-return B.aN(d,x,this.a,x,"Uma resposta",""+d+" respostas",x,x)},
+return B.aO(d,x,this.a,x,"Uma resposta",""+d+" respostas",x,x)},
 gpt(){return"T\xf3pico"},
 gp5(){return"Voltar \xe0 conversa principal"},
 goL(){return"Salvar altera\xe7\xf5es"},
@@ -1343,7 +1343,7 @@ goO(){return"Pular backup de conversas"},
 goP(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 py(d){return"Vers\xe3o: "+d},
 D(d,e){return this.gbA(this).$1(e)}}
-A.LP.prototype={
+A.LQ.prototype={
 gkU(){return"Repete a palavra-passe"},
 gks(){return"N\xe3o \xe9 um ficheiro de imagem."},
 gbA(d){return"Remover"},
@@ -1685,9 +1685,9 @@ gkD(){return"Por favor introduza um n\xfamero maior que 0"},
 gf3(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3o ver deixou o chat."},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.EZ,C.aR)
-w(A.EZ,[A.LO,A.LP])})()
-B.eb(b.typeUniverse,JSON.parse('{"EZ":{"aR":[]},"LO":{"aR":[]},"LP":{"aR":[]}}'))
+x(A.F0,C.aR)
+w(A.F0,[A.LP,A.LQ])})()
+B.eb(b.typeUniverse,JSON.parse('{"F0":{"aR":[]},"LP":{"aR":[]},"LQ":{"aR":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["8lgFEh1D/0jIWxdpeIY9s+OnxDw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+wxKdBpsWfFDtkBru9kDoTU1iZU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

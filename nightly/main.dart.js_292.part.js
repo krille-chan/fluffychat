@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyv(){return new B.Lp(A.dy("et"))},
-Lp:function Lp(d){this.a=d}}
+dyB(){return new B.Lq(A.dy("et"))},
+Lq:function Lq(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[18],B)
-B.Lp.prototype={
+B.Lq.prototype={
 gph(){return"Muuda pilti"},
 gr3(){return"P\xf6\xf6ra vasakule"},
 gr4(){return"P\xf6\xf6ra paremale"},
@@ -607,11 +607,11 @@ goV(){return"Lisa valikvastus"},
 goX(){return"Luba mitu vastusevalikut"},
 go0(){return"K\xfcsitlus on l\xf5ppenud"},
 pa(d){var y=null
-return A.aN(d,y,this.a,y,"\xdcks h\xe4\xe4l",""+d+" h\xe4\xe4lt",y,y)},
+return A.aO(d,y,this.a,y,"\xdcks h\xe4\xe4l",""+d+" h\xe4\xe4lt",y,y)},
 gp_(){return"Vastused on n\xe4ha k\xfcsitluse l\xf5ppedes"},
 go7(){return"Vasta jutul\xf5ngas"},
 p9(d){var y=null
-return A.aN(d,y,this.a,y,"\xdcks vastus",""+d+" vastust",y,y)},
+return A.aO(d,y,this.a,y,"\xdcks vastus",""+d+" vastust",y,y)},
 gpt(){return"Jutul\xf5ng"},
 gp5(){return"Tagasi p\xf5hivestlusesse"},
 goL(){return"Salvesta muudatused"},
@@ -714,7 +714,7 @@ gq7(){return"Saatmine ei \xf5nnestunud"},
 grg(){return"Eile"},
 gr_(){return"L\xe4htesta taastev\xf5ti"},
 qm(d){var y=null
-return"Kas edastad "+A.aN(d,y,this.a,y,"\xfche s\xf5numi",""+d+" s\xf5numit",y,y)+"?"},
+return"Kas edastad "+A.aO(d,y,this.a,y,"\xfche s\xf5numi",""+d+" s\xf5numit",y,y)+"?"},
 gq3(){return"See kompileeritud variant ei toeta Firebase Cloud Messaging teenust."},
 gqe(){return"Reageerimiseks topeltkl\xf5psa"},
 gqf(){return"Teksti valimise asemel saad reageerida s\xf5numil topeltkl\xf5psamisega"},
@@ -731,7 +731,7 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Lp,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"Lp":{"aR":[]}}'))};
-(a=>{a["bgJN3sxtpbpaNuLGrSQxqUYGvcM="]=a.current})($__dart_deferred_initializers__);
+y(B.Lq,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"Lq":{"aR":[]}}'))};
+(a=>{a["ltXWxZE0fOA0zrcgt/AS/rwoydQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_292.part.js.map

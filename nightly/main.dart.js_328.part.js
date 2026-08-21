@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyK(){return new B.LE(A.dy("it"))},
-LE:function LE(d){this.a=d}}
+dyQ(){return new B.LF(A.dy("it"))},
+LF:function LF(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[33],B)
-B.LE.prototype={
+B.LF.prototype={
 gph(){return"Modifica immagine"},
 gr3(){return"Ruota a sinistra"},
 gr4(){return"Ruota a destra"},
@@ -129,7 +129,7 @@ gj9(){return"Copia negli appunti"},
 ja(d){return"Impossibile decriptare messaggio: "+d},
 gmo(){return"Checklist"},
 er(d){var y=null
-return A.aN(d,y,this.a,y,"1 partecipante",""+d+" partecipanti",y,y)},
+return A.aO(d,y,this.a,y,"1 partecipante",""+d+" partecipanti",y,y)},
 jc(d){return""+d+" invitati"},
 gjd(d){return"Crea"},
 je(d){return"\ud83d\udcac "+d+" ha creato la chat"},
@@ -597,7 +597,7 @@ gmG(){return"Rifiuta invito"},
 gpm(){return"Ancora nessun messaggio"},
 gpq(){return"La chat verr\xe0 rimossa dallo spazio ma apparir\xe0 ancora nella tua lista delle chat."},
 p8(d){var y=null
-return A.aN(d,y,this.a,y,"1 chat",""+d+" chats",y,y)},
+return A.aO(d,y,this.a,y,"1 chat",""+d+" chats",y,y)},
 oQ(d){return"Membro dello spazio "+d},
 oR(d){return"Membro dello spazio "+d+" pu\xf2 bussare"},
 ghW(){return"Avvia il sondaggio"},
@@ -609,11 +609,11 @@ goV(){return"Aggiungi opzione di risposta"},
 goX(){return"Consenti risposte multiple"},
 go0(){return"Il sondaggio \xe8 stato concluso"},
 pa(d){var y=null
-return A.aN(d,y,this.a,y,"Un voto",""+d+" voti",y,y)},
+return A.aO(d,y,this.a,y,"Un voto",""+d+" voti",y,y)},
 gp_(){return"Le risposte saranno visibili quando il sondaggio sar\xe0 terminato"},
 go7(){return"Rispondi in thread"},
 p9(d){var y=null
-return A.aN(d,y,this.a,y,"Una risposta",""+d+" risposte",y,y)},
+return A.aO(d,y,this.a,y,"Una risposta",""+d+" risposte",y,y)},
 gpt(){return"Thread"},
 gp5(){return"Torna alla chat principale"},
 goL(){return"Salva modifiche"},
@@ -716,7 +716,7 @@ gq7(){return"Could not be sent"},
 grg(){return"Yesterday"},
 gr_(){return"Reset recovery key"},
 qm(d){var y=null
-return"Forward "+A.aN(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gq3(){return"This build does not support firebase cloud messaging."},
 gqe(){return"Double-tap to react"},
 gqf(){return"Double-tap a message to react instead of selecting text"},
@@ -733,7 +733,7 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.LE,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"LE":{"aR":[]}}'))};
-(a=>{a["Zw4w4XmFelzaonNGIfNrRtKkIcY="]=a.current})($__dart_deferred_initializers__);
+y(B.LF,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"LF":{"aR":[]}}'))};
+(a=>{a["GuAkyp2eUckZ01hcBjaJ00uH6bE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_328.part.js.map

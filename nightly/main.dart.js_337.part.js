@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyR(){return new B.LL(A.dy("nb"))},
-LL:function LL(d){this.a=d}}
+dyX(){return new B.LM(A.dy("nb"))},
+LM:function LM(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[40],B)
-B.LL.prototype={
+B.LM.prototype={
 gph(){return"Rediger bilde"},
 gr3(){return"Roter til venstre"},
 gr4(){return"Roter til h\xf8yre"},
@@ -129,7 +129,7 @@ gj9(){return"Kopier til utklippstavle"},
 ja(d){return"Kunne ikke dekryptere melding: "+d},
 gmo(){return"Sjekkliste"},
 er(d){var y=null
-return A.aN(d,y,this.a,y,"1 deltaker",""+d+" deltakere",y,y)},
+return A.aO(d,y,this.a,y,"1 deltaker",""+d+" deltakere",y,y)},
 jc(d){return""+d+" inviterte"},
 gjd(d){return"Opprett"},
 je(d){return d+" opprettet sludringen"},
@@ -608,11 +608,11 @@ goV(){return"Legg til svaralternativ"},
 goX(){return"Tillat flere svar"},
 go0(){return"Avstemningen er avsluttet"},
 pa(d){var y=null
-return A.aN(d,y,this.a,y,"En stemme",""+d+" stemmer",y,y)},
+return A.aO(d,y,this.a,y,"En stemme",""+d+" stemmer",y,y)},
 gp_(){return"Svarene vil v\xe6re synlige n\xe5r avstemningen er avsluttet"},
 go7(){return"Svar i tr\xe5den"},
 p9(d){var y=null
-return A.aN(d,y,this.a,y,"Et svar",""+d+" svar",y,y)},
+return A.aO(d,y,this.a,y,"Et svar",""+d+" svar",y,y)},
 gpt(){return"Tr\xe5d"},
 gp5(){return"Tilbake til hovedchatten"},
 goL(){return"Lagre endringer"},
@@ -715,7 +715,7 @@ gq7(){return"Kunne ikke sendes"},
 grg(){return"I g\xe5r"},
 gr_(){return"Tilbakestill gjenopprettingsn\xf8kkel"},
 qm(d){var y=null
-return"Videresend "+A.aN(d,y,this.a,y,"en melding",""+d+" meldinger",y,y)+"?"},
+return"Videresend "+A.aO(d,y,this.a,y,"en melding",""+d+" meldinger",y,y)+"?"},
 gq3(){return"Denne versjonen st\xf8tter ikke Firebase Cloud Messaging."},
 gqe(){return"Dubbelttrykk for \xe5 reagere"},
 gqf(){return"Dobbelt-trykk p\xe5 en melding for \xe5 reagere i stedet for \xe5 merke tekst"},
@@ -732,7 +732,7 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.LL,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"LL":{"aR":[]}}'))};
-(a=>{a["lS9cr+D+Ot9hfXdRExrYF8clGVA="]=a.current})($__dart_deferred_initializers__);
+y(B.LM,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"LM":{"aR":[]}}'))};
+(a=>{a["553mZhu7Aq3tRo3QDnjBsPgBWsk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_337.part.js.map

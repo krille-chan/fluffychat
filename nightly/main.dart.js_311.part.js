@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyF(){return new B.Lz(A.dy("hr"))},
-Lz:function Lz(d){this.a=d}}
+dyL(){return new B.LA(A.dy("hr"))},
+LA:function LA(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[28],B)
-B.Lz.prototype={
+B.LA.prototype={
 gph(){return"Edit image"},
 gr3(){return"Rotate left"},
 gr4(){return"Rotate right"},
@@ -129,7 +129,7 @@ gj9(){return"Kopiraj u me\u0111uspremnik"},
 ja(d){return"Neuspjelo de\u0161ifriranje poruke: "+d},
 gmo(){return"Kontrolni popis"},
 er(d){var y=""+d+" sudionika"
-return A.aN(d,y,this.a,null,"1 sudionik",y,null,null)},
+return A.aO(d,y,this.a,null,"1 sudionik",y,null,null)},
 jc(d){return"Broj pozvanih: "+d},
 gjd(d){return"Stvori"},
 je(d){return"\ud83d\udcac "+d+" je stvorio/la chat"},
@@ -608,11 +608,11 @@ goV(){return"Dodaj opciju za odgovor"},
 goX(){return"Dopusti vi\u0161e odgovora"},
 go0(){return"Anketa je zavr\u0161ena"},
 pa(d){var y=""+d
-return A.aN(d,y+" glasa",this.a,null,"Jedan glas",y+" glasova",null,null)},
+return A.aO(d,y+" glasa",this.a,null,"Jedan glas",y+" glasova",null,null)},
 gp_(){return"Odgovori \u0107e biti vidljivi nakon zavr\u0161etka ankete"},
 go7(){return"Odgovori u temi"},
 p9(d){var y=""+d+" odgovora"
-return A.aN(d,y,this.a,null,"Jedan odgovor",y,null,null)},
+return A.aO(d,y,this.a,null,"Jedan odgovor",y,null,null)},
 gpt(){return"Tema"},
 gp5(){return"Natrag na glavni chat"},
 goL(){return"Spremi promjene"},
@@ -715,7 +715,7 @@ gq7(){return"Could not be sent"},
 grg(){return"Yesterday"},
 gr_(){return"Reset recovery key"},
 qm(d){var y=null
-return"Forward "+A.aN(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gq3(){return"This build does not support firebase cloud messaging."},
 gqe(){return"Double-tap to react"},
 gqf(){return"Double-tap a message to react instead of selecting text"},
@@ -732,7 +732,7 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Lz,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"Lz":{"aR":[]}}'))};
-(a=>{a["Uakn3hqFaUk13XDyL8Hyf5UUK3c="]=a.current})($__dart_deferred_initializers__);
+y(B.LA,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"LA":{"aR":[]}}'))};
+(a=>{a["bWJiORaKyHRYuUTPj6CA+tuwOUo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_311.part.js.map

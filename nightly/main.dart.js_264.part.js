@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyo(){return new B.Li(A.dy("cs"))},
-Li:function Li(d){this.a=d}}
+dyu(){return new B.Lj(A.dy("cs"))},
+Lj:function Lj(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[11],B)
-B.Li.prototype={
+B.Lj.prototype={
 gph(){return"Edit image"},
 gr3(){return"Rotate left"},
 gr4(){return"Rotate right"},
@@ -607,11 +607,11 @@ goV(){return"P\u0159idat mo\u017enost"},
 goX(){return"Povolit v\xedce odpov\u011bd\xed"},
 go0(){return"Hlasov\xe1n\xed skon\u010dilo"},
 pa(d){var y=null
-return A.aN(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aO(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gp_(){return"Odpov\u011bdi budou viditeln\xe9 jakmile hlasov\xe1n\xed skon\u010d\xed"},
 go7(){return"Odpov\u011bd\u011bt ve vl\xe1kn\u011b"},
 p9(d){var y=null
-return A.aN(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aO(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpt(){return"Vl\xe1kno"},
 gp5(){return"Zp\xe1tky do hlavn\xedho chatu"},
 goL(){return"Ulo\u017eit zm\u011bny"},
@@ -714,7 +714,7 @@ gq7(){return"Could not be sent"},
 grg(){return"Yesterday"},
 gr_(){return"Reset recovery key"},
 qm(d){var y=null
-return"Forward "+A.aN(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gq3(){return"This build does not support firebase cloud messaging."},
 gqe(){return"Double-tap to react"},
 gqf(){return"Double-tap a message to react instead of selecting text"},
@@ -731,7 +731,7 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Li,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"Li":{"aR":[]}}'))};
-(a=>{a["zT0SQNWQrEPRi58QypbVcFEg5xU="]=a.current})($__dart_deferred_initializers__);
+y(B.Lj,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"Lj":{"aR":[]}}'))};
+(a=>{a["XzGVID7jaitf2P68QDWJrJMVcwI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_264.part.js.map

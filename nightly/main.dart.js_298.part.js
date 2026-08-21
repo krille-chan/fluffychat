@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyy(){return new B.Ls(A.dy("fi"))},
-Ls:function Ls(d){this.a=d}}
+dyE(){return new B.Lt(A.dy("fi"))},
+Lt:function Lt(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[21],B)
-B.Ls.prototype={
+B.Lt.prototype={
 gph(){return"Edit image"},
 gr3(){return"Rotate left"},
 gr4(){return"Rotate right"},
@@ -607,11 +607,11 @@ goV(){return"Lis\xe4\xe4 vastausvaihtoehto"},
 goX(){return"Salli useita vastauksia"},
 go0(){return"Kysely on p\xe4\xe4ttynyt"},
 pa(d){var y=null
-return A.aN(d,y,this.a,y,"One vote",""+d+" \xe4\xe4nt\xe4",y,y)},
+return A.aO(d,y,this.a,y,"One vote",""+d+" \xe4\xe4nt\xe4",y,y)},
 gp_(){return"Vastaukset n\xe4kyv\xe4t, kun kysely on p\xe4\xe4ttynyt"},
 go7(){return"Vastaa ketjussa"},
 p9(d){var y=null
-return A.aN(d,y,this.a,y,"One reply",""+d+" vastausta",y,y)},
+return A.aO(d,y,this.a,y,"One reply",""+d+" vastausta",y,y)},
 gpt(){return"Ketju"},
 gp5(){return"Takaisin p\xe4\xe4pikakeskusteluun"},
 goL(){return"Save changes"},
@@ -714,7 +714,7 @@ gq7(){return"Could not be sent"},
 grg(){return"Yesterday"},
 gr_(){return"Reset recovery key"},
 qm(d){var y=null
-return"Forward "+A.aN(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gq3(){return"This build does not support firebase cloud messaging."},
 gqe(){return"Double-tap to react"},
 gqf(){return"Double-tap a message to react instead of selecting text"},
@@ -731,7 +731,7 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ls,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"Ls":{"aR":[]}}'))};
-(a=>{a["YJVLphWzT32cnwt2mIcvQrSMP3c="]=a.current})($__dart_deferred_initializers__);
+y(B.Lt,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"Lt":{"aR":[]}}'))};
+(a=>{a["p+BpKLHesMS3tBMevACxyyNbgOs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_298.part.js.map

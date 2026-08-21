@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-dyx(){return new A.Lr(B.dy("fa"))},
-Lr:function Lr(d){this.a=d}}
+dyD(){return new A.Ls(B.dy("fa"))},
+Ls:function Ls(d){this.a=d}}
 B=c[0]
 C=c[58]
 A=a.updateHolder(c[20],A)
-A.Lr.prototype={
+A.Ls.prototype={
 gph(){return"Edit image"},
 gr3(){return"Rotate left"},
 gr4(){return"Rotate right"},
@@ -712,7 +712,7 @@ gq7(){return"Could not be sent"},
 grg(){return"Yesterday"},
 gr_(){return"Reset recovery key"},
 qm(d){var y=null
-return"Forward "+B.aN(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+B.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gq3(){return"This build does not support firebase cloud messaging."},
 gqe(){return"Double-tap to react"},
 gqf(){return"Double-tap a message to react instead of selecting text"},
@@ -729,7 +729,7 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Lr,C.aR)})()
-B.eb(b.typeUniverse,JSON.parse('{"Lr":{"aR":[]}}'))};
-(a=>{a["LEWtlaa+dUqg79xCdSZNXhwEKEE="]=a.current})($__dart_deferred_initializers__);
+y(A.Ls,C.aR)})()
+B.eb(b.typeUniverse,JSON.parse('{"Ls":{"aR":[]}}'))};
+(a=>{a["Pz2V/45gRHJdJ+t0kZbX1NDB5ts="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_296.part.js.map
