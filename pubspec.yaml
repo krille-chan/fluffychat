@@ -59,7 +59,7 @@ dependencies:
   livekit_client: ^2.11.0
   local_auth: ^3.0.2
   material_ui: any
-  matrix: ^10.1.0
+  matrix: ^10.2.1
   mime: ^2.0.0
   native_imaging: ^0.5.0
   opus_caf_converter_dart: ^1.0.1
