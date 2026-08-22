@@ -456,6 +456,7 @@ class InputBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
           clipBehavior: Clip.hardEdge,
           child: ListView.builder(
+            padding: EdgeInsets.zero,
             shrinkWrap: true,
             itemCount: suggestions.length,
             itemBuilder: (context, i) => buildSuggestion(
