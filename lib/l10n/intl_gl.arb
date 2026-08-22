@@ -2761,5 +2761,39 @@
     "unifiedPushDistributors": "Distribuidores Unified Push:",
     "doubleTapToReact": "Doble toque para reaccionar",
     "doubleTapToReactDescription": "Fai doble toque nunha mensaxe para engadir reacción no lugar de seleccionar o texto",
-    "doubleTapReaction": "Reacción con doble toque"
+    "doubleTapReaction": "Reacción con doble toque",
+    "sendingFilesDoNotExit": "Enviando {count} ficheiros… Non saias!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Comprimindo o vídeo…",
+    "shareCrashReports": "Compartir informe dos fallos",
+    "shareCrashReportsDescription": "Compartir de xeito automático coas desenvolvedoras os informes dos fallos",
+    "shareCrashReportsPrompt": "Compartir os informes dos fallos co desenvolvemento? Comproba en {url} o tipo de datos que se comparten.",
+    "@shareCrashReportsPrompt": {
+        "placeholders": {
+            "url": {
+                "type": "String"
+            }
+        }
+    },
+    "allow": "Permitir",
+    "deny": "Non permitir",
+    "activeCall": "Chamada activa",
+    "countActiveCallMembers": "{count} participantes na chamada activa",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Entrar na chamada",
+    "videoCallsBetaWarning": "As chamadas de vídeo son unha función en probas. Podería haber fallos ou comportamentos non agardados. Apreciamos que nos contes que tal funcionan.",
+    "noDevicesFound": "Non se atopan dispositivos"
 }
