@@ -48,6 +48,10 @@ platform :android do
       track: 'internal',
       aab: '../build/app/outputs/bundle/release/app-release.aab',
       version_code: "#{last_version+1}",
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      skip_upload_changelogs: true,
     )
   end
 
@@ -56,6 +60,9 @@ platform :android do
       track: 'internal',
       track_promote_to: "beta",
       deactivate_on_promote: false,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
       skip_upload_changelogs: true,
     )
   end
@@ -65,6 +72,9 @@ platform :android do
       track: 'internal',
       track_promote_to: "production",
       deactivate_on_promote: false,
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
       skip_upload_changelogs: true,
     )
   end
