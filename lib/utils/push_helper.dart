@@ -320,29 +320,37 @@ Future<void> _tryPushHelper(
     importance: Importance.high,
     priority: Priority.max,
     groupKey: client.clientName,
-    actions: event.type == EventTypes.RoomMember
-        ? null
-        : <AndroidNotificationAction>[
-            AndroidNotificationAction(
-              FluffyChatNotificationActions.reply.name,
-              l10n.reply,
-              inputs: [
-                AndroidNotificationActionInput(label: l10n.writeAMessage),
-              ],
-              allowGeneratedReplies: true,
-              semanticAction: SemanticAction.reply,
-            ),
-            AndroidNotificationAction(
-              FluffyChatNotificationActions.markAsRead.name,
-              l10n.markAsRead,
-              semanticAction: SemanticAction.markAsRead,
-            ),
-            AndroidNotificationAction(
-              FluffyChatNotificationActions.mute.name,
-              l10n.mute,
-              semanticAction: SemanticAction.mute,
-            ),
-          ],
+    actions: switch (event.type) {
+      EventTypes.Message ||
+      EventTypes.Encrypted ||
+      EventTypes.Sticker => <AndroidNotificationAction>[
+        AndroidNotificationAction(
+          FluffyChatNotificationActions.reply.name,
+          l10n.reply,
+          inputs: [AndroidNotificationActionInput(label: l10n.writeAMessage)],
+          allowGeneratedReplies: true,
+          semanticAction: SemanticAction.reply,
+        ),
+        AndroidNotificationAction(
+          FluffyChatNotificationActions.markAsRead.name,
+          l10n.markAsRead,
+          semanticAction: SemanticAction.markAsRead,
+        ),
+        AndroidNotificationAction(
+          FluffyChatNotificationActions.mute.name,
+          l10n.mute,
+          semanticAction: SemanticAction.mute,
+        ),
+      ],
+      RtcNotificationContent.eventType => [
+        AndroidNotificationAction(
+          FluffyChatNotificationActions.enterCall.name,
+          l10n.enterCall,
+          semanticAction: SemanticAction.call,
+        ),
+      ],
+      _ => null,
+    },
   );
   final iOSAttachmentPath = PlatformInfos.isIOS
       ? await client.getIosNotificationAvatar(event.room.avatar)

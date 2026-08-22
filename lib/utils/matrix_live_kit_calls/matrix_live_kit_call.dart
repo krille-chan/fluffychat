@@ -234,6 +234,7 @@ extension MatrixRtcRoomExtension on Room {
     if (urls.isEmpty) {
       throw Exception('This server does not support livekit calls!');
     }
+    final hasActiveMatrixRtcCall = this.hasActiveMatrixRtcCall;
 
     Logs().d(
       '[Join MatrixRtc Call] (2/5) Set "${MatrixRtcCallMember.eventType}" State event...',
@@ -251,11 +252,13 @@ extension MatrixRtcRoomExtension on Room {
       intent: intent,
     );
 
-    final dmUserId = directChatMatrixID;
-    if (dmUserId != null) {
-      await sendRtcNotification(type: .ring, userIds: [dmUserId]);
-    } else {
-      await sendRtcNotification(type: .notification, mentionRoom: true);
+    if (!hasActiveMatrixRtcCall) {
+      final dmUserId = directChatMatrixID;
+      if (dmUserId != null) {
+        await sendRtcNotification(type: .ring, userIds: [dmUserId]);
+      } else {
+        await sendRtcNotification(type: .notification, mentionRoom: true);
+      }
     }
 
     Logs().v('[Join MatrixRtc Call] (3/5) Request OpenId Token...');

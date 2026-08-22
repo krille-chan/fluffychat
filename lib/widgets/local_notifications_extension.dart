@@ -90,16 +90,27 @@ extension LocalNotificationsExtension on MatrixState {
       notificationDetails: NotificationDetails(
         linux: LinuxNotificationDetails(
           sound: ThemeLinuxSound('message-new-instant'),
-          actions: [
-            LinuxNotificationAction(
-              key: FluffyChatNotificationActions.markAsRead.name,
-              label: l10n.markAsRead,
-            ),
-            LinuxNotificationAction(
-              key: FluffyChatNotificationActions.mute.name,
-              label: l10n.mute,
-            ),
-          ],
+          actions: switch (event.type) {
+            EventTypes.Message ||
+            EventTypes.Encrypted ||
+            EventTypes.Sticker => [
+              LinuxNotificationAction(
+                key: FluffyChatNotificationActions.markAsRead.name,
+                label: l10n.markAsRead,
+              ),
+              LinuxNotificationAction(
+                key: FluffyChatNotificationActions.mute.name,
+                label: l10n.mute,
+              ),
+            ],
+            RtcNotificationContent.eventType => [
+              LinuxNotificationAction(
+                key: FluffyChatNotificationActions.enterCall.name,
+                label: l10n.enterCall,
+              ),
+            ],
+            _ => [],
+          },
         ),
       ),
       payload: FluffyChatPushPayload(
