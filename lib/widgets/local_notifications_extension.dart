@@ -18,7 +18,7 @@ import 'package:universal_html/html.dart' as html;
 
 extension LocalNotificationsExtension on MatrixState {
   static final html.AudioElement _audioPlayer = html.AudioElement()
-    ..src = 'assets/assets/sounds/notification.ogg'
+    ..src = 'assets/assets/sounds/notification.mp3'
     ..load();
 
   Future<void> showLocalNotification(Event event) async {

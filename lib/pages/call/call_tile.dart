@@ -91,8 +91,8 @@ class CallTile extends StatelessWidget {
               ),
             ),
           Positioned(
-            bottom: 4,
-            left: 4,
+            bottom: 8,
+            left: 8,
             child: Material(
               elevation: theme.appBarTheme.elevation ?? 4,
               shadowColor: theme.appBarTheme.shadowColor,
