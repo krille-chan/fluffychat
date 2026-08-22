@@ -75,6 +75,7 @@
 	<string>Share data with your contacts in FluffyChat.</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>voip</string>
 		<string>audio</string>
 		<string>fetch</string>
 		<string>processing</string>

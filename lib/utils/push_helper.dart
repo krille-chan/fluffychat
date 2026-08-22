@@ -12,6 +12,7 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/call_kit_params.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/notification_avatar_extension.dart';
@@ -19,6 +20,7 @@ import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/start_push_foreground_service.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
@@ -105,13 +107,6 @@ Future<void> _tryPushHelper(
     notification.toJson(),
   );
 
-  if (notification.roomId != null &&
-      activeRoomId == notification.roomId &&
-      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
-    Logs().v('Room is in foreground. Stop push helper here.');
-    return;
-  }
-
   final clientName = notification.clientName;
   final store = await AppSettings.init();
 
@@ -185,25 +180,29 @@ Future<void> _tryPushHelper(
     return;
   }
 
-  if (event.type.startsWith('m.call')) {
-    // make sure bg sync is on (needed to update hold, unhold events)
-    // prevent over write from app life cycle change
-    client.backgroundSync = true;
-  }
+  if (event.type == RtcNotificationContent.eventType &&
+      event.tryParseRtcNotificationContent()?.notificationType == .ring &&
+      PlatformInfos.isMobile) {
+    final callId = '${event.room.id}|${event.room.client.clientName}';
+    final activeCalls = await FlutterCallkitIncoming.activeCalls();
+    if (activeCalls.any((call) => call.id == callId)) {
+      Logs().d(
+        'Call with this ID is already active. Ignoring this Push Notification...',
+        callId,
+      );
+      return;
+    }
+    await FlutterCallkitIncoming.showCallkitIncoming(
+      buildFluffyChatCallKitParams(event.room, l10n),
+    );
 
-  if (event.type == EventTypes.CallHangup) {
-    client.backgroundSync = false;
-  }
-
-  if (event.type.startsWith('m.call') && event.type != EventTypes.CallInvite) {
-    Logs().v('Push message is a m.call but not invite. Do not display.');
     return;
   }
 
-  if ((event.type.startsWith('m.call') &&
-          event.type != EventTypes.CallInvite) ||
-      event.type == 'org.matrix.call.sdp_stream_metadata_changed') {
-    Logs().v('Push message was for a call, but not call invite.');
+  if (notification.roomId != null &&
+      activeRoomId == notification.roomId &&
+      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
+    Logs().v('Room is in foreground. Stop push helper here.');
     return;
   }
 

@@ -8,9 +8,11 @@ import 'package:flutter/material.dart';
 class PulsatingWidget extends StatefulWidget {
   final Color color;
   final Widget child;
+  final double spreadRadius;
   const PulsatingWidget({
     required this.child,
     this.color = Colors.red,
+    this.spreadRadius = 1.0,
     super.key,
   });
 
@@ -39,7 +41,7 @@ class _PulsatingWidgetState extends State<PulsatingWidget>
         BoxShadow(
           color: widget.color.withAlpha(128),
           blurRadius: 0.0,
-          spreadRadius: 1.0,
+          spreadRadius: widget.spreadRadius,
         ),
       ],
     ),

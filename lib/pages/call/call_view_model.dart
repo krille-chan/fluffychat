@@ -9,14 +9,17 @@ import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/call_kit_params.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/call_keys_event_content.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call_member.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/position_from_build_context.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:flutter_webrtc/flutter_webrtc.dart' as rtc;
 import 'package:just_audio/just_audio.dart';
 import 'package:livekit_client/livekit_client.dart' as lk;
@@ -37,6 +40,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
   DateTime? startTime;
   StreamSubscription? _onCallEncryptionKeysSub, _onCallMembersChanged;
   Timer? _resendCallMemberState;
+  bool waitForOtherSide = false;
+  String? callKitId;
 
   Set<String> _lastSharedParticipants = {};
   DateTime? _keyCreatedAt;
@@ -207,10 +212,18 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     value.localAudioTrack?.addListener(notifyListeners);
     notifyListeners();
 
-    liveKitRoom.events.on<lk.ParticipantConnectedEvent>((event) {
+    liveKitRoom.events.on<lk.ParticipantConnectedEvent>((event) async {
       if (event.participant.identity ==
           liveKitRoom.localParticipant?.identity) {
         return;
+      }
+      if (waitForOtherSide) {
+        waitForOtherSide = false;
+        await _audioPlayer.stop();
+        final callKitId = this.callKitId;
+        if (callKitId != null) {
+          await FlutterCallkitIncoming.setCallConnected(callKitId);
+        }
       }
       _playJoinSound();
     });
@@ -301,7 +314,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     }
   }
 
-  Future<void> connect() async {
+  Future<void> connect(BuildContext context) async {
+    final l10n = L10n.of(context);
     final playWaitingSound = !room.hasActiveMatrixRtcCall && room.isDirectChat;
 
     final credentials = await room.joinMatrixRtcCall();
@@ -336,9 +350,30 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       );
     });
     startTime = DateTime.now();
+
+    if (PlatformInfos.isMobile) {
+      final activeCalls = await FlutterCallkitIncoming.activeCalls();
+      callKitId = activeCalls
+          .firstWhereOrNull(
+            (call) =>
+                call.extra?['roomId'] == room.id &&
+                call.extra?['clientName'] == room.client.clientName,
+          )
+          ?.id;
+      if (callKitId == null) {
+        final params = buildFluffyChatCallKitParams(room, l10n);
+        await FlutterCallkitIncoming.startCall(params);
+        callKitId = params.id;
+      }
+    }
     if (playWaitingSound) {
+      waitForOtherSide = true;
       _playWaitingSound();
     } else {
+      final callKitId = this.callKitId;
+      if (callKitId != null) {
+        await FlutterCallkitIncoming.setCallConnected(callKitId);
+      }
       _playJoinSound();
     }
     notifyListeners();
@@ -376,6 +411,10 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     timeline?.cancelSubscriptions();
     value.localAudioTrack?.dispose();
     value.localVideoTrack?.dispose();
+    final callKitId = this.callKitId;
+    if (callKitId != null) {
+      FlutterCallkitIncoming.endCall(callKitId);
+    }
     final liveKitRoom = value.room;
     if (liveKitRoom != null) {
       liveKitRoom.removeListener(notifyListeners);
@@ -391,12 +430,20 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
 
   Future<void> _playSoundIndex(
     AudioSource audioSource, {
-    bool loop = false,
+    LoopMode loopMode = .off,
   }) async {
     if (_audioPlayer.playing) await _audioPlayer.stop();
     await _audioPlayer.setAudioSource(audioSource);
-    if (loop) await _audioPlayer.setLoopMode(.one);
-    await _audioPlayer.play();
+    if (_audioPlayer.loopMode != loopMode) {
+      await _audioPlayer.setLoopMode(loopMode);
+    }
+    try {
+      await _audioPlayer.play();
+    } catch (e) {
+      Logs().w('Unable to start audio player. Try again...', e);
+      await Future.delayed(const Duration(milliseconds: 300));
+      await _audioPlayer.play();
+    }
   }
 
   final _joinSource = AudioSource.asset('assets/sounds/call_join.mp3');
@@ -412,7 +459,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
 
   Future<void> _playRaiseHandSound() => _playSoundIndex(_raiseHandSource);
 
-  Future<void> _playWaitingSound() => _playSoundIndex(_waitSource, loop: true);
+  Future<void> _playWaitingSound() =>
+      _playSoundIndex(_waitSource, loopMode: .all);
 
   Future<lk.MediaDevice?> _selectMediaDevice(
     BuildContext context,
