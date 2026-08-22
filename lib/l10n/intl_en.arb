@@ -2784,5 +2784,8 @@
     },
     "enterCall": "Enter call",
     "videoCallsBetaWarning": "Video calls are a beta feature. There might be bugs or unexpected behavior. We would be happy to hear about your feedback.",
-    "noDevicesFound": "No devices found"
+    "noDevicesFound": "No devices found",
+    "incomingCall": "Incoming call",
+    "waitingForParticipant": "Waiting for participant...",
+    "decline": "Decline"
 }

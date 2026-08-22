@@ -32,6 +32,7 @@ dependencies:
   file_selector: ^1.1.0
   flutter:
     sdk: flutter
+  flutter_callkit_incoming: ^3.1.5
   flutter_foreground_task: ^10.0.0
   flutter_linkify: ^6.0.0
   flutter_local_notifications: ^22.3.0
@@ -87,6 +88,7 @@ dependencies:
   unifiedpush_ui: ^0.2.0
   universal_html: ^2.3.0
   url_launcher: ^6.3.2
+  uuid: ^4.6.0
   video_player: ^2.14.0
   wakelock_plus: ^1.7.0
 

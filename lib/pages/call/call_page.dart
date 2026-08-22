@@ -109,7 +109,11 @@ class CallPage extends StatelessWidget {
                   ),
                   if (activeMembers > 0)
                     Text(
-                      L10n.of(context).countActiveCallMembers(activeMembers),
+                      viewModel.waitForOtherSide
+                          ? L10n.of(context).waitingForParticipant
+                          : L10n.of(
+                              context,
+                            ).countActiveCallMembers(activeMembers),
                       maxLines: 1,
                       style: TextStyle(fontSize: 11),
                     ),
@@ -342,7 +346,7 @@ class CallPage extends StatelessWidget {
                         child: FloatingActionButton.extended(
                           onPressed: () => showFutureLoadingDialog(
                             context: context,
-                            future: viewModel.connect,
+                            future: () => viewModel.connect(context),
                           ),
                           foregroundColor: theme.colorScheme.onPrimary,
                           backgroundColor: theme.colorScheme.primary,
