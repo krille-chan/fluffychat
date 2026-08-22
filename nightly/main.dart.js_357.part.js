@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dzm(){return new B.M1(A.dy("tr"))},
-M1:function M1(d){this.a=d}}
+dzn(){return new B.M2(A.dy("tr"))},
+M2:function M2(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[53],B)
-B.M1.prototype={
+B.M2.prototype={
 gph(){return"Edit image"},
 gr3(){return"Rotate left"},
 gr4(){return"Rotate right"},
@@ -731,8 +731,8 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.M1,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"M1":{"aR":[]}}'))
+x(B.M2,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"M2":{"aR":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["XqPZtxjRAXYlm75Ey3OEz7D3kso="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["UckX35Mbr15s7qD/vju9IUm+TU0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_357.part.js.map

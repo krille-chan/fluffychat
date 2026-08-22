@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyM(){return new B.Ls(A.dy("eu"))},
-Ls:function Ls(d){this.a=d}}
+dyN(){return new B.Lt(A.dy("eu"))},
+Lt:function Lt(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[19],B)
-B.Ls.prototype={
+B.Lt.prototype={
 gph(){return"Edit image"},
 gr3(){return"Rotate left"},
 gr4(){return"Rotate right"},
@@ -731,8 +731,8 @@ gre(){return"Video calls are a beta feature. There might be bugs or unexpected b
 gqE(){return"No devices found"},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Ls,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"Ls":{"aR":[]}}'))
+x(B.Lt,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"Lt":{"aR":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["lfwIeDG476e2ieW43F1au9gNR/Y="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["YkQD2Iayw3ch5r1y18+3Ee+IQow="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_294.part.js.map
