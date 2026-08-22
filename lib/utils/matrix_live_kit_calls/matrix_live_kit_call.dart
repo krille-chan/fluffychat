@@ -118,6 +118,35 @@ extension MatrixRtcRoomExtension on Room {
     ).toJson(),
   );
 
+  bool participantRaisedHandInMatrixRtcCall(
+    String matrixId,
+    Timeline timeline,
+  ) {
+    final stateEvent =
+        states[MatrixRtcCallMember.eventType]?.entries
+                .lastWhereOrNull(
+                  (entry) =>
+                      entry.key.startsWith('_${matrixId}_') &&
+                      entry.key.endsWith('_m.call'),
+                )
+                ?.value
+            as Event?;
+    if (stateEvent == null) return false;
+    final aggregatedEvents = timeline
+        .aggregatedEvents[stateEvent.eventId]?['m.annotation']
+        ?.where(
+          (event) =>
+              event.senderId == matrixId &&
+              event.content
+                      .tryGetMap<String, Object?>('m.relates_to')
+                      ?.tryGet<String>('key') ==
+                  '🖐️',
+        );
+    if (aggregatedEvents == null || aggregatedEvents.isEmpty) return false;
+
+    return true;
+  }
+
   Future<String?> raiseHandInMatrixRtcCall() async {
     final ownMemberStateEvent =
         states[MatrixRtcCallMember.eventType]?[_ownMatrixRtcMembershipStateKey]

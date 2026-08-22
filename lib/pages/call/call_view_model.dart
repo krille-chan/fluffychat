@@ -222,6 +222,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       }
       Logs().e('LiveKit E2EE Error', event);
     });
+
     liveKitRoom.addListener(notifyListeners);
   }
 
@@ -256,30 +257,9 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
   }
 
   bool participantRaisedHand(String matrixId) {
-    final stateEvent =
-        room.states[MatrixRtcCallMember.eventType]?.entries
-                .lastWhereOrNull(
-                  (entry) =>
-                      entry.key.startsWith('_${matrixId}_') &&
-                      entry.key.endsWith('_m.call'),
-                )
-                ?.value
-            as Event?;
-    if (stateEvent == null) return false;
-    final aggregatedEvents = timeline
-        ?.aggregatedEvents[stateEvent.eventId]?['m.annotation']
-        ?.where(
-          (event) =>
-              event.senderId == matrixId &&
-              event.status.isSent &&
-              event.content
-                      .tryGetMap<String, Object?>('m.relates_to')
-                      ?.tryGet<String>('key') ==
-                  '🖐️',
-        );
-    if (aggregatedEvents == null || aggregatedEvents.isEmpty) return false;
-
-    return true;
+    final timeline = this.timeline;
+    if (timeline == null) return false;
+    return room.participantRaisedHandInMatrixRtcCall(matrixId, timeline);
   }
 
   Future<void> _onNewTimelineEvent(int i) async {
@@ -381,6 +361,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     _onCallMembersChanged?.cancel();
     _resendCallMemberState?.cancel();
     timeline?.cancelSubscriptions();
+    value.localAudioTrack?.dispose();
+    value.localVideoTrack?.dispose();
     final liveKitRoom = value.room;
     if (liveKitRoom != null) {
       liveKitRoom.removeListener(notifyListeners);
@@ -394,20 +376,23 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     super.dispose();
   }
 
-  Future<void> _playJoinSound([_]) async {
-    await _audioPlayer.setAsset('assets/sounds/call_join.mp3');
+  Future<void> _playSoundIndex(AudioSource audioSource) async {
+    if (_audioPlayer.playing) await _audioPlayer.stop();
+    await _audioPlayer.setAudioSource(audioSource);
     await _audioPlayer.play();
   }
 
-  Future<void> _playLeaveSound([_]) async {
-    await _audioPlayer.setAsset('assets/sounds/call_leave.mp3');
-    await _audioPlayer.play();
-  }
+  final _joinSource = AudioSource.asset('assets/sounds/call_join.mp3');
+  final _leaveSource = AudioSource.asset('assets/sounds/call_leave.mp3');
+  final _raiseHandSource = AudioSource.asset(
+    'assets/sounds/call_attention.mp3',
+  );
 
-  Future<void> _playRaiseHandSound() async {
-    await _audioPlayer.setAsset('assets/sounds/call_join.mp3');
-    await _audioPlayer.play();
-  }
+  Future<void> _playJoinSound([_]) => _playSoundIndex(_joinSource);
+
+  Future<void> _playLeaveSound([_]) => _playSoundIndex(_leaveSource);
+
+  Future<void> _playRaiseHandSound() => _playSoundIndex(_raiseHandSource);
 
   Future<lk.MediaDevice?> _selectMediaDevice(
     BuildContext context,
