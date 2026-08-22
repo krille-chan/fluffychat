@@ -56,6 +56,7 @@ class ChatPage extends StatelessWidget {
   final List<ShareItem>? shareItems;
   final String? eventId;
   final Timeline? timeline;
+  final String? action;
 
   const ChatPage({
     super.key,
@@ -63,6 +64,7 @@ class ChatPage extends StatelessWidget {
     this.eventId,
     this.shareItems,
     this.timeline,
+    this.action,
   });
 
   @override
@@ -87,6 +89,7 @@ class ChatPage extends StatelessWidget {
       shareItems: shareItems,
       eventId: eventId,
       timeline: timeline,
+      action: action,
     );
   }
 }
@@ -96,6 +99,7 @@ class ChatPageWithRoom extends StatefulWidget {
   final List<ShareItem>? shareItems;
   final String? eventId;
   final Timeline? timeline;
+  final String? action;
 
   const ChatPageWithRoom({
     super.key,
@@ -103,6 +107,7 @@ class ChatPageWithRoom extends StatefulWidget {
     this.shareItems,
     this.eventId,
     this.timeline,
+    this.action,
   });
 
   @override
@@ -396,6 +401,9 @@ class ChatController extends State<ChatPageWithRoom>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _shareItems();
       _checkMatrixRtcCallSupport();
+      if (widget.action == 'call') {
+        Matrix.of(context).activeCallRoomId.value = room.id;
+      }
     });
     web.window.addEventListener('paste', _handleClipboardFilePasteWeb);
 

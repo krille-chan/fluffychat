@@ -207,7 +207,13 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     value.localAudioTrack?.addListener(notifyListeners);
     notifyListeners();
 
-    liveKitRoom.events.on<lk.ParticipantConnectedEvent>(_playJoinSound);
+    liveKitRoom.events.on<lk.ParticipantConnectedEvent>((event) {
+      if (event.participant.identity ==
+          liveKitRoom.localParticipant?.identity) {
+        return;
+      }
+      _playJoinSound();
+    });
 
     liveKitRoom.events.on<lk.ParticipantDisconnectedEvent>(_playLeaveSound);
 
@@ -296,6 +302,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
   }
 
   Future<void> connect() async {
+    final playWaitingSound = !room.hasActiveMatrixRtcCall && room.isDirectChat;
+
     final credentials = await room.joinMatrixRtcCall();
     timeline = await room.getTimeline(onInsert: _onNewTimelineEvent);
     await _createKeyAndShare();
@@ -310,6 +318,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
         camera: lk.TrackOption(track: video),
       ),
     );
+
     _resendCallMemberState?.cancel();
     _resendCallMemberState = Timer.periodic(const Duration(hours: 1), (_) {
       final ownMembership = room.ownMatrixRtcMembership;
@@ -327,8 +336,12 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       );
     });
     startTime = DateTime.now();
+    if (playWaitingSound) {
+      _playWaitingSound();
+    } else {
+      _playJoinSound();
+    }
     notifyListeners();
-    _playJoinSound();
   }
 
   Future<void> close(BuildContext context) async {
@@ -376,9 +389,13 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     super.dispose();
   }
 
-  Future<void> _playSoundIndex(AudioSource audioSource) async {
+  Future<void> _playSoundIndex(
+    AudioSource audioSource, {
+    bool loop = false,
+  }) async {
     if (_audioPlayer.playing) await _audioPlayer.stop();
     await _audioPlayer.setAudioSource(audioSource);
+    if (loop) await _audioPlayer.setLoopMode(.one);
     await _audioPlayer.play();
   }
 
@@ -387,12 +404,15 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
   final _raiseHandSource = AudioSource.asset(
     'assets/sounds/call_attention.mp3',
   );
+  final _waitSource = AudioSource.asset('assets/sounds/call_wait.mp3');
 
-  Future<void> _playJoinSound([_]) => _playSoundIndex(_joinSource);
+  Future<void> _playJoinSound() => _playSoundIndex(_joinSource);
 
   Future<void> _playLeaveSound([_]) => _playSoundIndex(_leaveSource);
 
   Future<void> _playRaiseHandSound() => _playSoundIndex(_raiseHandSource);
+
+  Future<void> _playWaitingSound() => _playSoundIndex(_waitSource, loop: true);
 
   Future<lk.MediaDevice?> _selectMediaDevice(
     BuildContext context,
