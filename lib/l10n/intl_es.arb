@@ -634,7 +634,7 @@
             }
         }
     },
-    "isTyping": "está escribiendo…",
+    "isTyping": "escribiendo…",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -2549,5 +2549,66 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "editImage": "Editar imagen",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Rotar a la izquierda",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Rotar a la derecha",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Espejo",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Guardar",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Dibujar",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Deshacer",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Limpiar",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Borrador",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Cortar",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendingFilesDoNotExit": "Enviando {count} archivos... ¡Por favor espere!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Comprimiendo video...",
+    "deviceIdentityKey": "Dispositivo de llave de identidad"
 }
