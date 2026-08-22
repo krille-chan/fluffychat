@@ -309,10 +309,10 @@ packages:
     dependency: "direct dev"
     description:
       name: dart_code_linter
-      sha256: "83d8739948c5d1538240b80c26d94d1de648c143d7c26bfe80f4e3215e4b5096"
+      sha256: "8b9574e550ea20e18c1c990e4302590aedb868a7262ec2fee355eeffc912b8ba"
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.9"
+    version: "4.2.1"
   dart_earcut:
     dependency: transitive
     description:
