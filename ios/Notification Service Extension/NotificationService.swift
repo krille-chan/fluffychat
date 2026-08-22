@@ -147,7 +147,7 @@ class NotificationService: UNNotificationServiceExtension {
         }
 
         contentHandler(bestAttemptContent)
-
+        database.close()
     }
 
     override func serviceExtensionTimeWillExpire() {
@@ -185,11 +185,9 @@ class NotificationService: UNNotificationServiceExtension {
     func getDatabase(key: String, path: String) -> FMDatabase? {
         guard FileManager.default.fileExists(atPath: path) else { return nil }
 
-        let database = FMDatabase(path: path)
-        // SQLCipher + WAL cannot reliably open with SQLITE_OPEN_READONLY.
-        // SQLITE_OPEN_READWRITE | SQLITE_OPEN_FULLMUTEX
-        let flags: Int32 = 0x0000_0002 | 0x0001_0000
-        guard database.open(withFlags: flags) else {
+        let database = FMDatabase(path: "file:\(path)?immutable=1")
+        // Open Database in read only mode:
+        guard database.open(withFlags: 0x0000_0001) else {
             os_log(
                 "[FluffyChatPushHelper] sqlite open failed: %{public}@",
                 database.lastErrorMessage()

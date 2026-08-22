@@ -5,6 +5,12 @@ SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+## v2.9.3
+Hotfix for iOS only where iOS notifications can lock the database.
+
+## v2.9.2
+Hotfix for iOS only where iOS notifications display error messages.
+
 ## v2.9.1
 Revert cronet for http3.
 
