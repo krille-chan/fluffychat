@@ -721,16 +721,16 @@ gq3(){return"\u6b64\u7248\u672c\u4e0d\u652f\u6301 firebase \u4e91\u6d88\u606f\u3
 gqe(){return"\u8f7b\u6309\u4e24\u6b21\u56de\u5e94"},
 gqf(){return"\u8f7b\u6309\u6d88\u606f\u4e24\u6b21\u8fdb\u884c\u56de\u5e94\u800c\u975e\u9009\u4e2d\u6587\u672c"},
 gpf(){return"\u8f7b\u6309\u4e24\u6b21\u56de\u5e94"},
-gpI(){return"Share crash reports"},
-gpJ(){return"Automatically share crash reports with the developers"},
-pK(d){return"Share crash reports automatically with the developers? Learn more at "+d+" about what data is being shared."},
-gq_(d){return"Allow"},
-gqc(){return"Deny"},
-goU(){return"Active call"},
-q8(d){return""+d+" active call members"},
-gqj(){return"Enter call"},
-grf(){return"Video calls are a beta feature. There might be bugs or unexpected behavior. We would be happy to hear about your feedback."},
-gqF(){return"No devices found"},
+gpI(){return"\u5206\u4eab\u5d29\u6e83\u62a5\u544a"},
+gpJ(){return"\u81ea\u52a8\u4e0e\u5f00\u53d1\u8005\u5206\u4eab\u5d29\u6e83\u62a5\u544a"},
+pK(d){return"\u81ea\u52a8\u4e0e\u5f00\u53d1\u8005\u5206\u4eab\u5d29\u6e83\u62a5\u544a\u5417\uff1f\u8bbf\u95ee "+d+" \u4e86\u89e3\u5206\u4eab\u4ec0\u4e48\u6570\u636e\u7684\u66f4\u591a\u4fe1\u606f\u3002"},
+gq_(d){return"\u5141\u8bb8"},
+gqc(){return"\u62d2\u7edd"},
+goU(){return"\u6d3b\u8dc3\u901a\u8bdd"},
+q8(d){return""+d+" \u540d\u6d3b\u8dc3\u901a\u8bdd\u6210\u5458"},
+gqj(){return"\u8fdb\u5165\u901a\u8bdd"},
+grf(){return"\u89c6\u9891\u901a\u8bdd\u662f\u6d4b\u8bd5\u529f\u80fd\u3002\u53ef\u80fd\u6709\u6545\u969c\u6216\u610f\u5916\u884c\u4e3a\u3002\u6211\u4eec\u53ef\u4ee5\u8046\u542c\u60a8\u7684\u53cd\u9988\u3002"},
+gqF(){return"\u672a\u627e\u5230\u8bbe\u5907"},
 gqp(){return"Incoming call"},
 grh(){return"Waiting for participant..."},
 D(d,e){return this.gbA(this).$1(e)}}
@@ -1304,5 +1304,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F6,C.aR)
 y(A.Md,A.F6)})()
 B.eb(b.typeUniverse,JSON.parse('{"F6":{"aR":[]},"Md":{"aR":[]}}'))};
-(a=>{a["MGVhzSEtEavELGd4KHnQNHA4FvU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["KREkFR7PqG/U7mXCyJSRgYJeDqE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
