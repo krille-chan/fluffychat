@@ -104,6 +104,17 @@ parts:
       - libpciaccess0
       - libpulse0
       - libmpv2
+      - libblas3
+      - liblapack3
+    override-prime: | # Workaround for MediaKit:
+      craftctl default
+      for library_dir in "$CRAFT_PRIME"/usr/lib/*-linux-gnu; do
+        if [ -e "$library_dir/libmpv.so.2" ]; then
+          ln -sf "$(basename "$library_dir")/libmpv.so.2" "$CRAFT_PRIME/usr/lib/libmpv.so.2"
+        fi
+        ln -sf blas/libblas.so.3 "$library_dir/libblas.so.3"
+        ln -sf lapack/liblapack.so.3 "$library_dir/liblapack.so.3"
+      done
 
 slots:
   dbus-svc:
@@ -139,3 +150,4 @@ apps:
       XDG_DATA_DIRS: $SNAP/usr/share
       GDK_GL: gles
       LD_LIBRARY_PATH: "$SNAP/lib:$SNAP/usr/lib/x86_64-linux-gnu:$SNAP/usr/lib/aarch64-linux-gnu:$LD_LIBRARY_PATH"
+      LIBMPV_LIBRARY_PATH: $SNAP/usr/lib/libmpv.so.2
