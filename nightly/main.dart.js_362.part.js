@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dA5(){return new B.Ma(A.dz("uz"))},
-Ma:function Ma(d){this.a=d}}
+dA1(){return new B.M9(A.dz("uz"))},
+M9:function M9(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[55],B)
-B.Ma.prototype={
+B.M9.prototype={
 gph(){return"Edit image"},
 gr4(){return"Rotate left"},
 gr5(){return"Rotate right"},
@@ -733,8 +733,8 @@ gqp(){return"Incoming call"},
 grh(){return"Waiting for participant..."},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Ma,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"Ma":{"aR":[]}}'))
+x(B.M9,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"M9":{"aR":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["klYFKV4uZ3u5hPQVVUqmO7J2uEE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Jp4djWVODclveeejVOxKhR079eQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_362.part.js.map

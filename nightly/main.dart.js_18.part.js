@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-dzR(d){return new A.F5(B.dz(d))},
-dzS(){return new A.LX(B.dz("pt_BR"))},
-dzT(){return new A.LY(B.dz("pt_PT"))},
-F5:function F5(d){this.a=d},
-LX:function LX(d){this.a=d},
-LY:function LY(d){this.a=d}},C
+dzN(d){return new A.F4(B.dz(d))},
+dzO(){return new A.LW(B.dz("pt_BR"))},
+dzP(){return new A.LX(B.dz("pt_PT"))},
+F4:function F4(d){this.a=d},
+LW:function LW(d){this.a=d},
+LX:function LX(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[58]
-A.F5.prototype={
+A.F4.prototype={
 gph(){return"Edit image"},
 gr4(){return"Rotate left"},
 gr5(){return"Rotate right"},
@@ -737,7 +737,7 @@ gqF(){return"No devices found"},
 gqp(){return"Incoming call"},
 grh(){return"Waiting for participant..."},
 D(d,e){return this.gbA(this).$1(e)}}
-A.LX.prototype={
+A.LW.prototype={
 gkU(){return"Repita a senha"},
 gks(){return"N\xe3o \xe9 um arquivo de imagem."},
 gbA(d){return"Remover"},
@@ -1345,7 +1345,7 @@ goO(){return"Pular backup de conversas"},
 goP(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 py(d){return"Vers\xe3o: "+d},
 D(d,e){return this.gbA(this).$1(e)}}
-A.LY.prototype={
+A.LX.prototype={
 gkU(){return"Repete a palavra-passe"},
 gks(){return"N\xe3o \xe9 um ficheiro de imagem."},
 gbA(d){return"Remover"},
@@ -1687,9 +1687,9 @@ gkD(){return"Por favor introduza um n\xfamero maior que 0"},
 gf3(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3o ver deixou o chat."},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.F5,C.aR)
-w(A.F5,[A.LX,A.LY])})()
-B.eb(b.typeUniverse,JSON.parse('{"F5":{"aR":[]},"LX":{"aR":[]},"LY":{"aR":[]}}'))
+x(A.F4,C.aR)
+w(A.F4,[A.LW,A.LX])})()
+B.eb(b.typeUniverse,JSON.parse('{"F4":{"aR":[]},"LW":{"aR":[]},"LX":{"aR":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["miHlRe59tzV45zJsF58pCqrN8Y4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BUWvdpiFByxvdWwEs0IolcYEZy8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

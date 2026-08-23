@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dzO(){return new B.LU(A.dz("nb"))},
-LU:function LU(d){this.a=d}}
+dzK(){return new B.LT(A.dz("nb"))},
+LT:function LT(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[40],B)
-B.LU.prototype={
+B.LT.prototype={
 gph(){return"Rediger bilde"},
 gr4(){return"Roter til venstre"},
 gr5(){return"Roter til h\xf8yre"},
@@ -734,7 +734,7 @@ gqp(){return"Incoming call"},
 grh(){return"Waiting for participant..."},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.LU,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"LU":{"aR":[]}}'))};
-(a=>{a["ohJIFHnAq4fevXsPocFTY6JR1Lc="]=a.current})($__dart_deferred_initializers__);
+y(B.LT,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"LT":{"aR":[]}}'))};
+(a=>{a["p3OeMkjkHf2jvb7wXQ2hYymhoBE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_339.part.js.map

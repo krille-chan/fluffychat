@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dzy(){return new B.LE(A.dz("ga"))},
-LE:function LE(d){this.a=d}}
+dzu(){return new B.LD(A.dz("ga"))},
+LD:function LD(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[24],B)
-B.LE.prototype={
+B.LD.prototype={
 gph(){return"Cuir \xedomh\xe1 in eagar"},
 gr4(){return"Rothlaigh ar chl\xe9"},
 gr5(){return"Rothlaigh ar dheis"},
@@ -733,8 +733,8 @@ gqp(){return"Incoming call"},
 grh(){return"Waiting for participant..."},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.LE,C.aR)})()
-A.eb(b.typeUniverse,JSON.parse('{"LE":{"aR":[]}}'))
+x(B.LD,C.aR)})()
+A.eb(b.typeUniverse,JSON.parse('{"LD":{"aR":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["Axo207cua9QZCTCKh2i7eMSU12w="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["qEoByaVXxoOj0JFV2emSlAkJ30Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_307.part.js.map
