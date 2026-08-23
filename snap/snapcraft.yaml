@@ -103,6 +103,7 @@ parts:
       - libjsoncpp25
       - libpciaccess0
       - libpulse0
+      - libmpv2
 
 slots:
   dbus-svc:
@@ -128,6 +129,7 @@ apps:
       - password-manager-service
       - camera
       - audio-record
+      - audio-playback
     slots:
       - dbus-svc
     # Workaround for:

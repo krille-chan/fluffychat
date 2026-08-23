@@ -12,6 +12,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   flutter_webrtc
   handy_window
   livekit_client
+  media_kit_libs_linux
   pasteboard
   record_linux
   screen_retriever_linux
