@@ -731,8 +731,8 @@ q7(d){return""+d+" \u540d\u6d3b\u8dc3\u901a\u8bdd\u6210\u5458"},
 gqi(){return"\u8fdb\u5165\u901a\u8bdd"},
 gre(){return"\u89c6\u9891\u901a\u8bdd\u662f\u6d4b\u8bd5\u529f\u80fd\u3002\u53ef\u80fd\u6709\u6545\u969c\u6216\u610f\u5916\u884c\u4e3a\u3002\u6211\u4eec\u53ef\u4ee5\u8046\u542c\u60a8\u7684\u53cd\u9988\u3002"},
 gqE(){return"\u672a\u627e\u5230\u8bbe\u5907"},
-gqo(){return"Incoming call"},
-grg(){return"Waiting for participant..."},
+gqo(){return"\u6765\u7535"},
+grg(){return"\u7b49\u5f85\u53c2\u4e0e\u8005\u2026"},
 D(d,e){return this.gbA(this).$1(e)}}
 A.Ma.prototype={
 gkU(){return"\u518d\u6b21\u8f38\u5165\u5bc6\u78bc"},
@@ -1304,5 +1304,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F3,C.aR)
 y(A.Ma,A.F3)})()
 B.ea(b.typeUniverse,JSON.parse('{"F3":{"aR":[]},"Ma":{"aR":[]}}'))};
-(a=>{a["0KNSZvG9q1rTRiWSVy8DRSyHgok="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Y6fuD5V7hyziIb6QHGn/1+yOU5M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
