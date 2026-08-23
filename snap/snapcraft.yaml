@@ -143,11 +143,5 @@ apps:
       - audio-playback
     slots:
       - dbus-svc
-    # Workaround for:
-    # https://github.com/flutter-webrtc/flutter-webrtc/issues/1212#issuecomment-1611899344
     environment:
-      XDG_DATA_HOME: $SNAP_USER_DATA
-      XDG_DATA_DIRS: $SNAP/usr/share
-      GDK_GL: gles
-      LD_LIBRARY_PATH: "$SNAP/lib:$SNAP/usr/lib/x86_64-linux-gnu:$SNAP/usr/lib/aarch64-linux-gnu:$LD_LIBRARY_PATH"
-      LIBMPV_LIBRARY_PATH: $SNAP/usr/lib/libmpv.so.2
+      LIBMPV_LIBRARY_PATH: $SNAP/usr/lib/libmpv.so.2 # Otherwise app does not find libmp3
