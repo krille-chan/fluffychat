@@ -14,6 +14,7 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/call_kit_params.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/notification_avatar_extension.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
@@ -192,8 +193,14 @@ Future<void> _tryPushHelper(
       );
       return;
     }
+    final intentStr = event.content.tryGet<String>('m.call.intent');
+    final intent =
+        MatrixRtcCallIntent.values.singleWhereOrNull(
+          (i) => i.name == intentStr,
+        ) ??
+        .video;
     await FlutterCallkitIncoming.showCallkitIncoming(
-      buildFluffyChatCallKitParams(event.room, l10n),
+      buildFluffyChatCallKitParams(event.room, l10n, intent: intent),
     );
 
     return;

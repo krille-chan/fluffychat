@@ -112,7 +112,7 @@ extension MatrixRtcRoomExtension on Room {
         focusSelection: 'oldest_membership',
         type: 'livekit',
       ),
-      callIntent: intent.name,
+      callIntent: intent,
       membershipId: '${client.userID}:${client.deviceID}',
       scope: 'm.room',
     ).toJson(),
@@ -320,7 +320,7 @@ class MatrixRtcCredentials {
 }
 
 enum MatrixRtcCallIntent {
-  audio(callKitType: 0),
+  voice(callKitType: 0),
   video(callKitType: 1);
 
   final int callKitType;

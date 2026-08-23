@@ -207,6 +207,9 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       ),
     );
     value.localVideoTrack = await lk.LocalVideoTrack.createCameraTrack();
+    if (room.getActiveMatrixRtcMembers().firstOrNull?.callIntent == .voice) {
+      value.localVideoTrack?.mute();
+    }
     value.localVideoTrack?.addListener(notifyListeners);
     value.localAudioTrack = await lk.LocalAudioTrack.create();
     value.localAudioTrack?.addListener(notifyListeners);
@@ -318,7 +321,11 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     final l10n = L10n.of(context);
     final playWaitingSound = !room.hasActiveMatrixRtcCall && room.isDirectChat;
 
-    final credentials = await room.joinMatrixRtcCall();
+    final intent =
+        room.getActiveMatrixRtcMembers().firstOrNull?.callIntent ??
+        (value.localVideoTrack?.muted == false ? .video : .voice);
+
+    final credentials = await room.joinMatrixRtcCall(intent: intent);
     timeline = await room.getTimeline(onInsert: _onNewTimelineEvent);
     await _createKeyAndShare();
     final video = value.localVideoTrack;
@@ -342,11 +349,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       }
       room.setMatrixRtcMembershipState(
         ownMembership.fociPreferred,
-        intent:
-            MatrixRtcCallIntent.values.firstWhereOrNull(
-              (intent) => ownMembership.callIntent == intent.name,
-            ) ??
-            MatrixRtcCallIntent.video,
+        intent: intent,
       );
     });
     startTime = DateTime.now();
@@ -361,7 +364,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
           )
           ?.id;
       if (callKitId == null) {
-        final params = buildFluffyChatCallKitParams(room, l10n);
+        final params = buildFluffyChatCallKitParams(room, l10n, intent: intent);
         await FlutterCallkitIncoming.startCall(params);
         callKitId = params.id;
       }
