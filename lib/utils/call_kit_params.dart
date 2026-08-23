@@ -21,12 +21,12 @@ CallKitParams buildFluffyChatCallKitParams(
   nameCaller: room.getLocalizedDisplayname(),
   handle: l10n.incomingCall,
   type: intent.callKitType,
-  duration: 30000,
+  duration: 10000,
   android: AndroidParams(textAccept: l10n.accept, textDecline: l10n.decline),
-  ios: const IOSParams(
+  ios: IOSParams(
     iconName: 'LaunchImage',
     handleType: 'generic',
-    supportsVideo: true,
+    supportsVideo: intent == .video,
     maximumCallGroups: 1,
     maximumCallsPerCallGroup: 1,
     audioSessionMode: 'default',
