@@ -126,6 +126,8 @@ apps:
       - removable-media
       - browser-support
       - password-manager-service
+      - camera
+      - audio-record
     slots:
       - dbus-svc
     # Workaround for:
