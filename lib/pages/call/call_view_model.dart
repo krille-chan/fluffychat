@@ -25,6 +25,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:livekit_client/livekit_client.dart' as lk;
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 class CallViewModelState {
   lk.Room? room;
@@ -176,6 +177,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
               false,
         )
         .listen((_) => _createKeyAndShare());
+    await WakelockPlus.enable();
     await lk.LiveKitClient.initialize();
 
     // kHKDF matches the key derivation used by element-web's LiveKit JS SDK
@@ -428,6 +430,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       room.leaveMatrixRtcCall();
     }
     _audioPlayer.dispose();
+    WakelockPlus.disable();
     super.dispose();
   }
 
