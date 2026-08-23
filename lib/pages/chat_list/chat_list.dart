@@ -419,11 +419,13 @@ class ChatListController extends State<ChatList>
     _callEventSubscription = FlutterCallkitIncoming.onEvent.listen(
       _onCallEvent,
     );
-    FlutterCallkitIncoming.activeCalls().then((calls) {
-      final params = calls.firstOrNull;
-      if (params == null) return;
-      _joinCallWith(params);
-    });
+    if (PlatformInfos.isMobile) {
+      FlutterCallkitIncoming.activeCalls().then((calls) {
+        final params = calls.firstOrNull;
+        if (params == null) return;
+        _joinCallWith(params);
+      });
+    }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
