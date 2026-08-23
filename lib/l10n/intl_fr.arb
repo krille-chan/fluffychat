@@ -2761,5 +2761,27 @@
     "unifiedPushDistributors": "Distributeurs Unified Push :",
     "doubleTapToReact": "Double-tappez pour réagir",
     "doubleTapToReactDescription": "Double-tappez sur un message pour réagir au lieu de sélectionner du texte",
-    "doubleTapReaction": "Réaction du double appuis"
+    "doubleTapReaction": "Réaction du double appuis",
+    "sendingFilesDoNotExit": "Envoi de {count} fichiers... Veuillez de pas quitter !",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Compression de la vidéo...",
+    "shareCrashReports": "Partager le rapport de crash",
+    "shareCrashReportsDescription": "Partage automatiquement les rapports de crash avec les developers",
+    "shareCrashReportsPrompt": "Partager automatiquement les rapports de crash avec les developpeurs ? Plus d'infos à l'addresse {url} à propos de ce qui est partagé.",
+    "@shareCrashReportsPrompt": {
+        "placeholders": {
+            "url": {
+                "type": "String"
+            }
+        }
+    },
+    "allow": "Autoriser",
+    "deny": "Interdir"
 }

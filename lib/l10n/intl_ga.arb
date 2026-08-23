@@ -2767,5 +2767,39 @@
     "unifiedPushDistributors": "Dáileoirí Brú Aontaithe:",
     "doubleTapToReact": "Tapáil faoi dhó le freagairt",
     "doubleTapToReactDescription": "Tapáil faoi dhó ar theachtaireacht le freagairt in ionad téacs a roghnú",
-    "doubleTapReaction": "Imoibriú tapála faoi dhó"
+    "doubleTapReaction": "Imoibriú tapála faoi dhó",
+    "sendingFilesDoNotExit": "Ag seoladh {count} comhad... Ná scoir le do thoil!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Ag comhbhrú físeáin...",
+    "shareCrashReports": "Comhroinn tuairiscí tuairteála",
+    "shareCrashReportsDescription": "Roinn tuairiscí tuairteála go huathoibríoch leis na forbróirí",
+    "shareCrashReportsPrompt": "An bhfuil tú ag iarraidh tuarascálacha tuairteála a roinnt go huathoibríoch leis na forbróirí? Faigh tuilleadh eolais ag {url} faoi na sonraí atá á roinnt.",
+    "@shareCrashReportsPrompt": {
+        "placeholders": {
+            "url": {
+                "type": "String"
+            }
+        }
+    },
+    "allow": "Ceadaigh",
+    "deny": "Diúltaigh",
+    "activeCall": "Glao gníomhach",
+    "countActiveCallMembers": "{count} baill ghníomhacha glaonna",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Cuir isteach glao",
+    "videoCallsBetaWarning": "Is gné béite iad glaonna físe. D’fhéadfadh fabhtanna nó iompraíocht gan choinne a bheith ann. Bheimis sásta d’aiseolas a chloisteáil.",
+    "noDevicesFound": "Níor aimsíodh aon fheistí"
 }
