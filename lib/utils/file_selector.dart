@@ -24,7 +24,7 @@ Future<List<XFile>> selectFiles(
             type: type,
             dialogTitle: title,
           );
-          return result?.xFiles;
+          return result.map((file) => file.xFile).toList();
         }
         final result = await FilePicker.pickFile(
           type: type,
