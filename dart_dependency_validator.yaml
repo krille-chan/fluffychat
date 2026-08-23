@@ -6,3 +6,4 @@
 ignore:
   - handy_window
   - sqlcipher_flutter_libs
+  - media_kit_libs_audio
