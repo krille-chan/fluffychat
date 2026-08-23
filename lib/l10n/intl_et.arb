@@ -2798,5 +2798,8 @@
     },
     "enterCall": "Liitu kõnega",
     "videoCallsBetaWarning": "Palun arvesta, et videokõned on veel beetajärgus. Neis võib olla vigu ja ootamatusi. Kui midagi niisugust peaks juhtuma, siis hea meelega sooviksime sellest teada.",
-    "noDevicesFound": "Ühtegi seadet ei leidu"
+    "noDevicesFound": "Ühtegi seadet ei leidu",
+    "incomingCall": "Telefon heliseb",
+    "waitingForParticipant": "Ootan osaleja järgi…",
+    "decline": "Keeldu"
 }

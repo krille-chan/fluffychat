@@ -2795,5 +2795,8 @@
         }
     },
     "enterCall": "进入通话",
-    "noDevicesFound": "未找到设备"
+    "noDevicesFound": "未找到设备",
+    "incomingCall": "来电",
+    "waitingForParticipant": "等待参与者…",
+    "decline": "拒绝"
 }
