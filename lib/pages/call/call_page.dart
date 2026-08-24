@@ -84,15 +84,16 @@ class CallPage extends StatelessWidget {
                       ),
                       if (localVideoTrack == null)
                         PopupMenuButton(
+                          useRootNavigator: true,
                           itemBuilder: (context) => [
                             PopupMenuItem(
                               onTap: () => viewModel.selectCamera(context),
                               child: Row(
                                 mainAxisSize: .min,
+                                spacing: 12,
                                 children: [
                                   const Icon(Icons.camera_outlined),
-                                  const SizedBox(width: 12),
-                                  Text('Select camera'),
+                                  Text(L10n.of(context).selectCamera),
                                 ],
                               ),
                             ),
@@ -100,10 +101,21 @@ class CallPage extends StatelessWidget {
                               onTap: () => viewModel.selectMicrophone(context),
                               child: Row(
                                 mainAxisSize: .min,
+                                spacing: 12,
                                 children: [
                                   const Icon(Icons.mic_outlined),
-                                  const SizedBox(width: 12),
-                                  Text('Select microphone'),
+                                  Text(L10n.of(context).selectMicrophone),
+                                ],
+                              ),
+                            ),
+                            PopupMenuItem(
+                              onTap: () => viewModel.selectSpeaker(context),
+                              child: Row(
+                                mainAxisSize: .min,
+                                spacing: 12,
+                                children: [
+                                  const Icon(Icons.speaker_phone_outlined),
+                                  Text(L10n.of(context).selectSpeaker),
                                 ],
                               ),
                             ),
@@ -390,28 +402,30 @@ class CallPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        if (localAudioTrack != null)
-                          FloatingActionButton(
-                            heroTag: null,
-                            mini: mini,
-                            onPressed: viewModel.togglePreviewMic,
-                            child: Icon(
-                              !localAudioTrack.muted
-                                  ? Icons.mic_outlined
-                                  : Icons.mic_off_outlined,
-                            ),
+                        FloatingActionButton(
+                          heroTag: null,
+                          mini: mini,
+                          onPressed: localAudioTrack != null
+                              ? viewModel.togglePreviewMic
+                              : null,
+                          child: Icon(
+                            !(localAudioTrack?.muted ?? true)
+                                ? Icons.mic_outlined
+                                : Icons.mic_off_outlined,
                           ),
-                        if (localVideoTrack != null)
-                          FloatingActionButton(
-                            heroTag: null,
-                            mini: mini,
-                            onPressed: viewModel.togglePreviewCamera,
-                            child: Icon(
-                              !localVideoTrack.muted
-                                  ? Icons.videocam_outlined
-                                  : Icons.videocam_off_outlined,
-                            ),
+                        ),
+                        FloatingActionButton(
+                          heroTag: null,
+                          mini: mini,
+                          onPressed: localVideoTrack != null
+                              ? viewModel.togglePreviewCamera
+                              : null,
+                          child: Icon(
+                            !(localVideoTrack?.muted ?? true)
+                                ? Icons.videocam_outlined
+                                : Icons.videocam_off_outlined,
                           ),
+                        ),
                       ],
                       FloatingActionButton(
                         heroTag: null,

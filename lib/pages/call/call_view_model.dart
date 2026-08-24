@@ -223,6 +223,12 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
           autoGainControl: true,
           highPassFilter: true,
         ),
+        defaultScreenShareCaptureOptions: lk.ScreenShareCaptureOptions(
+          useiOSBroadcastExtension: PlatformInfos.isIOS,
+        ),
+        defaultAudioOutputOptions: lk.AudioOutputOptions(
+          speakerOn: PlatformInfos.isMobile,
+        ),
         encryption: lk.E2EEOptions(keyProvider: baseKeyProvider),
       ),
     );
@@ -486,6 +492,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     final devices = await lk.Hardware.instance.enumerateDevices(type: type);
     if (!context.mounted) return null;
     return await showMenu<lk.MediaDevice>(
+      useRootNavigator: true,
       context: context,
       position: context.position,
       items: devices.isEmpty
@@ -501,14 +508,20 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
                     value: device,
                     child: Row(
                       mainAxisSize: .min,
+                      spacing: 12,
                       children: [
                         Icon(
                           device.deviceId == activeDeviceId
                               ? Icons.check_circle_outlined
                               : Icons.circle_outlined,
                         ),
-                        const SizedBox(width: 12),
-                        Text(device.label),
+                        Expanded(
+                          child: Text(
+                            device.label,
+                            maxLines: 1,
+                            overflow: .ellipsis,
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -535,5 +548,15 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     );
     if (source == null) return;
     await value.room?.setAudioInputDevice(source);
+  }
+
+  Future<void> selectSpeaker(BuildContext context) async {
+    final source = await _selectMediaDevice(
+      context,
+      'audiooutput',
+      value.room?.selectedAudioOutputDeviceId,
+    );
+    if (source == null) return;
+    await value.room?.setAudioOutputDevice(source);
   }
 }
