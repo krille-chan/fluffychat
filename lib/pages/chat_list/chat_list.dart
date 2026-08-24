@@ -91,7 +91,7 @@ class ChatListController extends State<ChatList>
   Future<void> setActiveSpace(String spaceId) async {
     await Matrix.of(context).client.getRoomById(spaceId)!.postLoad();
     if (!mounted) return;
-    if (FluffyThemes.isColumnMode(context) &&
+    if (!FluffyThemes.isColumnMode(context) &&
         !AppSettings.displayNavigationRail.value) {
       await AppSettings.displayNavigationRail.setItem(true);
     }
