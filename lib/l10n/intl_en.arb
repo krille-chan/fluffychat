@@ -2787,5 +2787,7 @@
     "noDevicesFound": "No devices found",
     "incomingCall": "Incoming call",
     "waitingForParticipant": "Waiting for participant...",
-    "decline": "Decline"
+    "decline": "Decline",
+    "startCall": "Start call",
+    "youAreAlreadyInACall": "You are already in a call!"
 }

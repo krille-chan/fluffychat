@@ -32,6 +32,7 @@ class CallViewModelState {
   lk.LocalVideoTrack? localVideoTrack;
   lk.LocalAudioTrack? localAudioTrack;
   String? focusedTrack;
+  bool mini = false;
 }
 
 class CallViewModel extends ValueNotifier<CallViewModelState> {
@@ -52,6 +53,11 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
 
   CallViewModel({required this.room}) : super(CallViewModelState()) {
     _init();
+  }
+
+  void toggleMini() {
+    value.mini = !value.mini;
+    notifyListeners();
   }
 
   void setFocusedTrack(String trackId) {
@@ -178,6 +184,18 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
         )
         .listen((_) => _createKeyAndShare());
     await WakelockPlus.enable();
+
+    if (PlatformInfos.isMobile) {
+      final activeCalls = await FlutterCallkitIncoming.activeCalls();
+      callKitId = activeCalls
+          .firstWhereOrNull(
+            (call) =>
+                call.extra?['roomId'] == room.id &&
+                call.extra?['clientName'] == room.client.clientName,
+          )
+          ?.id;
+    }
+
     await lk.LiveKitClient.initialize();
 
     // kHKDF matches the key derivation used by element-web's LiveKit JS SDK
@@ -357,14 +375,6 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     startTime = DateTime.now();
 
     if (PlatformInfos.isMobile) {
-      final activeCalls = await FlutterCallkitIncoming.activeCalls();
-      callKitId = activeCalls
-          .firstWhereOrNull(
-            (call) =>
-                call.extra?['roomId'] == room.id &&
-                call.extra?['clientName'] == room.client.clientName,
-          )
-          ?.id;
       if (callKitId == null) {
         final params = buildFluffyChatCallKitParams(room, l10n, intent: intent);
         await FlutterCallkitIncoming.startCall(params);
@@ -404,7 +414,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       );
     }
     if (context.mounted) {
-      Matrix.of(context).activeCallRoomId.value = null;
+      Matrix.of(context).endCall();
     }
   }
 

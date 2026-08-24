@@ -249,6 +249,7 @@ class ChatView extends StatelessWidget {
                       IconButton(
                         icon: Icon(Icons.call_outlined),
                         onPressed: controller.startOrJoinVideoCall,
+                        tooltip: L10n.of(context).enterCall,
                       ),
                     ChatSettingsPopupMenu(controller.room, true),
                   ],

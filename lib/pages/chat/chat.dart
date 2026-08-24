@@ -402,7 +402,7 @@ class ChatController extends State<ChatPageWithRoom>
       _shareItems();
       _checkMatrixRtcCallSupport();
       if (widget.action == 'call') {
-        Matrix.of(context).activeCallRoomId.value = room.id;
+        startOrJoinVideoCall();
       }
     });
     web.window.addEventListener('paste', _handleClipboardFilePasteWeb);
@@ -1568,7 +1568,7 @@ class ChatController extends State<ChatPageWithRoom>
   });
 
   void startOrJoinVideoCall() {
-    Matrix.of(context).activeCallRoomId.value = room.id;
+    Matrix.of(context).startCall(context, room.id);
   }
 
   bool supportLiveKitCalls = false;
