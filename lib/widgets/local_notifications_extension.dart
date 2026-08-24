@@ -32,10 +32,10 @@ extension LocalNotificationsExtension on MatrixState {
             context,
         builder: (_) => IncomingCallDialog(event: event),
       ).then((joinCall) {
-        if (joinCall == true) {
-          setActiveClient(event.room.client);
-          activeCallRoomId.value = event.room.id;
-        }
+        if (joinCall != true) return;
+        if (!mounted) return;
+        setActiveClient(event.room.client);
+        startCall(context, event.room.id);
       });
     }
 
