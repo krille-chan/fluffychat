@@ -4,13 +4,14 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:livekit_client/livekit_client.dart' as lk;
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
-class CallTile extends StatelessWidget {
+class CallTile extends StatefulWidget {
   final lk.TrackPublication<lk.VideoTrack>? video;
   final lk.TrackPublication<lk.AudioTrack>? audio;
   final User user;
@@ -33,27 +34,69 @@ class CallTile extends StatelessWidget {
   });
 
   @override
+  State<CallTile> createState() => _CallTileState();
+}
+
+class _CallTileState extends State<CallTile> {
+  double _waveForm = 0.0;
+  lk.AudioVisualizer? _audioVisualizer;
+  lk.EventsListener<lk.AudioVisualizerEvent>? _eventsListener;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final track = widget.audio?.track;
+    if (track != null) {
+      _audioVisualizer ??= lk.createVisualizer(
+        track,
+        options: lk.AudioVisualizerOptions(barCount: 1),
+      );
+      _eventsListener ??= _audioVisualizer?.createListener();
+      _eventsListener?.on<lk.AudioVisualizerEvent>((e) {
+        if (mounted) {
+          setState(() {
+            _waveForm =
+                e.event.map((e) => ((e as num) * 100).toDouble()).firstOrNull ??
+                0;
+          });
+        }
+      });
+      _audioVisualizer?.start();
+    }
+  }
+
+  @override
+  void dispose() {
+    _audioVisualizer?.stop();
+    _audioVisualizer?.dispose();
+    _eventsListener?.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final video = this.video?.track;
+    final video = widget.video?.track;
     final theme = Theme.of(context);
-    final borderRadius = BorderRadius.circular(AppConfig.borderRadius / 2);
-    // VideoTrackRenderer installs its own GestureDetector for local camera
-    // tap-to-focus/zoom on mobile, which wins the gesture arena over parents.
-    // Handle taps on a transparent overlay above the video instead.
-    return Container(
-      width: size,
-      height: size,
-      margin: margin,
+    final borderRadius = BorderRadius.circular(AppConfig.borderRadius);
+
+    return AnimatedContainer(
+      duration: FluffyThemes.animationDuration,
+      width: widget.size,
+      height: widget.size,
+      margin: widget.margin,
       clipBehavior: .hardEdge,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            spreadRadius: 1.0,
-            color: theme.dividerColor,
-            blurRadius: 0.0,
+            spreadRadius: (_waveForm / 10) + 1.0,
+            color: _waveForm > 0.0
+                ? theme.colorScheme.primary
+                : theme.dividerColor,
+            blurRadius: _waveForm / 10,
           ),
         ],
-        color: fit == .cover || !(video != null && !video.muted)
+        color: widget.fit == .cover || !(video != null && !video.muted)
             ? Theme.of(context).colorScheme.surfaceContainerHigh
             : Colors.black,
         borderRadius: borderRadius,
@@ -61,21 +104,21 @@ class CallTile extends StatelessWidget {
       child: Stack(
         children: [
           video != null && !video.muted
-              ? lk.VideoTrackRenderer(video, fit: fit)
+              ? lk.VideoTrackRenderer(video, fit: widget.fit)
               : Center(
                   child: Avatar(
                     size: 64,
-                    mxContent: user.avatarUrl,
-                    name: user.calcDisplayname(),
+                    mxContent: widget.user.avatarUrl,
+                    name: widget.user.calcDisplayname(),
                   ),
                 ),
           Positioned.fill(
             child: GestureDetector(
               behavior: HitTestBehavior.opaque,
-              onTap: onTap,
+              onTap: widget.onTap,
             ),
           ),
-          if (handRaised)
+          if (widget.handRaised)
             Positioned(
               top: 8,
               right: 8,
@@ -108,15 +151,17 @@ class CallTile extends StatelessWidget {
                   mainAxisSize: .min,
                   spacing: 4,
                   children: [
-                    if (audio != null)
+                    if (widget.audio != null)
                       Icon(
-                        audio?.muted == false ? Icons.mic : Icons.mic_off,
+                        widget.audio?.muted == false
+                            ? Icons.mic
+                            : Icons.mic_off,
                         size: 11,
                       ),
-                    if (this.video?.isScreenShare == true)
+                    if (widget.video?.isScreenShare == true)
                       Icon(Icons.screen_share_outlined, size: 11),
                     Text(
-                      user.calcDisplayname(),
+                      widget.user.calcDisplayname(),
                       maxLines: 1,
                       style: TextStyle(fontSize: 11),
                     ),
