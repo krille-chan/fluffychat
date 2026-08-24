@@ -10,6 +10,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/call/call_tile.dart';
 import 'package:fluffychat/pages/call/call_view_model.dart';
 import 'package:fluffychat/pages/call/start_time.dart';
+import 'package:fluffychat/pages/call/utils/get_call_tiles.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -203,7 +204,7 @@ class CallPage extends StatelessWidget {
                                   ? Axis.vertical
                                   : Axis.horizontal;
 
-                              final tiles = viewModel.getCallTiles();
+                              final tiles = liveKitRoom.getCallTiles(room);
 
                               final focused =
                                   (viewModel.value.focusedTrack == null
