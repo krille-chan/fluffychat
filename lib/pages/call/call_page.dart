@@ -44,32 +44,12 @@ class CallPage extends StatelessWidget {
         );
         final ownHandRaised = viewModel.participantRaisedHand(ownUser.id);
 
-        return AnimatedPositioned(
-          duration: FluffyThemes.animationDuration,
-          curve: FluffyThemes.animationCurve,
-          top: mini
-              ? (theme.appBarTheme.toolbarHeight ?? kToolbarHeight) + 8
-              : 0,
-          right: mini ? 8 : 0,
-          left: mini ? null : 0,
-          bottom: mini ? null : 0,
-          height: mini ? 256 : null,
-          width: mini ? 256 : null,
-          child: Material(
-            elevation: mini ? 4 : 0,
-            clipBehavior: .hardEdge,
-            shape: mini
-                ? RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                  )
-                : null,
-            child: MediaQuery.removePadding(
-              context: context,
-              removeBottom: mini,
-              removeTop: mini,
-              child: ScaffoldMessenger(
-                child: Scaffold(
+        return MediaQuery.removePadding(
+          context: context,
+          removeBottom: mini,
+          removeTop: mini,
+          child: ScaffoldMessenger(
+            child: Scaffold(
                   extendBodyBehindAppBar: true,
                   appBar: AppBar(
                     automaticallyImplyLeading: false,
@@ -443,8 +423,6 @@ class CallPage extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ),
         );
       },
     );
