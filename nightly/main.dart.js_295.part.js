@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dE4(){return new B.Ml(A.dz("et"))},
-Ml:function Ml(d){this.a=d}}
+dE4(){return new B.Mk(A.dz("et"))},
+Mk:function Mk(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[18],B)
-B.Ml.prototype={
+B.Mk.prototype={
 gpv(){return"Muuda pilti"},
 grj(){return"P\xf6\xf6ra vasakule"},
 grk(){return"P\xf6\xf6ra paremale"},
@@ -735,7 +735,7 @@ gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
 D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ml,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"Ml":{"aT":[]}}'))};
-(a=>{a["nGabX7kf63y94ars/Gs0OdZTLBI="]=a.current})($__dart_deferred_initializers__);
+y(B.Mk,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"Mk":{"aT":[]}}'))};
+(a=>{a["5AZeYBmwTYJBIIFkaaa3AJMtHLE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

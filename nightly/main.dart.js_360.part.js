@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEG(){return new B.MW(A.dz("tr"))},
-MW:function MW(d){this.a=d}}
+dEG(){return new B.MV(A.dz("tr"))},
+MV:function MV(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[53],B)
-B.MW.prototype={
+B.MV.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -734,8 +734,8 @@ gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
 D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MW,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MW":{"aT":[]}}'))
+x(B.MV,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MV":{"aT":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["vkQ9438YUg9D2++PpupGYxb8qPo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["5J/xWJuatyJ/xmAwYa5UTYj4Vko="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dE5(){return new B.Mm(A.dz("eu"))},
-Mm:function Mm(d){this.a=d}}
+dE5(){return new B.Ml(A.dz("eu"))},
+Ml:function Ml(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[19],B)
-B.Mm.prototype={
+B.Ml.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -734,8 +734,8 @@ gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
 D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mm,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"Mm":{"aT":[]}}'))
+x(B.Ml,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"Ml":{"aT":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["DTgxVJr0NXQdt2ICtYh/g2+LmpE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["R2DBjPr8e+fIWIYwDbYS693MDuo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

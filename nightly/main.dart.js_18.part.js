@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
 dEt(d){return new A.FR(B.dz(d))},
-dEu(){return new A.MK(B.dz("pt_BR"))},
-dEv(){return new A.ML(B.dz("pt_PT"))},
+dEu(){return new A.MJ(B.dz("pt_BR"))},
+dEv(){return new A.MK(B.dz("pt_PT"))},
 FR:function FR(d){this.a=d},
-MK:function MK(d){this.a=d},
-ML:function ML(d){this.a=d}},C
+MJ:function MJ(d){this.a=d},
+MK:function MK(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[58]
@@ -738,7 +738,7 @@ gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
 D(d,e){return this.gbD(this).$1(e)}}
-A.MK.prototype={
+A.MJ.prototype={
 gl4(){return"Repita a senha"},
 gkC(){return"N\xe3o \xe9 um arquivo de imagem."},
 gbD(d){return"Remover"},
@@ -1346,7 +1346,7 @@ gp5(){return"Pular backup de conversas"},
 gp6(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 pL(d){return"Vers\xe3o: "+d},
 D(d,e){return this.gbD(this).$1(e)}}
-A.ML.prototype={
+A.MK.prototype={
 gl4(){return"Repete a palavra-passe"},
 gkC(){return"N\xe3o \xe9 um ficheiro de imagem."},
 gbD(d){return"Remover"},
@@ -1689,8 +1689,8 @@ gf9(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3
 D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.FR,C.aT)
-w(A.FR,[A.MK,A.ML])})()
-B.ed(b.typeUniverse,JSON.parse('{"FR":{"aT":[]},"MK":{"aT":[]},"ML":{"aT":[]}}'))
+w(A.FR,[A.MJ,A.MK])})()
+B.ed(b.typeUniverse,JSON.parse('{"FR":{"aT":[]},"MJ":{"aT":[]},"MK":{"aT":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["6xEKIYbljUH3ZibGHTj6CvF+p6w="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["RAE50xmxFtNAxCVGZe+bJOqwmto="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

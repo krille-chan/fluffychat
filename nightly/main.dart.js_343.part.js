@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEr(){return new B.MI(A.dz("nl"))},
-MI:function MI(d){this.a=d}}
+dEr(){return new B.MH(A.dz("nl"))},
+MH:function MH(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[41],B)
-B.MI.prototype={
+B.MH.prototype={
 gpv(){return"Afbeelding wijzigen"},
 grj(){return"Linksom draaien"},
 grk(){return"Rechtsom draaien"},
@@ -735,7 +735,7 @@ gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
 D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MI,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MI":{"aT":[]}}'))};
-(a=>{a["e3d0Dcrwgi9X4T1jWFSQsNlBFW0="]=a.current})($__dart_deferred_initializers__);
+y(B.MH,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MH":{"aT":[]}}'))};
+(a=>{a["SFocFVtG5n3D37oSx9mSYL98lFw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_343.part.js.map

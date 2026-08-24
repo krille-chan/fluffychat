@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEa(){return new B.Mr(A.dz("ga"))},
-Mr:function Mr(d){this.a=d}}
+dEa(){return new B.Mq(A.dz("ga"))},
+Mq:function Mq(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[24],B)
-B.Mr.prototype={
+B.Mq.prototype={
 gpv(){return"Cuir \xedomh\xe1 in eagar"},
 grj(){return"Rothlaigh ar chl\xe9"},
 grk(){return"Rothlaigh ar dheis"},
@@ -734,8 +734,8 @@ gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
 D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mr,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"Mr":{"aT":[]}}'))
+x(B.Mq,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"Mq":{"aT":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["MQNWqZfXVOt21p/Ln5henFuSEI0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mD/dYM7ZeiALJtYYA00tpZOefJ8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map
