@@ -174,7 +174,7 @@ jobs:
           api-level: ${{ matrix.api-level }}
           target: google_apis
           arch: x86_64
-          cores: 16
+          cores: 4
           ndk: 28.2.13676358
           force-avd-creation: false
           disk-size: 4096M
