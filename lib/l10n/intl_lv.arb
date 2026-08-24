@@ -2499,9 +2499,9 @@
     "showThumbnailsInTimeline": "Rādīt attēlu un video sīktēlus",
     "appSubtitle": "Droša [matrix] saziņa",
     "appDescription": "Šifrēta saziņa decentralizētā [matrix] tīklā visiem vienkāršā un pieejamā veidā.",
-    "interactiveVerification": "Mijiedarbība apliecināšana",
+    "interactiveVerification": "Mijiedarbīga apliecināšana",
     "interactiveVerificationDescription": "Ja esat viens otram blakus vai sazināties drošā veidā, tad varat apliecināt visas ierīces uzreiz ar drošības skaitļa vai emocijzīmju salīdzināšanu.",
-    "countUnverifiedDevices": "Tērzēšanā ir {count} neapliecinātas ierīces.",
+    "countUnverifiedDevices": "Tērzēšanā ir {count, plural, zero{{count} neapliecinātu ierīču} one{{count} neapliecināta ierīce} other{{count} neapliecinātas ierīces}}.",
     "@countUnverifiedDevices": {
         "type": "int",
         "placeholders": {
@@ -2736,5 +2736,36 @@
     },
     "loadingMessages": "Ielādē ziņas…",
     "buildDoesNotSupportFirebase": "Šis būvējums neatbalsta Firebase mākoņziņapmaiņu.",
-    "unableToRegisterDeviceForFirebase": "Nav iespējams reģistrēt ierīci Firebase ziņapmaiņai."
+    "unableToRegisterDeviceForFirebase": "Nav iespējams reģistrēt ierīci Firebase ziņapmaiņai.",
+    "decline": "Noraidīt",
+    "videoCallsBetaWarning": "Video zvani pašreiz ir beta iespēja. Tajos var būt nepilnības vai neparedzēta uzvedība. Mēs būsim priecīgi par atsauksmēm.",
+    "noDevicesFound": "Nav atrasta neviena ierīce",
+    "incomingCall": "Ienākošs zvans",
+    "waitingForParticipant": "Gaida dalībnieku…",
+    "compressingVideo": "Saspiež video…",
+    "doubleTapToReact": "Divkāršs piesitiens, lai atsauktos",
+    "doubleTapToReactDescription": "Divkāršs piesitiens ziņai, lai atsauktos, nevis iezīmētu tekstu",
+    "doubleTapReaction": "Atsaukšanās ar divkāršu piesišanu",
+    "shareCrashReports": "Kopīgot avāriju ziņojumus",
+    "shareCrashReportsDescription": "Avāriju ziņojumus automātiski kopīgot ar izstrādātājiem",
+    "shareCrashReportsPrompt": "Automātiski kopīgot avāriju ziņojumus ar izstrādātājiem? Vairāk par to, kādi dati tiek kopīgoti, var uzzināt {url}.",
+    "@shareCrashReportsPrompt": {
+        "placeholders": {
+            "url": {
+                "type": "String"
+            }
+        }
+    },
+    "allow": "Atļaut",
+    "deny": "Noraidīt",
+    "activeCall": "Notiekošs zvans",
+    "countActiveCallMembers": "{count, plural, zero{{count} zvanā esoši dalībnieki} one{{count} zvanā esošs dalībnieks} other{{count} zvanā esoši dalībnieki}}",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Pievienoties zvanam"
 }
