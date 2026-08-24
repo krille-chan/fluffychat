@@ -60,6 +60,7 @@ dependencies:
   light_compressor_v2: ^1.9.1
   livekit_client: ^2.11.0
   local_auth: ^3.0.2
+  lottie: ^3.5.1
   material_ui: any
   matrix: ^10.2.1
   media_kit_libs_audio: ^1.0.7
