@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEG(){return new B.MT(A.dz("sr"))},
-MT:function MT(d){this.a=d}}
+dF_(){return new B.MU(A.dz("sr"))},
+MU:function MU(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[48],B)
-B.MT.prototype={
+B.MU.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -13,7 +13,7 @@ gqO(){return"Mirror"},
 gpN(d){return"Save"},
 gpu(){return"Draw"},
 glj(){return"Undo"},
-geG(d){return"Clear"},
+geH(d){return"Clear"},
 gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"Ponovite lozinku"},
@@ -65,7 +65,7 @@ gfM(){return"\u0417\u0430\u0431\u0440\u0430\u043d\u0438 \u0443 \u045b\u0430\u044
 gfN(){return"\u0417\u0430\u0431\u0440\u0430\u045a\u0435\u043d"},
 iv(d,e){return d+" \u0437\u0430\u0431\u0440\u0430\u043d\u0438 \u043a\u043e\u0440\u0438\u0441\u043d\u0438\u043a\u0430 "+e},
 gfP(){return"\u0411\u043b\u043e\u043a\u0438\u0440\u0430\u0458 \u0443\u0440\u0435\u0452\u0430\u0458"},
-gcU(){return"\u0411\u043b\u043e\u043a\u0438\u0440\u0430\u043d"},
+gcV(){return"\u0411\u043b\u043e\u043a\u0438\u0440\u0430\u043d"},
 gbV(d){return"\u041e\u0442\u043a\u0430\u0436\u0438"},
 fR(d){return"Can't open the URI "+d},
 gfS(){return"\u041f\u0440\u043e\u043c\u0435\u043d\u0438 \u043d\u0430\u0437\u0438\u0432 \u0443\u0440\u0435\u0452\u0430\u0458\u0430"},
@@ -83,7 +83,7 @@ iH(d,e){return d+" \u0438\u0437\u043c\u0435\u043d\u0438 \u043f\u0440\u0430\u0432
 iI(d){return d+" \u0438\u0437\u043c\u0435\u043d\u0438 \u0441\u0432\u043e\u0458 \u0430\u0432\u0430\u0442\u0430\u0440"},
 iJ(d){return d+" \u0438\u0437\u043c\u0435\u043d\u0438 \u0430\u043b\u0438\u0458\u0430\u0441 \u0441\u043e\u0431\u0435"},
 iK(d){return d+" \u0438\u0437\u043c\u0435\u043d\u0438 \u0432\u0435\u0437\u0443 \u043f\u043e\u0437\u0438\u0432\u043d\u0438\u0446\u0435"},
-geF(){return"\u0418\u0437\u043c\u0435\u043d\u0438 \u043b\u043e\u0437\u0438\u043d\u043a\u0443"},
+geG(){return"\u0418\u0437\u043c\u0435\u043d\u0438 \u043b\u043e\u0437\u0438\u043d\u043a\u0443"},
 gix(){return"\u041f\u0440\u043e\u043c\u0435\u043d\u0438 \u0434\u043e\u043c\u0430\u045b\u0438 \u0441\u0435\u0440\u0432\u0435\u0440"},
 gfU(){return"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u0435 \u0438\u0437\u0433\u043b\u0435\u0434"},
 gfT(){return"\u0418\u0437\u043c\u0435\u043d\u0438 \u043d\u0430\u0437\u0438\u0432 \u0433\u0440\u0443\u043f\u0435"},
@@ -95,7 +95,7 @@ gfX(){return"\u0414\u0435\u0442\u0430\u0459\u0438 \u045b\u0430\u0441\u043a\u0430
 gfY(){return"\u040b\u0430\u0441\u043a\u0430\u045a\u0430"},
 giM(){return"\u0418\u0437\u0430\u0431\u0435\u0440\u0438\u0442\u0435 \u0458\u0430\u043a\u0443 \u043b\u043e\u0437\u0438\u043d\u043a\u0443"},
 gfZ(){return"\u041e\u0447\u0438\u0441\u0442\u0438 \u0430\u0440\u0445\u0438\u0432\u0443"},
-gcV(d){return"\u0417\u0430\u0442\u0432\u043e\u0440\u0438"},
+gcW(d){return"\u0417\u0430\u0442\u0432\u043e\u0440\u0438"},
 gj_(){return"Mark as direct message room for the giving Matrix ID"},
 gj0(){return"Mark as group"},
 giN(){return"\u0411\u043b\u043e\u043a\u0438\u0440\u0430\u0458 \u0437\u0430\u0434\u0430\u0442\u043e\u0433 \u043a\u043e\u0440\u0438\u0441\u043d\u0438\u043a\u0430 \u0437\u0430 \u043e\u0432\u0443 \u0441\u043e\u0431\u0443"},
@@ -161,7 +161,7 @@ gmm(){return"Calls"},
 gh4(){return"Custom emojis and stickers"},
 gmO(){return"Add or share custom emojis or stickers which can be used in any chat."},
 gh9(){return"\u0441\u043a\u0440\u0430\u045b\u0435\u043d\u0438\u0446\u0430"},
-geH(){return"\u043f\u0440\u0430\u0437\u043d\u043e \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
+geI(){return"\u043f\u0440\u0430\u0437\u043d\u043e \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
 gjG(){return"\u0413\u043b\u043e\u0431\u0430\u043b\u043d\u043e \u0443\u043a\u0459\u0443\u0447\u0438 \u043f\u0430\u043a\u0435\u0442 \u0435\u043c\u043e\u0442\u0438\u0458\u0430"},
 geR(){return"\u0423\u043a\u0459\u0443\u0447\u0443\u0458\u0435 \u0448\u0438\u0444\u0440\u043e\u0432\u0430\u045a\u0435"},
 gjH(){return"\u0428\u0438\u0444\u0440\u043e\u0432\u0430\u045a\u0435 \u0432\u0438\u0448\u0435 \u043d\u0435\u045b\u0435\u0442\u0435 \u043c\u043e\u045b\u0438 \u0434\u0430 \u0438\u0441\u043a\u0459\u0443\u0447\u0438\u0442\u0435. \u0421\u0438\u0433\u0443\u0440\u043d\u0438 \u0441\u0442\u0435?"},
@@ -289,7 +289,7 @@ gla(){return"\u0412\u0435\u0440\u0437\u0438\u0458\u0430 \u0441\u043e\u0431\u0435
 ghN(){return"Save file"},
 gei(d){return"\u041f\u0440\u0435\u0442\u0440\u0430\u0436\u0438"},
 gfp(){return"\u0411\u0435\u0437\u0431\u0435\u0434\u043d\u043e\u0441\u0442"},
-geE(d){return"\u041f\u043e\u0448\u0430\u0459\u0438"},
+geF(d){return"\u041f\u043e\u0448\u0430\u0459\u0438"},
 ghP(){return"\u041f\u043e\u0448\u0430\u0459\u0438 \u043f\u043e\u0440\u0443\u043a\u0443"},
 ghQ(){return"Send as text"},
 ghR(){return"\u041f\u043e\u0448\u0430\u0459\u0438 \u0430\u0443\u0434\u0438\u043e"},
@@ -316,7 +316,7 @@ gfB(){return"\u0418\u0437\u0432\u043e\u0440\u043d\u0438 \u043a\u043e\u0434"},
 gi2(){return"Space is public"},
 gi3(){return"Space name"},
 fD(d){return d+" \u0437\u0430\u043f\u043e\u0447\u0435 \u043f\u043e\u0437\u0438\u0432"},
-gaZ(d){return"\u0421\u0442\u0430\u045a\u0435"},
+gb_(d){return"\u0421\u0442\u0430\u045a\u0435"},
 gi5(){return"\u041a\u0430\u043a\u043e \u0441\u0442\u0435 \u0434\u0430\u043d\u0430\u0441?"},
 gi7(d){return"\u041f\u043e\u0448\u0430\u0459\u0438"},
 gia(){return"Synchronizing\u2026 Please wait."},
@@ -406,7 +406,7 @@ gkU(){return"Read up to here"},
 gk9(){return"Jump"},
 gkJ(){return"Open link in browser"},
 gl7(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can report this bug to the developers."},
-geC(){return"report"},
+geD(){return"report"},
 gi_(){return"Set color theme:"},
 ghh(){return"Invite"},
 gk_(){return"\ud83d\udce8 Group chat invite"},
@@ -607,11 +607,11 @@ gpc(){return"Add answer option"},
 gpe(){return"Allow multiple answers"},
 goc(){return"Poll has been ended"},
 po(d){var y=null
-return A.aO(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aP(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gph(){return"Answers will be visible when poll has ended"},
 goj(){return"Reply in thread"},
 pn(d){var y=null
-return A.aO(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aP(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpH(){return"Thread"},
 gpj(){return"Back to main chat"},
 goZ(){return"Save changes"},
@@ -714,7 +714,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -734,7 +734,7 @@ gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
 D(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MT,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MT":{"aT":[]}}'))};
-(a=>{a["bXN7qxO8HD7TA01ViKhVttmvNGI="]=a.current})($__dart_deferred_initializers__);
+y(B.MU,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MU":{"aT":[]}}'))};
+(a=>{a["FrjDYM4E93KdU0twMFDS9mu8qw4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_354.part.js.map

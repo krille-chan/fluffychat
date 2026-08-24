@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEq(){return new B.ME(A.dz("ka"))},
-ME:function ME(d){this.a=d}}
+dEK(){return new B.MF(A.dz("ka"))},
+MF:function MF(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[35],B)
-B.ME.prototype={
+B.MF.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -13,7 +13,7 @@ gqO(){return"Mirror"},
 gpN(d){return"Save"},
 gpu(){return"Draw"},
 glj(){return"Undo"},
-geG(d){return"Clear"},
+geH(d){return"Clear"},
 gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"\u10d2\u10d0\u10d8\u10db\u10d4\u10dd\u10e0\u10d4\u10d7 \u10de\u10d0\u10e0\u10dd\u10da\u10d8"},
@@ -65,7 +65,7 @@ gfM(){return"\u10e9\u10d0\u10e2\u10d8\u10d3\u10d0\u10dc \u10d2\u10d0\u10d2\u10d3
 gfN(){return"\u10d3\u10d0\u10d1\u10da\u10dd\u10d9\u10d8\u10da\u10d8\u10d0"},
 iv(d,e){return d+" \u10d3\u10d0\u10d1\u10da\u10dd\u10d9\u10d0 "+e},
 gfP(){return"\u10db\u10dd\u10ec\u10e7\u10dd\u10d1\u10d8\u10da\u10d4\u10d1\u10d8\u10e1 \u10d1\u10da\u10dd\u10d9\u10d8\u10e0\u10d4\u10d1\u10d0"},
-gcU(){return"\u10d3\u10d0\u10d1\u10da\u10dd\u10d9\u10d8\u10da\u10d8\u10d0"},
+gcV(){return"\u10d3\u10d0\u10d1\u10da\u10dd\u10d9\u10d8\u10da\u10d8\u10d0"},
 gbV(d){return"\u10d2\u10d0\u10e3\u10e5\u10db\u10d4\u10d1\u10d0"},
 fR(d){return"\u10d5\u10d4\u10e0 \u10d8\u10ee\u10e1\u10dc\u10d4\u10d1\u10d0 \u10d1\u10db\u10e3\u10da\u10d8 "+d},
 gfS(){return"\u10db\u10dd\u10ec\u10e7\u10dd\u10d1\u10d8\u10da\u10d4\u10d1\u10d8\u10e1 \u10d2\u10d0\u10d3\u10d0\u10e0\u10e5\u10db\u10d4\u10d5\u10d0"},
@@ -83,7 +83,7 @@ iH(d,e){return d+" \u10d2\u10d0\u10ec\u10d4\u10d5\u10e0\u10d8\u10d0\u10dc\u10d4\
 iI(d){return d+" \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0 \u10de\u10e0\u10dd\u10e4\u10d8\u10da\u10d8\u10e1 \u10e4\u10dd\u10e2\u10dd"},
 iJ(d){return d+" \u10dd\u10d7\u10d0\u10ee\u10d8\u10e1 \u10db\u10d4\u10e2\u10e1\u10d0\u10ee\u10d4\u10da\u10d4\u10d1\u10d8 \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0"},
 iK(d){return d+" \u10db\u10dd\u10ec\u10d5\u10d4\u10d5\u10d8\u10e1 \u10d1\u10db\u10e3\u10da\u10d8 \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0"},
-geF(){return"\u10de\u10d0\u10e0\u10dd\u10da\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
+geG(){return"\u10de\u10d0\u10e0\u10dd\u10da\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
 gix(){return"\u10e1\u10d0\u10ee\u10da\u10d8\u10e1 \u10e1\u10d4\u10e0\u10d5\u10d4\u10e0\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
 gfU(){return"\u10e1\u10e2\u10d8\u10da\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
 gfT(){return"\u10ef\u10d2\u10e3\u10e4\u10d8\u10e1 \u10d2\u10d0\u10d3\u10d0\u10e0\u10e5\u10db\u10d4\u10d5\u10d0"},
@@ -95,7 +95,7 @@ gfX(){return"\u10e9\u10d0\u10e2\u10d8\u10e1 \u10d3\u10d4\u10e2\u10d0\u10da\u10d4
 gfY(){return"\u10e9\u10d0\u10e2\u10d4\u10d1\u10d8"},
 giM(){return"\u10eb\u10da\u10d8\u10d4\u10e0\u10d8 \u10de\u10d0\u10e0\u10dd\u10da\u10d8 \u10d0\u10d0\u10e0\u10e9\u10d8\u10d4\u10d7"},
 gfZ(){return"\u10d0\u10e0\u10e5\u10d8\u10d5\u10d8\u10e1 \u10d2\u10d0\u10ec\u10db\u10d4\u10dc\u10d3\u10d0"},
-gcV(d){return"\u10d3\u10d0\u10ee\u10e3\u10e0\u10d5\u10d0"},
+gcW(d){return"\u10d3\u10d0\u10ee\u10e3\u10e0\u10d5\u10d0"},
 gj_(){return"Mark as direct message room for the giving Matrix ID"},
 gj0(){return"\u10d0\u10e6\u10dc\u10d8\u10e8\u10d5\u10dc\u10d0, \u10e0\u10dd\u10d2\u10dd\u10e0\u10ea \u10ef\u10d2\u10e3\u10e4\u10d8\u10e1"},
 giN(){return"\u10db\u10dd\u10ea\u10d4\u10db\u10e3\u10da\u10d8 \u10db\u10dd\u10db\u10ee\u10db\u10d0\u10e0\u10d4\u10d1\u10da\u10d8\u10e1 \u10d1\u10da\u10dd\u10d9\u10d8\u10e0\u10d4\u10d1\u10d0 \u10d0\u10db \u10dd\u10d7\u10d0\u10ee\u10e8\u10d8"},
@@ -161,7 +161,7 @@ gmm(){return"Calls"},
 gh4(){return"Custom emojis and stickers"},
 gmO(){return"Add or share custom emojis or stickers which can be used in any chat."},
 gh9(){return"Emote shortcode"},
-geH(){return"Empty chat"},
+geI(){return"Empty chat"},
 gjG(){return"Enable emote pack globally"},
 geR(){return"Enable encryption"},
 gjH(){return"You won't be able to disable the encryption anymore. Are you sure?"},
@@ -289,7 +289,7 @@ gla(){return"Room version"},
 ghN(){return"Save file"},
 gei(d){return"Search"},
 gfp(){return"Security"},
-geE(d){return"Send"},
+geF(d){return"Send"},
 ghP(){return"Send a message"},
 ghQ(){return"Send as text"},
 ghR(){return"Send audio"},
@@ -316,7 +316,7 @@ gfB(){return"Source code"},
 gi2(){return"Space is public"},
 gi3(){return"Space name"},
 fD(d){return d+" started a call"},
-gaZ(d){return"Status"},
+gb_(d){return"Status"},
 gi5(){return"How are you today?"},
 gi7(d){return"Submit"},
 gia(){return"Synchronizing\u2026 Please wait."},
@@ -406,7 +406,7 @@ gkU(){return"Read up to here"},
 gk9(){return"Jump"},
 gkJ(){return"Open link in browser"},
 gl7(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can report this bug to the developers."},
-geC(){return"report"},
+geD(){return"report"},
 gi_(){return"Set color theme:"},
 ghh(){return"Invite"},
 gk_(){return"\ud83d\udce8 Group chat invite"},
@@ -607,11 +607,11 @@ gpc(){return"Add answer option"},
 gpe(){return"Allow multiple answers"},
 goc(){return"Poll has been ended"},
 po(d){var y=null
-return A.aO(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aP(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gph(){return"Answers will be visible when poll has ended"},
 goj(){return"Reply in thread"},
 pn(d){var y=null
-return A.aO(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aP(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpH(){return"Thread"},
 gpj(){return"Back to main chat"},
 goZ(){return"Save changes"},
@@ -714,7 +714,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -734,7 +734,7 @@ gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
 D(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.ME,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"ME":{"aT":[]}}'))};
-(a=>{a["w3W+d3czLrdRW7JNNK7PNXOm5Yw="]=a.current})($__dart_deferred_initializers__);
+y(B.MF,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MF":{"aT":[]}}'))};
+(a=>{a["BzDdPKtYFravpdasOsNFbyHi5NY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_335.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dE5(){return new B.Mj(A.dz("el"))},
-Mj:function Mj(d){this.a=d}}
+dEp(){return new B.Mk(A.dz("el"))},
+Mk:function Mk(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[14],B)
-B.Mj.prototype={
+B.Mk.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -13,7 +13,7 @@ gqO(){return"Mirror"},
 gpN(d){return"Save"},
 gpu(){return"Draw"},
 glj(){return"Undo"},
-geG(d){return"Clear"},
+geH(d){return"Clear"},
 gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"\u0395\u03c0\u03b1\u03bd\u03ac\u03bb\u03b7\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
@@ -65,7 +65,7 @@ gfM(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03b9\u03c3\u03bc\u03cc\u03c2 
 gfN(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03af\u03c3\u03c4\u03b7\u03ba\u03b5"},
 iv(d,e){return d+" \u03b1\u03c0\u03ad\u03ba\u03bb\u03b5\u03b9\u03c3\u03b5 "+e},
 gfP(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03b9\u03c3\u03bc\u03cc\u03c2 \u03a3\u03c5\u03c3\u03ba\u03b5\u03c5\u03ae\u03c2"},
-gcU(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03af\u03c3\u03c4\u03b7\u03ba\u03b5"},
+gcV(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03af\u03c3\u03c4\u03b7\u03ba\u03b5"},
 gbV(d){return"\u0391\u03ba\u03cd\u03c1\u03c9\u03c3\u03b7"},
 fR(d){return"\u0394\u03b5\u03bd \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03b1\u03bd\u03bf\u03af\u03be\u03b5\u03b9 \u03c4\u03bf URI "+d},
 gfS(){return"\u0391\u03bb\u03bb\u03b1\u03b3\u03ae \u03bf\u03bd\u03cc\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c3\u03c5\u03c3\u03ba\u03b5\u03c5\u03ae\u03c2"},
@@ -83,7 +83,7 @@ iH(d,e){return d+" \u03ac\u03bb\u03bb\u03b1\u03be\u03b5 \u03c4\u03bf\u03c5\u03c2
 iI(d){return"\u039f \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7\u03c2 "+d+" \u03ac\u03bb\u03bb\u03b1\u03be\u03b5 \u03c4\u03b7\u03bd \u03b5\u03b9\u03ba\u03cc\u03bd\u03b1 \u03c0\u03c1\u03bf\u03c6\u03af\u03bb \u03c4\u03bf\u03c5"},
 iJ(d){return d+" changed the room aliases"},
 iK(d){return d+" changed the invitation link"},
-geF(){return"\u0391\u03bb\u03bb\u03b1\u03b3\u03ae \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
+geG(){return"\u0391\u03bb\u03bb\u03b1\u03b3\u03ae \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gix(){return"Change the homeserver"},
 gfU(){return"\u0386\u03bb\u03bb\u03b1\u03be\u03b5 \u03c4\u03bf \u03c3\u03c4\u03c5\u03bb \u03c3\u03bf\u03c5"},
 gfT(){return"Change the name of the group"},
@@ -95,7 +95,7 @@ gfX(){return"\u039b\u03b5\u03c0\u03c4\u03bf\u03bc\u03ad\u03c1\u03b5\u03b9\u03b5\
 gfY(){return"\u03a3\u03c5\u03bd\u03bf\u03bc\u03b9\u03bb\u03af\u03b5\u03c2"},
 giM(){return"\u0395\u03b9\u03c3\u03ac\u03b3\u03b5\u03c4\u03b5 \u03ad\u03bd\u03b1 \u03b4\u03c5\u03bd\u03b1\u03c4\u03cc \u03ba\u03c9\u03b4\u03b9\u03ba\u03cc \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gfZ(){return"Clear archive"},
-gcV(d){return"\u039a\u03bb\u03b5\u03af\u03c3\u03b9\u03bc\u03bf"},
+gcW(d){return"\u039a\u03bb\u03b5\u03af\u03c3\u03b9\u03bc\u03bf"},
 gj_(){return"Mark as direct message room for the giving Matrix ID"},
 gj0(){return"Mark as group"},
 giN(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03b9\u03c3\u03bc\u03cc\u03c2 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b7 \u03b1\u03c0\u03cc \u03c4\u03bf \u03b4\u03c9\u03bc\u03ac\u03c4\u03b9\u03bf"},
@@ -129,7 +129,7 @@ gji(){return"Copy to clipboard"},
 jj(d){return"Could not decrypt message: "+d},
 gmA(){return"Check list"},
 ez(d){var y=null
-return A.aO(d,y,this.a,y,"1 participant",""+d+" participants",y,y)},
+return A.aP(d,y,this.a,y,"1 participant",""+d+" participants",y,y)},
 jl(d){return""+d+" invited"},
 gjm(d){return"Create"},
 jn(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -162,7 +162,7 @@ gmm(){return"Calls"},
 gh4(){return"Custom emojis and stickers"},
 gmO(){return"Add or share custom emojis or stickers which can be used in any chat."},
 gh9(){return"Emote shortcode"},
-geH(){return"Empty chat"},
+geI(){return"Empty chat"},
 gjG(){return"Enable emote pack globally"},
 geR(){return"Enable encryption"},
 gjH(){return"You won't be able to disable the encryption anymore. Are you sure?"},
@@ -290,7 +290,7 @@ gla(){return"Room version"},
 ghN(){return"Save file"},
 gei(d){return"Search"},
 gfp(){return"Security"},
-geE(d){return"Send"},
+geF(d){return"Send"},
 ghP(){return"Send a message"},
 ghQ(){return"Send as text"},
 ghR(){return"Send audio"},
@@ -317,7 +317,7 @@ gfB(){return"Source code"},
 gi2(){return"Space is public"},
 gi3(){return"Space name"},
 fD(d){return d+" started a call"},
-gaZ(d){return"Status"},
+gb_(d){return"Status"},
 gi5(){return"How are you today?"},
 gi7(d){return"Submit"},
 gia(){return"Synchronizing\u2026 Please wait."},
@@ -407,7 +407,7 @@ gkU(){return"Read up to here"},
 gk9(){return"Jump"},
 gkJ(){return"Open link in browser"},
 gl7(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can report this bug to the developers."},
-geC(){return"report"},
+geD(){return"report"},
 gi_(){return"Set color theme:"},
 ghh(){return"Invite"},
 gk_(){return"\ud83d\udce8 Group chat invite"},
@@ -608,11 +608,11 @@ gpc(){return"Add answer option"},
 gpe(){return"Allow multiple answers"},
 goc(){return"Poll has been ended"},
 po(d){var y=null
-return A.aO(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aP(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gph(){return"Answers will be visible when poll has ended"},
 goj(){return"Reply in thread"},
 pn(d){var y=null
-return A.aO(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aP(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpH(){return"Thread"},
 gpj(){return"Back to main chat"},
 goZ(){return"Save changes"},
@@ -715,7 +715,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -735,7 +735,7 @@ gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
 D(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mj,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"Mj":{"aT":[]}}'))};
-(a=>{a["Kmt7U/Lbt/SSV/Z5NbBrpqdLz2c="]=a.current})($__dart_deferred_initializers__);
+y(B.Mk,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"Mk":{"aT":[]}}'))};
+(a=>{a["nInq+qryQsOym5PEAKO5kJDpOfY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_286.part.js.map
