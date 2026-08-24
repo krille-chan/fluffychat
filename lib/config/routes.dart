@@ -162,6 +162,7 @@ abstract class AppRoutes {
                     context,
                     state,
                     ChatPage(
+                      key: ValueKey(state.uri),
                       roomId: state.pathParameters['roomid']!,
                       eventId: state.uri.queryParameters['event'],
                       timeline: state.extra as Timeline?,
@@ -390,6 +391,7 @@ abstract class AppRoutes {
                   context,
                   state,
                   ChatPage(
+                    key: ValueKey(state.uri),
                     roomId: state.pathParameters['roomid']!,
                     shareItems: shareItems,
                     eventId: state.uri.queryParameters['event'],
