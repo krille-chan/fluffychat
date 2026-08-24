@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEL(){return new B.MG(A.dz("kab"))},
-MG:function MG(d){this.a=d}}
+dEm(){return new B.MD(A.dz("kab"))},
+MD:function MD(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[36],B)
-B.MG.prototype={
+B.MD.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"Ales awal n u\u025beddi"},
 gkC(){return"Ma\u010d\u010di d afaylu n tugna."},
-gbE(d){return"Kkes"},
+gbD(d){return"Kkes"},
 gjX(){return"Kter tura"},
 gjV(){return"Kter imujiten"},
 gjW(){return"Kter seg ufaylu .zip"},
@@ -66,7 +66,7 @@ gfN(){return"Yettwagdel"},
 iv(d,e){return d+" yegdel "+e},
 gfP(){return"Sew\u1e25el ibenk"},
 gcV(){return"Yettusew\u1e25el"},
-gbV(d){return"Sefsex"},
+gbU(d){return"Sefsex"},
 fR(d){return"Ur yezmir ara ad yeldi URl "+d},
 gfS(){return"Snifel isem n yibenk"},
 iz(d){return d+" yesnifel ava\u1e6dar n udiwenni"},
@@ -316,7 +316,7 @@ gfB(){return"Tangalt ta\u0263balutt"},
 gi2(){return"Tallunt d tazayezt"},
 gi3(){return"Isem n tallunt"},
 fD(d){return d+" yebda-d asiwel"},
-gb_(d){return"Addad"},
+gaZ(d){return"Addad"},
 gi5(){return"Amek telli\u1e0d ass-a?"},
 gi7(d){return"Ceyye\u025b"},
 gia(){return"Amtawi... Ttxil-k\xb7m ar\u01e7u."},
@@ -506,7 +506,7 @@ gmH(){return"Nermes anedbal n uqeddac"},
 gmI(){return"Ta\u0263ellist uqeddac n unermis"},
 gm5(){return"Asebter n tallalt"},
 glY(){return"Tal\u0263ut n uqeddac:"},
-ga5(d){return"Isem"},
+gbV(d){return"Isem"},
 goH(d){return"Lqem"},
 goP(){return"Asmel Web"},
 gmF(){return"Sekussem"},
@@ -607,11 +607,11 @@ gpc(){return"Rnu tanefrunt n tririt"},
 gpe(){return"Sireg aget n tiririyin"},
 goc(){return"Tafrent tfukk"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aO(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gph(){return"Tiririyin ad banent ticki tafrent tfukk"},
 goj(){return"Err deg udras udiwenni"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aO(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpH(){return"Adras udiwenni"},
 gpj(){return"U\u0263al \u0263er udiwenni agejdan"},
 goZ(){return"Sekles ibeddilen"},
@@ -714,7 +714,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -732,9 +732,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MG,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MG":{"aT":[]}}'))};
-(a=>{a["aY8YMCGYItcLF7pbTeMbDt25kDY="]=a.current})($__dart_deferred_initializers__);
+y(B.MD,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MD":{"aT":[]}}'))};
+(a=>{a["4Nj1GHIPeDywUS5zUhGxQZ3twNg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_336.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF0(){return new B.MV(A.dz("sv"))},
-MV:function MV(d){this.a=d}}
+dEC(){return new B.MS(A.dz("sv"))},
+MS:function MS(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[49],B)
-B.MV.prototype={
+B.MS.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"Upprepa l\xf6senord"},
 gkC(){return"Inte en bildfil."},
-gbE(d){return"Ta bort"},
+gbD(d){return"Ta bort"},
 gjX(){return"Importera nu"},
 gjV(){return"Importera emojier"},
 gjW(){return"Importera fr\xe5n .zip-fil"},
@@ -66,7 +66,7 @@ gfN(){return"Bannlyst"},
 iv(d,e){return d+" bannl\xf6s "+e},
 gfP(){return"Blockera Enhet"},
 gcV(){return"Blockerad"},
-gbV(d){return"Avbryt"},
+gbU(d){return"Avbryt"},
 fR(d){return"Kan inte \xf6ppna URL "+d},
 gfS(){return"\xc4ndra enhetsnamn"},
 iz(d){return d+" \xe4ndrade sin chatt-avatar"},
@@ -316,7 +316,7 @@ gfB(){return"K\xe4llkod"},
 gi2(){return"Utrymme \xe4r publikt"},
 gi3(){return"Utrymmes namn"},
 fD(d){return d+" startade ett samtal"},
-gb_(d){return"Status"},
+gaZ(d){return"Status"},
 gi5(){return"Hur m\xe5r du i dag?"},
 gi7(d){return"Skicka in"},
 gia(){return"Synkroniserar\u2026 Var god v\xe4nta."},
@@ -506,7 +506,7 @@ gmH(){return"Kontakta server-admin"},
 gmI(){return"Kontakta server-s\xe4kerheten"},
 gm5(){return"St\xf6dsida"},
 glY(){return"Serverinformation:"},
-ga5(d){return"Namn"},
+gbV(d){return"Namn"},
 goH(d){return"Version"},
 goP(){return"Hemsida"},
 gmF(){return"Komprimera"},
@@ -607,11 +607,11 @@ gpc(){return"L\xe4gg till svarsalternativ"},
 gpe(){return"Till\xe5t flera svar"},
 goc(){return"Omr\xf6stningen har avslutats"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"En r\xf6st",""+d+" r\xf6ster",y,y)},
+return A.aO(d,y,this.a,y,"En r\xf6st",""+d+" r\xf6ster",y,y)},
 gph(){return"Svar kommer synas n\xe4r omr\xf6stningen har avslutats"},
 goj(){return"Svara i tr\xe5d"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"Ett svar",""+d+" svar",y,y)},
+return A.aO(d,y,this.a,y,"Ett svar",""+d+" svar",y,y)},
 gpH(){return"Tr\xe5d"},
 gpj(){return"Tillbaka till huvudchatt"},
 goZ(){return"Spara \xe4ndringar"},
@@ -714,7 +714,7 @@ gql(){return"Kunde inte skickas"},
 grw(){return"Ig\xe5r"},
 grf(){return"\xc5terst\xe4ll \xe5terst\xe4llningsnyckel"},
 qA(d){var y=null
-return"Hoppa fram "+A.aP(d,y,this.a,y,"ett meddelande",""+d+" meddelanden",y,y)+"?"},
+return"Hoppa fram "+A.aO(d,y,this.a,y,"ett meddelande",""+d+" meddelanden",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -732,9 +732,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MV,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MV":{"aT":[]}}'))};
-(a=>{a["kY6SNWgYCbU0dTV0bhAyVzVGTKc="]=a.current})($__dart_deferred_initializers__);
+y(B.MS,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MS":{"aT":[]}}'))};
+(a=>{a["3OjxVNPTmJOzmj7n1rEveWDeMmw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_356.part.js.map

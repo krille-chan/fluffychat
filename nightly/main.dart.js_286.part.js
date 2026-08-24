@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEp(){return new B.Mk(A.dz("el"))},
-Mk:function Mk(d){this.a=d}}
+dE0(){return new B.Mh(A.dz("el"))},
+Mh:function Mh(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[14],B)
-B.Mk.prototype={
+B.Mh.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"\u0395\u03c0\u03b1\u03bd\u03ac\u03bb\u03b7\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gkC(){return"\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03b5\u03b9\u03ba\u03cc\u03bd\u03b1\u03c2."},
-gbE(d){return"\u0391\u03c6\u03b1\u03af\u03c1\u03b5\u03c3\u03b7"},
+gbD(d){return"\u0391\u03c6\u03b1\u03af\u03c1\u03b5\u03c3\u03b7"},
 gjX(){return"\u0395\u03b9\u03c3\u03b1\u03b3\u03c9\u03b3\u03ae \u03c4\u03ce\u03c1\u03b1"},
 gjV(){return"\u0395\u03b9\u03c3\u03b1\u03b3\u03c9\u03b3\u03ae Emojis"},
 gjW(){return"\u0395\u03b9\u03c3\u03b1\u03b3\u03c9\u03b3\u03ae \u03b1\u03c0\u03cc \u03b1\u03c1\u03c7\u03b5\u03af\u03bf .zip"},
@@ -66,7 +66,7 @@ gfN(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03af\u03c3\u03c4\u03b7\u03ba\
 iv(d,e){return d+" \u03b1\u03c0\u03ad\u03ba\u03bb\u03b5\u03b9\u03c3\u03b5 "+e},
 gfP(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03b9\u03c3\u03bc\u03cc\u03c2 \u03a3\u03c5\u03c3\u03ba\u03b5\u03c5\u03ae\u03c2"},
 gcV(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03af\u03c3\u03c4\u03b7\u03ba\u03b5"},
-gbV(d){return"\u0391\u03ba\u03cd\u03c1\u03c9\u03c3\u03b7"},
+gbU(d){return"\u0391\u03ba\u03cd\u03c1\u03c9\u03c3\u03b7"},
 fR(d){return"\u0394\u03b5\u03bd \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03b1\u03bd\u03bf\u03af\u03be\u03b5\u03b9 \u03c4\u03bf URI "+d},
 gfS(){return"\u0391\u03bb\u03bb\u03b1\u03b3\u03ae \u03bf\u03bd\u03cc\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c3\u03c5\u03c3\u03ba\u03b5\u03c5\u03ae\u03c2"},
 iz(d){return d+" \u03ac\u03bb\u03bb\u03b1\u03be\u03b5 \u03c4\u03bf \u03ac\u03b2\u03b1\u03c4\u03b1\u03c1 \u03c3\u03c5\u03bd\u03bf\u03bc\u03b9\u03bb\u03af\u03b1\u03c2"},
@@ -129,7 +129,7 @@ gji(){return"Copy to clipboard"},
 jj(d){return"Could not decrypt message: "+d},
 gmA(){return"Check list"},
 ez(d){var y=null
-return A.aP(d,y,this.a,y,"1 participant",""+d+" participants",y,y)},
+return A.aO(d,y,this.a,y,"1 participant",""+d+" participants",y,y)},
 jl(d){return""+d+" invited"},
 gjm(d){return"Create"},
 jn(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -317,7 +317,7 @@ gfB(){return"Source code"},
 gi2(){return"Space is public"},
 gi3(){return"Space name"},
 fD(d){return d+" started a call"},
-gb_(d){return"Status"},
+gaZ(d){return"Status"},
 gi5(){return"How are you today?"},
 gi7(d){return"Submit"},
 gia(){return"Synchronizing\u2026 Please wait."},
@@ -507,7 +507,7 @@ gmH(){return"Contact server admin"},
 gmI(){return"Contact server security"},
 gm5(){return"Support page"},
 glY(){return"Server information:"},
-ga5(d){return"Name"},
+gbV(d){return"Name"},
 goH(d){return"Version"},
 goP(){return"Website"},
 gmF(){return"Compress"},
@@ -608,11 +608,11 @@ gpc(){return"Add answer option"},
 gpe(){return"Allow multiple answers"},
 goc(){return"Poll has been ended"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aO(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gph(){return"Answers will be visible when poll has ended"},
 goj(){return"Reply in thread"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aO(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpH(){return"Thread"},
 gpj(){return"Back to main chat"},
 goZ(){return"Save changes"},
@@ -715,7 +715,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -733,9 +733,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mk,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"Mk":{"aT":[]}}'))};
-(a=>{a["nInq+qryQsOym5PEAKO5kJDpOfY="]=a.current})($__dart_deferred_initializers__);
+y(B.Mh,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"Mh":{"aT":[]}}'))};
+(a=>{a["Ozv3A5o9/PzxiLDtjcQeBcrmCRc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_286.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEX(){return new B.MR(A.dz("sk"))},
-MR:function MR(d){this.a=d}}
+dEy(){return new B.MO(A.dz("sk"))},
+MO:function MO(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[45],B)
-B.MR.prototype={
+B.MO.prototype={
 gpv(){return"Upravi\u0165 obr\xe1zok"},
 grj(){return"Nato\u010di\u0165 v\u013eavo"},
 grk(){return"Nato\u010di\u0165 vpravo"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"Zopakujte heslo"},
 gkC(){return"Not an image file."},
-gbE(d){return"Odstr\xe1ni\u0165"},
+gbD(d){return"Odstr\xe1ni\u0165"},
 gjX(){return"Importova\u0165 teraz"},
 gjV(){return"Import Emojis"},
 gjW(){return"Import from .zip file"},
@@ -66,7 +66,7 @@ gfN(){return"Zabanovan\xfd"},
 iv(d,e){return d+" zabanoval "+e},
 gfP(){return"Zak\xe1za\u0165 zariadenie"},
 gcV(){return"Blocked"},
-gbV(d){return"Zru\u0161i\u0165"},
+gbU(d){return"Zru\u0161i\u0165"},
 fR(d){return"Nemo\u017eno otvori\u0165 identifik\xe1tor prostriedku "+d},
 gfS(){return"Zmeni\u0165 n\xe1zov zariadenia"},
 iz(d){return d+" si zmenili sv\xf4j avatar"},
@@ -316,7 +316,7 @@ gfB(){return"Zdrojov\xfd k\xf3d"},
 gi2(){return"Space is public"},
 gi3(){return"Space name"},
 fD(d){return d+" started a call"},
-gb_(d){return"Status"},
+gaZ(d){return"Status"},
 gi5(){return"Ako sa dnes m\xe1te?"},
 gi7(d){return"Odosla\u0165"},
 gia(){return"Synchronizing\u2026 Please wait."},
@@ -506,7 +506,7 @@ gmH(){return"Contact server admin"},
 gmI(){return"Contact server security"},
 gm5(){return"Support page"},
 glY(){return"Server information:"},
-ga5(d){return"Name"},
+gbV(d){return"Name"},
 goH(d){return"Version"},
 goP(){return"Website"},
 gmF(){return"Compress"},
@@ -607,11 +607,11 @@ gpc(){return"Add answer option"},
 gpe(){return"Allow multiple answers"},
 goc(){return"Poll has been ended"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aO(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gph(){return"Answers will be visible when poll has ended"},
 goj(){return"Reply in thread"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aO(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpH(){return"Thread"},
 gpj(){return"Back to main chat"},
 goZ(){return"Save changes"},
@@ -714,7 +714,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -732,9 +732,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MR,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MR":{"aT":[]}}'))};
-(a=>{a["ktBAo6kuQnSShJeLYarzyekovOQ="]=a.current})($__dart_deferred_initializers__);
+y(B.MO,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MO":{"aT":[]}}'))};
+(a=>{a["qkrCArOIUCuGN//aUFwE5j6Gko4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

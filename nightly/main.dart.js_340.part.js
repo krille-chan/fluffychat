@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEP(){return new B.MK(A.dz("nb"))},
-MK:function MK(d){this.a=d}}
+dEq(){return new B.MH(A.dz("nb"))},
+MH:function MH(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[40],B)
-B.MK.prototype={
+B.MH.prototype={
 gpv(){return"Rediger bilde"},
 grj(){return"Roter til venstre"},
 grk(){return"Roter til h\xf8yre"},
@@ -18,7 +18,7 @@ gqy(){return"Viskel\xe6r"},
 gjo(){return"Beskj\xe6r"},
 gl4(){return"Gjenta passord"},
 gkC(){return"Ikke en bildefil."},
-gbE(d){return"Fjern"},
+gbD(d){return"Fjern"},
 gjX(){return"Importer n\xe5"},
 gjV(){return"Importer emojier"},
 gjW(){return"Importer fra .zip-fil"},
@@ -66,7 +66,7 @@ gfN(){return"Bannlyst"},
 iv(d,e){return d+" bannlyste "+e},
 gfP(){return"Blokker enhet"},
 gcV(){return"Blokkert"},
-gbV(d){return"Avbryt"},
+gbU(d){return"Avbryt"},
 fR(d){return"Kan ikke \xe5pne URI "+d},
 gfS(){return"Endre enhetsnavn"},
 iz(d){return d+" endret sludreavatar"},
@@ -129,7 +129,7 @@ gji(){return"Kopier til utklippstavle"},
 jj(d){return"Kunne ikke dekryptere melding: "+d},
 gmA(){return"Sjekkliste"},
 ez(d){var y=null
-return A.aP(d,y,this.a,y,"1 deltaker",""+d+" deltakere",y,y)},
+return A.aO(d,y,this.a,y,"1 deltaker",""+d+" deltakere",y,y)},
 jl(d){return""+d+" inviterte"},
 gjm(d){return"Opprett"},
 jn(d){return d+" opprettet sludringen"},
@@ -317,7 +317,7 @@ gfB(){return"Kildekode"},
 gi2(){return"Romgruppen er offentlig"},
 gi3(){return"Navn p\xe5 romgruppe"},
 fD(d){return d+" startet en samtale"},
-gb_(d){return"Status"},
+gaZ(d){return"Status"},
 gi5(){return"Hvordan har du det i dag?"},
 gi7(d){return"Send inn"},
 gia(){return"Synkroniserer \u2026 Vent litt."},
@@ -507,7 +507,7 @@ gmH(){return"Kontakt serveradministrator"},
 gmI(){return"Kontakt sikkerhetsansvarlig for serveren"},
 gm5(){return"Supportside"},
 glY(){return"Serverinformasjon:"},
-ga5(d){return"Navn"},
+gbV(d){return"Navn"},
 goH(d){return"Versjon"},
 goP(){return"Nettside"},
 gmF(){return"Komprimer"},
@@ -608,11 +608,11 @@ gpc(){return"Legg til svaralternativ"},
 gpe(){return"Tillat flere svar"},
 goc(){return"Avstemningen er avsluttet"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"En stemme",""+d+" stemmer",y,y)},
+return A.aO(d,y,this.a,y,"En stemme",""+d+" stemmer",y,y)},
 gph(){return"Svarene vil v\xe6re synlige n\xe5r avstemningen er avsluttet"},
 goj(){return"Svar i tr\xe5den"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"Et svar",""+d+" svar",y,y)},
+return A.aO(d,y,this.a,y,"Et svar",""+d+" svar",y,y)},
 gpH(){return"Tr\xe5d"},
 gpj(){return"Tilbake til hovedchatten"},
 goZ(){return"Lagre endringer"},
@@ -715,7 +715,7 @@ gql(){return"Kunne ikke sendes"},
 grw(){return"I g\xe5r"},
 grf(){return"Tilbakestill gjenopprettingsn\xf8kkel"},
 qA(d){var y=null
-return"Videresend "+A.aP(d,y,this.a,y,"en melding",""+d+" meldinger",y,y)+"?"},
+return"Videresend "+A.aO(d,y,this.a,y,"en melding",""+d+" meldinger",y,y)+"?"},
 gqi(){return"Denne versjonen st\xf8tter ikke Firebase Cloud Messaging."},
 gqr(){return"Dubbelttrykk for \xe5 reagere"},
 gqs(){return"Dobbelt-trykk p\xe5 en melding for \xe5 reagere i stedet for \xe5 merke tekst"},
@@ -733,9 +733,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MK,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MK":{"aT":[]}}'))};
-(a=>{a["9T+wXylxfQ6A1jLuwy6AC7d62N4="]=a.current})($__dart_deferred_initializers__);
+y(B.MH,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MH":{"aT":[]}}'))};
+(a=>{a["EULYORGY7QkRm6tsMOX+73sZgSI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_340.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dED(){return new B.My(A.dz("hr"))},
-My:function My(d){this.a=d}}
+dEe(){return new B.Mv(A.dz("hr"))},
+Mv:function Mv(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[28],B)
-B.My.prototype={
+B.Mv.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"Ponovi lozinku"},
 gkC(){return"Nije slikovna datoteka."},
-gbE(d){return"Ukloni"},
+gbD(d){return"Ukloni"},
 gjX(){return"Uvezi sada"},
 gjV(){return"Uvezi emoji slike"},
 gjW(){return"Uvezi iz .zip datoteke"},
@@ -66,7 +66,7 @@ gfN(){return"Isklju\u010den"},
 iv(d,e){return d+" je isklju\u010dio/la "+e},
 gfP(){return"Blokiraj ure\u0111aj"},
 gcV(){return"Blokirano"},
-gbV(d){return"Odustani"},
+gbU(d){return"Odustani"},
 fR(d){return"URI adresa "+d+" se ne mo\u017ee otvoriti"},
 gfS(){return"Promijeni ime ure\u0111aja"},
 iz(d){return d+" je promijenio/la avatar chata"},
@@ -129,7 +129,7 @@ gji(){return"Kopiraj u me\u0111uspremnik"},
 jj(d){return"Neuspjelo de\u0161ifriranje poruke: "+d},
 gmA(){return"Kontrolni popis"},
 ez(d){var y=""+d+" sudionika"
-return A.aP(d,y,this.a,null,"1 sudionik",y,null,null)},
+return A.aO(d,y,this.a,null,"1 sudionik",y,null,null)},
 jl(d){return"Broj pozvanih: "+d},
 gjm(d){return"Stvori"},
 jn(d){return"\ud83d\udcac "+d+" je stvorio/la chat"},
@@ -317,7 +317,7 @@ gfB(){return"Izvorni k\u020fd"},
 gi2(){return"Prostor je javan"},
 gi3(){return"Ime prostora"},
 fD(d){return d+" ja zapo\u010deo/la poziv"},
-gb_(d){return"Stanje"},
+gaZ(d){return"Stanje"},
 gi5(){return"Kako si danas?"},
 gi7(d){return"Po\u0161alji"},
 gia(){return"Sinkronizira se \u2026 Pri\u010dekaj."},
@@ -507,7 +507,7 @@ gmH(){return"Kontaktiraj administratora servera"},
 gmI(){return"Kontaktiraj zadu\u017eene za sigurnost servera"},
 gm5(){return"Stranica podr\u0161ke"},
 glY(){return"Podaci servera:"},
-ga5(d){return"Ime"},
+gbV(d){return"Ime"},
 goH(d){return"Verzija"},
 goP(){return"Web-stranica"},
 gmF(){return"Komprimiraj"},
@@ -608,11 +608,11 @@ gpc(){return"Dodaj opciju za odgovor"},
 gpe(){return"Dopusti vi\u0161e odgovora"},
 goc(){return"Anketa je zavr\u0161ena"},
 po(d){var y=""+d
-return A.aP(d,y+" glasa",this.a,null,"Jedan glas",y+" glasova",null,null)},
+return A.aO(d,y+" glasa",this.a,null,"Jedan glas",y+" glasova",null,null)},
 gph(){return"Odgovori \u0107e biti vidljivi nakon zavr\u0161etka ankete"},
 goj(){return"Odgovori u temi"},
 pn(d){var y=""+d+" odgovora"
-return A.aP(d,y,this.a,null,"Jedan odgovor",y,null,null)},
+return A.aO(d,y,this.a,null,"Jedan odgovor",y,null,null)},
 gpH(){return"Tema"},
 gpj(){return"Natrag na glavni chat"},
 goZ(){return"Spremi promjene"},
@@ -715,7 +715,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -733,9 +733,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.My,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"My":{"aT":[]}}'))};
-(a=>{a["m4a06otm/QqLVG1YPCmxzpBuRmk="]=a.current})($__dart_deferred_initializers__);
+y(B.Mv,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"Mv":{"aT":[]}}'))};
+(a=>{a["NXFAo0xAA1QqdQN3CJazmoVEKKM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

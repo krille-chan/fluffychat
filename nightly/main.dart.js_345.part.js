@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dER(){return new B.MM(A.dz("pl"))},
-MM:function MM(d){this.a=d}}
+dEs(){return new B.MJ(A.dz("pl"))},
+MJ:function MJ(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[42],B)
-B.MM.prototype={
+B.MJ.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"Powt\xf3rz has\u0142o"},
 gkC(){return"To nie jest plik obrazu."},
-gbE(d){return"Usu\u0144"},
+gbD(d){return"Usu\u0144"},
 gjX(){return"Zaimportuj teraz"},
 gjV(){return"Zaimportuj emoji"},
 gjW(){return"Zaimportuj z pliku .zip"},
@@ -66,7 +66,7 @@ gfN(){return"Zbanowany/-a"},
 iv(d,e){return d+" zbanowa\u0142/-a "+e},
 gfP(){return"Zablokuj urz\u0105dzenie"},
 gcV(){return"Zablokowane"},
-gbV(d){return"Anuluj"},
+gbU(d){return"Anuluj"},
 fR(d){return"Nie mo\u017cna otworzy\u0107 linku "+d},
 gfS(){return"Zmie\u0144 nazw\u0119 urz\u0105dzenia"},
 iz(d){return d+" zmieni\u0142/-a zdj\u0119cie profilowe"},
@@ -316,7 +316,7 @@ gfB(){return"Kod \u017cr\xf3d\u0142owy"},
 gi2(){return"Ustaw jako publiczn\u0105"},
 gi3(){return"Nazwa przestrzeni"},
 fD(d){return d+" rozpocz\u0105\u0142/-\u0119\u0142a rozmow\u0119"},
-gb_(d){return"Status"},
+gaZ(d){return"Status"},
 gi5(){return"Jak si\u0119 masz dzi\u015b?"},
 gi7(d){return"Ode\u015blij"},
 gia(){return"Synchronizowanie\u2026 Prosz\u0119 czeka\u0107."},
@@ -506,7 +506,7 @@ gmH(){return"Skontaktuj si\u0119 z administratorem serwera"},
 gmI(){return"Skontaktuj si\u0119 z dzia\u0142em bezpiecze\u0144stwa serwera"},
 gm5(){return"Strona obs\u0142ugi u\u017cytkownika"},
 glY(){return"Informacje o serwerze:"},
-ga5(d){return"Nazwa"},
+gbV(d){return"Nazwa"},
 goH(d){return"Wersja"},
 goP(){return"Strona internetowa"},
 gmF(){return"Skompresuj"},
@@ -607,11 +607,11 @@ gpc(){return"Dodaj opcj\u0119 odpowiedzi"},
 gpe(){return"Zezwalaj na wiele odpowiedzi"},
 goc(){return"Ankieta zosta\u0142a zako\u0144czona"},
 po(d){var y=""+d
-return A.aP(d,y+" g\u0142osy",this.a,y+" g\u0142os\xf3w",y+" g\u0142os",y+" g\u0142osu",null,null)},
+return A.aO(d,y+" g\u0142osy",this.a,y+" g\u0142os\xf3w",y+" g\u0142os",y+" g\u0142osu",null,null)},
 gph(){return"Wyniki b\u0119d\u0105 widoczne po zako\u0144czeniu ankiety"},
 goj(){return"Odpowiedz w w\u0105tku"},
 pn(d){var y=""+d,x=y+" odpowiedzi"
-return A.aP(d,x,this.a,x,y+" odpowied\u017a",x,null,null)},
+return A.aO(d,x,this.a,x,y+" odpowied\u017a",x,null,null)},
 gpH(){return"W\u0105tek"},
 gpj(){return"Wr\xf3\u0107 do czatu g\u0142\xf3wnego"},
 goZ(){return"Zapisz zmiany"},
@@ -714,7 +714,7 @@ gql(){return"Nie uda\u0142o si\u0119 wys\u0142a\u0107"},
 grw(){return"Wczoraj"},
 grf(){return"Zresetuj klucz odzyskiwania"},
 qA(d){var y=null
-return"Przekaza\u0107 "+A.aP(d,y,this.a,y,"jedn\u0105 wiadomo\u015b\u0107",""+d+" wiadomo\u015bci",y,y)+"?"},
+return"Przekaza\u0107 "+A.aO(d,y,this.a,y,"jedn\u0105 wiadomo\u015b\u0107",""+d+" wiadomo\u015bci",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Podw\xf3jne dotkni\u0119cie, aby zareagowa\u0107"},
 gqs(){return"Podw\xf3jne dotkni\u0119cie wiadomo\u015bci reaguje zamiast zaznaczania tekstu"},
@@ -732,9 +732,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MM,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MM":{"aT":[]}}'))};
-(a=>{a["wR22x1LZT/N+kaVCirTvBi5+8C8="]=a.current})($__dart_deferred_initializers__);
+y(B.MJ,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MJ":{"aT":[]}}'))};
+(a=>{a["SaFPJpLgpsKxwFHgXDkyhi0yQtk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

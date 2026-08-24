@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEw(){return new B.Mr(A.dz("fi"))},
-Mr:function Mr(d){this.a=d}}
+dE7(){return new B.Mo(A.dz("fi"))},
+Mo:function Mo(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[21],B)
-B.Mr.prototype={
+B.Mo.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"Salasana uudelleen"},
 gkC(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
-gbE(d){return"Poista"},
+gbD(d){return"Poista"},
 gjX(){return"Tuo nyt"},
 gjV(){return"Tuo emojit"},
 gjW(){return"Tuo .zip -tiedostosta"},
@@ -66,7 +66,7 @@ gfN(){return"Porttikiellossa"},
 iv(d,e){return d+" antoi porttikiellon k\xe4ytt\xe4j\xe4lle "+e},
 gfP(){return"Est\xe4 laite"},
 gcV(){return"Estetty"},
-gbV(d){return"Peruuta"},
+gbU(d){return"Peruuta"},
 fR(d){return"URI-osoitetta "+d+" ei voida avata"},
 gfS(){return"Vaihda laitteen nime\xe4"},
 iz(d){return d+" muutti keskustelun kuvaa"},
@@ -316,7 +316,7 @@ gfB(){return"L\xe4hdekoodi"},
 gi2(){return"Tila on julkinen"},
 gi3(){return"Tilan nimi"},
 fD(d){return d+" aloitti puhelun"},
-gb_(d){return"Tila"},
+gaZ(d){return"Tila"},
 gi5(){return"Millainen on vointisi?"},
 gi7(d){return"L\xe4het\xe4"},
 gia(){return"Synkronoidaan... Hetkinen."},
@@ -506,7 +506,7 @@ gmH(){return"Ota yhteytt\xe4 palvelimen yll\xe4pit\xe4j\xe4\xe4n"},
 gmI(){return"Ota yhteytt\xe4 palvelimen tietoturvaosastoon"},
 gm5(){return"Tukisivu"},
 glY(){return"Palvelimen tiedot:"},
-ga5(d){return"Nimi"},
+gbV(d){return"Nimi"},
 goH(d){return"Versio"},
 goP(){return"Verkkosivu"},
 gmF(){return"Pakkaa"},
@@ -607,11 +607,11 @@ gpc(){return"Lis\xe4\xe4 vastausvaihtoehto"},
 gpe(){return"Salli useita vastauksia"},
 goc(){return"Kysely on p\xe4\xe4ttynyt"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"One vote",""+d+" \xe4\xe4nt\xe4",y,y)},
+return A.aO(d,y,this.a,y,"One vote",""+d+" \xe4\xe4nt\xe4",y,y)},
 gph(){return"Vastaukset n\xe4kyv\xe4t, kun kysely on p\xe4\xe4ttynyt"},
 goj(){return"Vastaa ketjussa"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"One reply",""+d+" vastausta",y,y)},
+return A.aO(d,y,this.a,y,"One reply",""+d+" vastausta",y,y)},
 gpH(){return"Ketju"},
 gpj(){return"Takaisin p\xe4\xe4pikakeskusteluun"},
 goZ(){return"Save changes"},
@@ -714,7 +714,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -732,9 +732,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mr,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"Mr":{"aT":[]}}'))};
-(a=>{a["EgnCkabWPXq01mPH8fIHj6Q2kgM="]=a.current})($__dart_deferred_initializers__);
+y(B.Mo,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"Mo":{"aT":[]}}'))};
+(a=>{a["+81RwvCVnI/F8d7tLFsTuLv9SyE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map

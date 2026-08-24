@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEC(){return new B.Mx(A.dz("hi"))},
-Mx:function Mx(d){this.a=d}}
+dEd(){return new B.Mu(A.dz("hi"))},
+Mu:function Mu(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[27],B)
-B.Mx.prototype={
+B.Mu.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
 gkC(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
-gbE(d){return"\u0928\u093f\u0915\u093e\u0932\u0928\u093e"},
+gbD(d){return"\u0928\u093f\u0915\u093e\u0932\u0928\u093e"},
 gjX(){return"\u0905\u092d\u0940 \u0906\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
 gjV(){return"\u0907\u092e\u094b\u091c\u0940 \u0906\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
 gjW(){return".zip \u092b\u093c\u093e\u0907\u0932 \u0938\u0947 \u0906\u092f\u093e\u0924 \u0915\u0930\u0947\u0902"},
@@ -66,7 +66,7 @@ gfN(){return"Banned"},
 iv(d,e){return d+" banned "+e},
 gfP(){return"Block Device"},
 gcV(){return"Blocked"},
-gbV(d){return"Cancel"},
+gbU(d){return"Cancel"},
 fR(d){return"Can't open the URI "+d},
 gfS(){return"Change device name"},
 iz(d){return d+" changed the chat avatar"},
@@ -129,7 +129,7 @@ gji(){return"Copy to clipboard"},
 jj(d){return"Could not decrypt message: "+d},
 gmA(){return"Check list"},
 ez(d){var y=null
-return A.aP(d,y,this.a,y,"1 participant",""+d+" participants",y,y)},
+return A.aO(d,y,this.a,y,"1 participant",""+d+" participants",y,y)},
 jl(d){return""+d+" invited"},
 gjm(d){return"Create"},
 jn(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -317,7 +317,7 @@ gfB(){return"Source code"},
 gi2(){return"Space is public"},
 gi3(){return"Space name"},
 fD(d){return d+" started a call"},
-gb_(d){return"Status"},
+gaZ(d){return"Status"},
 gi5(){return"How are you today?"},
 gi7(d){return"Submit"},
 gia(){return"Synchronizing\u2026 Please wait."},
@@ -507,7 +507,7 @@ gmH(){return"Contact server admin"},
 gmI(){return"Contact server security"},
 gm5(){return"Support page"},
 glY(){return"Server information:"},
-ga5(d){return"Name"},
+gbV(d){return"Name"},
 goH(d){return"Version"},
 goP(){return"Website"},
 gmF(){return"Compress"},
@@ -608,11 +608,11 @@ gpc(){return"Add answer option"},
 gpe(){return"Allow multiple answers"},
 goc(){return"Poll has been ended"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aO(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gph(){return"Answers will be visible when poll has ended"},
 goj(){return"Reply in thread"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aO(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpH(){return"Thread"},
 gpj(){return"Back to main chat"},
 goZ(){return"Save changes"},
@@ -715,7 +715,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -733,9 +733,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mx,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"Mx":{"aT":[]}}'))};
-(a=>{a["hqE2hfVSZm9MZh2sw9fZ0cGbOO0="]=a.current})($__dart_deferred_initializers__);
+y(B.Mu,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"Mu":{"aT":[]}}'))};
+(a=>{a["9sXT6FhpcV4N883ilryHubAqtB0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

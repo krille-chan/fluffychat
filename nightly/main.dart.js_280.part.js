@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEo(){return new B.Mj(A.dz("de"))},
-Mj:function Mj(d){this.a=d}}
+dE_(){return new B.Mg(A.dz("de"))},
+Mg:function Mg(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[13],B)
-B.Mj.prototype={
+B.Mg.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"Passwort wiederholen"},
 gkC(){return"Keine Bilddatei."},
-gbE(d){return"Entfernen"},
+gbD(d){return"Entfernen"},
 gjX(){return"Jetzt importieren"},
 gjV(){return"Emojis importieren"},
 gjW(){return"Aus ZIP-Datei importieren"},
@@ -66,7 +66,7 @@ gfN(){return"Verbannt"},
 iv(d,e){return d+" hat "+e+" verbannt"},
 gfP(){return"Blockiere Ger\xe4t"},
 gcV(){return"Blockiert"},
-gbV(d){return"Abbrechen"},
+gbU(d){return"Abbrechen"},
 fR(d){return"Die URI "+d+" kann nicht ge\xf6ffnet werden"},
 gfS(){return"Ger\xe4tenamen \xe4ndern"},
 iz(d){return d+" hat den Chat-Avatar ge\xe4ndert"},
@@ -316,7 +316,7 @@ gfB(){return"Quellcode"},
 gi2(){return"Space ist \xf6ffentlich"},
 gi3(){return"Space-Name"},
 fD(d){return d+" hat einen Anruf get\xe4tigt"},
-gb_(d){return"Status"},
+gaZ(d){return"Status"},
 gi5(){return"Wie geht es dir heute?"},
 gi7(d){return"Absenden"},
 gia(){return"Synchronisiere... Bitte warten."},
@@ -506,7 +506,7 @@ gmH(){return"Serveradministrator kontaktieren"},
 gmI(){return"Server-Sicherheit kontaktieren"},
 gm5(){return"Support-Seite"},
 glY(){return"Server-Informationen:"},
-ga5(d){return"Name"},
+gbV(d){return"Name"},
 goH(d){return"Version"},
 goP(){return"Website"},
 gmF(){return"Komprimieren"},
@@ -607,11 +607,11 @@ gpc(){return"Antwortoption hinzuf\xfcgen"},
 gpe(){return"Mehrere Antworten zulassen"},
 goc(){return"Umfrage ist beendet"},
 po(d){var x=null
-return A.aP(d,x,this.a,x,"Eine Stimme",""+d+" Stimmen",x,x)},
+return A.aO(d,x,this.a,x,"Eine Stimme",""+d+" Stimmen",x,x)},
 gph(){return"Die Antworten werden nach Ende der Umfrage sichtbar sein"},
 goj(){return"Im Thread antworten"},
 pn(d){var x=null
-return A.aP(d,x,this.a,x,"Eine Antwort",""+d+" Antworten",x,x)},
+return A.aO(d,x,this.a,x,"Eine Antwort",""+d+" Antworten",x,x)},
 gpH(){return"Thread"},
 gpj(){return"Zur\xfcck zum Hauptchat"},
 goZ(){return"\xc4nderungen speichern"},
@@ -714,7 +714,7 @@ gql(){return"Konnte nicht gesendet werden"},
 grw(){return"Gestern"},
 grf(){return"Wiederherstellungsschl\xfcssel zur\xfccksetzen"},
 qA(d){var x=null
-return"Forward "+A.aP(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
+return"Forward "+A.aO(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -732,10 +732,10 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mj,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"Mj":{"aT":[]}}'))
+x(B.Mg,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"Mg":{"aT":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["w/H64qhiuJrZUOSbSeWALE6QJXM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["MDR6C0a/g+nXiH1QHcQ310y+sk0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_280.part.js.map

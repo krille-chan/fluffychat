@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEY(){return new B.MS(A.dz("sl"))},
-MS:function MS(d){this.a=d}}
+dEz(){return new B.MP(A.dz("sl"))},
+MP:function MP(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[46],B)
-B.MS.prototype={
+B.MP.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"Ponovite geslo"},
 gkC(){return"Not an image file."},
-gbE(d){return"Remove"},
+gbD(d){return"Remove"},
 gjX(){return"Import now"},
 gjV(){return"Import Emojis"},
 gjW(){return"Import from .zip file"},
@@ -66,7 +66,7 @@ gfN(){return"Prepovedano"},
 iv(d,e){return d+" je prepovedan v "+e},
 gfP(){return"Blokirana naprava"},
 gcV(){return"Blokirano"},
-gbV(d){return"Prekli\u010di"},
+gbU(d){return"Prekli\u010di"},
 fR(d){return"URI-ja "+d+" ni mogo\u010de odpreti"},
 gfS(){return"Spremenite ime naprave"},
 iz(d){return d+" je spremenil avatar za klepet"},
@@ -316,7 +316,7 @@ gfB(){return"Source code"},
 gi2(){return"Space is public"},
 gi3(){return"Space name"},
 fD(d){return d+" started a call"},
-gb_(d){return"Status"},
+gaZ(d){return"Status"},
 gi5(){return"How are you today?"},
 gi7(d){return"Submit"},
 gia(){return"Synchronizing\u2026 Please wait."},
@@ -506,7 +506,7 @@ gmH(){return"Contact server admin"},
 gmI(){return"Contact server security"},
 gm5(){return"Support page"},
 glY(){return"Server information:"},
-ga5(d){return"Name"},
+gbV(d){return"Name"},
 goH(d){return"Version"},
 goP(){return"Website"},
 gmF(){return"Compress"},
@@ -607,11 +607,11 @@ gpc(){return"Add answer option"},
 gpe(){return"Allow multiple answers"},
 goc(){return"Poll has been ended"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aO(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gph(){return"Answers will be visible when poll has ended"},
 goj(){return"Reply in thread"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aO(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpH(){return"Thread"},
 gpj(){return"Back to main chat"},
 goZ(){return"Save changes"},
@@ -714,7 +714,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -732,9 +732,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MS,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MS":{"aT":[]}}'))};
-(a=>{a["/TrQNpixa74cXKcx1w3fWXIZF9A="]=a.current})($__dart_deferred_initializers__);
+y(B.MP,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MP":{"aT":[]}}'))};
+(a=>{a["SbcoIXxEp42oWRKZt/JTmNgMpAY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_352.part.js.map

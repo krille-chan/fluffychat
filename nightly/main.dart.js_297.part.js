@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEu(){return new B.Mp(A.dz("eu"))},
-Mp:function Mp(d){this.a=d}}
+dE5(){return new B.Mm(A.dz("eu"))},
+Mm:function Mm(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[19],B)
-B.Mp.prototype={
+B.Mm.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"Idatzi berriro pasahitza"},
 gkC(){return"Ez da irudi-fitxategia."},
-gbE(d){return"Kendu"},
+gbD(d){return"Kendu"},
 gjX(){return"Inportatu orain"},
 gjV(){return"Inportatu emojiak"},
 gjW(){return"Inportatu .zip fitxategi batetik"},
@@ -66,7 +66,7 @@ gfN(){return"Kanporatuta"},
 iv(d,e){return d+"(e)k "+e+"(r)i debekua ezarri dio"},
 gfP(){return"Blokeatu gailua"},
 gcV(){return"Blokeatuta"},
-gbV(d){return"Utzi"},
+gbU(d){return"Utzi"},
 fR(d){return"Ezin da "+d+" URIa ireki"},
 gfS(){return"Aldatu gailuaren izena"},
 iz(d){return d+"(e)k txataren abatarra aldatu du"},
@@ -316,7 +316,7 @@ gfB(){return"Iturburu kodea"},
 gi2(){return"Gunea publikoa da"},
 gi3(){return"Gunearen izena"},
 fD(d){return d+"(e)k deia hasi du"},
-gb_(d){return"Egoera"},
+gaZ(d){return"Egoera"},
 gi5(){return"Zer moduz zaude gaur?"},
 gi7(d){return"Bidali"},
 gia(){return"Sinkronizatzen\u2026 itxaron."},
@@ -506,7 +506,7 @@ gmH(){return"Jarri harremanetan zerbitzariaren administratzailearekin"},
 gmI(){return"Jakinarazi segurtasun arazo bat"},
 gm5(){return"Laguntza orria"},
 glY(){return"Zerbitzariaren informazioa:"},
-ga5(d){return"Izena"},
+gbV(d){return"Izena"},
 goH(d){return"Bertsioa"},
 goP(){return"Webgunea"},
 gmF(){return"Konprimatu"},
@@ -607,11 +607,11 @@ gpc(){return"Gehitu erantzun-aukera"},
 gpe(){return"Baimendu erantzun bat baino gehiago"},
 goc(){return"Bozketa amaitu da"},
 po(d){var x=null
-return A.aP(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
+return A.aO(d,x,this.a,x,"Bozka bat",""+d+" bozka",x,x)},
 gph(){return"Emaitzak bozketak amaitu duenean egongo dira ikusgai"},
 goj(){return"Erantzun harian"},
 pn(d){var x=null
-return A.aP(d,x,this.a,x,"Erantzun bat",""+d+" erantzun",x,x)},
+return A.aO(d,x,this.a,x,"Erantzun bat",""+d+" erantzun",x,x)},
 gpH(){return"Haria"},
 gpj(){return"Joan txat nagusira"},
 goZ(){return"Gorde aldaketak"},
@@ -714,7 +714,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var x=null
-return"Forward "+A.aP(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
+return"Forward "+A.aO(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -732,10 +732,10 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mp,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"Mp":{"aT":[]}}'))
+x(B.Mm,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"Mm":{"aT":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["aWNIcdPwh65KoCXsvwmUoK0D4Vc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["DTgxVJr0NXQdt2ICtYh/g2+LmpE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

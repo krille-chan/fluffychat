@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF4(){return new B.MZ(A.dz("tr"))},
-MZ:function MZ(d){this.a=d}}
+dEG(){return new B.MW(A.dz("tr"))},
+MW:function MW(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[53],B)
-B.MZ.prototype={
+B.MW.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"Parolay\u0131 tekrarlay\u0131n"},
 gkC(){return"Bir resim dosyas\u0131 de\u011fil."},
-gbE(d){return"Kald\u0131r"},
+gbD(d){return"Kald\u0131r"},
 gjX(){return"\u015eimdi i\xe7e aktar"},
 gjV(){return"\u0130fadeleri \u0130\xe7e Aktar"},
 gjW(){return".zip dosyas\u0131ndan i\xe7e aktar"},
@@ -66,7 +66,7 @@ gfN(){return"Engellendi"},
 iv(d,e){return d+", "+e+" ki\u015fisini engelledi"},
 gfP(){return"Ayg\u0131t\u0131 Engelle"},
 gcV(){return"Engellendi"},
-gbV(d){return"\u0130ptal"},
+gbU(d){return"\u0130ptal"},
 fR(d){return d+" URI'si a\xe7\u0131lam\u0131yor"},
 gfS(){return"Ayg\u0131t ad\u0131n\u0131 de\u011fi\u015ftir"},
 iz(d){return d+" sohbet avatar\u0131n\u0131 de\u011fi\u015ftirdi"},
@@ -316,7 +316,7 @@ gfB(){return"Kaynak kodlar\u0131"},
 gi2(){return"Alan herkese a\xe7\u0131k"},
 gi3(){return"Alan ad\u0131"},
 fD(d){return d+" bir arama ba\u015flatt\u0131"},
-gb_(d){return"Durum"},
+gaZ(d){return"Durum"},
 gi5(){return"Bug\xfcn nas\u0131ls\u0131n\u0131z?"},
 gi7(d){return"G\xf6nder"},
 gia(){return"E\u015fzamanlan\u0131yor\u2026 L\xfctfen bekleyin."},
@@ -506,7 +506,7 @@ gmH(){return"Sunucu y\xf6neticisiyle ileti\u015fime ge\xe7in"},
 gmI(){return"Sunucu g\xfcvenli\u011fiyle ileti\u015fime ge\xe7in"},
 gm5(){return"Destek sayfas\u0131"},
 glY(){return"Sunucu bilgisi:"},
-ga5(d){return"\u0130sim"},
+gbV(d){return"\u0130sim"},
 goH(d){return"Versiyon"},
 goP(){return"Web sitesi"},
 gmF(){return"S\u0131k\u0131\u015ft\u0131rma"},
@@ -607,11 +607,11 @@ gpc(){return"Add answer option"},
 gpe(){return"Allow multiple answers"},
 goc(){return"Poll has been ended"},
 po(d){var x=null
-return A.aP(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
+return A.aO(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 gph(){return"Answers will be visible when poll has ended"},
 goj(){return"Reply in thread"},
 pn(d){var x=null
-return A.aP(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+return A.aO(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
 gpH(){return"Thread"},
 gpj(){return"Back to main chat"},
 goZ(){return"Save changes"},
@@ -714,7 +714,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var x=null
-return"Forward "+A.aP(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
+return"Forward "+A.aO(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -732,10 +732,10 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MZ,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MZ":{"aT":[]}}'))
+x(B.MW,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MW":{"aT":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["hweFKQKpcIr4rNuCX3EIg8koiUM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["vkQ9438YUg9D2++PpupGYxb8qPo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map

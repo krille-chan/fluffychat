@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEO(){return new B.MJ(A.dz("lv"))},
-MJ:function MJ(d){this.a=d}}
+dEp(){return new B.MG(A.dz("lv"))},
+MG:function MG(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[39],B)
-B.MJ.prototype={
+B.MG.prototype={
 gpv(){return"Labot att\u0113lu"},
 grj(){return"Pagriezt pa kreisi"},
 grk(){return"Pagriezt pa labi"},
@@ -18,7 +18,7 @@ gqy(){return"Dz\u0113\u0161gumija"},
 gjo(){return"Apcirpt"},
 gl4(){return"Atk\u0101rtot paroli"},
 gkC(){return"Nav att\u0113la datne."},
-gbE(d){return"No\u0146emt"},
+gbD(d){return"No\u0146emt"},
 gjX(){return"Ievietot tagad"},
 gjV(){return"Ievietot emocijz\u012bmes"},
 gjW(){return"Ievietot no .zip datnes"},
@@ -66,7 +66,7 @@ gfN(){return"Izsl\u0113gts"},
 iv(d,e){return d+" izsl\u0113dza "+e},
 gfP(){return"Liegt ier\u012bci"},
 gcV(){return"Liegta"},
-gbV(d){return"Atcelt"},
+gbU(d){return"Atcelt"},
 fR(d){return"Nevar atv\u0113rt adresi "+d},
 gfS(){return"Main\u012bt ier\u012bces nosaukumu"},
 iz(d){return d+" nomain\u012bja t\u0113rz\u0113\u0161anas att\u0113lu"},
@@ -129,7 +129,7 @@ gji(){return"Ievietot starpliktuv\u0113"},
 jj(d){return"Nevar\u0113ja at\u0161ifr\u0113t zi\u0146u: "+d},
 gmA(){return"P\u0101rbau\u017eu saraksts"},
 ez(d){var y=""+d
-return A.aP(d,null,this.a,null,y+" dal\u012bbnieks",y+" dal\u012bbnieki",null,y+" dal\u012bbnieku")},
+return A.aO(d,null,this.a,null,y+" dal\u012bbnieks",y+" dal\u012bbnieki",null,y+" dal\u012bbnieku")},
 jl(d){return""+d+" uzaicin\u0101ti"},
 gjm(d){return"Izveidot"},
 jn(d){return"\ud83d\udcac "+d+" izveidoja t\u0113rz\u0113\u0161anu"},
@@ -317,7 +317,7 @@ gfB(){return"Pirmkods"},
 gi2(){return"Vieta ir publiska"},
 gi3(){return"Vietas nosaukums"},
 fD(d){return d+" uzs\u0101ka zvanu"},
-gb_(d){return"St\u0101voklis"},
+gaZ(d){return"St\u0101voklis"},
 gi5(){return"K\u0101 Tev \u0161odien kl\u0101jas?"},
 gi7(d){return"Iesniegt"},
 gia(){return"Sinhroniz\u0113... L\u016bgums uzgaid\u012bt."},
@@ -507,7 +507,7 @@ gmH(){return"Sazin\u0101ties ar servera p\u0101rvald\u012bt\u0101ju"},
 gmI(){return"Sazin\u0101ties ar servera dro\u0161\u012bbas uztur\u0113t\u0101jiem"},
 gm5(){return"Atbalsta lapa"},
 glY(){return"Inform\u0101cija par serveri:"},
-ga5(d){return"Nosaukums"},
+gbV(d){return"Nosaukums"},
 goH(d){return"Versija"},
 goP(){return"T\u012bmek\u013cvietne"},
 gmF(){return"Saspiest"},
@@ -608,11 +608,11 @@ gpc(){return"Pievienot atbildes iesp\u0113ju"},
 gpe(){return"At\u013caut vair\u0101kas atbildes"},
 goc(){return"Aptauja ir nosl\u0113gusies"},
 po(d){var y=""+d
-return A.aP(d,null,this.a,null,y+" balss",y+" balsis",null,y+" balsu")},
+return A.aO(d,null,this.a,null,y+" balss",y+" balsis",null,y+" balsu")},
 gph(){return"Atbildes b\u016bs redzams, kad aptauja nosl\u0113gsies"},
 goj(){return"Atbild\u0113t pavedien\u0101"},
 pn(d){var y=""+d
-return A.aP(d,null,this.a,null,y+" atbilde",y+" atbildes",null,y+" atbil\u017eu")},
+return A.aO(d,null,this.a,null,y+" atbilde",y+" atbildes",null,y+" atbil\u017eu")},
 gpH(){return"Pavediens"},
 gpj(){return"Atgriezties galvenaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 goZ(){return"Saglab\u0101t izmai\u0146as"},
@@ -715,7 +715,7 @@ gql(){return"Nevar\u0113ja nos\u016bt\u012bt"},
 grw(){return"Vakar"},
 grf(){return"Atiestat\u012bt atkopes atsl\u0113gu"},
 qA(d){var y=""+d,x=y+" zi\u0146as"
-return"P\u0101rvirz\u012bt "+A.aP(d,null,this.a,null,y+" zi\u0146u",x,null,x)+"?"},
+return"P\u0101rvirz\u012bt "+A.aO(d,null,this.a,null,y+" zi\u0146u",x,null,x)+"?"},
 gqi(){return"\u0160is b\u016bv\u0113jums neatbalsta Firebase m\u0101ko\u0146zi\u0146apmai\u0146u."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -733,9 +733,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MJ,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MJ":{"aT":[]}}'))};
-(a=>{a["36/nBkzKgQmk/H7tIXiIfIrY7M0="]=a.current})($__dart_deferred_initializers__);
+y(B.MG,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MG":{"aT":[]}}'))};
+(a=>{a["PnYt9pIbZW7Egwydwueqycw60VY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_339.part.js.map

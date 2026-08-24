@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEt(){return new B.Mo(A.dz("et"))},
-Mo:function Mo(d){this.a=d}}
+dE4(){return new B.Ml(A.dz("et"))},
+Ml:function Ml(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[18],B)
-B.Mo.prototype={
+B.Ml.prototype={
 gpv(){return"Muuda pilti"},
 grj(){return"P\xf6\xf6ra vasakule"},
 grk(){return"P\xf6\xf6ra paremale"},
@@ -18,7 +18,7 @@ gqy(){return"Kustutuskumm"},
 gjo(){return"Kadreeri"},
 gl4(){return"Korda salas\xf5na"},
 gkC(){return"See pole pildifail."},
-gbE(d){return"Eemalda"},
+gbD(d){return"Eemalda"},
 gjX(){return"Impordi kohe"},
 gjV(){return"Impordi emojid"},
 gjW(){return"Impordi zip-failist"},
@@ -66,7 +66,7 @@ gfN(){return"Ligip\xe4\xe4s vestlusele on keelatud"},
 iv(d,e){return d+" keelas ligip\xe4\xe4su kasutajale "+e},
 gfP(){return"Blokeeri seade"},
 gcV(){return"Blokeeritud"},
-gbV(d){return"Katkesta"},
+gbU(d){return"Katkesta"},
 fR(d){return d+" aadressi avamine ei \xf5nnestu"},
 gfS(){return"Muuda seadme nime"},
 iz(d){return d+" muutis vestluse tunnuspilti"},
@@ -129,7 +129,7 @@ gji(){return"Kopeeri l\xf5ikelauale"},
 jj(d){return"S\xf5numi dekr\xfcptimine ei \xf5nnestunud: "+d},
 gmA(){return"Kontrollnimekiri"},
 ez(d){var y=null
-return A.aP(d,y,this.a,y,"1 oaleja",""+d+" osalejat",y,y)},
+return A.aO(d,y,this.a,y,"1 oaleja",""+d+" osalejat",y,y)},
 jl(d){return""+d+" kutsutut"},
 gjm(d){return"Loo"},
 jn(d){return"\ud83d\udcac "+d+" algatas vestluse"},
@@ -317,7 +317,7 @@ gfB(){return"L\xe4htekood"},
 gi2(){return"Kogukond on avalik"},
 gi3(){return"Kogukonna nimi"},
 fD(d){return d+" helistas"},
-gb_(d){return"Olek"},
+gaZ(d){return"Olek"},
 gi5(){return"Kuidas sul t\xe4na l\xe4heb?"},
 gi7(d){return"Saada"},
 gia(){return"S\xfcnkroonin andmeid\u2026 Palun oota."},
@@ -507,7 +507,7 @@ gmH(){return"V\xf5ta \xfchendust serveri haldajaga"},
 gmI(){return"V\xf5ta \xfchendust serveri andmeturbe eest vastutajaga"},
 gm5(){return"Kasutajatugi"},
 glY(){return"Serveri teave:"},
-ga5(d){return"Nimi"},
+gbV(d){return"Nimi"},
 goH(d){return"Versioon"},
 goP(){return"Veebisait"},
 gmF(){return"Paki kokku"},
@@ -608,11 +608,11 @@ gpc(){return"Lisa valikvastus"},
 gpe(){return"Luba mitu vastusevalikut"},
 goc(){return"K\xfcsitlus on l\xf5ppenud"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"\xdcks h\xe4\xe4l",""+d+" h\xe4\xe4lt",y,y)},
+return A.aO(d,y,this.a,y,"\xdcks h\xe4\xe4l",""+d+" h\xe4\xe4lt",y,y)},
 gph(){return"Vastused on n\xe4ha k\xfcsitluse l\xf5ppedes"},
 goj(){return"Vasta jutul\xf5ngas"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"\xdcks vastus",""+d+" vastust",y,y)},
+return A.aO(d,y,this.a,y,"\xdcks vastus",""+d+" vastust",y,y)},
 gpH(){return"Jutul\xf5ng"},
 gpj(){return"Tagasi p\xf5hivestlusesse"},
 goZ(){return"Salvesta muudatused"},
@@ -715,7 +715,7 @@ gql(){return"Saatmine ei \xf5nnestunud"},
 grw(){return"Eile"},
 grf(){return"L\xe4htesta taastev\xf5ti"},
 qA(d){var y=null
-return"Kas edastad "+A.aP(d,y,this.a,y,"\xfche s\xf5numi",""+d+" s\xf5numit",y,y)+"?"},
+return"Kas edastad "+A.aO(d,y,this.a,y,"\xfche s\xf5numi",""+d+" s\xf5numit",y,y)+"?"},
 gqi(){return"See kompileeritud variant ei toeta Firebase Cloud Messaging teenust."},
 gqr(){return"Reageerimiseks topeltkl\xf5psa"},
 gqs(){return"Teksti valimise asemel saad reageerida s\xf5numil topeltkl\xf5psamisega"},
@@ -733,9 +733,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mo,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"Mo":{"aT":[]}}'))};
-(a=>{a["7mujvX4NrH58MPbgNbpcYlRyWv0="]=a.current})($__dart_deferred_initializers__);
+y(B.Ml,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"Ml":{"aT":[]}}'))};
+(a=>{a["nGabX7kf63y94ars/Gs0OdZTLBI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

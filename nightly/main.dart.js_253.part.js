@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEj(){return new B.Me(A.dz("bn"))},
-Me:function Me(d){this.a=d}}
+dDV(){return new B.Mb(A.dz("bn"))},
+Mb:function Mb(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[8],B)
-B.Me.prototype={
+B.Mb.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"\u09aa\u09be\u09b8\u0993\u09df\u09be\u09b0\u09cd\u09a1 \u0986\u09ac\u09be\u09b0 \u09b2\u09bf\u0996\u09cb"},
 gkC(){return"\u0987\u09ae\u09c7\u099c \u09ab\u09be\u0987\u09b2 \u09a8\u09be\u0964"},
-gbE(d){return"Remove"},
+gbD(d){return"Remove"},
 gjX(){return"Import now"},
 gjV(){return"Import Emojis"},
 gjW(){return"Import from .zip file"},
@@ -66,7 +66,7 @@ gfN(){return"\u09ac\u09cd\u09af\u09be\u09a8\u09a1"},
 iv(d,e){return d+" banned "+e},
 gfP(){return"Block Device"},
 gcV(){return"Blocked"},
-gbV(d){return"\u09ac\u09be\u09a4\u09bf\u09b2"},
+gbU(d){return"\u09ac\u09be\u09a4\u09bf\u09b2"},
 fR(d){return"Can't open the URI "+d},
 gfS(){return"Change device name"},
 iz(d){return d+" changed the chat avatar"},
@@ -129,7 +129,7 @@ gji(){return"Copy to clipboard"},
 jj(d){return"Could not decrypt message: "+d},
 gmA(){return"Check list"},
 ez(d){var y=null
-return A.aP(d,y,this.a,y,"1 participant",""+d+" participants",y,y)},
+return A.aO(d,y,this.a,y,"1 participant",""+d+" participants",y,y)},
 jl(d){return""+d+" invited"},
 gjm(d){return"\u09a4\u09c8\u09b0\u09bf"},
 jn(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -317,7 +317,7 @@ gfB(){return"Source code"},
 gi2(){return"Space is public"},
 gi3(){return"Space name"},
 fD(d){return d+" started a call"},
-gb_(d){return"Status"},
+gaZ(d){return"Status"},
 gi5(){return"How are you today?"},
 gi7(d){return"Submit"},
 gia(){return"Synchronizing\u2026 Please wait."},
@@ -507,7 +507,7 @@ gmH(){return"Contact server admin"},
 gmI(){return"Contact server security"},
 gm5(){return"Support page"},
 glY(){return"Server information:"},
-ga5(d){return"Name"},
+gbV(d){return"Name"},
 goH(d){return"Version"},
 goP(){return"Website"},
 gmF(){return"Compress"},
@@ -608,11 +608,11 @@ gpc(){return"Add answer option"},
 gpe(){return"Allow multiple answers"},
 goc(){return"Poll has been ended"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aO(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gph(){return"Answers will be visible when poll has ended"},
 goj(){return"Reply in thread"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aO(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpH(){return"Thread"},
 gpj(){return"Back to main chat"},
 goZ(){return"Save changes"},
@@ -715,7 +715,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -733,9 +733,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Me,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"Me":{"aT":[]}}'))};
-(a=>{a["A2loGgqNDQcCGYo++TUVFA7taEE="]=a.current})($__dart_deferred_initializers__);
+y(B.Mb,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"Mb":{"aT":[]}}'))};
+(a=>{a["JT6sQL4bI/S/zb+sRiTbjNe+isA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_253.part.js.map

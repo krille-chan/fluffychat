@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF3(){return new B.MY(A.dz("th"))},
-MY:function MY(d){this.a=d}}
+dEF(){return new B.MV(A.dz("th"))},
+MV:function MV(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[52],B)
-B.MY.prototype={
+B.MV.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"\u0e43\u0e2a\u0e48\u0e23\u0e2b\u0e31\u0e2a\u0e1c\u0e48\u0e32\u0e19\u0e2d\u0e35\u0e01\u0e23\u0e2d\u0e1a"},
 gkC(){return"\u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e44\u0e1f\u0e25\u0e4c\u0e23\u0e39\u0e1b\u0e20\u0e32\u0e1e"},
-gbE(d){return"\u0e25\u0e1a\u0e2d\u0e2d\u0e01"},
+gbD(d){return"\u0e25\u0e1a\u0e2d\u0e2d\u0e01"},
 gjX(){return"\u0e19\u0e33\u0e40\u0e02\u0e49\u0e32\u0e40\u0e25\u0e22"},
 gjV(){return"\u0e19\u0e33\u0e40\u0e02\u0e49\u0e32\u0e2d\u0e4a\u0e42\u0e21\u0e08\u0e34"},
 gjW(){return"\u0e19\u0e33\u0e40\u0e02\u0e49\u0e32\u0e08\u0e32\u0e01\u0e44\u0e1f\u0e25\u0e4c .zip"},
@@ -66,7 +66,7 @@ gfN(){return"Banned"},
 iv(d,e){return d+" banned "+e},
 gfP(){return"Block Device"},
 gcV(){return"Blocked"},
-gbV(d){return"Cancel"},
+gbU(d){return"Cancel"},
 fR(d){return"Can't open the URI "+d},
 gfS(){return"Change device name"},
 iz(d){return d+" changed the chat avatar"},
@@ -129,7 +129,7 @@ gji(){return"Copy to clipboard"},
 jj(d){return"Could not decrypt message: "+d},
 gmA(){return"Check list"},
 ez(d){var y=null
-return A.aP(d,y,this.a,y,"1 participant",""+d+" participants",y,y)},
+return A.aO(d,y,this.a,y,"1 participant",""+d+" participants",y,y)},
 jl(d){return""+d+" invited"},
 gjm(d){return"Create"},
 jn(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -317,7 +317,7 @@ gfB(){return"Source code"},
 gi2(){return"Space is public"},
 gi3(){return"Space name"},
 fD(d){return d+" started a call"},
-gb_(d){return"Status"},
+gaZ(d){return"Status"},
 gi5(){return"How are you today?"},
 gi7(d){return"Submit"},
 gia(){return"Synchronizing\u2026 Please wait."},
@@ -507,7 +507,7 @@ gmH(){return"Contact server admin"},
 gmI(){return"Contact server security"},
 gm5(){return"Support page"},
 glY(){return"Server information:"},
-ga5(d){return"Name"},
+gbV(d){return"Name"},
 goH(d){return"Version"},
 goP(){return"Website"},
 gmF(){return"Compress"},
@@ -608,11 +608,11 @@ gpc(){return"Add answer option"},
 gpe(){return"Allow multiple answers"},
 goc(){return"Poll has been ended"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aO(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gph(){return"Answers will be visible when poll has ended"},
 goj(){return"Reply in thread"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aO(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpH(){return"Thread"},
 gpj(){return"Back to main chat"},
 goZ(){return"Save changes"},
@@ -715,7 +715,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -733,9 +733,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MY,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MY":{"aT":[]}}'))};
-(a=>{a["C9kf/9FwWMr64peAlVbr0lahfhg="]=a.current})($__dart_deferred_initializers__);
+y(B.MV,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MV":{"aT":[]}}'))};
+(a=>{a["iaRCOo8lxV6vhlylUqTSBBdId7c="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_359.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEI(){return new B.MD(A.dz("it"))},
-MD:function MD(d){this.a=d}}
+dEj(){return new B.MA(A.dz("it"))},
+MA:function MA(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[33],B)
-B.MD.prototype={
+B.MA.prototype={
 gpv(){return"Modifica immagine"},
 grj(){return"Ruota a sinistra"},
 grk(){return"Ruota a destra"},
@@ -18,7 +18,7 @@ gqy(){return"Cancellino"},
 gjo(){return"Ritaglia"},
 gl4(){return"Ripeti password"},
 gkC(){return"Non \xe8 un file immagine."},
-gbE(d){return"Rimuovi"},
+gbD(d){return"Rimuovi"},
 gjX(){return"Importa ora"},
 gjV(){return"Importa Emoji"},
 gjW(){return"Importa da file .zip"},
@@ -66,7 +66,7 @@ gfN(){return"Bandito"},
 iv(d,e){return d+" ha bandito "+e},
 gfP(){return"Blocca dispositivo"},
 gcV(){return"Bloccato"},
-gbV(d){return"Annulla"},
+gbU(d){return"Annulla"},
 fR(d){return"Impossibile aprire l'URI "+d},
 gfS(){return"Cambia nome dispositivo"},
 iz(d){return d+" ha cambiato l'avatar della discussione"},
@@ -129,7 +129,7 @@ gji(){return"Copia negli appunti"},
 jj(d){return"Impossibile decriptare messaggio: "+d},
 gmA(){return"Checklist"},
 ez(d){var y=null
-return A.aP(d,y,this.a,y,"1 partecipante",""+d+" partecipanti",y,y)},
+return A.aO(d,y,this.a,y,"1 partecipante",""+d+" partecipanti",y,y)},
 jl(d){return""+d+" invitati"},
 gjm(d){return"Crea"},
 jn(d){return"\ud83d\udcac "+d+" ha creato la chat"},
@@ -317,7 +317,7 @@ gfB(){return"Codice sorgente"},
 gi2(){return"Lo spazio \xe8 pubblico"},
 gi3(){return"Nome dello spazio"},
 fD(d){return d+" ha iniziato una chiamata"},
-gb_(d){return"Stato"},
+gaZ(d){return"Stato"},
 gi5(){return"Come stai oggi?"},
 gi7(d){return"Invia"},
 gia(){return"Sincronizzazione... Attendere prego."},
@@ -507,7 +507,7 @@ gmH(){return"Contatta l'amministratore del server"},
 gmI(){return"Contatta la sicurezza del server"},
 gm5(){return"Pagina di supporto"},
 glY(){return"Informazioni sul server:"},
-ga5(d){return"Nome"},
+gbV(d){return"Nome"},
 goH(d){return"Versione"},
 goP(){return"Sito web"},
 gmF(){return"Comprimere"},
@@ -597,7 +597,7 @@ gmS(){return"Rifiuta invito"},
 gpB(){return"Ancora nessun messaggio"},
 gpE(){return"La chat verr\xe0 rimossa dallo spazio ma apparir\xe0 ancora nella tua lista delle chat."},
 pm(d){var y=null
-return A.aP(d,y,this.a,y,"1 chat",""+d+" chats",y,y)},
+return A.aO(d,y,this.a,y,"1 chat",""+d+" chats",y,y)},
 p7(d){return"Membro dello spazio "+d},
 p8(d){return"Membro dello spazio "+d+" pu\xf2 bussare"},
 gi4(){return"Avvia il sondaggio"},
@@ -609,11 +609,11 @@ gpc(){return"Aggiungi opzione di risposta"},
 gpe(){return"Consenti risposte multiple"},
 goc(){return"Il sondaggio \xe8 stato concluso"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"Un voto",""+d+" voti",y,y)},
+return A.aO(d,y,this.a,y,"Un voto",""+d+" voti",y,y)},
 gph(){return"Le risposte saranno visibili quando il sondaggio sar\xe0 terminato"},
 goj(){return"Rispondi in thread"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"Una risposta",""+d+" risposte",y,y)},
+return A.aO(d,y,this.a,y,"Una risposta",""+d+" risposte",y,y)},
 gpH(){return"Thread"},
 gpj(){return"Torna alla chat principale"},
 goZ(){return"Salva modifiche"},
@@ -716,7 +716,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -734,9 +734,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MD,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MD":{"aT":[]}}'))};
-(a=>{a["tYhCB2PuL4Z35NKbsnYePQlb5ug="]=a.current})($__dart_deferred_initializers__);
+y(B.MA,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MA":{"aT":[]}}'))};
+(a=>{a["Muhrts7SyWkBKg39P6/8J52xUIU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map

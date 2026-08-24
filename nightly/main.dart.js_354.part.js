@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF_(){return new B.MU(A.dz("sr"))},
-MU:function MU(d){this.a=d}}
+dEB(){return new B.MR(A.dz("sr"))},
+MR:function MR(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[48],B)
-B.MU.prototype={
+B.MR.prototype={
 gpv(){return"Edit image"},
 grj(){return"Rotate left"},
 grk(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqy(){return"Eraser"},
 gjo(){return"Crop"},
 gl4(){return"Ponovite lozinku"},
 gkC(){return"Not an image file."},
-gbE(d){return"\u0423\u043a\u043b\u043e\u043d\u0438"},
+gbD(d){return"\u0423\u043a\u043b\u043e\u043d\u0438"},
 gjX(){return"Import now"},
 gjV(){return"Import Emojis"},
 gjW(){return"Import from .zip file"},
@@ -66,7 +66,7 @@ gfN(){return"\u0417\u0430\u0431\u0440\u0430\u045a\u0435\u043d"},
 iv(d,e){return d+" \u0437\u0430\u0431\u0440\u0430\u043d\u0438 \u043a\u043e\u0440\u0438\u0441\u043d\u0438\u043a\u0430 "+e},
 gfP(){return"\u0411\u043b\u043e\u043a\u0438\u0440\u0430\u0458 \u0443\u0440\u0435\u0452\u0430\u0458"},
 gcV(){return"\u0411\u043b\u043e\u043a\u0438\u0440\u0430\u043d"},
-gbV(d){return"\u041e\u0442\u043a\u0430\u0436\u0438"},
+gbU(d){return"\u041e\u0442\u043a\u0430\u0436\u0438"},
 fR(d){return"Can't open the URI "+d},
 gfS(){return"\u041f\u0440\u043e\u043c\u0435\u043d\u0438 \u043d\u0430\u0437\u0438\u0432 \u0443\u0440\u0435\u0452\u0430\u0458\u0430"},
 iz(d){return d+" \u043f\u0440\u043e\u043c\u0435\u043d\u0438 \u0430\u0432\u0430\u0442\u0430\u0440 \u045b\u0430\u0441\u043a\u0430\u045a\u0430"},
@@ -316,7 +316,7 @@ gfB(){return"\u0418\u0437\u0432\u043e\u0440\u043d\u0438 \u043a\u043e\u0434"},
 gi2(){return"Space is public"},
 gi3(){return"Space name"},
 fD(d){return d+" \u0437\u0430\u043f\u043e\u0447\u0435 \u043f\u043e\u0437\u0438\u0432"},
-gb_(d){return"\u0421\u0442\u0430\u045a\u0435"},
+gaZ(d){return"\u0421\u0442\u0430\u045a\u0435"},
 gi5(){return"\u041a\u0430\u043a\u043e \u0441\u0442\u0435 \u0434\u0430\u043d\u0430\u0441?"},
 gi7(d){return"\u041f\u043e\u0448\u0430\u0459\u0438"},
 gia(){return"Synchronizing\u2026 Please wait."},
@@ -506,7 +506,7 @@ gmH(){return"Contact server admin"},
 gmI(){return"Contact server security"},
 gm5(){return"Support page"},
 glY(){return"Server information:"},
-ga5(d){return"Name"},
+gbV(d){return"Name"},
 goH(d){return"Version"},
 goP(){return"Website"},
 gmF(){return"Compress"},
@@ -607,11 +607,11 @@ gpc(){return"Add answer option"},
 gpe(){return"Allow multiple answers"},
 goc(){return"Poll has been ended"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
+return A.aO(d,y,this.a,y,"One vote",""+d+" votes",y,y)},
 gph(){return"Answers will be visible when poll has ended"},
 goj(){return"Reply in thread"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
+return A.aO(d,y,this.a,y,"One reply",""+d+" replies",y,y)},
 gpH(){return"Thread"},
 gpj(){return"Back to main chat"},
 goZ(){return"Save changes"},
@@ -714,7 +714,7 @@ gql(){return"Could not be sent"},
 grw(){return"Yesterday"},
 grf(){return"Reset recovery key"},
 qA(d){var y=null
-return"Forward "+A.aP(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
+return"Forward "+A.aO(d,y,this.a,y,"one message",""+d+" messages",y,y)+"?"},
 gqi(){return"This build does not support firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -732,9 +732,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MU,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"MU":{"aT":[]}}'))};
-(a=>{a["FrjDYM4E93KdU0twMFDS9mu8qw4="]=a.current})($__dart_deferred_initializers__);
+y(B.MR,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MR":{"aT":[]}}'))};
+(a=>{a["tl5fJzgid/fq64Jk6E6wB2KLe1E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_354.part.js.map

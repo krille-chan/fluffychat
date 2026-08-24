@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEQ(){return new B.ML(A.dz("nl"))},
-ML:function ML(d){this.a=d}}
+dEr(){return new B.MI(A.dz("nl"))},
+MI:function MI(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[41],B)
-B.ML.prototype={
+B.MI.prototype={
 gpv(){return"Afbeelding wijzigen"},
 grj(){return"Linksom draaien"},
 grk(){return"Rechtsom draaien"},
@@ -18,7 +18,7 @@ gqy(){return"Gummen"},
 gjo(){return"Bijsnijden"},
 gl4(){return"Wachtwoord herhalen"},
 gkC(){return"Geen afbeeldingsbestand."},
-gbE(d){return"Verwijder"},
+gbD(d){return"Verwijder"},
 gjX(){return"Nu importeren"},
 gjV(){return"Emoji's importeren"},
 gjW(){return"Uit zip-bestand importeren"},
@@ -66,7 +66,7 @@ gfN(){return"Verbannen"},
 iv(d,e){return d+" verbant "+e},
 gfP(){return"Apparaat blokkeren"},
 gcV(){return"Geblokkeerd"},
-gbV(d){return"Annuleren"},
+gbU(d){return"Annuleren"},
 fR(d){return"Kan de URI "+d+" niet openen"},
 gfS(){return"Apparaatnaam wijzigen"},
 iz(d){return d+" heeft de chatavatar gewijzigd"},
@@ -129,7 +129,7 @@ gji(){return"Kopieer naar klembord"},
 jj(d){return"Kan het bericht niet ontsleutelen: "+d},
 gmA(){return"Checklist"},
 ez(d){var y=null
-return A.aP(d,y,this.a,y,"1 persoon",""+d+" personen",y,y)},
+return A.aO(d,y,this.a,y,"1 persoon",""+d+" personen",y,y)},
 jl(d){return""+d+" uitgenodigd"},
 gjm(d){return"Aanmaken"},
 jn(d){return"\ud83d\udcac "+d+" heeft de chat gemaakt"},
@@ -317,7 +317,7 @@ gfB(){return"Broncode"},
 gi2(){return"Space is publiek"},
 gi3(){return"Spacenaam"},
 fD(d){return d+" heeft een gesprek gestart"},
-gb_(d){return"Status"},
+gaZ(d){return"Status"},
 gi5(){return"Hoe gaat het met jouw vandaag?"},
 gi7(d){return"Indienen"},
 gia(){return"Synchroniseren... Even geduld."},
@@ -507,7 +507,7 @@ gmH(){return"Contact opnemen met serverbeheerder"},
 gmI(){return"Contact opnemen met serverbeveiliger"},
 gm5(){return"Supportpagina"},
 glY(){return"Server-informatie:"},
-ga5(d){return"Naam"},
+gbV(d){return"Naam"},
 goH(d){return"Versie"},
 goP(){return"Website"},
 gmF(){return"Comprimeren"},
@@ -608,11 +608,11 @@ gpc(){return"Antwoord optie toevoegen"},
 gpe(){return"Meerdere antwoorden toestaan"},
 goc(){return"Peiling is ge\xebindigd"},
 po(d){var y=null
-return A.aP(d,y,this.a,y,"\xc9\xe9n stem",""+d+" stemmen",y,y)},
+return A.aO(d,y,this.a,y,"\xc9\xe9n stem",""+d+" stemmen",y,y)},
 gph(){return"Antwoorden zullen zichtbaar zijn wanneer de peiling is ge\xebindigd"},
 goj(){return"Antwoord in gesprek"},
 pn(d){var y=null
-return A.aP(d,y,this.a,y,"\xc9\xe9n antwoord",""+d+" antwoorden",y,y)},
+return A.aO(d,y,this.a,y,"\xc9\xe9n antwoord",""+d+" antwoorden",y,y)},
 gpH(){return"Gesprek"},
 gpj(){return"Terug naar hoofdchat"},
 goZ(){return"Wijzigingen opslaan"},
@@ -715,7 +715,7 @@ gql(){return"Kan niet worden gestuurd"},
 grw(){return"Gisteren"},
 grf(){return"Herstelsleutel resetten"},
 qA(d){var y=null
-return A.aP(d,y,this.a,y,"Een bericht",""+d+" berichten",y,y)+" doorsturen?"},
+return A.aO(d,y,this.a,y,"Een bericht",""+d+" berichten",y,y)+" doorsturen?"},
 gqi(){return"Deze versie ondersteunt geen firebase cloud messaging."},
 gqr(){return"Double-tap to react"},
 gqs(){return"Double-tap a message to react instead of selecting text"},
@@ -733,9 +733,9 @@ gq6(){return"Start call"},
 gpQ(){return"Select camera"},
 gpR(){return"Select microphone"},
 gpS(){return"Select speaker"},
-D(d,e){return this.gbE(this).$1(e)}}
+D(d,e){return this.gbD(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.ML,C.aT)})()
-A.ed(b.typeUniverse,JSON.parse('{"ML":{"aT":[]}}'))};
-(a=>{a["GYhfxOvctSPokJAUWq6ao4VAoWo="]=a.current})($__dart_deferred_initializers__);
+y(B.MI,C.aT)})()
+A.ed(b.typeUniverse,JSON.parse('{"MI":{"aT":[]}}'))};
+(a=>{a["e3d0Dcrwgi9X4T1jWFSQsNlBFW0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_343.part.js.map
