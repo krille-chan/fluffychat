@@ -203,7 +203,7 @@ class CallPage extends StatelessWidget {
                                   ? Axis.vertical
                                   : Axis.horizontal;
 
-                              final tiles = liveKitRoom.getCallTiles(room);
+                              final tiles = viewModel.getCallTiles();
 
                               final focused =
                                   (viewModel.value.focusedTrack == null

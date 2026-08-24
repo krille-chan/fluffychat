@@ -5,7 +5,6 @@
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:livekit_client/livekit_client.dart' as lk;
 import 'package:material_ui/material_ui.dart';
@@ -174,94 +173,4 @@ class _CallTileState extends State<CallTile> {
       ),
     );
   }
-}
-
-extension GetCallTiles on lk.Room {
-  /// Calculates all call tiles to be rendered for this call in this matrix
-  /// room. For users without any camera track it adds a CallTile with a
-  /// null video track at least.
-  List<
-    ({
-      String id,
-      lk.TrackPublication<lk.VideoTrack>? video,
-      lk.TrackPublication<lk.AudioTrack>? audio,
-      User user,
-    })
-  >
-  getCallTiles(Room room) {
-    final tiles =
-        <
-          ({
-            String id,
-            lk.TrackPublication<lk.VideoTrack>? video,
-            lk.TrackPublication<lk.AudioTrack>? audio,
-            User user,
-          })
-        >[];
-    final removeParticipantIds = <String>{
-      ...remoteParticipants.keys,
-      ...room.getActiveMatrixRtcMembers().map(
-        (member) => '${member.senderId}:${member.deviceId}',
-      ),
-    }..remove(localParticipant?.identity);
-
-    for (final participantId in removeParticipantIds) {
-      final participant = remoteParticipants[participantId];
-      final matrixId =
-          participant?.matrixId ??
-          (participantId.split(':')..removeLast()).join(':');
-      final user = room.unsafeGetUserFromMemoryOrFallback(matrixId);
-      if (participant == null ||
-          !participant.videoTrackPublications.any(
-            (pub) => !pub.isScreenShare,
-          )) {
-        tiles.add((
-          id: '${participantId}_none',
-          user: user,
-          video: null,
-          audio: null,
-        ));
-      }
-      for (final pub in participant?.videoTrackPublications ?? []) {
-        tiles.add((
-          id: '${participantId}_${pub.name}',
-          user: user,
-          video: pub,
-          audio: pub.isScreenShare
-              ? null
-              : participant?.audioTrackPublications.firstOrNull,
-        ));
-      }
-    }
-
-    final ownUser = room.unsafeGetUserFromMemoryOrFallback(room.client.userID!);
-    for (final pub
-        in localParticipant?.videoTrackPublications ??
-            <lk.LocalTrackPublication<lk.LocalVideoTrack>>[]) {
-      tiles.add((
-        id: '${localParticipant?.identity ?? ownUser.id}_${pub.name}',
-        user: ownUser,
-        video: pub,
-        audio: localParticipant?.audioTrackPublications.firstOrNull,
-      ));
-    }
-
-    if (localParticipant?.videoTrackPublications.any(
-          (pub) => !pub.isScreenShare,
-        ) !=
-        true) {
-      tiles.add((
-        id: '${localParticipant?.identity ?? ownUser.id}_none',
-        user: ownUser,
-        video: null,
-        audio: localParticipant?.audioTrackPublications.firstOrNull,
-      ));
-    }
-
-    return tiles;
-  }
-}
-
-extension on lk.RemoteParticipant {
-  String get matrixId => (identity.split(':')..removeLast()).join(':');
 }

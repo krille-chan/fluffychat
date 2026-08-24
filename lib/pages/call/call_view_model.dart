@@ -9,6 +9,7 @@ import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/call/utils/get_call_tiles.dart';
 import 'package:fluffychat/utils/call_kit_params.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/call_keys_event_content.dart';
@@ -473,6 +474,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
 
   Future<void> _playWaitingSound() =>
       _playSoundIndex(_waitSource, loopMode: .all);
+
+  List<TileData> getCallTiles() => value.room!.getCallTiles(room);
 
   Future<lk.MediaDevice?> _selectMediaDevice(
     BuildContext context,
