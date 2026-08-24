@@ -489,7 +489,7 @@
             }
         }
     },
-    "countParticipants": "{count} personen",
+    "countParticipants": "{count, plural, =1{1 persoon} other{{count} personen}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -826,7 +826,7 @@
             }
         }
     },
-    "isTyping": "is aan het typen…",
+    "isTyping": "is aan het typen",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -1097,7 +1097,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "participant": "Personen",
+    "participant": "Deelnemer",
     "@participant": {
         "type": "String",
         "placeholders": {}
@@ -1586,11 +1586,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videogesprek",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Chatgeschiedenis zichtbaarheid",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1738,13 +1733,9 @@
     },
     "pinMessage": "Maak vast aan chat",
     "emojis": "Emoji's",
-    "placeCall": "Bellen",
     "unsupportedAndroidVersion": "Niet-ondersteunde Android-versie",
     "unsupportedAndroidVersionLong": "Voor deze functie is een nieuwe Android-versie verplicht. Controleer je updates of Lineage OS-ondersteuning.",
-    "videoCallsBetaWarning": "Houd er rekening mee dat videogesprekken momenteel in bèta zijn. Ze werken misschien niet zoals je verwacht of werken niet op alle platformen.",
-    "voiceCall": "Spraakgesprek",
     "confirmEventUnpin": "Weet je zeker dat je de gebeurtenis definitief wilt losmaken?",
-    "experimentalVideoCalls": "Videogesprekken (experimenteel)",
     "youAcceptedTheInvitation": "👍 Je hebt de uitnodiging geaccepteerd",
     "youRejectedTheInvitation": "Je hebt de uitnodiging afgewezen",
     "youJoinedTheChat": "Je bent toegetreden tot de chat",
@@ -1835,9 +1826,6 @@
     "commandHint_markasgroup": "Markeer als groep",
     "whyIsThisMessageEncrypted": "Waarom is dit bericht onleesbaar?",
     "noKeyForThisMessage": "Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen in een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de chat de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chatback-up hebt aangezet in de instellingen.",
-    "foregroundServiceRunning": "Deze melding verschijnt wanneer de voorgronddienst draait.",
-    "screenSharingTitle": "scherm delen",
-    "screenSharingDetail": "Je deelt je scherm in FuffyChat",
     "newSpace": "Space aanmaken",
     "doNotShowAgain": "Niet meer tonen",
     "googlyEyesContent": "{senderName} stuurt je wiebelogen",
@@ -2255,7 +2243,6 @@
     "changelog": "Wijzigingengeschiedenis",
     "loginWithMatrixId": "Inloggen met Matrix-ID",
     "calculatingFileSize": "Bestandsgrootte berekenen...",
-    "sendingAttachment": "Bijlage versturen...",
     "version": "Versie",
     "supportPage": "Supportpagina",
     "serverInformation": "Server-informatie:",
@@ -2716,5 +2703,59 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "editImage": "Afbeelding wijzigen",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Linksom draaien",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Rechtsom draaien",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Spiegelen",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Opslaan",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Tekenen",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Herstel",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Ongedaan maken",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Gummen",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Bijsnijden",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadingMessages": "Berichten laden...",
+    "buildDoesNotSupportFirebase": "Deze versie ondersteunt geen firebase cloud messaging.",
+    "unableToRegisterDeviceForFirebase": "Niet in staat om het apparaat te registreren voor firebase cloud messaging.",
+    "unifiedPushDistributors": "Unified Push diensten:"
 }

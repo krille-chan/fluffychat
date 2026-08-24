@@ -962,11 +962,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Asiwel s tvidyut",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Tawalit n uzray n udiwenni",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1084,8 +1079,6 @@
     "pinMessage": "Senteḍ ɣer texxamt",
     "confirmEventUnpin": "Tebɣiḍ ad tekkseḍ s wudem imezgi asenṭed n tadyant-nni?",
     "emojis": "Imujiten",
-    "placeCall": "Sɛeddi Asiwel",
-    "voiceCall": "Asiwel n taɣect",
     "removeAllOtherDevices": "Kkes akk ibenkan-nniḍen",
     "@removeAllOtherDevices": {
         "type": "String",
@@ -1407,9 +1400,6 @@
     },
     "user": "Aseqdac",
     "custom": "Yugnen",
-    "foregroundServiceRunning": "Alɣu-agi yettban-d ticki ameẓlu n uɣawas amezwaru iteddu.",
-    "screenSharingTitle": "beṭṭu n ugdil",
-    "screenSharingDetail": "Tbeṭṭuḍ agdil-ik·im deg FluffyChat",
     "whyIsThisMessageEncrypted": "Acuɣer izen-agi ur yettwaɣri ara?",
     "send": "Azen",
     "@send": {
@@ -1683,7 +1673,6 @@
             }
         }
     },
-    "experimentalVideoCalls": "Isawalen uvidya s wudem armitan",
     "newSpace": "Tallunt tamaynut",
     "verifiedDevicesOnly": "Ibenkan yettwasneqden kan",
     "optionalMessage": "(D afrayan) izen…",

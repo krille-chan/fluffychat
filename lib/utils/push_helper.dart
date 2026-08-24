@@ -12,20 +12,24 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/client_download_content_extension.dart';
+import 'package:fluffychat/utils/call_kit_params.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/notification_avatar_extension.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/start_push_foreground_service.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
-import 'package:matrix/matrix.dart';
+import 'package:http/http.dart' as http;
+import 'package:material_ui/material_ui.dart';
+import 'package:matrix/matrix.dart' hide Result;
 import 'package:shared_preferences/shared_preferences.dart';
 
-const notificationAvatarDimension = 128;
 final Map<String, DateTime> lastReceivedPushNotification = {};
 
 Future<void> pushHelper(
@@ -34,8 +38,9 @@ Future<void> pushHelper(
   L10n? l10n,
   String? activeRoomId,
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-  bool useNotificationActions = true,
 }) async {
+  l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
+
   try {
     await _tryPushHelper(
       notification,
@@ -43,32 +48,12 @@ Future<void> pushHelper(
       l10n: l10n,
       activeRoomId: activeRoomId,
       flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
-      useNotificationActions: useNotificationActions,
-    );
+    ).timeout(const Duration(seconds: 30));
   } catch (e, s) {
-    l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
-    await flutterLocalNotificationsPlugin.show(
-      id: notification.hashCode,
-      title: l10n.newMessageInFluffyChat,
-      body: l10n.openAppToReadMessages,
-      notificationDetails: NotificationDetails(
-        iOS: const DarwinNotificationDetails(),
-        android: AndroidNotificationDetails(
-          AppConfig.pushNotificationsChannelId,
-          l10n.incomingMessages,
-          number: notification.counts?.unread,
-          ticker: l10n.unreadChatsInApp(
-            AppSettings.applicationName.value,
-            (notification.counts?.unread ?? 0).toString(),
-          ),
-          importance: Importance.high,
-          priority: Priority.max,
-          shortcutId: notification.roomId,
-        ),
-      ),
-    );
-
-    if (e is! TimeoutException && e is! IOException) {
+    if (PlatformInfos.isAndroid &&
+        e is! TimeoutException &&
+        e is! IOException &&
+        e is! http.ClientException) {
       Logs().e('Push Helper has crashed! Writing into temporary file...', e, s);
       final store = await SharedPreferences.getInstance();
       await store.setStringList(AppConfig.pushHelperCrashReportKey, [
@@ -76,7 +61,37 @@ Future<void> pushHelper(
         s.toString(),
       ]);
     }
+
+    if (notification.roomId != null) {
+      await flutterLocalNotificationsPlugin.show(
+        id: notification.notificationId,
+        title: l10n.newMessageInFluffyChat,
+        body: l10n.openAppToReadMessages,
+        notificationDetails: NotificationDetails(
+          iOS: DarwinNotificationDetails(
+            threadIdentifier:
+                '${notification.clientName}_${notification.roomId}',
+          ),
+          android: AndroidNotificationDetails(
+            AppConfig.pushNotificationsChannelId,
+            l10n.incomingMessages,
+            number: notification.counts?.unread,
+            ticker: l10n.unreadChatsInApp(
+              AppSettings.applicationName.value,
+              (notification.counts?.unread ?? 0).toString(),
+            ),
+            importance: Importance.high,
+            priority: Priority.max,
+            shortcutId: notification.roomId,
+            category: AndroidNotificationCategory.message,
+            groupKey: notification.clientName,
+          ),
+        ),
+      );
+    }
     rethrow;
+  } finally {
+    ForegroundServices.stopService('background_push');
   }
 }
 
@@ -86,7 +101,6 @@ Future<void> _tryPushHelper(
   L10n? l10n,
   String? activeRoomId,
   required FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
-  bool useNotificationActions = true,
 }) async {
   final isBackgroundMessage = clients == null;
   Logs().v(
@@ -94,16 +108,7 @@ Future<void> _tryPushHelper(
     notification.toJson(),
   );
 
-  if (notification.roomId != null &&
-      activeRoomId == notification.roomId &&
-      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
-    Logs().v('Room is in foreground. Stop push helper here.');
-    return;
-  }
-
-  final clientName = notification.devices?.firstOrNull?.data?.tryGet<String>(
-    'client_name',
-  );
+  final clientName = notification.clientName;
   final store = await AppSettings.init();
 
   final client = clientName == null
@@ -119,13 +124,13 @@ Future<void> _tryPushHelper(
 
   lastReceivedPushNotification[client.clientName] = DateTime.now();
 
+  l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
+
+  Logs().v('Load event...');
   final event = await client.getEventByPushNotification(
     notification,
     storeInDatabase: false,
   );
-
-  final awaitingOneShotSync = client.oneShotSync();
-  l10n ??= await L10n.delegate.load(PlatformDispatcher.instance.locale);
 
   updateAppBadge(notification.counts?.unread ?? 0);
 
@@ -136,7 +141,11 @@ Future<void> _tryPushHelper(
     } else {
       // Make sure client is fully loaded and synced before dismiss notifications:
       await client.roomsLoading;
-      await awaitingOneShotSync;
+      await client
+          .oneShotSync()
+          .timeout(const Duration(seconds: 8))
+          .catchError((_) => null);
+
       final activeNotifications = await flutterLocalNotificationsPlugin
           .getActiveNotifications();
       activeNotifications.removeWhere(
@@ -164,6 +173,7 @@ Future<void> _tryPushHelper(
     }
     return;
   }
+
   Logs().v('Push helper got notification event of type ${event.type}.');
 
   if (!client.pushruleEvaluator.match(event).notify) {
@@ -171,25 +181,35 @@ Future<void> _tryPushHelper(
     return;
   }
 
-  if (event.type.startsWith('m.call')) {
-    // make sure bg sync is on (needed to update hold, unhold events)
-    // prevent over write from app life cycle change
-    client.backgroundSync = true;
-  }
+  if (event.type == RtcNotificationContent.eventType &&
+      event.tryParseRtcNotificationContent()?.notificationType == .ring &&
+      PlatformInfos.isMobile) {
+    final callId = '${event.room.id}|${event.room.client.clientName}';
+    final activeCalls = await FlutterCallkitIncoming.activeCalls();
+    if (activeCalls.any((call) => call.id == callId)) {
+      Logs().d(
+        'Call with this ID is already active. Ignoring this Push Notification...',
+        callId,
+      );
+      return;
+    }
+    final intentStr = event.content.tryGet<String>('m.call.intent');
+    final intent =
+        MatrixRtcCallIntent.values.singleWhereOrNull(
+          (i) => i.name == intentStr,
+        ) ??
+        .video;
+    await FlutterCallkitIncoming.showCallkitIncoming(
+      buildFluffyChatCallKitParams(event.room, l10n, intent: intent),
+    );
 
-  if (event.type == EventTypes.CallHangup) {
-    client.backgroundSync = false;
-  }
-
-  if (event.type.startsWith('m.call') && event.type != EventTypes.CallInvite) {
-    Logs().v('Push message is a m.call but not invite. Do not display.');
     return;
   }
 
-  if ((event.type.startsWith('m.call') &&
-          event.type != EventTypes.CallInvite) ||
-      event.type == 'org.matrix.call.sdp_stream_metadata_changed') {
-    Logs().v('Push message was for a call, but not call invite.');
+  if (notification.roomId != null &&
+      activeRoomId == notification.roomId &&
+      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
+    Logs().v('Room is in foreground. Stop push helper here.');
     return;
   }
 
@@ -306,32 +326,51 @@ Future<void> _tryPushHelper(
     importance: Importance.high,
     priority: Priority.max,
     groupKey: client.clientName,
-    actions: event.type == EventTypes.RoomMember || !useNotificationActions
+    actions: switch (event.type) {
+      EventTypes.Message ||
+      EventTypes.Encrypted ||
+      EventTypes.Sticker => <AndroidNotificationAction>[
+        AndroidNotificationAction(
+          FluffyChatNotificationActions.reply.name,
+          l10n.reply,
+          inputs: [AndroidNotificationActionInput(label: l10n.writeAMessage)],
+          allowGeneratedReplies: true,
+          semanticAction: SemanticAction.reply,
+        ),
+        AndroidNotificationAction(
+          FluffyChatNotificationActions.markAsRead.name,
+          l10n.markAsRead,
+          semanticAction: SemanticAction.markAsRead,
+        ),
+        AndroidNotificationAction(
+          FluffyChatNotificationActions.mute.name,
+          l10n.mute,
+          semanticAction: SemanticAction.mute,
+        ),
+      ],
+      RtcNotificationContent.eventType => [
+        AndroidNotificationAction(
+          FluffyChatNotificationActions.enterCall.name,
+          l10n.enterCall,
+          semanticAction: SemanticAction.call,
+        ),
+      ],
+      _ => null,
+    },
+  );
+  final iOSAttachmentPath = PlatformInfos.isIOS
+      ? await client.getIosNotificationAvatar(event.room.avatar)
+      : null;
+  final iOSPlatformChannelSpecifics = DarwinNotificationDetails(
+    threadIdentifier: '${notification.clientName}_${notification.roomId}',
+    attachments: iOSAttachmentPath == null
         ? null
-        : <AndroidNotificationAction>[
-            AndroidNotificationAction(
-              FluffyChatNotificationActions.reply.name,
-              l10n.reply,
-              inputs: [
-                AndroidNotificationActionInput(label: l10n.writeAMessage),
-              ],
-              allowGeneratedReplies: true,
-              semanticAction: SemanticAction.reply,
-            ),
-            AndroidNotificationAction(
-              FluffyChatNotificationActions.markAsRead.name,
-              l10n.markAsRead,
-              semanticAction: SemanticAction.markAsRead,
-            ),
-            AndroidNotificationAction(
-              FluffyChatNotificationActions.mute.name,
-              l10n.mute,
-              semanticAction: SemanticAction.mute,
+        : [
+            DarwinNotificationAttachment(
+              iOSAttachmentPath,
+              identifier: 'image',
             ),
           ],
-  );
-  final iOSPlatformChannelSpecifics = DarwinNotificationDetails(
-    threadIdentifier: event.room.id,
   );
   final platformChannelSpecifics = NotificationDetails(
     android: androidPlatformChannelSpecifics,
@@ -347,7 +386,7 @@ Future<void> _tryPushHelper(
   final needsTitleAndBody = !PlatformInfos.isAndroid;
 
   await flutterLocalNotificationsPlugin.show(
-    id: id,
+    id: notification.notificationId,
     title: needsTitleAndBody ? title : null,
     body: needsTitleAndBody ? body : null,
     notificationDetails: platformChannelSpecifics,
@@ -462,22 +501,14 @@ Future<void> _setShortcut(
   );
 }
 
-extension on Client {
-  Future<Uint8List?> tryDownloadNotificationAvatar(Uri? avatar) async {
-    if (avatar == null) return null;
-    try {
-      return await downloadMxcCached(
-        avatar,
-        thumbnailMethod: ThumbnailMethod.crop,
-        width: notificationAvatarDimension,
-        height: notificationAvatarDimension,
-        animated: false,
-        isThumbnail: true,
-        rounded: true,
-      ).timeout(const Duration(seconds: 3));
-    } catch (e, s) {
-      Logs().e('Unable to get avatar picture', e, s);
-      return null;
-    }
+extension on PushNotification {
+  String? get clientName =>
+      devices?.firstOrNull?.data?.tryGet<String>('client_name');
+  int get notificationId {
+    final roomId = this.roomId;
+    if (roomId == null) return 0;
+    final clientName = this.clientName;
+    if (clientName == null) return roomId.hashCode;
+    return '${clientName}_$roomId'.hashCode;
   }
 }

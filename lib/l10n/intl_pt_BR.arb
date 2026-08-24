@@ -1585,11 +1585,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Chamada de vídeo",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Visibilidade do histórico da conversa",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1725,7 +1720,6 @@
     "markAsRead": "Marcar como lido",
     "reportUser": "Denunciar usuário",
     "emojis": "Emojis",
-    "placeCall": "Chamar",
     "reactedWith": "{sender} reagiu com {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -1740,11 +1734,8 @@
     },
     "confirmEventUnpin": "Tem certeza que quer desafixar o evento permanentemente?",
     "pinMessage": "Fixar na sala",
-    "voiceCall": "Chamada de voz",
     "unsupportedAndroidVersion": "Versão Android sem suporte",
     "unsupportedAndroidVersionLong": "Esta funcionalidade requer uma versão mais nova do Android. Verifique se há atualizações ou suporte ao LineageOS.",
-    "videoCallsBetaWarning": "Observe que chamadas de vídeo estão atualmente em teste. Podem não funcionar como esperado ou sequer funcionar em algumas plataformas.",
-    "experimentalVideoCalls": "Vídeo chamadas experimentais",
     "youRejectedTheInvitation": "Você rejeitou o convite",
     "youBannedUser": "Você baniu {user}",
     "@youBannedUser": {
@@ -1853,7 +1844,6 @@
     "storeSecurlyOnThisDevice": "Guardar de modo seguro neste dispositivo",
     "user": "Usuário",
     "custom": "Personalizado",
-    "foregroundServiceRunning": "Esta notificação aparece quando o serviço de primeiro plano está sendo executado.",
     "newSpace": "Novo espaço",
     "countFiles": "{count} arquivos",
     "@countFiles": {
@@ -1867,8 +1857,6 @@
     "dehydrate": "Exportar sessão e apagar dispositivo",
     "dehydrateWarning": "Esta ação não pode ser desfeita. Certifique-se de que o arquivo de backup está guardado e seguro.",
     "whyIsThisMessageEncrypted": "Por que não consigo ler esta mensagem?",
-    "screenSharingTitle": "compartilhamento de tela",
-    "screenSharingDetail": "Você está compartilhando sua tela no FluffyChat",
     "noKeyForThisMessage": "Isto pode ocorrer caso a mensagem tenha sido enviada antes de você ter se conectado à sua conta com este dispositivo.\n\nTambém é possível que o remetente tenha bloqueado o seu dispositivo ou ocorreu algum problema com a conexão.\n\nVocê consegue ler as mensagens em outra sessão? Então, pode transferir as mensagens de lá! Vá em Configurações > Dispositivos e confira se os dispositivos verificaram um ao outro. Quando abrir a sala da próxima vez e ambas as sessões estiverem abertas, as chaves serão transmitidas automaticamente.\n\nNão gostaria de perder suas chaves ao desconectar ou trocar de dispositivos? Certifique-se que o backup de conversas esteja ativado nas configurações.",
     "notAnImage": "Não é um arquivo de imagem.",
     "importNow": "Importar agora",
@@ -2232,7 +2220,6 @@
     "changelog": "Registro de mudanças",
     "sendCanceled": "Envio cancelado",
     "unableToJoinChat": "Não foi possível entrar na conversa. Talvez a outra pessoa já fechou a conversa.",
-    "sendingAttachment": "Enviando o anexo...",
     "noticeChatBackupDeviceVerification": "Observação: Quando você conecta todos os seus dispositivos ao backup de conversas, eles são verificados automaticamente.",
     "continueText": "Continuar",
     "blur": "Borrar:",

@@ -1,4 +1,54 @@
 {
+    "editImage": "Edit image",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Rotate left",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Rotate right",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Mirror",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Save",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Draw",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Undo",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Clear",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Eraser",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Crop",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
     "@@locale": "en",
     "@@last_modified": "2021-08-14 12:38:37.885451",
     "repeatPassword": "Repeat password",
@@ -944,7 +994,7 @@
             }
         }
     },
-    "isTyping": "is typing…",
+    "isTyping": "is typing",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -1393,7 +1443,17 @@
         "type": "String",
         "placeholders": {}
     },
+    "sendingFilesDoNotExit": "Sending {count} files... Please do not exit!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
     "roomVersion": "Room version",
+    "compressingVideo": "Compressing video...",
     "@roomVersion": {
         "type": "String",
         "placeholders": {}
@@ -1754,11 +1814,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Video call",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Visibility of the chat history",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1876,12 +1931,8 @@
     "pinMessage": "Pin to room",
     "confirmEventUnpin": "Are you sure to permanently unpin the event?",
     "emojis": "Emojis",
-    "placeCall": "Place call",
-    "voiceCall": "Voice call",
     "unsupportedAndroidVersion": "Unsupported Android version",
     "unsupportedAndroidVersionLong": "This feature requires a newer Android version. Please check for updates or Lineage OS support.",
-    "videoCallsBetaWarning": "Please note that video calls are currently in beta. They might not work as expected or work at all on all platforms.",
-    "experimentalVideoCalls": "Experimental video calls",
     "youRejectedTheInvitation": "You rejected the invitation",
     "youJoinedTheChat": "You joined the chat",
     "youAcceptedTheInvitation": "👍 You accepted the invitation",
@@ -1966,9 +2017,6 @@
     },
     "user": "User",
     "custom": "Custom",
-    "foregroundServiceRunning": "This notification appears when the foreground service is running.",
-    "screenSharingTitle": "screen sharing",
-    "screenSharingDetail": "You are sharing your screen in FuffyChat",
     "whyIsThisMessageEncrypted": "Why is this message unreadable?",
     "noKeyForThisMessage": "This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings.",
     "newSpace": "New space",
@@ -2257,7 +2305,6 @@
     "loginWithMatrixId": "Login with Matrix-ID",
     "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
     "calculatingFileSize": "Calculating file size...",
-    "sendingAttachment": "Sending attachment...",
     "oneOfYourDevicesIsNotVerified": "One of your devices is not verified",
     "noticeChatBackupDeviceVerification": "Note: When you connect all your devices to the chat backup, they are automatically verified.",
     "continueText": "Continue",
@@ -2706,5 +2753,39 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "loadingMessages": "Loading messages...",
+    "buildDoesNotSupportFirebase": "This build does not support firebase cloud messaging.",
+    "unableToRegisterDeviceForFirebase": "Unable to register device for firebase cloud messaging.",
+    "unifiedPushDistributors": "Unified Push distributors:",
+    "doubleTapToReact": "Double-tap to react",
+    "doubleTapToReactDescription": "Double-tap a message to react instead of selecting text",
+    "doubleTapReaction": "Double-tap reaction",
+    "shareCrashReports": "Share crash reports",
+    "shareCrashReportsDescription": "Automatically share crash reports with the developers",
+    "shareCrashReportsPrompt": "Share crash reports automatically with the developers? Learn more at {url} about what data is being shared.",
+    "@shareCrashReportsPrompt": {
+        "placeholders": {
+            "url": {
+                "type": "String"
+            }
+        }
+    },
+    "allow": "Allow",
+    "deny": "Deny",
+    "activeCall": "Active call",
+    "countActiveCallMembers": "{count} active call members",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Enter call",
+    "videoCallsBetaWarning": "Video calls are a beta feature. There might be bugs or unexpected behavior. We would be happy to hear about your feedback.",
+    "noDevicesFound": "No devices found",
+    "incomingCall": "Incoming call",
+    "waitingForParticipant": "Waiting for participant...",
+    "decline": "Decline"
 }

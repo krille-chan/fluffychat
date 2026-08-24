@@ -24,7 +24,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "activatedEndToEndEncryption": "{username} skrudde på ende-til-ende -kryptering",
+    "activatedEndToEndEncryption": "{username} skrudde på ende-til-ende-kryptering",
     "@activatedEndToEndEncryption": {
         "type": "String",
         "placeholders": {
@@ -357,7 +357,7 @@
             }
         }
     },
-    "countParticipants": "{count} deltagere",
+    "countParticipants": "{count, plural, =1{1 deltaker} other{{count} deltakere}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -675,7 +675,7 @@
             }
         }
     },
-    "isTyping": "skriver…",
+    "isTyping": "skriver",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -1319,11 +1319,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videosamtale",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Sludrehistorikkens synlighet",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1420,7 +1415,7 @@
         "placeholders": {}
     },
     "repeatPassword": "Gjenta passord",
-    "addToSpace": "Legg til område",
+    "addToSpace": "Legg til romgruppe",
     "autoplayImages": "Automatisk spill av animerte stickers og emojis",
     "@autoplayImages": {
         "type": "String",
@@ -1469,7 +1464,7 @@
             }
         }
     },
-    "space": "Område",
+    "space": "Romgruppe",
     "cuddleContent": "{senderName} koser med deg",
     "@cuddleContent": {
         "type": "String",
@@ -1597,7 +1592,6 @@
     },
     "unverified": "Ikke verifisert",
     "thisDevice": "Denne enheten:",
-    "sendingAttachment": "Sender vedlegg...",
     "removeYourAvatar": "Fjern din avatar",
     "@removeYourAvatar": {
         "type": "String",
@@ -1618,7 +1612,7 @@
         }
     },
     "approve": "Godkjenn",
-    "goToSpace": "Gå til område: {space}",
+    "goToSpace": "Gå til romgruppe: {space}",
     "@goToSpace": {
         "type": "String",
         "space": {}
@@ -1746,8 +1740,6 @@
         }
     },
     "chatDescriptionHasBeenChanged": "Chatbeskrivelsen er endret",
-    "screenSharingTitle": "skjermdeling",
-    "screenSharingDetail": "Du deler skjermen din i FuffyChat",
     "whyIsThisMessageEncrypted": "Hvorfor er denne meldingen uleselig?",
     "yourGlobalUserIdIs": "Din globale bruker-ID er: ",
     "searchChatsRooms": "Søk etter #chatter, @brukere...",
@@ -1776,7 +1768,6 @@
             }
         }
     },
-    "voiceCall": "Taleanrop",
     "accessAndVisibilityDescription": "Hvem som har lov til å bli med i denne chatten og hvordan chatten kan oppdages.",
     "calls": "Anrop",
     "customEmojisAndStickers": "Egendefinerte emojier og klistremerker",
@@ -2097,7 +2088,7 @@
     "contentNotificationSettings": "Innstillinger for innholdsvarslinger",
     "generalNotificationSettings": "Generelle varslingsinnstillinger",
     "notificationRuleContainsUserNameDescription": "Varsler bruker når en melding inneholder ens brukernavn.",
-    "removeFromSpace": "Fjern fra området",
+    "removeFromSpace": "Fjern fra romgruppe",
     "reactedWith": "{sender} reagerte med {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -2112,10 +2103,7 @@
     },
     "pinMessage": "Fest til rommet",
     "emojis": "Emojier",
-    "placeCall": "Ringe opp",
     "unsupportedAndroidVersionLong": "Denne funksjonen krever en nyere Android-versjon. Se etter oppdateringer eller støtte for Lineage OS.",
-    "videoCallsBetaWarning": "Vær oppmerksom på at videosamtaler for øyeblikket er i betaversjon. Det fungerer kanskje ikke som forventet eller i det hele tatt.",
-    "experimentalVideoCalls": "Eksperimentelle videoanrop",
     "notificationRuleRoomnotifDescription": "Varsler brukeren når en melding inneholder ‘@room’.",
     "notificationRuleTombstoneDescription": "Varsler brukeren om meldinger om deaktivering av rom.",
     "notificationRuleReactionDescription": "Demper varsler for reaksjoner.",
@@ -2188,7 +2176,7 @@
         "description": "State that {command} is not a valid /command."
     },
     "checkList": "Sjekkliste",
-    "createNewSpace": "Nytt område",
+    "createNewSpace": "Ny romgruppe",
     "@createNewSpace": {
         "type": "String",
         "placeholders": {}
@@ -2276,7 +2264,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "newSpace": "Nytt område",
+    "newSpace": "Ny romgruppe",
     "wasDirectChatDisplayName": "Tom chat (var {oldDisplayName})",
     "@wasDirectChatDisplayName": {
         "type": "String",
@@ -2286,7 +2274,7 @@
             }
         }
     },
-    "removeFromSpaceDescription": "Chatten blir fjernet fra området, men vises fortsatt i chatlisten din.",
+    "removeFromSpaceDescription": "Chatten blir fjernet fra romgruppen, men vises fortsatt i chatlisten din.",
     "countChats": "{chats} chats",
     "@countChats": {
         "type": "String",
@@ -2321,7 +2309,6 @@
     "notificationRuleJitsiDescription": "Varsler brukeren om hendelser i Jitsi-widgeten.",
     "customReaction": "Egendefinert reaksjon",
     "pause": "Pause",
-    "foregroundServiceRunning": "Denne varslingen vises når forgrunnstjenesten kjører.",
     "longPressToRecordVoiceMessage": "Langt trykk for å spille inn talemelding.",
     "startPoll": "Start avstemning",
     "endPoll": "Avslutt avstemning",
@@ -2373,12 +2360,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "spaceIsPublic": "Området er offentlig",
+    "spaceIsPublic": "Romgruppen er offentlig",
     "@spaceIsPublic": {
         "type": "String",
         "placeholders": {}
     },
-    "spaceName": "Navn på område",
+    "spaceName": "Navn på romgruppe",
     "@spaceName": {
         "type": "String",
         "placeholders": {}
@@ -2398,8 +2385,8 @@
     },
     "editBundlesForAccount": "Rediger pakker for denne kontoen",
     "makeAdminDescription": "Når du gjør denne brukeren til administrator, kan du kanskje ikke omgjøre det senere. Brukeren vil da få de samme rettighetene som deg.",
-    "joinSpace": "Bli med i området",
-    "publicSpaces": "Offentlige områder",
+    "joinSpace": "Bli med i romgruppe",
+    "publicSpaces": "Offentlige romgrupper",
     "verifyOtherUserDescription": "Hvis du verifiserer en annen bruker, kan du være trygg på at du vet hvem du faktisk skriver med. 💪\n\nNår du starter en verifisering, vil både du og den andre brukeren se et popup-vindu i appen. Der vil dere se en serie emojier eller tall som dere må sammenligne med hverandre.\n\nDen beste måten å gjøre dette på er å møtes ansikt til ansikt eller starte en videosamtale. 👭",
     "verifyOtherDeviceDescription": "Når du verifiserer en annen enhet, kan disse enhetene utveksle nøkler, noe som øker den generelle sikkerheten din. 💪 Når du starter en verifisering, vil det dukke opp et popup-vindu i appen på begge enhetene. Der vil du se en serie emojier eller tall som du må sammenligne med hverandre. Det er best å ha begge enhetene forhånden før du starter verifiseringen. 🤳",
     "clientWellKnownInformation": "Velkjent informasjon om klienten:",
@@ -2443,7 +2430,7 @@
     "moreEvents": "Flere hendelser",
     "contactServerSecurity": "Kontakt sikkerhetsansvarlig for serveren",
     "notificationRuleMemberEvent": "Medlemshendelse",
-    "spaceMemberOfCanKnock": "Et medlem av området {spaces} kan banke på",
+    "spaceMemberOfCanKnock": "Et medlem av romgruppen {spaces} kan banke på",
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2489,12 +2476,12 @@
         }
     },
     "confirmEventUnpin": "Er du sikker på at du vil løsne hendelsen permanent?",
-    "newSpaceDescription": "Områder lar deg samle chattene dine og bygge private eller offentlige fellesskap.",
+    "newSpaceDescription": "Romgrupper lar deg samle chattene dine og bygge private eller offentlige fellesskap.",
     "chatPermissionsDescription": "Definer hvilket tilgangsnivå som kreves for bestemte handlinger i denne chatten. Nivåene 0, 50 og 100 representerer vanligvis brukere, moderatorer og administratorer, men alle mellomtrinn er mulige.",
     "knocking": "Banker på",
     "noKeyForThisMessage": "Dette kan skje hvis meldingen ble sendt før du logget inn på kontoen din på denne enheten.\n\nDet er også mulig at senderen har blokkert enheten din, eller at noe gikk galt med internettforbindelsen.\n\nEr du i stand til å lese meldingen i en annen sesjon? Da kan du overføre meldingen fra den! Gå til Innstillinger > Enheter og sørg for at enhetene dine har verifisert hverandre. Neste gang du åpner rommet og begge sesjonene er i forgrunnen, vil nøklene bli overført automatisk.\n\nVil du unngå å miste nøklene når du logger ut eller bytter enhet? Sørg for at du har aktivert sikkerhetskopiering av chat i innstillingene.",
     "report": "rapportere",
-    "addChatOrSubSpace": "Legg til chat eller underområde",
+    "addChatOrSubSpace": "Legg til chat eller under-romgruppe",
     "signIn": "Logg på",
     "createNewAccount": "Opprett ny konto",
     "signUpGreeting": "FluffyChat er desentralisert! Velg en server der du vil opprette kontoen din, så kjører vi på!",
@@ -2525,5 +2512,261 @@
     "addTag": "Legg til emneknagg",
     "removeTag": "Fjern emneknagg",
     "tagName": "Navn på emneknagg",
-    "createNewTag": "Opprett ny emneknagg"
+    "createNewTag": "Opprett ny emneknagg",
+    "discardEdits": "Du har endringer som ikke er lagret. Vil du forkaste endringene?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showMore": "Vis mer",
+    "showLess": "Vis mindre",
+    "hideRoomsInSpaces": "Skjul rom som er med i en romgruppe",
+    "possibleByYou": "Denne versjonen var bare mulig takket være din støtte. FluffyChat forblir gratis, har åpen kildekode og er helt fellesskapsdrevet.",
+    "showThumbnailsInTimeline": "Vis miniatyrbilder av bilder og videoer",
+    "appSubtitle": "Sikker [matrix]-kommunikasjon",
+    "appDescription": "Kommuniser kryptert over det desentraliserte [matrix]-nettverket på en enkel og tilgjengelig måte for alle.",
+    "interactiveVerification": "Interaktiv verifisering",
+    "interactiveVerificationDescription": "Hvis dere står ved siden av hverandre eller kommuniserer via en sikker kanal, kan dere verifisere alle enhetene samtidig ved å sammenligne et sikkerhetsnummer eller emojier.",
+    "countUnverifiedDevices": "{count} uverifiserte enheter i chatten.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "encryptedMessage": "Kryptert melding",
+    "unencryptedMessage": "Ukryptert melding",
+    "messageCanOnlyBeReadByUser": "Din melding er ende-til-ende kryptert og kan bare leses av denne brukeren:",
+    "messageCanOnlyBeReadByUsers": "Din melding er ende-til-ende kryptert og kan bare leses av disse brukerne:",
+    "publicKey": "Offentlig nøkkel: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "deviceIdentityKey": "Enhetens identitetsnøkkel",
+    "restoreBootstrapEmptyDevicesDescription": "Vennligst oppgi passfrasen eller gjenopprettingsnøkkelen din for å verifisere denne enheten og få tilgang til den krypterte sikkerhetskopien av meldingene dine.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Vennligst velg en av de andre enhetene dine for å verifisere denne sesjonen:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Tilbakestill kontoen",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Venter på nøkler... Vennligst hold den andre enheten aktiv.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Ingen nøkler overført. Vennligst prøv igjen.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Lås opp",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Åpne fil",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat bruker ende-til-ende-kryptering. For å ikke miste meldingene dine, vennligst velg et sterkt passord for å sikre din kryptografiske identitet og din krypterte sikkerhetskopi av meldinger.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Ny passfrase",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Gjenta passfrase",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Passfrasene matcher",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "Minst 12 tegn langt.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Inneholder store og små bokstaver.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Inneholder spesialtegn.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "editImage": "Rediger bilde",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Roter til venstre",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Roter til høyre",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Speil",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Lagre",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Tegn",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Angre",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Tøm",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Viskelær",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Beskjær",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Når du tilbakestiller kontoen din, mister du tilgangen til de gamle meldingene dine for alltid. Alle dine nåværende enheter må verifiseres på nytt. Du bør bare utføre denne handlingen dersom du ikke har noen andre enheter igjen til å verifisere økten din, og du har mistet gjenopprettingsnøkkelen og passordfrasen din!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Inneholder ett tall.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Vennligst skriv ned gjenopprettingsnøkkelen din for å kunne gjenopprette de krypterte meldingene dine og din kryptoidentitet.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Lagre som en fil",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Nå er du klar til å starte!",
+    "restoreCryptoIdentity": "Forny kryptoidentitet",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Tilbakestill kryptoidentitet",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Sett opp kryptoidentitet",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noUserKeyFound": "Ingen brukernøkkel funnet",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Kjent siden: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "Usignert enhet",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Signert enhet",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Ingen Curve25519-nøkkel funnet",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Meldingen kan ikke dekrypteres",
+    "today": "I dag",
+    "sending": "Sender",
+    "generatingThumbnail": "Genererer miniatyrbilde",
+    "encrypting": "Krypterer",
+    "uploading": "Laster opp",
+    "edited": "(redgiert)",
+    "couldNotBeSent": "Kunne ikke sendes",
+    "yesterday": "I går",
+    "resetRecoveryKey": "Tilbakestill gjenopprettingsnøkkel",
+    "pleaseEnter6Digits": "Skriv inn 6 sifre for å aktivere applåsen.",
+    "disableAppLock": "Deaktiver applåsen",
+    "disableAppLockAreYouSure": "Er du sikker på at du ønsker å deaktivere applåsen?",
+    "enableBiometrics": "Aktiver biometrisk autentisering",
+    "disableBiometrics": "Deaktiver biometrisk autentisering",
+    "biometricsDescription": "Med biometrisk autentisering kan du låse opp appen med ansiktet ditt eller fingeravtrykket ditt. Hvilke funksjoner som er tilgjengelige, avhenger av enheten din.",
+    "useAppLock": "Aktiver applås",
+    "unlockWithBiometrics": "Lås opp med biometrisk autentisering",
+    "resetPin": "Tilbakestill PIN",
+    "forwardCountMessages": "Videresend {count, plural, =1{en melding} other{{count} meldinger}}?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "loadingMessages": "Laster meldinger...",
+    "buildDoesNotSupportFirebase": "Denne versjonen støtter ikke Firebase Cloud Messaging.",
+    "unableToRegisterDeviceForFirebase": "Kan ikke registrere enheten for Firebase Cloud Messaging.",
+    "unifiedPushDistributors": "UnifiedPush-distributører:",
+    "doubleTapToReact": "Dubbelttrykk for å reagere",
+    "doubleTapToReactDescription": "Dobbelt-trykk på en melding for å reagere i stedet for å merke tekst",
+    "doubleTapReaction": "Reaksjon ved dobbelttrykk"
 }

@@ -848,11 +848,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "영상 통화",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "verifyTitle": "다른 계정 확인 중",
     "@verifyTitle": {
         "type": "String",
@@ -1739,12 +1734,8 @@
     "confirmEventUnpin": "이벤트를 영구적으로 고정 해제할 것이 확실한가요?",
     "pinMessage": "방에 고정",
     "emojis": "이모지",
-    "voiceCall": "음성 통화",
-    "placeCall": "전화 걸기",
-    "experimentalVideoCalls": "실험적인 영상 통화",
     "unsupportedAndroidVersion": "지원되지 않는 안드로이드 버전",
     "unsupportedAndroidVersionLong": "이 기능은 새로운 안드로이드 버전을 요구합니다. Lineage OS 지원이나 업데이트를 확인해주세요.",
-    "videoCallsBetaWarning": "영상 통화는 베타임을 확인해주세요. 의도한 대로 작동하지 않거나 모든 플랫폼에서 작동하지 않을 수 있습니다.",
     "confirmMatrixId": "계정을 삭제하려면 Matrix ID를 입력해 주세요.",
     "commandHint_googly": "왕눈이 눈알 보내기",
     "googlyEyesContent": "{senderName} 님이 왕눈이 눈알을 보냈습니다",
@@ -1884,7 +1875,6 @@
     "invalidInput": "잘못된 입력!",
     "doNotShowAgain": "다시 보지 않기",
     "report": "신고",
-    "screenSharingTitle": "화면 공유",
     "youBannedUser": "{user}님을 영구 추방함",
     "@youBannedUser": {
         "placeholders": {
@@ -1914,7 +1904,6 @@
     },
     "sendTypingNotifications": "입력 알림 보내기",
     "inviteGroupChat": "📨 그룹 채팅에 초대",
-    "foregroundServiceRunning": "이 알림은 백그라운드 서비스가 실행중일때 표시됩니다.",
     "importEmojis": "이모지 불러오기",
     "wasDirectChatDisplayName": "빈 채팅 (전 {oldDisplayName})",
     "@wasDirectChatDisplayName": {
@@ -1977,7 +1966,6 @@
     "importNow": "지금 불러오기",
     "invite": "초대",
     "storeSecurlyOnThisDevice": "이 기기에 안전하게 저장",
-    "screenSharingDetail": "FluffyChat에 당신의 화면을 공유하는중",
     "blockUsername": "유저 이름 무시",
     "block": "차단",
     "blockedUsers": "차단된 유저",
@@ -2245,7 +2233,6 @@
         }
     },
     "changelog": "변경 기록",
-    "sendingAttachment": "첨부된 파일 전송 중...",
     "blur": "블러:",
     "sendImages": "이미지 {count}개 보내기",
     "@sendImages": {

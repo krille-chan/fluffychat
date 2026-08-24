@@ -11,7 +11,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/blur_hash.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
@@ -72,9 +72,10 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
         );
       } else {
         final tempDir = await getTemporaryDirectory();
-        final fileName = Uri.encodeComponent(
-          widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
-        );
+        final fileNameStr =
+            widget.event.attachmentMxcUrl?.pathSegments.last ??
+            widget.event.body;
+        final fileName = Uri.encodeComponent(fileNameStr);
         final file = File('${tempDir.path}/${fileName}_${videoFile.name}');
         if (await file.exists() == false) {
           await file.writeAsBytes(videoFile.bytes);

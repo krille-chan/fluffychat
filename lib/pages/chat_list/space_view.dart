@@ -8,8 +8,6 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/unread_bubble.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -20,8 +18,8 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
@@ -34,7 +32,7 @@ enum SpaceChildAction {
   leave,
 }
 
-enum SpaceActions { settings, invite, members, leave }
+enum SpaceActions { addChild, settings, leave }
 
 class SpaceView extends StatefulWidget {
   final String spaceId;
@@ -180,15 +178,8 @@ class _SpaceViewState extends State<SpaceView> {
         if (!mounted) return;
         context.push('/rooms/${widget.spaceId}/details');
         break;
-      case SpaceActions.invite:
-        await space?.postLoad();
-        if (!mounted) return;
-        context.push('/rooms/${widget.spaceId}/invite');
-        break;
-      case SpaceActions.members:
-        await space?.postLoad();
-        if (!mounted) return;
-        context.push('/rooms/${widget.spaceId}/details/members');
+      case SpaceActions.addChild:
+        context.go('/rooms/newgroup?space_id=${widget.spaceId}');
         break;
       case SpaceActions.leave:
         final confirmed = await showOkCancelAlertDialog(
@@ -382,100 +373,6 @@ class _SpaceViewState extends State<SpaceView> {
     const avatarSize = Avatar.defaultSize / 1.5;
     final isAdmin = room?.canChangeStateEvent(EventTypes.SpaceChild) == true;
     return Scaffold(
-      appBar: AppBar(
-        leading:
-            FluffyThemes.isColumnMode(context) ||
-                AppSettings.displayNavigationRail.value
-            ? null
-            : Center(child: CloseButton(onPressed: widget.onBack)),
-        automaticallyImplyLeading: false,
-        titleSpacing:
-            FluffyThemes.isColumnMode(context) ||
-                AppSettings.displayNavigationRail.value
-            ? null
-            : 0,
-        title: ListTile(
-          contentPadding: EdgeInsets.zero,
-          leading: Avatar(
-            size: avatarSize,
-            mxContent: room?.avatar,
-            name: displayname,
-            shapeBorder: RoundedSuperellipseBorder(
-              side: BorderSide(width: 1, color: theme.dividerColor),
-              borderRadius: BorderRadius.circular(AppConfig.spaceBorderRadius),
-            ),
-            borderRadius: BorderRadius.circular(AppConfig.spaceBorderRadius),
-          ),
-          title: Text(
-            displayname,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-        actions: [
-          if (isAdmin)
-            IconButton(
-              icon: Icon(Icons.add_outlined),
-              tooltip: L10n.of(context).addChatOrSubSpace,
-              onPressed: () =>
-                  context.go('/rooms/newgroup?space_id=${widget.spaceId}'),
-            ),
-          PopupMenuButton<SpaceActions>(
-            useRootNavigator: true,
-            onSelected: _onSpaceAction,
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: SpaceActions.settings,
-                child: Row(
-                  mainAxisSize: .min,
-                  children: [
-                    const Icon(Icons.settings_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context).settings),
-                  ],
-                ),
-              ),
-              PopupMenuItem(
-                value: SpaceActions.invite,
-                child: Row(
-                  mainAxisSize: .min,
-                  children: [
-                    const Icon(Icons.person_add_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context).invite),
-                  ],
-                ),
-              ),
-              PopupMenuItem(
-                value: SpaceActions.members,
-                child: Row(
-                  mainAxisSize: .min,
-                  children: [
-                    const Icon(Icons.group_outlined),
-                    const SizedBox(width: 12),
-                    Text(
-                      L10n.of(context).countParticipants(
-                        room?.summary.mJoinedMemberCount ?? 1,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              PopupMenuItem(
-                value: SpaceActions.leave,
-                child: Row(
-                  mainAxisSize: .min,
-                  children: [
-                    const Icon(Icons.delete_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context).leave),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
       body: room == null
           ? const Center(child: Icon(Icons.search_outlined, size: 80))
           : StreamBuilder(
@@ -487,6 +384,7 @@ class _SpaceViewState extends State<SpaceView> {
                 return CustomScrollView(
                   slivers: [
                     SliverAppBar(
+                      toolbarHeight: 72,
                       floating: true,
                       scrolledUnderElevation: 0,
                       backgroundColor: Colors.transparent,
@@ -515,6 +413,53 @@ class _SpaceViewState extends State<SpaceView> {
                               Icons.search_outlined,
                               color: theme.colorScheme.onPrimaryContainer,
                             ),
+                          ),
+                          suffixIcon: PopupMenuButton<SpaceActions>(
+                            icon: Avatar(
+                              size: avatarSize,
+                              mxContent: room.avatar,
+                              name: displayname,
+                              shapeBorder: RoundedSuperellipseBorder(
+                                side: BorderSide(
+                                  width: 1,
+                                  color: theme.dividerColor,
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                  AppConfig.spaceBorderRadius,
+                                ),
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                AppConfig.spaceBorderRadius,
+                              ),
+                            ),
+                            useRootNavigator: true,
+                            onSelected: _onSpaceAction,
+                            itemBuilder: (context) => [
+                              if (isAdmin)
+                                PopupMenuItem(
+                                  value: SpaceActions.addChild,
+                                  child: ListTile(
+                                    leading: Icon(Icons.edit_square),
+                                    title: Text(
+                                      L10n.of(context).addChatOrSubSpace,
+                                    ),
+                                  ),
+                                ),
+                              PopupMenuItem(
+                                value: SpaceActions.settings,
+                                child: ListTile(
+                                  leading: Icon(Icons.settings_outlined),
+                                  title: Text(L10n.of(context).settings),
+                                ),
+                              ),
+                              PopupMenuItem(
+                                value: SpaceActions.leave,
+                                child: ListTile(
+                                  leading: Icon(Icons.delete_outlined),
+                                  title: Text(L10n.of(context).leave),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -587,7 +532,8 @@ class _SpaceViewState extends State<SpaceView> {
                                         item.roomId,
                                       )
                                     : null,
-                                leading: hovered
+                                leading:
+                                    hovered && (isAdmin || joinedRoom != null)
                                     ? SizedBox.square(
                                         dimension: avatarSize,
                                         child: IconButton(
@@ -601,13 +547,11 @@ class _SpaceViewState extends State<SpaceView> {
                                                 .colorScheme
                                                 .tertiaryContainer,
                                           ),
-                                          onPressed:
-                                              isAdmin || joinedRoom != null
-                                              ? () => _showSpaceChildEditMenu(
-                                                  context,
-                                                  item.roomId,
-                                                )
-                                              : null,
+                                          onPressed: () =>
+                                              _showSpaceChildEditMenu(
+                                                context,
+                                                item.roomId,
+                                              ),
                                           icon: const Icon(Icons.edit_outlined),
                                         ),
                                       )

@@ -10,7 +10,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/events/poll.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../../config/app_config.dart';
@@ -104,11 +104,8 @@ class MessageContent extends StatelessWidget {
           case MessageTypes.Audio:
             if (PlatformInfos.isMobile ||
                 PlatformInfos.isMacOS ||
-                PlatformInfos.isWeb
-            // Disabled until https://github.com/bleonard252/just_audio_mpv/issues/3
-            // is fixed
-            //   || PlatformInfos.isLinux
-            ) {
+                PlatformInfos.isWeb ||
+                PlatformInfos.isLinux) {
               return AudioPlayerWidget(
                 event,
                 color: textColor,

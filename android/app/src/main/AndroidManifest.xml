@@ -18,6 +18,8 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SHORT_SERVICE" />
 
     <!-- To make app compatible with tablets -->
     <uses-feature android:name="android.hardware.camera" android:required="false"/>
@@ -119,7 +121,8 @@
         </service>
 
         <service android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
-             android:foregroundServiceType="camera|microphone|mediaProjection">
+             android:foregroundServiceType="camera|microphone|mediaProjection|shortService"
+             android:exported="false">
         </service>
 
         <!-- From flutter_local_notifications package for notification actions -->

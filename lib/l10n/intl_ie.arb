@@ -253,7 +253,6 @@
     "messageInfo": "Information pri li missage",
     "openGallery": "Aperter li galerie",
     "reportUser": "Raportar li usator",
-    "voiceCall": "Telefonada",
     "countFiles": "{count} files",
     "@countFiles": {
         "placeholders": {
@@ -486,11 +485,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videotelefonada",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "reportMessage": "Raportar li missage",
     "@reportMessage": {
         "type": "String",
@@ -654,7 +648,6 @@
         "placeholders": {}
     },
     "commandHint_markasgroup": "Marcar quam gruppe",
-    "screenSharingTitle": "partir li ecran",
     "bannedUser": "{username} ha bannit {targetName}",
     "@bannedUser": {
         "type": "String",

@@ -1393,11 +1393,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "音声通話",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "チャット履歴の表示",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1577,8 +1572,6 @@
     "editBundlesForAccount": "このアカウントのバンドルを編集",
     "unverified": "未検証",
     "sender": "送信者",
-    "placeCall": "電話をかける",
-    "voiceCall": "音声通話",
     "unsupportedAndroidVersionLong": "この機能を利用するには、より新しいAndroidのバージョンが必要です。アップデートまたはLineage OSのサポートをご確認ください。",
     "dehydrateWarning": "この操作は元に戻せません。バックアップファイルを安全に保存してください。",
     "dehydrate": "セッションのエクスポートとデバイスの消去",
@@ -1601,7 +1594,6 @@
     },
     "users": "ユーザー",
     "youRejectedTheInvitation": "招待を拒否しました",
-    "screenSharingDetail": "FuffyChatで画面を共有しています",
     "scanQrCode": "QRコードをスキャン",
     "obtainingLocation": "位置情報を取得しています…",
     "@obtainingLocation": {
@@ -1652,7 +1644,6 @@
     "messageInfo": "メッセージの情報",
     "openGallery": "ギャラリーを開く",
     "removeFromSpace": "スペースから削除",
-    "experimentalVideoCalls": "実験的なビデオ通話",
     "youAcceptedTheInvitation": "👍 招待を承諾しました",
     "youUnbannedUser": "{user} の禁止を解除しました",
     "@youUnbannedUser": {
@@ -1688,8 +1679,6 @@
     },
     "storeInAppleKeyChain": "Apple KeyChainに保存",
     "storeInAndroidKeystore": "Android KeyStoreに保存する",
-    "screenSharingTitle": "画面共有",
-    "foregroundServiceRunning": "この通知は、フォアグラウンド サービスの実行中に表示されます。",
     "custom": "カスタム",
     "countFiles": "{count}個のファイル",
     "@countFiles": {
@@ -1708,7 +1697,6 @@
     },
     "emojis": "絵文字",
     "markAsRead": "既読にする",
-    "videoCallsBetaWarning": "ビデオ通話は、現在ベータ版であることにご注意ください。すべてのプラットフォームで期待通りに動作しない、あるいはまったく動作しない可能性があります。",
     "confirmEventUnpin": "イベントの固定を完全に解除してもよろしいですか？",
     "unsupportedAndroidVersion": "サポートされていないAndroidのバージョン",
     "user": "ユーザー",
@@ -2090,7 +2078,6 @@
     "sendCanceled": "送信を取り消しました",
     "loginWithMatrixId": "Matrix-IDでログイン",
     "calculatingFileSize": "ファイルサイズを計算しています…",
-    "sendingAttachment": "添付ファイルを送信しています…",
     "oneOfYourDevicesIsNotVerified": "いずれかのデバイスが認証されていません",
     "noticeChatBackupDeviceVerification": "注意：すべてのデバイスをチャットのバックアップに接続している場合、それらは自動的に認証されます。",
     "continueText": "続ける",

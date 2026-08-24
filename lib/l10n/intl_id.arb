@@ -83,7 +83,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "isTyping": "sedang mengetik…",
+    "isTyping": "sedang mengetik",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -357,7 +357,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "countParticipants": "{count} anggota",
+    "countParticipants": "{count, plural, =1{1 peserta} other{{count} peserta}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -990,11 +990,6 @@
     },
     "visibilityOfTheChatHistory": "Visibilitas sejarah obrolan",
     "@visibilityOfTheChatHistory": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "videoCall": "Panggilan video",
-    "@videoCall": {
         "type": "String",
         "placeholders": {}
     },
@@ -1741,10 +1736,6 @@
     "confirmEventUnpin": "Apakah kamu yakin untuk melepaskan pin peristiwa ini secara permanen?",
     "unsupportedAndroidVersionLong": "Fitur ini memerlukan versi Android yang baru. Mohon periksa untuk pembaruan atau dukungan LineageOS.",
     "unsupportedAndroidVersion": "Versi Android tidak didukung",
-    "placeCall": "Lakukan panggilan",
-    "voiceCall": "Panggilan suara",
-    "videoCallsBetaWarning": "Dicatat bahwa panggilan video sedang dalam beta. Fitur ini mungkin tidak berkerja dengan benar atau tidak berkerja sama sekali pada semua platform.",
-    "experimentalVideoCalls": "Panggilan video eksperimental",
     "youInvitedBy": "📩 Kamu telah diundang oleh {user}",
     "@youInvitedBy": {
         "placeholders": {
@@ -1833,12 +1824,9 @@
     },
     "commandHint_markasdm": "Tandai sebagai ruangan pesan langsung untuk ID Matrix yang ditentukan",
     "commandHint_markasgroup": "Tandai sebagai grup",
-    "screenSharingTitle": "membagikan layar",
     "noKeyForThisMessage": "Hal ini bisa terjadi jika pesan dikirim sebelum kamu masuk ke akunmu di perangkat ini.\n\nMungkin juga pengirim telah memblokir perangkatmu atau ada yang tidak beres dengan koneksi internet.\n\nApakah kamu bisa membaca pesan pada sesi lain? Maka kamu bisa mentransfer pesan dari sesi tersebut! Buka Pengaturan > Perangkat dan pastikan bahwa perangkat Anda telah ditandatangani secara silang. Ketika kamu membuka ruangan di lain waktu dan kedua sesi berada di latar depan, kunci akan ditransmisikan secara otomatis.\n\nApakah kamu tidak mau kehilangan kunci saat keluar atau berpindah perangkat? Pastikan bahwa kamu telah mengaktifkan cadangan obrolan dalam pengaturan.",
-    "foregroundServiceRunning": "Notifikasi ini ditampilkan ketika layanan latar depan berjalan.",
     "whyIsThisMessageEncrypted": "Mengapa pesan ini tidak bisa dibaca?",
     "newSpace": "Space baru",
-    "screenSharingDetail": "Kamu membagikan layarmu di FluffyChat",
     "doNotShowAgain": "Jangan tampilkan lagi",
     "hugContent": "{senderName} memeluk kamu",
     "@hugContent": {
@@ -2175,7 +2163,6 @@
     "changeTheCanonicalRoomAlias": "Ubah alamat chat publik utama",
     "changeTheVisibilityOfChatHistory": "Ubah keterlihatan riwayat chat",
     "changeTheDescriptionOfTheGroup": "Ubah deskripsi chat",
-    "sendingAttachment": "Mengirim lampiran...",
     "calculatingFileSize": "Menghitung ukuran berkas...",
     "userLevel": "{level} - Pengguna",
     "@userLevel": {
@@ -2690,5 +2677,88 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageNotDecryptable": "Pesan tidak dapat didekripsi"
+    "messageNotDecryptable": "Pesan tidak dapat didekripsi",
+    "editImage": "Edit gambar",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Putar ke kiri",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Putar ke kanan",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Cermin",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Simpan",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Gambar",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Batalkan",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Hapus",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Penghapus",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Potong",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "today": "Hari Ini",
+    "sending": "Mengirim",
+    "generatingThumbnail": "Membuat thumbnail",
+    "encrypting": "Mengenkripsi",
+    "uploading": "Mengunggah",
+    "edited": "(diedit)",
+    "couldNotBeSent": "Tidak dapat dikirim",
+    "yesterday": "Kemarin",
+    "resetRecoveryKey": "Setel ulang kunci pemulihan",
+    "pleaseEnter6Digits": "Masukkan 6 digit untuk mengaktifkan kunci aplikasi.",
+    "disableAppLock": "Nonaktifkan kunci aplikasi",
+    "disableAppLockAreYouSure": "Apakah Anda yakin ingin menonaktifkan kunci aplikasi?",
+    "enableBiometrics": "Aktifkan autentikasi biometrik",
+    "disableBiometrics": "Nonaktifkan autentikasi biometrik",
+    "biometricsDescription": "Dengan autentikasi biometrik, Anda dapat membuka kunci aplikasi dengan wajah atau sidik jari. Kemampuan ini bergantung pada perangkat Anda.",
+    "useAppLock": "Gunakan kunci aplikasi",
+    "unlockWithBiometrics": "Buka kunci dengan autentikasi biometrik",
+    "resetPin": "Setel ulang PIN",
+    "forwardCountMessages": "Teruskan {count, plural, =1{satu pesan} other{{count} pesan}}?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "loadingMessages": "Memuat pesan...",
+    "buildDoesNotSupportFirebase": "Build ini tidak mendukung Firebase Cloud Messaging.",
+    "unableToRegisterDeviceForFirebase": "Tidak dapat mendaftarkan perangkat untuk Firebase Cloud Messaging.",
+    "unifiedPushDistributors": "Distributor Unified Push:",
+    "doubleTapToReact": "Ketuk dua kali untuk bereaksi",
+    "doubleTapToReactDescription": "Ketuk dua kali pada pesan untuk bereaksi alih-alih memilih teks",
+    "doubleTapReaction": "Reaksi ketuk dua kali"
 }

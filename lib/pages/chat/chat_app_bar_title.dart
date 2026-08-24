@@ -9,10 +9,11 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/sync_status_localization.dart';
+import 'package:fluffychat/utils/verified_room_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
 class ChatAppBarTitle extends StatelessWidget {
@@ -56,11 +57,26 @@ class ChatAppBarTitle extends StatelessWidget {
             child: Column(
               crossAxisAlignment: .start,
               children: [
-                Text(
-                  room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 16),
+                Row(
+                  spacing: 4,
+                  children: [
+                    if (room.allUsersVerified)
+                      Icon(
+                        Icons.verified,
+                        color: Theme.of(context).colorScheme.primary,
+                        size: 16,
+                      ),
+                    Expanded(
+                      child: Text(
+                        room.getLocalizedDisplayname(
+                          MatrixLocals(L10n.of(context)),
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ],
                 ),
                 StreamBuilder(
                   stream: room.client.onSyncStatus.stream,

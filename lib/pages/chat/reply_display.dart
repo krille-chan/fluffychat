@@ -5,7 +5,7 @@
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../config/themes.dart';
@@ -20,33 +20,42 @@ class ReplyDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return AnimatedContainer(
+    return AnimatedSize(
       duration: FluffyThemes.animationDuration,
       curve: FluffyThemes.animationCurve,
-      height: controller.editEvent != null || controller.replyEvent != null
-          ? 56
-          : 0,
       clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(color: theme.colorScheme.onInverseSurface),
-      child: Row(
-        children: <Widget>[
-          IconButton(
-            tooltip: L10n.of(context).close,
-            icon: const Icon(Icons.close),
-            onPressed: controller.cancelReplyEventAction,
-          ),
-          Expanded(
-            child: controller.replyEvent != null
-                ? ReplyContent(
-                    controller.replyEvent!,
-                    timeline: controller.timeline,
-                  )
-                : _EditContent(
-                    controller.editEvent?.getDisplayEvent(controller.timeline!),
-                  ),
-          ),
-        ],
-      ),
+      child: controller.editEvent != null || controller.replyEvent != null
+          ? Material(
+              color: theme.colorScheme.surfaceContainer,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: IconButton(
+                        tooltip: L10n.of(context).close,
+                        icon: const Icon(Icons.close),
+                        onPressed: controller.cancelReplyEventAction,
+                      ),
+                    ),
+                    Expanded(
+                      child: controller.replyEvent != null
+                          ? ReplyContent(
+                              controller.replyEvent!,
+                              timeline: controller.timeline,
+                            )
+                          : _EditContent(
+                              controller.editEvent?.getDisplayEvent(
+                                controller.timeline!,
+                              ),
+                            ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          : SizedBox.shrink(),
     );
   }
 }

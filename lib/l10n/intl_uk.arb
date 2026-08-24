@@ -313,7 +313,7 @@
             }
         }
     },
-    "countParticipants": "Учасників: {count}",
+    "countParticipants": "{count, plural, =1{1 учасник} other{Учасників: {count}}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -1028,11 +1028,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Відеовиклик",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Видимість історії бесіди",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1740,12 +1735,8 @@
     "emojis": "Емодзі",
     "pinMessage": "Прикріпити в кімнаті",
     "confirmEventUnpin": "Ви впевнені, що бажаєте назавжди відкріпити подію?",
-    "placeCall": "Здійснити виклик",
     "unsupportedAndroidVersion": "Непідтримувана версія Android",
-    "voiceCall": "Голосовий виклик",
     "unsupportedAndroidVersionLong": "Для цієї функції потрібна новіша версія Android. Перевірте наявність оновлень або підтримку Lineage OS.",
-    "videoCallsBetaWarning": "Зауважте, що відеовиклики на ранньому етапі розробки. Вони можуть працювати не так, як очікувалося, або взагалі не працювати на всіх платформах.",
-    "experimentalVideoCalls": "Експериментальні відеовиклики",
     "youInvitedBy": "📩 Ви були запрошені {user}",
     "@youInvitedBy": {
         "placeholders": {
@@ -1836,10 +1827,7 @@
     "commandHint_markasdm": "Позначити кімнатою особистого спілкування для надання Matrix ID",
     "whyIsThisMessageEncrypted": "Чому це повідомлення нечитабельне?",
     "noKeyForThisMessage": "Це може статися, якщо повідомлення було надіслано до того, як ви ввійшли у свій обліковий запис на цьому пристрої.\n\nТакож можливо, що відправник заблокував ваш пристрій або щось пішло не так з під'єднанням до інтернету.\n\nЧи можете ви прочитати повідомлення на іншому сеансі? Тоді ви зможете перенести повідомлення з нього! Перейдіть до Налаштування > Пристрої та переконайтеся, що ваші пристрої перевірили один одного. Коли ви відкриєте кімнату наступного разу й обидва сеанси будуть на активні, ключі будуть передані автоматично.\n\nВи ж не хочете втрачати ключі після виходу або зміни пристроїв? Переконайтеся, що ви ввімкнули резервне копіювання бесід у налаштуваннях.",
-    "foregroundServiceRunning": "Це сповіщення з'являється під час роботи основної служби.",
-    "screenSharingTitle": "спільний доступ до екрана",
     "newSpace": "Новий простір",
-    "screenSharingDetail": "Ви ділитеся своїм екраном FuffyChat",
     "doNotShowAgain": "Не показувати знову",
     "commandHint_cuddle": "Надіслати пригортайку",
     "googlyEyesContent": "{senderName} надсилає вам гугл-очі",
@@ -2223,7 +2211,6 @@
     "loginWithMatrixId": "Увійти за допомогою Matrix-ID",
     "doesNotSeemToBeAValidHomeserver": "Здається, це несумісний домашній сервер. Неправильна URL-адреса?",
     "calculatingFileSize": "Обчислення розміру файлу...",
-    "sendingAttachment": "Надсилання вкладення...",
     "oneOfYourDevicesIsNotVerified": "Один із ваших пристроїв не верифікований",
     "noticeChatBackupDeviceVerification": "Примітка: Коли ви під'єднуєте всі свої пристрої до резервної копії бесіди, вони автоматично верифікуються.",
     "continueText": "Продовжити",

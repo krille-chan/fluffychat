@@ -1587,11 +1587,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Appel vidéo",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Visibilité de l'historique de la discussion",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1738,14 +1733,10 @@
         }
     },
     "emojis": "Émojis",
-    "placeCall": "Passer un appel",
-    "voiceCall": "Appel vocal",
     "unsupportedAndroidVersion": "Version d'Android non prise en charge",
     "unsupportedAndroidVersionLong": "Cette fonctionnalité nécessite une nouvelle version d'Android. Veuillez vérifier les mises à jour ou la prise en charge de Lineage OS.",
     "pinMessage": "Épingler au salon",
     "confirmEventUnpin": "Voulez-vous vraiment désépingler définitivement l'événement ?",
-    "videoCallsBetaWarning": "Veuillez noter que les appels vidéo sont actuellement en version bêta. Ils peuvent ne pas fonctionner comme prévu ou ne oas fonctionner du tout sur toutes les plateformes.",
-    "experimentalVideoCalls": "Appels vidéo expérimentaux",
     "youRejectedTheInvitation": "Vous avez rejeté l'invitation",
     "youJoinedTheChat": "Vous avez rejoint la discussion",
     "youHaveWithdrawnTheInvitationFor": "Vous avez retiré l'invitation pour {user}",
@@ -1836,9 +1827,6 @@
         }
     },
     "whyIsThisMessageEncrypted": "Pourquoi ce message est-il illisible ?",
-    "foregroundServiceRunning": "Cette notification s’affiche lorsque le service au premier plan est en cours d’exécution.",
-    "screenSharingTitle": "Partage d'écran",
-    "screenSharingDetail": "Vous partagez votre écran dans FuffyChat",
     "newSpace": "Nouvel espace",
     "doNotShowAgain": "Ne plus afficher",
     "commandHint_googly": "Envoyer des yeux écarquillés",
@@ -2258,7 +2246,6 @@
         }
     },
     "calculatingFileSize": "Calcul en cours...",
-    "sendingAttachment": "Envoi en cours...",
     "oneOfYourDevicesIsNotVerified": "Un de vos appareils n'est pas vérifié",
     "customReaction": "Réaction personalisée",
     "declineInvitation": "Refuser l'invitation",
@@ -2717,5 +2704,84 @@
     "attribution": "Attribution",
     "support": "Soutenir",
     "blur": "Flou :",
-    "opacity": "Opacité :"
+    "opacity": "Opacité :",
+    "editImage": "Éditer l'image",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Tourner vers la gauche",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Tourner vers la droite",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Mirroir",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Sauvegarder",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Dessiner",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Défaire",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Effacer",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Gomme",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Rogner",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadingMessages": "Chargement des messages...",
+    "buildDoesNotSupportFirebase": "Cette version ne supporte pas firebase cloud messaging.",
+    "unableToRegisterDeviceForFirebase": "Impossible d'enregistrer l'appareil sur firebase cloud messaging.",
+    "unifiedPushDistributors": "Distributeurs Unified Push :",
+    "doubleTapToReact": "Double-tappez pour réagir",
+    "doubleTapToReactDescription": "Double-tappez sur un message pour réagir au lieu de sélectionner du texte",
+    "doubleTapReaction": "Réaction du double appuis",
+    "sendingFilesDoNotExit": "Envoi de {count} fichiers... Veuillez de pas quitter !",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Compression de la vidéo...",
+    "shareCrashReports": "Partager le rapport de crash",
+    "shareCrashReportsDescription": "Partage automatiquement les rapports de crash avec les developers",
+    "shareCrashReportsPrompt": "Partager automatiquement les rapports de crash avec les developpeurs ? Plus d'infos à l'addresse {url} à propos de ce qui est partagé.",
+    "@shareCrashReportsPrompt": {
+        "placeholders": {
+            "url": {
+                "type": "String"
+            }
+        }
+    },
+    "allow": "Autoriser",
+    "deny": "Interdir"
 }

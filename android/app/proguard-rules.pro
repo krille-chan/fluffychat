@@ -1,1 +1,1 @@
--keep class net.sqlcipher.** { *; }
+-keep class com.hiennv.flutter_callkit_incoming.** { *; }

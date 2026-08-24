@@ -1587,11 +1587,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Görüntülü arama",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Sohbet geçmişi görünürlüğü",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1738,14 +1733,10 @@
         }
     },
     "emojis": "Emojiler",
-    "placeCall": "Arama yap",
-    "voiceCall": "Sesli arama",
     "unsupportedAndroidVersion": "Desteklenmeyen Android sürümü",
     "unsupportedAndroidVersionLong": "Bu özellik daha yeni bir Android sürümü gerektiriyor. Lütfen güncellemelere veya LineageOS desteğine bakın.",
     "pinMessage": "Odaya sabitle",
     "confirmEventUnpin": "Etkinliğin sabitlemesini kalıcı olarak kaldırmak istediğinizden emin misiniz?",
-    "videoCallsBetaWarning": "Görüntülü aramaların şu anda beta aşamasında olduğunu lütfen unutmayın. Tüm platformlarda beklendiği gibi veya hiç çalışmayabilirler.",
-    "experimentalVideoCalls": "Deneysel görüntülü aramalar",
     "youJoinedTheChat": "Sohbete katıldınız",
     "youAcceptedTheInvitation": "👍 Daveti kabul ettiniz",
     "youKickedAndBanned": "🙅 {user} kullanıcısını attınız ve yasakladınız",
@@ -1836,10 +1827,7 @@
     "commandHint_markasdm": "Verilen Matrix kimliği için doğrudan mesaj odası olarak işaretle",
     "whyIsThisMessageEncrypted": "Bu mesaj neden okunamıyor?",
     "noKeyForThisMessage": "Bu durum, mesaj siz bu aygıtta hesabınızda oturum açmadan önce gönderildiyse meydana gelebilir.\n\nGönderenin aygıtınızı engellemiş olması veya internet bağlantısında bir sorun olması da mümkündür.\n\nMesajı başka bir oturumda okuyabiliyor musunuz? O zaman mesajı oradan aktarabilirsiniz! Ayarlar > Aygıtlar bölümüne gidin ve aygıtlarınızın birbirini doğruladığından emin olun. Odayı bir sonraki sefer açtığınızda ve her iki oturum da ön planda olduğunda, anahtarlar otomatik olarak iletilecektir.\n\nOturumu kapatırken veya aygıt değiştirirken anahtarları kaybetmek istemiyor musunuz? Ayarlarda sohbet yedeklemesini etkinleştirdiğinizden emin olun.",
-    "screenSharingTitle": "ekran paylaşımı",
-    "foregroundServiceRunning": "Bu bildirim, ön plan hizmeti çalışırken görünür.",
     "newSpace": "Yeni alan",
-    "screenSharingDetail": "Ekranınızı FuffyChat'te paylaşıyorsunuz",
     "doNotShowAgain": "Tekrar gösterme",
     "googlyEyesContent": "{senderName} size şaşkın gözler gönderiyor",
     "@googlyEyesContent": {
@@ -2223,7 +2211,6 @@
     "loginWithMatrixId": "Matrix kimliği ile oturum aç",
     "doesNotSeemToBeAValidHomeserver": "Uyumlu bir ana sunucu gibi görünmüyor. Yanlış URL mi?",
     "calculatingFileSize": "Dosya boyutu hesaplanıyor...",
-    "sendingAttachment": "Ek gönderiliyor...",
     "oneOfYourDevicesIsNotVerified": "Aygıtlarınızdan biri doğrulanmadı",
     "noticeChatBackupDeviceVerification": "Not: Tüm aygıtlarınızı sohbet yedeklemesine bağladığınızda, otomatik olarak doğrulanırlar.",
     "blur": "Blur:",

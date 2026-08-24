@@ -1438,10 +1438,6 @@
         "space": {}
     },
     "user": "Utilizador",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "youAcceptedTheInvitation": "👍 Aceitou o convite",
     "userAndOthersAreTyping": "{username} e {count} outros estão a escrever…",
     "@userAndOthersAreTyping": {
@@ -1659,7 +1655,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCallsBetaWarning": "Por favor tenha em atenção que vídeo chamadas estão atualmente em beta. Podem não funcionar como esperado ou funcionar em todas as plataformas.",
     "unmuteChat": "Ativar o som do chat",
     "@unmuteChat": {
         "type": "String",
@@ -1740,7 +1735,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "experimentalVideoCalls": "Chamadas de vídeo experimentais",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
         "placeholders": {}
@@ -1839,7 +1833,6 @@
         "placeholders": {}
     },
     "unverified": "Não Verificado",
-    "screenSharingTitle": "partilha de ecrã",
     "@sentCallInformations": {
         "type": "String",
         "placeholders": {
@@ -1924,7 +1917,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "foregroundServiceRunning": "Esta notificação aparece quando o serviço em primeiro plano está em execução.",
     "unknownEncryptionAlgorithm": "Algoritmo de encriptação desconhecido",
     "@unknownEncryptionAlgorithm": {
         "type": "String",
@@ -2204,7 +2196,6 @@
     "unsupportedAndroidVersionLong": "Esta funcionalidade requer uma versão de Android mais nova. Por favor verifique se há atualização ou suporter do Lineage OS.",
     "inviteGroupChat": "📨 Convite para chat em grupo",
     "storeSecurlyOnThisDevice": "Armazenado de forma segura neste dispositivo",
-    "screenSharingDetail": "Está a partilhar o seu ecrã no FluffyChat",
     "discardEdits": "Tem mudanças não guardadas. Descartar as suas edições?",
     "@discardEdits": {
         "type": "String",

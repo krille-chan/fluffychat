@@ -798,7 +798,7 @@
             }
         }
     },
-    "isTyping": "正在输入…",
+    "isTyping": "正在输入",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -1511,11 +1511,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "视频通话",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "聊天记录的可见性",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1742,10 +1737,6 @@
     "emojis": "表情符号",
     "unsupportedAndroidVersionLong": "这个功能需要较新版本的 Android 系统。请检查更新或 Lineage OS 支持。",
     "unsupportedAndroidVersion": "不受支持的 Android 版本",
-    "voiceCall": "语音通话",
-    "placeCall": "发起通话",
-    "videoCallsBetaWarning": "请注意，视频通话目前处于测试阶段。它们可能不能像预期的那样工作，或者在所有平台上都不能工作。",
-    "experimentalVideoCalls": "实验性的视频通话",
     "youRejectedTheInvitation": "你拒绝了邀请",
     "youJoinedTheChat": "你加入了聊天",
     "youBannedUser": "你封禁了 {user}",
@@ -1837,9 +1828,6 @@
     "whyIsThisMessageEncrypted": "为什么此消息不可读？",
     "noKeyForThisMessage": "如果消息是在你在此设备上登录账户前发送的，就可能发生这种情况。\n\n也有可能是发送者屏蔽了你的设备或网络连接出了问题。\n\n你能在另一个会话中读取消息吗？如果是的话，你可以从它那里传递信息！点击设置 > 设备，并确保你的设备已经相互验证。当你下次打开聊天室，且两个会话都在前台，密钥就会自动传输。\n\n你不想在退出登录或切换设备时丢失密钥？请确保在设置中启用了聊天备份。",
     "newSpace": "新的空间",
-    "foregroundServiceRunning": "此通知在前台服务运行时出现。",
-    "screenSharingTitle": "屏幕共享",
-    "screenSharingDetail": "你正在 FluffyChat 中共享屏幕",
     "doNotShowAgain": "不再显示",
     "googlyEyesContent": "{senderName} 向你发送了“大眼”表情",
     "@googlyEyesContent": {
@@ -1884,7 +1872,7 @@
     "encryptThisChat": "加密此聊天",
     "disableEncryptionWarning": "出于安全考虑 ，你不能在之前已启用加密的聊天中禁用加密。",
     "sorryThatsNotPossible": "非常抱歉……这是做不到的",
-    "report": "报错",
+    "report": "举报",
     "fileIsTooBigForServer": "无法发送！服务器只支持最大 {max} 的文件。",
     "noOtherDevicesFound": "未找到其它设备",
     "jumpToLastReadMessage": "跳转到上次已读的消息",
@@ -2222,7 +2210,6 @@
     "noChatsFoundHere": "此处尚未找到聊天。使用下方按钮 ⤵️ 开始和某人的新聊天",
     "loginWithMatrixId": "使用 Matrix-ID 登录",
     "doesNotSeemToBeAValidHomeserver": "似乎不是兼容的主服务器。URL 不正确？",
-    "sendingAttachment": "发送附件中…",
     "calculatingFileSize": "计算文件尺寸中…",
     "oneOfYourDevicesIsNotVerified": "您设备中的一台未验证",
     "noticeChatBackupDeviceVerification": "注意：当你连接所有设备到聊天备份时，这些设备将被自动验证。",
@@ -2717,5 +2704,99 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "editImage": "编辑图片",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "左转",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "右转",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "镜像",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "保存",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "绘制",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "撤销",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "清除",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "擦除",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "裁剪",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadingMessages": "正在加载消息…",
+    "buildDoesNotSupportFirebase": "此版本不支持 firebase 云消息。",
+    "unableToRegisterDeviceForFirebase": "无法注册设备用于 firebase 云消息。",
+    "unifiedPushDistributors": "Unified Push 分发程序：",
+    "doubleTapToReact": "轻按两次回应",
+    "doubleTapToReactDescription": "轻按消息两次进行回应而非选中文本",
+    "doubleTapReaction": "轻按两次回应",
+    "sendingFilesDoNotExit": "正发送 {count} 个文件… 请不要退出！",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "正在压缩视频…",
+    "shareCrashReports": "分享崩溃报告",
+    "shareCrashReportsDescription": "自动与开发者分享崩溃报告",
+    "shareCrashReportsPrompt": "自动与开发者分享崩溃报告吗？访问 {url} 了解分享什么数据的更多信息。",
+    "@shareCrashReportsPrompt": {
+        "placeholders": {
+            "url": {
+                "type": "String"
+            }
+        }
+    },
+    "allow": "允许",
+    "deny": "拒绝",
+    "videoCallsBetaWarning": "视频通话是测试功能。可能有故障或意外行为。我们可以聆听您的反馈。",
+    "activeCall": "活跃通话",
+    "countActiveCallMembers": "{count} 名活跃通话成员",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "进入通话",
+    "noDevicesFound": "未找到设备",
+    "incomingCall": "来电",
+    "waitingForParticipant": "等待参与者…",
+    "decline": "拒绝"
 }

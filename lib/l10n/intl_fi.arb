@@ -1648,11 +1648,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videopuhelu",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "sender": "Lähettäjä",
     "startedACall": "{senderName} aloitti puhelun",
     "@startedACall": {
@@ -1726,9 +1721,6 @@
     "unsupportedAndroidVersionLong": "Tämä ominaisuus vaatii uudemman Android-version. Tarkistathan päivitykset tai Lineage OS :n tuki.",
     "unsupportedAndroidVersion": "Ei tuettu Android-versio",
     "reportUser": "Ilmianna käyttäjä",
-    "voiceCall": "Äänipuhelu",
-    "videoCallsBetaWarning": "Huomaathan videopuheluiden ovan beta-asteella. Ne eivät ehkä toimi odotetusti tai toimi ollenkaan kaikilla alustoilla.",
-    "placeCall": "Soita",
     "reactedWith": "{sender} reagoi {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -1743,7 +1735,6 @@
     },
     "pinMessage": "Kiinnitä huoneeseen",
     "confirmEventUnpin": "Haluatko varmasti irrottaa tapahtuman pysyvästi?",
-    "experimentalVideoCalls": "Kokeelliset videopuhelut",
     "youRejectedTheInvitation": "Kieltäydyit kutsusta",
     "youJoinedTheChat": "Liityit keskusteluun",
     "youAcceptedTheInvitation": "👍 Hyväksyit kutsun",
@@ -1834,10 +1825,7 @@
     "whyIsThisMessageEncrypted": "Miksei tätä viestiä voida lukea?",
     "noKeyForThisMessage": "Tämä voi tapahtua mikäli viesti lähetettiin ennen sisäänkirjautumistasi tälle laitteelle.\n\nOn myös mahdollista, että lähettäjä on estänyt tämän laitteen tai jokin meni pieleen verkkoyhteyden kanssa.\n\nPystytkö lukemaan viestin toisella istunnolla? Siinä tapauksessa voit siirtää viestin siltä! Mene Asetukset > Laitteet ja varmista, että laitteesi ovat varmistaneet toisensa. Seuraavankerran avatessasi huoneen ja molempien istuntojen ollessa etualalla, avaimet siirretään automaattisesti.\n\nHaluatko varmistaa ettet menetä avaimia uloskirjautuessa tai laitteita vaihtaessa? Varmista avainvarmuuskopion käytössäolo asetuksista.",
     "commandHint_markasdm": "Merkitse yksityiskeskusteluksi syötetyn Matrix IDn kanssa",
-    "foregroundServiceRunning": "Tämä ilmoitus näkyy etualapalvelun ollessa käynnissä.",
     "newSpace": "Uusi tila",
-    "screenSharingTitle": "ruudunjako",
-    "screenSharingDetail": "Jaat ruutuasi FluffyChatissä",
     "hugContent": "{senderName} halaa sinua",
     "@hugContent": {
         "type": "String",
@@ -2270,7 +2258,6 @@
     "loginWithMatrixId": "Kirjaudu sisään Matrix-tunnuksella",
     "doesNotSeemToBeAValidHomeserver": "Ei näytä olevan yhteensopiva kotipalvelin. Väärä URL-osoite?",
     "calculatingFileSize": "Lasketaan tiedoston kokoa...",
-    "sendingAttachment": "Lähetetään liitettä...",
     "oneOfYourDevicesIsNotVerified": "Yhtä laitteistasi ei ole vahvistettu",
     "noticeChatBackupDeviceVerification": "Huomautus: Kun yhdistät kaikki laitteesi keskustelun varmuuskopiointiin, ne vahvistetaan automaattisesti.",
     "blur": "Sumeus:",

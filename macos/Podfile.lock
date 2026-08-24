@@ -1,58 +1,34 @@
 PODS:
-  - flutter_new_badger (0.0.1):
-    - FlutterMacOS
-  - flutter_vodozemac (0.0.1):
-    - FlutterMacOS
   - flutter_webrtc (1.4.0):
     - FlutterMacOS
     - WebRTC-SDK (= 144.7559.09)
   - FlutterMacOS (1.0.0)
-  - screen_retriever_macos (0.0.1):
-    - FlutterMacOS
   - video_compress (0.3.0):
     - FlutterMacOS
   - WebRTC-SDK (144.7559.09)
-  - window_to_front (0.0.1):
-    - FlutterMacOS
 
 DEPENDENCIES:
-  - flutter_new_badger (from `Flutter/ephemeral/.symlinks/plugins/flutter_new_badger/macos`)
-  - flutter_vodozemac (from `Flutter/ephemeral/.symlinks/plugins/flutter_vodozemac/macos`)
   - flutter_webrtc (from `Flutter/ephemeral/.symlinks/plugins/flutter_webrtc/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
-  - screen_retriever_macos (from `Flutter/ephemeral/.symlinks/plugins/screen_retriever_macos/macos`)
   - video_compress (from `Flutter/ephemeral/.symlinks/plugins/video_compress/macos`)
-  - window_to_front (from `Flutter/ephemeral/.symlinks/plugins/window_to_front/macos`)
 
 SPEC REPOS:
   trunk:
     - WebRTC-SDK
 
 EXTERNAL SOURCES:
-  flutter_new_badger:
-    :path: Flutter/ephemeral/.symlinks/plugins/flutter_new_badger/macos
-  flutter_vodozemac:
-    :path: Flutter/ephemeral/.symlinks/plugins/flutter_vodozemac/macos
   flutter_webrtc:
     :path: Flutter/ephemeral/.symlinks/plugins/flutter_webrtc/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
-  screen_retriever_macos:
-    :path: Flutter/ephemeral/.symlinks/plugins/screen_retriever_macos/macos
   video_compress:
     :path: Flutter/ephemeral/.symlinks/plugins/video_compress/macos
-  window_to_front:
-    :path: Flutter/ephemeral/.symlinks/plugins/window_to_front/macos
 
 SPEC CHECKSUMS:
-  flutter_new_badger: 6fe9bf7e42793a164032c21f164c0ad9985cd0f2
-  flutter_vodozemac: fd2ea9cb3e2a37beaac883a369811fbfe042fc53
   flutter_webrtc: fec3dc9284a1f6d21ec2caa91c90bb4c1824eb04
   FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
-  screen_retriever_macos: 452e51764a9e1cdb74b3c541238795849f21557f
   video_compress: 752b161da855df2492dd1a8fa899743cc8fe9534
   WebRTC-SDK: e6006119cd730d6315d875e4a421b6cc8bb88833
-  window_to_front: 9e76fd432e36700a197dac86a0011e49c89abe0a
 
 PODFILE CHECKSUM: d0975b16fbdecb73b109d8fbc88aa77ffe4c7a8d
 

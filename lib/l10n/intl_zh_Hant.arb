@@ -1366,11 +1366,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "視訊通話",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "聊天室記錄的可見性",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1631,7 +1626,6 @@
     "block": "封鎖",
     "discover": "發現",
     "sender": "傳送者",
-    "voiceCall": "語音通話",
     "blockUsername": "無視使用者名稱",
     "noBackupWarning": "警告！如果不啟用聊天室備份，您將失去對加密訊息的訪問。強烈建議在登出前先啟用聊天室備份。",
     "addChatOrSubSpace": "新增聊天室或子空間",
@@ -1718,7 +1712,6 @@
     "dehydrate": "匯出會話並清除裝置",
     "reopenChat": "重新開啟聊天室",
     "yourGlobalUserIdIs": "您的全域使用者ID是： ",
-    "experimentalVideoCalls": "實驗性視訊通話",
     "youAcceptedTheInvitation": "👍 您接受了邀請",
     "storeSecurlyOnThisDevice": "在此裝置上安全存儲",
     "countFiles": "{count} 個文件",
@@ -1729,7 +1722,6 @@
             }
         }
     },
-    "screenSharingDetail": "您正在 FuffyChat 中分享您的螢幕",
     "wrongPinEntered": "輸入的密碼錯誤！ {seconds} 秒後再試一次......",
     "@wrongPinEntered": {
         "type": "String",
@@ -1862,9 +1854,7 @@
     "messageInfo": "訊息資訊",
     "removeFromSpace": "從空間中移除",
     "emojis": "表情符號",
-    "placeCall": "發起通話",
     "unsupportedAndroidVersion": "不支持的Android版本",
-    "videoCallsBetaWarning": "請注意，視訊通話目前處於測試階段。它們可能不會按預期工作，或者在所有平台上都不工作。",
     "youJoinedTheChat": "您加入了聊天室",
     "youBannedUser": "您封鎖了 {user}",
     "@youBannedUser": {
@@ -2019,8 +2009,6 @@
     "noOneCanJoin": "沒有人可以加入",
     "storeInAndroidKeystore": "存儲在 Android KeyStore",
     "storeInAppleKeyChain": "存儲在 Apple KeyChain",
-    "foregroundServiceRunning": "當前景服務正在運行時會顯示此通知。",
-    "screenSharingTitle": "螢幕分享",
     "wasDirectChatDisplayName": "空的聊天室（原名稱為 {oldDisplayName} ）",
     "@wasDirectChatDisplayName": {
         "type": "String",
@@ -2231,7 +2219,6 @@
     "manageAccount": "帳號管理",
     "changeTheChatPermissions": "變更聊天室權限",
     "changeTheVisibilityOfChatHistory": "變更過往聊天記錄可見度",
-    "sendingAttachment": "附件傳送中…",
     "opacity": "不透明度:",
     "aboutHomeserver": "關於{homeserver}",
     "@aboutHomeserver": {

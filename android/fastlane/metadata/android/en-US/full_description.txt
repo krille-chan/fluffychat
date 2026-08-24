@@ -1,5 +1,3 @@
-FluffyChat is an open, nonprofit and cute Matrix messenger app for Ubuntu Touch, Android and iOS.
-
 Open
 Opensource and open development where everyone can join.
 
@@ -7,7 +5,7 @@ Nonprofit
 FluffyChat is donation funded.
 
 Cute ♥
-Cute design and many theme settings including a dark mode. 
+Cute design and many theme settings including a dark mode.
 
 One-to-one and group chats
 Unlimited groups and direct chats.

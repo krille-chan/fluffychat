@@ -5,6 +5,67 @@ SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+## v2.9.3
+Hotfix for iOS only where iOS notifications can lock the database.
+
+## v2.9.2
+Hotfix for iOS only where iOS notifications display error messages.
+
+## v2.9.1
+Revert cronet for http3.
+
+## v2.9.0
+FluffyChat 2.9.0 updates underlying libraries, fixed a lot of bugs and improves the UX.
+It also adds double tap to react and better notifications for iOS.
+
+- build: (deps): bump dynamic_color from 1.8.1 to 1.9.0 (dependabot[bot])
+- build: (deps): bump emoji_picker_flutter from 4.4.0 to 4.5.2 (dependabot[bot])
+- build: (deps): bump emoji_picker_flutter from 4.5.2 to 4.5.3 (dependabot[bot])
+- build: (deps): bump flutter_foreground_task from 9.2.2 to 10.0.0 (dependabot[bot])
+- build: (deps): bump flutter_local_notifications from 22.1.0 to 22.2.0 (dependabot[bot])
+- build: (deps): bump flutter_local_notifications from 22.2.0 to 22.3.0 (dependabot[bot])
+- build: (deps): bump flutter_new_badger from 1.1.1 to 2.0.0 (dependabot[bot])
+- build: (deps): bump flutter_secure_storage from 10.3.1 to 11.0.0 (dependabot[bot])
+- build: (deps): bump flutter_vodozemac from 0.5.0 to 0.6.0 (dependabot[bot])
+- build: (deps): bump share_plus from 13.2.1 to 13.3.0 (dependabot[bot])
+- build: (deps): bump wakelock_plus from 1.6.1 to 1.7.0 (dependabot[bot])
+- build: remove webrtc workaround for iOS simulator (Christian Kußowski)
+- build: update to flutter 3.44.9 (Christian Kußowski)
+- build: update to matrix sdk 10.0.1 (Christian Kußowski)
+- build: use flutter 3.44.7 (Christian Kußowski)
+- chore: add troubleshoot information to settings notifications (Christian Kußowski)
+- chore: adjust reply design (Christian Kußowski)
+- chore: append app id to all pushers so we can be sure (Christian Kußowski)
+- chore: clean up translations (Christian Kußowski)
+- chore: design improvements (Christian Kußowski)
+- chore: make progress notification configurable (Christian Kußowski)
+- chore: make spaces view more minimalistic (Christian Kußowski)
+- chore: push notification debug (Christian Kußowski)
+- chore: remove fastlane metadata to not auto update in play store (Christian Kußowski)
+- chore: typing animation for chat list (Christian Kußowski)
+- chore: update branch (Christian Kußowski)
+- chore: update sdk and make benchmarks configurable (Christian Kußowski)
+- feat: add double-tap to react option in settings (AndusDEV)
+- feat: Add image editor to send flow (Tobi)
+- feat: display loading notification on android while loading messages in push helper (Christian Kußowski)
+- feat: display notification icon on iOS if cached (Christian Kußowski)
+- feat: display room avatar in iOS push notifications (Christian Kußowski)
+- feat: display verified icon next to verified rooms and users (Christian Kußowski)
+- feat: enable double tap to react by default on mobile (AndusDEV)
+- feat: Notification content on iOS (Christian Kußowski)
+- feat: use cronet with http3 on android (Christian Kußowski)
+- feat: use foreground service when sending files (Christian Kußowski)
+- fix(notifications): show reactions in UnifiedPush payloads (Paul)
+- fix: center app unlock pin field (romb38)
+- fix: copy image event with description does not copy description (Christian Kußowski)
+- fix: ignore ClientException in pushhelper crash (Christian Kußowski)
+- fix: Pass context with navigator to allow setupPush to display a UnifiedPush modal (romb38)
+- fix: play sending video (Christian Kußowski)
+- fix: remove extra spacing in sticker selection dialog (ludmila-lovelace)
+- refactor: Improve sending read markers even on own events (Christian Kußowski)
+- refactor: Reuse timeline from archive (Christian Kußowski)
+- refactor: send typing stop before text event (Christian Kußowski)
+
 ## v2.8.0
 Improved timeline design, implement biometrics for app lock and a lot of bug fixes and performance improvements.
 

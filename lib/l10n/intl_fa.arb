@@ -1519,15 +1519,12 @@
     },
     "noKeyForThisMessage": "اگر پیام پیش از ورود به حساب در این دستگاه فرستاده شده باشد، این مشکل ممکن است رخ دهد.\n\nهمچنین ممکن است فرستنده دستگاه شما را مسدود کرده باشد یا مشکلی در اتصال اینترنت وجود داشته باشد.\n\nآیا می‌توانید پیام را در نشست دیگری بخوانید؟ در این صورت، می‌توانید آن را منتقل کنید! به تنظیمات > دستگاه‌ها بروید و مطمئن شوید دستگاه‌هایتان یکدیگر را بازبینی کرده‌اند. هنگام باز کردن دوباره اتاق و فعال بودن هر دو نشست، کلیدها به‌صورت خودکار منتقل می‌شوند.\n\nآیا نمی‌خواهید هنگام خروج یا تغییر دستگاه کلیدها را گم کنید؟ مطمئن شوید پشتیبان چت را در تنظیمات فعال کرده‌اید.",
     "disableEncryptionWarning": "به دلایل امنیتی نمی‌توانید رمزنگاری را در چتی که فعال شده غیرفعال کنید.",
-    "foregroundServiceRunning": "این آگاه‌ساز زمانی ظاهر می‌شود که خدمت پیش‌زمینه فعال است.",
     "storeSecurlyOnThisDevice": "ذخیره امن در این دستگاه",
-    "screenSharingDetail": "شما در حال هم‌رسانی صفحه‌نمایش خود در فلافی‌چت هستید",
     "newSpace": "فضای جدید",
     "storeInAndroidKeystore": "ذخیره در Android KeyStore",
     "storeInAppleKeyChain": "ذخیره در Apple KeyChain",
     "user": "کاربر",
     "custom": "سفارشی",
-    "screenSharingTitle": "هم‌رسانی صفحه‌نمایش",
     "whyIsThisMessageEncrypted": "چرا این پیام خوانا نیست؟",
     "reopenChat": "باز کردن دوباره چت",
     "unmuteChat": "فعال کردن صدای چت",
@@ -1648,11 +1645,6 @@
                 "type": "String"
             }
         }
-    },
-    "videoCall": "تماس تصویری",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
     },
     "visibleForAllParticipants": "قابل‌دید برای همه شرکت‌کنندگان",
     "@visibleForAllParticipants": {
@@ -1836,9 +1828,6 @@
     },
     "youRejectedTheInvitation": "شما دعوت را رد کردید",
     "youAcceptedTheInvitation": "👍 شما دعوت را پذیرفتید",
-    "videoCallsBetaWarning": "لطفا توجه داشته باشید که تماس‌های تصویری در حال حاضر آزمایشی هستند. ممکن است طبق انتظار کار نکنند یا روی همه پلتفرم‌ها اصلا کار نکنند.",
-    "experimentalVideoCalls": "تماس‌های تصویری آزمایشی",
-    "placeCall": "برقراری تماس",
     "unsupportedAndroidVersionLong": "این ویژگی به نسخه تازه‌تری از اندروید نیاز دارد. لطفا به‌روزرسانی یا پشتیبانی لینیج‌اواس(LineageOS) را بررسی کنید.",
     "sharedTheLocation": "{username} وضعیت مکانی خود را به اشتراک گذاشت",
     "@sharedTheLocation": {
@@ -1863,7 +1852,6 @@
     "reportUser": "گزارش دادن کاربر",
     "pinMessage": "سنجاق کردن به اتاق",
     "emojis": "شکلک‌ها",
-    "voiceCall": "تماس صوتی",
     "youJoinedTheChat": "شما به چت پیوستید",
     "youBannedUser": "شما {user} را محروم کردید",
     "@youBannedUser": {
@@ -2259,7 +2247,6 @@
     "loginWithMatrixId": "ورود با شناسه ماتریکس",
     "doesNotSeemToBeAValidHomeserver": "به نظر نمیرسد سرور خانگی سازگاری داشته باشد. نشانی اشتباه است؟",
     "calculatingFileSize": "در حال محاسبه اندازه پرونده...",
-    "sendingAttachment": "در حال فرستادن پیوست...",
     "oneOfYourDevicesIsNotVerified": "یکی از دستگاه‌های شما بازبینی نشده است",
     "noticeChatBackupDeviceVerification": "توجه: وقتی همه دستگاه‌های خود را به پشتیبان چت متصل کنید، به‌صورت خودکار بازبینی میشوند.",
     "continueText": "ادامه",

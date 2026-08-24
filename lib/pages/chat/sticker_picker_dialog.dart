@@ -7,7 +7,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../widgets/avatar.dart';
@@ -39,10 +39,12 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
     return Material(
       color: theme.colorScheme.onInverseSurface,
       child: SafeArea(
+        top: false,
         child: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
               floating: true,
+              primary: false,
               toolbarHeight: 72,
               scrolledUnderElevation: 0,
               backgroundColor: Colors.transparent,
@@ -129,6 +131,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                         ),
                       const SizedBox(height: 6),
                       GridView.builder(
+                        padding: EdgeInsets.zero,
                         itemCount: imageKeys.length,
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(

@@ -6,7 +6,7 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/member_actions_popup_menu_button.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../widgets/avatar.dart';
@@ -29,7 +29,7 @@ class ParticipantListItem extends StatelessWidget {
     };
 
     final permissionBatch = switch (user.powerLevel.role) {
-      PowerLevelRole.user => '',
+      PowerLevelRole.user => null,
       PowerLevelRole.moderator => L10n.of(context).moderator,
       PowerLevelRole.admin => L10n.of(context).admin,
       PowerLevelRole.owner => L10n.of(context).owner,
@@ -43,15 +43,25 @@ class ParticipantListItem extends StatelessWidget {
       onTap: () => showMemberActionsPopupMenu(context: context, user: user),
       title: Row(
         children: <Widget>[
+          if (user.room.client.userDeviceKeys[user.id]?.masterKey?.verified ==
+              true)
+            Padding(
+              padding: const EdgeInsets.only(right: 2.0),
+              child: Icon(
+                Icons.verified,
+                color: Theme.of(context).colorScheme.primary,
+                size: 16,
+              ),
+            ),
           Expanded(
             child: Text(
               user.calcDisplayname(),
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          if (permissionBatch.isNotEmpty)
+          if (permissionBatch != null)
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
                 color: isAdminOrOwner
                     ? theme.colorScheme.tertiary

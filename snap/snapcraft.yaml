@@ -1,7 +1,7 @@
 name: fluffychat
 title: FluffyChat
 base: core24
-version: 2.8.0
+version: 2.9.1
 license: AGPL-3.0
 summary: The cutest messenger in the Matrix network
 description: |
@@ -53,7 +53,7 @@ platforms:
 parts:
   flutter-git:
     source: https://github.com/flutter/flutter.git
-    source-tag: 3.44.4
+    source-tag: 3.47.1
     source-depth: 1
     plugin: nil
     override-build: |
@@ -97,10 +97,24 @@ parts:
       - libssl-dev
       - curl
       - libpciaccess-dev
+      - libpulse-dev
     stage-packages:
       - libsecret-1-0
       - libjsoncpp25
       - libpciaccess0
+      - libpulse0
+      - libmpv2
+      - libblas3
+      - liblapack3
+    override-prime: | # Workaround for MediaKit:
+      craftctl default
+      for library_dir in "$CRAFT_PRIME"/usr/lib/*-linux-gnu; do
+        if [ -e "$library_dir/libmpv.so.2" ]; then
+          ln -sf "$(basename "$library_dir")/libmpv.so.2" "$CRAFT_PRIME/usr/lib/libmpv.so.2"
+        fi
+        ln -sf blas/libblas.so.3 "$library_dir/libblas.so.3"
+        ln -sf lapack/liblapack.so.3 "$library_dir/liblapack.so.3"
+      done
 
 slots:
   dbus-svc:
@@ -124,12 +138,10 @@ apps:
       - removable-media
       - browser-support
       - password-manager-service
+      - camera
+      - audio-record
+      - audio-playback
     slots:
       - dbus-svc
-    # Workaround for:
-    # https://github.com/flutter-webrtc/flutter-webrtc/issues/1212#issuecomment-1611899344
     environment:
-      XDG_DATA_HOME: $SNAP_USER_DATA
-      XDG_DATA_DIRS: $SNAP/usr/share
-      GDK_GL: gles
-      LD_LIBRARY_PATH: "$LD_LIBRARY_PATH:$SNAP/lib:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET"
+      LIBMPV_LIBRARY_PATH: $SNAP/usr/lib/libmpv.so.2 # Otherwise app does not find libmp3

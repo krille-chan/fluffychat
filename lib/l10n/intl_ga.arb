@@ -768,11 +768,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Físghlao",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "verifyStart": "Tosaigh Fíorú",
     "@verifyStart": {
         "type": "String",
@@ -913,7 +908,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "isTyping": "ag clóscríobh…",
+    "isTyping": "ag clóscríobh",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -1699,7 +1694,6 @@
         "type": "String",
         "description": "Usage hint for the command /clearcache"
     },
-    "videoCallsBetaWarning": "Tabhair faoi deara go bhfuil físglaonna i béite. B'fhéidir nach bhfeidhmíonn siad ar gach ardán chomh atá súil aige ná ar bith.",
     "repeatPassword": "Scríobh an pasfhocal arís",
     "fileHasBeenSavedAt": "Sábháladh an comhad ag {path}",
     "@fileHasBeenSavedAt": {
@@ -1799,7 +1793,6 @@
         }
     },
     "incomingMessages": "Teachtaireachtaí isteach",
-    "voiceCall": "Glao gutha",
     "emojis": "Emojis",
     "reportUser": "Déan tuairisc ar úsáideoir",
     "custom": "Saincheaptha",
@@ -1829,7 +1822,6 @@
     "noChatsFoundHere": "Níor aimsíodh aon chomhrá anseo fós. Cuir tús le comhrá nua le duine éigin tríd an gcnaipe thíos a úsáid. ⤵️",
     "messageInfo": "Eolas teachtaireachta",
     "unsupportedAndroidVersionLong": "Éilíonn an ghné seo leagan Android níos nuaí. Seiceáil le haghaidh nuashonruithe nó tacaíocht Lineage OS.",
-    "experimentalVideoCalls": "Glaonna físe turgnamhacha",
     "youKicked": "👞 Chiceáil tú {user}",
     "@youKicked": {
         "placeholders": {
@@ -1855,8 +1847,6 @@
             }
         }
     },
-    "foregroundServiceRunning": "Tá an fógra seo le feiceáil nuair atá an tseirbhís tulra ag rith.",
-    "screenSharingDetail": "Tá do scáileán á roinnt agat i FuffyChat",
     "disableEncryptionWarning": "Ar chúiseanna slándála ní féidir leat criptiú a dhíchumasú i gcomhrá, áit ar cumasaíodh é roimhe seo.",
     "sorryThatsNotPossible": "Tá brón orm... nach féidir a dhéanamh",
     "reopenChat": "Comhrá a athoscailt",
@@ -1994,7 +1984,6 @@
     "sendCanceled": "Cealaíodh seoladh",
     "loginWithMatrixId": "Logáil isteach le Matrix-ID",
     "calculatingFileSize": "Méid an chomhaid á ríomh...",
-    "sendingAttachment": "Iatán á sheoladh...",
     "oneOfYourDevicesIsNotVerified": "Ní fhíoraítear ceann de do ghléasanna",
     "noticeChatBackupDeviceVerification": "Nóta: Nuair a nascann tú do ghléasanna go léir leis an gcúltaca comhrá, déantar iad a fhíorú go huathoibríoch.",
     "continueText": "Lean ar aghaidh",
@@ -2098,7 +2087,6 @@
     "setChatDescription": "Socraigh cur síos ar an gcomhrá",
     "time": "Am",
     "removeFromSpace": "Bain as spás",
-    "placeCall": "Cuir glaoch",
     "unsupportedAndroidVersion": "Leagan Android gan tacaíocht",
     "usersMustKnock": "Ní mór d'úsáideoirí cnag a chur ar",
     "storeSecurlyOnThisDevice": "Stóráil go daingean ar an ngléas seo",
@@ -2241,7 +2229,6 @@
     "doesNotSeemToBeAValidHomeserver": "Ní cosúil gur freastalaí baile comhoiriúnach é. URL mícheart?",
     "youJoinedTheChat": "Chuaigh tú isteach sa chomhrá",
     "youAcceptedTheInvitation": "👍 Ghlac tú leis an gcuireadh",
-    "screenSharingTitle": "comhroinnt scáileáin",
     "accessAndVisibility": "Rochtain agus infheictheacht",
     "accessAndVisibilityDescription": "Cé a bhfuil cead aige páirt a ghlacadh sa chomhrá seo agus conas is féidir an comhrá a aimsiú.",
     "calls": "Glaonna",
@@ -2723,5 +2710,96 @@
                 "type": "int"
             }
         }
-    }
+    },
+    "editImage": "Cuir íomhá in eagar",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Rothlaigh ar chlé",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Rothlaigh ar dheis",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Scáthán",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Sábháil",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Tarraing",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Cuir ar ceal",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Glan",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Scriosán",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Barr",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadingMessages": "Ag lódáil teachtaireachtaí...",
+    "buildDoesNotSupportFirebase": "Ní thacaíonn an tógáil seo le teachtaireachtaí scamall firebase.",
+    "unableToRegisterDeviceForFirebase": "Ní féidir gléas a chlárú le haghaidh teachtaireachtaí scamall firebase.",
+    "unifiedPushDistributors": "Dáileoirí Brú Aontaithe:",
+    "doubleTapToReact": "Tapáil faoi dhó le freagairt",
+    "doubleTapToReactDescription": "Tapáil faoi dhó ar theachtaireacht le freagairt in ionad téacs a roghnú",
+    "doubleTapReaction": "Imoibriú tapála faoi dhó",
+    "sendingFilesDoNotExit": "Ag seoladh {count} comhad... Ná scoir le do thoil!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Ag comhbhrú físeáin...",
+    "shareCrashReports": "Comhroinn tuairiscí tuairteála",
+    "shareCrashReportsDescription": "Roinn tuairiscí tuairteála go huathoibríoch leis na forbróirí",
+    "shareCrashReportsPrompt": "An bhfuil tú ag iarraidh tuarascálacha tuairteála a roinnt go huathoibríoch leis na forbróirí? Faigh tuilleadh eolais ag {url} faoi na sonraí atá á roinnt.",
+    "@shareCrashReportsPrompt": {
+        "placeholders": {
+            "url": {
+                "type": "String"
+            }
+        }
+    },
+    "allow": "Ceadaigh",
+    "deny": "Diúltaigh",
+    "activeCall": "Glao gníomhach",
+    "countActiveCallMembers": "{count} baill ghníomhacha glaonna",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Cuir isteach glao",
+    "videoCallsBetaWarning": "Is gné béite iad glaonna físe. D’fhéadfadh fabhtanna nó iompraíocht gan choinne a bheith ann. Bheimis sásta d’aiseolas a chloisteáil.",
+    "noDevicesFound": "Níor aimsíodh aon fheistí"
 }

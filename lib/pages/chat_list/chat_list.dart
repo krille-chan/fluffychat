@@ -8,6 +8,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
@@ -22,10 +23,12 @@ import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart'
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_callkit_incoming/entities/entities.dart';
+import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
@@ -76,14 +79,22 @@ class ChatListController extends State<ChatList>
 
   StreamSubscription? _intentFileStreamSubscription;
 
+  StreamSubscription? _callEventSubscription;
+
   late ActiveFilter activeFilter;
   String? activeTag;
 
   String? _activeSpaceId;
+
   String? get activeSpaceId => _activeSpaceId;
 
   Future<void> setActiveSpace(String spaceId) async {
     await Matrix.of(context).client.getRoomById(spaceId)!.postLoad();
+    if (!mounted) return;
+    if (FluffyThemes.isColumnMode(context) &&
+        !AppSettings.displayNavigationRail.value) {
+      await AppSettings.displayNavigationRail.setItem(true);
+    }
 
     setState(() {
       _activeSpaceId = spaceId;
@@ -93,6 +104,23 @@ class ChatListController extends State<ChatList>
   void clearActiveSpace() => setState(() {
     _activeSpaceId = null;
   });
+
+  void _onCallEvent(CallEvent? event) {
+    switch (event) {
+      case CallEventActionCallAccept():
+        _joinCallWith(event.callKitParams);
+        break;
+      case CallEventActionCallEnded():
+        final roomId = event.callKitParams.extra?.tryGet<String>('roomId');
+        if (roomId != null &&
+            Matrix.of(context).activeCallRoomId.value == roomId) {
+          Matrix.of(context).activeCallRoomId.value = null;
+        }
+        break;
+      default:
+        break;
+    }
+  }
 
   Future<void> onChatTap(Room room) async {
     final l10n = L10n.of(context);
@@ -371,6 +399,14 @@ class ChatListController extends State<ChatList>
     }
   }
 
+  void _joinCallWith(CallKitParams params) {
+    final roomId = params.extra?.tryGet<String>('roomId');
+    final clientName = params.extra?.tryGet<String>('clientName');
+    if (roomId != null) {
+      context.go('/rooms/$roomId?client=$clientName&action=call');
+    }
+  }
+
   StreamSubscription? _onRoomTagUpdate;
 
   @override
@@ -380,13 +416,23 @@ class ChatListController extends State<ChatList>
 
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
-    Matrix.of(context).voipPlugin?.context = context;
+    _callEventSubscription = FlutterCallkitIncoming.onEvent.listen(
+      _onCallEvent,
+    );
+    if (PlatformInfos.isMobile) {
+      FlutterCallkitIncoming.activeCalls().then((calls) {
+        final params = calls.firstOrNull;
+        if (params == null) return;
+        _joinCallWith(params);
+      });
+    }
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
         searchServer = Matrix.of(
           context,
         ).store.getString(_serverStoreNamespace);
-        Matrix.of(context).backgroundPush?.setupPush();
+        Matrix.of(context).backgroundPush?.setupPush(context);
         UpdateNotifier.showUpdateDialog(context);
       }
 
@@ -431,6 +477,7 @@ class ChatListController extends State<ChatList>
   void dispose() {
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
+    _callEventSubscription?.cancel();
     _onRoomTagUpdate?.cancel();
     scrollController.removeListener(_onScroll);
     searchController.dispose();

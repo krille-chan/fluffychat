@@ -318,8 +318,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "placeCall": "Faceți apel",
-    "voiceCall": "Apel vocal",
     "unsupportedAndroidVersion": "Versiune de Android nesuportat",
     "userIsTyping": "{username} tastează…",
     "@userIsTyping": {
@@ -330,7 +328,6 @@
             }
         }
     },
-    "screenSharingTitle": "partajarea de ecran",
     "changedTheRoomInvitationLink": "{username} a schimbat linkul de invitație",
     "@changedTheRoomInvitationLink": {
         "type": "String",
@@ -495,7 +492,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCallsBetaWarning": "Vă rugăm să luați notă că apeluri video sunt în beta. Se poate că nu funcționează normal sau de loc pe fie care platformă.",
     "pinMessage": "Fixați în cameră",
     "wasDirectChatDisplayName": "Chat gol (a fost {oldDisplayName})",
     "@wasDirectChatDisplayName": {
@@ -540,11 +536,9 @@
     },
     "scanQrCode": "Scanați cod QR",
     "addAccount": "Adăugați cont",
-    "experimentalVideoCalls": "Apeluri video experimentale",
     "confirmEventUnpin": "Sunteți sigur că doriți să anulați permanent fixarea evenimentului?",
     "emojis": "Emoji-uri",
     "users": "Utilizatori",
-    "foregroundServiceRunning": "Această notificare apare când serviciul de foreground rulează.",
     "currentlyActive": "Activ acum",
     "@currentlyActive": {
         "type": "String",
@@ -896,11 +890,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Apel video",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Vizibilitatea istoria chatului",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1003,7 +992,6 @@
     "storeInAndroidKeystore": "Stoca în Android KeyStore",
     "user": "Utilizator",
     "custom": "Personalizat",
-    "screenSharingDetail": "Partajați ecranul în FluffyChat",
     "storeSecurlyOnThisDevice": "Stoca sigur pe acest dispozitiv",
     "whyIsThisMessageEncrypted": "De ce este acest mesaj ilizibil?",
     "newSpace": "Spațiu nou",

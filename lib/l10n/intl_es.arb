@@ -634,7 +634,7 @@
             }
         }
     },
-    "isTyping": "está escribiendo…",
+    "isTyping": "escribiendo…",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -1214,11 +1214,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Video llamada",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Visibilidad del historial del chat",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1761,7 +1756,6 @@
         }
     },
     "reportUser": "Reportar usuario",
-    "voiceCall": "Llamada de voz",
     "reactedWith": "{sender} reaccionó con {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -1778,7 +1772,6 @@
     "replace": "Reemplazar",
     "unsupportedAndroidVersionLong": "Esta característica requiere una versión más reciente de Android. Por favor, compruebe las actualizaciones o la compatibilidad de LineageOS.",
     "storeSecurlyOnThisDevice": "Almacenar de forma segura en este dispositivo",
-    "screenSharingDetail": "Usted está compartiendo su pantalla en FluffyChat",
     "unsupportedAndroidVersion": "Versión de Android no compatible",
     "commandHint_create": "Crear un chat grupal vacío\nUse --no-encryption para deshabilitar el cifrado",
     "@commandHint_create": {
@@ -1815,10 +1808,8 @@
             }
         }
     },
-    "videoCallsBetaWarning": "Tenga en cuenta que las videollamadas están actualmente en fase beta. Es posible que no funcionen como se espera o que no funcionen de ninguna manera en algunas plataformas.",
     "optionalRedactReason": "(Opcional) Motivo para censurar este mensaje...",
     "dehydrate": "Exportar sesión y limpiar dispositivo",
-    "experimentalVideoCalls": "Videollamadas experimentales",
     "redactedByBecause": "Censurado por {username} porque: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
@@ -1850,7 +1841,6 @@
     },
     "redactMessageDescription": "El mensaje será censurado para todas las personas participantes en la conversación. Esto no se puede deshacer.",
     "doNotShowAgain": "No mostrar de nuevo",
-    "screenSharingTitle": "Compartir la pantalla",
     "youBannedUser": "Usted prohibió el acceso a {user}",
     "@youBannedUser": {
         "placeholders": {
@@ -1859,7 +1849,6 @@
             }
         }
     },
-    "foregroundServiceRunning": "Esta notificación aparece cuando el servicio en segundo plano se está ejecutando.",
     "wasDirectChatDisplayName": "Chat vacío (era {oldDisplayName})",
     "@wasDirectChatDisplayName": {
         "type": "String",
@@ -1951,7 +1940,6 @@
     "blockedUsers": "Usuarios bloqueados",
     "blockUsername": "Ignorar nombre de usuario",
     "noMoreChatsFound": "No se encontraron más chats...",
-    "placeCall": "Llamar",
     "disableEncryptionWarning": "Por motivos de seguridad no es posible deshabilitar el cifrado en un chat si ha sido habilitado previamente.",
     "setColorTheme": "Poner tema de color:",
     "inviteGroupChat": "📨 Invitar a grupo",
@@ -2113,7 +2101,6 @@
             }
         }
     },
-    "sendingAttachment": "Enviando adjunto...",
     "compress": "Comprimir",
     "pleaseFillOut": "Por favor, rellenar",
     "newChatRequest": "📩 Nueva petición de chat",
@@ -2562,5 +2549,66 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "editImage": "Editar imagen",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Rotar a la izquierda",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Rotar a la derecha",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Espejo",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Guardar",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Dibujar",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Deshacer",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Limpiar",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Borrador",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Cortar",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendingFilesDoNotExit": "Enviando {count} archivos... ¡Por favor espere!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Comprimiendo video...",
+    "deviceIdentityKey": "Dispositivo de llave de identidad"
 }

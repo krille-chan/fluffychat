@@ -10,8 +10,8 @@ import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart' hide Result;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -114,7 +114,6 @@ class SettingsView extends StatelessWidget {
                 );
               },
             ),
-            Divider(color: theme.dividerColor),
             SwitchListTile.adaptive(
               controlAffinity: ListTileControlAffinity.trailing,
               value: controller.cryptoIdentityConnected == true,

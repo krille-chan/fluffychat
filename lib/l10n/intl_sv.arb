@@ -859,7 +859,7 @@
             }
         }
     },
-    "ok": "OK",
+    "ok": "Ok",
     "@ok": {
         "type": "String",
         "placeholders": {}
@@ -1319,11 +1319,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videosamtal",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Chatt-historikens synlighet",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1725,10 +1720,7 @@
     "scanQrCode": "Skanna QR-kod",
     "removeFromBundle": "Ta bort från paket",
     "emojis": "Uttryckssymboler",
-    "placeCall": "Ring",
-    "voiceCall": "Röstsamtal",
     "unsupportedAndroidVersion": "Inget stöd för denna version av Android",
-    "videoCallsBetaWarning": "Videosamtal är för närvarande under testning. De kanske inte fungerar som det är tänkt eller på alla plattformar.",
     "unsupportedAndroidVersionLong": "Denna funktion kräver en senare version av Android.",
     "reactedWith": "{sender} reagerade med {reaction}",
     "@reactedWith": {
@@ -1744,7 +1736,6 @@
     },
     "pinMessage": "Fäst i rum",
     "confirmEventUnpin": "Är du säker på att händelsen inte längre skall vara fastnålad?",
-    "experimentalVideoCalls": "Experimentella videosamtal",
     "storeSecurlyOnThisDevice": "Lagra säkert på denna enhet",
     "youJoinedTheChat": "Du gick med i chatten",
     "youAcceptedTheInvitation": "👍 Du accepterade inbjudan",
@@ -1812,7 +1803,6 @@
     "commandHint_markasdm": "Märk som rum för direktmeddelanden för det givante Matrix ID",
     "user": "Användare",
     "storeInAppleKeyChain": "Lagra i Apples nyckelkedja (KeyChain)",
-    "foregroundServiceRunning": "Denna avisering visas när förgrundstjänsten körs.",
     "custom": "Anpassad",
     "countFiles": "{count} filer",
     "@countFiles": {
@@ -1822,7 +1812,6 @@
             }
         }
     },
-    "screenSharingTitle": "skärmdelning",
     "noKeyForThisMessage": "Detta kan hända om meddelandet skickades innan du loggade in på ditt konto i den här enheten.\n\nDet kan också vara så att avsändaren har blockerat din enhet eller att något gick fel med internetanslutningen.\n\nKan du läsa meddelandet i en annan session? I sådana fall kan du överföra meddelandet från den sessionen! Gå till Inställningar > Enhet och säkerställ att dina enheter har verifierat varandra. När du öppnar rummet nästa gång och båda sessionerna är i förgrunden, så kommer nycklarna att överföras automatiskt.\n\nVill du inte förlora nycklarna vid utloggning eller när du byter enhet? Säkerställ att du har aktiverat säkerhetskopiering för chatten i inställningarna.",
     "fileIsTooBigForServer": "Gick inte att skicka! Servern stödjer endast bilagor upp till {max}.",
     "commandHint_googly": "Skicka några googly ögon",
@@ -1839,7 +1828,6 @@
         }
     },
     "hydrate": "Återställ från säkerhetskopia",
-    "screenSharingDetail": "Du delar din skärm i FluffyChat",
     "youRejectedTheInvitation": "Du avvisade inbjudan",
     "youBannedUser": "Du förbjöd {user}",
     "@youBannedUser": {
@@ -2262,7 +2250,6 @@
     "loginWithMatrixId": "Logga in med Matrix-ID",
     "doesNotSeemToBeAValidHomeserver": "Verkar inte vara en kompatibel hemserver. Fel URL?",
     "calculatingFileSize": "Beräknar filstorlek...",
-    "sendingAttachment": "Skickar bilaga...",
     "oneOfYourDevicesIsNotVerified": "En av dina enheter är inte verifierade",
     "noticeChatBackupDeviceVerification": "Notis: När du ansluter alla dina enheter till chatt-backupen, är de automatiskt verifierade.",
     "continueText": "Fortsätt",
@@ -2373,6 +2360,52 @@
     "logs": "Loggar",
     "signIn": "Logga in",
     "createNewAccount": "Skapa nytt konto",
+    "discardEdits": "Du har ändringar som inte sparats. Kasta bort dina ändringar?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notificationRuleSuppressNotices": "Tysta automatiserade meddelanden",
+    "notificationRuleSuppressNoticesDescription": "Tystar notiser från automatiserade klienter som robotar.",
+    "notificationRuleInviteForMe": "Inbjudning till mig",
+    "notificationRuleInviteForMeDescription": "Meddelar användaren när hen är inbjuden till ett rum.",
+    "notificationRuleMemberEventDescription": "Tystar notiser för medlemshändelser.",
+    "notificationRuleIsUserMention": "Användare nämns",
+    "notificationRuleIsUserMentionDescription": "Meddelar användaren när hen är omnämnd i ett meddelande.",
+    "notificationRuleContainsDisplayNameDescription": "Meddelar användaren när ett meddelande innehåller hens visningsnamn.",
+    "notificationRuleIsRoomMention": "Rum nämns",
+    "notificationRuleIsRoomMentionDescription": "Meddelar användaren när ett rum omnämns.",
+    "notificationRuleRoomnotif": "Rumsnotis",
+    "notificationRuleRoomnotifDescription": "Meddelar användaren när ett meddelande innehåller '@room'.",
+    "notificationRuleTombstone": "Gravsten",
+    "notificationRuleTombstoneDescription": "Meddelar användaren om rums avaktiveringsmeddelanden.",
+    "notificationRuleReactionDescription": "Tysta notiser för reaktioner.",
+    "notificationRuleRoomServerAcl": "Rumserverns tillgångslista",
+    "notificationRuleRoomServerAclDescription": "Tystar notiser från rumserverns tillgångslista (ACL).",
+    "notificationRuleSuppressEdits": "Tysta ändringar",
+    "notificationRuleSuppressEditsDescription": "Tystar notiser för redigerade meddelanden.",
+    "notificationRuleCallDescription": "Meddelar användaren om samtal.",
+    "notificationRuleEncryptedRoomOneToOne": "Krypterade rum en-till-en",
+    "notificationRuleEncryptedRoomOneToOneDescription": "Meddelar användaren om meddelanden i krypterade en-till-en-rum.",
+    "notificationRuleRoomOneToOne": "Rum en-till-en",
+    "notificationRuleRoomOneToOneDescription": "Meddelar användaren om meddelanden i en-till-en-rum.",
+    "notificationRuleMessage": "Meddelande",
+    "notificationRuleMessageDescription": "Meddelar användaren om allmänna meddelanden.",
+    "notificationRuleEncrypted": "Krypterade",
+    "notificationRuleEncryptedDescription": "Meddelar användaren om meddelanden i krypterade rum.",
+    "notificationRuleJitsiDescription": "Meddelar användaren om Jitsi widget-händelser.",
+    "notificationRuleServerAcl": "Tysta serverns åtkomstlista",
+    "notificationRuleServerAclDescription": "Tystar notiser för händelser gällande serverns åtkomstlista.",
+    "unknownPushRule": "Okänd notisregel '{rule}'",
+    "@unknownPushRule": {
+        "type": "String",
+        "placeholders": {
+            "rule": {
+                "type": "String"
+            }
+        }
+    },
+    "sentVoiceMessage": "🎙️ {duration} - Röstmeddelande från {sender}",
     "@sentVoiceMessage": {
         "type": "String",
         "placeholders": {
@@ -2384,17 +2417,40 @@
             }
         }
     },
-    "@mute": {
-        "description": "This should be a very short string because there is not much space in the button!"
-    },
-    "@spaceMemberOfCanKnock": {
-        "type": "String",
-        "placeholders": {
-            "spaces": {
-                "type": "String"
-            }
-        }
-    },
+    "deletePushRuleCanNotBeUndone": "Om du tar bort denna notisinställning kan det inte ångras.",
+    "shareKeysWith": "Dela nycklar med...",
+    "shareKeysWithDescription": "Vilka enheter borde litas på så att de kan läsa dina meddelanden i krypterade chattar?",
+    "crossVerifiedDevicesIfEnabled": "Krossverifierade enheter om aktiverat",
+    "crossVerifiedDevices": "Krossverifierade enheter",
+    "verifiedDevicesOnly": "Endast verifierade enheter",
+    "notSupportedOnThisDevice": "Stöds ej på denna enhet",
+    "youHaveKnocked": "Du har knackat på",
+    "pleaseWaitUntilInvited": "Vänligen vänta tills någon från rummet bjuder in dig.",
+    "commandHint_logout": "Logga ut från din nuvarande enhet",
+    "commandHint_logoutall": "Logga ut från aktiva enheter",
+    "displayNavigationRail": "Visa navigationsfält på mobil",
+    "showMore": "Visa mer",
+    "showLess": "Visa mindre",
+    "declineInvitation": "Neka inbjudan",
+    "longPressToRecordVoiceMessage": "Tryck långt för att spela in röstmeddelande.",
+    "removeFromSpaceDescription": "Chatten tas bort från platsen men den syns fortfarande i din chattlista.",
+    "startPoll": "Starta omröstning",
+    "endPoll": "Avsluta omröstning",
+    "answersVisible": "Svar synliga",
+    "pollQuestion": "Omröstningsfråga",
+    "pollHasBeenEnded": "Omröstningen har avslutats",
+    "answersWillBeVisibleWhenPollHasEnded": "Svar kommer synas när omröstningen har avslutats",
+    "backToMainChat": "Tillbaka till huvudchatt",
+    "createSticker": "Skapa sticker eller emoji",
+    "useAsSticker": "Använd som sticker",
+    "useAsEmoji": "Använd som emoji",
+    "stickerPackNameAlreadyExists": "Stickerpaketets namn är upptaget",
+    "newStickerPack": "Nytt stickerpaket",
+    "stickerPackName": "Stickerpaketets namn",
+    "attribution": "Attribution",
+    "skipChatBackup": "Hoppa över säkerhetskopiering av chatten",
+    "skipChatBackupWarning": "Är du säker? Att inte aktivera säkerhetskopiering av chattar kan du förlora tillgången till dina meddelanden om du byter enhet.",
+    "chatSearchedUntil": "Sökte i chatten fram tills {time}",
     "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
@@ -2403,19 +2459,248 @@
             }
         }
     },
-    "@unknownPushRule": {
+    "federationBaseUrl": "Federation-bas-URL",
+    "clientWellKnownInformation": "Information om klienten:",
+    "baseUrl": "Bas-URL",
+    "identityServer": "Identitetsserver:",
+    "advancedConfigs": "Avancerad konfiguration",
+    "advancedConfigurations": "Avancerade konfigurationer",
+    "signUpGreeting": "FluffyChat är decentraliserad! Välj en server där du vill skapa ditt konto och kom igång!",
+    "signInGreeting": "Har du redan ett konto i Matrix? Välkommen tillbaka! Välj din hemserver och logga in.",
+    "theProcessWasCanceled": "Processen blev avbruten.",
+    "join": "Gå med",
+    "searchOrEnterHomeserverAddress": "Sök eller ange hemserver-adress",
+    "matrixId": "Matrix-ID",
+    "setPowerLevel": "Ange styrkenivå",
+    "makeModerator": "Gör till moderator",
+    "makeAdmin": "Gör till admin",
+    "removeModeratorRights": "Ta bort moderator-rättigheter",
+    "removeAdminRights": "Ta bort admin-rättigheter",
+    "powerLevel": "Styrkenivå",
+    "setPowerLevelDescription": "Styrkenivåer avgör vad en medlem är tillåten att göra i rummet och är oftast mellan 0 till 100.",
+    "owner": "Ägare",
+    "mute": "Tysta",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Skapa ny chatt",
+    "reset": "Återställ",
+    "supportFluffyChat": "Stöd FluffyChat",
+    "support": "Stöd",
+    "setLowPriority": "Sätt låg prioritet",
+    "unsetLowPriority": "Ta bort låg prioritet",
+    "playSoundOnNotification": "Spela ljud vid notis",
+    "addTag": "Lägg till tagg",
+    "removeTag": "Ta bort tagg",
+    "tagName": "Taggnamn",
+    "createNewTag": "Skapa ny tagg",
+    "hideRoomsInSpaces": "Dölj rum som är i en plats",
+    "possibleByYou": "Denna utgåva var endast möjlig tack vare ditt stöd. FluffyChat behålls gratis, öppen källkod, och helt gemenskapsdriven.",
+    "showThumbnailsInTimeline": "Visa förhandsvisning av bilder och videor",
+    "appSubtitle": "Säker [matrix]-kommunikation",
+    "appDescription": "Kommunicera krypterat över det decentraliserade [matrix]-nätverket på ett enkelt och tillgängligt sätt för alla.",
+    "interactiveVerification": "Interaktiv verifikation",
+    "interactiveVerificationDescription": "Om ni är nära varandra eller kommunicerar genom en säker kanal kan nu verifiera alla enheter samtidigt genom att jämföra ett säkerhetsnummer eller emojis.",
+    "countUnverifiedDevices": "{count} overifierade enheter i chatten.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "encryptedMessage": "Krypterat meddelande",
+    "unencryptedMessage": "Okrypterat meddelande",
+    "messageCanOnlyBeReadByUser": "Ditt meddelande är totalsträckskrypterat och kan endast läsas av denna användare:",
+    "messageCanOnlyBeReadByUsers": "Ditt meddelande är totalsträckskrypterat och kan endast läsas av följande användare:",
+    "publicKey": "Offentlig nyckel: {key}",
+    "@publicKey": {
         "type": "String",
         "placeholders": {
-            "rule": {
+            "key": {
                 "type": "String"
             }
         }
     },
+    "deviceIdentityKey": "Enhetens identitetsnyckel",
+    "restoreBootstrapEmptyDevicesDescription": "Vänligen ange ditt lösenfras eller återställnings nyckel för att verifiera denna enhet och få tillgång till din krypterade säkerhetskopiering.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Vänligen ta upp en av dina andra enheter för att verifiera denna session:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Återställ konto",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Återställ krypto-identitet",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Nollställ krypto-identitet",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Ställ in krypto-identitet",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Väntar på nycklar... Vänligen behåll den andra enheten aktiv.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Inga nycklar överfördes. Vänligen försök igen.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Lås upp",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Öppna fil",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "När du återställer ditt konto blir du av med tillgången till dina gamla meddelanden för alltid. Alla dina nuvarande enheter kommer behöva verifiera igen. Gör bara detta om du inte har andra enheter kvar för att verifiera din session och du har blivit av med din återställningsnyckel och lösenfras!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat använder helsträckskryptering. För att inte bli av med dina meddelanden, vänligen välj en stark lösenfras för att säkra din krypto-identitet och din krypterade säkerhetskopiering av meddelanden.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Ny lösenfras",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Upprepa lösenfras",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Lösenfrasarna stämmer överens",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "Åtminstone 12 tecken långt.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Innehåller versaler och gemener.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Innehåller specialtecken.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Innehåller ett nummer.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Vänligen anteckna din återställningsnyckel för att kunna återställa dina krypterade meddelanden och din krypto-identitet.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Spara som fil",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Du är redo att komma igång!",
+    "noUserKeyFound": "Ingen användarnyckel hittat",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Känd sedan: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOf": "Platsmedlem av {spaces}",
     "@spaceMemberOf": {
         "type": "String",
         "placeholders": {
             "spaces": {
                 "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "Platsmedlem av {spaces} kan knacka på",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "Osignerad enhet",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Signerad enhet",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Ingen curve25519-nyckel hittad",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Meddelande inte avkrypterbart",
+    "today": "Idag",
+    "sending": "Skickar",
+    "generatingThumbnail": "Genererar förhandsvisning",
+    "encrypting": "Krypterar",
+    "uploading": "Laddar upp",
+    "edited": "(redigerad)",
+    "couldNotBeSent": "Kunde inte skickas",
+    "yesterday": "Igår",
+    "resetRecoveryKey": "Återställ återställningsnyckel",
+    "pleaseEnter6Digits": "Vänligen ange 6 siffror för att aktivera applåset.",
+    "disableAppLock": "Avaktivera applås",
+    "disableAppLockAreYouSure": "Är du säker på att du vill avaktivera applåset?",
+    "enableBiometrics": "Aktivera biometrisk upplåsning",
+    "disableBiometrics": "Avaktivera biometrisk upplåsning",
+    "biometricsDescription": "Med biometrisk upplåsning kan du låsa upp appen med ditt ansikte eller fingeravtryck. Förmågorna beror på din enhet.",
+    "useAppLock": "Använd applås",
+    "unlockWithBiometrics": "Lås upp med biometrisk upplåsning",
+    "resetPin": "Återställ pinkod",
+    "forwardCountMessages": "Hoppa fram {count, plural, =1{ett meddelande} other{{count} meddelanden}}?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
             }
         }
     }

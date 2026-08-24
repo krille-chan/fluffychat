@@ -77,7 +77,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Gli utenti ospiti possono partecipare",
+    "areGuestsAllowedToJoin": "Gli utenti ospiti possono partecipare?",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -384,7 +384,7 @@
             }
         }
     },
-    "countParticipants": "{count} partecipanti",
+    "countParticipants": "{count, plural, =1{1 partecipante} other{{count} partecipanti}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -702,7 +702,7 @@
             }
         }
     },
-    "isTyping": "sta scrivendo…",
+    "isTyping": "sta scrivendo",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -1376,11 +1376,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videochiamata",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Visibilità della cronologia della discussione",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1723,7 +1718,6 @@
             }
         }
     },
-    "videoCallsBetaWarning": "Nota che le video chiamate sono attualmente in beta. Potrebbero non funzionare come previsto o non funzionare del tutto su alcune piattaforme.",
     "fileIsTooBigForServer": "Impossibile inviare! Il server supporta solo allegati fino a {max}.",
     "readUpToHere": "Letto fino a qui",
     "optionalRedactReason": "(Opzionale) Ragione per rimuovere questo messaggio...",
@@ -1735,7 +1729,6 @@
     },
     "archiveRoomDescription": "Questa chat sarà archiviata. Gli altri utenti saranno in grado di vedere che hai abbandonato la chat.",
     "exportEmotePack": "Esporta pack di Emote come .zip",
-    "experimentalVideoCalls": "Video chiamate sperimentali",
     "redactedByBecause": "Rimosso da {username} per: \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
@@ -1799,7 +1792,6 @@
     },
     "doNotShowAgain": "Non mostrare più",
     "report": "segnala",
-    "screenSharingTitle": "condivisione schermo",
     "googlyEyesContent": "{senderName} ti ha inviato degli occhi finti",
     "@googlyEyesContent": {
         "type": "String",
@@ -1854,8 +1846,6 @@
     },
     "sendTypingNotifications": "Invia notifiche di scrittura",
     "inviteGroupChat": "📨 Invita a una chat di gruppo",
-    "foregroundServiceRunning": "Questa notifica viene mostrata quando il servizio in primo piano è in esecuzione.",
-    "voiceCall": "Chiamata vocale",
     "commandHint_kick": "Rimuovi l'utente fornito da questa stanza",
     "@commandHint_kick": {
         "type": "String",
@@ -1976,8 +1966,6 @@
     "invite": "Invitare",
     "unsupportedAndroidVersionLong": "Questa funzionalità richiede una versione di Android più recente. Si prega di verificare la presenza di aggiornamenti o supporto per Lineage OS.",
     "storeSecurlyOnThisDevice": "Salva in modo sicuro su questo dispositivo",
-    "screenSharingDetail": "Stai condividendo il tuo schermo in FuffyChat",
-    "placeCall": "Fai una chiamata",
     "blockListDescription": "Puoi bloccare gli utenti che ti disturbano. Non sarai più in grado di ricevere messaggi o inviti alle stanze dalle persone che hai bloccato.",
     "blockedUsers": "Utenti bloccati",
     "blockUsername": "Nome utente da ignorare",
@@ -2174,7 +2162,6 @@
     "sendRoomNotifications": "Invia notifiche alla @stanza",
     "sendCanceled": "Invio annullato",
     "calculatingFileSize": "Calcolo della dimensione del file...",
-    "sendingAttachment": "Invio allegato...",
     "oneOfYourDevicesIsNotVerified": "Uno dei tuoi dispositivi non è verificato",
     "noticeChatBackupDeviceVerification": "Nota: quando colleghi tutti i tuoi dispositivi al backup della chat, vengono verificati automaticamente.",
     "moderatorLevel": "{level} - Moderatore",
@@ -2391,22 +2378,67 @@
     "longPressToRecordVoiceMessage": "Premi a lungo per registrare un messaggio vocale.",
     "pause": "Pausa",
     "resume": "Riprendi",
-    "@countReplies": {
-        "type": "int",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "@versionWithNumber": {
+    "editImage": "Modifica immagine",
+    "@editImage": {
         "type": "String",
-        "placeholders": {
-            "version": {
-                "type": "String"
-            }
-        }
+        "placeholders": {}
     },
+    "rotateLeft": "Ruota a sinistra",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Ruota a destra",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Specchia",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Salva",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Disegna",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Annulla",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Ripulisci",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Cancellino",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Ritaglia",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "discardEdits": "Hai dei cambiamenti non salvati. Elimina le tue modifiche?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changedTheChatDescription": "{username} ha cambiato la descrizione della chat",
+    "changedTheChatName": "{username} ha cambiato il nome della chat",
+    "showMore": "Mostra altro",
+    "showLess": "Mostra meno",
+    "removeFromSpaceDescription": "La chat verrà rimossa dallo spazio ma apparirà ancora nella tua lista delle chat.",
+    "countChats": "{chats, plural, =1{1 chat} other{{chats} chats}}",
     "@countChats": {
         "type": "String",
         "placeholders": {
@@ -2415,9 +2447,16 @@
             }
         }
     },
-    "@mute": {
-        "description": "This should be a very short string because there is not much space in the button!"
+    "spaceMemberOf": "Membro dello spazio {spaces}",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
     },
+    "spaceMemberOfCanKnock": "Membro dello spazio {spaces} può bussare",
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {
@@ -2426,14 +2465,15 @@
             }
         }
     },
-    "@chatSearchedUntil": {
-        "type": "String",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
-    },
+    "startPoll": "Avvia il sondaggio",
+    "endPoll": "Finisci il sondaggio",
+    "answersVisible": "Risposte visibili",
+    "pollQuestion": "Domanda di sondaggio",
+    "answerOption": "Opzione di risposta",
+    "addAnswerOption": "Aggiungi opzione di risposta",
+    "allowMultipleAnswers": "Consenti risposte multiple",
+    "pollHasBeenEnded": "Il sondaggio è stato concluso",
+    "countVotes": "{count, plural, =1{Un voto} other{{count} voti}}",
     "@countVotes": {
         "type": "int",
         "placeholders": {
@@ -2442,10 +2482,35 @@
             }
         }
     },
-    "@spaceMemberOf": {
+    "answersWillBeVisibleWhenPollHasEnded": "Le risposte saranno visibili quando il sondaggio sarà terminato",
+    "replyInThread": "Rispondi in thread",
+    "countReplies": "{count, plural, =1{Una risposta} other{{count} risposte}}",
+    "@countReplies": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "thread": "Thread",
+    "backToMainChat": "Torna alla chat principale",
+    "saveChanges": "Salva modifiche",
+    "createSticker": "Crea sticker o emoji",
+    "useAsSticker": "Usa come sticker",
+    "useAsEmoji": "Usa come emoji",
+    "stickerPackNameAlreadyExists": "Il nome del pacchetto di stickers esiste già",
+    "newStickerPack": "Nuovo pacchetto di stickers",
+    "stickerPackName": "Nome del pacchetto stickers",
+    "attribution": "Attribuzione",
+    "skipChatBackup": "Salta backup delle chat",
+    "skipChatBackupWarning": "Sei sicuro? Senza attivare il backup di chat si può perdere l'accesso ai messaggi se si cambia dispositivo.",
+    "noMoreResultsFound": "Nessun ulteriore risultato trovato",
+    "chatSearchedUntil": "Chat ricercata fino a {time}",
+    "@chatSearchedUntil": {
         "type": "String",
         "placeholders": {
-            "spaces": {
+            "time": {
                 "type": "String"
             }
         }

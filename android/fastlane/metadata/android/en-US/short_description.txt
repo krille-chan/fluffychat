@@ -1,1 +1,1 @@
-Chat with your friends with FluffyChat.
+FluffyChat is an open, nonprofit and cute Matrix messenger app for Ubuntu Touch, Android and iOS.

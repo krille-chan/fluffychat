@@ -9,19 +9,36 @@ import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/push_helper.dart';
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:fluffychat/widgets/incoming_call_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
 
 extension LocalNotificationsExtension on MatrixState {
   static final html.AudioElement _audioPlayer = html.AudioElement()
-    ..src = 'assets/assets/sounds/notification.ogg'
+    ..src = 'assets/assets/sounds/notification.mp3'
     ..load();
 
   Future<void> showLocalNotification(Event event) async {
+    if (event.type == RtcNotificationContent.eventType &&
+        event.tryParseRtcNotificationContent()?.notificationType == .ring) {
+      showDialog<bool>(
+        context:
+            FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
+            context,
+        builder: (_) => IncomingCallDialog(event: event),
+      ).then((joinCall) {
+        if (joinCall == true) {
+          setActiveClient(event.room.client);
+          activeCallRoomId.value = event.room.id;
+        }
+      });
+    }
+
     final l10n = L10n.of(context);
     final roomId = event.room.id;
     if (activeRoomId == roomId) {
@@ -90,16 +107,27 @@ extension LocalNotificationsExtension on MatrixState {
       notificationDetails: NotificationDetails(
         linux: LinuxNotificationDetails(
           sound: ThemeLinuxSound('message-new-instant'),
-          actions: [
-            LinuxNotificationAction(
-              key: FluffyChatNotificationActions.markAsRead.name,
-              label: l10n.markAsRead,
-            ),
-            LinuxNotificationAction(
-              key: FluffyChatNotificationActions.mute.name,
-              label: l10n.mute,
-            ),
-          ],
+          actions: switch (event.type) {
+            EventTypes.Message ||
+            EventTypes.Encrypted ||
+            EventTypes.Sticker => [
+              LinuxNotificationAction(
+                key: FluffyChatNotificationActions.markAsRead.name,
+                label: l10n.markAsRead,
+              ),
+              LinuxNotificationAction(
+                key: FluffyChatNotificationActions.mute.name,
+                label: l10n.mute,
+              ),
+            ],
+            RtcNotificationContent.eventType => [
+              LinuxNotificationAction(
+                key: FluffyChatNotificationActions.enterCall.name,
+                label: l10n.enterCall,
+              ),
+            ],
+            _ => [],
+          },
         ),
       ),
       payload: FluffyChatPushPayload(

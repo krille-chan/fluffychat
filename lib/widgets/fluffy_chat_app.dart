@@ -3,15 +3,17 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
+import 'package:fluffychat/widgets/layouts/call_overlay.dart';
 import 'package:fluffychat/widgets/theme_builder.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -73,7 +75,11 @@ class FluffyChatApp extends StatelessWidget {
           primaryColor,
         ),
         scrollBehavior: CustomScrollBehavior(),
-        localizationsDelegates: L10n.localizationsDelegates,
+        localizationsDelegates: [
+          ...L10n.localizationsDelegates,
+          ...GlobalMaterialLocalizations.delegates,
+          ...GlobalCupertinoLocalizations.delegates,
+        ],
         supportedLocales: L10n.supportedLocales,
         routerConfig: router,
         builder: (context, child) => AppLockWidget(
@@ -85,7 +91,9 @@ class FluffyChatApp extends StatelessWidget {
           child: Matrix(
             clients: clients,
             store: store,
-            child: testWidget ?? child,
+            child: CallOverlay(
+              child: testWidget ?? child ?? const SizedBox.shrink(),
+            ),
           ),
         ),
       ),

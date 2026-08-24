@@ -1230,11 +1230,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Rozmowa wideo",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Widoczność historii czatu",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1764,7 +1759,6 @@
     "noOtherDevicesFound": "Nie znaleziono innych urządzeń",
     "encryptThisChat": "Zaszyfruj ten czat",
     "disableEncryptionWarning": "Ze względów bezpieczeństwa nie można wyłączyć szyfrowania w czacie, w którym zostało ono wcześniej włączone.",
-    "screenSharingTitle": "udostępnianie ekranu",
     "noKeyForThisMessage": "Może się to zdarzyć, jeśli wiadomość została wysłana przed zalogowaniem się na to konto na tym urządzeniu.\n\nMożliwe jest również, że nadawca zablokował Twoje urządzenie lub coś poszło nie tak z połączeniem internetowym.\n\nJesteś w stanie odczytać wiadomość na innej sesji? W takim razie możesz przenieść z niej wiadomość! Wejdź w Ustawienia > Urządzenia i upewnij się, że Twoje urządzenia zweryfikowały się wzajemnie. Gdy następnym razem otworzysz pokój i obie sesje będą włączone, klucze zostaną przekazane automatycznie.\n\nNie chcesz stracić kluczy podczas wylogowania lub przełączania urządzeń? Upewnij się, że w ustawieniach masz włączoną kopię zapasową czatu.",
     "sorryThatsNotPossible": "Przepraszamy... to nie jest możliwe",
     "noBackupWarning": "Uwaga! Bez włączenia kopii zapasowej czatu, stracisz dostęp do swoich zaszyfrowanych wiadomości. Zaleca się włączenie kopii zapasowej czatu przed wylogowaniem.",
@@ -1812,11 +1806,7 @@
         }
     },
     "emojis": "Emoji",
-    "placeCall": "Zadzwoń",
-    "voiceCall": "Połączenie głosowe",
     "unsupportedAndroidVersionLong": "Ta funkcja wymaga nowszej wersji systemu Android. Sprawdź aktualizacje lub wsparcie Lineage OS.",
-    "videoCallsBetaWarning": "Należy pamiętać, że połączenia wideo są obecnie w fazie beta. Mogą nie działać zgodnie z oczekiwaniami lub nie działać w ogóle na wszystkich platformach.",
-    "experimentalVideoCalls": "Eksperymentalne połączenia wideo",
     "youRejectedTheInvitation": "Odrzucono zaproszenie",
     "youAcceptedTheInvitation": "👍 Zaakceptowałeś/-aś zaproszenie",
     "youHaveWithdrawnTheInvitationFor": "Wycofano zaproszenie dla {user}",
@@ -1869,8 +1859,6 @@
     },
     "storeInAppleKeyChain": "Przechowaj w pęku kluczy Apple",
     "storeSecurlyOnThisDevice": "Przechowaj bezpiecznie na tym urządzeniu",
-    "foregroundServiceRunning": "To powiadomienie pojawia się, gdy usługa w tle jest uruchomiona.",
-    "screenSharingDetail": "Udostępniasz swój ekran w FluffyChat",
     "whyIsThisMessageEncrypted": "Dlaczego nie można odczytać tej wiadomości?",
     "doNotShowAgain": "Nie pokazuj ponownie",
     "wasDirectChatDisplayName": "Pusty czat (wcześniej {oldDisplayName})",
@@ -2106,7 +2094,6 @@
     "sendCanceled": "Anulowano wysyłanie",
     "doesNotSeemToBeAValidHomeserver": "Wydaje się nie być kompatybilnym serwerem domowym. Niepoprawny adres URL?",
     "calculatingFileSize": "Obliczanie rozmiaru pliku...",
-    "sendingAttachment": "Wysyłanie załącznika...",
     "blur": "Rozmazanie:",
     "opacity": "Przezroczystość:",
     "setWallpaper": "Ustaw tapetę",
@@ -2717,5 +2704,8 @@
     },
     "unlockWithBiometrics": "Odblokuj za pomocą uwierzytelniania biometrycznego",
     "useAppLock": "Użyj blokady aplikacji",
-    "biometricsDescription": "Za pomocą biometrycznego uwierzytelniania możesz odblokować aplikację za pomocą swojej twarzy lub odsisku palca. Możliwości zależą od twojego urządzenia."
+    "biometricsDescription": "Za pomocą biometrycznego uwierzytelniania możesz odblokować aplikację za pomocą swojej twarzy lub odsisku palca. Możliwości zależą od twojego urządzenia.",
+    "doubleTapToReact": "Podwójne dotknięcie, aby zareagować",
+    "doubleTapToReactDescription": "Podwójne dotknięcie wiadomości reaguje zamiast zaznaczania tekstu",
+    "doubleTapReaction": "Reakcja podwójnego dotknięcia"
 }

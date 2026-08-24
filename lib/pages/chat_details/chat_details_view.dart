@@ -8,14 +8,15 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/verified_room_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
 import '../../utils/url_launcher.dart';
@@ -161,14 +162,28 @@ class ChatDetailsView extends StatelessWidget {
                                 disabledForegroundColor:
                                     theme.colorScheme.onSurface,
                               ),
-                              label: Text(
-                                displayname,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal,
-                                ),
+                              label: Row(
+                                mainAxisSize: .min,
+                                spacing: 4,
+                                children: [
+                                  if (room.allUsersVerified)
+                                    Icon(
+                                      Icons.verified,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
+                                      size: 18,
+                                    ),
+                                  Text(
+                                    displayname,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -181,9 +196,10 @@ class ChatDetailsView extends StatelessWidget {
                                 ) ??
                                 false,
                           ),
-                          builder: (context, _) => Row(
-                            mainAxisAlignment: .center,
+                          builder: (context, _) => Wrap(
+                            alignment: .center,
                             spacing: 16,
+                            runSpacing: 16,
                             children: [
                               _MainChatDetailsButton(
                                 onPressed: () =>
@@ -226,7 +242,6 @@ class ChatDetailsView extends StatelessWidget {
                         const SizedBox(height: 16),
                         if (room.canChangeStateEvent(EventTypes.RoomTopic) ||
                             room.topic.isNotEmpty) ...[
-                          Divider(color: theme.dividerColor),
                           ListTile(
                             title: Text(
                               L10n.of(context).chatDescription,
@@ -325,21 +340,15 @@ class ChatDetailsView extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
+                          trailing: !room.isDirectChat && room.canInvite
+                              ? TextButton.icon(
+                                  icon: Icon(Icons.add),
+                                  label: Text(L10n.of(context).invite),
+                                  onPressed: () =>
+                                      context.go('/rooms/${room.id}/invite'),
+                                )
+                              : null,
                         ),
-                        if (!room.isDirectChat && room.canInvite)
-                          ListTile(
-                            title: Text(L10n.of(context).inviteContact),
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  theme.colorScheme.primaryContainer,
-                              foregroundColor:
-                                  theme.colorScheme.onPrimaryContainer,
-                              radius: Avatar.defaultSize / 2,
-                              child: const Icon(Icons.add_outlined),
-                            ),
-                            trailing: const Icon(Icons.chevron_right_outlined),
-                            onTap: () => context.go('/rooms/${room.id}/invite'),
-                          ),
                       ],
                     )
                   : i < members.length + 1
@@ -348,13 +357,6 @@ class ChatDetailsView extends StatelessWidget {
                       title: Text(
                         L10n.of(context).loadCountMoreParticipants(
                           (actualMembersCount - members.length),
-                        ),
-                      ),
-                      leading: CircleAvatar(
-                        backgroundColor: theme.scaffoldBackgroundColor,
-                        child: const Icon(
-                          Icons.group_outlined,
-                          color: Colors.grey,
                         ),
                       ),
                       onTap: () => context.push(
@@ -385,7 +387,7 @@ class _MainChatDetailsButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Material(
-      color: theme.colorScheme.primaryContainer,
+      color: theme.colorScheme.surfaceContainerHigh,
       borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       child: InkWell(
         onTap: onPressed,
@@ -396,11 +398,16 @@ class _MainChatDetailsButton extends StatelessWidget {
             crossAxisAlignment: .center,
             mainAxisSize: .min,
             children: [
-              Icon(icon, color: theme.colorScheme.onPrimaryContainer),
-              Text(
-                label,
-                maxLines: 1,
-                style: TextStyle(color: theme.colorScheme.onPrimaryContainer),
+              Icon(icon, color: theme.colorScheme.secondary),
+              SizedBox(
+                width: 64,
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: .ellipsis,
+                  textAlign: .center,
+                  style: TextStyle(color: theme.colorScheme.secondary),
+                ),
               ),
             ],
           ),

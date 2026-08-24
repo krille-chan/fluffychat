@@ -1076,11 +1076,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Bideo-deia",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Txat-historiaren ikusgaitasuna",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1157,8 +1152,6 @@
         "placeholders": {}
     },
     "emojis": "Emojiak",
-    "placeCall": "Egin deia",
-    "voiceCall": "Ahozko deia",
     "unsupportedAndroidVersion": "Android bertsioa ez da bateragarria",
     "unsupportedAndroidVersionLong": "Funtzio honek Android bertsio berriago bat behar du. Egiaztatu eguneraketak ote dauden edo begiratu Lineage OS-ek zure gailuarentzat aukerarik eskaintzen duen.",
     "commandHint_ban": "Debekatu erabiltzailea gela honetan",
@@ -1267,7 +1260,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCallsBetaWarning": "Kontuan izan bideo-deiak beta fasean daudela. Litekeena da behar bezala erabili ezin izatea —erabili ahal badira—.",
     "all": "Guztia",
     "@all": {
         "type": "String",
@@ -1278,7 +1270,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "experimentalVideoCalls": "Bideo-dei esperimentalak",
     "removeFromBundle": "Kendu sorta honetatik",
     "or": "Edo",
     "@or": {
@@ -1825,8 +1816,6 @@
     "confirmMatrixId": "Baieztatu zure Matrix IDa kontua ezabatu ahal izateko.",
     "newSpace": "Gune berria",
     "whyIsThisMessageEncrypted": "Zergatik ezin da mezu hau irakurri?",
-    "screenSharingTitle": "pantaila-partekatzea",
-    "screenSharingDetail": "Pantaila FluffyChaten partekatzen ari zara",
     "noKeyForThisMessage": "Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irekiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula.",
     "supposedMxid": "Hau {mxid} izan behar da",
     "@supposedMxid": {
@@ -1838,7 +1827,6 @@
         }
     },
     "commandHint_markasgroup": "Markatu talde bezala",
-    "foregroundServiceRunning": "Jakinarazpen hau zerbitzua martxan dagoenean agertzen da.",
     "commandHint_markasdm": "Markatu mezu-zuzen gela bezala Matrix ID jakin honentzat",
     "wasDirectChatDisplayName": "Txata hutsik dago ({oldDisplayName} zen lehen)",
     "@wasDirectChatDisplayName": {
@@ -2223,7 +2211,6 @@
     "loginWithMatrixId": "Hasi saioa Matrix IDarekin",
     "doesNotSeemToBeAValidHomeserver": "Ez dirudi zerbitzaria bateragarria denik. Zuzena da URLa?",
     "calculatingFileSize": "Fitxategiaren tamaina kalkulatzen…",
-    "sendingAttachment": "Eranskina bidaltzen…",
     "oneOfYourDevicesIsNotVerified": "Zure gailuetako bat ez dago egiaztatuta",
     "noticeChatBackupDeviceVerification": "Oharra: gailu guztiak txat-babeskopiarekin konektatzen dituzunean, automatikoki egiaztatzen dira.",
     "opacity": "Opakutasuna:",

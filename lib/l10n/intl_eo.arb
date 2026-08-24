@@ -1544,11 +1544,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Vidvoko",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Videbleco de historio de la babilo",
     "@visibilityOfTheChatHistory": {
         "type": "String",

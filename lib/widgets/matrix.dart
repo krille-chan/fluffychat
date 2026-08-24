@@ -14,15 +14,14 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dar
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
-import 'package:fluffychat/utils/voip_plugin.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
@@ -69,14 +68,17 @@ class MatrixState extends State<Matrix> {
 
   BackgroundPush? backgroundPush;
 
+  final ValueNotifier<String?> activeCallRoomId = ValueNotifier(null);
+  final ValueNotifier<CallPosition> callPosition = ValueNotifier(
+    CallPosition.fullScreen,
+  );
+
   Client get client {
     if (_activeClient < 0 || _activeClient >= widget.clients.length) {
       return currentBundle!.first!;
     }
     return widget.clients[_activeClient];
   }
-
-  VoipPlugin? voipPlugin;
 
   bool get isMultiAccount => widget.clients.length > 1;
 
@@ -87,8 +89,6 @@ class MatrixState extends State<Matrix> {
     final i = widget.clients.indexWhere((c) => c == cl);
     if (i != -1) {
       _activeClient = i;
-      // TODO: Multi-client VoiP support
-      createVoipPlugin();
     } else {
       Logs().w('Tried to set an unknown client ${cl!.userID} as active');
     }
@@ -349,16 +349,6 @@ class MatrixState extends State<Matrix> {
         },
       );
     }
-
-    createVoipPlugin();
-  }
-
-  Future<void> createVoipPlugin() async {
-    if (!AppSettings.experimentalVoip.value) {
-      voipPlugin = null;
-      return;
-    }
-    voipPlugin = VoipPlugin(this);
   }
 
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -441,3 +431,5 @@ class MatrixState extends State<Matrix> {
     file.save(context);
   }
 }
+
+enum CallPosition { fullScreen, top }

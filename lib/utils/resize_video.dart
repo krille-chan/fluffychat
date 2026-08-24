@@ -5,35 +5,48 @@
 
 import 'package:cross_file/cross_file.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:light_compressor_v2/light_compressor_v2.dart';
 import 'package:matrix/matrix.dart';
-import 'package:video_compress/video_compress.dart';
+import 'package:mime/mime.dart';
 
 extension ResizeImage on XFile {
-  static const int max = 1200;
-  static const int quality = 40;
-
   Future<MatrixVideoFile> getVideoInfo({bool compress = true}) async {
     MediaInfo? mediaInfo;
+    String? destinationPath;
     try {
-      if (PlatformInfos.isMobile) {
-        // will throw an error e.g. on Android SDK < 18
-        mediaInfo = compress
-            ? await VideoCompress.compressVideo(path, deleteOrigin: true)
-            : await VideoCompress.getMediaInfo(path);
+      if (PlatformInfos.isMobile || PlatformInfos.isMacOS) {
+        final result = await LightCompressor().compressVideo(
+          path: path,
+          videoQuality: VideoQuality.medium,
+          android: AndroidConfig(isSharedStorage: false),
+          ios: IOSConfig(saveInGallery: false),
+          video: Video(videoName: name, targetSizeMb: 5),
+        );
+        if (result is OnFailure) {
+          throw result.message;
+        }
+        if (result is OnSuccess) {
+          destinationPath = result.destinationPath;
+        }
+        if (destinationPath != null) {
+          mediaInfo = await LightCompressor().getMediaInfo(destinationPath);
+        }
       }
     } catch (e, s) {
       Logs().w('Error while fetching video media info', e, s);
     }
 
     return MatrixVideoFile(
-      bytes: (await mediaInfo?.file?.readAsBytes()) ?? await readAsBytes(),
+      bytes: destinationPath != null
+          ? await XFile(destinationPath).readAsBytes()
+          : await readAsBytes(),
       name: name,
-      mimeType: mimeType,
-      // on Android width and height is reversed:
-      // https://github.com/jonataslaw/VideoCompress/issues/172
-      width: PlatformInfos.isAndroid ? mediaInfo?.height : mediaInfo?.width,
-      height: PlatformInfos.isAndroid ? mediaInfo?.width : mediaInfo?.height,
-      duration: mediaInfo?.duration?.round(),
+      mimeType: destinationPath != null
+          ? lookupMimeType(destinationPath)
+          : mimeType,
+      width: mediaInfo?.width,
+      height: mediaInfo?.height,
+      duration: mediaInfo?.duration?.inMilliseconds,
     );
   }
 
@@ -41,8 +54,8 @@ extension ResizeImage on XFile {
     if (!PlatformInfos.isMobile) return null;
 
     try {
-      final bytes = await VideoCompress.getByteThumbnail(path);
-      if (bytes == null) return null;
+      final thumbnailPath = await LightCompressor().getVideoThumbnail(path);
+      final bytes = await XFile(thumbnailPath).readAsBytes();
       return MatrixImageFile(bytes: bytes, name: name);
     } catch (e, s) {
       Logs().w('Error while compressing video', e, s);

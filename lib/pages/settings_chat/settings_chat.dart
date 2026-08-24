@@ -3,7 +3,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'settings_chat_view.dart';
 
@@ -15,6 +15,8 @@ class SettingsChat extends StatefulWidget {
 }
 
 class SettingsChatController extends State<SettingsChat> {
+  void updateState() => setState(() {});
+
   @override
   Widget build(BuildContext context) => SettingsChatView(this);
 }

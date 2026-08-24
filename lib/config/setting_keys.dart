@@ -16,7 +16,7 @@ enum AppSettings<T> {
   textMessageMaxLength<int>('textMessageMaxLength', 16384),
 
   /// Max lines for unselected HTML/text bubbles; 0 = unlimited (no fade).
-  messagePreviewMaxLines<int>('chat.fluffy.message_preview_max_lines', 25),
+  messagePreviewMaxLines<int>('chat.fluffy.message_preview_max_lines', 50),
   audioRecordingNumChannels<int>('audioRecordingNumChannels', 1),
   audioRecordingAutoGain<bool>('audioRecordingAutoGain', true),
   audioRecordingEchoCancel<bool>('audioRecordingEchoCancel', false),
@@ -44,7 +44,6 @@ enum AppSettings<T> {
   swipeRightToLeftToReply<bool>('chat.fluffy.swipeRightToLeftToReply', true),
   sendOnEnter<bool>('chat.fluffy.send_on_enter', false),
   displayNavigationRail<bool>('chat.fluffy.display_navigation_rail', false),
-  experimentalVoip<bool>('chat.fluffy.experimental_voip', false),
   shareKeysWith<String>('chat.fluffy.share_keys_with_2', 'all'),
   noEncryptionWarningShown<bool>(
     'chat.fluffy.no_encryption_warning_shown',
@@ -57,8 +56,8 @@ enum AppSettings<T> {
   // colorSchemeSeed stored as ARGB int
   colorSchemeSeedInt<int>('chat.fluffy.color_scheme_seed', 0xFF5625BA),
   emojiSuggestionLocale<String>('emoji_suggestion_locale', ''),
-  enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false),
-  enableMatrixNativeOIDC<bool>('chat.fluffy.enable_matrix_native_oidc', false),
+  enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', true),
+  enableMatrixNativeOIDC<bool>('chat.fluffy.enable_matrix_native_oidc', true),
   presetHomeserver<String>('chat.fluffy.preset_homeserver', ''),
   welcomeText<String>('chat.fluffy.welcome_text', ''),
   website<String>('chat.fluffy.website_url', 'https://fluffychat.im'),
@@ -75,7 +74,16 @@ enum AppSettings<T> {
   webNotificationSound<bool>('chat.fluffy.web_notification_sound', true),
   chatFilter<String>('chat.fluffy.chat_filter', 'allChats'),
   hideRoomsInSpaces<bool>('chat.fluffy.hideRoomsInSpaces', false),
-  showThumbnailsInTimeline<bool>('chat.fluffy.showThumbnailsInTimeline', true);
+  showThumbnailsInTimeline<bool>('chat.fluffy.showThumbnailsInTimeline', true),
+  doubleTapToReact<bool>('chat.fluffy.double_tap_to_react', false),
+  doubleTapReaction<String>('chat.fluffy.double_tap_reaction', '❤️'),
+  benchmarksInLogs<bool>('chat.fluffy.benchmarks_in_logs', false),
+  autoSendErrorReports<bool?>('chat.fluffy.auto_send_eror_reports', null),
+  sentryDns<String>(
+    'chat.fluffy.sentry_dns',
+    'https://001fc83b53bd409c82a505d74d56f001@observe.fluffy.chat/1',
+  ),
+  customLiveKitInstance<String>('chat.fluffy.custom_live_kit_instance', '');
 
   final String key;
   final T defaultValue;
@@ -111,6 +119,12 @@ enum AppSettings<T> {
     if (store.getBool(AppSettings.sendOnEnter.key) == null) {
       await store.setBool(AppSettings.sendOnEnter.key, !PlatformInfos.isMobile);
     }
+    if (store.getBool(AppSettings.doubleTapToReact.key) == null) {
+      await store.setBool(
+        AppSettings.doubleTapToReact.key,
+        PlatformInfos.isMobile,
+      );
+    }
     if (kIsWeb && loadWebConfigFile) {
       try {
         final configJsonString = utf8.decode(
@@ -144,6 +158,23 @@ enum AppSettings<T> {
 
     return store;
   }
+}
+
+extension AppSettingsBoolNExtension on AppSettings<bool?> {
+  bool? get value {
+    final value = Result(() => AppSettings.store.getBool(key));
+    final error = value.asError;
+    if (error != null) {
+      Logs().e(
+        'Unable to fetch $key from storage. Removing entry...',
+        error.error,
+        error.stackTrace,
+      );
+    }
+    return value.asValue?.value;
+  }
+
+  Future<void> setItem(bool value) => AppSettings.store.setBool(key, value);
 }
 
 extension AppSettingsBoolExtension on AppSettings<bool> {

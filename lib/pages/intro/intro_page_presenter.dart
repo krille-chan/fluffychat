@@ -13,8 +13,8 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/oidc_session_json_extensi
 import 'package:fluffychat/utils/sign_in_flows/check_homeserver.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
 import 'package:matrix/msc_extensions/msc_2964_oidc_login_flow/msc_2964_oidc_login_flow.dart';
 import 'package:shared_preferences/shared_preferences.dart';

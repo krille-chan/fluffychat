@@ -10,8 +10,8 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/trust_user_key_dialog.dart';
 import 'package:fluffychat/utils/markdown_context_builder.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 import 'package:slugify/slugify.dart';
 
@@ -456,6 +456,7 @@ class InputBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
           clipBehavior: Clip.hardEdge,
           child: ListView.builder(
+            padding: EdgeInsets.zero,
             shrinkWrap: true,
             itemCount: suggestions.length,
             itemBuilder: (context, i) => buildSuggestion(

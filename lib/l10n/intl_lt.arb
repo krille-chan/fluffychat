@@ -883,11 +883,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Vaizdo skambutis",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Jūsų viešasis raktas",
     "@yourPublicKey": {
         "type": "String",
@@ -1649,11 +1644,7 @@
     "pinMessage": "Prisegti prie kambario",
     "confirmEventUnpin": "Ar tikrai norite visam laikui atsegti įvykį?",
     "emojis": "Jaustukai",
-    "placeCall": "Skambinti",
-    "voiceCall": "Balso skambutis",
     "unsupportedAndroidVersionLong": "Šiai funkcijai reikalinga naujesnė Android versija. Patikrinkite, ar nėra naujinimų arba Lineage OS palaikymo.",
-    "videoCallsBetaWarning": "Atminkite, kad vaizdo skambučiai šiuo metu yra beta versijos. Jie gali neveikti taip kaip tikėtasi, arba iš viso neveikti visose platformose.",
-    "experimentalVideoCalls": "Eksperimentiniai vaizdo skambučiai",
     "youRejectedTheInvitation": "Jūs atmetėte kvietimą",
     "youJoinedTheChat": "Jūs prisijungėte prie pokalbio",
     "youAcceptedTheInvitation": "👍 Jūs priėmėte kvietimą",
@@ -1834,10 +1825,7 @@
     "storeSecurlyOnThisDevice": "Saugiai laikyti šiame prietaise",
     "storeInAndroidKeystore": "Saugoti Android raktų saugykloje",
     "noKeyForThisMessage": "Taip gali atsitikti, jei žinutė buvo išsiųsta prieš prisijungiant prie paskyros šiame prietaise.\n\nTaip pat gali būti, kad siuntėjas užblokavo jūsų prietaisą arba kažkas sutriko su interneto ryšiu.\n\nAr galite perskaityti žinutę kitoje sesijoje? Tada galite perkelti žinutę iš jos! Eikite į Nustatymai > Prietaisai ir įsitikinkite, kad jūsų prietaisai patvirtino vienas kitą. Kai kitą kartą atidarysite kambarį ir abi sesijos bus pirmame plane, raktai bus perduoti automatiškai.\n\nNenorite prarasti raktų atsijungdami arba keisdami įrenginius? Įsitikinkite, kad nustatymuose įjungėte pokalbių atsarginę kopiją.",
-    "foregroundServiceRunning": "Šis pranešimas rodomas, kai veikia pirmojo plano paslauga.",
-    "screenSharingTitle": "ekrano bendrinimas",
     "whyIsThisMessageEncrypted": "Kodėl ši žinutė neperskaitoma?",
-    "screenSharingDetail": "Bendrinate savo ekraną per FuffyChat",
     "hugContent": "{senderName} jus apkabina",
     "@hugContent": {
         "type": "String",

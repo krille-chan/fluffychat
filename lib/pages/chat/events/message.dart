@@ -5,6 +5,7 @@
 
 import 'dart:ui' as ui;
 
+import 'package:collection/collection.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -17,8 +18,8 @@ import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/member_actions_popup_menu_button.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
@@ -343,7 +344,9 @@ class Message extends StatelessWidget {
                                             .onPrimaryContainer,
                                       ),
                                     ),
-                                  if ((!nextEventSameSender) && !ownMessage)
+                                  if ((!nextEventSameSender) &&
+                                      !ownMessage &&
+                                      !event.room.isDirectChat)
                                     FutureBuilder<User?>(
                                       future: event.fetchSenderUser(),
                                       builder: (context, snapshot) {
@@ -358,16 +361,15 @@ class Message extends StatelessWidget {
                                             displayname,
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color: event.room.isDirectChat
-                                                  ? Colors.transparent
-                                                  : (theme.brightness ==
-                                                            Brightness.light
-                                                        ? displayname
-                                                              .colorScheme
-                                                              .primary
-                                                        : displayname
-                                                              .colorScheme
-                                                              .primaryContainer),
+                                              color:
+                                                  (theme.brightness ==
+                                                      Brightness.light
+                                                  ? displayname
+                                                        .colorScheme
+                                                        .primary
+                                                  : displayname
+                                                        .colorScheme
+                                                        .primaryContainer),
                                               fontSize: 11,
                                               shadows: wallpaperTextShadow,
                                             ),
@@ -385,6 +387,45 @@ class Message extends StatelessWidget {
                               alignment: alignment,
                               padding: const EdgeInsets.only(left: 8),
                               child: GestureDetector(
+                                onDoubleTap:
+                                    AppSettings.doubleTapToReact.value &&
+                                        event.room.canSendDefaultMessages
+                                    ? () {
+                                        HapticFeedback.lightImpact();
+                                        final emoji =
+                                            AppSettings.doubleTapReaction.value;
+                                        final existingReaction = event
+                                            .aggregatedEvents(
+                                              timeline,
+                                              RelationshipTypes.reaction,
+                                            )
+                                            .firstWhereOrNull(
+                                              (e) =>
+                                                  e.senderId ==
+                                                      event
+                                                          .room
+                                                          .client
+                                                          .userID &&
+                                                  e.content
+                                                          .tryGetMap<
+                                                            String,
+                                                            Object?
+                                                          >('m.relates_to')
+                                                          ?.tryGet<String>(
+                                                            'key',
+                                                          ) ==
+                                                      emoji,
+                                            );
+                                        if (existingReaction != null) {
+                                          existingReaction.redactEvent();
+                                        } else {
+                                          event.room.sendReaction(
+                                            event.eventId,
+                                            emoji,
+                                          );
+                                        }
+                                      }
+                                    : null,
                                 onLongPress: longPressSelect
                                     ? null
                                     : () {

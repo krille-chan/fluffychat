@@ -1569,11 +1569,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "videoCall": "Videoanruf",
-    "@videoCall": {
-        "type": "String",
-        "placeholders": {}
-    },
     "visibilityOfTheChatHistory": "Sichtbarkeit des Chat-Verlaufs",
     "@visibilityOfTheChatHistory": {
         "type": "String",
@@ -1725,12 +1720,8 @@
     },
     "pinMessage": "An Raum anheften",
     "emojis": "Emojis",
-    "placeCall": "Anruf tätigen",
-    "voiceCall": "Sprachanruf",
     "unsupportedAndroidVersion": "Nicht unterstützte Android-Version",
-    "videoCallsBetaWarning": "Bitte beachte, dass sich Videoanrufe derzeit in der Beta-Phase befinden. Sie funktionieren möglicherweise nicht wie erwartet oder überhaupt nicht auf allen Plattformen.",
     "unsupportedAndroidVersionLong": "Diese Funktion erfordert eine neuere Android-Version. Bitte suche nach Updates oder prüfe die Lineage-OS-Unterstützung.",
-    "experimentalVideoCalls": "Experimentelle Videoanrufe",
     "reactedWith": "{sender} reagierte mit {reaction}",
     "@reactedWith": {
         "type": "String",
@@ -1836,11 +1827,8 @@
     "commandHint_markasgroup": "Als Gruppe markieren",
     "doNotShowAgain": "Nicht mehr anzeigen",
     "noKeyForThisMessage": "Dies kann passieren, wenn die Nachricht gesendet wurde, bevor du dich auf diesem Gerät bei deinem Konto angemeldet hast.\n\nEs ist auch möglich, dass der Absender dein Gerät blockiert hat oder etwas mit der Internetverbindung schief gelaufen ist.\n\nKannst du die Nachricht in einer anderen Sitzung lesen? Dann kannst du die Nachricht davon übertragen! Gehe zu den Einstellungen > Geräte und vergewissere dich, dass sich deine Geräte gegenseitig verifiziert haben. Wenn du den Raum das nächste Mal öffnest und beide Sitzungen im Vordergrund sind, werden die Schlüssel automatisch übertragen.\n\nDu möchtest die Schlüssel beim Abmelden oder Gerätewechsel nicht verlieren? Stelle sicher, dass du das Chat-Backup in den Einstellungen aktiviert hast.",
-    "foregroundServiceRunning": "Diese Benachrichtigung wird angezeigt, wenn der Vordergrunddienst ausgeführt wird.",
-    "screenSharingTitle": "Bildschirm teilen",
     "whyIsThisMessageEncrypted": "Warum ist diese Nachricht nicht lesbar?",
     "newSpace": "Neuer Space",
-    "screenSharingDetail": "Du teilst deinen Bildschirm in FuffyChat",
     "newSpaceDescription": "Mit Spaces kannst du deine Chats zusammenfassen und private oder öffentliche Communities aufbauen.",
     "wasDirectChatDisplayName": "Leerer Chat (war {oldDisplayName})",
     "@wasDirectChatDisplayName": {
@@ -2221,7 +2209,6 @@
     "noChatsFoundHere": "Hier wurden noch keine Chats gefunden. Starte einen neuen Chat mit jemandem, indem du die Schaltfläche unten verwenden. ⤵️",
     "doesNotSeemToBeAValidHomeserver": "Scheint kein kompatibler Homeserver zu sein. Falsche URL?",
     "loginWithMatrixId": "Mit Matrix-ID anmelden",
-    "sendingAttachment": "Anhang wird gesendet ...",
     "calculatingFileSize": "Dateigröße wird berechnet ...",
     "fileIsTooBigForServer": "Kann nicht gesendet werden! Der Server unterstützt nur Anhänge bis höchstens {max}.",
     "@fileIsTooBigForServer": {

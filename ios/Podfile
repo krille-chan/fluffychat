@@ -37,12 +37,13 @@ target 'Runner' do
   target 'FluffyChat Share' do
     inherit! :search_paths
   end
+end
 
-  # Add SQLite support to Notification Extension
-  target 'Notification Service Extension' do
-    inherit! :search_paths
-    pod 'FMDB/SQLCipher'
-  end
+# SQLCipher for the NSE only:
+target 'Notification Service Extension' do
+  use_frameworks! :linkage => :static
+  use_modular_headers!
+  pod 'FMDB/SQLCipher'
 end
 
 post_install do |installer|
@@ -57,9 +58,7 @@ post_install do |installer|
 
       config.build_settings['ENABLE_BITCODE'] = 'NO'
 
-      # see https://github.com/flutter-webrtc/flutter-webrtc/issues/1054
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
-      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = 'arm64 i386'
 
       config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= [
         '$(inherited)',

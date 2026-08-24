@@ -6,7 +6,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/size_string.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -24,7 +24,7 @@ extension MatrixFileExtension on MatrixFile {
 
     scaffoldMessenger.showSnackBar(
       SnackBar(
-        content: Text(l10n.fileHasBeenSavedAt(downloadPath)),
+        content: Text(l10n.fileHasBeenSavedAt(downloadPath.toString())),
         showCloseIcon: true,
       ),
     );

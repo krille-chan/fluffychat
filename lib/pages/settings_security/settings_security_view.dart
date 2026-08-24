@@ -13,9 +13,9 @@ import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:local_auth/local_auth.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
 import 'settings_security.dart';
@@ -78,6 +78,12 @@ class SettingsSecurityView extends StatelessWidget {
                     title: L10n.of(context).sendReadReceipts,
                     subtitle: L10n.of(context).sendReadReceiptsDescription,
                     setting: AppSettings.sendPublicReadReceipts,
+                  ),
+                  SettingsSwitchListTile.adaptive(
+                    title: L10n.of(context).shareCrashReports,
+                    subtitle: L10n.of(context).shareCrashReportsDescription,
+                    setting: AppSettings.autoSendErrorReports,
+                    defaultValue: false,
                   ),
                   ListTile(
                     trailing: const Icon(Icons.chevron_right_outlined),
