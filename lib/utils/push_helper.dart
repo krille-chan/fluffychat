@@ -199,10 +199,30 @@ Future<void> _tryPushHelper(
           (i) => i.name == intentStr,
         ) ??
         .video;
-    await FlutterCallkitIncoming.showCallkitIncoming(
-      buildFluffyChatCallKitParams(event.room, l10n, intent: intent),
+    final timeout =
+        event.tryParseRtcNotificationContent()?.lifetime ??
+        RtcNotificationContent.defaultLifetime;
+    final params = buildFluffyChatCallKitParams(
+      event.room,
+      l10n,
+      intent: intent,
+      timeout: timeout,
     );
+    final timeoutDateTime = DateTime.now().add(timeout);
+    await FlutterCallkitIncoming.showCallkitIncoming(params);
 
+    while (DateTime.now().isBefore(timeoutDateTime)) {
+      await client.oneShotSync();
+      if (!event.room.hasActiveMatrixRtcCall) {
+        Logs().v('The other party has ended the call');
+        await FlutterCallkitIncoming.endCall(params.id);
+        break;
+      }
+      if (event.room.ownMatrixRtcMembership != null) {
+        Logs().v('We have accepted the call');
+        break;
+      }
+    }
     return;
   }
 

@@ -14,6 +14,7 @@ CallKitParams buildFluffyChatCallKitParams(
   Room room,
   L10n l10n, {
   MatrixRtcCallIntent intent = .video,
+  Duration timeout = RtcNotificationContent.defaultLifetime,
 }) => CallKitParams(
   id: Uuid().v4(),
   extra: {'roomId': room.id, 'clientName': room.client.clientName},
@@ -21,7 +22,7 @@ CallKitParams buildFluffyChatCallKitParams(
   nameCaller: room.getLocalizedDisplayname(),
   handle: l10n.incomingCall,
   type: intent.callKitType,
-  duration: 10000,
+  duration: timeout.inMilliseconds,
   android: AndroidParams(textAccept: l10n.accept, textDecline: l10n.decline),
   ios: IOSParams(
     iconName: 'LaunchImage',

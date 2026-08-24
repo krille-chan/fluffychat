@@ -56,7 +56,10 @@ extension MatrixRtcRoomExtension on Room {
       if (event.content.isEmpty) return false;
       if (event is! Event) return false;
       try {
-        final validContent = MatrixRtcCallMember.fromJson(event.content);
+        final validContent = MatrixRtcCallMember.fromJson(
+          event.content,
+          senderId: event.senderId,
+        );
         if (validContent.focusActive?.type != 'livekit') return false;
         final expiresAt = (validContent.createdAt ?? event.originServerTs).add(
           validContent.expires,
@@ -69,7 +72,12 @@ extension MatrixRtcRoomExtension on Room {
       }
     });
     return activeMemberStates
-        .map((state) => MatrixRtcCallMember.fromJson(state.content))
+        .map(
+          (state) => MatrixRtcCallMember.fromJson(
+            state.content,
+            senderId: state.senderId,
+          ),
+        )
         .toList();
   }
 
@@ -83,7 +91,10 @@ extension MatrixRtcRoomExtension on Room {
     );
     if (state == null || state.content.isEmpty) return null;
     try {
-      return MatrixRtcCallMember.fromJson(state.content);
+      return MatrixRtcCallMember.fromJson(
+        state.content,
+        senderId: state.senderId,
+      );
     } catch (e, s) {
       Logs().d(
         'Unknown format for ${MatrixRtcCallMember.eventType} event',
@@ -115,6 +126,7 @@ extension MatrixRtcRoomExtension on Room {
       callIntent: intent,
       membershipId: '${client.userID}:${client.deviceID}',
       scope: 'm.room',
+      senderId: null,
     ).toJson(),
   );
 
@@ -226,6 +238,7 @@ extension MatrixRtcRoomExtension on Room {
             .map(
               (state) => MatrixRtcCallMember.fromJson(
                 state.content,
+                senderId: state.senderId,
               ).fociPreferred.map((focus) => focus.livekitServiceUrl),
             )
             .fold<List<String>>([], (urls, foci) => [...urls, ...foci]) ??
