@@ -111,7 +111,11 @@ class ChatListController extends State<ChatList>
         _joinCallWith(event.callKitParams);
         break;
       case CallEventActionCallEnded():
-        Matrix.of(context).endCall();
+        final roomId = event.callKitParams.extra?.tryGet<String>('roomId');
+        if (roomId != null &&
+            Matrix.of(context).activeCallRoomId.value == roomId) {
+          Matrix.of(context).activeCallRoomId.value = null;
+        }
         break;
       default:
         break;

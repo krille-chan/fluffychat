@@ -8,7 +8,6 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/call/call_page.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
@@ -69,29 +68,10 @@ class MatrixState extends State<Matrix> {
 
   BackgroundPush? backgroundPush;
 
-  OverlayEntry? activeCallOverlay;
-
-  void startCall(BuildContext context, String roomId) {
-    if (activeCallOverlay != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(L10n.of(context).youAreAlreadyInACall),
-          showCloseIcon: true,
-        ),
-      );
-      return;
-    }
-    Overlay.of(context, rootOverlay: true).insert(
-      activeCallOverlay = OverlayEntry(
-        builder: (context) => CallPage(roomId: roomId),
-      ),
-    );
-  }
-
-  void endCall() {
-    activeCallOverlay?.remove();
-    activeCallOverlay = null;
-  }
+  final ValueNotifier<String?> activeCallRoomId = ValueNotifier(null);
+  final ValueNotifier<CallPosition> callPosition = ValueNotifier(
+    CallPosition.fullScreen,
+  );
 
   Client get client {
     if (_activeClient < 0 || _activeClient >= widget.clients.length) {
@@ -451,3 +431,5 @@ class MatrixState extends State<Matrix> {
     file.save(context);
   }
 }
+
+enum CallPosition { fullScreen, top }
