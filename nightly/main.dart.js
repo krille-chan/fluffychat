@@ -110626,7 +110626,7 @@ s=3
 return A.f(A.aL(o,!1,t.B).gbb(0).dQ(a).Ln(),$async$Pi)
 case 3:o=p.c
 if(o==null){s=1
-break}s=A.aK(o,B.aj,t.l).w.a.a>840&&!A.iC(B.mK)?4:5
+break}s=!(A.aK(o,B.aj,t.l).w.a.a>840)&&!A.iC(B.mK)?4:5
 break
 case 4:s=6
 return A.f($.jQ.uu("Bool","chat.fluffy.display_navigation_rail",!0),$async$Pi)
