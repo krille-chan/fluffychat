@@ -1922,5 +1922,44 @@
         "placeholders": {}
     },
     "setLowPriority": "",
-    "unsetLowPriority": ""
+    "unsetLowPriority": "",
+    "editImage": "Redaguoti vaizdą",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "decline": "Atmesti",
+    "waitingForParticipant": "Laukiama dalyvio...",
+    "incomingCall": "Gaunamas skambutis",
+    "enterCall": "Įeiti į skambutį",
+    "allow": "Leisti",
+    "deny": "Atmesti",
+    "save": "Išsaugoti",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Piešti",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Valyti",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "versionWithNumber": "Versija: {version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "logs": "Žurnalai",
+    "baseUrl": "Pradinis URL",
+    "identityServer": "Identifikavimo serveris:",
+    "matrixId": "„Matrix“ ID"
 }
