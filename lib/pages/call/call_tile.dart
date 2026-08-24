@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:livekit_client/livekit_client.dart' as lk;
 import 'package:material_ui/material_ui.dart';
@@ -152,26 +153,38 @@ extension GetCallTiles on lk.Room {
             User user,
           })
         >[];
-    for (final participant in remoteParticipants.values) {
-      final user = room.unsafeGetUserFromMemoryOrFallback(participant.matrixId);
-      if (!participant.videoTrackPublications.any(
-        (pub) => !pub.isScreenShare,
-      )) {
+    final removeParticipantIds = <String>{
+      ...remoteParticipants.keys,
+      ...room.getActiveMatrixRtcMembers().map(
+        (member) => '${member.senderId}:${member.deviceId}',
+      ),
+    }..remove(localParticipant?.identity);
+
+    for (final participantId in removeParticipantIds) {
+      final participant = remoteParticipants[participantId];
+      final matrixId =
+          participant?.matrixId ??
+          (participantId.split(':')..removeLast()).join(':');
+      final user = room.unsafeGetUserFromMemoryOrFallback(matrixId);
+      if (participant == null ||
+          !participant.videoTrackPublications.any(
+            (pub) => !pub.isScreenShare,
+          )) {
         tiles.add((
-          id: '${participant.identity}_none',
+          id: '${participantId}_none',
           user: user,
           video: null,
           audio: null,
         ));
       }
-      for (final pub in participant.videoTrackPublications) {
+      for (final pub in participant?.videoTrackPublications ?? []) {
         tiles.add((
-          id: '${participant.identity}_${pub.name}',
+          id: '${participantId}_${pub.name}',
           user: user,
           video: pub,
           audio: pub.isScreenShare
               ? null
-              : participant.audioTrackPublications.firstOrNull,
+              : participant?.audioTrackPublications.firstOrNull,
         ));
       }
     }
