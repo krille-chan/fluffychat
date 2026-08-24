@@ -2780,16 +2780,6 @@
     "compressingVideo": "Ag comhbhrú físeáin...",
     "shareCrashReports": "Comhroinn tuairiscí tuairteála",
     "shareCrashReportsDescription": "Roinn tuairiscí tuairteála go huathoibríoch leis na forbróirí",
-    "shareCrashReportsPrompt": "An bhfuil tú ag iarraidh tuarascálacha tuairteála a roinnt go huathoibríoch leis na forbróirí? Faigh tuilleadh eolais ag {url} faoi na sonraí atá á roinnt.",
-    "@shareCrashReportsPrompt": {
-        "placeholders": {
-            "url": {
-                "type": "String"
-            }
-        }
-    },
-    "allow": "Ceadaigh",
-    "deny": "Diúltaigh",
     "activeCall": "Glao gníomhach",
     "countActiveCallMembers": "{count} baill ghníomhacha glaonna",
     "@countActiveCallMembers": {
