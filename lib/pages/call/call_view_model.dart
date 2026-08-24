@@ -492,7 +492,6 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     final devices = await lk.Hardware.instance.enumerateDevices(type: type);
     if (!context.mounted) return null;
     return await showMenu<lk.MediaDevice>(
-      useRootNavigator: true,
       context: context,
       position: context.position,
       items: devices.isEmpty

@@ -81,7 +81,7 @@ class MatrixState extends State<Matrix> {
       );
       return;
     }
-    Overlay.of(context).insert(
+    Overlay.of(context, rootOverlay: true).insert(
       activeCallOverlay = OverlayEntry(
         builder: (context) => CallPage(roomId: roomId),
       ),

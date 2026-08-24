@@ -26,16 +26,17 @@ extension LocalNotificationsExtension on MatrixState {
   Future<void> showLocalNotification(Event event) async {
     if (event.type == RtcNotificationContent.eventType &&
         event.tryParseRtcNotificationContent()?.notificationType == .ring) {
+      final context =
+          FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
+          this.context;
       showDialog<bool>(
-        context:
-            FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
-            context,
+        context: context,
         builder: (_) => IncomingCallDialog(event: event),
       ).then((joinCall) {
         if (joinCall != true) return;
-        if (!mounted) return;
+        if (!context.mounted) return;
         setActiveClient(event.room.client);
-        startCall(context, event.room.id);
+        FluffyChatApp.router.go('/rooms/${event.room.id}?action=call');
       });
     }
 

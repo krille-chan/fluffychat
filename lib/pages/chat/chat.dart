@@ -84,7 +84,7 @@ class ChatPage extends StatelessWidget {
     }
 
     return ChatPageWithRoom(
-      key: Key('chat_page_${roomId}_$eventId'),
+      key: Key('chat_page_${roomId}_${eventId}_$action'),
       room: room,
       shareItems: shareItems,
       eventId: eventId,
