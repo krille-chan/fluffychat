@@ -35,12 +35,11 @@ bool isIntegrationTest = false;
 
 void main(List<String> args) => runZonedGuarded(() async {
   // Forward Flutter errors to global error reporter
-  FlutterError.onError = kDebugMode
-      ? FlutterError.dumpErrorToConsole
-      : (details) => Zone.current.handleUncaughtError(
-          details.exception,
-          details.stack ?? StackTrace.current,
-        );
+  FlutterError.onError = (details) => Zone.current.handleUncaughtError(
+    details.exception,
+    details.stack ?? StackTrace.current,
+  );
+
   isIntegrationTest = args.singleOrNull == 'integration_test';
   if (PlatformInfos.isAndroid) {
     final port = mainIsolateReceivePort = ReceivePort();

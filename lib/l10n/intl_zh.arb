@@ -2774,16 +2774,6 @@
     "compressingVideo": "正在压缩视频…",
     "shareCrashReports": "分享崩溃报告",
     "shareCrashReportsDescription": "自动与开发者分享崩溃报告",
-    "shareCrashReportsPrompt": "自动与开发者分享崩溃报告吗？访问 {url} 了解分享什么数据的更多信息。",
-    "@shareCrashReportsPrompt": {
-        "placeholders": {
-            "url": {
-                "type": "String"
-            }
-        }
-    },
-    "allow": "允许",
-    "deny": "拒绝",
     "videoCallsBetaWarning": "视频通话是测试功能。可能有故障或意外行为。我们可以聆听您的反馈。",
     "activeCall": "活跃通话",
     "countActiveCallMembers": "{count} 名活跃通话成员",

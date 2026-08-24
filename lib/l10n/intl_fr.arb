@@ -2773,15 +2773,5 @@
     },
     "compressingVideo": "Compression de la vidéo...",
     "shareCrashReports": "Partager le rapport de crash",
-    "shareCrashReportsDescription": "Partage automatiquement les rapports de crash avec les developers",
-    "shareCrashReportsPrompt": "Partager automatiquement les rapports de crash avec les developpeurs ? Plus d'infos à l'addresse {url} à propos de ce qui est partagé.",
-    "@shareCrashReportsPrompt": {
-        "placeholders": {
-            "url": {
-                "type": "String"
-            }
-        }
-    },
-    "allow": "Autoriser",
-    "deny": "Interdir"
+    "shareCrashReportsDescription": "Partage automatiquement les rapports de crash avec les developers"
 }

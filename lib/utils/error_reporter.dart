@@ -3,19 +3,16 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry/sentry.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 class ErrorReporter {
   final BuildContext? context;
@@ -31,116 +28,37 @@ class ErrorReporter {
     'HandshakeException',
   };
 
-  static void onFlutterError(
-    Object error, [
-    StackTrace? stackTrace,
-  ]) => WidgetsBinding.instance.addPostFrameCallback((_) {
-    if (AppSettings.autoSendErrorReports.value == false) {
-      debugPrint('Exception caught but auto send error reports is disabled.');
-      return;
-    }
-    final context =
-        FluffyChatApp.router.routerDelegate.navigatorKey.currentContext;
-
-    if (context == null || !context.mounted) {
-      debugPrint(
-        'Exception caught but we have no mounted BuildContext to display a dialog to the user!',
-      );
-      debugPrintStack(stackTrace: StackTrace.current);
-      return;
-    }
-
-    if (AppSettings.autoSendErrorReports.value == true) {
-      sendErrorReport(
+  static void onFlutterError(Object error, [StackTrace? stackTrace]) =>
+      _sendErrorReport(
         message: 'Flutter Error',
         error: error,
         stackTrace: stackTrace,
       );
-      return;
-    }
-
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
-
-    scaffoldMessenger.showSnackBar(
-      SnackBar(
-        backgroundColor: Theme.of(context).colorScheme.inverseSurface,
-        persist: true,
-        content: Column(
-          mainAxisSize: .min,
-          children: [
-            Linkify(
-              text: L10n.of(
-                context,
-              ).shareCrashReportsPrompt(AppSettings.privacyPolicy.value),
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onInverseSurface,
-              ),
-              options: const LinkifyOptions(humanize: false),
-              linkStyle: TextStyle(
-                decoration: TextDecoration.underline,
-                decorationColor: Theme.of(context).colorScheme.primaryContainer,
-                color: Theme.of(context).colorScheme.primaryContainer,
-              ),
-              onOpen: (url) => launchUrlString(url.url),
-            ),
-            Row(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    AppSettings.autoSendErrorReports.setItem(true);
-                    sendErrorReport(
-                      message: 'Flutter Error',
-                      error: error,
-                      stackTrace: stackTrace,
-                    );
-                    scaffoldMessenger.clearSnackBars();
-                  }, // TODO: Also send to sentry
-                  child: Text(
-                    L10n.of(context).allow,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    AppSettings.autoSendErrorReports.setItem(false);
-                    scaffoldMessenger.clearSnackBars();
-                  },
-                  child: Text(
-                    L10n.of(context).deny,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.errorContainer,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  });
 
   static bool _sentryInitialized = false;
 
-  static Future<void> sendErrorReport({
+  static Future<void> _sendErrorReport({
     required String message,
     required Object error,
     required StackTrace? stackTrace,
-    int level = 0,
+    bool? consent,
   }) async {
-    if (!kReleaseMode) {
-      Logs().e(message, error, stackTrace);
-      return;
-    }
+    consent ??= AppSettings.autoSendErrorReports.value;
     final dsn = AppSettings.sentryDns.value;
-    if (dsn.isEmpty) {
-      return ErrorReporter(null, message).onErrorCallback(error, stackTrace);
+    if (AppSettings.autoSendErrorReports.value != true || dsn.isEmpty) {
+      debugPrint('Exception caught but auto send crash reports is disabled.');
+      debugPrint(error.toString());
+      debugPrintStack(stackTrace: stackTrace);
+      return;
     }
     if (!_sentryInitialized) {
       await Sentry.init((options) => options.dsn = dsn);
       _sentryInitialized = true;
+    }
+    Logs().e('Sending crash report... ($message)', error, stackTrace);
+    if (!kReleaseMode) {
+      Logs().v('Sending crash report aborted. Only possible in release mode!');
+      return;
     }
     await Sentry.captureException(
       error,
@@ -193,22 +111,15 @@ class ErrorReporter {
             child: Text(L10n.of(context).copy),
           ),
           AdaptiveDialogAction(
-            onPressed: () {
-              if (String.fromEnvironment('sentry_dsn').isNotEmpty) {
-                sendErrorReport(
-                  message: message ?? 'Error from Error Reporting Dialog',
-                  error: error,
-                  stackTrace: stackTrace,
-                );
-                return;
-              }
-              launchUrl(
-                AppConfig.newIssueUrl.resolveUri(
-                  Uri(queryParameters: {'template': 'bug_report.yaml'}),
-                ),
-                mode: LaunchMode.externalApplication,
-              );
-            },
+            onPressed: () => showFutureLoadingDialog(
+              context: context,
+              future: () => _sendErrorReport(
+                message: message ?? 'Error from Error Reporting Dialog',
+                error: error,
+                stackTrace: stackTrace,
+                consent: true,
+              ),
+            ),
             child: Text(L10n.of(context).report),
           ),
         ],
