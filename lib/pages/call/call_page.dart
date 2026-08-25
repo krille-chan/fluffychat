@@ -50,379 +50,366 @@ class CallPage extends StatelessWidget {
           removeTop: mini,
           child: ScaffoldMessenger(
             child: Scaffold(
-                  extendBodyBehindAppBar: true,
-                  appBar: AppBar(
-                    automaticallyImplyLeading: false,
-                    leading: viewModel.startTime == null
-                        ? null
-                        : StartTime(startTime: viewModel.startTime!),
-                    backgroundColor: theme.colorScheme.surface.withAlpha(64),
-                    centerTitle: true,
-                    actions: [
-                      IconButton(
-                        icon: Icon(Icons.fullscreen_outlined),
-                        onPressed: () {
-                          Matrix.of(context).callPosition.value = mini
-                              ? .fullScreen
-                              : .top;
-                        },
-                      ),
-                      if (localVideoTrack == null)
-                        PopupMenuButton(
-                          itemBuilder: (context) => [
-                            PopupMenuItem(
-                              onTap: () => viewModel.selectCamera(context),
-                              child: Row(
-                                mainAxisSize: .min,
-                                spacing: 12,
-                                children: [
-                                  const Icon(Icons.camera_outlined),
-                                  Text(L10n.of(context).selectCamera),
-                                ],
-                              ),
-                            ),
-                            PopupMenuItem(
-                              onTap: () => viewModel.selectMicrophone(context),
-                              child: Row(
-                                mainAxisSize: .min,
-                                spacing: 12,
-                                children: [
-                                  const Icon(Icons.mic_outlined),
-                                  Text(L10n.of(context).selectMicrophone),
-                                ],
-                              ),
-                            ),
-                            PopupMenuItem(
-                              onTap: () => viewModel.selectSpeaker(context),
-                              child: Row(
-                                mainAxisSize: .min,
-                                spacing: 12,
-                                children: [
-                                  const Icon(Icons.speaker_phone_outlined),
-                                  Text(L10n.of(context).selectSpeaker),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                    ],
-                    titleSpacing: mini ? 0 : null,
-                    title: Column(
-                      mainAxisSize: .min,
-                      children: [
-                        Text(
-                          room.getLocalizedDisplayname(),
-                          maxLines: 1,
-                          overflow: .ellipsis,
-                          style: mini
-                              ? TextStyle(fontSize: 11, fontWeight: .bold)
-                              : null,
-                        ),
-                        if (activeMembers > 0)
-                          Text(
-                            viewModel.waitForOtherSide
-                                ? L10n.of(context).waitingForParticipant
-                                : L10n.of(
-                                    context,
-                                  ).countActiveCallMembers(activeMembers),
-                            maxLines: 1,
-                            style: TextStyle(fontSize: 11),
+              extendBodyBehindAppBar: true,
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                leading: viewModel.startTime == null
+                    ? null
+                    : StartTime(startTime: viewModel.startTime!),
+                backgroundColor: theme.colorScheme.surface.withAlpha(64),
+                centerTitle: true,
+                actions: [
+                  IconButton(
+                    icon: Icon(Icons.fullscreen_outlined),
+                    onPressed: () {
+                      Matrix.of(context).callPosition.value = mini
+                          ? .fullScreen
+                          : .top;
+                    },
+                  ),
+                  if (localVideoTrack == null)
+                    PopupMenuButton(
+                      itemBuilder: (context) => [
+                        PopupMenuItem(
+                          onTap: () => viewModel.selectCamera(context),
+                          child: Row(
+                            mainAxisSize: .min,
+                            spacing: 12,
+                            children: [
+                              const Icon(Icons.camera_outlined),
+                              Text(L10n.of(context).selectCamera),
+                            ],
                           ),
+                        ),
+                        PopupMenuItem(
+                          onTap: () => viewModel.selectMicrophone(context),
+                          child: Row(
+                            mainAxisSize: .min,
+                            spacing: 12,
+                            children: [
+                              const Icon(Icons.mic_outlined),
+                              Text(L10n.of(context).selectMicrophone),
+                            ],
+                          ),
+                        ),
+                        PopupMenuItem(
+                          onTap: () => viewModel.selectSpeaker(context),
+                          child: Row(
+                            mainAxisSize: .min,
+                            spacing: 12,
+                            children: [
+                              const Icon(Icons.speaker_phone_outlined),
+                              Text(L10n.of(context).selectSpeaker),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                  body: liveKitRoom == null
-                      ? Center(child: CircularProgressIndicator())
-                      : localVideoTrack != null
-                      ? Stack(
-                          children: [
-                            localVideoTrack.muted
-                                ? Center(
-                                    child: Avatar(
-                                      mxContent: ownUser.avatarUrl,
-                                      name: ownUser.calcDisplayname(),
-                                      size: 128,
-                                    ),
-                                  )
-                                : VideoTrackRenderer(
-                                    localVideoTrack,
-                                    fit: .cover,
-                                  ),
+                ],
+                titleSpacing: mini ? 0 : null,
+                title: Column(
+                  mainAxisSize: .min,
+                  children: [
+                    Text(
+                      room.getLocalizedDisplayname(),
+                      maxLines: 1,
+                      overflow: .ellipsis,
+                      style: mini
+                          ? TextStyle(fontSize: 11, fontWeight: .bold)
+                          : null,
+                    ),
+                    if (activeMembers > 0)
+                      Text(
+                        viewModel.waitForOtherSide
+                            ? L10n.of(context).waitingForParticipant
+                            : L10n.of(
+                                context,
+                              ).countActiveCallMembers(activeMembers),
+                        maxLines: 1,
+                        style: TextStyle(fontSize: 11),
+                      ),
+                  ],
+                ),
+              ),
+              body: liveKitRoom == null
+                  ? Center(child: CircularProgressIndicator())
+                  : localVideoTrack != null
+                  ? Stack(
+                      children: [
+                        localVideoTrack.muted
+                            ? Center(
+                                child: Avatar(
+                                  mxContent: ownUser.avatarUrl,
+                                  name: ownUser.calcDisplayname(),
+                                  size: 128,
+                                ),
+                              )
+                            : VideoTrackRenderer(localVideoTrack, fit: .cover),
 
-                            Align(
-                              alignment: .topCenter,
-                              child: SafeArea(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: theme.colorScheme.errorContainer
-                                        .withAlpha(230),
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius,
-                                    ),
-                                  ),
-                                  margin: EdgeInsets.all(16.0),
-                                  padding: EdgeInsets.all(16.0),
-                                  child: Text(
-                                    L10n.of(context).videoCallsBetaWarning,
-                                    textAlign: .center,
-                                    style: TextStyle(
-                                      fontSize: 11,
-                                      color: theme.colorScheme.onErrorContainer,
-                                    ),
-                                  ),
+                        Align(
+                          alignment: .topCenter,
+                          child: SafeArea(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: theme.colorScheme.errorContainer
+                                    .withAlpha(230),
+                                borderRadius: BorderRadius.circular(
+                                  AppConfig.borderRadius,
+                                ),
+                              ),
+                              margin: EdgeInsets.all(16.0),
+                              padding: EdgeInsets.all(16.0),
+                              child: Text(
+                                L10n.of(context).videoCallsBetaWarning,
+                                textAlign: .center,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: theme.colorScheme.onErrorContainer,
                                 ),
                               ),
                             ),
-                          ],
-                        )
-                      : SafeArea(
-                          top: !mini,
-                          child: LayoutBuilder(
-                            builder: (context, constraints) {
-                              final axis =
-                                  constraints.maxWidth < constraints.maxHeight
-                                  ? Axis.vertical
-                                  : Axis.horizontal;
+                          ),
+                        ),
+                      ],
+                    )
+                  : SafeArea(
+                      top: !mini,
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          final axis =
+                              constraints.maxWidth < constraints.maxHeight
+                              ? Axis.vertical
+                              : Axis.horizontal;
 
-                              final tiles = liveKitRoom.getCallTiles(room);
+                          final tiles = liveKitRoom.getCallTiles(room);
 
-                              final focused =
-                                  (viewModel.value.focusedTrack == null
-                                      ? null
-                                      : tiles.firstWhereOrNull(
-                                          (tile) =>
-                                              tile.id ==
-                                              viewModel.value.focusedTrack,
-                                        )) ??
-                                  tiles.firstWhereOrNull(
-                                    (tile) => tile.video?.isScreenShare == true,
-                                  ) ??
-                                  tiles.firstOrNull ??
-                                  (
-                                    id: '${ownUser.id}_fallback_none',
-                                    user: ownUser,
-                                    video: null,
-                                    audio: null,
-                                  );
-                              if (mini) {
-                                return SizedBox.expand(
+                          final focused =
+                              (viewModel.value.focusedTrack == null
+                                  ? null
+                                  : tiles.firstWhereOrNull(
+                                      (tile) =>
+                                          tile.id ==
+                                          viewModel.value.focusedTrack,
+                                    )) ??
+                              tiles.firstWhereOrNull(
+                                (tile) => tile.video?.isScreenShare == true,
+                              ) ??
+                              tiles.firstOrNull ??
+                              (
+                                id: '${ownUser.id}_fallback_none',
+                                user: ownUser,
+                                video: null,
+                                audio: null,
+                              );
+                          if (mini) {
+                            return SizedBox.expand(
+                              child: CallTile(
+                                key: ValueKey(focused.id),
+                                user: focused.user,
+                                video: focused.video,
+                                audio: focused.audio,
+                                margin: EdgeInsets.zero,
+                                handRaised: viewModel.participantRaisedHand(
+                                  focused.user.id,
+                                ),
+                                onTap: null,
+                              ),
+                            );
+                          }
+                          tiles.remove(focused);
+
+                          return Padding(
+                            padding: EdgeInsets.only(
+                              bottom: 84.0,
+                              left: 16.0,
+                              right: 16.0,
+                            ),
+                            child: Flex(
+                              direction: axis,
+                              crossAxisAlignment: .stretch,
+                              children: [
+                                Expanded(
                                   child: CallTile(
                                     key: ValueKey(focused.id),
                                     user: focused.user,
                                     video: focused.video,
                                     audio: focused.audio,
-                                    margin: EdgeInsets.zero,
+                                    fit: .contain,
                                     handRaised: viewModel.participantRaisedHand(
                                       focused.user.id,
                                     ),
-                                    onTap: null,
+                                    onTap: focused.video == null
+                                        ? null
+                                        : () => viewModel.setFocusedTrack(
+                                            focused.id,
+                                          ),
                                   ),
-                                );
-                              }
-                              tiles.remove(focused);
-
-                              return Padding(
-                                padding: EdgeInsets.only(
-                                  bottom: 84.0,
-                                  left: 16.0,
-                                  right: 16.0,
                                 ),
-                                child: Flex(
-                                  direction: axis,
-                                  crossAxisAlignment: .stretch,
-                                  children: [
-                                    Expanded(
-                                      child: CallTile(
-                                        key: ValueKey(focused.id),
-                                        user: focused.user,
-                                        video: focused.video,
-                                        audio: focused.audio,
-                                        fit: .contain,
+                                if (tiles.isNotEmpty) ...[
+                                  SizedBox(width: 16, height: 16),
+                                  SizedBox(
+                                    height: axis == .horizontal
+                                        ? null
+                                        : tileSize,
+                                    width: axis == .vertical ? null : tileSize,
+                                    child: ListView.builder(
+                                      scrollDirection: axis == .horizontal
+                                          ? .vertical
+                                          : .horizontal,
+                                      itemCount: tiles.length,
+                                      itemBuilder: (context, i) => CallTile(
+                                        key: ValueKey(tiles[i].id),
+                                        user: tiles[i].user,
+                                        video: tiles[i].video,
+                                        audio: tiles[i].audio,
+                                        size: tileSize,
                                         handRaised: viewModel
                                             .participantRaisedHand(
-                                              focused.user.id,
+                                              tiles[i].user.id,
                                             ),
-                                        onTap: focused.video == null
+                                        onTap: tiles[i].video == null
                                             ? null
                                             : () => viewModel.setFocusedTrack(
-                                                focused.id,
+                                                tiles[i].id,
                                               ),
-                                      ),
-                                    ),
-                                    if (tiles.isNotEmpty) ...[
-                                      SizedBox(width: 16, height: 16),
-                                      SizedBox(
-                                        height: axis == .horizontal
-                                            ? null
-                                            : tileSize,
-                                        width: axis == .vertical
-                                            ? null
-                                            : tileSize,
-                                        child: ListView.builder(
-                                          scrollDirection: axis == .horizontal
-                                              ? .vertical
-                                              : .horizontal,
-                                          itemCount: tiles.length,
-                                          itemBuilder: (context, i) => CallTile(
-                                            key: ValueKey(tiles[i].id),
-                                            user: tiles[i].user,
-                                            video: tiles[i].video,
-                                            audio: tiles[i].audio,
-                                            size: tileSize,
-                                            handRaised: viewModel
-                                                .participantRaisedHand(
-                                                  tiles[i].user.id,
-                                                ),
-                                            onTap: tiles[i].video == null
-                                                ? null
-                                                : () =>
-                                                      viewModel.setFocusedTrack(
-                                                        tiles[i].id,
-                                                      ),
-                                            margin: EdgeInsets.only(
-                                              right: axis == .vertical ? 16 : 0,
-                                              bottom: axis == .horizontal
-                                                  ? 16
-                                                  : 0,
-                                            ),
-                                          ),
+                                        margin: EdgeInsets.only(
+                                          right: axis == .vertical ? 16 : 0,
+                                          bottom: axis == .horizontal ? 16 : 0,
                                         ),
                                       ),
-                                    ],
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                  floatingActionButtonLocation: .centerFloat,
-                  floatingActionButton: Wrap(
-                    alignment: .center,
-                    spacing: mini ? 8 : 16,
-                    children: [
-                      if (localParticipant != null) ...[
-                        FloatingActionButton(
-                          mini: mini,
-                          heroTag: null,
-                          onPressed: () =>
-                              localParticipant.setMicrophoneEnabled(
-                                !localParticipant.isMicrophoneEnabled(),
-                              ),
-                          child: Icon(
-                            localParticipant.isMicrophoneEnabled()
-                                ? Icons.mic_outlined
-                                : Icons.mic_off_outlined,
-                          ),
-                        ),
-                        FloatingActionButton(
-                          heroTag: null,
-                          mini: mini,
-                          onPressed: () => localParticipant.setCameraEnabled(
-                            !localParticipant.isCameraEnabled(),
-                          ),
-                          child: Icon(
-                            localParticipant.isCameraEnabled()
-                                ? Icons.videocam_outlined
-                                : Icons.videocam_off_outlined,
-                          ),
-                        ),
-                        if (!PlatformInfos.isMobile) // TODO: Fix on mobile?
-                          FloatingActionButton(
-                            heroTag: null,
-                            mini: mini,
-                            onPressed: () =>
-                                localParticipant.setScreenShareEnabled(
-                                  !localParticipant.isScreenShareEnabled(),
-                                ),
-                            child: Icon(
-                              localParticipant.isScreenShareEnabled()
-                                  ? Icons.stop_screen_share_outlined
-                                  : Icons.screen_share_outlined,
+                                    ),
+                                  ),
+                                ],
+                              ],
                             ),
-                          ),
-                        FloatingActionButton(
-                          heroTag: null,
-                          mini: mini,
-                          backgroundColor: ownHandRaised
-                              ? theme.colorScheme.primary
-                              : null,
-                          foregroundColor: ownHandRaised
-                              ? theme.colorScheme.onPrimary
-                              : null,
-                          onPressed: () => showFutureLoadingDialog(
-                            context: context,
-                            future: () => ownHandRaised
-                                ? room.lowerHandInMatrixRtcCall(
-                                    viewModel.timeline!,
-                                  )
-                                : room.raiseHandInMatrixRtcCall(),
-                          ),
-                          child: Icon(
-                            ownHandRaised
-                                ? Icons.front_hand
-                                : Icons.front_hand_outlined,
-                          ),
-                        ),
-                      ] else ...[
-                        Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: SizedBox(
-                              width: 200,
-                              child: FloatingActionButton.extended(
-                                onPressed: () => showFutureLoadingDialog(
-                                  context: context,
-                                  future: () => viewModel.connect(context),
-                                ),
-                                foregroundColor: theme.colorScheme.onPrimary,
-                                backgroundColor: theme.colorScheme.primary,
-                                icon: Icon(Icons.call_outlined),
-                                label: Text(
-                                  room.hasActiveMatrixRtcCall
-                                      ? L10n.of(context).enterCall
-                                      : L10n.of(context).startCall,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        FloatingActionButton(
-                          heroTag: null,
-                          mini: mini,
-                          onPressed: localAudioTrack != null
-                              ? viewModel.togglePreviewMic
-                              : null,
-                          child: Icon(
-                            !(localAudioTrack?.muted ?? true)
-                                ? Icons.mic_outlined
-                                : Icons.mic_off_outlined,
-                          ),
-                        ),
-                        FloatingActionButton(
-                          heroTag: null,
-                          mini: mini,
-                          onPressed: localVideoTrack != null
-                              ? viewModel.togglePreviewCamera
-                              : null,
-                          child: Icon(
-                            !(localVideoTrack?.muted ?? true)
-                                ? Icons.videocam_outlined
-                                : Icons.videocam_off_outlined,
-                          ),
-                        ),
-                      ],
+                          );
+                        },
+                      ),
+                    ),
+              floatingActionButtonLocation: .centerFloat,
+              floatingActionButton: Wrap(
+                alignment: .center,
+                spacing: mini ? 8 : 16,
+                children: [
+                  if (localParticipant != null) ...[
+                    FloatingActionButton(
+                      mini: mini,
+                      heroTag: null,
+                      onPressed: () => localParticipant.setMicrophoneEnabled(
+                        !localParticipant.isMicrophoneEnabled(),
+                      ),
+                      child: Icon(
+                        localParticipant.isMicrophoneEnabled()
+                            ? Icons.mic_outlined
+                            : Icons.mic_off_outlined,
+                      ),
+                    ),
+                    FloatingActionButton(
+                      heroTag: null,
+                      mini: mini,
+                      onPressed: () => localParticipant.setCameraEnabled(
+                        !localParticipant.isCameraEnabled(),
+                      ),
+                      child: Icon(
+                        localParticipant.isCameraEnabled()
+                            ? Icons.videocam_outlined
+                            : Icons.videocam_off_outlined,
+                      ),
+                    ),
+                    if (!PlatformInfos.isMobile) // TODO: Fix on mobile?
                       FloatingActionButton(
                         heroTag: null,
                         mini: mini,
-                        onPressed: () => viewModel.close(context),
-                        foregroundColor: theme.colorScheme.onErrorContainer,
-                        backgroundColor: theme.colorScheme.errorContainer,
-                        child: Icon(Icons.call_end_outlined),
+                        onPressed: () => localParticipant.setScreenShareEnabled(
+                          !localParticipant.isScreenShareEnabled(),
+                        ),
+                        child: Icon(
+                          localParticipant.isScreenShareEnabled()
+                              ? Icons.stop_screen_share_outlined
+                              : Icons.screen_share_outlined,
+                        ),
                       ),
-                    ],
+                    FloatingActionButton(
+                      heroTag: null,
+                      mini: mini,
+                      backgroundColor: ownHandRaised
+                          ? theme.colorScheme.primary
+                          : null,
+                      foregroundColor: ownHandRaised
+                          ? theme.colorScheme.onPrimary
+                          : null,
+                      onPressed: () => showFutureLoadingDialog(
+                        context: context,
+                        future: () => ownHandRaised
+                            ? room.lowerHandInMatrixRtcCall(viewModel.timeline!)
+                            : room.raiseHandInMatrixRtcCall(),
+                      ),
+                      child: Icon(
+                        ownHandRaised
+                            ? Icons.front_hand
+                            : Icons.front_hand_outlined,
+                      ),
+                    ),
+                  ] else ...[
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: SizedBox(
+                          width: 200,
+                          child: FloatingActionButton.extended(
+                            onPressed: () => showFutureLoadingDialog(
+                              context: context,
+                              future: () => viewModel.connect(context),
+                            ),
+                            foregroundColor: theme.colorScheme.onPrimary,
+                            backgroundColor: theme.colorScheme.primary,
+                            icon: Icon(Icons.call_outlined),
+                            label: Text(
+                              room.hasActiveMatrixRtcCall
+                                  ? L10n.of(context).enterCall
+                                  : L10n.of(context).startCall,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    FloatingActionButton(
+                      heroTag: null,
+                      mini: mini,
+                      onPressed: localAudioTrack != null
+                          ? viewModel.togglePreviewMic
+                          : null,
+                      child: Icon(
+                        !(localAudioTrack?.muted ?? true)
+                            ? Icons.mic_outlined
+                            : Icons.mic_off_outlined,
+                      ),
+                    ),
+                    FloatingActionButton(
+                      heroTag: null,
+                      mini: mini,
+                      onPressed: localVideoTrack != null
+                          ? viewModel.togglePreviewCamera
+                          : null,
+                      child: Icon(
+                        !(localVideoTrack?.muted ?? true)
+                            ? Icons.videocam_outlined
+                            : Icons.videocam_off_outlined,
+                      ),
+                    ),
+                  ],
+                  FloatingActionButton(
+                    heroTag: null,
+                    mini: mini,
+                    onPressed: () => viewModel.close(context),
+                    foregroundColor: theme.colorScheme.onErrorContainer,
+                    backgroundColor: theme.colorScheme.errorContainer,
+                    child: Icon(Icons.call_end_outlined),
                   ),
-                ),
+                ],
               ),
+            ),
+          ),
         );
       },
     );
