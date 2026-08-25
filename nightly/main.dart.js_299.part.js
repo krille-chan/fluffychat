@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-dyO(){return new A.LS(B.dx("fa"))},
+dyP(){return new A.LS(B.dx("fa"))},
 LS:function LS(d){this.a=d}}
 B=c[0]
 C=c[58]
@@ -18,7 +18,7 @@ gqq(){return"Eraser"},
 gjl(){return"Crop"},
 gl_(){return"\u062a\u06a9\u0631\u0627\u0631 \u06af\u0630\u0631\u0648\u0627\u0698\u0647"},
 gky(){return"\u06cc\u06a9 \u0641\u0627\u06cc\u0644 \u062a\u0635\u0648\u06cc\u0631\u06cc \u0646\u06cc\u0633\u062a."},
-gbA(d){return"\u0628\u0631\u062f\u0627\u0634\u062a\u0646"},
+gbB(d){return"\u0628\u0631\u062f\u0627\u0634\u062a\u0646"},
 gjT(){return"\u0627\u06a9\u0646\u0648\u0646 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f"},
 gjR(){return"\u0648\u0627\u0631\u062f \u06a9\u0631\u062f\u0646 \u0634\u06a9\u0644\u06a9\u200c\u0647\u0627"},
 gjS(){return"\u0648\u0627\u0631\u062f \u06a9\u0631\u062f\u0646 \u0627\u0632 \u067e\u0631\u0648\u0646\u062f\u0647 \u0632\u06cc\u067e"},
@@ -730,9 +730,9 @@ gq_(){return"Start call"},
 gpK(){return"Select camera"},
 gpL(){return"Select microphone"},
 gpM(){return"Select speaker"},
-D(d,e){return this.gbA(this).$1(e)}}
+D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.LS,C.aT)})()
 B.e9(b.typeUniverse,JSON.parse('{"LS":{"aT":[]}}'))};
-(a=>{a["ORrpQdlEBsF0PDdSWEEPiPPgBYg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["EZIqWsomwgDQJmNsNXbIo5so14w="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

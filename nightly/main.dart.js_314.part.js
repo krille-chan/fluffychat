@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyW(){return new B.M_(A.dx("hr"))},
+dyX(){return new B.M_(A.dx("hr"))},
 M_:function M_(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -18,7 +18,7 @@ gqq(){return"Eraser"},
 gjl(){return"Crop"},
 gl_(){return"Ponovi lozinku"},
 gky(){return"Nije slikovna datoteka."},
-gbA(d){return"Ukloni"},
+gbB(d){return"Ukloni"},
 gjT(){return"Uvezi sada"},
 gjR(){return"Uvezi emoji slike"},
 gjS(){return"Uvezi iz .zip datoteke"},
@@ -733,9 +733,9 @@ gq_(){return"Start call"},
 gpK(){return"Select camera"},
 gpL(){return"Select microphone"},
 gpM(){return"Select speaker"},
-D(d,e){return this.gbA(this).$1(e)}}
+D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M_,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"M_":{"aT":[]}}'))};
-(a=>{a["VBYQYwxyi6pJ/D+71LkY+hBt5yE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Mz8VhXrta9I9PgLpADlQGnL7iU8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

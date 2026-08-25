@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dzp(){return new B.Ms(A.dx("uz"))},
+dzq(){return new B.Ms(A.dx("uz"))},
 Ms:function Ms(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -18,7 +18,7 @@ gqq(){return"Eraser"},
 gjl(){return"Crop"},
 gl_(){return"Parolni takrorlang"},
 gky(){return"Rasm fayli emas."},
-gbA(d){return"O\u2018chirish"},
+gbB(d){return"O\u2018chirish"},
 gjT(){return"Hozir import qilish"},
 gjR(){return"Emojilarni import qilish"},
 gjS(){return".zip faylidan import qilish"},
@@ -732,10 +732,10 @@ gq_(){return"Start call"},
 gpK(){return"Select camera"},
 gpL(){return"Select microphone"},
 gpM(){return"Select speaker"},
-D(d,e){return this.gbA(this).$1(e)}}
+D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Ms,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Ms":{"aT":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["vX+OrL+hCNkwFhFEtrsVVTozuLg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["O/bNwskh9US1vpkXZ1j2Wt8hL3c="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

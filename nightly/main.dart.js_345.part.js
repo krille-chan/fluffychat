@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dz9(){return new B.Md(A.dx("pl"))},
+dza(){return new B.Md(A.dx("pl"))},
 Md:function Md(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -18,7 +18,7 @@ gqq(){return"Eraser"},
 gjl(){return"Crop"},
 gl_(){return"Powt\xf3rz has\u0142o"},
 gky(){return"To nie jest plik obrazu."},
-gbA(d){return"Usu\u0144"},
+gbB(d){return"Usu\u0144"},
 gjT(){return"Zaimportuj teraz"},
 gjR(){return"Zaimportuj emoji"},
 gjS(){return"Zaimportuj z pliku .zip"},
@@ -732,9 +732,9 @@ gq_(){return"Start call"},
 gpK(){return"Select camera"},
 gpL(){return"Select microphone"},
 gpM(){return"Select speaker"},
-D(d,e){return this.gbA(this).$1(e)}}
+D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Md,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Md":{"aT":[]}}'))};
-(a=>{a["Azqc36jfMN2sMpT1CmBszEiucwo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9pqYwstr8AgR7OKRfHWhpdYBeN8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

@@ -1,8 +1,8 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-dza(d){return new A.Fq(B.dx(d))},
-dzb(){return new A.Me(B.dx("pt_BR"))},
-dzc(){return new A.Mf(B.dx("pt_PT"))},
+dzb(d){return new A.Fq(B.dx(d))},
+dzc(){return new A.Me(B.dx("pt_BR"))},
+dzd(){return new A.Mf(B.dx("pt_PT"))},
 Fq:function Fq(d){this.a=d},
 Me:function Me(d){this.a=d},
 Mf:function Mf(d){this.a=d}},C
@@ -22,7 +22,7 @@ gqq(){return"Eraser"},
 gjl(){return"Crop"},
 gl_(){return"Repita a senha"},
 gky(){return"N\xe3o \xe9 um arquivo de imagem."},
-gbA(d){return"Remove"},
+gbB(d){return"Remove"},
 gjT(){return"Import now"},
 gjR(){return"Import Emojis"},
 gjS(){return"Import from .zip file"},
@@ -737,11 +737,11 @@ gq_(){return"Start call"},
 gpK(){return"Select camera"},
 gpL(){return"Select microphone"},
 gpM(){return"Select speaker"},
-D(d,e){return this.gbA(this).$1(e)}}
+D(d,e){return this.gbB(this).$1(e)}}
 A.Me.prototype={
 gl_(){return"Repita a senha"},
 gky(){return"N\xe3o \xe9 um arquivo de imagem."},
-gbA(d){return"Remover"},
+gbB(d){return"Remover"},
 gjT(){return"Importar agora"},
 gjR(){return"Importar emojis"},
 gjS(){return"Importar de arquivo .zip"},
@@ -1345,11 +1345,11 @@ gpd(d){return"Cr\xe9ditos"},
 goV(){return"Pular backup de conversas"},
 goW(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 pF(d){return"Vers\xe3o: "+d},
-D(d,e){return this.gbA(this).$1(e)}}
+D(d,e){return this.gbB(this).$1(e)}}
 A.Mf.prototype={
 gl_(){return"Repete a palavra-passe"},
 gky(){return"N\xe3o \xe9 um ficheiro de imagem."},
-gbA(d){return"Remover"},
+gbB(d){return"Remover"},
 gjT(){return"Importar agora"},
 gjR(){return"Importar Emojis"},
 gjS(){return"Importar a partir de um ficheiro .zip"},
@@ -1686,11 +1686,11 @@ ghb(){return"Input inv\xe1lido!"},
 ls(d){return"Pin introduzido incorreto! Tente novamente daqui a "+d+" segundos..."},
 gkJ(){return"Por favor introduza um n\xfamero maior que 0"},
 gf6(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3o ver deixou o chat."},
-D(d,e){return this.gbA(this).$1(e)}}
+D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.Fq,C.aT)
 w(A.Fq,[A.Me,A.Mf])})()
 B.e9(b.typeUniverse,JSON.parse('{"Fq":{"aT":[]},"Me":{"aT":[]},"Mf":{"aT":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["wRSzxnXEeazjWp0DIpALkUlfz4g="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["x677SZ8CElzFEHk3kyOywu2dPsw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

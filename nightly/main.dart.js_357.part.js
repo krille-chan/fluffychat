@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dzk(){return new B.Mn(A.dx("ta"))},
+dzl(){return new B.Mn(A.dx("ta"))},
 Mn:function Mn(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -18,7 +18,7 @@ gqq(){return"\u0b85\u0bb4\u0bbf\u0baa\u0bcd\u0baa\u0bbe\u0ba9\u0bcd"},
 gjl(){return"\u0baa\u0baf\u0bbf\u0bb0\u0bcd"},
 gl_(){return"\u0b95\u0b9f\u0bb5\u0bc1\u0b9a\u0bcd\u0b9a\u0bca\u0bb2\u0bcd\u0bb2\u0bc8 \u0bae\u0bc0\u0ba3\u0bcd\u0b9f\u0bc1\u0bae\u0bcd \u0b87\u0b9f\u0bc1"},
 gky(){return"\u0baa\u0b9f\u0b95\u0bcd \u0b95\u0bcb\u0baa\u0bcd\u0baa\u0bc1 \u0b85\u0bb2\u0bcd\u0bb2."},
-gbA(d){return"\u0b85\u0b95\u0bb1\u0bcd\u0bb1\u0bc1"},
+gbB(d){return"\u0b85\u0b95\u0bb1\u0bcd\u0bb1\u0bc1"},
 gjT(){return"\u0b87\u0baa\u0bcd\u0baa\u0bcb\u0ba4\u0bc1 \u0b87\u0bb1\u0b95\u0bcd\u0b95\u0bc1\u0bae\u0ba4\u0bbf"},
 gjR(){return"\u0b88\u0bae\u0bcb\u0b9a\u0bbf\u0b95\u0bb3\u0bc8 \u0b87\u0bb1\u0b95\u0bcd\u0b95\u0bc1\u0bae\u0ba4\u0bbf"},
 gjS(){return".\u0b9a\u0bbf\u0baa\u0bcd \u0b95\u0bcb\u0baa\u0bcd\u0baa\u0bbf\u0bb2\u0bbf\u0bb0\u0bc1\u0ba8\u0bcd\u0ba4\u0bc1 \u0b87\u0bb1\u0b95\u0bcd\u0b95\u0bc1\u0bae\u0ba4\u0bbf"},
@@ -733,10 +733,10 @@ gq_(){return"Start call"},
 gpK(){return"Select camera"},
 gpL(){return"Select microphone"},
 gpM(){return"Select speaker"},
-D(d,e){return this.gbA(this).$1(e)}}
+D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Mn,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mn":{"aT":[]}}'))
 var y={d:" \u0b87\u0bb2\u0bcd \u0b9f\u0bc6\u0bb5\u0bb2\u0baa\u0bcd\u0baa\u0bb0\u0bcd\u0b95\u0bb3\u0bbf\u0b9f\u0bae\u0bcd \u0b87\u0ba8\u0bcd\u0ba4\u0baa\u0bcd \u0baa\u0bbf\u0bb4\u0bc8\u0baf\u0bc8\u0baa\u0bcd \u0baa\u0bc1\u0b95\u0bbe\u0bb0\u0bb3\u0bbf\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd. \u0baa\u0bbf\u0bb4\u0bc8 \u0b9a\u0bc6\u0baf\u0bcd\u0ba4\u0bbf: "}};
-(a=>{a["k3SJ9kCiIwGNEyYL7USlYkIw9Qk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["0tFqjULOdwPrPs23sRbv12m10ms="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_357.part.js.map

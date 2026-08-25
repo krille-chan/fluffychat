@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyE(){return new B.LI(A.dx("ca"))},
+dyF(){return new B.LI(A.dx("ca"))},
 LI:function LI(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -18,7 +18,7 @@ gqq(){return"Eraser"},
 gjl(){return"Crop"},
 gl_(){return"Repetiu la contrasenya"},
 gky(){return"No \xe9s un arxiu d'image."},
-gbA(d){return"Elimina"},
+gbB(d){return"Elimina"},
 gjT(){return"Importa-ho ara"},
 gjR(){return"Importa emojis"},
 gjS(){return"Importa des d'un arxiu zip"},
@@ -732,9 +732,9 @@ gq_(){return"Start call"},
 gpK(){return"Select camera"},
 gpL(){return"Select microphone"},
 gpM(){return"Select speaker"},
-D(d,e){return this.gbA(this).$1(e)}}
+D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LI,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LI":{"aT":[]}}'))};
-(a=>{a["ztj6FAeJf4+Gj/7KItUZL2JQ1y4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ZPIgu65CQR8n/iqPCROrVKmXf74="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_257.part.js.map

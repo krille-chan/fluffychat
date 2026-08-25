@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dzd(){return new B.Mg(A.dx("ro"))},
+dze(){return new B.Mg(A.dx("ro"))},
 Mg:function Mg(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -18,7 +18,7 @@ gqq(){return"Eraser"},
 gjl(){return"Crop"},
 gl_(){return"Repeta\u021bi parola"},
 gky(){return"Not an image file."},
-gbA(d){return"Elimina\u021bi"},
+gbB(d){return"Elimina\u021bi"},
 gjT(){return"Import now"},
 gjR(){return"Import Emojis"},
 gjS(){return"Import from .zip file"},
@@ -732,9 +732,9 @@ gq_(){return"Start call"},
 gpK(){return"Select camera"},
 gpL(){return"Select microphone"},
 gpM(){return"Select speaker"},
-D(d,e){return this.gbA(this).$1(e)}}
+D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mg,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mg":{"aT":[]}}'))};
-(a=>{a["9+0lTkF86yIhLi2C5r7x88PnCF0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Lj2p1plKXXwxZBpkbPSeNpTadBg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_346.part.js.map

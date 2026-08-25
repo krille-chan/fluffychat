@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyN(){return new B.LR(A.dx("eu"))},
+dyO(){return new B.LR(A.dx("eu"))},
 LR:function LR(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -18,7 +18,7 @@ gqq(){return"Eraser"},
 gjl(){return"Crop"},
 gl_(){return"Idatzi berriro pasahitza"},
 gky(){return"Ez da irudi-fitxategia."},
-gbA(d){return"Kendu"},
+gbB(d){return"Kendu"},
 gjT(){return"Inportatu orain"},
 gjR(){return"Inportatu emojiak"},
 gjS(){return"Inportatu .zip fitxategi batetik"},
@@ -732,10 +732,10 @@ gq_(){return"Start call"},
 gpK(){return"Select camera"},
 gpL(){return"Select microphone"},
 gpM(){return"Select speaker"},
-D(d,e){return this.gbA(this).$1(e)}}
+D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.LR,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LR":{"aT":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["mlDiF5Q858kNDXkeu2nuOLbxIzY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["xN0lkZp6qdwszYq1DZf29XG0/sQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map
