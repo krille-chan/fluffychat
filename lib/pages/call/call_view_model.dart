@@ -243,7 +243,10 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
 
     liveKitRoom.events.on<lk.TrackE2EEStateEvent>((event) {
       if (event.state == .kOk || event.state == .kNew) {
-        Logs().i('E2EE event', event);
+        Logs().i(
+          'E2EE event from ${event.participant} (${event.publication})',
+          event.state,
+        );
         return;
       }
       if (event.state == .kMissingKey) {

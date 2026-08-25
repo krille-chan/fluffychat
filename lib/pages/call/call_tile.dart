@@ -18,7 +18,7 @@ class CallTile extends StatefulWidget {
   final VoidCallback? onTap;
   final lk.VideoViewFit fit;
   final double size;
-  final bool handRaised;
+  final bool handRaised, connected;
 
   const CallTile({
     super.key,
@@ -30,6 +30,7 @@ class CallTile extends StatefulWidget {
     this.handRaised = false,
     this.fit = lk.VideoViewFit.cover,
     this.margin,
+    required this.connected,
   });
 
   @override
@@ -164,6 +165,8 @@ class _CallTileState extends State<CallTile> {
                       maxLines: 1,
                       style: TextStyle(fontSize: 11),
                     ),
+                    if (!widget.connected)
+                      Icon(Icons.portable_wifi_off_outlined, size: 11),
                   ],
                 ),
               ),

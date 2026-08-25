@@ -209,6 +209,11 @@ class CallPage extends StatelessWidget {
                                 video: focused.video,
                                 audio: focused.audio,
                                 margin: EdgeInsets.zero,
+                                connected:
+                                    focused.user.id == room.client.userID ||
+                                    liveKitRoom.remoteParticipants.containsKey(
+                                      focused.id,
+                                    ),
                                 handRaised: viewModel.participantRaisedHand(
                                   focused.user.id,
                                 ),
@@ -235,6 +240,10 @@ class CallPage extends StatelessWidget {
                                     video: focused.video,
                                     audio: focused.audio,
                                     fit: .contain,
+                                    connected:
+                                        focused.user.id == room.client.userID ||
+                                        liveKitRoom.remoteParticipants
+                                            .containsKey(focused.id),
                                     handRaised: viewModel.participantRaisedHand(
                                       focused.user.id,
                                     ),
@@ -267,6 +276,11 @@ class CallPage extends StatelessWidget {
                                             .participantRaisedHand(
                                               tiles[i].user.id,
                                             ),
+                                        connected:
+                                            tiles[i].user.id ==
+                                                room.client.userID ||
+                                            liveKitRoom.remoteParticipants
+                                                .containsKey(tiles[i].id),
                                         onTap: tiles[i].video == null
                                             ? null
                                             : () => viewModel.setFocusedTrack(
