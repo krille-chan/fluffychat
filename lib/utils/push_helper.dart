@@ -214,12 +214,17 @@ Future<void> _tryPushHelper(
     while (DateTime.now().isBefore(timeoutDateTime)) {
       await client.oneShotSync();
       if (!event.room.hasActiveMatrixRtcCall) {
-        Logs().v('The other party has ended the call');
+        Logs().i('The other party has ended the call');
         await FlutterCallkitIncoming.endCall(params.id);
         break;
       }
-      if (event.room.ownMatrixRtcMembership != null) {
-        Logs().v('We have accepted the call');
+      if (event.room.getActiveMatrixRtcMembers().any(
+        (member) =>
+            member.senderId == event.room.client.userID! &&
+            member.deviceId != event.room.client.deviceID!,
+      )) {
+        Logs().i('User has accepted the call on a different device');
+        await FlutterCallkitIncoming.endCall(params.id);
         break;
       }
     }

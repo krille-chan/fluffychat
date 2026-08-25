@@ -606,6 +606,13 @@ class ChatController extends State<ChatPageWithRoom>
     final timeline = this.timeline;
     if (timeline == null || timeline.events.isEmpty) return;
 
+    // Do not set read marker on rtc notification while call is active. This
+    // mutes callkit.
+    if (room.hasActiveMatrixRtcCall &&
+        timeline.events.first.type == RtcNotificationContent.eventType) {
+      return;
+    }
+
     final setOnLatestEvent = eventId == null;
     eventId ??= timeline.events
         .firstWhereOrNull(

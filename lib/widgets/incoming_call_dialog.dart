@@ -31,9 +31,18 @@ class _IncomingCallDialogState extends State<IncomingCallDialog> {
   void initState() {
     _initAudioPlayer();
     _onSync = widget.event.room.client.onSync.stream.listen((_) {
-      if (widget.event.room.hasActiveMatrixRtcCall) return;
       if (!mounted) return;
-      Navigator.of(context).pop();
+      if (!widget.event.room.hasActiveMatrixRtcCall) {
+        Logs().i('The other party has ended the call');
+        Navigator.of(context).pop();
+      } else if (widget.event.room.getActiveMatrixRtcMembers().any(
+        (member) =>
+            member.senderId == widget.event.room.client.userID! &&
+            member.deviceId != widget.event.room.client.deviceID!,
+      )) {
+        Logs().i('User has accepted the call on a different device');
+        Navigator.of(context).pop();
+      }
     });
     final timeout =
         widget.event.tryParseRtcNotificationContent()?.lifetime ??
