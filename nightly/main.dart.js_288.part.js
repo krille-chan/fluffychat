@@ -95,7 +95,7 @@ gfU(){return"Detaloj pri babilo"},
 gfV(){return"Babiloj"},
 giJ(){return"Elektu fortan pasvorton"},
 gfW(){return"Vakigi ar\u0125ivon"},
-gd1(d){return"Fermi"},
+gd0(d){return"Fermi"},
 giX(){return"Mark as direct message room for the giving Matrix ID"},
 giY(){return"Mark as group"},
 giK(){return"Forbari la donitan uzanton de \u0109i tiu \u0109ambro"},
@@ -339,7 +339,7 @@ lk(d){return d+" tajpas\u2026"},
 ll(d){return d+" foriris de la babilo"},
 hB(d,e){return d+" sendis eventon de speco "+e},
 ghA(){return"Unverified"},
-gde(){return"Kontrolita"},
+gdd(){return"Kontrolita"},
 glo(){return"Komenci kontrolon"},
 goy(){return"Vi sukcese kontrolis!"},
 goz(){return"Kontrolante alian konton"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LO,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LO":{"aT":[]}}'))};
-(a=>{a["bmWSSUKYuy2BdccQBap6E66O8EY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mSbteKHOpj3VBIaOHHcbxDLdALk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_288.part.js.map

@@ -95,7 +95,7 @@ gfU(){return"Detalles da conversa"},
 gfV(){return"Conversas"},
 giJ(){return"Escolle un contrasinal forte"},
 gfW(){return"Baleirar arquivo"},
-gd1(d){return"Pechar"},
+gd0(d){return"Pechar"},
 giX(){return"Marcar como sala de mensaxe directa para o ID Matrix indicado"},
 giY(){return"Marcar como grupo"},
 giK(){return"Vetar a usuaria indicada desta sala"},
@@ -339,7 +339,7 @@ lk(d){return d+" est\xe1 escribindo\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" deixou a conversa"},
 hB(d,e){return d+" enviou un evento "+e},
 ghA(){return"Sen verificar"},
-gde(){return"Verificado"},
+gdd(){return"Verificado"},
 glo(){return"Comezar verificaci\xf3n"},
 goy(){return"Verificaches correctamente!"},
 goz(){return"Verificando a outra conta"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LX,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LX":{"aT":[]}}'))};
-(a=>{a["VXeESPScxTNrAdrfGhVpQJeAtKs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ecT1XfLavjTJ0OUtNQVV5smNszA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_309.part.js.map

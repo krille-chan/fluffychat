@@ -95,7 +95,7 @@ gfU(){return"\u05e4\u05e8\u05d8\u05d9 \u05e6'\u05d0\u05d8"},
 gfV(){return"\u05e6'\u05d0\u05d8\u05d9\u05dd"},
 giJ(){return"\u05d1\u05d7\u05e8 \u05e1\u05d9\u05e1\u05de\u05d4 \u05d7\u05d6\u05e7\u05d4"},
 gfW(){return"\u05e0\u05e7\u05d4 \u05d0\u05e8\u05db\u05d9\u05d5\u05df"},
-gd1(d){return"\u05e1\u05d2\u05d5\u05e8"},
+gd0(d){return"\u05e1\u05d2\u05d5\u05e8"},
 giX(){return"Mark as direct message room for the giving Matrix ID"},
 giY(){return"Mark as group"},
 giK(){return"\u05d7\u05e1\u05d5\u05dd \u05d0\u05ea \u05d4\u05de\u05e9\u05ea\u05de\u05e9 \u05d4\u05e0\u05ea\u05d5\u05df \u05de\u05d4\u05d7\u05d3\u05e8 \u05d4\u05d6\u05d4"},
@@ -339,7 +339,7 @@ lk(d){return d+" is typing\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" left the chat"},
 hB(d,e){return d+" sent a "+e+" event"},
 ghA(){return"Unverified"},
-gde(){return"Verified"},
+gdd(){return"Verified"},
 glo(){return"Start Verification"},
 goy(){return"You successfully verified!"},
 goz(){return"Verifying other account"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LY,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LY":{"aT":[]}}'))};
-(a=>{a["MKAweeE5s2+8mBzoY/07jrOV4fg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["DeglHQMNjMUUljIfy/aZI+bpmUM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

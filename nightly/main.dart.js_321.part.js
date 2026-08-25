@@ -95,7 +95,7 @@ gfU(){return"Cseveg\xe9s r\xe9szletei"},
 gfV(){return"Cseveg\xe9sek"},
 giJ(){return"V\xe1lasszon egy er\u0151s jelsz\xf3t"},
 gfW(){return"Arch\xedvum \xfcr\xedt\xe9se"},
-gd1(d){return"Bez\xe1r"},
+gd0(d){return"Bez\xe1r"},
 giX(){return"Szoba megjel\xf6l\xe9se mint k\xf6zvetlen cseveg\u0151 szoba az adott Matrix ID-n\xe9l"},
 giY(){return"Jel\xf6l\xe9s csoportnak"},
 giK(){return"Adott felhaszn\xe1l\xf3 kitilt\xe1sa a szob\xe1b\xf3l"},
@@ -339,7 +339,7 @@ lk(d){return d+" g\xe9pel\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" elhagyta a cseveg\xe9st"},
 hB(d,e){return d+" felhaszn\xe1l\xf3 "+e+" esem\xe9nyt k\xfcld\xf6tt"},
 ghA(){return"Hiteles\xedtetlen"},
-gde(){return"Hiteles\xedtett"},
+gdd(){return"Hiteles\xedtett"},
 glo(){return"Hiteles\xedt\xe9s megkezd\xe9se"},
 goy(){return"Sikeres hiteles\xedt\xe9s!"},
 goz(){return"M\xe1sik fi\xf3k hiteles\xedt\xe9se"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M0,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"M0":{"aT":[]}}'))};
-(a=>{a["DrLgamq2He5fJP1o3CYrgEV9Xm0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["LmgzDvYxd46swwTFbpOLDP1d6eA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map

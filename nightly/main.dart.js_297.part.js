@@ -95,7 +95,7 @@ gfU(){return"Txataren xehetasunak"},
 gfV(){return"Txatak"},
 giJ(){return"Aukeratu pasahitz sendo bat"},
 gfW(){return"Ezabatu artxiboa"},
-gd1(d){return"Itxi"},
+gd0(d){return"Itxi"},
 giX(){return"Markatu mezu-zuzen gela bezala Matrix ID jakin honentzat"},
 giY(){return"Markatu talde bezala"},
 giK(){return"Debekatu erabiltzailea gela honetan"},
@@ -339,7 +339,7 @@ lk(d){return d+" idazten ari da\u2026"},
 ll(d){return"\ud83d\udeaa "+d+"(e)k txata utzi du"},
 hB(d,e){return d+"(e)k "+e+" gertaera bat bidali du"},
 ghA(){return"Egiaztatu gabe(a)"},
-gde(){return"Egiaztatuta"},
+gdd(){return"Egiaztatuta"},
 glo(){return"Abiarazi egiaztaketa"},
 goy(){return"Ondo egiaztatu duzu!"},
 goz(){return"Beste kontua egiaztatzen"},
@@ -737,5 +737,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.LR,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LR":{"aT":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["8LQN1Xh2MXIKIIq8+4NnfannGEI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mlDiF5Q858kNDXkeu2nuOLbxIzY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

@@ -95,7 +95,7 @@ gfU(){return"Dettagli chat"},
 gfV(){return"Discussioni"},
 giJ(){return"Scegli una password complessa"},
 gfW(){return"Cancella archivio"},
-gd1(d){return"Chiudi"},
+gd0(d){return"Chiudi"},
 giX(){return"Contrassegna questo Matrix ID come stanza di messaggi diretti"},
 giY(){return"Segna come gruppo"},
 giK(){return"Banna l'utente specificato da questa stanza"},
@@ -340,7 +340,7 @@ lk(d){return d+" sta scrivendo\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" ha abbandonato la chat"},
 hB(d,e){return d+" ha inviato un evento "+e},
 ghA(){return"Non verificato"},
-gde(){return"Verificato"},
+gdd(){return"Verificato"},
 glo(){return"Avvia la verifica"},
 goy(){return"Hai verificato con successo!"},
 goz(){return"Verifica dell'altro account"},
@@ -738,5 +738,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M4,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"M4":{"aT":[]}}'))};
-(a=>{a["pQPdu7MUCdG08M44xcoq+0YFJAM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["WsiUNhMJ+fus/Iit9oH6dnqA1Do="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map

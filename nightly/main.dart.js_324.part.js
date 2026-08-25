@@ -95,7 +95,7 @@ gfU(){return"Detail obrolan"},
 gfV(){return"Obrolan"},
 giJ(){return"Pilih kata sandi yang kuat"},
 gfW(){return"Bersihkan arsip"},
-gd1(d){return"Tutup"},
+gd0(d){return"Tutup"},
 giX(){return"Tandai sebagai ruangan pesan langsung untuk ID Matrix yang ditentukan"},
 giY(){return"Tandai sebagai grup"},
 giK(){return"Cekal pengguna yang dicantumkan dari ruangan ini"},
@@ -340,7 +340,7 @@ lk(d){return d+" sedang mengetik\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" keluar dari obrolan"},
 hB(d,e){return d+" mengirim peristiwa "+e},
 ghA(){return"Tidak terverifikasi"},
-gde(){return"Terverifikasi"},
+gdd(){return"Terverifikasi"},
 glo(){return"Mulai Verifikasi"},
 goy(){return"Kamu berhasil memverifikasi!"},
 goz(){return"Memverifikasi akun lain"},
@@ -738,5 +738,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.M2,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"M2":{"aT":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["l5aJ8yLpfD75NjBSnNf7S2cJxq8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["drTKKYJRhMo7rAkHBIa9gUdeAN8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_324.part.js.map

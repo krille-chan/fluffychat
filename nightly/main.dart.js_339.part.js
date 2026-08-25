@@ -95,7 +95,7 @@ gfU(){return"T\u0113rz\u0113\u0161anas izv\u0113rsums"},
 gfV(){return"T\u0113rz\u0113\u0161anas"},
 giJ(){return"J\u0101izv\u0113las dro\u0161a parole"},
 gfW(){return"Izt\u012br\u012bt arh\u012bvu"},
-gd1(d){return"Aizv\u0113rt"},
+gd0(d){return"Aizv\u0113rt"},
 giX(){return"Atz\u012bm\u0113t k\u0101 tie\u0161o zi\u0146u istabu nor\u0101d\u012btajam Matrix Id"},
 giY(){return"Atz\u012bm\u0113t k\u0101 kopu"},
 giK(){return"Izsl\u0113gt nor\u0101d\u012bto lietot\u0101ju no \u0161\u012bs istabas"},
@@ -340,7 +340,7 @@ lk(d){return d+" raksta\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" pameta t\u0113rz\u0113\u0161anu"},
 hB(d,e){return d+" nos\u016bt\u012bja notikumu "+e},
 ghA(){return"Neapliecin\u0101ta"},
-gde(){return"Apliecin\u0101ta"},
+gdd(){return"Apliecin\u0101ta"},
 glo(){return"Uzs\u0101kt apliecin\u0101\u0161anu"},
 goy(){return"Apliecin\u0101\u0161ana bija sekm\u012bga."},
 goz(){return"Apliecina citu kontu"},
@@ -737,5 +737,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ma,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Ma":{"aT":[]}}'))};
-(a=>{a["mfuZvIGFdhFsbZBJkWC6UQEr8Jw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ci68f1W4kCJELsoEdCU5syXhe6M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_339.part.js.map

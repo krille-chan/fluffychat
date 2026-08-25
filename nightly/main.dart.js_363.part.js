@@ -95,7 +95,7 @@ gfU(){return"Suhbat tafsilotlari"},
 gfV(){return"Suhbatlar"},
 giJ(){return"Kuchli parol tanlang"},
 gfW(){return"Arxivni tozalash"},
-gd1(d){return"Yopish"},
+gd0(d){return"Yopish"},
 giX(){return"Matrix identifikatorini berish uchun shaxsiy xabar guruhi sifatida belgilang"},
 giY(){return"Guruh sifatida belgilash"},
 giK(){return"Bu guruhdan berilgan foydalanuvchini bloklash"},
@@ -339,7 +339,7 @@ lk(d){return d+" yozmoqda\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" suhbatni tark etdi"},
 hB(d,e){return d+" "+e+" tadbirini yubordi"},
 ghA(){return"Tasdiqlanmagan"},
-gde(){return"Tasdiqlangan"},
+gdd(){return"Tasdiqlangan"},
 glo(){return"Tasdiqlashni boshlash"},
 goy(){return"Siz tasdiqladingiz!"},
 goz(){return"Boshqa hisob tasdiqlanmoqda"},
@@ -737,5 +737,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Ms,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Ms":{"aT":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["NK3Kt8OCXy5qDeHZzdPb0my744k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["vX+OrL+hCNkwFhFEtrsVVTozuLg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

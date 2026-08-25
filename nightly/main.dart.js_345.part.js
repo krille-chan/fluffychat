@@ -95,7 +95,7 @@ gfU(){return"Szczeg\xf3\u0142y czatu"},
 gfV(){return"Czaty"},
 giJ(){return"Wybierz silne has\u0142o"},
 gfW(){return"Wyczy\u015b\u0107 archiwum"},
-gd1(d){return"Zamknij"},
+gd0(d){return"Zamknij"},
 giX(){return"Oznacz jako pok\xf3j wiadomo\u015bci bezpo\u015brednich dla podanego Matrix ID"},
 giY(){return"Oznacz jako grup\u0119"},
 giK(){return"Zbanuj u\u017cytkownika w tym pokoju"},
@@ -339,7 +339,7 @@ lk(d){return d+" pisze\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" opu\u015bci\u0142/-a czat"},
 hB(d,e){return d+" wys\u0142a\u0142/-a zdarzenie "+e},
 ghA(){return"Niezweryfikowane"},
-gde(){return"Zweryfikowane"},
+gdd(){return"Zweryfikowane"},
 glo(){return"Rozpocznij weryfikacj\u0119"},
 goy(){return"Pomy\u015blnie zweryfikowano!"},
 goz(){return"Weryfikowanie innego konta"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Md,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Md":{"aT":[]}}'))};
-(a=>{a["ZYz+T6c+Hr7zd8bIQ9GBBe1zhnM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Azqc36jfMN2sMpT1CmBszEiucwo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

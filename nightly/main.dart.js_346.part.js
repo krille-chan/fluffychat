@@ -95,7 +95,7 @@ gfU(){return"Detalii de chat"},
 gfV(){return"Chaturi"},
 giJ(){return"Alege\u021bi o parol\u0103 robust\u0103"},
 gfW(){return"\u0218terge\u021bi arhiva"},
-gd1(d){return"\xcenchide\u021bi"},
+gd0(d){return"\xcenchide\u021bi"},
 giX(){return"Marca\u021bi ca camer\u0103 de mesaje directe"},
 giY(){return"Marca\u021bi ca grup"},
 giK(){return"Interzice\u021bi acesul utilizatorului ales din aceast\u0103 camer\u0103"},
@@ -339,7 +339,7 @@ lk(d){return d+" tasteaz\u0103\u2026"},
 ll(d){return"\ud83d\udeaa"+d+" a plecat din chat"},
 hB(d,e){return d+" a trimis un eveniment "+e},
 ghA(){return"Neverificat"},
-gde(){return"Verificat"},
+gdd(){return"Verificat"},
 glo(){return"\xcencepe\u021bi verificare"},
 goy(){return"A reu\u0219it verificarea!"},
 goz(){return"Verific\xe2nd cel\u0103lalt cont"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mg,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mg":{"aT":[]}}'))};
-(a=>{a["JkqPlNecPW43UKPdbUdjlFDjy7k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9+0lTkF86yIhLi2C5r7x88PnCF0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_346.part.js.map

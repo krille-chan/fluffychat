@@ -95,7 +95,7 @@ gfU(){return"Chat details"},
 gfV(){return"Chats"},
 giJ(){return"Choose a strong password"},
 gfW(){return"Clear archive"},
-gd1(d){return"Close"},
+gd0(d){return"Close"},
 giX(){return"Mark as direct message room for the giving Matrix ID"},
 giY(){return"Mark as group"},
 giK(){return"Ban the given user from this room"},
@@ -340,7 +340,7 @@ lk(d){return d+" is typing\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" left the chat"},
 hB(d,e){return d+" sent a "+e+" event"},
 ghA(){return"Unverified"},
-gde(){return"Verified"},
+gdd(){return"Verified"},
 glo(){return"Start Verification"},
 goy(){return"You successfully verified!"},
 goz(){return"Verifying other account"},
@@ -737,5 +737,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LK,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LK":{"aT":[]}}'))};
-(a=>{a["TTLDBVoDZ2/+he4GIDra5vDK06s="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["UAi+5H2sRrVO/sn1Z7cBgSO1LVM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_276.part.js.map

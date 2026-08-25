@@ -95,7 +95,7 @@ gfU(){return"Keskustelun tiedot"},
 gfV(){return"Keskustelut"},
 giJ(){return"Valitse vahva salasana"},
 gfW(){return"Tyhjenn\xe4 arkisto"},
-gd1(d){return"Sulje"},
+gd0(d){return"Sulje"},
 giX(){return"Merkitse yksityiskeskusteluksi sy\xf6tetyn Matrix IDn kanssa"},
 giY(){return"Merkitse ryhm\xe4ksi"},
 giK(){return"Anna sy\xf6tetylle k\xe4ytt\xe4j\xe4lle porttikielto t\xe4h\xe4n huoneeseen"},
@@ -339,7 +339,7 @@ lk(d){return d+" kirjoittaa\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" poistui keskustelusta"},
 hB(d,e){return d+" l\xe4hetti "+e+"-tapahtuman"},
 ghA(){return"Varmistamaton"},
-gde(){return"Varmistettu"},
+gdd(){return"Varmistettu"},
 glo(){return"Aloita varmennus"},
 goy(){return"Varmensit onnistuneesti!"},
 goz(){return"Varmistetaan toista tunnusta"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LT,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LT":{"aT":[]}}'))};
-(a=>{a["XD/cEVsX63oNhvuQWrCkMjBhzjM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["HZJ/j8CDEjWEar3b82V8NCNu3bc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map

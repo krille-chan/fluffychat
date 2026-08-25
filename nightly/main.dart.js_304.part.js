@@ -95,7 +95,7 @@ gfU(){return"D\xe9tails de la discussion"},
 gfV(){return"Discussions"},
 giJ(){return"Choisissez un mot de passe fort"},
 gfW(){return"Effacer les archives"},
-gd1(d){return"Fermer"},
+gd0(d){return"Fermer"},
 giX(){return"Marquer comme salon de messages directs pour l'identifiant Matrix indiqu\xe9"},
 giY(){return"Marquer comme groupe"},
 giK(){return"Bannir l'utilisateur/trice donn\xe9(e) de ce salon"},
@@ -339,7 +339,7 @@ lk(d){return d+" est en train d'\xe9crire\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" a quitt\xe9 la discussion"},
 hB(d,e){return d+" a envoy\xe9 un \xe9v\xe8nement de type "+e},
 ghA(){return"Non v\xe9rifi\xe9"},
-gde(){return"V\xe9rifi\xe9"},
+gdd(){return"V\xe9rifi\xe9"},
 glo(){return"Commencer la v\xe9rification"},
 goy(){return"La v\xe9rification a \xe9t\xe9 effectu\xe9e avec succ\xe8s !"},
 goz(){return"V\xe9rification de l'autre compte"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LV,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LV":{"aT":[]}}'))};
-(a=>{a["T06FnJBpoiqZsmkey4FoAfz1JFg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["i34+whRTWlkNBIl1C83BIY7wFew="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map
