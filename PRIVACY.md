@@ -105,16 +105,11 @@ A typical push notification could look like this:
 FluffyChat sets the `event_id_only` flag at the Matrix Server. This server is then responsible to send the correct data.
 
 ## <a id="crash-reports" href="#crash-reports">#</a> Crash Reports
-FluffyChat can optionally send anonymous crash reports and error logs to help improve the app. This feature is opt-in and can be enabled or disabled at any time in the security settings.
+FluffyChat can optionally assist with reporting errors. This feature is opt-in and can be toggled in the security settings.
 
-When enabled, crash reports are sent to a `observe.fluffy.chat`, a self hosted error tracking service. A report may contain:
-- The type and message of the error
-- A stack trace showing where in the code the error occurred
-- The FluffyChat version and the operating system
+When an error occurs, FluffyChat queries the public GitHub API with an anonymous hash to check for an existing issue. If found, the issue is opened in the browser. Otherwise, a pre-filled GitHub new-issue form is opened. No data is sent automatically — the user must actively submit the form.
 
-No personal data, no message content, and no account information is included in crash reports.
-
-More information is available at: [https://glitchtip.com/](https://glitchtip.com/)
+More information: [https://github.com/krille-chan/fluffychat/issues](https://github.com/krille-chan/fluffychat/issues)
 
 
 # <a id="playstore-safety" href="#playstore-safety">#</a> Explanation of FluffyChat's Compliance with Google Play Store's Safety Standards

@@ -19,13 +19,13 @@ body:
     validations:
       required: true
   - type: textarea
-    id: expected-behavior
+    id: stacktrace
     attributes:
-      label: "Expected Behavior"
+      label: "StackTrace or logs"
       description: "A clear and concise description of what you expected to happen."
       placeholder: "Describe what you expected to happen here..."
     validations:
-      required: true
+      required: false
   - type: input
     id: app-version
     attributes:
@@ -42,18 +42,19 @@ body:
       options:
         - Android (PlayStore)
         - Android (F-Droid)
-        - Android (Other)
-        - iOS (iPhone)
+        - Android
+        - iOS
         - iOS (iPad)
         - Web (Chrome(ium))
         - Web (Firefox)
         - Web (Safari)
         - Linux (Snap)
         - Linux (Flatpak)
-        - Linux (Other)
+        - Linux
         - macOS (iOS/iPadOS version)
         - macOS (Self-compiled)
         - Windows (Self-compiled)
+        - Other
     validations:
       required: true
   - type: input
