@@ -5,7 +5,9 @@
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/recent_stickers_store.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
@@ -29,12 +31,37 @@ class StickerPickerDialog extends StatefulWidget {
 class StickerPickerDialogState extends State<StickerPickerDialog> {
   String? searchFilter;
 
+  void _selectSticker(ImagePackImageContent image, String fallbackBody) {
+    final imageCopy = ImagePackImageContent.fromJson(image.toJson().copy());
+    imageCopy.body ??= fallbackBody;
+    widget.onSelected(imageCopy);
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     final stickerPacks = widget.room.getImagePacks(ImagePackUsage.sticker);
     final packSlugs = stickerPacks.keys.toList();
+    final currentStickersByUrl = <String, _StickerEntry>{};
+
+    for (final pack in stickerPacks.values) {
+      for (final entry in pack.images.entries) {
+        currentStickersByUrl.putIfAbsent(
+          entry.value.url.toString(),
+          () => _StickerEntry(key: entry.key, image: entry.value),
+        );
+      }
+    }
+
+    final recentStickers =
+        RecentStickersStore.read(
+              Matrix.of(context).store,
+              widget.room.client.userID,
+            )
+            .map((url) => currentStickersByUrl[url])
+            .whereType<_StickerEntry>()
+            .toList(growable: false);
 
     return Material(
       color: theme.colorScheme.onInverseSurface,
@@ -42,6 +69,51 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
         top: false,
         child: CustomScrollView(
           slivers: <Widget>[
+            if (recentStickers.isNotEmpty)
+              SliverToBoxAdapter(
+                child: SizedBox(
+                  height: 88,
+                  child: ListView.separated(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: recentStickers.length,
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 8),
+                    itemBuilder: (context, index) {
+                      final recentSticker = recentStickers[index];
+                      return SizedBox(
+                        width: 72,
+                        child: Tooltip(
+                          message:
+                              recentSticker.image.body ?? recentSticker.key,
+                          child: InkWell(
+                            radius: AppConfig.borderRadius,
+                            key: ValueKey('recent_${recentSticker.image.url}'),
+                            onTap: () => _selectSticker(
+                              recentSticker.image,
+                              recentSticker.key,
+                            ),
+                            child: AbsorbPointer(
+                              absorbing: true,
+                              child: MxcImage(
+                                uri: recentSticker.image.url,
+                                fit: BoxFit.contain,
+                                width: 72,
+                                height: 72,
+                                animated: true,
+                                isThumbnail: false,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
             SliverAppBar(
               floating: true,
               primary: false,
@@ -148,16 +220,8 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                             child: InkWell(
                               radius: AppConfig.borderRadius,
                               key: ValueKey(image.url.toString()),
-                              onTap: () {
-                                // copy the image
-                                final imageCopy =
-                                    ImagePackImageContent.fromJson(
-                                      image.toJson().copy(),
-                                    );
-                                // set the body, if it doesn't exist, to the key
-                                imageCopy.body ??= imageKeys[imageIndex];
-                                widget.onSelected(imageCopy);
-                              },
+                              onTap: () =>
+                                  _selectSticker(image, imageKeys[imageIndex]),
                               child: AbsorbPointer(
                                 absorbing: true,
                                 child: MxcImage(
@@ -182,4 +246,11 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
       ),
     );
   }
+}
+
+class _StickerEntry {
+  final String key;
+  final ImagePackImageContent image;
+
+  const _StickerEntry({required this.key, required this.image});
 }
