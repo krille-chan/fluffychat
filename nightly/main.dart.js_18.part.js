@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-dz9(d){return new A.Fr(B.dx(d))},
-dza(){return new A.Me(B.dx("pt_BR"))},
-dzb(){return new A.Mf(B.dx("pt_PT"))},
-Fr:function Fr(d){this.a=d},
+dza(d){return new A.Fq(B.dx(d))},
+dzb(){return new A.Me(B.dx("pt_BR"))},
+dzc(){return new A.Mf(B.dx("pt_PT"))},
+Fq:function Fq(d){this.a=d},
 Me:function Me(d){this.a=d},
 Mf:function Mf(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[58]
-A.Fr.prototype={
+A.Fq.prototype={
 gpq(){return"Edit image"},
 grb(){return"Rotate left"},
 grd(){return"Rotate right"},
@@ -99,7 +99,7 @@ gfU(){return"Chat details"},
 gfV(){return"Chats"},
 giJ(){return"Choose a strong password"},
 gfW(){return"Clear archive"},
-gd0(d){return"Fechar"},
+gd1(d){return"Fechar"},
 giX(){return"Mark as direct message room for the giving Matrix ID"},
 giY(){return"Mark as group"},
 giK(){return"Ban the given user from this room"},
@@ -344,7 +344,7 @@ lk(d){return d+" is typing\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" left the chat"},
 hB(d,e){return d+" sent a "+e+" event"},
 ghA(){return"Unverified"},
-gdd(){return"Verified"},
+gde(){return"Verified"},
 glo(){return"Start Verification"},
 goy(){return"You successfully verified!"},
 goz(){return"Verifying other account"},
@@ -817,7 +817,7 @@ gfU(){return"Detalhes da conversa"},
 gfV(){return"Conversas"},
 giJ(){return"Escolha uma senha forte"},
 gfW(){return"Limpar arquivo"},
-gd0(d){return"Fechar"},
+gd1(d){return"Fechar"},
 giX(){return"Marcar como sala de mensagens diretas para o ID Matrix fornecido"},
 giY(){return"Marcar como grupo"},
 giK(){return"Banir o usu\xe1rio especificado desta sala"},
@@ -1061,7 +1061,7 @@ lk(d){return d+" est\xe1 digitando\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" saiu da conversa"},
 hB(d,e){return d+" enviou um evento de "+e},
 ghA(){return"N\xe3o verificado"},
-gdd(){return"Verificado"},
+gde(){return"Verificado"},
 glo(){return"Iniciar verifica\xe7\xe3o"},
 goy(){return"Verifica\xe7\xe3o efetivada!"},
 goz(){return"Verificando outra conta"},
@@ -1426,7 +1426,7 @@ gfU(){return"Detalhes de conversa"},
 gfV(){return"Conversas"},
 giJ(){return"Escolhe uma palavra-passe forte"},
 gfW(){return"Limpar arquivo"},
-gd0(d){return"Fechar"},
+gd1(d){return"Fechar"},
 giX(){return"Marcar como sala de mensagem direta para o Matrix ID dado"},
 giY(){return"Marcar como grupo"},
 giK(){return"Banir o utilizador dado desta sala"},
@@ -1642,7 +1642,7 @@ lk(d){return d+" est\xe1 a escrever\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" saiu do chat"},
 hB(d,e){return d+" enviou um evento do tipo "+e},
 ghA(){return"N\xe3o Verificado"},
-gdd(){return"Verificado"},
+gde(){return"Verificado"},
 glz(){return"Rejeitou o convite"},
 ghC(){return"Juntou-se ao chat"},
 glt(){return"\ud83d\udc4d Aceitou o convite"},
@@ -1688,9 +1688,9 @@ gkJ(){return"Por favor introduza um n\xfamero maior que 0"},
 gf6(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3o ver deixou o chat."},
 D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Fr,C.aT)
-w(A.Fr,[A.Me,A.Mf])})()
-B.e9(b.typeUniverse,JSON.parse('{"Fr":{"aT":[]},"Me":{"aT":[]},"Mf":{"aT":[]}}'))
+x(A.Fq,C.aT)
+w(A.Fq,[A.Me,A.Mf])})()
+B.e9(b.typeUniverse,JSON.parse('{"Fq":{"aT":[]},"Me":{"aT":[]},"Mf":{"aT":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["Pgb3KMbJ9f6WEb5F7VRzjXf3AL0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["XMPUrStPe+SuAdH5l/T4fZAJPy0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

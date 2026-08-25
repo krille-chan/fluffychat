@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyE(){return new B.LJ(A.dx("cs"))},
+dyF(){return new B.LJ(A.dx("cs"))},
 LJ:function LJ(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfU(){return"Bli\u017e\u0161\xed \xfadaje o chatu"},
 gfV(){return"Chaty"},
 giJ(){return"Vyberte siln\xe9 heslo"},
 gfW(){return"Vymazat archiv"},
-gd0(d){return"Zav\u0159\xedt"},
+gd1(d){return"Zav\u0159\xedt"},
 giX(){return"Ozna\u010dit jako m\xedstnost p\u0159\xedm\xe9 konverzace s dan\xfdm Matrix ID"},
 giY(){return"Ozna\u010dit jako skupinu"},
 giK(){return"Zak\xe1zat dan\xe9mu u\u017eivateli p\u0159\xedstup do t\xe9to m\xedstnosti"},
@@ -339,7 +339,7 @@ lk(d){return d+" p\xed\u0161e\u2026"},
 ll(d){return d+" opustili chat"},
 hB(d,e){return d+" poslali ud\xe1lost "+e},
 ghA(){return"Neov\u011b\u0159eno"},
-gdd(){return"Ov\u011b\u0159eno"},
+gde(){return"Ov\u011b\u0159eno"},
 glo(){return"Zah\xe1jit ov\u011b\u0159en\xed"},
 goy(){return"Ov\u011b\u0159en\xed prob\u011bhlo \xfasp\u011b\u0161n\u011b!"},
 goz(){return"Ov\u011b\u0159uji druh\xfd \xfa\u010det"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LJ,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LJ":{"aT":[]}}'))};
-(a=>{a["B0ICLpvNxKhzgpgl9293tqHHmUE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["RH5PwkFGMPQkFRS5PLIJvymvPfI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_267.part.js.map

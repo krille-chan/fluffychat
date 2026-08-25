@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyD(){return new B.LI(A.dx("ca"))},
+dyE(){return new B.LI(A.dx("ca"))},
 LI:function LI(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfU(){return"Detalls del xat"},
 gfV(){return"Xats"},
 giJ(){return"Trieu una contrasenya forta"},
 gfW(){return"Neteja l\u2019arxiu"},
-gd0(d){return"Tanca"},
+gd1(d){return"Tanca"},
 giX(){return"Marca com a conversa directa la sala amb aquesta ID de Matrix"},
 giY(){return"Marca com un grup"},
 giK(){return"Veta uni usu\xe0ri\xef d'aquesta sala"},
@@ -339,7 +339,7 @@ lk(d){return d+" est\xe0 escrivint\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" ha marxat del xat"},
 hB(d,e){return d+" ha enviat un esdeveniment "+e},
 ghA(){return"No verificat"},
-gdd(){return"Verificat"},
+gde(){return"Verificat"},
 glo(){return"Inicia la verificaci\xf3"},
 goy(){return"T'has verificat correctament!"},
 goz(){return"Verificant un altre compte"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LI,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LI":{"aT":[]}}'))};
-(a=>{a["+arMXVhZ2Qd7aAUSU0l5viyMOJo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["KMhJhqEUVIUSJxXR4AfTDm6jD+c="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_257.part.js.map

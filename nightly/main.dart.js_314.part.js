@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyV(){return new B.M_(A.dx("hr"))},
+dyW(){return new B.M_(A.dx("hr"))},
 M_:function M_(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfU(){return"Detalji chata"},
 gfV(){return"Chatovi"},
 giJ(){return"Odaberi sna\u017enu lozinku"},
 gfW(){return"Isprazni arhiv"},
-gd0(d){return"Zatvori"},
+gd1(d){return"Zatvori"},
 giX(){return"Ozna\u010di kao sobu za izravnu razmjenu poruka za zadani Matrix ID"},
 giY(){return"Ozna\u010di kao grupu"},
 giK(){return"Isklju\u010di navedenog korisnika iz ove sobe"},
@@ -340,7 +340,7 @@ lk(d){return d+" tipka \u2026"},
 ll(d){return"\ud83d\udeaa "+d+" je napustio/la chat"},
 hB(d,e){return d+" ja poslao/la "+e+" doga\u0111aj"},
 ghA(){return"Nepotvr\u0111eno"},
-gdd(){return"Potvr\u0111eno"},
+gde(){return"Potvr\u0111eno"},
 glo(){return"Pokreni potvr\u0111ivanje"},
 goy(){return"Uspje\u0161no si potvrdio/la!"},
 goz(){return"Potvr\u0111ivanje drugog ra\u010duna"},
@@ -737,5 +737,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M_,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"M_":{"aT":[]}}'))};
-(a=>{a["VcgKJGagDkokdQirrtqqYxxmfko="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["GorNvK6reSQyh2qYcyS+OeV6/9k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

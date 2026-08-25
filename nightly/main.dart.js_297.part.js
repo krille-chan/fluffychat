@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyM(){return new B.LR(A.dx("eu"))},
+dyN(){return new B.LR(A.dx("eu"))},
 LR:function LR(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfU(){return"Txataren xehetasunak"},
 gfV(){return"Txatak"},
 giJ(){return"Aukeratu pasahitz sendo bat"},
 gfW(){return"Ezabatu artxiboa"},
-gd0(d){return"Itxi"},
+gd1(d){return"Itxi"},
 giX(){return"Markatu mezu-zuzen gela bezala Matrix ID jakin honentzat"},
 giY(){return"Markatu talde bezala"},
 giK(){return"Debekatu erabiltzailea gela honetan"},
@@ -339,7 +339,7 @@ lk(d){return d+" idazten ari da\u2026"},
 ll(d){return"\ud83d\udeaa "+d+"(e)k txata utzi du"},
 hB(d,e){return d+"(e)k "+e+" gertaera bat bidali du"},
 ghA(){return"Egiaztatu gabe(a)"},
-gdd(){return"Egiaztatuta"},
+gde(){return"Egiaztatuta"},
 glo(){return"Abiarazi egiaztaketa"},
 goy(){return"Ondo egiaztatu duzu!"},
 goz(){return"Beste kontua egiaztatzen"},
@@ -737,5 +737,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.LR,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LR":{"aT":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["ZatJ0Knt/E4j/27SxQcOrbb/cWQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["8LQN1Xh2MXIKIIq8+4NnfannGEI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

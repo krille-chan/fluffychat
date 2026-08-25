@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dzi(){return new B.Mm(A.dx("sv"))},
+dzj(){return new B.Mm(A.dx("sv"))},
 Mm:function Mm(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfU(){return"Chatt-detaljer"},
 gfV(){return"Chatter"},
 giJ(){return"V\xe4lj ett starkt l\xf6senord"},
 gfW(){return"Rensa arkiv"},
-gd0(d){return"St\xe4ng"},
+gd1(d){return"St\xe4ng"},
 giX(){return"M\xe4rk som rum f\xf6r direktmeddelanden f\xf6r det givante Matrix ID"},
 giY(){return"M\xe4rk som grupp"},
 giK(){return"Bannlys anv\xe4ndaren fr\xe5n detta rum"},
@@ -339,7 +339,7 @@ lk(d){return d+" skriver\u2026"},
 ll(d){return"\ud83d\udeaa "+d+" l\xe4mnade chatten"},
 hB(d,e){return d+" skickade en "+e+" h\xe4ndelse"},
 ghA(){return"Ej verifierad"},
-gdd(){return"Verifierad"},
+gde(){return"Verifierad"},
 glo(){return"Starta verifiering"},
 goy(){return"Du har lyckats verifiera!"},
 goz(){return"Verifiera andra konton"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mm,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mm":{"aT":[]}}'))};
-(a=>{a["0ZA11vQ1HZcik4OCJZht6/xDltc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["7Ldp4tQFqukjDGEz9QvJmvKRuMs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_356.part.js.map

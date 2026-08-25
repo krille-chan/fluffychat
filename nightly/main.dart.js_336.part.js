@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dz2(){return new B.M7(A.dx("kab"))},
+dz3(){return new B.M7(A.dx("kab"))},
 M7:function M7(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfU(){return"Ifatusen n udiwenni"},
 gfV(){return"Idiwenniyen"},
 giJ(){return"Fren awal n u\u025beddi i\u01e7ehden"},
 gfW(){return"Sfe\u1e0d a\u0263ba\u1e5b"},
-gd0(d){return"Mdel"},
+gd1(d){return"Mdel"},
 giX(){return"Cre\u1e0d d akken taxxamt n yizen usrid i Usulay Matriks i d-yettunefken"},
 giY(){return"Cre\u1e0d am ugraw"},
 giK(){return"Gdel aseqdac i d-ittunefken seg texxamt-agi"},
@@ -339,7 +339,7 @@ lk(d){return d+" la yettaru\u2026"},
 ll(d){return"\ud83d\udeaa"+d+" yeffe\u0263 seg udiwenni"},
 hB(d,e){return d+" yuzen-d tadyant "+e},
 ghA(){return"Ur yettwaselken ara"},
-gdd(){return"Yettwaselken"},
+gde(){return"Yettwaselken"},
 glo(){return"Bdu Aselken"},
 goy(){return"Yedda uselken-ik\xb7im akken iwata!"},
 goz(){return"Aselken n imi\u1e0danen nni\u1e0den"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M7,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"M7":{"aT":[]}}'))};
-(a=>{a["XPv7qRzoHvKIO0iihYkirkATXVk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Z30P65u2lFZUKIetd+g8Oa3a6uk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_336.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dze(){return new B.Mi(A.dx("sk"))},
+dzf(){return new B.Mi(A.dx("sk"))},
 Mi:function Mi(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfU(){return"Podrobnosti o chate"},
 gfV(){return"\u010cety"},
 giJ(){return"Vyberte si siln\xe9 heslo"},
 gfW(){return"Clear archive"},
-gd0(d){return"Zavrie\u0165"},
+gd1(d){return"Zavrie\u0165"},
 giX(){return"Mark as direct message room for the giving Matrix ID"},
 giY(){return"Mark as group"},
 giK(){return"Ban the given user from this room"},
@@ -339,7 +339,7 @@ lk(d){return d+" p\xed\u0161e\u2026"},
 ll(d){return d+" opustili chat"},
 hB(d,e){return d+" poslali udalos\u0165 "+e},
 ghA(){return"Unverified"},
-gdd(){return"Verified"},
+gde(){return"Verified"},
 glo(){return"Spusti\u0165 verifik\xe1ciu"},
 goy(){return"Verifik\xe1cia bola \xfaspe\u0161n\xe1!"},
 goz(){return"Verifikujem proti\u013eahl\xfd \xfa\u010det"},
@@ -736,5 +736,5 @@ D(d,e){return this.gbA(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mi,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mi":{"aT":[]}}'))};
-(a=>{a["ZnK2jchJX1knJkMXCRyOptmL50s="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["M2YLltumdCX9TZjZxXoycQSLems="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

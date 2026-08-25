@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyR(){return new B.LW(A.dx("ga"))},
+dyS(){return new B.LW(A.dx("ga"))},
 LW:function LW(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfU(){return"Sonra\xed comhr\xe1"},
 gfV(){return"Comhr\xe1ite"},
 giJ(){return"Roghnaigh pasfhocal l\xe1idir"},
 gfW(){return"Glan an cartlann"},
-gd0(d){return"D\xfan"},
+gd1(d){return"D\xfan"},
 giX(){return"Marc\xe1il mar sheomra teachtaireachta d\xedr\xed don ID Maitr\xeds tugtha"},
 giY(){return"Marc\xe1il mar ghr\xfapa"},
 giK(){return y.a},
@@ -339,7 +339,7 @@ lk(d){return"T\xe1 "+d+" ag cl\xf3scr\xedobh\u2026"},
 ll(d){return"\ud83d\udeaa D'fh\xe1g "+d+" an comhr\xe1"},
 hB(d,e){return"Sheol "+d+" imeacht "+e},
 ghA(){return"Neamhfh\xedoraithe"},
-gdd(){return"Deimhnithe"},
+gde(){return"Deimhnithe"},
 glo(){return"Tosaigh F\xedor\xfa"},
 goy(){return"D'fh\xedoraigh t\xfa go rath\xfail!"},
 goz(){return"Ag f\xedor\xfa cuntas eile"},
@@ -737,5 +737,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.LW,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"LW":{"aT":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["c+L55ZjxSuZf3e2CvRe9qWT0mhM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["uwfTnn92pOnrZVtc00FEQyC/wfE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map
