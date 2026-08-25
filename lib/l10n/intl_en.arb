@@ -2779,7 +2779,6 @@
     "waitingForParticipant": "Waiting for participant...",
     "decline": "Decline",
     "startCall": "Start call",
-    "youAreAlreadyInACall": "You are already in a call!",
     "selectCamera": "Select camera",
     "selectMicrophone": "Select microphone",
     "selectSpeaker": "Select speaker"
