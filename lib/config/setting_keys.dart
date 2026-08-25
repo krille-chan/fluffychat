@@ -79,10 +79,7 @@ enum AppSettings<T> {
   doubleTapReaction<String>('chat.fluffy.double_tap_reaction', '❤️'),
   benchmarksInLogs<bool>('chat.fluffy.benchmarks_in_logs', false),
   autoSendErrorReports<bool?>('chat.fluffy.auto_send_eror_reports', null),
-  sentryDns<String>(
-    'chat.fluffy.sentry_dns',
-    'https://001fc83b53bd409c82a505d74d56f001@observe.fluffy.chat/1',
-  ),
+  knownErrorHashes<List<String>>('chat.fluffy.known_crash_hashes', []),
   customLiveKitInstance<String>('chat.fluffy.custom_live_kit_instance', '');
 
   final String key;
@@ -243,4 +240,22 @@ extension AppSettingsDoubleExtension on AppSettings<double> {
   }
 
   Future<void> setItem(double value) => AppSettings.store.setDouble(key, value);
+}
+
+extension AppSettingsStringListExtension on AppSettings<List<String>> {
+  List<String> get value {
+    final value = Result(() => AppSettings.store.getStringList(key));
+    final error = value.asError;
+    if (error != null) {
+      Logs().e(
+        'Unable to fetch $key from storage. Removing entry...',
+        error.error,
+        error.stackTrace,
+      );
+    }
+    return value.asValue?.value ?? defaultValue;
+  }
+
+  Future<void> setItem(List<String> value) =>
+      AppSettings.store.setStringList(key, value);
 }

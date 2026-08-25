@@ -57,6 +57,11 @@ abstract class AppConfig {
     path: 'krille-chan/fluffychat/refs/heads/main/recommended_homeservers.json',
   );
 
+  static final Uri crashReportEndpoint = Uri(
+    scheme: 'https',
+    host: 'crash.fluffy.chat',
+  );
+
   static const String mainIsolatePortName = 'main_isolate';
   static const String pushIsolatePortName = 'push_isolate';
   static const String pushHelperCrashReportKey = 'push_helper_crash_report';

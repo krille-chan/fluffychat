@@ -3,16 +3,22 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'dart:convert';
+
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
-import 'package:sentry/sentry.dart';
+import 'package:universal_html/universal_html.dart' as html;
+import 'package:url_launcher/url_launcher.dart';
 
 class ErrorReporter {
   final BuildContext? context;
@@ -28,43 +34,20 @@ class ErrorReporter {
     'HandshakeException',
   };
 
-  static void onFlutterError(Object error, [StackTrace? stackTrace]) =>
-      _sendErrorReport(
-        message: 'Flutter Error',
-        error: error,
-        stackTrace: stackTrace,
-      );
-
-  static bool _sentryInitialized = false;
-
-  static Future<void> _sendErrorReport({
-    required String message,
-    required Object error,
-    required StackTrace? stackTrace,
-    bool? consent,
-  }) async {
-    consent ??= AppSettings.autoSendErrorReports.value;
-    final dsn = AppSettings.sentryDns.value;
-    if (AppSettings.autoSendErrorReports.value != true || dsn.isEmpty) {
+  static void onFlutterError(Object error, [StackTrace? stackTrace]) {
+    if (AppSettings.autoSendErrorReports.value != true) {
       debugPrint('Exception caught but auto send crash reports is disabled.');
       debugPrint(error.toString());
       debugPrintStack(stackTrace: stackTrace);
       return;
     }
-    if (!_sentryInitialized) {
-      await Sentry.init((options) => options.dsn = dsn);
-      _sentryInitialized = true;
-    }
-    Logs().e('Sending crash report... ($message)', error, stackTrace);
-    if (!kReleaseMode) {
-      Logs().v('Sending crash report aborted. Only possible in release mode!');
-      return;
-    }
-    await Sentry.captureException(
-      error,
-      stackTrace: stackTrace,
-      message: SentryMessage(message),
-    );
+    final hash = (stackTrace ?? error).hashCode.toString();
+    if (AppSettings.knownErrorHashes.value.contains(hash)) return;
+    AppSettings.knownErrorHashes.setItem([
+      ...AppSettings.knownErrorHashes.value,
+      hash,
+    ]);
+    ErrorReporter(null, 'Flutter error').onErrorCallback(error, stackTrace);
   }
 
   Future<void> onErrorCallback(Object error, [StackTrace? stackTrace]) async {
@@ -111,19 +94,74 @@ class ErrorReporter {
             child: Text(L10n.of(context).copy),
           ),
           AdaptiveDialogAction(
-            onPressed: () => showFutureLoadingDialog(
-              context: context,
-              future: () => _sendErrorReport(
-                message: message ?? 'Error from Error Reporting Dialog',
-                error: error,
-                stackTrace: stackTrace,
-                consent: true,
-              ),
-            ),
+            onPressed: () async {
+              final existingIssueUrl = stackTrace == null
+                  ? null
+                  : await _searchIssue(
+                      (error.toString() + stackTrace.toString()).hashCode
+                          .toString(),
+                    );
+              if (existingIssueUrl != null) {
+                launchUrl(existingIssueUrl);
+                return;
+              }
+              launchUrl(
+                AppConfig.newIssueUrl.resolveUri(
+                  Uri(
+                    queryParameters: {
+                      'template': 'bug_report.yaml',
+                      'title':
+                          '[Error ${stackTrace.hashCode}] ${message ?? error}',
+                      'bug-description': error.toString(),
+                      'stacktrace': stackTrace?.toString(),
+                      'app-version': await PlatformInfos.getVersion(),
+                      'platform': switch (defaultTargetPlatform) {
+                        TargetPlatform.android => 'Android',
+                        TargetPlatform.fuchsia => 'Other',
+                        TargetPlatform.iOS => 'iOS',
+                        TargetPlatform.linux => 'Linux',
+                        TargetPlatform.macOS => 'macOS (Self-compiled)',
+                        TargetPlatform.windows => 'Windows (Self-compiled)',
+                      },
+                      'platform-info': kIsWeb
+                          ? html.window.navigator.userAgent
+                          : jsonEncode(
+                              (await DeviceInfoPlugin().deviceInfo).data,
+                            ),
+                    },
+                  ),
+                ),
+                mode: LaunchMode.externalApplication,
+              );
+            },
             child: Text(L10n.of(context).report),
           ),
         ],
       ),
     );
+  }
+
+  Future<Uri?> _searchIssue(String hash) async {
+    final result = await http.get(
+      Uri(
+        scheme: 'https',
+        host: 'api.github.com',
+        path: '/search/issues',
+        query: 'q=repo:krille-chan/fluffychat+is:issue+$hash',
+      ),
+    );
+    try {
+      final jsonResult =
+          jsonDecode(utf8.decode(result.bodyBytes)) as Map<String, Object?>;
+      final uriString = jsonResult
+          .tryGetList<Map<String, Object?>>('items')
+          ?.firstOrNull
+          ?.tryGet<String>('html_url');
+      if (uriString == null) return null;
+      return Uri.tryParse(uriString);
+    } catch (e, s) {
+      Logs().w('Unable to search for existing issues on GitHub', e, s);
+      return null;
+    }
   }
 }
