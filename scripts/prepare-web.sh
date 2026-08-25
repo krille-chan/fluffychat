@@ -32,6 +32,14 @@ rm native_imaging.zip
 git clone https://github.com/livekit/client-sdk-flutter.git
 cd client-sdk-flutter
 flutter pub get
+
+# Patch so that LiveKit uses HKDF by default:
+# Workaroudn for https://github.com/livekit/client-sdk-flutter/issues/974
+SED=$(command -v gsed || command -v sed)
+"$SED" -i "s/{'name': 'PBKDF2'.toJS}/{'name': 'HKDF'.toJS}/g" web/e2ee.keyhandler.dart
+"$SED" -i "s/getAlgoOptions('PBKDF2', salt)/getAlgoOptions('HKDF', salt)/g" web/e2ee.keyhandler.dart
+"$SED" -i "s/{'name': 'PBKDF2'}/{'name': 'HKDF'}/g"           web/e2ee.utils.dart
+
 dart compile js web/e2ee.worker.dart -o ../web/e2ee.worker.dart.js -m
 cd ..
 rm -rf client-sdk-flutter
