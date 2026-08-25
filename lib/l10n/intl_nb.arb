@@ -2781,7 +2781,7 @@
     },
     "compressingVideo": "Komprimerer video...",
     "shareCrashReports": "Del krasjrapporter",
-    "shareCrashReportsDescription": "Del automatisk krasjrapporter med utviklerne",
+    "shareCrashReportsDescription": "Dele automatisk krasjrapporter med utviklerne?",
     "shareCrashReportsPrompt": "Vil du dele krasjrapporter automatisk med utviklerne? Les mer på {url} om hvilke data som deles.",
     "@shareCrashReportsPrompt": {
         "placeholders": {
@@ -2796,5 +2796,14 @@
     "noDevicesFound": "Ingen enheter funnet",
     "incomingCall": "Innkommende samtale",
     "waitingForParticipant": "Venter på deltakere...",
-    "decline": "Avslå"
+    "decline": "Avslå",
+    "videoCall": "Videosamtale",
+    "voiceCall": "Talesamtale",
+    "missedCall": "Tapte anrop",
+    "callBack": "Ring tilbake",
+    "hangUp": "Legg på",
+    "startCall": "Start samtale",
+    "selectCamera": "Velg kamera",
+    "selectMicrophone": "Velg mikrofon",
+    "selectSpeaker": "Velg høytaler"
 }
