@@ -47,11 +47,7 @@ extension GetCallTiles on lk.Room {
           audio: audio,
           connected: participant != null,
         );
-        if (participant?.isSpeaking == true) {
-          tiles.insert(0, tile);
-        } else {
-          tiles.add(tile);
-        }
+        tiles.add(tile);
       }
       for (final pub
           in participant?.videoTrackPublications ??
@@ -63,11 +59,7 @@ extension GetCallTiles on lk.Room {
           audio: pub.isScreenShare ? null : audio,
           connected: participant != null,
         );
-        if (!pub.isScreenShare && participant?.isSpeaking == true) {
-          tiles.insert(0, newTile);
-        } else {
-          tiles.add(newTile);
-        }
+        tiles.add(newTile);
       }
     }
 

@@ -3,6 +3,8 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'dart:math';
+
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -43,6 +45,8 @@ class CallPage extends StatelessWidget {
           room.client.userID!,
         );
         final ownHandRaised = viewModel.participantRaisedHand(ownUser.id);
+        final userIsScreensharing =
+            localParticipant?.isScreenShareEnabled() == true;
 
         return MediaQuery.removePadding(
           context: context,
@@ -194,25 +198,29 @@ class CallPage extends StatelessWidget {
                               tiles.firstWhereOrNull(
                                 (tile) => tile.video?.isScreenShare == true,
                               ) ??
-                              tiles.firstOrNull ??
-                              (
-                                id: '${ownUser.id}_fallback_none',
-                                user: ownUser,
-                                video: null,
-                                audio: null,
-                                connected: false,
-                              );
+                              (tiles.length < 3 ? tiles.first : null);
+
                           if (mini) {
+                            final miniFocused =
+                                focused ??
+                                tiles.firstOrNull ??
+                                (
+                                  id: '${ownUser.id}_fallback_none',
+                                  user: ownUser,
+                                  video: null,
+                                  audio: null,
+                                  connected: false,
+                                );
                             return SizedBox.expand(
                               child: CallTile(
-                                key: ValueKey(focused.id),
-                                user: focused.user,
-                                video: focused.video,
-                                audio: focused.audio,
-                                connected: focused.connected,
+                                key: ValueKey(miniFocused.id),
+                                user: miniFocused.user,
+                                video: miniFocused.video,
+                                audio: miniFocused.audio,
+                                connected: miniFocused.connected,
                                 margin: EdgeInsets.zero,
                                 handRaised: viewModel.participantRaisedHand(
-                                  focused.user.id,
+                                  miniFocused.user.id,
                                 ),
                                 onTap: null,
                               ),
@@ -225,67 +233,99 @@ class CallPage extends StatelessWidget {
                               bottom: 84.0,
                               left: 16.0,
                               right: 16.0,
+                              top: 16.0,
                             ),
-                            child: Flex(
-                              direction: axis,
-                              crossAxisAlignment: .stretch,
-                              children: [
-                                Expanded(
-                                  child: CallTile(
-                                    key: ValueKey(focused.id),
-                                    user: focused.user,
-                                    video: focused.video,
-                                    audio: focused.audio,
-                                    connected: focused.connected,
-                                    fit: .contain,
-                                    handRaised: viewModel.participantRaisedHand(
-                                      focused.user.id,
-                                    ),
-                                    onTap: focused.video == null
-                                        ? null
-                                        : () => viewModel.setFocusedTrack(
-                                            focused.id,
-                                          ),
-                                  ),
-                                ),
-                                if (tiles.isNotEmpty) ...[
-                                  SizedBox(width: 16, height: 16),
-                                  SizedBox(
-                                    height: axis == .horizontal
-                                        ? null
-                                        : tileSize,
-                                    width: axis == .vertical ? null : tileSize,
-                                    child: ListView.builder(
-                                      scrollDirection: axis == .horizontal
-                                          ? .vertical
-                                          : .horizontal,
-                                      itemCount: tiles.length,
-                                      itemBuilder: (context, i) => CallTile(
-                                        key: ValueKey(tiles[i].id),
-                                        user: tiles[i].user,
-                                        video: tiles[i].video,
-                                        audio: tiles[i].audio,
-                                        connected: tiles[i].connected,
-                                        size: tileSize,
-                                        handRaised: viewModel
-                                            .participantRaisedHand(
-                                              tiles[i].user.id,
-                                            ),
-                                        onTap: tiles[i].video == null
-                                            ? null
-                                            : () => viewModel.setFocusedTrack(
-                                                tiles[i].id,
-                                              ),
-                                        margin: EdgeInsets.only(
-                                          right: axis == .vertical ? 16 : 0,
-                                          bottom: axis == .horizontal ? 16 : 0,
+                            child: focused == null
+                                ? GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: axis == .vertical
+                                              ? sqrt(tiles.length).floor()
+                                              : sqrt(tiles.length).ceil(),
+                                          crossAxisSpacing: 16.0,
+                                          mainAxisSpacing: 16.0,
                                         ),
+                                    itemCount: tiles.length,
+                                    itemBuilder: (context, i) => CallTile(
+                                      key: ValueKey(tiles[i].id),
+                                      user: tiles[i].user,
+                                      video: tiles[i].video,
+                                      audio: tiles[i].audio,
+                                      connected: tiles[i].connected,
+                                      size: tileSize,
+                                      handRaised: viewModel
+                                          .participantRaisedHand(
+                                            tiles[i].user.id,
+                                          ),
+                                      onTap: () => viewModel.setFocusedTrack(
+                                        tiles[i].id,
                                       ),
                                     ),
+                                  )
+                                : Flex(
+                                    direction: axis,
+                                    crossAxisAlignment: .stretch,
+                                    children: [
+                                      Expanded(
+                                        child: CallTile(
+                                          key: ValueKey(focused.id),
+                                          user: focused.user,
+                                          video: focused.video,
+                                          audio: focused.audio,
+                                          connected: focused.connected,
+                                          fit: .contain,
+                                          handRaised: viewModel
+                                              .participantRaisedHand(
+                                                focused.user.id,
+                                              ),
+                                          onTap: () => viewModel
+                                              .setFocusedTrack(focused.id),
+                                        ),
+                                      ),
+                                      if (tiles.isNotEmpty) ...[
+                                        SizedBox(width: 16, height: 16),
+                                        SizedBox(
+                                          height: axis == .horizontal
+                                              ? null
+                                              : tileSize,
+                                          width: axis == .vertical
+                                              ? null
+                                              : tileSize,
+                                          child: ListView.builder(
+                                            scrollDirection: axis == .horizontal
+                                                ? .vertical
+                                                : .horizontal,
+                                            itemCount: tiles.length,
+                                            itemBuilder: (context, i) =>
+                                                CallTile(
+                                                  key: ValueKey(tiles[i].id),
+                                                  user: tiles[i].user,
+                                                  video: tiles[i].video,
+                                                  audio: tiles[i].audio,
+                                                  connected: tiles[i].connected,
+                                                  size: tileSize,
+                                                  handRaised: viewModel
+                                                      .participantRaisedHand(
+                                                        tiles[i].user.id,
+                                                      ),
+                                                  onTap: () =>
+                                                      viewModel.setFocusedTrack(
+                                                        tiles[i].id,
+                                                      ),
+                                                  margin: EdgeInsets.only(
+                                                    right: axis == .vertical
+                                                        ? 16
+                                                        : 0,
+                                                    bottom: axis == .horizontal
+                                                        ? 16
+                                                        : 0,
+                                                  ),
+                                                ),
+                                          ),
+                                        ),
+                                      ],
+                                    ],
                                   ),
-                                ],
-                              ],
-                            ),
                           );
                         },
                       ),
@@ -324,12 +364,18 @@ class CallPage extends StatelessWidget {
                       FloatingActionButton(
                         heroTag: null,
                         mini: mini,
+                        backgroundColor: userIsScreensharing
+                            ? theme.colorScheme.primary
+                            : null,
+                        foregroundColor: userIsScreensharing
+                            ? theme.colorScheme.onPrimary
+                            : null,
                         onPressed: () => localParticipant.setScreenShareEnabled(
-                          !localParticipant.isScreenShareEnabled(),
+                          !userIsScreensharing,
                         ),
                         child: Icon(
-                          localParticipant.isScreenShareEnabled()
-                              ? Icons.stop_screen_share_outlined
+                          userIsScreensharing
+                              ? Icons.stop_screen_share
                               : Icons.screen_share_outlined,
                         ),
                       ),
