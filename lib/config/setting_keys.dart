@@ -78,7 +78,7 @@ enum AppSettings<T> {
   doubleTapToReact<bool>('chat.fluffy.double_tap_to_react', false),
   doubleTapReaction<String>('chat.fluffy.double_tap_reaction', '❤️'),
   benchmarksInLogs<bool>('chat.fluffy.benchmarks_in_logs', false),
-  autoSendErrorReports<bool?>('chat.fluffy.auto_send_eror_reports', null),
+  autoSendErrorReports<bool>('chat.fluffy.auto_send_eror_reports', false),
   sentryDns<String>(
     'chat.fluffy.sentry_dns',
     'https://001fc83b53bd409c82a505d74d56f001@observe.fluffy.chat/1',

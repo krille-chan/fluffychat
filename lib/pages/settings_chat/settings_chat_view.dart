@@ -46,10 +46,6 @@ class SettingsChatView extends StatelessWidget {
                 setting: AppSettings.hideRedactedEvents,
               ),
               SettingsSwitchListTile.adaptive(
-                title: L10n.of(context).hideRoomsInSpaces,
-                setting: AppSettings.hideRoomsInSpaces,
-              ),
-              SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).hideInvalidOrUnknownMessageFormats,
                 setting: AppSettings.hideUnknownEvents,
               ),
@@ -69,6 +65,16 @@ class SettingsChatView extends StatelessWidget {
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).showThumbnailsInTimeline,
                 setting: AppSettings.showThumbnailsInTimeline,
+              ),
+              Divider(color: theme.dividerColor),
+              ListTile(
+                title: Text(
+                  L10n.of(context).doubleTapToReact,
+                  style: TextStyle(
+                    color: theme.colorScheme.secondary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).doubleTapToReact,
@@ -135,6 +141,11 @@ class SettingsChatView extends StatelessWidget {
                   },
                 ),
               Divider(color: theme.dividerColor),
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context).hideRoomsInSpaces,
+                setting: AppSettings.hideRoomsInSpaces,
+              ),
+              Divider(color: theme.dividerColor),
               ListTile(
                 title: Text(
                   L10n.of(context).customEmojisAndStickers,
@@ -151,16 +162,6 @@ class SettingsChatView extends StatelessWidget {
                 trailing: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Icon(Icons.chevron_right_outlined),
-                ),
-              ),
-              Divider(color: theme.dividerColor),
-              ListTile(
-                title: Text(
-                  L10n.of(context).calls,
-                  style: TextStyle(
-                    color: theme.colorScheme.secondary,
-                    fontWeight: FontWeight.bold,
-                  ),
                 ),
               ),
             ],
