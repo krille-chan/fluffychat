@@ -2773,5 +2773,29 @@
     },
     "compressingVideo": "Compression de la vidéo...",
     "shareCrashReports": "Partager le rapport de crash",
-    "shareCrashReportsDescription": "Partage automatiquement les rapports de crash avec les developers"
+    "shareCrashReportsDescription": "Partage automatiquement les rapports de crash avec les developers ?",
+    "activeCall": "Appel actif",
+    "countActiveCallMembers": "{count} membres actifs dans l'appel",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Entrer dans l'appel",
+    "videoCallsBetaWarning": "Les appels vidéos sont une fonctionnalité en beta. Il peut y avoir des bugs ou des comportements inattendus. Nous serons heureux d'entendre vos retours.",
+    "noDevicesFound": "Aucun appareil trouvé",
+    "incomingCall": "Appel entrant",
+    "videoCall": "Appel vidéo",
+    "voiceCall": "Appel vocal",
+    "missedCall": "Appel manqué",
+    "callBack": "Rappeler",
+    "hangUp": "Raccrocher",
+    "waitingForParticipant": "En attente de participants...",
+    "decline": "Décliner",
+    "startCall": "Démarrer l'appel",
+    "selectCamera": "Sélectionner une caméra",
+    "selectMicrophone": "Sélectionner un micro",
+    "selectSpeaker": "Sélectionner une sortie audio"
 }
