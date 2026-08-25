@@ -55,6 +55,7 @@ class ChatAppBarTitle extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Column(
+              mainAxisSize: .min,
               crossAxisAlignment: .start,
               children: [
                 Row(
@@ -102,37 +103,20 @@ class ChatAppBarTitle extends StatelessWidget {
                                       final lastActiveTimestamp =
                                           presence?.lastActiveTimestamp;
 
-                                      return Row(
-                                        children: [
-                                          if (presence?.currentlyActive == true)
-                                            Text(
-                                              L10n.of(context).currentlyActive,
-                                              style: style,
-                                            )
-                                          else if (lastActiveTimestamp != null)
-                                            Text(
-                                              L10n.of(context).lastActiveAgo(
-                                                lastActiveTimestamp
-                                                    .localizedTimeShort(
-                                                      context,
-                                                    ),
-                                              ),
-                                              style: style,
-                                            ),
-                                          if (statusMessage != null) ...[
-                                            if ((presence?.currentlyActive ==
-                                                    true ||
-                                                lastActiveTimestamp != null))
-                                              Text(' ◦ ', style: style),
-                                            Expanded(
-                                              child: Text(
-                                                statusMessage,
-                                                style: style,
-                                                maxLines: 1,
-                                              ),
-                                            ),
-                                          ],
-                                        ],
+                                      final texts = [
+                                        if (presence?.currentlyActive == true)
+                                          L10n.of(context).currentlyActive
+                                        else if (lastActiveTimestamp != null)
+                                          L10n.of(context).lastActiveAgo(
+                                            lastActiveTimestamp
+                                                .localizedTimeShort(context),
+                                          ),
+                                        ?statusMessage,
+                                      ];
+
+                                      return Text(
+                                        texts.join(' ◦ '),
+                                        style: style,
                                       );
                                     },
                                   )
