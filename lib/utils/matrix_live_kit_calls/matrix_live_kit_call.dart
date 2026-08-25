@@ -244,6 +244,7 @@ extension MatrixRtcRoomExtension on Room {
             .fold<List<String>>([], (urls, foci) => [...urls, ...foci]) ??
         [];
     urls.addAll(memberUrls);
+    Logs().v('Available SFUs', urls);
     if (urls.isEmpty) {
       throw Exception('This server does not support livekit calls!');
     }
@@ -299,6 +300,7 @@ extension MatrixRtcRoomExtension on Room {
         }
         final json =
             jsonDecode(utf8.decode(response.bodyBytes)) as Map<String, Object?>;
+        Logs().d('Use SFU', url);
         return MatrixRtcCredentials.fromJson(json);
       } catch (e) {
         Logs().v(
