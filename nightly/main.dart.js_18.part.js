@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-dzb(d){return new A.Fq(B.dx(d))},
+dzb(d){return new A.Fp(B.dx(d))},
 dzc(){return new A.Me(B.dx("pt_BR"))},
 dzd(){return new A.Mf(B.dx("pt_PT"))},
-Fq:function Fq(d){this.a=d},
+Fp:function Fp(d){this.a=d},
 Me:function Me(d){this.a=d},
 Mf:function Mf(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[58]
-A.Fq.prototype={
+A.Fp.prototype={
 gpq(){return"Edit image"},
 grb(){return"Rotate left"},
 grd(){return"Rotate right"},
@@ -1688,9 +1688,9 @@ gkJ(){return"Por favor introduza um n\xfamero maior que 0"},
 gf6(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3o ver deixou o chat."},
 D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Fq,C.aT)
-w(A.Fq,[A.Me,A.Mf])})()
-B.e9(b.typeUniverse,JSON.parse('{"Fq":{"aT":[]},"Me":{"aT":[]},"Mf":{"aT":[]}}'))
+x(A.Fp,C.aT)
+w(A.Fp,[A.Me,A.Mf])})()
+B.e9(b.typeUniverse,JSON.parse('{"Fp":{"aT":[]},"Me":{"aT":[]},"Mf":{"aT":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["x677SZ8CElzFEHk3kyOywu2dPsw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["nyTLhI+wfjbPLYAzm4Bw6pmHXh8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map
