@@ -4120,7 +4120,7 @@ D(a,b){var s=0,r=A.F(t.H),q=this,p,o,n
 var $async$D=A.G(function(c,d){if(c===1)return A.C(d,r)
 for(;;)switch(s){case 0:o=A.b(A.b(q.e.crypto).subtle)
 n=t.N
-n=A.h(A.j(["name","PBKDF2"],n,n))
+n=A.h(A.j(["name","HKDF"],n,n))
 if(n==null)n=A.J(n)
 p=t.m
 s=4
@@ -4164,7 +4164,7 @@ case 1:return A.D(q,r)}})
 return A.E($async$J,r)},
 M(a,b){var s=0,r=A.F(t.D),q,p=this,o,n,m,l
 var $async$M=A.G(function(c,d){if(c===1)return A.C(d,r)
-for(;;)switch(s){case 0:o=A.h_("PBKDF2",b)
+for(;;)switch(s){case 0:o=A.h_("HKDF",b)
 n=A.b(A.b(p.e.crypto).subtle)
 m=A.h(o)
 if(m==null)m=A.J(m)
