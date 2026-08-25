@@ -13,6 +13,7 @@ typedef TileData = ({
   lk.TrackPublication<lk.VideoTrack>? video,
   lk.TrackPublication<lk.AudioTrack>? audio,
   User user,
+  bool connected,
 });
 
 extension GetCallTiles on lk.Room {
@@ -44,6 +45,7 @@ extension GetCallTiles on lk.Room {
           user: user,
           video: null,
           audio: audio,
+          connected: participant != null,
         );
         if (participant?.isSpeaking == true) {
           tiles.insert(0, tile);
@@ -59,6 +61,7 @@ extension GetCallTiles on lk.Room {
           user: user,
           video: pub,
           audio: pub.isScreenShare ? null : audio,
+          connected: participant != null,
         );
         if (!pub.isScreenShare && participant?.isSpeaking == true) {
           tiles.insert(0, newTile);
@@ -77,6 +80,7 @@ extension GetCallTiles on lk.Room {
         user: ownUser,
         video: pub,
         audio: localParticipant?.audioTrackPublications.firstOrNull,
+        connected: localParticipant != null,
       ));
     }
 
@@ -89,6 +93,7 @@ extension GetCallTiles on lk.Room {
         user: ownUser,
         video: null,
         audio: localParticipant?.audioTrackPublications.firstOrNull,
+        connected: localParticipant != null,
       ));
     }
 

@@ -200,6 +200,7 @@ class CallPage extends StatelessWidget {
                                 user: ownUser,
                                 video: null,
                                 audio: null,
+                                connected: false,
                               );
                           if (mini) {
                             return SizedBox.expand(
@@ -208,12 +209,8 @@ class CallPage extends StatelessWidget {
                                 user: focused.user,
                                 video: focused.video,
                                 audio: focused.audio,
+                                connected: focused.connected,
                                 margin: EdgeInsets.zero,
-                                connected:
-                                    focused.user.id == room.client.userID ||
-                                    liveKitRoom.remoteParticipants.containsKey(
-                                      focused.id,
-                                    ),
                                 handRaised: viewModel.participantRaisedHand(
                                   focused.user.id,
                                 ),
@@ -239,11 +236,8 @@ class CallPage extends StatelessWidget {
                                     user: focused.user,
                                     video: focused.video,
                                     audio: focused.audio,
+                                    connected: focused.connected,
                                     fit: .contain,
-                                    connected:
-                                        focused.user.id == room.client.userID ||
-                                        liveKitRoom.remoteParticipants
-                                            .containsKey(focused.id),
                                     handRaised: viewModel.participantRaisedHand(
                                       focused.user.id,
                                     ),
@@ -271,16 +265,12 @@ class CallPage extends StatelessWidget {
                                         user: tiles[i].user,
                                         video: tiles[i].video,
                                         audio: tiles[i].audio,
+                                        connected: tiles[i].connected,
                                         size: tileSize,
                                         handRaised: viewModel
                                             .participantRaisedHand(
                                               tiles[i].user.id,
                                             ),
-                                        connected:
-                                            tiles[i].user.id ==
-                                                room.client.userID ||
-                                            liveKitRoom.remoteParticipants
-                                                .containsKey(tiles[i].id),
                                         onTap: tiles[i].video == null
                                             ? null
                                             : () => viewModel.setFocusedTrack(

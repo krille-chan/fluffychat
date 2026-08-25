@@ -231,23 +231,24 @@ extension MatrixRtcRoomExtension on Room {
       );
     }
     Logs().d('[Join MatrixRtc Call] (1/5) Get LiveKit Backend Urls...');
-    final urls =
-        states[MatrixRtcCallMember.eventType]?.values
-            .map(
-              (state) => MatrixRtcCallMember.fromJson(
-                state.content,
-                senderId: state.senderId,
-              ).fociPreferred.map((focus) => focus.livekitServiceUrl),
-            )
-            .fold<List<String>>([], (urls, foci) => [...urls, ...foci]) ??
-        [];
-    urls.addAll(await client.getLiveKitServiceUrls());
+
+    final hasActiveMatrixRtcCall = this.hasActiveMatrixRtcCall;
+
+    final urls = getActiveMatrixRtcMembers()
+        .map(
+          (state) =>
+              state.fociPreferred.map((focus) => focus.livekitServiceUrl),
+        )
+        .fold<List<String>>([], (urls, foci) => [...urls, ...foci]);
+
+    if (urls.isEmpty) {
+      urls.addAll(await client.getLiveKitServiceUrls());
+    }
 
     Logs().v('Available SFUs', urls);
     if (urls.isEmpty) {
       throw Exception('This server does not support livekit calls!');
     }
-    final hasActiveMatrixRtcCall = this.hasActiveMatrixRtcCall;
 
     Logs().d(
       '[Join MatrixRtc Call] (2/5) Set "${MatrixRtcCallMember.eventType}" State event...',
