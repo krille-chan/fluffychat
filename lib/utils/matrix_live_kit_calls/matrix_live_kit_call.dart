@@ -231,9 +231,7 @@ extension MatrixRtcRoomExtension on Room {
       );
     }
     Logs().d('[Join MatrixRtc Call] (1/5) Get LiveKit Backend Urls...');
-    final urls = await client.getLiveKitServiceUrls();
-
-    final memberUrls =
+    final urls =
         states[MatrixRtcCallMember.eventType]?.values
             .map(
               (state) => MatrixRtcCallMember.fromJson(
@@ -243,7 +241,8 @@ extension MatrixRtcRoomExtension on Room {
             )
             .fold<List<String>>([], (urls, foci) => [...urls, ...foci]) ??
         [];
-    urls.addAll(memberUrls);
+    urls.addAll(await client.getLiveKitServiceUrls());
+
     Logs().v('Available SFUs', urls);
     if (urls.isEmpty) {
       throw Exception('This server does not support livekit calls!');
