@@ -2805,5 +2805,11 @@
     "startCall": "Start samtale",
     "selectCamera": "Velg kamera",
     "selectMicrophone": "Velg mikrofon",
-    "selectSpeaker": "Velg høytaler"
+    "selectSpeaker": "Velg høytaler",
+    "toggleMicrophone": "Slå på/av mikrofon",
+    "toggleCamera": "Slå på/av kamera",
+    "startScreensharing": "Start skjermdeling",
+    "stopScreensharing": "Avslutt skjermdeling",
+    "raiseHand": "Hev hånden",
+    "stopRaiseHand": "Senk hånden"
 }
