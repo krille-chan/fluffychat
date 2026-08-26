@@ -210,6 +210,7 @@ class CallPage extends StatelessWidget {
                                   video: null,
                                   audio: null,
                                   connected: false,
+                                  isSpeaking: false,
                                 );
                             return SizedBox.expand(
                               child: CallTile(
@@ -222,6 +223,7 @@ class CallPage extends StatelessWidget {
                                 handRaised: viewModel.participantRaisedHand(
                                   miniFocused.user.id,
                                 ),
+                                isSpeaking: miniFocused.isSpeaking,
                                 onTap: null,
                               ),
                             );
@@ -235,29 +237,50 @@ class CallPage extends StatelessWidget {
                           );
 
                           return focused == null
-                              ? GridView.builder(
+                              ? Padding(
                                   padding: padding,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: axis == .vertical
-                                            ? sqrt(tiles.length).round()
-                                            : sqrt(tiles.length).ceil(),
-                                        crossAxisSpacing: 16.0,
-                                        mainAxisSpacing: 16.0,
-                                      ),
-                                  itemCount: tiles.length,
-                                  itemBuilder: (context, i) => CallTile(
-                                    key: ValueKey(tiles[i].id),
-                                    user: tiles[i].user,
-                                    video: tiles[i].video,
-                                    audio: tiles[i].audio,
-                                    connected: tiles[i].connected,
-                                    size: tileSize,
-                                    handRaised: viewModel.participantRaisedHand(
-                                      tiles[i].user.id,
-                                    ),
-                                    onTap: () =>
-                                        viewModel.setFocusedTrack(tiles[i].id),
+                                  child: LayoutBuilder(
+                                    builder: (context, constraints) {
+                                      final rows = sqrt(tiles.length).ceil();
+                                      final columns = (tiles.length / rows)
+                                          .ceil();
+
+                                      final width =
+                                          (constraints.maxWidth / rows) -
+                                          (rows * 8);
+                                      final height =
+                                          (constraints.maxHeight / columns) -
+                                          (columns * 8);
+                                      return Center(
+                                        child: Wrap(
+                                          spacing: 16.0,
+                                          runSpacing: 16.0,
+                                          alignment: .center,
+                                          runAlignment: .center,
+                                          crossAxisAlignment: .center,
+                                          children: tiles
+                                              .map(
+                                                (tile) => CallTile(
+                                                  key: ValueKey(tile.id),
+                                                  user: tile.user,
+                                                  video: tile.video,
+                                                  audio: tile.audio,
+                                                  connected: tile.connected,
+                                                  width: width,
+                                                  height: height,
+                                                  isSpeaking: tile.isSpeaking,
+                                                  handRaised: viewModel
+                                                      .participantRaisedHand(
+                                                        tile.user.id,
+                                                      ),
+                                                  onTap: () => viewModel
+                                                      .setFocusedTrack(tile.id),
+                                                ),
+                                              )
+                                              .toList(),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 )
                               : Padding(
@@ -274,6 +297,7 @@ class CallPage extends StatelessWidget {
                                           audio: focused.audio,
                                           connected: focused.connected,
                                           fit: .contain,
+                                          isSpeaking: focused.isSpeaking,
                                           handRaised: viewModel
                                               .participantRaisedHand(
                                                 focused.user.id,
@@ -303,7 +327,10 @@ class CallPage extends StatelessWidget {
                                                   video: tiles[i].video,
                                                   audio: tiles[i].audio,
                                                   connected: tiles[i].connected,
-                                                  size: tileSize,
+                                                  width: tileSize,
+                                                  height: tileSize,
+                                                  isSpeaking:
+                                                      tiles[i].isSpeaking,
                                                   handRaised: viewModel
                                                       .participantRaisedHand(
                                                         tiles[i].user.id,
