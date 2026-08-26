@@ -127,13 +127,11 @@ apps:
     command: bin/fluffychat
     extensions: [ gnome ]
     plugs:
-      - audio-playback
       - desktop
       - desktop-legacy
       - home
       - network
       - network-manager
-      - network-manager-observe
       - opengl
       - removable-media
       - browser-support
