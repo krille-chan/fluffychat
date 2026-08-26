@@ -2774,7 +2774,6 @@
     "compressingVideo": "Comprimindo o vídeo…",
     "shareCrashReports": "Compartir informe dos fallos",
     "shareCrashReportsDescription": "Compartir de xeito automático coas desenvolvedoras os informes dos fallos",
-    "activeCall": "Chamada activa",
     "countActiveCallMembers": "{count} participantes na chamada activa",
     "@countActiveCallMembers": {
         "placeholders": {

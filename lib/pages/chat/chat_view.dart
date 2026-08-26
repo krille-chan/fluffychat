@@ -229,13 +229,13 @@ class ChatView extends StatelessWidget {
                       PulsatingWidget(
                         color: theme.colorScheme.error,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                          padding: const EdgeInsets.all(4.0),
                           child: TextButton.icon(
                             icon: Icon(switch (controller
                                 .room
                                 .activeMatrixRtcCallIntent) {
                               .voice => Icons.video_call_outlined,
-                              _ => Icons.voice_chat_outlined,
+                              _ => Icons.mic_outlined,
                             }),
                             label: Text(
                               controller.room

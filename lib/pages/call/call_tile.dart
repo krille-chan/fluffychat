@@ -100,7 +100,9 @@ class CallTile extends StatelessWidget {
                   elevation: theme.appBarTheme.elevation ?? 4,
                   shadowColor: theme.appBarTheme.shadowColor,
                   borderRadius: BorderRadius.circular(7),
-                  color: Theme.of(context).colorScheme.surface,
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.surfaceBright.withAlpha(230),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 4.0,
@@ -113,17 +115,17 @@ class CallTile extends StatelessWidget {
                         if (audio != null)
                           Icon(
                             audio?.muted == false ? Icons.mic : Icons.mic_off,
-                            size: 11,
+                            size: 12,
                           ),
                         if (this.video?.isScreenShare == true)
-                          Icon(Icons.screen_share_outlined, size: 11),
+                          Icon(Icons.screen_share_outlined, size: 12),
                         Text(
                           user.calcDisplayname(),
                           maxLines: 1,
-                          style: TextStyle(fontSize: 11),
+                          style: TextStyle(fontSize: 12),
                         ),
                         if (!connected)
-                          Icon(Icons.portable_wifi_off_outlined, size: 11),
+                          Icon(Icons.portable_wifi_off_outlined, size: 12),
                       ],
                     ),
                   ),

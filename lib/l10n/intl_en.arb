@@ -2763,7 +2763,6 @@
     "doubleTapReaction": "Double-tap reaction",
     "shareCrashReports": "Share crash reports",
     "shareCrashReportsDescription": "Automatically share crash reports with the developers?",
-    "activeCall": "Active call",
     "countActiveCallMembers": "{count} active call members",
     "@countActiveCallMembers": {
         "placeholders": {
@@ -2786,5 +2785,11 @@
     "startCall": "Start call",
     "selectCamera": "Select camera",
     "selectMicrophone": "Select microphone",
-    "selectSpeaker": "Select speaker"
+    "selectSpeaker": "Select speaker",
+    "toggleMicrophone": "Toggle microphone",
+    "toggleCamera": "Toggle camera",
+    "startScreensharing": "Start screensharing",
+    "stopScreensharing": "Stop screensharing",
+    "raiseHand": "Raise hand",
+    "stopRaiseHand": "Stop raise hand"
 }

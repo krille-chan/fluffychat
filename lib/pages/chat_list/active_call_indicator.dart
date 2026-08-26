@@ -26,7 +26,7 @@ class ActiveCallIndicator extends StatelessWidget {
               Icon(
                 switch (room.activeMatrixRtcCallIntent) {
                   .voice => Icons.video_call_outlined,
-                  _ => Icons.voice_chat_outlined,
+                  _ => Icons.mic_outlined,
                 },
                 size: 16,
                 color: theme.colorScheme.onError,

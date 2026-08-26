@@ -47,6 +47,19 @@ class CallPage extends StatelessWidget {
         final ownHandRaised = viewModel.participantRaisedHand(ownUser.id);
         final userIsScreensharing =
             localParticipant?.isScreenShareEnabled() == true;
+        final iconButtonStyle = IconButton.styleFrom(
+          backgroundColor: theme.colorScheme.surfaceBright.withAlpha(230),
+          iconSize: mini ? null : 28,
+          padding: EdgeInsets.all(mini ? 8.0 : 16.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(99),
+            side: BorderSide(color: theme.colorScheme.surfaceContainerHighest),
+          ),
+        );
+        final iconButtonStyleActive = IconButton.styleFrom(
+          backgroundColor: theme.colorScheme.inverseSurface,
+          foregroundColor: theme.colorScheme.onInverseSurface,
+        ).merge(iconButtonStyle);
 
         return MediaQuery.removePadding(
           context: context,
@@ -229,16 +242,15 @@ class CallPage extends StatelessWidget {
                             );
                           }
                           tiles.remove(focused);
-                          final padding = EdgeInsets.only(
-                            bottom: 84.0,
-                            left: 16.0,
-                            right: 16.0,
-                            top: 16.0,
-                          );
 
                           return focused == null
                               ? Padding(
-                                  padding: padding,
+                                  padding: EdgeInsets.only(
+                                    bottom: 84.0,
+                                    left: 16.0,
+                                    right: 16.0,
+                                    top: 16.0,
+                                  ),
                                   child: LayoutBuilder(
                                     builder: (context, constraints) {
                                       final rows = sqrt(tiles.length).ceil();
@@ -284,7 +296,12 @@ class CallPage extends StatelessWidget {
                                   ),
                                 )
                               : Padding(
-                                  padding: padding,
+                                  padding: EdgeInsets.only(
+                                    bottom: 96.0,
+                                    left: 16.0,
+                                    right: 16.0,
+                                    top: 16.0,
+                                  ),
                                   child: Flex(
                                     direction: axis,
                                     crossAxisAlignment: .stretch,
@@ -363,65 +380,61 @@ class CallPage extends StatelessWidget {
                 spacing: mini ? 8 : 16,
                 children: [
                   if (localParticipant != null) ...[
-                    FloatingActionButton(
-                      mini: mini,
-                      heroTag: null,
+                    IconButton(
+                      tooltip: L10n.of(context).toggleMicrophone,
+                      style: iconButtonStyle,
                       onPressed: () => localParticipant.setMicrophoneEnabled(
                         !localParticipant.isMicrophoneEnabled(),
                       ),
-                      child: Icon(
+                      icon: Icon(
                         localParticipant.isMicrophoneEnabled()
                             ? Icons.mic_outlined
                             : Icons.mic_off_outlined,
                       ),
                     ),
-                    FloatingActionButton(
-                      heroTag: null,
-                      mini: mini,
+                    IconButton(
+                      tooltip: L10n.of(context).toggleCamera,
+                      style: iconButtonStyle,
                       onPressed: () => localParticipant.setCameraEnabled(
                         !localParticipant.isCameraEnabled(),
                       ),
-                      child: Icon(
+                      icon: Icon(
                         localParticipant.isCameraEnabled()
                             ? Icons.videocam_outlined
                             : Icons.videocam_off_outlined,
                       ),
                     ),
                     if (!PlatformInfos.isMobile) // TODO: Fix on mobile?
-                      FloatingActionButton(
-                        heroTag: null,
-                        mini: mini,
-                        backgroundColor: userIsScreensharing
-                            ? theme.colorScheme.primary
-                            : null,
-                        foregroundColor: userIsScreensharing
-                            ? theme.colorScheme.onPrimary
-                            : null,
+                      IconButton(
+                        tooltip: userIsScreensharing
+                            ? L10n.of(context).stopScreensharing
+                            : L10n.of(context).startScreensharing,
+                        style: userIsScreensharing
+                            ? iconButtonStyleActive
+                            : iconButtonStyle,
                         onPressed: () => localParticipant.setScreenShareEnabled(
                           !userIsScreensharing,
                         ),
-                        child: Icon(
+                        icon: Icon(
                           userIsScreensharing
                               ? Icons.stop_screen_share
                               : Icons.screen_share_outlined,
                         ),
                       ),
-                    FloatingActionButton(
-                      heroTag: null,
-                      mini: mini,
-                      backgroundColor: ownHandRaised
-                          ? theme.colorScheme.primary
-                          : null,
-                      foregroundColor: ownHandRaised
-                          ? theme.colorScheme.onPrimary
-                          : null,
+                    IconButton(
+                      tooltip: ownHandRaised
+                          ? L10n.of(context).stopRaiseHand
+                          : L10n.of(context).raiseHand,
+                      style: ownHandRaised
+                          ? iconButtonStyleActive
+                          : iconButtonStyle,
                       onPressed: () => showFutureLoadingDialog(
                         context: context,
                         future: () => ownHandRaised
                             ? room.lowerHandInMatrixRtcCall(viewModel.timeline!)
                             : room.raiseHandInMatrixRtcCall(),
                       ),
-                      child: Icon(
+                      icon: Icon(
                         ownHandRaised
                             ? Icons.front_hand
                             : Icons.front_hand_outlined,
@@ -433,13 +446,12 @@ class CallPage extends StatelessWidget {
                         padding: const EdgeInsets.all(16.0),
                         child: SizedBox(
                           width: 200,
-                          child: FloatingActionButton.extended(
+                          child: TextButton.icon(
                             onPressed: () => showFutureLoadingDialog(
                               context: context,
                               future: () => viewModel.connect(context),
                             ),
-                            foregroundColor: theme.colorScheme.onPrimary,
-                            backgroundColor: theme.colorScheme.primary,
+                            style: ButtonStyle(shape: iconButtonStyle.shape),
                             icon: Icon(Icons.call_outlined),
                             label: Text(
                               room.hasActiveMatrixRtcCall
@@ -450,38 +462,40 @@ class CallPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    FloatingActionButton(
-                      heroTag: null,
-                      mini: mini,
+                    IconButton(
+                      tooltip: L10n.of(context).toggleMicrophone,
+                      style: iconButtonStyle,
                       onPressed: localAudioTrack != null
                           ? viewModel.togglePreviewMic
                           : null,
-                      child: Icon(
+                      icon: Icon(
                         !(localAudioTrack?.muted ?? true)
                             ? Icons.mic_outlined
                             : Icons.mic_off_outlined,
                       ),
                     ),
-                    FloatingActionButton(
-                      heroTag: null,
-                      mini: mini,
+                    IconButton(
+                      tooltip: L10n.of(context).toggleCamera,
+                      style: iconButtonStyle,
                       onPressed: localVideoTrack != null
                           ? viewModel.togglePreviewCamera
                           : null,
-                      child: Icon(
+                      icon: Icon(
                         !(localVideoTrack?.muted ?? true)
                             ? Icons.videocam_outlined
                             : Icons.videocam_off_outlined,
                       ),
                     ),
                   ],
-                  FloatingActionButton(
-                    heroTag: null,
-                    mini: mini,
+                  IconButton(
+                    tooltip: L10n.of(context).hangUp,
+                    style: IconButton.styleFrom(
+                      backgroundColor: theme.colorScheme.errorContainer,
+                      foregroundColor: theme.colorScheme.onErrorContainer,
+                    ).merge(iconButtonStyle),
+
                     onPressed: () => viewModel.close(context),
-                    foregroundColor: theme.colorScheme.onErrorContainer,
-                    backgroundColor: theme.colorScheme.errorContainer,
-                    child: Icon(Icons.call_end_outlined),
+                    icon: Icon(Icons.call_end_outlined),
                   ),
                 ],
               ),

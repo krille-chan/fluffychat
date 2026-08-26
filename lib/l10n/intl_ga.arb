@@ -2780,7 +2780,6 @@
     "compressingVideo": "Ag comhbhrú físeáin...",
     "shareCrashReports": "Comhroinn tuairiscí tuairteála",
     "shareCrashReportsDescription": "Roinn tuairiscí tuairteála go huathoibríoch leis na forbróirí",
-    "activeCall": "Glao gníomhach",
     "countActiveCallMembers": "{count} baill ghníomhacha glaonna",
     "@countActiveCallMembers": {
         "placeholders": {

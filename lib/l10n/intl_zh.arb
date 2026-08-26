@@ -2775,7 +2775,6 @@
     "shareCrashReports": "分享崩溃报告",
     "shareCrashReportsDescription": "自动与开发者分享崩溃报告",
     "videoCallsBetaWarning": "视频通话是测试功能。可能有故障或意外行为。我们可以聆听您的反馈。",
-    "activeCall": "活跃通话",
     "countActiveCallMembers": "{count} 名活跃通话成员",
     "@countActiveCallMembers": {
         "placeholders": {

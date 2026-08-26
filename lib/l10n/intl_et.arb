@@ -2777,7 +2777,6 @@
     "compressingVideo": "Pakime videot väiksemaks...",
     "shareCrashReports": "Jaga krahhilogisid",
     "shareCrashReportsDescription": "Jaga rakenduse kokkujooksmise aruandeid automaatselt arendajatega",
-    "activeCall": "Pooleliolev kõne",
     "countActiveCallMembers": "Pooleliolevas kõnes on {count} osalejat",
     "@countActiveCallMembers": {
         "placeholders": {
