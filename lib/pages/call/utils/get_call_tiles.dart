@@ -23,18 +23,21 @@ extension GetCallTiles on lk.Room {
   /// null video track at least.
   List<TileData> getCallTiles(Room room) {
     final tiles = <TileData>[];
-    final removeParticipantIds = <String>{
-      ...remoteParticipants.keys,
-      ...room.getActiveMatrixRtcMembers().map(
-        (member) => '${member.senderId}:${member.deviceId}',
-      ),
-    }..remove(localParticipant?.identity);
 
-    for (final participantId in removeParticipantIds) {
-      final participant = remoteParticipants[participantId];
-      final matrixId =
-          participant?.matrixId ??
-          (participantId.split(':')..removeLast()).join(':');
+    for (final member in room.getActiveMatrixRtcMembers()) {
+      final participantId = '${member.senderId}:${member.deviceId}';
+
+      // The local user is handled below:
+      if (localParticipant?.identity == participantId) continue;
+
+      final participant =
+          remoteParticipants[participantId] ??
+          remoteParticipants[member.membershipId];
+      final matrixId = member.senderId ?? participant?.matrixId;
+      if (matrixId == null) {
+        Logs().wtf('No matrix ID found for this member!');
+        continue;
+      }
       final user = room.unsafeGetUserFromMemoryOrFallback(matrixId);
       final audio = participant?.audioTrackPublications.firstOrNull;
       if (participant == null ||

@@ -142,13 +142,7 @@ extension MatrixRtcRoomExtension on Room {
     Timeline timeline,
   ) {
     final stateEvent =
-        states[MatrixRtcCallMember.eventType]?.entries
-                .lastWhereOrNull(
-                  (entry) =>
-                      entry.key.startsWith('_${matrixId}_') &&
-                      entry.key.endsWith('_m.call'),
-                )
-                ?.value
+        states[MatrixRtcCallMember.eventType]?[_ownMatrixRtcMembershipStateKey]
             as Event?;
     if (stateEvent == null) return false;
     final aggregatedEvents = timeline
