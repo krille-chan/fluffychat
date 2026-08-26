@@ -109,7 +109,7 @@ class ErrorReporter {
                 AppConfig.newIssueUrl.resolveUri(
                   Uri(
                     queryParameters: {
-                      'template': 'bug_report.yaml',
+                      'template': 'bug_report.yml',
                       'title':
                           '[Error ${stackTrace.hashCode}] ${message ?? error}',
                       'bug-description': error.toString(),
