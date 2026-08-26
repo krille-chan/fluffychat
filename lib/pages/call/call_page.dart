@@ -227,42 +227,42 @@ class CallPage extends StatelessWidget {
                             );
                           }
                           tiles.remove(focused);
+                          final padding = EdgeInsets.only(
+                            bottom: 84.0,
+                            left: 16.0,
+                            right: 16.0,
+                            top: 16.0,
+                          );
 
-                          return Padding(
-                            padding: EdgeInsets.only(
-                              bottom: 84.0,
-                              left: 16.0,
-                              right: 16.0,
-                              top: 16.0,
-                            ),
-                            child: focused == null
-                                ? GridView.builder(
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: axis == .vertical
-                                              ? sqrt(tiles.length).floor()
-                                              : sqrt(tiles.length).ceil(),
-                                          crossAxisSpacing: 16.0,
-                                          mainAxisSpacing: 16.0,
-                                        ),
-                                    itemCount: tiles.length,
-                                    itemBuilder: (context, i) => CallTile(
-                                      key: ValueKey(tiles[i].id),
-                                      user: tiles[i].user,
-                                      video: tiles[i].video,
-                                      audio: tiles[i].audio,
-                                      connected: tiles[i].connected,
-                                      size: tileSize,
-                                      handRaised: viewModel
-                                          .participantRaisedHand(
-                                            tiles[i].user.id,
-                                          ),
-                                      onTap: () => viewModel.setFocusedTrack(
-                                        tiles[i].id,
+                          return focused == null
+                              ? GridView.builder(
+                                  padding: padding,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: axis == .vertical
+                                            ? sqrt(tiles.length).round()
+                                            : sqrt(tiles.length).ceil(),
+                                        crossAxisSpacing: 16.0,
+                                        mainAxisSpacing: 16.0,
                                       ),
+                                  itemCount: tiles.length,
+                                  itemBuilder: (context, i) => CallTile(
+                                    key: ValueKey(tiles[i].id),
+                                    user: tiles[i].user,
+                                    video: tiles[i].video,
+                                    audio: tiles[i].audio,
+                                    connected: tiles[i].connected,
+                                    size: tileSize,
+                                    handRaised: viewModel.participantRaisedHand(
+                                      tiles[i].user.id,
                                     ),
-                                  )
-                                : Flex(
+                                    onTap: () =>
+                                        viewModel.setFocusedTrack(tiles[i].id),
+                                  ),
+                                )
+                              : Padding(
+                                  padding: padding,
+                                  child: Flex(
                                     direction: axis,
                                     crossAxisAlignment: .stretch,
                                     children: [
@@ -326,7 +326,7 @@ class CallPage extends StatelessWidget {
                                       ],
                                     ],
                                   ),
-                          );
+                                );
                         },
                       ),
                     ),

@@ -231,8 +231,18 @@ class ChatView extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 4.0),
                           child: TextButton.icon(
-                            icon: Icon(Icons.add_ic_call_outlined),
-                            label: Text(L10n.of(context).activeCall),
+                            icon: Icon(switch (controller
+                                .room
+                                .activeMatrixRtcCallIntent) {
+                              .voice => Icons.video_call_outlined,
+                              _ => Icons.voice_chat_outlined,
+                            }),
+                            label: Text(
+                              controller.room
+                                  .getActiveMatrixRtcMembers()
+                                  .length
+                                  .toString(),
+                            ),
                             onPressed:
                                 controller.room.hasPermissionForMatrixRtcCall
                                 ? controller.startOrJoinVideoCall

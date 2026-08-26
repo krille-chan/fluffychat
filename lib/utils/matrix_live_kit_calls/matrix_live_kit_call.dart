@@ -45,6 +45,13 @@ extension MatrixRtcClientExtension on Client {
 extension MatrixRtcRoomExtension on Room {
   bool get hasActiveMatrixRtcCall => getActiveMatrixRtcMembers().isNotEmpty;
 
+  MatrixRtcCallIntent? get activeMatrixRtcCallIntent {
+    final members = getActiveMatrixRtcMembers();
+    if (members.isEmpty) return null;
+    if (members.any((member) => member.callIntent == .video)) return .video;
+    return .voice;
+  }
+
   bool get hasPermissionForMatrixRtcCall =>
       canChangeStateEvent(MatrixRtcCallMember.eventType);
 
