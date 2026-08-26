@@ -120468,7 +120468,7 @@ case 5:l="Windows (Self-compiled)"
 break
 default:l=null}k=window.navigator.userAgent
 k.toString
-A.a0Y(o.cB(A.bP(null,null,null,null,null,null,A.o(["template","bug_report.yaml","title","[Error "+n+"] "+p.a.b,"bug-description",m,"stacktrace",j,"app-version",i,"platform",l,"platform-info",k],t.N,t.z),null,null)),B.V_,null)
+A.a0Y(o.cB(A.bP(null,null,null,null,null,null,A.o(["template","bug_report.yml","title","[Error "+n+"] "+p.a.b,"bug-description",m,"stacktrace",j,"app-version",i,"platform",l,"platform-info",k],t.N,t.z),null,null)),B.V_,null)
 case 1:return A.k(q,r)}})
 return A.l($async$$0,r)},
 $S:2}
