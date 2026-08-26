@@ -15,7 +15,7 @@ environment:
   sdk: ">=3.11.1 <4.0.0"
 
 dependencies:
-  archive: ^4.0.7
+  archive: ^4.2.0
   async: ^2.13.1
   badges: ^3.2.0
   blurhash_dart: ^1.2.1
