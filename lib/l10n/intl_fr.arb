@@ -2692,7 +2692,7 @@
     "useAppLock": "Utiliser le verrouillage de l'application",
     "unlockWithBiometrics": "Déverrouiller avec l'authentification biométrique",
     "resetPin": "Réinitialiser le code pin",
-    "forwardCountMessages": "Avancer de {count, plural, =1{un message} other{{count} messages}} ?",
+    "forwardCountMessages": "Transférer {count, plural, =1{le message} other{{count}les messages}} ?",
     "@forwardCountMessages": {
         "placeholders": {
             "count": {
