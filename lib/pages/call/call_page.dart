@@ -445,13 +445,19 @@ class CallPage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: SizedBox(
-                          width: 200,
+                          width: 212,
                           child: TextButton.icon(
                             onPressed: () => showFutureLoadingDialog(
                               context: context,
                               future: () => viewModel.connect(context),
                             ),
-                            style: ButtonStyle(shape: iconButtonStyle.shape),
+                            style: ButtonStyle(
+                              padding: iconButtonStyleActive.padding,
+                              foregroundColor:
+                                  iconButtonStyleActive.foregroundColor,
+                              backgroundColor:
+                                  iconButtonStyleActive.backgroundColor,
+                            ),
                             icon: Icon(Icons.call_outlined),
                             label: Text(
                               room.hasActiveMatrixRtcCall
