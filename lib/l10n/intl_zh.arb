@@ -2796,5 +2796,11 @@
     "startCall": "开始通话",
     "selectCamera": "选择相机",
     "selectMicrophone": "选择麦克风",
-    "selectSpeaker": "选择扬声器"
+    "selectSpeaker": "选择扬声器",
+    "toggleMicrophone": "切换麦克风状态",
+    "toggleCamera": "切换相机状态",
+    "startScreensharing": "开始屏幕分享",
+    "stopScreensharing": "停止屏幕分享",
+    "raiseHand": "举手",
+    "stopRaiseHand": "停止举手"
 }
