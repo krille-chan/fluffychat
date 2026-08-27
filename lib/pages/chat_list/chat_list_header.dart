@@ -28,13 +28,19 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final client = Matrix.of(context).client;
+    final isColumnMode = FluffyThemes.isColumnMode(context);
 
     return SliverAppBar(
       floating: true,
       toolbarHeight: 72,
-      pinned: FluffyThemes.isColumnMode(context),
+      pinned: isColumnMode,
       scrolledUnderElevation: 0,
-      backgroundColor: Colors.transparent,
+      shape: isColumnMode
+          ? Border(bottom: BorderSide(color: theme.dividerColor, width: 1))
+          : null,
+      backgroundColor: isColumnMode
+          ? theme.colorScheme.surface.withAlpha(240)
+          : Colors.transparent,
       automaticallyImplyLeading: false,
       title: StreamBuilder(
         stream: client.onSyncStatus.stream,
@@ -75,7 +81,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                             onPressed: controller.cancelSearch,
                             color: theme.colorScheme.onPrimaryContainer,
                           )
-                        : FluffyThemes.isColumnMode(context) ||
+                        : isColumnMode ||
                               (controller.spaces.isEmpty &&
                                   !AppSettings.displayNavigationRail.value)
                         ? IconButton(
