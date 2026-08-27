@@ -145,7 +145,7 @@ class BackgroundPush {
 
   factory BackgroundPush(
     MatrixState matrix, {
-    final void Function(String errorMsg, {Uri? link})? onFcmError,
+    void Function(String errorMsg, {Uri? link})? onFcmError,
   }) {
     final instance = BackgroundPush.clientOnly(matrix.widget.clients);
     instance.matrix = matrix;

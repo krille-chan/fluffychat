@@ -113,7 +113,7 @@ extension MatrixRtcRoomExtension on Room {
   }
 
   Future<void> setMatrixRtcMembershipState(
-    final List<MatrixRtcFocusPreferred> fociPreferred, {
+    List<MatrixRtcFocusPreferred> fociPreferred, {
     MatrixRtcCallIntent intent = MatrixRtcCallIntent.video,
   }) => client.setRoomStateWithKey(
     id,
