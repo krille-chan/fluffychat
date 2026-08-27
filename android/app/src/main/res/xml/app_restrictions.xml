@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<restrictions xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <restriction
+    android:key="defaultHomeserver"
+    android:title="Default Homeserver"
+    android:restrictionType="string" />
+
+  <restriction
+    android:key="presetHomeserver"
+    android:title="Preset Homeserver"
+    android:restrictionType="string" />
+
+  <restriction
+    android:key="welcomeText"
+    android:title="Welcome text"
+    android:restrictionType="string" />
+
+</restrictions>

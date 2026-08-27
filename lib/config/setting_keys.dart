@@ -9,6 +9,7 @@ import 'package:async/async.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:managed_configurations/managed_configurations.dart';
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -83,12 +84,20 @@ enum AppSettings<T> {
   customLiveKitInstance<String>('chat.fluffy.custom_live_kit_instance', '');
 
   final String key;
-  final T defaultValue;
+  final T _defaultValue;
 
-  const AppSettings(this.key, this.defaultValue);
+  const AppSettings(this.key, this._defaultValue);
 
   static SharedPreferences get store => _store!;
   static SharedPreferences? _store;
+
+  static Map<String, Object?>? _platformConfiguration;
+
+  T get defaultValue {
+    final platformConfig = _platformConfiguration?[name];
+    if (platformConfig is T) return platformConfig;
+    return _defaultValue;
+  }
 
   static Future<void> reset({bool loadWebConfigFile = true}) async {
     await AppSettings._store!.clear();
@@ -122,30 +131,18 @@ enum AppSettings<T> {
         PlatformInfos.isMobile,
       );
     }
-    if (kIsWeb && loadWebConfigFile) {
+
+    // Load configuration from config.json file or MDM:
+    if (PlatformInfos.isMobile) {
+      _platformConfiguration =
+          await ManagedConfigurations().getManagedConfigurations;
+    } else if (kIsWeb && loadWebConfigFile) {
       try {
         final configJsonString = utf8.decode(
           (await http.get(Uri.parse('config.json'))).bodyBytes,
         );
-        final configJson =
+        _platformConfiguration =
             json.decode(configJsonString) as Map<String, Object?>;
-        for (final setting in AppSettings.values) {
-          if (store.get(setting.key) != null) continue;
-          final configValue = configJson[setting.name];
-          if (configValue == null) continue;
-          if (configValue is bool) {
-            await store.setBool(setting.key, configValue);
-          }
-          if (configValue is String) {
-            await store.setString(setting.key, configValue);
-          }
-          if (configValue is int) {
-            await store.setInt(setting.key, configValue);
-          }
-          if (configValue is double) {
-            await store.setDouble(setting.key, configValue);
-          }
-        }
       } on FormatException catch (_) {
         Logs().v('[ConfigLoader] config.json not found');
       } catch (e) {
