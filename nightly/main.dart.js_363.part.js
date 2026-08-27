@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dz9(){return new B.Mr(A.dx("uz"))},
-Mr:function Mr(d){this.a=d}}
+dz9(){return new B.Mq(A.dx("uz"))},
+Mq:function Mq(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[55],B)
-B.Mr.prototype={
+B.Mq.prototype={
 gpp(){return"Edit image"},
 grh(){return"Rotate left"},
 gri(){return"Rotate right"},
@@ -740,8 +740,8 @@ gr4(){return"Raise hand"},
 gq2(){return"Stop raise hand"},
 D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mr,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mr":{"aT":[]}}'))
+x(B.Mq,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mq":{"aT":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["gemHsn1TxqbaDlK7IyE1qxwThGw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["RIAMmTiWP+V2X6eKzanJeL6wfQw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

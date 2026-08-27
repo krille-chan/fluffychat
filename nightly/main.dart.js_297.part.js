@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyx(){return new B.LQ(A.dx("eu"))},
-LQ:function LQ(d){this.a=d}}
+dyx(){return new B.LP(A.dx("eu"))},
+LP:function LP(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[19],B)
-B.LQ.prototype={
+B.LP.prototype={
 gpp(){return"Edit image"},
 grh(){return"Rotate left"},
 gri(){return"Rotate right"},
@@ -740,8 +740,8 @@ gr4(){return"Raise hand"},
 gq2(){return"Stop raise hand"},
 D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.LQ,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"LQ":{"aT":[]}}'))
+x(B.LP,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"LP":{"aT":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["VuI+cwGHerWKH8Ouy5Xj/3f6IuA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["QxXYaCvR6+Kzi9+K27nrjVvseyM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

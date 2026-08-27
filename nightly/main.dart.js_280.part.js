@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyr(){return new B.LK(A.dx("de"))},
-LK:function LK(d){this.a=d}}
+dyr(){return new B.LJ(A.dx("de"))},
+LJ:function LJ(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[13],B)
-B.LK.prototype={
+B.LJ.prototype={
 gpp(){return"Edit image"},
 grh(){return"Rotate left"},
 gri(){return"Rotate right"},
@@ -740,8 +740,8 @@ gr4(){return"Raise hand"},
 gq2(){return"Stop raise hand"},
 D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.LK,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"LK":{"aT":[]}}'))
+x(B.LJ,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"LJ":{"aT":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["3EmI6fAGkJIEiy2slPJ/mjP+V0Y="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mjAfQ098E+0wocpws24k46qYRsA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_280.part.js.map

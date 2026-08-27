@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dz7(){return new B.Mp(A.dx("tr"))},
-Mp:function Mp(d){this.a=d}}
+dz7(){return new B.Mo(A.dx("tr"))},
+Mo:function Mo(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[53],B)
-B.Mp.prototype={
+B.Mo.prototype={
 gpp(){return"Edit image"},
 grh(){return"Rotate left"},
 gri(){return"Rotate right"},
@@ -740,8 +740,8 @@ gr4(){return"Raise hand"},
 gq2(){return"Stop raise hand"},
 D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mp,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mp":{"aT":[]}}'))
+x(B.Mo,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mo":{"aT":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["h+yXgYeFXQsjzYzG8jPlrWwrsmM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["tZcKk1/q7ZEA3dsgiMi8dQOknjI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map
