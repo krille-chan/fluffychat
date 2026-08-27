@@ -1921,8 +1921,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "setLowPriority": "",
-    "unsetLowPriority": "",
     "editImage": "Redaguoti vaizdą",
     "@editImage": {
         "type": "String",
