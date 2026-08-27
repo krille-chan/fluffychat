@@ -54,10 +54,9 @@ jobs:
       - name: Build website
         working-directory: fluffychat-website
         run: |
-          npm install tailwindcss @tailwindcss/cli
-          npx tailwindcss -i ./src/styles.css -o ./src/assets/tailwind.css --minify
-          npx @11ty/eleventy
-          mv public ../
+          npm ci
+          npm run build
+          mv out ../public
       - name: Copy FluffyChat web into it
         run: |
           mkdir public/web
