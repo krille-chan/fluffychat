@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dz6(){return new B.Mp(A.dx("tr"))},
+dz7(){return new B.Mp(A.dx("tr"))},
 Mp:function Mp(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -743,5 +743,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Mp,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"Mp":{"aT":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["WJotTRIwCFsKKvaeIEsOO0lwaeE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["h+yXgYeFXQsjzYzG8jPlrWwrsmM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map
