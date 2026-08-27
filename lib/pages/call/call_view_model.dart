@@ -335,6 +335,11 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     final intent =
         room.getActiveMatrixRtcMembers().firstOrNull?.callIntent ??
         (value.localVideoTrack?.muted == false ? .video : .voice);
+    if (PlatformInfos.isMobile) {
+      await lk.AudioManager.instance.setSpeakerOutputPreferred(
+        intent == .video,
+      );
+    }
 
     final credentials = await room.joinMatrixRtcCall(intent: intent);
     timeline = await room.getTimeline(onInsert: _onNewTimelineEvent);
@@ -483,10 +488,9 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
 
   Future<lk.MediaDevice?> _selectMediaDevice(
     BuildContext context,
-    String type,
+    List<lk.MediaDevice> devices,
     String? activeDeviceId,
   ) async {
-    final devices = await lk.Hardware.instance.enumerateDevices(type: type);
     if (!context.mounted) return null;
     return await showMenu<lk.MediaDevice>(
       context: context,
@@ -527,9 +531,11 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
   }
 
   Future<void> selectCamera(BuildContext context) async {
+    final devices = await lk.Hardware.instance.enumerateDevices(type: 'camera');
+    if (!context.mounted) return;
     final source = await _selectMediaDevice(
       context,
-      'videoinput',
+      devices,
       value.room?.selectedVideoInputDeviceId,
     );
     if (source == null) return;
@@ -537,9 +543,11 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
   }
 
   Future<void> selectMicrophone(BuildContext context) async {
+    final devices = await lk.Hardware.instance.audioInputs();
+    if (!context.mounted) return;
     final source = await _selectMediaDevice(
       context,
-      'audioinput',
+      devices,
       value.room?.selectedAudioInputDeviceId,
     );
     if (source == null) return;
@@ -547,9 +555,44 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
   }
 
   Future<void> selectSpeaker(BuildContext context) async {
+    final devices = await lk.Hardware.instance.audioOutputs();
+    if (!context.mounted) return;
+    if (devices.isEmpty && PlatformInfos.isMobile) {
+      final preferSpeaker = lk.AudioManager.instance.isSpeakerOutputPreferred;
+      final toggle = await showMenu<bool>(
+        context: context,
+        position: context.position,
+        items: [
+          PopupMenuItem(
+            value: true,
+            child: Row(
+              mainAxisSize: .min,
+              spacing: 12,
+              children: [
+                Icon(
+                  preferSpeaker
+                      ? Icons.check_circle_outlined
+                      : Icons.circle_outlined,
+                ),
+                Expanded(
+                  child: Text(
+                    L10n.of(context).preferSpeaker,
+                    maxLines: 1,
+                    overflow: .ellipsis,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      );
+      if (toggle == null) return;
+      await lk.AudioManager.instance.setSpeakerOutputPreferred(!preferSpeaker);
+      return;
+    }
     final source = await _selectMediaDevice(
       context,
-      'audiooutput',
+      devices,
       value.room?.selectedAudioOutputDeviceId,
     );
     if (source == null) return;
