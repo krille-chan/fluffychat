@@ -24,6 +24,7 @@ import just_audio
 import light_compressor_v2
 import livekit_client
 import local_auth_darwin
+import managed_configurations
 import media_kit_libs_macos_audio
 import package_info_plus
 import pasteboard
@@ -58,6 +59,7 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   LightCompressorPlugin.register(with: registry.registrar(forPlugin: "LightCompressorPlugin"))
   LiveKitPlugin.register(with: registry.registrar(forPlugin: "LiveKitPlugin"))
   LocalAuthPlugin.register(with: registry.registrar(forPlugin: "LocalAuthPlugin"))
+  ManagedConfigurationsPlugin.register(with: registry.registrar(forPlugin: "ManagedConfigurationsPlugin"))
   MediaKitLibsMacosAudioPlugin.register(with: registry.registrar(forPlugin: "MediaKitLibsMacosAudioPlugin"))
   FPPPackageInfoPlusPlugin.register(with: registry.registrar(forPlugin: "FPPPackageInfoPlusPlugin"))
   PasteboardPlugin.register(with: registry.registrar(forPlugin: "PasteboardPlugin"))

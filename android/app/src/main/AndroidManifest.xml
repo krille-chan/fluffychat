@@ -138,5 +138,10 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <!-- Enables configuration via MDM -->
+        <meta-data android:name="android.content.APP_RESTRICTIONS"
+            android:resource="@xml/app_restrictions" />
+
     </application>
 </manifest>

@@ -127,7 +127,7 @@ class IntroPage extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 24),
                             child: Text(
-                              L10n.of(context).appDescription,
+                              welcomeText ?? L10n.of(context).appDescription,
                               textAlign: TextAlign.center,
                             ),
                           ),
