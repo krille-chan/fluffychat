@@ -490,7 +490,7 @@
             }
         }
     },
-    "countParticipants": "{count} participant(s)",
+    "countParticipants": "{count, plural, =1{1 participant} other{{count} participants}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -827,7 +827,7 @@
             }
         }
     },
-    "isTyping": "est en train d'écrire…",
+    "isTyping": "est en train d'écrire",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -2797,5 +2797,11 @@
     "startCall": "Démarrer l'appel",
     "selectCamera": "Sélectionner une caméra",
     "selectMicrophone": "Sélectionner un micro",
-    "selectSpeaker": "Sélectionner une sortie audio"
+    "selectSpeaker": "Sélectionner une sortie audio",
+    "toggleMicrophone": "Activer le microphone",
+    "toggleCamera": "Activer la caméra",
+    "startScreensharing": "Commencer le partage d'écran",
+    "stopScreensharing": "Arrêter le partage d'écran",
+    "raiseHand": "Lever la main",
+    "stopRaiseHand": "Baisser la main"
 }
