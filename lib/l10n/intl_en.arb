@@ -2791,5 +2791,6 @@
     "startScreensharing": "Start screensharing",
     "stopScreensharing": "Stop screensharing",
     "raiseHand": "Raise hand",
-    "stopRaiseHand": "Stop raise hand"
+    "stopRaiseHand": "Stop raise hand",
+    "preferSpeaker": "Prefer speaker"
 }
