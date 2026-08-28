@@ -141,6 +141,8 @@ class _MxcImageState extends State<MxcImage> {
       if (!mounted) return;
       await Future.delayed(widget.retryDuration);
       _tryLoad();
+    } on MatrixException catch (e) {
+      Logs().d('Unable to load image', e);
     }
   }
 

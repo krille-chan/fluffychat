@@ -5,7 +5,6 @@
 
 import 'dart:convert';
 
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
@@ -115,19 +114,17 @@ class ErrorReporter {
                       'bug-description': error.toString(),
                       'stacktrace': stackTrace?.toString(),
                       'app-version': await PlatformInfos.getVersion(),
-                      'platform': switch (defaultTargetPlatform) {
-                        TargetPlatform.android => 'Android',
-                        TargetPlatform.fuchsia => 'Other',
-                        TargetPlatform.iOS => 'iOS',
-                        TargetPlatform.linux => 'Linux',
-                        TargetPlatform.macOS => 'macOS (Self-compiled)',
-                        TargetPlatform.windows => 'Windows (Self-compiled)',
-                      },
                       'platform-info': kIsWeb
                           ? html.window.navigator.userAgent
-                          : jsonEncode(
-                              (await DeviceInfoPlugin().deviceInfo).data,
-                            ),
+                          : switch (defaultTargetPlatform) {
+                              TargetPlatform.android => 'Android',
+                              TargetPlatform.fuchsia => 'Other',
+                              TargetPlatform.iOS => 'iOS',
+                              TargetPlatform.linux => 'Linux',
+                              TargetPlatform.macOS => 'macOS (Self-compiled)',
+                              TargetPlatform.windows =>
+                                'Windows (Self-compiled)',
+                            },
                     },
                   ),
                 ),
