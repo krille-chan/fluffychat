@@ -4,7 +4,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/oidc_session_json_extension.dart';
@@ -21,7 +20,6 @@ Future<void> oidcLoginFlow(
   BuildContext context,
   bool signUp,
 ) async {
-  debugger();
   Logs().i('Starting Matrix Native OIDC Flow...');
 
   final (redirectUrl, urlScheme) = calcRedirectUrl();
