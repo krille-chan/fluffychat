@@ -62,7 +62,7 @@ dependencies:
   local_auth: ^3.0.2
   lottie: ^3.5.1
   managed_configurations: ^1.2.0
-  material_ui: any
+  material_ui: 1.1.0
   matrix: ^10.2.2
   media_kit_libs_audio: ^1.0.7
   mime: ^2.0.0
