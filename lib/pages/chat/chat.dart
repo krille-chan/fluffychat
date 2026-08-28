@@ -633,8 +633,10 @@ class ChatController extends State<ChatPageWithRoom>
     // This is a sending event, we do not set a readmarker yet
     if (eventId.isValidMatrixIdStrict() == false) return;
 
-    // Already set a read marker on this event
-    if (room.fullyRead == eventId) return;
+    // Already set a read marker on this event, unless the room still shows
+    // new messages: re-posting refreshes the receipts' timestamps, which the
+    // unread indicator depends on.
+    if (room.fullyRead == eventId && !room.hasNewMessages) return;
 
     // Set a readmarker on a specific event, not latest, but room is not unread
     // at all.
