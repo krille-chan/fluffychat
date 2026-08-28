@@ -1288,10 +1288,10 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: "39519f0e9638d7229122a14155e3deba849fac9198d491a354bb24ebbc248871"
+      sha256: "63f346ec20da782574d9aca64c04dfa43c0f33119e2f51fbf7567a17e9db93c6"
       url: "https://pub.dev"
     source: hosted
-    version: "10.2.1"
+    version: "10.2.2"
   media_kit:
     dependency: transitive
     description:

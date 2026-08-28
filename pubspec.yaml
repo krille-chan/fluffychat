@@ -63,7 +63,7 @@ dependencies:
   lottie: ^3.5.1
   managed_configurations: ^1.2.0
   material_ui: any
-  matrix: ^10.2.1
+  matrix: ^10.2.2
   media_kit_libs_audio: ^1.0.7
   mime: ^2.0.0
   native_imaging: ^0.5.0
