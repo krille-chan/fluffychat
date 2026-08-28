@@ -205,6 +205,14 @@ extension MatrixRtcRoomExtension on Room {
       deviceKeys.map((key) => '${key.userId}:${key.deviceId}'),
     );
 
+    final doNotEncryptTo = deviceKeys.where((d) => !d.encryptToDevice);
+    if (doNotEncryptTo.isNotEmpty) {
+      Logs().w(
+        'Not sharing keys with ${doNotEncryptTo.length} device(s) because of key sharing restrictions!',
+      );
+      deviceKeys.removeWhere((d) => !d.encryptToDevice);
+    }
+
     await client.sendToDeviceEncrypted(
       deviceKeys,
       CallKeysEventContent.eventType,
