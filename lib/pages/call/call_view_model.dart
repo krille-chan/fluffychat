@@ -346,6 +346,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     await _createKeyAndShare();
     final video = value.localVideoTrack;
     final audio = value.localAudioTrack;
+    final shouldUseCamera = video?.muted == false;
+    final shouldUseMic = audio?.muted == false;
     value.localVideoTrack = value.localAudioTrack = null;
     await value.room!.connect(
       credentials.url,
@@ -399,6 +401,10 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       }
       _playJoinSound();
     }
+
+    value.room!.localParticipant?.setCameraEnabled(shouldUseCamera);
+    value.room!.localParticipant?.setMicrophoneEnabled(shouldUseMic);
+
     notifyListeners();
   }
 
