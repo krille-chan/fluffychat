@@ -108,28 +108,12 @@ class _Reaction extends StatelessWidget {
 
     Widget content;
     if (reactionKey.startsWith('mxc://')) {
-      content = Row(
-        mainAxisSize: .min,
-        children: <Widget>[
-          MxcImage(
-            uri: Uri.parse(reactionKey),
-            width: 20,
-            height: 20,
-            animated: false,
-            isThumbnail: false,
-          ),
-          if (count > 1) ...[
-            const SizedBox(width: 4),
-            Text(
-              count.toString(),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: theme.colorScheme.onSurface,
-                fontSize: DefaultTextStyle.of(context).style.fontSize,
-              ),
-            ),
-          ],
-        ],
+      content = MxcImage(
+        uri: Uri.parse(reactionKey),
+        width: 20,
+        height: 20,
+        animated: false,
+        isThumbnail: false,
       );
     } else {
       var renderKey = Characters(reactionKey);
