@@ -65045,12 +65045,13 @@ bcR:function bcR(a,b){this.a=a
 this.b=b},
 bKf:function bKf(a,b){this.a=a
 this.b=b},
-bKN:function bKN(a,b,c,d,e){var _=this
+bKN:function bKN(a,b,c,d,e,f){var _=this
 _.a=a
 _.b=b
 _.d=c
-_.r=d
-_.w=e},
+_.f=d
+_.r=e
+_.w=f},
 vS:function vS(a,b){this.a=a
 this.b=b},
 KZ:function KZ(){},
@@ -101984,7 +101985,7 @@ p=q.c
 l.j(0,"ratchetSalt",B.bo.gtt().aP(p.b))
 l.j(0,"ratchetWindowSize",p.d)
 l.j(0,"failureTolerance",-1)
-l.j(0,"keyRingSize",16)
+l.j(0,"keyRingSize",p.f)
 l.j(0,"discardFrameWhenCryptorNotReady",!0)
 l.j(0,"keyDerivationAlgorithm",p.w.a)
 q.b.postMessage(A.ar(A.o(["msgType","keyProviderInit","msgId",o,"keyProviderId",q.a,"keyOptions",l],n,m)))
@@ -105820,7 +105821,7 @@ s=2
 return A.f($.cRj().HQ(0,!0),$async$Nc)
 case 2:s=3
 return A.f(A.bMk(),$async$Nc)
-case 3:o=new A.bKN(!1,new Uint8Array(A.b2(new A.f2("LKFrameEncryptionKey"))),0,!0,B.eHN)
+case 3:o=new A.bKN(!1,new Uint8Array(A.b2(new A.f2("LKFrameEncryptionKey"))),0,256,!0,B.eHN)
 p=t.N
 j=A
 i=A.c(p,t.S)
@@ -259394,15 +259395,15 @@ H(){return"Algorithm."+this.b}}
 A.bKf.prototype={
 H(){return"KeyDerivationAlgorithm."+this.b}}
 A.bKN.prototype={
-V(){var s=A.c(t.N,t.z)
-s.j(0,"sharedKey",!1)
-s.j(0,"ratchetSalt",this.b)
-s.j(0,"ratchetWindowSize",this.d)
-s.j(0,"failureTolerance",-1)
-s.j(0,"keyRingSize",16)
-s.j(0,"discardFrameWhenCryptorNotReady",!0)
-s.j(0,"keyDerivationAlgorithm",this.w.a)
-return s}}
+V(){var s=this,r=A.c(t.N,t.z)
+r.j(0,"sharedKey",!1)
+r.j(0,"ratchetSalt",s.b)
+r.j(0,"ratchetWindowSize",s.d)
+r.j(0,"failureTolerance",-1)
+r.j(0,"keyRingSize",s.f)
+r.j(0,"discardFrameWhenCryptorNotReady",!0)
+r.j(0,"keyDerivationAlgorithm",s.w.a)
+return r}}
 A.vS.prototype={
 H(){return"FrameCryptorState."+this.b}}
 A.KZ.prototype={}
