@@ -65926,36 +65926,35 @@ if(a)r=r.cz(A.bP(s,s,s,A.b(["auth.html"],t.s),s,s,s,s,s))
 return new A.ai(r,r.grQ())},
 a14(a,b,c){var s=0,r=A.m(t.H),q,p,o,n,m,l,k,j,i,h,g,f,e
 var $async$a14=A.n(function(d,a0){if(d===1)return A.j(a0,r)
-for(;;)switch(s){case 0:v.G.debugger()
-p=$.ab()
-p.rw("Starting Matrix Native OIDC Flow...")
-o=A.ddq(!1)
-n=o.a
-m=A.cS(A.h7(B.C2),0,null)
-l=n.grQ()==="https"&&B.e.p(n.guf(n),m.guf(m))
-if(!l)p.tJ(0,"OIDC Application Type web is not supported. Using native now. Please use this instance not in production!")
-p=A.b([n],t.uB)
-k=l?B.fHl:B.abz
-j=A.h7(B.eJ)
-i=A.cS(A.h7(B.LD),0,null)
-h=A.cS(A.h7(B.LC),0,null)
+for(;;)switch(s){case 0:e=$.ab()
+e.rw("Starting Matrix Native OIDC Flow...")
+p=A.ddq(!1)
+o=p.a
+n=A.cS(A.h7(B.C2),0,null)
+m=o.grQ()==="https"&&B.e.p(o.guf(o),n.guf(n))
+if(!m)e.tJ(0,"OIDC Application Type web is not supported. Using native now. Please use this instance not in production!")
+e=A.b([o],t.uB)
+l=m?B.fHl:B.abz
+k=A.h7(B.eJ)
+j=A.cS(A.h7(B.LD),0,null)
+i=A.cS(A.h7(B.LC),0,null)
 s=3
-return A.f(A.aHy(a,k,A.d5X(j,m,i,A.cS(A.h7(B.ty),0,null),h),p),$async$a14)
-case 3:g=a0
+return A.f(A.aHy(a,l,A.d5X(k,n,j,A.cS(A.h7(B.ty),0,null),i),e),$async$a14)
+case 3:h=a0
 s=4
-return A.f(A.bUf(a,g,c?"create":null,n),$async$a14)
-case 4:f=a0
+return A.f(A.bUf(a,h,c?"create":null,o),$async$a14)
+case 4:g=a0
 if(b.e==null){s=1
 break}s=5
 return A.f(A.wH(),$async$a14)
-case 5:e=a0
-e.vA("String","oidc_stored_homeserver",a.b.k(0))
-p=f.a
-k=f.b
-e.vA("String","oidc_session",B.r.di(A.o(["oidc_client_data",p.d,"authentication_uri",k.k(0),"redirect_uri",f.c.k(0),"code_verifier",f.d,"state",f.e],t.N,t.O),null))
-k=k.k(0)
+case 5:f=a0
+f.vA("String","oidc_stored_homeserver",a.b.k(0))
+e=g.a
+l=g.b
+f.vA("String","oidc_session",B.r.di(A.o(["oidc_client_data",e.d,"authentication_uri",l.k(0),"redirect_uri",g.c.k(0),"code_verifier",g.d,"state",g.e],t.N,t.O),null))
+l=l.k(0)
 s=6
-return A.f(A.bCU(o.b,A.d3c(null,null,null,null,null,null,null,null,null,!1,"_self"),k),$async$a14)
+return A.f(A.bCU(p.b,A.d3c(null,null,null,null,null,null,null,null,null,!1,"_self"),l),$async$a14)
 case 6:s=1
 break
 case 1:return A.k(q,r)}})
