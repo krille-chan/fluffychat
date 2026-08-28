@@ -49,10 +49,16 @@ class IntroPage extends StatelessWidget {
                 onTap: isLoading ? null : () => restoreBackupFlow(context),
                 child: Row(
                   mainAxisSize: .min,
+                  spacing: 12,
                   children: [
                     const Icon(Icons.import_export_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context).hydrate),
+                    Expanded(
+                      child: Text(
+                        L10n.of(context).hydrate,
+                        maxLines: 1,
+                        overflow: .ellipsis,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -60,9 +66,9 @@ class IntroPage extends StatelessWidget {
                 onTap: () => launchUrlString(AppSettings.privacyPolicy.value),
                 child: Row(
                   mainAxisSize: .min,
+                  spacing: 12,
                   children: [
                     const Icon(Icons.privacy_tip_outlined),
-                    const SizedBox(width: 12),
                     Text(L10n.of(context).privacy),
                   ],
                 ),
@@ -71,9 +77,9 @@ class IntroPage extends StatelessWidget {
                 onTap: () => PlatformInfos.showDialog(context),
                 child: Row(
                   mainAxisSize: .min,
+                  spacing: 12,
                   children: [
                     const Icon(Icons.info_outlined),
-                    const SizedBox(width: 12),
                     Text(L10n.of(context).about),
                   ],
                 ),
