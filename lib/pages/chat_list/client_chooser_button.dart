@@ -213,7 +213,7 @@ class ClientChooserButton extends StatelessWidget {
           break;
         case SettingsAction.support:
           launchUrlString(
-            'https://fluffychat.im/faq/#how_can_i_support_fluffychat',
+            'https://ko-fi.com/post/How-can-I-support-FluffyChat-J2G325WE6I',
           );
           break;
         case SettingsAction.settings:

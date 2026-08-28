@@ -26,9 +26,7 @@ abstract class AppConfig {
   static const String enablePushTutorial =
       'https://ko-fi.com/post/How-can-I-get-Push-Notifications-without-Google-N7Q825URG6?fromEditor=true';
   static const String encryptionTutorial =
-      'https://fluffychat.im/faq/#how_to_use_end_to_end_encryption';
-  static const String startChatTutorial =
-      'https://fluffychat.im/faq/#how_do_i_find_other_users';
+      'https://ko-fi.com/post/How-to-use-end-to-end-encryption-in-FluffyChat-A5O725WDR5';
   static const String howDoIGetStickersTutorial =
       'https://ko-fi.com/post/How-to-add-a-sticker-pack-to-FluffyChat-N4N01OXATI';
   static const String appId = 'im.fluffychat.FluffyChat';
@@ -41,7 +39,7 @@ abstract class AppConfig {
       'https://github.com/krille-chan/fluffychat/issues';
   static const String changelogUrl = 'https://fluffychat.im/changelog/';
   static const String helpUrl =
-      'https://fluffychat.im/faq/#how_can_i_support_fluffychat';
+      'https://ko-fi.com/post/How-can-I-support-FluffyChat-J2G325WE6I';
 
   static const Set<String> defaultReactions = {'👍', '❤️', '😂', '😮', '😢'};
 
