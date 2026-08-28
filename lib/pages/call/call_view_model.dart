@@ -30,7 +30,7 @@ import 'package:wakelock_plus/wakelock_plus.dart';
 class CallViewModelState {
   lk.Room? room;
   lk.LocalVideoTrack? localVideoTrack;
-  lk.LocalAudioTrack? localAudioTrack;
+  bool startWithAudio = true;
   String? focusedTrack;
 }
 
@@ -220,8 +220,6 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       value.localVideoTrack?.mute();
     }
     value.localVideoTrack?.addListener(notifyListeners);
-    value.localAudioTrack = await lk.LocalAudioTrack.create();
-    value.localAudioTrack?.addListener(notifyListeners);
     notifyListeners();
 
     liveKitRoom.events.on<lk.ParticipantConnectedEvent>((event) async {
@@ -275,18 +273,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     notifyListeners();
   }
 
-  Future<void> togglePreviewMic() async {
-    final track = value.localAudioTrack;
-    if (track == null) return;
-    if (!track.muted) {
-      await track.mute();
-      return;
-    }
-    track.removeListener(notifyListeners);
-    await track.stop();
-    value.localAudioTrack = await lk.LocalAudioTrack.create();
-    value.localAudioTrack?.addListener(notifyListeners);
-
+  void togglePreviewMic() {
+    value.startWithAudio = !value.startWithAudio;
     notifyListeners();
   }
 
@@ -345,17 +333,23 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     final credentials = await room.joinMatrixRtcCall(intent: intent);
     timeline = await room.getTimeline(onInsert: _onNewTimelineEvent);
     await _createKeyAndShare();
-    final video = value.localVideoTrack;
-    final audio = value.localAudioTrack;
-    final shouldUseCamera = video?.muted == false;
-    final shouldUseMic = audio?.muted == false;
-    value.localVideoTrack = value.localAudioTrack = null;
+    final startWithVideo = value.localVideoTrack?.muted == false;
+    final startWithAudio = value.startWithAudio;
+    await value.localVideoTrack?.stop();
+    await value.localVideoTrack?.dispose();
+    value.localVideoTrack = null;
     await value.room!.connect(
       credentials.url,
       credentials.jwt,
       fastConnectOptions: lk.FastConnectOptions(
-        microphone: lk.TrackOption(track: audio),
-        camera: lk.TrackOption(track: video),
+        microphone: lk.TrackOption(
+          track: startWithAudio ? await lk.LocalAudioTrack.create() : null,
+        ),
+        camera: lk.TrackOption(
+          track: startWithVideo
+              ? await lk.LocalVideoTrack.createCameraTrack()
+              : null,
+        ),
       ),
     );
 
@@ -403,9 +397,6 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       _playJoinSound();
     }
 
-    value.room!.localParticipant?.setCameraEnabled(shouldUseCamera);
-    value.room!.localParticipant?.setMicrophoneEnabled(shouldUseMic);
-
     notifyListeners();
   }
 
@@ -439,7 +430,6 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     _onCallMembersChanged?.cancel();
     _resendCallMemberState?.cancel();
     timeline?.cancelSubscriptions();
-    value.localAudioTrack?.dispose();
     value.localVideoTrack?.dispose();
     final callKitId = this.callKitId;
     if (callKitId != null) {

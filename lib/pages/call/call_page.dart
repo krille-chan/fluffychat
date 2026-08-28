@@ -37,7 +37,6 @@ class CallPage extends StatelessWidget {
       builder: (context, viewModel, _) {
         final liveKitRoom = viewModel.value.room;
         final localVideoTrack = viewModel.value.localVideoTrack;
-        final localAudioTrack = viewModel.value.localAudioTrack;
         final localParticipant = liveKitRoom?.localParticipant;
 
         final activeMembers = room.getActiveMatrixRtcMembers().length;
@@ -471,11 +470,9 @@ class CallPage extends StatelessWidget {
                     IconButton(
                       tooltip: L10n.of(context).toggleMicrophone,
                       style: iconButtonStyle,
-                      onPressed: localAudioTrack != null
-                          ? viewModel.togglePreviewMic
-                          : null,
+                      onPressed: viewModel.togglePreviewMic,
                       icon: Icon(
-                        !(localAudioTrack?.muted ?? true)
+                        !(viewModel.value.startWithAudio)
                             ? Icons.mic_outlined
                             : Icons.mic_off_outlined,
                       ),
