@@ -596,11 +596,12 @@ class ChatController extends State<ChatPageWithRoom>
     // We are already setting a read marker
     if (_setReadMarkerFuture != null) return;
 
-    // We only set read marker if we are at the bottom
-    if (_scrolledUp) return;
-
-    // We do not set read marker if we offer user the scroll up banner
-    if (scrollUpBannerEventId != null) return;
+    // We only set read marker if we are at the bottom. Check the live scroll
+    // position, not the cached _scrolledUp flag, which can be stuck when no
+    // scroll transition ever fired.
+    if (scrollController.hasClients && scrollController.position.pixels > 0) {
+      return;
+    }
 
     // We do not set read marker if timeline is empty
     final timeline = this.timeline;
@@ -614,16 +615,18 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     final setOnLatestEvent = eventId == null;
+    // Target the latest message-like event. Do not gate this on push rule
+    // evaluation: read markers track what the user has seen, not what
+    // notifies them.
     eventId ??= timeline.events
         .firstWhereOrNull(
-          (event) => room.pushRuleState == PushRuleState.notify
-              ? room.client.pushruleEvaluator.match(event).notify
-              : {
-                      EventTypes.Message,
-                      EventTypes.Encrypted,
-                      EventTypes.Sticker,
-                    }.contains(event.type) &&
-                    event.eventId.isValidMatrixIdStrict(),
+          (event) =>
+              {
+                EventTypes.Message,
+                EventTypes.Encrypted,
+                EventTypes.Sticker,
+              }.contains(event.type) &&
+              event.eventId.isValidMatrixIdStrict(),
         )
         ?.eventId;
 
@@ -638,11 +641,12 @@ class ChatController extends State<ChatPageWithRoom>
     // unread indicator depends on.
     if (room.fullyRead == eventId && !room.hasNewMessages) return;
 
-    // Set a readmarker on a specific event, not latest, but room is not unread
-    // at all.
+    // Room shows nothing new, but the read marker still lags behind this
+    // event (e.g. receipts were posted by another device): advance it.
     if (setOnLatestEvent &&
         !room.hasNewMessages &&
-        room.notificationCount == 0) {
+        room.notificationCount == 0 &&
+        room.fullyRead == eventId) {
       return;
     }
 
@@ -653,7 +657,11 @@ class ChatController extends State<ChatPageWithRoom>
           eventId: eventId,
           public: AppSettings.sendPublicReadReceipts.value,
         )
-        .then((_) {
+        .catchError((Object e, StackTrace s) {
+          Logs().w('Failed to set read marker', e, s);
+        })
+        .whenComplete(() {
+          // Always release the latch, even when the request fails.
           _setReadMarkerFuture = null;
         });
   }
