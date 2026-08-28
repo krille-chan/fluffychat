@@ -596,12 +596,17 @@ class ChatController extends State<ChatPageWithRoom>
     // We are already setting a read marker
     if (_setReadMarkerFuture != null) return;
 
-    // We only set read marker if we are at the bottom. Check the live scroll
-    // position, not the cached _scrolledUp flag, which can be stuck when no
-    // scroll transition ever fired.
-    if (scrollController.hasClients && scrollController.position.pixels > 0) {
+    // We only set read marker if we are at the bottom. Prefer the live
+    // scroll position, but fall back to the cached flag when no client is
+    // attached yet.
+    if (scrollController.hasClients
+        ? scrollController.position.pixels > 0
+        : _scrolledUp) {
       return;
     }
+
+    // We do not set read marker if we offer user the scroll up banner
+    if (scrollUpBannerEventId != null) return;
 
     // We do not set read marker if timeline is empty
     final timeline = this.timeline;
@@ -615,6 +620,9 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     final setOnLatestEvent = eventId == null;
+    // When we are viewing a context slice of older events, do not treat
+    // the newest loaded event as the room's latest event.
+    if (setOnLatestEvent && timeline.allowNewEvent == false) return;
     // Target the latest message-like event. Do not gate this on push rule
     // evaluation: read markers track what the user has seen, not what
     // notifies them.
@@ -641,12 +649,11 @@ class ChatController extends State<ChatPageWithRoom>
     // unread indicator depends on.
     if (room.fullyRead == eventId && !room.hasNewMessages) return;
 
-    // Room shows nothing new, but the read marker still lags behind this
-    // event (e.g. receipts were posted by another device): advance it.
+    // Set a readmarker on a specific event, not latest, but room is not unread
+    // at all.
     if (setOnLatestEvent &&
         !room.hasNewMessages &&
-        room.notificationCount == 0 &&
-        room.fullyRead == eventId) {
+        room.notificationCount == 0) {
       return;
     }
 
