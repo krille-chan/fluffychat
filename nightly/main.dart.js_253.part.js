@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyo(){return new B.LG(A.dx("bn"))},
+dyq(){return new B.LG(A.dx("bn"))},
 LG:function LG(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfV(){return"Chat details"},
 gfW(){return"Chats"},
 giK(){return"Choose a strong password"},
 gfX(){return"Clear archive"},
-gcZ(d){return"\u09ac\u09a8\u09cd\u09a7"},
+gd_(d){return"\u09ac\u09a8\u09cd\u09a7"},
 giY(){return"Mark as direct message room for the giving Matrix ID"},
 giZ(){return"Mark as group"},
 giL(){return"Ban the given user from this room"},
@@ -743,5 +743,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LG,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LG":{"aT":[]}}'))};
-(a=>{a["6dLRLRN5+d9gTo9Fk8gcwcTLw+Q="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["d3AzNFiwbg7JvCozkgh9WN4p3Ho="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_253.part.js.map

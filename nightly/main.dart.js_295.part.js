@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyy(){return new B.LQ(A.dx("et"))},
+dyA(){return new B.LQ(A.dx("et"))},
 LQ:function LQ(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfV(){return"Vestluse teave"},
 gfW(){return"Vestlused"},
 giK(){return"Vali korralik salas\xf5na"},
 gfX(){return"Kustuta arhiiv"},
-gcZ(d){return"Sulge"},
+gd_(d){return"Sulge"},
 giY(){return"M\xe4rgi otsevestluseks antud Matrixi ID jaoks"},
 giZ(){return"M\xe4rgi jututoaks"},
 giL(){return"Sea sellele kasutajale antud jututoas suhtluskeeld"},
@@ -743,5 +743,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LQ,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LQ":{"aT":[]}}'))};
-(a=>{a["SWJQXAPGFREnoP1Or0cRZDwGAE0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["lI1Fzk3khfzXBjWrVu3exwm23Kc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

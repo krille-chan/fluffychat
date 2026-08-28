@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyD(){return new B.LV(A.dx("fr"))},
+dyF(){return new B.LV(A.dx("fr"))},
 LV:function LV(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfV(){return"D\xe9tails de la discussion"},
 gfW(){return"Discussions"},
 giK(){return"Choisissez un mot de passe fort"},
 gfX(){return"Effacer les archives"},
-gcZ(d){return"Fermer"},
+gd_(d){return"Fermer"},
 giY(){return"Marquer comme salon de messages directs pour l'identifiant Matrix indiqu\xe9"},
 giZ(){return"Marquer comme groupe"},
 giL(){return"Bannir l'utilisateur/trice donn\xe9(e) de ce salon"},
@@ -742,5 +742,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LV,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LV":{"aT":[]}}'))};
-(a=>{a["TZ6h2ZuP9H9eH2vmIbsTjuxUzoY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["oMpiMMZE1Y/TGtWIPoxk1BW19m0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map

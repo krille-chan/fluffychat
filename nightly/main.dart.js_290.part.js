@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyx(){return new B.LP(A.dx("es"))},
+dyz(){return new B.LP(A.dx("es"))},
 LP:function LP(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfV(){return"Detalles del chat"},
 gfW(){return"Conversaciones"},
 giK(){return"Elija una contrase\xf1a segura"},
 gfX(){return"Borrar archivo"},
-gcZ(d){return"Cerrar"},
+gd_(d){return"Cerrar"},
 giY(){return"Marcar como sala de mensajes directos para el ID de Matrix"},
 giZ(){return"Marcar como grupo"},
 giL(){return"Prohibir al usuario dado en esta sala"},
@@ -742,5 +742,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LP,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LP":{"aT":[]}}'))};
-(a=>{a["QlN6VSUu6N9IYRZ0xq6h3+G2QQk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BgxdA0Bxu+ESlDQJqP2GEbBWNOI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_290.part.js.map

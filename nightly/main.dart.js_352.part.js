@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dz2(){return new B.Mj(A.dx("sl"))},
+dz4(){return new B.Mj(A.dx("sl"))},
 Mj:function Mj(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfV(){return"Podrobnosti klepeta"},
 gfW(){return"Klepeti"},
 giK(){return"Izberite mo\u010dno geslo"},
 gfX(){return"Po\u010disti arhiv"},
-gcZ(d){return"Zapri"},
+gd_(d){return"Zapri"},
 giY(){return"Mark as direct message room for the giving Matrix ID"},
 giZ(){return"Mark as group"},
 giL(){return"Izklju\u010di dolo\u010denega uporabnika iz te sobe"},
@@ -742,5 +742,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mj,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"Mj":{"aT":[]}}'))};
-(a=>{a["K+lUQvI1d5S411yADaJP0u5nDBc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["chQFLRZ49a6QDrNgbJWptmesL8w="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_352.part.js.map

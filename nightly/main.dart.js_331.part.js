@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyN(){return new B.M4(A.dx("it"))},
+dyP(){return new B.M4(A.dx("it"))},
 M4:function M4(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfV(){return"Dettagli chat"},
 gfW(){return"Discussioni"},
 giK(){return"Scegli una password complessa"},
 gfX(){return"Cancella archivio"},
-gcZ(d){return"Chiudi"},
+gd_(d){return"Chiudi"},
 giY(){return"Contrassegna questo Matrix ID come stanza di messaggi diretti"},
 giZ(){return"Segna come gruppo"},
 giL(){return"Banna l'utente specificato da questa stanza"},
@@ -744,5 +744,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M4,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"M4":{"aT":[]}}'))};
-(a=>{a["7e4d+TR+nDVAIwiQbM8+9U/CNe0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["eZNJvZ9fRnp8l6r3kLVOqGhDgS8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyz(){return new B.LR(A.dx("eu"))},
+dyB(){return new B.LR(A.dx("eu"))},
 LR:function LR(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfV(){return"Txataren xehetasunak"},
 gfW(){return"Txatak"},
 giK(){return"Aukeratu pasahitz sendo bat"},
 gfX(){return"Ezabatu artxiboa"},
-gcZ(d){return"Itxi"},
+gd_(d){return"Itxi"},
 giY(){return"Markatu mezu-zuzen gela bezala Matrix ID jakin honentzat"},
 giZ(){return"Markatu talde bezala"},
 giL(){return"Debekatu erabiltzailea gela honetan"},
@@ -743,5 +743,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.LR,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LR":{"aT":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["vrWPLJ+NAkd6s3ZqWrPpsqkxxSI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["hkRCYjlX9zB+J1j1NrW4a2UG7oE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

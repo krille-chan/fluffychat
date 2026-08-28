@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyQ(){return new B.M7(A.dx("kab"))},
+dyS(){return new B.M7(A.dx("kab"))},
 M7:function M7(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfV(){return"Ifatusen n udiwenni"},
 gfW(){return"Idiwenniyen"},
 giK(){return"Fren awal n u\u025beddi i\u01e7ehden"},
 gfX(){return"Sfe\u1e0d a\u0263ba\u1e5b"},
-gcZ(d){return"Mdel"},
+gd_(d){return"Mdel"},
 giY(){return"Cre\u1e0d d akken taxxamt n yizen usrid i Usulay Matriks i d-yettunefken"},
 giZ(){return"Cre\u1e0d am ugraw"},
 giL(){return"Gdel aseqdac i d-ittunefken seg texxamt-agi"},
@@ -742,5 +742,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M7,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"M7":{"aT":[]}}'))};
-(a=>{a["IqldDxVJU7+hEj4HAM4aiDmhZMc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["JprnYkm5DmTjGB5gxe+zI1ov8zg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_336.part.js.map

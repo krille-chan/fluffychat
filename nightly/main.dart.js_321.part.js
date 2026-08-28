@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyJ(){return new B.M0(A.dx("hu"))},
+dyL(){return new B.M0(A.dx("hu"))},
 M0:function M0(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfV(){return"Cseveg\xe9s r\xe9szletei"},
 gfW(){return"Cseveg\xe9sek"},
 giK(){return"V\xe1lasszon egy er\u0151s jelsz\xf3t"},
 gfX(){return"Arch\xedvum \xfcr\xedt\xe9se"},
-gcZ(d){return"Bez\xe1r"},
+gd_(d){return"Bez\xe1r"},
 giY(){return"Szoba megjel\xf6l\xe9se mint k\xf6zvetlen cseveg\u0151 szoba az adott Matrix ID-n\xe9l"},
 giZ(){return"Jel\xf6l\xe9s csoportnak"},
 giL(){return"Adott felhaszn\xe1l\xf3 kitilt\xe1sa a szob\xe1b\xf3l"},
@@ -742,5 +742,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M0,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"M0":{"aT":[]}}'))};
-(a=>{a["AtW5Id6p47xDfZADVXKqhpxqHWQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["HUERATp3c0xubS4K1NfYjGE7z3w="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map

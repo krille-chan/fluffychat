@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dzb(){return new B.Ms(A.dx("uz"))},
+dzd(){return new B.Ms(A.dx("uz"))},
 Ms:function Ms(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfV(){return"Suhbat tafsilotlari"},
 gfW(){return"Suhbatlar"},
 giK(){return"Kuchli parol tanlang"},
 gfX(){return"Arxivni tozalash"},
-gcZ(d){return"Yopish"},
+gd_(d){return"Yopish"},
 giY(){return"Matrix identifikatorini berish uchun shaxsiy xabar guruhi sifatida belgilang"},
 giZ(){return"Guruh sifatida belgilash"},
 giL(){return"Bu guruhdan berilgan foydalanuvchini bloklash"},
@@ -743,5 +743,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Ms,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"Ms":{"aT":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["84fba1xB3DLrn5vq/lR3Ap0IM9w="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4dwmN0uWsxGrEhXaEQ7PzVSiEdk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

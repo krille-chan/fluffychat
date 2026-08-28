@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyw(){return new B.LO(A.dx("eo"))},
+dyy(){return new B.LO(A.dx("eo"))},
 LO:function LO(d){this.a=d}}
 A=c[0]
 C=c[58]
@@ -95,7 +95,7 @@ gfV(){return"Detaloj pri babilo"},
 gfW(){return"Babiloj"},
 giK(){return"Elektu fortan pasvorton"},
 gfX(){return"Vakigi ar\u0125ivon"},
-gcZ(d){return"Fermi"},
+gd_(d){return"Fermi"},
 giY(){return"Mark as direct message room for the giving Matrix ID"},
 giZ(){return"Mark as group"},
 giL(){return"Forbari la donitan uzanton de \u0109i tiu \u0109ambro"},
@@ -742,5 +742,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LO,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LO":{"aT":[]}}'))};
-(a=>{a["BgDq4dKYU2P7gBk25k0dondjJJg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["qu1DsE8+KlYbUdBa5MAvpn+J5uE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_288.part.js.map
