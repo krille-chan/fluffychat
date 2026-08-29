@@ -342,7 +342,10 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
                 ) ??
                 false,
           )
-          .listen((_) => _createKeyAndShare());
+          .listen((_) {
+            notifyListeners();
+            _createKeyAndShare();
+          });
       await _createKeyAndShare();
 
       final startWithVideo = value.localVideoTrack?.muted == false;
