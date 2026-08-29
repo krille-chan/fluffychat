@@ -170,15 +170,6 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     _onCallEncryptionKeysSub = room.client.onCallEncryptionKeys.listen(
       _onCallEncryptionKeys,
     );
-    _onCallMembersChanged = room.client.onSync.stream
-        .where(
-          (syncUpdate) =>
-              syncUpdate.rooms?.join?[room.id]?.timeline?.events?.any(
-                (event) => event.type == MatrixRtcCallMember.eventType,
-              ) ??
-              false,
-        )
-        .listen((_) => _createKeyAndShare());
 
     await WakelockPlus.enable();
     await lk.LiveKitClient.initialize();
@@ -190,7 +181,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       ratchetWindowSize: 0,
       discardFrameWhenCryptorNotReady: true,
       keyDerivationAlgorithm: rtc.KeyDerivationAlgorithm.kHKDF,
-      keyRingSize: 256,
+      keyRingSize: 255,
     );
     final nativeKeyProvider = await rtc.frameCryptorFactory
         .createDefaultKeyProvider(keyProviderOptions);
@@ -341,9 +332,19 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
         );
       }
 
-      final credentials = await room.joinMatrixRtcCall(intent: intent);
       timeline = await room.getTimeline(onInsert: _onNewTimelineEvent);
+      final credentials = await room.joinMatrixRtcCall(intent: intent);
+      _onCallMembersChanged = room.client.onSync.stream
+          .where(
+            (syncUpdate) =>
+                syncUpdate.rooms?.join?[room.id]?.timeline?.events?.any(
+                  (event) => event.type == MatrixRtcCallMember.eventType,
+                ) ??
+                false,
+          )
+          .listen((_) => _createKeyAndShare());
       await _createKeyAndShare();
+
       final startWithVideo = value.localVideoTrack?.muted == false;
       final startWithAudio = value.startWithAudio;
       await value.localVideoTrack?.stop();
@@ -411,6 +412,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     } catch (e, s) {
       Logs().e('Error while connecting', e, s);
       value.error = e;
+      ErrorReporter(null, 'Unable to connect').onErrorCallback(e, s);
     } finally {
       value.isLoading = false;
       notifyListeners();

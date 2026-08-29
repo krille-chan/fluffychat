@@ -173,8 +173,10 @@ class CallPage extends StatelessWidget {
                           child: SafeArea(
                             child: Container(
                               decoration: BoxDecoration(
-                                color: theme.colorScheme.errorContainer
-                                    .withAlpha(230),
+                                color: viewModel.value.error == null
+                                    ? theme.colorScheme.errorContainer
+                                          .withAlpha(230)
+                                    : theme.colorScheme.error.withAlpha(230),
                                 borderRadius: BorderRadius.circular(
                                   AppConfig.borderRadius,
                                 ),
@@ -189,7 +191,9 @@ class CallPage extends StatelessWidget {
                                 textAlign: .center,
                                 style: TextStyle(
                                   fontSize: 11,
-                                  color: theme.colorScheme.onErrorContainer,
+                                  color: viewModel.value.error == null
+                                      ? theme.colorScheme.onErrorContainer
+                                      : theme.colorScheme.onError,
                                 ),
                               ),
                             ),
