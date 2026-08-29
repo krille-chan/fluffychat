@@ -344,9 +344,7 @@ class Message extends StatelessWidget {
                                             .onPrimaryContainer,
                                       ),
                                     ),
-                                  if ((!nextEventSameSender) &&
-                                      !ownMessage &&
-                                      !event.room.isDirectChat)
+                                  if ((!nextEventSameSender) && !ownMessage)
                                     FutureBuilder<User?>(
                                       future: event.fetchSenderUser(),
                                       builder: (context, snapshot) {
@@ -361,17 +359,20 @@ class Message extends StatelessWidget {
                                             displayname,
                                             style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color:
-                                                  (theme.brightness ==
-                                                      Brightness.light
-                                                  ? displayname
-                                                        .colorScheme
-                                                        .primary
-                                                  : displayname
-                                                        .colorScheme
-                                                        .primaryContainer),
+                                              color: event.room.isDirectChat
+                                                  ? Colors.transparent
+                                                  : (theme.brightness ==
+                                                            Brightness.light
+                                                        ? displayname
+                                                              .colorScheme
+                                                              .primary
+                                                        : displayname
+                                                              .colorScheme
+                                                              .primaryContainer),
                                               fontSize: 11,
-                                              shadows: wallpaperTextShadow,
+                                              shadows: event.room.isDirectChat
+                                                  ? null
+                                                  : wallpaperTextShadow,
                                             ),
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
