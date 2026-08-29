@@ -204,7 +204,7 @@ Future<void> _tryPushHelper(
         RtcNotificationContent.defaultLifetime;
     final params = await buildFluffyChatCallKitParams(
       event.room,
-      l10n,
+      l10n: l10n,
       intent: intent,
       timeout: timeout,
     );
