@@ -5,6 +5,9 @@ SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+## v2.9.4
+Hotfix for F-Droid only set the compilesdk
+
 ## v2.9.3
 Hotfix for iOS only where iOS notifications can lock the database.
 
