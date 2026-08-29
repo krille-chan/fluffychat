@@ -1,45 +1,49 @@
 name: fluffychat
-title: FluffyChat
+title: FluffyChat Matrix Messenger
 base: core24
 version: 2.9.1
 license: AGPL-3.0
 summary: The cutest messenger in the Matrix network
 description: |
-  FluffyChat is an open source, nonprofit and cute matrix messenger app. The app is easy to use but secure and decentralized.
+  ## Your communication should be yours.
 
+  The open-source, non-profit European alternative to big tech’s messaging and video-call monopoly. End-to-end encrypted, decentralized, and easy to use for everyone.
 
-  ## Features
+  ### Messaging how it should be
 
-  - Send all kinds of messages, images and files
-  - Voice messages
-  - Location sharing
-  - Push notifications
-  - Unlimited private and public group chats
-  - Public channels with thousands of participants
-  - Feature rich group moderation including all matrix features
-  - Discover and join public groups
-  - Dark mode
-  - Hides complexity of Matrix IDs behind simple QR codes
-  - Custom emotes and stickers
-  - Video calls via sharing links to Jitsi
-  - Spaces
-  - Compatible with Element, Nheko, NeoChat and all other Matrix apps
-  - End to end encryption
-  - Emoji verification & cross signing
-  - And much more...
+  Whether for your friends, your company or local community, FluffyChat supports a variety of features to cover all your daily needs.
 
+  #### Easy to use
 
-  ## FluffyChat comes with a dream
+  Simply install, log in and start chatting. The intuitive user interface makes secure communication as easy as possible.
 
-  Imagine a world where everyone can choose the messenger they like and is still able to chat with all of their friends.
+  #### Secure
 
-  A world where there are no companies spying on you when you send selfies to friends and lovers.
+  With olm/megolm end-to-end encryption, encrypted message backups and an automated key trust system, FluffyChat is among the most secure messengers available.
 
-  And a world where apps are made for fluffyness and not for profit. ♥
+  #### Decentral
+
+  Based on the open Matrix protocol we build a decentralized messaging network together, which no entity can control. Host your own chat server while remaining in contact with everyone.
+
+  ### Feature rich and reliable
+
+  From public chats with tens of thousands of participants and polls to custom stickers, spaces, rich moderation tools, and multi-device support, FluffyChat delivers a comprehensive communication suite.
+
+  #### Secure video calls
+
+  Direct calls and video conferences, fully secured with Matrix RTC-compatible encryption.
+
+  #### Not another walled garden
+
+  We do not build another walled garden! FluffyChat is fully compatible with any other Matrix client like Element, Nheko, Cinny or NeoChat. Learn more at matrix.org.
+
+  #### Made by volunteers
+
+  FluffyChat is a non-profit project based on open standards and driven entirely by volunteers. Infrastructure is funded by donations, and participation is open to everyone.
 
   Join the community: https://matrix.to/#/#fluffy-space:matrix.org
   Website: http://fluffychat.im
-  Microblog: https://mastodon.art/@krille
+  Microblog: https://troet.cafe/@krille
 
 grade: stable
 confinement: strict
