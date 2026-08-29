@@ -28,7 +28,11 @@ extension GetCallTiles on lk.Room {
       final participantId = '${member.senderId}:${member.deviceId}';
 
       // The local user is handled below:
-      if (localParticipant?.identity == participantId) continue;
+      if (localParticipant?.identity == participantId ||
+          (member.senderId == room.client.userID &&
+              member.deviceId == room.client.deviceID)) {
+        continue;
+      }
 
       final participant =
           remoteParticipants[participantId] ??
@@ -67,6 +71,7 @@ extension GetCallTiles on lk.Room {
       }
     }
 
+    // Handle the local participant here:
     final ownUser = room.unsafeGetUserFromMemoryOrFallback(room.client.userID!);
     for (final pub
         in localParticipant?.videoTrackPublications ??

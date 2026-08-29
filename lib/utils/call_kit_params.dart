@@ -3,6 +3,8 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'dart:ui';
+
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
@@ -12,11 +14,12 @@ import 'package:matrix/matrix.dart';
 import 'package:uuid/uuid.dart';
 
 Future<CallKitParams> buildFluffyChatCallKitParams(
-  Room room,
-  L10n l10n, {
+  Room room, {
+  L10n? l10n,
   MatrixRtcCallIntent intent = .video,
   Duration timeout = RtcNotificationContent.defaultLifetime,
 }) async {
+  l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
   final avatarUrl = await room.avatar?.getThumbnailUri(
     room.client,
     width: notificationAvatarDimension,
