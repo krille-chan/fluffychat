@@ -2514,5 +2514,41 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "versionWithNumber": "Versione: {version}",
+    "@versionWithNumber": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "signIn": "Accedi",
+    "createNewAccount": "Crea un nuovo account",
+    "signInGreeting": "Hai già un account su Matrix? Bentornato! Seleziona il tuo homeserver e accedi.",
+    "join": "Unisciti",
+    "searchOrEnterHomeserverAddress": "Cerca o inserisci l'indirizzo di un homeserver",
+    "matrixId": "ID Matrix",
+    "makeModerator": "Rendi moderatore",
+    "makeAdmin": "Rendi amministratore",
+    "removeModeratorRights": "Rimuovi i diritti di moderatore",
+    "removeAdminRights": "Rimuovi i diritti di amministratore",
+    "powerLevel": "Livello di permesso",
+    "setPowerLevelDescription": "I livelli di permesso definiscono cosa un membro può fare in questa stanza e di solito variano tra 0 e 100.",
+    "owner": "Proprietario",
+    "mute": "Silenzia",
+    "@mute": {
+        "description": "This should be a very short string because there is not much space in the button!"
+    },
+    "createNewChat": "Crea una nuova chat",
+    "supportFluffyChat": "Supporta FluffyChat",
+    "setLowPriority": "Imposta priorità bassa",
+    "unsetLowPriority": "Rimuovi priorità bassa",
+    "playSoundOnNotification": "Riproduci suono per le notifiche",
+    "addTag": "Aggiungi un'etichetta",
+    "removeTag": "Rimuovi l'etichetta",
+    "tagName": "Nome dell'etichetta",
+    "createNewTag": "Crea una nuova etichetta",
+    "hideRoomsInSpaces": "Nascondi le stanze che sono in uno spazio"
 }

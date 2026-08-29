@@ -2466,7 +2466,7 @@
             }
         }
     },
-    "spaceMemberOf": "Områdemedlem av {spaces}",
+    "spaceMemberOf": "Romgruppemedlem av {spaces}",
     "@spaceMemberOf": {
         "type": "String",
         "placeholders": {
@@ -2768,5 +2768,48 @@
     "unifiedPushDistributors": "UnifiedPush-distributører:",
     "doubleTapToReact": "Dubbelttrykk for å reagere",
     "doubleTapToReactDescription": "Dobbelt-trykk på en melding for å reagere i stedet for å merke tekst",
-    "doubleTapReaction": "Reaksjon ved dobbelttrykk"
+    "doubleTapReaction": "Reaksjon ved dobbelttrykk",
+    "videoCallsBetaWarning": "Videosamtaler er en betafunksjon. Det kan forekomme feil eller uventet oppførsel. Vi vil gjerne høre tilbakemeldingene dine.",
+    "sendingFilesDoNotExit": "Sender {count} filer... Ikke avslutt!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Komprimerer video...",
+    "shareCrashReports": "Del krasjrapporter",
+    "shareCrashReportsDescription": "Dele automatisk krasjrapporter med utviklerne?",
+    "shareCrashReportsPrompt": "Vil du dele krasjrapporter automatisk med utviklerne? Les mer på {url} om hvilke data som deles.",
+    "@shareCrashReportsPrompt": {
+        "placeholders": {
+            "url": {
+                "type": "String"
+            }
+        }
+    },
+    "allow": "Tillat",
+    "deny": "Avvis",
+    "enterCall": "Bli med i samtale",
+    "noDevicesFound": "Ingen enheter funnet",
+    "incomingCall": "Innkommende samtale",
+    "waitingForParticipant": "Venter på deltakere...",
+    "decline": "Avslå",
+    "videoCall": "Videosamtale",
+    "voiceCall": "Talesamtale",
+    "missedCall": "Tapte anrop",
+    "callBack": "Ring tilbake",
+    "hangUp": "Legg på",
+    "startCall": "Start samtale",
+    "selectCamera": "Velg kamera",
+    "selectMicrophone": "Velg mikrofon",
+    "selectSpeaker": "Velg høytaler",
+    "toggleMicrophone": "Slå på/av mikrofon",
+    "toggleCamera": "Slå på/av kamera",
+    "startScreensharing": "Start skjermdeling",
+    "stopScreensharing": "Avslutt skjermdeling",
+    "raiseHand": "Hev hånden",
+    "stopRaiseHand": "Senk hånden"
 }

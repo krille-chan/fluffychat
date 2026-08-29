@@ -2773,7 +2773,7 @@
     },
     "compressingVideo": "正在压缩视频…",
     "shareCrashReports": "分享崩溃报告",
-    "shareCrashReportsDescription": "自动与开发者分享崩溃报告",
+    "shareCrashReportsDescription": "自动与开发者分享崩溃报告？",
     "videoCallsBetaWarning": "视频通话是测试功能。可能有故障或意外行为。我们可以聆听您的反馈。",
     "countActiveCallMembers": "{count} 名活跃通话成员",
     "@countActiveCallMembers": {
@@ -2787,5 +2787,20 @@
     "noDevicesFound": "未找到设备",
     "incomingCall": "来电",
     "waitingForParticipant": "等待参与者…",
-    "decline": "拒绝"
+    "decline": "拒绝",
+    "videoCall": "视频通话",
+    "voiceCall": "音频通话",
+    "missedCall": "未接电话",
+    "callBack": "回呼",
+    "hangUp": "挂断",
+    "startCall": "开始通话",
+    "selectCamera": "选择相机",
+    "selectMicrophone": "选择麦克风",
+    "selectSpeaker": "选择扬声器",
+    "toggleMicrophone": "切换麦克风状态",
+    "toggleCamera": "切换相机状态",
+    "startScreensharing": "开始屏幕分享",
+    "stopScreensharing": "停止屏幕分享",
+    "raiseHand": "举手",
+    "stopRaiseHand": "停止举手"
 }
