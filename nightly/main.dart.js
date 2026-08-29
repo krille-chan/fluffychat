@@ -106243,7 +106243,9 @@ A.bjC.prototype={
 $1(a){return a.a==="org.matrix.msc3401.call.member"},
 $S:156}
 A.bjE.prototype={
-$1(a){return this.a.Qr()},
+$1(a){var s=this.a
+s.a6()
+s.Qr()},
 $S:194}
 A.bjF.prototype={
 $1(a){var s=this.a,r=s.w,q=A.cTV(r)
