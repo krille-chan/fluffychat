@@ -107,8 +107,7 @@ extension LocalizedExceptionExtension on Object {
       return L10n.of(context).unableToJoinChat;
     }
 
-    Logs().w('Something went wrong: ', this);
-    return L10n.of(context).oopsSomethingWentWrong;
+    return L10n.of(context).unexpectedErrorOccurded(toString());
   }
 }
 
