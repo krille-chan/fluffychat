@@ -181,7 +181,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       ratchetWindowSize: 0,
       discardFrameWhenCryptorNotReady: true,
       keyDerivationAlgorithm: rtc.KeyDerivationAlgorithm.kHKDF,
-      keyRingSize: 256,
+      keyRingSize: 255,
     );
     final nativeKeyProvider = await rtc.frameCryptorFactory
         .createDefaultKeyProvider(keyProviderOptions);
