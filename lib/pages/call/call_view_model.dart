@@ -348,7 +348,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
           });
       await _createKeyAndShare();
 
-      final startWithVideo = value.localVideoTrack?.muted == false;
+      final startWithVideo =
+          !(value.localVideoTrack?.muted ?? intent == .voice);
       final startWithAudio = value.startWithAudio;
       await value.localVideoTrack?.stop();
       await value.localVideoTrack?.dispose();
@@ -550,7 +551,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
   }
 
   Future<void> selectCamera(BuildContext context) async {
-    final devices = await lk.Hardware.instance.enumerateDevices(type: 'camera');
+    final devices = await lk.Hardware.instance.videoInputs();
     if (!context.mounted) return;
     final source = await _selectMediaDevice(
       context,
