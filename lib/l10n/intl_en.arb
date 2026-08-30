@@ -92,6 +92,11 @@
         "type": "String",
         "placeholders": {}
     },
+    "accountsAndSettings": "Accounts and settings",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
     "activatedEndToEndEncryption": "🔐 {username} activated end to end encryption",
     "@activatedEndToEndEncryption": {
         "type": "String",
