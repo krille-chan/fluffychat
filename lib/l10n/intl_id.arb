@@ -2760,5 +2760,47 @@
     "unifiedPushDistributors": "Distributor Unified Push:",
     "doubleTapToReact": "Ketuk dua kali untuk bereaksi",
     "doubleTapToReactDescription": "Ketuk dua kali pada pesan untuk bereaksi alih-alih memilih teks",
-    "doubleTapReaction": "Reaksi ketuk dua kali"
+    "doubleTapReaction": "Reaksi ketuk dua kali",
+    "sendingFilesDoNotExit": "Mengirim {count} file... Jangan keluar!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Mengompresi video...",
+    "shareCrashReports": "Bagikan laporan kerusakan",
+    "shareCrashReportsDescription": "Otomatis membagikan laporan kerusakan kepada pengembang?",
+    "countActiveCallMembers": "{count} anggota panggilan aktif",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Masuk ke panggilan",
+    "videoCallsBetaWarning": "Panggilan video adalah fitur beta. Mungkin terdapat bug atau perilaku yang tidak terduga. Kami akan sangat menghargai umpan balik Anda.",
+    "noDevicesFound": "Tidak ada perangkat yang ditemukan",
+    "incomingCall": "Panggilan masuk",
+    "videoCall": "Panggilan video",
+    "voiceCall": "Panggilan suara",
+    "missedCall": "Panggilan terlewat",
+    "callBack": "Telpon balik",
+    "hangUp": "Tutup panggilan",
+    "waitingForParticipant": "Menunggu peserta...",
+    "decline": "Tolak",
+    "startCall": "Mulai panggilan",
+    "selectCamera": "Pilih kamera",
+    "selectMicrophone": "Pilih mikrofon",
+    "selectSpeaker": "Pilih pengeras suara",
+    "toggleMicrophone": "Alihkan mikrofon",
+    "toggleCamera": "Alihkan kamera",
+    "startScreensharing": "Mulai berbagi layar",
+    "stopScreensharing": "Hentikan berbagi layar",
+    "raiseHand": "Angkat tangan",
+    "stopRaiseHand": "Turunkan tangan",
+    "preferSpeaker": "Utamakan pengeras suara"
 }

@@ -2802,5 +2802,6 @@
     "startScreensharing": "开始屏幕分享",
     "stopScreensharing": "停止屏幕分享",
     "raiseHand": "举手",
-    "stopRaiseHand": "停止举手"
+    "stopRaiseHand": "停止举手",
+    "preferSpeaker": "偏好扬声器"
 }
