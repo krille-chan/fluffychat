@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dyu(){return new B.LL(A.dx("de"))},
-LL:function LL(d){this.a=d}}
+dy1(){return new B.LI(A.dw("de"))},
+LI:function LI(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[13],B)
-B.LL.prototype={
+B.LI.prototype={
 gpq(){return"Edit image"},
 grh(){return"Rotate left"},
 gri(){return"Rotate right"},
@@ -741,8 +741,8 @@ gq3(){return"Stop raise hand"},
 rn(d){return"Unfortunately, an unexpected error has occurred: "+d},
 D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.LL,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"LL":{"aT":[]}}'))
+x(B.LI,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"LI":{"aT":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["Prew0yslACk6K/LfH13XQKaaC74="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["kfpMjA0QPph1jCmVrREoliyFK6c="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_288.part.js.map

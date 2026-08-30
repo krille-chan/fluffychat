@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dz8(){return new B.Mo(A.dx("te"))},
-Mo:function Mo(d){this.a=d}}
+dyG(){return new B.Ml(A.dw("te"))},
+Ml:function Ml(d){this.a=d}}
 A=c[0]
 C=c[58]
 B=a.updateHolder(c[51],B)
-B.Mo.prototype={
+B.Ml.prototype={
 gpq(){return"Edit image"},
 grh(){return"Rotate left"},
 gri(){return"Rotate right"},
@@ -742,7 +742,7 @@ gq3(){return"Stop raise hand"},
 rn(d){return"Unfortunately, an unexpected error has occurred: "+d},
 D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mo,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mo":{"aT":[]}}'))};
-(a=>{a["3K2XDAemnPNl98b+nMQBNfBS6GA="]=a.current})($__dart_deferred_initializers__);
+y(B.Ml,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Ml":{"aT":[]}}'))};
+(a=>{a["/Ph2aW3GLoEuJ//e0x1Rnsp7YlU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_368.part.js.map

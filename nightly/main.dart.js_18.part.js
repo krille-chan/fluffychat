@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-dyY(d){return new A.Fq(B.dx(d))},
-dyZ(){return new A.Me(B.dx("pt_BR"))},
-dz_(){return new A.Mf(B.dx("pt_PT"))},
-Fq:function Fq(d){this.a=d},
-Me:function Me(d){this.a=d},
-Mf:function Mf(d){this.a=d}},C
+dyv(d){return new A.Fo(B.dw(d))},
+dyw(){return new A.Mb(B.dw("pt_BR"))},
+dyx(){return new A.Mc(B.dw("pt_PT"))},
+Fo:function Fo(d){this.a=d},
+Mb:function Mb(d){this.a=d},
+Mc:function Mc(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[58]
-A.Fq.prototype={
+A.Fo.prototype={
 gpq(){return"Edit image"},
 grh(){return"Rotate left"},
 gri(){return"Rotate right"},
@@ -745,7 +745,7 @@ gr4(){return"Raise hand"},
 gq3(){return"Stop raise hand"},
 rn(d){return"Unfortunately, an unexpected error has occurred: "+d},
 D(d,e){return this.gbB(this).$1(e)}}
-A.Me.prototype={
+A.Mb.prototype={
 gl0(){return"Repita a senha"},
 gkz(){return"N\xe3o \xe9 um arquivo de imagem."},
 gbB(d){return"Remover"},
@@ -1353,7 +1353,7 @@ goW(){return"Pular backup de conversas"},
 goX(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 pH(d){return"Vers\xe3o: "+d},
 D(d,e){return this.gbB(this).$1(e)}}
-A.Mf.prototype={
+A.Mc.prototype={
 gl0(){return"Repete a palavra-passe"},
 gkz(){return"N\xe3o \xe9 um ficheiro de imagem."},
 gbB(d){return"Remover"},
@@ -1695,9 +1695,9 @@ gkK(){return"Por favor introduza um n\xfamero maior que 0"},
 gf6(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3o ver deixou o chat."},
 D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.Fq,C.aT)
-w(A.Fq,[A.Me,A.Mf])})()
-B.e8(b.typeUniverse,JSON.parse('{"Fq":{"aT":[]},"Me":{"aT":[]},"Mf":{"aT":[]}}'))
+x(A.Fo,C.aT)
+w(A.Fo,[A.Mb,A.Mc])})()
+B.e8(b.typeUniverse,JSON.parse('{"Fo":{"aT":[]},"Mb":{"aT":[]},"Mc":{"aT":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["25vHsn1CJabkVL0Kr/4w0/AjkqU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["EXfUWTH6y9vwUBPmw1sREij6mFg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map
