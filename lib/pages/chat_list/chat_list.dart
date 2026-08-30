@@ -416,10 +416,10 @@ class ChatListController extends State<ChatList>
 
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
-    _callEventSubscription = FlutterCallkitIncoming.onEvent.listen(
-      _onCallEvent,
-    );
     if (PlatformInfos.isMobile) {
+      _callEventSubscription = FlutterCallkitIncoming.onEvent.listen(
+        _onCallEvent,
+      );
       FlutterCallkitIncoming.activeCalls().then((calls) {
         final params = calls.firstOrNull;
         if (params == null) return;
