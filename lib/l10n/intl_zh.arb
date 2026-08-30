@@ -2803,5 +2803,13 @@
     "stopScreensharing": "停止屏幕分享",
     "raiseHand": "举手",
     "stopRaiseHand": "停止举手",
-    "preferSpeaker": "偏好扬声器"
+    "preferSpeaker": "偏好扬声器",
+    "unexpectedErrorOccurded": "不幸发生了意外错误：{msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    }
 }
