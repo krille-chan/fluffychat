@@ -2695,5 +2695,55 @@
     "edited": "(bearbeitet)",
     "couldNotBeSent": "Konnte nicht gesendet werden",
     "yesterday": "Gestern",
-    "resetRecoveryKey": "Wiederherstellungsschlüssel zurücksetzen"
+    "resetRecoveryKey": "Wiederherstellungsschlüssel zurücksetzen",
+    "editImage": "Bild bearbeiten",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Nach links drehen",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Nach rechts drehen",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Spiegeln",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Speichern",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Zeichnen",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Rückgängig",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Alles entfernen",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Radierer",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Zuschneiden",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    }
 }
