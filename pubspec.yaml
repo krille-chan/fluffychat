@@ -49,7 +49,7 @@ dependencies:
   go_router: ^18.0.0
   handy_window: ^0.4.2
   highlight: ^0.7.0
-  html: ^0.15.4
+  html: ^0.15.7
   http: ^1.6.0
   image: ^4.9.2
   image_picker: ^1.2.3
