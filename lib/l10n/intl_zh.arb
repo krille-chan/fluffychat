@@ -2811,5 +2811,10 @@
                 "type": "String"
             }
         }
+    },
+    "accountsAndSettings": "账户和设置",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
     }
 }
