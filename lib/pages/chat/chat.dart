@@ -634,7 +634,7 @@ class ChatController extends State<ChatPageWithRoom>
     if (eventId.isValidMatrixIdStrict() == false) return;
 
     // Already set a read marker on this event
-    if (room.fullyRead == eventId) return;
+    if (room.fullyRead == eventId && !setOnLatestEvent) return;
 
     // Set a readmarker on a specific event, not latest, but room is not unread
     // at all.
