@@ -1,34 +1,45 @@
 PODS:
-  - flutter_webrtc (1.4.0):
-    - FlutterMacOS
-    - WebRTC-SDK (= 144.7559.09)
   - FlutterMacOS (1.0.0)
-  - video_compress (0.3.0):
+  - FMDB/Core (2.7.12)
+  - FMDB/SQLCipher (2.7.12):
+    - FMDB/Core
+    - SQLCipher (~> 4.6)
+  - media_kit_libs_macos_audio (1.0.4):
     - FlutterMacOS
-  - WebRTC-SDK (144.7559.09)
+  - sqflite_sqlcipher (0.0.1):
+    - FlutterMacOS
+    - FMDB/SQLCipher (~> 2.7.5)
+    - SQLCipher (= 4.10.0)
+  - SQLCipher (4.10.0):
+    - SQLCipher/standard (= 4.10.0)
+  - SQLCipher/common (4.10.0)
+  - SQLCipher/standard (4.10.0):
+    - SQLCipher/common
 
 DEPENDENCIES:
-  - flutter_webrtc (from `Flutter/ephemeral/.symlinks/plugins/flutter_webrtc/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
-  - video_compress (from `Flutter/ephemeral/.symlinks/plugins/video_compress/macos`)
+  - media_kit_libs_macos_audio (from `Flutter/ephemeral/.symlinks/plugins/media_kit_libs_macos_audio/macos`)
+  - sqflite_sqlcipher (from `Flutter/ephemeral/.symlinks/plugins/sqflite_sqlcipher/macos`)
 
 SPEC REPOS:
   trunk:
-    - WebRTC-SDK
+    - FMDB
+    - SQLCipher
 
 EXTERNAL SOURCES:
-  flutter_webrtc:
-    :path: Flutter/ephemeral/.symlinks/plugins/flutter_webrtc/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
-  video_compress:
-    :path: Flutter/ephemeral/.symlinks/plugins/video_compress/macos
+  media_kit_libs_macos_audio:
+    :path: Flutter/ephemeral/.symlinks/plugins/media_kit_libs_macos_audio/macos
+  sqflite_sqlcipher:
+    :path: Flutter/ephemeral/.symlinks/plugins/sqflite_sqlcipher/macos
 
 SPEC CHECKSUMS:
-  flutter_webrtc: fec3dc9284a1f6d21ec2caa91c90bb4c1824eb04
-  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
-  video_compress: 752b161da855df2492dd1a8fa899743cc8fe9534
-  WebRTC-SDK: e6006119cd730d6315d875e4a421b6cc8bb88833
+  FlutterMacOS: c232990155153907050900a2e175c7773903ba4e
+  FMDB: 728731dd336af3936ce00f91d9d8495f5718a0e6
+  media_kit_libs_macos_audio: 06f3cf88d6d89c7c3c87eae57689d1c6adb335b2
+  sqflite_sqlcipher: a4c2f17db76d2f86dfe044937d3a851d8880cbb9
+  SQLCipher: eb79c64049cb002b4e9fcb30edb7979bf4706dfc
 
 PODFILE CHECKSUM: d0975b16fbdecb73b109d8fbc88aa77ffe4c7a8d
 

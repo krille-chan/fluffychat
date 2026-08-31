@@ -36,9 +36,10 @@ linter:
     # Flutter specific:
     - use_colored_box
 
+plugins:
+  dart_code_linter: latest
+
 analyzer:
-  plugins:
-    - dart_code_linter
   errors:
     todo: ignore
   exclude:
