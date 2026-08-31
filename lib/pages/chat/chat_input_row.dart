@@ -209,32 +209,16 @@ class ChatInputRow extends StatelessWidget {
                           PopupMenuDivider(),
                         ],
                         PopupMenuItem(
-                          value: AddPopupMenuActions.image,
+                          value: AddPopupMenuActions.media,
                           child: ListTile(
                             leading: CircleAvatar(
                               backgroundColor:
                                   theme.colorScheme.onPrimaryContainer,
                               foregroundColor:
                                   theme.colorScheme.primaryContainer,
-                              child: const Icon(Icons.photo_outlined),
+                              child: const Icon(Icons.image_outlined),
                             ),
-                            title: Text(L10n.of(context).sendImage),
-                            contentPadding: const EdgeInsets.all(0),
-                          ),
-                        ),
-                        PopupMenuItem(
-                          value: AddPopupMenuActions.video,
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  theme.colorScheme.onPrimaryContainer,
-                              foregroundColor:
-                                  theme.colorScheme.primaryContainer,
-                              child: const Icon(
-                                Icons.video_camera_back_outlined,
-                              ),
-                            ),
-                            title: Text(L10n.of(context).sendVideo),
+                            title: Text(L10n.of(context).openGallery),
                             contentPadding: const EdgeInsets.all(0),
                           ),
                         ),
