@@ -375,4 +375,8 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String get pollHasBeenEnded => l10n.pollHasBeenEnded;
+
+  @override
+  String incomingCallFrom(String senderName) =>
+      l10n.incomingCallFrom(senderName);
 }

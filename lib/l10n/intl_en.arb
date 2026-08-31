@@ -2798,5 +2798,11 @@
         "placeholders": {
             "msg": {"type": "String"}
         }
+    },
+    "incomingCallFrom": "Incoming call from {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {"type": "String"}
+        }
     }
 }

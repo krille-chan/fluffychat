@@ -88,7 +88,7 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
   // migrate from potential previous SQLite database path to current one
   await _migrateLegacyLocation(path, clientName);
 
-  if (PlatformInfos.isMobile) {
+  if (PlatformInfos.isMobile || PlatformInfos.isMacOS) {
     return await MatrixSdkDatabase.init(
       clientName,
       database: await sqfl_cipher.openDatabase(path, password: cipher),
