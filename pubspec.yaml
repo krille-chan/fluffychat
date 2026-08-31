@@ -65,7 +65,7 @@ dependencies:
   material_ui: 1.1.0
   matrix: ^11.0.0
   media_kit_libs_audio: ^1.0.7
-  mime: ^2.0.0
+  mime: ^2.1.0
   native_imaging: ^0.5.0
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^10.2.0
