@@ -2757,5 +2757,38 @@
     "loadingMessages": "Berichten laden...",
     "buildDoesNotSupportFirebase": "Deze versie ondersteunt geen firebase cloud messaging.",
     "unableToRegisterDeviceForFirebase": "Niet in staat om het apparaat te registreren voor firebase cloud messaging.",
-    "unifiedPushDistributors": "Unified Push diensten:"
+    "unifiedPushDistributors": "Unified Push diensten:",
+    "accountsAndSettings": "Accounts en instellingen",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendingFilesDoNotExit": "{count} bestanden sturen... Even geduld ajb!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Video comprimeren...",
+    "doubleTapToReact": "Dubbele tik om te reageren",
+    "doubleTapToReactDescription": "Dubbele tik op een bericht om te reageren of tekst te selecteren",
+    "doubleTapReaction": "Dubbele tik reactie",
+    "shareCrashReports": "Foutmeldingen delen",
+    "shareCrashReportsDescription": "Automatisch foutmeldingen delen met de ontwikkelaars?",
+    "countActiveCallMembers": "{count} actieve oproep deelnemers",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Oproep opnemen",
+    "videoCallsBetaWarning": "Video oproepen zijn een beta functie. Er zijn mogelijk fouten of onverwachte reacties. We horen graag je feedback.",
+    "noDevicesFound": "Geen apparaten gevonden",
+    "incomingCall": "Inkomende oproep",
+    "videoCall": "Video oproepen"
 }
