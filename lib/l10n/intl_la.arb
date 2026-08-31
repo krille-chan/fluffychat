@@ -1,1 +1,138 @@
-{}
+{
+    "importFromZipFile": "A tabulario zip importare",
+    "editImage": "Pictura exercere",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Sinistrorsum torquere",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Dextrorsum torquere",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Condere",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Pingere",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Retexere",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Vacuefacere",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Tersus",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Secare",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassword": "Signum repetere",
+    "notAnImage": "Pictura non est.",
+    "remove": "Removere",
+    "@remove": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "importNow": "Nunc importare",
+    "importEmojis": "Emojis importare",
+    "exportEmotePack": "In tabulario zip exportare",
+    "replace": "Compensare",
+    "about": "De",
+    "aboutHomeserver": "De {homeserver}",
+    "@aboutHomeserver": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    },
+    "accept": "Accipere",
+    "@accept": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "acceptedTheInvitation": "👍 {username} invitationem accepit",
+    "@acceptedTheInvitation": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "account": "Ratio",
+    "@account": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "activatedEndToEndEncryption": "🔐 {username} ab origine ad destinatum per notas scribere incepit",
+    "@activatedEndToEndEncryption": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "addEmail": "Email addere",
+    "@addEmail": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "addToSpace": "Ad spatium addere",
+    "admin": "Princeps",
+    "@admin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "alias": "aliud nomen",
+    "@alias": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "all": "Cuncti",
+    "@all": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "commandHint_cuddle": "Applicatum mittere",
+    "commandHint_hug": "Complexum mittere",
+    "cuddleContent": "{senderName} se ad te applicat",
+    "@cuddleContent": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "hugContent": "{senderName} te complecitur",
+    "@hugContent": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    }
+}
