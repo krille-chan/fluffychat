@@ -2745,5 +2745,6 @@
     "@crop": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "compressingVideo": "Video wird komprimiert..."
 }
