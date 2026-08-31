@@ -2158,7 +2158,7 @@
     "noMoreChatsFound": "Rohkem vestlusi ei leidu...",
     "unread": "Lugemata",
     "space": "Kogukond",
-    "goToSpace": "Ava kogukond: {space}",
+    "goToSpace": "Vaata kogukonda: {space}",
     "@goToSpace": {
         "type": "String",
         "space": {}
@@ -2211,7 +2211,7 @@
     "changelog": "Muudatuste logi",
     "sendCanceled": "Saatmine on katkestatud",
     "noChatsFoundHere": "Siin ei leidu veel ühtegi vestlust. Alusta uut vestlust klõpsides allpool asuvat nuppu. ⤵️",
-    "loginWithMatrixId": "Logi sisse Matrix-ID alusel",
+    "loginWithMatrixId": "Logi sisse Matrixi kasutajatunnuse alusel",
     "doesNotSeemToBeAValidHomeserver": "Ei tundu olema ühilduv koduserver. Kas võrguaadress on ikka õige?",
     "calculatingFileSize": "Arvutame faili suurust...",
     "oneOfYourDevicesIsNotVerified": "Üks sinu seadmetest pole verifitseeritud",
@@ -2805,5 +2805,19 @@
     "startScreensharing": "Alusta ekraanijagamist",
     "stopScreensharing": "Lõpeta ekraanijagamine",
     "raiseHand": "Anna käega märku",
-    "stopRaiseHand": "Lõpeta käega märkuandmine"
+    "stopRaiseHand": "Lõpeta käega märkuandmine",
+    "accountsAndSettings": "Kasutajakontod ja seadistused",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "preferSpeaker": "Eelista esinejat",
+    "unexpectedErrorOccurded": "Kahjuks tekkis ootamatu viga: {msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    }
 }
