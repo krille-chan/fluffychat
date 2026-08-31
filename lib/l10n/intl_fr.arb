@@ -2812,5 +2812,10 @@
                 "type": "String"
             }
         }
+    },
+    "accountsAndSettings": "Comptes et paramètres",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
     }
 }
