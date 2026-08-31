@@ -106445,7 +106445,7 @@ r=a==null
 if(r){q=A.et(s.cx.c,new A.blT(p))
 a=q==null?null:q.y}if(a==null)return
 if(!A.cZ(a))return
-if(p.gbw().gavg()===a)return
+if(p.gbw().gavg()===a&&!r)return
 if(r&&!p.gbw().gXH()&&p.gbw().c===0)return
 $.ab().Ai(0,"Set read marker...",a)
 p.k1=s.ak8(a,A.iN(B.w8)).b0(new A.blU(p),t.H)},
