@@ -2803,5 +2803,14 @@
     "startScreensharing": "Commencer le partage d'écran",
     "stopScreensharing": "Arrêter le partage d'écran",
     "raiseHand": "Lever la main",
-    "stopRaiseHand": "Baisser la main"
+    "stopRaiseHand": "Baisser la main",
+    "preferSpeaker": "Sortie audio favorite",
+    "unexpectedErrorOccurded": "Malheuresement, une erreur est survenue : {msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    }
 }
