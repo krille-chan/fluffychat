@@ -49,7 +49,7 @@ im(d){return d+" odebra\u0142/-a po\u0142\u0105czenie"},
 gfI(){return"Ka\u017cdy mo\u017ce do\u0142\u0105czy\u0107"},
 gfJ(){return"Archiwum"},
 gio(){return"Czy go\u015bcie mog\u0105 do\u0142\u0105czy\u0107?"},
-gdI(){return"Czy na pewno?"},
+gdJ(){return"Czy na pewno?"},
 gpm(){return"Masz niezapisane zmiany. Porzuci\u0107 je?"},
 gip(){return"Czy na pewno chcesz si\u0119 wylogowa\u0107?"},
 giq(){return"Aby zalogowa\u0107 inn\u0105 osob\u0119, prosz\u0119 wpisa\u0107 has\u0142o przechowywania lub klucz odzyskiwania."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ma,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"Ma":{"aT":[]}}'))};
-(a=>{a["5GPdmK6G7iuTSEYPHLWHx6jrV5w="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+9GTrsS2xkS+Am9JY5L62MXCHno="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_356.part.js.map

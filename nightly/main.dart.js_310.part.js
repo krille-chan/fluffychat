@@ -49,7 +49,7 @@ im(d){return d+" vastasi puheluun"},
 gfI(){return"Kuka tahansa voi liitty\xe4"},
 gfJ(){return"Arkisto"},
 gio(){return"Sallitaanko vieraiden liittyminen"},
-gdI(){return"Oletko varma?"},
+gdJ(){return"Oletko varma?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"Haluatko varmasti kirjautua ulos?"},
 giq(){return"Voidaksesi allekirjoittaa toisen henkil\xf6n, sy\xf6t\xe4 turvavaraston salalause tai palautusavain."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LQ,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LQ":{"aT":[]}}'))};
-(a=>{a["gnbx2aw0tb99V+25Jt5SdiF0ydo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4KM30Ce1wLCHVzNe5orUp35gvJA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_310.part.js.map

@@ -49,7 +49,7 @@ im(d){return d+" respondi\xf3 a la llamada"},
 gfI(){return"Cualquiera puede unirse"},
 gfJ(){return"Archivo"},
 gio(){return"\xbfPueden los usuarios invitados unirse?"},
-gdI(){return"\xbfEst\xe1s seguro?"},
+gdJ(){return"\xbfEst\xe1s seguro?"},
 gpm(){return"Tienes cambios sin guardar \xbfQuieres descartarlos?"},
 gip(){return"\xbfConfirma que quiere cerrar sesi\xf3n?"},
 giq(){return"Para poder confirmar a la otra persona, ingrese su contrase\xf1a de almacenamiento segura o la clave de recuperaci\xf3n."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LM,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LM":{"aT":[]}}'))};
-(a=>{a["lNyc7jr6xVB9h/NMFAqhQcn3tb4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Sid6O+Gw8U+fc90lMwqIYWnbY+Q="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

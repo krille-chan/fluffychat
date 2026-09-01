@@ -49,7 +49,7 @@ im(d){return d+" je odgovorio/la na poziv"},
 gfI(){return"Svatko se mo\u017ee pridru\u017eiti"},
 gfJ(){return"Arhiv"},
 gio(){return"Smiju li se gosti pridru\u017eiti?"},
-gdI(){return"Stvarno to \u017eeli\u0161?"},
+gdJ(){return"Stvarno to \u017eeli\u0161?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"Stvarno se \u017eeli\u0161 odjaviti?"},
 giq(){return"Za potpisivanje druge osobe, upi\u0161i svoju sigurnosnu lozinku ili klju\u010d za oporavak."},
@@ -746,5 +746,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LX,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LX":{"aT":[]}}'))};
-(a=>{a["vkBwcHbCP5FBU4DoL6EaxUJBYTI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["aRfaVPXdcTo6lx7TGlVidUnVtUA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_324.part.js.map

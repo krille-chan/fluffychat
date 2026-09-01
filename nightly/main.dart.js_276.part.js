@@ -49,7 +49,7 @@ im(d){return d+" odpov\u011bd\u011bl na hovor"},
 gfI(){return"Kdokoliv se m\u016f\u017ee p\u0159ipojit"},
 gfJ(){return"Archivovat"},
 gio(){return"Mohou se p\u0159ipojit host\xe9"},
-gdI(){return"Jste si jist\xfd?"},
+gdJ(){return"Jste si jist\xfd?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"Opravdu se chcete odhl\xe1sit?"},
 giq(){return"Pro ov\u011b\u0159en\xed t\xe9to osoby zadejte pros\xedm p\u0159\xedstupovou fr\xe1zi k \u201ebezpe\u010dn\xe9mu \xfalo\u017ei\u0161ti\u201c anebo \u201ekl\xed\u010d pro obnovu\u201c."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LG,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LG":{"aT":[]}}'))};
-(a=>{a["6aVWm6kVL6bIMebrIfvnFuOAKtY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["R406YRVlkVN+ealYM/MQRY+6p+A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_276.part.js.map

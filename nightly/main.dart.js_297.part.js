@@ -49,7 +49,7 @@ im(d){return d+" respondis la vokon"},
 gfI(){return"\u0108iu ajn povas ali\u011di"},
 gfJ(){return"Ar\u0125ivo"},
 gio(){return"\u0108u gastoj rajtas ali\u011di"},
-gdI(){return"\u0108u vi certas?"},
+gdJ(){return"\u0108u vi certas?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"\u0108u vi certe volas adia\u016di?"},
 giq(){return"Por ke vi povu kontroli (subskribi) la alian personon, bonvolu enigi pasfrazon de via sekreta deponejo a\u016d vian rehavan \u015dlosilon."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LL,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LL":{"aT":[]}}'))};
-(a=>{a["zij5X2WbvYGQq7XeI9OSMFeAzOE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["WBxgV3s5I5uT0Ygasr+ePHCuytQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

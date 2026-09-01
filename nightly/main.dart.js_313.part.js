@@ -49,7 +49,7 @@ im(d){return d+" a r\xe9pondu \xe0 l'appel"},
 gfI(){return"Tout le monde peut rejoindre"},
 gfJ(){return"Archiver"},
 gio(){return"Les invit\xe9s peuvent-i\xb7e\xb7ls rejoindre\u202f?"},
-gdI(){return"\xcates-vous s\xfbr\xb7e\xa0?"},
+gdJ(){return"\xcates-vous s\xfbr\xb7e\xa0?"},
 gpm(){return"Vous avez des modifications non-sauvegard\xe9s. Voulez-vous les supprimer\u202f?"},
 gip(){return"Voulez-vous vraiment vous d\xe9connecter ?"},
 giq(){return"Pour pouvoir faire signer l'autre personne, veuillez entrer la phrase de passe de votre trousseau s\xe9curis\xe9 ou votre cl\xe9 de r\xe9cup\xe9ration."},
@@ -746,5 +746,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LS,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LS":{"aT":[]}}'))};
-(a=>{a["dYuXQvpDXXVNQCEbaIABNAsB+Y8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["GOlmzoRphipau2VobhJa8TyN9U8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

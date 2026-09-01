@@ -49,7 +49,7 @@ im(d){return d+" ha respost a la trucada"},
 gfI(){return"Qualsevol pot unir-se"},
 gfJ(){return"Arxiu"},
 gio(){return"Es pot entrar al xat com a convidadi?"},
-gdI(){return"N\u2019esteu seguri?"},
+gdJ(){return"N\u2019esteu seguri?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"Segur que voleu finalitzar la sessi\xf3?"},
 giq(){return"Per a poder donar acc\xe9s a l\u2019altra persona, introdu\xefu la frase de seguretat o clau de recuperaci\xf3."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LF,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LF":{"aT":[]}}'))};
-(a=>{a["zxuvn3QWInCQ34bOouTl7vreMsA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["cQs6CR09MruqJWZFSw8Sba9fjY8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_266.part.js.map

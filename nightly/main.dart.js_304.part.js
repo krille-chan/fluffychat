@@ -49,7 +49,7 @@ im(d){return d+" vastas k\xf5nele"},
 gfI(){return"K\xf5ik v\xf5ivad liituda"},
 gfJ(){return"Arhiiv"},
 gio(){return"Kas k\xfclalised v\xf5ivad liituda?"},
-gdI(){return"Kas sa oled kindel?"},
+gdJ(){return"Kas sa oled kindel?"},
 gpm(){return"Sul on salvestamata muudatusi. Kas loobud neist?"},
 gip(){return"Kas sa oled kindel, et soovid v\xe4lja logida?"},
 giq(){return"Selleks, et teist osapoolt identifitseerivat allkirja anda, palun sisesta oma turvahoidla salafraas v\xf5i taastev\xf5ti."},
@@ -746,5 +746,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LN,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LN":{"aT":[]}}'))};
-(a=>{a["NOEsUzZyZ0Pm1ON920kGQL3WxIM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["0qkbwiWIw+aVcXdd9x453xgkzHs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map

@@ -53,7 +53,7 @@ im(d){return d+" answered the call"},
 gfI(){return"Anyone can join"},
 gfJ(){return"Archive"},
 gio(){return"Are guest users allowed to join?"},
-gdI(){return"Tens a certeza?"},
+gdJ(){return"Tens a certeza?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"Are you sure you want to log out?"},
 giq(){return"To be able to sign the other person, please enter your secure store passphrase or recovery key."},
@@ -780,7 +780,7 @@ im(d){return d+" atendeu \xe0 chamada"},
 gfI(){return"Qualquer pessoa pode entrar"},
 gfJ(){return"Arquivo"},
 gio(){return"Visitantes podem entrar"},
-gdI(){return"Tem certeza?"},
+gdJ(){return"Tem certeza?"},
 gip(){return"Tem certeza que deseja se desconectar?"},
 giq(){return"Para poder validar a outra pessoa, digite sua frase secreta ou chave de recupera\xe7\xe3o."},
 ir(d){return"Aceitar esta solicita\xe7\xe3o de verifica\xe7\xe3o de "+d+"?"},
@@ -1388,7 +1388,7 @@ im(d){return d+" atendeu a chamada"},
 gfI(){return"Qualquer pessoa pode entrar"},
 gfJ(){return"Arquivo"},
 gio(){return"Os utilizadores convidados t\xeam permiss\xe3o para se juntarem?"},
-gdI(){return"Tens a certeza?"},
+gdJ(){return"Tens a certeza?"},
 gpm(){return"Tem mudan\xe7as n\xe3o guardadas. Descartar as suas edi\xe7\xf5es?"},
 gip(){return"Tens a certeza que queres sair?"},
 giq(){return"Para poderes assinar a outra pessoa, por favor, insere a tua senha de armazenamento seguro ou a chave de recupera\xe7\xe3o."},
@@ -1701,5 +1701,5 @@ x(A.Fo,C.aT)
 w(A.Fo,[A.Mb,A.Mc])})()
 B.e8(b.typeUniverse,JSON.parse('{"Fo":{"aT":[]},"Mb":{"aT":[]},"Mc":{"aT":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["W9wlNCEkTxjyLTDbAuURKdsAsj8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["eKo7fOJTnKubX+We4JBBjLLgPnA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

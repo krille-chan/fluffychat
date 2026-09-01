@@ -49,7 +49,7 @@ im(d){return d+" chaqiruvga javob berdi"},
 gfI(){return"Har kim qo\u2018shilishi mumkin"},
 gfJ(){return"Arxiv"},
 gio(){return"Mehmon foydalanuvchilarga qo\u2018shilishga ruxsat berilganmi"},
-gdI(){return"Ishonchingiz komilmi?"},
+gdJ(){return"Ishonchingiz komilmi?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"Haqiqatan ham hisobingizdan chiqamoqchimisiz?"},
 giq(){return"Narigi foydalanuvchini imzolash uchun xavfsiz do\u2018kon parol iborasi yoki tiklash kalitini kiriting."},
@@ -746,5 +746,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Mp,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"Mp":{"aT":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["4nRlhepSgIlcs5OTNOyi7Sq/58U="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["WRHpnTlOGEmK8cQycrk8OG4RfBw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_374.part.js.map

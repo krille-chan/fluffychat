@@ -49,7 +49,7 @@ im(d){return d+" v\xe1laszolt a h\xedv\xe1sra"},
 gfI(){return"B\xe1rki csatlakozhat"},
 gfJ(){return"Arch\xedvum"},
 gio(){return"Csatlakozhatnak-e vend\xe9gek"},
-gdI(){return"Biztos benne?"},
+gdJ(){return"Biztos benne?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"Biztosan kijelentkezik?"},
 giq(){return"A m\xe1sik f\xe9l igazol\xe1s\xe1hoz meg kell adnia a biztons\xe1gos t\xe1rol\xf3 jelmondat\xe1t vagy a vissza\xe1ll\xedt\xe1si kulcsot\xe1t."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LY,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LY":{"aT":[]}}'))};
-(a=>{a["FPkjptWytLxiGrfW+9hkafow1Sk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["A2ksiYvoenQwa3ejMcieMILEDV0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map

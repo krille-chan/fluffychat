@@ -49,7 +49,7 @@ im(d){return d+" answered the call"},
 gfI(){return"Anyone can join"},
 gfJ(){return"Archive"},
 gio(){return"Are guest users allowed to join?"},
-gdI(){return"Are you sure?"},
+gdJ(){return"Are you sure?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"Are you sure you want to log out?"},
 giq(){return"To be able to sign the other person, please enter your secure store passphrase or recovery key."},
@@ -746,5 +746,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LE,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LE":{"aT":[]}}'))};
-(a=>{a["dRCAxIr9AWV61noqcZU1DQP3y/g="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Viqgw0KsOfzC+voqDko3DoRa1G8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_263.part.js.map

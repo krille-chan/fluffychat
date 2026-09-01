@@ -49,7 +49,7 @@ im(d){return d+" respondeu \xe1 chamada"},
 gfI(){return"Calquera pode unirse"},
 gfJ(){return"Arquivo"},
 gio(){return"Poden entrar as usuarias convidadas?"},
-gdI(){return"Tes a certeza?"},
+gdJ(){return"Tes a certeza?"},
 gpm(){return"Ten cambios sen gardar. Desbotar a edici\xf3n?"},
 gip(){return"Tes a certeza de querer sa\xedr?"},
 giq(){return"Para poder asinar a outra persoa, escribe a t\xfaa frase de paso ou chave de recuperaci\xf3n."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LU,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LU":{"aT":[]}}'))};
-(a=>{a["e6XPIShCPHAGUWOhss+IrTtyTJ4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["2CjP4WmMia0wgCssoxQ8C5l8Xc0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_319.part.js.map

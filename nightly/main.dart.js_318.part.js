@@ -49,7 +49,7 @@ im(d){return"D'fhreagair "+d+" an glao"},
 gfI(){return"Is f\xe9idir le aon duine dul isteach"},
 gfJ(){return"Cartlann"},
 gio(){return"An bhfuil cead ag \xfas\xe1ideoir\xed aoi p\xe1irt a ghlacadh?"},
-gdI(){return"An bhfuil t\xfa cinnte?"},
+gdJ(){return"An bhfuil t\xfa cinnte?"},
 gpm(){return"T\xe1 athruithe neamhsh\xe1bh\xe1ilte agat. Ar mhaith leat do chuid eagarth\xf3ireachta\xed a chaitheamh amach?"},
 gip(){return"An bhfuil t\xfa cinnte gur mhaith leat log\xe1il amach?"},
 giq(){return"Chun a bheith in ann an duine eile a sh\xedni\xfa, cuir isteach do phasfhr\xe1sa st\xf3ir s\xe1bh\xe1ilte n\xf3 d'eochair t\xe9arnaimh."},
@@ -746,5 +746,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.LT,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LT":{"aT":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["qEcYgj0XSLxc+EHQPf3PtPzESIg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4K5nbYGwy4LAlCzyFSmH1/3gMc4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map

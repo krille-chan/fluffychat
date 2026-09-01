@@ -49,7 +49,7 @@ im(d){return d+" hat den Anruf angenommen"},
 gfI(){return"Jeder darf beitreten"},
 gfJ(){return"Archiv"},
 gio(){return"D\xfcrfen G\xe4ste teilnehmen?"},
-gdI(){return"Bist du sicher?"},
+gdJ(){return"Bist du sicher?"},
 gpm(){return"Du hast ungespeicherte \xc4nderungen. M\xf6chtest du deine \xc4nderungen verwerfen?"},
 gip(){return"Willst du dich wirklich abmelden?"},
 giq(){return"Bitte gib, um die andere Person signieren zu k\xf6nnen, dein Sicherheitsschl\xfcssel oder Wiederherstellungsschl\xfcssel ein."},
@@ -746,5 +746,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.LI,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LI":{"aT":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["Iw4EpqZuZfq82lUvpIhHeINejP8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["n5W5yk0PyhubSncW94WHdqwVAIs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_289.part.js.map

@@ -49,7 +49,7 @@ im(d){return"Oseba "+d+" je odgovorila na klic"},
 gfI(){return"Pridru\u017ei se lahko vsak"},
 gfJ(){return"Arhiv"},
 gio(){return"Ali se lahko gostujo\u010di uporabniki pridru\u017eijo"},
-gdI(){return"Ali si prepri\u010dan?"},
+gdJ(){return"Ali si prepri\u010dan?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"Ali ste prepri\u010dani, da se \u017eelite odjaviti?"},
 giq(){return"\u010ce \u017eelite podpisati drugo osebo, vnesite geslo za varno trgovino ali obnovitveni klju\u010d."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mg,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"Mg":{"aT":[]}}'))};
-(a=>{a["YMquB4euRJUhPtK4zTCoOfL/7GQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["G4Kt6Kd8h2k+spwCw4Bt2fDVIic="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

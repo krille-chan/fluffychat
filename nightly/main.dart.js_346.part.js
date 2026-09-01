@@ -49,7 +49,7 @@ im(d){return d+" yerra-d i usiwel"},
 gfI(){return"Yal yiwen yezmer ad yettekki"},
 gfJ(){return"A\u0263ba\u1e5b"},
 gio(){return"Iseqdacen inebgiwen ttusirgen ad ttekkin"},
-gdI(){return"Tet\u1e25eqqe\u1e0d?"},
+gdJ(){return"Tet\u1e25eqqe\u1e0d?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"D tidet teb\u0263i\u1e0d ad teff\u0263e\u1e0d?"},
 giq(){return"Iwakken ad teszmele\u1e0d amdan-nni\u1e0den, ttxil-k\xb7m sekcem tafyirt-ik\xb7im n u\u1e25raz s wudem a\u0263elsan ne\u0263 tasarut n tririt."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M4,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"M4":{"aT":[]}}'))};
-(a=>{a["caWifGOeb/NKDpB12SyEiAgN16Y="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["0nC7o6Bt0I5pagX42HTiuUZ2nvE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_346.part.js.map

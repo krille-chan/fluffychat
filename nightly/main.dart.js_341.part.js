@@ -49,7 +49,7 @@ im(d){return d+" ha risposto alla chiamata"},
 gfI(){return"Tutti possono partecipare"},
 gfJ(){return"Archivia"},
 gio(){return"Gli utenti ospiti possono partecipare?"},
-gdI(){return"Sei sicuro/a?"},
+gdJ(){return"Sei sicuro/a?"},
 gpm(){return"Hai dei cambiamenti non salvati. Elimina le tue modifiche?"},
 gip(){return"Sei sicuro/a di voler uscire?"},
 giq(){return"Per far accedere l'altra persona, per favore inserisci la tua frase segreta o chiave di recupero."},
@@ -747,5 +747,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M1,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"M1":{"aT":[]}}'))};
-(a=>{a["qS8klXE06vuNk6EYqlGHgRlcJfo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["TEkM4uTX75MBdmjP6XDzzF7GCSE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_341.part.js.map

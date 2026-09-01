@@ -49,7 +49,7 @@ im(d){return d+" besvarte anropet"},
 gfI(){return"Hvem som helst kan delta"},
 gfJ(){return"Arkiv"},
 gio(){return"Kan gjester bli med?"},
-gdI(){return"Er du sikker?"},
+gdJ(){return"Er du sikker?"},
 gpm(){return"Du har endringer som ikke er lagret. Vil du forkaste endringene?"},
 gip(){return"Er du sikker p\xe5 at du vil logge ut?"},
 giq(){return"For \xe5 kunne signere den andre personen, skriv inn ditt sikre lagerpassord eller gjenopprettingsn\xf8kkel."},
@@ -746,5 +746,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M8,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"M8":{"aT":[]}}'))};
-(a=>{a["fPDLYnE7sm8LVDWgVbotHkH1WD4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["c8xx0nRErsNV6iFqsRAf3FbMC5I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

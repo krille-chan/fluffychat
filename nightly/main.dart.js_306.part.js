@@ -49,7 +49,7 @@ im(d){return d+"(e)k deia erantzun du"},
 gfI(){return"Edonor batu daiteke"},
 gfJ(){return"Fitxategia"},
 gio(){return"Batu al daitezke bisitan dauden erabiltzaileak?"},
-gdI(){return"Ziur zaude?"},
+gdJ(){return"Ziur zaude?"},
 gpm(){return"Gorde gabeko aldaketak daude. Baztertu nahi dituzu?"},
 gip(){return"Ziur zaude saioa amaitu nahi duzula?"},
 giq(){return"Beste pertsona egiaztatzeko, sartu zure biltegiratze segururako pasaesaldia edo berreskuratze-gakoa."},
@@ -746,5 +746,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.LO,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LO":{"aT":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["a0aheOfi5JYzea7dUwcfFK6NWvk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["zptgpOh39t0pBrMgywGUx72dhx4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

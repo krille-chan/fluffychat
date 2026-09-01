@@ -49,7 +49,7 @@ im(d){return d+" \u05e2\u05e0\u05d4 \u05dc\u05e9\u05d9\u05d7\u05d4"},
 gfI(){return"\u05db\u05dc \u05d0\u05d7\u05d3 \u05d9\u05db\u05d5\u05dc \u05dc\u05d4\u05e6\u05d8\u05e8\u05e3"},
 gfJ(){return"\u05d0\u05e8\u05db\u05d9\u05d5\u05df"},
 gio(){return"\u05d4\u05d0\u05dd \u05de\u05e9\u05ea\u05de\u05e9\u05d9\u05dd \u05d0\u05d5\u05e8\u05d7\u05d9\u05dd \u05de\u05d5\u05e8\u05e9\u05d9\u05dd \u05dc\u05d4\u05e6\u05d8\u05e8\u05e3"},
-gdI(){return"\u05d4\u05d0\u05dd \u05d0\u05ea\u05d4 \u05d1\u05d8\u05d5\u05d7?"},
+gdJ(){return"\u05d4\u05d0\u05dd \u05d0\u05ea\u05d4 \u05d1\u05d8\u05d5\u05d7?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"\u05d4\u05d0\u05dd \u05d0\u05ea\u05d4 \u05d1\u05d8\u05d5\u05d7 \u05e9\u05d1\u05e8\u05e6\u05d5\u05e0\u05da \u05dc\u05e6\u05d0\u05ea?"},
 giq(){return"\u05db\u05d3\u05d9 \u05e9\u05ea\u05d5\u05db\u05dc \u05dc\u05d7\u05ea\u05d5\u05dd \u05e2\u05dc \u05de\u05e9\u05ea\u05de\u05e9 \u05d0\u05d7\u05e8 , \u05d4\u05d6\u05df \u05d0\u05ea \u05d4\u05e1\u05d9\u05e1\u05de\u05d4 \u05e9\u05dc\u05da \u05d0\u05d5 \u05d0\u05ea \u05de\u05e4\u05ea\u05d7 \u05d4\u05e9\u05d7\u05d6\u05d5\u05e8."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LV,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LV":{"aT":[]}}'))};
-(a=>{a["ZDYLA1AFJJVGiaDelqQHI96p1lk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["YJMngjD/G5lmMuqndPsKFkbLsec="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_322.part.js.map

@@ -49,7 +49,7 @@ im(d){return d+" atbild\u0113ja uz zvanu"},
 gfI(){return"Ikviens var pievienoties"},
 gfJ(){return"Arh\u012bvs"},
 gio(){return"Vai vieslietot\u0101ji dr\u012bkst pievienoties?"},
-gdI(){return"Vai tie\u0161\u0101m?"},
+gdJ(){return"Vai tie\u0161\u0101m?"},
 gpm(){return"Ir nesaglab\u0101tas izmai\u0146as. Atmest labojumus?"},
 gip(){return"Vai tie\u0161\u0101m atteikties?"},
 giq(){return"Lai var\u0113tu parakst\u012bt otru cilv\u0113ku, l\u016bgums ievad\u012bt savu dro\u0161o kr\u0101tuves paroles v\u0101rdkopu vai atkopes atsl\u0113gu."},
@@ -748,5 +748,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M7,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"M7":{"aT":[]}}'))};
-(a=>{a["kxHAO0h4Rtu0c4m8Pr9YWq9uKx0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["EsrUOQGhqmGnqi/g6dazCrdQl2Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_350.part.js.map

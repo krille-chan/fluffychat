@@ -49,7 +49,7 @@ im(d){return d+" besvarade samtalet"},
 gfI(){return"Vem som helst kan g\xe5 med"},
 gfJ(){return"Arkiv"},
 gio(){return"F\xe5r g\xe4stanv\xe4ndare g\xe5 med?"},
-gdI(){return"\xc4r du s\xe4ker?"},
+gdJ(){return"\xc4r du s\xe4ker?"},
 gpm(){return"Du har \xe4ndringar som inte sparats. Kasta bort dina \xe4ndringar?"},
 gip(){return"\xc4r du s\xe4ker p\xe5 att du vill logga ut?"},
 giq(){return"F\xf6r att kunna signera den andra personen, v\xe4nligen ange din l\xf6senfras eller \xe5terst\xe4llningsnyckel f\xf6r s\xe4ker lagring."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mj,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"Mj":{"aT":[]}}'))};
-(a=>{a["GFccu3NTjywixGvW8YmFexO7sOM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jX8p9hOVTYLUXy2g6zmZOZdb/i4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_367.part.js.map

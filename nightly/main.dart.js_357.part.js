@@ -49,7 +49,7 @@ im(d){return d+" a acceptat apelul"},
 gfI(){return"Oricine se poate al\u0103tura"},
 gfJ(){return"Arhiv\u0103"},
 gio(){return'Vizitatorii "guest" se pot al\u0103tura'},
-gdI(){return"E\u0219ti sigur?"},
+gdJ(){return"E\u0219ti sigur?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"Sunte\u021bi sigur c\u0103 dori\u021bi s\u0103 v\u0103 deconecta\u021bi?"},
 giq(){return"Pentru a putea conecta cealalt\u0103 persoan\u0103, te rog introdu parola sau cheia ta de recuperare."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Md,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"Md":{"aT":[]}}'))};
-(a=>{a["OpYZkilMyyGvVyxqTQDL9cf/cI8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jiMKmIkR0Gjh4sFqym0cFVHc838="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_357.part.js.map

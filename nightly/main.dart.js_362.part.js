@@ -49,7 +49,7 @@ im(d){return d+" prevzal hovor"},
 gfI(){return"Ktoko\u013evek sa m\xf4\u017ee pripoji\u0165"},
 gfJ(){return"Archivova\u0165"},
 gio(){return"M\xf4\u017eu sa pripoji\u0165 hostia"},
-gdI(){return"Ste si ist\xed?"},
+gdJ(){return"Ste si ist\xed?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"Ste si ist\xed, \u017ee sa chcete odhl\xe1si\u0165?"},
 giq(){return'Na overenie tejto osoby, pros\xedm zadajte pr\xedstupovu fr\xe1zu k "bezpe\u010d\xe9mu \xfalo\u017eisku" alebo "kl\xfa\u010d na obnovu".'},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mf,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"Mf":{"aT":[]}}'))};
-(a=>{a["YGtvspb+FlaBIwLg0DCO6jlfWfo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["g+q1bFNWsWp60hmcNZERtZGMSbE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_362.part.js.map

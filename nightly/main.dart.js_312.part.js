@@ -49,7 +49,7 @@ im(d){return"Sinagot ni "+d+" ang tawag"},
 gfI(){return"Pwede sumali ang anumang tao"},
 gfJ(){return"Archive"},
 gio(){return"Pwede ba sumali ang mga bisita"},
-gdI(){return"Sigurado ka?"},
+gdJ(){return"Sigurado ka?"},
 gpm(){return"You have unsaved changes. Discard your edits?"},
 gip(){return"Sigurado kang gusto mong mag-log out?"},
 giq(){return"Para i-sign ang isa pang tao, pakilagay ang iyong secure store passphrase o recovery key."},
@@ -745,5 +745,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LR,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"LR":{"aT":[]}}'))};
-(a=>{a["cL2QRl7/xcTmRv5PBSRlyUogAdI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Iccs+tC/ydxBzAfWB8eQmZea58U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

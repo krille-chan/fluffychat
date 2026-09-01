@@ -49,7 +49,7 @@ im(d){return d+" heeft de oproep beantwoord"},
 gfI(){return"Iedereen kan toetreden"},
 gfJ(){return"Archief"},
 gio(){return"Mogen gasten deelnemen?"},
-gdI(){return"Weet je het zeker?"},
+gdJ(){return"Weet je het zeker?"},
 gpm(){return"Je hebt wijzigingen die nog niet zijn opgeslagen. Wil je de wijzigingen ongedaan maken?"},
 gip(){return"Weet je zeker dat je wilt uitloggen?"},
 giq(){return"Voer je beveiligde opslag wachtwoordzin of herstelsleutel in om de andere persoon te kunnen ondertekenen."},
@@ -746,5 +746,5 @@ D(d,e){return this.gbB(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M9,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"M9":{"aT":[]}}'))};
-(a=>{a["JyBABgdwadAhjVwohiTwvU3U3/c="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["w+fx574JYKXbpKxuYsXUfSlsJg0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_354.part.js.map
