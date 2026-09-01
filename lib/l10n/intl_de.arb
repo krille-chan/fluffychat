@@ -484,7 +484,7 @@
             }
         }
     },
-    "countParticipants": "{count} Mitglieder",
+    "countParticipants": "{count, plural, =1{1 Teilnehmer} other{{count} Teilnehmer}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -1892,8 +1892,8 @@
     "report": "Melden",
     "importNow": "Jetzt importieren",
     "importEmojis": "Emojis importieren",
-    "importFromZipFile": "Aus ZIP-Datei importieren",
-    "exportEmotePack": "Emote-Paket als ZIP-Datei exportieren",
+    "importFromZipFile": "Aus zip-Datei importieren",
+    "exportEmotePack": "Emote-Paket als zip-Datei exportieren",
     "notAnImage": "Keine Bilddatei.",
     "replace": "Ersetzen",
     "sendTypingNotifications": "Tippbenachrichtigungen senden",
@@ -2746,5 +2746,83 @@
         "type": "String",
         "placeholders": {}
     },
-    "compressingVideo": "Video wird komprimiert..."
+    "compressingVideo": "Video wird komprimiert...",
+    "accountsAndSettings": "Konten und Einstellungen",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendingFilesDoNotExit": "Sende {count} Dateien... Bitte nicht schliessen!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "pleaseEnter6Digits": "Bitte 6 Ziffern eingeben, um die App-Sperre zu aktivieren.",
+    "disableAppLock": "App-Sperre deaktivieren",
+    "disableAppLockAreYouSure": "Bist du sicher, dass du die App-Sperre deaktivieren möchtest?",
+    "enableBiometrics": "Biometrische Authentifizierung aktivieren",
+    "disableBiometrics": "Biometrische Authentifizierung deaktivieren",
+    "biometricsDescription": "Mit biometrischer Authentifizierung kannst du die App mit deinem Gesicht oder Fingerabdruck entsperren. Die Leistungsfähigkeit hängt von deinem Gerät ab.",
+    "useAppLock": "App-Sperre verwenden",
+    "unlockWithBiometrics": "Mit biometrischer Authentifizierung entsperren",
+    "resetPin": "PIN zurücksetzen",
+    "forwardCountMessages": "{count, plural, =1{Eine Nachricht} other{{count} Nachrichten}} weiterleiten?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "loadingMessages": "Nachrichten werden geladen...",
+    "buildDoesNotSupportFirebase": "Dieser Build unterstützt kein Firebase Cloud Messaging.",
+    "unableToRegisterDeviceForFirebase": "Gerät kann nicht für Firebase Cloud Messaging registriert werden.",
+    "unifiedPushDistributors": "Unified Push Verteiler:",
+    "doubleTapToReact": "Doppeltippen, um zu reagieren",
+    "doubleTapToReactDescription": "Doppeltippen auf eine Nachricht, um zu reagieren, statt um Text auszuwählen",
+    "doubleTapReaction": "Doppeltippreaktion",
+    "shareCrashReports": "Absturzberichte teilen",
+    "shareCrashReportsDescription": "Absturzberichte automatisch mit den Entwicklern teilen?",
+    "countActiveCallMembers": "{count} aktive Anrufteilnehmer",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Anruf beitreten",
+    "videoCallsBetaWarning": "Videoanrufe sind eine Betafunktion. Es können Fehler oder unerwartetes Verhalten auftreten. Wir würden uns über Rückmeldungen freuen.",
+    "noDevicesFound": "Keine Geräte gefunden",
+    "incomingCall": "Eingehender Anruf",
+    "videoCall": "Videoanruf",
+    "voiceCall": "Sprachanruf",
+    "missedCall": "Verpasster Anruf",
+    "callBack": "Zurückrufen",
+    "hangUp": "Auflegen",
+    "waitingForParticipant": "Warte auf Teilnehmer...",
+    "decline": "Ablehnen",
+    "startCall": "Anrufen",
+    "selectCamera": "Kamera auswählen",
+    "selectMicrophone": "Mikrophon auswählen",
+    "selectSpeaker": "Lautsprecher auswählen",
+    "toggleMicrophone": "Mikrophon wechseln",
+    "toggleCamera": "Kamera wechseln",
+    "startScreensharing": "Bildschirm teilen",
+    "stopScreensharing": "Bildschirm nicht mehr teilen",
+    "raiseHand": "Hand heben",
+    "stopRaiseHand": "Hand senken",
+    "unexpectedErrorOccurded": "Unglücklicherweise ist ein unerwarteter Fehler aufgetreten: {msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    },
+    "preferSpeaker": "Lautsprecher bevorzugen"
 }
