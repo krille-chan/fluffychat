@@ -31,7 +31,7 @@ fv(d){return"\u5173\u4e8e "+d},
 gi7(d){return"\u63a5\u53d7"},
 i8(d){return"\ud83d\udc4d "+d+" \u63a5\u53d7\u4e86\u9080\u8bf7"},
 gi9(){return"\u8d26\u6237"},
-gq7(){return"Accounts and settings"},
+gq7(){return"\u8d26\u6237\u548c\u8bbe\u7f6e"},
 ia(d){return"\ud83d\udd10 "+d+" \u6fc0\u6d3b\u4e86\u7aef\u5230\u7aef\u52a0\u5bc6"},
 gib(){return"\u6dfb\u52a0\u7535\u5b50\u90ae\u4ef6"},
 gjb(){return"\u8bf7\u786e\u8ba4\u4f60\u7684 Matrix ID \u4ee5\u5220\u9664\u8d26\u6237\u3002"},
@@ -1314,5 +1314,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fq,C.aT)
 y(A.Mt,A.Fq)})()
 B.e5(b.typeUniverse,JSON.parse('{"Fq":{"aT":[]},"Mt":{"aT":[]}}'))};
-(a=>{a["s+6h4Hglw3maleTm1tZPP80xhsc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4DJNey3ctlI7jvvE177V2rnNqmc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
