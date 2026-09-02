@@ -742,7 +742,7 @@ gq2(){return"\u505c\u6b62\u5c4f\u5e55\u5206\u4eab"},
 gr3(){return"\u4e3e\u624b"},
 gq1(){return"\u505c\u6b62\u4e3e\u624b"},
 rl(d){return"\u4e0d\u5e78\u53d1\u751f\u4e86\u610f\u5916\u9519\u8bef\uff1a"+d},
-qA(d){return"Incoming call from "+d},
+qA(d){return d+" \u7684\u6765\u7535"},
 D(d,e){return this.gbx(this).$1(e)}}
 A.Mt.prototype={
 gkX(){return"\u518d\u6b21\u8f38\u5165\u5bc6\u78bc"},
@@ -1314,5 +1314,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fq,C.aT)
 y(A.Mt,A.Fq)})()
 B.e5(b.typeUniverse,JSON.parse('{"Fq":{"aT":[]},"Mt":{"aT":[]}}'))};
-(a=>{a["4DJNey3ctlI7jvvE177V2rnNqmc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["lNEDAcjR96y9zWSFxpwZC/MZilM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
