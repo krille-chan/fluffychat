@@ -106,6 +106,7 @@ dev_dependencies:
     sdk: flutter
   license_checker: ^1.6.2
 
+  test: any
 flutter:
   generate: true
   uses-material-design: true
