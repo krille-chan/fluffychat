@@ -2808,5 +2808,27 @@
     "startScreensharing": "Tosaigh ag comhroinnt scáileáin",
     "stopScreensharing": "Stop comhroinnt scáileáin",
     "raiseHand": "Ardaigh lámh",
-    "stopRaiseHand": "Stop ag ardú láimhe"
+    "stopRaiseHand": "Stop ag ardú láimhe",
+    "accountsAndSettings": "Cuntais agus socruithe",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "preferSpeaker": "Is fearr leat cainteoir",
+    "unexpectedErrorOccurded": "Ar an drochuair, tharla earráid gan choinne: {msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    },
+    "incomingCallFrom": "Glao isteach ó {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    }
 }
