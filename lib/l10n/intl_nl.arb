@@ -659,7 +659,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "endedTheCall": "{senderName} heeft het gesprek beëindigd",
+    "endedTheCall": "{senderName} heeft de oproep beëindigd",
     "@endedTheCall": {
         "type": "String",
         "placeholders": {
@@ -1412,7 +1412,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "startedACall": "{senderName} heeft een gesprek gestart",
+    "startedACall": "{senderName} heeft een oproep gestart",
     "@startedACall": {
         "type": "String",
         "placeholders": {
@@ -1971,7 +1971,7 @@
     "blockedUsers": "Geblokkeerde personen",
     "searchChatsRooms": "Zoek #chats, @personen...",
     "swipeRightToLeftToReply": "Veeg van rechts naar links om te reageren",
-    "calls": "Gesprekken",
+    "calls": "Oproepen",
     "customEmojisAndStickers": "Aangepaste emoji's en stickers",
     "accessAndVisibilityDescription": "Wie mag toetreden tot deze chat en hoe de chat ontdekt kan worden.",
     "customEmojisAndStickersBody": "Voeg toe of deel aangepaste emoji's en stickers die in elke chat gebruikt kunnen worden.",
@@ -2168,7 +2168,7 @@
     "sendTypingNotificationsDescription": "Andere deelnemers in de chat kunnen zien wanneer je een bericht aan het typen bent.",
     "sendCanceled": "Versturen geannuleerd",
     "opacity": "Doorzichtigheid:",
-    "verifyOtherUserDescription": "Als je een persoon verifieert ben je er zeker van dat je echt met haar contact hebt. 💪\n\nWanneer je een verificatie start ziet de persoon een popup in de app. Hier staat een serie van emoji's of getallen die je met elkaar moet vergelijken.\n\nDe beste manier om dit te doen is in persoon of met een videogesprek. 👭",
+    "verifyOtherUserDescription": "Als je een persoon verifieert ben je er zeker van dat je echt met haar contact hebt. 💪\n\nWanneer je een verificatie start ziet de persoon een popup in de app. Hier staat een serie van emoji's of getallen die je met elkaar moet vergelijken.\n\nDe beste manier om dit te doen is in persoon of met een video oproep. 👭",
     "changeTheVisibilityOfChatHistory": "Zichtbaarheid van de chat-geschiedenis wijzigen",
     "sendRoomNotifications": "@room-meldingen versturen",
     "noticeChatBackupDeviceVerification": "Opmerking: Als al je apparaten zijn verbonden met de chat back-up worden ze automatisch geverifieerd.",
@@ -2790,5 +2790,38 @@
     "videoCallsBetaWarning": "Video oproepen zijn een beta functie. Er zijn mogelijk fouten of onverwachte reacties. We horen graag je feedback.",
     "noDevicesFound": "Geen apparaten gevonden",
     "incomingCall": "Inkomende oproep",
-    "videoCall": "Video oproepen"
+    "videoCall": "Video oproepen",
+    "voiceCall": "Spraakoproep",
+    "missedCall": "Oproep gemist",
+    "callBack": "Terugbellen",
+    "hangUp": "Ophangen",
+    "waitingForParticipant": "Wachten op deelnemer...",
+    "decline": "Weigeren",
+    "startCall": "Start een oproep",
+    "selectCamera": "Camera selecteren",
+    "selectMicrophone": "Microfoon selecteren",
+    "selectSpeaker": "Speaker selecteren",
+    "toggleMicrophone": "Microfoon aan/uit",
+    "toggleCamera": "Camera aan/uit",
+    "startScreensharing": "Schermdelen starten",
+    "stopScreensharing": "Schermdelen stoppen",
+    "raiseHand": "Hand opsteken",
+    "stopRaiseHand": "Hand omlaag",
+    "preferSpeaker": "Voorkeur aan speaker",
+    "unexpectedErrorOccurded": "Helaas is er een onverwachte fout opgetreden: {msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    },
+    "incomingCallFrom": "Inkomende oproep van {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    }
 }

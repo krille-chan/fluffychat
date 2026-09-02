@@ -2816,5 +2816,13 @@
     "@accountsAndSettings": {
         "type": "String",
         "placeholders": {}
+    },
+    "incomingCallFrom": "{user} 的来电",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
     }
 }

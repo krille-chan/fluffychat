@@ -2819,5 +2819,13 @@
                 "type": "String"
             }
         }
+    },
+    "incomingCallFrom": "Kõne kasutajalt {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
     }
 }
