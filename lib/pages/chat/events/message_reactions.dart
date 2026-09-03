@@ -114,6 +114,7 @@ class _Reaction extends StatelessWidget {
         height: 20,
         animated: false,
         isThumbnail: false,
+        cacheKey: 'react_emote_$reactionKey',
       );
     } else {
       var renderKey = Characters(reactionKey);

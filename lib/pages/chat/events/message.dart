@@ -10,6 +10,7 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/chat/emoji_picker_dialog.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
@@ -728,7 +729,8 @@ class Message extends StatelessWidget {
                                                         body: SizedBox(
                                                           height:
                                                               double.infinity,
-                                                          child: EmojiPicker(
+
+                                                          child: EmojiPickerDialog(
                                                             onEmojiSelected:
                                                                 (_, emoji) =>
                                                                     Navigator.of(
@@ -737,62 +739,12 @@ class Message extends StatelessWidget {
                                                                       emoji
                                                                           .emoji,
                                                                     ),
-                                                            config: Config(
-                                                              locale:
-                                                                  Localizations.localeOf(
-                                                                    context,
-                                                                  ),
-                                                              emojiViewConfig:
-                                                                  const EmojiViewConfig(
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                  ),
-                                                              bottomActionBarConfig:
-                                                                  const BottomActionBarConfig(
-                                                                    enabled:
-                                                                        false,
-                                                                  ),
-                                                              categoryViewConfig: CategoryViewConfig(
-                                                                initCategory:
-                                                                    Category
-                                                                        .SMILEYS,
-                                                                backspaceColor: theme
-                                                                    .colorScheme
-                                                                    .primary,
-                                                                iconColor: theme
-                                                                    .colorScheme
-                                                                    .primary
-                                                                    .withAlpha(
-                                                                      128,
-                                                                    ),
-                                                                iconColorSelected:
-                                                                    theme
-                                                                        .colorScheme
-                                                                        .primary,
-                                                                indicatorColor: theme
-                                                                    .colorScheme
-                                                                    .primary,
-                                                                backgroundColor:
-                                                                    theme
-                                                                        .colorScheme
-                                                                        .surface,
-                                                              ),
-                                                              skinToneConfig: SkinToneConfig(
-                                                                dialogBackgroundColor: Color.lerp(
-                                                                  theme
-                                                                      .colorScheme
-                                                                      .surface,
-                                                                  theme
-                                                                      .colorScheme
-                                                                      .primaryContainer,
-                                                                  0.75,
-                                                                )!,
-                                                                indicatorColor: theme
-                                                                    .colorScheme
-                                                                    .onSurface,
-                                                              ),
-                                                            ),
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            initCategory:
+                                                                Category
+                                                                    .SMILEYS,
                                                           ),
                                                         ),
                                                       ),
