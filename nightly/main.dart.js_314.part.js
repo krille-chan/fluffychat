@@ -741,10 +741,10 @@ gq2(){return"Arr\xeater le partage d'\xe9cran"},
 gr3(){return"Lever la main"},
 gq1(){return"Baisser la main"},
 rl(d){return"Malheuresement, une erreur est survenue\xa0: "+d},
-qA(d){return"Incoming call from "+d},
+qA(d){return"Appel entrant de "+d},
 D(d,e){return this.gbx(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.LS,C.aT)})()
 A.e5(b.typeUniverse,JSON.parse('{"LS":{"aT":[]}}'))};
-(a=>{a["4xXHMPmi+0l7I09eq8lgrrqzJHY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["EUWGMXgeuLfXJTzNuZXlMA2BL/E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map
