@@ -2817,5 +2817,13 @@
     "@accountsAndSettings": {
         "type": "String",
         "placeholders": {}
+    },
+    "incomingCallFrom": "Appel entrant de {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
     }
 }
