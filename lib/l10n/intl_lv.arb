@@ -1961,11 +1961,11 @@
     "calls": "Zvani",
     "hideRedactedMessages": "Paslēpt labošanas ziņas",
     "hideRedactedMessagesBody": "Ja kāds labo ziņu, tā vairs nebūs redzama tērzēšanā.",
-    "blockListDescription": "Ir iespējams atslēgt traucējošus lietotājus. Nebūs iespējams saņem jebkādas ziņas vai uzaicinājumus uz istabām no lietotājiem, kas ir personīgajā izslēgšanas sarakstā.",
+    "blockListDescription": "Ir iespējams liegt traucējošus lietotājus. Nebūs iespējams saņem jebkādas ziņas vai uzaicinājumus uz istabām no lietotājiem, kas ir personīgajā liegumu sarakstā.",
     "wrongRecoveryKey": "Atvaino... Nešķiet, ka šī būtu pareiza atkopes atslēga.",
-    "block": "Izslēgt",
+    "block": "Liegt",
     "passwordRecoverySettings": "Paroles atkopes iestatījumi",
-    "blockedUsers": "Atslēgtie lietotāji",
+    "blockedUsers": "Liegtie lietotāji",
     "searchForUsers": "Meklēt @lietotājus...",
     "pleaseEnterYourCurrentPassword": "Lūgums ievadīt savu pašreizējo paroli",
     "publicSpaces": "Publiskas vietas",
@@ -2116,7 +2116,7 @@
         }
     },
     "sendReadReceiptsDescription": "Citi tērzēšanas dalībnieki var redzēt, kad izlasīji ziņu.",
-    "thereAreCountUsersBlocked": "Šobrīd ir izslēgti {count} lietotāji.",
+    "thereAreCountUsersBlocked": "Šobrīd ir liegti {count, plural, zero{{count} lietotāju} one{{count} lietotājs} other{{count} lietotāji}}.",
     "@thereAreCountUsersBlocked": {
         "type": "String",
         "count": {}
@@ -2747,7 +2747,7 @@
     "doubleTapToReactDescription": "Divkāršs piesitiens ziņai, lai atsauktos, nevis iezīmētu tekstu",
     "doubleTapReaction": "Atsaukšanās ar divkāršu piesišanu",
     "shareCrashReports": "Kopīgot avāriju ziņojumus",
-    "shareCrashReportsDescription": "Avāriju ziņojumus automātiski kopīgot ar izstrādātājiem",
+    "shareCrashReportsDescription": "Automātiski kopīgot avāriju ziņojumus ar izstrādātājiem?",
     "shareCrashReportsPrompt": "Automātiski kopīgot avāriju ziņojumus ar izstrādātājiem? Vairāk par to, kādi dati tiek kopīgoti, var uzzināt {url}.",
     "@shareCrashReportsPrompt": {
         "placeholders": {
@@ -2767,5 +2767,41 @@
             }
         }
     },
-    "enterCall": "Pievienoties zvanam"
+    "enterCall": "Pievienoties zvanam",
+    "accountsAndSettings": "Konti un iestatījumi",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "videoCall": "Video zvans",
+    "voiceCall": "Balss zvans",
+    "missedCall": "Neatbildēts zvans",
+    "callBack": "Atzvanīt",
+    "hangUp": "Beigt zvanu",
+    "startCall": "Zvanīt",
+    "selectCamera": "Atlasīt kameru",
+    "selectMicrophone": "Atlasīt mikrofonu",
+    "selectSpeaker": "Atlasīt skaļruni",
+    "toggleMicrophone": "Pārslēg mikrofonu",
+    "toggleCamera": "Pārslēgt kameru",
+    "startScreensharing": "Sākt ekrāna kopīgošanu",
+    "stopScreensharing": "Apturēt ekrāna kopīgošanu",
+    "raiseHand": "Pacelt roku",
+    "stopRaiseHand": "Nolaist roku",
+    "unexpectedErrorOccurded": "Diemžēl atgadījās neparedzēta kļūda: {msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    },
+    "incomingCallFrom": "Ienākošs zvans no {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    }
 }
