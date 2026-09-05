@@ -1288,8 +1288,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "krille/drop-redundant-index"
-      resolved-ref: "827cf911a06912a8f6313e49ab0bff18212333eb"
+      ref: "krille/refactor-device-keys-list-storing"
+      resolved-ref: "1bd2212b61b8cd227b753ac31e9d24581fccf88a"
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "12.0.1"
