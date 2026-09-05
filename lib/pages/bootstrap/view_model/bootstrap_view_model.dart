@@ -154,6 +154,7 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
         wipeCrossSigning: !reset,
         wipeKeyBackup: !reset,
         wipeSecureStorage: !reset,
+        setupOnlineKeyBackup: !reset,
         setupMasterKey: !reset,
         setupSelfSigningKey: !reset,
         setupUserSigningKey: !reset,
