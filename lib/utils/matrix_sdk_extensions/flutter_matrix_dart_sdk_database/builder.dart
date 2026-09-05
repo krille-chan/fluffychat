@@ -138,6 +138,8 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
     Logs().i('Table $name: $c rows');
   }
 
+  await _ensureIncrementalAutoVacuum(database);
+
   return await MatrixSdkDatabase.init(
     clientName,
     database: database,
@@ -145,6 +147,24 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
     fileStorageLocation: fileStorageLocation?.uri,
     deleteFilesAfterDuration: const Duration(days: 30),
   );
+}
+
+/// Without auto vacuum the database can never really shrink
+Future<void> _ensureIncrementalAutoVacuum(Database database) async {
+  const incrementalAutoVacuum = 2;
+
+  final currentMode = sqflite_utils.firstIntValue(
+    await database.rawQuery('PRAGMA auto_vacuum'),
+  );
+
+  if (currentMode != incrementalAutoVacuum) {
+    Logs().i('Switching database to incremental auto_vacuum...');
+    await database.execute('PRAGMA auto_vacuum = $incrementalAutoVacuum');
+    await database.execute('VACUUM');
+    return;
+  }
+
+  await database.execute('PRAGMA incremental_vacuum');
 }
 
 Future<String> _getDatabaseDirectory() async {
