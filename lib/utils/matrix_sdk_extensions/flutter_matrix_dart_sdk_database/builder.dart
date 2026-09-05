@@ -13,6 +13,7 @@ import 'package:matrix/matrix.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path_provider_foundation/path_provider_foundation.dart';
+import 'package:sqflite_common/utils/utils.dart' as sqflite_utils;
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -112,6 +113,30 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
   );
 
   Logs().i('Database file size', await File(database.path).length());
+
+  final pageCount = sqflite_utils.firstIntValue(
+    await database.rawQuery('PRAGMA page_count'),
+  );
+  final freePages = sqflite_utils.firstIntValue(
+    await database.rawQuery('PRAGMA freelist_count'),
+  );
+  final pageSize = sqflite_utils.firstIntValue(
+    await database.rawQuery('PRAGMA page_size'),
+  );
+  Logs().i(
+    'DB pages: $pageCount total, $freePages free (~${(freePages ?? 0) * (pageSize ?? 0)} bytes wasted)',
+  );
+
+  final tables = await database.rawQuery(
+    "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'",
+  );
+  for (final t in tables) {
+    final name = t['name'] as String;
+    final c = sqflite_utils.firstIntValue(
+      await database.rawQuery('SELECT COUNT(*) FROM "$name"'),
+    );
+    Logs().i('Table $name: $c rows');
+  }
 
   return await MatrixSdkDatabase.init(
     clientName,

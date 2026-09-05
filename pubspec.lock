@@ -2018,7 +2018,7 @@ packages:
     source: hosted
     version: "1.10.2"
   sqflite_common:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sqflite_common
       sha256: "5bf6a55c166e73bf651ba7ec3ed486e577620e3dc8f3a9c6a258a8031b624590"
