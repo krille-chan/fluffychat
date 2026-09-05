@@ -63,7 +63,10 @@ dependencies:
   lottie: ^3.5.1
   managed_configurations: ^1.2.0
   material_ui: 1.1.0
-  matrix: ^11.0.0
+  matrix: #^11.0.0
+    git:
+      url: https://github.com/famedly/matrix-dart-sdk.git
+      ref: krille/drop-redundant-index
   media_kit_libs_audio: ^1.0.7
   mime: ^2.1.0
   native_imaging: ^0.5.0
