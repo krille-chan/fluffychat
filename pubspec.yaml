@@ -94,7 +94,7 @@ dependencies:
   url_launcher: ^6.3.2
   uuid: ^4.6.0
   video_player: ^2.14.0
-  wakelock_plus: ^1.7.0
+  wakelock_plus: ^1.8.0
 
 dev_dependencies:
   dart_code_linter: ^4.3.0
