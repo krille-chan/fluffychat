@@ -1,45 +1,21 @@
 PODS:
   - FlutterMacOS (1.0.0)
-  - FMDB/Core (2.7.12)
-  - FMDB/SQLCipher (2.7.12):
-    - FMDB/Core
-    - SQLCipher (~> 4.6)
   - media_kit_libs_macos_audio (1.0.4):
     - FlutterMacOS
-  - sqflite_sqlcipher (0.0.1):
-    - FlutterMacOS
-    - FMDB/SQLCipher (~> 2.7.5)
-    - SQLCipher (= 4.10.0)
-  - SQLCipher (4.10.0):
-    - SQLCipher/standard (= 4.10.0)
-  - SQLCipher/common (4.10.0)
-  - SQLCipher/standard (4.10.0):
-    - SQLCipher/common
 
 DEPENDENCIES:
   - FlutterMacOS (from `Flutter/ephemeral`)
   - media_kit_libs_macos_audio (from `Flutter/ephemeral/.symlinks/plugins/media_kit_libs_macos_audio/macos`)
-  - sqflite_sqlcipher (from `Flutter/ephemeral/.symlinks/plugins/sqflite_sqlcipher/macos`)
-
-SPEC REPOS:
-  trunk:
-    - FMDB
-    - SQLCipher
 
 EXTERNAL SOURCES:
   FlutterMacOS:
     :path: Flutter/ephemeral
   media_kit_libs_macos_audio:
     :path: Flutter/ephemeral/.symlinks/plugins/media_kit_libs_macos_audio/macos
-  sqflite_sqlcipher:
-    :path: Flutter/ephemeral/.symlinks/plugins/sqflite_sqlcipher/macos
 
 SPEC CHECKSUMS:
   FlutterMacOS: c232990155153907050900a2e175c7773903ba4e
-  FMDB: 728731dd336af3936ce00f91d9d8495f5718a0e6
   media_kit_libs_macos_audio: 06f3cf88d6d89c7c3c87eae57689d1c6adb335b2
-  sqflite_sqlcipher: a4c2f17db76d2f86dfe044937d3a851d8880cbb9
-  SQLCipher: eb79c64049cb002b4e9fcb30edb7979bf4706dfc
 
 PODFILE CHECKSUM: d0975b16fbdecb73b109d8fbc88aa77ffe4c7a8d
 
