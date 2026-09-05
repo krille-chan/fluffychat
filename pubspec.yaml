@@ -86,7 +86,6 @@ dependencies:
   shared_preferences: ^2.5.5 # Pinned because https://github.com/flutter/flutter/issues/118401
   slugify: ^2.0.0
   sqflite_common_ffi: ^2.4.2
-  sqflite_sqlcipher: ^3.4.1
   swipe_to_action: ^0.3.0
   unifiedpush: ^6.2.0
   unifiedpush_ui: ^0.2.0
@@ -118,7 +117,7 @@ flutter:
 hooks:
   user_defines:
     sqlite3:
-      source: system
+      source: sqlcipher
 
 flutter_launcher_icons:
   image_path: assets/logo/img/logo.png

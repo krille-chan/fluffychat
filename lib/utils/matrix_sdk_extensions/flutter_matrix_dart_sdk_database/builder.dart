@@ -14,7 +14,6 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path_provider_foundation/path_provider_foundation.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:sqflite_sqlcipher/sqflite.dart' as sqfl_cipher;
 import 'package:universal_html/html.dart' as html;
 
 import 'cipher.dart';
@@ -85,24 +84,14 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
 
   final path = await _getDatabasePath(clientName);
 
-  // migrate from potential previous SQLite database path to current one
-  await _migrateLegacyLocation(path, clientName);
-
-  if (PlatformInfos.isMobile || PlatformInfos.isMacOS) {
-    return await MatrixSdkDatabase.init(
-      clientName,
-      database: await sqfl_cipher.openDatabase(path, password: cipher),
-      maxFileSize: 1000 * 1000 * 10,
-      fileStorageLocation: fileStorageLocation?.uri,
-      deleteFilesAfterDuration: const Duration(days: 30),
-    );
-  }
-
   // import the SQLite / SQLCipher shared objects / dynamic libraries
   final factory = createDatabaseFactoryFfi();
 
   // required for [getDatabasesPath]
   databaseFactory = factory;
+
+  // migrate from potential previous SQLite database path to current one
+  await _migrateLegacyLocation(path, clientName);
 
   // in case we got a cipher, we use the encryption helper
   // to manage SQLite encryption
@@ -121,6 +110,8 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
       onConfigure: helper?.applyPragmaKey,
     ),
   );
+
+  Logs().i('Database file size', await File(database.path).length());
 
   return await MatrixSdkDatabase.init(
     clientName,
@@ -162,7 +153,7 @@ Future<void> _migrateLegacyLocation(
       ? (await getApplicationSupportDirectory()).path
       : PlatformInfos.isIOS
       ? (await getLibraryDirectory()).path
-      : await databaseFactoryFfi.getDatabasesPath();
+      : await getDatabasesPath();
 
   final oldFilePath = join(oldPath, '$clientName.sqlite');
   if (oldFilePath == sqlFilePath) return;
