@@ -6,13 +6,17 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:fluffychat/config/isrg_x1.dart';
 import 'package:fluffychat/config/isrg_x2.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:flutter_user_certificates_android/flutter_user_certificates_android.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:http/retry.dart' as retry;
+
+/// Method channel used to load user-installed CA certificates on Android.
+const _userCaChannel = MethodChannel('chat.fluffy.fluffychat/user_ca');
 
 /// Custom HTTP client that adds the ISRG Root certificates used by Let's
 /// Encrypt. Older Android versions may not include these roots in their
@@ -30,12 +34,21 @@ class CustomHttpClient {
     _addTrustedCertificates(context, [ISRG_X1, ISRG_X2]);
 
     if (PlatformInfos.isAndroid) {
-      final userCerts =
-          await FlutterUserCertificatesAndroid().getUserCertificates();
+      try {
+        final userCertsRaw =
+            await _userCaChannel.invokeMethod<Map>('getUserCertificates');
 
-      if (userCerts != null && userCerts.isNotEmpty) {
-        final pem = userCerts.values.map(derToPem).join('\n');
-        _addTrustedCertificates(context, [pem]);
+        if (userCertsRaw != null && userCertsRaw.isNotEmpty) {
+          // Convert the Map<String, Uint8List> to List<int> PEM strings
+          final pem = userCertsRaw.values.map(
+            (bytes) => derToPem((bytes as List<int>).toList()),
+          ).join('\n');
+          _addTrustedCertificates(context, [pem]);
+        }
+      } on PlatformException catch (e) {
+        // If the method channel isn't available (shouldn't happen on Android),
+        // log but continue without user certs
+        debugPrint('Failed to load user CA certificates: ${e.message}');
       }
     }
 
