@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAi(){return new B.M5(A.dv("fr"))},
-M5:function M5(d){this.a=d}}
+dAi(){return new B.M6(A.dv("fr"))},
+M6:function M6(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[23],B)
-B.M5.prototype={
+B.M6.prototype={
 gpk(){return"\xc9diter l'image"},
 grf(){return"Tourner vers la gauche"},
 grg(){return"Tourner vers la droite"},
@@ -745,7 +745,7 @@ qA(d){return"Appel entrant de "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.M5,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M5":{"aT":[]}}'))};
-(a=>{a["N5ordc8K4YzdTye/HU27YpkJaYk="]=a.current})($__dart_deferred_initializers__);
+y(B.M6,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M6":{"aT":[]}}'))};
+(a=>{a["Xv3dcdegZ7kv1cz/AePE9rHlIvE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

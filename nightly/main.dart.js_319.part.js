@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAj(){return new B.M6(A.dv("ga"))},
-M6:function M6(d){this.a=d}}
+dAj(){return new B.M7(A.dv("ga"))},
+M7:function M7(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[24],B)
-B.M6.prototype={
+B.M7.prototype={
 gpk(){return"Cuir \xedomh\xe1 in eagar"},
 grf(){return"Rothlaigh ar chl\xe9"},
 grg(){return"Rothlaigh ar dheis"},
@@ -744,8 +744,8 @@ qA(d){return"Glao isteach \xf3 "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.M6,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M6":{"aT":[]}}'))
+x(B.M7,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M7":{"aT":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["zKqvVRAhbMn7JNBqF3+qsfo09+Y="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["EgdhdIIMeIL6sfxyq/bB0pHhZSw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_319.part.js.map

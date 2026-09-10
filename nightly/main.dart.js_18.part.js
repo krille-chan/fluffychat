@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
 dAD(d){return new A.FC(B.dv(d))},
-dAE(){return new A.Mq(B.dv("pt_BR"))},
-dAF(){return new A.Mr(B.dv("pt_PT"))},
+dAE(){return new A.Mr(B.dv("pt_BR"))},
+dAF(){return new A.Ms(B.dv("pt_PT"))},
 FC:function FC(d){this.a=d},
-Mq:function Mq(d){this.a=d},
-Mr:function Mr(d){this.a=d}},C
+Mr:function Mr(d){this.a=d},
+Ms:function Ms(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[59]
@@ -748,7 +748,7 @@ rl(d){return"Unfortunately, an unexpected error has occurred: "+d},
 qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
-A.Mq.prototype={
+A.Mr.prototype={
 gkW(){return"Repita a senha"},
 gkv(){return"N\xe3o \xe9 um arquivo de imagem."},
 gbv(d){return"Remover"},
@@ -1356,7 +1356,7 @@ goR(){return"Pular backup de conversas"},
 goS(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 pE(d){return"Vers\xe3o: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
-A.Mr.prototype={
+A.Ms.prototype={
 gkW(){return"Repete a palavra-passe"},
 gkv(){return"N\xe3o \xe9 um ficheiro de imagem."},
 gbv(d){return"Remover"},
@@ -1699,8 +1699,8 @@ gf1(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.FC,C.aT)
-w(A.FC,[A.Mq,A.Mr])})()
-B.e8(b.typeUniverse,JSON.parse('{"FC":{"aT":[]},"Mq":{"aT":[]},"Mr":{"aT":[]}}'))
+w(A.FC,[A.Mr,A.Ms])})()
+B.e8(b.typeUniverse,JSON.parse('{"FC":{"aT":[]},"Mr":{"aT":[]},"Ms":{"aT":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["s5nUJOnQ0ATPSJJHsD6A/ejAaJw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["MiPv/u9HN0qpkHMP543ZHexJ+nw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map
