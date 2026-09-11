@@ -134,7 +134,7 @@ gje(){return"Copy to clipboard"},
 jf(d){return"Could not decrypt message: "+d},
 gmq(){return"Check list"},
 er(d){var x=null
-return B.aI(d,x,this.a,x,"1 participant",""+d+" participants",x,x)},
+return B.aH(d,x,this.a,x,"1 participant",""+d+" participants",x,x)},
 jh(d){return""+d+" invited"},
 gji(d){return"Create"},
 jj(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -613,11 +613,11 @@ goY(){return"Add answer option"},
 gp_(){return"Allow multiple answers"},
 go2(){return"Poll has been ended"},
 pd(d){var x=null
-return B.aI(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
+return B.aH(d,x,this.a,x,"One vote",""+d+" votes",x,x)},
 gp6(){return"Answers will be visible when poll has ended"},
 goa(){return"Reply in thread"},
 pc(d){var x=null
-return B.aI(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
+return B.aH(d,x,this.a,x,"One reply",""+d+" replies",x,x)},
 gpx(){return"Thread"},
 gp8(){return"Back to main chat"},
 goO(){return"Save changes"},
@@ -720,7 +720,7 @@ gqg(){return"Could not be sent"},
 grs(){return"Yesterday"},
 gra(){return"Reset recovery key"},
 qv(d){var x=null
-return"Forward "+B.aI(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
+return"Forward "+B.aH(d,x,this.a,x,"one message",""+d+" messages",x,x)+"?"},
 gqd(){return"This build does not support firebase cloud messaging."},
 gqm(){return"Double-tap to react"},
 gqn(){return"Double-tap a message to react instead of selecting text"},
@@ -1337,11 +1337,11 @@ goY(){return"Adicionar op\xe7\xe3o de resposta"},
 gp_(){return"Permitir v\xe1rias respostas"},
 go2(){return"A enquete terminou"},
 pd(d){var x=null
-return B.aI(d,x,this.a,x,"Um voto",""+d+" votos",x,x)},
+return B.aH(d,x,this.a,x,"Um voto",""+d+" votos",x,x)},
 gp6(){return"As respostas ficar\xe3o vis\xedveis quando a enquete terminar"},
 goa(){return"Responder no t\xf3pico"},
 pc(d){var x=null
-return B.aI(d,x,this.a,x,"Uma resposta",""+d+" respostas",x,x)},
+return B.aH(d,x,this.a,x,"Uma resposta",""+d+" respostas",x,x)},
 gpx(){return"T\xf3pico"},
 gp8(){return"Voltar \xe0 conversa principal"},
 goO(){return"Salvar altera\xe7\xf5es"},
@@ -1702,5 +1702,5 @@ x(A.FC,C.aT)
 w(A.FC,[A.Mr,A.Ms])})()
 B.e8(b.typeUniverse,JSON.parse('{"FC":{"aT":[]},"Mr":{"aT":[]},"Ms":{"aT":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["MiPv/u9HN0qpkHMP543ZHexJ+nw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["l3TPkOzPxFnIdDYKG1FlupWsy1Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map
