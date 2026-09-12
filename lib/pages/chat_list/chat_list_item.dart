@@ -25,6 +25,7 @@ class ChatListItem extends StatelessWidget {
   final Room room;
   final Room? space;
   final bool activeChat;
+  final String? activeSpace;
   final void Function(BuildContext context)? onLongPress;
   final void Function()? onForget;
   final void Function() onTap;
@@ -33,6 +34,7 @@ class ChatListItem extends StatelessWidget {
   const ChatListItem(
     this.room, {
     this.activeChat = false,
+    this.activeSpace,
     required this.onTap,
     this.onLongPress,
     this.onForget,
@@ -91,7 +93,7 @@ class ChatListItem extends StatelessWidget {
                     height: Avatar.defaultSize,
                     child: Stack(
                       children: [
-                        if (space != null)
+                        if (space != null && space.id != activeSpace)
                           Positioned(
                             top: 0,
                             left: 0,
