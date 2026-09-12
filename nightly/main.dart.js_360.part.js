@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAC(){return new B.Mq(A.dv("pl"))},
-Mq:function Mq(d){this.a=d}}
+dAE(){return new B.Mr(A.dv("pl"))},
+Mr:function Mr(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[43],B)
-B.Mq.prototype={
+B.Mr.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -140,7 +140,7 @@ gjm(){return"Ciemny"},
 fX(d,e){return d+" "+e},
 gjn(){return"To zdezaktywuje twoje konto. To jest nieodwracalne! Na pewno chcesz to zrobi\u0107?"},
 gjo(){return"Domy\u015blny poziom uprawnie\u0144 dla nowych u\u017cytkownik\xf3w"},
-gdO(d){return"Usu\u0144"},
+gdP(d){return"Usu\u0144"},
 gjq(){return"Usu\u0144 konto"},
 gjr(){return"Usu\u0144 wiadomo\u015b\u0107"},
 gf3(){return"Urz\u0105dzenia"},
@@ -212,7 +212,7 @@ gjY(){return"Do\u0142\u0105cz do pokoju"},
 k0(d,e){return"\ud83d\udc5e "+d+" wyrzuci\u0142/-a "+e},
 ghd(){return"Wyrzu\u0107 z czatu"},
 eQ(d){return"Ostatnio widziano "+d},
-gdT(){return"Opu\u015b\u0107"},
+gdU(){return"Opu\u015b\u0107"},
 ghe(){return"Opu\u015bci\u0142/-a czat"},
 gk7(){return"Jasny"},
 k8(d){return"Za\u0142aduj jeszcze "+d+" uczestnik\xf3w"},
@@ -233,7 +233,7 @@ gkf(){return"Moderator"},
 ghi(){return"Wycisz czat"},
 ghj(){return"Nowa rozmowa"},
 gkj(){return"Nowa pro\u015bba o weryfikacj\u0119!"},
-gdU(d){return"Dalej"},
+gdV(d){return"Dalej"},
 geT(){return"Nie"},
 gkn(){return"Brak po\u0142\u0105czenia z serwerem"},
 ghk(){return"Nie znaleziono \u017cadnych emotikon\xf3w. \ud83d\ude15"},
@@ -245,7 +245,7 @@ geU(){return"Brak uprawnie\u0144"},
 ghm(){return"Nie znaleziono pokoj\xf3w\u2026"},
 gfc(){return"Powiadomienia"},
 gkw(){return"Uzyskiwanie lokalizacji\u2026"},
-gdq(){return"Ok"},
+gdn(){return"Ok"},
 gky(){return"Kopia zapasowa kluczy online jest w\u0142\u0105czona"},
 geb(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
 gkx(){return"Jedno z twoich urz\u0105dze\u0144 zosta\u0142o wylogowane"},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mq,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mq":{"aT":[]}}'))};
-(a=>{a["hqgXWjc2et42BA3hM6jx+kfJJ1E="]=a.current})($__dart_deferred_initializers__);
+y(B.Mr,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mr":{"aT":[]}}'))};
+(a=>{a["d/hu4YSDTJV6Awju4t8zTY78e84="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map

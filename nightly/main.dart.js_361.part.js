@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAG(){return new B.Mt(A.dv("ro"))},
-Mt:function Mt(d){this.a=d}}
+dAI(){return new B.Mu(A.dv("ro"))},
+Mu:function Mu(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[44],B)
-B.Mt.prototype={
+B.Mu.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -140,7 +140,7 @@ gjm(){return"\xcentunecat"},
 fX(d,e){return d+", "+e},
 gjn(){return"Aceast\u0103 ac\u021biune va dezactiva contul vostru. Nu poate fi anulat! Sunte\u021bi sigur?"},
 gjo(){return"Nivel de permisiuni implicit\u0103"},
-gdO(d){return"\u0218terge\u021bi"},
+gdP(d){return"\u0218terge\u021bi"},
 gjq(){return"\u0218terge\u021bi contul"},
 gjr(){return"\u0218terge\u021bi mesajul"},
 gf3(){return"Dispozitive"},
@@ -212,7 +212,7 @@ gjY(){return"Al\u0103tura\u021bi la camer\u0103"},
 k0(d,e){return"\ud83d\udc5e"+d+" a dat afar\u0103 pe "+e},
 ghd(){return"Da\u021bi afar\u0103 din chat"},
 eQ(d){return"Ultima dat\u0103 activ: "+d},
-gdT(){return"Renun\u021ba\u021bi"},
+gdU(){return"Renun\u021ba\u021bi"},
 ghe(){return"A plecat din chat"},
 gk7(){return"Luminat"},
 k8(d){return"\xcenc\u0103rca\u021bi \xeenc\u0103 mai "+d+" participan\u021bi"},
@@ -233,7 +233,7 @@ gkf(){return"Moderator"},
 ghi(){return"Amu\u021ba\u021bi chatul"},
 ghj(){return"Chat nou"},
 gkj(){return"Cerere de verificare nou\u0103!"},
-gdU(d){return"Urm\u0103tor"},
+gdV(d){return"Urm\u0103tor"},
 geT(){return"Nu"},
 gkn(){return"F\u0103r\u0103 conexiune la server"},
 ghk(){return"Nu s-a g\u0103sit nici un emote. \ud83d\ude15"},
@@ -245,7 +245,7 @@ geU(){return"F\u0103r\u0103 permisie"},
 ghm(){return"Nici o camer\u0103 nu s-a g\u0103sit\u2026"},
 gfc(){return"Notific\u0103ri"},
 gkw(){return"Ob\u021bin\xe2nd loca\u021bie\u2026"},
-gdq(){return"Ok"},
+gdn(){return"Ok"},
 gky(){return"Backup de cheie online este activat"},
 geb(){return"Ups, ceva a e\u0219uat\u2026"},
 gkx(){return"Unul dintre clien\u021bilor vo\u0219tri a fost deconectat"},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mt,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mt":{"aT":[]}}'))};
-(a=>{a["d1L0MA//eaHsWbMD83ZP3lZ95zc="]=a.current})($__dart_deferred_initializers__);
+y(B.Mu,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mu":{"aT":[]}}'))};
+(a=>{a["Msb2NGGElgFcVPTCQlUXXhaY628="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_361.part.js.map

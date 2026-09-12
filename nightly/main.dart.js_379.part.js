@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAT(){return new B.MG(A.dv("vi"))},
-MG:function MG(d){this.a=d}}
+dAV(){return new B.MH(A.dv("vi"))},
+MH:function MH(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[57],B)
-B.MG.prototype={
+B.MH.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -140,7 +140,7 @@ gjm(){return"Dark"},
 fX(d,e){return d+", "+e},
 gjn(){return"Vi\u1ec7c n\xe0y s\u1ebd v\xf4 hi\u1ec7u ho\xe1 t\xe0i kho\u1ea3n c\u1ee7a b\u1ea1n. \u0110i\u1ec1u n\xe0y kh\xf4ng th\u1ec3 \u0111\u1ea3o ng\u01b0\u1ee3c \u0111\u01b0\u1ee3c! B\u1ea1n ch\u1eafc l\xe0 v\u1eabn mu\u1ed1n ti\u1ebfp t\u1ee5c ch\u1ee9?"},
 gjo(){return"Default permission level for new users"},
-gdO(d){return"Xo\xe1"},
+gdP(d){return"Xo\xe1"},
 gjq(){return"Xo\xe1 t\xe0i kho\u1ea3n"},
 gjr(){return"Xo\xe1 tin nh\u1eafn"},
 gf3(){return"C\xe1c thi\u1ebft b\u1ecb"},
@@ -212,7 +212,7 @@ gjY(){return"Join room"},
 k0(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 ghd(){return"Kick from chat"},
 eQ(d){return"Last active: "+d},
-gdT(){return"Leave"},
+gdU(){return"Leave"},
 ghe(){return"Left the chat"},
 gk7(){return"Light"},
 k8(d){return"Load "+d+" more participants"},
@@ -233,7 +233,7 @@ gkf(){return"Moderator"},
 ghi(){return"Mute chat"},
 ghj(){return"New chat"},
 gkj(){return"New verification request!"},
-gdU(d){return"Ti\u1ebfp"},
+gdV(d){return"Ti\u1ebfp"},
 geT(){return"No"},
 gkn(){return"No connection to the server"},
 ghk(){return"No emotes found. \ud83d\ude15"},
@@ -245,7 +245,7 @@ geU(){return"No permission"},
 ghm(){return"No rooms found\u2026"},
 gfc(){return"Th\xf4ng b\xe1o"},
 gkw(){return"Obtaining location\u2026"},
-gdq(){return"Ok"},
+gdn(){return"Ok"},
 gky(){return"Online Key Backup is enabled"},
 geb(){return"Oops, something went wrong\u2026"},
 gkx(){return"One of your clients has been logged out"},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MG,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"MG":{"aT":[]}}'))};
-(a=>{a["3eh2/NhNqXhtgCNb3X75CM+ZUn0="]=a.current})($__dart_deferred_initializers__);
+y(B.MH,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"MH":{"aT":[]}}'))};
+(a=>{a["6j8JkmIsRPXlk1bDIiBhedT3Ml0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_379.part.js.map

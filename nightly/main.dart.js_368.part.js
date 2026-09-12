@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAK(){return new B.Mx(A.dv("sq"))},
-Mx:function Mx(d){this.a=d}}
+dAM(){return new B.My(A.dv("sq"))},
+My:function My(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[48],B)
-B.Mx.prototype={
+B.My.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -141,7 +141,7 @@ gjm(){return"Dark"},
 fX(d,e){return d+", "+e},
 gjn(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 gjo(){return"Default permission level for new users"},
-gdO(d){return"Delete"},
+gdP(d){return"Delete"},
 gjq(){return"Delete account"},
 gjr(){return"Delete message"},
 gf3(){return"Devices"},
@@ -213,7 +213,7 @@ gjY(){return"Join room"},
 k0(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 ghd(){return"Kick from chat"},
 eQ(d){return"Last active: "+d},
-gdT(){return"Leave"},
+gdU(){return"Leave"},
 ghe(){return"Left the chat"},
 gk7(){return"Light"},
 k8(d){return"Load "+d+" more participants"},
@@ -234,7 +234,7 @@ gkf(){return"Moderator"},
 ghi(){return"Mute chat"},
 ghj(){return"New chat"},
 gkj(){return"New verification request!"},
-gdU(d){return"Next"},
+gdV(d){return"Next"},
 geT(){return"No"},
 gkn(){return"No connection to the server"},
 ghk(){return"No emotes found. \ud83d\ude15"},
@@ -246,7 +246,7 @@ geU(){return"No permission"},
 ghm(){return"No rooms found\u2026"},
 gfc(){return"Notifications"},
 gkw(){return"Obtaining location\u2026"},
-gdq(){return"Ok"},
+gdn(){return"Ok"},
 gky(){return"Online Key Backup is enabled"},
 geb(){return"Oops, something went wrong\u2026"},
 gkx(){return"One of your clients has been logged out"},
@@ -745,7 +745,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mx,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mx":{"aT":[]}}'))};
-(a=>{a["CavJqf6lNR5cFYnfmeDjmkwH1qM="]=a.current})($__dart_deferred_initializers__);
+y(B.My,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"My":{"aT":[]}}'))};
+(a=>{a["bHWQTM3sYPIlp0XHe99rfqoIGbs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_368.part.js.map

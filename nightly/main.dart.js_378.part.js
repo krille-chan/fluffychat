@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAS(){return new B.MF(A.dv("uz"))},
-MF:function MF(d){this.a=d}}
+dAU(){return new B.MG(A.dv("uz"))},
+MG:function MG(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[56],B)
-B.MF.prototype={
+B.MG.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -140,7 +140,7 @@ gjm(){return"Qorong\u02bbi"},
 fX(d,e){return d+", "+e},
 gjn(){return"Bu sizning foydalanuvchi hisobingizni o\u02bbchirib qo\u02bbyadi. Buni qaytarib bo\u02bblmaydi! Ishonchingiz komilmi?"},
 gjo(){return"Yangi foydalanuvchilar uchun standart ruxsat darajasi"},
-gdO(d){return"O\u02bbchirish"},
+gdP(d){return"O\u02bbchirish"},
 gjq(){return"Hisobni o\u02bbchirish"},
 gjr(){return"Xabarni o\u02bbchirish"},
 gf3(){return"Qurilmalar"},
@@ -212,7 +212,7 @@ gjY(){return"Guruhga qo\u02bbshilish"},
 k0(d,e){return"\ud83d\udc5e "+d+" "+e+"ni tepdi"},
 ghd(){return"Suhbatdan tepish"},
 eQ(d){return"Oxirgi faol: "+d},
-gdT(){return"Chiqish"},
+gdU(){return"Chiqish"},
 ghe(){return"Suhbatni tark etdi"},
 gk7(){return"Yorug\u02bblik"},
 k8(d){return"Yana "+d+" ishtirokchini yuklang"},
@@ -233,7 +233,7 @@ gkf(){return"Moderator"},
 ghi(){return"Suhbatni ovozsizlantirish"},
 ghj(){return"Yangi suhbat"},
 gkj(){return"Yangi tasdiqlash so'rovi!"},
-gdU(d){return"Keyingi"},
+gdV(d){return"Keyingi"},
 geT(){return"Yo\u02bbq"},
 gkn(){return"Serverga ulanish yo\u02bbq"},
 ghk(){return"Hech qanday emote\u02bclar topilmadi \ud83d\ude15"},
@@ -245,7 +245,7 @@ geU(){return"Ruxsat yo\u02bbq"},
 ghm(){return"Hech qanday guruhlar topilmadi\u2026"},
 gfc(){return"Bildirishnomalar"},
 gkw(){return"Joylashuv aniqlanmoqda\u2026"},
-gdq(){return"Hop"},
+gdn(){return"Hop"},
 gky(){return"Onlayn kalit zaxira nusxasi yoqilgan"},
 geb(){return"Voy, nimadir noto\u02bbg\u02bbri ketdi\u2026"},
 gkx(){return"Mijozlaringizdan biri tizimdan chiqdi"},
@@ -744,8 +744,8 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MF,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"MF":{"aT":[]}}'))
+x(B.MG,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"MG":{"aT":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["x4NNxuOTfA7ajGUn4TXaCu3Xep8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3WBzkcMPc61CqZTmN5ACIsf2mes="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_378.part.js.map

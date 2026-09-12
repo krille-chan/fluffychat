@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAn(){return new B.Mb(A.dv("hr"))},
-Mb:function Mb(d){this.a=d}}
+dAp(){return new B.Mc(A.dv("hr"))},
+Mc:function Mc(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[28],B)
-B.Mb.prototype={
+B.Mc.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -141,7 +141,7 @@ gjm(){return"Tamna"},
 fX(d,e){return d+", "+e},
 gjn(){return"Ovo \u0107e nepovratno deaktivirati tvoj korisni\u010dki ra\u010dun. Stvarno to \u017eeli\u0161?"},
 gjo(){return"Standardna razina dozvole za nove korisnike"},
-gdO(d){return"Izbri\u0161i"},
+gdP(d){return"Izbri\u0161i"},
 gjq(){return"Izbri\u0161i ra\u010dun"},
 gjr(){return"Izbri\u0161i poruku"},
 gf3(){return"Ure\u0111aji"},
@@ -213,7 +213,7 @@ gjY(){return"Pridru\u017ei se sobi"},
 k0(d,e){return"\ud83d\udc5e "+d+" je izbacio/la "+e},
 ghd(){return"Izbaci iz chata"},
 eQ(d){return"Zadnja aktivnost: "+d},
-gdT(){return"Napusti"},
+gdU(){return"Napusti"},
 ghe(){return"Napustio/la je chat"},
 gk7(){return"Svijetla"},
 k8(d){return"U\u010ditaj jo\u0161 "+d+" sudionika"},
@@ -234,7 +234,7 @@ gkf(){return"Voditelj"},
 ghi(){return"Isklju\u010di zvuk chata"},
 ghj(){return"Novi chat"},
 gkj(){return"Novi zahtjev za potvr\u0111ivanje!"},
-gdU(d){return"Dalje"},
+gdV(d){return"Dalje"},
 geT(){return"Ne"},
 gkn(){return"Ne postoji veza sa serverom"},
 ghk(){return"Nema emotikona. \ud83d\ude15"},
@@ -246,7 +246,7 @@ geU(){return"Bez dozvole"},
 ghm(){return"Nema soba \u2026"},
 gfc(){return"Obavijesti"},
 gkw(){return"Dohva\u0107anje lokacije \u2026"},
-gdq(){return"U redu"},
+gdn(){return"U redu"},
 gky(){return"Internetski klju\u010d sigurnosnih kopija je aktiviran"},
 geb(){return"Ups, dogodila se gre\u0161ka \u2026"},
 gkx(){return"Jedan od tvojih klijenata je odjavljen"},
@@ -745,7 +745,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mb,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mb":{"aT":[]}}'))};
-(a=>{a["Snm93cAnE8vn9va6cZazqbJzj0I="]=a.current})($__dart_deferred_initializers__);
+y(B.Mc,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mc":{"aT":[]}}'))};
+(a=>{a["IbYwleje9sFToS8tW3FokbQA15g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_327.part.js.map

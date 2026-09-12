@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAk(){return new B.M8(A.dv("gl"))},
-M8:function M8(d){this.a=d}}
+dAm(){return new B.M9(A.dv("gl"))},
+M9:function M9(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[25],B)
-B.M8.prototype={
+B.M9.prototype={
 gpk(){return"Editar imaxe"},
 grf(){return"Rotar \xe1 esquerda"},
 grg(){return"Rotar \xe1 dereita"},
@@ -140,7 +140,7 @@ gjm(){return"Escuro"},
 fX(d,e){return d+", "+e},
 gjn(){return"Esto desactivar\xe1 a conta. Esto non ten volta atr\xe1s. Est\xe1s segura?"},
 gjo(){return"Nivel de permisos por defecto para novas usuarias"},
-gdO(d){return"Eliminar"},
+gdP(d){return"Eliminar"},
 gjq(){return"Eliminar conta"},
 gjr(){return"Eliminar mensaxe"},
 gf3(){return"Dispositivos"},
@@ -212,7 +212,7 @@ gjY(){return"Unirse \xe1 sala"},
 k0(d,e){return"\ud83d\udc5e "+d+" expulsou a "+e},
 ghd(){return"Expulsar da conversa"},
 eQ(d){return"\xdaltima actividade: "+d},
-gdT(){return"Sa\xedr"},
+gdU(){return"Sa\xedr"},
 ghe(){return"Deixar a conversa"},
 gk7(){return"Claro"},
 k8(d){return"Cargar "+d+" participantes m\xe1is"},
@@ -233,7 +233,7 @@ gkf(){return"Moderadora"},
 ghi(){return"Acalar conversa"},
 ghj(){return"Nova conversa"},
 gkj(){return"Nova solicitude de verificaci\xf3n!"},
-gdU(d){return"Seguinte"},
+gdV(d){return"Seguinte"},
 geT(){return"Non"},
 gkn(){return"Sen conexi\xf3n co servidor"},
 ghk(){return"Non hai emotes. \ud83d\ude15"},
@@ -245,7 +245,7 @@ geU(){return"Sen permiso"},
 ghm(){return"Non se atoparon salas\u2026"},
 gfc(){return"Notificaci\xf3ns"},
 gkw(){return"Obtendo a localizaci\xf3n\u2026"},
-gdq(){return"Ok"},
+gdn(){return"Ok"},
 gky(){return"Copia de Apoio en li\xf1a das Chaves activada"},
 geb(){return"Ooooi, algo fallou\u2026"},
 gkx(){return"Un dos teus clientes foi desconectado"},
@@ -744,7 +744,7 @@ qA(d){return"Recibindo unha chamada de "+d},
 pN(d){return"O servidor respondeu cunha mensaxe de erro: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.M8,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M8":{"aT":[]}}'))};
-(a=>{a["I/niCNvsLh2XQyg9VP2umLpXb14="]=a.current})($__dart_deferred_initializers__);
+y(B.M9,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M9":{"aT":[]}}'))};
+(a=>{a["Y4+UwLIyILtbXmpR+eLqeP/Ntxg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_322.part.js.map

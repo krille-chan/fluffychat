@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAc(){return new B.M0(A.dv("es"))},
-M0:function M0(d){this.a=d}}
+dAe(){return new B.M1(A.dv("es"))},
+M1:function M1(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[17],B)
-B.M0.prototype={
+B.M1.prototype={
 gpk(){return"Editar imagen"},
 grf(){return"Rotar a la izquierda"},
 grg(){return"Rotar a la derecha"},
@@ -140,7 +140,7 @@ gjm(){return"Oscuro"},
 fX(d,e){return d+", "+e},
 gjn(){return"Se desactivar\xe1 su cuenta de usuario. \xa1La operaci\xf3n no se puede cancelar! \xbfEst\xe1 seguro?"},
 gjo(){return"Nivel de permiso predeterminado para nuevo usuarios"},
-gdO(d){return"Eliminar"},
+gdP(d){return"Eliminar"},
 gjq(){return"Cancelar cuenta"},
 gjr(){return"Eliminar mensaje"},
 gf3(){return"Dispositivos"},
@@ -212,7 +212,7 @@ gjY(){return"Unirse a la sala"},
 k0(d,e){return"\ud83d\udc5e"+d+" ech\xf3 a "+e},
 ghd(){return"Echar del chat"},
 eQ(d){return"\xdaltima vez activo: "+d},
-gdT(){return"Abandonar"},
+gdU(){return"Abandonar"},
 ghe(){return"Abandon\xf3 el chat"},
 gk7(){return"Claro"},
 k8(d){return"Mostrar "+d+" participantes m\xe1s"},
@@ -233,7 +233,7 @@ gkf(){return"Moderador"},
 ghi(){return"Silenciar chat"},
 ghj(){return"Nuevo chat"},
 gkj(){return"\xa1Nueva solicitud de verificaci\xf3n!"},
-gdU(d){return"Siguiente"},
+gdV(d){return"Siguiente"},
 geT(){return"No"},
 gkn(){return"Sin conexi\xf3n al servidor"},
 ghk(){return"Ning\xfan emote encontrado. \ud83d\ude15"},
@@ -245,7 +245,7 @@ geU(){return"Sin autorizaci\xf3n"},
 ghm(){return"Ninguna sala encontrada\u2026"},
 gfc(){return"Notificaciones"},
 gkw(){return"Obteniendo ubicaci\xf3n\u2026"},
-gdq(){return"Ok"},
+gdn(){return"Ok"},
 gky(){return"La copia de seguridad de la clave en l\xednea est\xe1 habilitada"},
 geb(){return"Ups, algo sali\xf3 mal\u2026"},
 gkx(){return"Se ha cerrado en la sesi\xf3n de uno de sus clientes"},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.M0,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M0":{"aT":[]}}'))};
-(a=>{a["2x8KZESfwFMvVvacGvfYCNPRKko="]=a.current})($__dart_deferred_initializers__);
+y(B.M1,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M1":{"aT":[]}}'))};
+(a=>{a["0Wf1Sz2Qh52jZfK2mzjV4z9ycB0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_302.part.js.map

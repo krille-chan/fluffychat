@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAg(){return new B.M4(A.dv("fi"))},
-M4:function M4(d){this.a=d}}
+dAi(){return new B.M5(A.dv("fi"))},
+M5:function M5(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[21],B)
-B.M4.prototype={
+B.M5.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -140,7 +140,7 @@ gjm(){return"Tumma"},
 fX(d,e){return d+", "+e},
 gjn(){return"T\xe4m\xe4 poistaa tunnuksesi k\xe4yt\xf6st\xe4. T\xe4t\xe4 ei voi kumota! Oletko varma?"},
 gjo(){return"Uusien k\xe4ytt\xe4jien oikeuksien oletustaso"},
-gdO(d){return"Poista"},
+gdP(d){return"Poista"},
 gjq(){return"Poista tunnus"},
 gjr(){return"Poista viesti"},
 gf3(){return"Laitteet"},
@@ -212,7 +212,7 @@ gjY(){return"Liity huoneeseen"},
 k0(d,e){return"\ud83d\udc5e "+d+" potki k\xe4ytt\xe4j\xe4n "+e},
 ghd(){return"Potki keskustelusta"},
 eQ(d){return"Aktiivinen viimeksi: "+d},
-gdT(){return"Poistu"},
+gdU(){return"Poistu"},
 ghe(){return"Poistui keskustelusta"},
 gk7(){return"Vaalea"},
 k8(d){return"Lataa viel\xe4 "+d+" osallistujaa"},
@@ -233,7 +233,7 @@ gkf(){return"Valvoja"},
 ghi(){return"Vaienna keskustelu"},
 ghj(){return"Uusi keskustelu"},
 gkj(){return"Uusi varmennuspyynt\xf6!"},
-gdU(d){return"Seuraava"},
+gdV(d){return"Seuraava"},
 geT(){return"Ei"},
 gkn(){return"Ei yhteytt\xe4 palvelimeen"},
 ghk(){return"Emoteja ei l\xf6ytynyt. \ud83d\ude15"},
@@ -245,7 +245,7 @@ geU(){return"Ei lupaa"},
 ghm(){return"Huoneita ei l\xf6ytynyt\u2026"},
 gfc(){return"Ilmoitukset"},
 gkw(){return"Paikannetaan sijantia\u2026"},
-gdq(){return"ok"},
+gdn(){return"ok"},
 gky(){return"Verkkkoavainvarmuuskopio on k\xe4yt\xf6ss\xe4"},
 geb(){return"Hups, jotakin meni pieleen\u2026"},
 gkx(){return"Yksi tunnuksistasi on kirjattu ulos"},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.M4,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M4":{"aT":[]}}'))};
-(a=>{a["kldGwm2n6Jvd+2a7Nra0j2qP2gc="]=a.current})($__dart_deferred_initializers__);
+y(B.M5,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M5":{"aT":[]}}'))};
+(a=>{a["FhPcC94Djw/CtioZh+X+5gKyhoo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

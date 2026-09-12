@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dA5(){return new B.LU(A.dv("ca"))},
-LU:function LU(d){this.a=d}}
+dA7(){return new B.LV(A.dv("ca"))},
+LV:function LV(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[10],B)
-B.LU.prototype={
+B.LV.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -140,7 +140,7 @@ gjm(){return"Fosc"},
 fX(d,e){return d+", "+e},
 gjn(){return"Es desactivar\xe0 el vostre compte d\u2019usu\xe0ri\xef. \xc9s irreversible! Voleu fer-ho igualment?"},
 gjo(){return"Nivell de permisos per defecte per nous membres"},
-gdO(d){return"Suprimeix"},
+gdP(d){return"Suprimeix"},
 gjq(){return"Suprimeix el compte"},
 gjr(){return"Suprimeix el missatge"},
 gf3(){return"Dispositius"},
@@ -212,7 +212,7 @@ gjY(){return"Uneix-te a la sala"},
 k0(d,e){return"\ud83d\udc5e "+d+" ha expulsat a "+e},
 ghd(){return"Expulsa del xat"},
 eQ(d){return"Actiu per \xfaltima vegada: "+d},
-gdT(){return"Abandona"},
+gdU(){return"Abandona"},
 ghe(){return"Ha marxat del xat"},
 gk7(){return"Clar"},
 k8(d){return"Carrega "+d+" participants m\xe9s"},
@@ -233,7 +233,7 @@ gkf(){return"Moderador"},
 ghi(){return"Silencia el xat"},
 ghj(){return"Xat nou"},
 gkj(){return"Nova sol\xb7licitud de verificaci\xf3!"},
-gdU(d){return"Seg\xfcent"},
+gdV(d){return"Seg\xfcent"},
 geT(){return"No"},
 gkn(){return"Sense connexi\xf3 al servidor"},
 ghk(){return"No s\u2019ha trobat cap emoticona. \ud83d\ude15"},
@@ -245,7 +245,7 @@ geU(){return"Sense perm\xeds"},
 ghm(){return"No s\u2019ha trobat cap sala\u2026"},
 gfc(){return"Notificacions"},
 gkw(){return"S\u2019est\xe0 obtenint la ubicaci\xf3\u2026"},
-gdq(){return"D'acord"},
+gdn(){return"D'acord"},
 gky(){return"La c\xf2pia de seguretat de claus en l\xednia est\xe0 activada"},
 geb(){return"Alguna cosa ha anat malament\u2026"},
 gkx(){return"Una de les teves aplicacions ha tancat la sessi\xf3"},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.LU,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"LU":{"aT":[]}}'))};
-(a=>{a["CbViDNHof7eIU0unrx+DhRO5aV0="]=a.current})($__dart_deferred_initializers__);
+y(B.LV,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"LV":{"aT":[]}}'))};
+(a=>{a["0/GEpnxPcehJ1pVmR/qpoQ4gEOY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_269.part.js.map

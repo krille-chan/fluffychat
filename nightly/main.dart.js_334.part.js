@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAo(){return new B.Mc(A.dv("hu"))},
-Mc:function Mc(d){this.a=d}}
+dAq(){return new B.Md(A.dv("hu"))},
+Md:function Md(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[29],B)
-B.Mc.prototype={
+B.Md.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -140,7 +140,7 @@ gjm(){return"S\xf6t\xe9t"},
 fX(d,e){return d+", "+e},
 gjn(){return"Ez deaktiv\xe1lja a felhaszn\xe1l\xf3i fi\xf3kj\xe1t. Ez nem vonhat\xf3 vissza! Biztos benne?"},
 gjo(){return"Alap\xe9rtelmezett hozz\xe1f\xe9r\xe9si szint \xfaj felhaszn\xe1l\xf3kn\xe1l"},
-gdO(d){return"T\xf6rl\xe9s"},
+gdP(d){return"T\xf6rl\xe9s"},
 gjq(){return"Fi\xf3k t\xf6rl\xe9se"},
 gjr(){return"\xdczenet t\xf6rl\xe9se"},
 gf3(){return"Eszk\xf6z\xf6k"},
@@ -212,7 +212,7 @@ gjY(){return"Csatlakoz\xe1s a szob\xe1hoz"},
 k0(d,e){return"\ud83d\udc5e "+d+" kir\xfagta "+e+"-t"},
 ghd(){return"Kir\xfag\xe1s a cseveg\xe9sb\u0151l"},
 eQ(d){return"Utolj\xe1ra akt\xedv: "+d},
-gdT(){return"Elhagy"},
+gdU(){return"Elhagy"},
 ghe(){return"Elhagyta a cseveg\xe9st"},
 gk7(){return"Vil\xe1gos"},
 k8(d){return"Tov\xe1bbi "+d+" r\xe9sztvev\u0151 bet\xf6lt\xe9se"},
@@ -233,7 +233,7 @@ gkf(){return"Moder\xe1tor"},
 ghi(){return"Cseveg\xe9s n\xe9m\xedt\xe1sa"},
 ghj(){return"\xdaj cseveg\xe9s"},
 gkj(){return"\xdaj hiteles\xedt\xe9si k\xe9relem!"},
-gdU(d){return"K\xf6vetkez\u0151"},
+gdV(d){return"K\xf6vetkez\u0151"},
 geT(){return"Nem"},
 gkn(){return"Nem el\xe9rhet\u0151 a szerver"},
 ghk(){return"Nem tal\xe1lhat\xf3ak hangulatjelek. \ud83d\ude15"},
@@ -245,7 +245,7 @@ geU(){return"Nincs enged\xe9ly"},
 ghm(){return"Nem tal\xe1lhat\xf3ak szob\xe1k\u2026"},
 gfc(){return"\xc9rtes\xedt\xe9sek"},
 gkw(){return"Tart\xf3zkod\xe1si hely lek\xe9r\xe9se\u2026"},
-gdq(){return"Ok"},
+gdn(){return"Ok"},
 gky(){return"Online kulcsment\xe9s enged\xe9lyezve"},
 geb(){return"Hopp\xe1, valami hiba l\xe9pett fel\u2026"},
 gkx(){return"Az egyik kliense kijelentkezett"},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mc,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mc":{"aT":[]}}'))};
-(a=>{a["SbN1UF2RiLjt93ygOnzxZVb9urY="]=a.current})($__dart_deferred_initializers__);
+y(B.Md,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Md":{"aT":[]}}'))};
+(a=>{a["gQkdfk+gAPEYNEEtoTg8oyjUfUE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_334.part.js.map

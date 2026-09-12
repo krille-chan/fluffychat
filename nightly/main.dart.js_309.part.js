@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAe(){return new B.M2(A.dv("eu"))},
-M2:function M2(d){this.a=d}}
+dAg(){return new B.M3(A.dv("eu"))},
+M3:function M3(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[19],B)
-B.M2.prototype={
+B.M3.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -140,7 +140,7 @@ gjm(){return"Iluna"},
 fX(d,e){return d+", "+e},
 gjn(){return"Honek zure kontua desaktibatuko du. Ezin da desegin! Ziur zaude?"},
 gjo(){return"Erabiltzaile berrien defektuzko botere-maila"},
-gdO(d){return"Ezabatu"},
+gdP(d){return"Ezabatu"},
 gjq(){return"Ezabatu kontua"},
 gjr(){return"Mezuak ezabatu"},
 gf3(){return"Gailuak"},
@@ -212,7 +212,7 @@ gjY(){return"Batu gelara"},
 k0(d,e){return"\ud83d\udc5e "+d+"(e)k "+e+" kanporatu du"},
 ghd(){return"Txatetik kanporatu"},
 eQ(d){return"Azkenekoz aktibo: "+d},
-gdT(){return"Irten"},
+gdU(){return"Irten"},
 ghe(){return"Txatetik irten da"},
 gk7(){return"Argia"},
 k8(d){return"Kargatu "+d+" partaide gehiago"},
@@ -233,7 +233,7 @@ gkf(){return"Moderatzailea"},
 ghi(){return"Mututu txata"},
 ghj(){return"Txat berria"},
 gkj(){return"Egiaztaketa-eskaera berria!"},
-gdU(d){return"Hurrengoa"},
+gdV(d){return"Hurrengoa"},
 geT(){return"Ez"},
 gkn(){return"Ez dago konexiorik zerbitzariarekin"},
 ghk(){return"Ez da emoterik aurkitu. \ud83d\ude15"},
@@ -245,7 +245,7 @@ geU(){return"Baimenik gabe"},
 ghm(){return"Ez da gelarik aurkitu\u2026"},
 gfc(){return"Jakinarazpenak"},
 gkw(){return"Kokapena atzitzen\u2026"},
-gdq(){return"Ados"},
+gdn(){return"Ados"},
 gky(){return"Gakoen online babeskopia gaituta dago"},
 geb(){return"Hara, zerbaitek huts egin du\u2026"},
 gkx(){return"Zure gailuetako batek saioa amaitu du"},
@@ -744,8 +744,8 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.M2,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M2":{"aT":[]}}'))
+x(B.M3,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M3":{"aT":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["ggju5cdOOACeKlH5ZkyMzlQLv2c="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["loR2GMbon9gN+PulTmb2jqZpphQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_309.part.js.map

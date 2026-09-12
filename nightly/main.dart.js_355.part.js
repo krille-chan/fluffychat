@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAA(){return new B.Mo(A.dv("nb"))},
-Mo:function Mo(d){this.a=d}}
+dAC(){return new B.Mp(A.dv("nb"))},
+Mp:function Mp(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[41],B)
-B.Mo.prototype={
+B.Mp.prototype={
 gpk(){return"Rediger bilde"},
 grf(){return"Roter til venstre"},
 grg(){return"Roter til h\xf8yre"},
@@ -141,7 +141,7 @@ gjm(){return"M\xf8rk"},
 fX(d,e){return e+", "+d},
 gjn(){return"Dette vil skru av din brukerkonto for godt, og kan ikke angres! Er du sikker?"},
 gjo(){return"Forvalgt tilgangsniv\xe5"},
-gdO(d){return"Slett"},
+gdP(d){return"Slett"},
 gjq(){return"Slett konto"},
 gjr(){return"Slett melding"},
 gf3(){return"Enheter"},
@@ -213,7 +213,7 @@ gjY(){return"Ta del i rom"},
 k0(d,e){return d+" kastet ut "+e},
 ghd(){return"Kast ut av sludringen"},
 eQ(d){return"Sist aktiv: "+d},
-gdT(){return"Forlat"},
+gdU(){return"Forlat"},
 ghe(){return"Forlat sludringen"},
 gk7(){return"Lys"},
 k8(d){return"Last inn "+d+" deltagere til"},
@@ -234,7 +234,7 @@ gkf(){return"Moderator"},
 ghi(){return"Forstum sludring"},
 ghj(){return"Ny sludring"},
 gkj(){return"Ny bekreftelsesforesp\xf8rsel!"},
-gdU(d){return"Neste"},
+gdV(d){return"Neste"},
 geT(){return"Nei"},
 gkn(){return"Ingen tilkobling til tjeneren"},
 ghk(){return"Fant ingen smilefjes. \ud83d\ude15"},
@@ -246,7 +246,7 @@ geU(){return"Ingen tilgang"},
 ghm(){return"Fant ingen rom \u2026"},
 gfc(){return"Merknader"},
 gkw(){return"Henter sted \u2026"},
-gdq(){return"Ok"},
+gdn(){return"Ok"},
 gky(){return"Nettbasert sikkerhetskopiering av n\xf8kler p\xe5"},
 geb(){return"Oida, noe gikk galt \u2026"},
 gkx(){return"En av klientene dine har blitt logget ut"},
@@ -745,7 +745,7 @@ qA(d){return"Innkommende anrop fra "+d},
 pN(d){return"Serveren svarte med en feilmelding: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mo,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mo":{"aT":[]}}'))};
-(a=>{a["XO/ydO8slHFI7A7oVRoiEEUtHWs="]=a.current})($__dart_deferred_initializers__);
+y(B.Mp,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mp":{"aT":[]}}'))};
+(a=>{a["4WrMXiG2IVIUwqfq/IJBEyZn7Aw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_355.part.js.map

@@ -1596,7 +1596,7 @@ let wasm_bindgen;
     }
 
     function __wbg_adapter_43(arg0, arg1) {
-        wasm._dyn_core_8b01854e2a359b43___ops__function__FnMut_____Output______as_wasm_bindgen_5d8a9103d7ce0d24___closure__WasmClosure___describe__invoke______(arg0, arg1);
+        wasm._dyn_core_b8d774b1e82d2a23___ops__function__FnMut_____Output______as_wasm_bindgen_4a2f7dbbbaf38722___closure__WasmClosure___describe__invoke______(arg0, arg1);
     }
 
     const WorkerPoolFinalization = (typeof FinalizationRegistry === 'undefined')
@@ -1975,11 +1975,11 @@ let wasm_bindgen;
             const ret = false;
             return ret;
         };
-        imports.wbg.__wbindgen_closure_wrapper1799 = function(arg0, arg1, arg2) {
+        imports.wbg.__wbindgen_closure_wrapper1801 = function(arg0, arg1, arg2) {
             const ret = makeMutClosure(arg0, arg1, 617, __wbg_adapter_40);
             return ret;
         };
-        imports.wbg.__wbindgen_closure_wrapper1801 = function(arg0, arg1, arg2) {
+        imports.wbg.__wbindgen_closure_wrapper1803 = function(arg0, arg1, arg2) {
             const ret = makeMutClosure(arg0, arg1, 617, __wbg_adapter_43);
             return ret;
         };

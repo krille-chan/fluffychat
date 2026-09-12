@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAu(){return new B.Mi(A.dv("ka"))},
-Mi:function Mi(d){this.a=d}}
+dAw(){return new B.Mj(A.dv("ka"))},
+Mj:function Mj(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[35],B)
-B.Mi.prototype={
+B.Mj.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -140,7 +140,7 @@ gjm(){return"\u10d1\u10dc\u10d4\u10da\u10d8"},
 fX(d,e){return d+", "+e},
 gjn(){return"\u10d4\u10e1 \u10d2\u10d0\u10d0\u10e3\u10e5\u10db\u10d4\u10d1\u10e1 \u10d7\u10e5\u10d5\u10d4\u10dc\u10e1 \u10d0\u10dc\u10d2\u10d0\u10e0\u10d8\u10e8\u10e1. \u10d0\u10db\u10d8\u10e1 \u10d2\u10d0\u10e3\u10e5\u10db\u10d4\u10d1\u10d0 \u10e8\u10d4\u10e3\u10eb\u10da\u10d4\u10d1\u10d4\u10da\u10d8\u10d0. \u10d3\u10d0\u10e0\u10ec\u10db\u10e3\u10dc\u10d4\u10d1\u10e3\u10da\u10d8 \u10ee\u10d0\u10e0\u10d7?"},
 gjo(){return"\u10dc\u10d0\u10d2\u10e3\u10da\u10d8\u10e1\u10ee\u10db\u10d4\u10d5\u10d8 \u10e3\u10e4\u10da\u10d4\u10d1\u10d8\u10e1 \u10d3\u10dd\u10dc\u10d4"},
-gdO(d){return"\u10ec\u10d0\u10e8\u10da\u10d0"},
+gdP(d){return"\u10ec\u10d0\u10e8\u10da\u10d0"},
 gjq(){return"\u10d0\u10dc\u10d2\u10d0\u10e0\u10d8\u10e8\u10d8\u10e1 \u10ec\u10d0\u10e8\u10da\u10d0"},
 gjr(){return"\u10e8\u10d4\u10e2\u10e7\u10dd\u10d1\u10d8\u10dc\u10d4\u10d1\u10d8\u10e1 \u10ec\u10d0\u10e8\u10da\u10d0"},
 gf3(){return"\u10db\u10dd\u10ec\u10e7\u10dd\u10d1\u10d8\u10da\u10d4\u10d1\u10d4\u10d1\u10d8"},
@@ -212,7 +212,7 @@ gjY(){return"Join room"},
 k0(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 ghd(){return"Kick from chat"},
 eQ(d){return"Last active: "+d},
-gdT(){return"Leave"},
+gdU(){return"Leave"},
 ghe(){return"Left the chat"},
 gk7(){return"Light"},
 k8(d){return"Load "+d+" more participants"},
@@ -233,7 +233,7 @@ gkf(){return"Moderator"},
 ghi(){return"Mute chat"},
 ghj(){return"New chat"},
 gkj(){return"New verification request!"},
-gdU(d){return"Next"},
+gdV(d){return"Next"},
 geT(){return"No"},
 gkn(){return"No connection to the server"},
 ghk(){return"No emotes found. \ud83d\ude15"},
@@ -245,7 +245,7 @@ geU(){return"No permission"},
 ghm(){return"No rooms found\u2026"},
 gfc(){return"Notifications"},
 gkw(){return"Obtaining location\u2026"},
-gdq(){return"Ok"},
+gdn(){return"Ok"},
 gky(){return"Online Key Backup is enabled"},
 geb(){return"Oops, something went wrong\u2026"},
 gkx(){return"One of your clients has been logged out"},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mi,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mi":{"aT":[]}}'))};
-(a=>{a["AvXMYbskwHrNwSocVx6vyFmoElY="]=a.current})($__dart_deferred_initializers__);
+y(B.Mj,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mj":{"aT":[]}}'))};
+(a=>{a["28U8ac5Tr90sqUbXG3xa4RkUxwA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_348.part.js.map

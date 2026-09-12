@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAI(){return new B.Mv(A.dv("sk"))},
-Mv:function Mv(d){this.a=d}}
+dAK(){return new B.Mw(A.dv("sk"))},
+Mw:function Mw(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[46],B)
-B.Mv.prototype={
+B.Mw.prototype={
 gpk(){return"Upravi\u0165 obr\xe1zok"},
 grf(){return"Nato\u010di\u0165 v\u013eavo"},
 grg(){return"Nato\u010di\u0165 vpravo"},
@@ -140,7 +140,7 @@ gjm(){return"Tmav\xe1"},
 fX(d,e){return d+", "+e},
 gjn(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 gjo(){return"Default permission level for new users"},
-gdO(d){return"Odstr\xe1ni\u0165"},
+gdP(d){return"Odstr\xe1ni\u0165"},
 gjq(){return"Delete account"},
 gjr(){return"Odstr\xe1ni\u0165 spr\xe1vu"},
 gf3(){return"Zariadenia"},
@@ -212,7 +212,7 @@ gjY(){return"Pripoji\u0165 sa k miestnosti"},
 k0(d,e){return d+" vyhodili "+e},
 ghd(){return"Vyhodi\u0165 z chatu"},
 eQ(d){return"Naposledy pr\xedtomn\xed: "+d},
-gdT(){return"Opusti\u0165"},
+gdU(){return"Opusti\u0165"},
 ghe(){return"Opustili chat"},
 gk7(){return"Svetl\xe1"},
 k8(d){return"Na\u010d\xedta\u0165 \u010fal\u0161\xedch "+d+" \xfa\u010dastn\xedkov"},
@@ -233,7 +233,7 @@ gkf(){return"Moder\xe1tor"},
 ghi(){return"Stlmi\u0165 chat"},
 ghj(){return"New chat"},
 gkj(){return"Nov\xe1 \u017eiados\u0165 o verifik\xe1ciu!"},
-gdU(d){return"Next"},
+gdV(d){return"Next"},
 geT(){return"No"},
 gkn(){return"No connection to the server"},
 ghk(){return"Nena\u0161li sa \u017eiadne emotikony. \ud83d\ude15"},
@@ -245,7 +245,7 @@ geU(){return"Ch\xfdba povolenie"},
 ghm(){return"Nena\u0161li sa \u017eiadne miestnosti\u2026"},
 gfc(){return"Notifications"},
 gkw(){return"Obtaining location\u2026"},
-gdq(){return"ok"},
+gdn(){return"ok"},
 gky(){return"Online z\xe1loha k\u013e\xfa\u010dov je zapnut\xe1"},
 geb(){return"Och! Nie\u010do sa pokazilo\u2026"},
 gkx(){return"One of your clients has been logged out"},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mv,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mv":{"aT":[]}}'))};
-(a=>{a["OwgQTsT9H1dQoFzZUflscGzDV60="]=a.current})($__dart_deferred_initializers__);
+y(B.Mw,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mw":{"aT":[]}}'))};
+(a=>{a["fTjKRI+B/7lZYB5CxTrLCeSByXA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_366.part.js.map

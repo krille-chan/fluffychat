@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAs(){return new B.Mg(A.dv("it"))},
-Mg:function Mg(d){this.a=d}}
+dAu(){return new B.Mh(A.dv("it"))},
+Mh:function Mh(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[33],B)
-B.Mg.prototype={
+B.Mh.prototype={
 gpk(){return"Modifica immagine"},
 grf(){return"Ruota a sinistra"},
 grg(){return"Ruota a destra"},
@@ -141,7 +141,7 @@ gjm(){return"Scuro"},
 fX(d,e){return d+", "+e},
 gjn(){return"Disabiliter\xe0 il tuo account. Non puoi tornare indietro! Sei sicuro/a?"},
 gjo(){return"Livello di autorizzazione predefinito per i nuovi utenti"},
-gdO(d){return"Cancella"},
+gdP(d){return"Cancella"},
 gjq(){return"Elimina l'account"},
 gjr(){return"Elimina il messaggio"},
 gf3(){return"Dispositivi"},
@@ -213,7 +213,7 @@ gjY(){return"Unisciti alla stanza"},
 k0(d,e){return"\ud83d\udc5e "+d+" ha espulso "+e},
 ghd(){return"Espelli dalla chat"},
 eQ(d){return"Ultima attivit\xe0: "+d},
-gdT(){return"Abbandona"},
+gdU(){return"Abbandona"},
 ghe(){return"Ha lasciato la chat"},
 gk7(){return"Chiaro"},
 k8(d){return"Carica altri "+d+" partecipanti"},
@@ -234,7 +234,7 @@ gkf(){return"Moderatore"},
 ghi(){return"Silenzia discussione"},
 ghj(){return"Nuova discussione"},
 gkj(){return"Nuova richiesta di verifica!"},
-gdU(d){return"Avanti"},
+gdV(d){return"Avanti"},
 geT(){return"No"},
 gkn(){return"Nessuna connessione al server"},
 ghk(){return"Nessun emote trovato. \ud83d\ude15"},
@@ -246,7 +246,7 @@ geU(){return"Nessuna autorizzazione"},
 ghm(){return"Nessuna stanza trovata\u2026"},
 gfc(){return"Notifiche"},
 gkw(){return"Ottengo la posizione\u2026"},
-gdq(){return"Ok"},
+gdn(){return"Ok"},
 gky(){return"Il backup delle chiavi in linea \xe8 abilitato"},
 geb(){return"Ops, qualcosa \xe8 andato storto\u2026"},
 gkx(){return"Uno dei tuoi client \xe8 stato disconnesso"},
@@ -746,7 +746,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mg,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mg":{"aT":[]}}'))};
-(a=>{a["JzaTSU0HjZAYlaXAYqd4jLHq+dY="]=a.current})($__dart_deferred_initializers__);
+y(B.Mh,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mh":{"aT":[]}}'))};
+(a=>{a["A3GrWpwQt7FHXKjOfpz14D/e0F0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_344.part.js.map

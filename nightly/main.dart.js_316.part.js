@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAi(){return new B.M6(A.dv("fr"))},
-M6:function M6(d){this.a=d}}
+dAk(){return new B.M7(A.dv("fr"))},
+M7:function M7(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[23],B)
-B.M6.prototype={
+B.M7.prototype={
 gpk(){return"\xc9diter l'image"},
 grf(){return"Tourner vers la gauche"},
 grg(){return"Tourner vers la droite"},
@@ -141,7 +141,7 @@ gjm(){return"Sombre"},
 fX(d,e){return d+", "+e},
 gjn(){return"Cette op\xe9ration va d\xe9sactiver votre compte. Une fois cette action effectu\xe9e, aucun retour en arri\xe8re n'est possible\xa0! \xcates-vous s\xfbr\xb7e\xa0?"},
 gjo(){return"Niveau d'autorisation par d\xe9faut pour les arrivants"},
-gdO(d){return"Supprimer"},
+gdP(d){return"Supprimer"},
 gjq(){return"Supprimer le compte"},
 gjr(){return"Supprimer le message"},
 gf3(){return"Appareils"},
@@ -213,7 +213,7 @@ gjY(){return"Rejoindre le salon"},
 k0(d,e){return"\ud83d\udc5e "+d+" a expuls\xe9 "+e},
 ghd(){return"Expulser de la discussion"},
 eQ(d){return"Vu\xb7e pour la derni\xe8re fois\u202f: "+d},
-gdT(){return"Partir"},
+gdU(){return"Partir"},
 ghe(){return"A quitt\xe9 la discussion"},
 gk7(){return"Clair"},
 k8(d){return"Charger "+d+" participant\xb7es de plus"},
@@ -234,7 +234,7 @@ gkf(){return"Mod\xe9rateur\xb7rice"},
 ghi(){return"Mettre la discussion en sourdine"},
 ghj(){return"Nouvelle discussion"},
 gkj(){return"Nouvelle demande de v\xe9rification !"},
-gdU(d){return"Suivant"},
+gdV(d){return"Suivant"},
 geT(){return"Non"},
 gkn(){return"Aucune connexion au serveur"},
 ghk(){return"Aucune \xe9motic\xf4ne trouv\xe9e. \ud83d\ude15"},
@@ -246,7 +246,7 @@ geU(){return"Aucune permission"},
 ghm(){return"Aucun salon trouv\xe9\u2026"},
 gfc(){return"Notifications"},
 gkw(){return"Obtention de la localisation\u2026"},
-gdq(){return"Valider"},
+gdn(){return"Valider"},
 gky(){return"La sauvegarde en ligne des cl\xe9s est activ\xe9e"},
 geb(){return"Oups, un probl\xe8me est survenu\u2026"},
 gkx(){return"Un de vos clients a \xe9t\xe9 d\xe9connect\xe9"},
@@ -745,7 +745,7 @@ qA(d){return"Appel entrant de "+d},
 pN(d){return"Le serveur a r\xe9pondu avec un message d'erreur\xa0: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.M6,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M6":{"aT":[]}}'))};
-(a=>{a["Su98LKvxjNlQUFpf4zyVwn70v2E="]=a.current})($__dart_deferred_initializers__);
+y(B.M7,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M7":{"aT":[]}}'))};
+(a=>{a["bHib73nMxLnQ5swx/Hy3MWiy/Zg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map
