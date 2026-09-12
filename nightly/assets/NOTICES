@@ -29914,8 +29914,6 @@ material_color_utilities
 
 --------------------------------------------------------------------------------
 media_kit
-media_kit_libs_android_audio
-media_kit_libs_audio
 media_kit_libs_linux
 uri_parser
 
@@ -29942,8 +29940,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 --------------------------------------------------------------------------------
-media_kit_libs_ios_audio
-media_kit_libs_macos_audio
 media_kit_libs_windows_audio
 
 MIT License
