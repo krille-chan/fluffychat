@@ -142,16 +142,21 @@ class HtmlMessage extends StatelessWidget {
     ];
   }
 
-  InlineSpan _renderCodeBlockNode(dom.Node node) {
+  InlineSpan _renderCodeBlockNode(
+    dom.Node node,
+    CodeHighlightColors highlightColors,
+  ) {
     if (node is! dom.Element) {
       return TextSpan(text: node.text);
     }
     final style =
-        atomOneDarkTheme[node.className.split('-').last] ??
-        atomOneDarkTheme['root'];
+        highlightColors.theme[node.className.split('-').last] ??
+        highlightColors.theme['root'];
 
     return TextSpan(
-      children: node.nodes.map(_renderCodeBlockNode).toList(),
+      children: node.nodes
+          .map((child) => _renderCodeBlockNode(child, highlightColors))
+          .toList(),
       style: style,
     );
   }
@@ -361,20 +366,26 @@ class HtmlMessage extends StatelessWidget {
           return const TextSpan(text: 'Unable to render code block!');
         }
 
+        final highlightColors = codeHighlightColorsFor(
+          Theme.of(context).brightness,
+        );
+
         return WidgetSpan(
           child: Material(
-            color: atomOneBackgroundColor,
+            color: highlightColors.background,
             shape: RoundedRectangleBorder(
-              side: const BorderSide(color: hightlightTextColor),
-              borderRadius: BorderRadius.circular(4),
+              side: BorderSide(color: highlightColors.border),
+              borderRadius: BorderRadius.circular(isInline ? 4 : 8),
             ),
             child: Padding(
               padding: isInline
-                  ? const EdgeInsets.symmetric(horizontal: 4.0)
-                  : const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                  ? const EdgeInsets.symmetric(horizontal: 4.0, vertical: 1.0)
+                  : const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
               child: Text.rich(
-                TextSpan(children: [_renderCodeBlockNode(element)]),
-                selectionColor: hightlightTextColor.withAlpha(128),
+                TextSpan(
+                  children: [_renderCodeBlockNode(element, highlightColors)],
+                ),
+                selectionColor: highlightColors.text.withAlpha(128),
               ),
             ),
           ),
