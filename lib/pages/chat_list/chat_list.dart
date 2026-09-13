@@ -545,8 +545,12 @@ class ChatListController extends State<ChatList>
                   name: space.getLocalizedDisplayname(),
                 ),
                 const SizedBox(width: 12),
-                Text(
-                  L10n.of(context).goToSpace(space.getLocalizedDisplayname()),
+                Flexible(
+                  child: Text(
+                    L10n.of(context).goToSpace(space.getLocalizedDisplayname()),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
