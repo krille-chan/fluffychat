@@ -6,6 +6,7 @@
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/client_picker_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -129,6 +130,15 @@ class UrlLauncher {
       AppConfig.deepLinkPrefix,
       AppConfig.inviteLinkPrefix,
     );
+
+    // With multiple accounts, let the user choose which account should
+    // handle this link. The chosen client is set as active client so that
+    // all following actions use it.
+    if (matrix.isMultiAccount) {
+      final client = await showClientPickerDialog(context);
+      if (client == null || !context.mounted) return;
+      matrix.setActiveClient(client);
+    }
 
     // The identifier might be a matrix.to url and needs escaping. Or, it might have multiple
     // identifiers (room id & event id), or it might also have a query part.
