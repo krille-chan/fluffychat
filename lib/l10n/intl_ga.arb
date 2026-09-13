@@ -2830,5 +2830,13 @@
                 "type": "String"
             }
         }
+    },
+    "serverRespondedWithError": "Tá freagra tugtha ag an bhfreastalaí le teachtaireacht earráide: {error}",
+    "@serverRespondedWithError": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
     }
 }

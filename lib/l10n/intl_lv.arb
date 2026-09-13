@@ -2803,5 +2803,14 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "serverRespondedWithError": "Serveris atbildēja ar kļūdas ziņojumu: {error}",
+    "@serverRespondedWithError": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "preferSpeaker": "Priekšroku dot skaļrunim"
 }
