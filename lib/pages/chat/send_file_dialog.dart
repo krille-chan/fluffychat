@@ -84,9 +84,12 @@ class SendFileDialogState extends State<SendFileDialog> {
 
   Future<void> _send(String? uniqueFileType) async {
     final l10n = L10n.of(context);
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(widget.outerContext);
 
-    final proceed = await showTrustUserInRoomDialog(context, widget.room);
+    final proceed = await showTrustUserInRoomDialog(
+      widget.outerContext,
+      widget.room,
+    );
     if (!context.mounted || !proceed) return;
 
     if (ForegroundServices.platformSupported) {
@@ -936,6 +939,7 @@ class _ImageEditPageState extends State<_ImageEditPage> {
 extension on ScaffoldMessengerState {
   void showLoadingSnackBar(String title) => showSnackBar(
     SnackBar(
+      showCloseIcon: false,
       persist: true,
       content: Row(
         spacing: 8,
