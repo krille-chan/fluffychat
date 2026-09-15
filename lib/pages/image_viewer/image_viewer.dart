@@ -32,6 +32,16 @@ class ImageViewer extends StatefulWidget {
 
 class ImageViewerController extends State<ImageViewer> {
   final FocusNode focusNode = FocusNode();
+  bool pagingEnabled = true;
+
+  void onScale(double scale) {
+    final pagingPossible = scale == 1.0;
+    if (pagingPossible != pagingEnabled) {
+      setState(() {
+        pagingEnabled = pagingPossible;
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -58,14 +68,17 @@ class ImageViewerController extends State<ImageViewer> {
 
   late final PageController pageController;
 
+  final TransformationController transformationController =
+      TransformationController();
+
   late final List<Event> allEvents;
 
   void onKeyEvent(KeyEvent event) {
     switch (event.logicalKey) {
-      case LogicalKeyboardKey.arrowUp:
+      case LogicalKeyboardKey.arrowLeft:
         if (canGoBack) prevImage();
         break;
-      case LogicalKeyboardKey.arrowDown:
+      case LogicalKeyboardKey.arrowRight:
         if (canGoNext) nextImage();
         break;
     }
@@ -126,6 +139,7 @@ class ImageViewerController extends State<ImageViewer> {
   void dispose() {
     focusNode.dispose();
     pageController.dispose();
+    transformationController.dispose();
     super.dispose();
   }
 

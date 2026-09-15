@@ -79,7 +79,10 @@ class ImageViewerView extends StatelessWidget {
                 focusNode: controller.focusNode,
                 onKeyEvent: controller.onKeyEvent,
                 child: PageView.builder(
-                  scrollDirection: Axis.vertical,
+                  physics: controller.pagingEnabled
+                      ? PageScrollPhysics()
+                      : NeverScrollableScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
                   controller: controller.pageController,
                   itemCount: controller.allEvents.length,
                   itemBuilder: (context, i) {
@@ -100,6 +103,8 @@ class ImageViewerView extends StatelessWidget {
                       case MessageTypes.Sticker:
                       default:
                         return InteractiveViewer(
+                          transformationController:
+                              controller.transformationController,
                           minScale: 1.0,
                           maxScale: 10.0,
                           onInteractionEnd: controller.onInteractionEnds,
@@ -124,35 +129,34 @@ class ImageViewerView extends StatelessWidget {
                   },
                 ),
               ),
-              if (hovered)
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: Column(
-                    mainAxisSize: .min,
-                    children: [
-                      if (controller.canGoBack)
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: IconButton(
-                            style: iconButtonStyle,
-                            tooltip: L10n.of(context).previous,
-                            icon: const Icon(Icons.arrow_upward_outlined),
-                            onPressed: controller.prevImage,
-                          ),
-                        ),
-                      if (controller.canGoNext)
-                        Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: IconButton(
-                            style: iconButtonStyle,
-                            tooltip: L10n.of(context).next,
-                            icon: const Icon(Icons.arrow_downward_outlined),
-                            onPressed: controller.nextImage,
-                          ),
-                        ),
-                    ],
+              if (hovered) ...[
+                if (controller.canGoBack)
+                  Align(
+                    alignment: .centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: IconButton(
+                        style: iconButtonStyle,
+                        tooltip: L10n.of(context).previous,
+                        icon: const Icon(Icons.keyboard_arrow_left_outlined),
+                        onPressed: controller.prevImage,
+                      ),
+                    ),
                   ),
-                ),
+                if (controller.canGoNext)
+                  Align(
+                    alignment: .centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: IconButton(
+                        style: iconButtonStyle,
+                        tooltip: L10n.of(context).next,
+                        icon: const Icon(Icons.keyboard_arrow_right_outlined),
+                        onPressed: controller.nextImage,
+                      ),
+                    ),
+                  ),
+              ],
             ],
           ),
         ),

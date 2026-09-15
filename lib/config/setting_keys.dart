@@ -81,7 +81,10 @@ enum AppSettings<T> {
   benchmarksInLogs<bool>('chat.fluffy.benchmarks_in_logs', false),
   autoSendErrorReports<bool?>('chat.fluffy.auto_send_eror_reports', null),
   knownErrorHashes<List<String>>('chat.fluffy.known_crash_hashes', []),
-  customLiveKitInstance<String>('chat.fluffy.custom_live_kit_instance', '');
+  fallbackLiveKitInstance<String>(
+    'chat.fluffy.fallback_live_kit_instance',
+    'https://livekit-jwt.fluffy.chat',
+  );
 
   final String key;
   final T _defaultValue;
