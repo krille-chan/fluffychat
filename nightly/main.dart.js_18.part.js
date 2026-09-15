@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-dAE(d){return new A.FC(B.dv(d))},
-dAF(){return new A.Ms(B.dv("pt_BR"))},
-dAG(){return new A.Mt(B.dv("pt_PT"))},
-FC:function FC(d){this.a=d},
+dAJ(d){return new A.FD(B.dv(d))},
+dAK(){return new A.Ms(B.dv("pt_BR"))},
+dAL(){return new A.Mt(B.dv("pt_PT"))},
+FD:function FD(d){this.a=d},
 Ms:function Ms(d){this.a=d},
 Mt:function Mt(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[59]
-A.FC.prototype={
+A.FD.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -1698,9 +1698,9 @@ gkF(){return"Por favor introduza um n\xfamero maior que 0"},
 gf1(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3o ver deixou o chat."},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.FC,C.aT)
-w(A.FC,[A.Ms,A.Mt])})()
-B.e8(b.typeUniverse,JSON.parse('{"FC":{"aT":[]},"Ms":{"aT":[]},"Mt":{"aT":[]}}'))
+x(A.FD,C.aT)
+w(A.FD,[A.Ms,A.Mt])})()
+B.e8(b.typeUniverse,JSON.parse('{"FD":{"aT":[]},"Ms":{"aT":[]},"Mt":{"aT":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["Ux+TlQ5D+fjJESHzVpYNMr6LS0s="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Z2yA81dqhqSNg+/f+lbl0xUfR04="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map
