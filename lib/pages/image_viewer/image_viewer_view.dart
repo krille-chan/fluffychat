@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/image_viewer/pointers_listener.dart';
 import 'package:fluffychat/pages/image_viewer/video_player.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
@@ -78,55 +79,55 @@ class ImageViewerView extends StatelessWidget {
               KeyboardListener(
                 focusNode: controller.focusNode,
                 onKeyEvent: controller.onKeyEvent,
-                child: PageView.builder(
-                  physics: controller.pagingEnabled
-                      ? PageScrollPhysics()
-                      : NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  controller: controller.pageController,
-                  itemCount: controller.allEvents.length,
-                  itemBuilder: (context, i) {
-                    final event = controller.allEvents[i];
-                    switch (event.messageType) {
-                      case MessageTypes.Video:
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 52.0),
-                          child: Center(
-                            child: GestureDetector(
-                              // Ignore taps to not go back here:
-                              onTap: () {},
-                              child: EventVideoPlayer(event),
-                            ),
-                          ),
-                        );
-                      case MessageTypes.Image:
-                      case MessageTypes.Sticker:
-                      default:
-                        return InteractiveViewer(
-                          transformationController:
-                              controller.transformationController,
-                          minScale: 1.0,
-                          maxScale: 10.0,
-                          onInteractionEnd: controller.onInteractionEnds,
-                          child: Center(
-                            child: Hero(
-                              tag: event.eventId,
+                child: PointersListener(
+                  builder: (context, moreThanOnePointer) => PageView.builder(
+                    physics: !moreThanOnePointer
+                        ? BouncingScrollPhysics()
+                        : NeverScrollableScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    controller: controller.pageController,
+                    itemCount: controller.allEvents.length,
+                    itemBuilder: (context, i) {
+                      final event = controller.allEvents[i];
+                      switch (event.messageType) {
+                        case MessageTypes.Video:
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 52.0),
+                            child: Center(
                               child: GestureDetector(
                                 // Ignore taps to not go back here:
                                 onTap: () {},
-                                child: MxcImage(
-                                  key: ValueKey(event.eventId),
-                                  event: event,
-                                  fit: BoxFit.contain,
-                                  isThumbnail: false,
-                                  animated: true,
+                                child: EventVideoPlayer(event),
+                              ),
+                            ),
+                          );
+                        case MessageTypes.Image:
+                        case MessageTypes.Sticker:
+                        default:
+                          return InteractiveViewer(
+                            minScale: 1.0,
+                            maxScale: 10.0,
+                            onInteractionEnd: controller.onInteractionEnds,
+                            child: Center(
+                              child: Hero(
+                                tag: event.eventId,
+                                child: GestureDetector(
+                                  // Ignore taps to not go back here:
+                                  onTap: () {},
+                                  child: MxcImage(
+                                    key: ValueKey(event.eventId),
+                                    event: event,
+                                    fit: BoxFit.contain,
+                                    isThumbnail: false,
+                                    animated: true,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                    }
-                  },
+                          );
+                      }
+                    },
+                  ),
                 ),
               ),
               if (hovered) ...[
