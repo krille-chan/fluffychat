@@ -1289,7 +1289,7 @@ packages:
     description:
       path: "."
       ref: "krille/refactor-device-keys-list-storing"
-      resolved-ref: "1bb9a0e3d8902bba8bc26b3791f64c69e2c8f2b8"
+      resolved-ref: "8f35290a5c2ca831c6c4bca59e02f2a17c2c8b1d"
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "12.0.1"
