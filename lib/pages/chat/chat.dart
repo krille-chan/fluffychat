@@ -614,21 +614,31 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     final setOnLatestEvent = eventId == null;
+    // Pick the newest message-type event, independent of push rules.
+    // The pushruleEvaluator only knows account-data rules (the SDK's
+    // PushRuleSet drops the server's default rules and defaults to
+    // notify=false), so plain messages in rooms without custom push rules
+    // never matched and the read marker was silently skipped.
+    // See: https://github.com/krille-chan/fluffychat/issues/3425
     eventId ??= timeline.events
         .firstWhereOrNull(
-          (event) => room.pushRuleState == PushRuleState.notify
-              ? room.client.pushruleEvaluator.match(event).notify
-              : {
-                      EventTypes.Message,
-                      EventTypes.Encrypted,
-                      EventTypes.Sticker,
-                    }.contains(event.type) &&
-                    event.eventId.isValidMatrixIdStrict(),
+          (event) => {
+                EventTypes.Message,
+                EventTypes.Encrypted,
+                EventTypes.Sticker,
+              }.contains(event.type) &&
+              event.eventId.isValidMatrixIdStrict(),
         )
         ?.eventId;
 
     // There is no event we could place a read marker
-    if (eventId == null) return;
+    if (eventId == null) {
+      Logs().w(
+        'No event available to set read marker in ${room.id} '
+        '(timeline: ${timeline.events.length} events)',
+      );
+      return;
+    }
 
     // This is a sending event, we do not set a readmarker yet
     if (eventId.isValidMatrixIdStrict() == false) return;
