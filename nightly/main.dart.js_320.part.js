@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAp(){return new B.M8(A.dv("ga"))},
-M8:function M8(d){this.a=d}}
+dAq(){return new B.M9(A.dv("ga"))},
+M9:function M9(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[24],B)
-B.M8.prototype={
+B.M9.prototype={
 gpk(){return"Cuir \xedomh\xe1 in eagar"},
 grf(){return"Rothlaigh ar chl\xe9"},
 grg(){return"Rothlaigh ar dheis"},
@@ -744,8 +744,8 @@ qA(d){return"Glao isteach \xf3 "+d},
 pN(d){return"T\xe1 freagra tugtha ag an bhfreastala\xed le teachtaireacht earr\xe1ide: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.M8,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M8":{"aT":[]}}'))
+x(B.M9,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M9":{"aT":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["72zGrvuTsRVB1MS/IY0xPjvaIAA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["dy9klKq1M95XwjN/FlDGVWy3Uc0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_320.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAk(){return new B.M3(A.dv("eu"))},
-M3:function M3(d){this.a=d}}
+dAl(){return new B.M4(A.dv("eu"))},
+M4:function M4(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[19],B)
-B.M3.prototype={
+B.M4.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -744,8 +744,8 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.M3,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M3":{"aT":[]}}'))
+x(B.M4,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M4":{"aT":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["l3jtsnT/mOKSMfhQzmLAR4hqbqs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["gaLc5CNeGA8G//XV2Yo7kJ0MC6Y="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map
