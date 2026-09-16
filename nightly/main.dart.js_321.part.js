@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAr(){return new B.Ma(A.dv("gl"))},
-Ma:function Ma(d){this.a=d}}
+dAB(){return new B.Mb(A.dv("gl"))},
+Mb:function Mb(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[25],B)
-B.Ma.prototype={
+B.Mb.prototype={
 gpk(){return"Editar imaxe"},
 grf(){return"Rotar \xe1 esquerda"},
 grg(){return"Rotar \xe1 dereita"},
@@ -49,7 +49,7 @@ ik(d){return d+" respondeu \xe1 chamada"},
 gfB(){return"Calquera pode unirse"},
 gfC(){return"Arquivo"},
 gil(){return"Poden entrar as usuarias convidadas?"},
-gdE(){return"Tes a certeza?"},
+gdF(){return"Tes a certeza?"},
 gpg(){return"Ten cambios sen gardar. Desbotar a edici\xf3n?"},
 gim(){return"Tes a certeza de querer sa\xedr?"},
 gio(){return"Para poder asinar a outra persoa, escribe a t\xfaa frase de paso ou chave de recuperaci\xf3n."},
@@ -744,7 +744,7 @@ qA(d){return"Recibindo unha chamada de "+d},
 pN(d){return"O servidor respondeu cunha mensaxe de erro: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ma,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Ma":{"aT":[]}}'))};
-(a=>{a["dOH/npE/XbRgBamXgmKN0wDBCs8="]=a.current})($__dart_deferred_initializers__);
+y(B.Mb,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mb":{"aT":[]}}'))};
+(a=>{a["5T6HNw0Pa02od/P3nJO0NCkz0sI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map

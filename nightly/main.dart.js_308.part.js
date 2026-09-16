@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAl(){return new B.M4(A.dv("eu"))},
-M4:function M4(d){this.a=d}}
+dAv(){return new B.M5(A.dv("eu"))},
+M5:function M5(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[19],B)
-B.M4.prototype={
+B.M5.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+"(e)k deia erantzun du"},
 gfB(){return"Edonor batu daiteke"},
 gfC(){return"Fitxategia"},
 gil(){return"Batu al daitezke bisitan dauden erabiltzaileak?"},
-gdE(){return"Ziur zaude?"},
+gdF(){return"Ziur zaude?"},
 gpg(){return"Gorde gabeko aldaketak daude. Baztertu nahi dituzu?"},
 gim(){return"Ziur zaude saioa amaitu nahi duzula?"},
 gio(){return"Beste pertsona egiaztatzeko, sartu zure biltegiratze segururako pasaesaldia edo berreskuratze-gakoa."},
@@ -744,8 +744,8 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.M4,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M4":{"aT":[]}}'))
+x(B.M5,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M5":{"aT":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["gaLc5CNeGA8G//XV2Yo7kJ0MC6Y="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["c2aoEZpBeTcvXaUNZt9f4hHTSBQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map

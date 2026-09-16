@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAv(){return new B.Me(A.dv("hu"))},
-Me:function Me(d){this.a=d}}
+dAF(){return new B.Mf(A.dv("hu"))},
+Mf:function Mf(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[29],B)
-B.Me.prototype={
+B.Mf.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" v\xe1laszolt a h\xedv\xe1sra"},
 gfB(){return"B\xe1rki csatlakozhat"},
 gfC(){return"Arch\xedvum"},
 gil(){return"Csatlakozhatnak-e vend\xe9gek"},
-gdE(){return"Biztos benne?"},
+gdF(){return"Biztos benne?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"Biztosan kijelentkezik?"},
 gio(){return"A m\xe1sik f\xe9l igazol\xe1s\xe1hoz meg kell adnia a biztons\xe1gos t\xe1rol\xf3 jelmondat\xe1t vagy a vissza\xe1ll\xedt\xe1si kulcsot\xe1t."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Me,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Me":{"aT":[]}}'))};
-(a=>{a["1dFulC4pFL3NR2ReWq9Y8zykSAI="]=a.current})($__dart_deferred_initializers__);
+y(B.Mf,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mf":{"aT":[]}}'))};
+(a=>{a["W7dwkf7J8X86u5Iap2fXzC92hYI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_333.part.js.map

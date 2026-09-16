@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAJ(){return new B.Ms(A.dv("pl"))},
-Ms:function Ms(d){this.a=d}}
+dAT(){return new B.Mt(A.dv("pl"))},
+Mt:function Mt(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[43],B)
-B.Ms.prototype={
+B.Mt.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" odebra\u0142/-a po\u0142\u0105czenie"},
 gfB(){return"Ka\u017cdy mo\u017ce do\u0142\u0105czy\u0107"},
 gfC(){return"Archiwum"},
 gil(){return"Czy go\u015bcie mog\u0105 do\u0142\u0105czy\u0107?"},
-gdE(){return"Czy na pewno?"},
+gdF(){return"Czy na pewno?"},
 gpg(){return"Masz niezapisane zmiany. Porzuci\u0107 je?"},
 gim(){return"Czy na pewno chcesz si\u0119 wylogowa\u0107?"},
 gio(){return"Aby zalogowa\u0107 inn\u0105 osob\u0119, prosz\u0119 wpisa\u0107 has\u0142o przechowywania lub klucz odzyskiwania."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ms,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Ms":{"aT":[]}}'))};
-(a=>{a["gn9c3OkzBuAtWB3TQaHrTFQIkYY="]=a.current})($__dart_deferred_initializers__);
+y(B.Mt,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mt":{"aT":[]}}'))};
+(a=>{a["gS/E7wHBmJt5LRxuy3JGRU3Brug="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_359.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAI(){return new B.Mr(A.dv("nl"))},
-Mr:function Mr(d){this.a=d}}
+dAS(){return new B.Ms(A.dv("nl"))},
+Ms:function Ms(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[42],B)
-B.Mr.prototype={
+B.Ms.prototype={
 gpk(){return"Afbeelding wijzigen"},
 grf(){return"Linksom draaien"},
 grg(){return"Rechtsom draaien"},
@@ -49,7 +49,7 @@ ik(d){return d+" heeft de oproep beantwoord"},
 gfB(){return"Iedereen kan toetreden"},
 gfC(){return"Archief"},
 gil(){return"Mogen gasten deelnemen?"},
-gdE(){return"Weet je het zeker?"},
+gdF(){return"Weet je het zeker?"},
 gpg(){return"Je hebt wijzigingen die nog niet zijn opgeslagen. Wil je de wijzigingen ongedaan maken?"},
 gim(){return"Weet je zeker dat je wilt uitloggen?"},
 gio(){return"Voer je beveiligde opslag wachtwoordzin of herstelsleutel in om de andere persoon te kunnen ondertekenen."},
@@ -745,7 +745,7 @@ qA(d){return"Inkomende oproep van "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mr,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mr":{"aT":[]}}'))};
-(a=>{a["oUeVhcYIJY8xbptkp7xHFBc73fY="]=a.current})($__dart_deferred_initializers__);
+y(B.Ms,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Ms":{"aT":[]}}'))};
+(a=>{a["1YIknrTq+cn/OS2wzOzvZeUfZME="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_357.part.js.map

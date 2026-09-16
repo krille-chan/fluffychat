@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-dAK(d){return new A.FD(B.dv(d))},
-dAL(){return new A.Mt(B.dv("pt_BR"))},
-dAM(){return new A.Mu(B.dv("pt_PT"))},
+dAU(d){return new A.FD(B.dv(d))},
+dAV(){return new A.Mu(B.dv("pt_BR"))},
+dAW(){return new A.Mv(B.dv("pt_PT"))},
 FD:function FD(d){this.a=d},
-Mt:function Mt(d){this.a=d},
-Mu:function Mu(d){this.a=d}},C
+Mu:function Mu(d){this.a=d},
+Mv:function Mv(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[59]
@@ -53,7 +53,7 @@ ik(d){return d+" answered the call"},
 gfB(){return"Anyone can join"},
 gfC(){return"Archive"},
 gil(){return"Are guest users allowed to join?"},
-gdE(){return"Tens a certeza?"},
+gdF(){return"Tens a certeza?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"Are you sure you want to log out?"},
 gio(){return"To be able to sign the other person, please enter your secure store passphrase or recovery key."},
@@ -748,7 +748,7 @@ rl(d){return"Unfortunately, an unexpected error has occurred: "+d},
 qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
-A.Mt.prototype={
+A.Mu.prototype={
 gkW(){return"Repita a senha"},
 gkv(){return"N\xe3o \xe9 um arquivo de imagem."},
 gbv(d){return"Remover"},
@@ -781,7 +781,7 @@ ik(d){return d+" atendeu \xe0 chamada"},
 gfB(){return"Qualquer pessoa pode entrar"},
 gfC(){return"Arquivo"},
 gil(){return"Visitantes podem entrar"},
-gdE(){return"Tem certeza?"},
+gdF(){return"Tem certeza?"},
 gim(){return"Tem certeza que deseja se desconectar?"},
 gio(){return"Para poder validar a outra pessoa, digite sua frase secreta ou chave de recupera\xe7\xe3o."},
 ip(d){return"Aceitar esta solicita\xe7\xe3o de verifica\xe7\xe3o de "+d+"?"},
@@ -1356,7 +1356,7 @@ goR(){return"Pular backup de conversas"},
 goS(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 pE(d){return"Vers\xe3o: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
-A.Mu.prototype={
+A.Mv.prototype={
 gkW(){return"Repete a palavra-passe"},
 gkv(){return"N\xe3o \xe9 um ficheiro de imagem."},
 gbv(d){return"Remover"},
@@ -1389,7 +1389,7 @@ ik(d){return d+" atendeu a chamada"},
 gfB(){return"Qualquer pessoa pode entrar"},
 gfC(){return"Arquivo"},
 gil(){return"Os utilizadores convidados t\xeam permiss\xe3o para se juntarem?"},
-gdE(){return"Tens a certeza?"},
+gdF(){return"Tens a certeza?"},
 gpg(){return"Tem mudan\xe7as n\xe3o guardadas. Descartar as suas edi\xe7\xf5es?"},
 gim(){return"Tens a certeza que queres sair?"},
 gio(){return"Para poderes assinar a outra pessoa, por favor, insere a tua senha de armazenamento seguro ou a chave de recupera\xe7\xe3o."},
@@ -1699,8 +1699,8 @@ gf1(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.FD,C.aT)
-w(A.FD,[A.Mt,A.Mu])})()
-B.e8(b.typeUniverse,JSON.parse('{"FD":{"aT":[]},"Mt":{"aT":[]},"Mu":{"aT":[]}}'))
+w(A.FD,[A.Mu,A.Mv])})()
+B.e8(b.typeUniverse,JSON.parse('{"FD":{"aT":[]},"Mu":{"aT":[]},"Mv":{"aT":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["MO8EP18xtlzIV/XJ1Qbk2IAbZc0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Re8IFqHkQ50fS7e9sorg2/WliWE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

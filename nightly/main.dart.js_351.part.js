@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAF(){return new B.Mo(A.dv("lt"))},
-Mo:function Mo(d){this.a=d}}
+dAP(){return new B.Mp(A.dv("lt"))},
+Mp:function Mp(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[39],B)
-B.Mo.prototype={
+B.Mp.prototype={
 gpk(){return"Redaguoti vaizd\u0105"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" atsiliep\u0117 \u012f skambut\u012f"},
 gfB(){return"Bet kas gali prisijungti"},
 gfC(){return"Archyvas"},
 gil(){return"Ar sve\u010diams leid\u017eiama prisijungti"},
-gdE(){return"Ar esate tikri?"},
+gdF(){return"Ar esate tikri?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"Ar tikrai norite atsijungti?"},
 gio(){return"Kad gal\u0117tum\u0117te prijungti kit\u0105 asmen\u012f, \u012fveskite savo saugyklos slaptafraz\u0119 arba atk\u016brimo rakt\u0105."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mo,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mo":{"aT":[]}}'))};
-(a=>{a["7SoMH1WzIRWvrOoMGNKtl7BH5eY="]=a.current})($__dart_deferred_initializers__);
+y(B.Mp,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mp":{"aT":[]}}'))};
+(a=>{a["Foce7NsIkpX47fPPbqfYwffQk6g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_351.part.js.map

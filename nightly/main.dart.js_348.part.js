@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAC(){return new B.Ml(A.dv("kab"))},
-Ml:function Ml(d){this.a=d}}
+dAM(){return new B.Mm(A.dv("kab"))},
+Mm:function Mm(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[36],B)
-B.Ml.prototype={
+B.Mm.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" yerra-d i usiwel"},
 gfB(){return"Yal yiwen yezmer ad yettekki"},
 gfC(){return"A\u0263ba\u1e5b"},
 gil(){return"Iseqdacen inebgiwen ttusirgen ad ttekkin"},
-gdE(){return"Tet\u1e25eqqe\u1e0d?"},
+gdF(){return"Tet\u1e25eqqe\u1e0d?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"D tidet teb\u0263i\u1e0d ad teff\u0263e\u1e0d?"},
 gio(){return"Iwakken ad teszmele\u1e0d amdan-nni\u1e0den, ttxil-k\xb7m sekcem tafyirt-ik\xb7im n u\u1e25raz s wudem a\u0263elsan ne\u0263 tasarut n tririt."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ml,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Ml":{"aT":[]}}'))};
-(a=>{a["AFClJ9ON0ndDfZNLomBXLdVjX+M="]=a.current})($__dart_deferred_initializers__);
+y(B.Mm,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mm":{"aT":[]}}'))};
+(a=>{a["2Zb/niZp78BYp+y4Wlrc7IzrnOw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_348.part.js.map

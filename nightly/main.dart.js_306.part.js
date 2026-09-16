@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAk(){return new B.M3(A.dv("et"))},
-M3:function M3(d){this.a=d}}
+dAu(){return new B.M4(A.dv("et"))},
+M4:function M4(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[18],B)
-B.M3.prototype={
+B.M4.prototype={
 gpk(){return"Muuda pilti"},
 grf(){return"P\xf6\xf6ra vasakule"},
 grg(){return"P\xf6\xf6ra paremale"},
@@ -49,7 +49,7 @@ ik(d){return d+" vastas k\xf5nele"},
 gfB(){return"K\xf5ik v\xf5ivad liituda"},
 gfC(){return"Arhiiv"},
 gil(){return"Kas k\xfclalised v\xf5ivad liituda?"},
-gdE(){return"Kas sa oled kindel?"},
+gdF(){return"Kas sa oled kindel?"},
 gpg(){return"Sul on salvestamata muudatusi. Kas loobud neist?"},
 gim(){return"Kas sa oled kindel, et soovid v\xe4lja logida?"},
 gio(){return"Selleks, et teist osapoolt identifitseerivat allkirja anda, palun sisesta oma turvahoidla salafraas v\xf5i taastev\xf5ti."},
@@ -745,7 +745,7 @@ qA(d){return"K\xf5ne kasutajalt "+d},
 pN(d){return"Serveri vastuseks oli veateade: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.M3,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M3":{"aT":[]}}'))};
-(a=>{a["IvZMj25UBhNh0PiXpFJ825QhfPk="]=a.current})($__dart_deferred_initializers__);
+y(B.M4,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M4":{"aT":[]}}'))};
+(a=>{a["hEZFX1V/JiBt2mE3rAtyAXpDEyQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

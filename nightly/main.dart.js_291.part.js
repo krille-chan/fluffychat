@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAf(){return new B.LZ(A.dv("de"))},
-LZ:function LZ(d){this.a=d}}
+dAp(){return new B.M_(A.dv("de"))},
+M_:function M_(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[13],B)
-B.LZ.prototype={
+B.M_.prototype={
 gpk(){return"Bild bearbeiten"},
 grf(){return"Nach links drehen"},
 grg(){return"Nach rechts drehen"},
@@ -49,7 +49,7 @@ ik(d){return d+" hat den Anruf angenommen"},
 gfB(){return"Jeder darf beitreten"},
 gfC(){return"Archiv"},
 gil(){return"D\xfcrfen G\xe4ste teilnehmen?"},
-gdE(){return"Bist du sicher?"},
+gdF(){return"Bist du sicher?"},
 gpg(){return"Du hast ungespeicherte \xc4nderungen. M\xf6chtest du deine \xc4nderungen verwerfen?"},
 gim(){return"Willst du dich wirklich abmelden?"},
 gio(){return"Bitte gib, um die andere Person signieren zu k\xf6nnen, dein Sicherheitsschl\xfcssel oder Wiederherstellungsschl\xfcssel ein."},
@@ -745,8 +745,8 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.LZ,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"LZ":{"aT":[]}}'))
+x(B.M_,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M_":{"aT":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["BYG8J3BnwbHWCLW0YJ3uqYmamaM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["kRP4DwqU9TBUQ4iCB+Mu8s4Eff4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_291.part.js.map

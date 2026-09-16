@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAP(){return new B.Mx(A.dv("sk"))},
-Mx:function Mx(d){this.a=d}}
+dAZ(){return new B.My(A.dv("sk"))},
+My:function My(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[46],B)
-B.Mx.prototype={
+B.My.prototype={
 gpk(){return"Upravi\u0165 obr\xe1zok"},
 grf(){return"Nato\u010di\u0165 v\u013eavo"},
 grg(){return"Nato\u010di\u0165 vpravo"},
@@ -49,7 +49,7 @@ ik(d){return d+" prevzal hovor"},
 gfB(){return"Ktoko\u013evek sa m\xf4\u017ee pripoji\u0165"},
 gfC(){return"Archivova\u0165"},
 gil(){return"M\xf4\u017eu sa pripoji\u0165 hostia"},
-gdE(){return"Ste si ist\xed?"},
+gdF(){return"Ste si ist\xed?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"Ste si ist\xed, \u017ee sa chcete odhl\xe1si\u0165?"},
 gio(){return'Na overenie tejto osoby, pros\xedm zadajte pr\xedstupovu fr\xe1zu k "bezpe\u010d\xe9mu \xfalo\u017eisku" alebo "kl\xfa\u010d na obnovu".'},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mx,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mx":{"aT":[]}}'))};
-(a=>{a["scsly5/jo7Jc3us1ID+zF5kn+eE="]=a.current})($__dart_deferred_initializers__);
+y(B.My,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"My":{"aT":[]}}'))};
+(a=>{a["mdArZ5tYTaaji2vwpJRCBk39B4U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_365.part.js.map

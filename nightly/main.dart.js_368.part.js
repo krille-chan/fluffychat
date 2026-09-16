@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAS(){return new B.MA(A.dv("sr"))},
-MA:function MA(d){this.a=d}}
+dB1(){return new B.MB(A.dv("sr"))},
+MB:function MB(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[49],B)
-B.MA.prototype={
+B.MB.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" \u043e\u0434\u0433\u043e\u0432\u043e\u0440\u0438 \u043d\u0430 \
 gfB(){return"\u0441\u0432\u0430\u043a\u043e \u043c\u043e\u0436\u0435 \u0434\u0430 \u0441\u0435 \u043f\u0440\u0438\u0434\u0440\u0443\u0436\u0438"},
 gfC(){return"\u0410\u0440\u0445\u0438\u0432\u0430"},
 gil(){return"\u0414\u0430 \u043b\u0438 \u0458\u0435 \u0433\u043e\u0441\u0442\u0438\u043c\u0430 \u0434\u043e\u0437\u0432\u043e\u0459\u0435\u043d \u043f\u0440\u0438\u0441\u0442\u0443\u043f"},
-gdE(){return"\u0421\u0438\u0433\u0443\u0440\u043d\u0438 \u0441\u0442\u0435?"},
+gdF(){return"\u0421\u0438\u0433\u0443\u0440\u043d\u0438 \u0441\u0442\u0435?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"\u0417\u0430\u0438\u0441\u0442\u0430 \u0436\u0435\u043b\u0438\u0442\u0435 \u0434\u0430 \u0441\u0435 \u043e\u0434\u0458\u0430\u0432\u0438\u0442\u0435?"},
 gio(){return"\u0414\u0430 \u0431\u0438\u0441\u0442\u0435 \u043c\u043e\u0433\u043b\u0438 \u0434\u0430 \u043f\u0440\u0438\u0458\u0430\u0432\u0438\u0442\u0435 \u0434\u0440\u0443\u0433\u0443 \u043e\u0441\u043e\u0431\u0443, \u0443\u043d\u0435\u0441\u0438\u0442\u0435 \u0441\u0432\u043e\u0458\u0443 \u0431\u0435\u0437\u0431\u0435\u0434\u043d\u043e\u0441\u043d\u0443 \u0444\u0440\u0430\u0437\u0443 \u0438\u043b\u0438 \u043a\u0459\u0443\u0447 \u043e\u043f\u043e\u0440\u0430\u0432\u043a\u0430."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MA,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"MA":{"aT":[]}}'))};
-(a=>{a["swOcbMW0S6/jT7U0/HY4/Q3RjJo="]=a.current})($__dart_deferred_initializers__);
+y(B.MB,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"MB":{"aT":[]}}'))};
+(a=>{a["g6N9dFXHWuz0o/6vTJQCA+J28Uk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_368.part.js.map

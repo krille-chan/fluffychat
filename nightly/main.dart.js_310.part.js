@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-dAm(){return new A.M5(B.dv("fa"))},
-M5:function M5(d){this.a=d}}
+dAw(){return new A.M6(B.dv("fa"))},
+M6:function M6(d){this.a=d}}
 B=c[0]
 C=c[59]
 A=a.updateHolder(c[20],A)
-A.M5.prototype={
+A.M6.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" \u0628\u0647 \u062a\u0645\u0627\u0633 \u067e\u0627\u0633\u062e 
 gfB(){return"\u0647\u0631\u06a9\u0633\u06cc \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u0628\u067e\u06cc\u0648\u0646\u062f\u062f"},
 gfC(){return"\u0628\u0627\u06cc\u06af\u0627\u0646\u06cc"},
 gil(){return"\u0622\u06cc\u0627 \u0645\u0647\u0645\u0627\u0646\u0627\u0646 \u0627\u062c\u0627\u0632\u0647 \u067e\u06cc\u0648\u0633\u062a\u0646 \u062f\u0627\u0631\u0646\u062f\u061f"},
-gdE(){return"\u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f\u061f"},
+gdF(){return"\u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f\u061f"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"\u0645\u0637\u0645\u0626\u0646 \u0647\u0633\u062a\u06cc\u062f \u0645\u06cc\u200c\u062e\u0648\u0627\u0647\u06cc\u062f \u062e\u0627\u0631\u062c \u0634\u0648\u06cc\u062f\u061f"},
 gio(){return"\u0644\u0637\u0641\u0627\u064b \u0639\u0628\u0627\u0631\u062a \u0639\u0628\u0648\u0631 \u06cc\u0627 \u06a9\u0644\u06cc\u062f \u0628\u0627\u0632\u06cc\u0627\u0628\u06cc \u062d\u0627\u0641\u0638\u0647 \u0627\u0645\u0646 \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f \u062a\u0627 \u0634\u062e\u0635 \u062f\u06cc\u06af\u0631\u06cc \u0631\u0627 \u0627\u0645\u0636\u0627 \u06a9\u0646\u06cc\u062f."},
@@ -742,7 +742,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.M5,C.aT)})()
-B.e8(b.typeUniverse,JSON.parse('{"M5":{"aT":[]}}'))};
-(a=>{a["RMHQilXyrBNsDzKoIxRdf7GVguE="]=a.current})($__dart_deferred_initializers__);
+y(A.M6,C.aT)})()
+B.e8(b.typeUniverse,JSON.parse('{"M6":{"aT":[]}}'))};
+(a=>{a["aK76kx7JE5rjcD/4T25JqImnT4s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_310.part.js.map

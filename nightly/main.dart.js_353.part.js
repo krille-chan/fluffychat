@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAG(){return new B.Mp(A.dv("lv"))},
-Mp:function Mp(d){this.a=d}}
+dAQ(){return new B.Mq(A.dv("lv"))},
+Mq:function Mq(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[40],B)
-B.Mp.prototype={
+B.Mq.prototype={
 gpk(){return"Labot att\u0113lu"},
 grf(){return"Pagriezt pa kreisi"},
 grg(){return"Pagriezt pa labi"},
@@ -49,7 +49,7 @@ ik(d){return d+" atbild\u0113ja uz zvanu"},
 gfB(){return"Ikviens var pievienoties"},
 gfC(){return"Arh\u012bvs"},
 gil(){return"Vai vieslietot\u0101ji dr\u012bkst pievienoties?"},
-gdE(){return"Vai tie\u0161\u0101m?"},
+gdF(){return"Vai tie\u0161\u0101m?"},
 gpg(){return"Ir nesaglab\u0101tas izmai\u0146as. Atmest labojumus?"},
 gim(){return"Vai tie\u0161\u0101m atteikties?"},
 gio(){return"Lai var\u0113tu parakst\u012bt otru cilv\u0113ku, l\u016bgums ievad\u012bt savu dro\u0161o kr\u0101tuves paroles v\u0101rdkopu vai atkopes atsl\u0113gu."},
@@ -748,7 +748,7 @@ qA(d){return"Ien\u0101ko\u0161s zvans no "+d},
 pN(d){return"Serveris atbild\u0113ja ar k\u013c\u016bdas zi\u0146ojumu: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mp,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mp":{"aT":[]}}'))};
-(a=>{a["veaDmoykkSxoS93Uw87ukfhT/R8="]=a.current})($__dart_deferred_initializers__);
+y(B.Mq,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mq":{"aT":[]}}'))};
+(a=>{a["8q8kgctAO0OJxMQSmiWiUN+qbmw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_353.part.js.map

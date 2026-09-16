@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAn(){return new B.M6(A.dv("fi"))},
-M6:function M6(d){this.a=d}}
+dAx(){return new B.M7(A.dv("fi"))},
+M7:function M7(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[21],B)
-B.M6.prototype={
+B.M7.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" vastasi puheluun"},
 gfB(){return"Kuka tahansa voi liitty\xe4"},
 gfC(){return"Arkisto"},
 gil(){return"Sallitaanko vieraiden liittyminen"},
-gdE(){return"Oletko varma?"},
+gdF(){return"Oletko varma?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"Haluatko varmasti kirjautua ulos?"},
 gio(){return"Voidaksesi allekirjoittaa toisen henkil\xf6n, sy\xf6t\xe4 turvavaraston salalause tai palautusavain."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.M6,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M6":{"aT":[]}}'))};
-(a=>{a["//q77bU6bJbIQzw/EQ4ZZhFFUks="]=a.current})($__dart_deferred_initializers__);
+y(B.M7,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M7":{"aT":[]}}'))};
+(a=>{a["j3G4sBGTHhrrQ38GisDy/chV/FI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAj(){return new B.M2(A.dv("es"))},
-M2:function M2(d){this.a=d}}
+dAt(){return new B.M3(A.dv("es"))},
+M3:function M3(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[17],B)
-B.M2.prototype={
+B.M3.prototype={
 gpk(){return"Editar imagen"},
 grf(){return"Rotar a la izquierda"},
 grg(){return"Rotar a la derecha"},
@@ -49,7 +49,7 @@ ik(d){return d+" respondi\xf3 a la llamada"},
 gfB(){return"Cualquiera puede unirse"},
 gfC(){return"Archivo"},
 gil(){return"\xbfPueden los usuarios invitados unirse?"},
-gdE(){return"\xbfEst\xe1s seguro?"},
+gdF(){return"\xbfEst\xe1s seguro?"},
 gpg(){return"Tienes cambios sin guardar \xbfQuieres descartarlos?"},
 gim(){return"\xbfConfirma que quiere cerrar sesi\xf3n?"},
 gio(){return"Para poder confirmar a la otra persona, ingrese su contrase\xf1a de almacenamiento segura o la clave de recuperaci\xf3n."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.M2,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M2":{"aT":[]}}'))};
-(a=>{a["d91CvEQHv3+rf5Q+TBTSX11KoRg="]=a.current})($__dart_deferred_initializers__);
+y(B.M3,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M3":{"aT":[]}}'))};
+(a=>{a["MtpZa5NVRN07GQZNg6X+wc60DMk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map

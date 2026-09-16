@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAZ(){return new B.MH(A.dv("uz"))},
-MH:function MH(d){this.a=d}}
+dB8(){return new B.MI(A.dv("uz"))},
+MI:function MI(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[56],B)
-B.MH.prototype={
+B.MI.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" chaqiruvga javob berdi"},
 gfB(){return"Har kim qo\u2018shilishi mumkin"},
 gfC(){return"Arxiv"},
 gil(){return"Mehmon foydalanuvchilarga qo\u2018shilishga ruxsat berilganmi"},
-gdE(){return"Ishonchingiz komilmi?"},
+gdF(){return"Ishonchingiz komilmi?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"Haqiqatan ham hisobingizdan chiqamoqchimisiz?"},
 gio(){return"Narigi foydalanuvchini imzolash uchun xavfsiz do\u2018kon parol iborasi yoki tiklash kalitini kiriting."},
@@ -744,8 +744,8 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MH,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"MH":{"aT":[]}}'))
+x(B.MI,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"MI":{"aT":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["3T616PLardR6xgKKk7Nxa3pru0k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["o0Yi+ReQHqD1N1KEgL1Q8bn1un8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_377.part.js.map

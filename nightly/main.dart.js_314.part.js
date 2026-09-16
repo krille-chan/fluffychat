@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAo(){return new B.M7(A.dv("fil"))},
-M7:function M7(d){this.a=d}}
+dAy(){return new B.M8(A.dv("fil"))},
+M8:function M8(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[22],B)
-B.M7.prototype={
+B.M8.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return"Sinagot ni "+d+" ang tawag"},
 gfB(){return"Pwede sumali ang anumang tao"},
 gfC(){return"Archive"},
 gil(){return"Pwede ba sumali ang mga bisita"},
-gdE(){return"Sigurado ka?"},
+gdF(){return"Sigurado ka?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"Sigurado kang gusto mong mag-log out?"},
 gio(){return"Para i-sign ang isa pang tao, pakilagay ang iyong secure store passphrase o recovery key."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.M7,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M7":{"aT":[]}}'))};
-(a=>{a["T7umr5N9BipLBrnn0yiarHxW3Cs="]=a.current})($__dart_deferred_initializers__);
+y(B.M8,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M8":{"aT":[]}}'))};
+(a=>{a["zbp9hXsJODZBzP6m4wnvQAXtzlA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

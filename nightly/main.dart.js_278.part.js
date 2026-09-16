@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAd(){return new B.LX(A.dv("cs"))},
-LX:function LX(d){this.a=d}}
+dAn(){return new B.LY(A.dv("cs"))},
+LY:function LY(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[11],B)
-B.LX.prototype={
+B.LY.prototype={
 gpk(){return"Upravit obraz"},
 grf(){return"Oto\u010dit doleva"},
 grg(){return"Oto\u010dit doprava"},
@@ -49,7 +49,7 @@ ik(d){return d+" odpov\u011bd\u011bl na hovor"},
 gfB(){return"Kdokoliv se m\u016f\u017ee p\u0159ipojit"},
 gfC(){return"Archivovat"},
 gil(){return"Mohou se p\u0159ipojit host\xe9"},
-gdE(){return"Jste si jist\xfd?"},
+gdF(){return"Jste si jist\xfd?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"Opravdu se chcete odhl\xe1sit?"},
 gio(){return"Pro ov\u011b\u0159en\xed t\xe9to osoby zadejte pros\xedm p\u0159\xedstupovou fr\xe1zi k \u201ebezpe\u010dn\xe9mu \xfalo\u017ei\u0161ti\u201c anebo \u201ekl\xed\u010d pro obnovu\u201c."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.LX,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"LX":{"aT":[]}}'))};
-(a=>{a["ClCbnswxCkGlsYOUi9Cv11FtQaY="]=a.current})($__dart_deferred_initializers__);
+y(B.LY,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"LY":{"aT":[]}}'))};
+(a=>{a["V1xdd4VSCdCqg8LxIFx8YZnn0DM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_278.part.js.map

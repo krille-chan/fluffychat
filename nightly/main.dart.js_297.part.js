@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAg(){return new B.M_(A.dv("el"))},
-M_:function M_(d){this.a=d}}
+dAq(){return new B.M0(A.dv("el"))},
+M0:function M0(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[14],B)
-B.M_.prototype={
+B.M0.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" \u03b1\u03c0\u03ac\u03bd\u03c4\u03b7\u03c3\u03b5 \u03c3\u03c4\u
 gfB(){return"\u039f\u03c0\u03bf\u03b9\u03bf\u03c3\u03b4\u03ae\u03c0\u03bf\u03c4\u03b5 \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03c3\u03c5\u03bc\u03bc\u03b5\u03c4\u03ac\u03c3\u03c7\u03b5\u03b9"},
 gfC(){return"\u0391\u03c1\u03c7\u03b5\u03af\u03bf"},
 gil(){return"\u0395\u03c0\u03b9\u03c4\u03c1\u03ad\u03c0\u03b5\u03c4\u03b1\u03b9 \u03c3\u03c4\u03bf\u03c5\u03c2 \u03b5\u03c0\u03b9\u03c3\u03ba\u03ad\u03c0\u03c4\u03b5\u03c2 \u03c7\u03c1\u03ae\u03c3\u03c4\u03b5\u03c2 \u03bd\u03b1 \u03c3\u03c5\u03bc\u03bc\u03b5\u03c4\u03ac\u03c3\u03c7\u03bf\u03c5\u03bd"},
-gdE(){return"\u03a3\u03af\u03b3\u03bf\u03c5\u03c1\u03b1;"},
+gdF(){return"\u03a3\u03af\u03b3\u03bf\u03c5\u03c1\u03b1;"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"\u03a3\u03af\u03b3\u03bf\u03c5\u03c1\u03b1 \u03b8\u03b5\u03c2 \u03bd\u03b1 \u03b1\u03c0\u03bf\u03c3\u03c5\u03bd\u03b4\u03b5\u03b8\u03b5\u03af\u03c2;"},
 gio(){return"\u0393\u03b9\u03b1 \u03bd\u03b1 \u03bc\u03c0\u03bf\u03c1\u03ad\u03c3\u03b5\u03b9\u03c2 \u03bd\u03b1 \u03c5\u03c0\u03bf\u03b3\u03c1\u03ac\u03c8\u03b5\u03b9\u03c2 \u03c4\u03bf \u03ac\u03bb\u03bb\u03bf \u03ac\u03c4\u03bf\u03bc\u03bf, \u03c0\u03bb\u03b7\u03ba\u03c4\u03c1\u03bf\u03bb\u03cc\u03b3\u03b7\u03c3\u03b5 \u03c4\u03b7 \u03c3\u03c5\u03bd\u03b8\u03b7\u03bc\u03b1\u03c4\u03b9\u03ba\u03ae \u03c6\u03c1\u03ac\u03c3\u03b7 \u03b1\u03c3\u03c6\u03b1\u03bb\u03bf\u03cd\u03c2 \u03b1\u03c0\u03bf\u03b8\u03ae\u03ba\u03b5\u03c5\u03c3\u03b7\u03c2 \u03ae \u03c4\u03bf \u03ba\u03bb\u03b5\u03b9\u03b4\u03af \u03b1\u03bd\u03ac\u03ba\u03c4\u03b7\u03c3\u03b7\u03c2."},
@@ -745,7 +745,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.M_,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M_":{"aT":[]}}'))};
-(a=>{a["OJ/H2BsKpqmrIfx9S9GdLxgdESE="]=a.current})($__dart_deferred_initializers__);
+y(B.M0,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M0":{"aT":[]}}'))};
+(a=>{a["EdQAyW6EPzs4p3EM275NAQVjgF0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

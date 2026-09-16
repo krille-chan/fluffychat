@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAT(){return new B.MB(A.dv("sv"))},
-MB:function MB(d){this.a=d}}
+dB2(){return new B.MC(A.dv("sv"))},
+MC:function MC(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[50],B)
-B.MB.prototype={
+B.MC.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" besvarade samtalet"},
 gfB(){return"Vem som helst kan g\xe5 med"},
 gfC(){return"Arkiv"},
 gil(){return"F\xe5r g\xe4stanv\xe4ndare g\xe5 med?"},
-gdE(){return"\xc4r du s\xe4ker?"},
+gdF(){return"\xc4r du s\xe4ker?"},
 gpg(){return"Du har \xe4ndringar som inte sparats. Kasta bort dina \xe4ndringar?"},
 gim(){return"\xc4r du s\xe4ker p\xe5 att du vill logga ut?"},
 gio(){return"F\xf6r att kunna signera den andra personen, v\xe4nligen ange din l\xf6senfras eller \xe5terst\xe4llningsnyckel f\xf6r s\xe4ker lagring."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MB,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"MB":{"aT":[]}}'))};
-(a=>{a["oUW+PRJQxCDx2D7ef6Tz06QJS4o="]=a.current})($__dart_deferred_initializers__);
+y(B.MC,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"MC":{"aT":[]}}'))};
+(a=>{a["38v3I1zRi8maSpcy5DaLByjMySQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_370.part.js.map

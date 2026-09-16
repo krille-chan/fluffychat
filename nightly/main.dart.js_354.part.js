@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAH(){return new B.Mq(A.dv("nb"))},
-Mq:function Mq(d){this.a=d}}
+dAR(){return new B.Mr(A.dv("nb"))},
+Mr:function Mr(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[41],B)
-B.Mq.prototype={
+B.Mr.prototype={
 gpk(){return"Rediger bilde"},
 grf(){return"Roter til venstre"},
 grg(){return"Roter til h\xf8yre"},
@@ -49,7 +49,7 @@ ik(d){return d+" besvarte anropet"},
 gfB(){return"Hvem som helst kan delta"},
 gfC(){return"Arkiv"},
 gil(){return"Kan gjester bli med?"},
-gdE(){return"Er du sikker?"},
+gdF(){return"Er du sikker?"},
 gpg(){return"Du har endringer som ikke er lagret. Vil du forkaste endringene?"},
 gim(){return"Er du sikker p\xe5 at du vil logge ut?"},
 gio(){return"For \xe5 kunne signere den andre personen, skriv inn ditt sikre lagerpassord eller gjenopprettingsn\xf8kkel."},
@@ -745,7 +745,7 @@ qA(d){return"Innkommende anrop fra "+d},
 pN(d){return"Serveren svarte med en feilmelding: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mq,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mq":{"aT":[]}}'))};
-(a=>{a["9dmSrdWLHOAa2InUi1TBkDH7/yE="]=a.current})($__dart_deferred_initializers__);
+y(B.Mr,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mr":{"aT":[]}}'))};
+(a=>{a["Kn29y9mvcCJkZc7jINbxz4lnvIw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_354.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAO(){return new B.Mw(A.dv("ru"))},
-Mw:function Mw(d){this.a=d}}
+dAY(){return new B.Mx(A.dv("ru"))},
+Mx:function Mx(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[45],B)
-B.Mw.prototype={
+B.Mx.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" \u043e\u0442\u0432\u0435\u0442\u0438\u043b(\u0430) \u043d\u0430
 gfB(){return"\u041a\u0430\u0436\u0434\u044b\u0439 \u043c\u043e\u0436\u0435\u0442 \u043f\u0440\u0438\u0441\u043e\u0435\u0434\u0438\u043d\u0438\u0442\u044c\u0441\u044f"},
 gfC(){return"\u0410\u0440\u0445\u0438\u0432"},
 gil(){return"\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043d\u043e \u043b\u0438 \u0433\u043e\u0441\u0442\u044f\u043c \u043f\u0440\u0438\u0441\u043e\u0435\u0434\u0438\u043d\u044f\u0442\u044c\u0441\u044f?"},
-gdE(){return"\u0412\u044b \u0443\u0432\u0435\u0440\u0435\u043d\u044b?"},
+gdF(){return"\u0412\u044b \u0443\u0432\u0435\u0440\u0435\u043d\u044b?"},
 gpg(){return"\u0423 \u0432\u0430\u0441 \u0435\u0441\u0442\u044c \u043d\u0435 \u0432\u043d\u0435\u0441\u0451\u043d\u043d\u044b\u0435 \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f. \u041e\u0442\u043c\u0435\u043d\u0438\u0442\u044c \u0432\u043d\u0435\u0441\u0451\u043d\u043d\u044b\u0435 \u0438\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u044f?"},
 gim(){return"\u0412\u044b \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u043e \u0445\u043e\u0442\u0438\u0442\u0435 \u0432\u044b\u0439\u0442\u0438?"},
 gio(){return"\u0414\u043b\u044f \u043f\u043e\u0434\u043f\u0438\u0441\u0438 \u043a\u043b\u044e\u0447\u0430 \u0434\u0440\u0443\u0433\u043e\u0433\u043e \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f, \u043f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430, \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u0432\u0430\u0448\u0443 \u043f\u0430\u0440\u043e\u043b\u044c\u043d\u0443\u044e \u0444\u0440\u0430\u0437\u0443 \u0438\u043b\u0438 \u043a\u043b\u044e\u0447 \u0432\u043e\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mw,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mw":{"aT":[]}}'))};
-(a=>{a["Q3kEhRV5k+D5Zj1jG7jS4WoWEuw="]=a.current})($__dart_deferred_initializers__);
+y(B.Mx,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mx":{"aT":[]}}'))};
+(a=>{a["ZErSWGeaxzRcXD3Cw7NbLB22uj8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_361.part.js.map

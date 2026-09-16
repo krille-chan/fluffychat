@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAQ(){return new B.My(A.dv("sl"))},
-My:function My(d){this.a=d}}
+dB_(){return new B.Mz(A.dv("sl"))},
+Mz:function Mz(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[47],B)
-B.My.prototype={
+B.Mz.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return"Oseba "+d+" je odgovorila na klic"},
 gfB(){return"Pridru\u017ei se lahko vsak"},
 gfC(){return"Arhiv"},
 gil(){return"Ali se lahko gostujo\u010di uporabniki pridru\u017eijo"},
-gdE(){return"Ali si prepri\u010dan?"},
+gdF(){return"Ali si prepri\u010dan?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"Ali ste prepri\u010dani, da se \u017eelite odjaviti?"},
 gio(){return"\u010ce \u017eelite podpisati drugo osebo, vnesite geslo za varno trgovino ali obnovitveni klju\u010d."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.My,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"My":{"aT":[]}}'))};
-(a=>{a["b+L/KWEE8p76auHeMDaVq2j9PrI="]=a.current})($__dart_deferred_initializers__);
+y(B.Mz,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Mz":{"aT":[]}}'))};
+(a=>{a["Y+cH3CFGeDOoSIvBRBNufNvk2kc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_366.part.js.map

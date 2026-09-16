@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAt(){return new B.Mc(A.dv("hi"))},
-Mc:function Mc(d){this.a=d}}
+dAD(){return new B.Md(A.dv("hi"))},
+Md:function Md(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[27],B)
-B.Mc.prototype={
+B.Md.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" answered the call"},
 gfB(){return"Anyone can join"},
 gfC(){return"Archive"},
 gil(){return"Are guest users allowed to join?"},
-gdE(){return"Are you sure?"},
+gdF(){return"Are you sure?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"Are you sure you want to log out?"},
 gio(){return"To be able to sign the other person, please enter your secure store passphrase or recovery key."},
@@ -745,7 +745,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mc,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"Mc":{"aT":[]}}'))};
-(a=>{a["YCSj02RzfDDmu3426Pxx5wZvuaE="]=a.current})($__dart_deferred_initializers__);
+y(B.Md,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"Md":{"aT":[]}}'))};
+(a=>{a["wqqSHDzLGfxzBk8tdVDAH67TOwQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_325.part.js.map

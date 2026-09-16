@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAi(){return new B.M1(A.dv("eo"))},
-M1:function M1(d){this.a=d}}
+dAs(){return new B.M2(A.dv("eo"))},
+M2:function M2(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[16],B)
-B.M1.prototype={
+B.M2.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" respondis la vokon"},
 gfB(){return"\u0108iu ajn povas ali\u011di"},
 gfC(){return"Ar\u0125ivo"},
 gil(){return"\u0108u gastoj rajtas ali\u011di"},
-gdE(){return"\u0108u vi certas?"},
+gdF(){return"\u0108u vi certas?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"\u0108u vi certe volas adia\u016di?"},
 gio(){return"Por ke vi povu kontroli (subskribi) la alian personon, bonvolu enigi pasfrazon de via sekreta deponejo a\u016d vian rehavan \u015dlosilon."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.M1,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"M1":{"aT":[]}}'))};
-(a=>{a["VSCCjqQKDxdLItISN0kBBCAqrMc="]=a.current})($__dart_deferred_initializers__);
+y(B.M2,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"M2":{"aT":[]}}'))};
+(a=>{a["0kt04Fc2Of/ggsS6M2NUi/C2DWI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

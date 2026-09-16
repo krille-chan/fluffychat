@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAc(){return new B.LW(A.dv("ca"))},
-LW:function LW(d){this.a=d}}
+dAm(){return new B.LX(A.dv("ca"))},
+LX:function LX(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[10],B)
-B.LW.prototype={
+B.LX.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" ha respost a la trucada"},
 gfB(){return"Qualsevol pot unir-se"},
 gfC(){return"Arxiu"},
 gil(){return"Es pot entrar al xat com a convidadi?"},
-gdE(){return"N\u2019esteu seguri?"},
+gdF(){return"N\u2019esteu seguri?"},
 gpg(){return"You have unsaved changes. Discard your edits?"},
 gim(){return"Segur que voleu finalitzar la sessi\xf3?"},
 gio(){return"Per a poder donar acc\xe9s a l\u2019altra persona, introdu\xefu la frase de seguretat o clau de recuperaci\xf3."},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.LW,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"LW":{"aT":[]}}'))};
-(a=>{a["+oaz4d1kO/7+Kw6178m4GDvAJg8="]=a.current})($__dart_deferred_initializers__);
+y(B.LX,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"LX":{"aT":[]}}'))};
+(a=>{a["RkEBBZcnE/6iz1+FNQg1otKltFI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_268.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dAY(){return new B.MG(A.dv("uk"))},
-MG:function MG(d){this.a=d}}
+dB7(){return new B.MH(A.dv("uk"))},
+MH:function MH(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[55],B)
-B.MG.prototype={
+B.MH.prototype={
 gpk(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -49,7 +49,7 @@ ik(d){return d+" \u0432\u0456\u0434\u043f\u043e\u0432\u0456\u0434\u0430\u0454 \u
 gfB(){return"\u0411\u0443\u0434\u044c-\u0445\u0442\u043e \u043c\u043e\u0436\u0435 \u043f\u0440\u0438\u0454\u0434\u043d\u0430\u0442\u0438\u0441\u044c"},
 gfC(){return"\u0410\u0440\u0445\u0456\u0432"},
 gil(){return"\u0427\u0438 \u0434\u043e\u0437\u0432\u043e\u043b\u0435\u043d\u043e \u0433\u043e\u0441\u0442\u044f\u043c \u043f\u0440\u0438\u0454\u0434\u043d\u0443\u0432\u0430\u0442\u0438\u0441\u044c?"},
-gdE(){return"\u0412\u0438 \u0432\u043f\u0435\u0432\u043d\u0435\u043d\u0456?"},
+gdF(){return"\u0412\u0438 \u0432\u043f\u0435\u0432\u043d\u0435\u043d\u0456?"},
 gpg(){return"\u0423 \u0432\u0430\u0441 \u0454 \u043d\u0435\u0437\u0431\u0435\u0440\u0435\u0436\u0435\u043d\u0456 \u0437\u043c\u0456\u043d\u0438. \u0412\u0456\u0434\u0445\u0438\u043b\u0438\u0442\u0438?"},
 gim(){return"\u0412\u0438 \u0432\u043f\u0435\u0432\u043d\u0435\u043d\u0456, \u0449\u043e \u0445\u043e\u0447\u0435\u0442\u0435 \u0432\u0438\u0439\u0442\u0438?"},
 gio(){return"\u0414\u043b\u044f \u043f\u0456\u0434\u043f\u0438\u0441\u0443 \u043a\u043b\u044e\u0447\u0430 \u0456\u043d\u0448\u043e\u0433\u043e \u043a\u043e\u0440\u0438\u0441\u0442\u0443\u0432\u0430\u0447\u0430 \u0432\u0432\u0435\u0434\u0456\u0442\u044c \u0441\u0432\u043e\u044e \u043f\u0430\u0440\u043e\u043b\u044c\u043d\u0443 \u0444\u0440\u0430\u0437\u0443 \u0430\u0431\u043e \u043a\u043b\u044e\u0447 \u0432\u0456\u0434\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u044f."},
@@ -745,7 +745,7 @@ qA(d){return"Incoming call from "+d},
 pN(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MG,C.aT)})()
-A.e8(b.typeUniverse,JSON.parse('{"MG":{"aT":[]}}'))};
-(a=>{a["zuUQTDv47pv3ycFY+/ebjmnjDhU="]=a.current})($__dart_deferred_initializers__);
+y(B.MH,C.aT)})()
+A.e8(b.typeUniverse,JSON.parse('{"MH":{"aT":[]}}'))};
+(a=>{a["II2Y9UcjqpY+Xl/fH4J2MQ6gziU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_376.part.js.map
