@@ -741,12 +741,12 @@ gq2(){return"Bildschirm nicht mehr teilen"},
 gr3(){return"Hand heben"},
 gq1(){return"Hand senken"},
 rl(d){return"Ungl\xfccklicherweise ist ein unerwarteter Fehler aufgetreten: "+d},
-qA(d){return"Incoming call from "+d},
-pN(d){return"The server has replied with an error message: "+d},
+qA(d){return"Eingehender Anruf von "+d},
+pN(d){return"Der Server hat mit einer Fehlermeldung geantwortet: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.M_,C.aT)})()
 A.e8(b.typeUniverse,JSON.parse('{"M_":{"aT":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["kRP4DwqU9TBUQ4iCB+Mu8s4Eff4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jhVBfKUQ+ioaFnMpFoAfRKxPUZ4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_291.part.js.map
