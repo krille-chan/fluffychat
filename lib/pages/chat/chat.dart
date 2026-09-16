@@ -615,10 +615,12 @@ class ChatController extends State<ChatPageWithRoom>
 
     final setOnLatestEvent = eventId == null;
     // Pick the newest message-type event, independent of push rules.
-    // The pushruleEvaluator only knows account-data rules (the SDK's
-    // PushRuleSet drops the server's default rules and defaults to
-    // notify=false), so plain messages in rooms without custom push rules
-    // never matched and the read marker was silently skipped.
+    // The read marker means "read up to here", so it must not depend on
+    // notification rules. pushruleEvaluator.match(event).notify only
+    // reflects the account's *enabled* push rules, so on an account whose
+    // Message/Encrypted rules are disabled (a mentions-only setup) no
+    // enabled rule matches a plain message, the marker was silently
+    // skipped, and the room stayed unread.
     // See: https://github.com/krille-chan/fluffychat/issues/3425
     eventId ??= timeline.events
         .firstWhereOrNull(
