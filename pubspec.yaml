@@ -35,7 +35,7 @@ dependencies:
   flutter_callkit_incoming: ^3.1.5
   flutter_foreground_task: ^11.0.3
   flutter_linkify: ^6.0.0
-  flutter_local_notifications: ^22.3.0
+  flutter_local_notifications: ^22.3.1
   flutter_localizations:
     sdk: flutter
   flutter_map: ^8.3.2
