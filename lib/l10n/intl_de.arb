@@ -2824,5 +2824,21 @@
             }
         }
     },
-    "preferSpeaker": "Lautsprecher bevorzugen"
+    "preferSpeaker": "Lautsprecher bevorzugen",
+    "incomingCallFrom": "Eingehender Anruf von {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "serverRespondedWithError": "Der Server hat mit einer Fehlermeldung geantwortet: {error}",
+    "@serverRespondedWithError": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    }
 }
