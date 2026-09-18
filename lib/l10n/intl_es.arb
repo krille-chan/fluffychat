@@ -2610,5 +2610,60 @@
         }
     },
     "compressingVideo": "Comprimiendo video...",
-    "deviceIdentityKey": "Dispositivo de llave de identidad"
+    "deviceIdentityKey": "Dispositivo de llave de identidad",
+    "accountsAndSettings": "Cuentas y ajustes",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapEmptyDevicesDescription": "Por favor ingresa tu código frase o llave de recuperación para verificar este dispositivo y obtener acceso a tu respaldo de mensajes encriptados.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Por favor elige uno de tus otros dispositivos, para verificar esta sesión:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Resetear cuenta",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Restaurar Identidad Crypto",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Resetear Identidad Crypto",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Setear Identidad Crypto",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Esperando por las llaves... Por favor ten tu otro dispositivo activo.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "No se obtuvieron llaves. Por favor intente de nuevo.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Desbloquear",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Abrir archivo",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    }
 }
