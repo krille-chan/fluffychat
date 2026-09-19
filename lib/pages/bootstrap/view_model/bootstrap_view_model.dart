@@ -149,16 +149,27 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
     value.isLoading = true;
     notifyListeners();
     try {
-      value.recoveryKey = await client.initCryptoIdentity(
-        passphrase: passphrase,
-        wipeCrossSigning: !reset,
-        wipeKeyBackup: !reset,
-        wipeSecureStorage: !reset,
-        setupOnlineKeyBackup: !reset,
-        setupMasterKey: !reset,
-        setupSelfSigningKey: !reset,
-        setupUserSigningKey: !reset,
-      );
+      if (reset) {
+        final ssss = client.encryption!.ssss;
+        final newKey = await ssss.createKey(passphrase);
+
+        for (final type in cacheTypes) {
+          final secret = await ssss.getCached(type);
+          if (secret == null) {
+            throw Exception(
+              'Migration failed! Missing secret in cache "$type"',
+            );
+          }
+          await newKey.store(type, secret, add: true);
+        }
+        await ssss.setDefaultKeyId(newKey.keyId);
+        await client.dehydratedDeviceSetup(newKey);
+        value.recoveryKey = newKey.recoveryKey;
+      } else {
+        value.recoveryKey = await client.initCryptoIdentity(
+          passphrase: passphrase,
+        );
+      }
     } catch (e, s) {
       if (!context.mounted) return;
       ErrorReporter(
@@ -195,7 +206,7 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
     value.isLoading = true;
     notifyListeners();
     try {
-      await client.restoreCryptoIdentity(key);
+      await client.restoreCryptoIdentity(key, selfSign: false);
       value.isLoading = false;
       value.cryptoIdentityState = await client.getCryptoIdentityState();
       notifyListeners();
