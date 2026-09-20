@@ -26,14 +26,26 @@ jobs:
       - run: flutter pub get
       - name: Build Release Web
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/nightly/"
-      - run: mv build/web/ public
+      - name: Clone fluffychat website
+        run: git clone https://github.com/krille-chan/fluffychat-website.git
+      - name: Build website
+        working-directory: fluffychat-website
+        run: |
+          npm ci
+          npm run build
+          mv out ../public
+      - name: Copy FluffyChat web into it
+        run: |
+          mkdir public/nightly
+          cp -r build/web/* public/nightly/
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
-          destination_dir: nightly
+          cname: fluffychat.im
+          keep_files: true
 
   deploy_playstore_internal:
     runs-on: ubuntu-latest
