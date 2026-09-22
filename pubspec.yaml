@@ -89,7 +89,6 @@ dependencies:
   share_plus: ^13.3.0
   shared_preferences: ^2.5.5 # Pinned because https://github.com/flutter/flutter/issues/118401
   slugify: ^2.0.0
-  sqflite_common: ^2.5.13
   sqflite_common_ffi: ^2.4.3
   swipe_to_action: ^0.3.0
   unifiedpush: ^6.2.0
