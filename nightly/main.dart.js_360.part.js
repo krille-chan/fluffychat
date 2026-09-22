@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBH(){return new B.My(A.dv("nl"))},
+dBK(){return new B.My(A.dv("nl"))},
 My:function My(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -747,5 +747,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.My,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"My":{"aT":[]}}'))};
-(a=>{a["MkZpgukyRulzXp+sHzHL2I3uH6g="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["w10F1x9TV9t0/+BvR026/wAjnCY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map
