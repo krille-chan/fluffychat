@@ -2815,5 +2815,6 @@
         "placeholders": {
             "error": {"type": "String"}
         }
-    }
+    },
+    "sharedLocation": "Shared location"
 }
