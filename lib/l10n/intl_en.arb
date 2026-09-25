@@ -2815,5 +2815,7 @@
         "placeholders": {
             "error": {"type": "String"}
         }
-    }
+    },
+    "myLocation": "My location",
+    "moveMapToChooseLocation": "Move the map to choose a location"
 }
