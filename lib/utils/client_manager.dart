@@ -11,6 +11,7 @@ import 'package:fluffychat/utils/custom_http_client.dart';
 import 'package:fluffychat/utils/custom_image_resizer.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call_member.dart';
+import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -164,9 +165,12 @@ abstract class ClientManager {
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
     await flutterLocalNotificationsPlugin.initialize(
-      settings: const InitializationSettings(
-        android: AndroidInitializationSettings('notifications_icon'),
-        iOS: DarwinInitializationSettings(),
+      settings: InitializationSettings(
+        android: const AndroidInitializationSettings('notifications_icon'),
+        iOS: const DarwinInitializationSettings(),
+        linux: LinuxInitializationSettings(
+          defaultActionName: FluffyChatNotificationActions.open.name,
+        ),
       ),
     );
 
