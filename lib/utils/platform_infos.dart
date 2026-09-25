@@ -45,6 +45,8 @@ abstract class PlatformInfos {
 
   static bool get supportsAppLock => (isMobile || isMacOS);
 
+  static bool get supportsCopyImageToClipboard => (isDesktop || isWeb);
+
   static String get appDisplayName =>
       '${AppSettings.applicationName.value} ${isWeb ? 'web' : Platform.operatingSystem}${kReleaseMode ? '' : 'Debug'}';
 
