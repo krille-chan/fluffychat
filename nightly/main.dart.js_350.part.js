@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBD(){return new B.Mr(A.dv("ka"))},
-Mr:function Mr(d){this.a=d}}
+dBD(){return new B.Mq(A.dv("ka"))},
+Mq:function Mq(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[35],B)
-B.Mr.prototype={
+B.Mq.prototype={
 gpl(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -744,7 +744,7 @@ qA(d){return"Incoming call from "+d},
 pO(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mr,C.aT)})()
-A.e9(b.typeUniverse,JSON.parse('{"Mr":{"aT":[]}}'))};
-(a=>{a["RSqpQjEHX0bjhWTuF3DMFB6dUJE="]=a.current})($__dart_deferred_initializers__);
+y(B.Mq,C.aT)})()
+A.e9(b.typeUniverse,JSON.parse('{"Mq":{"aT":[]}}'))};
+(a=>{a["v9D+znv2yTqHB5bjb2EORyAh5Bc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_350.part.js.map

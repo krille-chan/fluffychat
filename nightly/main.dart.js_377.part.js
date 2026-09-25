@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBZ(){return new B.MM(A.dv("tr"))},
-MM:function MM(d){this.a=d}}
+dBZ(){return new B.ML(A.dv("tr"))},
+ML:function ML(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[54],B)
-B.MM.prototype={
+B.ML.prototype={
 gpl(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -744,8 +744,8 @@ qA(d){return"Incoming call from "+d},
 pO(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MM,C.aT)})()
-A.e9(b.typeUniverse,JSON.parse('{"MM":{"aT":[]}}'))
+x(B.ML,C.aT)})()
+A.e9(b.typeUniverse,JSON.parse('{"ML":{"aT":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["GXj/Ho70oRPIIQVKIX/w97Su+Nc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PzE0+kghkY/tirtmen7lBcXFs28="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_377.part.js.map

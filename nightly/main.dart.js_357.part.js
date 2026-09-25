@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBJ(){return new B.Mx(A.dv("nb"))},
-Mx:function Mx(d){this.a=d}}
+dBJ(){return new B.Mw(A.dv("nb"))},
+Mw:function Mw(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[41],B)
-B.Mx.prototype={
+B.Mw.prototype={
 gpl(){return"Rediger bilde"},
 grf(){return"Roter til venstre"},
 grg(){return"Roter til h\xf8yre"},
@@ -745,7 +745,7 @@ qA(d){return"Innkommende anrop fra "+d},
 pO(d){return"Serveren svarte med en feilmelding: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mx,C.aT)})()
-A.e9(b.typeUniverse,JSON.parse('{"Mx":{"aT":[]}}'))};
-(a=>{a["KOCN27+AtQ8gpb0WITYVN2dM4dA="]=a.current})($__dart_deferred_initializers__);
+y(B.Mw,C.aT)})()
+A.e9(b.typeUniverse,JSON.parse('{"Mw":{"aT":[]}}'))};
+(a=>{a["vHiqdEzvRLB1SJa1Pwoy5Hhzn3k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_357.part.js.map

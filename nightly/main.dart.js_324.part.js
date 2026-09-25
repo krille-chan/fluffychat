@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBt(){return new B.Mh(A.dv("gl"))},
-Mh:function Mh(d){this.a=d}}
+dBt(){return new B.Mg(A.dv("gl"))},
+Mg:function Mg(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[25],B)
-B.Mh.prototype={
+B.Mg.prototype={
 gpl(){return"Editar imaxe"},
 grf(){return"Rotar \xe1 esquerda"},
 grg(){return"Rotar \xe1 dereita"},
@@ -744,7 +744,7 @@ qA(d){return"Recibindo unha chamada de "+d},
 pO(d){return"O servidor respondeu cunha mensaxe de erro: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mh,C.aT)})()
-A.e9(b.typeUniverse,JSON.parse('{"Mh":{"aT":[]}}'))};
-(a=>{a["Bks649/IKHQfM8rm/dmG4slR7wU="]=a.current})($__dart_deferred_initializers__);
+y(B.Mg,C.aT)})()
+A.e9(b.typeUniverse,JSON.parse('{"Mg":{"aT":[]}}'))};
+(a=>{a["Qv7EqlWfyOesAV5evNEd+ItsERM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_324.part.js.map
