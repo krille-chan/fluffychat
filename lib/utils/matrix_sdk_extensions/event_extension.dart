@@ -28,6 +28,13 @@ extension LocalizedBody on Event {
         },
       );
 
+  Future<void> copyImageToClipboard(BuildContext context) async {
+    final matrixFile = await _getFile(context);
+    if (!context.mounted) return;
+
+    matrixFile.result?.copyImageToClipboard(context);
+  }
+
   Future<void> saveFile(BuildContext context) async {
     final matrixFile = await _getFile(context);
     if (!context.mounted) return;

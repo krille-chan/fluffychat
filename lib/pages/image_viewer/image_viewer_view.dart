@@ -51,6 +51,14 @@ class ImageViewerView extends StatelessWidget {
             const SizedBox(width: 8),
             IconButton(
               style: iconButtonStyle,
+              icon: const Icon(Icons.copy_outlined),
+              onPressed: () => controller.copyToClipboardAction(context),
+              color: Colors.white,
+              tooltip: L10n.of(context).copyToClipboard,
+            ),
+            const SizedBox(width: 8),
+            IconButton(
+              style: iconButtonStyle,
               icon: const Icon(Icons.download_outlined),
               onPressed: () => controller.saveFileAction(context),
               color: Colors.white,
