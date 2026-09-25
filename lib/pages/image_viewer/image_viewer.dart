@@ -107,6 +107,10 @@ class ImageViewerController extends State<ImageViewer> {
   /// Save this file with a system call.
   void saveFileAction(BuildContext context) => currentEvent.saveFile(context);
 
+  /// Copy the image to the system clipboard.
+  void copyToClipboardAction(BuildContext context) =>
+      currentEvent.copyImageToClipboard(context);
+
   /// Save this file with a system call.
   void shareFileAction(BuildContext context) => currentEvent.shareFile(context);
 
