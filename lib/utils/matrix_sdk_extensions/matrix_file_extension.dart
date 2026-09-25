@@ -23,7 +23,8 @@ extension MatrixFileExtension on MatrixFile {
     if (PlatformInfos.isDesktop) {
       // Pasteboard.writeImage is unsupported on desktop
       final tempDir = await getTemporaryDirectory();
-      final path = path_lib.join(tempDir.path, name);
+      final tempName = name != '' ? name : 'tmpimage';
+      final path = path_lib.join(tempDir.path, tempName);
       final file = File(path);
       await file.writeAsBytes(bytes);
 
