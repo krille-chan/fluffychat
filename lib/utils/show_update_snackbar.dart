@@ -27,11 +27,31 @@ abstract class UpdateNotifier {
           barrierDismissible: true,
           context: context,
           builder: (context) => AlertDialog.adaptive(
-            title: Text(
-              l10n.updateInstalled(currentVersion),
-              style: TextStyle(fontWeight: FontWeight.bold),
+            title: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 256),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                child: Image.asset('assets/logo/mini/banner.png'),
+              ),
             ),
-            content: Text(l10n.possibleByYou),
+            content: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 256),
+              child: Column(
+                mainAxisSize: .min,
+                spacing: 16,
+                children: [
+                  Text(
+                    l10n.updateInstalled(currentVersion),
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Text(
+                    l10n.possibleByYou,
+                    textAlign: .center,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ],
+              ),
+            ),
             actions: [
               AdaptiveDialogAction(
                 bigButtons: true,
