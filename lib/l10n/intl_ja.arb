@@ -2238,5 +2238,9 @@
     },
     "compressingVideo": "動画を圧縮しています...",
     "newSpaceDescription": "スペースを使えば、チャットを集約し、プライベートまたはパブリックなコミュニティを作成できます。",
-    "report": "レポート"
+    "report": "レポート",
+    "signIn": "ログイン",
+    "createNewAccount": "アカウントを作成",
+    "signUpGreeting": "FluffyChatは分散型です！アカウントを作成したいサーバーを選択して、さあ始めましょう！",
+    "sendReadReceipts": "既読通知を送信"
 }
