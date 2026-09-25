@@ -49,7 +49,7 @@ SPDX-License-Identifier = "Apache-2.0"
 # App Logo
 [[annotations]]
 path = [
-    "assets/logo/**",
+    "assets/logo/*/logo**",
     "android/app/src/main/res/mipmap**/**",
     "ios/Runner/Assets.xcassets/AppIcon.appiconset/**",
     "macos/Runner/Assets.xcassets/AppIcon.appiconset/**",
@@ -61,3 +61,13 @@ path = [
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2017-Present Fabiyamada"
 SPDX-License-Identifier = "CC-BY-4.0"
+
+# Artwork
+[[annotations]]
+path = [
+    "assets/logo/*/mascot.**",
+    "assets/logo/*/banner.**",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026-Present Christian Kußowski"
+SPDX-License-Identifier = "LicenseRef-All-Rights-Reserved"
