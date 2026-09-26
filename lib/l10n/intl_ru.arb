@@ -489,7 +489,7 @@
             }
         }
     },
-    "countParticipants": "{count} участника(ов)",
+    "countParticipants": "{count, plural, =1{1 участник} other{{count} участники}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -2686,5 +2686,150 @@
         "type": "String",
         "placeholders": {}
     },
-    "messageNotDecryptable": "Не удалось расшифровать сообщение"
+    "messageNotDecryptable": "Не удалось расшифровать сообщение",
+    "editImage": "Изменить Изображение",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Повернуть Влево",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Повернуть Вправо",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Отзеркалить",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Сохранить",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Нарисовать",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Отменить",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Очистить",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Стёрка",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Обрезать",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "accountsAndSettings": "Аккаунты и Настройки",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendingFilesDoNotExit": "Посылает {count}файлы... Пожалуйста не выходите!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Сжимаю видео...",
+    "resetRecoveryKey": "Сбросить ключ восстановления",
+    "pleaseEnter6Digits": "Пожалуйста введите 6 цифра для включения функции блокировки приложения.",
+    "disableAppLock": "Выключить блокировку приложения",
+    "disableAppLockAreYouSure": "Вы уверены, что хотите выключить функцию блокировки приложения?",
+    "enableBiometrics": "Включить биометрическую аутентификацию",
+    "disableBiometrics": "Выключить биометрическую аутентификацию",
+    "biometricsDescription": "С биометрической аутентификацией, Вы можете разблокировать приложение снимком лица или отпечатком пальца. Возможности отличаются в зависимости от устройства.",
+    "useAppLock": "Использовать блокировку приложения",
+    "unlockWithBiometrics": "Разблокировать с биометрической аутентификацией",
+    "resetPin": "Сбросить пин-код",
+    "forwardCountMessages": "Переслать {count, plural, =1{одно сообщение} other{{count} сообщений}}?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "loadingMessages": "Загружаю сообщения...",
+    "buildDoesNotSupportFirebase": "Данная сборка не поддерживает Firebase Cloud Messaging.",
+    "unableToRegisterDeviceForFirebase": "Не удалось зарегистрировать устройство для системы обмена сообщениями Firebase Cloud Messaging.",
+    "doubleTapToReact": "Двойное касание для реакции",
+    "doubleTapToReactDescription": "Для реакции на сообщение дважды коснитесь его, вместо того чтобы выделять текст",
+    "doubleTapReaction": "Двойное касание реакции",
+    "shareCrashReports": "Делиться отчетами о сбоях",
+    "shareCrashReportsDescription": "Автоматически отправлять отчеты о сбоях разработчикам?",
+    "countActiveCallMembers": "{count} активные участники звонка",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Войти в звонок",
+    "videoCallsBetaWarning": "Видеозвонки — это бета-версия функции. Возможны ошибки или неожиданное поведение. Мы будем рады услышать ваши отзывы.",
+    "noDevicesFound": "Устройства не найдены",
+    "incomingCall": "Входящий звонок",
+    "videoCall": "Видео звонок",
+    "voiceCall": "Голосовой вызов",
+    "missedCall": "Пропущенный вызов",
+    "callBack": "Обратный звонок",
+    "hangUp": "Отключиться",
+    "waitingForParticipant": "Ждем участников...",
+    "decline": "Отбой",
+    "startCall": "Начать звонок",
+    "selectCamera": "Выбрать камеру",
+    "selectMicrophone": "Выбрать микрофон",
+    "selectSpeaker": "Выбрать устройство воспроизведения",
+    "toggleMicrophone": "Включить микрофон",
+    "toggleCamera": "Включить камеру",
+    "startScreensharing": "Включить показ экрана",
+    "stopScreensharing": "Остановить показ экрана",
+    "raiseHand": "Поднять руку",
+    "stopRaiseHand": "Положить руку",
+    "preferSpeaker": "Предпочитаемый спикер",
+    "unexpectedErrorOccurded": "К сожалению, произошла непредвиденная ошибка: {msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    },
+    "incomingCallFrom": "Входящий звонок от {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "serverRespondedWithError": "Сервер ответил сообщением об ошибке:{error}",
+    "@serverRespondedWithError": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    }
 }
