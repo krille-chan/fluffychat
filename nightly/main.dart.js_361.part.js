@@ -742,10 +742,10 @@ gr3(){return"Hand opsteken"},
 gq2(){return"Hand omlaag"},
 rl(d){return"Helaas is er een onverwachte fout opgetreden: "+d},
 qA(d){return"Inkomende oproep van "+d},
-pO(d){return"The server has replied with an error message: "+d},
+pO(d){return"De server heeft met een foute boodschap geantwoord: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mx,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mx":{"aT":[]}}'))};
-(a=>{a["f5Q48t7JjOOTZWk36+rJHxV7BPI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3FjMfWuclriOA5PlhYoH0VZkK0s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_361.part.js.map
