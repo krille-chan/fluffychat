@@ -649,7 +649,7 @@ class ChatController extends State<ChatPageWithRoom>
           eventId: eventId,
           public: AppSettings.sendPublicReadReceipts.value,
         )
-        .then((_) {
+        .whenComplete(() {
           _setReadMarkerFuture = null;
         });
   }
