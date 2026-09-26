@@ -434,6 +434,7 @@ class ChatListController extends State<ChatList>
         ).store.getString(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush(context);
         UpdateNotifier.showUpdateDialog(context);
+        UpdateNotifier.showUpdateAvailableBanner(context);
       }
 
       // Workaround for system UI overlay style not applied on app start

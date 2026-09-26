@@ -164,6 +164,26 @@ jobs:
       - run: flutter pub get
       - run: flutter build macos --debug
 
+  build_debug_windows:
+    needs: [ code_tests ]
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .tool_versions.yaml
+          cache: true
+      - uses: dtolnay/rust-toolchain@stable
+      - run: choco install innosetup -y
+      - run: flutter pub get
+      - run: flutter build windows --debug
+      - run: ./scripts/package-windows.ps1 -BuildMode Debug
+      - name: Upload Debug Installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: debug-windows-x64-setup
+          path: build/windows/installer/fluffychat-windows-x64-setup.exe
+
   integration_test:
     runs-on: ubuntu-latest
     timeout-minutes: 60

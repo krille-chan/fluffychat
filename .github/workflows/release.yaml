@@ -158,6 +158,38 @@ jobs:
           snap: ${{ steps.build.outputs.snap }}
           release: ${{ steps.channel.outputs.channel }}
 
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .tool_versions.yaml
+          cache: true
+      - uses: dtolnay/rust-toolchain@stable
+      - run: choco install innosetup -y
+      - run: flutter pub get
+      - run: flutter build windows --release
+      - run: ./scripts/package-windows.ps1 -BuildMode Release
+      - name: Upload installer to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/windows/installer/fluffychat-windows-x64-setup.exe
+          asset_name: fluffychat-windows-x64-setup.exe
+          asset_content_type: application/vnd.microsoft.portable-executable
+      - name: Upload portable archive to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/windows/installer/fluffychat-windows-x64.zip
+          asset_name: fluffychat-windows-x64.zip
+          asset_content_type: application/zip
+
   deploy_playstore:
     runs-on: ubuntu-latest
     concurrency:

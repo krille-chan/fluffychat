@@ -2306,6 +2306,16 @@
         }
     },
     "changelog": "Changelog",
+    "updateAvailable": "Update {version} available",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Download",
     "sendCanceled": "Sending canceled",
     "loginWithMatrixId": "Login with Matrix-ID",
     "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",

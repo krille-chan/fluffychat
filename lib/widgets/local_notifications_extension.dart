@@ -130,6 +130,10 @@ extension LocalNotificationsExtension on MatrixState {
             _ => [],
           },
         ),
+        windows: WindowsNotificationDetails(timestamp: event.originServerTs),
+        macOS: DarwinNotificationDetails(
+          threadIdentifier: '${client.clientName}_${event.room.id}',
+        ),
       ),
       payload: FluffyChatPushPayload(
         client.clientName,

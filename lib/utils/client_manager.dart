@@ -156,6 +156,13 @@ abstract class ClientManager {
     );
   }
 
+  static WindowsInitializationSettings get windowsNotificationSettings =>
+      WindowsInitializationSettings(
+        appName: AppSettings.applicationName.value,
+        appUserModelId: AppConfig.appId,
+        guid: AppConfig.windowsNotificationGuid,
+      );
+
   static Future<void> sendInitNotification(String title, String body) async {
     if (kIsWeb) {
       html.Notification(title, body: body);
@@ -171,6 +178,8 @@ abstract class ClientManager {
         linux: LinuxInitializationSettings(
           defaultActionName: FluffyChatNotificationActions.open.name,
         ),
+        windows: windowsNotificationSettings,
+        macOS: const DarwinInitializationSettings(),
       ),
     );
 
