@@ -2823,5 +2823,13 @@
                 "type": "String"
             }
         }
+    },
+    "serverRespondedWithError": "De server heeft met een foute boodschap geantwoord: {error}",
+    "@serverRespondedWithError": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
     }
 }
