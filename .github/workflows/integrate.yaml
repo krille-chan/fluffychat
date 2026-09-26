@@ -136,11 +136,33 @@ jobs:
           cache: true
       - name: Use specific XCode version
         run: sudo xcode-select --switch /Applications/Xcode_26.3.app
-      - run: brew install sqlcipher
       - uses: dtolnay/rust-toolchain@stable
       - run: ./scripts/add-firebase-messaging.sh
       - run: flutter pub get
       - run: flutter build ios --no-codesign
+
+  build_debug_macos:
+    needs: [ code_tests ]
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .tool_versions.yaml
+          cache: true
+      - name: Use specific XCode version
+        run: sudo xcode-select --switch /Applications/Xcode_26.3.app
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Use ad-hoc code signing
+        run: |
+          sed -i '' \
+            -e 's/CODE_SIGN_IDENTITY = "Apple Development";/CODE_SIGN_IDENTITY = "-";/' \
+            -e 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/' \
+            -e 's/DEVELOPMENT_TEAM = [A-Z0-9]*;/DEVELOPMENT_TEAM = "";/' \
+            macos/Runner.xcodeproj/project.pbxproj
+          /usr/libexec/PlistBuddy -c "Delete :keychain-access-groups" macos/Runner/DebugProfile.entitlements
+      - run: flutter pub get
+      - run: flutter build macos --debug
 
   integration_test:
     runs-on: ubuntu-latest
