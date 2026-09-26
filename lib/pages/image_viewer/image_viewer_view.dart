@@ -49,15 +49,6 @@ class ImageViewerView extends StatelessWidget {
               tooltip: L10n.of(context).share,
             ),
             const SizedBox(width: 8),
-            if (PlatformInfos.supportsCopyImageToClipboard)
-              IconButton(
-                style: iconButtonStyle,
-                icon: const Icon(Icons.copy_outlined),
-                onPressed: () => controller.copyToClipboardAction(context),
-                color: Colors.white,
-                tooltip: L10n.of(context).copyToClipboard,
-              ),
-            const SizedBox(width: 8),
             IconButton(
               style: iconButtonStyle,
               icon: const Icon(Icons.download_outlined),
