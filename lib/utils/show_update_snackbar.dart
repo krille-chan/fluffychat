@@ -23,14 +23,14 @@ abstract class UpdateNotifier {
 
     if (currentVersion != storedVersion) {
       if (storedVersion != null) {
-        showAdaptiveDialog(
+        showDialog(
           barrierDismissible: true,
           context: context,
-          builder: (context) => AlertDialog.adaptive(
+          builder: (context) => AlertDialog(
             title: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 256),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
                 child: Image.asset('assets/logo/mini/banner.png'),
               ),
             ),
@@ -55,6 +55,7 @@ abstract class UpdateNotifier {
             actions: [
               AdaptiveDialogAction(
                 bigButtons: true,
+                targetPlatform: TargetPlatform.android,
                 onPressed: () => launchUrlString(AppConfig.helpUrl),
                 child: Row(
                   mainAxisSize: .min,
@@ -75,11 +76,13 @@ abstract class UpdateNotifier {
               ),
               AdaptiveDialogAction(
                 bigButtons: true,
+                targetPlatform: TargetPlatform.android,
                 onPressed: () => launchUrlString(AppConfig.changelogUrl),
                 child: Text(l10n.changelog),
               ),
               AdaptiveDialogAction(
                 bigButtons: true,
+                targetPlatform: TargetPlatform.android,
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text(l10n.close),
               ),
