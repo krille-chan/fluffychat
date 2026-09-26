@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBs(){return new B.M7(A.dv("eo"))},
+dBt(){return new B.M7(A.dv("eo"))},
 M7:function M7(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -140,7 +140,7 @@ gjm(){return"Malhela"},
 fZ(d,e){return d+", "+e},
 gjn(){return"\u0108i tio malaktivigos vian konton de uzanto. Ne eblas tion malfari! \u0108u certe vi certas?"},
 gjo(){return"Norma nivelo de permesoj"},
-gdP(d){return"Forigi"},
+gdQ(d){return"Forigi"},
 gjq(){return"Forigi konton"},
 gjr(){return"Forigi mesa\u011don"},
 gf3(){return"Aparatoj"},
@@ -247,7 +247,7 @@ gfc(){return"Sciigoj"},
 gkw(){return"Akirante lokon\u2026"},
 gdr(){return"bone"},
 gky(){return"Enreta savkopiado de \u015dlosiloj estas \u015daltita"},
-geb(){return"Oj! Io misokazis\u2026"},
+gef(){return"Oj! Io misokazis\u2026"},
 gkx(){return"One of your clients has been logged out"},
 gfz(){return"Add account"},
 gjw(){return"Edit bundles for this account"},
@@ -288,7 +288,7 @@ gkZ(){return"Raporti mesa\u011don"},
 gl0(){return"\u0108ambro gradalti\u011dis"},
 gl1(){return"Versio de \u0109ambro"},
 ghH(){return"Konservi dosieron"},
-gee(d){return"Ser\u0109i"},
+ged(d){return"Ser\u0109i"},
 gfi(){return"Sekureco"},
 gex(d){return"Sendi"},
 ghJ(){return"Sendi mesa\u011don"},
@@ -387,7 +387,7 @@ gkt(){return"No one can join"},
 gk5(){return"Knock"},
 glj(){return"Users"},
 jg(d){return""+d+" files"},
-ged(){return"User"},
+gec(){return"User"},
 gfX(){return"Custom"},
 glo(){return"Why is this message unreadable?"},
 gkq(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -746,5 +746,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M7,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"M7":{"aT":[]}}'))};
-(a=>{a["Y8TjDRNrRB7MODICy/yo0xdjEtI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["XRUwkSfxU55GRuoYBNRpctdDDKY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map

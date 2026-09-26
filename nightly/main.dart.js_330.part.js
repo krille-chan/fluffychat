@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBE(){return new B.Mj(A.dv("hr"))},
+dBF(){return new B.Mj(A.dv("hr"))},
 Mj:function Mj(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -141,7 +141,7 @@ gjm(){return"Tamna"},
 fZ(d,e){return d+", "+e},
 gjn(){return"Ovo \u0107e nepovratno deaktivirati tvoj korisni\u010dki ra\u010dun. Stvarno to \u017eeli\u0161?"},
 gjo(){return"Standardna razina dozvole za nove korisnike"},
-gdP(d){return"Izbri\u0161i"},
+gdQ(d){return"Izbri\u0161i"},
 gjq(){return"Izbri\u0161i ra\u010dun"},
 gjr(){return"Izbri\u0161i poruku"},
 gf3(){return"Ure\u0111aji"},
@@ -248,7 +248,7 @@ gfc(){return"Obavijesti"},
 gkw(){return"Dohva\u0107anje lokacije \u2026"},
 gdr(){return"U redu"},
 gky(){return"Internetski klju\u010d sigurnosnih kopija je aktiviran"},
-geb(){return"Ups, dogodila se gre\u0161ka \u2026"},
+gef(){return"Ups, dogodila se gre\u0161ka \u2026"},
 gkx(){return"Jedan od tvojih klijenata je odjavljen"},
 gfz(){return"Dodaj ra\u010dun"},
 gjw(){return"Uredi pakete za ovaj ra\u010dun"},
@@ -289,7 +289,7 @@ gkZ(){return"Prijavi poruku"},
 gl0(){return"Soba je nadogra\u0111ena"},
 gl1(){return"Verzija sobe"},
 ghH(){return"Spremi datoteku"},
-gee(d){return"Tra\u017ei"},
+ged(d){return"Tra\u017ei"},
 gfi(){return"Sigurnost"},
 gex(d){return"Po\u0161alji"},
 ghJ(){return"Po\u0161alji poruku"},
@@ -388,7 +388,7 @@ gkt(){return"Nitko se ne mo\u017ee pridru\u017eiti"},
 gk5(){return"Pokucaj"},
 glj(){return"Korisnici"},
 jg(d){return"Broj datoteka: "+d},
-ged(){return"Korisnik"},
+gec(){return"Korisnik"},
 gfX(){return"Prilago\u0111eno"},
 glo(){return"Za\u0161to nije mogu\u0107e \u010ditati ovu poruku?"},
 gkq(){return"To se mo\u017ee dogoditi ako je poruka poslana prije prijave na tvoj ra\u010dun na ovom ure\u0111aju.\n\nTako\u0111er je mogu\u0107e da je po\u0161iljatelj blokirao tvoj ure\u0111aj ili je do\u0161lo do gre\u0161ke s internetskom vezom.\n\nMo\u017ee\u0161 li pro\u010ditati poruku na jednoj drugoj sesiji? U tom slu\u010daju mo\u017ee\u0161 prenijeti poruku iz nje! Idi na Postavke > Ure\u0111aji i uvjeri se da su se tvoji ure\u0111aji me\u0111usobno potvrdili. Kada sljede\u0107i put otvori\u0161 sobu i obje sesije su u prednjem planu, klju\u010devi \u0107e se automatski prenijeti.\n\nNe \u017eeli\u0161 izgubiti klju\u010deve kada se odjavi\u0161 ili zamijeni\u0161 ure\u0111aje? Aktiviraj spremanje sigurnosne kopije chata u postavkama."},
@@ -747,5 +747,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mj,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mj":{"aT":[]}}'))};
-(a=>{a["uNuT6prl067WP6jepJEqS/NTLuM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["eBjucFApc/2RVrfTocW8kzQmAIM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_330.part.js.map

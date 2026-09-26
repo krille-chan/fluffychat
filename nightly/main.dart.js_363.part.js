@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBT(){return new B.My(A.dv("pl"))},
+dBU(){return new B.My(A.dv("pl"))},
 My:function My(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -140,7 +140,7 @@ gjm(){return"Ciemny"},
 fZ(d,e){return d+" "+e},
 gjn(){return"To zdezaktywuje twoje konto. To jest nieodwracalne! Na pewno chcesz to zrobi\u0107?"},
 gjo(){return"Domy\u015blny poziom uprawnie\u0144 dla nowych u\u017cytkownik\xf3w"},
-gdP(d){return"Usu\u0144"},
+gdQ(d){return"Usu\u0144"},
 gjq(){return"Usu\u0144 konto"},
 gjr(){return"Usu\u0144 wiadomo\u015b\u0107"},
 gf3(){return"Urz\u0105dzenia"},
@@ -247,7 +247,7 @@ gfc(){return"Powiadomienia"},
 gkw(){return"Uzyskiwanie lokalizacji\u2026"},
 gdr(){return"Ok"},
 gky(){return"Kopia zapasowa kluczy online jest w\u0142\u0105czona"},
-geb(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
+gef(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
 gkx(){return"Jedno z twoich urz\u0105dze\u0144 zosta\u0142o wylogowane"},
 gfz(){return"Dodaj konto"},
 gjw(){return"Edytuj pakiety dla tego konta"},
@@ -288,7 +288,7 @@ gkZ(){return"Zg\u0142o\u015b wiadomo\u015b\u0107"},
 gl0(){return"Pok\xf3j zosta\u0142 zaktualizowany"},
 gl1(){return"Wersja pokoju"},
 ghH(){return"Zapisz plik"},
-gee(d){return"Szukaj"},
+ged(d){return"Szukaj"},
 gfi(){return"Bezpiecze\u0144stwo"},
 gex(d){return"Wy\u015blij"},
 ghJ(){return"Wy\u015blij wiadomo\u015b\u0107"},
@@ -387,7 +387,7 @@ gkt(){return"Nikt nie mo\u017ce do\u0142\u0105czy\u0107"},
 gk5(){return"Zapukaj"},
 glj(){return"U\u017cytkownicy"},
 jg(d){return""+d+" plik\xf3w"},
-ged(){return"U\u017cytkownik"},
+gec(){return"U\u017cytkownik"},
 gfX(){return"W\u0142asne"},
 glo(){return"Dlaczego nie mo\u017cna odczyta\u0107 tej wiadomo\u015bci?"},
 gkq(){return"Mo\u017ce si\u0119 to zdarzy\u0107, je\u015bli wiadomo\u015b\u0107 zosta\u0142a wys\u0142ana przed zalogowaniem si\u0119 na to konto na tym urz\u0105dzeniu.\n\nMo\u017cliwe jest r\xf3wnie\u017c, \u017ce nadawca zablokowa\u0142 Twoje urz\u0105dzenie lub co\u015b posz\u0142o nie tak z po\u0142\u0105czeniem internetowym.\n\nJeste\u015b w stanie odczyta\u0107 wiadomo\u015b\u0107 na innej sesji? W takim razie mo\u017cesz przenie\u015b\u0107 z niej wiadomo\u015b\u0107! Wejd\u017a w Ustawienia > Urz\u0105dzenia i upewnij si\u0119, \u017ce Twoje urz\u0105dzenia zweryfikowa\u0142y si\u0119 wzajemnie. Gdy nast\u0119pnym razem otworzysz pok\xf3j i obie sesje b\u0119d\u0105 w\u0142\u0105czone, klucze zostan\u0105 przekazane automatycznie.\n\nNie chcesz straci\u0107 kluczy podczas wylogowania lub prze\u0142\u0105czania urz\u0105dze\u0144? Upewnij si\u0119, \u017ce w ustawieniach masz w\u0142\u0105czon\u0105 kopi\u0119 zapasow\u0105 czatu."},
@@ -746,5 +746,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.My,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"My":{"aT":[]}}'))};
-(a=>{a["o343bGqkalH9VRoCDZ8a8J9+o40="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["imCsDzwCqStF2Ke5/DGxcKDFq+o="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

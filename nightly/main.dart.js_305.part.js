@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBt(){return new B.M8(A.dv("es"))},
+dBu(){return new B.M8(A.dv("es"))},
 M8:function M8(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -140,7 +140,7 @@ gjm(){return"Oscuro"},
 fZ(d,e){return d+", "+e},
 gjn(){return"Se desactivar\xe1 su cuenta de usuario. \xa1La operaci\xf3n no se puede cancelar! \xbfEst\xe1 seguro?"},
 gjo(){return"Nivel de permiso predeterminado para nuevo usuarios"},
-gdP(d){return"Eliminar"},
+gdQ(d){return"Eliminar"},
 gjq(){return"Cancelar cuenta"},
 gjr(){return"Eliminar mensaje"},
 gf3(){return"Dispositivos"},
@@ -247,7 +247,7 @@ gfc(){return"Notificaciones"},
 gkw(){return"Obteniendo ubicaci\xf3n\u2026"},
 gdr(){return"Ok"},
 gky(){return"La copia de seguridad de la clave en l\xednea est\xe1 habilitada"},
-geb(){return"Ups, algo sali\xf3 mal\u2026"},
+gef(){return"Ups, algo sali\xf3 mal\u2026"},
 gkx(){return"Se ha cerrado en la sesi\xf3n de uno de sus clientes"},
 gfz(){return"A\xf1adir cuenta"},
 gjw(){return"Editar paquetes para esta cuenta"},
@@ -288,7 +288,7 @@ gkZ(){return"Mensaje de informe"},
 gl0(){return"La sala ha subido de categor\xeda"},
 gl1(){return"Versi\xf3n de sala"},
 ghH(){return"Guardar el archivo"},
-gee(d){return"Buscar"},
+ged(d){return"Buscar"},
 gfi(){return"Seguridad"},
 gex(d){return"Enviar"},
 ghJ(){return"Enviar un mensaje"},
@@ -387,7 +387,7 @@ gkt(){return"Nadie puede unirse"},
 gk5(){return"Aviso"},
 glj(){return"Usuarios"},
 jg(d){return""+d+" archivos"},
-ged(){return"Usuario"},
+gec(){return"Usuario"},
 gfX(){return"Personalizado"},
 glo(){return"\xbfPor qu\xe9 no se puede leer este mensaje?"},
 gkq(){return"Esto puede ocurrir si el mensaje se envi\xf3 antes de que entraras en tu cuenta en este dispositivo.\n\nTambi\xe9n puede que el remitente haya bloqueado tu dispositivo o haya fallado algo en la conexi\xf3n a Internet.\n\n\xbfPuedes leer el mensaje en otra sesi\xf3n? Entonces, \xa1puedes transferir el mensaje desde all\xed! Ve a Ajustes > Dispositivos y aseg\xfarate de que tus dispositivos se han verificado mutuamente. Cuando abras la sala la pr\xf3xima vez y ambas sesiones est\xe9n en primer plano, las claves se transmitir\xe1n autom\xe1ticamente.\n\n\xbfNo quieres perder las claves al salir o al cambiar de dispositivo? Aseg\xfarate de que has habilitado la copia de seguridad del chat en los ajustes."},
@@ -746,5 +746,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M8,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"M8":{"aT":[]}}'))};
-(a=>{a["J1nfmFdWVs6J6JSKYhOAlfNGWik="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["I2+cVpuRiX7Jhho3KrrWM2K4EBo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

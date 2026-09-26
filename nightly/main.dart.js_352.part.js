@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBM(){return new B.Mr(A.dv("kab"))},
+dBN(){return new B.Mr(A.dv("kab"))},
 Mr:function Mr(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -140,7 +140,7 @@ gjm(){return"Ubrik"},
 fZ(d,e){return e+", "+d},
 gjn(){return"Ayagi ad yekkes armed i umi\u1e0dan-ik\xb7im n useqdac. Aya ur yezmir ara ad yettwasefsex. Tet\u1e25eqqe\u1e0d s tidet?"},
 gjo(){return"Aswir n turagt amezwer i yiseqdacen imaynuten"},
-gdP(d){return"kkes"},
+gdQ(d){return"kkes"},
 gjq(){return"kkes ami\u1e0dan"},
 gjr(){return"kkes izen"},
 gf3(){return"Ibenkan"},
@@ -247,7 +247,7 @@ gfc(){return"Il\u0263a"},
 gkw(){return"Aguccel n wadig\u2026"},
 gdr(){return"iH"},
 gky(){return"A\u1e25raz n tsarut deg u\u1e93e\u1e6d\u1e6da yermed"},
-geb(){return"Ihuh, yella wayen ur neddi ara\u2026"},
+gef(){return"Ihuh, yella wayen ur neddi ara\u2026"},
 gkx(){return"One of your clients has been logged out"},
 gfz(){return"Rnu ami\u1e0dan"},
 gjw(){return"Edit bundles for this account"},
@@ -288,7 +288,7 @@ gkZ(){return"Mmel-d izen"},
 gl0(){return"Taxxamt tettwaleqqem"},
 gl1(){return"Lqem n texxamt"},
 ghH(){return"Sekles afaylu"},
-gee(d){return"Nadi"},
+ged(d){return"Nadi"},
 gfi(){return"Ta\u0263ellist"},
 gex(d){return"Azen"},
 ghJ(){return"Azen izen"},
@@ -387,7 +387,7 @@ gkt(){return"Yiwen ur yezmir ad d-yernu"},
 gk5(){return"Sqe\u1e5bbeb"},
 glj(){return"Iseqdacen"},
 jg(d){return""+d+" n yifuyla"},
-ged(){return"Aseqdac"},
+gec(){return"Aseqdac"},
 gfX(){return"Yugnen"},
 glo(){return"Acu\u0263er izen-agi ur yettwa\u0263ri ara?"},
 gkq(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -746,5 +746,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mr,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mr":{"aT":[]}}'))};
-(a=>{a["j+drqmuhimryAxOEfn/Up9+4KbM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["NAT7l/LRMpv2pwCeWqe0kcUtyDQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_352.part.js.map

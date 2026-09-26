@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBH(){return new B.Mm(A.dv("id"))},
+dBI(){return new B.Mm(A.dv("id"))},
 Mm:function Mm(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -141,7 +141,7 @@ gjm(){return"Gelap"},
 fZ(d,e){return e+", "+d},
 gjn(){return"Ini akan menonaktifkan akun penggunamu. Ini tidak bisa dibatalkan! Apakah kamu yakin?"},
 gjo(){return"Level izin bawaan untuk pengguna baru"},
-gdP(d){return"Hapus"},
+gdQ(d){return"Hapus"},
 gjq(){return"Hapus akun"},
 gjr(){return"Hapus pesan"},
 gf3(){return"Perangkat"},
@@ -248,7 +248,7 @@ gfc(){return"Notifikasi"},
 gkw(){return"Mendapatkan lokasi\u2026"},
 gdr(){return"Ok"},
 gky(){return"Cadangan Kunci Online dinyalakan"},
-geb(){return"Ups, ada yang salah\u2026"},
+gef(){return"Ups, ada yang salah\u2026"},
 gkx(){return"Salah satu klienmu telah keluar"},
 gfz(){return"Tambah akun"},
 gjw(){return"Edit bundel untuk akun ini"},
@@ -289,7 +289,7 @@ gkZ(){return"Laporkan pesan"},
 gl0(){return"Ruangan telah ditingkatkan"},
 gl1(){return"Versi ruangan"},
 ghH(){return"Simpan file"},
-gee(d){return"Cari"},
+ged(d){return"Cari"},
 gfi(){return"Keamanan"},
 gex(d){return"Kirim"},
 ghJ(){return"Kirim pesan"},
@@ -388,7 +388,7 @@ gkt(){return"Tidak ada siapa pun yang dapat bergabung"},
 gk5(){return"Ketuk"},
 glj(){return"Pengguna"},
 jg(d){return""+d+" file"},
-ged(){return"Pengguna"},
+gec(){return"Pengguna"},
 gfX(){return"Kustom"},
 glo(){return"Mengapa pesan ini tidak bisa dibaca?"},
 gkq(){return"Hal ini bisa terjadi jika pesan dikirim sebelum kamu masuk ke akunmu di perangkat ini.\n\nMungkin juga pengirim telah memblokir perangkatmu atau ada yang tidak beres dengan koneksi internet.\n\nApakah kamu bisa membaca pesan pada sesi lain? Maka kamu bisa mentransfer pesan dari sesi tersebut! Buka Pengaturan > Perangkat dan pastikan bahwa perangkat Anda telah ditandatangani secara silang. Ketika kamu membuka ruangan di lain waktu dan kedua sesi berada di latar depan, kunci akan ditransmisikan secara otomatis.\n\nApakah kamu tidak mau kehilangan kunci saat keluar atau berpindah perangkat? Pastikan bahwa kamu telah mengaktifkan cadangan obrolan dalam pengaturan."},
@@ -748,5 +748,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Mm,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mm":{"aT":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["JoiPgMaKLe9T1DXAgj80quPrzok="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["gkRcMoewja8aIfAtgkwhKKbPPUM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_340.part.js.map

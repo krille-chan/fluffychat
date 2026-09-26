@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBJ(){return new B.Mo(A.dv("it"))},
+dBK(){return new B.Mo(A.dv("it"))},
 Mo:function Mo(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -141,7 +141,7 @@ gjm(){return"Scuro"},
 fZ(d,e){return d+", "+e},
 gjn(){return"Disabiliter\xe0 il tuo account. Non puoi tornare indietro! Sei sicuro/a?"},
 gjo(){return"Livello di autorizzazione predefinito per i nuovi utenti"},
-gdP(d){return"Cancella"},
+gdQ(d){return"Cancella"},
 gjq(){return"Elimina l'account"},
 gjr(){return"Elimina il messaggio"},
 gf3(){return"Dispositivi"},
@@ -248,7 +248,7 @@ gfc(){return"Notifiche"},
 gkw(){return"Ottengo la posizione\u2026"},
 gdr(){return"Ok"},
 gky(){return"Il backup delle chiavi in linea \xe8 abilitato"},
-geb(){return"Ops, qualcosa \xe8 andato storto\u2026"},
+gef(){return"Ops, qualcosa \xe8 andato storto\u2026"},
 gkx(){return"Uno dei tuoi client \xe8 stato disconnesso"},
 gfz(){return"Aggiungi account"},
 gjw(){return"Modifica i bundle per questo account"},
@@ -289,7 +289,7 @@ gkZ(){return"Segnala il messaggio"},
 gl0(){return"La stanza \xe8 stata aggiornata"},
 gl1(){return"Versione della stanza"},
 ghH(){return"Salva file"},
-gee(d){return"Cerca"},
+ged(d){return"Cerca"},
 gfi(){return"Sicurezza"},
 gex(d){return"Invia"},
 ghJ(){return"Invia un messaggio"},
@@ -388,7 +388,7 @@ gkt(){return"Nessuno pu\xf2 unirsi"},
 gk5(){return"Bussa"},
 glj(){return"Utenti"},
 jg(d){return""+d+" file"},
-ged(){return"Utente"},
+gec(){return"Utente"},
 gfX(){return"Personalizzato"},
 glo(){return"Perch\xe9 questo messaggio \xe8 illeggibile?"},
 gkq(){return"Questo pu\xf2 accadere se il messaggio \xe8 stato inviato prima che hai fatto l'accesso in questo dispositivo.\n\n\xc8 anche possibile che il mittente abbia bloccato il tuo dispositivo o che qualcosa sia andato storto con la tua connessione ad internet.\n\nSei in grado di leggere il messaggio su altre sessioni? Allora puoi trasferire il messaggio da l\xec! Vai su Impostazioni > Dispositivi e verifica che i tuoi dispositivi siano verificati l'un l'altro. Quando aprirai la stanza la prossima volta ed entrambe le sessioni sono in primo piano, le chiavi saranno trasmesse automaticamente.\n\nNon vuoi perdere le chiavi quando ti disconnetti o cambi dispositivo? Assicurati di aver attivato il backup delle chat nelle impostazioni."},
@@ -748,5 +748,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mo,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mo":{"aT":[]}}'))};
-(a=>{a["XtcDJuP2KmakLxG4fiO1isYyqyU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["E03VVzIuTkj5DsY/HQgHlDBgqX4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_347.part.js.map

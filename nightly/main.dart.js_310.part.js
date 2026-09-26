@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBu(){return new B.M9(A.dv("et"))},
+dBv(){return new B.M9(A.dv("et"))},
 M9:function M9(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -141,7 +141,7 @@ gjm(){return"Tume kujundus"},
 fZ(d,e){return d+", "+e},
 gjn(){return"J\xe4rgnevaga eemaldatakse sinu konto kasutusest. Seda tegevust ei saa tagasi p\xf6\xf6rata! Kas sa ikka oled kindel?"},
 gjo(){return"Vaikimisi \xf5igused uutele kasutajatele"},
-gdP(d){return"Kustuta"},
+gdQ(d){return"Kustuta"},
 gjq(){return"Kustuta kasutajakonto"},
 gjr(){return"Kustuta s\xf5num"},
 gf3(){return"Seadmed"},
@@ -248,7 +248,7 @@ gfc(){return"Teavitused"},
 gkw(){return"Tuvastan asukohta\u2026"},
 gdr(){return"Sobib"},
 gky(){return"Kr\xfcptov\xf5tmete veebip\xf5hine varundus on kasutusel"},
-geb(){return"Vaat kus lops! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
+gef(){return"Vaat kus lops! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
 gkx(){return"\xdcks sinu klientrakendustest on Matrixi v\xf5rgust v\xe4lja loginud"},
 gfz(){return"Lisa kasutajakonto"},
 gjw(){return"Muuda selle kasutajakonto k\xf6iteid"},
@@ -289,7 +289,7 @@ gkZ(){return"Teata s\xf5numist"},
 gl0(){return"Jututoa versioon on uuendatud"},
 gl1(){return"Jututoa versioon"},
 ghH(){return"Salvesta fail"},
-gee(d){return"Otsi"},
+ged(d){return"Otsi"},
 gfi(){return"Turvalisus"},
 gex(d){return"Saada"},
 ghJ(){return"Saada s\xf5num"},
@@ -388,7 +388,7 @@ gkt(){return"Mitte keegi ei saa liituda"},
 gk5(){return"Koputa uksele"},
 glj(){return"Kasutajad"},
 jg(d){return""+d+" faili"},
-ged(){return"Kasutaja"},
+gec(){return"Kasutaja"},
 gfX(){return"Kohandatud"},
 glo(){return"Miks see s\xf5num pole loetav?"},
 gkq(){return"See v\xf5ib juhtuda, kui s\xf5num oli saadetud enne, kui siin seadmes oma kontoga sisse logisid.\n\nSamuti v\xf5ib juhtuda siis, kui saatja on lugemises selles seadmes blokeerinud v\xf5i on tekkinud t\xf5rkeid veebi\xfchenduses.\n\nAga m\xf5nes teises seadmes saad seda s\xf5numit lugeda? Siis sa v\xf5id s\xf5numi sealt \xfcle t\xf5sta. Ava Seadistused -> Seadmed ning kontrolli, et k\xf5ik sinu seadmed on omavahel verifitseeritud. Kui avad selle vestluse v\xf5i jututoa ning m\xf5lemad sessioonid on avatud, siis vajalikud kr\xfcptov\xf5tmed saadetakse automaatset.\n\nKas sa soovid v\xe4ltida kr\xfcptov\xf5tmete kadumist v\xe4ljalogimisel ja seadmete vahetusel? Siis palun kontrolli, et seadistuses on kr\xfcptov\xf5tmete varundus sisse l\xfclitatud."},
@@ -747,5 +747,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M9,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"M9":{"aT":[]}}'))};
-(a=>{a["rI+gHJa7X2jFO9LCzfrAFb3+E/0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["fCgg3ZewoEvp0wbOm0C+0LqMmSs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_310.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBZ(){return new B.MD(A.dv("sk"))},
+dC_(){return new B.MD(A.dv("sk"))},
 MD:function MD(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -140,7 +140,7 @@ gjm(){return"Tmav\xe1"},
 fZ(d,e){return d+", "+e},
 gjn(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 gjo(){return"Default permission level for new users"},
-gdP(d){return"Odstr\xe1ni\u0165"},
+gdQ(d){return"Odstr\xe1ni\u0165"},
 gjq(){return"Delete account"},
 gjr(){return"Odstr\xe1ni\u0165 spr\xe1vu"},
 gf3(){return"Zariadenia"},
@@ -247,7 +247,7 @@ gfc(){return"Notifications"},
 gkw(){return"Obtaining location\u2026"},
 gdr(){return"ok"},
 gky(){return"Online z\xe1loha k\u013e\xfa\u010dov je zapnut\xe1"},
-geb(){return"Och! Nie\u010do sa pokazilo\u2026"},
+gef(){return"Och! Nie\u010do sa pokazilo\u2026"},
 gkx(){return"One of your clients has been logged out"},
 gfz(){return"Add account"},
 gjw(){return"Edit bundles for this account"},
@@ -288,7 +288,7 @@ gkZ(){return"Nahl\xe1si\u0165 spr\xe1vu"},
 gl0(){return"Miestnos\u0165 bola upgradeovan\xe1"},
 gl1(){return"Verzia miestnosti"},
 ghH(){return"Save file"},
-gee(d){return"H\u013eada\u0165"},
+ged(d){return"H\u013eada\u0165"},
 gfi(){return"Bezpe\u010dnos\u0165"},
 gex(d){return"Odosla\u0165"},
 ghJ(){return"Odosla\u0165 spr\xe1vu"},
@@ -387,7 +387,7 @@ gkt(){return"No one can join"},
 gk5(){return"Knock"},
 glj(){return"Users"},
 jg(d){return""+d+" files"},
-ged(){return"User"},
+gec(){return"User"},
 gfX(){return"Custom"},
 glo(){return"Why is this message unreadable?"},
 gkq(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -746,5 +746,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MD,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"MD":{"aT":[]}}'))};
-(a=>{a["kta2/LVy9x/b7Q8UUvWyff8Q67k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["k+tGkAjX2CufSxAJCApB/OwKYgE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_369.part.js.map

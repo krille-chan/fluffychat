@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBD(){return new B.Mi(A.dv("hi"))},
+dBE(){return new B.Mi(A.dv("hi"))},
 Mi:function Mi(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -141,7 +141,7 @@ gjm(){return"Dark"},
 fZ(d,e){return d+", "+e},
 gjn(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 gjo(){return"Default permission level for new users"},
-gdP(d){return"Delete"},
+gdQ(d){return"Delete"},
 gjq(){return"Delete account"},
 gjr(){return"Delete message"},
 gf3(){return"Devices"},
@@ -248,7 +248,7 @@ gfc(){return"Notifications"},
 gkw(){return"Obtaining location\u2026"},
 gdr(){return"Ok"},
 gky(){return"Online Key Backup is enabled"},
-geb(){return"Oops, something went wrong\u2026"},
+gef(){return"Oops, something went wrong\u2026"},
 gkx(){return"One of your clients has been logged out"},
 gfz(){return"Add account"},
 gjw(){return"Edit bundles for this account"},
@@ -289,7 +289,7 @@ gkZ(){return"Report message"},
 gl0(){return"Room has been upgraded"},
 gl1(){return"Room version"},
 ghH(){return"Save file"},
-gee(d){return"Search"},
+ged(d){return"Search"},
 gfi(){return"Security"},
 gex(d){return"Send"},
 ghJ(){return"Send a message"},
@@ -388,7 +388,7 @@ gkt(){return"No one can join"},
 gk5(){return"Knock"},
 glj(){return"Users"},
 jg(d){return""+d+" files"},
-ged(){return"User"},
+gec(){return"User"},
 gfX(){return"Custom"},
 glo(){return"Why is this message unreadable?"},
 gkq(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -747,5 +747,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mi,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mi":{"aT":[]}}'))};
-(a=>{a["r/eYj955CUESiLFc41pZD0TOGps="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["D1XSK8b5oRBb3pl76QIBHsu5jYA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_329.part.js.map

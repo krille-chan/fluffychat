@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBX(){return new B.MB(A.dv("ro"))},
+dBY(){return new B.MB(A.dv("ro"))},
 MB:function MB(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -140,7 +140,7 @@ gjm(){return"\xcentunecat"},
 fZ(d,e){return d+", "+e},
 gjn(){return"Aceast\u0103 ac\u021biune va dezactiva contul vostru. Nu poate fi anulat! Sunte\u021bi sigur?"},
 gjo(){return"Nivel de permisiuni implicit\u0103"},
-gdP(d){return"\u0218terge\u021bi"},
+gdQ(d){return"\u0218terge\u021bi"},
 gjq(){return"\u0218terge\u021bi contul"},
 gjr(){return"\u0218terge\u021bi mesajul"},
 gf3(){return"Dispozitive"},
@@ -247,7 +247,7 @@ gfc(){return"Notific\u0103ri"},
 gkw(){return"Ob\u021bin\xe2nd loca\u021bie\u2026"},
 gdr(){return"Ok"},
 gky(){return"Backup de cheie online este activat"},
-geb(){return"Ups, ceva a e\u0219uat\u2026"},
+gef(){return"Ups, ceva a e\u0219uat\u2026"},
 gkx(){return"Unul dintre clien\u021bilor vo\u0219tri a fost deconectat"},
 gfz(){return"Ad\u0103uga\u021bi cont"},
 gjw(){return"Edita\u021bi pachetele pentru acest cont"},
@@ -288,7 +288,7 @@ gkZ(){return"Raporta\u021bi mesajul"},
 gl0(){return"Camera a fost actualizat\u0103"},
 gl1(){return"Versiunea camerei"},
 ghH(){return"Salva\u021bi fi\u0219ierul"},
-gee(d){return"C\u0103uta\u021bi"},
+ged(d){return"C\u0103uta\u021bi"},
 gfi(){return"Securitate"},
 gex(d){return"Trimite\u021bi"},
 ghJ(){return"Trimite\u021bi un mesaj"},
@@ -387,7 +387,7 @@ gkt(){return"No one can join"},
 gk5(){return"Knock"},
 glj(){return"Utilizatori"},
 jg(d){return""+d+" fi\u0219iere"},
-ged(){return"Utilizator"},
+gec(){return"Utilizator"},
 gfX(){return"Personalizat"},
 glo(){return"De ce este acest mesaj ilizibil?"},
 gkq(){return"Aceast\u0103 chestie poate s\u0103 se \xeent\xe2mple c\xe2nd mesajul a fost trimis \xeenainte s\u0103 v\u0103 conecta\u021bi contul cu acest dispozitiv.\n\nO alt\u0103 explica\u021bie ar fi dac\u0103 trimi\u021b\u0103torul a blocat dispozitivul vostru sau ceva s-a \xeent\xe2mplat cu conexiunea la internet\n\nPute\u021bi s\u0103 citi\u021bi mesajul \xeen o alt\u0103 se\u0219iune? Atunci pute\u021bi s\u0103 transfera\u021bi mesajul de acolo! Merge\u021bi la Configur\u0103ri > Dispozitive \u0219i verifica\u021bi c\u0103 dispozitivele s-au verificat. C\xe2nd deschide\u021bi camera \xeen viitor \u0219i ambele se\u0219iune sunt \xeen foreground, cheile va fi transmise automat. \n\nDori\u021bi s\u0103 \xee\u021bi p\u0103stra\u021bi cheile c\xe2nd deconecta\u021bi sau schimba\u021bi dispozitive? Fi\u021bi aten\u021bi s\u0103 activa\u021bi backup de chat \xeen configur\u0103ri."},
@@ -746,5 +746,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MB,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"MB":{"aT":[]}}'))};
-(a=>{a["kLX02GYAC87DLUKzI0aIYnxYD8k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["yasCh4aSoZBKq2suhn0jrnR0Qlk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_364.part.js.map

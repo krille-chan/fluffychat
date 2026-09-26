@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBp(){return new B.M4(A.dv("de"))},
+dBq(){return new B.M4(A.dv("de"))},
 M4:function M4(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -141,7 +141,7 @@ gjm(){return"Dunkel"},
 fZ(d,e){return d+", "+e},
 gjn(){return"Dies deaktiviert dein Konto. Es kann nicht r\xfcckg\xe4ngig gemacht werden! Bist du sicher?"},
 gjo(){return"Standardberechtigungsstufe f\xfcr neue Benutzer"},
-gdP(d){return"L\xf6schen"},
+gdQ(d){return"L\xf6schen"},
 gjq(){return"Konto l\xf6schen"},
 gjr(){return"Nachricht l\xf6schen"},
 gf3(){return"Ger\xe4te"},
@@ -248,7 +248,7 @@ gfc(){return"Benachrichtigungen"},
 gkw(){return"Standort wird ermittelt \u2026"},
 gdr(){return"Ok"},
 gky(){return"Online-Schl\xfcsselsicherung ist aktiviert"},
-geb(){return"Hoppla, da ist etwas schiefgelaufen\u2026"},
+gef(){return"Hoppla, da ist etwas schiefgelaufen\u2026"},
 gkx(){return"Einer deiner Clients wurde abgemeldet"},
 gfz(){return"Konto hinzuf\xfcgen"},
 gjw(){return"Bundles f\xfcr dieses Konto bearbeiten"},
@@ -289,7 +289,7 @@ gkZ(){return"Nachricht melden"},
 gl0(){return"Der Raum wurde ge-upgraded"},
 gl1(){return"Raumversion"},
 ghH(){return"Datei speichern"},
-gee(d){return"Suchen"},
+ged(d){return"Suchen"},
 gfi(){return"Sicherheit"},
 gex(d){return"Senden"},
 ghJ(){return"Nachricht schreiben"},
@@ -388,7 +388,7 @@ gkt(){return"Niemand kann beitreten"},
 gk5(){return"Anklopfen"},
 glj(){return"Benutzer"},
 jg(d){return""+d+" Dateien"},
-ged(){return"Benutzer"},
+gec(){return"Benutzer"},
 gfX(){return"Benutzerdefiniert"},
 glo(){return"Warum ist diese Nachricht nicht lesbar?"},
 gkq(){return"Dies kann passieren, wenn die Nachricht gesendet wurde, bevor du dich auf diesem Ger\xe4t bei deinem Konto angemeldet hast.\n\nEs ist auch m\xf6glich, dass der Absender dein Ger\xe4t blockiert hat oder etwas mit der Internetverbindung schief gelaufen ist.\n\nKannst du die Nachricht in einer anderen Sitzung lesen? Dann kannst du die Nachricht davon \xfcbertragen! Gehe zu den Einstellungen > Ger\xe4te und vergewissere dich, dass sich deine Ger\xe4te gegenseitig verifiziert haben. Wenn du den Raum das n\xe4chste Mal \xf6ffnest und beide Sitzungen im Vordergrund sind, werden die Schl\xfcssel automatisch \xfcbertragen.\n\nDu m\xf6chtest die Schl\xfcssel beim Abmelden oder Ger\xe4tewechsel nicht verlieren? Stelle sicher, dass du das Chat-Backup in den Einstellungen aktiviert hast."},
@@ -748,5 +748,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.M4,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"M4":{"aT":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["59SIRUCoJrN+j0/k0REN7f2i580="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BOqIEDx/dg+ulGtmBZSc/Y7A+Ok="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

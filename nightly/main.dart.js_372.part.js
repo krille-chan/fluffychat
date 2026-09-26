@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dC1(){return new B.MG(A.dv("sr"))},
+dC2(){return new B.MG(A.dv("sr"))},
 MG:function MG(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -140,7 +140,7 @@ gjm(){return"\u0442\u0430\u043c\u043d\u0438"},
 fZ(d,e){return d+", "+e},
 gjn(){return"\u041e\u0432\u043e \u045b\u0435 \u0434\u0435\u0430\u043a\u0442\u0438\u0432\u0438\u0440\u0430\u0442\u0438 \u0432\u0430\u0448 \u043a\u043e\u0440\u0438\u0441\u043d\u0438\u0447\u043a\u0438 \u043d\u0430\u043b\u043e\u0433. \u041d\u0435 \u043c\u043e\u0436\u0435 \u0441\u0435 \u043f\u043e\u0432\u0440\u0430\u0442\u0438\u0442\u0438! \u0421\u0438\u0433\u0443\u0440\u043d\u0438 \u0441\u0442\u0435?"},
 gjo(){return"\u041f\u043e\u0434\u0440\u0430\u0437\u0443\u043c\u0435\u0432\u0430\u043d\u0438 \u043d\u0438\u0432\u043e \u043f\u0440\u0438\u0441\u0442\u0443\u043f\u0430"},
-gdP(d){return"\u041e\u0431\u0440\u0438\u0448\u0438"},
+gdQ(d){return"\u041e\u0431\u0440\u0438\u0448\u0438"},
 gjq(){return"\u041e\u0431\u0440\u0438\u0448\u0438 \u043d\u0430\u043b\u043e\u0433"},
 gjr(){return"\u0411\u0440\u0438\u0441\u0430\u045a\u0435 \u043f\u043e\u0440\u0443\u043a\u0435"},
 gf3(){return"\u0423\u0440\u0435\u0452\u0430\u0458\u0438"},
@@ -247,7 +247,7 @@ gfc(){return"\u041e\u0431\u0430\u0432\u0435\u0448\u0442\u0435\u045a\u0430"},
 gkw(){return"Obtaining location\u2026"},
 gdr(){return"\u0443 \u0440\u0435\u0434\u0443"},
 gky(){return"\u0420\u0435\u0437\u0435\u0440\u0432\u0430 \u043a\u0459\u0443\u0447\u0435\u0432\u0430 \u043d\u0430 \u043c\u0440\u0435\u0436\u0438 \u0458\u0435 \u0443\u043a\u0459\u0443\u0447\u0435\u043d\u0430"},
-geb(){return"\u041d\u0435\u0448\u0442\u043e \u0458\u0435 \u043f\u043e\u0448\u043b\u043e \u043d\u0430\u043e\u043f\u0430\u043a\u043e\u2026"},
+gef(){return"\u041d\u0435\u0448\u0442\u043e \u0458\u0435 \u043f\u043e\u0448\u043b\u043e \u043d\u0430\u043e\u043f\u0430\u043a\u043e\u2026"},
 gkx(){return"One of your clients has been logged out"},
 gfz(){return"Add account"},
 gjw(){return"Edit bundles for this account"},
@@ -288,7 +288,7 @@ gkZ(){return"\u041f\u0440\u0438\u0458\u0430\u0432\u0438 \u043f\u043e\u0440\u0443
 gl0(){return"\u0421\u043e\u0431\u0430 \u0458\u0435 \u043d\u0430\u0434\u043e\u0433\u0440\u0430\u0452\u0435\u043d\u0430"},
 gl1(){return"\u0412\u0435\u0440\u0437\u0438\u0458\u0430 \u0441\u043e\u0431\u0435"},
 ghH(){return"Save file"},
-gee(d){return"\u041f\u0440\u0435\u0442\u0440\u0430\u0436\u0438"},
+ged(d){return"\u041f\u0440\u0435\u0442\u0440\u0430\u0436\u0438"},
 gfi(){return"\u0411\u0435\u0437\u0431\u0435\u0434\u043d\u043e\u0441\u0442"},
 gex(d){return"\u041f\u043e\u0448\u0430\u0459\u0438"},
 ghJ(){return"\u041f\u043e\u0448\u0430\u0459\u0438 \u043f\u043e\u0440\u0443\u043a\u0443"},
@@ -387,7 +387,7 @@ gkt(){return"No one can join"},
 gk5(){return"Knock"},
 glj(){return"Users"},
 jg(d){return""+d+" files"},
-ged(){return"User"},
+gec(){return"User"},
 gfX(){return"Custom"},
 glo(){return"Why is this message unreadable?"},
 gkq(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -746,5 +746,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MG,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"MG":{"aT":[]}}'))};
-(a=>{a["HqJPvdBRpbBqqTfosMTZHrYlurU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["u+7HtT2OkNz04hsD0DwbNSrJthY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_372.part.js.map

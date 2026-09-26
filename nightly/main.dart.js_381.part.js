@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dC8(){return new B.MN(A.dv("uz"))},
+dC9(){return new B.MN(A.dv("uz"))},
 MN:function MN(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -140,7 +140,7 @@ gjm(){return"Qorong\u02bbi"},
 fZ(d,e){return d+", "+e},
 gjn(){return"Bu sizning foydalanuvchi hisobingizni o\u02bbchirib qo\u02bbyadi. Buni qaytarib bo\u02bblmaydi! Ishonchingiz komilmi?"},
 gjo(){return"Yangi foydalanuvchilar uchun standart ruxsat darajasi"},
-gdP(d){return"O\u02bbchirish"},
+gdQ(d){return"O\u02bbchirish"},
 gjq(){return"Hisobni o\u02bbchirish"},
 gjr(){return"Xabarni o\u02bbchirish"},
 gf3(){return"Qurilmalar"},
@@ -247,7 +247,7 @@ gfc(){return"Bildirishnomalar"},
 gkw(){return"Joylashuv aniqlanmoqda\u2026"},
 gdr(){return"Hop"},
 gky(){return"Onlayn kalit zaxira nusxasi yoqilgan"},
-geb(){return"Voy, nimadir noto\u02bbg\u02bbri ketdi\u2026"},
+gef(){return"Voy, nimadir noto\u02bbg\u02bbri ketdi\u2026"},
 gkx(){return"Mijozlaringizdan biri tizimdan chiqdi"},
 gfz(){return"Hisob qo\u02bbshish"},
 gjw(){return"Bu hisob uchun to\u02bbplamlarni tahrirlash"},
@@ -288,7 +288,7 @@ gkZ(){return"Xabar berish"},
 gl0(){return"Xona takomillashtirildi"},
 gl1(){return"Guruh versiyasi"},
 ghH(){return"Fayl saqlash"},
-gee(d){return"Qidiruv"},
+ged(d){return"Qidiruv"},
 gfi(){return"Xavfsizlik"},
 gex(d){return"Yuborish"},
 ghJ(){return"Xabar yuborish"},
@@ -387,7 +387,7 @@ gkt(){return"Hech kim qo\u02bbshila olmaydi"},
 gk5(){return"Taqillating"},
 glj(){return"Foydalanuvchilar"},
 jg(d){return""+d+" fayllar"},
-ged(){return"Foydalanuvchi"},
+gec(){return"Foydalanuvchi"},
 gfX(){return"Maxsus"},
 glo(){return"Nima uchun bu xabarni o\u02bbqib bo\u02bblmaydi?"},
 gkq(){return"Bu xabar siz ushbu qurilmada hisobingizga kirishdan oldin yuborilgan bo\u02bblsa sodir bo\u02bblishi mumkin.\n\nShuningdek, jo\u02bbnatuvchi qurilmangizni bloklagan yoki internet ulanishida biron bir muammo yuzaga kelgan bo\u02bblishi mumkin.\n\nXabarni boshqa sessiyada o\u02bbqiy olasizmi? Keyin xabarni undan uzatishingiz mumkin! Sozlamalar > Qurilmalar bo\u02bblimiga o\u02bbting va qurilmalaringiz bir-birini tasdiqlaganligiga ishonch hosil qiling. Keyingi safar xonani ochganingizda va ikkala sessiya ham oldinda bo\u02bblganda, kalitlar avtomatik ravishda uzatiladi.\n\nTizimdan chiqishda yoki qurilmalarni almashtirishda kalitlarni yo\u02bbqotishni xohlamaysizmi? Sozlamalarda suhbatning zaxira nusxasini yoqganingizga ishonch hosil qiling."},
@@ -747,5 +747,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.MN,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"MN":{"aT":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["z1kkWZdevgIj4WmyyoKjvQhPr0A="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ewtMCnw16COQvNxWWJ3DFKzv01E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_381.part.js.map

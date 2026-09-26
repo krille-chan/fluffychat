@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBP(){return new B.Mu(A.dv("lt"))},
+dBQ(){return new B.Mu(A.dv("lt"))},
 Mu:function Mu(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -140,7 +140,7 @@ gjm(){return"Tamsi"},
 fZ(d,e){return d+", "+e},
 gjn(){return"Tai deaktyvuos j\u016bs\u0173 vartotojo paskyr\u0105. Tai negali b\u016bti at\u0161aukta! Ar j\u016bs tuo tikri?"},
 gjo(){return"Numatytasis teisi\u0173 lygis"},
-gdP(d){return"I\u0161trinti"},
+gdQ(d){return"I\u0161trinti"},
 gjq(){return"Panaikinti paskyra"},
 gjr(){return"I\u0161trinti \u017einut\u0119"},
 gf3(){return"\u012erenginiai"},
@@ -247,7 +247,7 @@ gfc(){return"Prane\u0161imai"},
 gkw(){return"Gaunama vieta\u2026"},
 gdr(){return"OK"},
 gky(){return"Internetin\u0117 atsargin\u0117 rakt\u0173 kopija \u012fjungta"},
-geb(){return"Oi, ka\u017ekas nutiko ne taip\u2026"},
+gef(){return"Oi, ka\u017ekas nutiko ne taip\u2026"},
 gkx(){return"Vienas i\u0161 j\u016bs\u0173 klient\u0173 atsijung\u0117"},
 gfz(){return"Prid\u0117ti paskyr\u0105"},
 gjw(){return"Redaguoti \u0161ios paskyros paketus"},
@@ -288,7 +288,7 @@ gkZ(){return"Prane\u0161ti apie \u017einut\u0119"},
 gl0(){return"Kambarys buvo atnaujintas"},
 gl1(){return"Kambario versija"},
 ghH(){return"I\u0161saugoti fail\u0105"},
-gee(d){return"Ie\u0161koti"},
+ged(d){return"Ie\u0161koti"},
 gfi(){return"Apsauga"},
 gex(d){return"Si\u0173sti"},
 ghJ(){return"Si\u0173sti \u017einut\u0119"},
@@ -387,7 +387,7 @@ gkt(){return"No one can join"},
 gk5(){return"Knock"},
 glj(){return"Vartotojai"},
 jg(d){return""+d+" failai"},
-ged(){return"Vartotojas"},
+gec(){return"Vartotojas"},
 gfX(){return"Pasirinktinis"},
 glo(){return"Kod\u0117l \u0161i \u017einut\u0117 neperskaitoma?"},
 gkq(){return"Taip gali atsitikti, jei \u017einut\u0117 buvo i\u0161si\u0173sta prie\u0161 prisijungiant prie paskyros \u0161iame prietaise.\n\nTaip pat gali b\u016bti, kad siunt\u0117jas u\u017eblokavo j\u016bs\u0173 prietais\u0105 arba ka\u017ekas sutriko su interneto ry\u0161iu.\n\nAr galite perskaityti \u017einut\u0119 kitoje sesijoje? Tada galite perkelti \u017einut\u0119 i\u0161 jos! Eikite \u012f Nustatymai > Prietaisai ir \u012fsitikinkite, kad j\u016bs\u0173 prietaisai patvirtino vienas kit\u0105. Kai kit\u0105 kart\u0105 atidarysite kambar\u012f ir abi sesijos bus pirmame plane, raktai bus perduoti automati\u0161kai.\n\nNenorite prarasti rakt\u0173 atsijungdami arba keisdami \u012frenginius? \u012esitikinkite, kad nustatymuose \u012fjung\u0117te pokalbi\u0173 atsargin\u0119 kopij\u0105."},
@@ -746,5 +746,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mu,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mu":{"aT":[]}}'))};
-(a=>{a["3HuuC7Z4IJGHiKib257u4dj/RjM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["LBEIwbW3+PxAvFopNhLqXalx7qE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_355.part.js.map

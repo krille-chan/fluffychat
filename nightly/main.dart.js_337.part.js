@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBF(){return new B.Mk(A.dv("hu"))},
+dBG(){return new B.Mk(A.dv("hu"))},
 Mk:function Mk(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -140,7 +140,7 @@ gjm(){return"S\xf6t\xe9t"},
 fZ(d,e){return d+", "+e},
 gjn(){return"Ez deaktiv\xe1lja a felhaszn\xe1l\xf3i fi\xf3kj\xe1t. Ez nem vonhat\xf3 vissza! Biztos benne?"},
 gjo(){return"Alap\xe9rtelmezett hozz\xe1f\xe9r\xe9si szint \xfaj felhaszn\xe1l\xf3kn\xe1l"},
-gdP(d){return"T\xf6rl\xe9s"},
+gdQ(d){return"T\xf6rl\xe9s"},
 gjq(){return"Fi\xf3k t\xf6rl\xe9se"},
 gjr(){return"\xdczenet t\xf6rl\xe9se"},
 gf3(){return"Eszk\xf6z\xf6k"},
@@ -247,7 +247,7 @@ gfc(){return"\xc9rtes\xedt\xe9sek"},
 gkw(){return"Tart\xf3zkod\xe1si hely lek\xe9r\xe9se\u2026"},
 gdr(){return"Ok"},
 gky(){return"Online kulcsment\xe9s enged\xe9lyezve"},
-geb(){return"Hopp\xe1, valami hiba l\xe9pett fel\u2026"},
+gef(){return"Hopp\xe1, valami hiba l\xe9pett fel\u2026"},
 gkx(){return"Az egyik kliense kijelentkezett"},
 gfz(){return"Fi\xf3k hozz\xe1ad\xe1sa"},
 gjw(){return"Fi\xf3kcsoportok szerkeszt\xe9se ehhez a fi\xf3khoz"},
@@ -288,7 +288,7 @@ gkZ(){return"\xdczenet jelent\xe9se"},
 gl0(){return"A szoba friss\xedt\xe9sre ker\xfclt"},
 gl1(){return"Szoba verzi\xf3"},
 ghH(){return"F\xe1jl ment\xe9se"},
-gee(d){return"Keres\xe9s"},
+ged(d){return"Keres\xe9s"},
 gfi(){return"Biztons\xe1g"},
 gex(d){return"K\xfcld\xe9s"},
 ghJ(){return"\xdczenet k\xfcld\xe9se"},
@@ -387,7 +387,7 @@ gkt(){return"Senki sem csatlakozhat"},
 gk5(){return"Kopog\xe1s"},
 glj(){return"Felhaszn\xe1l\xf3k"},
 jg(d){return""+d+" f\xe1jl"},
-ged(){return"Felhaszn\xe1l\xf3"},
+gec(){return"Felhaszn\xe1l\xf3"},
 gfX(){return"Egyedi"},
 glo(){return"Mi\xe9rt olvashatatlan ez az \xfczenet?"},
 gkq(){return"Akkor fordulhat el\u0151, ha az \xfczenet az eszk\xf6zre val\xf3 bejelentkez\xe9s el\u0151tt ker\xfclt k\xfcld\xe9sre.\n\nAz is elk\xe9pzelhet\u0151, hogy a k\xfcld\u0151 blokkolta az eszk\xf6z\xe9t, vagy valami probl\xe9ma l\xe9pett fel az internet kapcsolatban.\n\nM\xe1s helyen l\xe1tja az \xfczenetet? Akkor \xe1t tudja m\xe1solni ide is! Menjen a Be\xe1ll\xedt\xe1sok > Eszk\xf6z\xf6k r\xe9szbe, \xe9s gy\u0151z\u0151dj\xf6n meg r\xf3la, hogy az eszk\xf6zei meger\u0151s\xedtett\xe9k egym\xe1st. Legk\xf6zelebb amikor ezt a szob\xe1t megnyitja, \xe9s mind a k\xe9t kliens az el\u0151t\xe9rben van, akkor szikroniz\xe1l\xf3dni fognak.\n\nNem akarja elvesz\xedteni a kulcsokat amikor kijelentkezik, vagy eszk\xf6zt cser\xe9l? Gy\u0151z\u0151dj\xf6n meg r\xf3la, hogy bekapcsolta a chat ment\xe9st a be\xe1ll\xedt\xe1sokban."},
@@ -746,5 +746,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mk,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"Mk":{"aT":[]}}'))};
-(a=>{a["fD8slUb0Y3WsnmjrNQbjb7V5kZE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PB46hvZdYAK3YMCvuJJ3MErauTo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_337.part.js.map

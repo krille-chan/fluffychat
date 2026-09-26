@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dBm(){return new B.M1(A.dv("ca"))},
+dBn(){return new B.M1(A.dv("ca"))},
 M1:function M1(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -140,7 +140,7 @@ gjm(){return"Fosc"},
 fZ(d,e){return d+", "+e},
 gjn(){return"Es desactivar\xe0 el vostre compte d\u2019usu\xe0ri\xef. \xc9s irreversible! Voleu fer-ho igualment?"},
 gjo(){return"Nivell de permisos per defecte per nous membres"},
-gdP(d){return"Suprimeix"},
+gdQ(d){return"Suprimeix"},
 gjq(){return"Suprimeix el compte"},
 gjr(){return"Suprimeix el missatge"},
 gf3(){return"Dispositius"},
@@ -247,7 +247,7 @@ gfc(){return"Notificacions"},
 gkw(){return"S\u2019est\xe0 obtenint la ubicaci\xf3\u2026"},
 gdr(){return"D'acord"},
 gky(){return"La c\xf2pia de seguretat de claus en l\xednia est\xe0 activada"},
-geb(){return"Alguna cosa ha anat malament\u2026"},
+gef(){return"Alguna cosa ha anat malament\u2026"},
 gkx(){return"Una de les teves aplicacions ha tancat la sessi\xf3"},
 gfz(){return"Afegeix un compte"},
 gjw(){return"Edita paquets per aquest compte"},
@@ -288,7 +288,7 @@ gkZ(){return"Denuncia el missatge"},
 gl0(){return"La sala s'ha actualitzat"},
 gl1(){return"Versi\xf3 de la sala"},
 ghH(){return"Desa el fitxer"},
-gee(d){return"Cerca"},
+ged(d){return"Cerca"},
 gfi(){return"Seguretat"},
 gex(d){return"Envia"},
 ghJ(){return"Envia un missatge"},
@@ -387,7 +387,7 @@ gkt(){return"Ning\xfa s'hi pot ficar"},
 gk5(){return"Pica"},
 glj(){return"Usu\xe0r\xefis"},
 jg(d){return""+d+" arxius"},
-ged(){return"Usu\xe0r\xefi"},
+gec(){return"Usu\xe0r\xefi"},
 gfX(){return"Personalitzat"},
 glo(){return"Per qu\xe8 no es pot llegir aquest missatge?"},
 gkq(){return"Aix\xf2 pot passar si el missatge es va enviar abans que haguessis iniciat sessi\xf3 al teu compte des d'aquest dispositiu.\n\nTamb\xe9 pot ser que l'emissor hagi bloquejat el teu dispositiu o que la connexi\xf3 a internet an\xe9s malament.\n\nQue pots llegir el missatge des d'una altra sessi\xf3? Si \xe9s aix\xed, llavors pots transferir-lo! Ves a Par\xe0metres \u2192 Dispositius i assegura't que els teus dispositius s'ha verificat m\xfatuament. Quan obris la sala la propera vegada i totes dues sessions estiguin executant-se, en primer pla, llavors les claus es trasnsmetran autom\xe0ticament.\n\nVols evitar perdre les claus en tancar la sessi\xf3 o en canviar de dispositiu? Llavors assegura't que has activat la c\xf2pia de seguretat del xat als par\xe0metres."},
@@ -746,5 +746,5 @@ C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.M1,C.aT)})()
 A.e9(b.typeUniverse,JSON.parse('{"M1":{"aT":[]}}'))};
-(a=>{a["JSUSSshPLkdKQPcpmtX6QDX2tSQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["5nb25Cdo1/77ivOuGZtri/O1R30="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_272.part.js.map
