@@ -8219,6 +8219,7 @@ r=a.d
 r===$&&A.c("_length")
 if(!(s<r))break
 r=a.b
+if((r==null?0:r.length-s)<2)return!1
 r.toString
 q=a.c=s+1
 p=r.length
@@ -9445,6 +9446,7 @@ o=(q&B.a.V(1,s)-1)>>>0
 if(!(o<k.length))return A.a(k,o)
 n=k[o]
 m=n>>>16
+if(m===0)return-1
 l.d=B.a.a0(q,m)
 l.e=r-m
 return n&65535},
@@ -9479,20 +9481,22 @@ k=J.B(B.d.gB(l),0,h)
 j=J.B(B.d.gB(l),h,s)
 if(i.iO(n,m,l)===-1)return-1
 return i.f0(A.fX(k),A.fX(j))},
-f0(a,b){var s,r,q,p,o,n,m=this
-for(s=m.c;;){r=m.e6(a)
+f0(a,b){var s,r,q,p,o,n,m,l=this
+for(s=l.c;;){r=l.e6(a)
 if(r<0||r>285)return-1
 if(r===256)break
 if(r<256){s.m(r&255)
 continue}q=r-257
 if(!(q>=0&&q<29))return A.a(B.c4,q)
 p=B.c4[q]
-o=m.bm(B.kP[q])
-n=m.e6(b)
+o=l.bm(B.kP[q])
+n=l.e6(b)
 if(n<0||n>29)return-1
 if(!(n>=0&&n<30))return A.a(B.c5,n)
-s.lV(B.c5[n]+m.bm(B.a4[n]),p+o)}while(s=m.e,s>=8){m.e=s-8
-s=m.gbG()
+m=B.c5[n]+l.bm(B.a4[n])
+if(m<1||m>s.b)return-1
+s.lV(m,p+o)}while(s=l.e,s>=8){l.e=s-8
+s=l.gbG()
 p=--s.c
 o=s.d
 o===$&&A.c("_length")
@@ -9504,6 +9508,7 @@ p=0
 switch(q){case 16:o=k.bm(2)
 if(o===-1)return-1
 o+=3
+if(r+o>a)return-1
 for(n=c.$flags|0;m=o-1,o>0;o=m,r=l){l=r+1
 n&2&&A.b(c)
 if(!(r>=0&&r<c.length))return A.a(c,r)
@@ -9511,6 +9516,7 @@ c[r]=s}break
 case 17:o=k.bm(3)
 if(o===-1)return-1
 o+=3
+if(r+o>a)return-1
 for(n=c.$flags|0;m=o-1,o>0;o=m,r=l){l=r+1
 n&2&&A.b(c)
 if(!(r>=0&&r<c.length))return A.a(c,r)
@@ -9519,6 +9525,7 @@ break
 case 18:o=k.bm(7)
 if(o===-1)return-1
 o+=11
+if(r+o>a)return-1
 for(n=c.$flags|0;m=o-1,o>0;o=m,r=l){l=r+1
 n&2&&A.b(c)
 if(!(r>=0&&r<c.length))return A.a(c,r)
