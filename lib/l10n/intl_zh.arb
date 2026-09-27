@@ -2832,5 +2832,15 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "updateAvailable": "有 {version} 版更新可用",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "下载"
 }
