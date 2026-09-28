@@ -2819,5 +2819,15 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "updateAvailable": "Абнаўленне да {version} даступна",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Спампаваць"
 }
