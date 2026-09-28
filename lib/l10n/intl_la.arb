@@ -134,5 +134,10 @@
                 "type": "String"
             }
         }
+    },
+    "mirror": "Repercutere",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
     }
 }
