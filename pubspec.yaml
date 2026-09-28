@@ -9,7 +9,7 @@ publish_to: none
 # On version bump please also increase:
 # 1. The build number (for F-Droid)
 # 2. The version in /snap/snapcraft.yaml
-version: 2.9.5+3566
+version: 2.10.0+3568
 
 environment:
   sdk: ">=3.11.1 <4.0.0"
