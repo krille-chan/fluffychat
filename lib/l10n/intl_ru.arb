@@ -2831,5 +2831,16 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "updateAvailable": "Обновление {version} доступно",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Загрузить",
+    "unifiedPushDistributors": "Дистрибьюторы Unified Push:"
 }
