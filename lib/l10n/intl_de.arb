@@ -2840,5 +2840,15 @@
                 "type": "String"
             }
         }
+    },
+    "download": "Herunterladen",
+    "updateAvailable": "Update {version} verfügbar",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
     }
 }
