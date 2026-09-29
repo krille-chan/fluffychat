@@ -411,7 +411,7 @@ Future<void> updateSummaryNotification({
           .where((n) => n.groupKey == clientName && n.id != clientName.hashCode)
           .toList();
 
-  if (activeNotifications.length <= 1) {
+  if (activeNotifications.isEmpty) {
     await flutterLocalNotificationsPlugin.cancel(id: clientName.hashCode);
     return;
   }
