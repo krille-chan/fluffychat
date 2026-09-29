@@ -17742,7 +17742,7 @@ s=3
 return A.f($.cVV.cd().a7S(),$async$aq0)
 case 3:o=m.ih(e,new A.cTj(a))
 n=A.G(o,o.$ti.i("B.E"))
-s=n.length<=1?4:5
+s=n.length===0?4:5
 break
 case 4:s=6
 return A.f(b.Ll(0,B.e.gt(a)),$async$aq0)
