@@ -782,6 +782,26 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
+  Future<void> openGalleryAction() async {
+    inputFocus.unfocus();
+    final files = await ImagePicker().pickMultipleMedia(
+      requestFullMetadata: false,
+    );
+    if (files.isEmpty) return;
+    if (!mounted) return;
+
+    await showAdaptiveDialog(
+      context: context,
+      builder: (c) => SendFileDialog(
+        files: files,
+        room: room,
+        outerContext: context,
+        threadRootEventId: activeThreadId,
+        threadLastEventId: threadLastEventId,
+      ),
+    );
+  }
+
   Future<void> openCameraAction() async {
     inputFocus.unfocus();
     final file = await ImagePicker().pickImage(source: ImageSource.camera);
@@ -1427,7 +1447,7 @@ class ChatController extends State<ChatPageWithRoom>
 
     switch (choice) {
       case AddPopupMenuActions.media:
-        sendFileAction(type: FileType.media);
+        openGalleryAction();
         return;
       case AddPopupMenuActions.file:
         sendFileAction();
