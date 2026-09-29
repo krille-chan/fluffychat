@@ -1446,11 +1446,14 @@ class ChatController extends State<ChatPageWithRoom>
     room.client.getConfig();
 
     switch (choice) {
-      case AddPopupMenuActions.media:
-        openGalleryAction();
-        return;
       case AddPopupMenuActions.file:
         sendFileAction();
+        return;
+      case AddPopupMenuActions.image:
+        sendFileAction(type: FileType.image);
+        return;
+      case AddPopupMenuActions.video:
+        sendFileAction(type: FileType.video);
         return;
       case AddPopupMenuActions.poll:
         showAdaptiveBottomSheet(
@@ -1674,7 +1677,8 @@ class ChatController extends State<ChatPageWithRoom>
 }
 
 enum AddPopupMenuActions {
-  media,
+  image,
+  video,
   file,
   poll,
   photoCamera,
