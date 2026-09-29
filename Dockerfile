@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-FROM ubuntu:24.04 AS builder
+FROM ubuntu:26.04 AS builder
 RUN apt-get update && apt-get install -y curl wget git unzip xz-utils jq build-essential pkg-config libssl-dev ca-certificates
 
 ARG TARGETARCH
