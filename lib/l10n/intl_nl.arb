@@ -2831,5 +2831,15 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "updateAvailable": "Update {version} beschikbaar",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Downloaden"
 }

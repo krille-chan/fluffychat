@@ -180,15 +180,6 @@ jobs:
           asset_path: build/windows/installer/fluffychat-windows-x64-setup.exe
           asset_name: fluffychat-windows-x64-setup.exe
           asset_content_type: application/vnd.microsoft.portable-executable
-      - name: Upload portable archive to release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/windows/installer/fluffychat-windows-x64.zip
-          asset_name: fluffychat-windows-x64.zip
-          asset_content_type: application/zip
 
   deploy_playstore:
     runs-on: ubuntu-latest
@@ -236,7 +227,6 @@ jobs:
           cd android
           bundle install
           bundle update fastlane
-          bundle exec fastlane deploy_internal_test
           if [[ $GITHUB_REF_NAME == rc* ]]; then
               bundle exec fastlane deploy_candidate
           else

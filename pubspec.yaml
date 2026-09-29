@@ -19,7 +19,7 @@ dependencies:
   async: ^2.13.1
   badges: ^3.2.0
   blurhash_dart: ^1.2.1
-  chewie: ^1.15.0
+  chewie: ^1.17.2
   collection: ^1.18.0
   crop_image: ^1.0.17
   cross_file: ^0.3.5
@@ -60,13 +60,13 @@ dependencies:
   light_compressor_v2: ^1.9.1
   livekit_client: ^2.12.0
   local_auth: ^3.0.2
-  lottie: ^3.5.1
+  lottie: ^3.6.1
   managed_configurations: ^1.2.0
   material_ui: 1.4.0
   matrix: #^11.0.0
     git:
       url: https://github.com/famedly/matrix-dart-sdk.git
-      ref: krille/refactor-device-keys-list-storing
+      ref: main
   media_kit_libs_linux: ^1.2.1
   media_kit_libs_windows_audio: ^1.0.9
   mime: ^2.1.0
@@ -87,7 +87,7 @@ dependencies:
   record: ^7.1.1
   scroll_to_index: ^3.0.1
   share_plus: ^13.3.0
-  shared_preferences: ^2.5.5 # Pinned because https://github.com/flutter/flutter/issues/118401
+  shared_preferences: ^2.5.5
   slugify: ^2.0.0
   sqflite_common_ffi: ^2.4.3
   swipe_to_action: ^0.3.0
@@ -100,7 +100,7 @@ dependencies:
   wakelock_plus: ^1.8.0
 
 dev_dependencies:
-  dart_code_linter: ^4.3.0
+  dart_code_linter: ^4.4.0
   flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
   flutter_test:

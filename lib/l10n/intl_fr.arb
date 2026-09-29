@@ -2833,5 +2833,15 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "updateAvailable": "Mise à jour {version} disponible",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Télécharger"
 }

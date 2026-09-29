@@ -2835,5 +2835,15 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "updateAvailable": "Uus versioon on saadaval: {version}",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Laadi alla"
 }

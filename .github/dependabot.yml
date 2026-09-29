@@ -21,3 +21,14 @@ updates:
     commit-message:
       prefix: "build: "
       include: "scope"
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "build: "
+      include: "scope"
+    ignore:
+      # Only update to Ubuntu LTS releases
+      - dependency-name: "ubuntu"
+        versions: ["24.10", "25.04", "25.10", "26.10", "27.04", "27.10"]
