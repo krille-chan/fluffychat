@@ -216,7 +216,7 @@ class ChatInputRow extends StatelessWidget {
                                   theme.colorScheme.onPrimaryContainer,
                               foregroundColor:
                                   theme.colorScheme.primaryContainer,
-                              child: const Icon(Icons.image_outlined),
+                              child: const Icon(Icons.movie_outlined),
                             ),
                             title: Text(L10n.of(context).sendVideo),
                             contentPadding: const EdgeInsets.all(0),
