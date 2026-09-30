@@ -24,6 +24,7 @@ class MainActivity : FlutterFragmentActivity() {
         var engine: FlutterEngine? = null
         fun provideEngine(context: Context): FlutterEngine {
             val eng = engine ?: FlutterEngine(context, emptyArray(), true, false)
+            UserCaLoader(eng.dartExecutor.binaryMessenger)
             engine = eng
             return eng
         }
