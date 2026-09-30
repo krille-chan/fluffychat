@@ -614,11 +614,19 @@ class ChatController extends State<ChatPageWithRoom>
       return;
     }
 
-    eventId ??= timeline.events
-        .firstWhereOrNull(
-          (event) => room.client.pushruleEvaluator.match(event).notify,
-        )
-        ?.eventId;
+    eventId ??= timeline.events.firstWhereOrNull((event) {
+      if (room.client.pushruleEvaluator.match(event).notify) {
+        return true;
+      }
+      final original = event.originalSource;
+      if (original != null &&
+          room.client.pushruleEvaluator
+              .match(Event.fromMatrixEvent(original, room))
+              .notify) {
+        return true;
+      }
+      return false;
+    })?.eventId;
 
     if (setOnLatestEvent && (room.hasNewMessages || room.isUnread)) {
       eventId ??=
