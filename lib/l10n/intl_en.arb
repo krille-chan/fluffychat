@@ -1268,6 +1268,11 @@
     },
     "oneClientLoggedOut": "One of your clients has been logged out",
     "addAccount": "Add account",
+    "chooseAccount": "Choose account",
+    "@chooseAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
     "editBundlesForAccount": "Edit bundles for this account",
     "addToBundle": "Add to bundle",
     "removeFromBundle": "Remove from this bundle",
