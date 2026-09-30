@@ -2108,7 +2108,6 @@
     },
     "appLockDescription": "Bloquear o app com um código PIN quando não estiver usando",
     "accessAndVisibilityDescription": "Quem pode entrar nesta conversa e como a conversa pode ser descoberta.",
-    "calls": "Chamadas",
     "customEmojisAndStickers": "Emojis e stickers customizados",
     "customEmojisAndStickersBody": "Adicionar ou compartilhar emojis ou stickers customizados que podem ser usados em qualquer conversa.",
     "hideRedactedMessages": "Ocultar mensagens apagadas",

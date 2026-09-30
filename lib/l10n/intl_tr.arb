@@ -2025,7 +2025,6 @@
     "globalChatId": "Genel sohbet kimliği",
     "accessAndVisibility": "Erişim ve görünürlük",
     "accessAndVisibilityDescription": "Bu sohbete kimlerin katılmasına izin verilir ve sohbet nasıl keşfedilebilir.",
-    "calls": "Aramalar",
     "customEmojisAndStickers": "Özel emojiler ve çıkartmalar",
     "customEmojisAndStickersBody": "Herhangi bir sohbette kullanılabilecek özel emojiler veya çıkartmalar ekleyin veya paylaşın.",
     "hideRedactedMessages": "Düzenlenen mesajları gizle",

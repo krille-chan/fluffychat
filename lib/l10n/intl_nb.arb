@@ -1769,7 +1769,6 @@
         }
     },
     "accessAndVisibilityDescription": "Hvem som har lov til å bli med i denne chatten og hvordan chatten kan oppdages.",
-    "calls": "Anrop",
     "customEmojisAndStickers": "Egendefinerte emojier og klistremerker",
     "oopsPushError": "Oops! Dessverre oppsto det en feil under oppsettet av push-varsler.",
     "@oopsPushError": {

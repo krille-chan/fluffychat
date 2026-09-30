@@ -2121,7 +2121,6 @@
         }
     },
     "appLockDescription": "App mit einer PIN sperren, wenn sie nicht verwendet wird",
-    "calls": "Anrufe",
     "customEmojisAndStickers": "Eigene Emojis und Sticker",
     "hideRedactedMessages": "Geschwärzte Nachrichten verstecken",
     "hideRedactedMessagesBody": "Wenn jemand eine Nachricht schwärzt/löscht, dann wird diese Nachricht im Chat nicht mehr sichtbar sein.",

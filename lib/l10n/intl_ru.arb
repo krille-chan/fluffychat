@@ -2084,7 +2084,6 @@
     "accessAndVisibilityDescription": "Кому разрешено войти в этот чат и как этот чат может быть обнаружен.",
     "noDatabaseEncryption": "Шифрование базы данных не поддерживается на этой платформе",
     "appLockDescription": "Заблокировать приложение когда не используется пин код",
-    "calls": "Звонки",
     "customEmojisAndStickers": "Пользовательские эмодзи и стикеры",
     "hideRedactedMessages": "Скрыть редактированные сообщения",
     "hideInvalidOrUnknownMessageFormats": "Скрыть неправильные или неизвестные форматы сообщения",

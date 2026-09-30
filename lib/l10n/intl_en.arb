@@ -790,7 +790,6 @@
     "globalChatId": "Global chat ID",
     "accessAndVisibility": "Access and visibility",
     "accessAndVisibilityDescription": "Who is allowed to join this chat and how the chat can be discovered.",
-    "calls": "Calls",
     "customEmojisAndStickers": "Custom emojis and stickers",
     "customEmojisAndStickersBody": "Add or share custom emojis or stickers which can be used in any chat.",
     "emoteShortcode": "Emote shortcode",
@@ -2811,19 +2810,25 @@
     "unexpectedErrorOccurded": "Unfortunately, an unexpected error has occurred: {msg}",
     "@unexpectedErrorOccurded": {
         "placeholders": {
-            "msg": {"type": "String"}
+            "msg": {
+                "type": "String"
+            }
         }
     },
     "incomingCallFrom": "Incoming call from {user}",
     "@incomingCallFrom": {
         "placeholders": {
-            "user": {"type": "String"}
+            "user": {
+                "type": "String"
+            }
         }
     },
     "serverRespondedWithError": "The server has replied with an error message: {error}",
     "@serverRespondedWithError": {
         "placeholders": {
-            "error": {"type": "String"}
+            "error": {
+                "type": "String"
+            }
         }
     }
 }

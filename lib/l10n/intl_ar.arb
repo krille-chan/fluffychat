@@ -2101,7 +2101,6 @@
     "noDatabaseEncryption": "تشفير قاعدة البيانات غير مدعوم على هذا النظام الأساسي",
     "appLockDescription": "قفل التطبيق عند عدم استخدامه بالرمز السري",
     "accessAndVisibility": "الوصول والرؤية",
-    "calls": "المكالمات",
     "customEmojisAndStickers": "الرموز التعبيرية والملصقات المخصصة",
     "hideRedactedMessagesBody": "إذا قام شخص ما بتنقيح رسالة، فلن تكون هذه الرسالة مرئية في المحادثة بعد الآن.",
     "hideInvalidOrUnknownMessageFormats": "إخفاء تنسيقات الرسائل غير الصالحة أو غير المعروفة",

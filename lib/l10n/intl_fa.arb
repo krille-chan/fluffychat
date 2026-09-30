@@ -1933,7 +1933,6 @@
     "globalChatId": "شناسه سراسری چت",
     "accessAndVisibility": "دسترسی و قابلیت دید",
     "accessAndVisibilityDescription": "چه کسی اجازه پیوستن به این چت را دارد و چت چگونه قابل پیدا شدن است.",
-    "calls": "تماس‌ها",
     "customEmojisAndStickers": "شکلک‌ها و برچسب‌های سفارشی",
     "customEmojisAndStickersBody": "افزودن یا اشتراک گذاری ایموجی ها یا استیکر های سفارشی که در هر چت قابل استفاده‌اند.",
     "chatDescription": "توضیحات چت",

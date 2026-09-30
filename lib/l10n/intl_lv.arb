@@ -1958,7 +1958,6 @@
     "hideInvalidOrUnknownMessageFormats": "Paslēpt nederīgus vai nezināmus ziņu formātus",
     "blockUsername": "Neņemt vērā lietotājvārdu",
     "accessAndVisibility": "Piekļuve un redzamība",
-    "calls": "Zvani",
     "hideRedactedMessages": "Paslēpt labošanas ziņas",
     "hideRedactedMessagesBody": "Ja kāds labo ziņu, tā vairs nebūs redzama tērzēšanā.",
     "blockListDescription": "Ir iespējams liegt traucējošus lietotājus. Nebūs iespējams saņem jebkādas ziņas vai uzaicinājumus uz istabām no lietotājiem, kas ir personīgajā liegumu sarakstā.",
