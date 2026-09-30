@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dCz(){return new B.My(A.dw("lv"))},
-My:function My(d){this.a=d}}
+dCz(){return new B.Mz(A.dw("lv"))},
+Mz:function Mz(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[40],B)
-B.My.prototype={
+B.Mz.prototype={
 gpm(){return"Labot att\u0113lu"},
 grf(){return"Pagriezt pa kreisi"},
 grg(){return"Pagriezt pa labi"},
@@ -748,7 +748,7 @@ qA(d){return"Ien\u0101ko\u0161s zvans no "+d},
 pO(d){return"Serveris atbild\u0113ja ar k\u013c\u016bdas zi\u0146ojumu: "+d},
 C(d,e){return this.gbw(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.My,C.aT)})()
-A.eb(b.typeUniverse,JSON.parse('{"My":{"aT":[]}}'))};
-(a=>{a["rfdIrPOcdAWVASyXUoMYcI7Ta8Q="]=a.current})($__dart_deferred_initializers__);
+y(B.Mz,C.aT)})()
+A.eb(b.typeUniverse,JSON.parse('{"Mz":{"aT":[]}}'))};
+(a=>{a["sVvUc/SEtY8/V1MGtdYI7qLdSVM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_358.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dCN(){return new B.ML(A.dw("ta"))},
-ML:function ML(d){this.a=d}}
+dCN(){return new B.MM(A.dw("ta"))},
+MM:function MM(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[51],B)
-B.ML.prototype={
+B.MM.prototype={
 gpm(){return"\u0baa\u0b9f\u0ba4\u0bcd\u0ba4\u0bc8 \u0ba4\u0bbf\u0bb0\u0bc1\u0ba4\u0bcd\u0ba4\u0bc1"},
 grf(){return"\u0b87\u0b9f\u0baa\u0bcd\u0baa\u0bc1\u0bb1\u0bae\u0bcd \u0b9a\u0bc1\u0bb4\u0bb1\u0bcd\u0bb1\u0bc1"},
 grg(){return"\u0bb5\u0bb2\u0ba4\u0bc1\u0baa\u0bc1\u0bb1\u0bae\u0bcd \u0b9a\u0bc1\u0bb4\u0bb1\u0bcd\u0bb1\u0bc1"},
@@ -745,8 +745,8 @@ qA(d){return"Incoming call from "+d},
 pO(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbw(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.ML,C.aT)})()
-A.eb(b.typeUniverse,JSON.parse('{"ML":{"aT":[]}}'))
+x(B.MM,C.aT)})()
+A.eb(b.typeUniverse,JSON.parse('{"MM":{"aT":[]}}'))
 var y={d:" \u0b87\u0bb2\u0bcd \u0b9f\u0bc6\u0bb5\u0bb2\u0baa\u0bcd\u0baa\u0bb0\u0bcd\u0b95\u0bb3\u0bbf\u0b9f\u0bae\u0bcd \u0b87\u0ba8\u0bcd\u0ba4\u0baa\u0bcd \u0baa\u0bbf\u0bb4\u0bc8\u0baf\u0bc8\u0baa\u0bcd \u0baa\u0bc1\u0b95\u0bbe\u0bb0\u0bb3\u0bbf\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd. \u0baa\u0bbf\u0bb4\u0bc8 \u0b9a\u0bc6\u0baf\u0bcd\u0ba4\u0bbf: "}};
-(a=>{a["fg/1IG3LPbcWleaziax4uGtBLZ0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["AhCb3/diIJ2ovS78MrdbbR6Jvnc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_376.part.js.map

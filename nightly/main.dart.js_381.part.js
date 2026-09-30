@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dCR(){return new B.MP(A.dw("uk"))},
-MP:function MP(d){this.a=d}}
+dCR(){return new B.MQ(A.dw("uk"))},
+MQ:function MQ(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[55],B)
-B.MP.prototype={
+B.MQ.prototype={
 gpm(){return"\u0417\u043c\u0456\u043d\u0438\u0442\u0438 \u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u043d\u044f"},
 grf(){return"\u041e\u0431\u0435\u0440\u043d\u0443\u0442\u0438 \u043b\u0456\u0432\u043e\u0440\u0443\u0447"},
 grg(){return"\u041e\u0431\u0435\u0440\u043d\u0443\u0442\u0438 \u043f\u0440\u0430\u0432\u043e\u0440\u0443\u0447"},
@@ -745,7 +745,7 @@ qA(d){return"Incoming call from "+d},
 pO(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbw(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MP,C.aT)})()
-A.eb(b.typeUniverse,JSON.parse('{"MP":{"aT":[]}}'))};
-(a=>{a["X3j9m0mkAUJO4YGogP+9MBc0NQs="]=a.current})($__dart_deferred_initializers__);
+y(B.MQ,C.aT)})()
+A.eb(b.typeUniverse,JSON.parse('{"MQ":{"aT":[]}}'))};
+(a=>{a["qBMwYh2arBZlXuYPlWAOcOL65iU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_381.part.js.map

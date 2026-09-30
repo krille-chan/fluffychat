@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dCe(){return new B.Md(A.dw("eu"))},
-Md:function Md(d){this.a=d}}
+dCe(){return new B.Me(A.dw("eu"))},
+Me:function Me(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[19],B)
-B.Md.prototype={
+B.Me.prototype={
 gpm(){return"Edit image"},
 grf(){return"Rotate left"},
 grg(){return"Rotate right"},
@@ -744,8 +744,8 @@ qA(d){return"Incoming call from "+d},
 pO(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbw(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Md,C.aT)})()
-A.eb(b.typeUniverse,JSON.parse('{"Md":{"aT":[]}}'))
+x(B.Me,C.aT)})()
+A.eb(b.typeUniverse,JSON.parse('{"Me":{"aT":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["48hzG+nhCI9goUcJPM9eihRAAtI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["AyKoFXPHs+m3808Y0tioff40kME="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

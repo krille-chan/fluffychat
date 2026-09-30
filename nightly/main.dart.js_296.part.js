@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dC8(){return new B.M7(A.dw("de"))},
-M7:function M7(d){this.a=d}}
+dC8(){return new B.M8(A.dw("de"))},
+M8:function M8(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[13],B)
-B.M7.prototype={
+B.M8.prototype={
 gpm(){return"Bild bearbeiten"},
 grf(){return"Nach links drehen"},
 grg(){return"Nach rechts drehen"},
@@ -745,8 +745,8 @@ qA(d){return"Eingehender Anruf von "+d},
 pO(d){return"Der Server hat mit einer Fehlermeldung geantwortet: "+d},
 C(d,e){return this.gbw(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.M7,C.aT)})()
-A.eb(b.typeUniverse,JSON.parse('{"M7":{"aT":[]}}'))
+x(B.M8,C.aT)})()
+A.eb(b.typeUniverse,JSON.parse('{"M8":{"aT":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["pst/tB7h0JmZ6InlPiRsiDvdcsU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BklNYg0L3GIDjMj6h5bwI+BI9jk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_296.part.js.map
