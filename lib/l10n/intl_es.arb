@@ -1934,7 +1934,6 @@
     "accessAndVisibility": "Acceso y visibilidad",
     "globalChatId": "ID de chat Global",
     "accessAndVisibilityDescription": "A quién se le permite unirse a este chat y cómo se puede descubrir el chat.",
-    "calls": "Llamadas",
     "customEmojisAndStickers": "Emojis y stickers personalizados",
     "customEmojisAndStickersBody": "Agrega o comparte emojis y stickers personalizados que se pueden utilizar en cualquier chat.",
     "blockedUsers": "Usuarios bloqueados",

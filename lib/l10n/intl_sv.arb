@@ -2123,7 +2123,6 @@
     "globalChatId": "Globalt chat-ID",
     "accessAndVisibility": "Tillgänglighet och synlighet",
     "accessAndVisibilityDescription": "Vem som är tillåten att gå med i chatten och hur chatten kan upptäckas.",
-    "calls": "Samtal",
     "customEmojisAndStickers": "Egna emojis och klistermärken",
     "customEmojisAndStickersBody": "Lägg till eller dela egna emojis eller klistermärken som kan användas i alla chattar.",
     "hideRedactedMessages": "Dölj tillbakatagna meddelanden",

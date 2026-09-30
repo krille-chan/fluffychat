@@ -1935,7 +1935,6 @@
     "appLockDescription": "Zamknout aplikaci pomocí PIN kódu když není používána",
     "globalChatId": "Globální ID chatu",
     "accessAndVisibility": "Přístup a viditelnost",
-    "calls": "Volání",
     "customEmojisAndStickers": "Vlastní emodži a nálepky",
     "accessAndVisibilityDescription": "Kdo se může připojit a najít tuto konverzaci.",
     "customEmojisAndStickersBody": "Přidat nebo sdílet vlastní emodži či nálepky, které lze použít v konverzaci.",

@@ -2107,7 +2107,6 @@
         }
     },
     "appLockDescription": "앱을 사용하지 않을 때 pin으로 잠금",
-    "calls": "전화",
     "globalChatId": "글로벌 채팅 ID",
     "customEmojisAndStickers": "커스텀 이모지와 스티커",
     "accessAndVisibilityDescription": "채팅에 참가 할 수 있는 사람과 채팅을 볼 수 있는 범위",

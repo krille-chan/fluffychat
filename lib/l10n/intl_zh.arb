@@ -2111,7 +2111,6 @@
     "globalChatId": "全局聊天 ID",
     "accessAndVisibility": "访问和可见性",
     "accessAndVisibilityDescription": "谁可以加入此聊天以及怎样发现该聊天。",
-    "calls": "通话",
     "customEmojisAndStickers": "自定义表情符号和贴纸",
     "hideRedactedMessages": "隐藏被涂黑的消息",
     "passwordRecoverySettings": "密码发现设置",

@@ -1847,7 +1847,6 @@
         "placeholders": {}
     },
     "globalChatId": "グローバルチャットID",
-    "calls": "通話",
     "chatDescription": "チャットの説明",
     "chatDescriptionHasBeenChanged": "チャットの説明が変更された",
     "block": "ブロック",

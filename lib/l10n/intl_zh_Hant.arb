@@ -1944,7 +1944,6 @@
     "globalChatId": "全球聊天室 ID",
     "accessAndVisibility": "訪問權限和可見性",
     "accessAndVisibilityDescription": "誰被允許加入此聊天室以及如何發現聊天室。",
-    "calls": "通話",
     "chatDescription": "聊天室描述",
     "chatDescriptionHasBeenChanged": "聊天室描述已變更",
     "tryAgain": "再試一次",
