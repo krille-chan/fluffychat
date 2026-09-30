@@ -149,27 +149,14 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
     value.isLoading = true;
     notifyListeners();
     try {
-      if (reset) {
-        final ssss = client.encryption!.ssss;
-        final newKey = await ssss.createKey(passphrase);
-
-        for (final type in cacheTypes) {
-          final secret = await ssss.getCached(type);
-          if (secret == null) {
-            throw Exception(
-              'Migration failed! Missing secret in cache "$type"',
-            );
-          }
-          await newKey.store(type, secret, add: true);
-        }
-        await ssss.setDefaultKeyId(newKey.keyId);
-        await client.dehydratedDeviceSetup(newKey);
-        value.recoveryKey = newKey.recoveryKey;
-      } else {
-        value.recoveryKey = await client.initCryptoIdentity(
-          passphrase: passphrase,
-        );
+      final state = await client.getCryptoIdentityState();
+      if (state.connected) {
+        Logs().i('Download the key backup...');
+        await client.encryption!.keyManager.loadAllKeys();
       }
+      value.recoveryKey = await client.initCryptoIdentity(
+        passphrase: passphrase,
+      );
     } catch (e, s) {
       if (!context.mounted) return;
       ErrorReporter(
