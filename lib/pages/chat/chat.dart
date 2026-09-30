@@ -651,12 +651,20 @@ class ChatController extends State<ChatPageWithRoom>
       return;
     }
 
+    final fullyReadEventId = setOnLatestEvent
+        ? timeline.events
+              .filterByVisibleInGui()
+              .firstWhereOrNull((event) => event.status.isSynced)
+              ?.eventId
+        : eventId;
+
     Logs().d('Set read marker...', eventId);
     _setReadMarkerEventId = eventId;
     // ignore: unawaited_futures
-    timeline
+    room
         .setReadMarker(
-          eventId: eventId,
+          fullyReadEventId,
+          mRead: eventId,
           public: AppSettings.sendPublicReadReceipts.value,
         )
         .whenComplete(() {
