@@ -200,7 +200,7 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
     value.isLoading = true;
     notifyListeners();
     try {
-      await client.restoreCryptoIdentity(key, selfSign: false);
+      await client.restoreCryptoIdentity(key);
       value.isLoading = false;
       value.cryptoIdentityState = await client.getCryptoIdentityState();
       notifyListeners();
