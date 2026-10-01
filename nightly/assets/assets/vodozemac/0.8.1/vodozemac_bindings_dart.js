@@ -1596,7 +1596,7 @@ let wasm_bindgen;
     }
 
     function __wbg_adapter_43(arg0, arg1) {
-        wasm._dyn_core_3b474e44f6206ac4___ops__function__FnMut_____Output______as_wasm_bindgen_1068bbf4ccd9e186___closure__WasmClosure___describe__invoke______(arg0, arg1);
+        wasm._dyn_core_9edd6172b0a6ff98___ops__function__FnMut_____Output______as_wasm_bindgen_46c0e557af44ab96___closure__WasmClosure___describe__invoke______(arg0, arg1);
     }
 
     const WorkerPoolFinalization = (typeof FinalizationRegistry === 'undefined')
