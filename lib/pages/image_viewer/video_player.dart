@@ -9,6 +9,7 @@ import 'package:chewie/chewie.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/safe_file_name.dart';
 import 'package:fluffychat/widgets/blur_hash.dart';
 import 'package:flutter/foundation.dart';
 import 'package:material_ui/material_ui.dart';
@@ -76,7 +77,8 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
             widget.event.attachmentMxcUrl?.pathSegments.last ??
             widget.event.body;
         final fileName = Uri.encodeComponent(fileNameStr);
-        final file = File('${tempDir.path}/${fileName}_${videoFile.name}');
+        final file =
+            File('${tempDir.path}/${safeCacheFileName(fileName, videoFile.name)}');
         if (await file.exists() == false) {
           await file.writeAsBytes(videoFile.bytes);
         }

@@ -12,6 +12,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/safe_file_name.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
@@ -174,7 +175,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       if (!kIsWeb && attachmentUrl != null) {
         final tempDir = await getTemporaryDirectory();
         final fileName = Uri.encodeComponent(attachmentUrl.pathSegments.last);
-        file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
+        file =
+            File('${tempDir.path}/${safeCacheFileName(fileName, matrixFile.name)}');
 
         await file.writeAsBytes(matrixFile.bytes);
 
