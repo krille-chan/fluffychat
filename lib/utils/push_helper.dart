@@ -53,7 +53,9 @@ Future<void> pushHelper(
     if (PlatformInfos.isAndroid &&
         e is! TimeoutException &&
         e is! IOException &&
-        e is! http.ClientException) {
+        e is! http.ClientException &&
+        // e.g. a captive portal responding with HTML instead of JSON
+        e is! FormatException) {
       Logs().e('Push Helper has crashed! Writing into temporary file...', e, s);
       final store = await SharedPreferences.getInstance();
       await store.setStringList(AppConfig.pushHelperCrashReportKey, [
