@@ -26,6 +26,7 @@ import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/read_marker_extension.dart';
 import 'package:fluffychat/utils/other_party_can_receive.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/show_scaffold_dialog.dart';
@@ -614,52 +615,24 @@ class ChatController extends State<ChatPageWithRoom>
       return;
     }
 
-    eventId ??= timeline.events.firstWhereOrNull((event) {
-      if (room.client.pushruleEvaluator.match(event).notify) {
-        return true;
-      }
-      final original = event.originalSource;
-      if (original != null &&
-          room.client.pushruleEvaluator
-              .match(Event.fromMatrixEvent(original, room))
-              .notify) {
-        return true;
-      }
-      return false;
-    })?.eventId;
+    if (eventId == null) {
+      // Room is not unread at all
+      if (!room.hasNewMessages && room.notificationCount == 0) return;
+    } else {
+      // This is a sending event, we do not set a readmarker yet
+      if (eventId.isValidMatrixIdStrict() == false) return;
 
-    if (setOnLatestEvent && (room.hasNewMessages || room.isUnread)) {
-      eventId ??=
-          room.lastEvent?.eventId ?? timeline.events.firstOrNull?.eventId;
+      // Already set a read marker on this event
+      if (room.fullyRead == eventId) return;
     }
 
-    // There is no event we could place a read marker
-    if (eventId == null) return;
-
-    // This is a sending event, we do not set a readmarker yet
-    if (eventId.isValidMatrixIdStrict() == false) return;
-
-    // Already set a read marker on this event
-    if (room.fullyRead == eventId && !setOnLatestEvent) return;
-
-    // Set a readmarker on a specific event, not latest, but room is not unread
-    // at all.
-    if (setOnLatestEvent &&
-        !room.hasNewMessages &&
-        room.notificationCount == 0) {
-      return;
-    }
-
-    Logs().d('Set read marker...', eventId);
+    Logs().d('Set read marker...', eventId ?? 'latest event');
     // ignore: unawaited_futures
-    _setReadMarkerFuture = timeline
-        .setReadMarker(
-          eventId: eventId,
-          public: AppSettings.sendPublicReadReceipts.value,
-        )
-        .whenComplete(() {
-          _setReadMarkerFuture = null;
-        });
+    _setReadMarkerFuture = timeline.markAsRead(eventId: eventId).whenComplete(
+      () {
+        _setReadMarkerFuture = null;
+      },
+    );
   }
 
   @override

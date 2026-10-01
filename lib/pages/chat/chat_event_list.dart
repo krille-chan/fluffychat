@@ -95,7 +95,8 @@ class ChatEventList extends StatelessWidget {
                 return Column(
                   mainAxisSize: .min,
                   children: [
-                    if (events.isNotEmpty) SeenByRow(event: events.first),
+                    if (events.isNotEmpty)
+                      SeenByRow(event: events.first, timeline: timeline),
                     TypingIndicators(controller),
                     EncryptionInfo(room: controller.room),
                   ],

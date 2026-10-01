@@ -14,6 +14,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/read_marker_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/show_scaffold_dialog.dart';
 import 'package:fluffychat/utils/show_update_snackbar.dart';
@@ -578,13 +579,13 @@ class ChatListController extends State<ChatList>
               mainAxisSize: .min,
               children: [
                 Icon(
-                  room.markedUnread
+                  room.isUnread
                       ? Icons.mark_as_unread
                       : Icons.mark_as_unread_outlined,
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  room.markedUnread
+                  room.isUnread
                       ? L10n.of(context).markAsRead
                       : L10n.of(context).markAsUnread,
                 ),
@@ -747,7 +748,8 @@ class ChatListController extends State<ChatList>
       case ChatContextAction.markUnread:
         await showFutureLoadingDialog(
           context: context,
-          future: () => room.markUnread(!room.markedUnread),
+          future: () =>
+              room.isUnread ? room.markAsRead() : room.markUnread(true),
         );
         return;
       case ChatContextAction.mute:

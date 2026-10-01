@@ -13,6 +13,7 @@ import 'package:fluffychat/pages/chat_list/active_call_indicator.dart';
 import 'package:fluffychat/pages/chat_list/unread_bubble.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/read_marker_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -256,14 +257,14 @@ class _SpaceViewState extends State<SpaceView> {
             ),
           ),
           PopupMenuItem(
-            value: room.markedUnread
+            value: room.isUnread
                 ? SpaceChildAction.markAsRead
                 : SpaceChildAction.markAsUnread,
             child: Row(
               mainAxisSize: .min,
               children: [
                 Icon(
-                  room.markedUnread
+                  room.isUnread
                       ? Icons.mark_as_unread
                       : Icons.mark_as_unread_outlined,
                 ),
@@ -355,7 +356,7 @@ class _SpaceViewState extends State<SpaceView> {
       case SpaceChildAction.markAsRead:
         await showFutureLoadingDialog(
           context: context,
-          future: () => room!.markUnread(false),
+          future: () => room!.markAsRead(),
         );
       case SpaceChildAction.leave:
         await showFutureLoadingDialog(

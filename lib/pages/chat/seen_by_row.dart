@@ -11,7 +11,8 @@ import 'package:matrix/matrix.dart';
 
 class SeenByRow extends StatelessWidget {
   final Event event;
-  const SeenByRow({super.key, required this.event});
+  final Timeline timeline;
+  const SeenByRow({super.key, required this.event, required this.timeline});
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +28,14 @@ class SeenByRow extends StatelessWidget {
             false,
       ),
       builder: (context, asyncSnapshot) {
-        final seenByUsers = event.receipts
-            .map((r) => r.user)
+        // Read receipts can also be on newer hidden events like reactions:
+        final index = timeline.events.indexOf(event);
+        final events = index == -1 ? [event] : timeline.events.take(index + 1);
+        final usersById = {
+          for (final e in events)
+            for (final receipt in e.receipts) receipt.user.id: receipt.user,
+        };
+        final seenByUsers = usersById.values
             .where(
               (user) =>
                   user.id != event.room.client.userID &&

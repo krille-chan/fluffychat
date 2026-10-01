@@ -10,6 +10,7 @@ import 'dart:ui';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/read_marker_extension.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_vodozemac/flutter_vodozemac.dart' as vod;
@@ -177,11 +178,7 @@ Future<void> notificationTap(
       }
       switch (actionType) {
         case FluffyChatNotificationActions.markAsRead:
-          await room.setReadMarker(
-            payload.eventId ?? room.lastEvent!.eventId,
-            mRead: payload.eventId ?? room.lastEvent!.eventId,
-            public: AppSettings.sendPublicReadReceipts.value,
-          );
+          await room.markAsRead(eventId: payload.eventId);
         case FluffyChatNotificationActions.reply:
           final input = notificationResponse.input;
           if (input == null || input.isEmpty) {
