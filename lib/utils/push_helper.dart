@@ -361,7 +361,7 @@ Future<void> _tryPushHelper(
 
   final title = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
 
-  if (PlatformInfos.isAndroid && messagingStyleInformation == null) {
+  if (PlatformInfos.isAndroid) {
     await _setShortcut(event, l10n, title, roomAvatarFile);
   }
 
