@@ -1,7 +1,6 @@
 package chat.fluffy.fluffychat
 
 import io.flutter.embedding.engine.FlutterEngine
-import io.flutter.embedding.engine.dart.DartExecutor.DartEntrypoint
 import org.unifiedpush.flutter.connector.UnifiedPushService as UnifiedPushConnectorService
 
 import android.content.Context
@@ -15,16 +14,6 @@ import android.content.Context
  */
 class UnifiedPushService : UnifiedPushConnectorService() {
     override fun getEngine(context: Context): FlutterEngine {
-        var engine = MainActivity.engine
-        if (engine == null) {
-            engine = MainActivity.provideEngine(context.applicationContext)
-            engine.localizationPlugin.sendLocalesToFlutter(
-                context.resources.configuration
-            )
-            engine.dartExecutor.executeDartEntrypoint(
-                DartEntrypoint.createDefault()
-            )
-        }
-        return engine
+        return MainActivity.provideEngine(context)
     }
 }
