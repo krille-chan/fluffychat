@@ -120,6 +120,18 @@
           </intent-filter>
         </service>
 
+        <!-- Replace the service of the UnifiedPush plugin so that push
+             messages are processed in the FlutterEngine of the MainActivity
+             instead of a second FlutterEngine. -->
+        <service android:name="org.unifiedpush.flutter.connector.UnifiedPushService"
+            tools:node="remove" />
+        <service android:name=".UnifiedPushService"
+          android:exported="false">
+          <intent-filter>
+            <action android:name="org.unifiedpush.android.connector.PUSH_EVENT"/>
+          </intent-filter>
+        </service>
+
         <service android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
              android:foregroundServiceType="camera|microphone|mediaProjection|shortService"
              android:exported="false">
