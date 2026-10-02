@@ -1996,7 +1996,7 @@
     "usersMustKnock": "Les utilisateurs/trices doivent frapper",
     "noOneCanJoin": "Personne ne peut rejoindre",
     "knock": "Frapper à la porte",
-    "appLockDescription": "Verrouiller l'application avec un code PIN lorsqu'elle n'est pas utilisée",
+    "appLockDescription": "Verrouiller l’application avec un code PIN lorsqu’elle n’est pas utilisée",
     "globalChatId": "Identifiant global de la discussion",
     "accessAndVisibility": "Accès et visibilité",
     "accessAndVisibilityDescription": "Qui est autorisé à rejoindre cette discussion et comment la discussion peut être découverte.",
@@ -2087,7 +2087,7 @@
     "createNewAddress": "Créer une nouvelle adresse",
     "publicChatAddresses": "Addresses de discussion publiques",
     "space": "Espace",
-    "noMoreChatsFound": "Aucune autre discussion trouvée...",
+    "noMoreChatsFound": "Aucune autre discussion trouvée…",
     "unread": "Non lu",
     "commandHint_sendraw": "Envoyer du JSON brut",
     "databaseMigrationTitle": "La base de données est optimisée",
@@ -2499,7 +2499,7 @@
             }
         }
     },
-    "discardEdits": "Vous avez des modifications non-sauvegardés. Voulez-vous les supprimer ?",
+    "discardEdits": "Vous avez des modifications non sauvegardées. Voulez-vous les supprimer ?",
     "@discardEdits": {
         "type": "String",
         "placeholders": {}
