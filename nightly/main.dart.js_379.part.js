@@ -6,16 +6,16 @@ A=c[0]
 C=c[59]
 B=a.updateHolder(c[54],B)
 B.MP.prototype={
-gpm(){return"Edit image"},
-grf(){return"Rotate left"},
-grg(){return"Rotate right"},
-gqL(){return"Mirror"},
-gpH(d){return"Save"},
-gpl(){return"Draw"},
-glb(){return"Undo"},
-geA(d){return"Clear"},
-gqs(){return"Eraser"},
-gjk(){return"Crop"},
+gpm(){return"G\xf6rseli d\xfczenle"},
+grf(){return"Sola d\xf6nd\xfcr"},
+grg(){return"Sa\u011fa d\xf6nd\xfcr"},
+gqL(){return"Yans\u0131t"},
+gpH(d){return"Kaydet"},
+gpl(){return"\xc7iz"},
+glb(){return"Geri"},
+geA(d){return"Sil"},
+gqs(){return"Silgi"},
+gjk(){return"K\u0131rpmak"},
 gkW(){return"Parolay\u0131 tekrarlay\u0131n"},
 gkv(){return"Bir resim dosyas\u0131 de\u011fil."},
 gbw(d){return"Kald\u0131r"},
@@ -29,7 +29,7 @@ fB(d){return d+" Hakk\u0131nda"},
 gi8(d){return"Kabul et"},
 i9(d){return"\ud83d\udc4d "+d+" kat\u0131lma davetini kabul etti"},
 gia(){return"Hesap"},
-gq7(){return"Accounts and settings"},
+gq7(){return"Hesap ve ayarlar"},
 ib(d){return"\ud83d\udd10 "+d+" u\xe7tan uca \u015fifrelemeyi etkinle\u015ftirdi"},
 gic(){return"E-posta ekle"},
 gjb(){return"Hesab\u0131n\u0131z\u0131 silmek i\xe7in l\xfctfen Matrix kimli\u011finizi do\u011frulay\u0131n."},
@@ -746,5 +746,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.MP,C.aT)})()
 A.eb(b.typeUniverse,JSON.parse('{"MP":{"aT":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["Qeo0vJEju6NLitaRhNAMC8QKtRU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ptEaChGxysWUVujYzh66Hl1i9xg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_379.part.js.map

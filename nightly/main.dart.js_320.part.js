@@ -6,10 +6,10 @@ A=c[0]
 C=c[59]
 B=a.updateHolder(c[23],B)
 B.Mi.prototype={
-gpm(){return"\xc9diter l'image"},
+gpm(){return"\xc9diter l\u2019image"},
 grf(){return"Tourner vers la gauche"},
 grg(){return"Tourner vers la droite"},
-gqL(){return"Mirroir"},
+gqL(){return"Miroir"},
 gpH(d){return"Sauvegarder"},
 gpl(){return"Dessiner"},
 glb(){return"D\xe9faire"},
@@ -493,7 +493,7 @@ oo(d){return"\ud83c\udf89 La mise \xe0 niveau "+d+" est install\xe9e\u202f!"},
 gml(){return"Journal des modifications"},
 glI(){return"Envoi annul\xe9"},
 gkb(){return"Connexion avec l'identifiant Matrix"},
-gmL(){return"Aucun serveur d'acceuil compatible ne semble exister. URL incorrecte\u202f?"},
+gmL(){return"Aucun serveur d\u2019accueil compatible ne semble exister. URL incorrecte\u202f?"},
 gmc(){return"Calcul en cours..."},
 gnT(){return"Un de vos appareils n'est pas v\xe9rifi\xe9"},
 gne(){return"Note\xa0: Lorsque vous connectez vos appareils \xe0 la sauvegarde de discussion, ils sont automatiquement v\xe9rifi\xe9s."},
@@ -638,10 +638,10 @@ gq9(){return"Configurations avanc\xe9es"},
 gpX(){return"Se connecter"},
 gpg(){return"Cr\xe9er un nouveau compte"},
 gpZ(){return"FluffyChat est d\xe9centralis\xe9\u202f! Selectionnez un h\xf4te sur lequel vous voulez cr\xe9er un compte et c'est parti\u202f!"},
-gpY(){return"Vous avez d\xe9j\xe0 un compte sur Matrix\u202f? Bon retour\u202f! S\xe9lectionnez votre serveur d'acceuil et connectez vous."},
+gpY(){return"Vous avez d\xe9j\xe0 un compte sur Matrix\u202f? Bon retour\u202f! S\xe9lectionnez votre serveur d\u2019accueil et connectez-vous."},
 gri(){return"Le processus a \xe9t\xe9 annul\xe9."},
 gqC(d){return"Rejoindre"},
-gpJ(){return"Recherchez ou entrez l'adresse de votre serveur d'acceuil"},
+gpJ(){return"Recherchez ou entrez l\u2019adresse de votre serveur d\u2019accueil"},
 gqH(){return"ID Matrix"},
 goS(){return"Configurer le niveau de puissance"},
 gqG(){return"Promouvoir mod\xe9rateur/trice"},
@@ -746,5 +746,5 @@ C(d,e){return this.gbw(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mi,C.aT)})()
 A.eb(b.typeUniverse,JSON.parse('{"Mi":{"aT":[]}}'))};
-(a=>{a["bkxqNwPGqZYdJTHQRBAKShCc928="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["qyJqA+Rc1X7pLp1NV5AjldJ6l0o="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_320.part.js.map
