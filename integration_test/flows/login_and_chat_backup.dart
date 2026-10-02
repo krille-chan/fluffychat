@@ -57,6 +57,9 @@ extension on FluffyChatTester {
     await enterText(TextField, passphrase1, index: 0);
     await enterText(TextField, passphrase1, index: 1);
     await tapOn('Continue', pumpAndSettle: false);
+    await waitFor('Please enter your password');
+    await enterText(DialogTextField, user1Pw, pumpAndSettle: false);
+    await tapOn('Ok');
     await waitFor('You are ready to start!');
     await tapOn('Continue');
     AuthFlows.userPassphrases[user1Name] = passphrase1;
