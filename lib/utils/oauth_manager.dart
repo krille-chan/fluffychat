@@ -3,162 +3,102 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
-import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:matrix/matrix.dart';
+
+enum OAuthProvider { google, apple }
+
+class OAuthResult {
+  final OAuthProvider provider;
+  final String? email;
+  final String? displayName;
+  final String? idToken;
+  final String? authorizationCode;
+
+  const OAuthResult({
+    required this.provider,
+    this.email,
+    this.displayName,
+    this.idToken,
+    this.authorizationCode,
+  });
+}
 
 class OAuthManager {
   static final GoogleSignIn _googleSignIn = GoogleSignIn(
-    scopes: [
-      'email',
-      'profile',
-    ],
+    scopes: ['email', 'profile'],
   );
 
-  /// Sign in with Google
-  /// Returns the email and id_token if successful
-  static Future<({String email, String idToken})?> signInWithGoogle() async {
+  static Future<OAuthResult?> signInWithGoogle() async {
     try {
       final account = await _googleSignIn.signIn();
       if (account == null) return null;
 
       final auth = await account.authentication;
       final idToken = auth.idToken;
-      if (idToken == null) return null;
+      if (idToken == null || idToken.isEmpty) return null;
 
-      return (email: account.email, idToken: idToken);
-    } catch (e) {
-      print('Google Sign-In error: $e');
+      return OAuthResult(
+        provider: OAuthProvider.google,
+        email: account.email,
+        displayName: account.displayName,
+        idToken: idToken,
+      );
+    } catch (_) {
       return null;
     }
   }
 
-  /// Sign out from Google
   static Future<void> signOutGoogle() async {
     try {
       await _googleSignIn.signOut();
-    } catch (e) {
-      print('Google Sign-Out error: $e');
+    } catch (_) {}
+  }
+
+  static Future<bool> isGoogleSignedIn() async {
+    try {
+      final account = await _googleSignIn.signInSilently();
+      return account != null;
+    } catch (_) {
+      return false;
     }
   }
 
-  /// Check if user is already signed in with Google
-  static Future<bool> isGoogleSignedIn() async {
-    final account = await _googleSignIn.signInSilently();
-    return account != null;
-  }
-
-  /// Sign in with Apple (iOS only)
-  /// Returns the email and identityToken if successful
-  static Future<({String? email, String identityToken})?> signInWithApple() async {
+  static Future<OAuthResult?> signInWithApple() async {
     try {
-      final result = await SignInWithApple.getAppleIDCredential(
+      final credential = await SignInWithApple.getAppleIDCredential(
         scopes: [
-          AppleIDSignInScopes.email,
-          AppleIDSignInScopes.fullName,
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
         ],
-        webAuthenticationOptions: WebAuthenticationOptions(
-          clientId: 'com.example.aerogram.signin',
-          teamId: 'YOUR_TEAM_ID', // Replace with your Apple Team ID
-          redirectUrl: Uri.parse(
-            'https://your-redirect-url.example.com/callback',
-          ),
-        ),
       );
 
-      final identityToken = result.identityToken;
-      if (identityToken == null) return null;
+      final identityToken = credential.identityToken;
+      if (identityToken == null || identityToken.isEmpty) return null;
 
-      return (email: result.email, identityToken: identityToken);
-    } catch (e) {
-      print('Apple Sign-In error: $e');
+      return OAuthResult(
+        provider: OAuthProvider.apple,
+        email: credential.email,
+        displayName: credential.givenName != null || credential.familyName != null
+            ? [credential.givenName, credential.familyName]
+                .whereType<String>()
+                .join(' ')
+                .trim()
+            : null,
+        idToken: identityToken,
+        authorizationCode: credential.authorizationCode,
+      );
+    } catch (_) {
       return null;
     }
   }
 
-  /// Login to Matrix using OAuth token
-  /// This uses a custom login endpoint that supports OAuth tokens
-  static Future<void> matrixLoginWithOAuth({
-    required Client matrixClient,
-    required String oauthToken,
-    required String tokenType, // 'google' or 'apple'
-    required String? email,
-  }) async {
-    try {
-      // This assumes your homeserver supports OAuth token exchange
-      // If not, you'll need to implement custom authentication
-      
-      // Option 1: Direct Matrix login with email
-      if (email != null) {
-        await matrixClient.login(
-          LoginType.mLoginPassword,
-          identifier: AuthenticationThirdPartyIdentifier(
-            medium: 'email',
-            address: email,
-          ),
-          // Note: This won't work directly - you'd need server support
-          // This is a placeholder for OAuth integration
-        );
-      }
-    } catch (e) {
-      print('Matrix OAuth login error: $e');
-      rethrow;
+  static String providerLabel(OAuthProvider provider) {
+    switch (provider) {
+      case OAuthProvider.google:
+        return 'Google';
+      case OAuthProvider.apple:
+        return 'Apple';
     }
   }
-
-  /// Get platform-specific OAuth button label
-  static String getOAuthButtonLabel(String platform) {
-    switch (platform) {
-      case 'google':
-        return 'Sign in with Google';
-      case 'apple':
-        return 'Sign in with Apple';
-      default:
-        return 'Sign in';
-    }
-  }
-
-  /// Get platform-specific OAuth button icon
-  static String getOAuthButtonIcon(String platform) {
-    switch (platform) {
-      case 'google':
-        return '🔍'; // Google icon
-      case 'apple':
-        return '🍎'; // Apple icon
-      default:
-        return '→';
-    }
-  }
-}
-
-/// OAuth token container
-class OAuthToken {
-  final String token;
-  final String tokenType; // 'google' or 'apple'
-  final String? email;
-  final DateTime expiresAt;
-
-  const OAuthToken({
-    required this.token,
-    required this.tokenType,
-    this.email,
-    required this.expiresAt,
-  });
-
-  bool get isExpired => DateTime.now().isAfter(expiresAt);
-
-  Map<String, dynamic> toJson() => {
-    'token': token,
-    'tokenType': tokenType,
-    'email': email,
-    'expiresAt': expiresAt.toIso8601String(),
-  };
-
-  factory OAuthToken.fromJson(Map<String, dynamic> json) => OAuthToken(
-    token: json['token'] as String,
-    tokenType: json['tokenType'] as String,
-    email: json['email'] as String?,
-    expiresAt: DateTime.parse(json['expiresAt'] as String),
-  );
 }
