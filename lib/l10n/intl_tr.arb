@@ -2271,90 +2271,59 @@
             }
         }
     },
-    "@countReplies": {
-        "type": "int",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "@versionWithNumber": {
+    "editImage": "Görseli düzenle",
+    "@editImage": {
         "type": "String",
-        "placeholders": {
-            "version": {
-                "type": "String"
-            }
-        }
+        "placeholders": {}
     },
-    "@countChats": {
+    "rotateLeft": "Sola döndür",
+    "@rotateLeft": {
         "type": "String",
-        "placeholders": {
-            "chats": {
-                "type": "int"
-            }
-        }
+        "placeholders": {}
     },
-    "@sentVoiceMessage": {
+    "rotateRight": "Sağa döndür",
+    "@rotateRight": {
         "type": "String",
-        "placeholders": {
-            "sender": {
-                "type": "String"
-            },
-            "duration": {
-                "type": "String"
-            }
-        }
+        "placeholders": {}
     },
-    "@mute": {
-        "description": "This should be a very short string because there is not much space in the button!"
-    },
-    "@spaceMemberOfCanKnock": {
+    "mirror": "Yansıt",
+    "@mirror": {
         "type": "String",
-        "placeholders": {
-            "spaces": {
-                "type": "String"
-            }
-        }
+        "placeholders": {}
     },
-    "@chatSearchedUntil": {
+    "save": "Kaydet",
+    "@save": {
         "type": "String",
-        "placeholders": {
-            "time": {
-                "type": "String"
-            }
-        }
+        "placeholders": {}
     },
-    "@unknownPushRule": {
+    "draw": "Çiz",
+    "@draw": {
         "type": "String",
-        "placeholders": {
-            "rule": {
-                "type": "String"
-            }
-        }
+        "placeholders": {}
     },
-    "@appWantsToUseForLogin": {
+    "undo": "Geri",
+    "@undo": {
         "type": "String",
-        "placeholders": {
-            "server": {
-                "type": "String"
-            }
-        }
+        "placeholders": {}
     },
-    "@countVotes": {
-        "type": "int",
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "@spaceMemberOf": {
+    "clear": "Sil",
+    "@clear": {
         "type": "String",
-        "placeholders": {
-            "spaces": {
-                "type": "String"
-            }
-        }
+        "placeholders": {}
+    },
+    "eraser": "Silgi",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Kırpmak",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "accountsAndSettings": "Hesap ve ayarlar",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
     }
 }
