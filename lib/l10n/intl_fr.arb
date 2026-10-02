@@ -2734,7 +2734,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "undo": "Défaire",
+    "undo": "Annuler",
     "@undo": {
         "type": "String",
         "placeholders": {}
