@@ -1,20 +1,20 @@
 <!--
-SPDX-FileCopyrightText: 2019-Present Christian Kußowski
+SPDX-FileCopyrightText: 2019-Present svettszx
 SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-[FluffyChat](https://fluffy.chat) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
+[FluffyChat](https://fluffy.chat) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use and secure messaging experience.
 
 ### Links:
 
 - 🌐 [[Weblate] Translate FluffyChat into your language](https://hosted.weblate.org/projects/fluffychat/)
 - 🌍 [[m] Join the community](https://matrix.to/#/#fluffy-space:matrix.org)
-- 📰 [[Mastodon] Get updates on social media](https://troet.cafe/@krille)
-- 💝 [[Liberapay] Support FluffyChat development](https://de.liberapay.com/KrilleChritzelius)
+- 📰 [[GitHub] Follow svettszx](https://github.com/svettszx)
+- 💝 [[Support] Support development](https://github.com/svettszx)
 
-<a href='https://ko-fi.com/krille' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+<a href='https://github.com/svettszx' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png' border='0' alt='GitHub profile of svettszx'></a>
 
 ### Screenshots:
 
@@ -49,7 +49,7 @@ Please visit the website for installation instructions:
 
 # Configuration and Mobile Device Management (MDM)
 
-FluffyChat supports configuration via MDM on Android&iOS (since v2.10.0) and via a config.json file on web. You can see the populated configuration for MDM on Android in this file under `/android/app/src/main/res/xml/app_restrictions.xml`.
+FluffyChat supports configuration via MDM on Android&iOS (since v2.10.0) and via a config.json file on web. You can see the populated configuration for MDM on Android in this file under `/android/...`.
 An example configuration can be found in the `config.sample.json` file.
 
 # How to build
@@ -58,8 +58,8 @@ An example configuration can be found in the `config.sample.json` file.
 
 2. Clone the repo:
 ```
-git clone https://github.com/krille-chan/fluffychat.git
-cd fluffychat
+git clone https://github.com/q876553007-arch/Aerogram.git
+cd Aerogram
 ```
 3. Choose your target platform below and enable support for it.
 3.1 If you want, enable Googles Firebase Cloud Messaging:
@@ -133,6 +133,6 @@ flutter test integration_test/mobile_test.dart
 
 * Also thanks to all translators and testers! With your help, fluffychat is now available in more than 12 languages.
 
-* The Matrix Foundation for making and maintaining the [emoji translations](https://github.com/matrix-org/matrix-spec/blob/main/data-definitions/sas-emoji.json) used for emoji verification, licensed Apache 2.0
+* The Matrix Foundation for making and maintaining the [emoji translations](https://github.com/matrix-org/matrix-spec/blob/main/data-definitions/sas-emoji.json) used for emoji verification, licen...
 
 * Special thanks to MTRNord, Sorunome and Advocatux.
