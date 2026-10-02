@@ -120,6 +120,38 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Row(
+                    children: [
+                      const Expanded(child: Divider()),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text('or'),
+                      ),
+                      const Expanded(child: Divider()),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: FilledButton.icon(
+                    onPressed: controller.loading ? null : controller.loginWithGoogle,
+                    icon: const Icon(Icons.g_mobiledata_rounded),
+                    label: const Text('Continue with Google'),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: FilledButton.tonalIcon(
+                    onPressed: controller.loading ? null : controller.loginWithApple,
+                    icon: const Icon(Icons.apple),
+                    label: const Text('Continue with Apple'),
+                  ),
+                ),
+                const SizedBox(height: 16),
                 if (homeserver != null)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
