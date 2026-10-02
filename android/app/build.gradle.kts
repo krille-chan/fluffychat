@@ -1,9 +1,8 @@
-import java.util.Properties
 import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     id("com.android.application")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
 
@@ -12,17 +11,12 @@ if (file("google-services.json").exists()) {
 }
 
 dependencies {
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4") // For flutter_local_notifications // Workaround for: https://github.com/MaikuB/flutter_local_notifications/issues/2286
-    implementation("androidx.core:core-ktx:1.17.0") // For Android Auto
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+    implementation("androidx.core:core-ktx:1.17.0")
 }
 
-
-// Workaround for https://pub.dev/packages/unifiedpush#the-build-fails-because-of-duplicate-classes
 configurations.all {
-    // Use the latest version published: https://central.sonatype.com/artifact/com.google.crypto.tink/tink-android
     val tink = "com.google.crypto.tink:tink-android:1.23.0"
-    // You can also use the library declaration catalog
-    // val tink = libs.google.tink
     resolutionStrategy {
         force(tink)
         dependencySubstitution {
@@ -31,11 +25,9 @@ configurations.all {
     }
 }
 
-
 android {
-    namespace = "chat.fluffy.fluffychat"
-    // Workaround for https://github.com/juliansteenbakker/flutter_secure_storage/issues/1224
-    compileSdk = 37 //flutter.compileSdkVersion
+    namespace = "chat.aerogram.app"
+    compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -66,12 +58,12 @@ android {
     }
 
     defaultConfig {
-        applicationId = "chat.fluffy.fluffychat"
+        applicationId = "chat.aerogram.app"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
-        ndk { // Workaround for https://github.com/flutter/flutter/issues/162153#issuecomment-2612443642
+        ndk {
             abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86_64", "x86")
         }
     }
@@ -91,7 +83,6 @@ kotlin {
         jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11
     }
 }
-
 
 flutter {
     source = "../.."

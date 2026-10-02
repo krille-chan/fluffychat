@@ -1,9 +1,9 @@
 [Desktop Entry]
-Name=FluffyChat
+Name=Aerogram
 GenericName=Matrix Client
 Comment=Chat with your friends
-Exec=fluffychat
-Icon=${SNAP}/meta/gui/fluffychat.png
+Exec=aerogram
+Icon=${SNAP}/meta/gui/aerogram.png
 Terminal=false
 Type=Application
 Categories=Network;Chat;InstantMessaging;

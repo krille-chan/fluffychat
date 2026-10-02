@@ -1,16 +1,16 @@
 <!--
 SPDX-FileCopyrightText: 2019-Present svettszx
-SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
+SPDX-FileCopyrightText: 2019-Present Contributors to Aerogram
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-[FluffyChat](https://fluffy.chat) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use and secure messaging experience.
+[Aerogram](https://github.com/q876553007-arch/Aerogram) is a forked Matrix-based Messenger app built with Flutter. The goal is to keep the familiar experience of FluffyChat while making the app feel like a rebranded independent client.
 
 ### Links:
 
-- 🌐 [[Weblate] Translate FluffyChat into your language](https://hosted.weblate.org/projects/fluffychat/)
-- 🌍 [[m] Join the community](https://matrix.to/#/#fluffy-space:matrix.org)
+- 🌐 [[GitHub] Project repository](https://github.com/q876553007-arch/Aerogram)
+- 🌍 [[Matrix] Join the community](https://matrix.to/#/#fluffy-space:matrix.org)
 - 📰 [[GitHub] Follow svettszx](https://github.com/svettszx)
 - 💝 [[Support] Support development](https://github.com/svettszx)
 
@@ -43,18 +43,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Installation
 
-Please visit the website for installation instructions:
-
-- https://fluffy.chat
+Please use the local build instructions below.
 
 # Configuration and Mobile Device Management (MDM)
 
-FluffyChat supports configuration via MDM on Android&iOS (since v2.10.0) and via a config.json file on web. You can see the populated configuration for MDM on Android in this file under `/android/...`.
-An example configuration can be found in the `config.sample.json` file.
+Aerogram supports configuration via MDM on Android and iOS and via a `config.json` file on web. An example configuration can be found in `config.sample.json`.
 
 # How to build
 
-1. To build FluffyChat you need [Flutter](https://flutter.dev) and [Rust](https://www.rust-lang.org/tools/install)
+1. You need [Flutter](https://flutter.dev) and [Rust](https://www.rust-lang.org/tools/install)
 
 2. Clone the repo:
 ```
@@ -62,9 +59,6 @@ git clone https://github.com/q876553007-arch/Aerogram.git
 cd Aerogram
 ```
 3. Choose your target platform below and enable support for it.
-3.1 If you want, enable Googles Firebase Cloud Messaging:
-
-`./scripts/add-firebase-messaging.sh`
 
 4. Debug with: `flutter run`
 
@@ -75,35 +69,19 @@ cd Aerogram
 ### iOS / iPadOS
 
 * Have a Mac with Xcode installed, and set up for Xcode-managed app signing
-* If you want automatic app installation to connected devices, make sure you have Apple Configurator installed, with the Automation Tools (`cfgutil`) enabled
-* Set a few environment variables
-    * FLUFFYCHAT_NEW_TEAM: the Apple Developer team that your certificates should live under
-    * FLUFFYCHAT_NEW_GROUP: the group you want App IDs and such to live under (ie: com.example.fluffychat)
-    * FLUFFYCHAT_INSTALL_IPA: set to `1` if you want the IPA to be deployed to connected devices after building, otherwise unset
 * Run `./scripts/build-ios.sh`
 
 ### Web
 
 * Build with:
 ```bash
-./scripts/prepare-web.sh # To install Vodozemac
+./scripts/prepare-web.sh
 flutter build web --release
 ```
-
-* Optionally configure by serving a `config.json` at the same path as fluffychat.
-  An example can be found at `config.sample.json`. All values there are optional.
-  **Please only the values, you really need**. If you e.g. only want
-  to change the default homeserver, then only modify the `defaultHomeserver` key.
 
 ### Desktop (Linux, Windows, macOS)
 
 * Enable Desktop support in Flutter: https://flutter.dev/desktop
-
-#### Install custom dependencies (Linux)
-
-```bash
-sudo apt install libjsoncpp1 libsecret-1-dev libsecret-1-0 librhash0 libwebkit2gtk-4.0-dev lld
-```
 
 * Build with one of these:
 ```bash
@@ -114,7 +92,7 @@ flutter build macos --release
 
 ## How to run integration tests
 
-You need to have docker installed locally! Run the preparation script before every test run:
+You need Docker installed locally. Run the preparation script before every test run:
 
 ```sh
 ./scripts/prepare_integration_test.sh
@@ -126,13 +104,10 @@ Then run all tests with:
 flutter test integration_test/mobile_test.dart
 ```
 
-
 # Special thanks
 
-* <a href="https://github.com/fabiyamada">Fabiyamada</a> is a graphics designer and has made the fluffychat logo and the banner. Big thanks for her great designs.
+* <a href="https://github.com/fabiyamada">Fabiyamada</a> is a graphics designer and has made the Aerogram logo and banner.
 
-* Also thanks to all translators and testers! With your help, fluffychat is now available in more than 12 languages.
+* Also thanks to all translators and testers.
 
-* The Matrix Foundation for making and maintaining the [emoji translations](https://github.com/matrix-org/matrix-spec/blob/main/data-definitions/sas-emoji.json) used for emoji verification, licen...
-
-* Special thanks to MTRNord, Sorunome and Advocatux.
+* The Matrix Foundation for making and maintaining the [emoji translations](https://github.com/matrix-org/matrix-spec/blob/main/data-definitions/sas-emoji.json) used for emoji verification.

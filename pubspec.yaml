@@ -1,9 +1,9 @@
-# SPDX-FileCopyrightText: 2019-Present Christian Kußowski
-# SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
+# SPDX-FileCopyrightText: 2019-Present svettszx
+# SPDX-FileCopyrightText: 2019-Present Contributors to Aerogram
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-name: fluffychat
+name: aerogram
 description: Chat with your friends.
 publish_to: none
 # On version bump please also increase:
@@ -63,7 +63,7 @@ dependencies:
   lottie: ^3.6.1
   managed_configurations: ^1.2.0
   material_ui: 1.4.0
-  matrix: #^11.0.0
+  matrix:
     git:
       url: https://github.com/famedly/matrix-dart-sdk.git
       ref: main
@@ -140,8 +140,4 @@ flutter_launcher_icons:
     background_color: "#FFFFFF"
     theme_color: "#41a2bc"
 
-# Guidelines for adding a dependency override:
-# 1. Don't do it if you can avoid it or fix it upstream in a manageable time
-# 2. Always link an (upstream?) issue
-# 3. Explain how and when this can be removed (overrides must be temporarily)
 dependency_overrides:
