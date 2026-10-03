@@ -1230,10 +1230,19 @@ class ChatController extends State<ChatPageWithRoom>
   Future<void> scrollToEventId(
     String eventId, {
     bool highlightEvent = true,
+    bool timelineReloaded = false,
   }) async {
     final foundEvent = timeline!.events.firstWhereOrNull(
       (event) => event.eventId == eventId,
     );
+
+    final threadRootId =
+        foundEvent?.relationshipType == RelationshipTypes.thread
+        ? foundEvent?.relationshipEventId
+        : null;
+    if (activeThreadId == null && threadRootId != null) {
+      return scrollToEventId(threadRootId, highlightEvent: highlightEvent);
+    }
 
     final eventIndex = foundEvent == null
         ? -1
@@ -1245,6 +1254,7 @@ class ChatController extends State<ChatPageWithRoom>
               .indexOf(foundEvent);
 
     if (eventIndex == -1) {
+      if (foundEvent != null || timelineReloaded) return;
       setState(() {
         timeline = null;
         _scrolledUp = false;
@@ -1257,7 +1267,11 @@ class ChatController extends State<ChatPageWithRoom>
       });
       await loadTimelineFuture;
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        scrollToEventId(eventId);
+        scrollToEventId(
+          eventId,
+          highlightEvent: highlightEvent,
+          timelineReloaded: true,
+        );
       });
       return;
     }
