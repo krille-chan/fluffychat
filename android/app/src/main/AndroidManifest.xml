@@ -120,6 +120,18 @@
           </intent-filter>
         </service>
 
+        <!-- Workaround so UP reuses the same isolate.
+        https://codeberg.org/UnifiedPush/flutter-connector/src/branch/main/unifiedpush_android/android/src/main/kotlin/org/unifiedpush/flutter/connector/UnifiedPushService.kt#L17-L32
+        -->
+        <service android:name="org.unifiedpush.flutter.connector.UnifiedPushService"
+          tools:node="remove" />
+        <service android:name=".UnifiedPushService"
+          android:exported="false">
+          <intent-filter>
+            <action android:name="org.unifiedpush.android.connector.PUSH_EVENT"/>
+          </intent-filter>
+        </service>
+
         <service android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
              android:foregroundServiceType="camera|microphone|mediaProjection|shortService"
              android:exported="false">

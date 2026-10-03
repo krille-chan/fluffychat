@@ -354,9 +354,7 @@ class MatrixState extends State<Matrix> {
   }
 
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    final foreground =
-        state != AppLifecycleState.inactive &&
-        state != AppLifecycleState.paused;
+    final foreground = state == AppLifecycleState.resumed;
     for (final client in widget.clients) {
       client.syncPresence = state == AppLifecycleState.resumed
           ? null
