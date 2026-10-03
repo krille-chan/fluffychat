@@ -2830,5 +2830,6 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "sharedLocation": "Shared location"
 }
