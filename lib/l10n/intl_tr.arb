@@ -1733,7 +1733,6 @@
         }
     },
     "emojis": "Emojiler",
-    "unsupportedAndroidVersion": "Desteklenmeyen Android sürümü",
     "unsupportedAndroidVersionLong": "Bu özellik daha yeni bir Android sürümü gerektiriyor. Lütfen güncellemelere veya LineageOS desteğine bakın.",
     "pinMessage": "Odaya sabitle",
     "confirmEventUnpin": "Etkinliğin sabitlemesini kalıcı olarak kaldırmak istediğinizden emin misiniz?",

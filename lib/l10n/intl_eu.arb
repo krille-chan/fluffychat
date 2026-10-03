@@ -1152,7 +1152,6 @@
         "placeholders": {}
     },
     "emojis": "Emojiak",
-    "unsupportedAndroidVersion": "Android bertsioa ez da bateragarria",
     "unsupportedAndroidVersionLong": "Funtzio honek Android bertsio berriago bat behar du. Egiaztatu eguneraketak ote dauden edo begiratu Lineage OS-ek zure gailuarentzat aukerarik eskaintzen duen.",
     "commandHint_ban": "Debekatu erabiltzailea gela honetan",
     "@commandHint_ban": {

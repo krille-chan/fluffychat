@@ -1733,7 +1733,6 @@
     },
     "pinMessage": "Maak vast aan chat",
     "emojis": "Emoji's",
-    "unsupportedAndroidVersion": "Niet-ondersteunde Android-versie",
     "unsupportedAndroidVersionLong": "Voor deze functie is een nieuwe Android-versie verplicht. Controleer je updates of Lineage OS-ondersteuning.",
     "confirmEventUnpin": "Weet je zeker dat je de gebeurtenis definitief wilt losmaken?",
     "youAcceptedTheInvitation": "👍 Je hebt de uitnodiging geaccepteerd",

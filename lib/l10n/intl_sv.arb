@@ -1720,7 +1720,6 @@
     "scanQrCode": "Skanna QR-kod",
     "removeFromBundle": "Ta bort från paket",
     "emojis": "Uttryckssymboler",
-    "unsupportedAndroidVersion": "Inget stöd för denna version av Android",
     "unsupportedAndroidVersionLong": "Denna funktion kräver en senare version av Android.",
     "reactedWith": "{sender} reagerade med {reaction}",
     "@reactedWith": {

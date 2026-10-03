@@ -1719,7 +1719,6 @@
     "markAsRead": "Merkitse luetuksi",
     "emojis": "Hymiöt",
     "unsupportedAndroidVersionLong": "Tämä ominaisuus vaatii uudemman Android-version. Tarkistathan päivitykset tai Lineage OS :n tuki.",
-    "unsupportedAndroidVersion": "Ei tuettu Android-versio",
     "reportUser": "Ilmianna käyttäjä",
     "reactedWith": "{sender} reagoi {reaction}",
     "@reactedWith": {

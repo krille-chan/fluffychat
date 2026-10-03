@@ -1854,7 +1854,6 @@
     "messageInfo": "訊息資訊",
     "removeFromSpace": "從空間中移除",
     "emojis": "表情符號",
-    "unsupportedAndroidVersion": "不支持的Android版本",
     "youJoinedTheChat": "您加入了聊天室",
     "youBannedUser": "您封鎖了 {user}",
     "@youBannedUser": {

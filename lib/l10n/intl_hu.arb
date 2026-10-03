@@ -1666,7 +1666,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unsupportedAndroidVersion": "Nem támogatott Android verzió",
     "oneClientLoggedOut": "Az egyik kliense kijelentkezett",
     "setColorTheme": "Szín séma beállítása:",
     "supposedMxid": "{mxid}-nek kell lennie",

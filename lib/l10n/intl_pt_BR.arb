@@ -1734,7 +1734,6 @@
     },
     "confirmEventUnpin": "Tem certeza que quer desafixar o evento permanentemente?",
     "pinMessage": "Fixar na sala",
-    "unsupportedAndroidVersion": "Versão Android sem suporte",
     "unsupportedAndroidVersionLong": "Esta funcionalidade requer uma versão mais nova do Android. Verifique se há atualizações ou suporte ao LineageOS.",
     "youRejectedTheInvitation": "Você rejeitou o convite",
     "youBannedUser": "Você baniu {user}",

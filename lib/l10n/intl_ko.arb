@@ -1734,7 +1734,6 @@
     "confirmEventUnpin": "이벤트를 영구적으로 고정 해제할 것이 확실한가요?",
     "pinMessage": "방에 고정",
     "emojis": "이모지",
-    "unsupportedAndroidVersion": "지원되지 않는 안드로이드 버전",
     "unsupportedAndroidVersionLong": "이 기능은 새로운 안드로이드 버전을 요구합니다. Lineage OS 지원이나 업데이트를 확인해주세요.",
     "confirmMatrixId": "계정을 삭제하려면 Matrix ID를 입력해 주세요.",
     "commandHint_googly": "왕눈이 눈알 보내기",

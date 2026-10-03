@@ -1735,7 +1735,6 @@
     "emojis": "Емодзі",
     "pinMessage": "Прикріпити в кімнаті",
     "confirmEventUnpin": "Ви впевнені, що бажаєте назавжди відкріпити подію?",
-    "unsupportedAndroidVersion": "Непідтримувана версія Android",
     "unsupportedAndroidVersionLong": "Для цієї функції потрібна новіша версія Android. Перевірте наявність оновлень або підтримку Lineage OS.",
     "youInvitedBy": "📩 Ви були запрошені {user}",
     "@youInvitedBy": {

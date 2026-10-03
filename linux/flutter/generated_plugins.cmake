@@ -14,14 +14,15 @@ list(APPEND FLUTTER_PLUGIN_LIST
   livekit_client
   media_kit_libs_linux
   pasteboard
-  record_linux
   screen_retriever_linux
   url_launcher_linux
+  webcrypto
   window_manager
   window_to_front
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
+  flutter_recorder
   flutter_vodozemac
   jni
 )

@@ -7,6 +7,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:async/async.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
@@ -18,7 +19,6 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
-import 'package:ogg_caf_converter/ogg_caf_converter.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../../utils/matrix_sdk_extensions/event_extension.dart';
@@ -177,19 +177,6 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
         file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
 
         await file.writeAsBytes(matrixFile.bytes);
-
-        if (Platform.isIOS &&
-            matrixFile.mimeType.toLowerCase() == 'audio/ogg') {
-          Logs().v('Convert ogg audio file for iOS...');
-          final convertedFile = File('${file.path}.caf');
-          if (await convertedFile.exists() == false) {
-            await OggCafConverter().convertOggToCaf(
-              input: file.path,
-              output: convertedFile.path,
-            );
-          }
-          file = convertedFile;
-        }
       }
 
       setState(() {
@@ -209,7 +196,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     final audioPlayer = matrix.audioPlayer = AudioPlayer();
 
     if (file != null) {
-      audioPlayer.setFilePath(file.path);
+      await audioPlayer.setFilePath(file.path);
     } else {
       await audioPlayer.setAudioSource(
         AudioSource.uri(
@@ -219,9 +206,33 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     }
     if (!mounted) return;
 
-    audioPlayer.play().onError(
-      ErrorReporter(context, 'Unable to play audio message').onErrorCallback,
-    );
+    audioPlayer.play().onError((e, s) async {
+      if (Platform.isIOS && matrixFile?.mimeType.toLowerCase() == 'audio/ogg') {
+        final systemVersion = await DeviceInfoPlugin().iosInfo.then(
+          (info) => info.systemVersion,
+        );
+        final systemVersionParts = systemVersion.split('.');
+        if (!mounted) return;
+        final major = int.parse(systemVersionParts.first);
+        final minor = int.parse(systemVersionParts[1]);
+
+        if (major < 18 || (major == 18 && minor < 4)) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                'The voice message format (OGG) is not supported on older iOS versions.',
+              ),
+            ),
+          );
+          return;
+        }
+      }
+      if (!mounted) return;
+      ErrorReporter(
+        context,
+        'Unable to play audio message',
+      ).onErrorCallback(e ?? Exception(), s);
+    });
   }
 
   Future<void> _toggleSpeed() async {

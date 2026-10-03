@@ -1736,7 +1736,6 @@
     "pinMessage": "置顶到聊天室",
     "emojis": "表情符号",
     "unsupportedAndroidVersionLong": "这个功能需要较新版本的 Android 系统。请检查更新或 Lineage OS 支持。",
-    "unsupportedAndroidVersion": "不受支持的 Android 版本",
     "youRejectedTheInvitation": "你拒绝了邀请",
     "youJoinedTheChat": "你加入了聊天",
     "youBannedUser": "你封禁了 {user}",

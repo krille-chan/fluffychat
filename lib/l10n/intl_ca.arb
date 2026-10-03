@@ -1667,7 +1667,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unsupportedAndroidVersion": "Aquesta versió d'Android és incompatible",
     "oneClientLoggedOut": "Una de les teves aplicacions ha tancat la sessió",
     "setColorTheme": "Tria el color del tema:",
     "supposedMxid": "Això hauria de ser {mxid}",

@@ -1772,7 +1772,6 @@
     "replace": "Reemplazar",
     "unsupportedAndroidVersionLong": "Esta característica requiere una versión más reciente de Android. Por favor, compruebe las actualizaciones o la compatibilidad de LineageOS.",
     "storeSecurlyOnThisDevice": "Almacenar de forma segura en este dispositivo",
-    "unsupportedAndroidVersion": "Versión de Android no compatible",
     "commandHint_create": "Crear un chat grupal vacío\nUse --no-encryption para deshabilitar el cifrado",
     "@commandHint_create": {
         "type": "String",

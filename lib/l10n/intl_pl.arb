@@ -1731,7 +1731,6 @@
     },
     "dehydrate": "Eksportuj sesję i wymaż urządzenie",
     "dehydrateWarning": "Tego nie można cofnąć. Upewnij się, że plik kopii zapasowej jest bezpiecznie przechowywany.",
-    "unsupportedAndroidVersion": "Nieobsługiwana wersja systemu Android",
     "pinMessage": "Przypnij do pokoju",
     "confirmEventUnpin": "Czy na pewno chcesz trwale odpiąć wydarzenie?",
     "youJoinedTheChat": "Dołączono do czatu",

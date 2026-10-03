@@ -1718,7 +1718,6 @@
     "reportUser": "Denunciar usuaria",
     "emojis": "Emojis",
     "unsupportedAndroidVersionLong": "Esta característica require unha vesión máis recente de Android. Mira se hai actualizacións ou soporte de LineageOS.",
-    "unsupportedAndroidVersion": "Version de Android non soportada",
     "reactedWith": "{sender} reaccionou con {reaction}",
     "@reactedWith": {
         "type": "String",

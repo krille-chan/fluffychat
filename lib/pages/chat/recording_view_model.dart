@@ -6,17 +6,17 @@
 import 'dart:async';
 
 import 'package:cupertino_ui/cupertino_ui.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_recorder/flutter_recorder.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path/path.dart' as path_lib;
 import 'package:path_provider/path_provider.dart';
-import 'package:record/record.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import 'events/audio_player.dart';
@@ -34,52 +34,20 @@ class RecordingViewModelState extends State<RecordingViewModel> {
   Timer? _recorderSubscription;
   Duration duration = Duration.zero;
 
-  bool get isRecording => _audioRecorder != null;
+  bool get isRecording => Recorder.instance.isDeviceStarted();
 
-  AudioRecorder? _audioRecorder;
   final List<double> amplitudeTimeline = [];
 
   String? fileName;
 
+  String path = '';
+
   bool isPaused = false;
 
   Future<void> startRecording(Room room) async {
-    room.client.getConfig(); // Preload server file configuration.
-    if (PlatformInfos.isAndroid) {
-      final info = await DeviceInfoPlugin().androidInfo;
-      if (!mounted) return;
-      if (info.version.sdkInt < 19) {
-        showOkAlertDialog(
-          context: context,
-          title: L10n.of(context).unsupportedAndroidVersion,
-          message: L10n.of(context).unsupportedAndroidVersionLong,
-          okLabel: L10n.of(context).close,
-        );
-        return;
-      }
-    }
-    if (await AudioRecorder().hasPermission() == false) return;
-
-    final audioRecorder = _audioRecorder ??= AudioRecorder();
-    setState(() {});
-
-    try {
-      final codec =
-          !PlatformInfos
-                  .isIOS && // Blocked by https://github.com/llfbandit/record/issues/560
-              await audioRecorder.isEncoderSupported(AudioEncoder.opus)
-          ? AudioEncoder.opus
-          : AudioEncoder.aacLc;
-      fileName =
-          'voice_message_${DateTime.now().millisecondsSinceEpoch}.${codec.fileExtension}';
-      String? path;
-      if (!kIsWeb) {
-        final tempDir = await getTemporaryDirectory();
-        path = path_lib.join(tempDir.path, fileName);
-      }
-
-      final result = await audioRecorder.hasPermission();
-      if (result != true) {
+    if (PlatformInfos.isMobile) {
+      final status = await Permission.microphone.request();
+      if (!status.isGranted) {
         if (!mounted) return;
         showOkAlertDialog(
           context: context,
@@ -88,23 +56,40 @@ class RecordingViewModelState extends State<RecordingViewModel> {
         );
         return;
       }
+    }
+
+    room.client.getConfig(); // Preload server file configuration.
+
+    try {
+      await Recorder.instance.init(
+        format: PCMFormat.f32le,
+        sampleRate: AppSettings.audioRecordingSamplingRate.value,
+        channels: RecorderChannels.mono,
+        androidInputPreset: AndroidInputPreset.voiceRecognition,
+      );
+      Recorder.instance.start();
+
+      setState(() {});
+
+      fileName = 'voice_message_${DateTime.now().millisecondsSinceEpoch}.ogg';
+
+      if (!kIsWeb) {
+        final tempDir = await getTemporaryDirectory();
+        path = path_lib.join(tempDir.path, fileName);
+      }
+
       await WakelockPlus.enable();
 
-      await audioRecorder.start(
-        RecordConfig(
-          bitRate: AppSettings.audioRecordingBitRate.value,
-          sampleRate: AppSettings.audioRecordingSamplingRate.value,
-          numChannels: AppSettings.audioRecordingNumChannels.value,
-          autoGain: AppSettings.audioRecordingAutoGain.value,
-          echoCancel: AppSettings.audioRecordingEchoCancel.value,
-          noiseSuppress: AppSettings.audioRecordingNoiseSuppress.value,
-          encoder: codec,
-        ),
-        path: path ?? '',
+      _subscribe();
+
+      Recorder.instance.setVisualizationEnabled(true);
+
+      Recorder.instance.startRecording(
+        completeFilePath: path,
+        format: .opusOgg,
       );
       if (!mounted) return;
       setState(() => duration = Duration.zero);
-      _subscribe();
     } catch (e, s) {
       Logs().w('Unable to start voice message recording', e, s);
       if (!mounted) return;
@@ -124,16 +109,13 @@ class RecordingViewModelState extends State<RecordingViewModel> {
   }
 
   void _subscribe() {
+    const tickTime = Duration(milliseconds: 100);
     _recorderSubscription?.cancel();
-    _recorderSubscription = Timer.periodic(const Duration(milliseconds: 100), (
-      _,
-    ) async {
-      final amplitude = await _audioRecorder!.getAmplitude();
-      var value = 100 + amplitude.current * 2;
-      value = value < 1 ? 1 : value;
-      amplitudeTimeline.add(value);
+    _recorderSubscription = Timer.periodic(tickTime, (_) {
+      final volume = 100 + Recorder.instance.getVolumeDb() * 2;
       setState(() {
-        duration += const Duration(milliseconds: 100);
+        amplitudeTimeline.add(volume < 1 ? 1 : volume);
+        duration += tickTime;
       });
     });
   }
@@ -141,8 +123,8 @@ class RecordingViewModelState extends State<RecordingViewModel> {
   void _reset() {
     WakelockPlus.disable();
     _recorderSubscription?.cancel();
-    _audioRecorder?.stop();
-    _audioRecorder = null;
+    if (Recorder.instance.isDeviceStarted()) Recorder.instance.stop();
+    Recorder.instance.deinit();
 
     fileName = null;
     duration = Duration.zero;
@@ -155,7 +137,7 @@ class RecordingViewModelState extends State<RecordingViewModel> {
   }
 
   void pause() {
-    _audioRecorder?.pause();
+    Recorder.instance.setPauseRecording(pause: true);
     _recorderSubscription?.cancel();
     setState(() {
       isPaused = true;
@@ -163,7 +145,7 @@ class RecordingViewModelState extends State<RecordingViewModel> {
   }
 
   void resume() {
-    _audioRecorder?.resume();
+    Recorder.instance.setPauseRecording(pause: false);
     _subscribe();
     setState(() {
       isPaused = false;
@@ -179,10 +161,12 @@ class RecordingViewModelState extends State<RecordingViewModel> {
     )
     onSend,
   ) async {
+    final path = this.path;
     _recorderSubscription?.cancel();
-    final path = await _audioRecorder?.stop();
+    Recorder.instance.stopRecording();
+    Recorder.instance.stop();
+    if (path.isEmpty) throw Exception('Recording failed!');
 
-    if (path == null) throw ('Recording failed!');
     const waveCount = AudioPlayerWidget.wavesCount;
     final step = amplitudeTimeline.length < waveCount
         ? 1
@@ -199,24 +183,4 @@ class RecordingViewModelState extends State<RecordingViewModel> {
 
   @override
   Widget build(BuildContext context) => widget.builder(context, this);
-}
-
-extension on AudioEncoder {
-  String get fileExtension {
-    switch (this) {
-      case AudioEncoder.aacLc:
-      case AudioEncoder.aacEld:
-      case AudioEncoder.aacHe:
-        return 'm4a';
-      case AudioEncoder.opus:
-        return 'ogg';
-      case AudioEncoder.wav:
-        return 'wav';
-      case AudioEncoder.amrNb:
-      case AudioEncoder.amrWb:
-      case AudioEncoder.flac:
-      case AudioEncoder.pcm16bits:
-        throw UnsupportedError('Not yet used');
-    }
-  }
 }

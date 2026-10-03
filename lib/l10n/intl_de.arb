@@ -1720,7 +1720,6 @@
     },
     "pinMessage": "An Raum anheften",
     "emojis": "Emojis",
-    "unsupportedAndroidVersion": "Nicht unterstützte Android-Version",
     "unsupportedAndroidVersionLong": "Diese Funktion erfordert eine neuere Android-Version. Bitte suche nach Updates oder prüfe die Lineage-OS-Unterstützung.",
     "reactedWith": "{sender} reagierte mit {reaction}",
     "@reactedWith": {
