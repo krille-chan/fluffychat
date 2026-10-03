@@ -124081,8 +124081,7 @@ k=h.gkz(h)
 s=5
 return A.f(A.hs(h.gbU(h),i,!1,n,k,l,!0),$async$yv)
 case 5:if(b!==B.bl){s=1
-break}case 4:if(!A.bx(["https","http"],t.N).p(0,m.grV())){i=m.grV()
-if(i==="geo"){i=t.uG
+break}case 4:if(!A.bx(["https","http"],t.N).p(0,m.grV())){if(m.grV()==="geo"){i=t.uG
 j=A.G(new A.L(A.b(B.b.gS(m.grN(m).split(";")).split(","),t.s),A.dhp(),i),i.i("a4.E"))
 if(j.length===2&&B.b.gS(j)!=null&&B.b.ga3(j)!=null){A.lM("https://www.openstreetmap.org/?mlat="+A.x(B.b.gS(j))+"&mlon="+A.x(B.b.ga3(j))+"#map=16/"+A.x(B.b.gS(j))+"/"+A.x(B.b.ga3(j)),B.cT)
 s=1
