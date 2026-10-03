@@ -135,9 +135,11 @@ class NotificationService: UNNotificationServiceExtension {
 
         if let roomName = roomName {
             bestAttemptContent.title = roomName
+            bestAttemptContent.userInfo["room_name"] = roomName
         }
         
         if let roomAvatarUrl = roomAvatarUrl {
+            bestAttemptContent.userInfo["room_avatar"] = roomName
             do {
                 let attachment = try downloadAttachment(url: roomAvatarUrl, containerPath: containerPath)
                 bestAttemptContent.attachments = [attachment]
