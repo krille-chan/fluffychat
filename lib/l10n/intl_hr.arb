@@ -1715,7 +1715,6 @@
     },
     "markAsRead": "Označi kao pročitano",
     "reportUser": "Prijavi korisnika",
-    "unsupportedAndroidVersion": "Nepodržana Android verzija",
     "unsupportedAndroidVersionLong": "Ova funkcija zahtijeva noviju verziju Androida. Provjeri, postoje li nove verzije ili podrška za Lineage OS.",
     "youKickedAndBanned": "🙅 Izbacio/la i isključio/la si korisnika {user}",
     "@youKickedAndBanned": {

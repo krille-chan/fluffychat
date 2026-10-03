@@ -318,7 +318,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unsupportedAndroidVersion": "Versiune de Android nesuportat",
     "userIsTyping": "{username} tastează…",
     "@userIsTyping": {
         "type": "String",

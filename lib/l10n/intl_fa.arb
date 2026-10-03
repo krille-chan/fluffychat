@@ -1711,7 +1711,6 @@
         }
     },
     "unverified": "تأییدنشده",
-    "unsupportedAndroidVersion": "نسخه اندروید پشتیبانی‌نشده",
     "youUnbannedUser": "شما محرومیت {user} را برداشتید",
     "@youUnbannedUser": {
         "placeholders": {

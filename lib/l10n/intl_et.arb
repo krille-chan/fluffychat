@@ -1733,7 +1733,6 @@
         }
     },
     "emojis": "Emojid",
-    "unsupportedAndroidVersion": "See Androidi versioon ei ole toetatud",
     "confirmEventUnpin": "Kas sa oled kindel, et tahad esiletõstetud sündmuse jäädavalt eemaldada?",
     "pinMessage": "Tõsta sõnum jututoas esile",
     "unsupportedAndroidVersionLong": "See funktsionaalsus eeldab uuemat Androidi versiooni. Palun kontrolli, kas sinu nutiseadmele leidub süsteemiuuendusi või saaks seal Lineage OSi kasutada.",

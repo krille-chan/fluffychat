@@ -1735,7 +1735,6 @@
     "pinMessage": "Sematkan ke ruangan",
     "confirmEventUnpin": "Apakah kamu yakin untuk melepaskan pin peristiwa ini secara permanen?",
     "unsupportedAndroidVersionLong": "Fitur ini memerlukan versi Android yang baru. Mohon periksa untuk pembaruan atau dukungan LineageOS.",
-    "unsupportedAndroidVersion": "Versi Android tidak didukung",
     "youInvitedBy": "📩 Kamu telah diundang oleh {user}",
     "@youInvitedBy": {
         "placeholders": {

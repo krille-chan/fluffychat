@@ -1232,7 +1232,6 @@
             }
         }
     },
-    "unsupportedAndroidVersion": "Nepalaikoma Android versija",
     "acceptedTheInvitation": "👍 {username} priėmė kvietimą",
     "@acceptedTheInvitation": {
         "type": "String",

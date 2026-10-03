@@ -1698,7 +1698,6 @@
     "emojis": "絵文字",
     "markAsRead": "既読にする",
     "confirmEventUnpin": "イベントの固定を完全に解除してもよろしいですか？",
-    "unsupportedAndroidVersion": "サポートされていないAndroidのバージョン",
     "user": "ユーザー",
     "noBackupWarning": "警告！チャットのバックアップを有効にしないと、暗号化されたメッセージにアクセスできなくなります。ログアウトする前に、まずチャットのバックアップを有効にすることを強くお勧めします。",
     "disableEncryptionWarning": "セキュリティ上の理由から、以前は暗号化が有効だったチャットで暗号化を無効にすることはできません。",

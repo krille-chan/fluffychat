@@ -101,7 +101,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unsupportedAndroidVersion": "Neatbalstīta Android versija",
     "blockDevice": "Liegt ierīci",
     "@blockDevice": {
         "type": "String",

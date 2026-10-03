@@ -1733,7 +1733,6 @@
         }
     },
     "emojis": "Émojis",
-    "unsupportedAndroidVersion": "Version d'Android non prise en charge",
     "unsupportedAndroidVersionLong": "Cette fonctionnalité nécessite une nouvelle version d'Android. Veuillez vérifier les mises à jour ou la prise en charge de Lineage OS.",
     "pinMessage": "Épingler au salon",
     "confirmEventUnpin": "Voulez-vous vraiment désépingler définitivement l'événement ?",

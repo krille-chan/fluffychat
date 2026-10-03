@@ -1724,7 +1724,6 @@
         }
     },
     "emojis": "Эмодзи",
-    "unsupportedAndroidVersion": "Неподдерживаемая версия Android",
     "unsupportedAndroidVersionLong": "Для этой функции требуется более новая версия Android. Проверьте наличие обновлений или поддержку Lineage OS.",
     "pinMessage": "Прикрепить к комнате",
     "confirmEventUnpin": "Вы уверены, что хотите навсегда открепить событие?",

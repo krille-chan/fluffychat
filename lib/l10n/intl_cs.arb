@@ -1733,7 +1733,6 @@
         }
     },
     "emojis": "Emojis",
-    "unsupportedAndroidVersion": "Nepodporovaná verze Androidu",
     "unsupportedAndroidVersionLong": "Tato funkce vyžaduje novější verzi Android. Zkontrolujte prosím aktualizace nebo podporu Lineage OS.",
     "pinMessage": "Připnout zprávu do místnosti",
     "confirmEventUnpin": "Opravdu chcete událost trvale odepnout?",

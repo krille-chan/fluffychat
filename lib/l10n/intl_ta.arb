@@ -42,7 +42,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "unsupportedAndroidVersion": "ஆதரிக்கப்படாத ஆண்ட்ராய்டு பதிப்பு",
     "commandHint_sendraw": "மூல சாதொபொகு ஐ அனுப்புங்கள்",
     "passwordIsWrong": "நீங்கள் உள்ளிட்ட கடவுச்சொல் தவறு",
     "completedKeyVerification": "{sender} நிறைவு செய்யப்பட்ட விசை சரிபார்ப்பு",

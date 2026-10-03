@@ -1670,7 +1670,6 @@
         "placeholders": {}
     },
     "emojis": "إيموجي",
-    "unsupportedAndroidVersion": "نسخة أندرويد غير مدعومة",
     "unsupportedAndroidVersionLong": "تتطلب هذه الميزة إصدار Android أحدث. يرجى التحقق من وجود تحديثات أو دعم Lineage OS.",
     "commandHint_create": "أنشأ محادثة جماعية فارغة\nاستخدم --لا-تشفير لتعطيل التشفير",
     "@commandHint_create": {
