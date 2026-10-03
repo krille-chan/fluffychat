@@ -320,7 +320,7 @@ extension MatrixRtcRoomExtension on Room {
       }
     }
     throw Exception(
-      'Unable to authenticate to any of the visible LiveKit instances!',
+      'Unable to authenticate to any of the visible LiveKit instances!\nSFU list: $urls\nActive Call: $hasActiveMatrixRtcCall',
     );
   }
 
