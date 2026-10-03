@@ -50,7 +50,7 @@ gfE(){return"Tout le monde peut rejoindre"},
 gfF(){return"Archiver"},
 gil(){return"Les invit\xe9s peuvent-i\xb7e\xb7ls rejoindre\u202f?"},
 gdH(){return"\xcates-vous s\xfbr\xb7e\xa0?"},
-gpi(){return"Vous avez des modifications non-sauvegard\xe9s. Voulez-vous les supprimer\u202f?"},
+gpi(){return"Vous avez des modifications non sauvegard\xe9es. Voulez-vous les supprimer\u202f?"},
 gim(){return"Voulez-vous vraiment vous d\xe9connecter ?"},
 gio(){return"Pour pouvoir faire signer l'autre personne, veuillez entrer la phrase de passe de votre trousseau s\xe9curis\xe9 ou votre cl\xe9 de r\xe9cup\xe9ration."},
 ip(d){return"Accepter cette demande de v\xe9rification de la part de "+d+" ?"},
@@ -58,7 +58,7 @@ iq(d,e){return"Le serveur d'accueil prend en charge les types de connexion :\n"+
 ghO(){return"Envoyer des notifications de frappe"},
 gi3(){return"Glisser de droite \xe0 gauche pour r\xe9pondre"},
 ghN(){return"Envoyer avec Entr\xe9e"},
-gks(){return"Aucune autre discussion trouv\xe9e..."},
+gks(){return"Aucune autre discussion trouv\xe9e\u2026"},
 gkm(){return"Aucune discussion trouv\xe9e. Utilisez le bouton ci-dessous pour commencer une nouvelle discussion. \u2935\ufe0f"},
 glf(){return"Non lu"},
 gfv(){return"Espace"},
@@ -746,5 +746,5 @@ C(d,e){return this.gbw(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mi,C.aT)})()
 A.eb(b.typeUniverse,JSON.parse('{"Mi":{"aT":[]}}'))};
-(a=>{a["qyJqA+Rc1X7pLp1NV5AjldJ6l0o="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["evIgI2dutHBdixpDPHz6LBzcb+E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_320.part.js.map
