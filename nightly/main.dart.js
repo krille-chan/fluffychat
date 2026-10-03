@@ -17375,91 +17375,91 @@ return A.f(p.Bo(b,"io.element.call.encryption_keys",new A.asu(new A.ast(c,o),new
 case 3:case 1:return A.k(q,r)}})
 return A.l($async$bTW,r)},
 BQ(a,b){return A.dEI(a,b)},
-dEI(a7,a8){var s=0,r=A.m(t.f_),q,p=2,o=[],n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6
-var $async$BQ=A.n(function(a9,b0){if(a9===1){o.push(b0)
+dEI(a8,a9){var s=0,r=A.m(t.f_),q,p=2,o=[],n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7
+var $async$BQ=A.n(function(b0,b1){if(b0===1){o.push(b1)
 s=p}for(;;)switch(s){case 0:s=3
-return A.f(a7.Mk(),$async$BQ)
-case 3:if(A.cXi(a7)!=null)$.ab().tJ(0,"User has already an active rtc membership state in this room. Resetting it now...")
+return A.f(a8.Mk(),$async$BQ)
+case 3:if(A.cXi(a8)!=null)$.ab().tJ(0,"User has already an active rtc membership state in this room. Resetting it now...")
 i=$.ab()
 i.Dt(0,"[Join MatrixRtc Call] (1/5) Get LiveKit Backend Urls...")
-h=A.mL(a7).length
-g=A.mL(a7)
+h=A.mL(a8).length===0
+g=A.mL(a8)
 f=t.s
 e=new A.L(g,new A.bTP(),A.U(g).i("L<1,B<i>>")).vp(0,A.b([],f),new A.bTQ(),t.yp)
 g=J.Z(e)
 s=g.ga9(e)?4:5
 break
-case 4:a5=g
-a6=e
+case 4:a6=g
+a7=e
 s=6
-return A.f(A.aI4(a7.cx),$async$BQ)
-case 6:a5.M(a6,b0)
+return A.f(A.aI4(a8.cx),$async$BQ)
+case 6:a6.M(a7,b1)
 case 5:i.PM("Available SFUs",e)
 if(g.ga9(e))throw A.o(A.aS("This server does not support livekit calls!"))
 i.Dt(0,'[Join MatrixRtc Call] (2/5) Set "org.matrix.msc3401.call.member" State event...')
-d=g.pr(e,new A.bTR(a7),t.R_)
+d=g.pr(e,new A.bTR(a8),t.R_)
 d=A.G(d,d.$ti.i("a4.E"))
 s=7
-return A.f(A.d9b(a7,d,a8),$async$BQ)
-case 7:s=h===0?8:9
+return A.f(A.d9b(a8,d,a9),$async$BQ)
+case 7:s=h?8:9
 break
-case 8:c=a7.gv3()
+case 8:c=a8.gv3()
 s=c!=null?10:12
 break
 case 10:s=13
-return A.f(A.dbq(a7,!1,B.K5,A.b([c],f)),$async$BQ)
+return A.f(A.dbq(a8,!1,B.K5,A.b([c],f)),$async$BQ)
 case 13:s=11
 break
 case 12:s=14
-return A.f(A.dbq(a7,!0,B.ahk,null),$async$BQ)
+return A.f(A.dbq(a8,!0,B.ahk,null),$async$BQ)
 case 14:case 11:case 9:i.w4("[Join MatrixRtc Call] (3/5) Request OpenId Token...")
-i=a7.cx
-h=i.R8
-h.toString
-f=t.N
-d=t.O
+i=a8.cx
+f=i.R8
+f.toString
+d=t.N
+b=t.O
 s=15
-return A.f(i.a79(h,A.c(f,d)),$async$BQ)
-case 15:n=b0
-h=g.ga0(e),g=t.f,b=a7.a,a=i.a
-case 16:if(!h.q()){s=17
-break}m=h.gL(h)
+return A.f(i.a79(f,A.c(d,b)),$async$BQ)
+case 15:n=b1
+g=g.ga0(e),f=t.f,a=a8.a,a0=i.a
+case 16:if(!g.q()){s=17
+break}m=g.gL(g)
 p=19
-a0=$.ab()
-a0.eN(new A.dr("[Join MatrixRtc Call] (4/5) Try authenticate to LiveKit instance "+A.x(m)+"...",null,$.dK().$1(null),B.dP))
-a1=A.aM("/+$",!0,!1,!1,!1)
-a2=n
+a1=$.ab()
+a1.eN(new A.dr("[Join MatrixRtc Call] (4/5) Try authenticate to LiveKit instance "+A.x(m)+"...",null,$.dK().$1(null),B.dP))
+a2=A.aM("/+$",!0,!1,!1,!1)
+a3=n
 s=22
-return A.f(a.FD("POST",A.cT(A.cw(m,a1,"")+"/sfu/get",0,null),A.p(["Content-Type","application/json"],f,f),B.t.dq(A.p(["room",b,"openid_token",A.p(["access_token",a2.a,"expires_in",a2.b,"matrix_server_name",a2.c,"token_type",a2.d],f,d),"device_id",i.rx],f,d),null),null),$async$BQ)
-case 22:l=b0
-if(l.b!==200){a0=l.c
-a0=A.aS(a0)
-throw A.o(a0)}a1=l.w
-k=g.a(B.t.bV(0,new A.mj(!1).Bs(a1,0,null,!0),null))
-a0.eN(new A.dr("Use SFU",m,$.dK().$1(null),B.dP))
-a0=k
-a1=J.Z(a0)
-a0=new A.aI5(A.al(a1.h(a0,"url")),A.al(a1.h(a0,"jwt")))
-q=a0
+return A.f(a0.FD("POST",A.cT(A.cw(m,a2,"")+"/sfu/get",0,null),A.p(["Content-Type","application/json"],d,d),B.t.dq(A.p(["room",a,"openid_token",A.p(["access_token",a3.a,"expires_in",a3.b,"matrix_server_name",a3.c,"token_type",a3.d],d,b),"device_id",i.rx],d,b),null),null),$async$BQ)
+case 22:l=b1
+if(l.b!==200){a1=l.c
+a1=A.aS(a1)
+throw A.o(a1)}a2=l.w
+k=f.a(B.t.bV(0,new A.mj(!1).Bs(a2,0,null,!0),null))
+a1.eN(new A.dr("Use SFU",m,$.dK().$1(null),B.dP))
+a1=k
+a2=J.Z(a1)
+a1=new A.aI5(A.al(a2.h(a1,"url")),A.al(a2.h(a1,"jwt")))
+q=a1
 s=1
 break
 p=2
 s=21
 break
 case 19:p=18
-a4=o.pop()
-j=A.a2(a4)
-a0=$.ab()
-a1=A.x(m)
-a2=$.dK().$1(null)
-a0.eN(new A.dr("[Join MatrixRtc Call] (4/4) Unable to authenticate to "+a1,j,a2,B.du))
+a5=o.pop()
+j=A.a2(a5)
+a1=$.ab()
+a2=A.x(m)
+a3=$.dK().$1(null)
+a1.eN(new A.dr("[Join MatrixRtc Call] (4/4) Unable to authenticate to "+a2,j,a3,B.du))
 s=21
 break
 case 18:s=2
 break
 case 21:s=16
 break
-case 17:throw A.o(A.aS("Unable to authenticate to any of the visible LiveKit instances!"))
+case 17:throw A.o(A.aS("Unable to authenticate to any of the visible LiveKit instances!\nSFU list: "+A.x(e)+"\nActive Call: "+!h))
 case 1:return A.k(q,r)
 case 2:return A.j(o.at(-1),r)}})
 return A.l($async$BQ,r)},
