@@ -1996,7 +1996,7 @@
     "usersMustKnock": "Les utilisateurs/trices doivent frapper",
     "noOneCanJoin": "Personne ne peut rejoindre",
     "knock": "Frapper à la porte",
-    "appLockDescription": "Verrouiller l'application avec un code PIN lorsqu'elle n'est pas utilisée",
+    "appLockDescription": "Verrouiller l’application avec un code PIN lorsqu’elle n’est pas utilisée",
     "globalChatId": "Identifiant global de la discussion",
     "accessAndVisibility": "Accès et visibilité",
     "accessAndVisibilityDescription": "Qui est autorisé à rejoindre cette discussion et comment la discussion peut être découverte.",
@@ -2087,7 +2087,7 @@
     "createNewAddress": "Créer une nouvelle adresse",
     "publicChatAddresses": "Addresses de discussion publiques",
     "space": "Espace",
-    "noMoreChatsFound": "Aucune autre discussion trouvée...",
+    "noMoreChatsFound": "Aucune autre discussion trouvée…",
     "unread": "Non lu",
     "commandHint_sendraw": "Envoyer du JSON brut",
     "databaseMigrationTitle": "La base de données est optimisée",
@@ -2256,7 +2256,7 @@
     "answersVisible": "Réponses visibles",
     "notificationRuleInviteForMeDescription": "Notifie l'utilisateur/trice lorsqu'il est invité dans un salon.",
     "notificationRuleMemberEventDescription": "Retire les notifications des évènements des membres.",
-    "doesNotSeemToBeAValidHomeserver": "Aucun serveur d'acceuil compatible ne semble exister. URL incorrecte ?",
+    "doesNotSeemToBeAValidHomeserver": "Aucun serveur d’accueil compatible ne semble exister. URL incorrecte ?",
     "notificationRuleMaster": "Désactiver toutes les notifications",
     "shareKeysWithDescription": "Quels sont les appareils auxquels vous faites confiance afin qu'ils puissent lire les message dans les conversations chiffrées ?",
     "logs": "Journaux",
@@ -2411,7 +2411,7 @@
     "skipChatBackupWarning": "Êtes vous certain ? Sans la sauvegarde des discussions vous pourriez perdre l'accès à vos messages si vous changez d'appareil.",
     "makeAdmin": "Promouvoir administrateur/trice",
     "more": "Plus",
-    "searchOrEnterHomeserverAddress": "Recherchez ou entrez l'adresse de votre serveur d'acceuil",
+    "searchOrEnterHomeserverAddress": "Recherchez ou entrez l’adresse de votre serveur d’accueil",
     "notificationRuleSuppressEditsDescription": "Retirer les notifications pour les éditions de messages.",
     "notificationRuleJitsi": "Jitsi",
     "unsetLowPriority": "Ne plus définir comme faible priorité",
@@ -2449,7 +2449,7 @@
     "saveChanges": "Enregistrer les modifications",
     "commandHint_logout": "Se déconnecter de l'appareil",
     "newStickerPack": "Nouveau groupe d'autocollants",
-    "signInGreeting": "Vous avez déjà un compte sur Matrix ? Bon retour ! Sélectionnez votre serveur d'acceuil et connectez vous.",
+    "signInGreeting": "Vous avez déjà un compte sur Matrix ? Bon retour ! Sélectionnez votre serveur d’accueil et connectez-vous.",
     "advancedConfigs": "Configs avancées",
     "noticeChatBackupDeviceVerification": "Note : Lorsque vous connectez vos appareils à la sauvegarde de discussion, ils sont automatiquement vérifiés.",
     "notificationRuleMemberEvent": "Évenement pour les Membres",
@@ -2499,7 +2499,7 @@
             }
         }
     },
-    "discardEdits": "Vous avez des modifications non-sauvegardés. Voulez-vous les supprimer ?",
+    "discardEdits": "Vous avez des modifications non sauvegardées. Voulez-vous les supprimer ?",
     "@discardEdits": {
         "type": "String",
         "placeholders": {}
@@ -2704,7 +2704,7 @@
     "support": "Soutenir",
     "blur": "Flou :",
     "opacity": "Opacité :",
-    "editImage": "Éditer l'image",
+    "editImage": "Éditer l’image",
     "@editImage": {
         "type": "String",
         "placeholders": {}
@@ -2719,7 +2719,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "mirror": "Mirroir",
+    "mirror": "Miroir",
     "@mirror": {
         "type": "String",
         "placeholders": {}
