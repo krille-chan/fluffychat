@@ -47,10 +47,7 @@ jobs:
           asset_name: fluffychat-web.tar.gz
           asset_content_type: application/gzip
       - name: Clone fluffychat website
-        run: |
-          git clone https://github.com/krille-chan/fluffychat-website.git
-          cat CHANGELOG.md >> fluffychat-website/src/changelog.md
-          cat PRIVACY.md >> fluffychat-website/src/privacy.md
+        run: git clone https://github.com/krille-chan/fluffychat-website.git
       - name: Build website
         working-directory: fluffychat-website
         run: |
@@ -63,7 +60,6 @@ jobs:
           mkdir public/nightly
           cp -r build/web/* public/web/
           cp -r build/web/* public/nightly/
-          echo "fluffychat.im" >> public/CNAME
       - name: Deploy to GitHub Pages
         if: startsWith(github.ref, 'refs/tags/v')
         uses: peaceiris/actions-gh-pages@v4
