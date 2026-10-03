@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-dD2(d){return new A.FE(B.dw(d))},
-dD3(){return new A.MD(B.dw("pt_BR"))},
-dD4(){return new A.ME(B.dw("pt_PT"))},
+dD4(d){return new A.FE(B.dw(d))},
+dD5(){return new A.ME(B.dw("pt_BR"))},
+dD6(){return new A.MF(B.dw("pt_PT"))},
 FE:function FE(d){this.a=d},
-MD:function MD(d){this.a=d},
-ME:function ME(d){this.a=d}},C
+ME:function ME(d){this.a=d},
+MF:function MF(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[59]
@@ -747,7 +747,7 @@ rm(d){return"Unfortunately, an unexpected error has occurred: "+d},
 qB(d){return"Incoming call from "+d},
 pP(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
-A.MD.prototype={
+A.ME.prototype={
 gkW(){return"Repita a senha"},
 gkv(){return"N\xe3o \xe9 um arquivo de imagem."},
 gbv(d){return"Remover"},
@@ -1354,7 +1354,7 @@ goU(){return"Pular backup de conversas"},
 goV(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 pG(d){return"Vers\xe3o: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
-A.ME.prototype={
+A.MF.prototype={
 gkW(){return"Repete a palavra-passe"},
 gkv(){return"N\xe3o \xe9 um ficheiro de imagem."},
 gbv(d){return"Remover"},
@@ -1697,8 +1697,8 @@ gf5(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.FE,C.aT)
-w(A.FE,[A.MD,A.ME])})()
-B.ec(b.typeUniverse,JSON.parse('{"FE":{"aT":[]},"MD":{"aT":[]},"ME":{"aT":[]}}'))
+w(A.FE,[A.ME,A.MF])})()
+B.ec(b.typeUniverse,JSON.parse('{"FE":{"aT":[]},"ME":{"aT":[]},"MF":{"aT":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["wIQba0czXqR3x/sgO19zP8fMzMY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["yB2bk2txYFX9vrlCA8N1nteV+k8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

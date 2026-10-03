@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dCD(){return new B.Md(A.dw("et"))},
-Md:function Md(d){this.a=d}}
+dCF(){return new B.Me(A.dw("et"))},
+Me:function Me(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[18],B)
-B.Md.prototype={
+B.Me.prototype={
 gpn(){return"Muuda pilti"},
 grg(){return"P\xf6\xf6ra vasakule"},
 grh(){return"P\xf6\xf6ra paremale"},
@@ -744,7 +744,7 @@ qB(d){return"K\xf5ne kasutajalt "+d},
 pP(d){return"Serveri vastuseks oli veateade: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Md,C.aT)})()
-A.ec(b.typeUniverse,JSON.parse('{"Md":{"aT":[]}}'))};
-(a=>{a["L2ZRqkANr20myKpF2LsMN0LGwAQ="]=a.current})($__dart_deferred_initializers__);
+y(B.Me,C.aT)})()
+A.ec(b.typeUniverse,JSON.parse('{"Me":{"aT":[]}}'))};
+(a=>{a["4d/5IwQrAOdPe7DWWdKfdy4gROs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_311.part.js.map

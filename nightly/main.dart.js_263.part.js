@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dCs(){return new B.M2(A.dw("be"))},
-M2:function M2(d){this.a=d}}
+dCu(){return new B.M3(A.dw("be"))},
+M3:function M3(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[7],B)
-B.M2.prototype={
+B.M3.prototype={
 gpn(){return"\u0417\u043c\u044f\u043d\u0456\u0446\u044c \u0432\u044b\u044f\u0432\u0443"},
 grg(){return"\u041f\u0430\u0432\u044f\u0440\u043d\u0443\u0446\u044c \u0443\u043b\u0435\u0432\u0430"},
 grh(){return"\u041f\u0430\u0432\u044f\u0440\u043d\u0443\u0446\u044c \u0443\u043f\u0440\u0430\u0432\u0430"},
@@ -744,7 +744,7 @@ qB(d){return"\u0423\u0432\u0430\u0445\u043e\u0434\u043d\u044b \u0432\u044b\u043a
 pP(d){return"\u0421\u0435\u0440\u0432\u0435\u0440 \u0430\u0434\u043a\u0430\u0437\u0430\u045e \u043f\u0430\u0432\u0435\u0434\u0430\u043c\u043b\u0435\u043d\u043d\u0435\u043c \u043f\u0430\u043c\u044b\u043b\u043a\u0456: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.M2,C.aT)})()
-A.ec(b.typeUniverse,JSON.parse('{"M2":{"aT":[]}}'))};
-(a=>{a["sqt+VOzV5lKB1PQBzo0oJ2saG4E="]=a.current})($__dart_deferred_initializers__);
+y(B.M3,C.aT)})()
+A.ec(b.typeUniverse,JSON.parse('{"M3":{"aT":[]}}'))};
+(a=>{a["3IosH1yT4a3L4coK5A9tt0xclsM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_263.part.js.map

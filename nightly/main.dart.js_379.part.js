@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dDf(){return new B.MP(A.dw("tr"))},
-MP:function MP(d){this.a=d}}
+dDh(){return new B.MQ(A.dw("tr"))},
+MQ:function MQ(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[54],B)
-B.MP.prototype={
+B.MQ.prototype={
 gpn(){return"G\xf6rseli d\xfczenle"},
 grg(){return"Sola d\xf6nd\xfcr"},
 grh(){return"Sa\u011fa d\xf6nd\xfcr"},
@@ -743,8 +743,8 @@ qB(d){return"Incoming call from "+d},
 pP(d){return"The server has replied with an error message: "+d},
 C(d,e){return this.gbv(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MP,C.aT)})()
-A.ec(b.typeUniverse,JSON.parse('{"MP":{"aT":[]}}'))
+x(B.MQ,C.aT)})()
+A.ec(b.typeUniverse,JSON.parse('{"MQ":{"aT":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["bLepxDAUDMFS6KXVw+7JrT5yOc0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["7Ah6xl8gyasoizqDM4Ekcgg4M+8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_379.part.js.map
