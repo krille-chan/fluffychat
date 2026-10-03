@@ -13,7 +13,7 @@ To improve the process please make sure that you read the following guidelines c
 ## Contributing Guidelines
 
 1. Always create a Pull Request for any changes.
-2. Usage of LLMs to generate code or documentation is strictly prohibited.
+2. Usage of LLMs to generate code, documentation, commit messages or PR description is strictly prohibited.
 3. Whenever possible please make sure that your Pull Request only contains **one** commit. Cases where multiple commits make sense are very rare.
 4. Do not add merge commits. Use rebases.
 5. Every Pull Request should change only one thing. For bigger changes it is often better to split them up in multiple Pull Requests.
@@ -21,6 +21,13 @@ To improve the process please make sure that you read the following guidelines c
 7. Format the commit message as [Conventional Commits](https://www.conventionalcommits.org).
 8. For bigger or complex changes (more than a couple of code lines) write an issue or refer to an existing issue and ask for approval from the maintainers (@krille-chan) **before** starting to implement it. This way you reduce the risk that your Pull Request get's declined.
 9. Prefer simple and easy to maintain solutions over complexity and fancy ones.
+10. Translations in the .arb files are managed in [Weblate](https://hosted.weblate.org/projects/fluffychat/) and not here.
+11. Do not comment your code! Code comments are a sign that the code is not self-explanatory. Instead use comments to mark workarounds (always with a link to the upstream problem!) or explain **why** something is done in an unusual way.
+12. Do not fire&forget a pull request! Contributing also means taking over responsibility, reacting on comments and reviews and be able to collaborate.
+13. Do not overengineer something. Not everything needs to be abstracted, if it isn't used in more than one place. Code must fit in the current architecture.
+14. Avoid using `else` and prefer function guards, early returns and `switch`.
+15. Do not add functionality in the platform-directories. We try to not differ from the default as these creates huge conflicts on upgrading Flutter versions. We do not have our own platform channels but abstracted them in external packages. We must try to get rid of existing workarounds and not extend them!
+16. Keep all dependencies and external packages minimal. Make sure that new packages are well maintained and no threat to future dependency hell.
 
 # Code Style
 
@@ -105,7 +112,7 @@ class EnterNameController extends State<EnterName> {
 }
 ```
 
-So we have a controller for a `EnterName` view which as a `TextEditingController`, a state `name` and an action `void setNameAction()`. Actions must always be methods of a type, that we dont need to pass parameters in the corresponding view class and must have dartdoc comments.
+So we have a controller for a `EnterName` view which as a `TextEditingController`, a state `name` and an action `void setNameAction()`. Actions must always be methods of a type, that we dont need to pass parameters in the corresponding view class.
 
 The view class could look like this:
 
