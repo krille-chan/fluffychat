@@ -64,7 +64,9 @@ Future<void> pushHelper(
 
     if (notification.roomId != null) {
       await flutterLocalNotificationsPlugin.show(
-        id: notification.notificationId,
+        id: notification.notificationId(
+          notification.clientName ?? clients?.firstOrNull?.clientName,
+        ),
         title: l10n.newMessageInFluffyChat,
         body: l10n.openAppToReadMessages,
         notificationDetails: NotificationDetails(
@@ -225,7 +227,7 @@ Future<void> _tryPushHelper(
     senderAvatar,
   );
 
-  final id = '${client.clientName}_${notification.roomId}'.hashCode;
+  final id = notification.notificationId(client.clientName);
 
   final senderName = event.senderFromMemoryOrFallback.calcDisplayname();
   // Show notification
@@ -361,14 +363,14 @@ Future<void> _tryPushHelper(
 
   final title = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
 
-  if (PlatformInfos.isAndroid && messagingStyleInformation == null) {
+  if (PlatformInfos.isAndroid) {
     await _setShortcut(event, l10n, title, roomAvatarFile);
   }
 
   final needsTitleAndBody = !PlatformInfos.isAndroid;
 
   await flutterLocalNotificationsPlugin.show(
-    id: notification.notificationId,
+    id: id,
     title: needsTitleAndBody ? title : null,
     body: needsTitleAndBody ? body : null,
     notificationDetails: platformChannelSpecifics,
@@ -487,10 +489,9 @@ Future<void> _setShortcut(
 extension on PushNotification {
   String? get clientName =>
       devices?.firstOrNull?.data?.tryGet<String>('client_name');
-  int get notificationId {
+  int notificationId(String? clientName) {
     final roomId = this.roomId;
     if (roomId == null) return 0;
-    final clientName = this.clientName;
     if (clientName == null) return roomId.hashCode;
     return '${clientName}_$roomId'.hashCode;
   }
