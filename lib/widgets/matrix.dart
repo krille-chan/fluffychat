@@ -209,6 +209,7 @@ class MatrixState extends State<Matrix> {
   }
 
   AppLifecycleListener? _listener;
+  AppLifecycleState? _lifecycleState;
 
   void _registerSubs(String name) {
     final c = getClientByName(name);
@@ -354,6 +355,11 @@ class MatrixState extends State<Matrix> {
   }
 
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    final wasDetached = _lifecycleState == AppLifecycleState.detached;
+    _lifecycleState = state;
+    if (wasDetached) {
+      backgroundPush?.openRoomFromNotification(newActivity: true);
+    }
     final foreground = state == AppLifecycleState.resumed;
     for (final client in widget.clients) {
       client.syncPresence = state == AppLifecycleState.resumed
