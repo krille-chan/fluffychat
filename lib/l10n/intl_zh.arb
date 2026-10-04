@@ -2841,5 +2841,6 @@
             }
         }
     },
-    "download": "下载"
+    "download": "下载",
+    "sharedLocation": "分享位置"
 }
