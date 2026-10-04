@@ -2844,5 +2844,6 @@
             }
         }
     },
-    "download": "Laadi alla"
+    "download": "Laadi alla",
+    "sharedLocation": "Jagatud asukoht"
 }
