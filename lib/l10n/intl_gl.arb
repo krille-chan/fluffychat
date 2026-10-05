@@ -2831,5 +2831,16 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "updateAvailable": "Versión {version} dispoñible",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Descargar",
+    "sharedLocation": "Localización compartida"
 }

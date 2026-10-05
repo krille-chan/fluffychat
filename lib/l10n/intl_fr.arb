@@ -2842,5 +2842,6 @@
             }
         }
     },
-    "download": "Télécharger"
+    "download": "Télécharger",
+    "sharedLocation": "Localisation partagée"
 }
