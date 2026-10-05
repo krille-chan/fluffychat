@@ -2841,5 +2841,6 @@
         }
     },
     "download": "Загрузить",
-    "unifiedPushDistributors": "Дистрибьюторы Unified Push:"
+    "unifiedPushDistributors": "Дистрибьюторы Unified Push:",
+    "sharedLocation": "Общие геометки"
 }
