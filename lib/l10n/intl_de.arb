@@ -2849,5 +2849,6 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "sharedLocation": "Getilter Standort"
 }
