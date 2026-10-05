@@ -815,7 +815,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} vous a invité·e sur FluffyChat.\n1. Visiter fluffychat.im et installer l'application\n2. Inscrivez-vous ou connectez-vous\n3. Ouvrez le lien d'invitation :\n{link}",
+    "inviteText": "{username} vous a invité·e sur FluffyChat.\n1. Visiter fluffychat.im et installer l'application\n2. Inscrivez-vous ou connectez-vous\n3. Ouvrez le lien d'invitation :\n{link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1919,7 +1919,7 @@
     "invalidServerName": "Nom de serveur invalide",
     "shareInviteLink": "Partager un lien d'invitation",
     "openLinkInBrowser": "Ouvrir le lien dans le navigateur",
-    "setColorTheme": "Définir la couleur du thème :",
+    "setColorTheme": "Définir la couleur du thème :",
     "databaseMigrationBody": "Veuillez patienter. Cela peut prendre un moment.",
     "searchForUsers": "Rechercher des @utilisateurs/trices...",
     "passwordsDoNotMatch": "Les mots de passe ne correspondent pas",
@@ -1927,7 +1927,7 @@
     "joinSpace": "Rejoindre l'espace",
     "publicSpaces": "Espaces publics",
     "addChatOrSubSpace": "Ajouter une discussion ou un sous-espace",
-    "thisDevice": "Cet appareil :",
+    "thisDevice": "Cet appareil :",
     "sendReadReceipts": "Envoyer des accusés de réception",
     "sendTypingNotificationsDescription": "Les autres participants à une discussion peuvent voir que vous êtes en train de taper un nouveau message.",
     "verifyOtherDevice": "🔐 Vérifier l'autre appareil",
@@ -1962,7 +1962,7 @@
             }
         }
     },
-    "unreadChatsInApp": "{appname} : {unread} discussions non lus",
+    "unreadChatsInApp": "{appname} : {unread} discussions non lus",
     "@unreadChatsInApp": {
         "type": "String",
         "placeholders": {
@@ -2009,7 +2009,7 @@
     "blockListDescription": "Vous pouvez bloquer des utilisateurs/trices qui vous dérangent. Vous ne pourrez plus recevoir aucun message ou invitation à un salon d'utilisateurs/trices figurant sur votre liste de blocage personnelle.",
     "blockUsername": "Ignorer le nom d'utilisateur/trice",
     "hideInvalidOrUnknownMessageFormats": "Masquer les formats de message invalides ou inconnus",
-    "messagesStyle": "Messages :",
+    "messagesStyle": "Messages :",
     "redactedByBecause": "Supprimé par {username} car : \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
@@ -2025,7 +2025,7 @@
     "setChatDescription": "Définir la description de la discussion",
     "gallery": "Galerie",
     "files": "Fichiers",
-    "sessionLostBody": "Votre session est perdue. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
+    "sessionLostBody": "Votre session est perdue. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
     "@sessionLostBody": {
         "type": "String",
         "placeholders": {
@@ -2127,7 +2127,7 @@
     "wrongRecoveryKey": "Désolé... il ne semble pas s'agir de la bonne clé de récupération.",
     "searchChatsRooms": "Rechercher des #discussions, @utilisateurs/trices...",
     "createGroupAndInviteUsers": "Créer un groupe et inviter des utilisateurs/trices",
-    "goToSpace": "Aller dans l'espace : {space}",
+    "goToSpace": "Aller dans l'espace : {space}",
     "@goToSpace": {
         "type": "String",
         "space": {}
@@ -2138,7 +2138,7 @@
     "pleaseEnterANumber": "Veuillez saisir un nombre supérieur à 0",
     "roomUpgradeDescription": "La discussion sera alors recréé avec la nouvelle version de salon. Tous les participants seront informés qu'ils doivent passer à la nouvelle discussion. Pour en savoir plus sur les versions des salons, consultez le site https://spec.matrix.org/latest/rooms/",
     "learnMore": "En savoir plus",
-    "restoreSessionBody": "L'application tente maintenant de restaurer votre session depuis la sauvegarde. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
+    "restoreSessionBody": "L'application tente maintenant de restaurer votre session depuis la sauvegarde. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
     "@restoreSessionBody": {
         "type": "String",
         "placeholders": {
@@ -2316,7 +2316,7 @@
     "notificationRuleIsUserMentionDescription": "Notifie l'utilisateur/trice lorsqu'il est mentionné directement dans un message.",
     "notificationRuleServerAcl": "Retire les Évènements ACL du Serveur",
     "advancedConfigurations": "Configurations avancées",
-    "signUpGreeting": "FluffyChat est décentralisé ! Selectionnez un hôte sur lequel vous voulez créer un compte et c'est parti !",
+    "signUpGreeting": "FluffyChat est décentralisé ! Sélectionnez un hôte sur lequel vous voulez créer un compte et c'est parti !",
     "notificationRuleCall": "Appeler",
     "baseUrl": "URL racine",
     "pause": "Pause",
@@ -2687,7 +2687,7 @@
     "disableAppLockAreYouSure": "Êtes vous sûr de vouloir désactiver le verrouillage de l'application ?",
     "enableBiometrics": "Activer l'authentification biométrique",
     "disableBiometrics": "Désactiver l'authentification biométrique",
-    "biometricsDescription": "Avec l'authentification biométrique, vous pouvez déverrouillee l'application avec votre visage ou votre empreinte digitale. Les possibilités dépendent de votre appareil.",
+    "biometricsDescription": "Avec l'authentification biométrique, vous pouvez déverrouillée l'application avec votre visage ou votre empreinte digitale. Les possibilités dépendent de votre appareil.",
     "useAppLock": "Utiliser le verrouillage de l'application",
     "unlockWithBiometrics": "Déverrouiller avec l'authentification biométrique",
     "resetPin": "Réinitialiser le code pin",
@@ -2734,7 +2734,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "undo": "Défaire",
+    "undo": "Annuler",
     "@undo": {
         "type": "String",
         "placeholders": {}
@@ -2772,7 +2772,7 @@
     },
     "compressingVideo": "Compression de la vidéo...",
     "shareCrashReports": "Partager le rapport de crash",
-    "shareCrashReportsDescription": "Partage automatiquement les rapports de crash avec les developers ?",
+    "shareCrashReportsDescription": "Partage automatiquement les rapports de crash avec les developpeurs ?",
     "activeCall": "Appel actif",
     "countActiveCallMembers": "{count} membres actifs dans l'appel",
     "@countActiveCallMembers": {
