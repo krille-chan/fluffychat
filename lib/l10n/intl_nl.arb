@@ -2840,5 +2840,6 @@
             }
         }
     },
-    "download": "Downloaden"
+    "download": "Downloaden",
+    "sharedLocation": "Gedeelde locatie"
 }
