@@ -96,7 +96,7 @@ dependencies:
   universal_html: ^2.3.0
   url_launcher: ^6.3.3
   uuid: ^4.6.0
-  video_player: ^2.14.0
+  video_player: ^2.14.1
   wakelock_plus: ^1.8.0
 
 dev_dependencies:
