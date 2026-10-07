@@ -1217,5 +1217,59 @@
     "@rotateRight": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "mirror": "Zrkadlit",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Uložit",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Kreslit",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Krok späť",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Zmazať",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Guma",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Orezat",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notAnImage": "Súbor nie je obrázok.",
+    "importEmojis": "Importovat Emoji",
+    "importFromZipFile": "Importovat zo .zip súboru",
+    "replace": "Nahradiť",
+    "aboutHomeserver": "Informácie o {homeserver}",
+    "@aboutHomeserver": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    },
+    "accountsAndSettings": "Účty a nastavenia",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "confirmMatrixId": "Prosím potvrďte svoje Matrix ID pre odstránenie účtu."
 }
