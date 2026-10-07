@@ -26,11 +26,12 @@ class UnreadBubble extends StatelessWidget {
     );
     final hasNotifications = notificationCount > 0;
     final unread = hasNotifications || room.markedUnread;
-    final unreadBubbleSize = unread || hasNewMessages
-        ? hasNotifications
-              ? 20.0
-              : 14.0
-        : 0.0;
+    var unreadBubbleSize = 0.0;
+    if (hasNotifications) {
+      unreadBubbleSize = 20.0;
+    } else if (unread || hasNewMessages) {
+      unreadBubbleSize = 14.0;
+    }
     return AnimatedContainer(
       duration: FluffyThemes.animationDuration,
       curve: FluffyThemes.animationCurve,
