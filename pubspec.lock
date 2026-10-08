@@ -1289,10 +1289,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "355bf1d2d471ef2ab578d83a14a684cea7c07a1c"
+      resolved-ref: "466a60792159b22530e9c043585545ee2e766d0b"
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
-    version: "13.0.0"
+    version: "14.0.0"
   media_kit:
     dependency: transitive
     description:
