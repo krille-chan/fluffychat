@@ -2823,7 +2823,7 @@
             }
         }
     },
-    "serverRespondedWithError": "De server heeft met een foute boodschap geantwoord: {error}",
+    "serverRespondedWithError": "De server geeft een foutmelding: {error}",
     "@serverRespondedWithError": {
         "placeholders": {
             "error": {
