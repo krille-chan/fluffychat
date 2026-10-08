@@ -101,7 +101,6 @@
 				33FAB671232836740065AC1E /* Runner */,
 				33CEB47122A05771004F2AC0 /* Flutter */,
 				33CC10EE2044A3C60003C045 /* Products */,
-				F9F203356080D460FB6D4567 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,13 +146,6 @@
 				33BA886A226E78AF003329D5 /* Configs */,
 			);
 			path = Runner;
-			sourceTree = "<group>";
-		};
-		F9F203356080D460FB6D4567 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
