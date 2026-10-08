@@ -10,10 +10,12 @@ import 'package:material_ui/material_ui.dart';
 class MarkdownContextBuilder extends StatelessWidget {
   final EditableTextState editableTextState;
   final TextEditingController controller;
+  final VoidCallback? onPasteImage;
 
   const MarkdownContextBuilder({
     required this.editableTextState,
     required this.controller,
+    this.onPasteImage,
     super.key,
   });
 
@@ -28,6 +30,14 @@ class MarkdownContextBuilder extends StatelessWidget {
       anchors: editableTextState.contextMenuAnchors,
       buttonItems: [
         ...buttonItems,
+        if (onPasteImage != null)
+          ContextMenuButtonItem(
+            label: l10n.pasteImage,
+            onPressed: () {
+              ContextMenuController.removeAny();
+              onPasteImage!();
+            },
+          ),
         if (selectedText.isNotEmpty) ...[
           ContextMenuButtonItem(
             label: l10n.link,
