@@ -2837,5 +2837,16 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "updateAvailable": "Nuashonrú {version} ar fáil",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Íoslódáil",
+    "sharedLocation": "Suíomh comhroinnte"
 }
