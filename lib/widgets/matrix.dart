@@ -69,6 +69,7 @@ class MatrixState extends State<Matrix> {
   BackgroundPush? backgroundPush;
 
   final ValueNotifier<String?> activeCallRoomId = ValueNotifier(null);
+  final ValueNotifier<int> ownProfileRevision = ValueNotifier(0);
   final ValueNotifier<CallPosition> callPosition = ValueNotifier(
     CallPosition.fullScreen,
   );
@@ -393,6 +394,7 @@ class MatrixState extends State<Matrix> {
     onUiaRequest.clear();
 
     voiceMessageEventId.dispose();
+    ownProfileRevision.dispose();
 
     super.dispose();
   }

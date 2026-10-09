@@ -34,10 +34,18 @@ class SettingsController extends State<Settings> {
   Future<Profile>? profileFuture;
   bool profileUpdated = false;
 
-  void updateProfile() => setState(() {
-    profileUpdated = true;
-    profileFuture = null;
-  });
+  Future<void> updateProfile() async {
+    if (!mounted) return;
+    final matrix = Matrix.of(context);
+    final client = matrix.client;
+    await client.database.markUserProfileAsOutdated(client.userID!);
+    if (!mounted) return;
+    setState(() {
+      profileUpdated = true;
+      profileFuture = null;
+    });
+    matrix.ownProfileRevision.value++;
+  }
 
   Future<void> setDisplaynameAction() async {
     final l10n = L10n.of(context);
@@ -63,7 +71,7 @@ class SettingsController extends State<Settings> {
       ),
     );
     if (success.error == null) {
-      updateProfile();
+      await updateProfile();
     }
   }
 
@@ -131,7 +139,7 @@ class SettingsController extends State<Settings> {
         future: () => matrix.client.setAvatar(null),
       );
       if (success.error == null) {
-        updateProfile();
+        await updateProfile();
       }
       return;
     }
@@ -161,7 +169,7 @@ class SettingsController extends State<Settings> {
       future: () => matrix.client.setAvatar(file),
     );
     if (success.error == null) {
-      updateProfile();
+      await updateProfile();
     }
   }
 

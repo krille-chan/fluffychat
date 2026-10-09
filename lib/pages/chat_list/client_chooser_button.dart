@@ -173,21 +173,24 @@ class ClientChooserButton extends StatelessWidget {
 
     var clientCount = 0;
     matrix.accountBundles.forEach((key, value) => clientCount += value.length);
-    return FutureBuilder<Profile>(
-      future: client?.isLogged() == true ? client?.fetchOwnProfile() : null,
-      builder: (context, snapshot) => Material(
-        clipBehavior: Clip.hardEdge,
-        borderRadius: BorderRadius.circular(99),
-        color: Colors.transparent,
-        child: PopupMenuButton<Object>(
-          key: Key('accounts_and_settings_buttons'),
-          tooltip: L10n.of(context).accountsAndSettings,
-          onSelected: (o) => _clientSelected(o, context),
-          itemBuilder: _bundleMenuItems,
-          icon: Avatar(
-            mxContent: snapshot.data?.avatarUrl,
-            name: snapshot.data?.displayName ?? client?.userID?.localpart,
-            size: 32,
+    return ValueListenableBuilder<int>(
+      valueListenable: matrix.ownProfileRevision,
+      builder: (context, _, _) => FutureBuilder<Profile>(
+        future: client?.isLogged() == true ? client?.fetchOwnProfile() : null,
+        builder: (context, snapshot) => Material(
+          clipBehavior: Clip.hardEdge,
+          borderRadius: BorderRadius.circular(99),
+          color: Colors.transparent,
+          child: PopupMenuButton<Object>(
+            key: Key('accounts_and_settings_buttons'),
+            tooltip: L10n.of(context).accountsAndSettings,
+            onSelected: (o) => _clientSelected(o, context),
+            itemBuilder: _bundleMenuItems,
+            icon: Avatar(
+              mxContent: snapshot.data?.avatarUrl,
+              name: snapshot.data?.displayName ?? client?.userID?.localpart,
+              size: 32,
+            ),
           ),
         ),
       ),
