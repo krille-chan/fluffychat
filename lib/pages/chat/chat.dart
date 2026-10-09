@@ -426,11 +426,11 @@ class ChatController extends State<ChatPageWithRoom>
         room.lastEvent?.relationshipType == RelationshipTypes.thread
         ? room.lastEvent?.relationshipEventId
         : null;
-    readMarkerEventId = room.hasNewMessages
-        ? lastEventThreadId ?? room.fullyRead
-        : '';
+    readMarkerEventId = room.hasNewMessages ? room.fullyRead : '';
     WidgetsBinding.instance.addObserver(this);
-    _tryLoadTimeline();
+    _tryLoadTimeline(
+      room.hasNewMessages ? lastEventThreadId ?? room.fullyRead : '',
+    );
   }
 
   Future<void> _checkMatrixRtcCallSupport() async {
@@ -465,7 +465,7 @@ class ChatController extends State<ChatPageWithRoom>
     });
   }
 
-  Future<void> _tryLoadTimeline() async {
+  Future<void> _tryLoadTimeline(String unreadEventId) async {
     final initialEventId = widget.eventId;
     loadTimelineFuture = _getTimeline();
     try {
@@ -476,32 +476,32 @@ class ChatController extends State<ChatPageWithRoom>
         return;
       }
 
-      var readMarkerEventIndex = readMarkerEventId.isEmpty
+      var readMarkerEventIndex = unreadEventId.isEmpty
           ? -1
           : timeline!.events
                 .filterByVisibleInGui(
-                  exceptionEventId: readMarkerEventId,
+                  exceptionEventId: unreadEventId,
                   threadId: activeThreadId,
                 )
-                .indexWhere((e) => e.eventId == readMarkerEventId);
+                .indexWhere((e) => e.eventId == unreadEventId);
 
       // Read marker is existing but not found in first events. Try a single
       // requestHistory call before opening timeline on event context:
-      if (readMarkerEventId.isNotEmpty && readMarkerEventIndex == -1) {
+      if (unreadEventId.isNotEmpty && readMarkerEventIndex == -1) {
         await timeline?.requestHistory(historyCount: _loadHistoryCount);
         readMarkerEventIndex = timeline!.events
             .filterByVisibleInGui(
-              exceptionEventId: readMarkerEventId,
+              exceptionEventId: unreadEventId,
               threadId: activeThreadId,
             )
-            .indexWhere((e) => e.eventId == readMarkerEventId);
+            .indexWhere((e) => e.eventId == unreadEventId);
       }
 
       if (readMarkerEventIndex > 1) {
-        Logs().v('Scroll up to visible event', readMarkerEventId);
-        scrollToEventId(readMarkerEventId, highlightEvent: false);
-      } else if (readMarkerEventId.isNotEmpty && readMarkerEventIndex == -1) {
-        _showScrollUpMaterialBanner(readMarkerEventId);
+        Logs().v('Scroll up to visible event', unreadEventId);
+        scrollToEventId(unreadEventId, highlightEvent: false);
+      } else if (unreadEventId.isNotEmpty && readMarkerEventIndex == -1) {
+        _showScrollUpMaterialBanner(unreadEventId);
       }
 
       // Mark room as read on first visit if requirements are fulfilled
@@ -652,12 +652,20 @@ class ChatController extends State<ChatPageWithRoom>
       return;
     }
 
+    final fullyReadEventId = setOnLatestEvent
+        ? timeline.events
+              .filterByVisibleInGui()
+              .firstWhereOrNull((event) => event.status.isSynced)
+              ?.eventId
+        : eventId;
+
     Logs().d('Set read marker...', eventId);
     _setReadMarkerEventId = eventId;
     // ignore: unawaited_futures
-    timeline
+    room
         .setReadMarker(
-          eventId: eventId,
+          fullyReadEventId,
+          mRead: eventId,
           public: AppSettings.sendPublicReadReceipts.value,
         )
         .whenComplete(() {
