@@ -6,6 +6,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:fluffychat/config/isrg_x1.dart';
 import 'package:fluffychat/config/isrg_x2.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -13,29 +15,68 @@ import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:http/retry.dart' as retry;
 
+/// Method channel used to load user-installed CA certificates on Android.
+const _userCaChannel = MethodChannel('chat.fluffy.fluffychat/user_ca');
+
 /// Custom HTTP client that adds the ISRG Root certificates used by Let's
 /// Encrypt. Older Android versions may not include these roots in their
 /// trust store, so we ship them ourselves to ensure TLS connections to
 /// Let's Encrypt–signed servers continue to work.
+///
+/// On Android, user-installed CA certificates are also added, since apps
+/// targeting API 24+ do not trust them by default.
 class CustomHttpClient {
-  static HttpClient customHttpClient() {
-    final context = SecurityContext.defaultContext;
+  static String derToPem(List<int> der) =>
+      '-----BEGIN CERTIFICATE-----\n${base64Encode(der)}\n-----END CERTIFICATE-----';
 
-    try {
-      context.setTrustedCertificatesBytes(utf8.encode(ISRG_X1));
-      context.setTrustedCertificatesBytes(utf8.encode(ISRG_X2));
-    } on TlsException catch (e) {
-      if (e.osError != null &&
-          e.osError!.message.contains('CERT_ALREADY_IN_HASH_TABLE')) {
-      } else {
-        rethrow;
+  static Future<SecurityContext> buildSecurityContext() async {
+    final context = SecurityContext(withTrustedRoots: true);
+    _addTrustedCertificates(context, [ISRG_X1, ISRG_X2]);
+
+    if (PlatformInfos.isAndroid) {
+      try {
+        final userCertsRaw =
+            await _userCaChannel.invokeMethod<Map>('getUserCertificates');
+
+        if (userCertsRaw != null && userCertsRaw.isNotEmpty) {
+          // Convert the Map<String, Uint8List> to List<int> PEM strings
+          final pem = userCertsRaw.values.map(
+            (bytes) => derToPem((bytes as List<int>).toList()),
+          ).join('\n');
+          _addTrustedCertificates(context, [pem]);
+        }
+      } on PlatformException catch (e) {
+        // If the method channel isn't available (shouldn't happen on Android),
+        // log but continue without user certs
+        debugPrint('Failed to load user CA certificates: ${e.message}');
       }
     }
 
-    return HttpClient(context: context);
+    return context;
   }
 
-  static http.Client createHTTPClient() => retry.RetryClient(
-    PlatformInfos.isAndroid ? IOClient(customHttpClient()) : http.Client(),
+  static void _addTrustedCertificates(
+    SecurityContext context,
+    Iterable<String> certificates,
+  ) {
+    for (final certificate in certificates) {
+      try {
+        context.setTrustedCertificatesBytes(utf8.encode(certificate));
+      } on TlsException catch (e) {
+        if (e.osError != null &&
+            e.osError!.message.contains('CERT_ALREADY_IN_HASH_TABLE')) {
+          // The certificate is already present; nothing to do.
+        } else {
+          rethrow;
+        }
+      }
+    }
+  }
+
+  static Future<HttpClient> customHttpClient() async =>
+      HttpClient(context: await buildSecurityContext());
+
+  static Future<http.Client> createHTTPClient() async => retry.RetryClient(
+    PlatformInfos.isAndroid ? IOClient(await customHttpClient()) : http.Client(),
   );
 }
