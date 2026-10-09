@@ -15,6 +15,20 @@ import 'package:matrix/matrix.dart';
 extension MatrixRtcClientExtension on Client {
   Future<List<String>> getLiveKitServiceUrls() async {
     final wellKnown = await getWellknown();
+    final rtcTransportsResult = await request(
+      .GET,
+      '/_matrix/client/unstable/org.matrix.msc4143/rtc/transports',
+    );
+    final rtcTransports =
+        rtcTransportsResult
+            .tryGetList<Map<String, Object?>>('transports')
+            ?.where((map) => map.tryGet<String>('type') == 'm.livekit')
+            .map((map) => map.tryGet<String>('url'))
+            .whereType<String>()
+            .toList() ??
+        [];
+    if (rtcTransports.isNotEmpty) return rtcTransports;
+
     final rtcFociMap = wellKnown.additionalProperties
         .tryGetMap<String, Object?>(
           'org.matrix.msc4143.rtc_foci',
@@ -23,8 +37,6 @@ extension MatrixRtcClientExtension on Client {
     if (rtcFociMap != null) {
       return [?rtcFociMap.tryGet<String>('livekit_service_url')];
     }
-
-    // TODO: Also query /_matrix/client/unstable/org.matrix.msc4143/rtc/transports
 
     return wellKnown.additionalProperties
             .tryGetList<Map<String, Object?>>('org.matrix.msc4143.rtc_foci')
