@@ -1671,11 +1671,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Foches vetada nesta conversa",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "A túa chave pública",
     "@yourPublicKey": {
         "type": "String",

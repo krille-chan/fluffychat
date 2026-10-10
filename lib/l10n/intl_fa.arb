@@ -1582,11 +1582,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "شما از این چت محروم شده‌اید",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "setStatus": "تنظیم وضعیت",
     "@setStatus": {
         "type": "String",

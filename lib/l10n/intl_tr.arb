@@ -1672,11 +1672,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Bu sohbetten engellendiniz",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Ortak anahtarınız",
     "@yourPublicKey": {
         "type": "String",

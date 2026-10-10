@@ -1671,11 +1671,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Sinule on selles vestluses seatud suhtluskeeld",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Sinu avalik võti",
     "@yourPublicKey": {
         "type": "String",

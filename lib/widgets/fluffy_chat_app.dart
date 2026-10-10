@@ -3,6 +3,8 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'dart:developer';
+
 import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/routes.dart';
@@ -52,6 +54,23 @@ class FluffyChatApp extends StatelessWidget {
       }.contains(state.uri.scheme)) {
         Logs().d('Ignore content sharing handling in go router', state.uri);
         return '/';
+      }
+
+      if (state.uri.scheme == 'matrix') {
+        debugger();
+        final type = state.uri.pathSegments.first;
+        final id = state.uri.pathSegments[1];
+        switch (type) {
+          case 'roomid':
+            final roomId = '!$id';
+            return '/rooms/$roomId';
+          case 'r':
+            final alias = '#$id';
+            return '/rooms/newprivatechat#$alias';
+          case 'u':
+            final userId = '@$id';
+            return '/rooms/newprivatechat#$userId';
+        }
       }
 
       // Pass deep links to app:

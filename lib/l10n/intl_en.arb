@@ -1903,11 +1903,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "You have been banned from this chat",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Your public key",
     "@yourPublicKey": {
         "type": "String",
@@ -2833,5 +2828,29 @@
     },
     "sharedLocation": "Shared location",
     "pasteImage": "Paste image",
-    "noImageInClipboard": "No image in clipboard"
+    "noImageInClipboard": "No image in clipboard",
+    "doYouAlsoWantToBlock": "Do you also want to block this user?",
+    "declineAndBlock": "Decline and block",
+    "senderHasInvitedYouToTheChat": "{sender} has invited you to the chat '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheChat": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    },
+    "senderHasInvitedYouToTheSpace": "{sender} has invited you to the space '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheSpace": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    }
 }
