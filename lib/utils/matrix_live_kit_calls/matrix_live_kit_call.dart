@@ -6,21 +6,25 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:async/async.dart';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/call_keys_event_content.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call_member.dart';
-import 'package:matrix/matrix.dart';
+import 'package:matrix/matrix.dart' hide Result;
 
 extension MatrixRtcClientExtension on Client {
   Future<List<String>> getLiveKitServiceUrls() async {
     final wellKnown = await getWellknown();
-    final rtcTransportsResult = await request(
-      .GET,
-      '/_matrix/client/unstable/org.matrix.msc4143/rtc/transports',
+
+    final rtcTransportsResult = await Result.capture(
+      request(
+        .GET,
+        '/_matrix/client/unstable/org.matrix.msc4143/rtc/transports',
+      ),
     );
     final rtcTransports =
-        rtcTransportsResult
+        rtcTransportsResult.asValue?.value
             .tryGetList<Map<String, Object?>>('transports')
             ?.where((map) => map.tryGet<String>('type') == 'm.livekit')
             .map((map) => map.tryGet<String>('url'))
