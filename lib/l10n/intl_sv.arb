@@ -1404,11 +1404,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Du har blivit bannad från denna chatt",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Din publika nyckel",
     "@yourPublicKey": {
         "type": "String",

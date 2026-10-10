@@ -935,11 +935,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Ați fost interzis din acest chat",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "messageInfo": "Info mesajului",
     "time": "Timp",
     "sender": "Trimițător",

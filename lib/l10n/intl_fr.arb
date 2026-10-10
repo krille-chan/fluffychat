@@ -1672,11 +1672,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Vous avez été banni·e de cette discussion",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Votre clé publique",
     "@yourPublicKey": {
         "type": "String",

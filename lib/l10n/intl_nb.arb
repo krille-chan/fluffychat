@@ -1394,11 +1394,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Du har blitt bannlyst fra denne sludringen",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Din offentlige nøkkel",
     "@yourPublicKey": {
         "type": "String",

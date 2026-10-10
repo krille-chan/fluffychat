@@ -1829,11 +1829,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Bu suhbatdan bloklandingiz",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Ochiq kalitingiz",
     "@yourPublicKey": {
         "type": "String",

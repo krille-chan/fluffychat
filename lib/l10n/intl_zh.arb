@@ -1596,11 +1596,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "你已被此聊天封禁",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "你的公钥",
     "@yourPublicKey": {
         "type": "String",

@@ -1333,11 +1333,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Tev tika liegta piekļuve šai tērzēšanai",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "displaynameHasBeenChanged": "Attēlojamais vārds tika nomainīts",
     "@displaynameHasBeenChanged": {
         "type": "String",
