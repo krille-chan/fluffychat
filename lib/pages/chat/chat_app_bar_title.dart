@@ -35,7 +35,7 @@ class ChatAppBarTitle extends StatelessWidget {
       hoverColor: Colors.transparent,
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
-      onTap: controller.isArchived
+      onTap: controller.room.membership != .join
           ? null
           : () => FluffyThemes.isThreeColumnMode(context)
                 ? controller.toggleDisplayChatDetailsColumn()
@@ -124,18 +124,20 @@ class ChatAppBarTitle extends StatelessWidget {
                                   )
                                 : Row(
                                     children: [
-                                      Text(
-                                        L10n.of(context).countParticipants(
-                                          (room.summary.mJoinedMemberCount ??
-                                                  1) +
-                                              (room
-                                                      .summary
-                                                      .mInvitedMemberCount ??
-                                                  0),
+                                      if (room.summary.mJoinedMemberCount !=
+                                          null)
+                                        Text(
+                                          L10n.of(context).countParticipants(
+                                            (room.summary.mJoinedMemberCount ??
+                                                    1) +
+                                                (room
+                                                        .summary
+                                                        .mInvitedMemberCount ??
+                                                    0),
+                                          ),
+                                          maxLines: 1,
+                                          style: style,
                                         ),
-                                        maxLines: 1,
-                                        style: style,
-                                      ),
                                       if (room.topic.isNotEmpty) ...[
                                         Text(' ◦ ', style: style),
                                         Expanded(

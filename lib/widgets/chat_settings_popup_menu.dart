@@ -88,7 +88,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             }
           },
           itemBuilder: (BuildContext context) => [
-            if (widget.displayChatDetails)
+            if (widget.displayChatDetails && widget.room.membership == .join)
               PopupMenuItem<ChatPopupMenuActions>(
                 value: ChatPopupMenuActions.details,
                 child: Row(
@@ -99,26 +99,28 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   ],
                 ),
               ),
-            PopupMenuItem<ChatPopupMenuActions>(
-              value: ChatPopupMenuActions.search,
-              child: Row(
-                children: [
-                  const Icon(Icons.search_outlined),
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context).search),
-                ],
+            if (widget.room.membership case .join || .leave)
+              PopupMenuItem<ChatPopupMenuActions>(
+                value: ChatPopupMenuActions.search,
+                child: Row(
+                  children: [
+                    const Icon(Icons.search_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context).search),
+                  ],
+                ),
               ),
-            ),
-            PopupMenuItem<ChatPopupMenuActions>(
-              value: ChatPopupMenuActions.encryption,
-              child: Row(
-                children: [
-                  const Icon(Icons.lock_outlined),
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context).encryption),
-                ],
+            if (widget.room.membership case .join || .leave)
+              PopupMenuItem<ChatPopupMenuActions>(
+                value: ChatPopupMenuActions.encryption,
+                child: Row(
+                  children: [
+                    const Icon(Icons.lock_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context).encryption),
+                  ],
+                ),
               ),
-            ),
             PopupMenuItem<ChatPopupMenuActions>(
               value: ChatPopupMenuActions.leave,
               child: Row(

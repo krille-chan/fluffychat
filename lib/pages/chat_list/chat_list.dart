@@ -137,38 +137,12 @@ class ChatListController extends State<ChatList>
   }
 
   Future<void> onChatTap(Room room) async {
-    final l10n = L10n.of(context);
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
-    if (room.membership == Membership.invite) {
-      final joinResult = await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          final waitForRoom = room.client.waitForRoomInSync(
-            room.id,
-            join: true,
-          );
-          await room.join();
-          await waitForRoom;
-        },
-        exceptionContext: ExceptionContext.joinRoom,
-      );
-      if (joinResult.error != null) return;
-    }
-    if (!mounted) return;
-
-    if (room.membership == Membership.ban) {
-      scaffoldMessenger.showSnackBar(
-        SnackBar(content: Text(l10n.youHaveBeenBannedFromThisChat)),
-      );
-      return;
-    }
-
     if (room.membership == Membership.leave) {
       context.go('/rooms/archive/${room.id}');
       return;
     }
 
-    if (room.isSpace) {
+    if (room.membership == .join && room.isSpace) {
       setActiveSpace(room.id);
       return;
     }
@@ -424,9 +398,17 @@ class ChatListController extends State<ChatList>
   StreamSubscription? _onRoomTagUpdate;
 
   @override
+  void didUpdateWidget(covariant ChatList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.activeSpace != null &&
+        widget.activeSpace != oldWidget.activeSpace) {
+      setActiveSpace(widget.activeSpace!);
+    }
+  }
+
+  @override
   void initState() {
     _initReceiveSharingIntent();
-    _activeSpaceId = widget.activeSpace;
 
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
@@ -446,6 +428,9 @@ class ChatListController extends State<ChatList>
     }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.activeSpace != null) {
+        setActiveSpace(widget.activeSpace!);
+      }
       if (mounted) {
         searchServer = Matrix.of(
           context,
@@ -779,10 +764,8 @@ class ChatListController extends State<ChatList>
         );
         return;
       case ChatContextAction.block:
-        final inviteEvent = room.getState(
-          EventTypes.RoomMember,
-          room.client.userID!,
-        );
+        final inviteEvent = await room.requestUser(room.client.userID!);
+        if (!mounted) return;
         context.go(
           '/rooms/settings/security/ignorelist',
           extra: inviteEvent?.senderId,
