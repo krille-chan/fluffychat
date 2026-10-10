@@ -290,7 +290,11 @@ class BackgroundPush {
         await setupFirebase(client);
       }
     }
+    openRoomFromNotification();
+  }
 
+  void openRoomFromNotification({bool newActivity = false}) {
+    if (newActivity) _wentToRoomOnStartup = false;
     // ignore: unawaited_futures
     _flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails().then((
       details,
