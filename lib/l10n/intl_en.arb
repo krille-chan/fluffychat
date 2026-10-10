@@ -2831,5 +2831,7 @@
             }
         }
     },
-    "sharedLocation": "Shared location"
+    "sharedLocation": "Shared location",
+    "pasteImage": "Paste image",
+    "noImageInClipboard": "No image in clipboard"
 }
