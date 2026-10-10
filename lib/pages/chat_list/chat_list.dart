@@ -493,6 +493,7 @@ class ChatListController extends State<ChatList>
   }
 
   void _processPushHelperCrashReport() {
+    if (AppSettings.autoSendErrorReports.value != true) return;
     final store = Matrix.of(context).store;
     final report = store.getStringList(AppConfig.pushHelperCrashReportKey);
     if (report == null) return;
