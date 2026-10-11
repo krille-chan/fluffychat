@@ -879,6 +879,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "18.0.2"
+  golden_screenshot:
+    dependency: "direct dev"
+    description:
+      name: golden_screenshot
+      sha256: f1e894eb4d4f8c87a65b7d43ee95d84733f9e1e7980e3e0be5c3165b8b030792
+      url: "https://pub.dev"
+    source: hosted
+    version: "12.1.1"
   gsettings:
     dependency: transitive
     description:
@@ -2338,7 +2346,7 @@ packages:
     source: hosted
     version: "15.2.0"
   vodozemac:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: vodozemac
       sha256: efce261575f7de97ebd052b16775cd57f940e8212af47d288050c166b9f9a167

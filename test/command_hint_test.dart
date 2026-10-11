@@ -7,8 +7,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-
-import 'utils/test_client.dart';
+import 'package:matrix/matrix.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() async {
   test('Check for missing /command hints', () async {
@@ -16,7 +16,14 @@ void main() async {
         jsonDecode(File('lib/l10n/intl_en.arb').readAsStringSync()).keys
             .where((String k) => k.startsWith('commandHint_'))
             .map((k) => k.replaceFirst('commandHint_', ''));
-    final commands = (await prepareTestClient()).commands.keys;
+    final commands = (Client(
+      'commands',
+      database: await MatrixSdkDatabase.init(
+        'test',
+        database: await databaseFactoryFfi.openDatabase(':memory:'),
+        sqfliteFactory: databaseFactoryFfi,
+      ),
+    )).commands.keys;
     final missing = commands.where((c) => !translated.contains(c)).toList();
 
     expect(

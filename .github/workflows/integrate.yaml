@@ -55,6 +55,17 @@ jobs:
       - name: Add Firebase Messaging
         run: ./scripts/add-firebase-messaging.sh
       - run: flutter analyze
+
+  flutter_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .tool_versions.yaml
+          cache: true
+      - uses: dtolnay/rust-toolchain@stable
+      - run: flutter pub get
       - run: flutter test
 
   build_debug_apk:
