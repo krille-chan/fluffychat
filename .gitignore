@@ -203,3 +203,5 @@ ios/Runner/GoogleServices-Info.plist
 web/e2ee.worker.dart.js
 web/e2ee.worker.dart.js.deps
 web/e2ee.worker.dart.js.map
+
+test/rust

@@ -102,9 +102,11 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
+  golden_screenshot: ^12.1.1
   integration_test:
     sdk: flutter
   license_checker: ^1.6.2
+  vodozemac: ^0.8.0
 
 flutter:
   generate: true

@@ -26,7 +26,7 @@ To improve the process please make sure that you read the following guidelines c
 12. Do not fire&forget a pull request! Contributing also means taking over responsibility, reacting on comments and reviews and be able to collaborate.
 13. Do not overengineer something. Not everything needs to be abstracted, if it isn't used in more than one place. Code must fit in the current architecture.
 14. Avoid using `else` and prefer function guards, early returns and `switch`.
-15. Do not add functionality in the platform-directories. We try to not differ from the default as these creates huge conflicts on upgrading Flutter versions. We do not have our own platform channels but abstracted them in external packages. We must try to get rid of existing workarounds and not extend them!
+15. Do not add functionality in the platform-directories. We try to not differ from the default as these creates huge conflicts on upgrading Flutter versions. We do not have our own platform channels but abstracted them in external packages. We must try to get rid of existing workarounds and not extend them! Exceptions are for edge cases like the Notification Service Extension on iOS.
 16. Keep all dependencies and external packages minimal. Make sure that new packages are well maintained and no threat to future dependency hell.
 
 # Code Style

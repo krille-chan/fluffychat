@@ -289,6 +289,8 @@ class MatrixState extends State<Matrix> {
           ),
           windows: ClientManager.windowsNotificationSettings,
           macOS: const DarwinInitializationSettings(),
+          iOS: const DarwinInitializationSettings(),
+          android: const AndroidInitializationSettings('notifications_icon'),
         ),
         onDidReceiveNotificationResponse: (response) => notificationTap(
           response,
