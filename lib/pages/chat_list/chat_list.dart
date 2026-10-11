@@ -341,7 +341,9 @@ class ChatListController extends State<ChatList>
 
   void _processIncomingSharedMedia(List<SharedMediaFile> files) {
     files.removeWhere(
-      (file) => file.path.startsWith(AppConfig.deepLinkPrefix) == true,
+      (file) =>
+          file.path.startsWith(AppConfig.deepLinkPrefix) ||
+          Uri.tryParse(file.path)?.scheme == 'matrix',
     );
     if (files.isEmpty) return;
 
