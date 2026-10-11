@@ -36,15 +36,17 @@ class SettingsController extends State<Settings> {
 
   Future<void> updateProfile() async {
     if (!mounted) return;
-    final matrix = Matrix.of(context);
-    final client = matrix.client;
+    final client = Matrix.of(context).client;
     await client.database.markUserProfileAsOutdated(client.userID!);
     if (!mounted) return;
     setState(() {
       profileUpdated = true;
-      profileFuture = null;
+      profileFuture = client.getProfileFromUserId(
+        client.userID!,
+        maxCacheAge: Duration.zero,
+      );
     });
-    matrix.ownProfileRevision.value++;
+    client.onUserProfileUpdate.add(client.userID!);
   }
 
   Future<void> setDisplaynameAction() async {
