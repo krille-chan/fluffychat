@@ -66,6 +66,7 @@ jobs:
           cache: true
       - uses: dtolnay/rust-toolchain@stable
       - run: flutter pub get
+      - run: dart run golden_screenshot:download_apple_fonts
       - run: flutter test
 
   build_debug_apk:

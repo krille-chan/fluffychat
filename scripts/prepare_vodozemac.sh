@@ -6,7 +6,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 set -e
-version=$(yq ".packages.vodozemac.version" < pubspec.lock)
+version=$(yq ".packages.vodozemac.version" pubspec.lock)
 rm -rf ./test/rust dart-vodozemac
 git clone https://github.com/famedly/dart-vodozemac.git -b "$version"
 mv ./dart-vodozemac/rust ./test/
