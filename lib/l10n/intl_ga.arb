@@ -2843,5 +2843,31 @@
         }
     },
     "download": "Íoslódáil",
-    "sharedLocation": "Suíomh comhroinnte"
+    "sharedLocation": "Suíomh comhroinnte",
+    "pasteImage": "Greamaigh íomhá",
+    "noImageInClipboard": "Níl aon íomhá sa ghearrthaisce",
+    "doYouAlsoWantToBlock": "Ar mhaith leat an t-úsáideoir seo a bhac freisin?",
+    "declineAndBlock": "Diúltaigh agus bac",
+    "senderHasInvitedYouToTheChat": "Thug {sender} cuireadh duit chuig an gcomhrá '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheChat": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    },
+    "senderHasInvitedYouToTheSpace": "Thug {sender} cuireadh duit chuig an spás '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheSpace": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    }
 }
