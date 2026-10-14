@@ -743,10 +743,10 @@ gq5(){return"\u505c\u6b62\u4e3e\u624b"},
 rq(d){return"\u4e0d\u5e78\u53d1\u751f\u4e86\u610f\u5916\u9519\u8bef\uff1a"+d},
 qF(d){return d+" \u7684\u6765\u7535"},
 pR(d){return"\u670d\u52a1\u5668\u56de\u590d\u4e86\u9519\u8bef\u6d88\u606f\uff1a"+d},
-gqq(){return"Do you also want to block this user?"},
-gqo(){return"Decline and block"},
-pO(d,e){return d+" has invited you to the chat '"+e+"'."},
-pP(d,e){return d+" has invited you to the space '"+e+"'."},
+gqq(){return"\u4f60\u8fd8\u60f3\u5c01\u7981\u8be5\u7528\u6237\u5417\uff1f"},
+gqo(){return"\u62d2\u7edd\u5e76\u5c01\u7981"},
+pO(d,e){return d+" \u5df2\u9080\u8bf7\u4f60\u5230\u540d\u4e3a '"+e+"' \u7684\u804a\u5929\u3002"},
+pP(d,e){return d+" \u5df2\u9080\u8bf7\u4f60\u5230 '"+e+"'\u7a7a\u95f4\u3002"},
 C(d,e){return this.gbv(this).$1(e)}}
 A.MP.prototype={
 gkY(){return"\u518d\u6b21\u8f38\u5165\u5bc6\u78bc"},
@@ -1316,5 +1316,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fz,C.aT)
 y(A.MP,A.Fz)})()
 B.ec(b.typeUniverse,JSON.parse('{"Fz":{"aT":[]},"MP":{"aT":[]}}'))};
-(a=>{a["ZdoILAdONtEakHRTbPvfPlmEJMo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["b6kuRviT0Ob28Yf1XWy5yqU4O5Q="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
