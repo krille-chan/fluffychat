@@ -1136,7 +1136,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "sharedTheLocation": "{username} delte posisjonen",
+    "sharedTheLocation": "{username} delte sin lokasjon",
     "@sharedTheLocation": {
         "type": "String",
         "placeholders": {
@@ -1770,7 +1770,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "obtainingLocation": "Henter sted …",
+    "obtainingLocation": "Henter lokasjon…",
     "@obtainingLocation": {
         "type": "String",
         "placeholders": {}
@@ -2843,5 +2843,7 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "download": "Last ned",
+    "sharedLocation": "Delt lokasjon"
 }
