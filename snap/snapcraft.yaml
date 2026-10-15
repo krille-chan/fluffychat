@@ -1,7 +1,7 @@
 name: fluffychat
 title: FluffyChat Matrix Messenger
 base: core24
-version: 2.10.0
+adopt-info: fluffychat
 license: AGPL-3.0
 summary: The cutest messenger in the Matrix network
 description: |
@@ -85,6 +85,8 @@ parts:
     plugin: nil
     source: .
     override-build: |
+      craftctl set version="$(grep '^version:' pubspec.yaml | cut -d' ' -f2 | cut -d+ -f1)"
+
       # Install rust manually:
       curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
       export PATH="$HOME/.cargo/bin:$PATH"
