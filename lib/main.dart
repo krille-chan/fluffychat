@@ -158,7 +158,19 @@ class AppStarter with WidgetsBindingObserver {
   final SharedPreferences store;
   bool guiStarted = false;
 
+  /// A deep link which is received before the GUI and its router are started.
+  RouteInformation? _pendingRouteInformation;
+
   AppStarter(this.clients, this.store);
+
+  @override
+  Future<bool> didPushRouteInformation(
+    RouteInformation routeInformation,
+  ) async {
+    if (guiStarted) return false;
+    _pendingRouteInformation = routeInformation;
+    return true;
+  }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
@@ -173,7 +185,11 @@ class AppStarter with WidgetsBindingObserver {
       client.backgroundSync = true;
       client.syncPresence = PresenceType.online;
     }
-    startGui(clients, store);
+    startGui(clients, store).then((_) {
+      final routeInformation = _pendingRouteInformation;
+      if (routeInformation == null) return;
+      FluffyChatApp.router.go(routeInformation.uri.toString());
+    });
     // We must make sure that the GUI is only started once.
     guiStarted = true;
   }
