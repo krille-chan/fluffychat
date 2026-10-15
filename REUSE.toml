@@ -8,7 +8,7 @@ version = 1
 [[annotations]]
 path = [
     ".mailmap",
-    ".tool_versions.yaml",
+    ".fvmrc",
     "pubspec.lock",
     "*.json",
     ".vscode/**",

@@ -6,9 +6,7 @@
 name: fluffychat
 description: Chat with your friends.
 publish_to: none
-# On version bump please also increase:
-# 1. The build number (for F-Droid)
-# 2. The version in /snap/snapcraft.yaml
+# On version bump please also increase the build number (for F-Droid)
 version: 2.10.0+3568
 
 environment:
