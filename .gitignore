@@ -172,7 +172,6 @@ app.*.symbols
 .agents/skills/personal-*
 /.agent-shell/
 
-
 # +++++++++ Custom +++++++++
 
 # Web
@@ -205,3 +204,6 @@ web/e2ee.worker.dart.js.deps
 web/e2ee.worker.dart.js.map
 
 test/rust
+
+# FVM Version Cache
+.fvm/

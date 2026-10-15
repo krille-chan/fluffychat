@@ -12,10 +12,10 @@ RUN wget https://github.com/mikefarah/yq/releases/download/v4.40.5/yq_linux_${TA
 RUN tar -xzvf ./yq_linux_${TARGETARCH}.tar.gz
 RUN mv yq_linux_${TARGETARCH} /usr/bin/yq
 
-# Install the Flutter version defined in .tool_versions.yaml
+# Install the Flutter version defined in .fvmrc
 WORKDIR /app
-COPY .tool_versions.yaml /app/
-RUN git clone --depth 1 --branch "$(yq '.environment.flutter' .tool_versions.yaml)" \
+COPY .fvmrc /app/
+RUN git clone --depth 1 --branch "$(yq '.flutter' .fvmrc)" \
       https://github.com/flutter/flutter.git /opt/flutter
 ENV PATH="/opt/flutter/bin:${PATH}"
 RUN flutter precache --web
