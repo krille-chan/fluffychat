@@ -741,14 +741,14 @@ gq8(){return"Stop ag ard\xfa l\xe1imhe"},
 ru(d){return"Ar an drochuair, tharla earr\xe1id gan choinne: "+d},
 qI(d){return"Glao isteach \xf3 "+d},
 pU(d){return"T\xe1 freagra tugtha ag an bhfreastala\xed le teachtaireacht earr\xe1ide: "+d},
-gqt(){return"Do you also want to block this user?"},
-gqr(){return"Decline and block"},
-pR(d,e){return d+" has invited you to the chat '"+e+"'."},
-pS(d,e){return d+" has invited you to the space '"+e+"'."},
+gqt(){return"Ar mhaith leat an t-\xfas\xe1ideoir seo a bhac freisin?"},
+gqr(){return"Di\xfaltaigh agus bac"},
+pR(d,e){return"Thug "+d+" cuireadh duit chuig an gcomhr\xe1 '"+e+"'."},
+pS(d,e){return"Thug "+d+" cuireadh duit chuig an sp\xe1s '"+e+"'."},
 C(d,e){return this.gbx(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Ms,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Ms":{"aU":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["fqTP98nYL8e2tFbhe6uKd0/2WNI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Em01DiLTWoeTzP106MO+T2NB05I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_326.part.js.map
