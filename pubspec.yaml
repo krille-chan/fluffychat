@@ -61,7 +61,7 @@ dependencies:
   lottie: ^3.6.1
   managed_configurations: ^1.2.0
   material_ui: 1.6.0
-  matrix: ^14.0.0
+  matrix: ^14.1.0
   media_kit_libs_linux: ^1.2.1
   media_kit_libs_windows_audio: ^1.0.9
   mime: ^2.1.0
