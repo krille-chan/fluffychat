@@ -62,10 +62,10 @@ class ImageViewerController extends State<ImageViewer> {
 
   void onKeyEvent(KeyEvent event) {
     switch (event.logicalKey) {
-      case LogicalKeyboardKey.arrowUp:
+      case LogicalKeyboardKey.arrowLeft:
         if (canGoBack) prevImage();
         break;
-      case LogicalKeyboardKey.arrowDown:
+      case LogicalKeyboardKey.arrowRight:
         if (canGoNext) nextImage();
         break;
     }

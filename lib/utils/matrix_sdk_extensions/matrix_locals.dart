@@ -181,9 +181,6 @@ class MatrixLocals extends MatrixLocalizations {
   }
 
   @override
-  String get needPantalaimonWarning => l10n.oopsSomethingWentWrong;
-
-  @override
   String get noPermission => l10n.noKeyForThisMessage;
 
   @override

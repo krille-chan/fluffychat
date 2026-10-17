@@ -1596,11 +1596,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "你已被此聊天封禁",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "你的公钥",
     "@yourPublicKey": {
         "type": "String",
@@ -2111,7 +2106,6 @@
     "globalChatId": "全局聊天 ID",
     "accessAndVisibility": "访问和可见性",
     "accessAndVisibilityDescription": "谁可以加入此聊天以及怎样发现该聊天。",
-    "calls": "通话",
     "customEmojisAndStickers": "自定义表情符号和贴纸",
     "hideRedactedMessages": "隐藏被涂黑的消息",
     "passwordRecoverySettings": "密码发现设置",
@@ -2829,6 +2823,43 @@
     "@serverRespondedWithError": {
         "placeholders": {
             "error": {
+                "type": "String"
+            }
+        }
+    },
+    "updateAvailable": "有 {version} 版更新可用",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "下载",
+    "sharedLocation": "分享位置",
+    "pasteImage": "粘贴图片",
+    "noImageInClipboard": "剪贴板中无图片",
+    "doYouAlsoWantToBlock": "你还想封禁该用户吗？",
+    "declineAndBlock": "拒绝并封禁",
+    "senderHasInvitedYouToTheChat": "{sender} 已邀请你到名为 '{nameOrAlias}' 的聊天。",
+    "@senderHasInvitedYouToTheChat": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    },
+    "senderHasInvitedYouToTheSpace": "{sender} 已邀请你到 '{nameOrAlias}'空间。",
+    "@senderHasInvitedYouToTheSpace": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
                 "type": "String"
             }
         }

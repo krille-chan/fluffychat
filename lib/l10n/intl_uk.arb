@@ -546,7 +546,7 @@
             }
         }
     },
-    "isTyping": "пише…",
+    "isTyping": "пише",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -1085,11 +1085,6 @@
     },
     "youAreNoLongerParticipatingInThisChat": "Ви більше не берете участь у цій бесіді",
     "@youAreNoLongerParticipatingInThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youHaveBeenBannedFromThisChat": "Ви були заблоковані у цій бесіді",
-    "@youHaveBeenBannedFromThisChat": {
         "type": "String",
         "placeholders": {}
     },
@@ -2107,7 +2102,6 @@
     "globalChatId": "Глобальний ID бесіди",
     "accessAndVisibility": "Доступ і видимість",
     "accessAndVisibilityDescription": "Хто може приєднатися до цієї бесіди і як її можна знайти.",
-    "calls": "Виклики",
     "customEmojisAndStickers": "Власні емодзі та наліпки",
     "customEmojisAndStickersBody": "Додавайте або діліться власними емодзі або наліпками, які можна використовувати в будь-якій бесіді.",
     "createNewAddress": "Створити нову адресу",
@@ -2548,5 +2542,76 @@
                 "type": "String"
             }
         }
+    },
+    "videoCallsBetaWarning": "Відеовиклики на ранньому етапі розробки. Поведінка може бути непередбачуваною. Будемо раді отримати від вас відгук.",
+    "editImage": "Змінити зображення",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Обернути ліворуч",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Обернути праворуч",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Віддзеркалити",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Зберегти",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Малювати",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Скасувати",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Очистити",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Гумка",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Обрізати",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "accountsAndSettings": "Облікові записи та налаштування",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendingFilesDoNotExit": "Надсилання {count} файлів... Не виходьте!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Стиснення відео...",
+    "resetAccount": "Скинути обліковий запис",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
     }
 }

@@ -1,31 +1,31 @@
-### Messaging how it should be
+<b>Messaging how it should be</b>
 
 Whether for your friends, your company or local community, FluffyChat supports a variety of features to cover all your daily needs.
 
-#### Easy to use
+<b>Easy to use</b>
 
 Simply install, log in and start chatting. The intuitive user interface makes secure communication as easy as possible.
 
-#### Secure
+<b>Secure</b>
 
 With olm/megolm end-to-end encryption, encrypted message backups and an automated key trust system, FluffyChat is among the most secure messengers available.
 
-#### Decentral
+<b>Decentral</b>
 
 Based on the open Matrix protocol we build a decentralized messaging network together, which no entity can control. Host your own chat server while remaining in contact with everyone.
 
-### Feature rich and reliable
+<b>Feature rich and reliable</b>
 
 From public chats with tens of thousands of participants and polls to custom stickers, spaces, rich moderation tools, and multi-device support, FluffyChat delivers a comprehensive communication suite.
 
-#### Secure video calls
+<b>Secure video calls</b>
 
 Direct calls and video conferences, fully secured with Matrix RTC-compatible encryption.
 
-#### Not another walled garden
+<b>Not another walled garden</b>
 
 We do not build another walled garden! FluffyChat is fully compatible with any other Matrix client like Element, Nheko, Cinny or NeoChat. Learn more at matrix.org.
 
-#### Made by volunteers
+<b>Made by volunteers</b>
 
 FluffyChat is a non-profit project based on open standards and driven entirely by volunteers. Infrastructure is funded by donations, and participation is open to everyone.

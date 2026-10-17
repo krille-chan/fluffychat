@@ -3,23 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
-		609046320A2D7D2B0D36583B /* Pods_FluffyChat_Share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EB6E6475A19949A37A2634 /* Pods_FluffyChat_Share.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		78A318202AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 78A3181F2AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage */; };
-		7E19CFC25FF149C1EB25035F /* Pods_Notification_Service_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4688A2BF4AFDF1CB2B66829A /* Pods_Notification_Service_Extension.framework */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
-		AB0F2865DE230DE37373E0E0 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DEFC207B70632D9C56ED78 /* Pods_Runner.framework */; };
 		C1005C45261071B5002F4F32 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1005C44261071B5002F4F32 /* ShareViewController.swift */; };
 		C1005C48261071B5002F4F32 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1005C46261071B5002F4F32 /* MainInterface.storyboard */; };
 		C1005C4C261071B5002F4F32 /* FluffyChat Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C1005C42261071B5002F4F32 /* FluffyChat Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C11184F53072567E00575032 /* FlutterGeneratedPluginSwiftPackage in Frameworks */ = {isa = PBXBuildFile; productRef = C11184F43072567E00575032 /* FlutterGeneratedPluginSwiftPackage */; };
 		C137635E2AD1446100A8F905 /* notification.caf in Resources */ = {isa = PBXBuildFile; fileRef = C137635D2AD1446100A8F905 /* notification.caf */; };
 		C14695592E642D400075F2F7 /* Notification Service Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C14695522E642D400075F2F7 /* Notification Service Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C14695662E642E450075F2F7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C14695652E642E450075F2F7 /* Localizable.xcstrings */; };
@@ -71,17 +69,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		09545B0C8C397F94966EA956 /* Pods-FluffyChat Share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluffyChat Share.debug.xcconfig"; path = "Target Support Files/Pods-FluffyChat Share/Pods-FluffyChat Share.debug.xcconfig"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
-		3A645598796C232804C116FE /* Pods-Notification Service Extension.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notification Service Extension.profile.xcconfig"; path = "Target Support Files/Pods-Notification Service Extension/Pods-Notification Service Extension.profile.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
-		4688A2BF4AFDF1CB2B66829A /* Pods_Notification_Service_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notification_Service_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		50DEFC207B70632D9C56ED78 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		58F7B95D036AD8E67B27588D /* Pods-FluffyChat Share.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluffyChat Share.profile.xcconfig"; path = "Target Support Files/Pods-FluffyChat Share/Pods-FluffyChat Share.profile.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		76737C9A857D5FD6D2634A3F /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		78E0A7A72DC9AD7400C4905E /* FlutterGeneratedPluginSwiftPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FlutterGeneratedPluginSwiftPackage; path = Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
@@ -91,7 +83,6 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9DB2F3524376810E74C799A8 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		C1005C42261071B5002F4F32 /* FluffyChat Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FluffyChat Share.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1005C44261071B5002F4F32 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		C1005C47261071B5002F4F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -102,11 +93,6 @@
 		C14695652E642E450075F2F7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C149567B25C7274F00A16396 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C149567D25C7276200A16396 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
-		C9EB6E6475A19949A37A2634 /* Pods_FluffyChat_Share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FluffyChat_Share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E5089CBCB1AF704A168E41B5 /* Pods-Notification Service Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notification Service Extension.release.xcconfig"; path = "Target Support Files/Pods-Notification Service Extension/Pods-Notification Service Extension.release.xcconfig"; sourceTree = "<group>"; };
-		EA246783222E02DD03959891 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
-		F0540869D5C42F400AD7F460 /* Pods-Notification Service Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notification Service Extension.debug.xcconfig"; path = "Target Support Files/Pods-Notification Service Extension/Pods-Notification Service Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		F3778959E67CDA0CDB0D97BC /* Pods-FluffyChat Share.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluffyChat Share.release.xcconfig"; path = "Target Support Files/Pods-FluffyChat Share/Pods-FluffyChat Share.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -136,7 +122,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				78A318202AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage in Frameworks */,
-				AB0F2865DE230DE37373E0E0 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				609046320A2D7D2B0D36583B /* Pods_FluffyChat_Share.framework in Frameworks */,
+				C11184F53072567E00575032 /* FlutterGeneratedPluginSwiftPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,23 +137,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E19CFC25FF149C1EB25035F /* Pods_Notification_Service_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		075EE1BE25359E34308E0B78 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				50DEFC207B70632D9C56ED78 /* Pods_Runner.framework */,
-				C9EB6E6475A19949A37A2634 /* Pods_FluffyChat_Share.framework */,
-				4688A2BF4AFDF1CB2B66829A /* Pods_Notification_Service_Extension.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		9740EEB11CF90186004384FC /* Flutter */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,8 +164,7 @@
 				C1005C43261071B5002F4F32 /* FluffyChat Share */,
 				C14695532E642D400075F2F7 /* Notification Service Extension */,
 				97C146EF1CF9000F007C117D /* Products */,
-				E89DCAC000D371640E94E65B /* Pods */,
-				075EE1BE25359E34308E0B78 /* Frameworks */,
+				C107717D3075192600D0BA63 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -234,20 +207,11 @@
 			path = "FluffyChat Share";
 			sourceTree = "<group>";
 		};
-		E89DCAC000D371640E94E65B /* Pods */ = {
+		C107717D3075192600D0BA63 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				76737C9A857D5FD6D2634A3F /* Pods-Runner.debug.xcconfig */,
-				EA246783222E02DD03959891 /* Pods-Runner.release.xcconfig */,
-				9DB2F3524376810E74C799A8 /* Pods-Runner.profile.xcconfig */,
-				09545B0C8C397F94966EA956 /* Pods-FluffyChat Share.debug.xcconfig */,
-				F3778959E67CDA0CDB0D97BC /* Pods-FluffyChat Share.release.xcconfig */,
-				58F7B95D036AD8E67B27588D /* Pods-FluffyChat Share.profile.xcconfig */,
-				F0540869D5C42F400AD7F460 /* Pods-Notification Service Extension.debug.xcconfig */,
-				E5089CBCB1AF704A168E41B5 /* Pods-Notification Service Extension.release.xcconfig */,
-				3A645598796C232804C116FE /* Pods-Notification Service Extension.profile.xcconfig */,
 			);
-			path = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,14 +221,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
-				8C9CCA7C5C45651F90C7BFDD /* [CP] Check Pods Manifest.lock */,
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
 				C1005C4D261071B5002F4F32 /* Embed App Extensions */,
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
-				F9C8EE392B9AB471149C306E /* [CP] Embed Pods Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 			);
 			buildRules = (
@@ -285,7 +247,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1005C51261071B5002F4F32 /* Build configuration list for PBXNativeTarget "FluffyChat Share" */;
 			buildPhases = (
-				67579C1EA0B5C7B918473158 /* [CP] Check Pods Manifest.lock */,
 				C1005C3E261071B5002F4F32 /* Sources */,
 				C1005C3F261071B5002F4F32 /* Frameworks */,
 				C1005C40261071B5002F4F32 /* Resources */,
@@ -295,6 +256,9 @@
 			dependencies = (
 			);
 			name = "FluffyChat Share";
+			packageProductDependencies = (
+				C11184F43072567E00575032 /* FlutterGeneratedPluginSwiftPackage */,
+			);
 			productName = "FluffyChat Share";
 			productReference = C1005C42261071B5002F4F32 /* FluffyChat Share.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -303,11 +267,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C146955E2E642D400075F2F7 /* Build configuration list for PBXNativeTarget "Notification Service Extension" */;
 			buildPhases = (
-				972C64C37AF8EB03956BFEF5 /* [CP] Check Pods Manifest.lock */,
 				C146954E2E642D400075F2F7 /* Sources */,
 				C146954F2E642D400075F2F7 /* Frameworks */,
 				C14695502E642D400075F2F7 /* Resources */,
-				254B215AA45F099306397F04 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -317,6 +279,8 @@
 				C14695532E642D400075F2F7 /* Notification Service Extension */,
 			);
 			name = "Notification Service Extension";
+			packageProductDependencies = (
+			);
 			productName = "Notification Service Extension";
 			productReference = C14695522E642D400075F2F7 /* Notification Service Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -353,7 +317,7 @@
 			);
 			mainGroup = 97C146E51CF9000F007C117D;
 			packageReferences = (
-				781AD8BC2B33823900A9FFBB /* XCLocalSwiftPackageReference "FlutterGeneratedPluginSwiftPackage" */,
+				781AD8BC2B33823900A9FFBB /* XCLocalSwiftPackageReference "Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 97C146EF1CF9000F007C117D /* Products */;
@@ -402,23 +366,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		254B215AA45F099306397F04 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Notification Service Extension/Pods-Notification Service Extension-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Notification Service Extension/Pods-Notification Service Extension-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Notification Service Extension/Pods-Notification Service Extension-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -435,72 +382,6 @@
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin\n";
 		};
-		67579C1EA0B5C7B918473158 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FluffyChat Share-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8C9CCA7C5C45651F90C7BFDD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Runner-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		972C64C37AF8EB03956BFEF5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Notification Service Extension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -515,23 +396,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
-		};
-		F9C8EE392B9AB471149C306E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -877,7 +741,6 @@
 		};
 		C1005C4E261071B5002F4F32 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09545B0C8C397F94966EA956 /* Pods-FluffyChat Share.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -913,7 +776,6 @@
 		};
 		C1005C4F261071B5002F4F32 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3778959E67CDA0CDB0D97BC /* Pods-FluffyChat Share.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -946,7 +808,6 @@
 		};
 		C1005C50261071B5002F4F32 /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58F7B95D036AD8E67B27588D /* Pods-FluffyChat Share.profile.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -979,7 +840,6 @@
 		};
 		C146955A2E642D400075F2F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0540869D5C42F400AD7F460 /* Pods-Notification Service Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1022,7 +882,6 @@
 		};
 		C146955B2E642D400075F2F7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5089CBCB1AF704A168E41B5 /* Pods-Notification Service Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1062,7 +921,6 @@
 		};
 		C146955C2E642D400075F2F7 /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A645598796C232804C116FE /* Pods-Notification Service Extension.profile.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1146,7 +1004,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		781AD8BC2B33823900A9FFBB /* XCLocalSwiftPackageReference "FlutterGeneratedPluginSwiftPackage" */ = {
+		781AD8BC2B33823900A9FFBB /* XCLocalSwiftPackageReference "Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage;
 		};
@@ -1154,6 +1012,10 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		78A3181F2AECB46A00862997 /* FlutterGeneratedPluginSwiftPackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FlutterGeneratedPluginSwiftPackage;
+		};
+		C11184F43072567E00575032 /* FlutterGeneratedPluginSwiftPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = FlutterGeneratedPluginSwiftPackage;
 		};

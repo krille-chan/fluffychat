@@ -1136,7 +1136,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "sharedTheLocation": "{username} delte posisjonen",
+    "sharedTheLocation": "{username} delte sin lokasjon",
     "@sharedTheLocation": {
         "type": "String",
         "placeholders": {
@@ -1391,11 +1391,6 @@
     },
     "youAreNoLongerParticipatingInThisChat": "Du deltar ikke lenger i denne sludringen",
     "@youAreNoLongerParticipatingInThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youHaveBeenBannedFromThisChat": "Du har blitt bannlyst fra denne sludringen",
-    "@youHaveBeenBannedFromThisChat": {
         "type": "String",
         "placeholders": {}
     },
@@ -1769,14 +1764,13 @@
         }
     },
     "accessAndVisibilityDescription": "Hvem som har lov til å bli med i denne chatten og hvordan chatten kan oppdages.",
-    "calls": "Anrop",
     "customEmojisAndStickers": "Egendefinerte emojier og klistremerker",
     "oopsPushError": "Oops! Dessverre oppsto det en feil under oppsettet av push-varsler.",
     "@oopsPushError": {
         "type": "String",
         "placeholders": {}
     },
-    "obtainingLocation": "Henter sted …",
+    "obtainingLocation": "Henter lokasjon…",
     "@obtainingLocation": {
         "type": "String",
         "placeholders": {}
@@ -2849,5 +2843,7 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "download": "Last ned",
+    "sharedLocation": "Delt lokasjon"
 }

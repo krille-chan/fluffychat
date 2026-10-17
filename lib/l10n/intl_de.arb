@@ -1654,11 +1654,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Du wurdest aus dem Chat verbannt",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Dein öffentlicher Schlüssel",
     "@yourPublicKey": {
         "type": "String",
@@ -2121,7 +2116,6 @@
         }
     },
     "appLockDescription": "App mit einer PIN sperren, wenn sie nicht verwendet wird",
-    "calls": "Anrufe",
     "customEmojisAndStickers": "Eigene Emojis und Sticker",
     "hideRedactedMessages": "Geschwärzte Nachrichten verstecken",
     "hideRedactedMessagesBody": "Wenn jemand eine Nachricht schwärzt/löscht, dann wird diese Nachricht im Chat nicht mehr sichtbar sein.",
@@ -2824,5 +2818,32 @@
             }
         }
     },
-    "preferSpeaker": "Lautsprecher bevorzugen"
+    "preferSpeaker": "Lautsprecher bevorzugen",
+    "incomingCallFrom": "Eingehender Anruf von {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "serverRespondedWithError": "Der Server hat mit einer Fehlermeldung geantwortet: {error}",
+    "@serverRespondedWithError": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Herunterladen",
+    "updateAvailable": "Update {version} verfügbar",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "sharedLocation": "Getilter Standort"
 }

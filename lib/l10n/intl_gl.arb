@@ -1671,11 +1671,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Foches vetada nesta conversa",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "A túa chave pública",
     "@yourPublicKey": {
         "type": "String",
@@ -2111,7 +2106,6 @@
     "accessAndVisibility": "Acceso e Visibilidade",
     "accessAndVisibilityDescription": "Quen pode unirse a esta charla e de que xeito e como poden atopala.",
     "customEmojisAndStickers": "Emojis personais e adhesivos",
-    "calls": "Chamadas",
     "hideRedactedMessages": "Agochar mensaxes editadas",
     "hideRedactedMessagesBody": "Se alguén corrixe unha mensaxe entón esta xa non será visible na charla.",
     "hideInvalidOrUnknownMessageFormats": "Agochar formatos de mensaxe non válidos ou descoñecidos",
@@ -2829,6 +2823,43 @@
     "@serverRespondedWithError": {
         "placeholders": {
             "error": {
+                "type": "String"
+            }
+        }
+    },
+    "updateAvailable": "Versión {version} dispoñible",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Descargar",
+    "sharedLocation": "Localización compartida",
+    "pasteImage": "Pegar imaxe",
+    "noImageInClipboard": "Non hai imaxe no portapapeis",
+    "doYouAlsoWantToBlock": "Queres tamén bloquear a esta conta?",
+    "declineAndBlock": "Rexeitar e bloquear",
+    "senderHasInvitedYouToTheChat": "{sender} convidoute á conversa '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheChat": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    },
+    "senderHasInvitedYouToTheSpace": "{sender} convidoute ao espazo '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheSpace": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
                 "type": "String"
             }
         }

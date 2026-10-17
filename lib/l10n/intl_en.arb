@@ -790,7 +790,6 @@
     "globalChatId": "Global chat ID",
     "accessAndVisibility": "Access and visibility",
     "accessAndVisibilityDescription": "Who is allowed to join this chat and how the chat can be discovered.",
-    "calls": "Calls",
     "customEmojisAndStickers": "Custom emojis and stickers",
     "customEmojisAndStickersBody": "Add or share custom emojis or stickers which can be used in any chat.",
     "emoteShortcode": "Emote shortcode",
@@ -1904,11 +1903,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "You have been banned from this chat",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Your public key",
     "@yourPublicKey": {
         "type": "String",
@@ -2306,6 +2300,16 @@
         }
     },
     "changelog": "Changelog",
+    "updateAvailable": "Update {version} available",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Download",
     "sendCanceled": "Sending canceled",
     "loginWithMatrixId": "Login with Matrix-ID",
     "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
@@ -2801,19 +2805,52 @@
     "unexpectedErrorOccurded": "Unfortunately, an unexpected error has occurred: {msg}",
     "@unexpectedErrorOccurded": {
         "placeholders": {
-            "msg": {"type": "String"}
+            "msg": {
+                "type": "String"
+            }
         }
     },
     "incomingCallFrom": "Incoming call from {user}",
     "@incomingCallFrom": {
         "placeholders": {
-            "user": {"type": "String"}
+            "user": {
+                "type": "String"
+            }
         }
     },
     "serverRespondedWithError": "The server has replied with an error message: {error}",
     "@serverRespondedWithError": {
         "placeholders": {
-            "error": {"type": "String"}
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "sharedLocation": "Shared location",
+    "pasteImage": "Paste image",
+    "noImageInClipboard": "No image in clipboard",
+    "doYouAlsoWantToBlock": "Do you also want to block this user?",
+    "declineAndBlock": "Decline and block",
+    "senderHasInvitedYouToTheChat": "{sender} has invited you to the chat '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheChat": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    },
+    "senderHasInvitedYouToTheSpace": "{sender} has invited you to the space '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheSpace": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
         }
     }
 }

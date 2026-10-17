@@ -42,6 +42,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 import 'package:mime/mime.dart';
+import 'package:ogg_caf_converter/ogg_caf_converter.dart';
 import 'package:pasteboard/pasteboard.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:universal_html/universal_html.dart' as web;
@@ -228,7 +229,46 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
+  Future<void> joinChat() async {
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        await room.join(waitForSync: true);
+      },
+    );
+    if (!mounted) return;
+    if (success.error != null) return;
+    if (room.isSpace) {
+      context.go('/rooms?spaceId=${room.id}');
+      return;
+    }
+    await _tryLoadTimeline();
+  }
+
   Future<void> leaveChat() async {
+    if (room.membership == .invite) {
+      final blockConsent = await showOkCancelAlertDialog(
+        context: context,
+        title: L10n.of(context).declineInvitation,
+        message: L10n.of(context).doYouAlsoWantToBlock,
+        cancelLabel: L10n.of(context).decline,
+        okLabel: L10n.of(context).declineAndBlock,
+        isDestructive: true,
+      );
+      if (blockConsent == null) return;
+      if (!mounted) return;
+      if (blockConsent == .ok) {
+        final inviteEvent = room.getState(
+          EventTypes.RoomMember,
+          room.client.userID!,
+        );
+        context.go(
+          '/rooms/settings/security/ignorelist',
+          extra: inviteEvent?.senderId,
+        );
+        return;
+      }
+    }
     final success = await showFutureLoadingDialog(
       context: context,
       future: room.leave,
@@ -465,6 +505,8 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   Future<void> _tryLoadTimeline() async {
+    if (room.membership == .invite) return;
+
     final initialEventId = widget.eventId;
     loadTimelineFuture = _getTimeline();
     try {
@@ -499,7 +541,6 @@ class ChatController extends State<ChatPageWithRoom>
       if (readMarkerEventIndex > 1) {
         Logs().v('Scroll up to visible event', readMarkerEventId);
         scrollToEventId(readMarkerEventId, highlightEvent: false);
-        return;
       } else if (readMarkerEventId.isNotEmpty && readMarkerEventIndex == -1) {
         _showScrollUpMaterialBanner(readMarkerEventId);
       }
@@ -585,7 +626,7 @@ class ChatController extends State<ChatPageWithRoom>
     setReadMarker();
   }
 
-  Future<void>? _setReadMarkerFuture;
+  String? _setReadMarkerEventId;
 
   void setReadMarker({String? eventId}) {
     // Do not send read markers when app is not in foreground
@@ -593,11 +634,10 @@ class ChatController extends State<ChatPageWithRoom>
       return;
     }
 
-    // We are already setting a read marker
-    if (_setReadMarkerFuture != null) return;
+    final setOnLatestEvent = eventId == null;
 
     // We only set read marker if we are at the bottom
-    if (_scrolledUp) return;
+    if (_scrolledUp && setOnLatestEvent) return;
 
     // We do not set read marker if we offer user the scroll up banner
     if (scrollUpBannerEventId != null) return;
@@ -613,25 +653,34 @@ class ChatController extends State<ChatPageWithRoom>
       return;
     }
 
-    final setOnLatestEvent = eventId == null;
-    eventId ??= timeline.events
-        .firstWhereOrNull(
-          (event) => room.pushRuleState == PushRuleState.notify
-              ? room.client.pushruleEvaluator.match(event).notify
-              : {
-                      EventTypes.Message,
-                      EventTypes.Encrypted,
-                      EventTypes.Sticker,
-                    }.contains(event.type) &&
-                    event.eventId.isValidMatrixIdStrict(),
-        )
-        ?.eventId;
+    eventId ??= timeline.events.firstWhereOrNull((event) {
+      if (event.eventId == room.lastEvent?.eventId) return true;
+      if (room.client.pushruleEvaluator.match(event).notify) {
+        return true;
+      }
+      final original = event.originalSource;
+      if (original != null &&
+          room.client.pushruleEvaluator
+              .match(Event.fromMatrixEvent(original, room))
+              .notify) {
+        return true;
+      }
+      return false;
+    })?.eventId;
+
+    if (setOnLatestEvent && (room.hasNewMessages || room.isUnread)) {
+      eventId ??=
+          room.lastEvent?.eventId ?? timeline.events.firstOrNull?.eventId;
+    }
 
     // There is no event we could place a read marker
     if (eventId == null) return;
 
     // This is a sending event, we do not set a readmarker yet
     if (eventId.isValidMatrixIdStrict() == false) return;
+
+    // We are already setting a read marker on this event
+    if (_setReadMarkerEventId == eventId) return;
 
     // Already set a read marker on this event
     if (room.fullyRead == eventId && !setOnLatestEvent) return;
@@ -645,14 +694,15 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     Logs().d('Set read marker...', eventId);
+    _setReadMarkerEventId = eventId;
     // ignore: unawaited_futures
-    _setReadMarkerFuture = timeline
+    timeline
         .setReadMarker(
           eventId: eventId,
           public: AppSettings.sendPublicReadReceipts.value,
         )
-        .then((_) {
-          _setReadMarkerFuture = null;
+        .whenComplete(() {
+          if (_setReadMarkerEventId == eventId) _setReadMarkerEventId = null;
         });
   }
 
@@ -776,6 +826,26 @@ class ChatController extends State<ChatPageWithRoom>
       context: context,
       builder: (c) => SendFileDialog(
         files: [XFile.fromData(image)],
+        room: room,
+        outerContext: context,
+        threadRootEventId: activeThreadId,
+        threadLastEventId: threadLastEventId,
+      ),
+    );
+  }
+
+  Future<void> openGalleryAction() async {
+    inputFocus.unfocus();
+    final files = await ImagePicker().pickMultipleMedia(
+      requestFullMetadata: false,
+    );
+    if (files.isEmpty) return;
+    if (!mounted) return;
+
+    await showAdaptiveDialog(
+      context: context,
+      builder: (c) => SendFileDialog(
+        files: files,
         room: room,
         outerContext: context,
         threadRootEventId: activeThreadId,
@@ -916,11 +986,15 @@ class ChatController extends State<ChatPageWithRoom>
     final proceed = await showTrustUserInRoomDialog(context, room);
     if (!mounted || !proceed) return;
     final scaffoldMessenger = ScaffoldMessenger.of(context);
-    final audioFile = XFile(path);
 
     final bytesResult = await showFutureLoadingDialog(
       context: context,
-      future: audioFile.readAsBytes,
+      future: () {
+        if (PlatformInfos.isCupertinoStyle && fileName.endsWith('.ogg')) {
+          return OggCafConverter().convertCafToOggInMemory(input: path);
+        }
+        return XFile(path).readAsBytes();
+      },
     );
     final bytes = bytesResult.result;
     if (bytes == null) return;
@@ -1202,10 +1276,19 @@ class ChatController extends State<ChatPageWithRoom>
   Future<void> scrollToEventId(
     String eventId, {
     bool highlightEvent = true,
+    bool timelineReloaded = false,
   }) async {
     final foundEvent = timeline!.events.firstWhereOrNull(
       (event) => event.eventId == eventId,
     );
+
+    final threadRootId =
+        foundEvent?.relationshipType == RelationshipTypes.thread
+        ? foundEvent?.relationshipEventId
+        : null;
+    if (activeThreadId == null && threadRootId != null) {
+      return scrollToEventId(threadRootId, highlightEvent: highlightEvent);
+    }
 
     final eventIndex = foundEvent == null
         ? -1
@@ -1217,6 +1300,7 @@ class ChatController extends State<ChatPageWithRoom>
               .indexOf(foundEvent);
 
     if (eventIndex == -1) {
+      if (foundEvent != null || timelineReloaded) return;
       setState(() {
         timeline = null;
         _scrolledUp = false;
@@ -1229,7 +1313,11 @@ class ChatController extends State<ChatPageWithRoom>
       });
       await loadTimelineFuture;
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-        scrollToEventId(eventId);
+        scrollToEventId(
+          eventId,
+          highlightEvent: highlightEvent,
+          timelineReloaded: true,
+        );
       });
       return;
     }
@@ -1428,11 +1516,14 @@ class ChatController extends State<ChatPageWithRoom>
     room.client.getConfig();
 
     switch (choice) {
-      case AddPopupMenuActions.media:
-        sendFileAction(type: FileType.media);
-        return;
       case AddPopupMenuActions.file:
         sendFileAction();
+        return;
+      case AddPopupMenuActions.image:
+        sendFileAction(type: FileType.image);
+        return;
+      case AddPopupMenuActions.video:
+        sendFileAction(type: FileType.video);
         return;
       case AddPopupMenuActions.poll:
         showAdaptiveBottomSheet(
@@ -1656,7 +1747,8 @@ class ChatController extends State<ChatPageWithRoom>
 }
 
 enum AddPopupMenuActions {
-  media,
+  image,
+  video,
   file,
   poll,
   photoCamera,

@@ -1,2 +1,1 @@
-FluffyChat 2.9.0 updates underlying libraries, fixed a lot of bugs and improves the UX.
-The app now uses http3 and the system's proxy by default.
+MatrixRTC calls, bugfixes and and stability improvements.

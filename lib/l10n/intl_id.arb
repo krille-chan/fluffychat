@@ -903,11 +903,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Kamu telah dicekal dari obrolan ini",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "youAreNoLongerParticipatingInThisChat": "Kamu tidak berpartisipasi lagi di obrolan ini",
     "@youAreNoLongerParticipatingInThisChat": {
         "type": "String",
@@ -2113,7 +2108,6 @@
     "accessAndVisibility": "Akses dan keterlihatan",
     "globalChatId": "ID obrolan global",
     "accessAndVisibilityDescription": "Siapa yang diperbolehkan bergabung ke obrolan ini dan bagaimana obrolannya dapat ditemukan.",
-    "calls": "Panggilan",
     "customEmojisAndStickers": "Emoji dan stiker kustom",
     "hideRedactedMessagesBody": "Jika seseorang menghapus pesan, pesannya tidak akan terlihat lagi dalam obrolan.",
     "hideInvalidOrUnknownMessageFormats": "Sembunyikan format pesan yang tidak valid atau tidak diketahui",

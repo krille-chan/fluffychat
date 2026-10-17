@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version-file: .tool_versions.yaml
+          flutter-version-file: .fvmrc
           cache: true
       - uses: dtolnay/rust-toolchain@stable
       - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
@@ -47,10 +47,7 @@ jobs:
           asset_name: fluffychat-web.tar.gz
           asset_content_type: application/gzip
       - name: Clone fluffychat website
-        run: |
-          git clone https://github.com/krille-chan/fluffychat-website.git
-          cat CHANGELOG.md >> fluffychat-website/src/changelog.md
-          cat PRIVACY.md >> fluffychat-website/src/privacy.md
+        run: git clone https://github.com/krille-chan/fluffychat-website.git
       - name: Build website
         working-directory: fluffychat-website
         run: |
@@ -63,7 +60,6 @@ jobs:
           mkdir public/nightly
           cp -r build/web/* public/web/
           cp -r build/web/* public/nightly/
-          echo "fluffychat.im" >> public/CNAME
       - name: Deploy to GitHub Pages
         if: startsWith(github.ref, 'refs/tags/v')
         uses: peaceiris/actions-gh-pages@v4
@@ -79,7 +75,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version-file: .tool_versions.yaml
+          flutter-version-file: .fvmrc
           cache: true
       - name: Add Firebase Messaging
         run: |
@@ -94,7 +90,7 @@ jobs:
           FDROID_KEY_PASS: ${{ secrets.FDROID_KEY_PASS }}
           PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
         run: ./scripts/prepare-android-release.sh
-      - run: flutter build apk --release --target-platform android-arm,android-arm64
+      - run: flutter build apk --release
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
@@ -114,7 +110,7 @@ jobs:
       - uses: actions/checkout@v7
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
-      - run: echo "FLUTTER_VERSION=$(yq '.environment.flutter' < .tool_versions.yaml)" >> $GITHUB_ENV
+      - run: echo "FLUTTER_VERSION=$(yq '.flutter' < .fvmrc)" >> $GITHUB_ENV
       - name: Install Flutter
         run: |
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
@@ -134,6 +130,53 @@ jobs:
           asset_name: fluffychat-linux-${{ matrix.arch }}.tar.gz
           asset_content_type: application/gzip
 
+  deploy_snapstore:
+    strategy:
+      matrix:
+        arch: [ x64, arm64 ]
+    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest'}}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Determine Snap channel
+        id: channel
+        run: |
+          if [[ "${{ github.ref_name }}" == rc* ]]; then
+            echo "channel=candidate" >> $GITHUB_OUTPUT
+          else
+            echo "channel=stable" >> $GITHUB_OUTPUT
+          fi
+      - uses: snapcore/action-build@v1
+        id: build
+      - uses: snapcore/action-publish@v1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_STORE_CREDENTIALS }}
+        with:
+          snap: ${{ steps.build.outputs.snap }}
+          release: ${{ steps.channel.outputs.channel }}
+
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .fvmrc
+          cache: true
+      - uses: dtolnay/rust-toolchain@stable
+      - run: choco install innosetup -y
+      - run: flutter pub get
+      - run: flutter build windows --release
+      - run: ./scripts/package-windows.ps1 -BuildMode Release
+      - name: Upload installer to release
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+        with:
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: build/windows/installer/fluffychat-windows-x64-setup.exe
+          asset_name: fluffychat-windows-x64-setup.exe
+          asset_content_type: application/vnd.microsoft.portable-executable
+
   deploy_playstore:
     runs-on: ubuntu-latest
     concurrency:
@@ -143,7 +186,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version-file: .tool_versions.yaml
+          flutter-version-file: .fvmrc
           cache: true
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -169,7 +212,7 @@ jobs:
       - name: Remove Android Auto metadata for Play Store
         run: sed -i '/Android Auto/,/automotive_app_desc/d' android/app/src/main/AndroidManifest.xml
       - name: Build Android Release
-        run: flutter build appbundle --target-platform android-arm,android-arm64
+        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
       - name: Get Tag Name
         id: tag_name
         run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
@@ -180,7 +223,6 @@ jobs:
           cd android
           bundle install
           bundle update fastlane
-          bundle exec fastlane deploy_internal_test
           if [[ $GITHUB_REF_NAME == rc* ]]; then
               bundle exec fastlane deploy_candidate
           else

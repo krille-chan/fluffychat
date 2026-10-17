@@ -11,22 +11,11 @@ sed -i '' 's,//<GOOGLE_SERVICES>,,g' lib/utils/background_push.dart
 flutter clean
 flutter pub get
 
-# Reload all cocoapods
+# Compile release build
+flutter build ipa
+
+# Publish to testflight
 (
   cd ios
-  rm -rf Pods Podfile.lock
-  pod install
-  pod update
+  fastlane beta
 )
-
-# pub get hardcodes FlutterGeneratedPluginSwiftPackage to iOS 13.0; regenerate so
-# it picks up the project's IPHONEOS_DEPLOYMENT_TARGET before xcodebuild.
-flutter build ios --config-only --release
-
-# Build and open archive dialog
-xcodebuild \
-  -workspace ios/Runner.xcworkspace \
-  -scheme Runner \
-  -configuration Release \
-  -archivePath build/Runner.xcarchive \
-  archive && open -a Xcode build/Runner.xcarchive

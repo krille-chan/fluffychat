@@ -17,10 +17,13 @@ import 'package:matrix/matrix.dart';
 
 const _passwordStorageKey = 'database_password';
 
+const iosOptions = IOSOptions(
+  groupId: 'group.im.fluffychat.app',
+  accessibility: .first_unlock,
+);
+
 Future<String?> getDatabaseCipher() async {
   String? password;
-
-  const iosOptions = IOSOptions(groupId: 'group.im.fluffychat.app');
 
   try {
     password = await FlutterSecureStorage(

@@ -6,18 +6,33 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:async/async.dart';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/call_keys_event_content.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call_member.dart';
-import 'package:matrix/matrix.dart';
+import 'package:matrix/matrix.dart' hide Result;
 
 extension MatrixRtcClientExtension on Client {
   Future<List<String>> getLiveKitServiceUrls() async {
-    if (AppSettings.customLiveKitInstance.value.isNotEmpty) {
-      return [AppSettings.customLiveKitInstance.value];
-    }
     final wellKnown = await getWellknown();
+
+    final rtcTransportsResult = await Result.capture(
+      request(
+        .GET,
+        '/_matrix/client/unstable/org.matrix.msc4143/rtc/transports',
+      ),
+    );
+    final rtcTransports =
+        rtcTransportsResult.asValue?.value
+            .tryGetList<Map<String, Object?>>('transports')
+            ?.where((map) => map.tryGet<String>('type') == 'm.livekit')
+            .map((map) => map.tryGet<String>('url'))
+            .whereType<String>()
+            .toList() ??
+        [];
+    if (rtcTransports.isNotEmpty) return rtcTransports;
+
     final rtcFociMap = wellKnown.additionalProperties
         .tryGetMap<String, Object?>(
           'org.matrix.msc4143.rtc_foci',
@@ -27,14 +42,15 @@ extension MatrixRtcClientExtension on Client {
       return [?rtcFociMap.tryGet<String>('livekit_service_url')];
     }
 
-    // TODO: Also query /_matrix/client/unstable/org.matrix.msc4143/rtc/transports
-
     return wellKnown.additionalProperties
             .tryGetList<Map<String, Object?>>('org.matrix.msc4143.rtc_foci')
             ?.map((foci) => foci.tryGet<String>('livekit_service_url'))
             .whereType<String>()
             .toList() ??
-        [];
+        [
+          if (AppSettings.fallbackLiveKitInstance.value.isNotEmpty)
+            AppSettings.fallbackLiveKitInstance.value,
+        ];
   }
 
   Stream<CallKeysEvent> get onCallEncryptionKeys => onToDeviceEvent.stream
@@ -232,6 +248,7 @@ extension MatrixRtcRoomExtension on Room {
 
   Future<MatrixRtcCredentials> joinMatrixRtcCall({
     MatrixRtcCallIntent intent = MatrixRtcCallIntent.video,
+    List<String>? urls,
   }) async {
     await postLoad();
     if (ownMatrixRtcMembership != null) {
@@ -243,7 +260,7 @@ extension MatrixRtcRoomExtension on Room {
 
     final hasActiveMatrixRtcCall = this.hasActiveMatrixRtcCall;
 
-    final urls = getActiveMatrixRtcMembers()
+    urls ??= getActiveMatrixRtcMembers()
         .map(
           (state) =>
               state.fociPreferred.map((focus) => focus.livekitServiceUrl),
@@ -319,7 +336,7 @@ extension MatrixRtcRoomExtension on Room {
       }
     }
     throw Exception(
-      'Unable to authenticate to any of the visible LiveKit instances!',
+      'Unable to authenticate to any of the visible LiveKit instances!\nSFU list: $urls\nActive Call: $hasActiveMatrixRtcCall',
     );
   }
 

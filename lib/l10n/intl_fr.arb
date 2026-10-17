@@ -815,7 +815,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} vous a invité·e sur FluffyChat.\n1. Visiter fluffychat.im et installer l'application\n2. Inscrivez-vous ou connectez-vous\n3. Ouvrez le lien d'invitation :\n{link}",
+    "inviteText": "{username} vous a invité·e sur FluffyChat.\n1. Visiter fluffychat.im et installer l'application\n2. Inscrivez-vous ou connectez-vous\n3. Ouvrez le lien d'invitation :\n{link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1672,11 +1672,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Vous avez été banni·e de cette discussion",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Votre clé publique",
     "@yourPublicKey": {
         "type": "String",
@@ -1919,7 +1914,7 @@
     "invalidServerName": "Nom de serveur invalide",
     "shareInviteLink": "Partager un lien d'invitation",
     "openLinkInBrowser": "Ouvrir le lien dans le navigateur",
-    "setColorTheme": "Définir la couleur du thème :",
+    "setColorTheme": "Définir la couleur du thème :",
     "databaseMigrationBody": "Veuillez patienter. Cela peut prendre un moment.",
     "searchForUsers": "Rechercher des @utilisateurs/trices...",
     "passwordsDoNotMatch": "Les mots de passe ne correspondent pas",
@@ -1927,7 +1922,7 @@
     "joinSpace": "Rejoindre l'espace",
     "publicSpaces": "Espaces publics",
     "addChatOrSubSpace": "Ajouter une discussion ou un sous-espace",
-    "thisDevice": "Cet appareil :",
+    "thisDevice": "Cet appareil :",
     "sendReadReceipts": "Envoyer des accusés de réception",
     "sendTypingNotificationsDescription": "Les autres participants à une discussion peuvent voir que vous êtes en train de taper un nouveau message.",
     "verifyOtherDevice": "🔐 Vérifier l'autre appareil",
@@ -1962,7 +1957,7 @@
             }
         }
     },
-    "unreadChatsInApp": "{appname} : {unread} discussions non lus",
+    "unreadChatsInApp": "{appname} : {unread} discussions non lus",
     "@unreadChatsInApp": {
         "type": "String",
         "placeholders": {
@@ -1996,11 +1991,10 @@
     "usersMustKnock": "Les utilisateurs/trices doivent frapper",
     "noOneCanJoin": "Personne ne peut rejoindre",
     "knock": "Frapper à la porte",
-    "appLockDescription": "Verrouiller l'application avec un code PIN lorsqu'elle n'est pas utilisée",
+    "appLockDescription": "Verrouiller l’application avec un code PIN lorsqu’elle n’est pas utilisée",
     "globalChatId": "Identifiant global de la discussion",
     "accessAndVisibility": "Accès et visibilité",
     "accessAndVisibilityDescription": "Qui est autorisé à rejoindre cette discussion et comment la discussion peut être découverte.",
-    "calls": "Appels",
     "customEmojisAndStickers": "Émoticônes et autocollants personnalisés",
     "hideRedactedMessages": "Cacher les messages supprimés",
     "pleaseEnterYourCurrentPassword": "Veuillez saisir votre mot de passe actuel",
@@ -2010,7 +2004,7 @@
     "blockListDescription": "Vous pouvez bloquer des utilisateurs/trices qui vous dérangent. Vous ne pourrez plus recevoir aucun message ou invitation à un salon d'utilisateurs/trices figurant sur votre liste de blocage personnelle.",
     "blockUsername": "Ignorer le nom d'utilisateur/trice",
     "hideInvalidOrUnknownMessageFormats": "Masquer les formats de message invalides ou inconnus",
-    "messagesStyle": "Messages :",
+    "messagesStyle": "Messages :",
     "redactedByBecause": "Supprimé par {username} car : \"{reason}\"",
     "@redactedByBecause": {
         "type": "String",
@@ -2026,7 +2020,7 @@
     "setChatDescription": "Définir la description de la discussion",
     "gallery": "Galerie",
     "files": "Fichiers",
-    "sessionLostBody": "Votre session est perdue. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
+    "sessionLostBody": "Votre session est perdue. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
     "@sessionLostBody": {
         "type": "String",
         "placeholders": {
@@ -2088,7 +2082,7 @@
     "createNewAddress": "Créer une nouvelle adresse",
     "publicChatAddresses": "Addresses de discussion publiques",
     "space": "Espace",
-    "noMoreChatsFound": "Aucune autre discussion trouvée...",
+    "noMoreChatsFound": "Aucune autre discussion trouvée…",
     "unread": "Non lu",
     "commandHint_sendraw": "Envoyer du JSON brut",
     "databaseMigrationTitle": "La base de données est optimisée",
@@ -2128,7 +2122,7 @@
     "wrongRecoveryKey": "Désolé... il ne semble pas s'agir de la bonne clé de récupération.",
     "searchChatsRooms": "Rechercher des #discussions, @utilisateurs/trices...",
     "createGroupAndInviteUsers": "Créer un groupe et inviter des utilisateurs/trices",
-    "goToSpace": "Aller dans l'espace : {space}",
+    "goToSpace": "Aller dans l'espace : {space}",
     "@goToSpace": {
         "type": "String",
         "space": {}
@@ -2139,7 +2133,7 @@
     "pleaseEnterANumber": "Veuillez saisir un nombre supérieur à 0",
     "roomUpgradeDescription": "La discussion sera alors recréé avec la nouvelle version de salon. Tous les participants seront informés qu'ils doivent passer à la nouvelle discussion. Pour en savoir plus sur les versions des salons, consultez le site https://spec.matrix.org/latest/rooms/",
     "learnMore": "En savoir plus",
-    "restoreSessionBody": "L'application tente maintenant de restaurer votre session depuis la sauvegarde. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
+    "restoreSessionBody": "L'application tente maintenant de restaurer votre session depuis la sauvegarde. Veuillez signaler cette erreur aux développeurs à {url}. Le message d'erreur est le suivant : {error}",
     "@restoreSessionBody": {
         "type": "String",
         "placeholders": {
@@ -2257,7 +2251,7 @@
     "answersVisible": "Réponses visibles",
     "notificationRuleInviteForMeDescription": "Notifie l'utilisateur/trice lorsqu'il est invité dans un salon.",
     "notificationRuleMemberEventDescription": "Retire les notifications des évènements des membres.",
-    "doesNotSeemToBeAValidHomeserver": "Aucun serveur d'acceuil compatible ne semble exister. URL incorrecte ?",
+    "doesNotSeemToBeAValidHomeserver": "Aucun serveur d’accueil compatible ne semble exister. URL incorrecte ?",
     "notificationRuleMaster": "Désactiver toutes les notifications",
     "shareKeysWithDescription": "Quels sont les appareils auxquels vous faites confiance afin qu'ils puissent lire les message dans les conversations chiffrées ?",
     "logs": "Journaux",
@@ -2317,7 +2311,7 @@
     "notificationRuleIsUserMentionDescription": "Notifie l'utilisateur/trice lorsqu'il est mentionné directement dans un message.",
     "notificationRuleServerAcl": "Retire les Évènements ACL du Serveur",
     "advancedConfigurations": "Configurations avancées",
-    "signUpGreeting": "FluffyChat est décentralisé ! Selectionnez un hôte sur lequel vous voulez créer un compte et c'est parti !",
+    "signUpGreeting": "FluffyChat est décentralisé ! Sélectionnez un hôte sur lequel vous voulez créer un compte et c'est parti !",
     "notificationRuleCall": "Appeler",
     "baseUrl": "URL racine",
     "pause": "Pause",
@@ -2412,7 +2406,7 @@
     "skipChatBackupWarning": "Êtes vous certain ? Sans la sauvegarde des discussions vous pourriez perdre l'accès à vos messages si vous changez d'appareil.",
     "makeAdmin": "Promouvoir administrateur/trice",
     "more": "Plus",
-    "searchOrEnterHomeserverAddress": "Recherchez ou entrez l'adresse de votre serveur d'acceuil",
+    "searchOrEnterHomeserverAddress": "Recherchez ou entrez l’adresse de votre serveur d’accueil",
     "notificationRuleSuppressEditsDescription": "Retirer les notifications pour les éditions de messages.",
     "notificationRuleJitsi": "Jitsi",
     "unsetLowPriority": "Ne plus définir comme faible priorité",
@@ -2450,7 +2444,7 @@
     "saveChanges": "Enregistrer les modifications",
     "commandHint_logout": "Se déconnecter de l'appareil",
     "newStickerPack": "Nouveau groupe d'autocollants",
-    "signInGreeting": "Vous avez déjà un compte sur Matrix ? Bon retour ! Sélectionnez votre serveur d'acceuil et connectez vous.",
+    "signInGreeting": "Vous avez déjà un compte sur Matrix ? Bon retour ! Sélectionnez votre serveur d’accueil et connectez-vous.",
     "advancedConfigs": "Configs avancées",
     "noticeChatBackupDeviceVerification": "Note : Lorsque vous connectez vos appareils à la sauvegarde de discussion, ils sont automatiquement vérifiés.",
     "notificationRuleMemberEvent": "Évenement pour les Membres",
@@ -2500,7 +2494,7 @@
             }
         }
     },
-    "discardEdits": "Vous avez des modifications non-sauvegardés. Voulez-vous les supprimer ?",
+    "discardEdits": "Vous avez des modifications non sauvegardées. Voulez-vous les supprimer ?",
     "@discardEdits": {
         "type": "String",
         "placeholders": {}
@@ -2688,7 +2682,7 @@
     "disableAppLockAreYouSure": "Êtes vous sûr de vouloir désactiver le verrouillage de l'application ?",
     "enableBiometrics": "Activer l'authentification biométrique",
     "disableBiometrics": "Désactiver l'authentification biométrique",
-    "biometricsDescription": "Avec l'authentification biométrique, vous pouvez déverrouillee l'application avec votre visage ou votre empreinte digitale. Les possibilités dépendent de votre appareil.",
+    "biometricsDescription": "Avec l'authentification biométrique, vous pouvez déverrouillée l'application avec votre visage ou votre empreinte digitale. Les possibilités dépendent de votre appareil.",
     "useAppLock": "Utiliser le verrouillage de l'application",
     "unlockWithBiometrics": "Déverrouiller avec l'authentification biométrique",
     "resetPin": "Réinitialiser le code pin",
@@ -2705,7 +2699,7 @@
     "support": "Soutenir",
     "blur": "Flou :",
     "opacity": "Opacité :",
-    "editImage": "Éditer l'image",
+    "editImage": "Éditer l’image",
     "@editImage": {
         "type": "String",
         "placeholders": {}
@@ -2720,7 +2714,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "mirror": "Mirroir",
+    "mirror": "Miroir",
     "@mirror": {
         "type": "String",
         "placeholders": {}
@@ -2735,7 +2729,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "undo": "Défaire",
+    "undo": "Annuler",
     "@undo": {
         "type": "String",
         "placeholders": {}
@@ -2773,7 +2767,7 @@
     },
     "compressingVideo": "Compression de la vidéo...",
     "shareCrashReports": "Partager le rapport de crash",
-    "shareCrashReportsDescription": "Partage automatiquement les rapports de crash avec les developers ?",
+    "shareCrashReportsDescription": "Partage automatiquement les rapports de crash avec les developpeurs ?",
     "activeCall": "Appel actif",
     "countActiveCallMembers": "{count} membres actifs dans l'appel",
     "@countActiveCallMembers": {
@@ -2830,6 +2824,43 @@
     "@serverRespondedWithError": {
         "placeholders": {
             "error": {
+                "type": "String"
+            }
+        }
+    },
+    "updateAvailable": "Mise à jour {version} disponible",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Télécharger",
+    "sharedLocation": "Localisation partagée",
+    "pasteImage": "Coller l'image",
+    "noImageInClipboard": "Pas d'image dans le presse-papier",
+    "doYouAlsoWantToBlock": "Voulez-vous aussi bloquer cet utilisateur ?",
+    "declineAndBlock": "Refuser et bloquer",
+    "senderHasInvitedYouToTheChat": "{sender} vous a invité dans la discussion '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheChat": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    },
+    "senderHasInvitedYouToTheSpace": "{sender} vous a invité dans l'espace '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheSpace": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
                 "type": "String"
             }
         }

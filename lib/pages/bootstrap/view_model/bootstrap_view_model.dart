@@ -149,16 +149,21 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
     value.isLoading = true;
     notifyListeners();
     try {
+      final state = await client.getCryptoIdentityState();
+      if (state.connected) {
+        Logs().i('Download the key backup...');
+        await client.encryption!.keyManager.loadAllKeys();
+      }
+
+      Logs().i('Init crypto identity...');
       value.recoveryKey = await client.initCryptoIdentity(
         passphrase: passphrase,
-        wipeCrossSigning: !reset,
-        wipeKeyBackup: !reset,
-        wipeSecureStorage: !reset,
-        setupOnlineKeyBackup: !reset,
-        setupMasterKey: !reset,
-        setupSelfSigningKey: !reset,
-        setupUserSigningKey: !reset,
       );
+
+      if (state.connected) {
+        Logs().i('Mark all megolm sessions as needing upload...');
+        await client.database.markInboundGroupSessionsAsNeedingUpload();
+      }
     } catch (e, s) {
       if (!context.mounted) return;
       ErrorReporter(

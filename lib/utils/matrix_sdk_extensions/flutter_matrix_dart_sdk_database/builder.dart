@@ -9,11 +9,11 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path_provider_foundation/path_provider_foundation.dart';
-import 'package:sqflite_common/utils/utils.dart' as sqflite_utils;
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -103,42 +103,23 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
   // check whether the DB is already encrypted and otherwise do so
   await helper?.ensureDatabaseFileEncrypted();
 
-  final database = await factory.openDatabase(
-    path,
-    options: OpenDatabaseOptions(
-      version: 1,
-      // most important : apply encryption when opening the DB
-      onConfigure: helper?.applyPragmaKey,
-    ),
+  final openDatabaseOptions = OpenDatabaseOptions(
+    version: 1,
+    // most important : apply encryption when opening the DB
+    onConfigure: (db) =>
+        helper?.applyPragmaKey(db, ensureIncrementalAutoVacuum: true),
   );
 
-  Logs().i('Database file size', await File(database.path).length());
-
-  final pageCount = sqflite_utils.firstIntValue(
-    await database.rawQuery('PRAGMA page_count'),
-  );
-  final freePages = sqflite_utils.firstIntValue(
-    await database.rawQuery('PRAGMA freelist_count'),
-  );
-  final pageSize = sqflite_utils.firstIntValue(
-    await database.rawQuery('PRAGMA page_size'),
-  );
-  Logs().i(
-    'DB pages: $pageCount total, $freePages free (~${(freePages ?? 0) * (pageSize ?? 0)} bytes wasted)',
-  );
-
-  final tables = await database.rawQuery(
-    "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'",
-  );
-  for (final t in tables) {
-    final name = t['name'] as String;
-    final c = sqflite_utils.firstIntValue(
-      await database.rawQuery('SELECT COUNT(*) FROM "$name"'),
-    );
-    Logs().i('Table $name: $c rows');
+  late final Database database;
+  try {
+    database = await factory.openDatabase(path, options: openDatabaseOptions);
+  } catch (e, s) {
+    Logs().wtf('Unable to open database! Delete file and try again...', e, s);
+    await File(path).delete();
+    database = await openDatabase(path, options: openDatabaseOptions);
   }
 
-  await _ensureIncrementalAutoVacuum(database);
+  final secureStorage = FlutterSecureStorage(iOptions: iosOptions);
 
   return await MatrixSdkDatabase.init(
     clientName,
@@ -146,25 +127,12 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
     maxFileSize: 1000 * 1000 * 10,
     fileStorageLocation: fileStorageLocation?.uri,
     deleteFilesAfterDuration: const Duration(days: 30),
+    secureStorage: (
+      read: (key) => secureStorage.read(key: key),
+      write: (key, value) => secureStorage.write(key: key, value: value),
+      delete: (key) => secureStorage.delete(key: key),
+    ),
   );
-}
-
-/// Without auto vacuum the database can never really shrink
-Future<void> _ensureIncrementalAutoVacuum(Database database) async {
-  const incrementalAutoVacuum = 2;
-
-  final currentMode = sqflite_utils.firstIntValue(
-    await database.rawQuery('PRAGMA auto_vacuum'),
-  );
-
-  if (currentMode != incrementalAutoVacuum) {
-    Logs().i('Switching database to incremental auto_vacuum...');
-    await database.execute('PRAGMA auto_vacuum = $incrementalAutoVacuum');
-    await database.execute('VACUUM');
-    return;
-  }
-
-  await database.execute('PRAGMA incremental_vacuum');
 }
 
 Future<String> _getDatabaseDirectory() async {

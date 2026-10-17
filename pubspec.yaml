@@ -6,74 +6,69 @@
 name: fluffychat
 description: Chat with your friends.
 publish_to: none
-# On version bump please also increase:
-# 1. The build number (for F-Droid)
-# 2. The version in /snap/snapcraft.yaml
-version: 2.9.5+3566
+# On version bump please also increase the build number (for F-Droid)
+version: 2.10.0+3568
 
 environment:
   sdk: ">=3.11.1 <4.0.0"
 
 dependencies:
-  archive: ^4.2.0
+  archive: ^4.3.0
   async: ^2.13.1
-  badges: ^3.2.0
+  badges: ^4.0.1
   blurhash_dart: ^1.2.1
-  chewie: ^1.15.0
+  chewie: ^1.17.2
   collection: ^1.18.0
   crop_image: ^1.0.17
   cross_file: ^0.3.5
-  cupertino_ui: 1.0.2
+  cupertino_ui: ^1.1.2
   desktop_drop: ^0.8.4
-  device_info_plus: ^13.2.0
+  device_info_plus: ^13.3.0
   dynamic_color: ^2.1.0
   emoji_picker_flutter: ^4.5.4
-  file_picker: ^12.0.0
+  file_picker: ^13.1.0
   file_selector: ^1.1.0
   flutter:
     sdk: flutter
-  flutter_callkit_incoming: ^3.1.5
+  flutter_callkit_incoming: ^3.1.6
   flutter_foreground_task: ^11.0.3
   flutter_linkify: ^6.0.0
-  flutter_local_notifications: ^22.3.0
+  flutter_local_notifications: ^22.3.2
   flutter_localizations:
     sdk: flutter
   flutter_map: ^8.3.2
   flutter_new_badger: ^2.0.0
-  flutter_secure_storage: ^11.0.0
+  flutter_secure_storage: ^11.2.0
   flutter_shortcuts_new: ^2.0.0
   flutter_vodozemac: ^0.8.1
   flutter_web_auth_2: ^5.1.0
-  flutter_webrtc: ^1.6.0
-  geolocator: ^14.0.3
-  go_router: ^18.0.1
+  flutter_webrtc: ^1.6.2+hotfix.3
+  geolocator: ^14.1.1
+  go_router: ^18.0.2
   handy_window: ^0.4.2
   highlight: ^0.7.0
   html: ^0.15.7
   http: ^1.6.0
-  image: ^4.9.2
-  image_picker: ^1.2.3
+  image: ^4.12.0
+  image_picker: ^1.2.4
   intl: 0.20.3
   just_audio: ^0.10.6
   just_audio_media_kit: ^2.1.0
   latlong2: ^0.10.1
   light_compressor_v2: ^1.9.1
-  livekit_client: ^2.12.0
+  livekit_client: ^2.13.1
   local_auth: ^3.0.2
-  lottie: ^3.5.1
+  lottie: ^3.6.1
   managed_configurations: ^1.2.0
-  material_ui: 1.2.0
-  matrix: #^11.0.0
-    git:
-      url: https://github.com/famedly/matrix-dart-sdk.git
-      ref: krille/refactor-device-keys-list-storing
+  material_ui: 1.6.0
+  matrix: ^14.1.0
   media_kit_libs_linux: ^1.2.1
   media_kit_libs_windows_audio: ^1.0.9
   mime: ^2.1.0
-  native_imaging: ^0.5.0
+  native_imaging: ^1.0.0
   ogg_caf_converter: ^0.1.4
-  package_info_plus: ^10.2.0
-  particles_network: ^1.9.5
+  package_info_plus: ^10.2.2
+  particles_network: ^1.9.6
   pasteboard: ^0.5.0
   path: ^1.9.0
   path_provider: ^2.1.6
@@ -81,34 +76,35 @@ dependencies:
   pretty_qr_code: ^3.6.0
   provider: ^6.0.2
   punycode: ^1.0.0
-  qr_code_scanner_plus: ^2.2.0
+  qr_code_scanner_plus: ^2.3.0
   qr_image: ^1.0.0
-  receive_sharing_intent: ^1.8.1
-  record: ^7.1.1
+  receive_sharing_intent: ^1.9.0
+  record: ^7.1.2
   scroll_to_index: ^3.0.1
-  share_plus: ^13.3.0
-  shared_preferences: ^2.5.5 # Pinned because https://github.com/flutter/flutter/issues/118401
+  share_plus: ^13.3.1
+  shared_preferences: ^2.5.6
   slugify: ^2.0.0
-  sqflite_common: ^2.5.11
-  sqflite_common_ffi: ^2.4.2
+  sqflite_common_ffi: ^2.4.4
   swipe_to_action: ^0.3.0
   unifiedpush: ^6.2.0
   unifiedpush_ui: ^0.2.0
   universal_html: ^2.3.0
-  url_launcher: ^6.3.2
+  url_launcher: ^6.3.3
   uuid: ^4.6.0
-  video_player: ^2.14.0
+  video_player: ^2.14.1
   wakelock_plus: ^1.8.0
 
 dev_dependencies:
-  dart_code_linter: ^4.3.0
+  dart_code_linter: ^4.4.2
   flutter_launcher_icons: ^0.14.4
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
+  golden_screenshot: ^12.1.1
   integration_test:
     sdk: flutter
   license_checker: ^1.6.2
+  vodozemac: ^0.8.0
 
 flutter:
   generate: true
