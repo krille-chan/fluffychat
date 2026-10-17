@@ -16,21 +16,21 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Push a new beta build to TestFlight"
-  lane :beta do
+  desc "Push a new release candidate to TestFlight"
+  lane :rc do
+    # Prepare flutter and apply fcm patch
+    sh("flutter", "pub", "add", "fcm_shared_isolate")
+    sh("sed", "-i", "''", "'s,//<GOOGLE_SERVICES>,,g'", "lib/utils/background_push.dart")
+    sh("flutter", "clean")
+    sh("flutter", "pub", "get")
+
+    # Compile release build
+    sh("flutter", "build", "ipa")
+
     build_app(
       skip_build_archive: true,
       archive_path: "../build/ios/archive/Runner.xcarchive",
     )
     upload_to_testflight
-  end
-
-  desc "Push a new release build to AppStore"
-  lane :release do
-    build_app(
-      skip_build_archive: true,
-      archive_path: "../build/ios/archive/Runner.xcarchive",
-    )
-    upload_to_app_store
   end
 end
