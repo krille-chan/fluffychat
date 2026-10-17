@@ -1,7 +1,7 @@
 name: fluffychat
 title: FluffyChat Matrix Messenger
 base: core24
-version: 2.10.0
+adopt-info: fluffychat
 license: AGPL-3.0
 summary: The cutest messenger in the Matrix network
 description: |
@@ -56,16 +56,14 @@ platforms:
 
 parts:
   flutter-git:
-    source: https://github.com/flutter/flutter.git
-    source-tag: 3.47.4
-    source-depth: 1
+    source: .
     plugin: nil
     override-build: |
       mkdir -p $CRAFT_PART_INSTALL/usr/bin
       mkdir -p $CRAFT_PART_INSTALL/usr/libexec
-      cp -r $CRAFT_PART_SRC $CRAFT_PART_INSTALL/usr/libexec/flutter
+      git clone --depth 1 --branch "$(jq -r .flutter .fvmrc)" https://github.com/flutter/flutter.git $CRAFT_PART_INSTALL/usr/libexec/flutter
       ln -s $CRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $CRAFT_PART_INSTALL/usr/bin/flutter
-      ln -s $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter/bin/dart $SNAPCRAFT_PART_INSTALL/usr/bin/dart
+      ln -s $CRAFT_PART_INSTALL/usr/libexec/flutter/bin/dart $SNAPCRAFT_PART_INSTALL/usr/bin/dart
       $CRAFT_PART_INSTALL/usr/bin/flutter doctor
     build-packages:
       - clang
@@ -75,6 +73,8 @@ parts:
       - ninja-build
       - unzip
       - xz-utils
+      - git
+      - jq
       - zip
       - lld
       - llvm-18
@@ -85,6 +85,8 @@ parts:
     plugin: nil
     source: .
     override-build: |
+      craftctl set version="$(grep '^version:' pubspec.yaml | cut -d' ' -f2 | cut -d+ -f1)"
+
       # Install rust manually:
       curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
       export PATH="$HOME/.cargo/bin:$PATH"

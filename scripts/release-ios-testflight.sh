@@ -11,14 +11,6 @@ sed -i '' 's,//<GOOGLE_SERVICES>,,g' lib/utils/background_push.dart
 flutter clean
 flutter pub get
 
-# Reload all cocoapods
-(
-  cd ios
-  rm -rf Pods Podfile.lock
-  pod install
-  pod update
-)
-
 # Compile release build
 flutter build ipa
 

@@ -1157,11 +1157,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "حُظرت من هذه المحادثة",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "scanQrCode": "امسح رمز الاستجابة السريعة",
     "noMatrixServer": "{server1} ليس خادم ماتريكس، بدلًا منه أتريد استخدام {server2}؟",
     "@noMatrixServer": {

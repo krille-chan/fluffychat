@@ -229,7 +229,46 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
+  Future<void> joinChat() async {
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        await room.join(waitForSync: true);
+      },
+    );
+    if (!mounted) return;
+    if (success.error != null) return;
+    if (room.isSpace) {
+      context.go('/rooms?spaceId=${room.id}');
+      return;
+    }
+    await _tryLoadTimeline();
+  }
+
   Future<void> leaveChat() async {
+    if (room.membership == .invite) {
+      final blockConsent = await showOkCancelAlertDialog(
+        context: context,
+        title: L10n.of(context).declineInvitation,
+        message: L10n.of(context).doYouAlsoWantToBlock,
+        cancelLabel: L10n.of(context).decline,
+        okLabel: L10n.of(context).declineAndBlock,
+        isDestructive: true,
+      );
+      if (blockConsent == null) return;
+      if (!mounted) return;
+      if (blockConsent == .ok) {
+        final inviteEvent = room.getState(
+          EventTypes.RoomMember,
+          room.client.userID!,
+        );
+        context.go(
+          '/rooms/settings/security/ignorelist',
+          extra: inviteEvent?.senderId,
+        );
+        return;
+      }
+    }
     final success = await showFutureLoadingDialog(
       context: context,
       future: room.leave,
@@ -466,6 +505,8 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   Future<void> _tryLoadTimeline() async {
+    if (room.membership == .invite) return;
+
     final initialEventId = widget.eventId;
     loadTimelineFuture = _getTimeline();
     try {

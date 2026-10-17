@@ -5,7 +5,6 @@
 //  Created by Christian Pauly on 26.08.25.
 //
 
-import FMDB
 import Foundation
 import UserNotifications
 import os
@@ -74,21 +73,14 @@ class NotificationService: UNNotificationServiceExtension {
             ),
             let clientName = devices.first?.data.client_name
         else {
-            os_log(
-                "[FluffyChatPushHelper] No client_name found in Push Notification!"
-            )
+            bestAttemptContent.userInfo["error"] = "No client_name found in Push Notification!"
             contentHandler(bestAttemptContent)
             return
         }
 
         bestAttemptContent.threadIdentifier = "\(clientName)_\(roomId)"
 
-        // Open database:
-        guard let key = getDatabaseKey() else {
-            os_log("[FluffyChatPushHelper] Unable to get database key!")
-            contentHandler(bestAttemptContent)
-            return
-        }
+        // Create database path:
         guard let containerPath = FileManager.default.containerURL(
                 forSecurityApplicationGroupIdentifier: "group.im.fluffychat.app"
             ) else {
@@ -97,9 +89,14 @@ class NotificationService: UNNotificationServiceExtension {
                 return
         }
         let databasePath = containerPath.appendingPathComponent("\(clientName).sqlite").path
-        guard let database = getDatabase(key: key, path: databasePath) else {
-            // getDatabase already logged the concrete SQLite error
-            os_log("[FluffyChatPushHelper] Unable to open database!")
+        
+        // Open database:
+        let database: SqlCipherDatabase
+        do {
+            database = try getDatabase(path: databasePath)
+        } catch {
+            os_log("[FluffyChatPushHelper] Unable to open database: %{public}@", type: .error, String(describing: error))
+            bestAttemptContent.userInfo["error"] = String(describing: error)
             contentHandler(bestAttemptContent)
             return
         }
@@ -139,7 +136,7 @@ class NotificationService: UNNotificationServiceExtension {
         }
         
         if let roomAvatarUrl = roomAvatarUrl {
-            bestAttemptContent.userInfo["room_avatar"] = roomName
+            bestAttemptContent.userInfo["room_avatar"] = roomAvatarUrl
             do {
                 let attachment = try downloadAttachment(url: roomAvatarUrl, containerPath: containerPath)
                 bestAttemptContent.attachments = [attachment]
@@ -149,7 +146,6 @@ class NotificationService: UNNotificationServiceExtension {
         }
 
         contentHandler(bestAttemptContent)
-        database.close()
     }
 
     override func serviceExtensionTimeWillExpire() {
@@ -162,7 +158,7 @@ class NotificationService: UNNotificationServiceExtension {
         }
     }
 
-    func getDatabaseKey() -> String? {
+    func getDatabase(path: String) throws -> SqlCipherDatabase {
         // Fetch database key
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -179,183 +175,100 @@ class NotificationService: UNNotificationServiceExtension {
             let data = item as? Data,
             let key = String(data: data, encoding: .utf8)
         else {
-            return nil
+            throw DatabaseKeyError.keychain(status)
         }
-        return key
-    }
-
-    func getDatabase(key: String, path: String) -> FMDatabase? {
-        guard FileManager.default.fileExists(atPath: path) else { return nil }
-
-        let database = FMDatabase(path: "file:\(path)?immutable=1")
-        // Open Database in read only mode:
-        guard database.open(withFlags: 0x0000_0001) else {
-            os_log(
-                "[FluffyChatPushHelper] sqlite open failed: %{public}@",
-                database.lastErrorMessage()
-            )
-            return nil
-        }
-
-        // Match Flutter / matrix-dart-sdk: PRAGMA KEY='…' (passphrase), not raw key bytes.
-        let escapedKey = key.replacingOccurrences(of: "'", with: "''")
-        guard database.executeStatements("PRAGMA key = '\(escapedKey)';") else {
-            os_log(
-                "[FluffyChatPushHelper] PRAGMA key failed: %{public}@",
-                database.lastErrorMessage()
-            )
-            database.close()
-            return nil
-        }
-
-        guard database.goodConnection else {
-            os_log(
-                "[FluffyChatPushHelper] bad connection after key: %{public}@",
-                database.lastErrorMessage()
-            )
-            database.close()
-            return nil
-        }
-
-        return database
+        
+        return try SqlCipherDatabase.open(path: path, key: key)
     }
 
     func getUserFromDatabase(
-        database: FMDatabase,
+        database: SqlCipherDatabase,
         userId: String,
         roomId: String
     ) -> UserEventJson? {
-        do {
-            let roomMemberDatabaseKey = [roomId, userId].joined(separator: "|")
-            let roomMemberResult = try database.executeQuery(
-                "SELECT * FROM box_room_members WHERE k=?",
-                values: [roomMemberDatabaseKey]
-            )
-            if roomMemberResult.next(),
-                let event = roomMemberResult.string(forColumn: "v")
-            {
-                let userEvent = try! JSONDecoder().decode(
-                    UserEventJson.self,
-                    from: event.data(using: .utf8)!
-                )
-                return userEvent
-            }
-        } catch {
-            os_log(
-                "[FluffyChatPushHelper] DB query failed: %{public}@",
-                log: .default,
-                type: .error,
-                error.localizedDescription
-            )
+        let roomMemberDatabaseKey = [roomId, userId].joined(separator: "|")
+        guard let event = try? database.scalar(
+            query: "SELECT v FROM box_room_members WHERE k=?",
+            args: [roomMemberDatabaseKey]
+        ) else {
+            return nil
         }
-        return nil
+        return try? JSONDecoder().decode(
+            UserEventJson.self,
+            from: Data(event.utf8),
+        )
     }
 
-    func getRoomAvatarFromDatabase(database: FMDatabase, roomId: String)
+    func getRoomAvatarFromDatabase(database: SqlCipherDatabase, roomId: String)
         -> String?
     {
-        do {
-            // Database key format: "roomId|eventType|stateKey"
-            let roomAvatarDatabaseKey = [roomId, "m.room.avatar", ""].joined(
-                separator: "|"
-            )
-            let roomAvatarResult = try database.executeQuery(
-                "SELECT * FROM box_preload_room_states WHERE k=?",
-                values: [roomAvatarDatabaseKey]
-            )
-            if roomAvatarResult.next(),
-                let event = roomAvatarResult.string(forColumn: "v")
-            {
-                let roomAvatarEvent = try! JSONDecoder().decode(
-                    RoomAvatarEventJson.self,
-                    from: event.data(using: .utf8)!
-                )
-                if let avatarUrl = roomAvatarEvent.content.url, !avatarUrl.isEmpty {
-                    return avatarUrl
-                }
-            }
-        } catch {
-            os_log(
-                "[FluffyChatPushHelper] DB query failed: %{public}@",
-                log: .default,
-                type: .error,
-                error.localizedDescription
-            )
+        // Database key format: "roomId|eventType|stateKey"
+        let roomAvatarDatabaseKey = [roomId, "m.room.avatar", ""].joined(
+            separator: "|"
+        )
+        guard let event = try? database.scalar(
+            query: "SELECT v FROM box_preload_room_states WHERE k=?",
+            args: [roomAvatarDatabaseKey]
+        ) else {
+            return nil
+        }
+        
+        let roomAvatarEvent = try? JSONDecoder().decode(
+            RoomAvatarEventJson.self,
+            from: event.data(using: .utf8)!
+        )
+        if let avatarUrl = roomAvatarEvent?.content.url, !avatarUrl.isEmpty {
+            return avatarUrl
         }
         return nil
     }
     
-    func getRoomNameFromDatabase(database: FMDatabase, roomId: String)
+    func getRoomNameFromDatabase(database: SqlCipherDatabase, roomId: String)
         -> String?
     {
-        do {
-            // Database key format: "roomId|eventType|stateKey"
-            let roomNameDatabaseKey = [roomId, "m.room.name", ""].joined(
-                separator: "|"
-            )
-            let roomNameResult = try database.executeQuery(
-                "SELECT * FROM box_preload_room_states WHERE k=?",
-                values: [roomNameDatabaseKey]
-            )
-            if roomNameResult.next(),
-                let event = roomNameResult.string(forColumn: "v")
-            {
-                let roomNameEvent = try! JSONDecoder().decode(
-                    RoomNameEventJson.self,
-                    from: event.data(using: .utf8)!
-                )
-                if let name = roomNameEvent.content.name, !name.isEmpty {
-                    return name
-                }
-            }
-        } catch {
-            os_log(
-                "[FluffyChatPushHelper] DB query failed: %{public}@",
-                log: .default,
-                type: .error,
-                error.localizedDescription
-            )
+        // Database key format: "roomId|eventType|stateKey"
+        let roomNameDatabaseKey = [roomId, "m.room.name", ""].joined(
+            separator: "|"
+        )
+        guard let event = try? database.scalar(
+            query: "SELECT v FROM box_preload_room_states WHERE k=?",
+            args: [roomNameDatabaseKey]
+        ) else {
+            return nil
+        }
+        
+        let roomNameEvent = try? JSONDecoder().decode(
+            RoomNameEventJson.self,
+            from: event.data(using: .utf8)!
+        )
+        if let name = roomNameEvent?.content.name, !name.isEmpty {
+            return name
         }
         return nil
     }
 
-    func getRoomheroesFromDatabase(database: FMDatabase, roomId: String)
+    func getRoomheroesFromDatabase(database: SqlCipherDatabase, roomId: String)
         -> [UserEventJson]?
     {
-        do {
-            let roomResult = try database.executeQuery(
-                "SELECT * FROM box_rooms WHERE k=?",
-                values: [roomId]
-            )
-            if roomResult.next(),
-                let roomJson = roomResult.string(forColumn: "v")
-            {
-                let room = try JSONDecoder().decode(
-                    RoomJson.self,
-                    from: roomJson.data(using: .utf8)!
-                )
-                let heroes = room.summary.heroes.map { hero in
-                    return getUserFromDatabase(
-                        database: database,
-                        userId: hero,
-                        roomId: roomId
-                    )
-                }.compactMap { $0 }
-                return heroes
-            } else {
-                return nil
-            }
-        } catch is DecodingError {
-            return []
-        } catch {
-            os_log(
-                "[FluffyChatPushHelper] DB query failed: %{public}@",
-                log: .default,
-                type: .error,
-                error.localizedDescription
-            )
+        guard let event = try? database.scalar(
+            query: "SELECT v FROM box_rooms WHERE k=?",
+            args: [roomId]
+        ) else {
+            return nil
         }
-        return []
+        
+        let room = try? JSONDecoder().decode(
+            RoomJson.self,
+            from: event.data(using: .utf8)!
+        )
+        let heroes = room?.summary.heroes.map { hero in
+            return getUserFromDatabase(
+                database: database,
+                userId: hero,
+                roomId: roomId
+            )
+        }.compactMap { $0 }
+        return heroes
     }
     
     func downloadAttachment(url: String, containerPath: URL) throws -> UNNotificationAttachment {
@@ -416,3 +329,5 @@ struct NotificationDevice: Decodable {
 struct NotificationCounts: Decodable {
     let unread: Int?
 }
+
+enum DatabaseKeyError: Error { case keychain(OSStatus), invalidData }

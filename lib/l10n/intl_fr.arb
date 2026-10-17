@@ -1672,11 +1672,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Vous avez été banni·e de cette discussion",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Votre clé publique",
     "@yourPublicKey": {
         "type": "String",
@@ -2843,5 +2838,31 @@
         }
     },
     "download": "Télécharger",
-    "sharedLocation": "Localisation partagée"
+    "sharedLocation": "Localisation partagée",
+    "pasteImage": "Coller l'image",
+    "noImageInClipboard": "Pas d'image dans le presse-papier",
+    "doYouAlsoWantToBlock": "Voulez-vous aussi bloquer cet utilisateur ?",
+    "declineAndBlock": "Refuser et bloquer",
+    "senderHasInvitedYouToTheChat": "{sender} vous a invité dans la discussion '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheChat": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    },
+    "senderHasInvitedYouToTheSpace": "{sender} vous a invité dans l'espace '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheSpace": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    }
 }

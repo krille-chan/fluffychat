@@ -1461,11 +1461,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Sei stato/a bandito/a da questa chat",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "La tua chiave pubblica",
     "@yourPublicKey": {
         "type": "String",

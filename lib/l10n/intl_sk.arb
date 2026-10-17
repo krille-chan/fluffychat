@@ -1070,11 +1070,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Máte zablokovaný prístup k tomuto chatu",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "chats": "Čety",
     "@chats": {
         "type": "String",

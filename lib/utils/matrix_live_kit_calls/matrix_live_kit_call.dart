@@ -6,15 +6,33 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:async/async.dart';
 import 'package:collection/collection.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/call_keys_event_content.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call_member.dart';
-import 'package:matrix/matrix.dart';
+import 'package:matrix/matrix.dart' hide Result;
 
 extension MatrixRtcClientExtension on Client {
   Future<List<String>> getLiveKitServiceUrls() async {
     final wellKnown = await getWellknown();
+
+    final rtcTransportsResult = await Result.capture(
+      request(
+        .GET,
+        '/_matrix/client/unstable/org.matrix.msc4143/rtc/transports',
+      ),
+    );
+    final rtcTransports =
+        rtcTransportsResult.asValue?.value
+            .tryGetList<Map<String, Object?>>('transports')
+            ?.where((map) => map.tryGet<String>('type') == 'm.livekit')
+            .map((map) => map.tryGet<String>('url'))
+            .whereType<String>()
+            .toList() ??
+        [];
+    if (rtcTransports.isNotEmpty) return rtcTransports;
+
     final rtcFociMap = wellKnown.additionalProperties
         .tryGetMap<String, Object?>(
           'org.matrix.msc4143.rtc_foci',
@@ -23,8 +41,6 @@ extension MatrixRtcClientExtension on Client {
     if (rtcFociMap != null) {
       return [?rtcFociMap.tryGet<String>('livekit_service_url')];
     }
-
-    // TODO: Also query /_matrix/client/unstable/org.matrix.msc4143/rtc/transports
 
     return wellKnown.additionalProperties
             .tryGetList<Map<String, Object?>>('org.matrix.msc4143.rtc_foci')

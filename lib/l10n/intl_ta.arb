@@ -1130,11 +1130,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "இந்த அரட்டையிலிருந்து உங்களுக்கு தடை விதிக்கப்பட்டுள்ளது",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "databaseMigrationTitle": "தரவுத்தளம் உகந்ததாக உள்ளது",
     "usersMustKnock": "பயனர்கள் தட்ட வேண்டும்",
     "importFromZipFile": ".சிப் கோப்பிலிருந்து இறக்குமதி",

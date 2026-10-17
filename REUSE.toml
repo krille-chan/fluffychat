@@ -8,7 +8,7 @@ version = 1
 [[annotations]]
 path = [
     ".mailmap",
-    ".tool_versions.yaml",
+    ".fvmrc",
     "pubspec.lock",
     "*.json",
     ".vscode/**",
@@ -26,7 +26,8 @@ path = [
     "integration_test/synapse/**",
     "snap/**",
     "windows/**",
-    "web/**"
+    "web/**",
+    "test/metadata/**"
 ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2019-Present Christian Kußowski"
@@ -56,7 +57,7 @@ path = [
     "web/icons/**",
     "web/splash/**",
     "snap/gui/*.png",
-    "windows/runner/resources/app_icon.ico"
+    "windows/runner/resources/app_icon.ico",
 ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2017-Present Fabiyamada"

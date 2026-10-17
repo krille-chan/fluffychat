@@ -1097,11 +1097,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "당신은 이 채팅에서 영구 추방되었습니다",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "youAreNoLongerParticipatingInThisChat": "당신은 더 이상 이 채팅에 참여하지 않습니다",
     "@youAreNoLongerParticipatingInThisChat": {
         "type": "String",

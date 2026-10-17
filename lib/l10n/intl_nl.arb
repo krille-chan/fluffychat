@@ -1671,11 +1671,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Je bent verbannen uit deze chat",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Je publieke sleutel",
     "@yourPublicKey": {
         "type": "String",
@@ -2823,7 +2818,7 @@
             }
         }
     },
-    "serverRespondedWithError": "De server heeft met een foute boodschap geantwoord: {error}",
+    "serverRespondedWithError": "De server geeft een foutmelding: {error}",
     "@serverRespondedWithError": {
         "placeholders": {
             "error": {

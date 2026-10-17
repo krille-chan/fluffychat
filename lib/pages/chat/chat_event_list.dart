@@ -16,8 +16,10 @@ import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/mxc_image_viewer.dart';
 import 'package:material_ui/material_ui.dart';
-import 'package:matrix/matrix_api_lite/model/event_types.dart';
+import 'package:matrix/matrix.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 import '../../config/app_config.dart';
@@ -31,11 +33,68 @@ class ChatEventList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final timeline = controller.timeline;
+    final theme = Theme.of(context);
+
+    if (controller.room.membership == .invite) {
+      final room = controller.room;
+      final inviteState = room.unsafeGetUserFromMemoryOrFallback(
+        room.client.userID!,
+      );
+      final sender = room
+          .unsafeGetUserFromMemoryOrFallback(inviteState.senderId)
+          .calcDisplayname();
+      final nameOrAlias = room.name.isNotEmpty
+          ? room.name
+          : room.canonicalAlias.isNotEmpty
+          ? room.canonicalAlias
+          : null;
+      final roomAvatar = room.avatar;
+
+      return Center(
+        child: Container(
+          padding: const EdgeInsets.all(32.0),
+          alignment: .center,
+          constraints: BoxConstraints(maxWidth: 320),
+          child: Column(
+            mainAxisAlignment: .center,
+            crossAxisAlignment: .center,
+            spacing: 16,
+            children: [
+              Avatar(
+                mxContent: roomAvatar,
+                name: room.getLocalizedDisplayname(),
+                size: Avatar.defaultSize * 2.5,
+                onTap: roomAvatar != null
+                    ? () => showDialog(
+                        context: context,
+                        builder: (_) => MxcImageViewer(roomAvatar),
+                      )
+                    : null,
+                borderRadius: room.isSpace
+                    ? BorderRadius.circular(AppConfig.spaceBorderRadius * 2.5)
+                    : null,
+              ),
+              Text(
+                nameOrAlias == null
+                    ? L10n.of(context).youInvitedBy(sender)
+                    : room.isSpace
+                    ? L10n.of(
+                        context,
+                      ).senderHasInvitedYouToTheSpace(sender, nameOrAlias)
+                    : L10n.of(
+                        context,
+                      ).senderHasInvitedYouToTheChat(sender, nameOrAlias),
+                textAlign: .center,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
     if (timeline == null) {
       return const Center(child: CupertinoActivityIndicator());
     }
-    final theme = Theme.of(context);
 
     final colors = [theme.secondaryBubbleColor, theme.bubbleColor];
 

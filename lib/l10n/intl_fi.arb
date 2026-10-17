@@ -1502,11 +1502,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Sinulle on annettu porttikielto tähän keskusteluun",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "removeFromSpace": "Poista tilasta",
     "roomVersion": "Huoneen versio",
     "@roomVersion": {
