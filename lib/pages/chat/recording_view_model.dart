@@ -64,7 +64,9 @@ class RecordingViewModelState extends State<RecordingViewModel> {
     setState(() {});
 
     try {
-      final codec = await audioRecorder.isEncoderSupported(AudioEncoder.opus)
+      final codec =
+          await audioRecorder.isEncoderSupported(AudioEncoder.opus) &&
+              !PlatformInfos.isMacOS
           ? AudioEncoder.opus
           : AudioEncoder.aacLc;
       fileName =

@@ -1,1 +1,1 @@
-MatrixRTC calls, bugfixes and and stability improvements.
+Many fixes under the hood, call improvements and automatic recovery from database corruptions.
