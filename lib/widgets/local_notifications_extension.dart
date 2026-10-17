@@ -101,6 +101,8 @@ extension LocalNotificationsExtension on MatrixState {
       return;
     }
 
+    final unreadRooms = client.rooms.where((r) => r.isUnreadOrInvited).length;
+
     FlutterLocalNotificationsPlugin().show(
       id: event.room.id.hashCode,
       title: title,
@@ -132,6 +134,7 @@ extension LocalNotificationsExtension on MatrixState {
         ),
         windows: WindowsNotificationDetails(timestamp: event.originServerTs),
         macOS: DarwinNotificationDetails(
+          badgeNumber: unreadRooms,
           threadIdentifier: '${client.clientName}_${event.room.id}',
         ),
       ),
