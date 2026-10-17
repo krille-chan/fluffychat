@@ -20,7 +20,7 @@ platform :ios do
   lane :rc do
     # Prepare flutter and apply fcm patch
     sh("flutter", "pub", "add", "fcm_shared_isolate")
-    sh("sed", "-i", "''", "'s,//<GOOGLE_SERVICES>,,g'", "lib/utils/background_push.dart")
+    sh("sed", "-i", "", "s,//<GOOGLE_SERVICES>,,g", "../../lib/utils/background_push.dart")
     sh("flutter", "clean")
     sh("flutter", "pub", "get")
 
