@@ -8,6 +8,8 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/sticker_picker_dialog.dart';
 import 'package:fluffychat/pages/chat/trust_user_key_dialog.dart';
+import 'package:fluffychat/utils/recent_stickers_store.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 
@@ -77,6 +79,8 @@ class ChatEmojiPicker extends StatelessWidget {
                         StickerPickerDialog(
                           room: controller.room,
                           onSelected: (sticker) async {
+                            final store = Matrix.of(context).store;
+                            final userId = controller.room.client.userID;
                             final proceed = await showTrustUserInRoomDialog(
                               context,
                               controller.room,
@@ -91,6 +95,11 @@ class ChatEmojiPicker extends StatelessWidget {
                               type: EventTypes.Sticker,
                               threadRootEventId: controller.activeThreadId,
                               threadLastEventId: controller.threadLastEventId,
+                            );
+                            await RecentStickersStore.add(
+                              store,
+                              userId,
+                              sticker.url,
                             );
                             controller.hideEmojiPicker();
                           },
