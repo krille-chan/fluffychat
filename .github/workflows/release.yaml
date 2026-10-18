@@ -213,9 +213,6 @@ jobs:
         run: sed -i '/Android Auto/,/automotive_app_desc/d' android/app/src/main/AndroidManifest.xml
       - name: Build Android Release
         run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
-      - name: Get Tag Name
-        id: tag_name
-        run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
       - name: Deploy Android Release
         run: |
           mkdir -p build/android
@@ -256,3 +253,60 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  deploy_ios_appstore:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .fvmrc
+          cache: true
+      - name: Use specific XCode version
+        run: sudo xcode-select --switch /Applications/Xcode_26.3.app
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install Fastlane
+        working-directory: ios
+        run: gem install fastlane -NV
+      - name: Deploy with fastlane
+        env:
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_PASSWORD: ${{ secrets.FASTLANE_MATCH_PASSWORD }}
+          APP_STORE_API_KEY: ${{ secrets.APP_STORE_API_KEY }}
+        run: |
+          if [[ $GITHUB_REF_NAME == rc* ]]; then
+            fastlane rc
+          else
+            fastlane release
+          fi
+        working-directory: ios
+
+  deploy_macos_appstore:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .fvmrc
+          cache: true
+      - name: Use specific XCode version
+        run: sudo xcode-select --switch /Applications/Xcode_26.3.app
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install Fastlane
+        working-directory: macos
+        run: gem install fastlane -NV
+      - name: Deploy with fastlane
+        env:
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_PASSWORD: ${{ secrets.FASTLANE_MATCH_PASSWORD }}
+          APP_STORE_API_KEY: ${{ secrets.APP_STORE_API_KEY }}
+        run: fastlane rc # Add `fastlane release` on release tags once the first release is out
+        working-directory: macos

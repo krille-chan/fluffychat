@@ -1,0 +1,14 @@
+git_url("https://github.com/krille-chan/fluffychat-fastlane-match.git")
+git_branch("main")
+
+storage_mode("git")
+
+type("appstore") # The default type, can be: appstore, adhoc, enterprise or development
+
+app_identifier(["im.fluffychat.app", "im.fluffychat.app.FluffyChat-Share", "im.fluffychat.app.Notification-Service-Extension"])
+# username("user@fastlane.tools") # Your Apple Developer Portal username
+
+# For all available options run `fastlane match --help`
+# Remove the # in the beginning of the line to enable the other options
+
+# The docs are available on https://docs.fastlane.tools/actions/match
