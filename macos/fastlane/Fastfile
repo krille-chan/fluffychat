@@ -58,7 +58,10 @@ platform :mac do
       export_options: { manageAppVersionAndBuildNumber: false }
     )
     upload_to_testflight(
-      app_platform: "osx"
+      app_platform: "osx",
+      distribute_external: true,
+      groups: "Beta",
+      changelog: "Please search for regressions and report them on: https://github.com/krille-chan/fluffychat/issues"
     )
   end
 

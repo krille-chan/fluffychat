@@ -308,10 +308,5 @@ jobs:
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
           MATCH_PASSWORD: ${{ secrets.FASTLANE_MATCH_PASSWORD }}
           APP_STORE_API_KEY: ${{ secrets.APP_STORE_API_KEY }}
-        run: |
-          if [[ $GITHUB_REF_NAME == rc* ]]; then
-            fastlane rc
-          else
-            fastlane release
-          fi
+        run: fastlane rc # Add `fastlane release` on release tags once the first release is out
         working-directory: macos
