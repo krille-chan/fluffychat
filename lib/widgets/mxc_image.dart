@@ -85,10 +85,12 @@ class _MxcImageState extends State<MxcImage> {
     if (!mounted) return;
     final client =
         widget.client ?? widget.event?.room.client ?? Matrix.of(context).client;
+    if (!client.isLogged()) return;
+
     final uri = widget.uri;
     final event = widget.event;
 
-    if (uri != null) {
+    if (uri != null && uri.scheme == 'mxc') {
       final devicePixelRatio = MediaQuery.devicePixelRatioOf(context);
       final width = widget.width;
       final realWidth = width == null ? null : width * devicePixelRatio;
