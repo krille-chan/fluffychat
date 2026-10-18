@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEM(){return new B.Mr(A.dw("fr"))},
-Mr:function Mr(d){this.a=d}}
+dEL(){return new B.Mq(A.dw("fr"))},
+Mq:function Mq(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[23],B)
-B.Mr.prototype={
+B.Mq.prototype={
 gpr(){return"\xc9diter l\u2019image"},
 gro(){return"Tourner vers la gauche"},
 grp(){return"Tourner vers la droite"},
@@ -18,7 +18,7 @@ gqA(){return"Gomme"},
 gjr(){return"Rogner"},
 gl2(){return"R\xe9p\xe9tez le mot de passe"},
 gkC(){return"Pas un fichier image."},
-gbx(d){return"Supprimer"},
+gbC(d){return"Supprimer"},
 gjX(){return"Importer maintenant"},
 gjV(){return"Importer des \xc9motic\xf4nes"},
 gjW(){return"Importer depuis un fichier .zip"},
@@ -746,9 +746,9 @@ gqt(){return"Voulez-vous aussi bloquer cet utilisateur\u202f?"},
 gqr(){return"Refuser et bloquer"},
 pR(d,e){return d+" vous a invit\xe9 dans la discussion '"+e+"'."},
 pS(d,e){return d+" vous a invit\xe9 dans l'espace '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mr,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mr":{"aU":[]}}'))};
-(a=>{a["+YSvNR+78qsjzj35+MSqoQmE8tg="]=a.current})($__dart_deferred_initializers__);
+y(B.Mq,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mq":{"aU":[]}}'))};
+(a=>{a["7rKIDql1pskL5zbxIP3iZ8h94fI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map

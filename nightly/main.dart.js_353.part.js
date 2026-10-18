@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEY(){return new B.MD(A.dw("ka"))},
-MD:function MD(d){this.a=d}}
+dEX(){return new B.MC(A.dw("ka"))},
+MC:function MC(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[35],B)
-B.MD.prototype={
+B.MC.prototype={
 gpr(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqA(){return"Eraser"},
 gjr(){return"Crop"},
 gl2(){return"\u10d2\u10d0\u10d8\u10db\u10d4\u10dd\u10e0\u10d4\u10d7 \u10de\u10d0\u10e0\u10dd\u10da\u10d8"},
 gkC(){return"\u10e4\u10d0\u10d8\u10da\u10d8 \u10d0\u10e0\u10d0\u10d0 \u10e1\u10e3\u10e0\u10d0\u10d7\u10d8."},
-gbx(d){return"\u10ec\u10d0\u10e8\u10da\u10d0"},
+gbC(d){return"\u10ec\u10d0\u10e8\u10da\u10d0"},
 gjX(){return"\u10d3\u10d0\u10d8\u10db\u10de\u10dd\u10e0\u10e2\u10d4\u10d1\u10d0"},
 gjV(){return"\u10d4\u10db\u10dd\u10ef\u10d8\u10e1 \u10d3\u10d0\u10d8\u10db\u10de\u10dd\u10e0\u10e2\u10d4\u10d1\u10d0"},
 gjW(){return"\u10d8\u10db\u10de\u10dd\u10e0\u10e2\u10d8 .zip \u10e4\u10d0\u10d8\u10da\u10d8\u10d3\u10d0\u10dc"},
@@ -745,9 +745,9 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MD,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MD":{"aU":[]}}'))};
-(a=>{a["kvI6qb7MvpSGwNWsCT1lzS2hcR8="]=a.current})($__dart_deferred_initializers__);
+y(B.MC,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MC":{"aU":[]}}'))};
+(a=>{a["kmpjiEqah7HrPOJkuQEg3MNjmzw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_353.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEI(){return new B.Mn(A.dw("eu"))},
-Mn:function Mn(d){this.a=d}}
+dEH(){return new B.Mm(A.dw("eu"))},
+Mm:function Mm(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[19],B)
-B.Mn.prototype={
+B.Mm.prototype={
 gpr(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqA(){return"Eraser"},
 gjr(){return"Crop"},
 gl2(){return"Idatzi berriro pasahitza"},
 gkC(){return"Ez da irudi-fitxategia."},
-gbx(d){return"Kendu"},
+gbC(d){return"Kendu"},
 gjX(){return"Inportatu orain"},
 gjV(){return"Inportatu emojiak"},
 gjW(){return"Inportatu .zip fitxategi batetik"},
@@ -745,10 +745,10 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mn,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mn":{"aU":[]}}'))
+x(B.Mm,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mm":{"aU":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["3gfVNsLiTp8ULb91DMWMtk8hWwM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PneElK6BDeFBlwOTCcAecn13Kaw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

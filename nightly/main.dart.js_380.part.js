@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dFj(){return new B.MY(A.dw("tr"))},
-MY:function MY(d){this.a=d}}
+dFi(){return new B.MX(A.dw("tr"))},
+MX:function MX(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[54],B)
-B.MY.prototype={
+B.MX.prototype={
 gpr(){return"G\xf6rseli d\xfczenle"},
 gro(){return"Sola d\xf6nd\xfcr"},
 grp(){return"Sa\u011fa d\xf6nd\xfcr"},
@@ -18,7 +18,7 @@ gqA(){return"Silgi"},
 gjr(){return"K\u0131rpmak"},
 gl2(){return"Parolay\u0131 tekrarlay\u0131n"},
 gkC(){return"Bir resim dosyas\u0131 de\u011fil."},
-gbx(d){return"Kald\u0131r"},
+gbC(d){return"Kald\u0131r"},
 gjX(){return"\u015eimdi i\xe7e aktar"},
 gjV(){return"\u0130fadeleri \u0130\xe7e Aktar"},
 gjW(){return".zip dosyas\u0131ndan i\xe7e aktar"},
@@ -745,10 +745,10 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MY,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MY":{"aU":[]}}'))
+x(B.MX,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MX":{"aU":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["omHEq6jKXLS5v9k0dsKUfoLYtJ8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["AvceZ8Wr2hd2A1dCxC6c69dFqno="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_380.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEz(){return new B.Me(A.dw("ca"))},
-Me:function Me(d){this.a=d}}
+dEy(){return new B.Md(A.dw("ca"))},
+Md:function Md(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[10],B)
-B.Me.prototype={
+B.Md.prototype={
 gpr(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqA(){return"Eraser"},
 gjr(){return"Crop"},
 gl2(){return"Repetiu la contrasenya"},
 gkC(){return"No \xe9s un arxiu d'image."},
-gbx(d){return"Elimina"},
+gbC(d){return"Elimina"},
 gjX(){return"Importa-ho ara"},
 gjV(){return"Importa emojis"},
 gjW(){return"Importa des d'un arxiu zip"},
@@ -745,9 +745,9 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Me,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Me":{"aU":[]}}'))};
-(a=>{a["bc+EPZ2C9gcCch0X3rdc6eiH+l4="]=a.current})($__dart_deferred_initializers__);
+y(B.Md,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Md":{"aU":[]}}'))};
+(a=>{a["s5pnSSfCYMzEwhmcoq3zYu1U8qE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_274.part.js.map

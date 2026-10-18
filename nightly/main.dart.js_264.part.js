@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEw(){return new B.Mb(A.dw("be"))},
-Mb:function Mb(d){this.a=d}}
+dEv(){return new B.Ma(A.dw("be"))},
+Ma:function Ma(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[7],B)
-B.Mb.prototype={
+B.Ma.prototype={
 gpr(){return"\u0417\u043c\u044f\u043d\u0456\u0446\u044c \u0432\u044b\u044f\u0432\u0443"},
 gro(){return"\u041f\u0430\u0432\u044f\u0440\u043d\u0443\u0446\u044c \u0443\u043b\u0435\u0432\u0430"},
 grp(){return"\u041f\u0430\u0432\u044f\u0440\u043d\u0443\u0446\u044c \u0443\u043f\u0440\u0430\u0432\u0430"},
@@ -18,7 +18,7 @@ gqA(){return"\u0421\u0446\u0456\u0440\u043a\u0430"},
 gjr(){return"\u0410\u0431\u0440\u044d\u0437\u0430\u0446\u044c"},
 gl2(){return"\u041f\u0430\u045e\u0442\u0430\u0440\u044b\u0446\u0435 \u043f\u0430\u0440\u043e\u043b\u044c"},
 gkC(){return"\u041d\u0435 \u0444\u0430\u0439\u043b \u0432\u044b\u044f\u0432\u044b."},
-gbx(d){return"\u041f\u0440\u044b\u0431\u0440\u0430\u0446\u044c"},
+gbC(d){return"\u041f\u0440\u044b\u0431\u0440\u0430\u0446\u044c"},
 gjX(){return"\u0406\u043c\u043f\u0430\u0440\u0442\u0430\u0432\u0430\u0446\u044c \u0437\u0430\u0440\u0430\u0437"},
 gjV(){return"\u0406\u043c\u043f\u0430\u0440\u0442\u0430\u0432\u0430\u0446\u044c \u044d\u043c\u043e\u0434\u0437\u0456"},
 gjW(){return"\u0406\u043c\u043f\u0430\u0440\u0442\u0430\u0432\u0430\u0446\u044c \u0437 \u0444\u0430\u0439\u043b\u0430 .zip"},
@@ -746,9 +746,9 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mb,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mb":{"aU":[]}}'))};
-(a=>{a["/aSCeLCc27SyzsTTcs/hnWfoLTI="]=a.current})($__dart_deferred_initializers__);
+y(B.Ma,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Ma":{"aU":[]}}'))};
+(a=>{a["Srl1/yMfK+cqonzEUXQFD4vdTqI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_264.part.js.map

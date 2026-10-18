@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEH(){return new B.Mm(A.dw("et"))},
-Mm:function Mm(d){this.a=d}}
+dEG(){return new B.Ml(A.dw("et"))},
+Ml:function Ml(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[18],B)
-B.Mm.prototype={
+B.Ml.prototype={
 gpr(){return"Muuda pilti"},
 gro(){return"P\xf6\xf6ra vasakule"},
 grp(){return"P\xf6\xf6ra paremale"},
@@ -18,7 +18,7 @@ gqA(){return"Kustutuskumm"},
 gjr(){return"Kadreeri"},
 gl2(){return"Korda salas\xf5na"},
 gkC(){return"See pole pildifail."},
-gbx(d){return"Eemalda"},
+gbC(d){return"Eemalda"},
 gjX(){return"Impordi kohe"},
 gjV(){return"Impordi emojid"},
 gjW(){return"Impordi zip-failist"},
@@ -746,9 +746,9 @@ gqt(){return"Kas sa lisaks tahaksid selle kasutaja ka blokeerida?"},
 gqr(){return"Keeldu ja blokeeri"},
 pR(d,e){return d+" on saatnud sulle kutse osalemaks vestluses '"+e+"'."},
 pS(d,e){return d+" on saatnud sulle kutse osalemaks kogukonnas '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mm,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mm":{"aU":[]}}'))};
-(a=>{a["pa6IdY2Wc9632AHpetdUWeUfFMU="]=a.current})($__dart_deferred_initializers__);
+y(B.Ml,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Ml":{"aU":[]}}'))};
+(a=>{a["v4Fhnr62SE02qEJPbfGVY7EWydo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

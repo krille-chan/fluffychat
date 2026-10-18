@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dFe(){return new B.MT(A.dw("sr"))},
-MT:function MT(d){this.a=d}}
+dFd(){return new B.MS(A.dw("sr"))},
+MS:function MS(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[49],B)
-B.MT.prototype={
+B.MS.prototype={
 gpr(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqA(){return"Eraser"},
 gjr(){return"Crop"},
 gl2(){return"Ponovite lozinku"},
 gkC(){return"Not an image file."},
-gbx(d){return"\u0423\u043a\u043b\u043e\u043d\u0438"},
+gbC(d){return"\u0423\u043a\u043b\u043e\u043d\u0438"},
 gjX(){return"Import now"},
 gjV(){return"Import Emojis"},
 gjW(){return"Import from .zip file"},
@@ -745,9 +745,9 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MT,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MT":{"aU":[]}}'))};
-(a=>{a["hUmk/cUCpVT7xaffxqzrJoYQvJ4="]=a.current})($__dart_deferred_initializers__);
+y(B.MS,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MS":{"aU":[]}}'))};
+(a=>{a["qcdfT1OAWxJ41OMLENnUAbLOibQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_374.part.js.map

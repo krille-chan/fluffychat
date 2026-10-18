@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEN(){return new B.Ms(A.dw("ga"))},
-Ms:function Ms(d){this.a=d}}
+dEM(){return new B.Mr(A.dw("ga"))},
+Mr:function Mr(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[24],B)
-B.Ms.prototype={
+B.Mr.prototype={
 gpr(){return"Cuir \xedomh\xe1 in eagar"},
 gro(){return"Rothlaigh ar chl\xe9"},
 grp(){return"Rothlaigh ar dheis"},
@@ -18,7 +18,7 @@ gqA(){return"Scrios\xe1n"},
 gjr(){return"Barr"},
 gl2(){return"Scr\xedobh an pasfhocal ar\xeds"},
 gkC(){return"N\xed comhad \xedomh\xe1 \xe9."},
-gbx(d){return"Bain"},
+gbC(d){return"Bain"},
 gjX(){return"Iomp\xf3rt\xe1il anois"},
 gjV(){return"Iomp\xf3rt\xe1il Emoji"},
 gjW(){return"Iomp\xf3rt\xe1il \xf3 chomhad .zip"},
@@ -745,10 +745,10 @@ gqt(){return"Ar mhaith leat an t-\xfas\xe1ideoir seo a bhac freisin?"},
 gqr(){return"Di\xfaltaigh agus bac"},
 pR(d,e){return"Thug "+d+" cuireadh duit chuig an gcomhr\xe1 '"+e+"'."},
 pS(d,e){return"Thug "+d+" cuireadh duit chuig an sp\xe1s '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Ms,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Ms":{"aU":[]}}'))
+x(B.Mr,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mr":{"aU":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["fyg1B1SggyAgtGUOwk3tdXWO0Nc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["xpiuNDuilyAXKf6F16Y10m3+3h0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_326.part.js.map

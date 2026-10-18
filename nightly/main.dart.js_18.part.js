@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-dF6(d){return new A.FH(B.dw(d))},
-dF7(){return new A.MM(B.dw("pt_BR"))},
-dF8(){return new A.MN(B.dw("pt_PT"))},
+dF5(d){return new A.FH(B.dw(d))},
+dF6(){return new A.ML(B.dw("pt_BR"))},
+dF7(){return new A.MM(B.dw("pt_PT"))},
 FH:function FH(d){this.a=d},
-MM:function MM(d){this.a=d},
-MN:function MN(d){this.a=d}},C
+ML:function ML(d){this.a=d},
+MM:function MM(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[59]
@@ -22,7 +22,7 @@ gqA(){return"Eraser"},
 gjr(){return"Crop"},
 gl2(){return"Repita a senha"},
 gkC(){return"N\xe3o \xe9 um arquivo de imagem."},
-gbx(d){return"Remove"},
+gbC(d){return"Remove"},
 gjX(){return"Import now"},
 gjV(){return"Import Emojis"},
 gjW(){return"Import from .zip file"},
@@ -750,11 +750,11 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
-A.MM.prototype={
+C(d,e){return this.gbC(this).$1(e)}}
+A.ML.prototype={
 gl2(){return"Repita a senha"},
 gkC(){return"N\xe3o \xe9 um arquivo de imagem."},
-gbx(d){return"Remover"},
+gbC(d){return"Remover"},
 gjX(){return"Importar agora"},
 gjV(){return"Importar emojis"},
 gjW(){return"Importar de arquivo .zip"},
@@ -1356,11 +1356,11 @@ gpc(d){return"Cr\xe9ditos"},
 goW(){return"Pular backup de conversas"},
 goX(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 pJ(d){return"Vers\xe3o: "+d},
-C(d,e){return this.gbx(this).$1(e)}}
-A.MN.prototype={
+C(d,e){return this.gbC(this).$1(e)}}
+A.MM.prototype={
 gl2(){return"Repete a palavra-passe"},
 gkC(){return"N\xe3o \xe9 um ficheiro de imagem."},
-gbx(d){return"Remover"},
+gbC(d){return"Remover"},
 gjX(){return"Importar agora"},
 gjV(){return"Importar Emojis"},
 gjW(){return"Importar a partir de um ficheiro .zip"},
@@ -1697,11 +1697,11 @@ ghi(){return"Input inv\xe1lido!"},
 lw(d){return"Pin introduzido incorreto! Tente novamente daqui a "+d+" segundos..."},
 gkN(){return"Por favor introduza um n\xfamero maior que 0"},
 gfa(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3o ver deixou o chat."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.FH,C.aU)
-w(A.FH,[A.MM,A.MN])})()
-B.ee(b.typeUniverse,JSON.parse('{"FH":{"aU":[]},"MM":{"aU":[]},"MN":{"aU":[]}}'))
+w(A.FH,[A.ML,A.MM])})()
+B.ee(b.typeUniverse,JSON.parse('{"FH":{"aU":[]},"ML":{"aU":[]},"MM":{"aU":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["eIBJuYKr72CMBRif1rZujqJdYFw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["53daZdJjPwEyai5FS/B832QAMeU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEA(){return new B.Mf(A.dw("cs"))},
-Mf:function Mf(d){this.a=d}}
+dEz(){return new B.Me(A.dw("cs"))},
+Me:function Me(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[11],B)
-B.Mf.prototype={
+B.Me.prototype={
 gpr(){return"Upravit obraz"},
 gro(){return"Oto\u010dit doleva"},
 grp(){return"Oto\u010dit doprava"},
@@ -18,7 +18,7 @@ gqA(){return"Eraser"},
 gjr(){return"Crop"},
 gl2(){return"Zopakujte heslo"},
 gkC(){return"Nen\xed obr\xe1zek."},
-gbx(d){return"Odstranit"},
+gbC(d){return"Odstranit"},
 gjX(){return"Importovat nyn\xed"},
 gjV(){return"Importovat emod\u017ei"},
 gjW(){return"Importovat ze .zip souboru"},
@@ -745,9 +745,9 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mf,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mf":{"aU":[]}}'))};
-(a=>{a["6wTSxiCaspWmZU8mEsIGGqAFsEc="]=a.current})($__dart_deferred_initializers__);
+y(B.Me,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Me":{"aU":[]}}'))};
+(a=>{a["iXXQk9xKqzr9K1U3CPf7CTsTcdk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_284.part.js.map

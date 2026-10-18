@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dFg(){return new B.MV(A.dw("ta"))},
-MV:function MV(d){this.a=d}}
+dFf(){return new B.MU(A.dw("ta"))},
+MU:function MU(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[51],B)
-B.MV.prototype={
+B.MU.prototype={
 gpr(){return"\u0baa\u0b9f\u0ba4\u0bcd\u0ba4\u0bc8 \u0ba4\u0bbf\u0bb0\u0bc1\u0ba4\u0bcd\u0ba4\u0bc1"},
 gro(){return"\u0b87\u0b9f\u0baa\u0bcd\u0baa\u0bc1\u0bb1\u0bae\u0bcd \u0b9a\u0bc1\u0bb4\u0bb1\u0bcd\u0bb1\u0bc1"},
 grp(){return"\u0bb5\u0bb2\u0ba4\u0bc1\u0baa\u0bc1\u0bb1\u0bae\u0bcd \u0b9a\u0bc1\u0bb4\u0bb1\u0bcd\u0bb1\u0bc1"},
@@ -18,7 +18,7 @@ gqA(){return"\u0b85\u0bb4\u0bbf\u0baa\u0bcd\u0baa\u0bbe\u0ba9\u0bcd"},
 gjr(){return"\u0baa\u0baf\u0bbf\u0bb0\u0bcd"},
 gl2(){return"\u0b95\u0b9f\u0bb5\u0bc1\u0b9a\u0bcd\u0b9a\u0bca\u0bb2\u0bcd\u0bb2\u0bc8 \u0bae\u0bc0\u0ba3\u0bcd\u0b9f\u0bc1\u0bae\u0bcd \u0b87\u0b9f\u0bc1"},
 gkC(){return"\u0baa\u0b9f\u0b95\u0bcd \u0b95\u0bcb\u0baa\u0bcd\u0baa\u0bc1 \u0b85\u0bb2\u0bcd\u0bb2."},
-gbx(d){return"\u0b85\u0b95\u0bb1\u0bcd\u0bb1\u0bc1"},
+gbC(d){return"\u0b85\u0b95\u0bb1\u0bcd\u0bb1\u0bc1"},
 gjX(){return"\u0b87\u0baa\u0bcd\u0baa\u0bcb\u0ba4\u0bc1 \u0b87\u0bb1\u0b95\u0bcd\u0b95\u0bc1\u0bae\u0ba4\u0bbf"},
 gjV(){return"\u0b88\u0bae\u0bcb\u0b9a\u0bbf\u0b95\u0bb3\u0bc8 \u0b87\u0bb1\u0b95\u0bcd\u0b95\u0bc1\u0bae\u0ba4\u0bbf"},
 gjW(){return".\u0b9a\u0bbf\u0baa\u0bcd \u0b95\u0bcb\u0baa\u0bcd\u0baa\u0bbf\u0bb2\u0bbf\u0bb0\u0bc1\u0ba8\u0bcd\u0ba4\u0bc1 \u0b87\u0bb1\u0b95\u0bcd\u0b95\u0bc1\u0bae\u0ba4\u0bbf"},
@@ -746,10 +746,10 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MV,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MV":{"aU":[]}}'))
+x(B.MU,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MU":{"aU":[]}}'))
 var y={d:" \u0b87\u0bb2\u0bcd \u0b9f\u0bc6\u0bb5\u0bb2\u0baa\u0bcd\u0baa\u0bb0\u0bcd\u0b95\u0bb3\u0bbf\u0b9f\u0bae\u0bcd \u0b87\u0ba8\u0bcd\u0ba4\u0baa\u0bcd \u0baa\u0bbf\u0bb4\u0bc8\u0baf\u0bc8\u0baa\u0bcd \u0baa\u0bc1\u0b95\u0bbe\u0bb0\u0bb3\u0bbf\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd. \u0baa\u0bbf\u0bb4\u0bc8 \u0b9a\u0bc6\u0baf\u0bcd\u0ba4\u0bbf: "}};
-(a=>{a["l008jGs2ZzQAkk5iO7XoOsp9BjA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["xTENZGMI9+CNsWWje5YeZZ7GJPo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_377.part.js.map

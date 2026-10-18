@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEO(){return new B.Mt(A.dw("gl"))},
-Mt:function Mt(d){this.a=d}}
+dEN(){return new B.Ms(A.dw("gl"))},
+Ms:function Ms(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[25],B)
-B.Mt.prototype={
+B.Ms.prototype={
 gpr(){return"Editar imaxe"},
 gro(){return"Rotar \xe1 esquerda"},
 grp(){return"Rotar \xe1 dereita"},
@@ -18,7 +18,7 @@ gqA(){return"Borrar"},
 gjr(){return"Recortar"},
 gl2(){return"Repite o contrasinal"},
 gkC(){return"Non \xe9 un ficheiro de imaxe."},
-gbx(d){return"Quitar"},
+gbC(d){return"Quitar"},
 gjX(){return"Importar agora"},
 gjV(){return"Importar Emojis"},
 gjW(){return"Importar desde ficheiro .zip"},
@@ -745,9 +745,9 @@ gqt(){return"Queres tam\xe9n bloquear a esta conta?"},
 gqr(){return"Rexeitar e bloquear"},
 pR(d,e){return d+" convidoute \xe1 conversa '"+e+"'."},
 pS(d,e){return d+" convidoute ao espazo '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mt,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mt":{"aU":[]}}'))};
-(a=>{a["7YuDGMpggWDpPmm1P/WOtddyZmw="]=a.current})($__dart_deferred_initializers__);
+y(B.Ms,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Ms":{"aU":[]}}'))};
+(a=>{a["E+LX4nUDIzcZD9LuFt0T69AiiQc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_327.part.js.map

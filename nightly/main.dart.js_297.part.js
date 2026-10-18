@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEC(){return new B.Mh(A.dw("de"))},
-Mh:function Mh(d){this.a=d}}
+dEB(){return new B.Mg(A.dw("de"))},
+Mg:function Mg(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[13],B)
-B.Mh.prototype={
+B.Mg.prototype={
 gpr(){return"Bild bearbeiten"},
 gro(){return"Nach links drehen"},
 grp(){return"Nach rechts drehen"},
@@ -18,7 +18,7 @@ gqA(){return"Radierer"},
 gjr(){return"Zuschneiden"},
 gl2(){return"Passwort wiederholen"},
 gkC(){return"Keine Bilddatei."},
-gbx(d){return"Entfernen"},
+gbC(d){return"Entfernen"},
 gjX(){return"Jetzt importieren"},
 gjV(){return"Emojis importieren"},
 gjW(){return"Aus zip-Datei importieren"},
@@ -746,10 +746,10 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mh,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mh":{"aU":[]}}'))
+x(B.Mg,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mg":{"aU":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["XudxQs8eQRveZzwFOmkN9/DchXw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jujN//66ez4M5HM5+Ob0whmUQWA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_297.part.js.map

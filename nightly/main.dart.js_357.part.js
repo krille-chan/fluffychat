@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF1(){return new B.MH(A.dw("lt"))},
-MH:function MH(d){this.a=d}}
+dF0(){return new B.MG(A.dw("lt"))},
+MG:function MG(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[39],B)
-B.MH.prototype={
+B.MG.prototype={
 gpr(){return"Redaguoti vaizd\u0105"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqA(){return"Eraser"},
 gjr(){return"Crop"},
 gl2(){return"Pakartokite slapta\u017eod\u012f"},
 gkC(){return"N\u0117ra vaizdo failas."},
-gbx(d){return"\u0160alinti"},
+gbC(d){return"\u0160alinti"},
 gjX(){return"Importuoti dabar"},
 gjV(){return"Importuoti jaustukus"},
 gjW(){return"Importuoti i\u0161 .zip failo"},
@@ -745,9 +745,9 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MH,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MH":{"aU":[]}}'))};
-(a=>{a["3yzcgIjhgWMFa2A94rfFKnhZ7j4="]=a.current})($__dart_deferred_initializers__);
+y(B.MG,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MG":{"aU":[]}}'))};
+(a=>{a["p2NPiLGlitDz8WQJi3ETtIDeKoI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_357.part.js.map

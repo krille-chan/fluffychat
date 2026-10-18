@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF3(){return new B.MJ(A.dw("nb"))},
-MJ:function MJ(d){this.a=d}}
+dF2(){return new B.MI(A.dw("nb"))},
+MI:function MI(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[41],B)
-B.MJ.prototype={
+B.MI.prototype={
 gpr(){return"Rediger bilde"},
 gro(){return"Roter til venstre"},
 grp(){return"Roter til h\xf8yre"},
@@ -18,7 +18,7 @@ gqA(){return"Viskel\xe6r"},
 gjr(){return"Beskj\xe6r"},
 gl2(){return"Gjenta passord"},
 gkC(){return"Ikke en bildefil."},
-gbx(d){return"Fjern"},
+gbC(d){return"Fjern"},
 gjX(){return"Importer n\xe5"},
 gjV(){return"Importer emojier"},
 gjW(){return"Importer fra .zip-fil"},
@@ -746,9 +746,9 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MJ,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MJ":{"aU":[]}}'))};
-(a=>{a["GhMhXKG1YUqfuXE3hw1l7pUr+rY="]=a.current})($__dart_deferred_initializers__);
+y(B.MI,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MI":{"aU":[]}}'))};
+(a=>{a["mBriwc86t/RSYQBOPKBVsn9wzek="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map

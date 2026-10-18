@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEK(){return new B.Mp(A.dw("fi"))},
-Mp:function Mp(d){this.a=d}}
+dEJ(){return new B.Mo(A.dw("fi"))},
+Mo:function Mo(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[21],B)
-B.Mp.prototype={
+B.Mo.prototype={
 gpr(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqA(){return"Eraser"},
 gjr(){return"Crop"},
 gl2(){return"Salasana uudelleen"},
 gkC(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
-gbx(d){return"Poista"},
+gbC(d){return"Poista"},
 gjX(){return"Tuo nyt"},
 gjV(){return"Tuo emojit"},
 gjW(){return"Tuo .zip -tiedostosta"},
@@ -745,9 +745,9 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mp,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mp":{"aU":[]}}'))};
-(a=>{a["QaPG/48a625gW+PtXGya/SbJzm0="]=a.current})($__dart_deferred_initializers__);
+y(B.Mo,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mo":{"aU":[]}}'))};
+(a=>{a["GWL1GlcbO3KGrP8hlvfWltD/Rug="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dER(){return new B.Mw(A.dw("hr"))},
-Mw:function Mw(d){this.a=d}}
+dEQ(){return new B.Mv(A.dw("hr"))},
+Mv:function Mv(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[28],B)
-B.Mw.prototype={
+B.Mv.prototype={
 gpr(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -18,7 +18,7 @@ gqA(){return"Eraser"},
 gjr(){return"Crop"},
 gl2(){return"Ponovi lozinku"},
 gkC(){return"Nije slikovna datoteka."},
-gbx(d){return"Ukloni"},
+gbC(d){return"Ukloni"},
 gjX(){return"Uvezi sada"},
 gjV(){return"Uvezi emoji slike"},
 gjW(){return"Uvezi iz .zip datoteke"},
@@ -746,9 +746,9 @@ gqt(){return"Do you also want to block this user?"},
 gqr(){return"Decline and block"},
 pR(d,e){return d+" has invited you to the chat '"+e+"'."},
 pS(d,e){return d+" has invited you to the space '"+e+"'."},
-C(d,e){return this.gbx(this).$1(e)}}
+C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mw,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mw":{"aU":[]}}'))};
-(a=>{a["q7K5tW3XCOgb0izqgtMK4r9z+lM="]=a.current})($__dart_deferred_initializers__);
+y(B.Mv,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mv":{"aU":[]}}'))};
+(a=>{a["vmUYWHtKDTl6oG25UT90jg6ywkU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_332.part.js.map
