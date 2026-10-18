@@ -2663,5 +2663,102 @@
     "unlockWithBiometrics": "افتح القفل باستخدام المصادقة البيومترية",
     "resetPin": "دبوس إعادة الضبط",
     "notificationRuleJitsi": "جيتسي",
-    "notificationRuleTombstone": "علامة القبر"
+    "notificationRuleTombstone": "علامة القبر",
+    "editImage": "تعديل الصورة",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "تدوير إلى اليسار",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "تدوير إلى اليمين",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "عكس‫",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "حفظ",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "رسم",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "تراجع",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "مسح",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "ممسحة",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "قص",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "accountsAndSettings": "الحسابات والإعدادات",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "download": "تحميل",
+    "sendingFilesDoNotExit": "جاري إرسال {count} من الملفات... يُرجى عدم الخروج!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "جاري ضغط الفيديو...",
+    "updateAvailable": "التحديث {version} متاح",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "loadingMessages": "جاري تحميل الرسائل...",
+    "buildDoesNotSupportFirebase": "هذا الإصدار لا يدعم خدمة firebase cloud messaging.",
+    "unableToRegisterDeviceForFirebase": "يتعذر تسجيل الجهاز في خدمة firebase cloud messaging.",
+    "missedCall": "مكالمة فائتة",
+    "hangUp": "إنهاء المكالمة",
+    "waitingForParticipant": "في انتظار المشارك...",
+    "decline": "رفض",
+    "startCall": "بدء المكالمة",
+    "selectCamera": "إختيار الكاميرا",
+    "selectMicrophone": "إختيار الميكروفون",
+    "incomingCall": "مكالمة واردة",
+    "shareCrashReports": "مشاركة تقارير الأعطال",
+    "shareCrashReportsDescription": "مشاركة تقارير الأعطال تلقائيًا مع المطورين؟",
+    "countActiveCallMembers": "‏{count} أعضاء نشطون في المكالمة",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "toggleMicrophone": "تشغيل/إيقاف الميكروفون"
 }
