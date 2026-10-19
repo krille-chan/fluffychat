@@ -55,7 +55,7 @@ dependencies:
   just_audio: ^0.10.6
   just_audio_media_kit: ^2.1.0
   latlong2: ^0.10.1
-  light_compressor_v2: ^1.9.1
+  light_compressor_v2: ^1.10.0
   livekit_client: ^2.13.1
   local_auth: ^3.0.2
   lottie: ^3.6.1
