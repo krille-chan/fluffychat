@@ -66,7 +66,7 @@ dependencies:
   media_kit_libs_windows_audio: ^1.0.9
   mime: ^2.1.0
   native_imaging: ^1.0.0
-  ogg_caf_converter: ^0.1.4
+  ogg_caf_converter: ^0.4.1
   package_info_plus: ^10.2.2
   particles_network: ^1.9.6
   pasteboard: ^0.5.0

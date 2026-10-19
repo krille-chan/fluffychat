@@ -1416,10 +1416,10 @@ packages:
     dependency: "direct main"
     description:
       name: ogg_caf_converter
-      sha256: "3faa20f7ae854d6eda233773756de3eddb6c8d4fdc6d0165da992ded95240818"
+      sha256: "142b83791747fce8b4d6274400f397509eff20dab05702c6f920b62afdb5403c"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.4"
+    version: "0.4.1"
   package_config:
     dependency: transitive
     description:
