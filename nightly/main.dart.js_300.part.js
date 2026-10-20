@@ -742,14 +742,14 @@ gq8(){return"Hand senken"},
 ru(d){return"Ungl\xfccklicherweise ist ein unerwarteter Fehler aufgetreten: "+d},
 qI(d){return"Eingehender Anruf von "+d},
 pU(d){return"Der Server hat mit einer Fehlermeldung geantwortet: "+d},
-gqt(){return"Do you also want to block this user?"},
-gqr(){return"Decline and block"},
-pR(d,e){return d+" has invited you to the chat '"+e+"'."},
-pS(d,e){return d+" has invited you to the space '"+e+"'."},
+gqt(){return"M\xf6chten Sie das Konto zus\xe4tzlich sperren?"},
+gqr(){return"Ablehnen und blockieren"},
+pR(d,e){return d+" hat dich zum Chat '"+e+"' eingeladen."},
+pS(d,e){return d+" hat Dich zum Bereich '"+e+"' eingeladen."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Mg,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Mg":{"aU":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["zOaLQ9dViLnxG12WAtHYQs3c604="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["QDrKClyL9xPNUd3cp9R7XeVJoKE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_300.part.js.map
