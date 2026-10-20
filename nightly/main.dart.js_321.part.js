@@ -129,7 +129,7 @@ gh2(){return"Kopioi"},
 gjl(){return"Kopioi leikep\xf6yd\xe4lle"},
 jm(d){return"Viestin salausta ei voitu purkaa: "+d},
 gmu(){return"Tarkistuslista"},
-ey(d){return""+d+" osallistujaa"},
+ez(d){return""+d+" osallistujaa"},
 jo(d){return""+d+" kutsuttu"},
 gjp(d){return"Luo"},
 jq(d){return d+" loi keskustelun"},
@@ -355,7 +355,7 @@ goK(){return"Kuka voi suorittaa mink\xe4 toimenpiteen"},
 goL(){return"Kenen on sallittua liitty\xe4 ryhm\xe4\xe4n"},
 gfp(){return"Miksi haluat ilmoittaa t\xe4m\xe4n?"},
 goM(){return"N\xe4ill\xe4 osoitteilla voit palauttaa salasanasi."},
-gev(){return"Kyll\xe4"},
+gew(){return"Kyll\xe4"},
 goP(){return"Sin\xe4"},
 geO(){return"Et en\xe4\xe4 osallistu t\xe4h\xe4n keskusteluun"},
 goS(){return"Julkinen avaimesi"},
@@ -405,7 +405,7 @@ gkT(){return"Luettu t\xe4h\xe4n asti"},
 gk9(){return"Hypp\xe4\xe4"},
 gkJ(){return"Avaa linkki selaimessa"},
 gl5(){return"\ud83d\ude2d Voi ei. Jokin meni pieleen. Halutessasi voit ilmoittaa ongelman kehitt\xe4jille."},
-geC(){return"ilmoita"},
+geD(){return"ilmoita"},
 gi1(){return"Aseta v\xe4riteema:"},
 ghj(){return"Kutsu"},
 gk_(){return"\ud83d\udce8 Kutsu ryhm\xe4keskusteluun"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mo,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Mo":{"aU":[]}}'))};
-(a=>{a["GWL1GlcbO3KGrP8hlvfWltD/Rug="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3ixuCtMduBO2vdhDcZVswWnEfTs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map

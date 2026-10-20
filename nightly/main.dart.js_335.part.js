@@ -129,7 +129,7 @@ gh2(){return"Kopiraj"},
 gjl(){return"Kopiraj u me\u0111uspremnik"},
 jm(d){return"Neuspjelo de\u0161ifriranje poruke: "+d},
 gmu(){return"Kontrolni popis"},
-ey(d){var y=""+d+" sudionika"
+ez(d){var y=""+d+" sudionika"
 return A.aH(d,y,this.a,null,"1 sudionik",y,null,null)},
 jo(d){return"Broj pozvanih: "+d},
 gjp(d){return"Stvori"},
@@ -356,7 +356,7 @@ goK(){return"Tko mo\u017ee izvr\u0161iti koju radnju"},
 goL(){return"Tko se smije pridru\u017eiti grupi"},
 gfp(){return"Za\u0161to \u017eeli\u0161 ovo prijaviti?"},
 goM(){return"Lozinku mo\u017ee\u0161 obnoviti pomo\u0107u ovih adresa."},
-gev(){return"Da"},
+gew(){return"Da"},
 goP(){return"Ti"},
 geO(){return"Vi\u0161e ne sudjeluje\u0161 u ovom chatu"},
 goS(){return"Tvoj javni klju\u010d"},
@@ -406,7 +406,7 @@ gkT(){return"Pro\u010ditaj do ovdje"},
 gk9(){return"Sko\u010di"},
 gkJ(){return"Otvori poveznicu u pregledniku"},
 gl5(){return"\ud83d\ude2d Joj! Dogodila se gre\u0161ka. Poku\u0161aj ponovo kasnije. Ako \u017eeli\u0161, gre\u0161ku mo\u017ee\u0161 prijaviti programerima."},
-geC(){return"prijavi"},
+geD(){return"prijavi"},
 gi1(){return"Postavi boju teme:"},
 ghj(){return"Pozovi"},
 gk_(){return"\ud83d\udce8 Pozivnica u grupni chat"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mv,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Mv":{"aU":[]}}'))};
-(a=>{a["vmUYWHtKDTl6oG25UT90jg6ywkU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["OeAt0b+Bn6GTs8HzMWbK3IjSIuo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_335.part.js.map

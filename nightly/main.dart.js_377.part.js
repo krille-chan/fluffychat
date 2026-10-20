@@ -129,7 +129,7 @@ gh2(){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458"},
 gjl(){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458 \u0443 \u043a\u043b\u0438\u043f\u0431\u043e\u0440\u0434"},
 jm(d){return"\u041d\u0435 \u043c\u043e\u0433\u0443 \u0434\u0430 \u0434\u0435\u0448\u0438\u0444\u0440\u0443\u0458\u0435\u043c \u043f\u043e\u0440\u0443\u043a\u0443: "+d},
 gmu(){return"Check list"},
-ey(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
+ez(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
 jo(d){return""+d+" invited"},
 gjp(d){return"\u041d\u0430\u043f\u0440\u0430\u0432\u0438"},
 jq(d){return d+" \u043d\u0430\u043f\u0440\u0430\u0432\u0438 \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
@@ -355,7 +355,7 @@ goK(){return"\u043a\u043e \u043c\u043e\u0436\u0435 \u0448\u0442\u0430 \u0434\u04
 goL(){return"\u041a\u043e \u043c\u043e\u0436\u0435 \u0434\u0430 \u0441\u0435 \u043f\u0440\u0438\u0434\u0440\u0443\u0436\u0438 \u0433\u0440\u0443\u043f\u0438"},
 gfp(){return"\u0417\u0430\u0448\u0442\u043e \u0436\u0435\u043b\u0438\u0442\u0435 \u043e\u0432\u043e \u0434\u0430 \u043f\u0440\u0438\u0458\u0430\u0432\u0438\u0442\u0435?"},
 goM(){return"\u0421\u0430 \u043e\u0432\u0438\u043c \u0430\u0434\u0440\u0435\u0441\u0430\u043c\u0430 \u043c\u043e\u0436\u0435\u0442\u0435 \u043e\u043f\u043e\u0440\u0430\u0432\u0438\u0442\u0438 \u0441\u0432\u043e\u0458\u0443 \u043b\u043e\u0437\u0438\u043d\u043a\u0443."},
-gev(){return"\u0414\u0430"},
+gew(){return"\u0414\u0430"},
 goP(){return"\u0412\u0438"},
 geO(){return"\u0412\u0438\u0448\u0435 \u043d\u0435 \u0443\u0447\u0435\u0441\u0442\u0432\u0443\u0458\u0435\u0442\u0435 \u0443 \u043e\u0432\u043e\u043c \u045b\u0430\u0441\u043a\u0430\u045a\u0443"},
 goS(){return"\u0412\u0430\u0448 \u0458\u0430\u0432\u043d\u0438 \u043a\u0459\u0443\u0447"},
@@ -405,7 +405,7 @@ gkT(){return"Read up to here"},
 gk9(){return"Jump"},
 gkJ(){return"Open link in browser"},
 gl5(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can report this bug to the developers."},
-geC(){return"report"},
+geD(){return"report"},
 gi1(){return"Set color theme:"},
 ghj(){return"Invite"},
 gk_(){return"\ud83d\udce8 Group chat invite"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MS,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MS":{"aU":[]}}'))};
-(a=>{a["qcdfT1OAWxJ41OMLENnUAbLOibQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jvGSRPs76Re91rAgnxJZALCIQhk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_377.part.js.map

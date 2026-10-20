@@ -129,7 +129,7 @@ gh2(){return"Kopiuj"},
 gjl(){return"Skopiuj do schowka"},
 jm(d){return"Nie mo\u017cna odszyfrowa\u0107 wiadomo\u015bci: "+d},
 gmu(){return"Lista kontrolna"},
-ey(d){return""+d+" uczestnik\xf3w"},
+ez(d){return""+d+" uczestnik\xf3w"},
 jo(d){return""+d+" zaproszonych"},
 gjp(d){return"Stw\xf3rz"},
 jq(d){return"\ud83d\udcac "+d+" utworzy\u0142/-a czat"},
@@ -355,7 +355,7 @@ goK(){return"Kto mo\u017ce wykonywa\u0107 jakie czynno\u015bci"},
 goL(){return"Kto mo\u017ce do\u0142\u0105czy\u0107 do tej grupy"},
 gfp(){return"Dlaczego chcesz to zg\u0142osi\u0107?"},
 goM(){return"Dzi\u0119ki tym adresom mo\u017cesz odzyska\u0107 swoje has\u0142o."},
-gev(){return"Tak"},
+gew(){return"Tak"},
 goP(){return"Ty"},
 geO(){return"Nie uczestniczysz ju\u017c w tym czacie"},
 goS(){return"Tw\xf3j klucz publiczny"},
@@ -405,7 +405,7 @@ gkT(){return"Czytaj do tego miejsca"},
 gk9(){return"Przejd\u017a"},
 gkJ(){return"Otw\xf3rz link w przegl\u0105darce"},
 gl5(){return"\ud83d\ude2d O nie! Co\u015b posz\u0142o nie tak. Spr\xf3buj ponownie p\xf3\u017aniej. Je\u015bli chcesz, mo\u017cesz zg\u0142osi\u0107 ten b\u0142\u0105d autorom programu."},
-geC(){return"zg\u0142o\u015b"},
+geD(){return"zg\u0142o\u015b"},
 gi1(){return"Ustal styl kolor\xf3w:"},
 ghj(){return"Zaproszenie"},
 gk_(){return"\ud83d\udce8 Zaproszenie do rozmowy grupowej"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MK,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MK":{"aU":[]}}'))};
-(a=>{a["dUHqXs3Z67UVxlHDWFWo1P0S0RM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+cLPSrT1Q3+DizEBWuZvcD8QpFI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_368.part.js.map

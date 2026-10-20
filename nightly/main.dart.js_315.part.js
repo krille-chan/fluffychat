@@ -129,7 +129,7 @@ gh2(){return"Kopeeri"},
 gjl(){return"Kopeeri l\xf5ikelauale"},
 jm(d){return"S\xf5numi dekr\xfcptimine ei \xf5nnestunud: "+d},
 gmu(){return"Kontrollnimekiri"},
-ey(d){var y=null
+ez(d){var y=null
 return A.aH(d,y,this.a,y,"1 oaleja",""+d+" osalejat",y,y)},
 jo(d){return""+d+" kutsutut"},
 gjp(d){return"Loo"},
@@ -356,7 +356,7 @@ goK(){return"Erinevatele kasutajatele lubatud toimingud"},
 goL(){return"Kes v\xf5ivad selle jututoaga liituda"},
 gfp(){return"Miks sa soovid sellest teatada?"},
 goM(){return"Nende e-posti aadresside abil saad taastada oma salas\xf5na."},
-gev(){return"Jah"},
+gew(){return"Jah"},
 goP(){return"Sina"},
 geO(){return"Sa enam ei osale selles vestluses"},
 goS(){return"Sinu avalik v\xf5ti"},
@@ -406,7 +406,7 @@ gkT(){return"Siiamaani on loetud"},
 gk9(){return"H\xfcppa"},
 gkJ(){return"Ava link veebibrauseris"},
 gl5(){return"\ud83d\ude2d Vaat kus lops! Midagi l\xe4ks valesti. Kui soovid, v\xf5id sellest veast arendajatele teatada."},
-geC(){return"teata"},
+geD(){return"teata"},
 gi1(){return"Vali v\xe4rvikombinatsioon:"},
 ghj(){return"Kutsu"},
 gk_(){return"\ud83d\udce8 Kutse jututuppa"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ml,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Ml":{"aU":[]}}'))};
-(a=>{a["v4Fhnr62SE02qEJPbfGVY7EWydo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["2xCRptpaQ8KdFL7iDyMQRc4uRJA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_315.part.js.map

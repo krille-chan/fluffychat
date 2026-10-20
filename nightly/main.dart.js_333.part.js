@@ -129,7 +129,7 @@ gh2(){return"\u05d4\u05e2\u05ea\u05e7"},
 gjl(){return"\u05d4\u05e2\u05ea\u05e7 \u05dc\u05dc\u05d5\u05d7"},
 jm(d){return"\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05e4\u05e2\u05e0\u05d7 \u05d4\u05d5\u05d3\u05e2\u05d4: "+d},
 gmu(){return"Check list"},
-ey(d){return""+d+" \u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd"},
+ez(d){return""+d+" \u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd"},
 jo(d){return""+d+" invited"},
 gjp(d){return"\u05e6\u05d5\u05e8"},
 jq(d){return d+" \u05d9\u05e6\u05e8 \u05d0\u05ea \u05d4\u05e6'\u05d0\u05d8"},
@@ -355,7 +355,7 @@ goK(){return"Who can perform which action"},
 goL(){return"Who is allowed to join this group"},
 gfp(){return"Why do you want to report this?"},
 goM(){return"With these addresses you can recover your password."},
-gev(){return"Yes"},
+gew(){return"Yes"},
 goP(){return"You"},
 geO(){return"You are no longer participating in this chat"},
 goS(){return"Your public key"},
@@ -405,7 +405,7 @@ gkT(){return"Read up to here"},
 gk9(){return"Jump"},
 gkJ(){return"Open link in browser"},
 gl5(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can report this bug to the developers."},
-geC(){return"report"},
+geD(){return"report"},
 gi1(){return"Set color theme:"},
 ghj(){return"Invite"},
 gk_(){return"\ud83d\udce8 Group chat invite"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mt,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Mt":{"aU":[]}}'))};
-(a=>{a["zecz3xia+80h9a1IVULp/v2KbYg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BOX9MgJ1dEu9w1sRAv7ZhjLMKb8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_333.part.js.map

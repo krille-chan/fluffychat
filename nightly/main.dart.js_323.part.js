@@ -129,7 +129,7 @@ gh2(){return"Kopyahin"},
 gjl(){return"Kopyahin sa clipboard"},
 jm(d){return"Hindi ma-decrypt ang mensahe: "+d},
 gmu(){return"Check list"},
-ey(d){return""+d+" mga kasali"},
+ez(d){return""+d+" mga kasali"},
 jo(d){return""+d+" invited"},
 gjp(d){return"Gumawa"},
 jq(d){return"\ud83d\udcac Ginawa ni "+d+" ang chat"},
@@ -355,7 +355,7 @@ goK(){return"Who can perform which action"},
 goL(){return"Who is allowed to join this group"},
 gfp(){return"Why do you want to report this?"},
 goM(){return"With these addresses you can recover your password."},
-gev(){return"Yes"},
+gew(){return"Yes"},
 goP(){return"You"},
 geO(){return"You are no longer participating in this chat"},
 goS(){return"Your public key"},
@@ -405,7 +405,7 @@ gkT(){return"Read up to here"},
 gk9(){return"Jump"},
 gkJ(){return"Open link in browser"},
 gl5(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can report this bug to the developers."},
-geC(){return"report"},
+geD(){return"report"},
 gi1(){return"Set color theme:"},
 ghj(){return"Invite"},
 gk_(){return"\ud83d\udce8 Group chat invite"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mp,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Mp":{"aU":[]}}'))};
-(a=>{a["8KQF62ydPc3544x8mdo8wtvWFi4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["8yBbTb4cDfB/QG248epgwLAMlVo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_323.part.js.map

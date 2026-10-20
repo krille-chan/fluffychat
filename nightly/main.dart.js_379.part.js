@@ -129,7 +129,7 @@ gh2(){return"Kopiera"},
 gjl(){return"Kopiera till urklipp"},
 jm(d){return"Kunde ej avkoda meddelande: "+d},
 gmu(){return"Att-g\xf6ra lista"},
-ey(d){return""+d+" deltagare"},
+ez(d){return""+d+" deltagare"},
 jo(d){return""+d+" inbjudna"},
 gjp(d){return"Skapa"},
 jq(d){return"\ud83d\udcac "+d+" skapade chatten"},
@@ -355,7 +355,7 @@ goK(){return"Vem kan utf\xf6ra vilken \xe5tg\xe4rd"},
 goL(){return"Vilka som \xe4r tilll\xe5tna att ansluta till denna grupp"},
 gfp(){return"Varf\xf6r vill du rapportera detta?"},
 goM(){return"Med dessa addresser kan du \xe5terst\xe4lla ditt l\xf6senord."},
-gev(){return"Ja"},
+gew(){return"Ja"},
 goP(){return"Du"},
 geO(){return"Du deltar inte l\xe4ngre i denna chatt"},
 goS(){return"Din publika nyckel"},
@@ -405,7 +405,7 @@ gkT(){return"L\xe4s upp till hit"},
 gk9(){return"Hoppa"},
 gkJ(){return"\xd6ppna l\xe4nk i webbl\xe4sare"},
 gl5(){return"\ud83d\ude2d \xc5h nej. N\xe5got gick fel. Om du vill ian du rapportera denna bugg till utvecklarna."},
-geC(){return"rapportera"},
+geD(){return"rapportera"},
 gi1(){return"V\xe4lj f\xe4rgtema:"},
 ghj(){return"Bjud in"},
 gk_(){return"\ud83d\udce8 Gruppchattsinbjudan"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MT,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MT":{"aU":[]}}'))};
-(a=>{a["ITWYzoJjciEQjKqD1QQWj9uAuhg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["eKazHk37FdfjcXOKnJfrqtibXMw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_379.part.js.map

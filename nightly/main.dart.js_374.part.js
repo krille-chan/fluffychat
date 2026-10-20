@@ -129,7 +129,7 @@ gh2(){return"Kop\xedrova\u0165"},
 gjl(){return"Copy to clipboard"},
 jm(d){return"Nebolo mo\u017en\xe9 de\u0161ifrova\u0165 spr\xe1vu: "+d},
 gmu(){return"Check list"},
-ey(d){return""+d+" \xfa\u010dastn\xedkov"},
+ez(d){return""+d+" \xfa\u010dastn\xedkov"},
 jo(d){return""+d+" invited"},
 gjp(d){return"Vytvori\u0165"},
 jq(d){return d+" zalo\u017eili chat"},
@@ -355,7 +355,7 @@ goK(){return"Who can perform which action"},
 goL(){return"Kto m\xf4\u017ee vst\xfapi\u0165 do tejto skupiny"},
 gfp(){return"Why do you want to report this?"},
 goM(){return"With these addresses you can recover your password."},
-gev(){return"\xc1no"},
+gew(){return"\xc1no"},
 goP(){return"Vy"},
 geO(){return"U\u017e sa nez\xfa\u010dast\u0148ujete tohto chatu"},
 goS(){return"Your public key"},
@@ -405,7 +405,7 @@ gkT(){return"Read up to here"},
 gk9(){return"Jump"},
 gkJ(){return"Open link in browser"},
 gl5(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can report this bug to the developers."},
-geC(){return"report"},
+geD(){return"report"},
 gi1(){return"Set color theme:"},
 ghj(){return"Invite"},
 gk_(){return"\ud83d\udce8 Group chat invite"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MP,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MP":{"aU":[]}}'))};
-(a=>{a["2T/YLgrCESG58mADtKeBxAfkOYo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["FiE+khP4MK/DglyNkhPCbWvr0bE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_374.part.js.map

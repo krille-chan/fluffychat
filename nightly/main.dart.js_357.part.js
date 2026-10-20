@@ -129,7 +129,7 @@ gh2(){return"N\u0263el"},
 gjl(){return"N\u0263el \u0263er tecfawit"},
 jm(d){return"Ur izmer ara tukksa n uwgelhen n yizen: "+d},
 gmu(){return"Senqed tabdart"},
-ey(d){return""+d+" imttekkiyen"},
+ez(d){return""+d+" imttekkiyen"},
 jo(d){return""+d+" yettwa\u025ber\u1e0den"},
 gjp(d){return"Snulfu-d"},
 jq(d){return"\ud83d\udcac "+d+" yesnulfa-d adiwenni"},
@@ -355,7 +355,7 @@ goK(){return"Anwa i izemren ad yexdem anta tigawt"},
 goL(){return"Anwa i izemren ad yernu \u0263er ugraw-agi"},
 gfp(){return"Ay\u0263er teb\u0263i\u1e0d ad temle\u1e0d aya?"},
 goM(){return"S tansiwin-agi i tzemre\u1e0d ad terre\u1e0d awal-ik\xb7im n u\u025beddi."},
-gev(){return"Ih"},
+gew(){return"Ih"},
 goP(){return"ke\u010d\u010d\xb7em"},
 geO(){return"Ur mazal ara tettekka\u1e0d deg udiwenni-a"},
 goS(){return"Tasarut-ik\xb7im tazayezt"},
@@ -405,7 +405,7 @@ gkT(){return"\u0194e\u1e5b dagi"},
 gk9(){return"Neggez"},
 gkJ(){return"Ldi ase\u0263wen deg yiminig"},
 gl5(){return"\ud83d\ude2d Uhu. Yella kra n wugur ay yellan. Ma teb\u0263i\u1e0d, tzemre\u1e0d ad tazne\u1e0d aneqqis-a i yineflayen."},
-geC(){return"aneqqis"},
+geD(){return"aneqqis"},
 gi1(){return"Sbadu asentel n yini:"},
 ghj(){return"Snubget"},
 gk_(){return"\ud83d\udce8Snubget \u0263er udiwenni n ugraw"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MD,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MD":{"aU":[]}}'))};
-(a=>{a["AyjIUhTwNztwH5SVfWk5zoRzbZI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PBXFq6qQoDaLEr1WSDKlUxUM4Wc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_357.part.js.map

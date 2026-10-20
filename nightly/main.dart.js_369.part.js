@@ -129,7 +129,7 @@ gh2(){return"Copia\u021bi"},
 gjl(){return"Copia\u021bi \xeen clipboard"},
 jm(d){return"Dezcriptarea mesajului a e\u0219uat: "+d},
 gmu(){return"Check list"},
-ey(d){return""+d+" participan\u021bi"},
+ez(d){return""+d+" participan\u021bi"},
 jo(d){return""+d+" invited"},
 gjp(d){return"Crea\u021bi"},
 jq(d){return"\ud83d\udcac"+d+" a creat chatul"},
@@ -355,7 +355,7 @@ goK(){return"Cine poate face care ac\u021biune"},
 goL(){return"Cine se poate al\u0103tura la acest grup"},
 gfp(){return"De ce dori\u021bi s\u0103 reporta\u021bi acest con\u021binut?"},
 goM(){return"Cu acestea adrese pute\u021bi s\u0103 v\u0103 recupera\u021bi parola."},
-gev(){return"Da"},
+gew(){return"Da"},
 goP(){return"Voi"},
 geO(){return"Nu mai participa\u021bi \xeen acest chat"},
 goS(){return"Cheia voastr\u0103 public\u0103"},
@@ -405,7 +405,7 @@ gkT(){return"Citit p\xe2n\u0103 aici"},
 gk9(){return"S\u0103ri\u021bi"},
 gkJ(){return"Deschide\u021bi linkul \xeen browser"},
 gl5(){return"Ceva a e\u0219uat. V\u0103 rug\u0103m s\u0103 \xeencerca\u021bi din nou mai t\u0103rziu. Dac\u0103 dori\u021bi, pute\u021bi s\u0103 reporta\u021bi problema la dezvoltatori."},
-geC(){return"reporta\u021bi"},
+geD(){return"reporta\u021bi"},
 gi1(){return"Set color theme:"},
 ghj(){return"Invite"},
 gk_(){return"\ud83d\udce8 Group chat invite"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MN,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MN":{"aU":[]}}'))};
-(a=>{a["Ly0Z4LZdK6ZgnEuIMo6mGBuh8r0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["wrd/RxlkDvWly+I6QoY41VetIBU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_369.part.js.map

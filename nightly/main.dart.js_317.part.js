@@ -129,7 +129,7 @@ gh2(){return"Kopiatu"},
 gjl(){return"Kopiatu arbelera"},
 jm(d){return"Ezin izan da mezua deszifratu: "+d},
 gmu(){return"Kontrol-zerrenda"},
-ey(d){return""+d+" partaide"},
+ez(d){return""+d+" partaide"},
 jo(d){return""+d+" gonbidatu"},
 gjp(d){return"Sortu"},
 jq(d){return"\ud83d\udcac "+d+"(e)k txata sortu du"},
@@ -355,7 +355,7 @@ goK(){return"Nork zer egin dezakeen"},
 goL(){return"Nor batu daiteke talde honetara"},
 gfp(){return"Zergatik salatu nahi duzu?"},
 goM(){return"Helbide hauekin pasahitza berreskuratu dezakezu."},
-gev(){return"Bai"},
+gew(){return"Bai"},
 goP(){return"Zeu"},
 geO(){return"Ez duzu txat honetan parte hartzen honezkero"},
 goS(){return"Zure gako publikoa"},
@@ -405,7 +405,7 @@ gkT(){return"Honaino irakurrita"},
 gk9(){return"Joan"},
 gkJ(){return"Ireki esteka nabigatzailean"},
 gl5(){return"\ud83d\ude2d O ez! Zerbaitek huts egin du. Nahi izanez gero, eman garatzaileei errorearen berri."},
-geC(){return"salatu"},
+geD(){return"salatu"},
 gi1(){return"Ezarri kolore-gaia:"},
 ghj(){return"Gonbidatu"},
 gk_(){return"\ud83d\udce8 Taldeko txatera gonbidapena"},
@@ -750,5 +750,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Mm,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Mm":{"aU":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["PneElK6BDeFBlwOTCcAecn13Kaw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["UmYIGq1m7Hqvi47Uk0U01c+zpJs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

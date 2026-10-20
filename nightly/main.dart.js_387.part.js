@@ -129,7 +129,7 @@ gh2(){return"Sao ch\xe9p"},
 gjl(){return"Copy to clipboard"},
 jm(d){return"Kh\xf4ng th\u1ec3 gi\u1ea3i m\xe3 tin nh\u1eafn: "+d},
 gmu(){return"Check list"},
-ey(d){return""+d+" th\xe0nh vi\xean"},
+ez(d){return""+d+" th\xe0nh vi\xean"},
 jo(d){return""+d+" invited"},
 gjp(d){return"T\u1ea1o"},
 jq(d){return d+" \u0111\xe3 t\u1ea1o cu\u1ed9c tr\xf2 chuy\u1ec7n"},
@@ -355,7 +355,7 @@ goK(){return"Who can perform which action"},
 goL(){return"Who is allowed to join this group"},
 gfp(){return"Why do you want to report this?"},
 goM(){return"With these addresses you can recover your password."},
-gev(){return"Yes"},
+gew(){return"Yes"},
 goP(){return"You"},
 geO(){return"You are no longer participating in this chat"},
 goS(){return"Your public key"},
@@ -405,7 +405,7 @@ gkT(){return"\u0110\u1ecdc t\u1edbi \u0111\xe2y"},
 gk9(){return"\u0110i t\u1edbi"},
 gkJ(){return"M\u1edf \u0111\u01b0\u1eddng d\u1eabn trong tr\xecnh duy\u1ec7t"},
 gl5(){return"\ud83d\ude2d \xd4i. C\xf3 l\u1ed7i x\u1ea3y ra. B\u1ea1n c\xf3 th\u1ec3 b\xe1o c\xe1o l\u1ed7i t\u1edbi nh\xe0 ph\xe1t tri\u1ec3n n\u1ebfu mu\u1ed1n."},
-geC(){return"b\xe1o c\xe1o"},
+geD(){return"b\xe1o c\xe1o"},
 gi1(){return"Ch\u1ecdn m\xe0u giao di\u1ec7n:"},
 ghj(){return"M\u1eddi"},
 gk_(){return"\ud83d\udce8 M\u1eddi nh\xf3m tr\xf2 chuy\u1ec7n"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.N_,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"N_":{"aU":[]}}'))};
-(a=>{a["N1pNbvo54Edx36nqqs23aVAvtMc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BGCM1iu/l4D0uki658jAuE18h/M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_387.part.js.map

@@ -129,7 +129,7 @@ gh2(){return"Nusxalash"},
 gjl(){return"Buferga nusxalash"},
 jm(d){return"Xabarni shifrlab bo\u02bblmadi: "+d},
 gmu(){return"Tekshirish ro\u02bbyxati"},
-ey(d){return""+d+" qatnashuvchilar"},
+ez(d){return""+d+" qatnashuvchilar"},
 jo(d){return""+d+" taklif qilindi"},
 gjp(d){return"Yaratish"},
 jq(d){return"\ud83d\udcac "+d+" suhbat yaratdi"},
@@ -355,7 +355,7 @@ goK(){return"Kim qaysi amalni bajarishi mumkin"},
 goL(){return"Bu guruhga kim qo\u2018shilishi mumkin"},
 gfp(){return"Nima uchun bu haqda xabar bermoqchisiz?"},
 goM(){return"Ushbu manzillar yordamida parolingizni tiklashingiz mumkin."},
-gev(){return"Ha"},
+gew(){return"Ha"},
 goP(){return"Siz"},
 geO(){return"Siz ortiq bu suhbatda qatnashmayapsiz"},
 goS(){return"Ochiq kalitingiz"},
@@ -405,7 +405,7 @@ gkT(){return"Bu yerga qadar o\u2018qish"},
 gk9(){return"Sakrash"},
 gkJ(){return"Havolani brauzerda ochish"},
 gl5(){return"\ud83d\ude2d Voy yo\u2018q. Nimadir xato ketdi. Agar xohlasangiz, bu xato haqida dasturchilarga xabar berishingiz mumkin."},
-geC(){return"hisobot"},
+geD(){return"hisobot"},
 gi1(){return"Rang mavzusini sozlash:"},
 ghj(){return"Taklif qilish"},
 gk_(){return"\ud83d\udce8 Guruh suhbatiga taklif"},
@@ -750,5 +750,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.MZ,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MZ":{"aU":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["ACY0WtEqC+SRiyMafx/joayeTjM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Ho/nHTtBwjR+Z6AlbRSgcB8ylI0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_386.part.js.map

@@ -129,7 +129,7 @@ gh2(){return"Ievietot starpliktuv\u0113"},
 gjl(){return"Ievietot starpliktuv\u0113"},
 jm(d){return"Nevar\u0113ja at\u0161ifr\u0113t zi\u0146u: "+d},
 gmu(){return"P\u0101rbau\u017eu saraksts"},
-ey(d){var y=""+d
+ez(d){var y=""+d
 return A.aH(d,null,this.a,null,y+" dal\u012bbnieks",y+" dal\u012bbnieki",null,y+" dal\u012bbnieku")},
 jo(d){return""+d+" uzaicin\u0101ti"},
 gjp(d){return"Izveidot"},
@@ -356,7 +356,7 @@ goK(){return"Kur\u0161 var veikt k\u0101das darb\u012bbas"},
 goL(){return"Kuram ir \u013cauts pievienoties \u0161ai kopai"},
 gfp(){return"K\u0101d\u0113\u013c v\u0113lies zi\u0146ot par \u0161o?"},
 goM(){return"Ar \u0161\u012bm adres\u0113m var atjaunot savu paroli."},
-gev(){return"J\u0101"},
+gew(){return"J\u0101"},
 goP(){return"Tu"},
 geO(){return"Tu vairs nepiedalies \u0161aj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 goS(){return"Tava publisk\u0101 atsl\u0113ga"},
@@ -406,7 +406,7 @@ gkT(){return"Izlas\u012bts l\u012bdz \u0161ejienei"},
 gk9(){return"P\u0101rl\u0113kt"},
 gkJ(){return"Atv\u0113rt saiti p\u0101rl\u016bk\u0101"},
 gl5(){return"\ud83d\ude2d Ak n\u0113! Kaut kas nog\u0101ja greizi. Ja ir v\u0113l\u0113\u0161anas, par \u0161o nepiln\u012bbu var zi\u0146ot izstr\u0101d\u0101t\u0101jiem."},
-geC(){return"Zi\u0146ot"},
+geD(){return"Zi\u0146ot"},
 gi1(){return"Iestat\u012bt kr\u0101su izskatu:"},
 ghj(){return"Uzaicin\u0101t"},
 gk_(){return"\ud83d\udce8 Uzaicin\u0101jums uz kopas t\u0113rz\u0113\u0161anu"},
@@ -753,5 +753,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MH,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MH":{"aU":[]}}'))};
-(a=>{a["oPJBtYa1jYOnYeRsupb+dA+5kN4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ll9hcZJaa8LQzph1jsK4V7OVzdE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_362.part.js.map

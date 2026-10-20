@@ -129,7 +129,7 @@ gh2(){return"\u10d9\u10dd\u10de\u10d8\u10e0\u10d4\u10d1\u10d0"},
 gjl(){return"\u10d9\u10dd\u10de\u10d8\u10e0\u10d4\u10d1\u10d0 \u10d1\u10e3\u10e4\u10d4\u10e0\u10e8\u10d8"},
 jm(d){return"\u10e8\u10d4\u10e2\u10e7\u10dd\u10d1\u10d8\u10dc\u10d4\u10d1\u10d8\u10e1 \u10d2\u10d0\u10e8\u10d8\u10e4\u10d5\u10e0\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d3\u10dd\u10db\u10d0: "+d},
 gmu(){return"Check list"},
-ey(d){return""+d+" \u10db\u10dd\u10dc\u10d0\u10ec\u10d8\u10da\u10d4"},
+ez(d){return""+d+" \u10db\u10dd\u10dc\u10d0\u10ec\u10d8\u10da\u10d4"},
 jo(d){return""+d+" invited"},
 gjp(d){return"\u10e8\u10d4\u10e5\u10db\u10dc\u10d0"},
 jq(d){return"\ud83d\udcac "+d+" \u10e8\u10d4\u10e5\u10db\u10dc\u10d0 \u10e9\u10d0\u10e2\u10d8"},
@@ -355,7 +355,7 @@ goK(){return"Who can perform which action"},
 goL(){return"Who is allowed to join this group"},
 gfp(){return"Why do you want to report this?"},
 goM(){return"With these addresses you can recover your password."},
-gev(){return"Yes"},
+gew(){return"Yes"},
 goP(){return"You"},
 geO(){return"You are no longer participating in this chat"},
 goS(){return"Your public key"},
@@ -405,7 +405,7 @@ gkT(){return"Read up to here"},
 gk9(){return"Jump"},
 gkJ(){return"Open link in browser"},
 gl5(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can report this bug to the developers."},
-geC(){return"report"},
+geD(){return"report"},
 gi1(){return"Set color theme:"},
 ghj(){return"Invite"},
 gk_(){return"\ud83d\udce8 Group chat invite"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MC,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MC":{"aU":[]}}'))};
-(a=>{a["kmpjiEqah7HrPOJkuQEg3MNjmzw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["6Rc7FUNvy1YBG5g1sk5Nv770uew="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_356.part.js.map

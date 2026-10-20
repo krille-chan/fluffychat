@@ -129,7 +129,7 @@ gh2(){return"Kopii"},
 gjl(){return"Kopii al tondujo"},
 jm(d){return"Ne povis mal\u0109ifri mesa\u011don: "+d},
 gmu(){return"Check list"},
-ey(d){return""+d+" partoprenantoj"},
+ez(d){return""+d+" partoprenantoj"},
 jo(d){return""+d+" invited"},
 gjp(d){return"Krei"},
 jq(d){return d+" kreis la babilon"},
@@ -355,7 +355,7 @@ goK(){return"Kiu povas kion"},
 goL(){return"Kiu rajtas ali\u011di al \u0109i tiu grupo"},
 gfp(){return"Kial vi volas tion \u0109i raporti?"},
 goM(){return"Per tiuj \u0109i adresoj vi povas rehavi vian pasvorton."},
-gev(){return"Jes"},
+gew(){return"Jes"},
 goP(){return"Vi"},
 geO(){return"Vi ne plu partoprenas \u0109i tiun babilon"},
 goS(){return"Via publika \u015dlosilo"},
@@ -405,7 +405,7 @@ gkT(){return"Read up to here"},
 gk9(){return"Jump"},
 gkJ(){return"Open link in browser"},
 gl5(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can report this bug to the developers."},
-geC(){return"report"},
+geD(){return"report"},
 gi1(){return"Set color theme:"},
 ghj(){return"Invite"},
 gk_(){return"\ud83d\udce8 Group chat invite"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mj,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Mj":{"aU":[]}}'))};
-(a=>{a["TzF6rdF5zOt2tLGIVjqeQLnBjw0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Qf8aZbZ9WrwY9wbVx2O68RKljRM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map

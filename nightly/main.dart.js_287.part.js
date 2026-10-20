@@ -129,7 +129,7 @@ gh2(){return"Kop\xedrovat"},
 gjl(){return"Zkop\xedrovat do schr\xe1nky"},
 jm(d){return"Nebylo mo\u017en\xe9 de\u0161ifrovat zpr\xe1vu: "+d},
 gmu(){return"Kontroln\xed seznam"},
-ey(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
+ez(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
 jo(d){return""+d+" pozv\xe1no"},
 gjp(d){return"Vytvo\u0159it"},
 jq(d){return"\ud83d\udcac "+d+" zalo\u017eil/a chat"},
@@ -355,7 +355,7 @@ goK(){return"Kdo m\u016f\u017ee prov\xe9st jakou akci"},
 goL(){return"Kdo se m\u016f\u017ee p\u0159ipojit do t\xe9to skupiny"},
 gfp(){return"Pro\u010d to chcete nahl\xe1sit?"},
 goM(){return"S t\u011bmito adresami m\u016f\u017eete obnovit sv\xe9 heslo."},
-gev(){return"Ano"},
+gew(){return"Ano"},
 goP(){return"Vy"},
 geO(){return"Tohoto chatu se nad\xe1le ne\xfa\u010dastn\xedte"},
 goS(){return"V\xe1\u0161 ve\u0159ejn\xfd kl\xed\u010d"},
@@ -405,7 +405,7 @@ gkT(){return"\u010ct\u011bte a\u017e sem"},
 gk9(){return"Sko\u010dit"},
 gkJ(){return"Otev\u0159\xedt odkaz v prohl\xed\u017ee\u010di"},
 gl5(){return"\ud83d\ude2d Ale ne, n\u011bco se porouchalo. Pokud chcete, m\u016f\u017eete tento bug nahl\xe1sit v\xfdvoj\xe1\u0159\u016fm."},
-geC(){return"hl\xe1\u0161en\xed"},
+geD(){return"hl\xe1\u0161en\xed"},
 gi1(){return"Nastavit barvy:"},
 ghj(){return"Pozv\xe1nka"},
 gk_(){return"\ud83d\udce8 Skupinov\xe1 pozv\xe1nka"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Me,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Me":{"aU":[]}}'))};
-(a=>{a["iXXQk9xKqzr9K1U3CPf7CTsTcdk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["wS702EiJHkIXF4UkKxKdXZ1Eq3s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_287.part.js.map

@@ -129,7 +129,7 @@ gh2(){return"Kopijuoti"},
 gjl(){return"Koipjuoti \u012f i\u0161karpin\u0119"},
 jm(d){return"Nepavyko i\u0161\u0161ifruoti prane\u0161imo: "+d},
 gmu(){return"Check list"},
-ey(d){return""+d+" dalyviai"},
+ez(d){return""+d+" dalyviai"},
 jo(d){return""+d+" invited"},
 gjp(d){return"Sukurti"},
 jq(d){return"\ud83d\udcac "+d+" suk\u016br\u0117 pokalb\u012f"},
@@ -355,7 +355,7 @@ goK(){return"Kas gali atlikti kok\u012f veiksm\u0105"},
 goL(){return"Kam leid\u017eiama prisijungti prie \u0161ios grup\u0117s"},
 gfp(){return"Kod\u0117l norite apie tai prane\u0161ti?"},
 goM(){return"Naudodami \u0161iuos adresus galite atkurti savo slapta\u017eod\u012f."},
-gev(){return"Taip"},
+gew(){return"Taip"},
 goP(){return"J\u016bs"},
 geO(){return"J\u016bs nebedalyvaujate \u0161iame pokalbyje"},
 goS(){return"J\u016bs\u0173 vie\u0161asis raktas"},
@@ -405,7 +405,7 @@ gkT(){return"Read up to here"},
 gk9(){return"Jump"},
 gkJ(){return"Open link in browser"},
 gl5(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can report this bug to the developers."},
-geC(){return"report"},
+geD(){return"report"},
 gi1(){return"Set color theme:"},
 ghj(){return"Invite"},
 gk_(){return"\ud83d\udce8 Group chat invite"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MG,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MG":{"aU":[]}}'))};
-(a=>{a["p2NPiLGlitDz8WQJi3ETtIDeKoI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Cu6FfX2JZ3bNQ7PN2H3X04S4UWQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map

@@ -129,7 +129,7 @@ gh2(){return"Kopier"},
 gjl(){return"Kopier til utklippstavle"},
 jm(d){return"Kunne ikke dekryptere melding: "+d},
 gmu(){return"Sjekkliste"},
-ey(d){var y=null
+ez(d){var y=null
 return A.aH(d,y,this.a,y,"1 deltaker",""+d+" deltakere",y,y)},
 jo(d){return""+d+" inviterte"},
 gjp(d){return"Opprett"},
@@ -356,7 +356,7 @@ goK(){return"Hvem kan utf\xf8re hvilken handling"},
 goL(){return"Hvem tillates \xe5 ta del i denne gruppen"},
 gfp(){return"Hvorfor \xf8nsker du \xe5 rapportere dette?"},
 goM(){return"Med disse adressene kan du gjenopprette passordet ditt hvis du trenger det."},
-gev(){return"Ja"},
+gew(){return"Ja"},
 goP(){return"Deg"},
 geO(){return"Du deltar ikke lenger i denne sludringen"},
 goS(){return"Din offentlige n\xf8kkel"},
@@ -406,7 +406,7 @@ gkT(){return"Lest frem til her"},
 gk9(){return"Hopp"},
 gkJ(){return"\xc5pne lenke i nettleser"},
 gl5(){return"\ud83d\ude2d \xc5 nei. Noe gikk galt. Hvis du \xf8nsker det, kan du rapportere denne feilen til utviklerne."},
-geC(){return"rapportere"},
+geD(){return"rapportere"},
 gi1(){return"Angi fargetema:"},
 ghj(){return"Inviter"},
 gk_(){return"\ud83d\udce8 Invitasjon til gruppechat"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MI,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MI":{"aU":[]}}'))};
-(a=>{a["22Vh8Y6dgKQK5I0kr1MUVubqcgc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["wsmGq1GRgCkSuo/7/+IkCbbVspg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

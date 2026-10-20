@@ -129,7 +129,7 @@ gh2(){return"Copia"},
 gjl(){return"Copia negli appunti"},
 jm(d){return"Impossibile decriptare messaggio: "+d},
 gmu(){return"Checklist"},
-ey(d){var y=null
+ez(d){var y=null
 return A.aH(d,y,this.a,y,"1 partecipante",""+d+" partecipanti",y,y)},
 jo(d){return""+d+" invitati"},
 gjp(d){return"Crea"},
@@ -356,7 +356,7 @@ goK(){return"Chi pu\xf2 eseguire quale azione"},
 goL(){return"Chi \xe8 autorizzato a unirsi a questo gruppo"},
 gfp(){return"Perch\xe9 vuoi segnalarlo?"},
 goM(){return"Con questi indirizzi puoi recuperare la tua password se necessario."},
-gev(){return"S\xec"},
+gew(){return"S\xec"},
 goP(){return"Tu"},
 geO(){return"Non stai pi\xf9 partecipando a questa chat"},
 goS(){return"La tua chiave pubblica"},
@@ -406,7 +406,7 @@ gkT(){return"Letto fino a qui"},
 gk9(){return"Salta"},
 gkJ(){return"Apri il collegamento nel browser"},
 gl5(){return"\ud83d\ude2d Oh no. Qualcosa \xe8 andato storto. Se vuoi, puoi segnalare questo bug agli sviluppatori."},
-geC(){return"segnala"},
+geD(){return"segnala"},
 gi1(){return"Imposta tema colore:"},
 ghj(){return"Invitare"},
 gk_(){return"\ud83d\udce8 Invita a una chat di gruppo"},
@@ -751,5 +751,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MA,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MA":{"aU":[]}}'))};
-(a=>{a["Joj3nEcbPOkmzVOt3bPo3Ta65H0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["/I2lSqczWtIvoDQtOeyIsJ88waA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_352.part.js.map

@@ -129,7 +129,7 @@ gh2(){return"M\xe1sol\xe1s"},
 gjl(){return"V\xe1g\xf3lapra m\xe1sol\xe1s"},
 jm(d){return"Nem siker\xfclt visszafejteni az \xfczenetet: "+d},
 gmu(){return"Tennival\xf3k list\xe1ja"},
-ey(d){return""+d+" r\xe9sztvev\u0151"},
+ez(d){return""+d+" r\xe9sztvev\u0151"},
 jo(d){return""+d+" megh\xedvott"},
 gjp(d){return"L\xe9trehoz"},
 jq(d){return"\ud83d\udcac "+d+" cseveg\xe9st hozott l\xe9tre"},
@@ -355,7 +355,7 @@ goK(){return"Ki milyen m\u0171veletet v\xe9gezhet"},
 goL(){return"Ki csatlakozhat a csoporthoz"},
 gfp(){return"Mi\xe9rt k\xedv\xe1nja ezt bejelenteni?"},
 goM(){return"Ezekkel a c\xedmekkel vissza tudja \xe1ll\xedtani a jelszav\xe1t."},
-gev(){return"Igen"},
+gew(){return"Igen"},
 goP(){return"\xd6n"},
 geO(){return"Imm\xe1ron nem vesz r\xe9szt ebben a cseveg\xe9sben"},
 goS(){return"A publikus kulcsa"},
@@ -405,7 +405,7 @@ gkT(){return"Olvas\xe1s id\xe1ig"},
 gk9(){return"Ugr\xe1s"},
 gkJ(){return"Hivatkoz\xe1s megnyit\xe1sa b\xf6ng\xe9sz\u0151ben"},
 gl5(){return"\ud83d\ude2d Sajnos, valami f\xe9lresiklott. Ha k\xedv\xe1nja, jelezheti a bugot a fejleszt\u0151knek."},
-geC(){return"jelent\xe9s"},
+geD(){return"jelent\xe9s"},
 gi1(){return"Sz\xedn s\xe9ma be\xe1ll\xedt\xe1sa:"},
 ghj(){return"Megh\xedv\xe1s"},
 gk_(){return"\ud83d\udce8 Megh\xedv\xf3 a csoportba"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mw,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Mw":{"aU":[]}}'))};
-(a=>{a["w45ybSW9mQiDU+7aNUFZYSzMdxQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["hX8xn1XoG3kjxlg6Vqv1kU7HUz8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_342.part.js.map

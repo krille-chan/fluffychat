@@ -129,7 +129,7 @@ gh2(){return"C\xf3ipe\xe1il"},
 gjl(){return"C\xf3ipe\xe1il ar an ghearrthaisce"},
 jm(d){return"N\xedorbh fh\xe9idir teachtaireacht a dh\xedchripti\xfa: "+d},
 gmu(){return"Liosta seice\xe1la"},
-ey(d){return""+d+" rannph\xe1irtithe"},
+ez(d){return""+d+" rannph\xe1irtithe"},
 jo(d){return"cuireadh chuig "+d},
 gjp(d){return"Cruthaigh"},
 jq(d){return"\ud83d\udcac chruthaigh "+d+" an comhr\xe1"},
@@ -355,7 +355,7 @@ goK(){return"C\xe9 at\xe1 in ann an gn\xedomh a dh\xe9anamh"},
 goL(){return"C\xe9 a bhfuil cead aige/aici dul isteach sa ghr\xfapa seo"},
 gfp(){return"C\xe9n f\xe1th ar mhaith leat \xe9 seo a thuairisci\xfa?"},
 goM(){return"Leis na seolta\xed seo is f\xe9idir leat do phasfhocal a athshl\xe1n\xfa."},
-gev(){return"T\xe1"},
+gew(){return"T\xe1"},
 goP(){return"T\xfa"},
 geO(){return"N\xedl t\xfa ag glacadh p\xe1irte sa chomhr\xe1 seo a thuilleadh"},
 goS(){return"D'eochair phoibl\xed"},
@@ -405,7 +405,7 @@ gkT(){return"L\xe9igh suas go dt\xed seo"},
 gk9(){return"L\xe9im"},
 gkJ(){return"Oscail nasc sa bhrabhs\xe1la\xed"},
 gl5(){return"\ud83d\ude2d \xd3, a mhac go deo. Chuaigh rud \xe9igin m\xedcheart. M\xe1s mian leat, is f\xe9idir leat an fabht seo a thuairisci\xfa do na forbr\xf3ir\xed."},
-geC(){return"tuairisc"},
+geD(){return"tuairisc"},
 gi1(){return"Socraigh t\xe9ama datha:"},
 ghj(){return"Tabhair cuireadh"},
 gk_(){return"\ud83d\udce8 Cuireadh chuig comhr\xe1 gr\xfapa"},
@@ -750,5 +750,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Mr,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Mr":{"aU":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["xpiuNDuilyAXKf6F16Y10m3+3h0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ESX6FJuOMn4bKokMFzb8lLsUJPo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_329.part.js.map

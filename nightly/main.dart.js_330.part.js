@@ -129,7 +129,7 @@ gh2(){return"Copiar"},
 gjl(){return"Copiar ao portapapeis"},
 jm(d){return"Non se descifrou a mensaxe: "+d},
 gmu(){return"Comprobar lista"},
-ey(d){return""+d+" participantes"},
+ez(d){return""+d+" participantes"},
 jo(d){return""+d+" convidadas"},
 gjp(d){return"Crear"},
 jq(d){return"\ud83d\udcac "+d+" creou a conversa"},
@@ -355,7 +355,7 @@ goK(){return"Quen pode realizar determinada acci\xf3n"},
 goL(){return"Quen se pode unir a este grupo"},
 gfp(){return"Por que queres denunciar esto?"},
 goM(){return"Con estos enderezos podes recuperar o contrasinal."},
-gev(){return"Si"},
+gew(){return"Si"},
 goP(){return"Ti"},
 geO(){return"Xa non participas desta conversa"},
 goS(){return"A t\xfaa chave p\xfablica"},
@@ -405,7 +405,7 @@ gkT(){return"Lin ate aqu\xed"},
 gk9(){return"Ir al\xe1"},
 gkJ(){return"Abrir ligaz\xf3n no navegador"},
 gl5(){return"\ud83d\ude2d Vaia! Algo fallou. Se queres, podes informar do problema \xe1s persoas desenvolvedoras."},
-geC(){return"informar"},
+geD(){return"informar"},
 gi1(){return"Cor do decorado:"},
 ghj(){return"Convidar"},
 gk_(){return"\ud83d\udce8 Convidar a conversa en grupo"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ms,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Ms":{"aU":[]}}'))};
-(a=>{a["E+LX4nUDIzcZD9LuFt0T69AiiQc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["tQ9ctnWM1pmS6ZGJS+PzSKCLohM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_330.part.js.map

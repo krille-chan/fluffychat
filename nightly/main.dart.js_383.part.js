@@ -129,7 +129,7 @@ gh2(){return"Kopyala"},
 gjl(){return"Panoya kopyala"},
 jm(d){return"Mesaj\u0131n \u015fifresi \xe7\xf6z\xfclemedi: "+d},
 gmu(){return"Kontrol listesi"},
-ey(d){return""+d+" kat\u0131l\u0131mc\u0131"},
+ez(d){return""+d+" kat\u0131l\u0131mc\u0131"},
 jo(d){return""+d+" davet edildi"},
 gjp(d){return"Olu\u015ftur"},
 jq(d){return"\ud83d\udcac "+d+" sohbeti olu\u015fturdu"},
@@ -355,7 +355,7 @@ goK(){return"Kim hangi eylemi ger\xe7ekle\u015ftirebilir"},
 goL(){return"Bu gruba kimler kat\u0131labilir"},
 gfp(){return"Bunu neden bildirmek istiyorsunuz?"},
 goM(){return"Bu adresler ile parolan\u0131z\u0131 kurtarabilirsiniz."},
-gev(){return"Evet"},
+gew(){return"Evet"},
 goP(){return"Sen"},
 geO(){return"Art\u0131k bu sohbette kat\u0131l\u0131mc\u0131 de\u011filsiniz"},
 goS(){return"Ortak anahtar\u0131n\u0131z"},
@@ -405,7 +405,7 @@ gkT(){return"Buraya kadar oku"},
 gk9(){return"Atla"},
 gkJ(){return"Ba\u011flant\u0131y\u0131 taray\u0131c\u0131da a\xe7"},
 gl5(){return"\ud83d\ude2d Olamaz. Bir \u015feyler yanl\u0131\u015f gitti. \u0130sterseniz bu hatay\u0131 geli\u015ftiricilere bildirebilirsiniz."},
-geC(){return"bildir"},
+geD(){return"bildir"},
 gi1(){return"Renk temas\u0131n\u0131 ayarla:"},
 ghj(){return"Davet et"},
 gk_(){return"\ud83d\udce8 Grup sohbetine davet et"},
@@ -750,5 +750,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.MX,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MX":{"aU":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["AvceZ8Wr2hd2A1dCxC6c69dFqno="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3vUt6CtEwmWZxn/JFNoleSQb+5k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_383.part.js.map
