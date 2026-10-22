@@ -29,8 +29,11 @@ import 'package:http/http.dart' as http;
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart' hide Result;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:synchronized/synchronized.dart';
 
 final Map<String, DateTime> lastReceivedPushNotification = {};
+
+final _pushLock = Lock();
 
 Future<void> pushHelper(
   PushNotification notification, {
@@ -42,13 +45,15 @@ Future<void> pushHelper(
   l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
 
   try {
-    await _tryPushHelper(
-      notification,
-      clients: clients,
-      l10n: l10n,
-      activeRoomId: activeRoomId,
-      flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
-    ).timeout(const Duration(seconds: 30));
+    await _pushLock.synchronized(
+      () => _tryPushHelper(
+        notification,
+        clients: clients,
+        l10n: l10n,
+        activeRoomId: activeRoomId,
+        flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
+      ).timeout(const Duration(seconds: 30)),
+    );
   } catch (e, s) {
     if (e.toString() == 'Exception: Client is not logged in.') {
       Logs().w('Ignore push notification, when not logged in', e);
@@ -95,7 +100,7 @@ Future<void> pushHelper(
     }
     rethrow;
   } finally {
-    ForegroundServices.stopService('background_push');
+    if (!_pushLock.locked) ForegroundServices.stopService('background_push');
   }
 }
 
