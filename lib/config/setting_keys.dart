@@ -83,10 +83,7 @@ enum AppSettings<T> {
   knownErrorHashes<List<String>>('chat.fluffy.known_crash_hashes', []),
   checkForUpdates<bool>('chat.fluffy.check_for_updates', true),
   lastUpdateCheckDate<String>('chat.fluffy.last_update_check_date', ''),
-  fallbackLiveKitInstance<String>(
-    'chat.fluffy.fallback_live_kit_instance',
-    'https://livekit-jwt.fluffy.chat',
-  );
+  fallbackLiveKitInstance<String>('chat.fluffy.fallback_live_kit_instance', '');
 
   final String key;
   final T _defaultValue;
