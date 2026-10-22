@@ -265145,7 +265145,7 @@ var $async$Ew=A.n(function(d,e){if(d===1)return A.j(e,r)
 for(;;)switch(s){case 0:n=A.hH($.ap.h(0,p))
 if(n==null)n=0
 o=p.a
-if(n>=o.length)throw A.o(A.ah("This can happen if an inner synchronized block is spawned outside the block it was started from. Make sure the inner synchronized blocks are properly awaited"))
+if(n>=o.length)A.W(A.ah("This can happen if an inner synchronized block is spawned outside the block it was started from. Make sure the inner synchronized blocks are properly awaited"))
 q=o[n].Vu(new A.c45(p,a,n,b),null,b)
 s=1
 break
