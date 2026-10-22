@@ -20,6 +20,7 @@ import 'package:fluffychat/utils/notification_avatar_extension.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/start_push_foreground_service.dart';
+import 'package:fluffychat/widgets/local_notifications_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -145,6 +146,7 @@ Future<void> _tryPushHelper(
 
   if (event == null) {
     Logs().v('Notification is a clearing indicator.');
+    if (client.syncPending) return;
     if (clients?.length == 1 && (notification.counts?.unread == 0)) {
       await flutterLocalNotificationsPlugin.cancelAll();
     } else {
@@ -154,31 +156,13 @@ Future<void> _tryPushHelper(
           .oneShotSync()
           .timeout(const Duration(seconds: 8))
           .catchError((_) => null);
-
-      final activeNotifications = await flutterLocalNotificationsPlugin
-          .getActiveNotifications();
-      activeNotifications.removeWhere(
-        (notification) => notification.groupKey != client.clientName,
+      await cancelNotificationsOnSync(
+        client.onSync.value!,
+        clientName!,
+        client.userID!,
+        l10n,
+        flutterLocalNotificationsPlugin,
       );
-      var needsUpdateForSummaryNotification = false;
-      for (final activeNotification in activeNotifications) {
-        final room = client.rooms.singleWhereOrNull(
-          (room) =>
-              '${client.clientName}_${room.id}'.hashCode ==
-              activeNotification.id,
-        );
-        if (room != null && !room.isUnreadOrInvited) {
-          flutterLocalNotificationsPlugin.cancel(id: activeNotification.id!);
-          if (PlatformInfos.isAndroid) needsUpdateForSummaryNotification = true;
-        }
-      }
-      if (needsUpdateForSummaryNotification) {
-        await updateSummaryNotification(
-          clientName: client.clientName,
-          l10n: l10n,
-          flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
-        );
-      }
     }
     return;
   }
@@ -553,5 +537,64 @@ Future<void> _showIncomingCall(Event event, L10n l10n) async {
       await FlutterCallkitIncoming.endCall(params.id);
       break;
     }
+  }
+}
+
+Future<void> cancelNotificationsOnSync(
+  SyncUpdate syncUpdate,
+  String clientName,
+  String userId,
+  L10n l10n,
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin,
+) async {
+  final newReadRoomIds =
+      syncUpdate.rooms?.join?.entries
+          .where(
+            (entry) =>
+                (entry.value.ephemeral?.any(
+                      (event) =>
+                          event.type == 'm.receipt' &&
+                          event.content.values.any(
+                            (value) =>
+                                value is Map<String, Object?> &&
+                                (value
+                                            .tryGetMap<String, Object?>(
+                                              'm.read',
+                                            )
+                                            ?.keys
+                                            .contains(userId) ==
+                                        true ||
+                                    value
+                                            .tryGetMap<String, Object?>(
+                                              'm.read.private',
+                                            )
+                                            ?.keys
+                                            .contains(userId) ==
+                                        true),
+                          ),
+                    ) ??
+                    false) &&
+                entry.value.unreadNotifications?.notificationCount == 0,
+          )
+          .map((entry) => entry.key)
+          .toSet() ??
+      {};
+  if (newReadRoomIds.isEmpty) return;
+
+  for (final roomId in newReadRoomIds) {
+    final id = '${clientName}_$roomId'.hashCode;
+    if (kIsWeb) {
+      LocalNotificationsExtension.activeWebNotifications.remove(id)?.close();
+      continue;
+    }
+    await flutterLocalNotificationsPlugin.cancel(id: id);
+  }
+
+  if (PlatformInfos.isAndroid) {
+    await updateSummaryNotification(
+      clientName: clientName,
+      flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
+      l10n: l10n,
+    );
   }
 }
