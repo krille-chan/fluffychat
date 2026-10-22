@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEN(){return new B.Ms(A.dw("gl"))},
+dEV(){return new B.Ms(A.dw("gl"))},
 Ms:function Ms(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -244,7 +244,7 @@ gf2(){return"Sen permiso"},
 ghw(){return"Non se atoparon salas\u2026"},
 gfk(){return"Notificaci\xf3ns"},
 gkD(){return"Obtendo a localizaci\xf3n\u2026"},
-gdt(){return"Ok"},
+gdu(){return"Ok"},
 gkF(){return"Copia de Apoio en li\xf1a das Chaves activada"},
 gem(){return"Ooooi, algo fallou\u2026"},
 gkE(){return"Un dos teus clientes foi desconectado"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ms,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Ms":{"aU":[]}}'))};
-(a=>{a["tQ9ctnWM1pmS6ZGJS+PzSKCLohM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9LjduXhmblSouznfYeHsZHpd3jg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_330.part.js.map

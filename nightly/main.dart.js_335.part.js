@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEQ(){return new B.Mv(A.dw("hr"))},
+dEY(){return new B.Mv(A.dw("hr"))},
 Mv:function Mv(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -245,7 +245,7 @@ gf2(){return"Bez dozvole"},
 ghw(){return"Nema soba \u2026"},
 gfk(){return"Obavijesti"},
 gkD(){return"Dohva\u0107anje lokacije \u2026"},
-gdt(){return"U redu"},
+gdu(){return"U redu"},
 gkF(){return"Internetski klju\u010d sigurnosnih kopija je aktiviran"},
 gem(){return"Ups, dogodila se gre\u0161ka \u2026"},
 gkE(){return"Jedan od tvojih klijenata je odjavljen"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mv,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Mv":{"aU":[]}}'))};
-(a=>{a["OeAt0b+Bn6GTs8HzMWbK3IjSIuo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["YtSXBXMhxXM91WTa64F5EUSz/iQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_335.part.js.map

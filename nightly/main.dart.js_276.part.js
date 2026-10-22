@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEy(){return new B.Md(A.dw("ca"))},
+dEG(){return new B.Md(A.dw("ca"))},
 Md:function Md(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -244,7 +244,7 @@ gf2(){return"Sense perm\xeds"},
 ghw(){return"No s\u2019ha trobat cap sala\u2026"},
 gfk(){return"Notificacions"},
 gkD(){return"S\u2019est\xe0 obtenint la ubicaci\xf3\u2026"},
-gdt(){return"D'acord"},
+gdu(){return"D'acord"},
 gkF(){return"La c\xf2pia de seguretat de claus en l\xednia est\xe0 activada"},
 gem(){return"Alguna cosa ha anat malament\u2026"},
 gkE(){return"Una de les teves aplicacions ha tancat la sessi\xf3"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Md,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Md":{"aU":[]}}'))};
-(a=>{a["+jijA8v9RJUyMeaJ96u+5wnKE8Q="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["S1l6LDvo+Ry3lI/KAn1FHc0xwj0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_276.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dFk(){return new B.MZ(A.dw("uz"))},
+dFs(){return new B.MZ(A.dw("uz"))},
 MZ:function MZ(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -244,7 +244,7 @@ gf2(){return"Ruxsat yo\u02bbq"},
 ghw(){return"Hech qanday guruhlar topilmadi\u2026"},
 gfk(){return"Bildirishnomalar"},
 gkD(){return"Joylashuv aniqlanmoqda\u2026"},
-gdt(){return"Hop"},
+gdu(){return"Hop"},
 gkF(){return"Onlayn kalit zaxira nusxasi yoqilgan"},
 gem(){return"Voy, nimadir noto\u02bbg\u02bbri ketdi\u2026"},
 gkE(){return"Mijozlaringizdan biri tizimdan chiqdi"},
@@ -750,5 +750,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.MZ,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MZ":{"aU":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["Ho/nHTtBwjR+Z6AlbRSgcB8ylI0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4JREPCShYBhgNsNq1RtGqTc6lqQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_386.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEH(){return new B.Mm(A.dw("eu"))},
+dEP(){return new B.Mm(A.dw("eu"))},
 Mm:function Mm(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -244,7 +244,7 @@ gf2(){return"Baimenik gabe"},
 ghw(){return"Ez da gelarik aurkitu\u2026"},
 gfk(){return"Jakinarazpenak"},
 gkD(){return"Kokapena atzitzen\u2026"},
-gdt(){return"Ados"},
+gdu(){return"Ados"},
 gkF(){return"Gakoen online babeskopia gaituta dago"},
 gem(){return"Hara, zerbaitek huts egin du\u2026"},
 gkE(){return"Zure gailuetako batek saioa amaitu du"},
@@ -750,5 +750,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Mm,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Mm":{"aU":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["UmYIGq1m7Hqvi47Uk0U01c+zpJs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["tPL4dtSthqTvvlq856dNoclhixg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF0(){return new B.MG(A.dw("lt"))},
+dF8(){return new B.MG(A.dw("lt"))},
 MG:function MG(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -244,7 +244,7 @@ gf2(){return"N\u0117ra leidimo"},
 ghw(){return"Nerasta kambari\u0173\u2026"},
 gfk(){return"Prane\u0161imai"},
 gkD(){return"Gaunama vieta\u2026"},
-gdt(){return"OK"},
+gdu(){return"OK"},
 gkF(){return"Internetin\u0117 atsargin\u0117 rakt\u0173 kopija \u012fjungta"},
 gem(){return"Oi, ka\u017ekas nutiko ne taip\u2026"},
 gkE(){return"Vienas i\u0161 j\u016bs\u0173 klient\u0173 atsijung\u0117"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MG,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MG":{"aU":[]}}'))};
-(a=>{a["Cu6FfX2JZ3bNQ7PN2H3X04S4UWQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ZVgC4XWxSyXHbQxTYNfJxJZRY3E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_360.part.js.map

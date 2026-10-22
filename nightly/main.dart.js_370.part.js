@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF9(){return new B.MO(A.dw("ru"))},
+dFh(){return new B.MO(A.dw("ru"))},
 MO:function MO(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -245,7 +245,7 @@ gf2(){return"\u041d\u0435\u0442 \u043f\u0440\u0430\u0432 \u0434\u043e\u0441\u044
 ghw(){return"\u041a\u043e\u043c\u043d\u0430\u0442\u044b \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u044b\u2026"},
 gfk(){return"\u0423\u0432\u0435\u0434\u043e\u043c\u043b\u0435\u043d\u0438\u044f"},
 gkD(){return"\u041f\u043e\u043b\u0443\u0447\u0435\u043d\u0438\u0435 \u043c\u0435\u0441\u0442\u043e\u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u044f\u2026"},
-gdt(){return"\u041e\u043a"},
+gdu(){return"\u041e\u043a"},
 gkF(){return"\u0420\u0435\u0437\u0435\u0440\u0432\u043d\u043e\u0435 \u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u0438\u0435 \u043a\u043b\u044e\u0447\u0435\u0439 \u043d\u0430 \u0441\u0435\u0440\u0432\u0435\u0440\u0435 \u0432\u043a\u043b\u044e\u0447\u0435\u043d\u043e"},
 gem(){return"\u041e\u0439, \u0447\u0442\u043e-\u0442\u043e \u043f\u043e\u0448\u043b\u043e \u043d\u0435 \u0442\u0430\u043a\u2026"},
 gkE(){return"\u041e\u0434\u0438\u043d \u0438\u0437 \u0432\u0430\u0448\u0438\u0445 \u043a\u043b\u0438\u0435\u043d\u0442\u043e\u0432 \u0432\u044b\u0448\u0435\u043b"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MO,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MO":{"aU":[]}}'))};
-(a=>{a["ENt1GvSARFpXqeaIBZZ2DcGJx6M="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["bIYOTTWr6rpyZXAtw3qSwoqpIlo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_370.part.js.map

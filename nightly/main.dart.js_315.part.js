@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEG(){return new B.Ml(A.dw("et"))},
+dEO(){return new B.Ml(A.dw("et"))},
 Ml:function Ml(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -245,7 +245,7 @@ gf2(){return"\xd5igused puuduvad"},
 ghw(){return"Jututube ei leidu\u2026"},
 gfk(){return"Teavitused"},
 gkD(){return"Tuvastan asukohta\u2026"},
-gdt(){return"Sobib"},
+gdu(){return"Sobib"},
 gkF(){return"Kr\xfcptov\xf5tmete veebip\xf5hine varundus on kasutusel"},
 gem(){return"Vaat kus lops! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
 gkE(){return"\xdcks sinu klientrakendustest on Matrixi v\xf5rgust v\xe4lja loginud"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ml,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Ml":{"aU":[]}}'))};
-(a=>{a["2xCRptpaQ8KdFL7iDyMQRc4uRJA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["26tQ7aVaGXwZQb+Z7wHqM8XLa/A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_315.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF1(){return new B.MH(A.dw("lv"))},
+dF9(){return new B.MH(A.dw("lv"))},
 MH:function MH(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -245,7 +245,7 @@ gf2(){return"Nav at\u013caujas"},
 ghw(){return"Istabas netika atrastas\u2026"},
 gfk(){return"Pazi\u0146ojumi"},
 gkD(){return"Ieg\u016bst atra\u0161an\u0101s vietu\u2026"},
-gdt(){return"Labi"},
+gdu(){return"Labi"},
 gkF(){return"Tie\u0161saistes atsl\u0113gas rezerves kop\u0113\u0161ana ir iesp\u0113jota"},
 gem(){return"Ak vai! Kaut kas nog\u0101ja greizi\u2026"},
 gkE(){return"Viens no klientiem ir atteicies"},
@@ -753,5 +753,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MH,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MH":{"aU":[]}}'))};
-(a=>{a["ll9hcZJaa8LQzph1jsK4V7OVzdE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ha3iWy1YI+SEWgyO0nrDwh4X7ro="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_362.part.js.map

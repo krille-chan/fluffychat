@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dER(){return new B.Mw(A.dw("hu"))},
+dEZ(){return new B.Mw(A.dw("hu"))},
 Mw:function Mw(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -244,7 +244,7 @@ gf2(){return"Nincs enged\xe9ly"},
 ghw(){return"Nem tal\xe1lhat\xf3ak szob\xe1k\u2026"},
 gfk(){return"\xc9rtes\xedt\xe9sek"},
 gkD(){return"Tart\xf3zkod\xe1si hely lek\xe9r\xe9se\u2026"},
-gdt(){return"Ok"},
+gdu(){return"Ok"},
 gkF(){return"Online kulcsment\xe9s enged\xe9lyezve"},
 gem(){return"Hopp\xe1, valami hiba l\xe9pett fel\u2026"},
 gkE(){return"Az egyik kliense kijelentkezett"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mw,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"Mw":{"aU":[]}}'))};
-(a=>{a["hX8xn1XoG3kjxlg6Vqv1kU7HUz8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["e1oTG20uzeKqdWko5alqZMfY/Uw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_342.part.js.map

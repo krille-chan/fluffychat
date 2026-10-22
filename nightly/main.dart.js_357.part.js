@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEY(){return new B.MD(A.dw("kab"))},
+dF5(){return new B.MD(A.dw("kab"))},
 MD:function MD(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -244,7 +244,7 @@ gf2(){return"Ulac tasiregt"},
 ghw(){return"Ulac taxxamt i yettwafen\u2026"},
 gfk(){return"Il\u0263a"},
 gkD(){return"Aguccel n wadig\u2026"},
-gdt(){return"iH"},
+gdu(){return"iH"},
 gkF(){return"A\u1e25raz n tsarut deg u\u1e93e\u1e6d\u1e6da yermed"},
 gem(){return"Ihuh, yella wayen ur neddi ara\u2026"},
 gkE(){return"One of your clients has been logged out"},
@@ -749,5 +749,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MD,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MD":{"aU":[]}}'))};
-(a=>{a["PBXFq6qQoDaLEr1WSDKlUxUM4Wc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["q1AahficKSFy1hLxZ9LCUIvM8UM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_357.part.js.map

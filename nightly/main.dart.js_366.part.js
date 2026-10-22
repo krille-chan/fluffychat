@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF3(){return new B.MJ(A.dw("nl"))},
+dFb(){return new B.MJ(A.dw("nl"))},
 MJ:function MJ(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -245,7 +245,7 @@ gf2(){return"Geen toestemming"},
 ghw(){return"Geen chats gevonden \u2026"},
 gfk(){return"Meldingen"},
 gkD(){return"Locatie ophalen\u2026"},
-gdt(){return"Ok"},
+gdu(){return"Ok"},
 gkF(){return"Online sleutelback-up is ingeschakeld"},
 gem(){return"Oeps, er ging iets mis\u2026"},
 gkE(){return"\xc9\xe9n van jouw apparaten is uitgelogd"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MJ,C.aU)})()
 A.ee(b.typeUniverse,JSON.parse('{"MJ":{"aU":[]}}'))};
-(a=>{a["Gn5rzj5Bd1Pl3m0fFl+d8Oakw0o="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["CkPbetmvQve2BFw0X3du59jU4Og="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_366.part.js.map
