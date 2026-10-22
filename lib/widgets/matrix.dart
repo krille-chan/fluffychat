@@ -13,6 +13,7 @@ import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
@@ -177,6 +178,7 @@ class MatrixState extends State<Matrix> {
   final onRoomKeyRequestSub = <String, StreamSubscription>{};
   final onKeyVerificationRequestSub = <String, StreamSubscription>{};
   final onNotification = <String, StreamSubscription>{};
+  final onReceipts = <String, StreamSubscription>{};
   final onLogoutSub = <String, StreamSubscription<LoginState>>{};
   final onUiaRequest = <String, StreamSubscription<UiaRequest>>{};
 
@@ -282,24 +284,8 @@ class MatrixState extends State<Matrix> {
           FluffyChatApp.router.go('/');
         });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
+    final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     if (PlatformInfos.isWeb || PlatformInfos.isDesktop) {
-      FlutterLocalNotificationsPlugin().initialize(
-        settings: InitializationSettings(
-          linux: LinuxInitializationSettings(
-            defaultActionName: FluffyChatNotificationActions.open.name,
-          ),
-          windows: ClientManager.windowsNotificationSettings,
-          macOS: const DarwinInitializationSettings(),
-          iOS: const DarwinInitializationSettings(),
-          android: const AndroidInitializationSettings('notifications_icon'),
-        ),
-        onDidReceiveNotificationResponse: (response) => notificationTap(
-          response,
-          clients: widget.clients,
-          router: FluffyChatApp.router,
-          l10n: null,
-        ),
-      );
       c.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
         onNotification[name] ??= c.onNotification.stream.listen(
@@ -307,6 +293,16 @@ class MatrixState extends State<Matrix> {
         );
       });
     }
+    onReceipts[name] ??= c.onSync.stream.listen(
+      (syncUpdate) => cancelNotificationsOnSync(
+        syncUpdate,
+        c.clientName,
+        c.userID!,
+        // ignore: use_build_context_synchronously
+        L10n.of(context),
+        flutterLocalNotificationsPlugin,
+      ),
+    );
   }
 
   void _cancelSubs(String name) {
@@ -318,13 +314,11 @@ class MatrixState extends State<Matrix> {
     onLogoutSub.remove(name);
     onNotification[name]?.cancel();
     onNotification.remove(name);
+    onReceipts[name]?.cancel();
+    onReceipts.remove(name);
   }
 
-  void initMatrix() {
-    for (final c in widget.clients) {
-      _registerSubs(c.clientName);
-    }
-
+  Future<void> initMatrix() async {
     if (PlatformInfos.isMobile) {
       backgroundPush = BackgroundPush(
         this,
@@ -353,6 +347,29 @@ class MatrixState extends State<Matrix> {
           }
         },
       );
+    }
+    if (backgroundPush == null) {
+      await FlutterLocalNotificationsPlugin().initialize(
+        settings: InitializationSettings(
+          linux: LinuxInitializationSettings(
+            defaultActionName: FluffyChatNotificationActions.open.name,
+          ),
+          windows: ClientManager.windowsNotificationSettings,
+          macOS: const DarwinInitializationSettings(),
+          iOS: const DarwinInitializationSettings(),
+          android: const AndroidInitializationSettings('notifications_icon'),
+        ),
+        onDidReceiveNotificationResponse: (response) => notificationTap(
+          response,
+          clients: widget.clients,
+          router: FluffyChatApp.router,
+          l10n: null,
+        ),
+      );
+    }
+
+    for (final c in widget.clients) {
+      _registerSubs(c.clientName);
     }
   }
 
@@ -392,6 +409,9 @@ class MatrixState extends State<Matrix> {
       sub.cancel();
     }
     for (final sub in onUiaRequest.values) {
+      sub.cancel();
+    }
+    for (final sub in onReceipts.values) {
       sub.cancel();
     }
     onRoomKeyRequestSub.clear();
