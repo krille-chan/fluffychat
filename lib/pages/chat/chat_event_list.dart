@@ -10,6 +10,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/encryption_info.dart';
+import 'package:fluffychat/pages/chat/event_anchor.dart';
 import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
@@ -154,7 +155,6 @@ class ChatEventList extends StatelessWidget {
                 return Column(
                   mainAxisSize: .min,
                   children: [
-                    if (events.isNotEmpty) SeenByRow(event: events.first),
                     TypingIndicators(controller),
                     EncryptionInfo(room: controller.room),
                   ],
@@ -222,7 +222,10 @@ class ChatEventList extends StatelessWidget {
                 key: ValueKey(event.transactionId ?? event.eventId),
                 index: i,
                 controller: controller.scrollController,
-                child: Column(
+                child: EventAnchor(
+                  registry: controller.eventAnchors,
+                  eventId: event.eventId,
+                  child: Column(
                   mainAxisSize: .min,
                   children: [
                     if (!isCollapsed && displayDate)
@@ -297,7 +300,15 @@ class ChatEventList extends StatelessWidget {
                             )
                           : null,
                     ),
+                    if (!isCollapsed)
+                      SeenByRow(
+                        event: event,
+                        timeline: timeline,
+                        visibleEvents: events,
+                        threadId: controller.activeThreadId,
+                      ),
                   ],
+                  ),
                 ),
               );
             },

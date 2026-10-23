@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/seen_by_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:material_ui/material_ui.dart';
@@ -11,7 +12,16 @@ import 'package:matrix/matrix.dart';
 
 class SeenByRow extends StatelessWidget {
   final Event event;
-  const SeenByRow({super.key, required this.event});
+  final Timeline timeline;
+  final List<Event> visibleEvents;
+  final String? threadId;
+  const SeenByRow({
+    super.key,
+    required this.event,
+    required this.timeline,
+    required this.visibleEvents,
+    this.threadId,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +37,12 @@ class SeenByRow extends StatelessWidget {
             false,
       ),
       builder: (context, asyncSnapshot) {
-        final seenByUsers = event.receipts
-            .map((r) => r.user)
-            .where(
-              (user) =>
-                  user.id != event.room.client.userID &&
-                  user.id != event.senderId,
-            )
-            .toList();
+        final seenByUsers =
+            timeline.seenByVisibleEvents(
+              visibleEvents,
+              threadId: threadId,
+            )[event.eventId] ??
+            const <User>[];
         return Container(
           width: double.infinity,
           alignment: Alignment.center,

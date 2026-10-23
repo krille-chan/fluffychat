@@ -36,6 +36,7 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
@@ -319,6 +320,69 @@ class ChatController extends State<ChatPageWithRoom>
       setState(() => _scrolledUp = false);
       setReadMarker();
     }
+    // While the user reads further up, report how far they have read.
+    if (_scrolledUp) {
+      _scrollReadMarkerTimer ??= Timer(
+        const Duration(milliseconds: 700),
+        () {
+          _scrollReadMarkerTimer = null;
+          _setReadMarkerOnVisibleEvent();
+        },
+      );
+    }
+  }
+
+  /// Timeline items currently built, by event ID. See [EventAnchor].
+  final Map<String, BuildContext> eventAnchors = {};
+
+  Timer? _scrollReadMarkerTimer;
+
+  /// Sends a read receipt for the newest event which is on screen, but only if
+  /// that is further than what has already been read.
+  void _setReadMarkerOnVisibleEvent() {
+    if (!mounted || activeThreadId != null) return;
+    final timeline = this.timeline;
+    if (timeline == null || !scrollController.hasClients) return;
+
+    final viewport = scrollController.position.context.storageContext
+        .findRenderObject();
+    if (viewport is! RenderBox || !viewport.attached || !viewport.hasSize) {
+      return;
+    }
+    final top = viewport.localToGlobal(Offset.zero).dy;
+    // The input bar covers the bottom of the list.
+    final bottom = top + viewport.size.height - (inputBarHeight ?? 72);
+
+    Event? target;
+    for (final event in timeline.events.filterByVisibleInGui()) {
+      final anchor = eventAnchors[event.eventId];
+      if (anchor == null || !anchor.mounted) continue;
+      final box = anchor.findRenderObject();
+      if (box is! RenderBox || !box.attached || !box.hasSize) continue;
+      final centerY = box.localToGlobal(Offset.zero).dy + box.size.height / 2;
+      if (centerY >= top && centerY <= bottom) {
+        target = event;
+        break;
+      }
+    }
+    if (target == null) return;
+
+    // Never move the read marker backwards.
+    final receipts = room.receiptState;
+    final ownReceiptId =
+        (receipts.global.latestOwnReceipt ??
+                receipts.mainThread?.latestOwnReceipt)
+            ?.eventId;
+    if (ownReceiptId != null) {
+      final events = timeline.events;
+      final ownIndex = events.indexWhere((e) => e.eventId == ownReceiptId);
+      final targetIndex = events.indexWhere((e) => e.eventId == target!.eventId);
+      if (ownIndex >= 0 && ownIndex <= targetIndex) return;
+      // Receipt is outside of the loaded part and we can't compare.
+      if (ownIndex < 0 && !timeline.allowNewEvent) return;
+    }
+
+    setReadMarker(eventId: target.eventId);
   }
 
   void _loadDraft() {
@@ -712,6 +776,7 @@ class ChatController extends State<ChatPageWithRoom>
     _storeInputTimeoutTimer?.cancel();
     typingCoolDown?.cancel();
     typingTimeout?.cancel();
+    _scrollReadMarkerTimer?.cancel();
     sendController.dispose();
     scrollController.dispose();
     inputFocus.removeListener(_inputFocusListener);
