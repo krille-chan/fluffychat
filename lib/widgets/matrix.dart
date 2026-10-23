@@ -27,7 +27,6 @@ import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../config/setting_keys.dart';
@@ -287,7 +286,9 @@ class MatrixState extends State<Matrix> {
     final flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
     if (PlatformInfos.isWeb || PlatformInfos.isDesktop) {
       c.onSync.stream.first.then((s) {
-        html.Notification.requestPermission();
+        if (kIsWeb) {
+          WebFlutterLocalNotificationsPlugin().requestNotificationsPermission();
+        }
         onNotification[name] ??= c.onNotification.stream.listen(
           showLocalNotification,
         );
