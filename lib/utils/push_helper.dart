@@ -586,15 +586,18 @@ Future<void> cancelNotificationsOnSync(
   List<ActiveNotification>? activeNotifications;
 
   for (final roomId in newReadRoomIds) {
-    if (PlatformInfos.isCupertinoStyle) {
+    if (PlatformInfos.isMacOS || PlatformInfos.isIOS || PlatformInfos.isWeb) {
       activeNotifications ??= await flutterLocalNotificationsPlugin
           .getActiveNotifications();
-      final threadIdentifier = '${clientName}_$roomId';
-      final activeRoomNotifications = activeNotifications.where(
-        (n) => n.groupKey == threadIdentifier,
-      );
-      for (final notification in activeRoomNotifications) {
+      for (final notification in activeNotifications) {
+        final payload = FluffyChatPushPayload.fromString(
+          notification.payload ?? '',
+        );
+        if (payload.clientName != clientName || payload.roomId != roomId) {
+          continue;
+        }
         final id = notification.id;
+        // TODO: notifications from NSE have no id. How to clean them up?
         if (id == null) continue;
         await flutterLocalNotificationsPlugin.cancel(id: id);
       }
