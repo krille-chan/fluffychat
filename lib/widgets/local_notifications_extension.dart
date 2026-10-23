@@ -88,7 +88,8 @@ extension LocalNotificationsExtension on MatrixState {
       }
     }
 
-    final id = PlatformInfos.isCupertinoStyle
+    final id =
+        PlatformInfos.isMacOS || PlatformInfos.isIOS || PlatformInfos.isWeb
         ? '${client.clientName}_${roomId}_${event.eventId}'.hashCode
         : '${client.clientName}_$roomId'.hashCode;
 
