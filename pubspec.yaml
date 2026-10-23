@@ -40,7 +40,7 @@ dependencies:
   flutter_new_badger: ^2.0.0
   flutter_secure_storage: ^11.2.0
   flutter_shortcuts_new: ^2.1.0
-  flutter_vodozemac: ^0.8.1
+  flutter_vodozemac: ^0.9.0
   flutter_web_auth_2: ^5.1.0
   flutter_webrtc: ^1.6.2+hotfix.3
   geolocator: ^14.1.2
@@ -61,7 +61,7 @@ dependencies:
   lottie: ^3.6.1
   managed_configurations: ^1.2.0
   material_ui: 1.7.0
-  matrix: ^14.1.0
+  matrix: ^14.2.0
   media_kit_libs_linux: ^1.2.1
   media_kit_libs_windows_audio: ^1.0.9
   mime: ^2.1.0
@@ -105,7 +105,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   license_checker: ^1.6.2
-  vodozemac: ^0.8.0
+  vodozemac: ^0.9.0
 
 flutter:
   generate: true
@@ -114,7 +114,7 @@ flutter:
     - assets/
     - assets/logo/mini/
     - assets/sounds/
-    - assets/vodozemac/0.8.1/
+    - assets/vodozemac/0.9.0/
 
 hooks:
   user_defines:
