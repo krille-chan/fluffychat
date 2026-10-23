@@ -24,6 +24,10 @@ class Avatar extends StatelessWidget {
   final Color? backgroundColor;
   final Color? textColor;
 
+  /// Plays animated avatars (e.g. GIFs). Loads the original file instead of a
+  /// still thumbnail, so only use this for a few large avatars.
+  final bool animated;
+
   const Avatar({
     this.mxContent,
     this.name,
@@ -37,6 +41,7 @@ class Avatar extends StatelessWidget {
     this.icon,
     this.backgroundColor,
     this.textColor,
+    this.animated = false,
     super.key,
   });
 
@@ -80,8 +85,10 @@ class Avatar extends StatelessWidget {
               client: client,
               borderRadius: borderRadius,
               key: ValueKey(mxContent.toString()),
-              cacheKey: '${mxContent}_$size',
+              cacheKey: '${mxContent}_${size}_$animated',
               uri: mxContent,
+              isThumbnail: !animated,
+              animated: animated,
               fit: BoxFit.cover,
               width: size,
               height: size,

@@ -6,6 +6,7 @@
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/avatar_file_picker.dart';
 import 'package:fluffychat/pages/chat_details/chat_details_view.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
 import 'package:fluffychat/utils/file_selector.dart';
@@ -137,14 +138,14 @@ class ChatDetailsController extends State<ChatDetails> {
     }
     MatrixFile file;
     if (PlatformInfos.isMobile) {
-      final result = await ImagePicker().pickImage(
+      final picked = await pickAvatarFileOnMobile(
         source: action == AvatarAction.camera
             ? ImageSource.camera
             : ImageSource.gallery,
-        imageQuality: 50,
+        client: room!.client,
       );
-      if (result == null) return;
-      file = MatrixFile(bytes: await result.readAsBytes(), name: result.path);
+      if (picked == null) return;
+      file = picked;
     } else {
       if (!mounted) return;
       final picked = await selectFiles(

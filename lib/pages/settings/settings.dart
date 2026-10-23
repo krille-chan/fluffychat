@@ -8,6 +8,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/avatar_file_picker.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
@@ -137,14 +138,14 @@ class SettingsController extends State<Settings> {
     }
     MatrixFile file;
     if (PlatformInfos.isMobile) {
-      final result = await ImagePicker().pickImage(
+      final picked = await pickAvatarFileOnMobile(
         source: action == AvatarAction.camera
             ? ImageSource.camera
             : ImageSource.gallery,
-        imageQuality: 50,
+        client: matrix.client,
       );
-      if (result == null) return;
-      file = MatrixFile(bytes: await result.readAsBytes(), name: result.path);
+      if (picked == null) return;
+      file = picked;
     } else {
       if (!mounted) return;
       final result = await selectFiles(context, type: FileType.image);
