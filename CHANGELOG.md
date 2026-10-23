@@ -8,6 +8,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 ## v2.11.2
 
 - fix: testserver is accidentally preconfigured as a livekit fallback
+## v2.11.1
+Reverting a keychain setting on iOS and macOS.
 
 ## v2.11.0
 Many fixes under the hood, call improvements and automatic recovery from database corruptions.

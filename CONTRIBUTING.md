@@ -13,7 +13,7 @@ To improve the process please make sure that you read the following guidelines c
 ## Contributing Guidelines
 
 1. Always create a Pull Request for any changes.
-2. Usage of LLMs to generate code, documentation, commit messages or PR description is strictly prohibited.
+2. Do not vibe code! Understand what is happening.
 3. Whenever possible please make sure that your Pull Request only contains **one** commit. Cases where multiple commits make sense are very rare.
 4. Do not add merge commits. Use rebases.
 5. Every Pull Request should change only one thing. For bigger changes it is often better to split them up in multiple Pull Requests.

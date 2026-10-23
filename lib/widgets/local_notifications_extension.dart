@@ -23,6 +23,8 @@ extension LocalNotificationsExtension on MatrixState {
     ..src = 'assets/assets/sounds/notification.mp3'
     ..load();
 
+  static final activeWebNotifications = <int, html.Notification>{};
+
   Future<void> showLocalNotification(Event event) async {
     if (event.type == RtcNotificationContent.eventType &&
         event.tryParseRtcNotificationContent()?.notificationType == .ring) {
@@ -82,6 +84,8 @@ extension LocalNotificationsExtension on MatrixState {
       }
     }
 
+    final id = '${client.clientName}_$roomId'.hashCode;
+
     if (kIsWeb) {
       final thumbnailUri = await avatarUrl?.getThumbnailUri(
         client,
@@ -91,12 +95,12 @@ extension LocalNotificationsExtension on MatrixState {
       );
 
       if (AppSettings.webNotificationSound.value) _audioPlayer.play();
-
-      html.Notification(
+      activeWebNotifications[id]?.close();
+      activeWebNotifications[id] = html.Notification(
         title,
         body: body,
         icon: thumbnailUri?.toString(),
-        tag: event.room.id,
+        tag: id.toString(),
       );
       return;
     }
@@ -104,7 +108,7 @@ extension LocalNotificationsExtension on MatrixState {
     final unreadRooms = client.rooms.where((r) => r.isUnreadOrInvited).length;
 
     FlutterLocalNotificationsPlugin().show(
-      id: event.room.id.hashCode,
+      id: id,
       title: title,
       body: body,
       notificationDetails: NotificationDetails(
@@ -135,7 +139,7 @@ extension LocalNotificationsExtension on MatrixState {
         windows: WindowsNotificationDetails(timestamp: event.originServerTs),
         macOS: DarwinNotificationDetails(
           badgeNumber: unreadRooms,
-          threadIdentifier: '${client.clientName}_${event.room.id}',
+          threadIdentifier: client.clientName,
         ),
       ),
       payload: FluffyChatPushPayload(
