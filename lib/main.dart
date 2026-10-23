@@ -11,7 +11,8 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
-import 'package:fluffychat/utils/notification_background_handler.dart';
+import 'package:fluffychat/utils/notifications/background_push.dart';
+import 'package:fluffychat/utils/notifications/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/start_push_foreground_service.dart';
 import 'package:flutter/foundation.dart';
@@ -24,7 +25,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/universal_html.dart' as web;
 
 import 'config/setting_keys.dart';
-import 'utils/background_push.dart';
 import 'widgets/fluffy_chat_app.dart';
 
 ReceivePort? mainIsolateReceivePort;
