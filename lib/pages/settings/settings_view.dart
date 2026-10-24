@@ -62,6 +62,7 @@ class SettingsView extends StatelessWidget {
                           mxContent: avatar,
                           name: displayname,
                           size: Avatar.defaultSize * 2.5,
+                          animated: true,
                           onTap: avatar != null
                               ? () => showDialog(
                                   context: context,
