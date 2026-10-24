@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEX(){return new B.Mr(A.dw("ga"))},
-Mr:function Mr(d){this.a=d}}
+dEY(){return new B.Ms(A.dw("ga"))},
+Ms:function Ms(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[24],B)
-B.Mr.prototype={
+B.Ms.prototype={
 gpq(){return"Cuir \xedomh\xe1 in eagar"},
 gro(){return"Rothlaigh ar chl\xe9"},
 grp(){return"Rothlaigh ar dheis"},
@@ -747,8 +747,8 @@ pS(d,e){return"Thug "+d+" cuireadh duit chuig an gcomhr\xe1 '"+e+"'."},
 pT(d,e){return"Thug "+d+" cuireadh duit chuig an sp\xe1s '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mr,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mr":{"aU":[]}}'))
+x(B.Ms,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Ms":{"aU":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["SQS6veAn4F9z7Cpfog50JX/WmVs="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["SCVnYwOM6gYK6IEQTdV4cHij+Wk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_329.part.js.map

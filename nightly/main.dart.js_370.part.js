@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dFk(){return new B.MO(A.dw("ru"))},
-MO:function MO(d){this.a=d}}
+dFl(){return new B.MP(A.dw("ru"))},
+MP:function MP(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[45],B)
-B.MO.prototype={
+B.MP.prototype={
 gpq(){return"\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0418\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0435"},
 gro(){return"\u041f\u043e\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u0412\u043b\u0435\u0432\u043e"},
 grp(){return"\u041f\u043e\u0432\u0435\u0440\u043d\u0443\u0442\u044c \u0412\u043f\u0440\u0430\u0432\u043e"},
@@ -748,7 +748,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MO,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MO":{"aU":[]}}'))};
-(a=>{a["AE2iLLXNL0TaGhsHBDBn1ncl4WA="]=a.current})($__dart_deferred_initializers__);
+y(B.MP,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MP":{"aU":[]}}'))};
+(a=>{a["qPIyl0hYvC3OjtDf41eORrTrbwA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_370.part.js.map

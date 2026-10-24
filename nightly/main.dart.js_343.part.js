@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF2(){return new B.Mx(A.dw("ia"))},
-Mx:function Mx(d){this.a=d}}
+dF3(){return new B.My(A.dw("ia"))},
+My:function My(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[30],B)
-B.Mx.prototype={
+B.My.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -748,7 +748,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mx,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mx":{"aU":[]}}'))};
-(a=>{a["F0qETEJbXbObh2La/yul7svUgN8="]=a.current})($__dart_deferred_initializers__);
+y(B.My,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"My":{"aU":[]}}'))};
+(a=>{a["3Kg7iYVhQABy8P5uBrHmgcjXycc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_343.part.js.map

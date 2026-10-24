@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEY(){return new B.Ms(A.dw("gl"))},
-Ms:function Ms(d){this.a=d}}
+dEZ(){return new B.Mt(A.dw("gl"))},
+Mt:function Mt(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[25],B)
-B.Ms.prototype={
+B.Mt.prototype={
 gpq(){return"Editar imaxe"},
 gro(){return"Rotar \xe1 esquerda"},
 grp(){return"Rotar \xe1 dereita"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" convidoute \xe1 conversa '"+e+"'."},
 pT(d,e){return d+" convidoute ao espazo '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ms,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Ms":{"aU":[]}}'))};
-(a=>{a["W+bxVMF6Nc33BWo1MZwr7QRbYpQ="]=a.current})($__dart_deferred_initializers__);
+y(B.Mt,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mt":{"aU":[]}}'))};
+(a=>{a["HpV50zBxYathotj9qg0mdE0LnkE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_330.part.js.map
