@@ -110,6 +110,7 @@ class ChatDetailsView extends StatelessWidget {
                                   mxContent: room.avatar,
                                   name: displayname,
                                   size: Avatar.defaultSize * 2.5,
+                                  animated: true,
                                   onTap: roomAvatar != null
                                       ? () => showDialog(
                                           context: context,
