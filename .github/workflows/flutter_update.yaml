@@ -1,0 +1,62 @@
+name: Flutter Update
+
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.latest }}
+      url: ${{ steps.cpr.outputs.pull-request-url }}
+      operation: ${{ steps.cpr.outputs.pull-request-operation }}
+    steps:
+      - uses: actions/checkout@v7
+      - name: Update .fvmrc to latest stable Flutter version
+        id: version
+        run: |
+          LATEST=$(curl -s https://storage.googleapis.com/flutter_infra_release/releases/releases_linux.json \
+            | jq -r '.current_release.stable as $hash | .releases[] | select(.hash == $hash) | .version')
+          printf '{\n  "flutter": "%s"\n}' "$LATEST" > .fvmrc
+          echo "latest=${LATEST}" >> "$GITHUB_OUTPUT"
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version-file: .fvmrc
+          cache: true
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Run pub get, format, fix and update goldens
+        run: |
+          flutter pub get
+          dart format .
+          dart fix --apply
+          dart run golden_screenshot:download_apple_fonts
+          flutter test --update-goldens
+      - name: Create pull request
+        id: cpr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          branch: chore/flutter-update
+          delete-branch: true
+          commit-message: "build: update Flutter to ${{ steps.version.outputs.latest }}"
+          title: "build: update Flutter to ${{ steps.version.outputs.latest }}"
+          body: |
+            Updates Flutter to `${{ steps.version.outputs.latest }}`.
+
+            Also ran `flutter pub get`, `dart format .`, `dart fix --apply` and `flutter test --update-goldens`.
+
+  notify:
+    needs: update
+    if: needs.update.outputs.operation == 'created'
+    uses: ./.github/workflows/matrix_notify.yaml
+    with:
+      title: "build: update Flutter to ${{ needs.update.outputs.version }}"
+      url: ${{ needs.update.outputs.url }}
+      author: github-actions
+    secrets: inherit

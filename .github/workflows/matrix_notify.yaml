@@ -5,10 +5,21 @@ on:
     types: [opened]
   pull_request_target:
     types: [opened]
+  workflow_call:
+    inputs:
+      title:
+        type: string
+        required: true
+      url:
+        type: string
+        required: true
+      author:
+        type: string
+        required: true
 
 jobs:
   notify:
-    if: ${{ (github.event_name == 'issues' && github.event.issue.user.login != 'krille-chan') || (github.event_name == 'pull_request_target' && github.event.pull_request.user.login != 'krille-chan') }}
+    if: ${{ inputs.url != '' || (github.event_name == 'issues' && github.event.issue.user.login != 'krille-chan') || (github.event_name == 'pull_request_target' && github.event.pull_request.user.login != 'krille-chan') }}
     runs-on: ubuntu-latest
     steps:
       - name: Send notification to Matrix room
@@ -21,10 +32,10 @@ jobs:
           ISSUE_URL: ${{ github.event.issue.html_url }}
           ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ', ') }}
           ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
-          PR_TITLE: ${{ github.event.pull_request.title }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_TITLE: ${{ inputs.title || github.event.pull_request.title }}
+          PR_URL: ${{ inputs.url || github.event.pull_request.html_url }}
           PR_LABELS: ${{ join(github.event.pull_request.labels.*.name, ', ') }}
-          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_AUTHOR: ${{ inputs.author || github.event.pull_request.user.login }}
         run: |
           if [ "${EVENT_NAME}" = "issues" ]; then
             EMOJI="📝"
