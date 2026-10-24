@@ -7,7 +7,9 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
+import 'package:fluffychat/pages/settings/settings.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/verified_room_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
@@ -53,6 +55,19 @@ class ChatDetailsView extends StatelessWidget {
         var members = room.getParticipants().toList()
           ..sort((b, a) => a.powerLevel.level.compareTo(b.powerLevel.level));
         members = members.take(10).toList();
+        final avatarActions = [
+          if (PlatformInfos.isMobile) AvatarAction.camera,
+          AvatarAction.file,
+          if (room.avatar != null || room.toString().isEmpty)
+            AvatarAction.remove,
+        ];
+
+        final avatarButtonStyle = IconButton.styleFrom(
+          backgroundColor: theme.colorScheme.primaryContainer,
+          foregroundColor: theme.colorScheme.onPrimaryContainer,
+          shadowColor: theme.colorScheme.shadow,
+          elevation: 2,
+        );
         final actualMembersCount =
             (room.summary.mInvitedMemberCount ?? 0) +
             (room.summary.mJoinedMemberCount ?? 0);
@@ -127,13 +142,64 @@ class ChatDetailsView extends StatelessWidget {
                                 Positioned(
                                   bottom: 0,
                                   right: 0,
-                                  child: FloatingActionButton.small(
-                                    onPressed: controller.setAvatarAction,
-                                    heroTag: null,
-                                    child: const Icon(
-                                      Icons.camera_alt_outlined,
-                                    ),
-                                  ),
+                                  child: avatarActions.length == 1
+                                      ? IconButton(
+                                          style: avatarButtonStyle,
+                                          tooltip: L10n.of(
+                                            context,
+                                          ).editRoomAvatar,
+                                          onPressed: () =>
+                                              controller.setAvatarAction(
+                                                avatarActions.single,
+                                              ),
+                                          icon: const Icon(
+                                            Icons.camera_alt_outlined,
+                                          ),
+                                        )
+                                      : PopupMenuButton<AvatarAction>(
+                                          style: avatarButtonStyle,
+                                          tooltip: L10n.of(
+                                            context,
+                                          ).editRoomAvatar,
+                                          onSelected:
+                                              controller.setAvatarAction,
+                                          icon: const Icon(
+                                            Icons.camera_alt_outlined,
+                                          ),
+                                          itemBuilder: (context) => [
+                                            for (final action in avatarActions)
+                                              PopupMenuItem(
+                                                value: action,
+                                                child: Row(
+                                                  mainAxisSize: .min,
+                                                  spacing: 12,
+                                                  children: [
+                                                    Icon(switch (action) {
+                                                      AvatarAction.camera =>
+                                                        Icons
+                                                            .camera_alt_outlined,
+                                                      AvatarAction.file =>
+                                                        Icons.photo_outlined,
+                                                      AvatarAction.remove =>
+                                                        Icons.delete_outlined,
+                                                    }),
+                                                    Text(switch (action) {
+                                                      AvatarAction.camera =>
+                                                        L10n.of(
+                                                          context,
+                                                        ).openCamera,
+                                                      AvatarAction.file =>
+                                                        L10n.of(
+                                                          context,
+                                                        ).openGallery,
+                                                      AvatarAction.remove =>
+                                                        L10n.of(context).delete,
+                                                    }),
+                                                  ],
+                                                ),
+                                              ),
+                                          ],
+                                        ),
                                 ),
                             ],
                           ),

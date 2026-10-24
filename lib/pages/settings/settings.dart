@@ -9,8 +9,6 @@ import 'package:collection/collection.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/file_selector.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -89,42 +87,8 @@ class SettingsController extends State<Settings> {
     context.go('/');
   }
 
-  Future<void> setAvatarAction() async {
-    final l10n = L10n.of(context);
+  Future<void> setAvatarAction(AvatarAction action) async {
     final matrix = Matrix.of(context);
-    final profile = await profileFuture;
-    if (!mounted) return;
-    final actions = [
-      if (PlatformInfos.isMobile)
-        AdaptiveModalAction(
-          value: AvatarAction.camera,
-          label: l10n.openCamera,
-          isDefaultAction: true,
-          icon: const Icon(Icons.camera_alt_outlined),
-        ),
-      AdaptiveModalAction(
-        value: AvatarAction.file,
-        label: l10n.openGallery,
-        icon: const Icon(Icons.photo_outlined),
-      ),
-      if (profile?.avatarUrl != null)
-        AdaptiveModalAction(
-          value: AvatarAction.remove,
-          label: l10n.removeYourAvatar,
-          isDestructive: true,
-          icon: const Icon(Icons.delete_outlined),
-        ),
-    ];
-    final action = actions.length == 1
-        ? actions.single.value
-        : await showModalActionPopup<AvatarAction>(
-            context: context,
-            title: l10n.changeYourAvatar,
-            cancelLabel: l10n.cancel,
-            actions: actions,
-          );
-    if (action == null) return;
-    if (!mounted) return;
     if (action == AvatarAction.remove) {
       final success = await showFutureLoadingDialog(
         context: context,
