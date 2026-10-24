@@ -6,14 +6,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Contributing to FluffyChat
-Contributions are always welcome. Yet we might lack manpower to review all of them in time.
+Contributions are always welcome but limited to collaborators only for now duo to spam. You can request collaboration access to the repository in an issue. Further collaboration will then be decided on the quality of your first pull request.
 
 To improve the process please make sure that you read the following guidelines carefully:
 
 ## Contributing Guidelines
 
 1. Always create a Pull Request for any changes.
-2. Do not vibe code! Understand what is happening.
+2. We do not vibe code! You are required to understand and be able to explain every single line of code of your contribution.
 3. Whenever possible please make sure that your Pull Request only contains **one** commit. Cases where multiple commits make sense are very rare.
 4. Do not add merge commits. Use rebases.
 5. Every Pull Request should change only one thing. For bigger changes it is often better to split them up in multiple Pull Requests.
