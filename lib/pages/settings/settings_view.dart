@@ -52,6 +52,17 @@ class SettingsView extends StatelessWidget {
                     Matrix.of(context).client.userID ?? L10n.of(context).user;
                 final displayname =
                     profile?.displayName ?? mxid.localpart ?? mxid;
+                final avatarActions = [
+                  if (PlatformInfos.isMobile) AvatarAction.camera,
+                  AvatarAction.file,
+                  if (avatar != null) AvatarAction.remove,
+                ];
+                final avatarButtonStyle = IconButton.styleFrom(
+                  backgroundColor: theme.colorScheme.primaryContainer,
+                  foregroundColor: theme.colorScheme.onPrimaryContainer,
+                  shadowColor: theme.colorScheme.shadow,
+                  elevation: 2,
+                );
                 return Column(
                   crossAxisAlignment: .center,
                   mainAxisSize: .min,
@@ -74,12 +85,52 @@ class SettingsView extends StatelessWidget {
                           Positioned(
                             bottom: 0,
                             right: 0,
-                            child: FloatingActionButton.small(
-                              elevation: 2,
-                              onPressed: controller.setAvatarAction,
-                              heroTag: null,
-                              child: const Icon(Icons.camera_alt_outlined),
-                            ),
+                            child: avatarActions.length == 1
+                                ? IconButton(
+                                    style: avatarButtonStyle,
+                                    tooltip: L10n.of(context).changeYourAvatar,
+                                    onPressed: () => controller.setAvatarAction(
+                                      avatarActions.single,
+                                    ),
+                                    icon: const Icon(Icons.camera_alt_outlined),
+                                  )
+                                : PopupMenuButton<AvatarAction>(
+                                    style: avatarButtonStyle,
+                                    tooltip: L10n.of(context).changeYourAvatar,
+                                    onSelected: controller.setAvatarAction,
+                                    icon: const Icon(Icons.camera_alt_outlined),
+                                    itemBuilder: (context) => [
+                                      for (final action in avatarActions)
+                                        PopupMenuItem(
+                                          value: action,
+                                          child: Row(
+                                            mainAxisSize: .min,
+                                            spacing: 12,
+                                            children: [
+                                              Icon(switch (action) {
+                                                AvatarAction.camera =>
+                                                  Icons.camera_alt_outlined,
+                                                AvatarAction.file =>
+                                                  Icons.photo_outlined,
+                                                AvatarAction.remove =>
+                                                  Icons.delete_outlined,
+                                              }),
+                                              Text(switch (action) {
+                                                AvatarAction.camera => L10n.of(
+                                                  context,
+                                                ).openCamera,
+                                                AvatarAction.file => L10n.of(
+                                                  context,
+                                                ).openGallery,
+                                                AvatarAction.remove => L10n.of(
+                                                  context,
+                                                ).removeYourAvatar,
+                                              }),
+                                            ],
+                                          ),
+                                        ),
+                                    ],
+                                  ),
                           ),
                       ],
                     ),
