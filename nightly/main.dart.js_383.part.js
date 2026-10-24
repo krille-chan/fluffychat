@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dFu(){return new B.MY(A.dw("tr"))},
-MY:function MY(d){this.a=d}}
+dFu(){return new B.MW(A.dw("tr"))},
+MW:function MW(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[54],B)
-B.MY.prototype={
+B.MW.prototype={
 gpq(){return"G\xf6rseli d\xfczenle"},
 gro(){return"Sola d\xf6nd\xfcr"},
 grp(){return"Sa\u011fa d\xf6nd\xfcr"},
@@ -747,8 +747,8 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MY,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MY":{"aU":[]}}'))
+x(B.MW,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MW":{"aU":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["L5jpFDUam0Fqf30n7ADGFyjbqK0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["EF/x0KJcuzvyDlZxXHzyU5dze3o="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_383.part.js.map

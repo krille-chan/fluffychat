@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dET(){return new B.Mn(A.dw("eu"))},
-Mn:function Mn(d){this.a=d}}
+dET(){return new B.Ml(A.dw("eu"))},
+Ml:function Ml(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[19],B)
-B.Mn.prototype={
+B.Ml.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -747,8 +747,8 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mn,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mn":{"aU":[]}}'))
+x(B.Ml,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Ml":{"aU":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["bHS7K3RbZeeNKbNXgMv4WNq1Eow="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["pXldCC9KWqW/ICjldkQ/YGe9HK4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

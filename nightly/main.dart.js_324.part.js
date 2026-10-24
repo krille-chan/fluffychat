@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEX(){return new B.Mr(A.dw("fr"))},
-Mr:function Mr(d){this.a=d}}
+dEX(){return new B.Mp(A.dw("fr"))},
+Mp:function Mp(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[23],B)
-B.Mr.prototype={
+B.Mp.prototype={
 gpq(){return"\xc9diter l\u2019image"},
 gro(){return"Tourner vers la gauche"},
 grp(){return"Tourner vers la droite"},
@@ -748,7 +748,7 @@ pS(d,e){return d+" vous a invit\xe9 dans la discussion '"+e+"'."},
 pT(d,e){return d+" vous a invit\xe9 dans l'espace '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mr,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mr":{"aU":[]}}'))};
-(a=>{a["SZpVGwu9wvmlqTqZzgL4FmmU0dg="]=a.current})($__dart_deferred_initializers__);
+y(B.Mp,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mp":{"aU":[]}}'))};
+(a=>{a["Y4qaRV8xU4F/qUN9e+jT7hQm8Xg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_324.part.js.map

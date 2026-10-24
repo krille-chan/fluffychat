@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
 dFh(d){return new A.FK(B.dw(d))},
-dFi(){return new A.MM(B.dw("pt_BR"))},
-dFj(){return new A.MN(B.dw("pt_PT"))},
+dFi(){return new A.MK(B.dw("pt_BR"))},
+dFj(){return new A.ML(B.dw("pt_PT"))},
 FK:function FK(d){this.a=d},
-MM:function MM(d){this.a=d},
-MN:function MN(d){this.a=d}},C
+MK:function MK(d){this.a=d},
+ML:function ML(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[59]
@@ -751,7 +751,7 @@ gqs(){return"Decline and block"},
 pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
-A.MM.prototype={
+A.MK.prototype={
 gl2(){return"Repita a senha"},
 gkC(){return"N\xe3o \xe9 um arquivo de imagem."},
 gbC(d){return"Remover"},
@@ -1357,7 +1357,7 @@ goV(){return"Pular backup de conversas"},
 goW(){return"Tem certeza? Se n\xe3o ativar o backup de conversas, voc\xea pode perder o acesso \xe0s suas mensagens se trocar de dispositivo."},
 pK(d){return"Vers\xe3o: "+d},
 C(d,e){return this.gbC(this).$1(e)}}
-A.MN.prototype={
+A.ML.prototype={
 gl2(){return"Repete a palavra-passe"},
 gkC(){return"N\xe3o \xe9 um ficheiro de imagem."},
 gbC(d){return"Remover"},
@@ -1700,8 +1700,8 @@ gfa(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.FK,C.aU)
-w(A.FK,[A.MM,A.MN])})()
-B.ee(b.typeUniverse,JSON.parse('{"FK":{"aU":[]},"MM":{"aU":[]},"MN":{"aU":[]}}'))
+w(A.FK,[A.MK,A.ML])})()
+B.ee(b.typeUniverse,JSON.parse('{"FK":{"aU":[]},"MK":{"aU":[]},"ML":{"aU":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["JzPTE6DZ62tL0kBddWAXC7FnI14="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["czlMAQUbpDniGKHbU1XTZo7VyqE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map
