@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dFh(){return new B.MR(A.dw("sr"))},
-MR:function MR(d){this.a=d}}
+dFo(){return new B.MS(A.dw("sr"))},
+MS:function MS(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[49],B)
-B.MR.prototype={
+B.MS.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"\u0417\u0430\u0431\u0440\u0430\u043d\u0438 \u0443 \u045b\u0430\u044
 gfP(){return"\u0417\u0430\u0431\u0440\u0430\u045a\u0435\u043d"},
 iz(d,e){return d+" \u0437\u0430\u0431\u0440\u0430\u043d\u0438 \u043a\u043e\u0440\u0438\u0441\u043d\u0438\u043a\u0430 "+e},
 gfR(){return"\u0411\u043b\u043e\u043a\u0438\u0440\u0430\u0458 \u0443\u0440\u0435\u0452\u0430\u0458"},
-gcS(){return"\u0411\u043b\u043e\u043a\u0438\u0440\u0430\u043d"},
+gcT(){return"\u0411\u043b\u043e\u043a\u0438\u0440\u0430\u043d"},
 gbX(d){return"\u041e\u0442\u043a\u0430\u0436\u0438"},
 fT(d){return"Can't open the URI "+d},
 gfU(){return"\u041f\u0440\u043e\u043c\u0435\u043d\u0438 \u043d\u0430\u0437\u0438\u0432 \u0443\u0440\u0435\u0452\u0430\u0458\u0430"},
@@ -246,7 +246,7 @@ gfk(){return"\u041e\u0431\u0430\u0432\u0435\u0448\u0442\u0435\u045a\u0430"},
 gkD(){return"Obtaining location\u2026"},
 gdu(){return"\u0443 \u0440\u0435\u0434\u0443"},
 gkF(){return"\u0420\u0435\u0437\u0435\u0440\u0432\u0430 \u043a\u0459\u0443\u0447\u0435\u0432\u0430 \u043d\u0430 \u043c\u0440\u0435\u0436\u0438 \u0458\u0435 \u0443\u043a\u0459\u0443\u0447\u0435\u043d\u0430"},
-gem(){return"\u041d\u0435\u0448\u0442\u043e \u0458\u0435 \u043f\u043e\u0448\u043b\u043e \u043d\u0430\u043e\u043f\u0430\u043a\u043e\u2026"},
+gen(){return"\u041d\u0435\u0448\u0442\u043e \u0458\u0435 \u043f\u043e\u0448\u043b\u043e \u043d\u0430\u043e\u043f\u0430\u043a\u043e\u2026"},
 gkE(){return"One of your clients has been logged out"},
 gfL(){return"Add account"},
 gjE(){return"Edit bundles for this account"},
@@ -256,7 +256,7 @@ gfS(){return"Bundle name"},
 gkI(){return"Open in maps"},
 geg(){return"Link"},
 gkK(){return"\u0438\u043b\u0438"},
-geo(){return"\u0423\u0447\u0435\u0441\u043d\u0438\u043a"},
+gep(){return"\u0423\u0447\u0435\u0441\u043d\u0438\u043a"},
 ghz(){return"\u0444\u0440\u0430\u0437\u0430 \u0438\u043b\u0438 \u043a\u0459\u0443\u0447 \u043e\u043f\u043e\u0440\u0430\u0432\u043a\u0430"},
 gkL(d){return"\u041b\u043e\u0437\u0438\u043d\u043a\u0430"},
 geM(){return"\u0417\u0430\u0431\u043e\u0440\u0430\u0432\u0459\u0435\u043d\u0430 \u043b\u043e\u0437\u0438\u043d\u043a\u0430"},
@@ -308,7 +308,7 @@ glV(){return"\u041f\u043e\u0441\u0442\u0430\u0432\u0438 \u043a\u0430\u043e \u043
 gfz(){return"Set chat description"},
 gfB(){return"\u041f\u043e\u0441\u0442\u0430\u0432\u0438 \u0441\u0442\u0430\u0442\u0443\u0441"},
 geQ(){return"\u041f\u043e\u0441\u0442\u0430\u0432\u043a\u0435"},
-gep(d){return"\u041f\u043e\u0434\u0435\u043b\u0438"},
+geq(d){return"\u041f\u043e\u0434\u0435\u043b\u0438"},
 i4(d){return d+" \u043f\u043e\u0434\u0435\u043b\u0438 \u043b\u043e\u043a\u0430\u0446\u0438\u0458\u0443"},
 gi3(){return"Share location"},
 geR(d){return"\u041f\u0440\u0435\u0441\u043a\u043e\u0447\u0438"},
@@ -648,7 +648,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Remove admin rights"},
 gr8(){return"Power level"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Owner"},
+geo(){return"Owner"},
 gpx(){return"Mute"},
 gqq(){return"Create new chat"},
 gpC(d){return"Reset"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MR,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MR":{"aU":[]}}'))};
-(a=>{a["BMPX5RQhcoo8TwTovsaeo0A7hyo="]=a.current})($__dart_deferred_initializers__);
+y(B.MS,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MS":{"aU":[]}}'))};
+(a=>{a["3mSd9/hyrXagq2bX1KTx7m5LlJA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_377.part.js.map

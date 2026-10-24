@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dFm(){return new B.MW(A.dw("tr"))},
-MW:function MW(d){this.a=d}}
+dFt(){return new B.MX(A.dw("tr"))},
+MX:function MX(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[54],B)
-B.MW.prototype={
+B.MX.prototype={
 gpq(){return"G\xf6rseli d\xfczenle"},
 gro(){return"Sola d\xf6nd\xfcr"},
 grp(){return"Sa\u011fa d\xf6nd\xfcr"},
@@ -66,7 +66,7 @@ gfO(){return"Sohbetten engelle"},
 gfP(){return"Engellendi"},
 iz(d,e){return d+", "+e+" ki\u015fisini engelledi"},
 gfR(){return"Ayg\u0131t\u0131 Engelle"},
-gcS(){return"Engellendi"},
+gcT(){return"Engellendi"},
 gbX(d){return"\u0130ptal"},
 fT(d){return d+" URI'si a\xe7\u0131lam\u0131yor"},
 gfU(){return"Ayg\u0131t ad\u0131n\u0131 de\u011fi\u015ftir"},
@@ -246,7 +246,7 @@ gfk(){return"Bildirimler"},
 gkD(){return"Konum al\u0131n\u0131yor\u2026"},
 gdu(){return"Tamam"},
 gkF(){return"\xc7evrim i\xe7i anahtar yedekleme etkinle\u015ftirildi"},
-gem(){return"T\xfch, bir \u015feyler yanl\u0131\u015f gitti\u2026"},
+gen(){return"T\xfch, bir \u015feyler yanl\u0131\u015f gitti\u2026"},
 gkE(){return"\u0130stemcilerinizden birinin oturumu kapat\u0131ld\u0131"},
 gfL(){return"Hesap ekle"},
 gjE(){return"Bu hesap i\xe7in paketleri d\xfczenle"},
@@ -256,7 +256,7 @@ gfS(){return"Paket ad\u0131"},
 gkI(){return"Haritalarda a\xe7"},
 geg(){return"Ba\u011flant\u0131"},
 gkK(){return"Veya"},
-geo(){return"Kat\u0131l\u0131mc\u0131"},
+gep(){return"Kat\u0131l\u0131mc\u0131"},
 ghz(){return"parola veya kurtarma anahtar\u0131"},
 gkL(d){return"Parola"},
 geM(){return"Parola unutuldu"},
@@ -308,7 +308,7 @@ glV(){return"Ana takma ad olarak ayarla"},
 gfz(){return"Sohbet a\xe7\u0131klamas\u0131n\u0131 ayarla"},
 gfB(){return"Durumu ayarla"},
 geQ(){return"Ayarlar"},
-gep(d){return"Payla\u015f"},
+geq(d){return"Payla\u015f"},
 i4(d){return d+" konumunu payla\u015ft\u0131"},
 gi3(){return"Konumu payla\u015f"},
 geR(d){return"Atla"},
@@ -648,7 +648,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Remove admin rights"},
 gr8(){return"Power level"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Owner"},
+geo(){return"Owner"},
 gpx(){return"Mute"},
 gqq(){return"Create new chat"},
 gpC(d){return"Reset"},
@@ -747,8 +747,8 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MW,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MW":{"aU":[]}}'))
+x(B.MX,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MX":{"aU":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["jBrVCG2stR1gFDfGbgWDRFRLAyA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jBlD5fohtBSHgNznbKt+0jU0HpQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_383.part.js.map

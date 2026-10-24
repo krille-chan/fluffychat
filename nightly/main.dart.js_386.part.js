@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dFo(){return new B.MY(A.dw("uz"))},
-MY:function MY(d){this.a=d}}
+dFv(){return new B.MZ(A.dw("uz"))},
+MZ:function MZ(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[56],B)
-B.MY.prototype={
+B.MZ.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"Suhbatdan taqiqlash"},
 gfP(){return"Taqiqlangan"},
 iz(d,e){return d+" taqiqladi "+e+"(ni)"},
 gfR(){return"Qurilmani bloklash"},
-gcS(){return"Bloklandi"},
+gcT(){return"Bloklandi"},
 gbX(d){return"Bekor qilish"},
 fT(d){return d+" URIni ochib bo\u02bblmadi"},
 gfU(){return"Qurilma nomini o\u02bbzgartirish"},
@@ -246,7 +246,7 @@ gfk(){return"Bildirishnomalar"},
 gkD(){return"Joylashuv aniqlanmoqda\u2026"},
 gdu(){return"Hop"},
 gkF(){return"Onlayn kalit zaxira nusxasi yoqilgan"},
-gem(){return"Voy, nimadir noto\u02bbg\u02bbri ketdi\u2026"},
+gen(){return"Voy, nimadir noto\u02bbg\u02bbri ketdi\u2026"},
 gkE(){return"Mijozlaringizdan biri tizimdan chiqdi"},
 gfL(){return"Hisob qo\u02bbshish"},
 gjE(){return"Bu hisob uchun to\u02bbplamlarni tahrirlash"},
@@ -256,7 +256,7 @@ gfS(){return"To\u02bbplam nomi"},
 gkI(){return"Xaritalarda ochish"},
 geg(){return"Havola"},
 gkK(){return"Yoki"},
-geo(){return"Qatnashuvchi"},
+gep(){return"Qatnashuvchi"},
 ghz(){return"parol yoki tiklash kaliti"},
 gkL(d){return"Parol"},
 geM(){return"Parol unitilgan"},
@@ -308,7 +308,7 @@ glV(){return"Asosiy taxallus sifatida belgilash"},
 gfz(){return"Suhbat tavsifini sozlash"},
 gfB(){return"Holatni sozlash"},
 geQ(){return"Sozlamalar"},
-gep(d){return"Bo\u2018lishmoq"},
+geq(d){return"Bo\u2018lishmoq"},
 i4(d){return d+" joylashuvini ulashdi"},
 gi3(){return"Joylashuvni ulashish"},
 geR(d){return"Tashlab ketish"},
@@ -648,7 +648,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Remove admin rights"},
 gr8(){return"Power level"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Owner"},
+geo(){return"Owner"},
 gpx(){return"Mute"},
 gqq(){return"Create new chat"},
 gpC(d){return"Reset"},
@@ -747,8 +747,8 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MY,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MY":{"aU":[]}}'))
+x(B.MZ,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MZ":{"aU":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["yRkbgj1jzTw5L2ceyRPhQnbdlqI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["pqi+/TsMZMu1+zgFcmjM2m1sr+k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_386.part.js.map

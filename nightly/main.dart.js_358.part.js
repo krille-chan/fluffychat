@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF2(){return new B.MD(A.dw("ko"))},
-MD:function MD(d){this.a=d}}
+dF9(){return new B.ME(A.dw("ko"))},
+ME:function ME(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[37],B)
-B.MD.prototype={
+B.ME.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"\ucc44\ud305\uc5d0\uc11c \uc601\uad6c \ucd94\ubc29"},
 gfP(){return"\uc601\uad6c \ucd94\ubc29\ub428"},
 iz(d,e){return d+"\ub2d8\uc774 "+e+"\ub2d8\uc744 \uc601\uad6c \ucd94\ubc29\ud568"},
 gfR(){return"\uae30\uae30 \ucc28\ub2e8"},
-gcS(){return"\ucc28\ub2e8\ub428"},
+gcT(){return"\ucc28\ub2e8\ub428"},
 gbX(d){return"\ucde8\uc18c"},
 fT(d){return"URI "+d+"\ub97c \uc5f4 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4"},
 gfU(){return"\uae30\uae30 \uc774\ub984 \ubc14\uafb8\uae30"},
@@ -246,7 +246,7 @@ gfk(){return"\uc54c\ub9bc"},
 gkD(){return"\uc704\uce58 \uc5bb\ub294 \uc911\u2026"},
 gdu(){return"\ud655\uc778"},
 gkF(){return"\uc628\ub77c\uc778 \ud0a4 \ubc31\uc5c5\uc774 \ud65c\uc131\ud654\ub428"},
-gem(){return"\uc557, \ubb34\uc5b8\uac00\uac00 \uc798\ubabb\ub418\uc5c8\uc2b5\ub2c8\ub2e4\u2026"},
+gen(){return"\uc557, \ubb34\uc5b8\uac00\uac00 \uc798\ubabb\ub418\uc5c8\uc2b5\ub2c8\ub2e4\u2026"},
 gkE(){return"\ub2f9\uc2e0\uc758 \ud074\ub77c\uc774\uc5b8\ud2b8 \uc911 \ud558\ub098\uac00 \ub85c\uadf8\uc544\uc6c3 \ub428"},
 gfL(){return"\uacc4\uc815 \ucd94\uac00"},
 gjE(){return"\uc774 \uacc4\uc815\uc758 \ubc88\ub4e4 \uc218\uc815"},
@@ -256,7 +256,7 @@ gfS(){return"\ubc88\ub4e4 \uc774\ub984"},
 gkI(){return"\uc9c0\ub3c4\uc5d0\uc11c \uc5f4\uae30"},
 geg(){return"\ub9c1\ud06c"},
 gkK(){return"\uc774\ub098"},
-geo(){return"\ucc38\uc5ec\uc790"},
+gep(){return"\ucc38\uc5ec\uc790"},
 ghz(){return"\ube44\ubc00\ubc88\ud638\ub098 \ubcf5\uad6c \ud0a4"},
 gkL(d){return"\ube44\ubc00\ubc88\ud638"},
 geM(){return"\ube44\ubc00\ubc88\ud638 \uae4c\uba39\uc74c"},
@@ -308,7 +308,7 @@ glV(){return"\uc8fc \ubcc4\uba85\uc73c\ub85c \uc124\uc815"},
 gfz(){return"\ucc44\ud305 \uc124\uba85 \uc124\uc815"},
 gfB(){return"\uc0c1\ud0dc \uc124\uc815"},
 geQ(){return"\uc124\uc815"},
-gep(d){return"\uacf5\uc720"},
+geq(d){return"\uacf5\uc720"},
 i4(d){return d+"\ub2d8\uc774 \uc704\uce58\ub97c \uacf5\uc720\ud568"},
 gi3(){return"\uc704\uce58 \ubcf4\ub0b4\uae30"},
 geR(d){return"\uc2a4\ud0b5"},
@@ -648,7 +648,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Remove admin rights"},
 gr8(){return"Power level"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Owner"},
+geo(){return"Owner"},
 gpx(){return"Mute"},
 gqq(){return"Create new chat"},
 gpC(d){return"Reset"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MD,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MD":{"aU":[]}}'))};
-(a=>{a["/zBheteUmeHNRKFY8DkRopVGI0Y="]=a.current})($__dart_deferred_initializers__);
+y(B.ME,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"ME":{"aU":[]}}'))};
+(a=>{a["xZM+uJK7mZkE5+2wx/I00OL7Yp4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_358.part.js.map

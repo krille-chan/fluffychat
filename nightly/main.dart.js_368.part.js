@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF8(){return new B.MJ(A.dw("pl"))},
-MJ:function MJ(d){this.a=d}}
+dFf(){return new B.MK(A.dw("pl"))},
+MK:function MK(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[43],B)
-B.MJ.prototype={
+B.MK.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"Ban w czacie"},
 gfP(){return"Zbanowany/-a"},
 iz(d,e){return d+" zbanowa\u0142/-a "+e},
 gfR(){return"Zablokuj urz\u0105dzenie"},
-gcS(){return"Zablokowane"},
+gcT(){return"Zablokowane"},
 gbX(d){return"Anuluj"},
 fT(d){return"Nie mo\u017cna otworzy\u0107 linku "+d},
 gfU(){return"Zmie\u0144 nazw\u0119 urz\u0105dzenia"},
@@ -246,7 +246,7 @@ gfk(){return"Powiadomienia"},
 gkD(){return"Uzyskiwanie lokalizacji\u2026"},
 gdu(){return"Ok"},
 gkF(){return"Kopia zapasowa kluczy online jest w\u0142\u0105czona"},
-gem(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
+gen(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
 gkE(){return"Jedno z twoich urz\u0105dze\u0144 zosta\u0142o wylogowane"},
 gfL(){return"Dodaj konto"},
 gjE(){return"Edytuj pakiety dla tego konta"},
@@ -256,7 +256,7 @@ gfS(){return"Nazwa pakietu"},
 gkI(){return"Otw\xf3rz w mapach"},
 geg(){return"Link"},
 gkK(){return"Lub"},
-geo(){return"Uczestnik"},
+gep(){return"Uczestnik"},
 ghz(){return"fraza dost\u0119pu lub klucz odzyskiwania"},
 gkL(d){return"Has\u0142o"},
 geM(){return"Nie pami\u0119tam has\u0142a"},
@@ -308,7 +308,7 @@ glV(){return"Ustaw jako g\u0142\xf3wny alias"},
 gfz(){return"Ustaw opis czatu"},
 gfB(){return"Ustaw status"},
 geQ(){return"Ustawienia"},
-gep(d){return"Udost\u0119pnij"},
+geq(d){return"Udost\u0119pnij"},
 i4(d){return d+" udost\u0119pni\u0142/-a swoj\u0105 lokalizacj\u0119"},
 gi3(){return"Udost\u0119pnij lokalizacj\u0119"},
 geR(d){return"Pomi\u0144"},
@@ -648,7 +648,7 @@ gre(){return"Odbierz uprawnienia moderatora"},
 grb(){return"Odbierz uprawnienia administratora"},
 gr8(){return"Poziom uprawnie\u0144"},
 gpX(){return"Poziomy uprawnie\u0144 okre\u015blaj\u0105, co cz\u0142onek mo\u017ce robi\u0107 w tym pokoju i zazwyczaj mieszcz\u0105 si\u0119 w zakresie od 0 do 100."},
-gen(){return"W\u0142a\u015bciciel"},
+geo(){return"W\u0142a\u015bciciel"},
 gpx(){return"Wycisz"},
 gqq(){return"Utw\xf3rz nowy czat"},
 gpC(d){return"Resetuj"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MJ,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MJ":{"aU":[]}}'))};
-(a=>{a["jq5rqmS5sGqdXCAt8ttym3MZZ+s="]=a.current})($__dart_deferred_initializers__);
+y(B.MK,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MK":{"aU":[]}}'))};
+(a=>{a["tR9/oQ/EJuyzCAdvy8egXWh090g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_368.part.js.map

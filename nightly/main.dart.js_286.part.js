@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dED(){return new B.Md(A.dw("cs"))},
-Md:function Md(d){this.a=d}}
+dEK(){return new B.Me(A.dw("cs"))},
+Me:function Me(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[11],B)
-B.Md.prototype={
+B.Me.prototype={
 gpq(){return"Upravit obraz"},
 gro(){return"Oto\u010dit doleva"},
 grp(){return"Oto\u010dit doprava"},
@@ -66,7 +66,7 @@ gfO(){return"Zak\xe1zat chat"},
 gfP(){return"Zak\xe1z\xe1n"},
 iz(d,e){return d+" zak\xe1zal "+e},
 gfR(){return"Blokovat za\u0159\xedzen\xed"},
-gcS(){return"Zak\xe1z\xe1n"},
+gcT(){return"Zak\xe1z\xe1n"},
 gbX(d){return"Zru\u0161it"},
 fT(d){return"Nelze otev\u0159\xedt URI "+d},
 gfU(){return"Zm\u011bnit n\xe1zev za\u0159\xedzen\xed"},
@@ -246,7 +246,7 @@ gfk(){return"Ozn\xe1men\xed"},
 gkD(){return"Z\xedsk\xe1v\xe1n\xed polohy\u2026"},
 gdu(){return"Ok"},
 gkF(){return"Online z\xe1loha k\xed\u010d\u016f je zapnuta"},
-gem(){return"Jejda, n\u011bco se pokazilo\u2026"},
+gen(){return"Jejda, n\u011bco se pokazilo\u2026"},
 gkE(){return"Jeden z va\u0161ich klient\u016f byl odhl\xe1\u0161en"},
 gfL(){return"P\u0159idat \xfa\u010det"},
 gjE(){return"Upravit bal\xed\u010dky pro tento \xfa\u010det"},
@@ -256,7 +256,7 @@ gfS(){return"N\xe1zev bal\xed\u010dku"},
 gkI(){return"Otev\u0159\xedt v map\xe1ch"},
 geg(){return"Odkaz"},
 gkK(){return"Nebo"},
-geo(){return"\xda\u010dastn\xedk"},
+gep(){return"\xda\u010dastn\xedk"},
 ghz(){return"heslo nebo kl\xed\u010d pro obnoven\xed"},
 gkL(d){return"Heslo"},
 geM(){return"Zapomenut\xe9 heslo"},
@@ -308,7 +308,7 @@ glV(){return"Nastavit jako hlavn\xed alias"},
 gfz(){return"Nastavit popis konverzace"},
 gfB(){return"Nastavit stav"},
 geQ(){return"Nastaven\xed"},
-gep(d){return"Sd\xedlet"},
+geq(d){return"Sd\xedlet"},
 i4(d){return d+" sd\xedlel jejich polohu"},
 gi3(){return"Sd\xedlet polohu"},
 geR(d){return"P\u0159esko\u010dit"},
@@ -648,7 +648,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Remove admin rights"},
 gr8(){return"Power level"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Owner"},
+geo(){return"Owner"},
 gpx(){return"Mute"},
 gqq(){return"Create new chat"},
 gpC(d){return"Reset"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Md,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Md":{"aU":[]}}'))};
-(a=>{a["OQWKjgRbuDWG6ujZEVM2guv9NO8="]=a.current})($__dart_deferred_initializers__);
+y(B.Me,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Me":{"aU":[]}}'))};
+(a=>{a["XZS7SRNZ1rLRUoSQ2wWlMQ6iAyE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_286.part.js.map

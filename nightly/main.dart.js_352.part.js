@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEZ(){return new B.Mz(A.dw("it"))},
-Mz:function Mz(d){this.a=d}}
+dF5(){return new B.MA(A.dw("it"))},
+MA:function MA(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[33],B)
-B.Mz.prototype={
+B.MA.prototype={
 gpq(){return"Modifica immagine"},
 gro(){return"Ruota a sinistra"},
 grp(){return"Ruota a destra"},
@@ -66,7 +66,7 @@ gfO(){return"Bandisci dalla chat"},
 gfP(){return"Bandito"},
 iz(d,e){return d+" ha bandito "+e},
 gfR(){return"Blocca dispositivo"},
-gcS(){return"Bloccato"},
+gcT(){return"Bloccato"},
 gbX(d){return"Annulla"},
 fT(d){return"Impossibile aprire l'URI "+d},
 gfU(){return"Cambia nome dispositivo"},
@@ -247,7 +247,7 @@ gfk(){return"Notifiche"},
 gkD(){return"Ottengo la posizione\u2026"},
 gdu(){return"Ok"},
 gkF(){return"Il backup delle chiavi in linea \xe8 abilitato"},
-gem(){return"Ops, qualcosa \xe8 andato storto\u2026"},
+gen(){return"Ops, qualcosa \xe8 andato storto\u2026"},
 gkE(){return"Uno dei tuoi client \xe8 stato disconnesso"},
 gfL(){return"Aggiungi account"},
 gjE(){return"Modifica i bundle per questo account"},
@@ -257,7 +257,7 @@ gfS(){return"Nome del bundle"},
 gkI(){return"Apri in maps"},
 geg(){return"Link"},
 gkK(){return"O"},
-geo(){return"Partecipante"},
+gep(){return"Partecipante"},
 ghz(){return"frase segreta o chiave di recupero"},
 gkL(d){return"Password"},
 geM(){return"Password dimenticata"},
@@ -309,7 +309,7 @@ glV(){return"Imposta come alias principale"},
 gfz(){return"Imposta la descrizione della chat"},
 gfB(){return"Imposta lo stato"},
 geQ(){return"Impostazioni"},
-gep(d){return"Condividi"},
+geq(d){return"Condividi"},
 i4(d){return d+" ha condiviso la sua posizione"},
 gi3(){return"Condividi posizione"},
 geR(d){return"Ignora"},
@@ -650,7 +650,7 @@ gre(){return"Rimuovi i diritti di moderatore"},
 grb(){return"Rimuovi i diritti di amministratore"},
 gr8(){return"Livello di permesso"},
 gpX(){return"I livelli di permesso definiscono cosa un membro pu\xf2 fare in questa stanza e di solito variano tra 0 e 100."},
-gen(){return"Proprietario"},
+geo(){return"Proprietario"},
 gpx(){return"Silenzia"},
 gqq(){return"Crea una nuova chat"},
 gpC(d){return"Reset"},
@@ -749,7 +749,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mz,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mz":{"aU":[]}}'))};
-(a=>{a["dtKRuQd1brlV0MqX9OTFPIk1Csc="]=a.current})($__dart_deferred_initializers__);
+y(B.MA,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MA":{"aU":[]}}'))};
+(a=>{a["3Kn8+ysqQpX+W4G9/1t2bobTbeU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_352.part.js.map

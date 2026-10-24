@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEJ(){return new B.Mj(A.dw("es"))},
-Mj:function Mj(d){this.a=d}}
+dEQ(){return new B.Mk(A.dw("es"))},
+Mk:function Mk(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[17],B)
-B.Mj.prototype={
+B.Mk.prototype={
 gpq(){return"Editar imagen"},
 gro(){return"Rotar a la izquierda"},
 grp(){return"Rotar a la derecha"},
@@ -66,7 +66,7 @@ gfO(){return"Vetar del chat"},
 gfP(){return"Vetado"},
 iz(d,e){return d+" vet\xf3 a "+e},
 gfR(){return"Bloquear dispositivo"},
-gcS(){return"Bloqueado"},
+gcT(){return"Bloqueado"},
 gbX(d){return"Cancelar"},
 fT(d){return"No puedo abrir el URI "+d},
 gfU(){return"Cambiar el nombre del dispositivo"},
@@ -246,7 +246,7 @@ gfk(){return"Notificaciones"},
 gkD(){return"Obteniendo ubicaci\xf3n\u2026"},
 gdu(){return"Ok"},
 gkF(){return"La copia de seguridad de la clave en l\xednea est\xe1 habilitada"},
-gem(){return"Ups, algo sali\xf3 mal\u2026"},
+gen(){return"Ups, algo sali\xf3 mal\u2026"},
 gkE(){return"Se ha cerrado en la sesi\xf3n de uno de sus clientes"},
 gfL(){return"A\xf1adir cuenta"},
 gjE(){return"Editar paquetes para esta cuenta"},
@@ -256,7 +256,7 @@ gfS(){return"Nombre del paquete"},
 gkI(){return"Abrir en maps"},
 geg(){return"Link"},
 gkK(){return"O"},
-geo(){return"Participante"},
+gep(){return"Participante"},
 ghz(){return"contrase\xf1a o clave de recuperaci\xf3n"},
 gkL(d){return"Contrase\xf1a"},
 geM(){return"Contrase\xf1a olvidada"},
@@ -308,7 +308,7 @@ glV(){return"Fijar alias principal"},
 gfz(){return"Establecer descripci\xf3n del chat"},
 gfB(){return"Establecer estado"},
 geQ(){return"Ajustes"},
-gep(d){return"Compartir"},
+geq(d){return"Compartir"},
 i4(d){return d+" comparti\xf3 la ubicaci\xf3n"},
 gi3(){return"Compartir ubicaci\xf3n"},
 geR(d){return"Omitir"},
@@ -648,7 +648,7 @@ gre(){return"Remover derechos de moderador"},
 grb(){return"Remover derechos de administrador"},
 gr8(){return"Nivel de Poder"},
 gpX(){return"El nivel de poder define el nivel de acciones de un miembro, usualmente esta en el rango entre 0 a 100."},
-gen(){return"Due\xf1o"},
+geo(){return"Due\xf1o"},
 gpx(){return"Silenciar"},
 gqq(){return"Crear nuevo chat"},
 gpC(d){return"Resetear"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mj,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mj":{"aU":[]}}'))};
-(a=>{a["cyn+NufYhEHIDW+b5UUB+SIVjG0="]=a.current})($__dart_deferred_initializers__);
+y(B.Mk,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mk":{"aU":[]}}'))};
+(a=>{a["/7TbyqkD1Bwa9X6kx/NR8ZVHrN8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_310.part.js.map

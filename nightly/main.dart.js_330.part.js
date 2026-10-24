@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dER(){return new B.Mr(A.dw("gl"))},
-Mr:function Mr(d){this.a=d}}
+dEY(){return new B.Ms(A.dw("gl"))},
+Ms:function Ms(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[25],B)
-B.Mr.prototype={
+B.Ms.prototype={
 gpq(){return"Editar imaxe"},
 gro(){return"Rotar \xe1 esquerda"},
 grp(){return"Rotar \xe1 dereita"},
@@ -66,7 +66,7 @@ gfO(){return"Vetar na conversa"},
 gfP(){return"Vetada"},
 iz(d,e){return d+" vetou a "+e},
 gfR(){return"Bloquear dispositivo"},
-gcS(){return"Bloqueado"},
+gcT(){return"Bloqueado"},
 gbX(d){return"Cancelar"},
 fT(d){return"Non se pode abrir o URI "+d},
 gfU(){return"Cambiar nome do dispositivo"},
@@ -246,7 +246,7 @@ gfk(){return"Notificaci\xf3ns"},
 gkD(){return"Obtendo a localizaci\xf3n\u2026"},
 gdu(){return"Ok"},
 gkF(){return"Copia de Apoio en li\xf1a das Chaves activada"},
-gem(){return"Ooooi, algo fallou\u2026"},
+gen(){return"Ooooi, algo fallou\u2026"},
 gkE(){return"Un dos teus clientes foi desconectado"},
 gfL(){return"Engadir conta"},
 gjE(){return"Editar os feixes desta conta"},
@@ -256,7 +256,7 @@ gfS(){return"Nome do feixe"},
 gkI(){return"Abrir en mapas"},
 geg(){return"Ligaz\xf3n"},
 gkK(){return"Ou"},
-geo(){return"Participante"},
+gep(){return"Participante"},
 ghz(){return"frase de paso ou chave de recuperaci\xf3n"},
 gkL(d){return"Contrasinal"},
 geM(){return"Contrasinal esquecido"},
@@ -308,7 +308,7 @@ glV(){return"Establecer como alias principal"},
 gfz(){return"Escribir descrici\xf3n da conversa"},
 gfB(){return"Establecer estado"},
 geQ(){return"Axustes"},
-gep(d){return"Compartir"},
+geq(d){return"Compartir"},
 i4(d){return d+" compartiu a s\xfaa localizaci\xf3n"},
 gi3(){return"Compartir localizaci\xf3n"},
 geR(d){return"Saltar"},
@@ -648,7 +648,7 @@ gre(){return"Retirar permiso de moderaci\xf3n"},
 grb(){return"Retirar permiso de administraci\xf3n"},
 gr8(){return"Nivel responsabilidade"},
 gpX(){return"Os niveis de responsabilidade definen o que pode facer unha usuaria na sala, normalmente var\xeda de 0 a 100."},
-gen(){return"Propietaria"},
+geo(){return"Propietaria"},
 gpx(){return"Acalar"},
 gqq(){return"Crear nova conversa"},
 gpC(d){return"Restablecer"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" convidoute \xe1 conversa '"+e+"'."},
 pT(d,e){return d+" convidoute ao espazo '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mr,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mr":{"aU":[]}}'))};
-(a=>{a["P4UyFEOfqj76TLArGztKz9PEcCc="]=a.current})($__dart_deferred_initializers__);
+y(B.Ms,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Ms":{"aU":[]}}'))};
+(a=>{a["W+bxVMF6Nc33BWo1MZwr7QRbYpQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_330.part.js.map

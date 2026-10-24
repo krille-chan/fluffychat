@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF7(){return new B.MI(A.dw("nl"))},
-MI:function MI(d){this.a=d}}
+dFe(){return new B.MJ(A.dw("nl"))},
+MJ:function MJ(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[42],B)
-B.MI.prototype={
+B.MJ.prototype={
 gpq(){return"Afbeelding wijzigen"},
 gro(){return"Linksom draaien"},
 grp(){return"Rechtsom draaien"},
@@ -66,7 +66,7 @@ gfO(){return"Van chat verbannen"},
 gfP(){return"Verbannen"},
 iz(d,e){return d+" verbant "+e},
 gfR(){return"Apparaat blokkeren"},
-gcS(){return"Geblokkeerd"},
+gcT(){return"Geblokkeerd"},
 gbX(d){return"Annuleren"},
 fT(d){return"Kan de URI "+d+" niet openen"},
 gfU(){return"Apparaatnaam wijzigen"},
@@ -247,7 +247,7 @@ gfk(){return"Meldingen"},
 gkD(){return"Locatie ophalen\u2026"},
 gdu(){return"Ok"},
 gkF(){return"Online sleutelback-up is ingeschakeld"},
-gem(){return"Oeps, er ging iets mis\u2026"},
+gen(){return"Oeps, er ging iets mis\u2026"},
 gkE(){return"\xc9\xe9n van jouw apparaten is uitgelogd"},
 gfL(){return"Account toevoegen"},
 gjE(){return"Bundels voor dit account wijzigen"},
@@ -257,7 +257,7 @@ gfS(){return"Bundelnaam"},
 gkI(){return"In kaarten openen"},
 geg(){return"Link"},
 gkK(){return"Of"},
-geo(){return"Deelnemer"},
+gep(){return"Deelnemer"},
 ghz(){return"wachtwoordzin of herstelsleutel"},
 gkL(d){return"Wachtwoord"},
 geM(){return"Wachtwoord vergeten"},
@@ -309,7 +309,7 @@ glV(){return"Als hoofdalias instellen"},
 gfz(){return"Onderwerp instellen"},
 gfB(){return"Status instellen"},
 geQ(){return"Instellingen"},
-gep(d){return"Delen"},
+geq(d){return"Delen"},
 i4(d){return d+" heeft deze locatie gedeeld"},
 gi3(){return"Locatie delen"},
 geR(d){return"Overslaan"},
@@ -649,7 +649,7 @@ gre(){return"Verwijder moderator-rechten"},
 grb(){return"Verwijder beheerder-rechten"},
 gr8(){return"Rechtenniveau"},
 gpX(){return"Rechtenniveau's defini\xebren wat een persoon mag doen in deze chat en vari\xebren meestal tussen 0 en 100."},
-gen(){return"Eigenaar"},
+geo(){return"Eigenaar"},
 gpx(){return"Demp"},
 gqq(){return"Cre\xeber nieuw chat"},
 gpC(d){return"Resetten"},
@@ -748,7 +748,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MI,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MI":{"aU":[]}}'))};
-(a=>{a["aUDCw3wSSactJvX8jFtbxzABIhg="]=a.current})($__dart_deferred_initializers__);
+y(B.MJ,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MJ":{"aU":[]}}'))};
+(a=>{a["UB1+PyJZryoKd2zVxoP1BigsCT8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_366.part.js.map

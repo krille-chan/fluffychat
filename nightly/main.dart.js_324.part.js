@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEP(){return new B.Mp(A.dw("fr"))},
-Mp:function Mp(d){this.a=d}}
+dEW(){return new B.Mq(A.dw("fr"))},
+Mq:function Mq(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[23],B)
-B.Mp.prototype={
+B.Mq.prototype={
 gpq(){return"\xc9diter l\u2019image"},
 gro(){return"Tourner vers la gauche"},
 grp(){return"Tourner vers la droite"},
@@ -66,7 +66,7 @@ gfO(){return"Bannir de la discussion"},
 gfP(){return"Banni"},
 iz(d,e){return d+" a banni "+e},
 gfR(){return"Bloquer l'appareil"},
-gcS(){return"Bloqu\xe9"},
+gcT(){return"Bloqu\xe9"},
 gbX(d){return"Annuler"},
 fT(d){return"Impossible d'ouvrir l'URI "+d},
 gfU(){return"Modifier le nom de l'appareil"},
@@ -247,7 +247,7 @@ gfk(){return"Notifications"},
 gkD(){return"Obtention de la localisation\u2026"},
 gdu(){return"Valider"},
 gkF(){return"La sauvegarde en ligne des cl\xe9s est activ\xe9e"},
-gem(){return"Oups, un probl\xe8me est survenu\u2026"},
+gen(){return"Oups, un probl\xe8me est survenu\u2026"},
 gkE(){return"Un de vos clients a \xe9t\xe9 d\xe9connect\xe9"},
 gfL(){return"Ajouter un compte"},
 gjE(){return"Modifier les groupes pour ce compte"},
@@ -257,7 +257,7 @@ gfS(){return"Nom du groupe"},
 gkI(){return"Ouvrir dans maps"},
 geg(){return"Lien"},
 gkK(){return"Ou"},
-geo(){return"Participant(e)"},
+gep(){return"Participant(e)"},
 ghz(){return"Phrase de passe ou cl\xe9 de r\xe9cup\xe9ration"},
 gkL(d){return"Mot de passe"},
 geM(){return"Mot de passe oubli\xe9"},
@@ -309,7 +309,7 @@ glV(){return"D\xe9finir comme adresse principale"},
 gfz(){return"D\xe9finir la description de la discussion"},
 gfB(){return"D\xe9finir le statut"},
 geQ(){return"Param\xe8tres"},
-gep(d){return"Partager"},
+geq(d){return"Partager"},
 i4(d){return d+" a partag\xe9 sa position"},
 gi3(){return"Partager la localisation"},
 geR(d){return"Ignorer"},
@@ -649,7 +649,7 @@ gre(){return"R\xe9voquer les droits mod\xe9rateurs/trices"},
 grb(){return"R\xe9voquer les droits administrateurs/trices"},
 gr8(){return"Niveau de droits"},
 gpX(){return"Le niveau de droit d\xe9fini ce qu'un utilisateur est capable de faire dans ce salon et se place g\xe9n\xe9ralement entre 0 et 100."},
-gen(){return"Propri\xe9taire"},
+geo(){return"Propri\xe9taire"},
 gpx(){return"Muet"},
 gqq(){return"Cr\xe9er une nouvelle discussion"},
 gpC(d){return"R\xe9initialiser"},
@@ -748,7 +748,7 @@ pS(d,e){return d+" vous a invit\xe9 dans la discussion '"+e+"'."},
 pT(d,e){return d+" vous a invit\xe9 dans l'espace '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mp,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mp":{"aU":[]}}'))};
-(a=>{a["pr19kjoughjsGntC9+UzQYxP6RA="]=a.current})($__dart_deferred_initializers__);
+y(B.Mq,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mq":{"aU":[]}}'))};
+(a=>{a["/yJdbNM8Udc2WG0Yz9eeVOzuycQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_324.part.js.map

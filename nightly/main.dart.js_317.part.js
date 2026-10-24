@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEL(){return new B.Ml(A.dw("eu"))},
-Ml:function Ml(d){this.a=d}}
+dES(){return new B.Mm(A.dw("eu"))},
+Mm:function Mm(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[19],B)
-B.Ml.prototype={
+B.Mm.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"Txatera batzeko debekua ezarri"},
 gfP(){return"Kanporatuta"},
 iz(d,e){return d+"(e)k "+e+"(r)i debekua ezarri dio"},
 gfR(){return"Blokeatu gailua"},
-gcS(){return"Blokeatuta"},
+gcT(){return"Blokeatuta"},
 gbX(d){return"Utzi"},
 fT(d){return"Ezin da "+d+" URIa ireki"},
 gfU(){return"Aldatu gailuaren izena"},
@@ -246,7 +246,7 @@ gfk(){return"Jakinarazpenak"},
 gkD(){return"Kokapena atzitzen\u2026"},
 gdu(){return"Ados"},
 gkF(){return"Gakoen online babeskopia gaituta dago"},
-gem(){return"Hara, zerbaitek huts egin du\u2026"},
+gen(){return"Hara, zerbaitek huts egin du\u2026"},
 gkE(){return"Zure gailuetako batek saioa amaitu du"},
 gfL(){return"Gehitu kontua"},
 gjE(){return"Editatu kontu honetarako sortak"},
@@ -256,7 +256,7 @@ gfS(){return"Sortaren izena"},
 gkI(){return"Ireki mapen aplikazioan"},
 geg(){return"Esteka"},
 gkK(){return"Edo"},
-geo(){return"Partaide"},
+gep(){return"Partaide"},
 ghz(){return"pasaesaldia edo berreskuratze-gakoa"},
 gkL(d){return"Pasahitza"},
 geM(){return"Pasahitza ahaztu dut"},
@@ -308,7 +308,7 @@ glV(){return"Ezarri alias nagusi bezala"},
 gfz(){return"Ezarri txataren deskribapena"},
 gfB(){return"Ezarri egoera"},
 geQ(){return"Ezarpenak"},
-gep(d){return"Partekatu"},
+geq(d){return"Partekatu"},
 i4(d){return d+"(e)k kokapena partekatu du"},
 gi3(){return"Partekatu kokapena"},
 geR(d){return"Saltatu"},
@@ -648,7 +648,7 @@ gre(){return"Kendu moderatzaile eskubideak"},
 grb(){return"Kendu administratzaile eskubideak"},
 gr8(){return"Botere-maila"},
 gpX(){return"Botere-mailek zehazten dute kide batek zer egin dezakeen gela honetan, eta tartea 0tik 100era artekoa izan ohi da."},
-gen(){return"Jabea"},
+geo(){return"Jabea"},
 gpx(){return"Mututu"},
 gqq(){return"Sortu txat berria"},
 gpC(d){return"Berrezarri"},
@@ -747,8 +747,8 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Ml,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Ml":{"aU":[]}}'))
+x(B.Mm,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mm":{"aU":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["F+y0d4OpygffG1M4Aok6vXRC7tg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["FS8HzuRU4ahRNyQquMyyRjJI7cA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

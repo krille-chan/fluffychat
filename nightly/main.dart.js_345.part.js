@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEX(){return new B.Mx(A.dw("id"))},
-Mx:function Mx(d){this.a=d}}
+dF3(){return new B.My(A.dw("id"))},
+My:function My(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[31],B)
-B.Mx.prototype={
+B.My.prototype={
 gpq(){return"Edit gambar"},
 gro(){return"Putar ke kiri"},
 grp(){return"Putar ke kanan"},
@@ -66,7 +66,7 @@ gfO(){return"Cekal dari obrolan"},
 gfP(){return"Dicekal"},
 iz(d,e){return d+" mencekal "+e},
 gfR(){return"Blokir Perangkat"},
-gcS(){return"Diblokir"},
+gcT(){return"Diblokir"},
 gbX(d){return"Batal"},
 fT(d){return"Tidak bisa membuka URI ini "+d},
 gfU(){return"Ganti nama perangkat"},
@@ -247,7 +247,7 @@ gfk(){return"Notifikasi"},
 gkD(){return"Mendapatkan lokasi\u2026"},
 gdu(){return"Ok"},
 gkF(){return"Cadangan Kunci Online dinyalakan"},
-gem(){return"Ups, ada yang salah\u2026"},
+gen(){return"Ups, ada yang salah\u2026"},
 gkE(){return"Salah satu klienmu telah keluar"},
 gfL(){return"Tambah akun"},
 gjE(){return"Edit bundel untuk akun ini"},
@@ -257,7 +257,7 @@ gfS(){return"Nama bundel"},
 gkI(){return"Buka di peta"},
 geg(){return"Tautan"},
 gkK(){return"Atau"},
-geo(){return"Peserta"},
+gep(){return"Peserta"},
 ghz(){return"frasa sandi atau kunci pemulihan"},
 gkL(d){return"Kata sandi"},
 geM(){return"Lupa kata sandi"},
@@ -309,7 +309,7 @@ glV(){return"Atur sebagai alias utama"},
 gfz(){return"Lihat deskripsi obrolan"},
 gfB(){return"Tetapkan status"},
 geQ(){return"Pengaturan"},
-gep(d){return"Bagikan"},
+geq(d){return"Bagikan"},
 i4(d){return d+" membagikan lokasinya"},
 gi3(){return"Bagikan lokasi"},
 geR(d){return"Lewat"},
@@ -649,7 +649,7 @@ gre(){return"Hapus hak moderator"},
 grb(){return"Hapus hak admin"},
 gr8(){return"Level kekuasaan"},
 gpX(){return"Level kekuasaan menentukan apa yang boleh dilakukan seorang anggota di ruangan ini dan biasanya berkisar antara 0 hingga 100."},
-gen(){return"Pemilik"},
+geo(){return"Pemilik"},
 gpx(){return"Bisukan"},
 gqq(){return"Buat obrolan baru"},
 gpC(d){return"Atur ulang"},
@@ -748,8 +748,8 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mx,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mx":{"aU":[]}}'))
+x(B.My,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"My":{"aU":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["lUUbMrNsjE5GDWXIuUOiVitFSoY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Z9NmbOoI8Fiovnty9tZSj322MEE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_345.part.js.map

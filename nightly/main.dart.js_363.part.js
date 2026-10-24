@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF6(){return new B.MH(A.dw("nb"))},
-MH:function MH(d){this.a=d}}
+dFd(){return new B.MI(A.dw("nb"))},
+MI:function MI(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[41],B)
-B.MH.prototype={
+B.MI.prototype={
 gpq(){return"Rediger bilde"},
 gro(){return"Roter til venstre"},
 grp(){return"Roter til h\xf8yre"},
@@ -66,7 +66,7 @@ gfO(){return"Bannlys fra sludring"},
 gfP(){return"Bannlyst"},
 iz(d,e){return d+" bannlyste "+e},
 gfR(){return"Blokker enhet"},
-gcS(){return"Blokkert"},
+gcT(){return"Blokkert"},
 gbX(d){return"Avbryt"},
 fT(d){return"Kan ikke \xe5pne URI "+d},
 gfU(){return"Endre enhetsnavn"},
@@ -247,7 +247,7 @@ gfk(){return"Merknader"},
 gkD(){return"Henter lokasjon\u2026"},
 gdu(){return"Ok"},
 gkF(){return"Nettbasert sikkerhetskopiering av n\xf8kler p\xe5"},
-gem(){return"Oida, noe gikk galt \u2026"},
+gen(){return"Oida, noe gikk galt \u2026"},
 gkE(){return"En av klientene dine har blitt logget ut"},
 gfL(){return"Legg til konto"},
 gjE(){return"Rediger pakker for denne kontoen"},
@@ -257,7 +257,7 @@ gfS(){return"Navn p\xe5 pakke"},
 gkI(){return"\xc5pne i kart"},
 geg(){return"Lenke"},
 gkK(){return"Eller"},
-geo(){return"Deltager"},
+gep(){return"Deltager"},
 ghz(){return"Passord eller gjenopprettingsn\xf8kkel"},
 gkL(d){return"Passord"},
 geM(){return"Passord glemt"},
@@ -309,7 +309,7 @@ glV(){return"Angi som hovedalias"},
 gfz(){return"Sett chat beskrivelse"},
 gfB(){return"Angi status"},
 geQ(){return"Innstilinger"},
-gep(d){return"Del"},
+geq(d){return"Del"},
 i4(d){return d+" delte sin lokasjon"},
 gi3(){return"Del lokasjon"},
 geR(d){return"Hopp over"},
@@ -649,7 +649,7 @@ gre(){return"Fjern moderator-rettigheter"},
 grb(){return"Fjern admin-rettigheter"},
 gr8(){return"Styrkeniv\xe5"},
 gpX(){return"Styrkeniv\xe5er definerer hva et medlem har lov til \xe5 gj\xf8re i dette rommet, og varierer vanligvis mellom 0 og 100."},
-gen(){return"Eier"},
+geo(){return"Eier"},
 gpx(){return"Demp"},
 gqq(){return"Opprett ny chat"},
 gpC(d){return"Nullstill"},
@@ -748,7 +748,7 @@ pS(d,e){return d+" har invitert deg til chatten '"+e+"'."},
 pT(d,e){return d+" har invitert deg til romgruppen '"+e+"'.."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MH,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MH":{"aU":[]}}'))};
-(a=>{a["dT/TITQ89bXmxFxrNIp13Oq2010="]=a.current})($__dart_deferred_initializers__);
+y(B.MI,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MI":{"aU":[]}}'))};
+(a=>{a["FH51q2dvvo3QSZdid1TwYA0HJDo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_363.part.js.map

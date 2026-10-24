@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEI(){return new B.Mi(A.dw("eo"))},
-Mi:function Mi(d){this.a=d}}
+dEP(){return new B.Mj(A.dw("eo"))},
+Mj:function Mj(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[16],B)
-B.Mi.prototype={
+B.Mj.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"Forbari de babilo"},
 gfP(){return"Forbarita"},
 iz(d,e){return d+" forbaris uzanton "+e},
 gfR(){return"Bloki aparaton"},
-gcS(){return"Blokita"},
+gcT(){return"Blokita"},
 gbX(d){return"Nuligi"},
 fT(d){return"Ne povis malfermi URI "+d},
 gfU(){return"\u015can\u011di nomon de aparato"},
@@ -246,7 +246,7 @@ gfk(){return"Sciigoj"},
 gkD(){return"Akirante lokon\u2026"},
 gdu(){return"bone"},
 gkF(){return"Enreta savkopiado de \u015dlosiloj estas \u015daltita"},
-gem(){return"Oj! Io misokazis\u2026"},
+gen(){return"Oj! Io misokazis\u2026"},
 gkE(){return"One of your clients has been logged out"},
 gfL(){return"Add account"},
 gjE(){return"Edit bundles for this account"},
@@ -256,7 +256,7 @@ gfS(){return"Bundle name"},
 gkI(){return"Open in maps"},
 geg(){return"Link"},
 gkK(){return"A\u016d"},
-geo(){return"Partoprenanto"},
+gep(){return"Partoprenanto"},
 ghz(){return"pasfrazo a\u016d rehava \u015dlosilo"},
 gkL(d){return"Pasvorto"},
 geM(){return"Forgesita pasvorto"},
@@ -308,7 +308,7 @@ glV(){return"Agordi kiel \u0109efan kromnomon"},
 gfz(){return"Set chat description"},
 gfB(){return"Agordi staton"},
 geQ(){return"Agordoj"},
-gep(d){return"Konigi"},
+geq(d){return"Konigi"},
 i4(d){return d+" konigis sian lokon"},
 gi3(){return"Konigi lokon"},
 geR(d){return"Preterpasi"},
@@ -648,7 +648,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Remove admin rights"},
 gr8(){return"Power level"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Owner"},
+geo(){return"Owner"},
 gpx(){return"Mute"},
 gqq(){return"Create new chat"},
 gpC(d){return"Reset"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mi,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mi":{"aU":[]}}'))};
-(a=>{a["bc27A+e3eBNpx2ckQD9gbNzZ9x0="]=a.current})($__dart_deferred_initializers__);
+y(B.Mj,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mj":{"aU":[]}}'))};
+(a=>{a["qiEQPYC2v4c1FLbD3fKW3B78yfE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_308.part.js.map

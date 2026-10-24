@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEC(){return new B.Mc(A.dw("ca"))},
-Mc:function Mc(d){this.a=d}}
+dEJ(){return new B.Md(A.dw("ca"))},
+Md:function Md(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[10],B)
-B.Mc.prototype={
+B.Md.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"Veta del xat"},
 gfP(){return"Vetadi"},
 iz(d,e){return d+" ha vetat a "+e},
 gfR(){return"Bloca el dispositiu"},
-gcS(){return"Blocat"},
+gcT(){return"Blocat"},
 gbX(d){return"Cancel\xb7la"},
 fT(d){return"No es pot obrir l\u2019URI "+d},
 gfU(){return"Canvia el nom del dispositiu"},
@@ -246,7 +246,7 @@ gfk(){return"Notificacions"},
 gkD(){return"S\u2019est\xe0 obtenint la ubicaci\xf3\u2026"},
 gdu(){return"D'acord"},
 gkF(){return"La c\xf2pia de seguretat de claus en l\xednia est\xe0 activada"},
-gem(){return"Alguna cosa ha anat malament\u2026"},
+gen(){return"Alguna cosa ha anat malament\u2026"},
 gkE(){return"Una de les teves aplicacions ha tancat la sessi\xf3"},
 gfL(){return"Afegeix un compte"},
 gjE(){return"Edita paquets per aquest compte"},
@@ -256,7 +256,7 @@ gfS(){return"Nom del paquet"},
 gkI(){return"Obre als mapes"},
 geg(){return"Enlla\xe7"},
 gkK(){return"O"},
-geo(){return"Participant"},
+gep(){return"Participant"},
 ghz(){return"contrasenya o clau de recuperaci\xf3"},
 gkL(d){return"Contrasenya"},
 geM(){return"Contrasenya oblidada"},
@@ -308,7 +308,7 @@ glV(){return"Defineix com a \xe0lies principal"},
 gfz(){return"Posa una descripci\xf3 de xat"},
 gfB(){return"Defineix l\u2019estat"},
 geQ(){return"Par\xe0metres"},
-gep(d){return"Comparteix"},
+geq(d){return"Comparteix"},
 i4(d){return d+" n\u2019ha compartit la ubicaci\xf3"},
 gi3(){return"Comparteix la ubicaci\xf3"},
 geR(d){return"Omet"},
@@ -648,7 +648,7 @@ gre(){return"Treu els drets de moderadori"},
 grb(){return"Treu els drets d'admin"},
 gr8(){return"Nivell de permisos"},
 gpX(){return"Els nivells de permisos defineixen qu\xe8 pot fer uni membre d'aquesta sala, i es defineix per un n\xfamero entre 0 i 100."},
-gen(){return"Propiet\xe0ri\xef"},
+geo(){return"Propiet\xe0ri\xef"},
 gpx(){return"Silencia"},
 gqq(){return"Crea un nou xat"},
 gpC(d){return"Reseteja"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mc,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mc":{"aU":[]}}'))};
-(a=>{a["AeeDRo2QnoLH/L2Apl2pm++g67g="]=a.current})($__dart_deferred_initializers__);
+y(B.Md,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Md":{"aU":[]}}'))};
+(a=>{a["qehVUkRdXV2vFLCmq5Efs90vq3A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_276.part.js.map

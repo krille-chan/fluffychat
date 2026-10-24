@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF1(){return new B.MC(A.dw("kab"))},
-MC:function MC(d){this.a=d}}
+dF8(){return new B.MD(A.dw("kab"))},
+MD:function MD(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[36],B)
-B.MC.prototype={
+B.MD.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"Gdel seg adiwenni"},
 gfP(){return"Yettwagdel"},
 iz(d,e){return d+" yegdel "+e},
 gfR(){return"Sew\u1e25el ibenk"},
-gcS(){return"Yettusew\u1e25el"},
+gcT(){return"Yettusew\u1e25el"},
 gbX(d){return"Sefsex"},
 fT(d){return"Ur yezmir ara ad yeldi URl "+d},
 gfU(){return"Snifel isem n yibenk"},
@@ -246,7 +246,7 @@ gfk(){return"Il\u0263a"},
 gkD(){return"Aguccel n wadig\u2026"},
 gdu(){return"iH"},
 gkF(){return"A\u1e25raz n tsarut deg u\u1e93e\u1e6d\u1e6da yermed"},
-gem(){return"Ihuh, yella wayen ur neddi ara\u2026"},
+gen(){return"Ihuh, yella wayen ur neddi ara\u2026"},
 gkE(){return"One of your clients has been logged out"},
 gfL(){return"Rnu ami\u1e0dan"},
 gjE(){return"Edit bundles for this account"},
@@ -256,7 +256,7 @@ gfS(){return"Bundle name"},
 gkI(){return"Ldi-t deg maps"},
 geg(){return"Ase\u0263wen"},
 gkK(){return"Ne\u0263"},
-geo(){return"Imttekki"},
+gep(){return"Imttekki"},
 ghz(){return"tafyirt n u\u025beddi ne\u0263 tasarut n tririt"},
 gkL(d){return"Awal n u\u025beddi"},
 geM(){return"Awal n u\u025beddi yettwattun"},
@@ -308,7 +308,7 @@ glV(){return"Sbadu-t d taza\u1e93lut tagejdant"},
 gfz(){return"Sbadu aglam n udiwenni"},
 gfB(){return"Sbadu addad"},
 geQ(){return"I\u0263ewwaren"},
-gep(d){return"B\u1e0du"},
+geq(d){return"B\u1e0du"},
 i4(d){return d+" yeb\u1e0da adig-is"},
 gi3(){return"B\u1e0du adig"},
 geR(d){return"Zgel"},
@@ -648,7 +648,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Kkes izerfan n unedbal"},
 gr8(){return"Aswir n tezmert"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Amli"},
+geo(){return"Amli"},
 gpx(){return"Mute"},
 gqq(){return"Snulfu-d adiwenni amaynut"},
 gpC(d){return"Reset"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MC,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MC":{"aU":[]}}'))};
-(a=>{a["862dtedKbPh+OBUn2oCdn1huqwE="]=a.current})($__dart_deferred_initializers__);
+y(B.MD,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MD":{"aU":[]}}'))};
+(a=>{a["SDG6yHs3s4jwsQC44rKglTeUTVs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_357.part.js.map

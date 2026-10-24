@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dFp(){return new B.MZ(A.dw("vi"))},
-MZ:function MZ(d){this.a=d}}
+dFw(){return new B.N_(A.dw("vi"))},
+N_:function N_(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[57],B)
-B.MZ.prototype={
+B.N_.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"C\u1ea5m kh\u1ecfi cu\u1ed9c tr\xf2 chuy\u1ec7n"},
 gfP(){return"\u0110\xe3 b\u1ecb c\u1ea5m"},
 iz(d,e){return d+" \u0111\xe3 c\u1ea5m "+e},
 gfR(){return"Thi\u1ebft b\u1ecb b\u1ecb ch\u1eb7n"},
-gcS(){return"\u0110\xe3 ch\u1eb7n"},
+gcT(){return"\u0110\xe3 ch\u1eb7n"},
 gbX(d){return"H\u1ee7y"},
 fT(d){return"Can't open the URI "+d},
 gfU(){return"Thay \u0111\u1ed5i t\xean thi\u1ebft b\u1ecb"},
@@ -246,7 +246,7 @@ gfk(){return"Th\xf4ng b\xe1o"},
 gkD(){return"Obtaining location\u2026"},
 gdu(){return"Ok"},
 gkF(){return"Online Key Backup is enabled"},
-gem(){return"Oops, something went wrong\u2026"},
+gen(){return"Oops, something went wrong\u2026"},
 gkE(){return"One of your clients has been logged out"},
 gfL(){return"Add account"},
 gjE(){return"Edit bundles for this account"},
@@ -256,7 +256,7 @@ gfS(){return"Bundle name"},
 gkI(){return"Open in maps"},
 geg(){return"Link"},
 gkK(){return"Or"},
-geo(){return"Participant"},
+gep(){return"Participant"},
 ghz(){return"passphrase or recovery key"},
 gkL(d){return"Password"},
 geM(){return"Password forgotten"},
@@ -308,7 +308,7 @@ glV(){return"Set as main alias"},
 gfz(){return"Set chat description"},
 gfB(){return"Set status"},
 geQ(){return"C\xe0i \u0111\u1eb7t"},
-gep(d){return"Share"},
+geq(d){return"Share"},
 i4(d){return d+" shared their location"},
 gi3(){return"Share location"},
 geR(d){return"Skip"},
@@ -648,7 +648,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Remove admin rights"},
 gr8(){return"Power level"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Owner"},
+geo(){return"Owner"},
 gpx(){return"Mute"},
 gqq(){return"Create new chat"},
 gpC(d){return"Reset"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MZ,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MZ":{"aU":[]}}'))};
-(a=>{a["WuOSWoTzB2Xxh4ANoZtNhAJ4yng="]=a.current})($__dart_deferred_initializers__);
+y(B.N_,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"N_":{"aU":[]}}'))};
+(a=>{a["Z1Z+cLqgYZbAmYNuo/CiEBM3TsU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_387.part.js.map

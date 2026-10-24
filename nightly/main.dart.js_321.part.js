@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEN(){return new B.Mn(A.dw("fi"))},
-Mn:function Mn(d){this.a=d}}
+dEU(){return new B.Mo(A.dw("fi"))},
+Mo:function Mo(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[21],B)
-B.Mn.prototype={
+B.Mo.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"Anna porttikielto keskusteluun"},
 gfP(){return"Porttikiellossa"},
 iz(d,e){return d+" antoi porttikiellon k\xe4ytt\xe4j\xe4lle "+e},
 gfR(){return"Est\xe4 laite"},
-gcS(){return"Estetty"},
+gcT(){return"Estetty"},
 gbX(d){return"Peruuta"},
 fT(d){return"URI-osoitetta "+d+" ei voida avata"},
 gfU(){return"Vaihda laitteen nime\xe4"},
@@ -246,7 +246,7 @@ gfk(){return"Ilmoitukset"},
 gkD(){return"Paikannetaan sijantia\u2026"},
 gdu(){return"ok"},
 gkF(){return"Verkkkoavainvarmuuskopio on k\xe4yt\xf6ss\xe4"},
-gem(){return"Hups, jotakin meni pieleen\u2026"},
+gen(){return"Hups, jotakin meni pieleen\u2026"},
 gkE(){return"Yksi tunnuksistasi on kirjattu ulos"},
 gfL(){return"Lis\xe4\xe4 tili"},
 gjE(){return"Muokkaa t\xe4m\xe4n tilin k\xe4\xe4r\xf6j\xe4"},
@@ -256,7 +256,7 @@ gfS(){return"K\xe4\xe4reen nimi"},
 gkI(){return"Avaa kartoissa"},
 geg(){return"Linkki"},
 gkK(){return"Tai"},
-geo(){return"Osallistuja"},
+gep(){return"Osallistuja"},
 ghz(){return"salalause tai palautusavain"},
 gkL(d){return"Salasana"},
 geM(){return"Salasana unohtunut"},
@@ -308,7 +308,7 @@ glV(){return"Aseta p\xe4\xe4alias"},
 gfz(){return"Asetti keskustelun kuvauksen"},
 gfB(){return"Aseta tila"},
 geQ(){return"Asetukset"},
-gep(d){return"Jaa"},
+geq(d){return"Jaa"},
 i4(d){return d+" jakoi sijaintinsa"},
 gi3(){return"Jaa sijainti"},
 geR(d){return"Ohita"},
@@ -648,7 +648,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Remove admin rights"},
 gr8(){return"Power level"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Owner"},
+geo(){return"Owner"},
 gpx(){return"Mute"},
 gqq(){return"Create new chat"},
 gpC(d){return"Reset"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mn,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mn":{"aU":[]}}'))};
-(a=>{a["DyxN2OKBCVDDr2Fz77sGN8iy5AQ="]=a.current})($__dart_deferred_initializers__);
+y(B.Mo,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mo":{"aU":[]}}'))};
+(a=>{a["heU3k/bcfcgQ0u5oxg7JSJ4GWsM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_321.part.js.map

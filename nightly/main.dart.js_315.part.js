@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEK(){return new B.Mk(A.dw("et"))},
-Mk:function Mk(d){this.a=d}}
+dER(){return new B.Ml(A.dw("et"))},
+Ml:function Ml(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[18],B)
-B.Mk.prototype={
+B.Ml.prototype={
 gpq(){return"Muuda pilti"},
 gro(){return"P\xf6\xf6ra vasakule"},
 grp(){return"P\xf6\xf6ra paremale"},
@@ -66,7 +66,7 @@ gfO(){return"Keela ligip\xe4\xe4s vestlusele"},
 gfP(){return"Ligip\xe4\xe4s vestlusele on keelatud"},
 iz(d,e){return d+" keelas ligip\xe4\xe4su kasutajale "+e},
 gfR(){return"Blokeeri seade"},
-gcS(){return"Blokeeritud"},
+gcT(){return"Blokeeritud"},
 gbX(d){return"Katkesta"},
 fT(d){return d+" aadressi avamine ei \xf5nnestu"},
 gfU(){return"Muuda seadme nime"},
@@ -247,7 +247,7 @@ gfk(){return"Teavitused"},
 gkD(){return"Tuvastan asukohta\u2026"},
 gdu(){return"Sobib"},
 gkF(){return"Kr\xfcptov\xf5tmete veebip\xf5hine varundus on kasutusel"},
-gem(){return"Vaat kus lops! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
+gen(){return"Vaat kus lops! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
 gkE(){return"\xdcks sinu klientrakendustest on Matrixi v\xf5rgust v\xe4lja loginud"},
 gfL(){return"Lisa kasutajakonto"},
 gjE(){return"Muuda selle kasutajakonto k\xf6iteid"},
@@ -257,7 +257,7 @@ gfS(){return"K\xf6ite nimi"},
 gkI(){return"Ava kaardirakendusega"},
 geg(){return"Link"},
 gkK(){return"v\xf5i"},
-geo(){return"Osaleja"},
+gep(){return"Osaleja"},
 ghz(){return"salafraas v\xf5i taastev\xf5ti"},
 gkL(d){return"Salas\xf5na"},
 geM(){return"Salas\xf5na on ununenud"},
@@ -309,7 +309,7 @@ glV(){return"M\xe4\xe4ra p\xf5hinimeks"},
 gfz(){return"Lisa vestluse kirjeldus"},
 gfB(){return"M\xe4\xe4ra olek"},
 geQ(){return"Seadistused"},
-gep(d){return"Jaga"},
+geq(d){return"Jaga"},
 i4(d){return d+" jagas oma asukohta"},
 gi3(){return"Jaga asukohta"},
 geR(d){return"J\xe4ta vahele"},
@@ -649,7 +649,7 @@ gre(){return"Eemalda moderaatori \xf5igused"},
 grb(){return"Eemalda peakasutaja \xf5igused"},
 gr8(){return"\xd5iguste tase"},
 gpX(){return"\xd5iguste tase on \xfcks v\xf5imalusi kirjeldamaks seda, mida kasutaja saab jututoas teha ning see tavaliselt v\xe4ljendub numbriga vahemikust 0 kuni 100."},
-gen(){return"Omanik"},
+geo(){return"Omanik"},
 gpx(){return"Summuta"},
 gqq(){return"Loo uus vestlus"},
 gpC(d){return"L\xe4htesta"},
@@ -748,7 +748,7 @@ pS(d,e){return d+" on saatnud sulle kutse osalemaks vestluses '"+e+"'."},
 pT(d,e){return d+" on saatnud sulle kutse osalemaks kogukonnas '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mk,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mk":{"aU":[]}}'))};
-(a=>{a["H4XzS1Lf1JMluG7LjNZjoOqwrBU="]=a.current})($__dart_deferred_initializers__);
+y(B.Ml,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Ml":{"aU":[]}}'))};
+(a=>{a["IBZ0ABtV3J8Zifeo4TRcJ7O0u64="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_315.part.js.map

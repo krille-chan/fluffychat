@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEV(){return new B.Mv(A.dw("hu"))},
-Mv:function Mv(d){this.a=d}}
+dF1(){return new B.Mw(A.dw("hu"))},
+Mw:function Mw(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[29],B)
-B.Mv.prototype={
+B.Mw.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"Kitilt\xe1s a cseveg\xe9sb\u0151l"},
 gfP(){return"Kitiltva"},
 iz(d,e){return d+" kitiltva "+e+" \xe1ltal"},
 gfR(){return"Eszk\xf6z blokkol\xe1sa"},
-gcS(){return"Blokkolva"},
+gcT(){return"Blokkolva"},
 gbX(d){return"M\xe9gse"},
 fT(d){return"Nem siker\xfclt a k\xf6vetkez\u0151 URI megnyit\xe1sa: "+d},
 gfU(){return"Eszk\xf6zn\xe9v m\xf3dos\xedt\xe1sa"},
@@ -246,7 +246,7 @@ gfk(){return"\xc9rtes\xedt\xe9sek"},
 gkD(){return"Tart\xf3zkod\xe1si hely lek\xe9r\xe9se\u2026"},
 gdu(){return"Ok"},
 gkF(){return"Online kulcsment\xe9s enged\xe9lyezve"},
-gem(){return"Hopp\xe1, valami hiba l\xe9pett fel\u2026"},
+gen(){return"Hopp\xe1, valami hiba l\xe9pett fel\u2026"},
 gkE(){return"Az egyik kliense kijelentkezett"},
 gfL(){return"Fi\xf3k hozz\xe1ad\xe1sa"},
 gjE(){return"Fi\xf3kcsoportok szerkeszt\xe9se ehhez a fi\xf3khoz"},
@@ -256,7 +256,7 @@ gfS(){return"Fi\xf3kcsoport neve"},
 gkI(){return"Megnyit\xe1s t\xe9rk\xe9pen"},
 geg(){return"Hivatkoz\xe1s"},
 gkK(){return"Vagy"},
-geo(){return"R\xe9sztvev\u0151"},
+gep(){return"R\xe9sztvev\u0151"},
 ghz(){return"jelmondat vagy vissza\xe1ll\xedt\xe1si kulcs"},
 gkL(d){return"Jelsz\xf3"},
 geM(){return"Elfelejtett jelsz\xf3"},
@@ -308,7 +308,7 @@ glV(){return"Be\xe1ll\xedt\xe1s alap\xe9rtelmezett \xe1ln\xe9vk\xe9nt"},
 gfz(){return"Cseveg\xe9s le\xedr\xe1s be\xe1ll\xedt\xe1sa"},
 gfB(){return"\xc1llapot be\xe1ll\xedt\xe1sa"},
 geQ(){return"Be\xe1ll\xedt\xe1sok"},
-gep(d){return"Megoszt\xe1s"},
+geq(d){return"Megoszt\xe1s"},
 i4(d){return d+" megosztotta a poz\xedci\xf3j\xe1t"},
 gi3(){return"Poz\xedci\xf3 megoszt\xe1sa"},
 geR(d){return"Kihagy"},
@@ -648,7 +648,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Remove admin rights"},
 gr8(){return"Power level"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Owner"},
+geo(){return"Owner"},
 gpx(){return"Mute"},
 gqq(){return"Create new chat"},
 gpC(d){return"Reset"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mv,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mv":{"aU":[]}}'))};
-(a=>{a["9LhD4LgmecTujXRH1o4QpnCsTrI="]=a.current})($__dart_deferred_initializers__);
+y(B.Mw,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mw":{"aU":[]}}'))};
+(a=>{a["bYRSROZJLGBmxgXf2uWkhDHAnGQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_342.part.js.map

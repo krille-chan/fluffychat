@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dFi(){return new B.MS(A.dw("sv"))},
-MS:function MS(d){this.a=d}}
+dFp(){return new B.MT(A.dw("sv"))},
+MT:function MT(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[50],B)
-B.MS.prototype={
+B.MT.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"Bannlys fr\xe5n chatt"},
 gfP(){return"Bannlyst"},
 iz(d,e){return d+" bannl\xf6s "+e},
 gfR(){return"Blockera Enhet"},
-gcS(){return"Blockerad"},
+gcT(){return"Blockerad"},
 gbX(d){return"Avbryt"},
 fT(d){return"Kan inte \xf6ppna URL "+d},
 gfU(){return"\xc4ndra enhetsnamn"},
@@ -246,7 +246,7 @@ gfk(){return"Aviseringar"},
 gkD(){return"Erh\xe5ller plats\u2026"},
 gdu(){return"Ok"},
 gkF(){return"Online Nyckel-backup \xe4r aktiverad"},
-gem(){return"Hoppsan, n\xe5got gick fel\u2026"},
+gen(){return"Hoppsan, n\xe5got gick fel\u2026"},
 gkE(){return"En av dina klienter har loggats ut"},
 gfL(){return"L\xe4gg till konto"},
 gjE(){return"L\xe4gg till paket f\xf6r detta konto"},
@@ -256,7 +256,7 @@ gfS(){return"Paketnamn"},
 gkI(){return"\xd6ppna i karta"},
 geg(){return"L\xe4nk"},
 gkK(){return"Eller"},
-geo(){return"Deltagare"},
+gep(){return"Deltagare"},
 ghz(){return"l\xf6senord eller \xe5terst\xe4llningsnyckel"},
 gkL(d){return"L\xf6senord"},
 geM(){return"Gl\xf6mt l\xf6senord"},
@@ -308,7 +308,7 @@ glV(){return"S\xe4tt som prim\xe4rt alias"},
 gfz(){return"\xc4ndra chattens beskrivning"},
 gfB(){return"St\xe4ll in status"},
 geQ(){return"Inst\xe4llningar"},
-gep(d){return"Dela"},
+geq(d){return"Dela"},
 i4(d){return d+" delade sin position"},
 gi3(){return"Dela plats"},
 geR(d){return"Hoppa \xf6ver"},
@@ -648,7 +648,7 @@ gre(){return"Ta bort moderator-r\xe4ttigheter"},
 grb(){return"Ta bort admin-r\xe4ttigheter"},
 gr8(){return"Styrkeniv\xe5"},
 gpX(){return"Styrkeniv\xe5er avg\xf6r vad en medlem \xe4r till\xe5ten att g\xf6ra i rummet och \xe4r oftast mellan 0 till 100."},
-gen(){return"\xc4gare"},
+geo(){return"\xc4gare"},
 gpx(){return"Tysta"},
 gqq(){return"Skapa ny chatt"},
 gpC(d){return"\xc5terst\xe4ll"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MS,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MS":{"aU":[]}}'))};
-(a=>{a["W/EwTTGJEy6M/zchjdJG+GOS4hI="]=a.current})($__dart_deferred_initializers__);
+y(B.MT,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MT":{"aU":[]}}'))};
+(a=>{a["Ql1WIcua4+1dIGu8LDZjRpS8ttM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_379.part.js.map

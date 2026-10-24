@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dF_(){return new B.MA(A.dw("ja"))},
-MA:function MA(d){this.a=d}}
+dF6(){return new B.MB(A.dw("ja"))},
+MB:function MB(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[34],B)
-B.MA.prototype={
+B.MB.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"\u30c1\u30e3\u30c3\u30c8\u304b\u3089BAN\u3059\u308b"},
 gfP(){return"BAN\u3055\u308c\u3066\u3044\u307e\u3059"},
 iz(d,e){return d+"\u304c"+e+"\u3092BAN\u3057\u307e\u3057\u305f"},
 gfR(){return"\u30c7\u30d0\u30a4\u30b9\u3092\u30d6\u30ed\u30c3\u30af\u3059\u308b"},
-gcS(){return"\u30d6\u30ed\u30c3\u30af\u3057\u307e\u3057\u305f"},
+gcT(){return"\u30d6\u30ed\u30c3\u30af\u3057\u307e\u3057\u305f"},
 gbX(d){return"\u30ad\u30e3\u30f3\u30bb\u30eb"},
 fT(d){return"URI\u304c\u958b\u3051\u307e\u305b\u3093 "+d},
 gfU(){return"\u30c7\u30d0\u30a4\u30b9\u540d\u3092\u5909\u66f4"},
@@ -246,7 +246,7 @@ gfk(){return"\u901a\u77e5"},
 gkD(){return"\u4f4d\u7f6e\u60c5\u5831\u3092\u53d6\u5f97\u3057\u3066\u3044\u307e\u3059\u2026"},
 gdu(){return"OK"},
 gkF(){return"\u30aa\u30f3\u30e9\u30a4\u30f3\u9375\u30d0\u30c3\u30af\u30a2\u30c3\u30d7\u306f\u4f7f\u7528\u3055\u308c\u3066\u3044\u307e\u3059"},
-gem(){return"\u304a\u3063\u3068\u3001\u4f55\u304b\u304c\u3046\u307e\u304f\u3044\u304d\u307e\u305b\u3093\u3067\u3057\u305f\u2026"},
+gen(){return"\u304a\u3063\u3068\u3001\u4f55\u304b\u304c\u3046\u307e\u304f\u3044\u304d\u307e\u305b\u3093\u3067\u3057\u305f\u2026"},
 gkE(){return"\u30af\u30e9\u30a4\u30a2\u30f3\u30c8\u306e 1\u3064\u304c\u30ed\u30b0\u30a2\u30a6\u30c8\u3057\u307e\u3057\u305f"},
 gfL(){return"\u30a2\u30ab\u30a6\u30f3\u30c8\u3092\u8ffd\u52a0"},
 gjE(){return"\u3053\u306e\u30a2\u30ab\u30a6\u30f3\u30c8\u306e\u30d0\u30f3\u30c9\u30eb\u3092\u7de8\u96c6"},
@@ -256,7 +256,7 @@ gfS(){return"\u30d0\u30f3\u30c9\u30eb\u540d"},
 gkI(){return"\u30de\u30c3\u30d7\u3067\u958b\u304f"},
 geg(){return"\u30ea\u30f3\u30af"},
 gkK(){return"\u307e\u305f\u306f"},
-geo(){return"\u53c2\u52a0\u8005"},
+gep(){return"\u53c2\u52a0\u8005"},
 ghz(){return"\u30d1\u30b9\u30d5\u30ec\u30fc\u30ba\u304b\u30ea\u30ab\u30d0\u30ea\u30fc\u30ad\u30fc"},
 gkL(d){return"\u30d1\u30b9\u30ef\u30fc\u30c9"},
 geM(){return"\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u5fd8\u308c\u305f"},
@@ -308,7 +308,7 @@ glV(){return"\u30e1\u30a4\u30f3\u30a8\u30a4\u30ea\u30a2\u30b9\u306b\u8a2d\u5b9a"
 gfz(){return"\u30c1\u30e3\u30c3\u30c8\u306e\u8aac\u660e\u3092\u8a2d\u5b9a"},
 gfB(){return"\u30b9\u30c6\u30fc\u30bf\u30b9\u306e\u8a2d\u5b9a"},
 geQ(){return"\u8a2d\u5b9a"},
-gep(d){return"\u5171\u6709"},
+geq(d){return"\u5171\u6709"},
 i4(d){return d+"\u306f\u73fe\u5728\u5730\u3092\u5171\u6709\u3057\u307e\u3057\u305f"},
 gi3(){return"\u4f4d\u7f6e\u60c5\u5831\u306e\u5171\u6709"},
 geR(d){return"\u30b9\u30ad\u30c3\u30d7"},
@@ -648,7 +648,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Remove admin rights"},
 gr8(){return"Power level"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Owner"},
+geo(){return"Owner"},
 gpx(){return"Mute"},
 gqq(){return"Create new chat"},
 gpC(d){return"Reset"},
@@ -747,7 +747,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MA,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MA":{"aU":[]}}'))};
-(a=>{a["9Fu2pvkuCKSdW83eaFj8l0pWdAg="]=a.current})($__dart_deferred_initializers__);
+y(B.MB,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"MB":{"aU":[]}}'))};
+(a=>{a["dFQvgOnmHAMkwC/SfdxcgXp4yyo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_355.part.js.map

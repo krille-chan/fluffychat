@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEG(){return new B.Mg(A.dw("el"))},
-Mg:function Mg(d){this.a=d}}
+dEN(){return new B.Mh(A.dw("el"))},
+Mh:function Mh(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[14],B)
-B.Mg.prototype={
+B.Mh.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03b9\u03c3\u03bc\u03cc\u03c2 
 gfP(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03af\u03c3\u03c4\u03b7\u03ba\u03b5"},
 iz(d,e){return d+" \u03b1\u03c0\u03ad\u03ba\u03bb\u03b5\u03b9\u03c3\u03b5 "+e},
 gfR(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03b9\u03c3\u03bc\u03cc\u03c2 \u03a3\u03c5\u03c3\u03ba\u03b5\u03c5\u03ae\u03c2"},
-gcS(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03af\u03c3\u03c4\u03b7\u03ba\u03b5"},
+gcT(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03af\u03c3\u03c4\u03b7\u03ba\u03b5"},
 gbX(d){return"\u0391\u03ba\u03cd\u03c1\u03c9\u03c3\u03b7"},
 fT(d){return"\u0394\u03b5\u03bd \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03b1\u03bd\u03bf\u03af\u03be\u03b5\u03b9 \u03c4\u03bf URI "+d},
 gfU(){return"\u0391\u03bb\u03bb\u03b1\u03b3\u03ae \u03bf\u03bd\u03cc\u03bc\u03b1\u03c4\u03bf\u03c2 \u03c3\u03c5\u03c3\u03ba\u03b5\u03c5\u03ae\u03c2"},
@@ -247,7 +247,7 @@ gfk(){return"Notifications"},
 gkD(){return"Obtaining location\u2026"},
 gdu(){return"Ok"},
 gkF(){return"Online Key Backup is enabled"},
-gem(){return"Oops, something went wrong\u2026"},
+gen(){return"Oops, something went wrong\u2026"},
 gkE(){return"One of your clients has been logged out"},
 gfL(){return"Add account"},
 gjE(){return"Edit bundles for this account"},
@@ -257,7 +257,7 @@ gfS(){return"Bundle name"},
 gkI(){return"Open in maps"},
 geg(){return"Link"},
 gkK(){return"Or"},
-geo(){return"Participant"},
+gep(){return"Participant"},
 ghz(){return"passphrase or recovery key"},
 gkL(d){return"Password"},
 geM(){return"Password forgotten"},
@@ -309,7 +309,7 @@ glV(){return"Set as main alias"},
 gfz(){return"Set chat description"},
 gfB(){return"Set status"},
 geQ(){return"Settings"},
-gep(d){return"Share"},
+geq(d){return"Share"},
 i4(d){return d+" shared their location"},
 gi3(){return"Share location"},
 geR(d){return"Skip"},
@@ -649,7 +649,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Remove admin rights"},
 gr8(){return"Power level"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Owner"},
+geo(){return"Owner"},
 gpx(){return"Mute"},
 gqq(){return"Create new chat"},
 gpC(d){return"Reset"},
@@ -748,7 +748,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mg,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mg":{"aU":[]}}'))};
-(a=>{a["+prEAiVUU+oXK18Sul3WFQRnF9U="]=a.current})($__dart_deferred_initializers__);
+y(B.Mh,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mh":{"aU":[]}}'))};
+(a=>{a["JfU7+EhjeMtVRXVAERyfVjGf7vQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

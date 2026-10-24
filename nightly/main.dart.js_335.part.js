@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dEU(){return new B.Mu(A.dw("hr"))},
-Mu:function Mu(d){this.a=d}}
+dF0(){return new B.Mv(A.dw("hr"))},
+Mv:function Mv(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[28],B)
-B.Mu.prototype={
+B.Mv.prototype={
 gpq(){return"Edit image"},
 gro(){return"Rotate left"},
 grp(){return"Rotate right"},
@@ -66,7 +66,7 @@ gfO(){return"Isklju\u010di iz chata"},
 gfP(){return"Isklju\u010den"},
 iz(d,e){return d+" je isklju\u010dio/la "+e},
 gfR(){return"Blokiraj ure\u0111aj"},
-gcS(){return"Blokirano"},
+gcT(){return"Blokirano"},
 gbX(d){return"Odustani"},
 fT(d){return"URI adresa "+d+" se ne mo\u017ee otvoriti"},
 gfU(){return"Promijeni ime ure\u0111aja"},
@@ -247,7 +247,7 @@ gfk(){return"Obavijesti"},
 gkD(){return"Dohva\u0107anje lokacije \u2026"},
 gdu(){return"U redu"},
 gkF(){return"Internetski klju\u010d sigurnosnih kopija je aktiviran"},
-gem(){return"Ups, dogodila se gre\u0161ka \u2026"},
+gen(){return"Ups, dogodila se gre\u0161ka \u2026"},
 gkE(){return"Jedan od tvojih klijenata je odjavljen"},
 gfL(){return"Dodaj ra\u010dun"},
 gjE(){return"Uredi pakete za ovaj ra\u010dun"},
@@ -257,7 +257,7 @@ gfS(){return"Ime paketa"},
 gkI(){return"Otvori u kartama"},
 geg(){return"Poveznica"},
 gkK(){return"Ili"},
-geo(){return"Sudionik"},
+gep(){return"Sudionik"},
 ghz(){return"tajni izraz ili klju\u010d za obnavljanje"},
 gkL(d){return"Lozinka"},
 geM(){return"Zaboravljena lozinka"},
@@ -309,7 +309,7 @@ glV(){return"Postavi kao glavni pseudonim"},
 gfz(){return"Postavi opis rzgovora"},
 gfB(){return"Postavi stanje"},
 geQ(){return"Postavke"},
-gep(d){return"Dijeli"},
+geq(d){return"Dijeli"},
 i4(d){return d+" je dijelio/la svoje mjesto"},
 gi3(){return"Dijeli lokaciju"},
 geR(d){return"Presko\u010di"},
@@ -649,7 +649,7 @@ gre(){return"Remove moderator rights"},
 grb(){return"Remove admin rights"},
 gr8(){return"Power level"},
 gpX(){return"Power levels define what a member is allowed to do in this room and usually range between 0 and 100."},
-gen(){return"Owner"},
+geo(){return"Owner"},
 gpx(){return"Mute"},
 gqq(){return"Create new chat"},
 gpC(d){return"Reset"},
@@ -748,7 +748,7 @@ pS(d,e){return d+" has invited you to the chat '"+e+"'."},
 pT(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mu,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mu":{"aU":[]}}'))};
-(a=>{a["YweefluMCtpMo8kS/oglw/Tnoaw="]=a.current})($__dart_deferred_initializers__);
+y(B.Mv,C.aU)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mv":{"aU":[]}}'))};
+(a=>{a["Oo5y6QUv272dgIhUDmRXpaGERB0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_335.part.js.map
