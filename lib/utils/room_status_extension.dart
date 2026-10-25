@@ -46,16 +46,17 @@ extension RoomStatusExtension on Room {
     eventId ??= timeline.events.first.eventId;
 
     final lastReceipts = <User>{};
+    String? senderId;
     // now we iterate the timeline events until we hit the first rendered event
     for (final event in timeline.events) {
       lastReceipts.addAll(event.receipts.map((r) => r.user));
       if (event.eventId == eventId) {
+        senderId = event.senderId;
         break;
       }
     }
     lastReceipts.removeWhere(
-      (user) =>
-          user.id == client.userID || user.id == timeline.events.first.senderId,
+      (user) => user.id == client.userID || user.id == senderId,
     );
     return lastReceipts.toList();
   }
