@@ -1702,9 +1702,9 @@ gkO(){return"Por favor introduza um n\xfamero maior que 0"},
 gfa(){return"O chat ser\xe1 movido para o arquivo. Outros utilizadores poder\xe3o ver deixou o chat."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.FJ,C.aU)
+x(A.FJ,C.aV)
 w(A.FJ,[A.MJ,A.MK])})()
-B.ee(b.typeUniverse,JSON.parse('{"FJ":{"aU":[]},"MJ":{"aU":[]},"MK":{"aU":[]}}'))
+B.ee(b.typeUniverse,JSON.parse('{"FJ":{"aV":[]},"MJ":{"aV":[]},"MK":{"aV":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["yAX2tUTGDOg9IPMunA6mz7ojaQk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jUcymbY8pvTfpsMnea1VKyHq2gE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

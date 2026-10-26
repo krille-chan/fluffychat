@@ -749,7 +749,7 @@ pT(d,e){return d+" vous a invit\xe9 dans la discussion '"+e+"'."},
 pU(d,e){return d+" vous a invit\xe9 dans l'espace '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mo,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mo":{"aU":[]}}'))};
-(a=>{a["Gol87BVomAyHtAb2OKRuvkyj/ew="]=a.current})($__dart_deferred_initializers__);
+y(B.Mo,C.aV)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mo":{"aV":[]}}'))};
+(a=>{a["ruQ96l3OswWLL7Et/5ShMBwauzE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_325.part.js.map

@@ -749,7 +749,7 @@ pT(d,e){return d+" on saatnud sulle kutse osalemaks vestluses '"+e+"'."},
 pU(d,e){return d+" on saatnud sulle kutse osalemaks kogukonnas '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mj,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mj":{"aU":[]}}'))};
-(a=>{a["d6cEQZIumbtq/ARUMm7AWGUHcyI="]=a.current})($__dart_deferred_initializers__);
+y(B.Mj,C.aV)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mj":{"aV":[]}}'))};
+(a=>{a["dCJrC0Hmw+n8PmLuzqt/LFRpeKs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

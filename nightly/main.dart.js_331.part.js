@@ -748,7 +748,7 @@ pT(d,e){return d+" convidoute \xe1 conversa '"+e+"'."},
 pU(d,e){return d+" convidoute ao espazo '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mq,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mq":{"aU":[]}}'))};
-(a=>{a["sQRZflvF7wZAFmUw0qZ0DXVxGF8="]=a.current})($__dart_deferred_initializers__);
+y(B.Mq,C.aV)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mq":{"aV":[]}}'))};
+(a=>{a["ybKnfdT9L5qnxIBttTy0lBQoE4k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map

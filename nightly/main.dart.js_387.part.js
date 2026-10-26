@@ -748,8 +748,8 @@ pT(d,e){return d+" has invited you to the chat '"+e+"'."},
 pU(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MX,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MX":{"aU":[]}}'))
+x(B.MX,C.aV)})()
+A.ee(b.typeUniverse,JSON.parse('{"MX":{"aV":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["xj0kXOZOivCn9LerG7AsFZiNQ7M="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["Pn58PecsIOU/hb1eK9OSU2UcxcA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_387.part.js.map

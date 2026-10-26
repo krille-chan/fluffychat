@@ -748,8 +748,8 @@ pT(d,e){return d+" has invited you to the chat '"+e+"'."},
 pU(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mk,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mk":{"aU":[]}}'))
+x(B.Mk,C.aV)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mk":{"aV":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["DZo800rxAViWcy8cBwz8Lf8Ssyo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["pJrru2WSykTpjWK06yZWz/cTHwM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map

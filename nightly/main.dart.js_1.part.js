@@ -1315,8 +1315,8 @@ goQ(){return"\u60a8\u5df2\u8acb\u6c42\u52a0\u5165"},
 go5(){return"\u76f4\u5230\u804a\u5929\u5ba4\u88e1\u6709\u4eba\u9080\u8acb\u60a8\u524d\uff0c\u8acb\u7b49\u5019\u3002"},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FK,C.aU)
+y(A.FK,C.aV)
 y(A.N_,A.FK)})()
-B.ee(b.typeUniverse,JSON.parse('{"FK":{"aU":[]},"N_":{"aU":[]}}'))};
-(a=>{a["P+mBnBctLl8lWtkkBKY06HqxT5w="]=a.current})($__dart_deferred_initializers__);
+B.ee(b.typeUniverse,JSON.parse('{"FK":{"aV":[]},"N_":{"aV":[]}}'))};
+(a=>{a["QviCcmwCWCNgaF+vO69r2wecn7E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map

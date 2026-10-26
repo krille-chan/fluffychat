@@ -749,7 +749,7 @@ pT(d,e){return d+" has invited you to the chat '"+e+"'."},
 pU(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mt,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mt":{"aU":[]}}'))};
-(a=>{a["sk08ZdBXjLsEnfDtleEt/REJHzY="]=a.current})($__dart_deferred_initializers__);
+y(B.Mt,C.aV)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mt":{"aV":[]}}'))};
+(a=>{a["SoIIHLEccLzwHZWjmhQdCopxfC8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_336.part.js.map

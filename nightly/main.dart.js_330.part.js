@@ -748,8 +748,8 @@ pT(d,e){return"Thug "+d+" cuireadh duit chuig an gcomhr\xe1 '"+e+"'."},
 pU(d,e){return"Thug "+d+" cuireadh duit chuig an sp\xe1s '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Mp,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Mp":{"aU":[]}}'))
+x(B.Mp,C.aV)})()
+A.ee(b.typeUniverse,JSON.parse('{"Mp":{"aV":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["Vx+92Iss8C4gvR1nHOJcngYbc1g="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["lkiWtnrLefaHTOaJFv9P/qMZQvw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_330.part.js.map

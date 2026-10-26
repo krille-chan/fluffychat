@@ -749,8 +749,8 @@ pT(d,e){return d+" hat dich zum Chat '"+e+"' eingeladen."},
 pU(d,e){return d+" hat Dich zum Bereich '"+e+"' eingeladen."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Me,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"Me":{"aU":[]}}'))
+x(B.Me,C.aV)})()
+A.ee(b.typeUniverse,JSON.parse('{"Me":{"aV":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["Gyw8WZD4gQhVASWorni5LDTZyo8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["gs69lrx/NwjMRU5XVzGirWYFukA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map

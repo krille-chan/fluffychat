@@ -749,7 +749,7 @@ pT(d,e){return d+" har invitert deg til chatten '"+e+"'."},
 pU(d,e){return d+" har invitert deg til romgruppen '"+e+"'.."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.MG,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MG":{"aU":[]}}'))};
-(a=>{a["YsBIiujeQlvPZ53xB6bXuhP8tBo="]=a.current})($__dart_deferred_initializers__);
+y(B.MG,C.aV)})()
+A.ee(b.typeUniverse,JSON.parse('{"MG":{"aV":[]}}'))};
+(a=>{a["GBvofkwdEm33fxn7jgu+0QIB5gQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_364.part.js.map

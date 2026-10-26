@@ -749,8 +749,8 @@ pT(d,e){return d+" has invited you to the chat '"+e+"'."},
 pU(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbC(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.MS,C.aU)})()
-A.ee(b.typeUniverse,JSON.parse('{"MS":{"aU":[]}}'))
+x(B.MS,C.aV)})()
+A.ee(b.typeUniverse,JSON.parse('{"MS":{"aV":[]}}'))
 var y={d:" \u0b87\u0bb2\u0bcd \u0b9f\u0bc6\u0bb5\u0bb2\u0baa\u0bcd\u0baa\u0bb0\u0bcd\u0b95\u0bb3\u0bbf\u0b9f\u0bae\u0bcd \u0b87\u0ba8\u0bcd\u0ba4\u0baa\u0bcd \u0baa\u0bbf\u0bb4\u0bc8\u0baf\u0bc8\u0baa\u0bcd \u0baa\u0bc1\u0b95\u0bbe\u0bb0\u0bb3\u0bbf\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd. \u0baa\u0bbf\u0bb4\u0bc8 \u0b9a\u0bc6\u0baf\u0bcd\u0ba4\u0bbf: "}};
-(a=>{a["7Hv0zVyLQpptzjRP4sfimeMgUbc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["oOwqvsFzD/MK/Kdy6kBzBM6CmB4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_381.part.js.map
