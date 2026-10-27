@@ -84,7 +84,7 @@ dependencies:
   share_plus: ^13.3.1
   shared_preferences: ^2.5.6
   slugify: ^2.0.0
-  sqflite_common_ffi: ^2.4.4
+  sqflite_common_ffi: ^2.4.5
   synchronized: ^3.5.0
   unifiedpush: ^6.2.0
   unifiedpush_ui: ^0.2.0
