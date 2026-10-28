@@ -236,7 +236,7 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v7
       - name: Log in to the Container registry
-        uses: docker/login-action@v4.6.0
+        uses: docker/login-action@v4.7.0
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -277,6 +277,7 @@ jobs:
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
           MATCH_PASSWORD: ${{ secrets.FASTLANE_MATCH_PASSWORD }}
           APP_STORE_API_KEY: ${{ secrets.APP_STORE_API_KEY }}
+          FASTLANE_XCODEBUILD_SETTINGS_TIMEOUT: 120
         run: |
           if [[ $GITHUB_REF_NAME == rc* ]]; then
             fastlane rc

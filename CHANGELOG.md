@@ -5,6 +5,13 @@ SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+## v2.11.3
+
+- build: update Flutter to 3.47.8 (krille-chan)
+
+## v2.11.2
+
+- fix: testserver is accidentally preconfigured as a livekit fallback
 ## v2.11.1
 Reverting a keychain setting on iOS and macOS.
 

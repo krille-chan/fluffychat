@@ -20,7 +20,6 @@ import 'package:fluffychat/utils/notification_avatar_extension.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/start_push_foreground_service.dart';
-import 'package:fluffychat/widgets/local_notifications_extension.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -484,6 +483,9 @@ extension on PushNotification {
     final roomId = this.roomId;
     if (roomId == null) return 0;
     final clientName = this.clientName;
+    if (PlatformInfos.isCupertinoStyle) {
+      return '${clientName}_${roomId}_$eventId'.hashCode;
+    }
     if (clientName == null) return roomId.hashCode;
     return '${clientName}_$roomId'.hashCode;
   }
@@ -581,12 +583,27 @@ Future<void> cancelNotificationsOnSync(
       {};
   if (newReadRoomIds.isEmpty) return;
 
+  List<ActiveNotification>? activeNotifications;
+
   for (final roomId in newReadRoomIds) {
-    final id = '${clientName}_$roomId'.hashCode;
-    if (kIsWeb) {
-      LocalNotificationsExtension.activeWebNotifications.remove(id)?.close();
+    if (PlatformInfos.isMacOS || PlatformInfos.isIOS || PlatformInfos.isWeb) {
+      activeNotifications ??= await flutterLocalNotificationsPlugin
+          .getActiveNotifications();
+      for (final notification in activeNotifications) {
+        final payload = FluffyChatPushPayload.fromString(
+          notification.payload ?? '',
+        );
+        if (payload.clientName != clientName || payload.roomId != roomId) {
+          continue;
+        }
+        final id = notification.id;
+        // TODO: notifications from NSE have no id. How to clean them up?
+        if (id == null) continue;
+        await flutterLocalNotificationsPlugin.cancel(id: id);
+      }
       continue;
     }
+    final id = '${clientName}_$roomId'.hashCode;
     await flutterLocalNotificationsPlugin.cancel(id: id);
   }
 

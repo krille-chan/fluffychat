@@ -7,7 +7,7 @@ name: fluffychat
 description: Chat with your friends.
 publish_to: none
 # On version bump please also increase the build number (for F-Droid)
-version: 2.11.1+3572
+version: 2.11.3+3574
 
 environment:
   sdk: ">=3.11.1 <4.0.0"
@@ -17,11 +17,11 @@ dependencies:
   async: ^2.13.1
   badges: ^4.0.1
   blurhash_dart: ^1.2.1
-  chewie: ^1.17.2
+  chewie: ^1.17.4
   collection: ^1.18.0
   crop_image: ^1.0.17
   cross_file: ^0.3.5
-  cupertino_ui: ^1.1.3
+  cupertino_ui: ^1.1.4
   desktop_drop: ^0.8.4
   device_info_plus: ^13.3.0
   dynamic_color: ^2.1.0
@@ -44,7 +44,7 @@ dependencies:
   flutter_web_auth_2: ^5.1.0
   flutter_webrtc: ^1.6.2+hotfix.3
   geolocator: ^14.1.2
-  go_router: ^18.1.0
+  go_router: ^18.1.1
   handy_window: ^0.4.2
   highlight: ^0.7.0
   html: ^0.15.7
@@ -60,7 +60,7 @@ dependencies:
   local_auth: ^3.0.2
   lottie: ^3.6.1
   managed_configurations: ^1.2.0
-  material_ui: 1.7.0
+  material_ui: 1.8.0
   matrix: ^14.2.0
   media_kit_libs_linux: ^1.2.1
   media_kit_libs_windows_audio: ^1.0.9
@@ -69,14 +69,14 @@ dependencies:
   ogg_caf_converter: ^0.4.1
   package_info_plus: ^10.2.2
   particles_network: ^1.9.6
-  pasteboard: ^0.5.0
+  pasteboard: ^0.6.0
   path: ^1.9.0
   path_provider: ^2.1.6
   path_provider_foundation: ^2.6.0
   pretty_qr_code: ^3.6.0
   provider: ^6.0.2
   punycode: ^1.0.0
-  qr_code_scanner_plus: ^2.3.1
+  qr_code_scanner_plus: ^2.3.2
   qr_image: ^1.0.0
   receive_sharing_intent: ^1.9.0
   record: ^7.1.2
@@ -84,8 +84,7 @@ dependencies:
   share_plus: ^13.3.1
   shared_preferences: ^2.5.6
   slugify: ^2.0.0
-  sqflite_common_ffi: ^2.4.4
-  swipe_to_action: ^0.3.0
+  sqflite_common_ffi: ^2.4.5
   synchronized: ^3.5.0
   unifiedpush: ^6.2.0
   unifiedpush_ui: ^0.2.0
