@@ -119,7 +119,9 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
     database = await openDatabase(path, options: openDatabaseOptions);
   }
 
-  final secureStorage = FlutterSecureStorage(iOptions: iosOptions);
+  final secureStorage = cipher == null
+      ? null
+      : FlutterSecureStorage(iOptions: iosOptions);
 
   return await MatrixSdkDatabase.init(
     clientName,
@@ -127,11 +129,13 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
     maxFileSize: 1000 * 1000 * 10,
     fileStorageLocation: fileStorageLocation?.uri,
     deleteFilesAfterDuration: const Duration(days: 30),
-    secureStorage: (
-      read: (key) => secureStorage.read(key: key),
-      write: (key, value) => secureStorage.write(key: key, value: value),
-      delete: (key) => secureStorage.delete(key: key),
-    ),
+    secureStorage: secureStorage == null
+        ? null
+        : (
+            read: (key) => secureStorage.read(key: key),
+            write: (key, value) => secureStorage.write(key: key, value: value),
+            delete: (key) => secureStorage.delete(key: key),
+          ),
   );
 }
 
