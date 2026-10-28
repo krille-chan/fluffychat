@@ -26,6 +26,7 @@ import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/ogg_opus_remuxer.dart';
 import 'package:fluffychat/utils/other_party_can_receive.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/show_scaffold_dialog.dart';
@@ -990,8 +991,13 @@ class ChatController extends State<ChatPageWithRoom>
       context: context,
       future: () => XFile(path).readAsBytes(),
     );
-    final bytes = bytesResult.result;
+    var bytes = bytesResult.result;
     if (bytes == null) return;
+
+    // Android's MediaMuxer writes broken Ogg containers:
+    if (PlatformInfos.isAndroid && fileName.endsWith('.ogg')) {
+      bytes = remuxOggOpus(bytes);
+    }
 
     final mimeType = lookupMimeType(fileName, headerBytes: bytes);
     final extension = mimeType == null ? null : extensionFromMime(mimeType);
