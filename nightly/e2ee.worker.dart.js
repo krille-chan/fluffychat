@@ -1977,6 +1977,7 @@ _.a=-1
 _.b=a
 _.c=b
 _.d=c
+_.e=0
 _.f=d},
 cW:function cW(a,b,c,d,e,f){var _=this
 _.a=a
@@ -3518,9 +3519,9 @@ var $async$a8=A.G(function(a3,a4){if(a3===1){o.push(a4)
 s=p}for(;;)switch(s){case 0:c=$.v()
 b=""+a2.length
 c.i(B.j,"encodeFunction: buffer "+b,null,null)
-h=n.d.K(0)
+h=n.d.K(n.e)
 m=h==null?null:h.b
-l=0
+l=n.e
 if(m==null){c.i(B.b,"encodeFunction: no secretKey for index "+A.c(l)+", cannot encrypt",null,null)
 q=null
 s=1
@@ -3573,7 +3574,7 @@ e=$.v()
 d=a5.a
 e.i(B.j,"decodeFunction: data packet length "+d.length,null,null)
 a1.b=a1.c=null
-m=0
+m=n.e
 p=4
 c={}
 b=a5.c
@@ -4464,13 +4465,17 @@ l=A.i(c6.j(0,"dataCryptorId"))
 c4=A.i(c6.j(0,"algorithm"))
 if(A.az(B.B,new A.eh(c4),t.b)==null){A.b(v.G.self).postMessage(A.h(A.j(["type","dataCryptorEncrypt","error","algorithm not found","msgId",c8,"msgType","response"],t.N,t.T)))
 s=1
-break}c9.i(B.a,"Encrypt for dataCryptorId "+A.c(l)+", participantId "+A.c(n)+", keyIndex "+e+", data length "+J.aQ(m)+", algorithm "+c4,null,null)
+break}a2=""+e
+c9.i(B.a,"Encrypt for dataCryptorId "+A.c(l)+", participantId "+A.c(n)+", keyIndex "+a2+", data length "+J.aQ(m)+", algorithm "+c4,null,null)
 a1=A.i(c6.j(0,"keyProviderId"))
 b8=$.af.j(0,a1)
 if(b8==null){c9.i(B.b,"KeyProvider not found for "+a1,null,null)
 A.b(v.G.self).postMessage(A.h(A.j(["type","dataCryptorEncrypt","error","KeyProvider not found","msgId",c8,"msgType","response"],t.N,t.T)))
 s=1
 break}k=A.h0(n,l,b8)
+a3=k
+c9.i(B.a,"setKeyIndex for "+A.c(a3.b)+", newIndex: "+a2,null,null)
+a3.e=e
 p=42
 s=45
 return A.m(k.a8(k.d,m),$async$$1)
