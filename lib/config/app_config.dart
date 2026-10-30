@@ -69,5 +69,5 @@ abstract class AppConfig {
   static const String pushIsolatePortName = 'push_isolate';
   static const String pushHelperCrashReportKey = 'push_helper_crash_report';
 
-  static const String vodozemacVersion = '0.8.1';
+  static const String vodozemacVersion = '0.9.0';
 }
