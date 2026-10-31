@@ -9,11 +9,11 @@ import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/call_kit_params.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/call_keys_event_content.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call_member.dart';
+import 'package:fluffychat/utils/notifications/call_kit_params.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/position_from_build_context.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
