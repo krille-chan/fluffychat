@@ -5,6 +5,10 @@ SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+## v2.11.4
+
+- hotfix: Do not use secure storage (key ring on linux) if not available
+
 ## v2.11.3
 
 - build: update Flutter to 3.47.8 (krille-chan)
