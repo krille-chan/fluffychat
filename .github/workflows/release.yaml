@@ -15,7 +15,7 @@ env:
 
 jobs:
   build_web:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
@@ -70,7 +70,7 @@ jobs:
           cname: fluffychat.im
 
   build_apk:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
@@ -178,7 +178,7 @@ jobs:
           asset_content_type: application/vnd.microsoft.portable-executable
 
   deploy_playstore:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     concurrency:
       group: deploy_playstore
       queue: max
@@ -228,7 +228,7 @@ jobs:
           cd ..
 
   deploy_docker:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       packages: write

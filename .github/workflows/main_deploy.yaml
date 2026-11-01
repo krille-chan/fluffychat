@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   deploy_web:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
@@ -48,7 +48,7 @@ jobs:
           keep_files: true
 
   deploy_playstore_internal:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     concurrency:
       group: deploy_playstore
       queue: max

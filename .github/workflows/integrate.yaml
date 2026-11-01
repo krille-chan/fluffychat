@@ -6,7 +6,7 @@ on:
 
 jobs:
   code_tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - uses: webiny/action-conventional-commits@v1.4.2
@@ -57,7 +57,7 @@ jobs:
       - run: flutter analyze
 
   flutter_tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
@@ -71,7 +71,7 @@ jobs:
 
   build_debug_apk:
     needs: [ code_tests ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - uses: ./.github/actions/free_up_space
@@ -98,7 +98,7 @@ jobs:
 
   build_debug_web:
     needs: [ code_tests ]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
@@ -123,7 +123,7 @@ jobs:
     strategy:
       matrix:
         arch: [ x64, arm64 ]
-    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest'}}
+    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-24.04'}}
     steps:
       - uses: actions/checkout@v7
       - name: Install dependencies
@@ -197,7 +197,7 @@ jobs:
           path: build/windows/installer/fluffychat-windows-x64-setup.exe
 
   integration_test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
     needs: [ code_tests ]
     strategy:
