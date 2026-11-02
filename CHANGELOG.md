@@ -5,6 +5,10 @@ SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+## v2.11.5
+
+- fix: release iOS from CI and set ubuntu CI version for Linux builds
+
 ## v2.11.4
 
 - hotfix: Do not use secure storage (key ring on linux) if not available
