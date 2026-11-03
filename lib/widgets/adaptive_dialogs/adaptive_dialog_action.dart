@@ -13,6 +13,7 @@ class AdaptiveDialogAction extends StatelessWidget {
   final Widget child;
   final bool bigButtons;
   final BorderRadius? borderRadius;
+  final TargetPlatform? targetPlatform;
 
   static const BorderRadius topRadius = BorderRadius.only(
     topLeft: Radius.circular(AppConfig.borderRadius),
@@ -35,12 +36,13 @@ class AdaptiveDialogAction extends StatelessWidget {
     this.autofocus = false,
     this.bigButtons = false,
     this.borderRadius,
+    this.targetPlatform,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    switch (theme.platform) {
+    switch (targetPlatform ?? theme.platform) {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
       case TargetPlatform.linux:

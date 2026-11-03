@@ -61,7 +61,6 @@ class LoginView extends StatelessWidget {
                     onChanged: controller.checkWellKnownWithCoolDown,
                     controller: controller.usernameController,
                     textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
                     autofillHints: controller.loading
                         ? null
                         : [AutofillHints.username],

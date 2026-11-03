@@ -80,6 +80,7 @@ class UserDialog extends StatelessWidget {
                     mxContent: avatar,
                     name: displayname,
                     size: Avatar.defaultSize * 1.5,
+                    animated: true,
                     onTap: avatar != null
                         ? () => showDialog(
                             context: context,
@@ -181,6 +182,7 @@ class UserDialog extends StatelessWidget {
                         ).scale(1),
                         textAlign: TextAlign.start,
                         options: const LinkifyOptions(humanize: false),
+                        style: TextStyle(color: theme.colorScheme.onSurface),
                         linkStyle: TextStyle(
                           color: theme.colorScheme.primary,
                           decoration: TextDecoration.underline,

@@ -15,10 +15,8 @@ import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/utils/account_config.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/pulsating_widget.dart';
@@ -40,13 +38,7 @@ class ChatView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final hasActiveGroupCall = controller.room.hasActiveMatrixRtcCall;
-    if (controller.room.membership == Membership.invite) {
-      showFutureLoadingDialog(
-        context: context,
-        future: () => controller.room.join(),
-        exceptionContext: ExceptionContext.joinRoom,
-      );
-    }
+
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
     final scrollUpBannerEventId = controller.scrollUpBannerEventId;
 
@@ -400,10 +392,11 @@ class ChatView extends StatelessWidget {
                                         ),
                                         onPressed: controller.goToNewRoomAction,
                                       )
-                                    : controller.room.canSendDefaultMessages &&
-                                          controller.room.membership ==
-                                              Membership.join
-                                    ? Material(
+                                    : !controller.room.canSendDefaultMessages &&
+                                          controller.room.membership !=
+                                              Membership.invite
+                                    ? const SizedBox.shrink()
+                                    : Material(
                                         clipBehavior: Clip.hardEdge,
                                         color:
                                             controller.selectedEvents.isNotEmpty
@@ -415,46 +408,98 @@ class ChatView extends StatelessWidget {
                                                   .surfaceContainer,
                                         borderRadius: BorderRadius.circular(32),
                                         child:
-                                            controller.room.isAbandonedDMRoom ==
-                                                true
+                                            controller.room.membership ==
+                                                .invite
                                             ? Row(
-                                                mainAxisAlignment: .spaceEvenly,
                                                 children: [
-                                                  TextButton.icon(
-                                                    style: TextButton.styleFrom(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                            16,
-                                                          ),
-                                                      foregroundColor: theme
-                                                          .colorScheme
-                                                          .error,
-                                                    ),
-                                                    icon: const Icon(
-                                                      Icons.archive_outlined,
-                                                    ),
-                                                    onPressed:
-                                                        controller.leaveChat,
-                                                    label: Text(
-                                                      L10n.of(context).leave,
+                                                  Expanded(
+                                                    child: TextButton.icon(
+                                                      style: TextButton.styleFrom(
+                                                        padding:
+                                                            const EdgeInsets.all(
+                                                              16,
+                                                            ),
+                                                        foregroundColor: theme
+                                                            .colorScheme
+                                                            .error,
+                                                      ),
+                                                      icon: const Icon(
+                                                        Icons.cancel_outlined,
+                                                      ),
+                                                      onPressed:
+                                                          controller.leaveChat,
+                                                      label: Text(
+                                                        L10n.of(
+                                                          context,
+                                                        ).decline,
+                                                      ),
                                                     ),
                                                   ),
-                                                  TextButton.icon(
-                                                    style: TextButton.styleFrom(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                            16,
-                                                          ),
+                                                  Expanded(
+                                                    child: TextButton.icon(
+                                                      style: TextButton.styleFrom(
+                                                        padding:
+                                                            const EdgeInsets.all(
+                                                              16,
+                                                            ),
+                                                      ),
+                                                      icon: const Icon(
+                                                        Icons.check_outlined,
+                                                      ),
+                                                      onPressed:
+                                                          controller.joinChat,
+                                                      label: Text(
+                                                        L10n.of(context).accept,
+                                                      ),
                                                     ),
-                                                    icon: const Icon(
-                                                      Icons.forum_outlined,
+                                                  ),
+                                                ],
+                                              )
+                                            : controller
+                                                      .room
+                                                      .isAbandonedDMRoom ==
+                                                  true
+                                            ? Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: TextButton.icon(
+                                                      style: TextButton.styleFrom(
+                                                        padding:
+                                                            const EdgeInsets.all(
+                                                              16,
+                                                            ),
+                                                        foregroundColor: theme
+                                                            .colorScheme
+                                                            .error,
+                                                      ),
+                                                      icon: const Icon(
+                                                        Icons.archive_outlined,
+                                                      ),
+                                                      onPressed:
+                                                          controller.leaveChat,
+                                                      label: Text(
+                                                        L10n.of(context).leave,
+                                                      ),
                                                     ),
-                                                    onPressed:
-                                                        controller.recreateChat,
-                                                    label: Text(
-                                                      L10n.of(
-                                                        context,
-                                                      ).reopenChat,
+                                                  ),
+                                                  Expanded(
+                                                    child: TextButton.icon(
+                                                      style: TextButton.styleFrom(
+                                                        padding:
+                                                            const EdgeInsets.all(
+                                                              16,
+                                                            ),
+                                                      ),
+                                                      icon: const Icon(
+                                                        Icons.forum_outlined,
+                                                      ),
+                                                      onPressed: controller
+                                                          .recreateChat,
+                                                      label: Text(
+                                                        L10n.of(
+                                                          context,
+                                                        ).reopenChat,
+                                                      ),
                                                     ),
                                                   ),
                                                 ],
@@ -467,8 +512,7 @@ class ChatView extends StatelessWidget {
                                                   ChatEmojiPicker(controller),
                                                 ],
                                               ),
-                                      )
-                                    : SizedBox.shrink(),
+                                      ),
                               ),
                             ),
                           ),

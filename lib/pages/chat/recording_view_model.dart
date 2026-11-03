@@ -65,9 +65,8 @@ class RecordingViewModelState extends State<RecordingViewModel> {
 
     try {
       final codec =
-          !PlatformInfos
-                  .isIOS && // Blocked by https://github.com/llfbandit/record/issues/560
-              await audioRecorder.isEncoderSupported(AudioEncoder.opus)
+          await audioRecorder.isEncoderSupported(AudioEncoder.opus) &&
+              !(PlatformInfos.isMacOS || PlatformInfos.isIOS)
           ? AudioEncoder.opus
           : AudioEncoder.aacLc;
       fileName =

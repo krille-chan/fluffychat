@@ -56,7 +56,9 @@ extension LocalizedExceptionExtension on Object {
           if (exceptionContext == ExceptionContext.joinRoom) {
             return L10n.of(context).unableToJoinChat;
           }
-          return (this as MatrixException).errorMessage;
+          return L10n.of(
+            context,
+          ).serverRespondedWithError((this as MatrixException).errorMessage);
       }
     }
     if (this is InvalidPassphraseException) {

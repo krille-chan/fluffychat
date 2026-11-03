@@ -33,6 +33,7 @@
     <locale android:name="ka"/>
     <locale android:name="kab"/>
     <locale android:name="ko"/>
+    <locale android:name="la"/>
     <locale android:name="lt"/>
     <locale android:name="lv"/>
     <locale android:name="nb"/>

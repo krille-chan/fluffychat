@@ -29,8 +29,11 @@ class StoreRecoveryKeyView extends StatelessWidget {
           decoration: InputDecoration(
             suffixIcon: IconButton(
               icon: Icon(Icons.copy_outlined),
-              onPressed: () =>
-                  FluffyShare.share(viewModel.value.recoveryKey!, context),
+              onPressed: () => FluffyShare.share(
+                viewModel.value.recoveryKey!,
+                context,
+                copyOnly: true,
+              ),
             ),
           ),
         ),

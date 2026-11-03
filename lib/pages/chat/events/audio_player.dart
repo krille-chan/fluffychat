@@ -18,7 +18,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
-import 'package:opus_caf_converter_dart/opus_caf_converter_dart.dart';
+import 'package:ogg_caf_converter/ogg_caf_converter.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../../utils/matrix_sdk_extensions/event_extension.dart';
@@ -183,7 +183,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           Logs().v('Convert ogg audio file for iOS...');
           final convertedFile = File('${file.path}.caf');
           if (await convertedFile.exists() == false) {
-            OpusCaf().convertOpusToCaf(file.path, convertedFile.path);
+            await OggCafConverter().convertOggToCaf(
+              input: file.path,
+              output: convertedFile.path,
+            );
           }
           file = convertedFile;
         }
@@ -252,6 +255,14 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     if (eventWaveForm == null || eventWaveForm.isEmpty) {
       return null;
     }
+    // Newer versions of this MSC define 256 as the maximum instead of 1024.
+    // Hard to determine which version we should follow. At the time of writing
+    // this, Element X still sends 1024 while Mautrix WhatsApp uses 256.
+    // https://github.com/matrix-org/matrix-spec-proposals/blob/travis/msc/audio-waveform/proposals/3246-audio-waveform.md#unstable-prefix
+    if (!eventWaveForm.any((value) => value > 256)) {
+      _maxWaveForm = 256;
+    }
+
     while (eventWaveForm.length < AudioPlayerWidget.wavesCount) {
       for (var i = 0; i < eventWaveForm.length; i = i + 2) {
         eventWaveForm.insert(i, eventWaveForm[i]);
@@ -263,8 +274,12 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       eventWaveForm.removeAt(i);
       i = (i + step) % AudioPlayerWidget.wavesCount;
     }
-    return eventWaveForm.map((i) => i > 1024 ? 1024 : i).toList();
+    return eventWaveForm
+        .map((i) => i > _maxWaveForm ? _maxWaveForm : i)
+        .toList();
   }
+
+  int _maxWaveForm = 1024;
 
   @override
   void initState() {
@@ -397,7 +412,9 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                                                 borderRadius:
                                                     BorderRadius.circular(64),
                                               ),
-                                              height: 32 * (waveform[i] / 1024),
+                                              height:
+                                                  32 *
+                                                  (waveform[i] / _maxWaveForm),
                                             ),
                                           ),
                                         ),

@@ -76,6 +76,12 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       ).onErrorCallback(Exception(), StackTrace.current);
       return;
     }
+    final knownCallId = room.ownMatrixRtcMembership?.callId;
+    if (callKeys.roomId != room.id ||
+        (knownCallId != null && callKeys.session.callId != knownCallId)) {
+      Logs().d('Received call key for wrong group call.');
+      return;
+    }
 
     await keyProvider.setRawKey(
       base64Decode(callKeys.keys.key),
@@ -336,11 +342,10 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       final credentials = await room.joinMatrixRtcCall(intent: intent);
       _onCallMembersChanged = room.client.onSync.stream
           .where(
-            (syncUpdate) =>
-                syncUpdate.rooms?.join?[room.id]?.timeline?.events?.any(
-                  (event) => event.type == MatrixRtcCallMember.eventType,
-                ) ??
-                false,
+            (syncUpdate) => [
+              ...?syncUpdate.rooms?.join?[room.id]?.timeline?.events,
+              ...?syncUpdate.rooms?.join?[room.id]?.state,
+            ].any((event) => event.type == MatrixRtcCallMember.eventType),
           )
           .listen((_) {
             notifyListeners();

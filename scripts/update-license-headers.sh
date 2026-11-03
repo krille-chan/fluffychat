@@ -23,6 +23,7 @@ find . -type f \
     -not -path "*/snap/*" \
     -not -path "*/web/*" \
     -not -path "*/windows/*" \
+    -not -path "*/test/metadata/*" \
     -exec reuse annotate \
     --copyright="Christian Kußowski" \
     --copyright="Contributors to FluffyChat" \

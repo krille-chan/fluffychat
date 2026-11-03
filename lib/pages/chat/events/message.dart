@@ -21,13 +21,14 @@ import 'package:fluffychat/widgets/member_actions_popup_menu_button.dart';
 import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
-import 'package:swipe_to_action/swipe_to_action.dart';
 
 import '../../../config/app_config.dart';
+import '../sticker_picker_dialog.dart';
 import 'message_content.dart';
 import 'message_reactions.dart';
 import 'reply_content.dart';
 import 'state_message.dart';
+import 'swipe_to_reply.dart';
 
 class Message extends StatelessWidget {
   final Event event;
@@ -219,16 +220,10 @@ class Message extends StatelessWidget {
     final eventStateTextColor = theme.colorScheme.onSurface;
 
     return Center(
-      child: Swipeable(
+      child: SwipeToReply(
         key: ValueKey(event.transactionId ?? event.eventId),
-        background: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.0),
-          child: Center(child: Icon(Icons.check_outlined)),
-        ),
-        direction: AppSettings.swipeRightToLeftToReply.value
-            ? SwipeDirection.endToStart
-            : SwipeDirection.startToEnd,
-        onSwipe: (_) => onSwipe(),
+        rightToLeft: AppSettings.swipeRightToLeftToReply.value,
+        onReply: onSwipe,
         child: Container(
           constraints: const BoxConstraints(
             maxWidth: FluffyThemes.maxTimelineWidth,
@@ -728,70 +723,95 @@ class Message extends StatelessWidget {
                                                         body: SizedBox(
                                                           height:
                                                               double.infinity,
-                                                          child: EmojiPicker(
-                                                            onEmojiSelected:
-                                                                (_, emoji) =>
-                                                                    Navigator.of(
-                                                                      context,
-                                                                    ).pop(
-                                                                      emoji
-                                                                          .emoji,
+                                                          child: DefaultTabController(
+                                                            length: 2,
+                                                            child: Column(
+                                                              children: [
+                                                                TabBar(
+                                                                  tabs: [
+                                                                    Tab(
+                                                                      text: L10n.of(
+                                                                        context,
+                                                                      ).emojis,
                                                                     ),
-                                                            config: Config(
-                                                              locale:
-                                                                  Localizations.localeOf(
-                                                                    context,
-                                                                  ),
-                                                              emojiViewConfig:
-                                                                  const EmojiViewConfig(
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                  ),
-                                                              bottomActionBarConfig:
-                                                                  const BottomActionBarConfig(
-                                                                    enabled:
-                                                                        false,
-                                                                  ),
-                                                              categoryViewConfig: CategoryViewConfig(
-                                                                initCategory:
-                                                                    Category
-                                                                        .SMILEYS,
-                                                                backspaceColor: theme
-                                                                    .colorScheme
-                                                                    .primary,
-                                                                iconColor: theme
-                                                                    .colorScheme
-                                                                    .primary
-                                                                    .withAlpha(
-                                                                      128,
+                                                                    Tab(
+                                                                      text: L10n.of(
+                                                                        context,
+                                                                      ).stickers,
                                                                     ),
-                                                                iconColorSelected:
-                                                                    theme
-                                                                        .colorScheme
-                                                                        .primary,
-                                                                indicatorColor: theme
-                                                                    .colorScheme
-                                                                    .primary,
-                                                                backgroundColor:
-                                                                    theme
-                                                                        .colorScheme
-                                                                        .surface,
-                                                              ),
-                                                              skinToneConfig: SkinToneConfig(
-                                                                dialogBackgroundColor: Color.lerp(
-                                                                  theme
-                                                                      .colorScheme
-                                                                      .surface,
-                                                                  theme
-                                                                      .colorScheme
-                                                                      .primaryContainer,
-                                                                  0.75,
-                                                                )!,
-                                                                indicatorColor: theme
-                                                                    .colorScheme
-                                                                    .onSurface,
-                                                              ),
+                                                                  ],
+                                                                ),
+                                                                Expanded(
+                                                                  child: TabBarView(
+                                                                    children: [
+                                                                      EmojiPicker(
+                                                                        onEmojiSelected:
+                                                                            (
+                                                                              _,
+                                                                              emoji,
+                                                                            ) =>
+                                                                                Navigator.of(
+                                                                                  context,
+                                                                                ).pop(
+                                                                                  emoji.emoji,
+                                                                                ),
+                                                                        config: Config(
+                                                                          locale: Localizations.localeOf(
+                                                                            context,
+                                                                          ),
+                                                                          emojiViewConfig: const EmojiViewConfig(
+                                                                            backgroundColor:
+                                                                                Colors.transparent,
+                                                                          ),
+                                                                          bottomActionBarConfig: const BottomActionBarConfig(
+                                                                            enabled:
+                                                                                false,
+                                                                          ),
+                                                                          categoryViewConfig: CategoryViewConfig(
+                                                                            initCategory:
+                                                                                Category.SMILEYS,
+                                                                            backspaceColor:
+                                                                                theme.colorScheme.primary,
+                                                                            iconColor: theme.colorScheme.primary.withAlpha(
+                                                                              128,
+                                                                            ),
+                                                                            iconColorSelected:
+                                                                                theme.colorScheme.primary,
+                                                                            indicatorColor:
+                                                                                theme.colorScheme.primary,
+                                                                            backgroundColor:
+                                                                                theme.colorScheme.surface,
+                                                                          ),
+                                                                          skinToneConfig: SkinToneConfig(
+                                                                            dialogBackgroundColor: Color.lerp(
+                                                                              theme.colorScheme.surface,
+                                                                              theme.colorScheme.primaryContainer,
+                                                                              0.75,
+                                                                            )!,
+                                                                            indicatorColor:
+                                                                                theme.colorScheme.onSurface,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                      StickerPickerDialog(
+                                                                        room: event
+                                                                            .room,
+                                                                        usage: ImagePackUsage
+                                                                            .emoticon,
+                                                                        onSelected:
+                                                                            (
+                                                                              sticker,
+                                                                            ) =>
+                                                                                Navigator.of(
+                                                                                  context,
+                                                                                ).pop(
+                                                                                  sticker.url.toString(),
+                                                                                ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                              ],
                                                             ),
                                                           ),
                                                         ),

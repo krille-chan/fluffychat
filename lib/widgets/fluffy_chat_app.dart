@@ -3,6 +3,8 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'dart:developer';
+
 import 'package:cupertino_ui/cupertino_ui.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/routes.dart';
@@ -25,6 +27,7 @@ class FluffyChatApp extends StatelessWidget {
   final List<Client> clients;
   final ({String? pincode, bool useBiometrics}) appLockSettings;
   final SharedPreferences store;
+  final Locale? locale;
 
   const FluffyChatApp({
     super.key,
@@ -32,6 +35,7 @@ class FluffyChatApp extends StatelessWidget {
     required this.clients,
     required this.store,
     required this.appLockSettings,
+    this.locale,
   });
 
   /// getInitialLink may rereturn the value multiple times if this view is
@@ -54,6 +58,23 @@ class FluffyChatApp extends StatelessWidget {
         return '/';
       }
 
+      if (state.uri.scheme == 'matrix') {
+        debugger();
+        final type = state.uri.pathSegments.first;
+        final id = state.uri.pathSegments[1];
+        switch (type) {
+          case 'roomid':
+            final roomId = '!$id';
+            return '/rooms/$roomId';
+          case 'r':
+            final alias = '#$id';
+            return '/rooms/newprivatechat#$alias';
+          case 'u':
+            final userId = '@$id';
+            return '/rooms/newprivatechat#$userId';
+        }
+      }
+
       // Pass deep links to app:
       if (state.uri.toString().startsWith(AppConfig.deepLinkPrefix)) {
         return '/rooms/newprivatechat#${state.uri}';
@@ -68,6 +89,8 @@ class FluffyChatApp extends StatelessWidget {
       builder: (context, themeMode, primaryColor) => MaterialApp.router(
         title: AppSettings.applicationName.value,
         themeMode: themeMode,
+        debugShowCheckedModeBanner: false,
+        locale: locale,
         theme: FluffyThemes.buildTheme(context, Brightness.light, primaryColor),
         darkTheme: FluffyThemes.buildTheme(
           context,

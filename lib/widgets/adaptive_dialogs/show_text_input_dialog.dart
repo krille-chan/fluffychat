@@ -52,6 +52,9 @@ Future<String?> showTextInputDialog({
                 SelectableLinkify(
                   text: message,
                   textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
                   linkStyle: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     decorationColor: Theme.of(context).colorScheme.primary,

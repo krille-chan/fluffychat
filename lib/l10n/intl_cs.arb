@@ -78,7 +78,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Mohou se připojit hosté",
+    "areGuestsAllowedToJoin": "Mohou se připojit hosté?",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -1493,7 +1493,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "unknownEvent": "Neznámá událost „{type}“",
+    "unknownEvent": "Neznámá událost '{type}'",
     "@unknownEvent": {
         "type": "String",
         "placeholders": {
@@ -1668,11 +1668,6 @@
     },
     "youAreNoLongerParticipatingInThisChat": "Tohoto chatu se nadále neúčastníte",
     "@youAreNoLongerParticipatingInThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youHaveBeenBannedFromThisChat": "Byl vám zablokován přístup k tomuto chatu",
-    "@youHaveBeenBannedFromThisChat": {
         "type": "String",
         "placeholders": {}
     },
@@ -1935,7 +1930,6 @@
     "appLockDescription": "Zamknout aplikaci pomocí PIN kódu když není používána",
     "globalChatId": "Globální ID chatu",
     "accessAndVisibility": "Přístup a viditelnost",
-    "calls": "Volání",
     "customEmojisAndStickers": "Vlastní emodži a nálepky",
     "accessAndVisibilityDescription": "Kdo se může připojit a najít tuto konverzaci.",
     "customEmojisAndStickersBody": "Přidat nebo sdílet vlastní emodži či nálepky, které lze použít v konverzaci.",
@@ -2340,57 +2334,92 @@
         }
     },
     "commandHint_roomupgrade": "Aktualizovat místnost na danou verzi",
-    "@goToSpace": {
+    "editImage": "Upravit obraz",
+    "@editImage": {
         "type": "String",
-        "space": {}
+        "placeholders": {}
     },
-    "@countReplies": {
-        "type": "int",
+    "rotateLeft": "Otočit doleva",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Otočit doprava",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Zrcadlit",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Uložit",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Kreslit",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Vrátit",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Vymazat",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "accountsAndSettings": "Úcty a nastavení",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "compressingVideo": "Kompresuji video...",
+    "searchMore": "Vyhledat více...",
+    "incomingMessages": "Příchozí zprávy",
+    "stickers": "Samolepky",
+    "discover": "Objevit",
+    "eraser": "Guma",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Oříznout",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "discardEdits": "Máte neuložené změny. Opravdu je chcete zahodit?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendingFilesDoNotExit": "Odesílání {count} soubor/ů... Prosíme, neukončujte aplikaci!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
         "placeholders": {
             "count": {
                 "type": "int"
             }
         }
     },
-    "@userLevel": {
+    "searchIn": "Hledat v chatu \"{chat}\"...",
+    "@searchIn": {
         "type": "String",
         "placeholders": {
-            "level": {
-                "type": "int"
-            }
-        }
-    },
-    "@updateInstalled": {
-        "type": "String",
-        "placeholders": {
-            "version": {
+            "chat": {
                 "type": "String"
             }
         }
     },
-    "@adminLevel": {
-        "type": "String",
-        "placeholders": {
-            "level": {
-                "type": "int"
-            }
-        }
-    },
-    "@mute": {
-        "description": "This should be a very short string because there is not much space in the button!"
-    },
-    "@thereAreCountUsersBlocked": {
-        "type": "String",
-        "count": {}
-    },
-    "@unknownPushRule": {
-        "type": "String",
-        "placeholders": {
-            "rule": {
-                "type": "String"
-            }
-        }
-    },
+    "commandHint_ignore": "Ignorovat Matrix ID",
+    "commandHint_unignore": "Odignorovat Matrix ID",
+    "unreadChatsInApp": "{appname}: {unread} nepřečtených chatů",
     "@unreadChatsInApp": {
         "type": "String",
         "placeholders": {
@@ -2402,14 +2431,23 @@
             }
         }
     },
-    "@countVotes": {
-        "type": "int",
+    "noDatabaseEncryption": "Šifrování databáze není na tomto serveru podporováno",
+    "thereAreCountUsersBlocked": "Máte zablokováno {count} uživatelů.",
+    "@thereAreCountUsersBlocked": {
+        "type": "String",
+        "count": {}
+    },
+    "markAsUnread": "Označit jako nepřečtené",
+    "userLevel": "{level} - Uživatel",
+    "@userLevel": {
+        "type": "String",
         "placeholders": {
-            "count": {
+            "level": {
                 "type": "int"
             }
         }
     },
+    "moderatorLevel": "{level} - Moderátor",
     "@moderatorLevel": {
         "type": "String",
         "placeholders": {
@@ -2418,12 +2456,44 @@
             }
         }
     },
-    "@searchIn": {
+    "adminLevel": "{level} - Administrátor",
+    "@adminLevel": {
         "type": "String",
         "placeholders": {
-            "chat": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "changeGeneralChatSettings": "Změnit obecné nastavení chatu",
+    "inviteOtherUsers": "Pozvat do tohoto chatu uživatele",
+    "changeTheChatPermissions": "Změnit oprávnění v chatu",
+    "changeTheVisibilityOfChatHistory": "Změnit viditelnost historie chatu",
+    "changeTheCanonicalRoomAlias": "Změnit hlavní veřejnou adresu chatu",
+    "sendRoomNotifications": "Posílat oznámení pro @room",
+    "changeTheDescriptionOfTheGroup": "Změnit popis chatu",
+    "chatPermissionsDescription": "Určete, jaká úroveň oprávnění je v tomto chatu nutná pro určité akce. Úrovně 0, 50 a 100 obvykle odpovídají uživatelům, moderátorům a administrátorům, ale je možné použít i libovolné jiné rozdělení.",
+    "updateInstalled": "🎉 Aktualizace {version} byla instalována!",
+    "@updateInstalled": {
+        "type": "String",
+        "placeholders": {
+            "version": {
                 "type": "String"
             }
         }
-    }
+    },
+    "updateAvailable": "Je dostupná aktualizace {version}",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Stáhnout",
+    "sendCanceled": "Odeslání přerušeno",
+    "loginWithMatrixId": "Přihlásit se pomocí Matrix ID",
+    "doesNotSeemToBeAValidHomeserver": "Vypadá to, že domovský server není kompatibilní. Je URL adresa správná?",
+    "calculatingFileSize": "Vypočítávám velikost souboru..."
 }

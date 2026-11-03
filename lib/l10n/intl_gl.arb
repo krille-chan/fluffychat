@@ -1671,11 +1671,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Foches vetada nesta conversa",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "A túa chave pública",
     "@yourPublicKey": {
         "type": "String",
@@ -2111,7 +2106,6 @@
     "accessAndVisibility": "Acceso e Visibilidade",
     "accessAndVisibilityDescription": "Quen pode unirse a esta charla e de que xeito e como poden atopala.",
     "customEmojisAndStickers": "Emojis personais e adhesivos",
-    "calls": "Chamadas",
     "hideRedactedMessages": "Agochar mensaxes editadas",
     "hideRedactedMessagesBody": "Se alguén corrixe unha mensaxe entón esta xa non será visible na charla.",
     "hideInvalidOrUnknownMessageFormats": "Agochar formatos de mensaxe non válidos ou descoñecidos",
@@ -2773,7 +2767,7 @@
     },
     "compressingVideo": "Comprimindo o vídeo…",
     "shareCrashReports": "Compartir informe dos fallos",
-    "shareCrashReportsDescription": "Compartir de xeito automático coas desenvolvedoras os informes dos fallos",
+    "shareCrashReportsDescription": "Compartir automaticamente coas desenvolvedoras os informes dos fallos?",
     "countActiveCallMembers": "{count} participantes na chamada activa",
     "@countActiveCallMembers": {
         "placeholders": {
@@ -2784,5 +2778,90 @@
     },
     "enterCall": "Entrar na chamada",
     "videoCallsBetaWarning": "As chamadas de vídeo son unha función en probas. Podería haber fallos ou comportamentos non agardados. Apreciamos que nos contes que tal funcionan.",
-    "noDevicesFound": "Non se atopan dispositivos"
+    "noDevicesFound": "Non se atopan dispositivos",
+    "accountsAndSettings": "Contas e axustes",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "incomingCall": "Chamada entrante",
+    "videoCall": "Chamada de vídeo",
+    "voiceCall": "Chamada de voz",
+    "missedCall": "Chamada perdida",
+    "callBack": "Devolver chamada",
+    "hangUp": "Responder",
+    "waitingForParticipant": "Agardando por participante…",
+    "decline": "Rexeitar",
+    "startCall": "Chamar",
+    "selectCamera": "Seleccionar cámara",
+    "selectMicrophone": "Seleccionar micrófono",
+    "selectSpeaker": "Seleccionar altofalante",
+    "toggleMicrophone": "Activación do micrófono",
+    "toggleCamera": "Activación da cámara",
+    "startScreensharing": "Iniciar a compartir pantalla",
+    "stopScreensharing": "Deixar de compartir pantalla",
+    "raiseHand": "Erguer a man",
+    "stopRaiseHand": "Baixar a man",
+    "preferSpeaker": "Preferir altofalante",
+    "unexpectedErrorOccurded": "Por desgraza, houbo un fallo co que non contabamos: {msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    },
+    "incomingCallFrom": "Recibindo unha chamada de {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "serverRespondedWithError": "O servidor respondeu cunha mensaxe de erro: {error}",
+    "@serverRespondedWithError": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "updateAvailable": "Versión {version} dispoñible",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Descargar",
+    "sharedLocation": "Localización compartida",
+    "pasteImage": "Pegar imaxe",
+    "noImageInClipboard": "Non hai imaxe no portapapeis",
+    "doYouAlsoWantToBlock": "Queres tamén bloquear a esta conta?",
+    "declineAndBlock": "Rexeitar e bloquear",
+    "senderHasInvitedYouToTheChat": "{sender} convidoute á conversa '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheChat": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    },
+    "senderHasInvitedYouToTheSpace": "{sender} convidoute ao espazo '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheSpace": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    }
 }

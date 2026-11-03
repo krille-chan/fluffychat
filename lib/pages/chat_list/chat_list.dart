@@ -3,6 +3,8 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+// ignore_for_file: experimental_member_use
+
 import 'dart:async';
 
 import 'package:collection/collection.dart';
@@ -28,6 +30,7 @@ import 'package:flutter_callkit_incoming/entities/entities.dart';
 import 'package:flutter_callkit_incoming/flutter_callkit_incoming.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:go_router/go_router.dart';
+import 'package:livekit_client/livekit_client.dart' as lk;
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
@@ -105,7 +108,7 @@ class ChatListController extends State<ChatList>
     _activeSpaceId = null;
   });
 
-  void _onCallEvent(CallEvent? event) {
+  Future<void> _onCallEvent(CallEvent? event) async {
     switch (event) {
       case CallEventActionCallAccept():
         _joinCallWith(event.callKitParams);
@@ -117,44 +120,29 @@ class ChatListController extends State<ChatList>
           Matrix.of(context).activeCallRoomId.value = null;
         }
         break;
+      case CallEventActionCallIncoming() || CallEventActionCallStart()
+          when PlatformInfos.isIOS:
+        // To have audio session correctly configured on iOS:
+        lk.AudioManager.instance.setEngineAvailability(.none);
+        break;
+      case CallEventActionCallToggleAudioSession() when PlatformInfos.isIOS:
+        // To have audio session correctly configured on iOS:
+        await lk.AudioManager.instance.setEngineAvailability(
+          event.isActive ? .defaultAvailability : .none,
+        );
+        break;
       default:
         break;
     }
   }
 
   Future<void> onChatTap(Room room) async {
-    final l10n = L10n.of(context);
-    final scaffoldMessenger = ScaffoldMessenger.of(context);
-    if (room.membership == Membership.invite) {
-      final joinResult = await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          final waitForRoom = room.client.waitForRoomInSync(
-            room.id,
-            join: true,
-          );
-          await room.join();
-          await waitForRoom;
-        },
-        exceptionContext: ExceptionContext.joinRoom,
-      );
-      if (joinResult.error != null) return;
-    }
-    if (!mounted) return;
-
-    if (room.membership == Membership.ban) {
-      scaffoldMessenger.showSnackBar(
-        SnackBar(content: Text(l10n.youHaveBeenBannedFromThisChat)),
-      );
-      return;
-    }
-
     if (room.membership == Membership.leave) {
       context.go('/rooms/archive/${room.id}');
       return;
     }
 
-    if (room.isSpace) {
+    if (room.membership == .join && room.isSpace) {
       setActiveSpace(room.id);
       return;
     }
@@ -353,7 +341,9 @@ class ChatListController extends State<ChatList>
 
   void _processIncomingSharedMedia(List<SharedMediaFile> files) {
     files.removeWhere(
-      (file) => file.path.startsWith(AppConfig.deepLinkPrefix) == true,
+      (file) =>
+          file.path.startsWith(AppConfig.deepLinkPrefix) ||
+          Uri.tryParse(file.path)?.scheme == 'matrix',
     );
     if (files.isEmpty) return;
 
@@ -410,15 +400,27 @@ class ChatListController extends State<ChatList>
   StreamSubscription? _onRoomTagUpdate;
 
   @override
+  void didUpdateWidget(covariant ChatList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.activeSpace != null &&
+        widget.activeSpace != oldWidget.activeSpace) {
+      setActiveSpace(widget.activeSpace!);
+    }
+  }
+
+  @override
   void initState() {
     _initReceiveSharingIntent();
-    _activeSpaceId = widget.activeSpace;
 
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
     if (PlatformInfos.isMobile) {
       _callEventSubscription = FlutterCallkitIncoming.onEvent.listen(
         _onCallEvent,
+      );
+      // To have audio session correctly configured on iOS:
+      lk.AudioManager.instance.setAudioSessionManagementMode(
+        lk.AudioSessionManagementMode.externalCallSystem,
       );
       FlutterCallkitIncoming.activeCalls().then((calls) {
         final params = calls.firstOrNull;
@@ -428,12 +430,16 @@ class ChatListController extends State<ChatList>
     }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.activeSpace != null) {
+        setActiveSpace(widget.activeSpace!);
+      }
       if (mounted) {
         searchServer = Matrix.of(
           context,
         ).store.getString(_serverStoreNamespace);
         Matrix.of(context).backgroundPush?.setupPush(context);
         UpdateNotifier.showUpdateDialog(context);
+        UpdateNotifier.showUpdateAvailableBanner(context);
       }
 
       // Workaround for system UI overlay style not applied on app start
@@ -489,6 +495,7 @@ class ChatListController extends State<ChatList>
   }
 
   void _processPushHelperCrashReport() {
+    if (AppSettings.autoSendErrorReports.value != true) return;
     final store = Matrix.of(context).store;
     final report = store.getStringList(AppConfig.pushHelperCrashReportKey);
     if (report == null) return;
@@ -760,10 +767,8 @@ class ChatListController extends State<ChatList>
         );
         return;
       case ChatContextAction.block:
-        final inviteEvent = room.getState(
-          EventTypes.RoomMember,
-          room.client.userID!,
-        );
+        final inviteEvent = await room.requestUser(room.client.userID!);
+        if (!mounted) return;
         context.go(
           '/rooms/settings/security/ignorelist',
           extra: inviteEvent?.senderId,

@@ -50,13 +50,15 @@ class LogViewerState extends State<LogViewer> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: outputEvents.length,
-        itemBuilder: (context, i) => SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: SelectableText(
-            outputEvents[i].toDisplayString(),
-            style: TextStyle(color: outputEvents[i].color),
+      body: SelectionArea(
+        child: ListView.builder(
+          itemCount: outputEvents.length,
+          itemBuilder: (context, i) => SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Text(
+              outputEvents[i].toDisplayString(),
+              style: TextStyle(color: outputEvents[i].color),
+            ),
           ),
         ),
       ),

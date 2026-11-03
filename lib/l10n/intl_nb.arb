@@ -1136,7 +1136,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "sharedTheLocation": "{username} delte posisjonen",
+    "sharedTheLocation": "{username} delte sin lokasjon",
     "@sharedTheLocation": {
         "type": "String",
         "placeholders": {
@@ -1391,11 +1391,6 @@
     },
     "youAreNoLongerParticipatingInThisChat": "Du deltar ikke lenger i denne sludringen",
     "@youAreNoLongerParticipatingInThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youHaveBeenBannedFromThisChat": "Du har blitt bannlyst fra denne sludringen",
-    "@youHaveBeenBannedFromThisChat": {
         "type": "String",
         "placeholders": {}
     },
@@ -1769,14 +1764,13 @@
         }
     },
     "accessAndVisibilityDescription": "Hvem som har lov til å bli med i denne chatten og hvordan chatten kan oppdages.",
-    "calls": "Anrop",
     "customEmojisAndStickers": "Egendefinerte emojier og klistremerker",
     "oopsPushError": "Oops! Dessverre oppsto det en feil under oppsettet av push-varsler.",
     "@oopsPushError": {
         "type": "String",
         "placeholders": {}
     },
-    "obtainingLocation": "Henter sted …",
+    "obtainingLocation": "Henter lokasjon…",
     "@obtainingLocation": {
         "type": "String",
         "placeholders": {}
@@ -2481,7 +2475,6 @@
     "knocking": "Banker på",
     "noKeyForThisMessage": "Dette kan skje hvis meldingen ble sendt før du logget inn på kontoen din på denne enheten.\n\nDet er også mulig at senderen har blokkert enheten din, eller at noe gikk galt med internettforbindelsen.\n\nEr du i stand til å lese meldingen i en annen sesjon? Da kan du overføre meldingen fra den! Gå til Innstillinger > Enheter og sørg for at enhetene dine har verifisert hverandre. Neste gang du åpner rommet og begge sesjonene er i forgrunnen, vil nøklene bli overført automatisk.\n\nVil du unngå å miste nøklene når du logger ut eller bytter enhet? Sørg for at du har aktivert sikkerhetskopiering av chat i innstillingene.",
     "report": "rapportere",
-    "addChatOrSubSpace": "Legg til chat eller under-romgruppe",
     "signIn": "Logg på",
     "createNewAccount": "Opprett ny konto",
     "signUpGreeting": "FluffyChat er desentralisert! Velg en server der du vil opprette kontoen din, så kjører vi på!",
@@ -2811,5 +2804,80 @@
     "startScreensharing": "Start skjermdeling",
     "stopScreensharing": "Avslutt skjermdeling",
     "raiseHand": "Hev hånden",
-    "stopRaiseHand": "Senk hånden"
+    "stopRaiseHand": "Senk hånden",
+    "accountsAndSettings": "Kontoer og innstillinger",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "countActiveCallMembers": "{count} aktive samtaledeltakere",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "preferSpeaker": "Prioriter taler",
+    "unexpectedErrorOccurded": "Det oppstod dessverre en uventet feil: {msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    },
+    "incomingCallFrom": "Innkommende anrop fra {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "serverRespondedWithError": "Serveren svarte med en feilmelding: {error}",
+    "@serverRespondedWithError": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Last ned",
+    "sharedLocation": "Delt lokasjon",
+    "updateAvailable": "Oppdatering {version} er tilgjengelig",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "pasteImage": "Lim inn bilde",
+    "noImageInClipboard": "Ingen bilder i utklippstavlen",
+    "doYouAlsoWantToBlock": "Vil du også blokkere denne brukeren?",
+    "declineAndBlock": "Avslå og blokker",
+    "senderHasInvitedYouToTheChat": "{sender} har invitert deg til chatten '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheChat": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    },
+    "senderHasInvitedYouToTheSpace": "{sender} har invitert deg til romgruppen '{nameOrAlias}'..",
+    "@senderHasInvitedYouToTheSpace": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    }
 }

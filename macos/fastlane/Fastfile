@@ -1,0 +1,93 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:mac)
+def setup_signing()
+    setup_ci
+    match(
+      type: 'appstore',
+      readonly: true,
+      platform: "macos",
+      additional_cert_types: ["mac_installer_distribution"]
+    )
+
+    # we need to manually set the profiles and disable automatic signing to use the files from fastlane match
+    update_code_signing_settings(
+      use_automatic_signing: false,
+      path: "Runner.xcodeproj",
+      targets: "Runner",
+      profile_name: "match AppStore im.fluffychat.app macos",
+      code_sign_identity: "Apple Distribution",
+      build_configurations: "Release"
+    )
+end
+
+def prepare_flutter()
+  sh("flutter", "clean")
+  sh("flutter", "pub", "get")
+  sh("flutter", "build", "macos", "--config-only", "--release", "--build-number=#{latest_testflight_build_number(platform: "osx") + 1}")
+end
+
+platform :mac do
+  desc "Push a new release candidate to TestFlight"
+  lane :rc do
+    app_store_connect_api_key(
+      key_id: "DZ7AV6DHSV",
+      issuer_id: "6297c3b0-c8cf-4c26-a447-cad744461fa8",
+      key_content: ENV['APP_STORE_API_KEY'],
+      in_house: false
+    )
+    setup_signing()
+    prepare_flutter()
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      export_method: "app-store",
+      export_options: { manageAppVersionAndBuildNumber: false }
+    )
+    upload_to_testflight(
+      app_platform: "osx",
+      distribute_external: true,
+      groups: "Beta",
+      changelog: "Please search for regressions and report them on: https://github.com/krille-chan/fluffychat/issues"
+    )
+  end
+
+  desc "Releases to the AppStore"
+  lane :release do
+    app_store_connect_api_key(
+      key_id: "DZ7AV6DHSV",
+      issuer_id: "6297c3b0-c8cf-4c26-a447-cad744461fa8",
+      key_content: ENV['APP_STORE_API_KEY'],
+      in_house: false
+    )
+    setup_signing()
+    prepare_flutter()
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      export_method: "app-store",
+      export_options: { manageAppVersionAndBuildNumber: false }
+    )
+    upload_to_app_store(
+      submit_for_review: true,
+      automatic_release: true,
+      force: true,
+      skip_screenshots: true,
+      run_precheck_before_submit: false,
+      platform: "osx"
+    )
+  end
+end

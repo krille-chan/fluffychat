@@ -1284,11 +1284,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Cuireadh cosc ort ón gcomhrá seo",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "youAreNoLongerParticipatingInThisChat": "Níl tú ag glacadh páirte sa chomhrá seo a thuilleadh",
     "@youAreNoLongerParticipatingInThisChat": {
         "type": "String",
@@ -2231,7 +2226,6 @@
     "youAcceptedTheInvitation": "👍 Ghlac tú leis an gcuireadh",
     "accessAndVisibility": "Rochtain agus infheictheacht",
     "accessAndVisibilityDescription": "Cé a bhfuil cead aige páirt a ghlacadh sa chomhrá seo agus conas is féidir an comhrá a aimsiú.",
-    "calls": "Glaonna",
     "customEmojisAndStickers": "Emojis agus greamáin saincheaptha",
     "customEmojisAndStickersBody": "Cuir leis nó roinn emojis nó greamáin saincheaptha is féidir a úsáid in aon chomhrá.",
     "chatDescription": "Cur síos ar an gcomhrá",
@@ -2808,5 +2802,72 @@
     "startScreensharing": "Tosaigh ag comhroinnt scáileáin",
     "stopScreensharing": "Stop comhroinnt scáileáin",
     "raiseHand": "Ardaigh lámh",
-    "stopRaiseHand": "Stop ag ardú láimhe"
+    "stopRaiseHand": "Stop ag ardú láimhe",
+    "accountsAndSettings": "Cuntais agus socruithe",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "preferSpeaker": "Is fearr leat cainteoir",
+    "unexpectedErrorOccurded": "Ar an drochuair, tharla earráid gan choinne: {msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    },
+    "incomingCallFrom": "Glao isteach ó {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "serverRespondedWithError": "Tá freagra tugtha ag an bhfreastalaí le teachtaireacht earráide: {error}",
+    "@serverRespondedWithError": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "updateAvailable": "Nuashonrú {version} ar fáil",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Íoslódáil",
+    "sharedLocation": "Suíomh comhroinnte",
+    "pasteImage": "Greamaigh íomhá",
+    "noImageInClipboard": "Níl aon íomhá sa ghearrthaisce",
+    "doYouAlsoWantToBlock": "Ar mhaith leat an t-úsáideoir seo a bhac freisin?",
+    "declineAndBlock": "Diúltaigh agus bac",
+    "senderHasInvitedYouToTheChat": "Thug {sender} cuireadh duit chuig an gcomhrá '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheChat": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    },
+    "senderHasInvitedYouToTheSpace": "Thug {sender} cuireadh duit chuig an spás '{nameOrAlias}'.",
+    "@senderHasInvitedYouToTheSpace": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    }
 }

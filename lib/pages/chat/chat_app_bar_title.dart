@@ -35,7 +35,7 @@ class ChatAppBarTitle extends StatelessWidget {
       hoverColor: Colors.transparent,
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
-      onTap: controller.isArchived
+      onTap: controller.room.membership != .join
           ? null
           : () => FluffyThemes.isThreeColumnMode(context)
                 ? controller.toggleDisplayChatDetailsColumn()
@@ -98,7 +98,8 @@ class ChatAppBarTitle extends StatelessWidget {
                                 ? PresenceBuilder(
                                     userId: room.directChatMatrixID,
                                     builder: (context, presence) {
-                                      final statusMessage = presence?.statusMsg;
+                                      final statusMessage = presence?.statusMsg
+                                          ?.trim();
 
                                       final lastActiveTimestamp =
                                           presence?.lastActiveTimestamp;
@@ -113,27 +114,30 @@ class ChatAppBarTitle extends StatelessWidget {
                                           ),
                                         ?statusMessage,
                                       ];
+                                      final text = texts.join(' ◦ ');
+                                      if (text.isEmpty) {
+                                        return const SizedBox.shrink();
+                                      }
 
-                                      return Text(
-                                        texts.join(' ◦ '),
-                                        style: style,
-                                      );
+                                      return Text(text, style: style);
                                     },
                                   )
                                 : Row(
                                     children: [
-                                      Text(
-                                        L10n.of(context).countParticipants(
-                                          (room.summary.mJoinedMemberCount ??
-                                                  1) +
-                                              (room
-                                                      .summary
-                                                      .mInvitedMemberCount ??
-                                                  0),
+                                      if (room.summary.mJoinedMemberCount !=
+                                          null)
+                                        Text(
+                                          L10n.of(context).countParticipants(
+                                            (room.summary.mJoinedMemberCount ??
+                                                    1) +
+                                                (room
+                                                        .summary
+                                                        .mInvitedMemberCount ??
+                                                    0),
+                                          ),
+                                          maxLines: 1,
+                                          style: style,
                                         ),
-                                        maxLines: 1,
-                                        style: style,
-                                      ),
                                       if (room.topic.isNotEmpty) ...[
                                         Text(' ◦ ', style: style),
                                         Expanded(

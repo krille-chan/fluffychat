@@ -181,9 +181,6 @@ class MatrixLocals extends MatrixLocalizations {
   }
 
   @override
-  String get needPantalaimonWarning => l10n.oopsSomethingWentWrong;
-
-  @override
   String get noPermission => l10n.noKeyForThisMessage;
 
   @override
@@ -375,4 +372,8 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String get pollHasBeenEnded => l10n.pollHasBeenEnded;
+
+  @override
+  String incomingCallFrom(String senderName) =>
+      l10n.incomingCallFrom(senderName);
 }

@@ -8,6 +8,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/notification_background_handler.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/incoming_call_dialog.dart';
@@ -40,6 +41,11 @@ extension LocalNotificationsExtension on MatrixState {
       });
     }
 
+    if (kIsWeb &&
+        WebFlutterLocalNotificationsPlugin().permissionStatus != .granted) {
+      return;
+    }
+
     final l10n = L10n.of(context);
     final roomId = event.room.id;
     if (activeRoomId == roomId) {
@@ -66,7 +72,7 @@ extension LocalNotificationsExtension on MatrixState {
     const size = 128;
     const thumbnailMethod = ThumbnailMethod.crop;
 
-    if (avatarUrl != null) {
+    if (kIsWeb && avatarUrl != null) {
       // Pre-cache so that we can later just set the thumbnail uri as icon:
       try {
         await client.downloadMxcCached(
@@ -82,27 +88,17 @@ extension LocalNotificationsExtension on MatrixState {
       }
     }
 
-    if (kIsWeb) {
-      final thumbnailUri = await avatarUrl?.getThumbnailUri(
-        client,
-        width: size,
-        height: size,
-        method: thumbnailMethod,
-      );
+    final id =
+        PlatformInfos.isMacOS || PlatformInfos.isIOS || PlatformInfos.isWeb
+        ? '${client.clientName}_${roomId}_${event.eventId}'.hashCode
+        : '${client.clientName}_$roomId'.hashCode;
 
-      if (AppSettings.webNotificationSound.value) _audioPlayer.play();
+    final unreadRooms = client.rooms.where((r) => r.isUnreadOrInvited).length;
 
-      html.Notification(
-        title,
-        body: body,
-        icon: thumbnailUri?.toString(),
-        tag: event.room.id,
-      );
-      return;
-    }
+    if (kIsWeb && AppSettings.webNotificationSound.value) _audioPlayer.play();
 
-    FlutterLocalNotificationsPlugin().show(
-      id: event.room.id.hashCode,
+    await FlutterLocalNotificationsPlugin().show(
+      id: id,
       title: title,
       body: body,
       notificationDetails: NotificationDetails(
@@ -129,6 +125,23 @@ extension LocalNotificationsExtension on MatrixState {
             ],
             _ => [],
           },
+        ),
+        windows: WindowsNotificationDetails(timestamp: event.originServerTs),
+        macOS: DarwinNotificationDetails(
+          badgeNumber: unreadRooms,
+          threadIdentifier: '${client.clientName}_$roomId',
+        ),
+        web: WebNotificationDetails(
+          renotify: true,
+          iconUrl: kIsWeb
+              ? await avatarUrl?.getThumbnailUri(
+                  client,
+                  width: size,
+                  height: size,
+                  method: thumbnailMethod,
+                )
+              : null,
+          timestamp: event.originServerTs,
         ),
       ),
       payload: FluffyChatPushPayload(

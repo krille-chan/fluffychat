@@ -1502,11 +1502,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Sinulle on annettu porttikielto tähän keskusteluun",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "removeFromSpace": "Poista tilasta",
     "roomVersion": "Huoneen versio",
     "@roomVersion": {
@@ -2011,7 +2006,6 @@
     },
     "globalChatId": "Yleisesti pätevä keskustelutunnus",
     "accessAndVisibilityDescription": "Kuka voi liittyä tähän pikakeskusteluun ja miten pikakeskustelun voi löytää.",
-    "calls": "Puhelut",
     "customEmojisAndStickers": "Mukautetut emojit ja tarrat",
     "customEmojisAndStickersBody": "Lisää tai jaa mukautettuja emojeja tai tarroja, joita voidaan käyttää missä tahansa pikakeskustelussa.",
     "hideInvalidOrUnknownMessageFormats": "Piilota virheelliset tai tuntemattomat viestimuodot",

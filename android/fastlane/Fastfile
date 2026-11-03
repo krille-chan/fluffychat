@@ -20,11 +20,12 @@ default_platform(:android)
 
 platform :android do
   lane :set_build_code_internal do
-    versions = google_play_track_version_codes(
-        track: "internal",
+    last_version = ["internal", "beta", "production"].flat_map { |track|
+      google_play_track_version_codes(
+        track: track,
         json_key: "./keys.json"
       )
-    last_version = versions[0].to_i
+    }.map(&:to_i).max
     Dir.chdir("../..") do
       re = /version:\s([0-9]*\.[0-9]*\.[0-9]*)\+[0-9]*/i
       config = File.read("./pubspec.yaml")
@@ -39,15 +40,9 @@ platform :android do
   end
 
   lane :deploy_internal_test do
-    versions = google_play_track_version_codes(
-        track: "internal",
-        json_key: "./keys.json"
-      )
-    last_version = versions[0].to_i
     upload_to_play_store(
       track: 'internal',
       aab: '../build/app/outputs/bundle/release/app-release.aab',
-      version_code: "#{last_version+1}",
       skip_upload_metadata: true,
       skip_upload_images: true,
       skip_upload_screenshots: true,
@@ -56,25 +51,21 @@ platform :android do
 
   lane :deploy_candidate do
     upload_to_play_store(
-      track: 'internal',
-      track_promote_to: "beta",
-      deactivate_on_promote: false,
+      track: 'beta',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
       skip_upload_metadata: true,
       skip_upload_images: true,
       skip_upload_screenshots: true,
-      skip_upload_changelogs: true,
     )
   end
 
   lane :deploy_release do
     upload_to_play_store(
-      track: 'internal',
-      track_promote_to: "production",
-      deactivate_on_promote: false,
+      track: 'production',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
       skip_upload_metadata: true,
       skip_upload_images: true,
       skip_upload_screenshots: true,
-      skip_upload_changelogs: true,
     )
   end
 end

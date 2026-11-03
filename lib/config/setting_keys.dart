@@ -23,7 +23,7 @@ enum AppSettings<T> {
   audioRecordingEchoCancel<bool>('audioRecordingEchoCancel', false),
   audioRecordingNoiseSuppress<bool>('audioRecordingNoiseSuppress', true),
   audioRecordingBitRate<int>('audioRecordingBitRate', 64000),
-  audioRecordingSamplingRate<int>('audioRecordingSamplingRate', 44100),
+  audioRecordingSamplingRate<int>('audioRecordingSamplingRate', 48000),
   showNoGoogle<bool>('chat.fluffy.show_no_google', false),
   unifiedPushRegistered<bool>('chat.fluffy.unifiedpush.registered', false),
   unifiedPushEndpoint<String>('chat.fluffy.unifiedpush.endpoint', ''),
@@ -81,7 +81,9 @@ enum AppSettings<T> {
   benchmarksInLogs<bool>('chat.fluffy.benchmarks_in_logs', false),
   autoSendErrorReports<bool?>('chat.fluffy.auto_send_eror_reports', null),
   knownErrorHashes<List<String>>('chat.fluffy.known_crash_hashes', []),
-  customLiveKitInstance<String>('chat.fluffy.custom_live_kit_instance', '');
+  checkForUpdates<bool>('chat.fluffy.check_for_updates', true),
+  lastUpdateCheckDate<String>('chat.fluffy.last_update_check_date', ''),
+  fallbackLiveKitInstance<String>('chat.fluffy.fallback_live_kit_instance', '');
 
   final String key;
   final T _defaultValue;
@@ -100,7 +102,9 @@ enum AppSettings<T> {
   }
 
   static Future<void> reset({bool loadWebConfigFile = true}) async {
-    await AppSettings._store!.clear();
+    for (final setting in AppSettings.values) {
+      await AppSettings.store.remove(setting.key);
+    }
     await init(loadWebConfigFile: loadWebConfigFile);
   }
 

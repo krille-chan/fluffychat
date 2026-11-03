@@ -78,7 +78,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "ゲストユーザーの参加を許可する",
+    "areGuestsAllowedToJoin": "ゲストユーザーの参加は許可されていますか？",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -1448,7 +1448,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "whyDoYouWantToReportThis": "これを通報する理由",
+    "whyDoYouWantToReportThis": "なぜこれを報告したいのですか？",
     "@whyDoYouWantToReportThis": {
         "type": "String",
         "placeholders": {}
@@ -1475,11 +1475,6 @@
     },
     "youAreNoLongerParticipatingInThisChat": "あなたはもうこのチャットの参加者ではありません",
     "@youAreNoLongerParticipatingInThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
-    "youHaveBeenBannedFromThisChat": "チャットからBANされてしまいました",
-    "@youHaveBeenBannedFromThisChat": {
         "type": "String",
         "placeholders": {}
     },
@@ -1689,7 +1684,7 @@
         }
     },
     "storeSecurlyOnThisDevice": "このデバイスに安全に保管する",
-    "whyIsThisMessageEncrypted": "このメッセージが読めない理由",
+    "whyIsThisMessageEncrypted": "なぜこのメッセージは読めないのですか？",
     "synchronizingPleaseWait": "同期中...お待ちください。",
     "@synchronizingPleaseWait": {
         "type": "String",
@@ -1809,7 +1804,7 @@
         }
     },
     "doNotShowAgain": "今後表示しない",
-    "newSpace": "新しいスペース",
+    "newSpace": "新規スペース",
     "reopenChat": "チャットを再開する",
     "notAnImage": "画像ファイルではありません。",
     "aboutHomeserver": "{homeserver} について",
@@ -1847,7 +1842,6 @@
         "placeholders": {}
     },
     "globalChatId": "グローバルチャットID",
-    "calls": "通話",
     "chatDescription": "チャットの説明",
     "chatDescriptionHasBeenChanged": "チャットの説明が変更された",
     "block": "ブロック",
@@ -2126,5 +2120,121 @@
     "today": "今日",
     "yesterday": "昨日",
     "replyInThread": "スレッドで返信",
-    "select": "選択"
+    "select": "選択",
+    "save": "保存",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "取り消し",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "クリア",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "切り抜き",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "discardEdits": "保存されていない変更があります。編集内容を破棄しますか？",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "wrongRecoveryKey": "申し訳ありません。これは正しい回復キーではないようです。",
+    "passwordsDoNotMatch": "パスワードが一致しません",
+    "joinSpace": "スペースに参加する",
+    "gallery": "ギャラリー",
+    "files": "ファイル",
+    "stickers": "ステッカー",
+    "doesNotSeemToBeAValidHomeserver": "互換性のあるホームサーバーではないようです。正しいURLですか？",
+    "contactServerAdmin": "サーバー管理者に連絡",
+    "notificationRuleMessage": "メッセージ",
+    "allDevices": "すべてのデバイス",
+    "startPoll": "投票を開始する",
+    "endPoll": "投票を終了する",
+    "thread": "スレッド",
+    "backToMainChat": "メインチャットに戻る",
+    "saveChanges": "変更を保存",
+    "theProcessWasCanceled": "処理はキャンセルされました。",
+    "searchOrEnterHomeserverAddress": "ホームサーバーのアドレスを検索、または入力する",
+    "tagName": "タグ名",
+    "createNewTag": "新規タグ",
+    "showThumbnailsInTimeline": "画像と動画のサムネイルを表示",
+    "addTag": "タグを追加",
+    "removeTag": "タグを削除",
+    "encryptedMessage": "暗号化されたメッセージ",
+    "unencryptedMessage": "暗号化されていないメッセージ",
+    "resetAccount": "アカウントをリセット",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "ファイルを開く",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "新しいパスフレーズ",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "パスフレーズの再入力",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "ファイルを保存",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "準備完了です！",
+    "messageNotDecryptable": "メッセージを復号できません",
+    "sending": "送信中",
+    "generatingThumbnail": "サムネイル生成中",
+    "encrypting": "暗号化しています",
+    "uploading": "アップロード中",
+    "edited": "（編集済）",
+    "couldNotBeSent": "送信できませんでした",
+    "resetRecoveryKey": "回復キーのリセット",
+    "enableBiometrics": "生体認証を有効にする",
+    "disableBiometrics": "生体認証を無効にする",
+    "unlockWithBiometrics": "生体認証でロック解除",
+    "loadingMessages": "メッセージを読み込み中...",
+    "noDevicesFound": "デバイスが見つかりません",
+    "incomingCall": "着信",
+    "videoCall": "ビデオ通話",
+    "voiceCall": "音声通話",
+    "missedCall": "不在着信",
+    "callBack": "かけ直す",
+    "startCall": "通話開始",
+    "selectCamera": "カメラを選択",
+    "selectMicrophone": "マイクを選択",
+    "selectSpeaker": "スピーカーを選択",
+    "raiseHand": "挙手する",
+    "videoCallsBetaWarning": "ビデオ通話はベータ版の機能です。不具合や予期しない動作を生じる可能性があります。フィードバックをお待ちしております。",
+    "eraser": "消しゴム",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "accountsAndSettings": "アカウントと設定",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "compressingVideo": "動画を圧縮しています...",
+    "newSpaceDescription": "スペースを使えば、チャットを集約し、プライベートまたはパブリックなコミュニティを作成できます。",
+    "report": "レポート",
+    "signIn": "ログイン",
+    "createNewAccount": "アカウントを作成",
+    "signUpGreeting": "FluffyChatは分散型です！アカウントを作成したいサーバーを選択して、さあ始めましょう！",
+    "sendReadReceipts": "既読通知を送信"
 }

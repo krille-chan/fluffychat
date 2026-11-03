@@ -9,10 +9,12 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/trust_user_key_dialog.dart';
 import 'package:fluffychat/utils/markdown_context_builder.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
+import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
 
 import '../../widgets/avatar.dart';
@@ -409,6 +411,20 @@ class InputBar extends StatelessWidget {
           contextMenuBuilder: (c, e) => MarkdownContextBuilder(
             editableTextState: e,
             controller: controller,
+            onPasteImage: PlatformInfos.isIOS && onSubmitImage != null
+                ? () async {
+                    final scaffoldMessenger = ScaffoldMessenger.of(context);
+                    final l10n = L10n.of(context);
+                    final image = await Pasteboard.image;
+                    if (image == null) {
+                      scaffoldMessenger.showSnackBar(
+                        SnackBar(content: Text(l10n.noImageInClipboard)),
+                      );
+                      return;
+                    }
+                    onSubmitImage!(image);
+                  }
+                : null,
           ),
           contentInsertionConfiguration: ContentInsertionConfiguration(
             onContentInserted: (KeyboardInsertedContent content) async {

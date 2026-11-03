@@ -8,7 +8,7 @@ version = 1
 [[annotations]]
 path = [
     ".mailmap",
-    ".tool_versions.yaml",
+    ".fvmrc",
     "pubspec.lock",
     "*.json",
     ".vscode/**",
@@ -26,7 +26,8 @@ path = [
     "integration_test/synapse/**",
     "snap/**",
     "windows/**",
-    "web/**"
+    "web/**",
+    "test/metadata/**"
 ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2019-Present Christian Kußowski"
@@ -49,15 +50,25 @@ SPDX-License-Identifier = "Apache-2.0"
 # App Logo
 [[annotations]]
 path = [
-    "assets/logo/**",
+    "assets/logo/*/logo**",
     "android/app/src/main/res/mipmap**/**",
     "ios/Runner/Assets.xcassets/AppIcon.appiconset/**",
     "macos/Runner/Assets.xcassets/AppIcon.appiconset/**",
     "web/icons/**",
     "web/splash/**",
     "snap/gui/*.png",
-    "windows/runner/resources/app_icon.ico"
+    "windows/runner/resources/app_icon.ico",
 ]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2017-Present Fabiyamada"
 SPDX-License-Identifier = "CC-BY-4.0"
+
+# Artwork
+[[annotations]]
+path = [
+    "assets/logo/*/mascot.**",
+    "assets/logo/*/banner.**",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026-Present Christian Kußowski"
+SPDX-License-Identifier = "LicenseRef-All-Rights-Reserved"

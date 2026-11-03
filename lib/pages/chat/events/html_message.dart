@@ -263,7 +263,7 @@ class HtmlMessage extends StatelessWidget {
 
         return WidgetSpan(
           child: Padding(
-            padding: EdgeInsets.only(left: fontSize),
+            padding: EdgeInsetsDirectional.only(start: fontSize),
             child: Text.rich(
               TextSpan(
                 children: [
@@ -322,9 +322,11 @@ class HtmlMessage extends StatelessWidget {
       case 'blockquote':
         return WidgetSpan(
           child: Container(
-            padding: const EdgeInsets.only(left: 8.0),
+            padding: const EdgeInsetsDirectional.only(start: 8.0),
             decoration: BoxDecoration(
-              border: Border(left: BorderSide(color: textColor, width: 5)),
+              border: BorderDirectional(
+                start: BorderSide(color: textColor, width: 5),
+              ),
             ),
             child: Text.rich(
               TextSpan(
@@ -657,7 +659,7 @@ class _CollapsibleTextState extends State<_CollapsibleText> {
         AnimatedSize(
           duration: FluffyThemes.animationDuration,
           curve: FluffyThemes.animationCurve,
-          alignment: Alignment.topLeft,
+          alignment: AlignmentDirectional.topStart,
           child: Text.rich(
             widget.span,
             style: widget.style,
@@ -707,7 +709,7 @@ class MatrixPill extends StatelessWidget {
           children: [
             WidgetSpan(
               child: Padding(
-                padding: const EdgeInsets.only(right: 4.0),
+                padding: const EdgeInsetsDirectional.only(end: 4.0),
                 child: Avatar(mxContent: avatar, name: name, size: 16),
               ),
             ),

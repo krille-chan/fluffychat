@@ -5,6 +5,8 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+SED=$(command -v gsed || command -v sed)
+
 # Compile Vodozemac for web
 version=$(yq ".dependencies.flutter_vodozemac" < pubspec.yaml)
 version=$(printf "%s" "$version" | tr -d '"^')
@@ -14,8 +16,12 @@ cargo install flutter_rust_bridge_codegen
 flutter_rust_bridge_codegen build-web --dart-root dart --rust-root $(readlink -f rust) --release
 cd ..
 rm -f ./assets/vodozemac/vodozemac_bindings_dart*
-mv .vodozemac/dart/web/pkg/vodozemac_bindings_dart* ./assets/vodozemac/
+mkdir -p "./assets/vodozemac/$version/"
+mv .vodozemac/dart/web/pkg/vodozemac_bindings_dart* "./assets/vodozemac/$version/"
 rm -rf .vodozemac
+grep -qF "assets/vodozemac/${version}/" pubspec.yaml || "$SED" -i "\|- assets/sounds/|a\\    - assets/vodozemac/${version}/" pubspec.yaml
+"$SED" -i "s/vodozemacVersion = '.*';/vodozemacVersion = '${version}';/" lib/config/app_config.dart
+
 flutter pub get
 dart compile js ./web/native_executor.dart -o ./web/native_executor.js -m
 
@@ -35,7 +41,6 @@ flutter pub get
 
 # Patch so that LiveKit uses HKDF by default:
 # Workaroudn for https://github.com/livekit/client-sdk-flutter/issues/974
-SED=$(command -v gsed || command -v sed)
 "$SED" -i "s/{'name': 'PBKDF2'.toJS}/{'name': 'HKDF'.toJS}/g" web/e2ee.keyhandler.dart
 "$SED" -i "s/getAlgoOptions('PBKDF2', salt)/getAlgoOptions('HKDF', salt)/g" web/e2ee.keyhandler.dart
 "$SED" -i "s/{'name': 'PBKDF2'}/{'name': 'HKDF'}/g"           web/e2ee.utils.dart

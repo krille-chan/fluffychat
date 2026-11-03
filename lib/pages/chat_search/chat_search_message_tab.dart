@@ -120,6 +120,7 @@ class _MessageSearchResultListTile extends StatelessWidget {
       subtitle: Linkify(
         textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
         options: const LinkifyOptions(humanize: false),
+        style: TextStyle(color: theme.colorScheme.onSurface),
         linkStyle: TextStyle(
           color: theme.colorScheme.primary,
           decoration: TextDecoration.underline,

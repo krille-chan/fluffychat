@@ -1629,11 +1629,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Vi estas forbarita de ĉi tiu babilo",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Via publika ŝlosilo",
     "@yourPublicKey": {
         "type": "String",

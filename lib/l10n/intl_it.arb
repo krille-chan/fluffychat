@@ -1461,11 +1461,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Sei stato/a bandito/a da questa chat",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "La tua chiave pubblica",
     "@yourPublicKey": {
         "type": "String",
@@ -2015,7 +2010,6 @@
     "usersMustKnock": "Gli utenti devono bussare",
     "accessAndVisibility": "Accesso e visibilità",
     "accessAndVisibilityDescription": "Chi è autorizzato a partecipare a questa chat e come è possibile scoprirla.",
-    "calls": "Chiamate",
     "customEmojisAndStickers": "Emoji e adesivi personalizzati",
     "customEmojisAndStickersBody": "Aggiungi o condividi emoji o adesivi personalizzati che possono essere utilizzati in qualsiasi chat.",
     "hideRedactedMessages": "Mostra i messaggi rimossi",

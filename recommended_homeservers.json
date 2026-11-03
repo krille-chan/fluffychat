@@ -30,6 +30,17 @@
                 "English",
                 "Deutsch"
             ]
+        },
+        {
+            "name": "knoten.chat",
+            "website": "https://knoten.chat",
+            "description": "A general homeserver driven by volunteers.",
+            "reg_method": "oidc",
+            "languages": [
+                "All",
+                "English",
+                "Deutsch"
+            ]
         }
     ]
 }

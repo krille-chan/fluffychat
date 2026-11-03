@@ -683,7 +683,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "calls": "Mga Tawag",
     "customEmojisAndStickers": "Mga custom emoji at sticker",
     "customEmojisAndStickersBody": "Magdagdag o magbahagi ng mga custom emoji o sticker na maaring gamitin sa anumang chat.",
     "emoteShortcode": "Shortcode ng emoji",

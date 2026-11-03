@@ -1596,11 +1596,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "你已被此聊天封禁",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "你的公钥",
     "@yourPublicKey": {
         "type": "String",
@@ -2111,7 +2106,6 @@
     "globalChatId": "全局聊天 ID",
     "accessAndVisibility": "访问和可见性",
     "accessAndVisibilityDescription": "谁可以加入此聊天以及怎样发现该聊天。",
-    "calls": "通话",
     "customEmojisAndStickers": "自定义表情符号和贴纸",
     "hideRedactedMessages": "隐藏被涂黑的消息",
     "passwordRecoverySettings": "密码发现设置",
@@ -2803,5 +2797,71 @@
     "stopScreensharing": "停止屏幕分享",
     "raiseHand": "举手",
     "stopRaiseHand": "停止举手",
-    "preferSpeaker": "偏好扬声器"
+    "preferSpeaker": "偏好扬声器",
+    "unexpectedErrorOccurded": "不幸发生了意外错误：{msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    },
+    "accountsAndSettings": "账户和设置",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "incomingCallFrom": "{user} 的来电",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "serverRespondedWithError": "服务器回复了错误消息：{error}",
+    "@serverRespondedWithError": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "updateAvailable": "有 {version} 版更新可用",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "下载",
+    "sharedLocation": "分享位置",
+    "pasteImage": "粘贴图片",
+    "noImageInClipboard": "剪贴板中无图片",
+    "doYouAlsoWantToBlock": "你还想封禁该用户吗？",
+    "declineAndBlock": "拒绝并封禁",
+    "senderHasInvitedYouToTheChat": "{sender} 已邀请你到名为 '{nameOrAlias}' 的聊天。",
+    "@senderHasInvitedYouToTheChat": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    },
+    "senderHasInvitedYouToTheSpace": "{sender} 已邀请你到 '{nameOrAlias}'空间。",
+    "@senderHasInvitedYouToTheSpace": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    }
 }

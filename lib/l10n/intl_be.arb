@@ -578,7 +578,7 @@
         }
     },
     "checkList": "Кантрольны спіс",
-    "countParticipants": "{count} удзельніка(-ў)",
+    "countParticipants": "{count, plural, =1{1 удзельнік} other{{count} удзельнікаў}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -727,7 +727,6 @@
     "globalChatId": "ID габальнага чату",
     "accessAndVisibility": "Даступнасць і бачнасць",
     "accessAndVisibilityDescription": "Каму дазволена далучацца да гэтага чату і як ён можа быць знойдзены.",
-    "calls": "Выклікі",
     "customEmojisAndStickers": "Карыстальніцкія эмодзі і стыкеры",
     "customEmojisAndStickersBody": "Дадаць ці падзяліцца карыстальніцкімі эмодзі ці стыкерамі, што могуць быць ужыты ў любым чаце.",
     "emoteShortcode": "Скарачэнне эмодзі",
@@ -936,7 +935,7 @@
             }
         }
     },
-    "isTyping": "піша…",
+    "isTyping": "піша",
     "@isTyping": {
         "type": "String",
         "placeholders": {}
@@ -1337,11 +1336,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Вы былі заблакіраваны ў гэтым чаце",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "yourPublicKey": "Ваш публічны ключ",
     "@yourPublicKey": {
         "type": "String",
@@ -1352,7 +1346,7 @@
     "sender": "Адпраўшчык",
     "openGallery": "Адкрыць галерэю",
     "removeFromSpace": "Выдаліць з прасторы",
-    "markAsRead": "Адзначыць як прачытанае",
+    "markAsRead": "Прачытаць",
     "reportUser": "Паскардзіцца на карыстальніка",
     "reactedWith": "{sender} рэагуе з {reaction}",
     "@reactedWith": {
@@ -2492,5 +2486,343 @@
     "addTag": "Дадаць тэг",
     "removeTag": "Выдаліць тэг",
     "tagName": "Назва тэга",
-    "createNewTag": "Стварыць новы тэг"
+    "createNewTag": "Стварыць новы тэг",
+    "serverRespondedWithError": "Сервер адказаў паведамленнем памылкі: {error}",
+    "@serverRespondedWithError": {
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "editImage": "Змяніць выяву",
+    "@editImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateLeft": "Павярнуць улева",
+    "@rotateLeft": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rotateRight": "Павярнуць управа",
+    "@rotateRight": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mirror": "Адлюстраваць",
+    "@mirror": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "save": "Захаваць",
+    "@save": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "draw": "Маляваць",
+    "@draw": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "undo": "Адмяніць",
+    "@undo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clear": "Ачысціць",
+    "@clear": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "eraser": "Сцірка",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Абрэзаць",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "accountsAndSettings": "Уліковыя запісы і налады",
+    "@accountsAndSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "discardEdits": "У вас ёсць незахаваныя змены. Скасаваць змены?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendingFilesDoNotExit": "Адпраўка {count} файлаў... Калі ласка, не выходзьце!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "compressingVideo": "Сцісканне відэа...",
+    "showMore": "Паказаць больш",
+    "showLess": "Паказаць меньш",
+    "hideRoomsInSpaces": "Схаваць пакоі, што знаходзяцца ў прасторы",
+    "possibleByYou": "Гэты рэліз стаў магчымым толькі дзякуючы вашай падтрымцы. FluffyChat застаецца бясплатным, з адкрытым зыходным кодам і цалкам пад кіраўніцтвам супольнасці.",
+    "showThumbnailsInTimeline": "Паказваць мініяцюры выяў і відэа",
+    "appSubtitle": "Бяспечныя чаты [matrix]",
+    "appDescription": "Перапісвайцеся зашыфравана і дэцэнтралізавана праз сетку [matrix], што лёгкадаступная ўсюды і для ўсіх.",
+    "interactiveVerification": "Інтэрактыўная верыфікацыя",
+    "interactiveVerificationDescription": "Калі вы знаходзіцеся побач з суразмоўцам ці перапісваецеся з дапамогай іншага надзейнага канала сувязі, вы можаце верыфіцыраваць вашыя прылады, параўнаўшы ключы шыфравання ці эмодзі.",
+    "countUnverifiedDevices": "У гэтым чаце {count} прылад неверыфіцыраваны.",
+    "@countUnverifiedDevices": {
+        "type": "int",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "encryptedMessage": "Зашыфраванае паведамленне",
+    "unencryptedMessage": "Незашыфраванае паведамленне",
+    "messageCanOnlyBeReadByUser": "Ваша паведамленне зашыфравана скразным метадам і можа быць прачытана толькі гэтым карыстальнікам:",
+    "messageCanOnlyBeReadByUsers": "Ваша паведамленне зашыфравана скразным метадам і можа быць прачытана толькі гэтым карыстальнікамі:",
+    "publicKey": "Публічны ключ: {key}",
+    "@publicKey": {
+        "type": "String",
+        "placeholders": {
+            "key": {
+                "type": "String"
+            }
+        }
+    },
+    "deviceIdentityKey": "Ключ ідэнтыфікацыі прылады",
+    "restoreBootstrapEmptyDevicesDescription": "Калі ласка, увядзіце фразу-пароль ці код аднаўлення, каб верыфіцыраваць гэту прыладу і атрымаць доступ да зашыфраваных паведамленняў.",
+    "@restoreBootstrapEmptyDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreBootstrapDevicesDescription": "Калі ласка, выберыце іншую прыладу, каб верыфіцыраваць гэту сесію:",
+    "@restoreBootstrapDevicesDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccount": "Скінуць уліковы запіс",
+    "@resetAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "restoreCryptoIdentity": "Аднавіць крыпта-ідэнтычнасць",
+    "@restoreCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetCryptoIdentity": "Скінуць крыпта-ідэнтычнасць",
+    "@resetCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setUpCryptoIdentity": "Наладзіць крыпта-ідэнтычнасць",
+    "@setUpCryptoIdentity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingForKeys": "Чаканне ключэй... Калі ласка, трымайце іншую прыладу актыўнай.",
+    "@waitingForKeys": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noKeysTransmitted": "Ключы не пераданы. Калі ласка, паспрабуйце зноў.",
+    "@noKeysTransmitted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unlock": "Разблакіраваць",
+    "@unlock": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openFile": "Адкрыць файл",
+    "@openFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "resetAccountWarning": "Калі вы скідваеце ваш уліковы запіс, то вы згубіце доступ да вашых старых паведамленняў назаўсёды. Усе вашыя прылады зноў спатрэбяцца ў верыфікацыі. Калі ласка, рабіце гэта толькі калі ў вас няма прылад для верыфікацыі сесіі і вы згубілі сваю кодавую фразу ці фразу-пароль!",
+    "@resetAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphraseDescription": "FluffyChat выкарыстоўвае скразное шыфраванне. Каб не згубіць вашыя паведамленні, выберыце моцную фразу-пароль для абароны вашай крыпта-ідэнтычнасці і лёгкага аднаўлення рэзервовай копіі.",
+    "@newPassphraseDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newPassphrase": "Новая фраза-пароль",
+    "@newPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "repeatPassphrase": "Паўтарыце фразу-пароль",
+    "@repeatPassphrase": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphrasesMatch": "Фразы-паролі супадаюць",
+    "@passphrasesMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseLengthRequirement": "Хаця б 12 сімвалаў.",
+    "@passphraseLengthRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseUpperAndLowerCaseRequirement": "Утрымлівае вялікія і маленькія літары.",
+    "@passphraseUpperAndLowerCaseRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseSpecialCharactersRequirement": "Утрымлівае спецыяльныя сімвалы.",
+    "@passphraseSpecialCharactersRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseNumberRequirement": "Утрымлівае хаця б 1 лічбу.",
+    "@passphraseNumberRequirement": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "storeRecoveryKeyDescription": "Калі ласка, запішыце дзесьці ключ аднаўлення, каб мець магчымасць аднавіць усе зашыфраваныя паведамленні і крыпта-ідэнтычнасць.",
+    "@storeRecoveryKeyDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveAsFile": "Захаваць як файл",
+    "@saveAsFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreReadyToStart": "Вы гатовы пачаць!",
+    "noUserKeyFound": "Ключ карыстальніка не знойдзены",
+    "@noUserKeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "knownSince": "Вядомы з: {date}",
+    "@knownSince": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            }
+        }
+    },
+    "unsignedDevice": "Непацверджаная прылада",
+    "@unsignedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "signedDevice": "Пацверджаная прылада",
+    "@signedDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noCurve25519KeyFound": "Ключ curve25519 не знойдзены",
+    "@noCurve25519KeyFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageNotDecryptable": "Паведамленне немагчыма расшыфраваць",
+    "today": "Сёння",
+    "sending": "Дасылаецца",
+    "generatingThumbnail": "Генерацыя мініяцюры",
+    "encrypting": "Шыфраванне",
+    "uploading": "Загрузка",
+    "edited": "(зменена)",
+    "couldNotBeSent": "Немагчыма даслаць",
+    "yesterday": "Учора",
+    "resetRecoveryKey": "Скінуць ключ аднаўлення",
+    "pleaseEnter6Digits": "Калі ласка, увядзіце 6 лічбаў, каб уключыць код праграмы.",
+    "disableAppLock": "Адключыць код праграмы",
+    "disableAppLockAreYouSure": "Вы ўпэўнены, што хаціце адключыць код праграмы?",
+    "enableBiometrics": "Уключыць біяметрычную аўтарызацыю",
+    "disableBiometrics": "Адключыць біяметрычную аўтарызацыю",
+    "biometricsDescription": "З дапамогай біяметрычнай аўтарызацыяй, вы можаце разблакіраваць праграму вашым тварам ці адбіткам пальца. Магчымасці адрозніваюцца ў залежнасці ад прылады.",
+    "useAppLock": "Выкарыстоўваць код праграмы",
+    "unlockWithBiometrics": "Разблакіраваць з дапамогай біяметрычнай аўтарызацыі",
+    "resetPin": "Скінуць пін-код",
+    "forwardCountMessages": "Пераслаць {count, plural, =1{адно паведамленне} other{{count} паведамленняў}}?",
+    "@forwardCountMessages": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "loadingMessages": "Загрузка паведамленняў...",
+    "buildDoesNotSupportFirebase": "Гэтая зборка не падтрымлівае firebase cloud messaging.",
+    "unableToRegisterDeviceForFirebase": "Немагчыма зарэгістраваць прыладу для firebase cloud messaging.",
+    "unifiedPushDistributors": "Дыстрыб'ютары Unified Push:",
+    "doubleTapToReact": "Двайны націск для рэакцыі",
+    "doubleTapToReactDescription": "Двайны націск на паведамленне, каб адрэагаваць замест выбару тэксту",
+    "doubleTapReaction": "Рэакцыя пры двайным ціску",
+    "shareCrashReports": "Падзяліцца паведамленнем пра памылку",
+    "shareCrashReportsDescription": "Аўтаматычна дасылаць распрацоўшчыкам паведамленні пра памылкі?",
+    "countActiveCallMembers": "{count} актыўных удзельнікаў выкліку",
+    "@countActiveCallMembers": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "enterCall": "Увайсці ў выклік",
+    "videoCallsBetaWarning": "Відэа выклікі знаходзяцца ў бэце. Яны могуць працаваць некарэктна ці не на ўсіх платформах. Мы будзем рады водгукам.",
+    "noDevicesFound": "Прылад не знойдзена",
+    "incomingCall": "Уваходны выклік",
+    "videoCall": "Відэа выклік",
+    "voiceCall": "Галасавы выклік",
+    "missedCall": "Прапушчаны выклік",
+    "callBack": "Ператэлефанаваць",
+    "hangUp": "Скінуць выклік",
+    "waitingForParticipant": "Чаканне ўдзельніка...",
+    "decline": "Адмяніць",
+    "startCall": "Пачаць выклік",
+    "selectCamera": "Выбраць камеру",
+    "selectMicrophone": "Выбраць мікрафон",
+    "selectSpeaker": "Выбраць дынамік",
+    "toggleMicrophone": "Уключыць мікрафон",
+    "toggleCamera": "Уключыць камеру",
+    "startScreensharing": "Пачаць трансліраваць экран",
+    "stopScreensharing": "Спыніць трансляцыю экрана",
+    "raiseHand": "Падняць руку",
+    "stopRaiseHand": "Апусціць руку",
+    "preferSpeaker": "Пажаданы дынамік",
+    "unexpectedErrorOccurded": "На жаль, апынулася нечаканая памылка: {msg}",
+    "@unexpectedErrorOccurded": {
+        "placeholders": {
+            "msg": {
+                "type": "String"
+            }
+        }
+    },
+    "incomingCallFrom": "Уваходны выклік ад {user}",
+    "@incomingCallFrom": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "updateAvailable": "Абнаўленне да {version} даступна",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Спампаваць",
+    "sharedLocation": "Агульныя геаметкі"
 }

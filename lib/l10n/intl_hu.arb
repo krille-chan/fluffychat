@@ -1191,11 +1191,6 @@
         "type": "String",
         "placeholders": {}
     },
-    "youHaveBeenBannedFromThisChat": "Kitiltották ebből a csevegésből",
-    "@youHaveBeenBannedFromThisChat": {
-        "type": "String",
-        "placeholders": {}
-    },
     "withTheseAddressesRecoveryDescription": "Ezekkel a címekkel vissza tudja állítani a jelszavát.",
     "@withTheseAddressesRecoveryDescription": {
         "type": "String",
@@ -2095,7 +2090,6 @@
     "verifyOtherDeviceDescription": "Amikor egy másik eszközt hitelesít, az eszközök kulcsokat cserélnek egymás között, ezáltal növelve az összbiztonságot. 💪 Amikor megkezdődik a folyamat, mind a két eszközön megjelenik egy felugró üzenet. Hangulatjelek és számok sorozata fog megjelenni, amit össze tud hasonlítani a két eszközön. Érdemes tehát mind a két eszközt a közelben tartani. 🤳",
     "accessAndVisibility": "Hozzáférés és láthatóság",
     "accessAndVisibilityDescription": "Ki számára engedélyezett a csevegéshez való csatlakozás, és hogyan találhatja azt meg.",
-    "calls": "Hívások",
     "hideInvalidOrUnknownMessageFormats": "Érvénytelen vagy ismeretlen üzenetformátum elrejtése",
     "passwordRecoverySettings": "Jelszó-helyreállítási beállítások",
     "noOneCanJoin": "Senki sem csatlakozhat",
