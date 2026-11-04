@@ -12,13 +12,7 @@ extension PositionFromBuildContext on BuildContext {
     final button = findRenderObject() as RenderBox;
 
     return RelativeRect.fromRect(
-      Rect.fromPoints(
-        button.localToGlobal(const Offset(0, -65), ancestor: overlay),
-        button.localToGlobal(
-          button.size.bottomRight(Offset.zero) + const Offset(-50, 0),
-          ancestor: overlay,
-        ),
-      ),
+      button.localToGlobal(Offset.zero, ancestor: overlay) & button.size,
       Offset.zero & overlay.size,
     );
   }

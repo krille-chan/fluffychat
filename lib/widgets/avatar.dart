@@ -23,6 +23,7 @@ class Avatar extends StatelessWidget {
   final ShapeBorder? shapeBorder;
   final Color? backgroundColor;
   final Color? textColor;
+  final bool animated;
 
   const Avatar({
     this.mxContent,
@@ -37,6 +38,7 @@ class Avatar extends StatelessWidget {
     this.icon,
     this.backgroundColor,
     this.textColor,
+    this.animated = false,
     super.key,
   });
 
@@ -80,8 +82,11 @@ class Avatar extends StatelessWidget {
               client: client,
               borderRadius: borderRadius,
               key: ValueKey(mxContent.toString()),
-              cacheKey: '${mxContent}_$size',
+              cacheKey:
+                  '${mxContent}_${size}_${animated ? 'animated' : 'static'}',
               uri: mxContent,
+              isThumbnail: !animated,
+              animated: animated,
               fit: BoxFit.cover,
               width: size,
               height: size,

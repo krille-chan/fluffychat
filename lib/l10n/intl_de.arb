@@ -2845,5 +2845,31 @@
             }
         }
     },
-    "sharedLocation": "Getilter Standort"
+    "sharedLocation": "Getilter Standort",
+    "pasteImage": "Bild einfügen",
+    "noImageInClipboard": "Kein Bild in der Zwischenablage",
+    "doYouAlsoWantToBlock": "Möchten Sie das Konto zusätzlich sperren?",
+    "declineAndBlock": "Ablehnen und blockieren",
+    "senderHasInvitedYouToTheChat": "{sender} hat dich zum Chat '{nameOrAlias}' eingeladen.",
+    "@senderHasInvitedYouToTheChat": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    },
+    "senderHasInvitedYouToTheSpace": "{sender} hat Dich zum Bereich '{nameOrAlias}' eingeladen.",
+    "@senderHasInvitedYouToTheSpace": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "nameOrAlias": {
+                "type": "String"
+            }
+        }
+    }
 }

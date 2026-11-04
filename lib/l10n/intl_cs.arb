@@ -78,7 +78,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Mohou se připojit hosté",
+    "areGuestsAllowedToJoin": "Mohou se připojit hosté?",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -1493,7 +1493,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "unknownEvent": "Neznámá událost „{type}“",
+    "unknownEvent": "Neznámá událost '{type}'",
     "@unknownEvent": {
         "type": "String",
         "placeholders": {
@@ -2383,5 +2383,117 @@
     "searchMore": "Vyhledat více...",
     "incomingMessages": "Příchozí zprávy",
     "stickers": "Samolepky",
-    "discover": "Objevit"
+    "discover": "Objevit",
+    "eraser": "Guma",
+    "@eraser": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "crop": "Oříznout",
+    "@crop": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "discardEdits": "Máte neuložené změny. Opravdu je chcete zahodit?",
+    "@discardEdits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendingFilesDoNotExit": "Odesílání {count} soubor/ů... Prosíme, neukončujte aplikaci!",
+    "@sendingFilesDoNotExit": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "searchIn": "Hledat v chatu \"{chat}\"...",
+    "@searchIn": {
+        "type": "String",
+        "placeholders": {
+            "chat": {
+                "type": "String"
+            }
+        }
+    },
+    "commandHint_ignore": "Ignorovat Matrix ID",
+    "commandHint_unignore": "Odignorovat Matrix ID",
+    "unreadChatsInApp": "{appname}: {unread} nepřečtených chatů",
+    "@unreadChatsInApp": {
+        "type": "String",
+        "placeholders": {
+            "appname": {
+                "type": "String"
+            },
+            "unread": {
+                "type": "String"
+            }
+        }
+    },
+    "noDatabaseEncryption": "Šifrování databáze není na tomto serveru podporováno",
+    "thereAreCountUsersBlocked": "Máte zablokováno {count} uživatelů.",
+    "@thereAreCountUsersBlocked": {
+        "type": "String",
+        "count": {}
+    },
+    "markAsUnread": "Označit jako nepřečtené",
+    "userLevel": "{level} - Uživatel",
+    "@userLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "moderatorLevel": "{level} - Moderátor",
+    "@moderatorLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "adminLevel": "{level} - Administrátor",
+    "@adminLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "int"
+            }
+        }
+    },
+    "changeGeneralChatSettings": "Změnit obecné nastavení chatu",
+    "inviteOtherUsers": "Pozvat do tohoto chatu uživatele",
+    "changeTheChatPermissions": "Změnit oprávnění v chatu",
+    "changeTheVisibilityOfChatHistory": "Změnit viditelnost historie chatu",
+    "changeTheCanonicalRoomAlias": "Změnit hlavní veřejnou adresu chatu",
+    "sendRoomNotifications": "Posílat oznámení pro @room",
+    "changeTheDescriptionOfTheGroup": "Změnit popis chatu",
+    "chatPermissionsDescription": "Určete, jaká úroveň oprávnění je v tomto chatu nutná pro určité akce. Úrovně 0, 50 a 100 obvykle odpovídají uživatelům, moderátorům a administrátorům, ale je možné použít i libovolné jiné rozdělení.",
+    "updateInstalled": "🎉 Aktualizace {version} byla instalována!",
+    "@updateInstalled": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "updateAvailable": "Je dostupná aktualizace {version}",
+    "@updateAvailable": {
+        "type": "String",
+        "placeholders": {
+            "version": {
+                "type": "String"
+            }
+        }
+    },
+    "download": "Stáhnout",
+    "sendCanceled": "Odeslání přerušeno",
+    "loginWithMatrixId": "Přihlásit se pomocí Matrix ID",
+    "doesNotSeemToBeAValidHomeserver": "Vypadá to, že domovský server není kompatibilní. Je URL adresa správná?",
+    "calculatingFileSize": "Vypočítávám velikost souboru..."
 }

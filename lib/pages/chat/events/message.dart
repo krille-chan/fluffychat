@@ -21,7 +21,6 @@ import 'package:fluffychat/widgets/member_actions_popup_menu_button.dart';
 import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
-import 'package:swipe_to_action/swipe_to_action.dart';
 
 import '../../../config/app_config.dart';
 import '../sticker_picker_dialog.dart';
@@ -29,6 +28,7 @@ import 'message_content.dart';
 import 'message_reactions.dart';
 import 'reply_content.dart';
 import 'state_message.dart';
+import 'swipe_to_reply.dart';
 
 class Message extends StatelessWidget {
   final Event event;
@@ -220,31 +220,10 @@ class Message extends StatelessWidget {
     final eventStateTextColor = theme.colorScheme.onSurface;
 
     return Center(
-      child: Swipeable(
+      child: SwipeToReply(
         key: ValueKey(event.transactionId ?? event.eventId),
-        background: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Align(
-            alignment: AppSettings.swipeRightToLeftToReply.value
-                ? .centerRight
-                : .centerLeft,
-            child: Material(
-              color: theme.colorScheme.primaryContainer,
-              borderRadius: BorderRadius.circular(64),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.reply_outlined,
-                  color: theme.colorScheme.onPrimaryContainer,
-                ),
-              ),
-            ),
-          ),
-        ),
-        direction: AppSettings.swipeRightToLeftToReply.value
-            ? SwipeDirection.endToStart
-            : SwipeDirection.startToEnd,
-        onSwipe: (_) => onSwipe(),
+        rightToLeft: AppSettings.swipeRightToLeftToReply.value,
+        onReply: onSwipe,
         child: Container(
           constraints: const BoxConstraints(
             maxWidth: FluffyThemes.maxTimelineWidth,
