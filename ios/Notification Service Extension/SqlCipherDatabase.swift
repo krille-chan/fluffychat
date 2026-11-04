@@ -26,7 +26,7 @@ final class SqlCipherDatabase {
         }
         let openV2 = try symbol(handle, "sqlite3_open_v2", as: OpenV2Fn.self)
         var dbPointer: OpaquePointer?
-        let rc = openV2(path, &dbPointer, SQLITE_OPEN_READONLY, nil)
+        let rc = openV2("file:\(path)?immutable=1", &dbPointer, SQLITE_OPEN_READONLY | SQLITE_OPEN_URI, nil)
         guard rc == SQLITE_OK, let dbPointer = dbPointer else {
             throw SqlCipherError.sqlite(code: rc, message: "Failed to open")
         }
@@ -95,6 +95,7 @@ final class SqlCipherDatabase {
     private static let SQLITE_OK: Int32 = 0
     private static let SQLITE_MISUSE: Int32 = 21
     private static let SQLITE_OPEN_READONLY: Int32 = 1
+    private static let SQLITE_OPEN_URI: Int32 = 0x40
     private static let SQLITE_ROW: Int32 = 100
     private static let SQLITE_DONE: Int32 = 101
     private static let SQLITE_TRANSIENT: Int = -1
