@@ -7,7 +7,7 @@ name: fluffychat
 description: Chat with your friends.
 publish_to: none
 # On version bump please also increase the build number (for F-Droid)
-version: 2.11.3+3574
+version: 2.11.5+3578
 
 environment:
   sdk: ">=3.11.1 <4.0.0"
@@ -56,7 +56,7 @@ dependencies:
   just_audio_media_kit: ^2.1.0
   latlong2: ^0.10.1
   light_compressor_v2: ^1.10.0
-  livekit_client: ^2.13.1
+  livekit_client: ^2.13.2
   local_auth: ^3.0.2
   lottie: ^3.6.1
   managed_configurations: ^1.2.0

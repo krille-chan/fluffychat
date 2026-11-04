@@ -15,7 +15,7 @@ env:
 
 jobs:
   build_web:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
@@ -70,7 +70,7 @@ jobs:
           cname: fluffychat.im
 
   build_apk:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
@@ -105,11 +105,11 @@ jobs:
     strategy:
       matrix:
         arch: [ x64, arm64 ]
-    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest'}}
+    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-26.04-arm' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v7
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
+        run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash1 libssl-dev libwebkit2gtk-4.1-dev -y
       - run: echo "FLUTTER_VERSION=$(yq '.flutter' < .fvmrc)" >> $GITHUB_ENV
       - name: Install Flutter
         run: |
@@ -134,7 +134,7 @@ jobs:
     strategy:
       matrix:
         arch: [ x64, arm64 ]
-    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest'}}
+    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-26.04-arm' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v7
       - name: Determine Snap channel
@@ -178,7 +178,7 @@ jobs:
           asset_content_type: application/vnd.microsoft.portable-executable
 
   deploy_playstore:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     concurrency:
       group: deploy_playstore
       queue: max
@@ -228,7 +228,7 @@ jobs:
           cd ..
 
   deploy_docker:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     permissions:
       contents: read
       packages: write
