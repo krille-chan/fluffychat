@@ -17,7 +17,7 @@ extension MatrixFileExtension on MatrixFile {
     final downloadPath = await FilePicker.saveFile(
       dialogTitle: l10n.saveFile,
       fileName: name,
-      type: filePickerFileType,
+      mimeType: mimeType,
       bytes: bytes,
     );
     if (downloadPath == null) return;
