@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHU(){return new B.N2(A.dv("ta"))},
-N2:function N2(d){this.a=d}}
+dHU(){return new B.N1(A.dv("ta"))},
+N1:function N1(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[51],B)
-B.N2.prototype={
+B.N1.prototype={
 gpu(){return"\u0baa\u0b9f\u0ba4\u0bcd\u0ba4\u0bc8 \u0ba4\u0bbf\u0bb0\u0bc1\u0ba4\u0bcd\u0ba4\u0bc1"},
 grr(){return"\u0b87\u0b9f\u0baa\u0bcd\u0baa\u0bc1\u0bb1\u0bae\u0bcd \u0b9a\u0bc1\u0bb4\u0bb1\u0bcd\u0bb1\u0bc1"},
 grs(){return"\u0bb5\u0bb2\u0ba4\u0bc1\u0baa\u0bc1\u0bb1\u0bae\u0bcd \u0b9a\u0bc1\u0bb4\u0bb1\u0bcd\u0bb1\u0bc1"},
@@ -749,8 +749,8 @@ pW(d,e){return d+" has invited you to the chat '"+e+"'."},
 pX(d,e){return d+" has invited you to the space '"+e+"'."},
 C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.N2,C.aX)})()
-A.ef(b.typeUniverse,JSON.parse('{"N2":{"aX":[]}}'))
+x(B.N1,C.aX)})()
+A.ef(b.typeUniverse,JSON.parse('{"N1":{"aX":[]}}'))
 var y={d:" \u0b87\u0bb2\u0bcd \u0b9f\u0bc6\u0bb5\u0bb2\u0baa\u0bcd\u0baa\u0bb0\u0bcd\u0b95\u0bb3\u0bbf\u0b9f\u0bae\u0bcd \u0b87\u0ba8\u0bcd\u0ba4\u0baa\u0bcd \u0baa\u0bbf\u0bb4\u0bc8\u0baf\u0bc8\u0baa\u0bcd \u0baa\u0bc1\u0b95\u0bbe\u0bb0\u0bb3\u0bbf\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd. \u0baa\u0bbf\u0bb4\u0bc8 \u0b9a\u0bc6\u0baf\u0bcd\u0ba4\u0bbf: "}};
-(a=>{a["oCzDI8GHRx//5hXP2XjvwZ50O9c="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["JGOUgu8eyFXzVha9rEgKGpM3Lh4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_381.part.js.map

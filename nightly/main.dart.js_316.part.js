@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHk(){return new B.Mu(A.dv("et"))},
-Mu:function Mu(d){this.a=d}}
+dHk(){return new B.Mt(A.dv("et"))},
+Mt:function Mt(d){this.a=d}}
 A=c[0]
 C=c[59]
 B=a.updateHolder(c[18],B)
-B.Mu.prototype={
+B.Mt.prototype={
 gpu(){return"Muuda pilti"},
 grr(){return"P\xf6\xf6ra vasakule"},
 grs(){return"P\xf6\xf6ra paremale"},
@@ -749,7 +749,7 @@ pW(d,e){return d+" on saatnud sulle kutse osalemaks vestluses '"+e+"'."},
 pX(d,e){return d+" on saatnud sulle kutse osalemaks kogukonnas '"+e+"'."},
 C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Mu,C.aX)})()
-A.ef(b.typeUniverse,JSON.parse('{"Mu":{"aX":[]}}'))};
-(a=>{a["mEwP54U/0XNW6kxVjaI9Bx7bMys="]=a.current})($__dart_deferred_initializers__);
+y(B.Mt,C.aX)})()
+A.ef(b.typeUniverse,JSON.parse('{"Mt":{"aX":[]}}'))};
+(a=>{a["cyUoN+YJbo1lYXpp2TLbhFdfxR0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map
