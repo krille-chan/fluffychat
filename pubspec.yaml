@@ -58,7 +58,7 @@ dependencies:
   light_compressor_v2: ^1.10.0
   livekit_client: ^2.13.2
   local_auth: ^3.0.2
-  lottie: ^3.6.1
+  lottie: ^3.8.2
   managed_configurations: ^1.2.0
   material_ui: 1.8.0
   matrix: ^14.1.0
