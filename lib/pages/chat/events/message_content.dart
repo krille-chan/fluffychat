@@ -172,7 +172,7 @@ class MessageContent extends StatelessWidget {
                 ? event.formattedText
                 : event
                       .calcUnlocalizedBody(
-                        hideReply: event.inReplyToEventId() != null,
+                        hideReply: true,
                       )
                       .replaceAll('<', '&lt;')
                       .replaceAll('>', '&gt;');
