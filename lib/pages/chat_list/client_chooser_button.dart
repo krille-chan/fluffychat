@@ -3,6 +3,8 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+import 'dart:async';
+
 import 'package:async/async.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -15,10 +17,38 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../../utils/fluffy_share.dart';
 import 'chat_list.dart';
 
-class ClientChooserButton extends StatelessWidget {
+class ClientChooserButton extends StatefulWidget {
   final ChatListController controller;
 
   const ClientChooserButton(this.controller, {super.key});
+
+  @override
+  State<ClientChooserButton> createState() => _ClientChooserButtonState();
+}
+
+class _ClientChooserButtonState extends State<ClientChooserButton> {
+  Client? _client;
+  StreamSubscription<String>? _profileSubscription;
+  Future<Profile>? _profileFuture;
+
+  void _refreshProfile() {
+    final client = _client;
+    if (!mounted || client == null) return;
+    setState(() {
+      _profileFuture = client.isLogged()
+          ? client.getProfileFromUserId(
+              client.userID!,
+              maxCacheAge: Duration.zero,
+            )
+          : null;
+    });
+  }
+
+  @override
+  void dispose() {
+    _profileSubscription?.cancel();
+    super.dispose();
+  }
 
   List<PopupMenuEntry<Object>> _bundleMenuItems(BuildContext context) {
     final matrix = Matrix.of(context);
@@ -141,10 +171,8 @@ class ClientChooserButton extends StatelessWidget {
                         const SizedBox(width: 12),
                         IconButton(
                           icon: const Icon(Icons.edit_outlined),
-                          onPressed: () => controller.editBundlesForAccount(
-                            client.userID,
-                            bundle,
-                          ),
+                          onPressed: () => widget.controller
+                              .editBundlesForAccount(client.userID, bundle),
                         ),
                       ],
                     );
@@ -170,11 +198,21 @@ class ClientChooserButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final matrix = Matrix.of(context);
     final client = Result(() => matrix.client).asValue?.value;
+    if (!identical(client, _client)) {
+      _profileSubscription?.cancel();
+      _client = client;
+      _profileSubscription = client?.onUserProfileUpdate.stream
+          .where((userId) => userId == client.userID)
+          .listen((_) => _refreshProfile());
+      _profileFuture = client?.isLogged() == true
+          ? client?.fetchOwnProfile()
+          : null;
+    }
 
     var clientCount = 0;
     matrix.accountBundles.forEach((key, value) => clientCount += value.length);
     return FutureBuilder<Profile>(
-      future: client?.isLogged() == true ? client?.fetchOwnProfile() : null,
+      future: _profileFuture,
       builder: (context, snapshot) => Material(
         clipBehavior: Clip.hardEdge,
         borderRadius: BorderRadius.circular(99),
@@ -196,9 +234,9 @@ class ClientChooserButton extends StatelessWidget {
 
   Future<void> _clientSelected(Object object, BuildContext context) async {
     if (object is Client) {
-      controller.setActiveClient(object);
+      widget.controller.setActiveClient(object);
     } else if (object is String) {
-      controller.setActiveBundle(object);
+      widget.controller.setActiveBundle(object);
     } else if (object is SettingsAction) {
       switch (object) {
         case SettingsAction.addAccount:
@@ -223,7 +261,7 @@ class ClientChooserButton extends StatelessWidget {
           context.go('/rooms/archive');
           break;
         case SettingsAction.setStatus:
-          controller.setStatus();
+          widget.controller.setStatus();
           break;
       }
     }
