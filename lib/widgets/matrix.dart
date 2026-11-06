@@ -11,9 +11,11 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
-import 'package:fluffychat/utils/notification_background_handler.dart';
+import 'package:fluffychat/utils/notifications/background_push.dart';
+import 'package:fluffychat/utils/notifications/notification_background_handler.dart';
+import 'package:fluffychat/utils/notifications/push_helper.dart';
+import 'package:fluffychat/utils/notifications/show_local_notification.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/utils/uia_request_manager.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
@@ -32,8 +34,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
-import '../utils/background_push.dart';
-import 'local_notifications_extension.dart';
 
 class Matrix extends StatefulWidget {
   final Widget? child;
@@ -290,7 +290,13 @@ class MatrixState extends State<Matrix> {
           WebFlutterLocalNotificationsPlugin().requestNotificationsPermission();
         }
         onNotification[name] ??= c.onNotification.stream.listen(
-          showLocalNotification,
+          (event) => showLocalNotification(
+            event,
+            // ignore: use_build_context_synchronously
+            context: context,
+            activeRoomId: activeRoomId,
+            setActiveClient: setActiveClient,
+          ),
         );
       });
     }
