@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHq(){return new B.Mz(A.dv("ga"))},
+dHr(){return new B.Mz(A.dv("ga"))},
 Mz:function Mz(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -232,7 +232,7 @@ gkq(){return"Modhn\xf3ir"},
 ghx(){return"Ci\xfanaigh comhr\xe1"},
 ghy(){return"Comhr\xe1 nua"},
 gku(){return"Iarratas f\xedoraithe nua!"},
-ge4(d){return"Ar Aghaidh"},
+ge3(d){return"Ar Aghaidh"},
 gf5(){return"N\xedl"},
 gky(){return"Gan aon nasc leis an bhfreastala\xed"},
 ghz(){return"N\xedor aims\xedodh aon straoiseoga. \ud83d\ude15"},
@@ -751,5 +751,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Mz,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"Mz":{"aX":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["OqYux2lfusH0maL5EyBOYOJHz+U="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["TX7yNAMKu8huZUO0YbgWsKdwh8M="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_330.part.js.map

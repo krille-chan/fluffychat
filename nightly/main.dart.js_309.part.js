@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHi(){return new B.Mr(A.dv("eo"))},
+dHj(){return new B.Mr(A.dv("eo"))},
 Mr:function Mr(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -232,7 +232,7 @@ gkq(){return"Reguligisto"},
 ghx(){return"Silentigi babilon"},
 ghy(){return"Nova babilo"},
 gku(){return"Nova kontrolpeto!"},
-ge4(d){return"Sekva"},
+ge3(d){return"Sekva"},
 gf5(){return"Ne"},
 gky(){return"Neniu konekto al la servilo"},
 ghz(){return"Neniuj mienetoj trovi\u011dis. \ud83d\ude15"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mr,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"Mr":{"aX":[]}}'))};
-(a=>{a["wH8Xnsr31Z0PvKEQzAen0cPTQjg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["0WUZZaWfsHnuFnCHbdKBF1ILnPw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_309.part.js.map

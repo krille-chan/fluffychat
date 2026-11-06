@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHJ(){return new B.MS(A.dv("pl"))},
+dHK(){return new B.MS(A.dv("pl"))},
 MS:function MS(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -232,7 +232,7 @@ gkq(){return"Moderator"},
 ghx(){return"Wycisz czat"},
 ghy(){return"Nowa rozmowa"},
 gku(){return"Nowa pro\u015bba o weryfikacj\u0119!"},
-ge4(d){return"Dalej"},
+ge3(d){return"Dalej"},
 gf5(){return"Nie"},
 gky(){return"Brak po\u0142\u0105czenia z serwerem"},
 ghz(){return"Nie znaleziono \u017cadnych emotikon\xf3w. \ud83d\ude15"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MS,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"MS":{"aX":[]}}'))};
-(a=>{a["s2Se85cIoyRmY3f5iIzQg5IzbJc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["lQM0MNpc19ZPznf9mqMUpFkVefQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_369.part.js.map

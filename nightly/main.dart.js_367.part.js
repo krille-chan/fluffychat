@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHI(){return new B.MR(A.dv("nl"))},
+dHJ(){return new B.MR(A.dv("nl"))},
 MR:function MR(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -233,7 +233,7 @@ gkq(){return"Moderator"},
 ghx(){return"Chat dempen"},
 ghy(){return"Nieuwe chat"},
 gku(){return"Nieuw verificatieverzoek!"},
-ge4(d){return"Volgende"},
+ge3(d){return"Volgende"},
 gf5(){return"Nee"},
 gky(){return"Geen verbinding met de server"},
 ghz(){return"Geen emoticons gevonden. \ud83d\ude15"},
@@ -751,5 +751,5 @@ C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MR,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"MR":{"aX":[]}}'))};
-(a=>{a["YaSdnqOZqGJiTiB+5niZWusRo8w="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["wLyoNSI0VoDsWHF2ANIGDe69UbE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_367.part.js.map

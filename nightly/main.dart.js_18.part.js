@@ -1,8 +1,8 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-dHK(d){return new A.FU(B.dv(d))},
-dHL(){return new A.MT(B.dv("pt_BR"))},
-dHM(){return new A.MU(B.dv("pt_PT"))},
+dHL(d){return new A.FU(B.dv(d))},
+dHM(){return new A.MT(B.dv("pt_BR"))},
+dHN(){return new A.MU(B.dv("pt_PT"))},
 FU:function FU(d){this.a=d},
 MT:function MT(d){this.a=d},
 MU:function MU(d){this.a=d}},C
@@ -237,7 +237,7 @@ gkq(){return"Moderator"},
 ghx(){return"Mute chat"},
 ghy(){return"New chat"},
 gku(){return"New verification request!"},
-ge4(d){return"Next"},
+ge3(d){return"Next"},
 gf5(){return"No"},
 gky(){return"No connection to the server"},
 ghz(){return"No emotes found. \ud83d\ude15"},
@@ -967,7 +967,7 @@ gkq(){return"Moderador"},
 ghx(){return"Silenciar conversa"},
 ghy(){return"Nova conversa"},
 gku(){return"Nova solicita\xe7\xe3o de verifica\xe7\xe3o!"},
-ge4(d){return"Avan\xe7ar"},
+ge3(d){return"Avan\xe7ar"},
 gf5(){return"N\xe3o"},
 gky(){return"Sem conex\xe3o com o servidor"},
 ghz(){return"Nenhum emoji encontrado. \ud83d\ude15"},
@@ -1555,7 +1555,7 @@ gkq(){return"Moderador"},
 ghx(){return"Silenciar conversa"},
 ghy(){return"Nova conversa"},
 gku(){return"Novo pedido de verifica\xe7\xe3o!"},
-ge4(d){return"Pr\xf3ximo"},
+ge3(d){return"Pr\xf3ximo"},
 gf5(){return"N\xe3o"},
 gky(){return"Nenhuma liga\xe7\xe3o ao servidor"},
 ghz(){return"Nenhuns emotes encontrados. \ud83d\ude15"},
@@ -1706,5 +1706,5 @@ x(A.FU,C.aX)
 w(A.FU,[A.MT,A.MU])})()
 B.ef(b.typeUniverse,JSON.parse('{"FU":{"aX":[]},"MT":{"aX":[]},"MU":{"aX":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
-(a=>{a["UPL0wweN0+YF6/WlDFMOfJNUDV0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["vY4J8tmiDgiRfrNl7BtCx+mzim0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_18.part.js.map

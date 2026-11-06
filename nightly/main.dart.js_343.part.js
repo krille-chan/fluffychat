@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHv(){return new B.ME(A.dv("hu"))},
+dHw(){return new B.ME(A.dv("hu"))},
 ME:function ME(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -232,7 +232,7 @@ gkq(){return"Moder\xe1tor"},
 ghx(){return"Cseveg\xe9s n\xe9m\xedt\xe1sa"},
 ghy(){return"\xdaj cseveg\xe9s"},
 gku(){return"\xdaj hiteles\xedt\xe9si k\xe9relem!"},
-ge4(d){return"K\xf6vetkez\u0151"},
+ge3(d){return"K\xf6vetkez\u0151"},
 gf5(){return"Nem"},
 gky(){return"Nem el\xe9rhet\u0151 a szerver"},
 ghz(){return"Nem tal\xe1lhat\xf3ak hangulatjelek. \ud83d\ude15"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.ME,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"ME":{"aX":[]}}'))};
-(a=>{a["YS2B3sQ3Z5Ra9p+bDkoV50JDf4U="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3lbwS4dwYphCOU0cqwLTsTmRVMc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_343.part.js.map

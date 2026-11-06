@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHP(){return new B.MX(A.dv("sk"))},
+dHQ(){return new B.MX(A.dv("sk"))},
 MX:function MX(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -232,7 +232,7 @@ gkq(){return"Moder\xe1tor"},
 ghx(){return"Stlmi\u0165 chat"},
 ghy(){return"New chat"},
 gku(){return"Nov\xe1 \u017eiados\u0165 o verifik\xe1ciu!"},
-ge4(d){return"Next"},
+ge3(d){return"Next"},
 gf5(){return"No"},
 gky(){return"No connection to the server"},
 ghz(){return"Nena\u0161li sa \u017eiadne emotikony. \ud83d\ude15"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MX,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"MX":{"aX":[]}}'))};
-(a=>{a["fL/iwyfEYoRdNlBmr9Al8XmcL8A="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["D/pdyoFRVpZ6Gsafkdcc33CQM2E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_375.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHx(){return new B.MG(A.dv("id"))},
+dHy(){return new B.MG(A.dv("id"))},
 MG:function MG(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -233,7 +233,7 @@ gkq(){return"Moderator"},
 ghx(){return"Bisukan obrolan"},
 ghy(){return"Chat baru"},
 gku(){return"Permintaan verifikasi baru!"},
-ge4(d){return"Lanjut"},
+ge3(d){return"Lanjut"},
 gf5(){return"Tidak"},
 gky(){return"Tidak ada koneksi ke server"},
 ghz(){return"Tidak ada emote yang ditemukan. \ud83d\ude15"},
@@ -752,5 +752,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.MG,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"MG":{"aX":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["2RWxE56v9HAU+I3OgvAXaUZnEhk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["9TD+FAzR2cSrrCblRquNZZs0IKE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_346.part.js.map

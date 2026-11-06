@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHB(){return new B.MK(A.dv("ka"))},
+dHC(){return new B.MK(A.dv("ka"))},
 MK:function MK(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -232,7 +232,7 @@ gkq(){return"Moderator"},
 ghx(){return"Mute chat"},
 ghy(){return"New chat"},
 gku(){return"New verification request!"},
-ge4(d){return"Next"},
+ge3(d){return"Next"},
 gf5(){return"No"},
 gky(){return"No connection to the server"},
 ghz(){return"No emotes found. \ud83d\ude15"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MK,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"MK":{"aX":[]}}'))};
-(a=>{a["ybpm39MoGakHfTZl97pRbV7pEdQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["m2q4QTVwZat8O2IqRA5j3nD8Z9g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_357.part.js.map

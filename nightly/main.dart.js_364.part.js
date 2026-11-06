@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHH(){return new B.MQ(A.dv("nb"))},
+dHI(){return new B.MQ(A.dv("nb"))},
 MQ:function MQ(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -233,7 +233,7 @@ gkq(){return"Moderator"},
 ghx(){return"Forstum sludring"},
 ghy(){return"Ny sludring"},
 gku(){return"Ny bekreftelsesforesp\xf8rsel!"},
-ge4(d){return"Neste"},
+ge3(d){return"Neste"},
 gf5(){return"Nei"},
 gky(){return"Ingen tilkobling til tjeneren"},
 ghz(){return"Fant ingen smilefjes. \ud83d\ude15"},
@@ -751,5 +751,5 @@ C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MQ,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"MQ":{"aX":[]}}'))};
-(a=>{a["zdWkqC3I6o8zEoEN0Gx6llCTNLY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["NdAtUfrlWEVNrX9tOo56AXmHDew="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_364.part.js.map

@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHZ(){return new B.N6(A.dv("uz"))},
+dI_(){return new B.N6(A.dv("uz"))},
 N6:function N6(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -232,7 +232,7 @@ gkq(){return"Moderator"},
 ghx(){return"Suhbatni ovozsizlantirish"},
 ghy(){return"Yangi suhbat"},
 gku(){return"Yangi tasdiqlash so'rovi!"},
-ge4(d){return"Keyingi"},
+ge3(d){return"Keyingi"},
 gf5(){return"Yo\u02bbq"},
 gky(){return"Serverga ulanish yo\u02bbq"},
 ghz(){return"Hech qanday emote\u02bclar topilmadi \ud83d\ude15"},
@@ -751,5 +751,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.N6,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"N6":{"aX":[]}}'))
 var y={b:" manzilidagi dasturchilarga xabar bering. Xato xabari: "}};
-(a=>{a["AkE2zX1ST9JDRDdsCjlKErKwNnk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["sZdNjBpMQz5sQL2ilFEvBi2sjvo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_387.part.js.map

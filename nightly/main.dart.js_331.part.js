@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHr(){return new B.MA(A.dv("gl"))},
+dHs(){return new B.MA(A.dv("gl"))},
 MA:function MA(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -232,7 +232,7 @@ gkq(){return"Moderadora"},
 ghx(){return"Acalar conversa"},
 ghy(){return"Nova conversa"},
 gku(){return"Nova solicitude de verificaci\xf3n!"},
-ge4(d){return"Seguinte"},
+ge3(d){return"Seguinte"},
 gf5(){return"Non"},
 gky(){return"Sen conexi\xf3n co servidor"},
 ghz(){return"Non hai emotes. \ud83d\ude15"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MA,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"MA":{"aX":[]}}'))};
-(a=>{a["zDHyLIQC1wZLlQKI1I23XUK1l+0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PyrdGpuonN8BKoWl8+/d8seua/g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map

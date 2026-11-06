@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHc(){return new B.Ml(A.dv("ca"))},
+dHd(){return new B.Ml(A.dv("ca"))},
 Ml:function Ml(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -232,7 +232,7 @@ gkq(){return"Moderador"},
 ghx(){return"Silencia el xat"},
 ghy(){return"Xat nou"},
 gku(){return"Nova sol\xb7licitud de verificaci\xf3!"},
-ge4(d){return"Seg\xfcent"},
+ge3(d){return"Seg\xfcent"},
 gf5(){return"No"},
 gky(){return"Sense connexi\xf3 al servidor"},
 ghz(){return"No s\u2019ha trobat cap emoticona. \ud83d\ude15"},
@@ -750,5 +750,5 @@ C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Ml,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"Ml":{"aX":[]}}'))};
-(a=>{a["rJgMA7TBD2CBVWvjsW7UA6w1bb0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["DBJJ4jyQPbul0lj6Ny+uWMU8zpQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_277.part.js.map

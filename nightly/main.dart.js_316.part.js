@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHk(){return new B.Mt(A.dv("et"))},
+dHl(){return new B.Mt(A.dv("et"))},
 Mt:function Mt(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -233,7 +233,7 @@ gkq(){return"Moderaator"},
 ghx(){return"Summuta vestlus"},
 ghy(){return"Uus vestlus"},
 gku(){return"Uus verifitseerimisp\xe4ring!"},
-ge4(d){return"Edasi"},
+ge3(d){return"Edasi"},
 gf5(){return"Ei"},
 gky(){return"Puudub \xfchendus koduserveriga"},
 ghz(){return"\xdchtegi emotsioonitegevust ei leidunud. \ud83d\ude15"},
@@ -751,5 +751,5 @@ C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.Mt,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"Mt":{"aX":[]}}'))};
-(a=>{a["cyUoN+YJbo1lYXpp2TLbhFdfxR0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ZrXG7xNu7Z2UG/g9imE5KIknsgw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

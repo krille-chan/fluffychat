@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHu(){return new B.MD(A.dv("hr"))},
+dHv(){return new B.MD(A.dv("hr"))},
 MD:function MD(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -233,7 +233,7 @@ gkq(){return"Voditelj"},
 ghx(){return"Isklju\u010di zvuk chata"},
 ghy(){return"Novi chat"},
 gku(){return"Novi zahtjev za potvr\u0111ivanje!"},
-ge4(d){return"Dalje"},
+ge3(d){return"Dalje"},
 gf5(){return"Ne"},
 gky(){return"Ne postoji veza sa serverom"},
 ghz(){return"Nema emotikona. \ud83d\ude15"},
@@ -751,5 +751,5 @@ C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MD,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"MD":{"aX":[]}}'))};
-(a=>{a["LWqQE47cd3AZtn+B95+W9wwymBE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["61OhEB23fdDynpRuE5T3a2wMnYw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_336.part.js.map

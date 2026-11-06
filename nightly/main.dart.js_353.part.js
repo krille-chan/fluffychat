@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHz(){return new B.MI(A.dv("it"))},
+dHA(){return new B.MI(A.dv("it"))},
 MI:function MI(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -233,7 +233,7 @@ gkq(){return"Moderatore"},
 ghx(){return"Silenzia discussione"},
 ghy(){return"Nuova discussione"},
 gku(){return"Nuova richiesta di verifica!"},
-ge4(d){return"Avanti"},
+ge3(d){return"Avanti"},
 gf5(){return"No"},
 gky(){return"Nessuna connessione al server"},
 ghz(){return"Nessun emote trovato. \ud83d\ude15"},
@@ -752,5 +752,5 @@ C(d,e){return this.gbE(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.MI,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"MI":{"aX":[]}}'))};
-(a=>{a["rtMZtvRTufxAX/ZOSCV/dojR5AQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["SbRLPqPfEETYgBsi0fTnPxW0oas="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_353.part.js.map

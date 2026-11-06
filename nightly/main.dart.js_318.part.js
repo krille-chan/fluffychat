@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-dHl(){return new B.Mu(A.dv("eu"))},
+dHm(){return new B.Mu(A.dv("eu"))},
 Mu:function Mu(d){this.a=d}}
 A=c[0]
 C=c[59]
@@ -232,7 +232,7 @@ gkq(){return"Moderatzailea"},
 ghx(){return"Mututu txata"},
 ghy(){return"Txat berria"},
 gku(){return"Egiaztaketa-eskaera berria!"},
-ge4(d){return"Hurrengoa"},
+ge3(d){return"Hurrengoa"},
 gf5(){return"Ez"},
 gky(){return"Ez dago konexiorik zerbitzariarekin"},
 ghz(){return"Ez da emoterik aurkitu. \ud83d\ude15"},
@@ -751,5 +751,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(B.Mu,C.aX)})()
 A.ef(b.typeUniverse,JSON.parse('{"Mu":{"aX":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["73rl8/9gojZaEP/SNFqGnTOuisY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["TnE3baQgHLYaZGCF1b7SOoqttzM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_318.part.js.map
