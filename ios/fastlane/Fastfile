@@ -103,6 +103,7 @@ platform :ios do
       automatic_release: true,
       force: true,
       skip_screenshots: true,
+      run_precheck_before_submit: false,
     )
   end
 end

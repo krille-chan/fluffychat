@@ -15,22 +15,24 @@ extension ResizeImage on XFile {
     String? destinationPath;
     try {
       if (PlatformInfos.isMobile || PlatformInfos.isMacOS) {
-        final result = await LightCompressor().compressVideo(
-          path: path,
-          videoQuality: VideoQuality.medium,
-          android: AndroidConfig(isSharedStorage: false),
-          ios: IOSConfig(saveInGallery: false),
-          video: Video(videoName: name, targetSizeMb: 5),
+        if (compress) {
+          final result = await LightCompressor().compressVideo(
+            path: path,
+            videoQuality: VideoQuality.medium,
+            android: AndroidConfig(isSharedStorage: false),
+            ios: IOSConfig(saveInGallery: false),
+            video: Video(videoName: name, targetSizeMb: 5),
+          );
+          if (result is OnFailure) {
+            Logs().e('Failed to compress video!', result);
+          }
+          if (result is OnSuccess) {
+            destinationPath = result.destinationPath;
+          }
+        }
+        mediaInfo = await LightCompressor().getMediaInfo(
+          destinationPath ?? path,
         );
-        if (result is OnFailure) {
-          throw result.message;
-        }
-        if (result is OnSuccess) {
-          destinationPath = result.destinationPath;
-        }
-        if (destinationPath != null) {
-          mediaInfo = await LightCompressor().getMediaInfo(destinationPath);
-        }
       }
     } catch (e, s) {
       Logs().w('Error while fetching video media info', e, s);
