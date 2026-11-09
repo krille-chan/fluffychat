@@ -1160,10 +1160,10 @@ packages:
     dependency: "direct main"
     description:
       name: light_compressor_v2
-      sha256: "2fb2eacafbce1ba22bc5acd86a05e60a2ad0d68e6c869729b7da83353df8be53"
+      sha256: "2c1a8d44ee2213b9faefa4c11ecf5a5574245a2535119cb5a31d8fe031a6483f"
       url: "https://pub.dev"
     source: hosted
-    version: "1.10.0"
+    version: "1.11.0"
   linkify:
     dependency: transitive
     description:
