@@ -879,7 +879,7 @@ class Message extends StatelessWidget {
                               onPressed: () => enterThread(event.eventId),
                               icon: const Icon(Icons.message),
                               label: Text(
-                                '${L10n.of(context).countReplies(threadChildren.length)} | ${threadChildren.first.calcLocalizedBodyFallback(MatrixLocals(L10n.of(context)), withSenderNamePrefix: true)}',
+                                '${L10n.of(context).countReplies(threadChildren.length)} | ${L10n.of(context).senderMessage(threadChildren.first.senderId == event.room.client.userID ? L10n.of(context).you : threadChildren.first.senderFromMemoryOrFallback.calcDisplayname(), threadChildren.first.calcLocalizedBody(MatrixLocals(L10n.of(context))))}',
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),

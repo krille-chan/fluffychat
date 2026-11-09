@@ -57,16 +57,18 @@ extension LocalNotificationsExtension on MatrixState {
     final title = event.room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)),
     );
-    final body = await event.calcLocalizedBody(
+    var body = event.calcLocalizedBody(
       MatrixLocals(L10n.of(context)),
-      withSenderNamePrefix:
-          !event.room.isDirectChat ||
-          event.room.lastEvent?.senderId == client.userID,
       plaintextBody: true,
       hideReply: true,
       hideEdit: true,
       removeMarkdown: true,
     );
+    if (!event.room.isDirectChat) {
+      final sender =
+          await event.fetchSenderUser() ?? event.senderFromMemoryOrFallback;
+      body = l10n.senderMessage(sender.calcDisplayname(), body);
+    }
     final avatarUrl = event.room.avatar;
 
     const size = 128;

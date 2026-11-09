@@ -1296,10 +1296,10 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: efe7b5a456957e1292fa331c531abba89bb4867b0f0ba78642a51497e34ba3b1
+      sha256: "976b6dfeddb7d5f9821cc789b9aa1662ba31fccac1db16ee211de9fc88894a3d"
       url: "https://pub.dev"
     source: hosted
-    version: "14.2.0"
+    version: "16.0.4"
   media_kit:
     dependency: transitive
     description:
@@ -2341,10 +2341,10 @@ packages:
     dependency: "direct dev"
     description:
       name: vodozemac
-      sha256: "272870cb6b394499fd34e5dfe8efa819dfa388e2713140f36257b712e149ea8c"
+      sha256: "4099e87058bf7ed910e22943bcc05db229f733ac05a700e5903722be7e62fcd1"
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.0"
+    version: "0.9.1"
   wakelock_plus:
     dependency: "direct main"
     description:

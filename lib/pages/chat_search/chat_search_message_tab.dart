@@ -128,7 +128,7 @@ class _MessageSearchResultListTile extends StatelessWidget {
         ),
         onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
         text: event
-            .calcLocalizedBodyFallback(
+            .calcLocalizedBody(
               plaintextBody: true,
               removeMarkdown: true,
               MatrixLocals(L10n.of(context)),

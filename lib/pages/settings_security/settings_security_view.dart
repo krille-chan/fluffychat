@@ -246,6 +246,8 @@ extension on ShareKeysWith {
         return l10n.crossVerifiedDevicesIfEnabled;
       case ShareKeysWith.crossVerified:
         return l10n.crossVerifiedDevices;
+      case ShareKeysWith.verifiedOnly:
+      // ignore: deprecated_member_use
       case ShareKeysWith.directlyVerifiedOnly:
         return l10n.verifiedDevicesOnly;
     }

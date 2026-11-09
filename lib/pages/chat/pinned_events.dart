@@ -40,20 +40,23 @@ class PinnedEvents extends StatelessWidget {
             title: l10n.pin,
             cancelLabel: l10n.cancel,
             actions: events
+                .whereType<Event>()
                 .map(
                   (event) => AdaptiveModalAction(
-                    value: event?.eventId ?? '',
+                    value: event.eventId,
                     icon: const Icon(Icons.push_pin_outlined),
-                    label:
-                        event
-                            ?.calcLocalizedBodyFallback(
-                              MatrixLocals(l10n),
-                              withSenderNamePrefix: true,
-                              hideReply: true,
-                            )
-                            .trim()
-                            .replaceAll('\n', ' ') ??
-                        'UNKNOWN',
+                    label: l10n.senderMessage(
+                      event.senderId == event.room.client.userID
+                          ? l10n.you
+                          : event.senderFromMemoryOrFallback.calcDisplayname(),
+                      event
+                          .calcLocalizedBody(
+                            MatrixLocals(l10n),
+                            hideReply: true,
+                          )
+                          .trim()
+                          .replaceAll('\n', ' '),
+                    ),
                   ),
                 )
                 .toList(),
@@ -77,15 +80,19 @@ class PinnedEvents extends StatelessWidget {
       builder: (context, snapshot) {
         final event = snapshot.data;
         return ChatAppBarListTile(
-          title:
-              event
-                  ?.calcLocalizedBodyFallback(
-                    MatrixLocals(L10n.of(context)),
-                    withSenderNamePrefix: true,
-                    hideReply: true,
-                  )
-                  .replaceAll('\n', ' ') ??
-              L10n.of(context).loadingPleaseWait,
+          title: event == null
+              ? L10n.of(context).loadingPleaseWait
+              : L10n.of(context).senderMessage(
+                  event.senderId == event.room.client.userID
+                      ? L10n.of(context).you
+                      : event.senderFromMemoryOrFallback.calcDisplayname(),
+                  event
+                      .calcLocalizedBody(
+                        MatrixLocals(L10n.of(context)),
+                        hideReply: true,
+                      )
+                      .replaceAll('\n', ' '),
+                ),
           leading: IconButton(
             splashRadius: 18,
             iconSize: 18,

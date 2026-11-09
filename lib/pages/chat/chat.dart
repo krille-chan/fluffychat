@@ -1408,11 +1408,7 @@ class ChatController extends State<ChatPageWithRoom>
       editEvent = event;
       sendController.text = event
           .getDisplayEvent(timeline)
-          .calcLocalizedBodyFallback(
-            MatrixLocals(L10n.of(context)),
-            withSenderNamePrefix: false,
-            hideReply: true,
-          );
+          .calcLocalizedBody(MatrixLocals(L10n.of(context)), hideReply: true);
       if (clearSelection) selectedEvents.clear();
     });
     inputFocus.requestFocus();
@@ -1672,11 +1668,7 @@ class ChatController extends State<ChatPageWithRoom>
   Future<void> _cancelEditWithConfirmation() async {
     final originalText = editEvent!
         .getDisplayEvent(timeline!)
-        .calcLocalizedBodyFallback(
-          MatrixLocals(L10n.of(context)),
-          withSenderNamePrefix: false,
-          hideReply: true,
-        );
+        .calcLocalizedBody(MatrixLocals(L10n.of(context)), hideReply: true);
 
     if (sendController.text != originalText) {
       final result = await showOkCancelAlertDialog(

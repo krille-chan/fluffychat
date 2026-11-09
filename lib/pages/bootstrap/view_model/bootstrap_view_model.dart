@@ -236,7 +236,7 @@ class BootstrapViewModel extends ValueNotifier<BootstrapViewModelState> {
       final senderKey = lastEvent.content.tryGet<String>('sender_key');
       if (sessionId != null && senderKey != null) {
         client.encryption?.keyManager.maybeAutoRequest(
-          room.id,
+          room,
           sessionId,
           senderKey,
         );

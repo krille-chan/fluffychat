@@ -8,7 +8,9 @@
 set -e
 version=$(yq ".packages.vodozemac.version" pubspec.lock)
 rm -rf ./test/rust dart-vodozemac
-git clone https://github.com/famedly/dart-vodozemac.git -b "$version"
+# Tags are named "v<version>" since 0.9.1, plain "<version>" before.
+git clone https://github.com/famedly/dart-vodozemac.git -b "v$version" ||
+  git clone https://github.com/famedly/dart-vodozemac.git -b "$version"
 mv ./dart-vodozemac/rust ./test/
 rm -rf dart-vodozemac
 cd ./test/rust && cargo build && cd ../..
