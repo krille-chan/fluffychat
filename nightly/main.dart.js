@@ -115412,7 +115412,7 @@ s=!$.dll?3:4
 break
 case 3:m=A.e0s()
 s=5
-return A.f(A.cTH(m,"vodozemac_bindings_dart","./assets/assets/vodozemac/0.8.1/"),$async$$0)
+return A.f(A.cTH(m,"vodozemac_bindings_dart","./assets/assets/vodozemac/0.9.0/"),$async$$0)
 case 5:$.dll=!0
 case 4:s=6
 return A.f(A.Ka(o),$async$$0)
@@ -188850,7 +188850,7 @@ q.bPj(!0)
 d=new A.a3y()
 p=new A.a83(b.b)
 o=p.gbWR().frb_get_rust_content_hash()
-if(949409271!==o)A.S(A.af("Content hash on Dart side (949409271) is different from Rust side ("+A.x(o)+"), indicating out-of-sync code. This may happen when, for example, the Dart code is hot-restarted/hot-reloaded without recompiling Rust code. (Note: This is just a sanity check. Even if content hash does not change, the code may still change and needs to be recompiled)"))
+if(2021285812!==o)A.S(A.af("Content hash on Dart side (2021285812) is different from Rust side ("+A.x(o)+"), indicating out-of-sync code. This may happen when, for example, the Dart code is hot-restarted/hot-reloaded without recompiling Rust code. (Note: This is just a sanity check. Even if content hash does not change, the code may still change and needs to be recompiled)"))
 n=new A.acx(new A.bx0(p,d))
 o=A.w(q)
 a=o.i("JW.A").a(q.bYv(p,d,n,q.cl7(b)))
@@ -272558,7 +272558,7 @@ s.toString
 return v.G.wasm_bindgen.wire__crate__bindings__vodozemac_inbound_group_session_pickle_encrypted(r,s)},
 $S:7}
 A.caG.prototype={
-$0(){return v.G.wasm_bindgen.wire__crate__bindings__vodozemac_megolm_session_config_def()},
+$0(){return v.G.wasm_bindgen.wire__crate__bindings__vodozemac_megolm_session_config_version_1()},
 $S:7}
 A.caH.prototype={
 $0(){var s=v.G,r=s.BigInt(this.b.k(0))
@@ -272575,7 +272575,7 @@ s.toString
 return v.G.wasm_bindgen.wire__crate__bindings__vodozemac_olm_message_message_type(s)},
 $S:7}
 A.caK.prototype={
-$0(){return v.G.wasm_bindgen.wire__crate__bindings__vodozemac_olm_session_config_def()},
+$0(){return v.G.wasm_bindgen.wire__crate__bindings__vodozemac_olm_session_config_version_1()},
 $S:7}
 A.caL.prototype={
 $0(){var s,r=A.as(A.b([this.b.a.t3()],t.t))
