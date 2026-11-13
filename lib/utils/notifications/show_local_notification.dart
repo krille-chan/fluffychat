@@ -1,0 +1,152 @@
+// SPDX-FileCopyrightText: 2019-Present Christian Kußowski
+// SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
+import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/client_download_content_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/notifications/notification_background_handler.dart';
+import 'package:fluffychat/utils/notifications/push_helper.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:fluffychat/widgets/incoming_call_dialog.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:material_ui/material_ui.dart';
+import 'package:matrix/matrix.dart';
+import 'package:universal_html/html.dart' as html;
+
+final html.AudioElement _audioPlayer = html.AudioElement()
+  ..src = 'assets/assets/sounds/notification.mp3'
+  ..load();
+
+Future<void> showLocalNotification(
+  Event event, {
+  required BuildContext context,
+  required String? activeRoomId,
+  required void Function(Client client) setActiveClient,
+}) async {
+  if (event.type == RtcNotificationContent.eventType &&
+      event.tryParseRtcNotificationContent()?.notificationType == .ring) {
+    final dialogContext =
+        FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
+        context;
+    showDialog<bool>(
+      context: dialogContext,
+      builder: (_) => IncomingCallDialog(event: event),
+    ).then((joinCall) {
+      if (joinCall != true) return;
+      if (!dialogContext.mounted) return;
+      setActiveClient(event.room.client);
+      FluffyChatApp.router.go('/rooms/${event.room.id}?action=call');
+    });
+  }
+
+  if (kIsWeb &&
+      WebFlutterLocalNotificationsPlugin().permissionStatus != .granted) {
+    return;
+  }
+
+  final l10n = L10n.of(context);
+  final client = event.room.client;
+  final roomId = event.room.id;
+  if (activeRoomId == roomId) {
+    if (WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
+      return;
+    }
+  }
+
+  final title = event.room.getLocalizedDisplayname(MatrixLocals(l10n));
+  final body = await event.calcLocalizedBody(
+    MatrixLocals(l10n),
+    withSenderNamePrefix:
+        !event.room.isDirectChat ||
+        event.room.lastEvent?.senderId == client.userID,
+    plaintextBody: true,
+    hideReply: true,
+    hideEdit: true,
+    removeMarkdown: true,
+  );
+  final avatarUrl = event.room.avatar;
+
+  const size = 128;
+  const thumbnailMethod = ThumbnailMethod.crop;
+
+  if (kIsWeb && avatarUrl != null) {
+    // Pre-cache so that we can later just set the thumbnail uri as icon:
+    try {
+      await client.downloadMxcCached(
+        avatarUrl,
+        width: size,
+        height: size,
+        thumbnailMethod: thumbnailMethod,
+        isThumbnail: true,
+        rounded: true,
+      );
+    } catch (e, s) {
+      Logs().d('Unable to pre-download avatar for web notification', e, s);
+    }
+  }
+
+  final id = PlatformInfos.isMacOS || PlatformInfos.isIOS || PlatformInfos.isWeb
+      ? '${client.clientName}_${roomId}_${event.eventId}'.hashCode
+      : '${client.clientName}_$roomId'.hashCode;
+
+  final unreadRooms = client.rooms.where((r) => r.isUnreadOrInvited).length;
+
+  if (kIsWeb && AppSettings.webNotificationSound.value) _audioPlayer.play();
+
+  await FlutterLocalNotificationsPlugin().show(
+    id: id,
+    title: title,
+    body: body,
+    notificationDetails: NotificationDetails(
+      linux: LinuxNotificationDetails(
+        sound: ThemeLinuxSound('message-new-instant'),
+        actions: switch (event.type) {
+          EventTypes.Message || EventTypes.Encrypted || EventTypes.Sticker => [
+            LinuxNotificationAction(
+              key: FluffyChatNotificationActions.markAsRead.name,
+              label: l10n.markAsRead,
+            ),
+            LinuxNotificationAction(
+              key: FluffyChatNotificationActions.mute.name,
+              label: l10n.mute,
+            ),
+          ],
+          RtcNotificationContent.eventType => [
+            LinuxNotificationAction(
+              key: FluffyChatNotificationActions.enterCall.name,
+              label: l10n.enterCall,
+            ),
+          ],
+          _ => [],
+        },
+      ),
+      windows: WindowsNotificationDetails(timestamp: event.originServerTs),
+      macOS: DarwinNotificationDetails(
+        badgeNumber: unreadRooms,
+        threadIdentifier: '${client.clientName}_$roomId',
+      ),
+      web: WebNotificationDetails(
+        renotify: true,
+        iconUrl: kIsWeb
+            ? await avatarUrl?.getThumbnailUri(
+                client,
+                width: size,
+                height: size,
+                method: thumbnailMethod,
+              )
+            : null,
+        timestamp: event.originServerTs,
+      ),
+    ),
+    payload: FluffyChatPushPayload(
+      client.clientName,
+      event.room.id,
+      event.eventId,
+    ).toString(),
+  );
+}

@@ -52,7 +52,7 @@ end
 
 def prepare_flutter()
     sh("flutter", "pub", "add", "fcm_shared_isolate")
-    sh("sed", "-i", "", "s,//<GOOGLE_SERVICES>,,g", "../../lib/utils/background_push.dart")
+    sh("sed", "-i", "", "s,//<GOOGLE_SERVICES>,,g", "../../lib/utils/notifications/background_push.dart")
     sh("flutter", "clean")
     sh("flutter", "pub", "get")
     sh("flutter", "build", "ios", "--config-only", "--no-codesign", "--release")

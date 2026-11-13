@@ -11,23 +11,22 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:ui';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 //<GOOGLE_SERVICES>import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/main.dart';
-import 'package:fluffychat/utils/notification_background_handler.dart';
-import 'package:fluffychat/utils/push_helper.dart';
+import 'package:fluffychat/utils/notifications/notification_background_handler.dart';
+import 'package:fluffychat/utils/notifications/push_helper.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
 import 'package:unifiedpush_ui/unifiedpush_ui.dart';
-
-import '../config/app_config.dart';
-import '../config/setting_keys.dart';
-import '../widgets/matrix.dart';
-import 'platform_infos.dart';
 
 class BackgroundPush {
   static BackgroundPush? _instance;
