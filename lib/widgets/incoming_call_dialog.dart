@@ -6,7 +6,7 @@
 import 'dart:async';
 
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
+import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_rtc_room_client_extensions.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/pulsating_widget.dart';
 import 'package:go_router/go_router.dart';

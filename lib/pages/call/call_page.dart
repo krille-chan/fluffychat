@@ -14,7 +14,7 @@ import 'package:fluffychat/pages/call/call_view_model.dart';
 import 'package:fluffychat/pages/call/start_time.dart';
 import 'package:fluffychat/pages/call/utils/get_call_tiles.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
+import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_rtc_room_client_extensions.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -443,8 +443,8 @@ class CallPage extends StatelessWidget {
                       onPressed: () => showFutureLoadingDialog(
                         context: context,
                         future: () => ownHandRaised
-                            ? room.lowerHandInMatrixRtcCall(viewModel.timeline!)
-                            : room.raiseHandInMatrixRtcCall(),
+                            ? viewModel.call!.lowerHand()
+                            : viewModel.call!.raiseHand(),
                       ),
                       icon: Icon(
                         ownHandRaised
