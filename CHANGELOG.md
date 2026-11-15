@@ -5,6 +5,17 @@ SPDX-FileCopyrightText: 2019-Present Contributors to FluffyChat
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
+## v2.11.6
+- build: (deps): bump cupertino_ui from 1.1.4 to 1.1.6 (dependabot[bot])
+- build: (deps): bump docker/login-action from 4.7.0 to 4.8.0 (dependabot[bot])
+- build: (deps): bump flutter_local_notifications from 22.3.3 to 23.0.0 (dependabot[bot])
+- build: (deps): bump flutter_vodozemac, vodozemac and matrix (dependabot[bot])
+- build: (deps): bump light_compressor_v2 from 1.10.0 to 1.11.0 (dependabot[bot])
+- build: (deps): bump matrix from 14.2.0 to 16.0.1 (dependabot[bot])
+- build: bump addressable in /ios in the bundler group across 1 directory (dependabot[bot])
+- build: update gradle plugin (Christian Kußowski)
+- fix: redact reactions (Christian Kußowski)
+
 ## v2.11.5
 
 - fix: release iOS from CI and set ubuntu CI version for Linux builds
