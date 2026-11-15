@@ -2852,5 +2852,16 @@
                 "type": "String"
             }
         }
+    },
+    "senderMessage": "{sender}: {message}",
+    "@senderMessage": {
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "message": {
+                "type": "String"
+            }
+        }
     }
 }

@@ -80,9 +80,8 @@ class ReplyContent extends StatelessWidget {
                 ),
                 Text(
                   displayEvent
-                      .calcLocalizedBodyFallback(
+                      .calcLocalizedBody(
                         MatrixLocals(L10n.of(context)),
-                        withSenderNamePrefix: false,
                         hideReply: true,
                         plaintextBody: true,
                       )

@@ -46,7 +46,7 @@ class UtdDialog extends StatelessWidget {
           thumbVisibility: true,
           child: SingleChildScrollView(
             child: SelectableText(
-              event.calcLocalizedBodyFallback(MatrixLocals(L10n.of(context))),
+              event.calcLocalizedBody(MatrixLocals(L10n.of(context))),
             ),
           ),
         ),

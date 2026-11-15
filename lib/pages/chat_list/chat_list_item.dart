@@ -318,55 +318,55 @@ class ChatListItem extends StatelessWidget {
                               '${lastEvent?.eventId}_${lastEvent?.type}_${lastEvent?.redacted}',
                             ),
                             future: needLastEventSender
-                                ? lastEvent.calcLocalizedBody(
-                                    MatrixLocals(L10n.of(context)),
-                                    hideReply: true,
-                                    hideEdit: true,
-                                    plaintextBody: true,
-                                    removeMarkdown: true,
-                                    withSenderNamePrefix:
-                                        (!isDirectChat ||
-                                        directChatMatrixId !=
-                                            room.lastEvent?.senderId),
-                                  )
+                                ? lastEvent.fetchSenderUser()
                                 : null,
-                            initialData: lastEvent?.calcLocalizedBodyFallback(
-                              MatrixLocals(L10n.of(context)),
-                              hideReply: true,
-                              hideEdit: true,
-                              plaintextBody: true,
-                              removeMarkdown: true,
-                              withSenderNamePrefix:
+                            builder: (context, snapshot) {
+                              var body = lastEvent?.calcLocalizedBody(
+                                MatrixLocals(L10n.of(context)),
+                                hideReply: true,
+                                hideEdit: true,
+                                plaintextBody: true,
+                                removeMarkdown: true,
+                              );
+                              if (lastEvent != null &&
+                                  body != null &&
                                   (!isDirectChat ||
-                                  directChatMatrixId !=
-                                      room.lastEvent?.senderId),
-                            ),
-                            builder: (context, snapshot) => Text(
-                              room.membership == Membership.invite
-                                  ? room
-                                            .getState(
-                                              EventTypes.RoomMember,
-                                              room.client.userID!,
-                                            )
-                                            ?.content
-                                            .tryGet<String>('reason') ??
-                                        (isDirectChat
-                                            ? L10n.of(context).newChatRequest
-                                            : L10n.of(context).inviteGroupChat)
-                                  : snapshot.data?.trim().replaceAll(
-                                          '\n',
-                                          ' ',
-                                        ) ??
-                                        L10n.of(context).noMessagesYet,
-                              softWrap: false,
-                              maxLines: room.notificationCount >= 1 ? 2 : 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                decoration: room.lastEvent?.redacted == true
-                                    ? TextDecoration.lineThrough
-                                    : null,
-                              ),
-                            ),
+                                      directChatMatrixId !=
+                                          room.lastEvent?.senderId)) {
+                                body = L10n.of(context).senderMessage(
+                                  lastEvent.senderId == room.client.userID
+                                      ? L10n.of(context).you
+                                      : snapshot.data?.calcDisplayname() ??
+                                            lastEvent.senderFromMemoryOrFallback
+                                                .calcDisplayname(),
+                                  body,
+                                );
+                              }
+                              return Text(
+                                room.membership == Membership.invite
+                                    ? room
+                                              .getState(
+                                                EventTypes.RoomMember,
+                                                room.client.userID!,
+                                              )
+                                              ?.content
+                                              .tryGet<String>('reason') ??
+                                          (isDirectChat
+                                              ? L10n.of(context).newChatRequest
+                                              : L10n.of(
+                                                  context,
+                                                ).inviteGroupChat)
+                                    : body ?? L10n.of(context).noMessagesYet,
+                                softWrap: false,
+                                maxLines: room.notificationCount >= 1 ? 2 : 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  decoration: room.lastEvent?.redacted == true
+                                      ? TextDecoration.lineThrough
+                                      : null,
+                                ),
+                              );
+                            },
                           ),
                   ),
                   const SizedBox(width: 8),

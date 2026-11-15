@@ -10,7 +10,9 @@ SED=$(command -v gsed || command -v sed)
 # Compile Vodozemac for web
 version=$(yq ".dependencies.flutter_vodozemac" < pubspec.yaml)
 version=$(printf "%s" "$version" | tr -d '"^')
-git clone https://github.com/famedly/dart-vodozemac.git -b ${version} .vodozemac
+# Tags are named "v<version>" since 0.9.1, plain "<version>" before.
+git clone https://github.com/famedly/dart-vodozemac.git -b "v${version}" .vodozemac ||
+  git clone https://github.com/famedly/dart-vodozemac.git -b "${version}" .vodozemac
 cd .vodozemac
 cargo install flutter_rust_bridge_codegen
 flutter_rust_bridge_codegen build-web --dart-root dart --rust-root $(readlink -f rust) --release

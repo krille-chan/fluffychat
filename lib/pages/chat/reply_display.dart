@@ -78,9 +78,8 @@ class _EditContent extends StatelessWidget {
         Container(width: 15.0),
         Text(
           event
-              .calcLocalizedBodyFallback(
+              .calcLocalizedBody(
                 MatrixLocals(L10n.of(context)),
-                withSenderNamePrefix: false,
                 hideReply: true,
               )
               .trim()

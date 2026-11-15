@@ -54,7 +54,7 @@ class StateMessage extends StatelessWidget {
                             if (event.type != EventTypes.Encrypted ||
                                 event.redacted)
                               TextSpan(
-                                text: event.calcLocalizedBodyFallback(
+                                text: event.calcLocalizedBody(
                                   MatrixLocals(L10n.of(context)),
                                 ),
                               )
