@@ -5,7 +5,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-flutter pub add fcm_shared_isolate
+flutter pub add fcm_shared_isolate:4.0.0
 flutter pub get
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
