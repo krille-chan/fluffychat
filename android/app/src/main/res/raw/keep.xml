@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Referenced only by name from Dart (AndroidInitializationSettings), so the resource shrinker can't see it. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/notifications_icon" />
