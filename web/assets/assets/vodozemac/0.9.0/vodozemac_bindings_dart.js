@@ -702,14 +702,6 @@ let wasm_bindgen;
     /**
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_megolm_session_config_version_1 = function() {
-        const ret = wasm.wire__crate__bindings__vodozemac_megolm_session_config_version_1();
-        return ret;
-    };
-
-    /**
-     * @returns {any}
-     */
     __exports.wire__crate__bindings__vodozemac_megolm_session_config_version_2 = function() {
         const ret = wasm.wire__crate__bindings__vodozemac_megolm_session_config_version_2();
         return ret;
@@ -746,14 +738,6 @@ let wasm_bindgen;
     };
 
     /**
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_olm_session_config_def = function() {
-        const ret = wasm.wire__crate__bindings__vodozemac_olm_session_config_def();
-        return ret;
-    };
-
-    /**
      * @param {any} that
      * @returns {any}
      */
@@ -775,6 +759,27 @@ let wasm_bindgen;
      */
     __exports.wire__crate__bindings__vodozemac_olm_session_config_version_2 = function() {
         const ret = wasm.wire__crate__bindings__vodozemac_olm_session_config_version_2();
+        return ret;
+    };
+
+    /**
+     * @param {any} that
+     * @param {any} message
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_pk_decryption_decrypt = function(that, message) {
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_decrypt(that, message);
+        return ret;
+    };
+
+    /**
+     * @param {Uint8Array} secret_key
+     * @returns {any}
+     */
+    __exports.wire__crate__bindings__vodozemac_pk_decryption_from_key = function(secret_key) {
+        const ptr0 = passArray8ToWasm0(secret_key, wasm.__wbindgen_malloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_from_key(ptr0, len0);
         return ret;
     };
 
@@ -863,14 +868,6 @@ let wasm_bindgen;
     };
 
     /**
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_megolm_session_config_def = function() {
-        const ret = wasm.wire__crate__bindings__vodozemac_megolm_session_config_def();
-        return ret;
-    };
-
-    /**
      * @param {any} that
      * @returns {any}
      */
@@ -880,23 +877,10 @@ let wasm_bindgen;
     };
 
     /**
-     * @param {any} that
-     * @param {any} message
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_pk_decryption_decrypt = function(that, message) {
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_decrypt(that, message);
-        return ret;
-    };
-
-    /**
-     * @param {Uint8Array} secret_key
-     * @returns {any}
-     */
-    __exports.wire__crate__bindings__vodozemac_pk_decryption_from_key = function(secret_key) {
-        const ptr0 = passArray8ToWasm0(secret_key, wasm.__wbindgen_malloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_from_key(ptr0, len0);
+    __exports.wire__crate__bindings__vodozemac_megolm_session_config_version_1 = function() {
+        const ret = wasm.wire__crate__bindings__vodozemac_megolm_session_config_version_1();
         return ret;
     };
 
@@ -915,24 +899,19 @@ let wasm_bindgen;
     };
 
     /**
-     * @param {any} that
-     * @param {any} message
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_session_decrypt = function(that, message) {
-        const ret = wasm.wire__crate__bindings__vodozemac_session_decrypt(that, message);
+    __exports.wire__crate__bindings__vodozemac_pk_decryption_new = function() {
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_new();
         return ret;
     };
 
     /**
      * @param {any} that
-     * @param {string} plaintext
      * @returns {any}
      */
-    __exports.wire__crate__bindings__vodozemac_session_encrypt = function(that, plaintext) {
-        const ptr0 = passStringToWasm0(plaintext, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
-        const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.wire__crate__bindings__vodozemac_session_encrypt(that, ptr0, len0);
+    __exports.wire__crate__bindings__vodozemac_pk_decryption_private_key = function(that) {
+        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_private_key(that);
         return ret;
     };
 
@@ -1011,20 +990,17 @@ let wasm_bindgen;
     };
 
     /**
-     * @returns {any}
+     * @param {number} ptr
      */
-    __exports.wire__crate__bindings__vodozemac_pk_decryption_new = function() {
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_new();
-        return ret;
+    __exports.rust_arc_decrement_strong_count_RustOpaque_Curve25519PublicKey = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_Curve25519PublicKey(ptr);
     };
 
     /**
-     * @param {any} that
-     * @returns {any}
+     * @param {number} ptr
      */
-    __exports.wire__crate__bindings__vodozemac_pk_decryption_private_key = function(that) {
-        const ret = wasm.wire__crate__bindings__vodozemac_pk_decryption_private_key(that);
-        return ret;
+    __exports.rust_arc_increment_strong_count_RustOpaque_Ed25519PublicKey = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
     };
 
     /**
@@ -1111,17 +1087,25 @@ let wasm_bindgen;
     };
 
     /**
-     * @param {number} ptr
+     * @param {any} that
+     * @param {any} message
+     * @returns {any}
      */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_Curve25519PublicKey = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    __exports.wire__crate__bindings__vodozemac_session_decrypt = function(that, message) {
+        const ret = wasm.wire__crate__bindings__vodozemac_session_decrypt(that, message);
+        return ret;
     };
 
     /**
-     * @param {number} ptr
+     * @param {any} that
+     * @param {string} plaintext
+     * @returns {any}
      */
-    __exports.rust_arc_increment_strong_count_RustOpaque_Ed25519PublicKey = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    __exports.wire__crate__bindings__vodozemac_session_encrypt = function(that, plaintext) {
+        const ptr0 = passStringToWasm0(plaintext, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        const len0 = WASM_VECTOR_LEN;
+        const ret = wasm.wire__crate__bindings__vodozemac_session_encrypt(that, ptr0, len0);
+        return ret;
     };
 
     /**
@@ -1134,15 +1118,15 @@ let wasm_bindgen;
     /**
      * @param {number} ptr
      */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_OlmSessionConfig = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_OlmSessionConfig(ptr);
+    __exports.rust_arc_increment_strong_count_RustOpaque_Ed25519Signature = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
     };
 
     /**
      * @param {number} ptr
      */
-    __exports.rust_arc_increment_strong_count_RustOpaque_PkDecryption = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    __exports.rust_arc_decrement_strong_count_RustOpaque_Ed25519Signature = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_Ed25519Signature(ptr);
     };
 
     /**
@@ -1190,15 +1174,15 @@ let wasm_bindgen;
     /**
      * @param {number} ptr
      */
-    __exports.rust_arc_increment_strong_count_RustOpaque_Ed25519Signature = function(ptr) {
-        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    __exports.rust_arc_decrement_strong_count_RustOpaque_RwLockInboundGroupSession = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_RwLockInboundGroupSession(ptr);
     };
 
     /**
      * @param {number} ptr
      */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_Ed25519Signature = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_Ed25519Signature(ptr);
+    __exports.rust_arc_increment_strong_count_RustOpaque_RwLockSession = function(ptr) {
+        wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
     };
 
     /**
@@ -1253,14 +1237,14 @@ let wasm_bindgen;
     /**
      * @param {number} ptr
      */
-    __exports.rust_arc_decrement_strong_count_RustOpaque_RwLockInboundGroupSession = function(ptr) {
-        wasm.rust_arc_decrement_strong_count_RustOpaque_RwLockInboundGroupSession(ptr);
+    __exports.rust_arc_decrement_strong_count_RustOpaque_OlmSessionConfig = function(ptr) {
+        wasm.rust_arc_decrement_strong_count_RustOpaque_OlmSessionConfig(ptr);
     };
 
     /**
      * @param {number} ptr
      */
-    __exports.rust_arc_increment_strong_count_RustOpaque_RwLockSession = function(ptr) {
+    __exports.rust_arc_increment_strong_count_RustOpaque_PkDecryption = function(ptr) {
         wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
     };
 
@@ -1279,18 +1263,6 @@ let wasm_bindgen;
     };
 
     /**
-     * @param {number} func_id
-     * @param {any} ptr_
-     * @param {number} rust_vec_len_
-     * @param {number} data_len_
-     * @returns {any}
-     */
-    __exports.frb_pde_ffi_dispatcher_sync = function(func_id, ptr_, rust_vec_len_, data_len_) {
-        const ret = wasm.frb_pde_ffi_dispatcher_sync(func_id, ptr_, rust_vec_len_, data_len_);
-        return ret;
-    };
-
-    /**
      * @param {number} ptr
      */
     __exports.rust_arc_decrement_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerPkSigning = function(ptr) {
@@ -1302,6 +1274,18 @@ let wasm_bindgen;
      */
     __exports.rust_arc_increment_strong_count_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerVodozemacSas = function(ptr) {
         wasm.rust_arc_increment_strong_count_RustOpaque_Curve25519PublicKey(ptr);
+    };
+
+    /**
+     * @param {number} func_id
+     * @param {any} ptr_
+     * @param {number} rust_vec_len_
+     * @param {number} data_len_
+     * @returns {any}
+     */
+    __exports.frb_pde_ffi_dispatcher_sync = function(func_id, ptr_, rust_vec_len_, data_len_) {
+        const ret = wasm.frb_pde_ffi_dispatcher_sync(func_id, ptr_, rust_vec_len_, data_len_);
+        return ret;
     };
 
     /**
@@ -1595,7 +1579,7 @@ let wasm_bindgen;
     }
 
     function __wbg_adapter_43(arg0, arg1) {
-        wasm._dyn_core_cece8ded3c98a29b___ops__function__FnMut_____Output______as_wasm_bindgen_5b35b53c855c5eae___closure__WasmClosure___describe__invoke______(arg0, arg1);
+        wasm._dyn_core_d181e79edf48089___ops__function__FnMut_____Output______as_wasm_bindgen_ee55cd4395de0055___closure__WasmClosure___describe__invoke______(arg0, arg1);
     }
 
     const WorkerPoolFinalization = (typeof FinalizationRegistry === 'undefined')
@@ -1974,11 +1958,11 @@ let wasm_bindgen;
             const ret = false;
             return ret;
         };
-        imports.wbg.__wbindgen_closure_wrapper1832 = function(arg0, arg1, arg2) {
+        imports.wbg.__wbindgen_closure_wrapper1829 = function(arg0, arg1, arg2) {
             const ret = makeMutClosure(arg0, arg1, 625, __wbg_adapter_40);
             return ret;
         };
-        imports.wbg.__wbindgen_closure_wrapper1836 = function(arg0, arg1, arg2) {
+        imports.wbg.__wbindgen_closure_wrapper1833 = function(arg0, arg1, arg2) {
             const ret = makeMutClosure(arg0, arg1, 625, __wbg_adapter_43);
             return ret;
         };
