@@ -4,16 +4,13 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 import 'dart:async';
-import 'dart:convert';
-import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/call_kit_params.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
-import 'package:fluffychat/utils/matrix_live_kit_calls/call_keys_event_content.dart';
-import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call.dart';
-import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_live_kit_call_member.dart';
+import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_rtc_call.dart';
+import 'package:fluffychat/utils/matrix_live_kit_calls/matrix_rtc_room_client_extensions.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/position_from_build_context.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -38,17 +35,11 @@ class CallViewModelState {
 
 class CallViewModel extends ValueNotifier<CallViewModelState> {
   final Room room;
-  Timeline? timeline;
+  MatrixRtcCall? call;
   final AudioPlayer _audioPlayer = AudioPlayer();
   DateTime? startTime;
-  StreamSubscription? _onCallEncryptionKeysSub, _onCallMembersChanged;
-  Timer? _resendCallMemberState;
   bool waitForOtherSide = false;
   String? callKitId;
-
-  Set<String> _lastSharedParticipants = {};
-  DateTime? _keyCreatedAt;
-  Uint8List? _lastKey;
 
   lk.BaseKeyProvider? _keyProvider;
 
@@ -66,117 +57,7 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     notifyListeners();
   }
 
-  Future<void> _onCallEncryptionKeys(CallKeysEvent event) async {
-    final callKeys = event.callKeysContent;
-    final keyProvider = _keyProvider;
-    if (keyProvider == null) {
-      ErrorReporter(
-        null,
-        'Received a new key but the keyProvider is not ready yet!',
-      ).onErrorCallback(Exception(), StackTrace.current);
-      return;
-    }
-    final knownCallId = room.ownMatrixRtcMembership?.callId;
-    if (callKeys.roomId != room.id ||
-        (knownCallId != null && callKeys.session.callId != knownCallId)) {
-      Logs().d('Received call key for wrong group call.');
-      return;
-    }
-
-    await keyProvider.setRawKey(
-      base64Decode(callKeys.keys.key),
-      participantId: '${event.sender}:${callKeys.member.claimedDeviceId}',
-      keyIndex: callKeys.keys.index,
-    );
-  }
-
-  Future<void> _createKeyAndShare() async {
-    final liveKitRoom = value.room;
-    if (liveKitRoom == null) return;
-
-    final ownMemberId = '${room.client.userID}:${room.client.deviceID}';
-
-    final currentParticipants =
-        room
-            .getActiveMatrixRtcMembers()
-            .map((member) => member.membershipId)
-            .whereType<String>()
-            .toSet()
-          ..remove(ownMemberId);
-
-    if (setEquals(currentParticipants, _lastSharedParticipants) &&
-        currentParticipants.isNotEmpty) {
-      Logs().d(
-        'Participant list has not changed. No need to share keys again!',
-      );
-      return;
-    }
-
-    var index = liveKitRoom.roomOptions.encryption!.keyProvider.getLatestIndex(
-      ownMemberId,
-    );
-
-    final keyCreatedAt = _keyCreatedAt;
-    final canJustForwardToNewUsers =
-        keyCreatedAt != null &&
-        DateTime.now().difference(keyCreatedAt).inSeconds < 15 &&
-        _lastSharedParticipants.difference(currentParticipants).isEmpty;
-
-    late final Uint8List key;
-    if (_lastKey == null || !canJustForwardToNewUsers) {
-      // Key generation
-      final rng = Random.secure();
-      key = Uint8List(16);
-      key.setAll(0, Iterable.generate(key.length, (i) => rng.nextInt(256)));
-      if (_lastKey != null) index = (index + 1) % 256;
-
-      await liveKitRoom.roomOptions.encryption!.keyProvider.setRawKey(
-        key,
-        keyIndex: index,
-        participantId: ownMemberId,
-      );
-      _keyCreatedAt = DateTime.now();
-      _lastKey = key;
-      if (_lastKey != null) {
-        await liveKitRoom.e2eeManager?.setKeyIndex(
-          index,
-          participantIdentity: ownMemberId,
-        );
-      }
-    } else {
-      key = _lastKey!;
-    }
-
-    final forwardParticipants = canJustForwardToNewUsers
-        ? currentParticipants.difference(_lastSharedParticipants)
-        : currentParticipants;
-    final deviceKeys = <DeviceKeys>[];
-    for (final membershipId in forwardParticipants) {
-      final membershipParts = membershipId.split(':');
-      final deviceId = membershipParts.removeLast();
-      final userId = membershipParts.join(':');
-      final keys = room.client.userDeviceKeys[userId]?.deviceKeys[deviceId];
-      if (keys == null) {
-        Logs().w('No device keys found for $membershipId');
-        continue;
-      }
-      deviceKeys.add(keys);
-    }
-
-    _lastSharedParticipants = currentParticipants;
-    await room.shareMatrixRtcCallKey(
-      key: key,
-      index: index,
-      memberId: ownMemberId,
-      deviceKeys: deviceKeys,
-    );
-  }
-
   Future<void> _init() async {
-    _onCallEncryptionKeysSub = room.client.onCallEncryptionKeys.listen(
-      _onCallEncryptionKeys,
-    );
-
     await WakelockPlus.enable();
     await lk.LiveKitClient.initialize();
 
@@ -283,44 +164,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
     notifyListeners();
   }
 
-  bool participantRaisedHand(String matrixId) {
-    final timeline = this.timeline;
-    if (timeline == null) return false;
-    return room.participantRaisedHandInMatrixRtcCall(matrixId, timeline);
-  }
-
-  Future<void> _onNewTimelineEvent(int i) async {
-    final event = timeline?.events[i];
-    if (event == null) return;
-    switch (event.type) {
-      case 'io.element.call.reaction':
-        Logs().d(
-          'Call reactions are not yet handled',
-          event.content.tryGet<String>('emoji'),
-        );
-        // TODO: handle reaction
-        break;
-      case EventTypes.Reaction:
-        final reactedEvent = await timeline!.getEventById(
-          event.relationshipEventId!,
-        );
-        if (reactedEvent != null &&
-            reactedEvent.type == MatrixRtcCallMember.eventType &&
-            event.senderId == reactedEvent.senderId &&
-            event.content
-                    .tryGetMap<String, Object?>('m.relates_to')
-                    ?.tryGet<String>('key') ==
-                '🖐️') {
-          Logs().d('User raised hand!');
-          _playRaiseHandSound();
-          notifyListeners();
-        }
-        break;
-      case EventTypes.Redaction:
-        notifyListeners();
-        break;
-    }
-  }
+  bool participantRaisedHand(String matrixId) =>
+      call?.userHasHandRaised(matrixId) ?? false;
 
   Future<void> connect() async {
     try {
@@ -338,20 +183,22 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
         );
       }
 
-      timeline = await room.getTimeline(onInsert: _onNewTimelineEvent);
-      final credentials = await room.joinMatrixRtcCall(intent: intent);
-      _onCallMembersChanged = room.client.onSync.stream
-          .where(
-            (syncUpdate) => [
-              ...?syncUpdate.rooms?.join?[room.id]?.timeline?.events,
-              ...?syncUpdate.rooms?.join?[room.id]?.state,
-            ].any((event) => event.type == MatrixRtcCallMember.eventType),
-          )
-          .listen((_) {
-            notifyListeners();
-            _createKeyAndShare();
-          });
-      await _createKeyAndShare();
+      final call = this.call = await room.joinMatrixRtcCall(intent: intent);
+      call.onNewKey.listen((newKey) async {
+        await _keyProvider!.setRawKey(
+          newKey.key,
+          keyIndex: newKey.index,
+          participantId: newKey.participantId,
+        );
+        if (newKey.participantId == call.ownMembershipId) {
+          await value.room?.e2eeManager?.setKeyIndex(
+            newKey.index,
+            participantIdentity: newKey.participantId,
+          );
+        }
+      });
+      call.onChanged.listen((_) => notifyListeners());
+      call.onHandRaised.listen((_) => _playRaiseHandSound());
 
       final startWithVideo =
           !(value.localVideoTrack?.muted ?? intent == .voice);
@@ -360,8 +207,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
       await value.localVideoTrack?.dispose();
       value.localVideoTrack = null;
       await value.room!.connect(
-        credentials.url,
-        credentials.jwt,
+        call.credentials.url,
+        call.credentials.jwt,
         fastConnectOptions: lk.FastConnectOptions(
           microphone: lk.TrackOption(
             track: startWithAudio ? await lk.LocalAudioTrack.create() : null,
@@ -374,18 +221,6 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
         ),
       );
 
-      _resendCallMemberState?.cancel();
-      _resendCallMemberState = Timer.periodic(const Duration(hours: 1), (_) {
-        final ownMembership = room.ownMatrixRtcMembership;
-        if (ownMembership == null) {
-          _resendCallMemberState?.cancel();
-          return;
-        }
-        room.setMatrixRtcMembershipState(
-          ownMembership.fociPreferred,
-          intent: intent,
-        );
-      });
       startTime = DateTime.now();
 
       if (PlatformInfos.isMobile) {
@@ -441,9 +276,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
           }
           await liveKitRoom.dispose();
           value.room = null;
-          if (room.ownMatrixRtcMembership != null) {
-            await room.leaveMatrixRtcCall();
-          }
+          await call?.leave();
+          call = null;
         },
       );
     }
@@ -454,10 +288,6 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
 
   @override
   void dispose() {
-    _onCallEncryptionKeysSub?.cancel();
-    _onCallMembersChanged?.cancel();
-    _resendCallMemberState?.cancel();
-    timeline?.cancelSubscriptions();
     value.localVideoTrack?.dispose();
     final callKitId = this.callKitId;
     if (callKitId != null) {
@@ -470,8 +300,8 @@ class CallViewModel extends ValueNotifier<CallViewModelState> {
         liveKitRoom.disconnect();
       }
       liveKitRoom.dispose();
-      room.leaveMatrixRtcCall();
     }
+    call?.leave();
     _audioPlayer.dispose();
     WakelockPlus.disable();
     super.dispose();
