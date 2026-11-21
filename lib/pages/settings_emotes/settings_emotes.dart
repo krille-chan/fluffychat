@@ -19,6 +19,7 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' hide Client;
 import 'package:material_ui/material_ui.dart';
 import 'package:matrix/matrix.dart';
+import 'package:mime/mime.dart';
 
 import '../../widgets/matrix.dart';
 import 'import_archive_dialog.dart';
@@ -396,7 +397,11 @@ class EmotesSettingsController extends State<EmotesSettings> {
         final archive = Archive();
         for (final entry in pack.images.entries) {
           final emote = entry.value;
-          final name = entry.key;
+          final mimeType = emote.info?.tryGet<String>('mimetype');
+          final fileType = mimeType == null
+              ? null
+              : extensionFromMime(mimeType);
+          final name = '${entry.key}.${fileType ?? 'png'}';
           final url = await emote.url.getDownloadUri(client);
           final response = await get(
             url,
