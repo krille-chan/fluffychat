@@ -29,21 +29,6 @@ class NotificationService: UNNotificationServiceExtension {
         // os_log("[FluffyChatPushHelper] New message received: %{public}@", log: .default, type: .error, bestAttemptContent.userInfo)
         os_log("[FluffyChatPushHelper] New message received")
 
-        // Check if notification contains room ID and event ID:
-        guard let roomId = bestAttemptContent.userInfo["room_id"] as? String,
-            let eventId = bestAttemptContent.userInfo["event_id"] as? String
-        else {
-            os_log("[FluffyChatPushHelper] Room ID or Event ID is missing!")
-            let emptyContent = UNMutableNotificationContent()
-            contentHandler(emptyContent)
-            return
-        }
-
-        // Set thread identifier and fallback body:
-        bestAttemptContent.body = String(
-            localized: "New message - open app to read",
-            comment: "Default notification body"
-        )
 
         var unread: Int?
         if let countsJson = bestAttemptContent.userInfo["counts"] as? String,
@@ -54,15 +39,32 @@ class NotificationService: UNNotificationServiceExtension {
         {
             unread = counts.unread
         }
+        if let unread = unread {
+            bestAttemptContent.badge = NSNumber(integerLiteral: unread)
+        }
+
+        // Check if notification contains room ID and event ID:
+        guard let roomId = bestAttemptContent.userInfo["room_id"] as? String,
+            let eventId = bestAttemptContent.userInfo["event_id"] as? String
+        else {
+            os_log("[FluffyChatPushHelper] Room ID or Event ID is missing!")
+            let emptyContent = UNMutableNotificationContent()
+            emptyContent.badge = bestAttemptContent.badge
+            contentHandler(emptyContent)
+            return
+        }
+
+        // Set thread identifier and fallback body:
+        bestAttemptContent.body = String(
+            localized: "New message - open app to read",
+            comment: "Default notification body"
+        )
 
         // Set badge and fallback title:
         bestAttemptContent.title = String(
             localized: "\(unread ?? 1) unread messages",
             comment: "Default notification title"
         )
-        if let unread = unread {
-            bestAttemptContent.badge = NSNumber(integerLiteral: unread)
-        }
 
         // Fetch the client_name:
         guard
