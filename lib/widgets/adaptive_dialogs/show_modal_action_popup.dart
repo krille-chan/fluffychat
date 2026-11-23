@@ -105,7 +105,7 @@ Future<T?> showModalActionPopup<T>({
 class AdaptiveModalAction<T> {
   final String label;
   final T value;
-  Icon? icon;
+  Widget? icon;
   final bool isDefaultAction;
   final bool isDestructive;
 
