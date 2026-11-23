@@ -84,6 +84,13 @@ class ImageBubble extends StatelessWidget {
             child: Stack(
               alignment: Alignment.center,
               children: [
+                if (fileDescription != null)
+                  _ImageBubblePlaceholder(
+                    event: event,
+                    width: width,
+                    height: height,
+                    fit: BoxFit.cover,
+                  ),
                 Hero(
                   tag: event.eventId,
                   child: AppSettings.showThumbnailsInTimeline.value
