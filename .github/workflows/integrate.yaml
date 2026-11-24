@@ -105,8 +105,6 @@ jobs:
         with:
           flutter-version-file: .fvmrc
           cache: true
-      - uses: dtolnay/rust-toolchain@stable
-      - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
@@ -148,7 +146,6 @@ jobs:
           cache: true
       - name: Use specific XCode version
         run: sudo xcode-select --switch /Applications/Xcode_26.3.app
-      - uses: dtolnay/rust-toolchain@stable
       - run: ./scripts/add-firebase-messaging.sh
       - run: flutter pub get
       - run: flutter build ios --no-codesign
@@ -164,7 +161,6 @@ jobs:
           cache: true
       - name: Use specific XCode version
         run: sudo xcode-select --switch /Applications/Xcode_26.3.app
-      - uses: dtolnay/rust-toolchain@stable
       - name: Use ad-hoc code signing
         run: |
           sed -i '' \

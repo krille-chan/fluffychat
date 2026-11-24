@@ -5,12 +5,15 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
+# Downloads the prebuilt native vodozemac library for running tests on this host.
 set -e
-version=$(yq ".packages.vodozemac.version" pubspec.lock)
-rm -rf ./test/rust dart-vodozemac
-# Tags are named "v<version>" since 0.9.1, plain "<version>" before.
-git clone https://github.com/famedly/dart-vodozemac.git -b "v$version" ||
-  git clone https://github.com/famedly/dart-vodozemac.git -b "$version"
-mv ./dart-vodozemac/rust ./test/
-rm -rf dart-vodozemac
-cd ./test/rust && cargo build && cd ../..
+version=$(yq ".packages.vodozemac.version" < pubspec.lock | tr -d '"')
+case "$(uname -s)-$(uname -m)" in
+  Linux-x86_64) asset=linux-x64.so ext=so ;;
+  Linux-aarch64 | Linux-arm64) asset=linux-arm64.so ext=so ;;
+  Darwin-*) asset=macos.dylib ext=dylib ;;
+  *) echo "No prebuilt vodozemac for $(uname -s)-$(uname -m)" >&2 && exit 1 ;;
+esac
+mkdir -p test/vodozemac
+curl -fsSL "https://github.com/famedly/dart-vodozemac/releases/download/v${version}/libvodozemac_bindings_dart-${asset}" \
+  -o "test/vodozemac/libvodozemac_bindings_dart.${ext}"

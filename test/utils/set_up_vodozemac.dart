@@ -10,8 +10,8 @@ import 'package:vodozemac/vodozemac.dart' as vod;
 
 Future<void> setUpVodozemac() async {
   if (vod.isInitialized()) return;
-  if (!await Directory('./test/rust').exists()) {
+  if (!await Directory('./test/vodozemac').exists()) {
     await Process.run('./scripts/prepare_vodozemac.sh', []);
   }
-  await vod.init(wasmPath: './pkg/', libraryPath: 'test/rust/target/debug/');
+  await vod.init(wasmPath: './pkg/', libraryPath: 'test/vodozemac/');
 }
