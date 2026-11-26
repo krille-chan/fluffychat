@@ -142,3 +142,7 @@ flutter_launcher_icons:
 # 2. Always link an (upstream?) issue
 # 3. Explain how and when this can be removed (overrides must be temporarily)
 dependency_overrides:
+  # flutter_launcher_icons 0.14.4 pins cli_util ^0.4.1 but pana (via license_checker) needs ^0.5.0 on Flutter 3.50.
+  # https://github.com/fluttercommunity/flutter_launcher_icons/issues/675 (fix: PR #671)
+  # Remove once flutter_launcher_icons releases a version allowing cli_util ^0.5.0.
+  cli_util: ^0.5.0
