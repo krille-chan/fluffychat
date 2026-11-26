@@ -248,8 +248,8 @@ file:///home/runner/work/fluffychat/fluffychat/client-sdk-flutter/web/e2ee.nalu_
 file:///home/runner/work/fluffychat/fluffychat/client-sdk-flutter/web/e2ee.sfi_guard.dart
 file:///home/runner/work/fluffychat/fluffychat/client-sdk-flutter/web/e2ee.utils.dart
 file:///home/runner/work/fluffychat/fluffychat/client-sdk-flutter/web/e2ee.worker.dart
-file:///opt/hostedtoolcache/flutter/stable-3.47.9-x64/flutter/bin/cache/dart-sdk/lib/_internal/dart2js_platform.dill
-file:///opt/hostedtoolcache/flutter/stable-3.47.9-x64/flutter/bin/cache/dart-sdk/lib/libraries.json
+file:///opt/hostedtoolcache/flutter/stable-3.50.1-x64/flutter/bin/cache/dart-sdk/lib/_internal/dart2js_platform.dill
+file:///opt/hostedtoolcache/flutter/stable-3.50.1-x64/flutter/bin/cache/dart-sdk/lib/libraries.json
 org-dartlang-sdk:///lib/_http/crypto.dart
 org-dartlang-sdk:///lib/_http/embedder_config.dart
 org-dartlang-sdk:///lib/_http/http.dart
@@ -262,6 +262,7 @@ org-dartlang-sdk:///lib/_http/http_testing.dart
 org-dartlang-sdk:///lib/_http/overrides.dart
 org-dartlang-sdk:///lib/_http/websocket.dart
 org-dartlang-sdk:///lib/_http/websocket_impl.dart
+org-dartlang-sdk:///lib/_http/websocket_profiler.dart
 org-dartlang-sdk:///lib/_internal/js_runtime/lib/annotations.dart
 org-dartlang-sdk:///lib/_internal/js_runtime/lib/async_patch.dart
 org-dartlang-sdk:///lib/_internal/js_runtime/lib/bigint_patch.dart
@@ -418,7 +419,9 @@ org-dartlang-sdk:///lib/internal/internal.dart
 org-dartlang-sdk:///lib/internal/iterable.dart
 org-dartlang-sdk:///lib/internal/linked_list.dart
 org-dartlang-sdk:///lib/internal/list.dart
+org-dartlang-sdk:///lib/internal/lowering.dart
 org-dartlang-sdk:///lib/internal/patch.dart
+org-dartlang-sdk:///lib/internal/print.dart
 org-dartlang-sdk:///lib/internal/sort.dart
 org-dartlang-sdk:///lib/internal/symbol.dart
 org-dartlang-sdk:///lib/io/common.dart
