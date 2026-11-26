@@ -7,20 +7,13 @@
 
 SED=$(command -v gsed || command -v sed)
 
-# Compile Vodozemac for web
-version=$(yq ".dependencies.flutter_vodozemac" < pubspec.yaml)
-version=$(printf "%s" "$version" | tr -d '"^')
-# Tags are named "v<version>" since 0.9.1, plain "<version>" before.
-git clone https://github.com/famedly/dart-vodozemac.git -b "v${version}" .vodozemac ||
-  git clone https://github.com/famedly/dart-vodozemac.git -b "${version}" .vodozemac
-cd .vodozemac
-cargo install flutter_rust_bridge_codegen
-flutter_rust_bridge_codegen build-web --dart-root dart --rust-root $(readlink -f rust) --release
-cd ..
-rm -f ./assets/vodozemac/vodozemac_bindings_dart*
+# Download prebuilt Vodozemac for web (must match the resolved vodozemac bindings)
+version=$(yq ".packages.vodozemac.version" < pubspec.lock)
+version=$(printf "%s" "$version" | tr -d '"')
+curl -fsSLO "https://github.com/famedly/dart-vodozemac/releases/download/v${version}/vodozemac-web.zip"
 mkdir -p "./assets/vodozemac/$version/"
-mv .vodozemac/dart/web/pkg/vodozemac_bindings_dart* "./assets/vodozemac/$version/"
-rm -rf .vodozemac
+unzip -o -q vodozemac-web.zip 'vodozemac_bindings_dart*' -d "./assets/vodozemac/$version/"
+rm vodozemac-web.zip
 grep -qF "assets/vodozemac/${version}/" pubspec.yaml || "$SED" -i "\|- assets/sounds/|a\\    - assets/vodozemac/${version}/" pubspec.yaml
 "$SED" -i "s/vodozemacVersion = '.*';/vodozemacVersion = '${version}';/" lib/config/app_config.dart
 

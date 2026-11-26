@@ -18,8 +18,6 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version-file: .fvmrc
-      - uses: dtolnay/rust-toolchain@stable
-      - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - name: Prepare web
         run: ./scripts/prepare-web.sh
       - run: rm ./assets/vodozemac/.gitignore
