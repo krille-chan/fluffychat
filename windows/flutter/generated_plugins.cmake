@@ -18,8 +18,8 @@ list(APPEND FLUTTER_PLUGIN_LIST
   pasteboard
   record_windows
   screen_retriever_windows
-  share_plus
   url_launcher_windows
+  share_plus
   window_manager
   window_to_front
 )
