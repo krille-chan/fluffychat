@@ -6,11 +6,29 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.dart.DartExecutor.DartEntrypoint
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 
 class MainActivity : FlutterFragmentActivity() {
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        // The embedding passes the deep link of the launch intent to Flutter
+        // only when it starts the engine itself. If the engine is already
+        // running, e.g. started by a push or kept alive after the app was
+        // closed with the back button, the deep link must be passed here.
+        val engineIsRunning = engine?.dartExecutor?.isExecutingDart == true
+        super.onCreate(savedInstanceState)
+
+        val deepLink = intent.data?.toString() ?: return
+        val isNewLaunch = savedInstanceState == null &&
+            (intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY) == 0
+        if (engineIsRunning && isNewLaunch && shouldHandleDeeplinking()) {
+            engine?.navigationChannel?.pushRouteInformation(deepLink)
+        }
     }
 
 
